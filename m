@@ -2,88 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E95568CBF6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:34:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C0F68CC00
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 02:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230283AbjBGBey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 20:34:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
+        id S229556AbjBGBmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 20:42:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230297AbjBGBew (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:34:52 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD9C2F7AC;
-        Mon,  6 Feb 2023 17:34:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=tZWkCJrGrg0CgOQ/KDtg58bqJacvpTUQpLyNlTnrySs=; b=duOAIAbGYd5mxT4ixKQCZRLbCb
-        lrCA8ogNU46SpMPvMKMnuwUEopuVnJRdNEBeZV7nE3qTWsp0fkNpRqwolaN8Rl5FCc+Zo9t0QFUz8
-        f2vDD42t06VYQ7XoBg17UtNGokleyafXrAkg6OoEiTGIP+sJPg39KOTKxhet7pd52fOM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pPCsb-004FpP-6f; Tue, 07 Feb 2023 02:34:41 +0100
-Date:   Tue, 7 Feb 2023 02:34:41 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Janne Grunau <j@jannau.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mailing List <devicetree-spec@vger.kernel.org>,
-        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
-        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH RFC 0/3] dt-bindings: net: Add network-class.yaml schema
-Message-ID: <Y+GqsTLXRKyg0BdV@lunn.ch>
-References: <20230203-dt-bindings-network-class-v1-0-452e0375200d@jannau.net>
- <CAL_JsqKD7gD86_B93M19rBCWn+rmSw24vOGEhqi9Nvne1Xixwg@mail.gmail.com>
- <20230206163154.GA9004@jannau.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230206163154.GA9004@jannau.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229743AbjBGBmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 20:42:13 -0500
+Received: from mail-pj1-x104a.google.com (mail-pj1-x104a.google.com [IPv6:2607:f8b0:4864:20::104a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E4310A9F
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 17:42:11 -0800 (PST)
+Received: by mail-pj1-x104a.google.com with SMTP id a20-20020a17090ad81400b0022c3185ebbeso5300127pjv.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 17:42:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:mime-version:message-id:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=5Lzwmfi68lbdrUMbtc6adBz2FR099zCl1IbhLNZPH1k=;
+        b=AiCfxSp7rvYdlgl0hl4blBlUcDhKmP2ipQWAy9D+v4OffGK0tOAZAVe6vj1m5Qqb1N
+         EjVKK0seT/KHqRY31wLEaQnNOfPf2YnCeLt3UYVQcttmFjIdZOKxHDXNZbOFbd6VC/Qs
+         YNWCMN8S77uoudgWgBuiUlIQHmrkrOS93xAFfs/JCgWixMPTZKa7k1u41pU7om9nNL9z
+         xPGzdgebPBxzGe2RJ+Q4NwYLmakenKFtNcj/xZeImi7KWdRpF2+9iQmiJWyzIbJMCV4D
+         E4rbGyjlteWJX7skmBf/WRPXHpbjKXCwbF2v1IQwRsB/gvBU/gqaLXL7ZiasmH3GDDgW
+         1JOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5Lzwmfi68lbdrUMbtc6adBz2FR099zCl1IbhLNZPH1k=;
+        b=Hl0EAtTh3sIoV9qhQL8fYa2IR0vs55NdVjKfSupH9cPGqjtbPzWmKA+bMCd8zzRX2r
+         bbm/0UktXv+0m8mdn4Xv9tIIGV8/4nQb8YCitrIokv5J64GkztITecDcG8EHicPvWG5C
+         Y3LigDkLsyH7h08z0YseGsR3IAnuBnEYVjWZWLbmZ3XO3KBZZ+d1U9r9ChSYESHqsUbP
+         O0/KVCAkfKL4KDduHRGSWoRW3lKUEIHKvXrOyTWY2QRFsAxSu37W3ezWec3V2PwetC6a
+         xPc0G57UTyglgT7IGiDQAfRl6I8igf/2JDSrz1aBVc/LaV3uOXMt8E1iCow2GG5Je2OH
+         bRmA==
+X-Gm-Message-State: AO0yUKVu0ivQE3V9exdflJQlQg7WuGb6QX+dYIpuvwvj2498uHyieBeV
+        zmEVCtKs37133VDB3GiL52KABmVOg7yKENc=
+X-Google-Smtp-Source: AK7set+EAwfeBS4EZdincaahfqhxKjG9TUS0REB1NbACugqOxKLsnOyVz3Xl+5qV5fiy7WsvyHpw/x+7WRzIigU=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:ae1:aba6:f21c:4a94])
+ (user=saravanak job=sendgmr) by 2002:a17:90a:5a05:b0:22c:46e:6510 with SMTP
+ id b5-20020a17090a5a0500b0022c046e6510mr459339pjd.9.1675734130693; Mon, 06
+ Feb 2023 17:42:10 -0800 (PST)
+Date:   Mon,  6 Feb 2023 17:41:52 -0800
+Message-Id: <20230207014207.1678715-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
+Subject: [PATCH v3 00/12] fw_devlink improvements
+From:   Saravana Kannan <saravanak@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?=" <rafal@milecki.pl>
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > I've ignored "max-frame-size" since the description in
-> > > ethernet-controller.yaml claims there is a contradiction in the
-> > > Devicetree specification. I suppose it is describing the property
-> > > "max-frame-size" with "Specifies maximum packet length ...".
-> > 
-> > Please include it and we'll fix the spec. It is clearly wrong. 2 nios
-> > boards use 1518 and the consumer for them says it is MTU. Everything
-> > else clearly uses mtu with 1500 or 9000.
-> 
-> Ok, the example in the pdf is 'max-frame-size = <1518>;'. I'll include 
-> it with the description of ethernet-controller.yaml which specifies it 
-> as MTU.
+Naresh, Tony, Abel, Geert, Dmitry, Maxim(s), Miquel, Luca, Doug, Martin,
+Jean-Philippe,
 
-You need to be careful here. Frame and MTU are different things.
+Can I get your Tested-by's for this v3 series please?
 
-The IEEE 802.3 standard says nothing about MTU. I believe MTU is an IP
-concept. It is the size of the SDU an Ethernet PDU can carry. This is
-typically 1500.
+Vladimir,
 
-Historically, the max Ethernet frame size was 1518. But with 802.1Q
-which added the VLAN header, all modern hardware actual uses 1522 to
-accommodate the extra 4 bytes VLAN header. So i would not actually put
-max-frame-size = <1518> anywhere, because it will get copy/pasted and
-break VLAN setups.
+Ccing you because DSA's and fw_devlink have known/existing problems
+(still in my TODOs to fix). But I want to make sure this series doesn't
+cause additional problems for DSA.
 
-It looks like the ibm,emac.txt makes this error, max-frame-size =
-<5dc>; 0x5dc is 1500. And there are a few powerpc .dtc using
-1500/0x5dc, which are probably broken.
+All,
 
-      Andrew
+This patch series improves fw_devlink in the following ways:
+
+1. It no longer cares about a fwnode having a "compatible" property. It
+   figures this out more dynamically. The only expectation is that
+   fwnodes that are converted to devices actually get probed by a driver
+   for the dependencies to be enforced correctly.
+
+2. Finer grained dependency tracking. fw_devlink will now create device
+   links from the consumer to the actual resource's device (if it has one,
+   Eg: gpio_device) instead of the parent supplier device. This improves
+   things like async suspend/resume ordering, potentially remove the need
+   for frameworks to create device links, more parallelized async probing,
+   and better sync_state() tracking.
+
+3. Handle hardware/software quirks where a child firmware node gets
+   populated as a device before its parent firmware node AND actually
+   supplies a non-optional resource to the parent firmware node's
+   device.
+
+4. Way more robust at cycle handling (see patch for the insane cases).
+
+5. Stops depending on OF_POPULATED to figure out some corner cases.
+
+6. Simplifies the work that needs to be done by the firmware specific
+   code.
+
+The v3 series has gone through my usual testing on my end and looks good
+to me.
+
+Thanks,
+Saravana
+
+[1] - https://lore.kernel.org/lkml/20220810060040.321697-1-saravanak@google.com/
+[2] - https://lore.kernel.org/lkml/CAGETcx-JUV1nj8wBJrTPfyvM7=Mre5j_vkVmZojeiumUGG6QZQ@mail.gmail.com/
+
+v1 -> v2:
+- Fixed Patch 1 to handle a corner case discussed in [2].
+- New patch 10 to handle "fsl,imx8mq-gpc" being initialized by 2 drivers.
+- New patch 11 to add fw_devlink support for SCMI devices.
+
+v2 -> v3:
+- Addressed most of Andy's comments in v2
+- Added Colin and Sudeep's Tested-by for the series (except the imx and
+  renesas patches)
+- Added Sudeep's Acked-by for the scmi patch.
+- Added Geert's Reviewed-by for the renesas patch.
+- Fixed gpiolib crash reported by Naresh.
+- Patch 6: Fix __fwnode_links_move_consumers() to preserve fwnode link flags.
+- New Patch 12 to fix nvmem-cells issue reported by Maxim(s)/Miquel.
+- Deleted some stale function doc in Patch 8
+
+Cc: Abel Vesa <abel.vesa@linaro.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: John Stultz <jstultz@google.com>
+Cc: Doug Anderson <dianders@chromium.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Maxim Kiselev <bigunclemax@gmail.com>
+Cc: Maxim Kochetkov <fido_max@inbox.ru>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Colin Foster <colin.foster@in-advantage.com>
+Cc: Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc: Jean-Philippe Brucker <jpb@kernel.org>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
+
+Saravana Kannan (12):
+  driver core: fw_devlink: Don't purge child fwnode's consumer links
+  driver core: fw_devlink: Improve check for fwnode with no
+    device/driver
+  soc: renesas: Move away from using OF_POPULATED for fw_devlink
+  gpiolib: Clear the gpio_device's fwnode initialized flag before adding
+  driver core: fw_devlink: Add DL_FLAG_CYCLE support to device links
+  driver core: fw_devlink: Allow marking a fwnode link as being part of
+    a cycle
+  driver core: fw_devlink: Consolidate device link flag computation
+  driver core: fw_devlink: Make cycle detection more robust
+  of: property: Simplify of_link_to_phandle()
+  irqchip/irq-imx-gpcv2: Mark fwnode device as not initialized
+  firmware: arm_scmi: Set fwnode for the scmi_device
+  mtd: mtdpart: Don't create platform device that'll never probe
+
+ drivers/base/core.c             | 449 +++++++++++++++++++++-----------
+ drivers/firmware/arm_scmi/bus.c |   3 +-
+ drivers/gpio/gpiolib.c          |   7 +
+ drivers/irqchip/irq-imx-gpcv2.c |   1 +
+ drivers/mtd/mtdpart.c           |  10 +
+ drivers/of/property.c           |  84 +-----
+ drivers/soc/imx/gpcv2.c         |   2 +-
+ drivers/soc/renesas/rcar-sysc.c |   2 +-
+ include/linux/device.h          |   1 +
+ include/linux/fwnode.h          |  12 +-
+ 10 files changed, 344 insertions(+), 227 deletions(-)
+
+-- 
+2.39.1.519.gcb327c4b5f-goog
+
