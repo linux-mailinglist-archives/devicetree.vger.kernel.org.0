@@ -2,123 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BBCE68D9F0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B03668DA36
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 15:12:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjBGN5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 08:57:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38278 "EHLO
+        id S230519AbjBGOMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 09:12:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232292AbjBGN4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:56:45 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C556A36FCD
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 05:56:18 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id d14so13616942wrr.9
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 05:56:18 -0800 (PST)
+        with ESMTP id S231128AbjBGOMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 09:12:20 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1336A51
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 06:12:18 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id lu11so43480180ejb.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 06:12:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V1aUOJzlnvog/gfPWV5JW0Qf9tdncCWCmWydTboOvKw=;
-        b=bO5sg5C5vYk9TdSOnLjR4vlhtn9sPiCyuwTtqnTTgWRlpu6ZIHi2AuSfyxwDUhH1E3
-         7iIfij9Fjz7f1MYJpQy2hjG1h8vjsYElgJEhcWCYbarfC1ZcxdyLCyd/IPGwYUz+3Mde
-         oqQp5TY/prn2vOHVAiD4YbRNxJmoIEX9aMEGWawsmNYceIIZqF3dZuYM8TqTJFLpiItC
-         gUZj8ZewAg+J/0uxy84V7Sd9T7B9STa6We5Gn5QUkuDdBa0eSe6ZESufOyJ8RqKi93Fd
-         zZeqp4/kmqKAY2c8yu6aJKqcT81K8WZv25+Y4RCXZ0TR+A81ExbJ+Ite5QCLES6P4aWw
-         A8eA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sZ5mpqE2ocgxdfOCGy+CSBqlukMgoxHcZxwHA7en+qo=;
+        b=L5y670ucwvznmASN/AgU3Adj4DK9TRbO1/1YS+dn/0W79V62OSh3ZRPjtCulNArAWE
+         ivzFlnK2NeAwdYtafs0lMvGfiH6K7jW+0Que/knBzosItpl7clydO5JDQfAoD+SCMNWK
+         srqvl4iD1hYoDi36HJpgXDjxTHqXBnSjZNbu4692jQ9G5xa8usPfaPGDVtzDeMlX/rpT
+         qaSIopQsD6R+m7ErR4b+qrfgAcSl78f3JkYiC7AhQEZgeMGDFkTTjYESoNDoxMbN0cRr
+         odLHYw+6+82HUhV/gWdPCrf2cNxB0aO4vC70oa2SQlJflzZNMziU2XPjBThE/PSOd44z
+         +PxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V1aUOJzlnvog/gfPWV5JW0Qf9tdncCWCmWydTboOvKw=;
-        b=5oS751O8bnzWq8+9dOHlpvTPch2KwsKybHrdjn8G49+b8v0s+L69XzVgUV5YXa7ywr
-         l0xSc7bbNMdaq9nBWcY9ayFIOlcwlgifBRu8e1tOwNcClbZumP5SWClrdesAPf0SXdaX
-         V2eJEIMbX/YDtlb4fjWamH54tTRsEpZiq7TFKkqz7vuMtQPEViSrGpNiiZC6exS7bWC+
-         KTnlfd0YtSmM9hwmNoSIuHvdKAkwGPpPL/wngXhxHqQ328KbnHogMc99fQNqQOD6kkGp
-         ComJBiXnyB/wyD4d8j7+bOP9947vL97bKJZp2wIjKNOVC364G0KCMI4sU0qgrR6n097Z
-         GaYw==
-X-Gm-Message-State: AO0yUKWwl9HWy/k6OjpKxy9iSvFNFq5tW71HNEH/TAd8hBFpa6PS33Hd
-        9QBrgeiSTCE3x42w2Pqa9kO4fw==
-X-Google-Smtp-Source: AK7set8/7pguR2nkrh5sfxWhRMJoc0cANOCX7qiQNTzv4aIYl17VUb020gXBfptdCuTi7LOG4aoGAA==
-X-Received: by 2002:a5d:6d82:0:b0:2c3:c138:e52d with SMTP id l2-20020a5d6d82000000b002c3c138e52dmr14202450wrs.4.1675778164473;
-        Tue, 07 Feb 2023 05:56:04 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id p10-20020a5d59aa000000b002be5401ef5fsm11611312wrr.39.2023.02.07.05.56.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 05:56:03 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 7/7] arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
-Date:   Tue,  7 Feb 2023 15:55:51 +0200
-Message-Id: <20230207135551.1418637-8-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230207135551.1418637-1-abel.vesa@linaro.org>
-References: <20230207135551.1418637-1-abel.vesa@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sZ5mpqE2ocgxdfOCGy+CSBqlukMgoxHcZxwHA7en+qo=;
+        b=E6l0MWn0a8Qg1PrRGSgg5xG50wDZoPE1ceFg5z1bIBMzy+GxEGCtnCgt1HaUljbBcJ
+         +4rpIEcLJjr30h0qhaKs/L2bflRGUIMXEbJS4XWA6I/EFx6rlc5L0VSRnVZqN92I98kY
+         vhUtf1YsCXkbiSoom8DjD/eELd5MPU4ywkwG0ve1bE7OqNVuiZW9Bpv7RU2e1fL/rZGu
+         annDG0KBh4WosU8L/kabg3Wr6yLxjSmgHhleBV9WxQhEgxnZAcOqM5b3REq3TvTGD0z1
+         T3Ts/1Lpbm6YD0oI6jCfU8tjTHh5Gi5vMxkspVeO4ix7A2P3ITAVgRPxJLVWIX9H5Vpb
+         SzOw==
+X-Gm-Message-State: AO0yUKVT+2nY7JS4xacbUfaLmIgxazxA9h5E+qYsxB03yZO8/SkS9kbg
+        i73j+yTmF7Qdnzh0TlBnpybD74d0H+uqo22jK2cA1g==
+X-Google-Smtp-Source: AK7set/oFiHS7dnqOHD5CRTN/KUIGukzO1ouxhtBnCV18RKKz15grDjDu1XvBQC50v14OV0tRya/fbXqJ7mbQOxpli4=
+X-Received: by 2002:a17:906:ca04:b0:7c0:f45e:22ff with SMTP id
+ jt4-20020a170906ca0400b007c0f45e22ffmr999899ejb.104.1675779137174; Tue, 07
+ Feb 2023 06:12:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230207130958.608305-1-bchihi@baylibre.com> <20230207130958.608305-3-bchihi@baylibre.com>
+ <046b3b31-cbf7-674d-f05c-b825d6b46bf6@linaro.org>
+In-Reply-To: <046b3b31-cbf7-674d-f05c-b825d6b46bf6@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Tue, 7 Feb 2023 15:11:40 +0100
+Message-ID: <CAGuA+opvh95SXN-YGfxH0-NA8o4dBNkQJd9PfEXATFPbKHsHuA@mail.gmail.com>
+Subject: Re: [PATCH v13 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal controllers
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the PMIC eUSB2 repeater node and add the usb-repeater
-property to the eUSB2 PHY to allow it to be controlled by the
-PHY driver.
+Hi Krzysztof,
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
+Thank you for the review.
 
-The v3 (rfc) is here:
-https://lore.kernel.org/all/20230202133816.4026990-8-abel.vesa@linaro.org/
+On Tue, Feb 7, 2023 at 2:35 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 07/02/2023 14:09, bchihi@baylibre.com wrote:
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> >
+> > Add LVTS thermal controllers dt-binding definition for mt8192 and mt8195.
+> >
+>
+>
+> > +allOf:
+> > +  - $ref: thermal-sensor.yaml#
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8192-lvts-ap
+> > +              - mediatek,mt8192-lvts-mcu
+> > +    then:
+> > +      properties:
+> > +        nvmem-cells:
+> > +          maxItems: 1
+> > +
+> > +        nvmem-cell-names:
+> > +          maxItems: 1
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8195-lvts-ap
+> > +              - mediatek,mt8195-lvts-mcu
+> > +    then:
+> > +      properties:
+> > +        nvmem-cells:
+>
+> minItems: 2
+>
 
-Changes since v3:
- * Dropped the phy-names property from usb_1_hsphy, like Dmitry suggested
+OK,
+I will do the change.
 
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+> > +          maxItems: 2
+> > +
+> > +        nvmem-cell-names:
+>
+> minItems: 2
+>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 56aab7cafcbc..6b6ec0fe5e5e 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -457,6 +457,11 @@ sdc2_card_det_n: sdc2-card-det-state {
- 	};
- };
- 
-+&pm8550b_eusb2_repeater {
-+	vdd18-supply = <&vreg_l15b_1p8>;
-+	vdd3-supply = <&vreg_l5b_3p1>;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -563,6 +568,8 @@ &usb_1_hsphy {
- 	vdd-supply = <&vreg_l1e_0p88>;
- 	vdda12-supply = <&vreg_l3e_1p2>;
- 
-+	phys = <&pm8550b_eusb2_repeater>;
-+
- 	status = "okay";
- };
- 
--- 
-2.34.1
+OK,
+I will do this change too.
 
+> > +          maxItems: 2
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+>
+> (...)
+>
+> > diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+> > new file mode 100644
+> > index 000000000000..4f2082065a31
+> > --- /dev/null
+> > +++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+> > @@ -0,0 +1,19 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * Copyright (c) 2023 MediaTek Inc.
+> > + * Author: Balsam CHIHI <bchihi@baylibre.com>
+> > + */
+> > +
+> > +#ifndef __MEDIATEK_LVTS_DT_H
+> > +#define __MEDIATEK_LVTS_DT_H
+> > +
+> > +#define MT8195_MCU_BIG_CPU0          0
+> > +#define MT8195_MCU_BIG_CPU1          1
+> > +#define MT8195_MCU_BIG_CPU2          2
+> > +#define MT8195_MCU_BIG_CPU3          3
+> > +#define MT8195_MCU_LITTLE_CPU0       4
+>
+> These changed for some reason. Why? The indentation is now broken
+> (although not visible above quote, but visible in diff and code).
+
+I thought that I fixed the indentation.
+I will restore it.
+
+>
+> Best regards,
+> Krzysztof
+>
+
+Best regards,
+Balsam
