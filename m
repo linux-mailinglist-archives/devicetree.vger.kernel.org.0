@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E6268E35F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 23:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55B3E68E377
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 23:37:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbjBGWUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 17:20:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58734 "EHLO
+        id S229618AbjBGWhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 17:37:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229980AbjBGWUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 17:20:12 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C6C3EFF1;
-        Tue,  7 Feb 2023 14:20:05 -0800 (PST)
+        with ESMTP id S229628AbjBGWhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 17:37:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB2E18B0D;
+        Tue,  7 Feb 2023 14:37:13 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 06BAD6131A;
-        Tue,  7 Feb 2023 22:20:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5F3B1C433EF;
-        Tue,  7 Feb 2023 22:20:04 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B6AD861323;
+        Tue,  7 Feb 2023 22:37:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E5D8C4339C;
+        Tue,  7 Feb 2023 22:37:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675808404;
-        bh=j8kkrNKl9M8Jzq1sB7erz1sUw/HpmwioLkvJHp3VL+Y=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=UZx6aSuUgHKlRXIHSiE/jwW7dIGyJOgj1LFpjwV4i/N5f7HY42x/6gHUQ/LQMI9/H
-         szPEP8QCobiktHPoC4jOSrbq/qWZc5h2ttKVfj04I+S9qF0QA9jJ5oOSpPRl36syC2
-         Fo+zbJGjb+WytoGn02bstXi+ZY+CYwLB+MNDi8lk7GeGzfkn0Wr12CaKUKKlwr+SUj
-         fNCzQivqFS9ypJX0WcM0vgNdqbP1Xk67zE4JegDKP1zpcWcWA3ZzOlLwOgrpNmOFjd
-         lv8MK9uo/ZQamWI5vtDozmXqc/NxEraqs4of/uZNDoVWiXRzJRbd/l4OooAT3BFNDA
-         8ss00sZtdGHvA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 49C57E55EFD;
-        Tue,  7 Feb 2023 22:20:04 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.2, take 2
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20230207221133.GA50340-robh@kernel.org>
-References: <20230207221133.GA50340-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20230207221133.GA50340-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.2-2
-X-PR-Tracked-Commit-Id: 707344c8a188bb1d6704d3546229fc7a07c01a63
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 0983f6bf2bfc0789b51ddf7315f644ff4da50acb
-Message-Id: <167580840428.25372.6229505556242608295.pr-tracker-bot@kernel.org>
-Date:   Tue, 07 Feb 2023 22:20:04 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        s=k20201202; t=1675809432;
+        bh=P/j9FremlEniDh+5z4OLZc9/d9eizPzjrG/+jYcUjFY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aIxGR8de9at3sLqsFQR8qwsqXwZfFHJEyZUZcZdmdku+j731I0qtNC10C/UgQ4n9D
+         /gKsvNLcNxbs/qDKAKqR3Xga715Rtpq1Uwwwag6/X6rfKgZ4evQuBSuuRbufqmXQZx
+         Rjj+rcs8d0dOamCXYYEd6f3d38NsaH5k4E/Nge08XPMgQVsVExaQ/0vGIGwVsYETgm
+         Zyyqspiq3mg5pCrEG38PLb9dMWKUhPwOeve0giAgiGAhQmJkAKqWZcJ6mvzrxQEIUE
+         2ORC/m29kwB5PhPZTC2lWZq4TNEoA37NZKiXZehEUsub3n0rPvW+H6TzHeoYAPHNDX
+         oR7l2phZDPNpg==
+Received: by mail-vs1-f48.google.com with SMTP id g8so2677630vso.3;
+        Tue, 07 Feb 2023 14:37:12 -0800 (PST)
+X-Gm-Message-State: AO0yUKVy+b/x97THDHD/qejBDdhxI8cqUUWH+hLoZkkEbTHXeS4Cuv3k
+        AkGp46cJjQ/1YuCW7iOJQAegPQSgxNVD0kwyyg==
+X-Google-Smtp-Source: AK7set8CTKpK37ejmlVmUa1pDbSyYbK30K628/7kCIC7xileb97NUKAyVKF2Xl4q+KD7x4yI4c594dn+El+Gpklm5jM=
+X-Received: by 2002:a67:d514:0:b0:3e9:107e:cc55 with SMTP id
+ l20-20020a67d514000000b003e9107ecc55mr937433vsj.6.1675809431022; Tue, 07 Feb
+ 2023 14:37:11 -0800 (PST)
+MIME-Version: 1.0
+References: <cover.1672730839.git.chiaen_wu@richtek.com> <664b47539b9773425556f569e40d687e33799c53.1672730839.git.chiaen_wu@richtek.com>
+In-Reply-To: <664b47539b9773425556f569e40d687e33799c53.1672730839.git.chiaen_wu@richtek.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 7 Feb 2023 16:36:59 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ4gueN3UFfea5JC6xfPjaH6a+7+dioTw=s0W-gBf6Anw@mail.gmail.com>
+Message-ID: <CAL_JsqJ4gueN3UFfea5JC6xfPjaH6a+7+dioTw=s0W-gBf6Anw@mail.gmail.com>
+Subject: Re: [PATCH v3 RESEND 2/3] power: supply: rt9467: Add Richtek RT9467
+ charger driver
+To:     ChiaEn Wu <peterwu.pub@gmail.com>, sre@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, chiaen_wu@richtek.com,
+        cy_huang@richtek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,15 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Tue, 7 Feb 2023 16:11:33 -0600:
+On Tue, Jan 3, 2023 at 1:30 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+>
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
+>
+> RT9467 is a switch-mode single cell Li-Ion/Li-Polymer battery charger
+> for portable applications.
+>
+> It integrates a synchronous PWM controller, power MOSFETs,
+> input current sensing and regulation, high-accuracy voltage regulation,
+> and charge termination. The charge current is regulated through
+> integrated sensing resistors.
+>
+> The RT9467 also features USB On-The-Go (OTG) support. It also integrates
+> D+/D- pin for USB host/charging port detection.
+>
+> Co-developed-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> ---
+>  drivers/power/supply/Kconfig          |   19 +
+>  drivers/power/supply/Makefile         |    1 +
+>  drivers/power/supply/rt9467-charger.c | 1282 +++++++++++++++++++++++++
+>  3 files changed, 1302 insertions(+)
+>  create mode 100644 drivers/power/supply/rt9467-charger.c
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.2-2
+[...]
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/0983f6bf2bfc0789b51ddf7315f644ff4da50acb
+> +static const struct of_device_id rt9467_charger_of_match_table[] = {
+> +       { .compatible = "richtek,rt9467", },
 
-Thank you!
+This does not match the binding. Probably the binding should be fixed
+if this is only a charger. In that case, '-charger' is redundant.
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+FYI, 'make dt_compatible_check' will detect this.
+
+Rob
