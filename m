@@ -2,60 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A1A68E105
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 20:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C63268E124
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 20:29:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbjBGTU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 14:20:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58764 "EHLO
+        id S229692AbjBGT3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 14:29:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbjBGTU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 14:20:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E76252BD
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 11:20:57 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pPTWK-0000Gm-JD; Tue, 07 Feb 2023 20:20:48 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:1929:cbfc:e29:aaab])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 3FA43172BA4;
-        Tue,  7 Feb 2023 19:20:46 +0000 (UTC)
-Date:   Tue, 7 Feb 2023 20:20:40 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229539AbjBGT3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 14:29:00 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7908334032
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 11:28:59 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so10818735wms.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 11:28:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U8Ap/R9bBCRwfbHGCfaOdQ/oi2hB1pqW05c0juFinY0=;
+        b=vIkCoxnEwrDeI35wrzj+TX7KKyYN4lId+J+knK7tvaXmNVu51KlchE3CIKk8jqJ87j
+         m6WF9XxXVGbT4qtTtlA0AMoH9z6CTaDulTx+iyEOznZMsylwv5gx8aNhG7a5ry3mJGc0
+         eAms2XPNv/3AzP9UzZlTHdDtJqAHSD0t8tsdqyH1RED455qvRWOd3LWWgGh8nHa10WfT
+         ma5E1TnNN9+7C3vB9dg7B/eVLM4HQ2TFV3tl7JHF37T9GYcqs84Hh8rFoT+3EkrMT/Gk
+         jGxF4LEc//YbaYLAGCGiB3ZM/8003BAGj/gVBPwOxPhHlW4sksXP44L89Aj6aonntgJ5
+         5e5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U8Ap/R9bBCRwfbHGCfaOdQ/oi2hB1pqW05c0juFinY0=;
+        b=OVBwQ+v/aQFqEv5rSbCKOEfs7sNSvrKXP8FU/YsQ02BLbG0AC3ygI+cYdpTiQn2gJ3
+         YWCgHCOoWaT7nnR8ctvexJzPaB3POfqTOekgO9cUxiROPP3T0GyjTLdUooW6/wRmxn4T
+         9rE2WcGHg3WeuhaTYKrTTRWx83RdqF0KlZNYSd+Lg6PlDg8rE8bch1/CQbrFnkd8PISQ
+         gRCOojkrXAExBFbjlutybC4uTgXm6T7McI/uQEgUFbO1kgqUYlJEr5oJkm/pSXlO6SCG
+         vLYeIbaeOfFzqXvbS1Qs9xa+oADRNvA1YSsuwpDtXLfhlfWagEoI4HOATT262hzQIZwb
+         ms7A==
+X-Gm-Message-State: AO0yUKV+kp6P6uGNpqOnwxd2uGHN5VotfxnAWKURPTlgL4pCfQZAWp2t
+        5z106jVjys5bioeyoWzne1gZmQ==
+X-Google-Smtp-Source: AK7set9k6ax9+8EqWLt6+WaYYhjredgB03dqiFMzkGrpCA7+tKGHv3HYgWBH0mSw6TVrdK7kotJ+DQ==
+X-Received: by 2002:a05:600c:a292:b0:3df:eb5d:fbf with SMTP id hu18-20020a05600ca29200b003dfeb5d0fbfmr4158930wmb.38.1675798138113;
+        Tue, 07 Feb 2023 11:28:58 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id j33-20020a05600c1c2100b003db0ad636d1sm22770818wms.28.2023.02.07.11.28.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 11:28:57 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli+renesas@fpond.eu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, Vinod <vkoul@kernel.org>
-Subject: Re: [PATCH 12/12] can: rcar_canfd: Add transceiver support
-Message-ID: <20230207192040.2b5wplxp75agydyw@pengutronix.de>
-References: <cover.1674499048.git.geert+renesas@glider.be>
- <e825b50a843ffe40e33f34e4d858c07c1b2ff259.1674499048.git.geert+renesas@glider.be>
- <CAMuHMdXtiC-Oo01Y-vCbokjF=L+YXMN=TucgqCS4Vtcg5gt==g@mail.gmail.com>
- <20230202144000.2qvtnorgig52jfhw@pengutronix.de>
- <CAMuHMdUm+ExFCspjk6OO3pvZ-mW8dOiZe7bS2r-ys0S=CBAT-Q@mail.gmail.com>
- <20230202150632.oo57ap7bdapsvrum@pengutronix.de>
- <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: soc: samsung: exynos-pmu: allow phys as child on Exynos3 and Exynos4
+Date:   Tue,  7 Feb 2023 20:28:49 +0100
+Message-Id: <20230207192851.549242-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uebnley74i5a7pp2"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdX0iHUvyFYSdQJFLOzatjgHDnHYDzVvWFukYpXKbq7RxA@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,50 +70,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Just like on Exynos5250, Exynos5420 and Exynos5433 the MIPI phy is
+actually part of the Power Management Unit system controller thus allow
+it as PMU's child.
 
---uebnley74i5a7pp2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/soc/samsung/exynos-pmu.yaml      | 23 +++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
-On 03.02.2023 11:24:08, Geert Uytterhoeven wrote:
-> > > > > I'll keep you updated when/if this ends up on an immutable branch.
-> > > >
-> > > > Should I take the patches 1...11 for can-next/main?
-> > >
-> > > That would be great, thanks!
-> >
-> > Done.
->=20
-> Thank you!
-> Meanwhile, the dependency for 12/12 is now available as an immutable
-> branch, cfr. https://lore.kernel.org/all/Y9za4a8qyapi4CWD@matsya
+diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+index f7c141dd11ec..5d8d9497f18e 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+@@ -48,6 +48,9 @@ properties:
+           - const: syscon
+       - items:
+           - enum:
++              - samsung,exynos3250-pmu
++              - samsung,exynos4210-pmu
++              - samsung,exynos4412-pmu
+               - samsung,exynos5250-pmu
+               - samsung,exynos5420-pmu
+               - samsung,exynos5433-pmu
+@@ -138,18 +141,34 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - samsung,exynos3250-pmu
++              - samsung,exynos4210-pmu
++              - samsung,exynos4412-pmu
+               - samsung,exynos5250-pmu
+               - samsung,exynos5420-pmu
+               - samsung,exynos5433-pmu
+     then:
+       properties:
+-        dp-phy: true
+         mipi-phy: true
+     else:
+       properties:
+-        dp-phy: false
+         mipi-phy: false
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - samsung,exynos5250-pmu
++              - samsung,exynos5420-pmu
++              - samsung,exynos5433-pmu
++    then:
++      properties:
++        dp-phy: true
++    else:
++      properties:
++        dp-phy: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/exynos5250.h>
+-- 
+2.34.1
 
-net-next/main is at v6.2-rc6, but does not include this series. I assume
-it will be mainlined in the v6.3 merge window. I think you can resend
-this patch against can/main once v6.3-rc1 is released.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---uebnley74i5a7pp2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmPipIYACgkQvlAcSiqK
-BOgpVAf/ahELMG0vSewSeK3gt53ohA63VHVUWV6WwRiWHxj6dCbDF1w77kFFMKhL
-/oCXDAZj/ZwOUyFl7hMlfLLtw7BqxDU/c8gs/F7EtwVWLZKqWJW9DOE9a6MF3z2O
-UbaCSre8WMqm71VhaufiHUAAgmAdDpEfrKXXdiaNlIYzK8ZrvLkXVTxQA5oMEFRC
-NcVq+mC+utHPU2FdZdLcob9p8nXNL815oNQNFQzVt3ajrF1JpNyzj9hEvU1nzPyM
-K0DTlOU9NdTQy9wf/yV3IJ0RuAN5ig/FIz+rFTZIVISEQ6INy15c5vVHmhFnvevI
-jwekga+zhkspicJD6LxUBuoUkjkpQg==
-=uykw
------END PGP SIGNATURE-----
-
---uebnley74i5a7pp2--
