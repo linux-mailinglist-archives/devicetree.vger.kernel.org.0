@@ -2,37 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F238368DDE4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 17:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBAA68DE05
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 17:34:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231686AbjBGQZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 11:25:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46522 "EHLO
+        id S230011AbjBGQer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 11:34:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231280AbjBGQZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 11:25:42 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB5D61A5;
-        Tue,  7 Feb 2023 08:25:41 -0800 (PST)
-Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S229878AbjBGQeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 11:34:46 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B077536448;
+        Tue,  7 Feb 2023 08:34:45 -0800 (PST)
+Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 29C3E66020E8;
-        Tue,  7 Feb 2023 16:25:39 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 37CA1660208D;
+        Tue,  7 Feb 2023 16:34:44 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675787139;
-        bh=HOrC+xKoDbYva3mi7kNRHfK88vh1PiAgWULb+aXfcI8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=i5F9gkSN0PTfhpMPj6BBMRxWK14vLVR6Up5CF2yPvbptxFGrxnApAmPNx7cB8ttzZ
-         eLtTAiSMe+3zf1Mxm1apv+4umlAqO9Zie6Sicjxzgfi9LuOFROHsj3ppa1G4okLuho
-         gnBpTQbJwUOcsLO3mW4eQZf/9FNIGe9BQBWfzeZAboMmxLE9qLsptLDPuDpElryVNa
-         3C+ych2kZy3yaMq1ZproHJlpKpVpFaH5Ihptu6bp4V0XxTP8MULWNSjHKXXPMcwVuZ
-         X/JO+Tcxyj9W6QpoDJ+9ANb/ZHErq3zaBUT8ccgToUv0kXmlWd6RslmlNQzMBVdvmM
-         j2Hc+az8NxlLQ==
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-To:     David Rhodes <david.rhodes@cirrus.com>,
+        s=mail; t=1675787684;
+        bh=Ju9beePp7bAYEhek0mXetGx1R+Zbuu/Si/5uQYOpoYQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=edQKC4NEPBgk6xe98pLs1bQKH/mVHP9YXgIKmxRpaFkpenX2o/OQ+p83JRoc98JIu
+         s5vkVGN/Q3Tj2Or/cTy3yxAjr10QlhINvyc333vtYnB+y3Z03j7M4sXTRDKyRSzUVv
+         aDl6VlVamlv+1h1kaKIG3iQ6WuDLUB+HFyMuKki0rCv1/uYtizueGxxXRamCI1/6gO
+         hP+dQq9wfMXVMCXavKYoqjuNhUlyqAMuQunVAjhnIBanTd/hpxLc0jIYcElCHEHib8
+         ZWl2KyMZDKnwX/WX6495BOgPIhDt+1fAtjnQVrZNkwwaRB81ApYUv/r14QG5jwblfb
+         6qDOxL8gzupbw==
+Message-ID: <4efe9796-6d3e-09d1-d5f7-cfb25a439061@collabora.com>
+Date:   Tue, 7 Feb 2023 16:34:42 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        David Rhodes <david.rhodes@cirrus.com>,
         Charles Keepax <ckeepax@opensource.cirrus.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -41,59 +48,58 @@ To:     David Rhodes <david.rhodes@cirrus.com>,
         Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
-Subject: [PATCH v2 5/5] ASoC: cs35l41: Document CS35l41 shared boost
-Date:   Tue,  7 Feb 2023 16:25:26 +0000
-Message-Id: <20230207162526.1024286-6-lucas.tanure@collabora.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230207162526.1024286-1-lucas.tanure@collabora.com>
-References: <20230207162526.1024286-1-lucas.tanure@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        kernel@collabora.com
+References: <20230207104021.2842-1-lucas.tanure@collabora.com>
+ <20230207104021.2842-3-lucas.tanure@collabora.com>
+ <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+ <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
+ <44c7274f-8a5e-0235-413a-6c3260018601@linaro.org>
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+In-Reply-To: <44c7274f-8a5e-0235-413a-6c3260018601@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the properties used for shared boost
-configuration.
-Based on David Rhodes shared boost patches.
+On 07-02-2023 16:13, Krzysztof Kozlowski wrote:
+> On 07/02/2023 16:46, Lucas Tanure wrote:
+>>>> +      Shared boost allows two amplifiers to share a single boost circuit by
+>>>> +      communicating on the MDSYNC bus. The passive amplifier does not control
+>>>> +      the boost and receives data from the active amplifier. GPIO1 should be
+>>>> +      configured for Sync when shared boost is used. Shared boost is not
+>>>> +      compatible with External boost. Active amplifier requires
+>>>> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
+>>>>          0 = Internal Boost
+>>>>          1 = External Boost
+>>>> +      2 = Reserved
+>>>
+>>> How binding can be reserved? For what and why? Drop. 2 is shared active,
+>>> 3 is shared passive.
+>> 2 Is shared boost without VSPK switch, a mode not supported for new
+>> system designs. But there is laptops using it, so we need to keep
+>> supporting in the driver.
+> 
+> That's not the answer. 2 is nothing here, so it cannot be reserved.
+> Aren't you mixing now some register value with bindings?
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+I have added a new patch with propper documentation.
+And I would like to use 3 and 4 for shared boost as 
+CS35L41_EXT_BOOST_NO_VSPK_SWITCH already exist as 2 and is used in the 
+current driver.
+The laptop that uses CS35L41_EXT_BOOST_NO_VSPK_SWITCH doesn't have the 
+property "cirrus,boost-type", but to make everything consistent I would 
+prefer to use 3 and 4 for the new boost types.
+Is that ok with you?
 
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
----
- .../devicetree/bindings/sound/cirrus,cs35l41.yaml      | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-index 8465623bbd96..54f769159ce4 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-@@ -86,12 +86,20 @@ properties:
-       External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
-       enable boost voltage.
-       External Boost without GPIO1 as VSPK switch is no longer supported.
-+      Shared boost allows two amplifiers to share a single boost circuit by
-+      communicating on the MDSYNC bus. The passive amplifier does not control
-+      the boost and receives data from the active amplifier. GPIO1 should be
-+      configured for Sync when shared boost is used. Shared boost is not
-+      compatible with External boost. Active amplifier requires
-+      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
-       0 = Internal Boost
-       1 = External Boost
-       2 = External Boost without VPSK switch (Do not use in new systems)
-+      3 = Shared Boost Active
-+      4 = Shared Boost Passive
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
--    maximum: 2
-+    maximum: 4
- 
-   cirrus,gpio1-polarity-invert:
-     description:
--- 
-2.39.1
-
+Thanks
+Lucas
