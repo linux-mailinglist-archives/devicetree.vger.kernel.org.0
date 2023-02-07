@@ -2,108 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A307168D6BD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 13:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8291F68D6D5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 13:34:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231276AbjBGMaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 07:30:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55014 "EHLO
+        id S231605AbjBGMes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 07:34:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjBGMa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 07:30:29 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4A02C664
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 04:30:28 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id m14so13352145wrg.13
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 04:30:28 -0800 (PST)
+        with ESMTP id S231449AbjBGMes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 07:34:48 -0500
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA82CEB6D;
+        Tue,  7 Feb 2023 04:34:46 -0800 (PST)
+Received: by mail-vs1-xe32.google.com with SMTP id m1so14230813vst.7;
+        Tue, 07 Feb 2023 04:34:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uo8Ualo99d53mmVi49FY+l820ilSRXIZGdKs4k2O74k=;
-        b=lD9EZ7RPG6IizC5UEkDoAl2VLeg5YjRQJ9YuKzsS3PDhjFqSwmEkcfqb42JvX1M6PO
-         jPwtqoYOWqmM8JxVJeAoMdRkwyLbWEWCf8iYoetSVVUw016uSm8r2XFY05mJ72meJu4b
-         KLAaRI0zu3/9Slfx96CHzXB5AYW4gdj64B1X21R3beCnHSIQUsQfLV7RJB0IDWNv6wDz
-         gJe+jj4fgugWXWjR5iOZMGNBsM2KDOLHH6cvvJuNQMmfcNmw1RFam2SYz8uCgWjP84Bk
-         vsXdFu4q9yz6zrJ0t0507194GRN7eVBQr09dQLvVkrO0gaI53cfYu8ltm+OkSQMFA3Wc
-         4PdA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Io2DVVtP8sZ7cytcPBP+5vCjRogmBz7P97FYusLNMo=;
+        b=QeZoBIaW3NpaciWyFuCzOKEuhFNT/UmPoJ1F0q0hSthdyq4EmPUW2XPuA+5Xixf2e+
+         rGLEzQIx+vj5Jv7/mjsjfQBBEsOUpvpjbKPp/kQzTGB8leb8hDGnMBNKBiSzJZS3dhhK
+         TyRU+3osfakZnUgA8KIak3duHm+NBFx2MjSlXxsoNnVVLqPv+3MIZHFz0MnSySy6ySu6
+         xoQtFHl/26LxkTHzEgGWw3oq+5X4Pq2wvJfMMkNdcW5Q7WgzTJkziTAsesap84TqK2Ek
+         FBhX97UnBKbeuQEEzDbCQRHRgh3kD0Fy+OvHptbpPtqRCF4SDizxfNxAehgh+zCv9Jbt
+         04Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uo8Ualo99d53mmVi49FY+l820ilSRXIZGdKs4k2O74k=;
-        b=uj67IIMLufC09qXzc2izUkuPdZFlSM6U9jUfRuMMpfj3pmnupQbvayYGxe00X8h7GE
-         3mCwcwT4pu8RExrbtnydEyyLmdL41qX7GOF7pn5701FwkNVsVPeJN/To+sh3M2NaLyV+
-         LS9YG67xc4E5KsyqN2UptqU29tLzMYtO7GyIeSXzxEEmLvx6sO+dM0CIZ5Y2C4jd4p5U
-         ai5noB63AOvGet6XSU55xhzjuq+qsgKpbtlaixhgYLtQVZ/EYpSIOhzHZ2sA/bd3JONw
-         IG1izZuMVbBmQ1B2oYDqR8uTOg+2u5BS2c4MagbxvvH/eRX2dXgz03VPuZ+cU3/VJFva
-         Ii8Q==
-X-Gm-Message-State: AO0yUKX220oSKVbOYqFzmBhn2mMGNPc1evU/QMNVBrc+DDcy2ds2rIu+
-        2HErrC+7Jch27K0kOwdsbkp2sA==
-X-Google-Smtp-Source: AK7set/FHB9i8kE1subd+a6lk2/Py5IpC82cHNa3nwC0OUd/lRxJYlOvxC7g0sC/El2fSuhrlQBR6A==
-X-Received: by 2002:adf:f6c6:0:b0:2bf:b571:1f18 with SMTP id y6-20020adff6c6000000b002bfb5711f18mr3028904wrp.61.1675773027151;
-        Tue, 07 Feb 2023 04:30:27 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k10-20020a5d6e8a000000b002bdda9856b5sm11214256wrz.50.2023.02.07.04.30.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 04:30:26 -0800 (PST)
-Message-ID: <6804adf4-2fba-e4f9-36ef-a6b8bacae76d@linaro.org>
-Date:   Tue, 7 Feb 2023 13:30:25 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Io2DVVtP8sZ7cytcPBP+5vCjRogmBz7P97FYusLNMo=;
+        b=Et2NxuRMrQkh1SqcBr9IxciAxsrqC1HeBwU9kRci6h197VKIyg7BvjZYJccM6kYxg+
+         B9aT7ALvpgDdy/3F9HbhRdoNvEI4n6lmZal5sceDT8nlQd9k48czhCf24AeRxSVfDJy/
+         xyYGkES5r6JfepR9QhiPESAngEsO5JeqxsTFEzgAix/EwiabsPevQn6+zyGrHkt4+DR3
+         264xTBBblPq6BgcQunpv8Wu3PIZEjpw7LbOPPKWrE0nBjKLwHHM2hKdkcA0qbb2qjfkr
+         SZCb4ACwNkOmYJnNDpEqWlASIlFsL9Y7yrXjpndBxToaIEgToia5jiwBPskYgPKFxUJS
+         XDQw==
+X-Gm-Message-State: AO0yUKUA4QreSG68wHGYlsie2dCyEyUwacTVPAeBExhlQ/o53f72Tk3W
+        O60uY5O7FLmEW3gRRXC6G4+5LMOyF/guIZlcOek=
+X-Google-Smtp-Source: AK7set/wPOMIL9OTkb4WEoDMKk/ZqWi3QnZOMBVLBr/snLyz/jXHS/dDxH5d0jNkXg5lGx4pQbjsvc2kOjSGhCIynKc=
+X-Received: by 2002:a67:d60d:0:b0:411:a8fb:4f41 with SMTP id
+ n13-20020a67d60d000000b00411a8fb4f41mr115733vsj.67.1675773285564; Tue, 07 Feb
+ 2023 04:34:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: meson: convert axg sound card
- control to schema
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230206153449.596326-1-jbrunet@baylibre.com>
- <20230206153449.596326-8-jbrunet@baylibre.com>
- <a711905e-dbfb-4258-62be-250a9549a9c4@linaro.org>
- <1jbkm53jvg.fsf@starbuckisacylon.baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1jbkm53jvg.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230206135016.6737-1-kaehndan@gmail.com> <20230206135016.6737-4-kaehndan@gmail.com>
+ <Y+GKFlcVA2hB+3rU@google.com>
+In-Reply-To: <Y+GKFlcVA2hB+3rU@google.com>
+From:   Daniel Kaehn <kaehndan@gmail.com>
+Date:   Tue, 7 Feb 2023 06:34:32 -0600
+Message-ID: <CAP+ZCCfnbMpQX4qQee3QZgOft=vQ0BLBgqQUwzPNH7qYopufAQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] HID: cp2112: Fix driver not registering GPIO IRQ
+ chip as threaded
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 10:25, Jerome Brunet wrote:
-> 
-> On Mon 06 Feb 2023 at 20:21, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->>> +
->>> +  audio-routing:
->>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->>> +    description: |
->>
->> You still have everywhere | which should be removed. Here and in almost
->> every other description when no special formatting is needed.
-> 
-> I'm sorry if I misunderstood your comment. I thought the problem was
-> with the '-' of '|-', which I removed here.
-> 
-> Should I use '>' for the YAML multiline format instead ?
+On Mon, Feb 6, 2023 at 5:15 PM Dmitry Torokhov
+<dmitry.torokhov@gmail.com> wrote:
+>
+> On Mon, Feb 06, 2023 at 07:50:15AM -0600, Danny Kaehn wrote:
+> > The CP2112 generates interrupts from a polling routine on a thread,
+> > and can only support threaded interrupts. This patch configures the
+> > gpiochip irq chip with this flag, disallowing consumers to request
+> > a hard IRQ from this driver, which resulted in a segfault previously.
+>
+> This looks like a bugfix not dependent on anything else in the series
+> and can be applied separately...
 
-I asked to remove "|-". Don't add any other character - why do you need
-it? Multiline descriptions don't need block scalar headers unless you
-want to preserve some format.
+This is correct (though usage of this patchset to instantiate drivers
+which request interrupts will most of the time be broken without this
+patch). Does this mean I should submit this patch independently from
+the rest of the series? Or should I just include a message to the
+maintainer describing what you said (that this can be applied
+separately)?
 
-Best regards,
-Krzysztof
+Thanks,
 
+Danny Kaehn
+
+>
+> >
+> > Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
+> > ---
+> >  drivers/hid/hid-cp2112.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
+> > index 1e16b0fa310d..27cadadda7c9 100644
+> > --- a/drivers/hid/hid-cp2112.c
+> > +++ b/drivers/hid/hid-cp2112.c
+> > @@ -1354,6 +1354,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+> >       girq->parents = NULL;
+> >       girq->default_type = IRQ_TYPE_NONE;
+> >       girq->handler = handle_simple_irq;
+> > +     girq->threaded = true;
+> >
+> >       ret = gpiochip_add_data(&dev->gc, dev);
+> >       if (ret < 0) {
+> > --
+> > 2.25.1
+> >
+>
+> --
+> Dmitry
