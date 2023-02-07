@@ -2,104 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1932668D9AB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:50:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD59168D9DB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:56:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232058AbjBGNuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 08:50:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33458 "EHLO
+        id S229849AbjBGN4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 08:56:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231514AbjBGNue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:50:34 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307A1125B8;
-        Tue,  7 Feb 2023 05:50:33 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE9D7B81979;
-        Tue,  7 Feb 2023 13:50:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638D1C433D2;
-        Tue,  7 Feb 2023 13:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675777830;
-        bh=DMSQcB2gRBiYrCLNnIJNq5P5lvWtVkLpSH0UjyUj4+0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=X3rJisH4D9N4h5LfmaiMiCPlCAXxUJhpyx9ew/Qn4HmiBs6tdOUxfBIzfz0Il9GJJ
-         1VPzI5KWWmjwHjSFgiaRzN+g3npE+qNoFO0ws6s69xFX2zJ2DvsnSUX5W2hgVnmA+f
-         q2caFLVBY4pxxrvmAniqU2DWA8NuV8AMfHPjP5oDCnpllUL7nJ82oCpvm4beCQ5tS2
-         wswnZswe2QOC6sNtMrUq+EDhlHdOtd1ouUVKCjDSV9Qlqwzmv4805Jt9HVu4XEpjIu
-         k3ZANYH4/7Dcvoq20Cp8nnKYgsSJ+Vr+iEalXRugEJNv+2IAy8STA/HR0tno/PAshc
-         fxjvzA/xhEn6w==
-Received: by mail-vs1-f54.google.com with SMTP id p10so16329676vsu.5;
-        Tue, 07 Feb 2023 05:50:30 -0800 (PST)
-X-Gm-Message-State: AO0yUKVCBrLB7G6h9+a5YoyABl4l6MX/6tb110n7mZLMjpCQRyPjNgza
-        EueimZvFTB0lESZ0P0EPnT9YIkB2+ivHRFt6cQ==
-X-Google-Smtp-Source: AK7set9Mqs4Sx0a58l7EyhlbieUTrJF9RKPUKmeczwiTxCkbvS2g0I4TZU3iyOJf9Ok5Nh88ak3V1dtUt64keTdUzkc=
-X-Received: by 2002:a67:7206:0:b0:3ea:c8c:48a5 with SMTP id
- n6-20020a677206000000b003ea0c8c48a5mr659074vsc.53.1675777829362; Tue, 07 Feb
- 2023 05:50:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20230206153449.596326-1-jbrunet@baylibre.com> <20230206153449.596326-3-jbrunet@baylibre.com>
- <167571334291.1212116.1869881432057405431.robh@kernel.org> <1j7cwt3jm1.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1j7cwt3jm1.fsf@starbuckisacylon.baylibre.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 7 Feb 2023 07:50:17 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+OMYwJ3_bjhOgGq--SAotqAW7fnzQfEOnHR+_cxSW1RA@mail.gmail.com>
-Message-ID: <CAL_Jsq+OMYwJ3_bjhOgGq--SAotqAW7fnzQfEOnHR+_cxSW1RA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/7] ASoC: dt-bindings: meson: convert axg tdm
- formatters to schema
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        with ESMTP id S229839AbjBGN4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:56:41 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB3F32503
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 05:56:11 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id y1so13646146wru.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 05:56:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JZVy6UETjo48T8sbWkjn8fWSpf7jaH8RRC1DRDpNkX8=;
+        b=DXafruirc1KWzQxIKCu5wqiV6RseMKBRfEAUw6h4nDf9bvj5qF5DuxctY42EIn8PBP
+         DSF11ev9bfgds55L88Umbi5Vx1TS4tH1Hgu2PTu2NubZUUJFquouZ5qadV9tl0Dcm6Vq
+         2fQfVkxkHGCX4wqK1ViBYx950Rfp2WZt1/o89xbICzO+1RwerYLAxtfM3cAO0LJIYRgG
+         FH/XGH3YOfCnViE5eqhxuxToliylvf9d/M+ivvvR8u86cPZhJGkWlz4WhD+PHBNbjXeW
+         lrSkvlCF9MjmDIYBbr+/YPUXTkQBm5Ufs4jNai3TWNXn4m3WvXXrEYW+XVJo4bB/oTy8
+         1Hqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JZVy6UETjo48T8sbWkjn8fWSpf7jaH8RRC1DRDpNkX8=;
+        b=pF/UctwBMRrIA8gPXKuylcM44l3RvpFRf4TAFUFa6UMrZecNlk6Lf2N8qdzZ3EvOfk
+         7uyF/GDvjEXFl79LYLIgXTRDViC856ytSXfbCHWGI+demkgRZT8Iy2z50a6x0Tp0KFvh
+         fu/n23CmYHODvgFUgYZVS36NonSeOrDDsgoAm6rTPNhu4CTfh9j4ujXw2D+cLIY8bKJ7
+         6PfFcP369vV+p5sNuPKikAYqCOLIKf2cPZZNtpUJ7McwDJ8exo4Z+CIylWAQ8Ufy9JKr
+         IIizLc3l/Z3iMFG5Fh1doEoHcMUajbv9ZP26hzLPR8O6hImBQPZCdYiVDiyfr2bsmgtV
+         fcmQ==
+X-Gm-Message-State: AO0yUKVkQ4pnxwsabLo8NznL4Cqgt1/fSRBhgEXi2nNVSAEcwD0plyNo
+        vAYm325PHt6gCAelmUaSqKd6AQ==
+X-Google-Smtp-Source: AK7set91Op9UQN4lc/XoWrfKxdUUccdREuCUJsx0iI1vqbpMl3cZEbxrNCdDV0wR7zpkr7cLv4vfsw==
+X-Received: by 2002:a5d:5745:0:b0:2bf:e528:336b with SMTP id q5-20020a5d5745000000b002bfe528336bmr2881141wrw.38.1675778155250;
+        Tue, 07 Feb 2023 05:55:55 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id p10-20020a5d59aa000000b002be5401ef5fsm11611312wrr.39.2023.02.07.05.55.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 05:55:54 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/7] sm8550: Add support for eUSB2 repeater
+Date:   Tue,  7 Feb 2023 15:55:44 +0200
+Message-Id: <20230207135551.1418637-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 7, 2023 at 3:33 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> On Mon 06 Feb 2023 at 13:59, Rob Herring <robh@kernel.org> wrote:
->
-> > On Mon, 06 Feb 2023 16:34:44 +0100, Jerome Brunet wrote:
-> >> Convert the DT binding documentation for the Amlogic tdm formatters to
-> >> schema.
-> >>
-> >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> >> ---
-> >>  .../sound/amlogic,axg-tdm-formatters.txt      | 36 --------
-> >>  .../sound/amlogic,axg-tdm-formatters.yaml     | 88 +++++++++++++++++++
-> >>  2 files changed, 88 insertions(+), 36 deletions(-)
-> >>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-> >>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml
-> >>
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > ./Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.yaml:
-> > Unable to find schema file matching $id:
-> > http://devicetree.org/schemas/sound/component-common.yaml
->
-> This is a false error because the bot does not have the patch applied
-> by Mark from v1 here [0]
->
-> [0]: https://lore.kernel.org/all/167543616131.928818.17902040818579023398.b4-ty@kernel.org/
+This patchset adds support for the eUSB2 repeater found in pmic PM8550B,
+used along with SM8550. Since there is no dedicated generic framework
+for eUSB2 repeaters, the most appropriate subsystem to model it is the
+generic phy. This patchset also adds support for such repeater to the
+eUSB2 PHY found in SM8550. Basically, the eUSB2 PHY will have its own
+"phy" which is actually a repeater.
 
-State that in this patch and the bot's advanced AI capabilities will
-not send the report.
+This patchset is based on the following patchset:
+https://lore.kernel.org/all/20230207114024.944314-1-abel.vesa@linaro.org
 
-Rob
+Changes since v3:
+ * This time is a normal patchset, rather than an RFC
+ * reversed the order of patches 1 and 2, in order to make the repeater
+   schema available for the pmic schema update
+
+Changes since v2:
+ * moved the bindings qcom,spmi-pmic patch before the repeater schema
+   patch in order to avoid the repeater schema validation failure due to
+   phy pattern property not being found in qcom,spmi-pmic schema
+
+Changes since v1:
+ * the repeater driver is implemented now as a PHY rather than adding
+   a new generic framework for USB repeaters
+
+Abel Vesa (5):
+  dt-bindings: phy: Add qcom,snps-eusb2-repeater schema file
+  dt-bindings: mfd: qcom,spmi-pmic: Add pattern property for phy
+  dt-bindings: phy: qcom,snps-eusb2-phy: Add phys property for the
+    repeater
+  phy: qcom: Add QCOM SNPS eUSB2 repeater driver
+  arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
+
+Neil Armstrong (2):
+  phy: qcom: phy-qcom-snps-eusb2: Add support for eUSB2 repeater
+  arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   4 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |   5 +
+ .../phy/qcom,snps-eusb2-repeater.yaml         |  48 ++++
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi         |   6 +
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |   7 +
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 259 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    |  19 +-
+ 9 files changed, 357 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
+
+-- 
+2.34.1
+
