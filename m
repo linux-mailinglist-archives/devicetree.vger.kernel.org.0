@@ -2,123 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 761BE68DE70
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 18:03:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B868168DE7B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 18:06:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230344AbjBGRDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 12:03:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44132 "EHLO
+        id S230344AbjBGRGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 12:06:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230509AbjBGRDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 12:03:36 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64AD92720;
-        Tue,  7 Feb 2023 09:03:35 -0800 (PST)
-Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2C934660208F;
-        Tue,  7 Feb 2023 17:03:33 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675789413;
-        bh=wXQQ9hKZcEEkrcDxicfFkwdm2d8cPyM0mRqhWTqAu6Y=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=N0cro9P2kAQnSsWLmuFFbK3gcDv0FZGpHvAI+aLTLUDMBB68kJrNayxCDhdlMmZz+
-         yWCnkvqvSJKpky5rK2mwNKhHpEZzpFnpErscf4Yf0hC0deRzrz6x0d7K+aqvvmM9JX
-         I5UunF0z12QtQUXu6KZoKF13rI9PUF/2uqN8LzwrzNh6TlRMzQ8LZEtEWv4eR8cXxT
-         YrqLDoeFglAsx8Knhlgx5NCLPQclycuSG0rbHv+MA0oegwT52QEz4d0kfNMD/3nWKx
-         hsY9NTzq8cN8Zz03fGGkU7Iz4OQ38hiCJw72phfM5rgmDXUNRwfS258FHjLSwTVN86
-         kt+EUCcTrwRTw==
-Message-ID: <e8aa571a-2d96-47da-34f0-47cc048dc655@collabora.com>
-Date:   Tue, 7 Feb 2023 17:03:31 +0000
+        with ESMTP id S229585AbjBGRGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 12:06:12 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482813D092
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 09:06:03 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id ay1so11216211pfb.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 09:06:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=a7s5BdNztvH3Hr3AKRFoBTusAbY6jn+uBzEZI75Vbrg=;
+        b=agPD4pmg6rcj6WLSj5/G5hNCDdxsdTXDPVEYm//Gk5Sn3KbH7pAQEUq4uUJokFOJQD
+         KyY1RkmsM4cVU6bQ6vn7IvEx8+J0TaT9DJXEU4tCWEv2g8rqPl5y+6eOM1X3azDi5QTk
+         /IflrOnLIzyerBkoWnKmWQVxzdW6vTFV2LyLSsOAzVHd20/k9ARqO4Akm6Wxc78kZ4Ce
+         FxuLuSNhiSgpk6Ih9AK915xIfVl1DnVnt0FPXMTIhJTgKwGKGxy1VKr4Kxqggn2OlTHO
+         DfTvpvJa6Td/ilzozxVlOIKNe9vR72GbT3Vmb2Hatyli4gOcDz3bD1ghS6GX/XMEN7Ra
+         lQoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a7s5BdNztvH3Hr3AKRFoBTusAbY6jn+uBzEZI75Vbrg=;
+        b=uZn2kEK2RUeCxeY1joDVaaewYalvBv4VRDyHyWbeUOokmq7yQ60TUYEbnOf9mAnQJ0
+         IKH2Y1SKVeHPzQiz8M1QeYJ0D4Yd6OmR0JVhij/q8iiA33OiecU0mDfX695Ocy/tAOLs
+         ImckUrl0v7dnDqSRyd6Xu0qAwfCEJvOdM9V2D+nbOUQUuc6n4THgQTpj6LULaMMaLUkN
+         8fbtJJJFQnfIRYs85zJgUfUNv9d44XWRRTOS2/C90t3wC7KHwAGTCso8LtCOqlwhLxlK
+         VYnDPSQpdL4KyGmDYou8n7QFW9PpkxRv6cFs3YM7QzCg6l2Q6/qXL8Z60e8UATSitzaG
+         4s7w==
+X-Gm-Message-State: AO0yUKV26ijWd+Q8jtzLtYj/kNXx7K2Dag6fvlxTkHrcKe0vKH9ID7i4
+        bAEl+sVOEg1jWO6BAF4C8jJnGdqgJCp87g66rNljBA==
+X-Google-Smtp-Source: AK7set8WIdI9JnR5RiwV9Cup3dXh9uTQc9QthQ9jdnKWuNs4yR+YhHtNKNPtWhFUjJpmdO1N3gSsJfD9yjB1Z+KReTg=
+X-Received: by 2002:a62:1bc2:0:b0:593:b16e:52b9 with SMTP id
+ b185-20020a621bc2000000b00593b16e52b9mr946010pfb.17.1675789562352; Tue, 07
+ Feb 2023 09:06:02 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-From:   lucas.tanure@collabora.com
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
-References: <20230207104021.2842-1-lucas.tanure@collabora.com>
- <20230207104021.2842-3-lucas.tanure@collabora.com>
- <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
- <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
- <44c7274f-8a5e-0235-413a-6c3260018601@linaro.org>
- <4efe9796-6d3e-09d1-d5f7-cfb25a439061@collabora.com>
- <56ce2617-4fd1-d597-a4dc-918654cdd3f6@linaro.org>
-In-Reply-To: <56ce2617-4fd1-d597-a4dc-918654cdd3f6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230206142714.4151047-1-liumartin@google.com> <CAL_JsqKA8pBess-zLA_2n0p8q=NBuY0EGA7qALKabwJA8ZRwrA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKA8pBess-zLA_2n0p8q=NBuY0EGA7qALKabwJA8ZRwrA@mail.gmail.com>
+From:   Martin Liu <liumartin@google.com>
+Date:   Wed, 8 Feb 2023 01:05:25 +0800
+Message-ID: <CAASV4h5ANYTJUN3gQxuLxeKMknyoyt7-YTxRRMcjrQXRrVRi5Q@mail.gmail.com>
+Subject: Re: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, surenb@google.com,
+        minchan@kernel.org, tkjos@google.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/7/23 4:48 PM, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> On 07/02/2023 17:34, Lucas Tanure wrote:
-> > On 07-02-2023 16:13, Krzysztof Kozlowski wrote:
-> >> On 07/02/2023 16:46, Lucas Tanure wrote:
-> >>>>> +      Shared boost allows two amplifiers to share a single boost circuit by
-> >>>>> +      communicating on the MDSYNC bus. The passive amplifier does not control
-> >>>>> +      the boost and receives data from the active amplifier. GPIO1 should be
-> >>>>> +      configured for Sync when shared boost is used. Shared boost is not
-> >>>>> +      compatible with External boost. Active amplifier requires
-> >>>>> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
-> >>>>>           0 = Internal Boost
-> >>>>>           1 = External Boost
-> >>>>> +      2 = Reserved
-> >>>>
-> >>>> How binding can be reserved? For what and why? Drop. 2 is shared active,
-> >>>> 3 is shared passive.
-> >>> 2 Is shared boost without VSPK switch, a mode not supported for new
-> >>> system designs. But there is laptops using it, so we need to keep
-> >>> supporting in the driver.
-> >>
-> >> That's not the answer. 2 is nothing here, so it cannot be reserved.
-> >> Aren't you mixing now some register value with bindings?
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> >>
-> > I have added a new patch with propper documentation.
-> > And I would like to use 3 and 4 for shared boost as
-> > CS35L41_EXT_BOOST_NO_VSPK_SWITCH already exist as 2 and is used in the
-> > current driver.
-> 
-> I don't see CS35L41_EXT_BOOST_NO_VSPK_SWITCH in the bindings.
-> 
-> > The laptop that uses CS35L41_EXT_BOOST_NO_VSPK_SWITCH doesn't have the
-> > property "cirrus,boost-type", but to make everything consistent I would
-> > prefer to use 3 and 4 for the new boost types.
-> > Is that ok with you?
-> 
-> I don't see how it is related. The value does not exist, so whether
-> laptop has that property or not, is not really related, right?
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-The value does exist in the code, but no device should have that in ACPI/DTB, so yes the value doesn't exist for ACPI/DTB purposes.
-I can change CS35L41_EXT_BOOST_NO_VSPK_SWITCH to another value, like 99, and use 2 and 3 for shared boost.
-I will re-submit that with v3.
-Is that ok with you?
+On Mon, Feb 6, 2023 at 11:12 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Feb 6, 2023 at 8:27 AM Martin Liu <liumartin@google.com> wrote:
+> >
+> > It's important to know reserved-mem information in mobile world
+> > since reserved memory via device tree keeps increased in platform
+> > (e.g., 45% in our platform). Therefore, it's crucial to know the
+> > reserved memory sizes breakdown for the memory accounting.
+> >
+> > This patch shows the reserved memory breakdown under debugfs to
+> > make them visible.
+> >
+> > Below is an example output:
+> > cat $debugfs/reserved_mem/show
+> > 0x00000009fc400000..0x00000009ffffffff (   61440 KB )   map     reusable test1
+> > 0x00000009f9000000..0x00000009fc3fffff (   53248 KB )   map     reusable test2
+> > 0x00000000ffdf0000..0x00000000ffffffff (    2112 KB )   map non-reusable test3
+> > 0x00000009f6000000..0x00000009f8ffffff (   49152 KB )   map     reusable test4
+> > ...
+> > 0x00000000fd902000..0x00000000fd909fff (      32 KB ) nomap non-reusable test38
+> > 0x00000000fd90a000..0x00000000fd90bfff (       8 KB ) nomap non-reusable test39
+> > Total 39 regions, 1446140 KB
+>
+> This information is pretty much static, why not just print it during
+> boot? It's also just spitting out information that's straight from the
+> DT which is also available to userspace (flattened and unflattened).
 
-Thanks
-Lucas
+IIUC, for dynamic allocation cases, we can't get actual allocation layout
+from DT.  Also, there could be some adjustment from memblock
+(ex. alignment). Therefore, printing it out from the reserved_mem would
+be more clear.
 
+However, as you mentioned, once the allocation is done, it should be pretty
+static. Thus, printing it during boot should be reasonable. If so, we
+could print
+them out in fdt_init_reserved_mem() like below. Is my understanding correct?
+Thanks :)
+
+@@ -285,6 +285,14 @@ void __init fdt_init_reserved_mem(void)
+                                else
+                                        memblock_phys_free(rmem->base,
+                                                           rmem->size);
++                       } else {
++                               phys_addr_t end = rmem->base + rmem->size - 1;
++                               bool reusable =
+(of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
++                               pr_debug("init reserved node: %pa..%pa
+( %lu KB) %s %s %s\n",
++                                        &rmem->base, &end, (unsigned
+long)(rmem->size / SZ_1K),
++                                        nomap ? "nomap" : "map",
++                                        reusable ? "reusable" : "non-reusable",
++                                        rmem->name ? rmem->name : "unknown");
+                        }
+                }
+        }
+>
+> Is there not something in memblock that provides the same info in a
+> firmware agnostic way?
+
+memblock doesn't save request's name so we couldn't count for the
+memory owner.
+>
+>
+> > Signed-off-by: Martin Liu <liumartin@google.com>
+> > ---
+> >  drivers/of/of_reserved_mem.c | 39 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 39 insertions(+)
+> >
+> > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> > index 65f3b02a0e4e..a73228e07c8c 100644
+> > --- a/drivers/of/of_reserved_mem.c
+> > +++ b/drivers/of/of_reserved_mem.c
+> > @@ -23,6 +23,7 @@
+> >  #include <linux/memblock.h>
+> >  #include <linux/kmemleak.h>
+> >  #include <linux/cma.h>
+> > +#include <linux/debugfs.h>
+> >
+> >  #include "of_private.h"
+> >
+> > @@ -446,3 +447,41 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
+> >         return NULL;
+> >  }
+> >  EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
+> > +
+> > +#if defined(CONFIG_DEBUG_FS)
+> > +static int of_reserved_mem_debug_show(struct seq_file *m, void *private)
+> > +{
+> > +       unsigned int i;
+> > +       size_t sum = 0;
+> > +
+> > +       for (i = 0; i < reserved_mem_count; i++) {
+> > +               const struct reserved_mem *rmem = &reserved_mem[i];
+> > +               unsigned long node = rmem->fdt_node;
+> > +               phys_addr_t end = rmem->base + rmem->size - 1;
+> > +               bool nomap = (of_get_flat_dt_prop(node, "no-map", NULL)) != NULL;
+> > +               bool reusable = (of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
+>
+> There is no reason to read the flat DT at this point in time after we
+> have an unflattened tree.
+
+Ack.
+>
+> > +
+> > +               sum += rmem->size;
+> > +               seq_printf(m, "%pa..%pa ( %7lu KB ) %5s %12s %s\n", &rmem->base,
+> > +                          &end, rmem->size / 1024,
+> > +                          nomap ? "nomap" : "map",
+> > +                          reusable ? "reusable" : "non-reusable",
+> > +                          rmem->name ? rmem->name : "unknown");
+> > +       }
+> > +       seq_printf(m, "Total %d regions, %zu KB\n",
+> > +                  reserved_mem_count,
+> > +                  sum / 1024);
+> > +       return 0;
+> > +}
+> > +DEFINE_SHOW_ATTRIBUTE(of_reserved_mem_debug);
+> > +
+> > +static int __init of_reserved_mem_init_debugfs(void)
+> > +{
+> > +       struct dentry *root = debugfs_create_dir("reserved_mem", NULL);
+> > +
+> > +       debugfs_create_file("show", 0444, root,
+> > +                           NULL, &of_reserved_mem_debug_fops);
+> > +       return 0;
+> > +}
+> > +device_initcall(of_reserved_mem_init_debugfs);
+>
+> We already have a DT init hook, don't add another random one. Plus,
+> why does this need to be an early device_initcall?
+
+Got it. As we could print them during boot, we probably don't need this. Thanks.
+>
+> Rob
