@@ -2,148 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA4568CF79
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 07:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26AB368CF96
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 07:41:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbjBGG2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 01:28:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
+        id S229925AbjBGGlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 01:41:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbjBGG2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 01:28:07 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5F1E07C;
-        Mon,  6 Feb 2023 22:28:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 266D8611C2;
-        Tue,  7 Feb 2023 06:28:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 008D4C433EF;
-        Tue,  7 Feb 2023 06:28:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1675751285;
-        bh=q6+JO5SgcW0OGdoQpvaWVdWIHi0K42+g3a4YBgTne9w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f6ZRXTaAThOfnlQ3usRHWgaU7mLM8FMz4WKGbnYLQ/DWelOqCUUL/8SFq2AxMcQdW
-         4fltfxCPrlSIRiI4r1Ju6QdgWybnAITM4teSY42rYgVHwSXoTyb1IqDKYip4LF9/Wx
-         yTyPu7IRdiyvKVXDbOEaGnWz6LpMMXIBEfnFdnCM=
-Date:   Tue, 7 Feb 2023 07:28:02 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Dan Carpenter <error27@gmail.com>
-Subject: Re: [PATCH v5 00/21] nvmem: core: introduce NVMEM layouts
-Message-ID: <Y+HvcqAiH+n8WUkg@kroah.com>
-References: <20221206200740.3567551-1-michael@walle.cc>
- <20230103163902.218cb5c7@xps-13>
- <81a5c400-e671-fab3-732a-d615fa4242b3@linaro.org>
- <20230206234713.7cf2f722@xps-13>
+        with ESMTP id S230324AbjBGGkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 01:40:52 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B08237B59;
+        Mon,  6 Feb 2023 22:40:33 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3176COwI022435;
+        Tue, 7 Feb 2023 06:40:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=GZq7550o3hV/zZ6fBo1m7XvSv7PhPhTDoWFMEIh09Dw=;
+ b=daf5GUTt9qUJ4Yh+SG20S5p9Lemk37fwuE8OTNwxHWSHIDp8CHnDoS4zOLQZIOC0/zIM
+ oogaJhPA7YZQRXvZyXdMdaxzIznRf9K7oTAcCS8rDjdh04y2IfeKQFshGbhLNvi8OU3R
+ ZY7KoVa83NbbDeiG4x2zLYwPK460Hi5CKrJmh/YEn5CvRXjPDv2bjG0JHeVr9gc201ku
+ qXRayV2Nqwjh7HIhnZlWGLbsUrl1bEKS15OAuFUefa/ZRvgct0lW7Vvlwb7yNgYzWPah
+ LA0pXScMZBSwjn5R+nKmPd0Xcc+fy7R2iVPf5dwNhI0pIe4PO5THNNJy430it0yJprot EQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkfes89m7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Feb 2023 06:40:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3176eLBf015285
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 7 Feb 2023 06:40:21 GMT
+Received: from [10.50.24.106] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
+ 22:40:16 -0800
+Message-ID: <7fe7eedc-97ee-e5fc-a458-193e556d3174@quicinc.com>
+Date:   Tue, 7 Feb 2023 12:10:04 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230206234713.7cf2f722@xps-13>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/2] dt: bindings: add dt entry for XO calibration
+ support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230131140345.6193-1-quic_youghand@quicinc.com>
+ <20230131140345.6193-2-quic_youghand@quicinc.com>
+ <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
+Content-Language: en-US
+From:   "Youghandhar Chintala (Temp)" <quic_youghand@quicinc.com>
+In-Reply-To: <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: U8gb2KESa60EQ4sSWCohkjVTNrBq8vWy
+X-Proofpoint-ORIG-GUID: U8gb2KESa60EQ4sSWCohkjVTNrBq8vWy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 clxscore=1011 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302070060
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 06, 2023 at 11:47:13PM +0100, Miquel Raynal wrote:
-> Hi Srinivas,
-> 
-> + Greg
-> 
-> srinivas.kandagatla@linaro.org wrote on Mon, 6 Feb 2023 20:31:46 +0000:
-> 
-> > Hi Michael/Miquel,
-> > 
-> > I had to revert Layout patches due to comments from Greg about Making the layouts as built-in rather than modules, he is not ready to merge them as it is.
-> 
-> Ok this is the second time I see something similar happening:
-> - maintainer or maintainers group doing the review/apply job and
->   sending to "upper" maintainer
-> - upper maintainer refusing for a "questionable" reason at this stage.
 
-Only the second time?  You've gotten lucky then :)
+On 1/31/2023 11:32 PM, Krzysztof Kozlowski wrote:
+> On 31/01/2023 15:03, Youghandhar Chintala wrote:
+>> Add dt binding to get XO calibration data support for Wi-Fi RF clock.
+> Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching).
+> Hint: dt-bindings: net: qcom,ath11k:
+>
+>> Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/net/wireless/qcom,ath11k.yaml         | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> index f7cf135aa37f..205ee949daba 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> @@ -41,6 +41,10 @@ properties:
+>>           * reg
+>>           * reg-names
+>>   
+>> +  xo-cal-data:
+>> +    description:
+>> +      XO cal offset to be configured in XO trim register
+> Missing type. I also do not understand what's this and why some register
+> offset should be stored in DT. Please give us some justification why
+> this is suitable for DT.
+>
+> Best regards,
+> Krzysztof
+>
+Hi Krzysztof,
 
-This happens all the time based on experience levels of reviewers and
-just the very nature of how this whole process works.  It's nothing
-unusual and is good overall for the health of the project.  In other
-words, this is a a feature, not a bug.
+I will address you comments in next version of patch.
 
-> I am not saying the review is incorrect or anything. I'm just wondering
-> whether, for the second time, I am facing a fair situation, either
-> myself as a contributor or the intermediate maintainer who's being kind
-> of bypassed.
-> 
-> What I mean is: the review process has happened. Nothing was hidden,
-> this series has started leaving on the mailing lists more than two
-> years ago. The contribution process which has been in place for many
-> years asks the contributors to send new versions when the review
-> process leads to comments, which we did. Once the series has been
-> "accepted" it is expected that this series will be pulled during the
-> next merge window. If there is something else to fix, there are 6 to 8
-> long weeks where contributors' fixes are welcome. Why not letting us the
-> opportunity to use them? Why, for the second time, I am facing an
-> extremely urgent situation where I have to cancel all my commitments
-> just because a random comment has been made on a series which has been
-> standing still for months?
+Regards,
 
-There's no need to cancel anything, there are no deadlines in kernel
-development and I am not asking for any sort of rush whatsoever.
+Youghandhar
 
-So relax, take a week or two off (or month), and come back with an
-updated patch series when you are ready.  And feel free to cc: me on it
-if you want my reviews (as I objected to these patches as-is) so that we
-don't end up in the same situation (where one maintainer accepted
-something, but the maintainer they sent it to rejected it.)
 
-Again, there's no rush, and this is totally normal.
-
-> What I would expect instead, is a discussion on the cover letter of the
-> series where Michael explained why he did no choose to use modules in
-> the first place. If it appears that for some reason it is best to
-> enable NVMEM layouts as modules, we will send a timely series on top
-> of the current one to enable that particular case.
-
-Why not rework the existing series to handle this and not require
-"fixups" at the end of the series?  We don't normally create bugs and
-then fix them up in the same patch set, as you know, so this shouldn't
-be treated any differently.
-
-> > >> NVMEM layouts as modules?
-> > >> While possible in principle, it doesn't make any sense because the NVMEM
-> > >> core can't be compiled as a module. The layouts needs to be available at
-> > >> probe time. (That is also the reason why they get registered with
-> > >> subsys_initcall().) So if the NVMEM core would be a module, the layouts
-> > >> could be modules, too.
-> 
-> I know Michael is busy after the FOSDEM and so am I, so, Greg, would
-> you accept to take the PR as it is, participate to the discussion and
-> wait for an update?
-
-Kernel development doesn't work on "PR" :)
-
-And no, I can't take these, as I don't agree with them, and I totally
-imagine others will object for the same reason I did (and then they
-would object to me, as the patches would be in my tree, as I am then
-responsible for them.)
-
-So send an updated version whenever you have the chance.  Again, there's
-no rush, deadline, or anything else here.  Code is accepted when it is
-ready and correct, not anytime earlier.
-
-thanks,
-
-greg k-h
