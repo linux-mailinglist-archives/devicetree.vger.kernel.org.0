@@ -2,105 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998D668D394
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D07D268D39B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:07:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230274AbjBGKHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 05:07:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38724 "EHLO
+        id S231671AbjBGKHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:07:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231553AbjBGKHI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:07:08 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07F70EF91
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:07:02 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id r2so12983059wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:07:01 -0800 (PST)
+        with ESMTP id S231764AbjBGKHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:07:49 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC072684A
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 02:07:34 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso11001662wms.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 02:07:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KXvmrp1e2c3eR/W4yiRq7uPHVhG6kKlslQK7in15eks=;
-        b=SZENXQmWZzwSmDdoBZMkfIIuLXOBosbfRXHllFc3IGkGARjHWis01z+G+khhySHT4M
-         vGGU5eQguMGnxRX62kiiK4QDV4oI26efdy2XL4XqnLS//vV4InMDsV6mOuife8RU5BB7
-         KuzCeAJw6XkgqmgENpoFLaE6COpny9sBacOp4/Ry8jYGF2M3ENA9uk0KBE5rZVNbemYj
-         gui97/RJaGky7J5PPYyvFqASMOmVZVHTJXg/gg/VWt1kKFSRaX7YU6RmRe94AH7sskV+
-         BaEKjlARIMmzc9rj3Qnfi6xyOLEG4OatlHHkiTcF/pUC4Hw0Q8ZO4yN8FZisCs2zHq/I
-         okcQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2bUmzyfqOyEnpTaYpyDnunYUhui4cc0dg5QjGPGCBeU=;
+        b=yYIzBZLZjAKSmKXH3OGQM4VOdBfFtdvdBBqQeIKJALRs1Gj2T1yM/TSuffZR/tgO9d
+         s10pXpSQ3ER3CDj/kqaZrpJtOo05poBxBBxt5tIrcblN/HpHclhLNVtzgplWUiM6QrVa
+         QTx4U3UtlXnw27NxJNE+U57LZXEC4pb1hyIZC5CDqI8zmKmb2tgnJvqooVEmx1oJPkib
+         q5J9sQ/IDFNHEL6XFr1/vIa5c606LJqSE7OYEOcMdraFfZKHvT5aFK3T4dfP2a9mQBgX
+         X0kLIFvSkZLWA23yFe1r1H0t+MhNTm1exRdf5qxMoyswRAabzOPBylC7BNijrfwYh+Mz
+         rj5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KXvmrp1e2c3eR/W4yiRq7uPHVhG6kKlslQK7in15eks=;
-        b=hoBHPGtIo2ZFK1DCGuL0+saXrmQL8+AWtniiedNPgy9AtwdGBj8qIlx63pm88LZk46
-         AXV+Qwz3/eF41tfkQ/2/NHw5M2LTZ4mnGeCkAc5ZUS/FQGW0GrSunCTyPpk5tdHAaKI4
-         CAM62gK3KxxDGnmSxSgNpAnJWirzmHS7mkZsVmwRVUT/l0iAdGa1WMxgMN3TPXtekva2
-         RFFrL9mt482MenqomOK08StnuDF1SfnRf+Nfng1SAdnFaQ1Mw507yyBXyqDIiyT1mpak
-         CwbNFslpC1o6gseklxw3CJjt3WYVVf30Jb8KEqEklsi56dW2CMDxqdCGhkrQ93RX0DEU
-         TIgQ==
-X-Gm-Message-State: AO0yUKWZPZIpAlcUfmgNu6V8lVXR9RPgBFJvlj9o8DaWEsWyXhpr5sbd
-        rU1YN3MtdVzthgEfBoGGIGD8LQ==
-X-Google-Smtp-Source: AK7set9dfLbEeekzy2n6PXv2B0T4vB5k+F+0FH97eNpoNyhtvk6xhs2elqkxhywoPzADVs+g25/QHw==
-X-Received: by 2002:adf:dd12:0:b0:2c3:f26f:8cca with SMTP id a18-20020adfdd12000000b002c3f26f8ccamr1860104wrm.67.1675764420656;
-        Tue, 07 Feb 2023 02:07:00 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id l11-20020a05600002ab00b002bfb5ebf8cfsm11428205wry.21.2023.02.07.02.06.59
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2bUmzyfqOyEnpTaYpyDnunYUhui4cc0dg5QjGPGCBeU=;
+        b=4hPJRjMsd0Sygp9pw44p6bWv/Hbr2N7Qr+cgDF2J0XxLrD/eMSKrBp6e0kocpCYoDs
+         O/2ua4EExPeiHkfbygasboOEtxdnWG/w01NKj7E9BsZAH3OBXHfP/XDjtNCR8fKvBceI
+         U/bpnb6m2/F5Bve7IOrXhfHOsQFd1Bo2A83vFjwoeOL4q7kfBqIgDz65aE9KDWddW8OS
+         C6AmvMxiM7lzG5FX1Hgdr/qF570MVRc0/CIbEuBSxTFBRr0v1lMhMoIvnr65gA7//+qr
+         2KbijM2mOCH1aG1ogzpZSjO2VAYQ1s5XBu4XTJEwTO1jeBfBNcUjPRnTuCeGaxWYCHjp
+         qLpw==
+X-Gm-Message-State: AO0yUKV4IIuZfk3nA12CmQW4iSB9vraP6S6cdDvVc3jmgF8wdSN0yEgb
+        QzQhrKAVtTfZrCoD3xQI9t+U7g==
+X-Google-Smtp-Source: AK7set8y9+iFilpoEeJDurTwNm5aImAhBUZgLCyhAcEX+H3u1cP3uSwvJbbYT1c1ZfExuTsb7voqNg==
+X-Received: by 2002:a05:600c:4da5:b0:3df:de28:f819 with SMTP id v37-20020a05600c4da500b003dfde28f819mr2625901wmp.15.1675764453180;
+        Tue, 07 Feb 2023 02:07:33 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:274f:8489:6db8:7d33])
+        by smtp.gmail.com with ESMTPSA id a18-20020a5d4572000000b002c3e7474b0fsm5283173wrc.13.2023.02.07.02.07.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 02:07:00 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 07 Feb 2023 11:06:58 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: pmk8550: fix PON compatible
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-topic-sm8550-upstream-sm8550-dt-fix-v1-2-698d132ab285@linaro.org>
-References: <20230207-topic-sm8550-upstream-sm8550-dt-fix-v1-0-698d132ab285@linaro.org>
-In-Reply-To: <20230207-topic-sm8550-upstream-sm8550-dt-fix-v1-0-698d132ab285@linaro.org>
+        Tue, 07 Feb 2023 02:07:32 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 0/3] arm: qcom: sa8775p: add socinfo support
+Date:   Tue,  7 Feb 2023 11:07:27 +0100
+Message-Id: <20230207100730.218725-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The right compatible is qcom,pmk8350-pon, it matches the
-reg resources associated to the node and the subnodes compatible
-properties.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Fixes: e9c0a4e48489 ("arm64: dts: qcom: Add PMK8550 pmic dtsi")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/pmk8550.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This series adds support for qcom-socinfo for SA8775P SoCs.
 
-diff --git a/arch/arm64/boot/dts/qcom/pmk8550.dtsi b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-index 47213d05bf92..201efeda7d2d 100644
---- a/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-@@ -16,7 +16,7 @@ pmk8550: pmic@0 {
- 		#size-cells = <0>;
- 
- 		pmk8550_pon: pon@1300 {
--			compatible = "qcom,pm8998-pon";
-+			compatible = "qcom,pmk8350-pon";
- 			reg = <0x1300>, <0x800>;
- 			reg-names = "hlos", "pbs";
- 
+Bartosz Golaszewski (3):
+  soc: qcom: smem: Update max processor count
+  dt-bindings: arm: add the SoC ID for qcom SA8775P
+  soc: qcom: socinfo: add support for SA8775P
+
+ drivers/soc/qcom/smem.c            | 2 +-
+ drivers/soc/qcom/socinfo.c         | 1 +
+ include/dt-bindings/arm/qcom,ids.h | 1 +
+ 3 files changed, 3 insertions(+), 1 deletion(-)
 
 -- 
-2.34.1
+2.37.2
 
