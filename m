@@ -2,170 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9502168D506
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 12:03:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71CFD68D50E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 12:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231886AbjBGLDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 06:03:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
+        id S230451AbjBGLFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 06:05:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231654AbjBGLDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 06:03:33 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28497ED8
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 03:03:29 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id u10so7691430wmj.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 03:03:29 -0800 (PST)
+        with ESMTP id S231907AbjBGLFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 06:05:44 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17BBADBDC;
+        Tue,  7 Feb 2023 03:05:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WJ93a5Pn7pV9qf9vPyQI+os80WkoEdvC0T6foUnk8Mg=;
-        b=INmIU2NouIzVm1jjPfdrm53AB5JjOg8/iz3jZE+fI1b7pLAYBvKC7TMLsXvXEmMnZQ
-         tvcX16TPZzl8SlvyqiF5TxNKUMYyM5yxTebfEAX2rlWAA+HUitsAujtgmlJ4a0OcbvKp
-         8E5zmSXqfdwXT0d4KY3ZDO9k4vXuXxN9PyBOyRPm+3wnJPCfpXAh5V/4V8UB4b9tOHuU
-         K7pSJDwrBk41FSY187xils4uDkG/6SBfJQGcBUbIf4WTIakcMUO5FDDxVvwxRqszTNr5
-         oK/eoxuZQpvWPGGUUZgVSbTt9YU2fw93GINQrZoiQBQZRluPERuKlrOsol0IIiu+xtLd
-         k0pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WJ93a5Pn7pV9qf9vPyQI+os80WkoEdvC0T6foUnk8Mg=;
-        b=knxaP5ClX2rroFYRLpeY7tgE1Z1Rv4XBaaKgs4VhZ8EAEYxs75fNDJzrLDPVezkaSz
-         0LlG+PliNh2D5VEMnjkQUUm+9zb2+XjIsw0K0q9OM3ZduOMnc7oDsQ59EO1d71BHve+r
-         Bf00PPyTaHxqbfaQUw/iPGL3SyrXrN1vzQ092njZqEOGFO/W+xGnfw4twrxdDkCg8Jlz
-         8RDCt3z36NLCugKDf/6CPFPYGiBPqPRhFd+PwDawQIWu75L2RlA+67WzpE+zgbRHTSu5
-         029Dmq76CEK29dsjo9H82cqw3HFYPbX4ZemLYES891FRrfrV3D5zJlEQOsN+hoe0vO+i
-         1MEg==
-X-Gm-Message-State: AO0yUKXS7gr+sNpAoL3lG3Pkrc9v8mdjwh699qU8RNrKPvxtZPyQhR8g
-        OVHSU54uz3vZdz5L98JNBpXVZA==
-X-Google-Smtp-Source: AK7set+9m5mhPHjw7qowGtSxwYkGbks55ol9xKSpV7ArSxwhymRP73uRItp25IcvPAhrZonE5E9JbA==
-X-Received: by 2002:a05:600c:4da2:b0:3dc:51f6:8f58 with SMTP id v34-20020a05600c4da200b003dc51f68f58mr2766884wmp.6.1675767808312;
-        Tue, 07 Feb 2023 03:03:28 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id s22-20020a1cf216000000b003dffe312925sm6761960wmc.15.2023.02.07.03.03.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 03:03:27 -0800 (PST)
-Date:   Tue, 7 Feb 2023 13:03:26 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 7/8] arm64: dts: qcom: sm8550: Add USB PHYs and
- controller nodes
-Message-ID: <Y+Iv/s7V5PYkRI8D@linaro.org>
-References: <20230202132511.3983095-1-abel.vesa@linaro.org>
- <20230202132511.3983095-8-abel.vesa@linaro.org>
- <Y9zoD/eVG8zjMYNx@hovoldconsulting.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675767943; x=1707303943;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=fXOh6l9nudX6hQdwn8eYhtvO+xZ109uDckra2QaO+SI=;
+  b=qlQhJf1IMKpQRH2b4tgtZwUwuwrJ40cWdyGOeaoflaPIdd2SgM+iCFLR
+   nsFYptyBLddQX5ifBfq1y+k2bm0YP78WsLpPD1aALY0sXIpdO6dW/Mljp
+   L8wQIU3BSFPNlRoUXM1OqnbUkBHjpqatREJFnuG283KS6HNc6yhrcLEG4
+   67ag/C8TersWWNIZ9oUapY2yOZpDOsNImJmQcR1Jt7BXjzlNLcIyALNBc
+   c8MwtSMyT8+H9kRsHuwKRaCuj8kT/sV7O2ZnzzJdWrMqCn9k9vMWRLdTt
+   DXhBtfznQCfvAKNhlwyf7SLNBXtwMq1TcPDHBtpLxkmxX96OMR28rL8AX
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,278,1669071600"; 
+   d="scan'208";a="28917148"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Feb 2023 12:05:41 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 07 Feb 2023 12:05:41 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 07 Feb 2023 12:05:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1675767941; x=1707303941;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=fXOh6l9nudX6hQdwn8eYhtvO+xZ109uDckra2QaO+SI=;
+  b=X00C0+SePsts98wX9cda+PakGEd2IILpSE2otYYjPvoSasgm5/x0tZLs
+   EDH/mxMGG30PsodMlMTqxd8CrCrEpSUymdG4L9Bk1LXHhPe/a+FqD+Zj9
+   j0lRPRnT84CtuSwiDr+W2Mia+qwGD6nttvss3JZO+ZuV2SJtXtLwBtQSP
+   PQPcFJsEYdeCCKwM6jxjEterPuIZ6YY7rgv44sQUKwkcogUeRYXDy9n9t
+   LuAimCLtS7SzFXgzFnQ6Aj4hKnTe0NPfw3Zmy5wf9/iqtrNRl0Y6LaSfU
+   hxK5x3F47IpzgxQk5bdusIMclq9DQ1AgfMPlEZA0NKdPmzdcHCCi03Ju9
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,278,1669071600"; 
+   d="scan'208";a="28917147"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Feb 2023 12:05:41 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 581E6280056;
+        Tue,  7 Feb 2023 12:05:41 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Darren Stevens <darren@stevens-zone.net>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: [PATCH 0/3] Fix ehci-fsl autoload regression on fsl-mph-dr-of
+Date:   Tue,  7 Feb 2023 12:05:28 +0100
+Message-Id: <20230207110531.1060252-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y9zoD/eVG8zjMYNx@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-02-03 11:55:11, Johan Hovold wrote:
-> On Thu, Feb 02, 2023 at 03:25:10PM +0200, Abel Vesa wrote:
-> > Add USB host controller and PHY nodes.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> > 
-> > Changes since v3:
-> >  * none
-> > 
-> > Changes since v2:
-> >  * none
-> > 
-> > NOTE: This patch has been already merged. It is here only to provide
-> > context for the rest of the patchset. There is a change with respect to
-> > the clocks, but that will be sent as a separate/individual fix patch.
-> 
-> I believe it was because of the 'phy' and 'common' resets, which have
-> been switched below.
+Hi,
 
-No, the resets haven't been switched, at least not compared to the
-already merged version.
+I noticed on my ls1021a based platform (TQMLS102xA) that the platform device
+created by fsl-mph-dr-of does not autoload fsl-ehci. Digging into it I noticed
+that starting from commit bb160ee61c04f ("drivers/usb/host/ehci-fsl: Fix
+interrupt setup in host mode.") this platform device has the wrong modalias:
 
-> 
-> >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 92 +++++++++++++++++++++++++++-
-> >  1 file changed, 91 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > index a85d2ae7d155..0262193e2ffe 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > @@ -14,6 +14,7 @@
-> >  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> >  #include <dt-bindings/power/qcom-rpmpd.h>
-> >  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> > +#include <dt-bindings/phy/phy-qcom-qmp.h>
-> >  #include <dt-bindings/thermal/thermal.h>
-> >  
-> >  / {
-> > @@ -746,7 +747,7 @@ gcc: clock-controller@100000 {
-> >  				 <&ufs_mem_phy 0>,
-> >  				 <&ufs_mem_phy 1>,
-> >  				 <&ufs_mem_phy 2>,
-> > -				 <0>;
-> > +				 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
-> >  		};
-> >  
-> >  		ipcc: mailbox@408000 {
-> > @@ -2060,6 +2061,95 @@ opp-202000000 {
-> >  			};
-> >  		};
-> >  
-> > +		usb_1_hsphy: phy@88e3000 {
-> > +			compatible = "qcom,sm8550-snps-eusb2-phy";
-> > +			reg = <0x0 0x088e3000 0x0 0x154>;
-> > +			#phy-cells = <0>;
-> > +
-> > +			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
-> > +			clock-names = "ref";
-> > +
-> > +			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		usb_dp_qmpphy: phy@88e8000 {
-> > +			compatible = "qcom,sm8550-qmp-usb3-dp-phy";
-> > +			reg = <0x0 0x088e8000 0x0 0x3000>;
-> > +
-> > +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> > +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-> > +
-> > +			power-domains = <&gcc USB3_PHY_GDSC>;
-> > +
-> > +			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
-> > +				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
-> > +			reset-names = "phy", "common";
-> > +
-> > +			#clock-cells = <1>;
-> > +			#phy-cells = <1>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> 
-> Johan
+$ cat /sys/bus/platform/devices/8600000.usb/fsl-ehci.0/modalias 
+of:NusbT(null)Cfsl-usb2-dr-v2.5Cfsl-usb2-dr
+
+This is the modalias of the parent device, thus module ehci_fsl is not loaded
+automatically. Given the reason of removing the IRQ resource from DT in
+commit a1a2b7125e107 ("of/platform: Drop static setup of IRQ resource from DT
+core") the of_node has to be assigned to the subnode, but for modalias the
+reused of_node has to be ignored.
+
+Patch 2 is not strictly required to fix autoloading, but this is still a bug fix.
+
+Best regards,
+Alexander
+
+Alexander Stein (3):
+  of: device: Ignore modalias of reused nodes
+  of: device: Do not ignore error code in of_device_uevent_modalias
+  usb: host: fsl-mph-dr-of: reuse device_set_of_node_from_dev
+
+ drivers/of/device.c              | 6 ++++--
+ drivers/usb/host/fsl-mph-dr-of.c | 3 +--
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+-- 
+2.34.1
+
