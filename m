@@ -2,70 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B767068D945
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4B768D948
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:28:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjBGN17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 08:27:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47520 "EHLO
+        id S230440AbjBGN2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 08:28:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjBGN16 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:27:58 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6D82196E;
-        Tue,  7 Feb 2023 05:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=mV2mknCgsicDbLzmCz6JUukMmKjwt1/IhhLm0HCHG6U=; b=lRywbhZpxU3Rb8x/0CZi0h3id9
-        38amvF5EHgns2FlcWQJKeAp7XLC2NZ71TfmLsCPu8TsxG2Viy90cIhDDloBbP74hUWeIvFAWEPWob
-        9ROL7FXfIhVzTbTU3ceBUTlN6aIRxMPx52i89+UhZN7VVVXwh6TpGu9YJ54Q1/X4GdQo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pPO0m-004IxU-23; Tue, 07 Feb 2023 14:27:52 +0100
-Date:   Tue, 7 Feb 2023 14:27:52 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michael@walle.cc
-Subject: Re: [PATCH net-next v4 1/2] net: micrel: Add support for lan8841 PHY
-Message-ID: <Y+JR2GAMxFT5k7Hk@lunn.ch>
-References: <20230207105212.1275396-1-horatiu.vultur@microchip.com>
- <20230207105212.1275396-2-horatiu.vultur@microchip.com>
+        with ESMTP id S232082AbjBGN2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:28:08 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D388D28D0A
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 05:28:04 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id o36so11036218wms.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 05:28:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=camdug1pO9ug/N71/pGwYMsIC7Gp81bpoj1mwo9vqi0=;
+        b=S44UYQDAjG8BGmfX98/glCn3xmNp77qOdd26e2DUosIpWadAnv0NZQMuW9GQ/XPTpH
+         XdHwuXH8CEY02BAHTfYEuSX3hy1nmd4ALfmZ0xIwRxjSvMAYQDqNJz66kpNYWgrIAyd0
+         bifWBCQJeUv0K4Xi0cSijHXlJMuAWB+zor5ceFnUpouvEXhERVed7Uv5+nEX2NVpm+++
+         EMtqWOkgruG2RZ6PHJwUnbHSQnPiQrDEmADt5Ec6CdL+yYakIVtDy21QIAIvmwDE+Jel
+         Tgns+4lM46ObJmt4le0QPyhnpM2+2vvHKPf6Jvpfp6VgHH3jJ3vD638BFGn1BkAMaRwA
+         n8JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=camdug1pO9ug/N71/pGwYMsIC7Gp81bpoj1mwo9vqi0=;
+        b=GT0MMOJWsidDdEmQMoWZf0+FV4ZXkBMw3zUwaUFShLm7rPDriabhxwKic4KeoH0pXw
+         5UfiMQNziIYWHU6rC78wy70Z3+AqQbLri4HeKJCY0jGSkxvKlfpVEXcMikunJRRXZ1nC
+         G1IiFFTRKB2VqZ4SVr2fwQ4RvxIDXubyUXGL15NsknyZwMgcsnTaZMxj4SGoLgvn6gDW
+         66OctwqT5Ild0JfyX6P/h0MhWDuTd0leGotsIBxjC7GeEixTgQTgGVUIrD9FFZryQILV
+         DAhJ/5JwS8VsMTRy1eUGRME6dgJ/4T95yPi8+XMqP3+aBO9XLV0HCcv68H6+FFWTwJzP
+         7JDw==
+X-Gm-Message-State: AO0yUKWunZR12lDiDscF/XRXId85oexHA6JnrYYAzS5IZDi1rpolQQv0
+        hp6bhrmgJDWVf9XhETEvCqyEIw==
+X-Google-Smtp-Source: AK7set+rkWF+GA/rZXQEJ3QxMfAErR67XYQCkNQdwWtK8KNlSq3+RJKtNd16/NqlR89IfjTa3hYzFg==
+X-Received: by 2002:a05:600c:4384:b0:3d9:ef72:190d with SMTP id e4-20020a05600c438400b003d9ef72190dmr3234533wmn.19.1675776483038;
+        Tue, 07 Feb 2023 05:28:03 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id q9-20020a1ce909000000b003dc34edacf8sm18633689wmc.31.2023.02.07.05.28.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 05:28:02 -0800 (PST)
+Message-ID: <739e5a17-2fa7-05b7-7517-6ac49c5b6504@linaro.org>
+Date:   Tue, 7 Feb 2023 14:28:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230207105212.1275396-2-horatiu.vultur@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 2/2] ARM: dts: socfpga: Add enclustra PE1 devicetree
+Content-Language: en-US
+To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        Dinh Nguyen <dinguyen@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20230207130812.17023-1-s.trumtrar@pengutronix.de>
+ <20230207130812.17023-2-s.trumtrar@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230207130812.17023-2-s.trumtrar@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 11:52:11AM +0100, Horatiu Vultur wrote:
-> The LAN8841 is completely integrated triple-speed (10BASE-T/ 100BASE-TX/
-> 1000BASE-T) Ethernet physical layer transceivers for transmission and
-> reception of data on standard CAT-5, as well as CAT-5e and CAT-6,
-> unshielded twisted pair (UTP) cables.
-> The LAN8841 offers the industry-standard GMII/MII as well as the RGMII.
-> Some of the features of the PHY are:
-> - Wake on LAN
-> - Auto-MDIX
-> - IEEE 1588-2008 (V2)
-> - LinkMD Capable diagnosis
+On 07/02/2023 14:08, Steffen Trumtrar wrote:
+> The enclustra PE1 is a baseboard from enclustra GmbH for the enclustra
+> Mercury AA1+ SOM.
 > 
-> Currently the patch offers support only for link configuration.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-    Andrew
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
