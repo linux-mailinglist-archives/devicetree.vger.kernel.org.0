@@ -2,110 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A3368CCB0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 03:44:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46A0D68CCBC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 03:49:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjBGCoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Feb 2023 21:44:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42546 "EHLO
+        id S229826AbjBGCtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Feb 2023 21:49:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjBGCoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 21:44:15 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC2E11642;
-        Mon,  6 Feb 2023 18:44:12 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 58D0624E1FC;
-        Tue,  7 Feb 2023 10:43:58 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Feb
- 2023 10:43:58 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Feb
- 2023 10:43:57 +0800
-Message-ID: <c9ab22b5-3ffb-d034-b8b8-b056b82a96ce@starfivetech.com>
-Date:   Tue, 7 Feb 2023 10:43:55 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229925AbjBGCs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Feb 2023 21:48:56 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7389B36465
+        for <devicetree@vger.kernel.org>; Mon,  6 Feb 2023 18:48:46 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id o16-20020a17090ad25000b00230759a8c06so10444093pjw.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Feb 2023 18:48:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wLClDN2mw8UPzR2Mt0bhcLHPl8f4SmjcZHaBzl3SwMQ=;
+        b=W0W7US80iiNOz0nxN4KOFrjFuNsG9BK93IQfqi2yAaf/IQw25EYxXvAAzjrbpsTx1Z
+         Qqf1SoXTX2tzuE1q7Az7/AWdpnqzb9oDfsoOgiqLT+owtX39aZRghRJwUwspUZN55btY
+         HZwkoAUfUXOwX5ujJDuSyOQvp1N8iqD5ojSAo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wLClDN2mw8UPzR2Mt0bhcLHPl8f4SmjcZHaBzl3SwMQ=;
+        b=Jhtt/mNrJU/bHjPnGjUc94TIqFy+yolMAjpxNyeeGALjBNvG5jf8YHKb4R0kzT6DxL
+         PILAD+rvQdfYdIEE8jXfZ2Hl0aeyGlfAIOF88l+9XHEU20uOvtSLZ4SCMfOJtRn/0X3a
+         rxuHpxJu8BzG3SkhfyZh0r31mFviDuJNEqmSAXvQDsSWDe5u/797b+a4rkv88ihUzxvZ
+         fztan60Q4m4W9ipuvxP8ltUNvzvgrPsnl0m+n6Tr0COeiuGialdalTUKkoDok9V8ohvG
+         VbG2halJk6MJ0hnIAsYcjXPViIMxQUudpomjeeJa7sycPmoxSc+EbvJJanPWvt4uDy0P
+         Bvhw==
+X-Gm-Message-State: AO0yUKXdKOW/Q15xiyOYqurIwIMbDDcXrMrM3DI4kHXuFg+qHLBBpI9O
+        jPQ/y19X2R4ZqelU9cv580+CTw==
+X-Google-Smtp-Source: AK7set8CMMbpCNH76H+LBfbAD2TNUn+FqqoBLyDbtbOyIt4X4bKv2DEMb7QFDIt2d709r5a3n8UZ+Q==
+X-Received: by 2002:a17:90b:2251:b0:230:c57b:7c24 with SMTP id hk17-20020a17090b225100b00230c57b7c24mr2034728pjb.26.1675738125883;
+        Mon, 06 Feb 2023 18:48:45 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:29fb:a635:f0df:f45a])
+        by smtp.gmail.com with ESMTPSA id s17-20020a63a311000000b0045dc85c4a5fsm6882430pge.44.2023.02.06.18.48.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Feb 2023 18:48:45 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
- <20230118061701.30047-3-yanhong.wang@starfivetech.com>
- <15a87640-d8c7-d7aa-bdfb-608fa2e497cb@linaro.org>
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <15a87640-d8c7-d7aa-bdfb-608fa2e497cb@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, Stephen Kitt <steve@sk2.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] arm: qcom: Fix touchscreen voltage for sc7280-herobrine boards
+Date:   Mon,  6 Feb 2023 18:48:09 -0800
+Message-Id: <20230207024816.525938-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Trying to figure out how to talk to the touchscreen properly on
+sc7280-herobrine boards was a long and difficult process. Many
+Engineering hours were spent deciding how exactly one should talk over
+i2c to a peripheral. In the end, a solution has been found and this
+patch series attempts to implement it in a way that will work for all
+herobrine-based boards.
+
+Validation of this code has actually been done on
+sc7280-herobrine-villager. Those patches are device-tree only and are
+placed first. They shouldn't be super controversial, I hope.
+
+In order to make this work, we also need to support
+sc7280-herobrine-evoker. For evoker, things are a bit tricker, though
+(I think) the solution we ended up with is not terrible. See the
+"Goodix" bindings patch for the full details. Unfortunately, I haven't
+tested the final version of these patches on evoker hardware. Thus
+those patches are at the end of the series and marked as such. It
+still wouldn't hurt to land them, if people are OK with it, since
+nobody in the wild has this hardware and and the evoker-specific parts
+of the patch are very easy to validate.
 
 
-On 2023/1/18 23:47, Krzysztof Kozlowski wrote:
-> On 18/01/2023 07:16, Yanhong Wang wrote:
->> Some boards(such as StarFive VisionFive v2) require more than one value
->> which defined by resets property, so the original definition can not
->> meet the requirements. In order to adapt to different requirements,
->> adjust the maxitems number definition.
->> 
->> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->> ---
->>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++------
->>  1 file changed, 3 insertions(+), 6 deletions(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> index e26c3e76ebb7..baf2c5b9e92d 100644
->> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> @@ -133,12 +133,9 @@ properties:
->>          - ptp_ref
->>  
->>    resets:
->> -    maxItems: 1
-> 
-> Also, this does not make sense on its own and messes constraints for all
-> other users. So another no for entire patch.
-> 
+Douglas Anderson (7):
+  arm64: dts: qcom: sc7280: On QCard, regulator L3C should be 1.8V
+  arm64: dts: qcom: sc7280: Add 3ms ramp to herobrine's
+    pp3300_left_in_mlb
+  arm64: dts: qcom: sc7280: Hook up the touchscreen IO rail on villager
+  HID: i2c-hid: goodix: Stop tying the reset line to the regulator
+  dt-bindings: HID: i2c-hid: goodix: Add mainboard-vddio-supply
+  HID: i2c-hid: goodix: Add mainboard-vddio-supply
+  arm64: dts: qcom: sc7280: Hook up the touchscreen IO rail on evoker
 
-Thanks. Change the properties of 'resets' and reset-names like this:
+ .../bindings/input/goodix,gt7375p.yaml        |  7 ++
+ .../dts/qcom/sc7280-herobrine-evoker.dtsi     |  1 +
+ .../dts/qcom/sc7280-herobrine-villager.dtsi   |  1 +
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  2 +
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    | 10 +-
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 98 +++++--------------
+ 6 files changed, 42 insertions(+), 77 deletions(-)
 
-  resets:
-    minItems: 1
-    maxItems: 2
+-- 
+2.39.1.519.gcb327c4b5f-goog
 
-  reset-names:
-    minItems: 1
-    maxItems: 2
-
-Is it right?  Do you have any other better suggestions?
-
-> Best regards,
-> Krzysztof
-> 
