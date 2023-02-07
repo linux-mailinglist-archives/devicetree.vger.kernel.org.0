@@ -2,103 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D43468D35E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 10:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F63F68D369
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 11:00:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231874AbjBGJ5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 04:57:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
+        id S231839AbjBGKAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 05:00:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbjBGJ50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 04:57:26 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0A610CE
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:56:46 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso10975290wms.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 01:56:46 -0800 (PST)
+        with ESMTP id S231844AbjBGKAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 05:00:19 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 563F3768A
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 01:59:21 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id g6so4981805wrv.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 01:59:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fjrreO/cdcWjaF0NqbiW3YouGZbLhGjexUtio5V0gjw=;
-        b=Sjq7kVXQPYkZ5w3GDiFKGQld0ZlghHs4wtWm7Lr9qkfJA2FixfxmoBg9UFD58hhHtA
-         K9Jw0fXpmXONpEZeSZD9Qz+mCVfvyThsnTfbS8kRzKknCaPYNPoqRgb5zbL6RQUt9Js8
-         Ezf7Gw/YrlulMma4w2bzlpnGHwT4svcu0yTjHXH2wnV9GkfTO98JCo4sRdHgXpOeXUHn
-         4ahX3HVHCn3KcRTGrkoREPmsO5xg1Iy3tZZ/0BhT9Rtr+ysr5bRuqlCdsCxEhMho/9zW
-         4xozF5nEmgOdmsD6DNCenGCcfrDjaWSDEVDxf5fDDaQY82mSa8+6F1GgcLrwcoH8Y1sr
-         L+Bw==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gyxo1SYfYxqaPFoqXEgYr/ocAyDp0P/Afe4B05MrX2g=;
+        b=KzUsPTYWPFHfbLnnGsjoPYvqAu0p4zXIIyFAyQZ7lM/tW0/LideTaa5ZkrAqRI26GH
+         GH1/SBpFezyNWMSdg0lcwdwBVPj9PnB44iaNkrCU7HZCAq9KD04+1zceZS7NpkGGbg5T
+         49lDY1s6A0TjFPNDmGQq3I8kZhT7cNTRMoRuv71V4amdrb9f+B3BzVizxeTPLmKtG2Zk
+         jqREe0/ffmG2XeH67rlJtXrgkVKC5mpgXrVq+Z/e5bDcacOGtwetl10GLbVqdBLhq0ht
+         q2pi2euEWKbuBZWSHy8sQrTKfWZGmjJGO3dBXzAsJbE0A31Ga4sjM23sNyL3m/hdDFW4
+         BtTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fjrreO/cdcWjaF0NqbiW3YouGZbLhGjexUtio5V0gjw=;
-        b=r0lERoRxtMjeh8aLgGd1R4zPw4DaEWwkbQZj6ItYQqlpFj3Ow6YP2t+dtNIbOtpeMZ
-         kX79z7AM6BCxtI7cSFztmZKnVbU1hb89VjGKtidpoxV/i4CglRNwKUa/R0JpE9NpWqPH
-         i1xStRBP4XN0K4V02LhYlKel/7n7QCXgQxs+UA3q04lXS5GPHEy+zXDYADBaAy2K5nYS
-         hsw1ji867U2ugqXU7yPA9V/OqQCNMkiNTnj1CokxrbPZK7kHjM+EE3XXTAR3LMVzJx2j
-         X64CzgTO4JLgGG7GJ+TiAGrYHTV4nyQ+Ctx12Nf16/oVPOscNwpVtXg8kx4LU7ua7kkE
-         gWAg==
-X-Gm-Message-State: AO0yUKUoVuM0A/4Tu/KpNapopI99ZpsAzsP1Ddvpbp4Cc/TDqGLIjTuj
-        j3E5p6bo0zHjCRRvk0FxEL3KYQ==
-X-Google-Smtp-Source: AK7set8fpr1RSVtOGTk19Fdkfj3vPfHbVIuNLTvlgJtHNgCUKF8iVPgpF6WhOdCfsd40QVdTUXDpVw==
-X-Received: by 2002:a05:600c:4b1c:b0:3df:eb5d:c583 with SMTP id i28-20020a05600c4b1c00b003dfeb5dc583mr2551310wmp.17.1675763803385;
-        Tue, 07 Feb 2023 01:56:43 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05600c19d000b003dd1b00bd9asm14309860wmq.32.2023.02.07.01.56.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 01:56:43 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gyxo1SYfYxqaPFoqXEgYr/ocAyDp0P/Afe4B05MrX2g=;
+        b=LDPAq0v2Lr9UUZ0jPXiBeCAcDMhG59pKL2zwEWWBAkW2cw8hVQHXCv3o7tMhPGpMNx
+         Ru1SvjdOoIDSTVJQ0K9biclvPMYfjbMHUqkqUXjv1VJMQOCIcOF35CfvjJHRsOXzpcB1
+         jT+8BfLi9h06ADTaB33F0YcpvZo+d07az0eEEVqySIwwVPiAEIc/n7ggYPcF/ZSa5zNh
+         wrAZ+30V7hbmr4MXUJ3ATF2gxP9i9LJTOCyTfV0N18YzbBtkdqy6zT2MRH8MFoUgpihb
+         Pwd+/GQl3ElGlagjjc1Vu1/blAk1FSlfXaH9ftwskHc59p6HoO3pf5mjo9DRFAtTu+ih
+         /dTQ==
+X-Gm-Message-State: AO0yUKWuRBrG5k4emUP5uu5YGwJXwEKsM4Ymp1MbBz/4fphZixOmZ9fU
+        usvfDREWz9fr/2X4CNcqZ1Vo5w==
+X-Google-Smtp-Source: AK7set9AGUr02MY4TirPrz8+iYHIBelGFh4xaIZhKWPYG47xjHnOe3bmka69hBvzuOpVUsCNtFRL7Q==
+X-Received: by 2002:a5d:4a0d:0:b0:2c3:ea81:64bf with SMTP id m13-20020a5d4a0d000000b002c3ea8164bfmr1877549wrq.56.1675763959917;
+        Tue, 07 Feb 2023 01:59:19 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l11-20020a05600002ab00b002bfb5ebf8cfsm11408275wry.21.2023.02.07.01.59.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Feb 2023 01:59:19 -0800 (PST)
+Message-ID: <9f0e05ee-de21-c234-7c8e-e6105e98c0ac@linaro.org>
+Date:   Tue, 7 Feb 2023 10:59:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 4/5] dt-bindings: remoteproc: qcom,glink-rpm-edge: convert
+ to DT schema
+Content-Language: en-US
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: mailbox: qcom,apcs-kpss-global: drop mbox-names from example
-Date:   Tue,  7 Feb 2023 10:56:39 +0100
-Message-Id: <20230207095639.36537-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230207090852.28421-1-krzysztof.kozlowski@linaro.org>
+ <20230207090852.28421-4-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230207090852.28421-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm G-Link RPM edge bindings do not allow and do not use mbox-names
-property.
+On 07/02/2023 10:08, Krzysztof Kozlowski wrote:
+> Convert Qualcomm G-Link RPM edge binding to DT schema.  Move it to
+> remoteproc as it better suits the purpose - communication channel with
+> remote processor.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../remoteproc/qcom,glink-rpm-edge.yaml       | 92 ++++++++++++++++++
+>  .../bindings/soc/qcom/qcom,glink.txt          | 94 -------------------
+>  2 files changed, 92 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,glink-rpm-edge.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is expected to trigger warning in other bindings, being fixed here:
+https://lore.kernel.org/linux-arm-msm/20230207095639.36537-1-krzysztof.kozlowski@linaro.org/T/#u
 
----
-
-See:
-https://lore.kernel.org/linux-arm-msm/20230207090852.28421-1-krzysztof.kozlowski@linaro.org/T/#t
----
- .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index 943f9472ae10..56b386b688b3 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -155,7 +155,6 @@ examples:
-         interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-         qcom,rpm-msg-ram = <&rpm_msg_ram>;
-         mboxes = <&apcs_glb 0>;
--        mbox-names = "rpm_hlos";
-     };
- 
-   # Example apcs with qcs404
--- 
-2.34.1
+Best regards,
+Krzysztof
 
