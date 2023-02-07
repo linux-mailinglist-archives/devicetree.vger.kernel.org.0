@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83ABE68E066
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 19:46:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9350368E072
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 19:47:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbjBGSqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 13:46:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40420 "EHLO
+        id S232548AbjBGSrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 13:47:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232018AbjBGSqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 13:46:23 -0500
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5111C27986
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 10:46:22 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id l7so6024019ioa.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 10:46:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PmZAxftyO6slzLMnbGs8o2pB/JP2fFytjbCAZ2G0Gys=;
-        b=N+0VN5nXltvWKLZxJw4fFKQOY/cXtoFbsWJ2cm18+U7iRAxgWhBPGgn7SeLQlW2V71
-         w4wx5sfwFvyijHomGFMr12YhY5UKChsKlZt2cTDz7egnPBhLtbZE0/yrdorwCSVhpcts
-         3sq8pmIz/Zdv1bmPgO3WafpFe/K7835v74de0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PmZAxftyO6slzLMnbGs8o2pB/JP2fFytjbCAZ2G0Gys=;
-        b=U2DfOjIVzDUylb01Fjh7oXXsKVLnK32km9Xt3IXpUt6XUWcjBxNbjwA4U/47/HL9hZ
-         8TNKjtbySUcG6wc/9GpOFHJ1QfMwV2mAAeNxlJqWH8uomT+shhz99EqfOt8kFVRR4Vkb
-         drSBMUSxtkMbG2XFuk98EvYmMjmkqj85BWaHYy4Q3nRsgR6LtJYZgyKtwinWw2dUg7Je
-         CJVVcTpkM1qm0QW47mN79Lph//YM6ryC5kl0LGWLi/KoUSw+s+XEGPX9ID7iNyN/X/hr
-         V1qTD40gtKhuEVQSjbY2CK4cnx/xgxftRJvKXtsOQBPp0YzQF1jDKLot5+5ZTQgr2t3D
-         dECg==
-X-Gm-Message-State: AO0yUKVBsEG6PuzrBfRKkYNyHBpjqBGUnPqu1V/QFzpb6dbk7Upmbiv9
-        4p9z43xM8p4buinGPYlGgz88Jw==
-X-Google-Smtp-Source: AK7set8IYYDAys+Po0e3fJcbHqt6IBU0UizIiIRYAbmeEetgC1Kx4xHNO1xFcqAUceNSgoVGYHZhBg==
-X-Received: by 2002:a6b:cf12:0:b0:6ea:6c79:d21d with SMTP id o18-20020a6bcf12000000b006ea6c79d21dmr3530115ioa.20.1675795581765;
-        Tue, 07 Feb 2023 10:46:21 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id u15-20020a02b1cf000000b003a4e6b1e064sm4532144jah.90.2023.02.07.10.46.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 10:46:21 -0800 (PST)
-Date:   Tue, 7 Feb 2023 18:46:21 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org, Stephen Kitt <steve@sk2.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/7] HID: i2c-hid: goodix: Add mainboard-vddio-supply
-Message-ID: <Y+Kcff+9CE3IQ26I@google.com>
-References: <20230207024816.525938-1-dianders@chromium.org>
- <20230206184744.6.Ic234b931025d1f920ce9e06fff294643943a65ad@changeid>
+        with ESMTP id S232615AbjBGSrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 13:47:11 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C86159C0;
+        Tue,  7 Feb 2023 10:46:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5395AB81A12;
+        Tue,  7 Feb 2023 18:46:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F209C433D2;
+        Tue,  7 Feb 2023 18:46:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675795615;
+        bh=79Ve8zbRSZKXUOr26T060d7rk1wu/IUoUiO3VoAxXac=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=imfyLm/8XLyx7W4hNcJ8UkbdKqdEXUgXCD2omuZN2z6yBad2IUuR04SxYRxX9Vv4d
+         9eGFGxuP4X32xfvf0VD3vdruzFEgqW1WY+PYkt6VUn65C5QYeVuFgTNvPH5faR7jdh
+         klZwa9QzmN6E/c0y86i3At1MXKQGMT28+Hq76KZBNd2LSaFFtciGJGrS5nekLB98mL
+         M1M+xuRJCLW+bFdcfyzSeHxjzqJX+96zXBsnbe5obhNu6XoYoGW65WmMISDjz+jp0o
+         LNJ1GVQhCi/65TGqXJXNrYecK7j+htJLkGRtlma6gzyrr857T5wbl49j43lRqCU9tc
+         wASALxsFZwbZQ==
+Date:   Tue, 7 Feb 2023 10:46:53 -0800
+From:   Lee Jones <lee@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        thunder.leizhen@huawei.com, festevam@gmail.com
+Subject: Re: [PATCH v4] dt-bindings: leds: Document commonly used LED triggers
+Message-ID: <Y+KcndmBBQw16hfM@google.com>
+References: <20221129174906.97749-1-manivannan.sadhasivam@linaro.org>
+ <41ade5cb-98c1-e859-be4d-68eb05d0ea44@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230206184744.6.Ic234b931025d1f920ce9e06fff294643943a65ad@changeid>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <41ade5cb-98c1-e859-be4d-68eb05d0ea44@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 06, 2023 at 06:48:15PM -0800, Douglas Anderson wrote:
-> As talked about in the patch ("dt-bindings: HID: i2c-hid: goodix: Add
-> mainboard-vddio-supply") we may need to power up a 1.8V rail on the
-> host associated with touchscreen IO. Let's add support in the driver
-> for it.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+On Tue, 07 Feb 2023, Krzysztof Kozlowski wrote:
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> On 29/11/2022 18:49, Manivannan Sadhasivam wrote:
+> > Document the commonly used LED triggers by the SoCs. Not all triggers
+> > are documented as some of them are very application specific. Most of the
+> > triggers documented here are currently used in devicetrees of many SoCs.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> > 
+> > Changes in v4:
+> > 
+> > * Removed the sorting of triggers
+> > * Removed the "items" as they were not needed
+> > * Reworded the description
+> > * Dropped Zhen Lei's tested-by tag as the patch has changed
+> > * Added kbd-capslock trigger
+> 
+> Any plans for this patch?
+
+Who are you asking?
+
+This patch is not in my inbox.
+
+-- 
+Lee Jones [李琼斯]
