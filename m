@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3080D68D789
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AAC268D78E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 14:01:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231605AbjBGNBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 08:01:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
+        id S230301AbjBGNBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 08:01:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbjBGNBE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:01:04 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFE139B9F;
-        Tue,  7 Feb 2023 05:00:27 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-15f97c478a8so18824891fac.13;
-        Tue, 07 Feb 2023 05:00:27 -0800 (PST)
+        with ESMTP id S231977AbjBGNBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 08:01:07 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B406D39B8B;
+        Tue,  7 Feb 2023 05:00:28 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id r34-20020a05683044a200b0068d4a8a8d2dso4135414otv.12;
+        Tue, 07 Feb 2023 05:00:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=kWODlwdvZsu0oLYsDwnCYHspujHUtXG5z9FcEcxyHyQ=;
-        b=60nbZ18E8F1ewwmcvvYRiOvPupBogXMu/SJZsBTzoIvyFN9zmbWomn9vba6jTGh9ho
-         ToHJuI3pumGXayqmOk7rHlbxpVyrPnq0FisMTs9gqEjMQ8g79++sDrgfRBJxdUQHUMrD
-         MdJYCWUd+0RzN680kxdUBr6YmWH+lcVYkopHmO2oZvO30QkJxH3ZRpaHT42yvN0Bp66S
-         SjICZDurvNtbT+ELiymD0sK++aL79g+ZetdH8/oXuYXt1nyExlY8FofRAbVW/DUF5ipk
-         uYrpmswcrCL7KO07LkhmETnJXzhXYQzEphCoxEE+F6APX8qN2+GhdBinXt+ozdazhVlq
-         u0Kg==
-X-Gm-Message-State: AO0yUKWfSCEcJA8CvBEDc5wG0OEmlGLPAVnP3TuNi03tLzbhB76ShfVg
-        bNC1HkwNFFVTJd6uFK+PPQ==
-X-Google-Smtp-Source: AK7set/AuiNu1wfO7TO0Yq1H8Nc2wRr3B6t1v/K4dh5V8fdcoownRf93LSBXHcp95e0D4fG4jyF4QQ==
-X-Received: by 2002:a05:6870:c093:b0:163:b347:22fc with SMTP id c19-20020a056870c09300b00163b34722fcmr1511834oad.12.1675774826402;
-        Tue, 07 Feb 2023 05:00:26 -0800 (PST)
+        bh=ium/4IrRsQ+k51z0fDzl0DiGIY9oKjxvrSc3Z2yZ6vU=;
+        b=OXk+TPLfalbxityzGEMXxwy2UqzZiRsEBFHmgxk/K0n+aEv3AMcxqoGsZoIH049iLF
+         4Akz1+txCUFQhccZvINDTHcheJ1yrzTezcMNUi1UNWaTgaUYoQZCct7eIN5qPTirYYoQ
+         4ZriJ9GTNu1P5QEKCaLFLO7jzBnHRghnzL8v/LjqdICxNS8a65f79jBb8vw64sDF6qYY
+         GEsh4Jcj0mPCxLBXUZTod6hGwtMez6Nqe6BvHS8v0wOo1CKC6FKPi8QFIaCHmWLmL0w4
+         QNQvQBE+ttLW7bs8uWwHrh5n8mKIKF90VxyE9hO2iX9n0ADUwLcs5g4a4mkJh6mTmem3
+         Okkw==
+X-Gm-Message-State: AO0yUKUrKZ/HaWg+hP1eu/tQpu+GvIqwL3SIN/FOt36z2TXOS3TghXtJ
+        KkTa/PHu8Kfm4sJvgGt/rQpzIK+cDA==
+X-Google-Smtp-Source: AK7set9Voa0znJ6rIxJzug0AagTM9zQ35ONNyQ4dz2EhC9yj1CDlYyczSrfaLArtFj/3ZM5bvTmtWw==
+X-Received: by 2002:a05:6830:d19:b0:68d:972c:478d with SMTP id bu25-20020a0568300d1900b0068d972c478dmr2146993otb.16.1675774827878;
+        Tue, 07 Feb 2023 05:00:27 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i4-20020a056870044400b0016a694e7e2dsm1401439oak.39.2023.02.07.05.00.24
+        by smtp.gmail.com with ESMTPSA id do20-20020a0568300e1400b0068bce6239a3sm2395029otb.38.2023.02.07.05.00.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 05:00:25 -0800 (PST)
-Received: (nullmailer pid 3216438 invoked by uid 1000);
+        Tue, 07 Feb 2023 05:00:27 -0800 (PST)
+Received: (nullmailer pid 3216441 invoked by uid 1000);
         Tue, 07 Feb 2023 13:00:23 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>
-Cc:     mikelley@microsoft.com, wei.liu@kernel.org,
-        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
-        ssengar@microsoft.com, virtualization@lists.linux-foundation.org,
-        decui@microsoft.com, haiyangz@microsoft.com,
-        linux-hyperv@vger.kernel.org, robh+dt@kernel.org,
-        dphadke@linux.microsoft.com, kys@microsoft.com,
-        linux-kernel@vger.kernel.org, tglx@linutronix.de,
-        krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <1675756199-5917-6-git-send-email-ssengar@linux.microsoft.com>
-References: <1675756199-5917-1-git-send-email-ssengar@linux.microsoft.com>
- <1675756199-5917-6-git-send-email-ssengar@linux.microsoft.com>
-Message-Id: <167577470818.3213850.12635304061765127789.robh@kernel.org>
-Subject: Re: [PATCH v4 5/6] dt-bindings: hypervisor: VMBus
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230207090852.28421-4-krzysztof.kozlowski@linaro.org>
+References: <20230207090852.28421-1-krzysztof.kozlowski@linaro.org>
+ <20230207090852.28421-4-krzysztof.kozlowski@linaro.org>
+Message-Id: <167577470912.3213891.8305591559369987935.robh@kernel.org>
+Subject: Re: [PATCH 4/5] dt-bindings: remoteproc: qcom,glink-rpm-edge:
+ convert to DT schema
 Date:   Tue, 07 Feb 2023 07:00:23 -0600
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -70,15 +70,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 06 Feb 2023 23:49:58 -0800, Saurabh Sengar wrote:
-> Add dt-bindings for Hyper-V VMBus.
+On Tue, 07 Feb 2023 10:08:51 +0100, Krzysztof Kozlowski wrote:
+> Convert Qualcomm G-Link RPM edge binding to DT schema.  Move it to
+> remoteproc as it better suits the purpose - communication channel with
+> remote processor.
 > 
-> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/hypervisor/microsoft,vmbus.yaml       | 48 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hypervisor/microsoft,vmbus.yaml
+>  .../remoteproc/qcom,glink-rpm-edge.yaml       | 92 ++++++++++++++++++
+>  .../bindings/soc/qcom/qcom,glink.txt          | 94 -------------------
+>  2 files changed, 92 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,glink-rpm-edge.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -87,15 +90,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.example.dtb'
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1508: dt_binding_check] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.example.dtb: rpm-glink: 'mbox-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/qcom,glink-rpm-edge.yaml
 
 doc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/virtio/
-MAINTAINERS: Documentation/devicetree/bindings/virtio/
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1675756199-5917-6-git-send-email-ssengar@linux.microsoft.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230207090852.28421-4-krzysztof.kozlowski@linaro.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
