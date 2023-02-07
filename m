@@ -2,91 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 716DA68DBA9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 15:35:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3581468DBD2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 15:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbjBGOfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 09:35:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44578 "EHLO
+        id S230296AbjBGOkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 09:40:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232282AbjBGOeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 09:34:23 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC113D93C
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 06:30:51 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so6335268wmb.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 06:30:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YOpPEC2Awvgh2+il+1cdOelaxS0kr6969CW5gfZdK9s=;
-        b=mvmIayQ6kbXX2V1Crl0tHuqqPSYFLB/Jc8zYwglHDcxyt934fkl+bWG6tLuCpQ1g5M
-         Jb9KOLyEms2XLQ3wir9yiiaWxp2b+zzlB/xYywUOiCIuPwI6UKMcX3PMOvoSNkWe8fkN
-         Nw8Ws+PMzukriLOCXNBIBORq3847BjCpUi1rIvGpmgEUWjDNwdRHURkSNd1oA39bkNTP
-         QaLerpe41EPHHKUA1OnajCdSskROLxC2RJ9KgPNEV15H9cLQdIO+8S7kqxWcA1KA7BRx
-         r6PN8jB5gMHWV7Ltvt/T0Tm+PHOqMBpmj3WxvPkvSnBGvvC/3B63h/jtFoGsKnOVsqij
-         tYLg==
+        with ESMTP id S233192AbjBGOkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 09:40:11 -0500
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED3E3E08F;
+        Tue,  7 Feb 2023 06:38:49 -0800 (PST)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-142b72a728fso19197107fac.9;
+        Tue, 07 Feb 2023 06:38:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YOpPEC2Awvgh2+il+1cdOelaxS0kr6969CW5gfZdK9s=;
-        b=POU4B0Y+dJvAq4YD8uZPI8Rx/MB3JLjt4f21a8RYm7DQxXlOMCeoFmSawJRE+ixGup
-         OBmjMzOI3hOwuXV1c6tU03MtnHzu12bq754Ba/+disJyYzH3Gy7+qeAOHY/Oq/fgv+J1
-         kOkG28djio7VvIUUUZCfZxVoApqFxQgi9WV21ZvcRva+WiRWem2pnOCo+vXOf+XJiAdo
-         MdRYS+8M7ACv3kSh87Y7mpfePeCDJrfpiwwUf516yzQN5cRHshGw12PKd1g8R2UE7RoE
-         OsRFdckDzS6EU1qEMFBCV5F6m1WUPueWZYydzrPAXiq60/krrkGDp+uxju2BMMXuWSA3
-         ZWQg==
-X-Gm-Message-State: AO0yUKU4B9REnggGomISxFP2e7n8UsZPkwSMPc2V2+QiJzH8krX9fONw
-        BbvrLYLT6NqLxKBo2B2WFzWA7Q==
-X-Google-Smtp-Source: AK7set8jcs1Fi07SodeYKm3KsVNy19Z8Ks0GBdzOiILFELxjwbjn+1rpRCWpD+Y0NUJHjqjrlI6mSA==
-X-Received: by 2002:a05:600c:920:b0:3df:d817:df98 with SMTP id m32-20020a05600c092000b003dfd817df98mr3295961wmp.10.1675780248891;
-        Tue, 07 Feb 2023 06:30:48 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id j14-20020a05600c190e00b003daf681d05dsm15344363wmq.26.2023.02.07.06.30.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 06:30:47 -0800 (PST)
-Message-ID: <724a79fe-304d-f8db-c66c-9fdbfac873c8@linaro.org>
-Date:   Tue, 7 Feb 2023 14:30:46 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v9 26/27] virt: gunyah: Add irqfd interface
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-27-quic_eberman@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230120224627.4053418-27-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mgcU7yDHXi9BXC6ozPQIrIwts9zYTn8nAQMUgUABjn4=;
+        b=Uf/7lRdHFOnobGhXfaZnw6WvZ0+GRrZEVCVcLDmzDGyirbOO0Nx+ioadQA+ou+gpOz
+         IlLj/k1R+W+X7XyafEdDpKL6Dc1DMiGCtcGzRSSQ9ZNhMKn+QDCk21jc5vD7tfTgYjmq
+         BlJ58cGzqHhsudzab6QKrTxuNpPqE43bcPCApJcgYM+SW0oeUdWF/B7jS3lazcueWnpE
+         qWgMSfHbhXKexw8IZDzh7Kij1Ga7BYksQ0hzMBxtQWW3Zdt0T2R8a/m/tCg5Z8kkCVTj
+         vkoYOqpOzCcxp4sP5fuLGS10Y3SDyDZGkm6eV5W/+AOtyB0MwwtNUWuSb+VVslvKbSL6
+         TeIA==
+X-Gm-Message-State: AO0yUKU5Fza1N3uUCrdRqanpi8S07Zg7iRlNGtQI/uBhUu4P57lkEOc1
+        tCENlJQoO0SeH++TfQTj+FOj9PdbGw==
+X-Google-Smtp-Source: AK7set8vHVlBgyLz6lmIFJvWqBktiqqBn6qmd0qz74bunzfoHFF48nlHzUkFcagrfu9wfjdotNH1rQ==
+X-Received: by 2002:a05:6870:5487:b0:143:6254:7e6b with SMTP id f7-20020a056870548700b0014362547e6bmr1625242oan.11.1675780672142;
+        Tue, 07 Feb 2023 06:37:52 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id dy50-20020a056870c7b200b0016a25cfe5a3sm3862988oab.19.2023.02.07.06.37.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Feb 2023 06:37:51 -0800 (PST)
+Received: (nullmailer pid 3482433 invoked by uid 1000);
+        Tue, 07 Feb 2023 14:37:51 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Prathamesh Shete <pshete@nvidia.com>
+Cc:     thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        smangipudi@nvidia.com, linus.walleij@linaro.org,
+        linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
+        jonathanh@nvidia.com
+In-Reply-To: <20230207115617.12088-1-pshete@nvidia.com>
+References: <20230207115617.12088-1-pshete@nvidia.com>
+Message-Id: <167577954273.3457850.16805281654046177833.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
+Date:   Tue, 07 Feb 2023 08:37:51 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -94,307 +65,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 20/01/2023 22:46, Elliot Berman wrote:
-> Enable support for creating irqfds which can raise an interrupt on a
-> Gunyah virtual machine. irqfds are exposed to userspace as a Gunyah VM
-> function with the name "irqfd". If the VM devicetree is not configured
-> to create a doorbell with the corresponding label, userspace will still
-> be able to assert the eventfd but no interrupt will be raised on the
-> guest.
+On Tue, 07 Feb 2023 17:26:15 +0530, Prathamesh Shete wrote:
+> Add DT binding doc for Tegra234 pinmux driver.
 > 
-> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
 > ---
->   Documentation/virt/gunyah/vm-manager.rst |  22 +++
->   drivers/virt/gunyah/Kconfig              |   9 ++
->   drivers/virt/gunyah/Makefile             |   1 +
->   drivers/virt/gunyah/gunyah_irqfd.c       | 166 +++++++++++++++++++++++
->   include/linux/gunyah.h                   |   5 +
->   include/uapi/linux/gunyah.h              |  11 +-
->   6 files changed, 213 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/virt/gunyah/gunyah_irqfd.c
+>  .../pinctrl/nvidia,tegra234-pinmux.yaml       | 232 ++++++++++++++++++
+>  1 file changed, 232 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
 > 
-> diff --git a/Documentation/virt/gunyah/vm-manager.rst b/Documentation/virt/gunyah/vm-manager.rst
-> index d11267d59802..b6cf8db826b8 100644
-> --- a/Documentation/virt/gunyah/vm-manager.rst
-> +++ b/Documentation/virt/gunyah/vm-manager.rst
-> @@ -142,3 +142,25 @@ The vcpu type will register with the VM Manager to expect to control
->   vCPU number `vcpu_id`. It returns a file descriptor allowing interaction with
->   the vCPU. See the Gunyah vCPU API description sections for interacting with
->   the Gunyah vCPU file descriptors.
-> +
-> +Type: "irqfd"
-> +^^^^^^^^^^^^^
-> +
-> +::
-> +
-> +  struct gh_fn_irqfd_arg {
-> +	__u32 fd;
-> +	__u32 label;
-> +  #define GH_IRQFD_LEVEL			(1UL << 0)
-> +  #define GH_IRQFD_DEASSIGN		(1UL << 1)
-> +	__u32 flags;
-> +  };
-> +
-> +Allows setting an eventfd to directly trigger a guest interrupt.
-> +irqfd.fd specifies the file descriptor to use as the eventfd.
-> +irqfd.label corresponds to the doorbell label used in the guest VM's devicetree.
-> +The irqfd is removed using the GH_IRQFD_DEASSIGN flag and specifying at least
-> +the irqfd.label.
-> +
-> +GH_IRQFD_LEVEL configures the corresponding doorbell to behave like a level
-> +triggered interrupt.
-> diff --git a/drivers/virt/gunyah/Kconfig b/drivers/virt/gunyah/Kconfig
-> index 4c1c6110b50e..2cde24d429d1 100644
-> --- a/drivers/virt/gunyah/Kconfig
-> +++ b/drivers/virt/gunyah/Kconfig
-> @@ -26,3 +26,12 @@ config GUNYAH_VCPU
->   	  VMMs can also handle stage 2 faults of the vCPUs.
->   
->   	  Say Y/M here if unsure and you want to support Gunyah VMMs.
-> +
-> +config GUNYAH_IRQFD
-> +	tristate "Gunyah irqfd interface"
-> +	depends on GUNYAH
-> +	help
-> +	  Enable kernel support for creating irqfds which can raise an interrupt
-> +	  on Gunyah virtual machine.
-> +
-> +	  Say Y/M here if unsure and you want to support Gunyah VMMs.
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> index 2d1b604a7b03..6cf756bfa3c2 100644
-> --- a/drivers/virt/gunyah/Makefile
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -7,3 +7,4 @@ gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o vm_mgr.o vm_mgr_mm.o
->   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
->   
->   obj-$(CONFIG_GUNYAH_VCPU) += gunyah_vcpu.o
-> +obj-$(CONFIG_GUNYAH_IRQFD) += gunyah_irqfd.o
-> diff --git a/drivers/virt/gunyah/gunyah_irqfd.c b/drivers/virt/gunyah/gunyah_irqfd.c
-> new file mode 100644
-> index 000000000000..a3be9ca2377a
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/gunyah_irqfd.c
-> @@ -0,0 +1,166 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/eventfd.h>
-> +#include <linux/file.h>
-> +#include <linux/fs.h>
-> +#include <linux/gunyah.h>
-> +#include <linux/gunyah_vm_mgr.h>
-> +#include <linux/kref.h>
-> +#include <linux/module.h>
-> +#include <linux/poll.h>
-> +#include <linux/printk.h>
-> +
-> +#include <uapi/linux/gunyah.h>
-> +
-> +struct gunyah_irqfd {
-> +	struct gunyah_resource *ghrsc;
-> +	struct gunyah_vm_resource_ticket ticket;
-> +	struct gunyah_vm_function *f;
-> +
-> +	struct kref kref;
-> +	bool level;
-> +
-> +	struct eventfd_ctx *ctx;
-> +	wait_queue_entry_t wait;
-> +	poll_table pt;
-> +	struct fd fd;
-> +};
-> +
-> +static void gh_irqfd_cleanup(struct kref *kref)
-> +{
-> +	struct gunyah_irqfd *irqfd = container_of(kref, struct gunyah_irqfd, kref);
-> +
-> +	kfree(irqfd);
-> +}
-> +
-> +static int irqfd_wakeup(wait_queue_entry_t *wait, unsigned int mode, int sync, void *key)
-> +{
-> +	struct gunyah_irqfd *irqfd = container_of(wait, struct gunyah_irqfd, wait);
-> +	__poll_t flags = key_to_poll(key);
-> +	u64 enable_mask = GH_DBL_NONBLOCK;
-> +	u64 old_flags;
-> +	int ret = 0;
-> +
-> +	if (flags & EPOLLIN) {
-> +		if (irqfd->ghrsc) {
-> +			ret = gh_hypercall_dbl_send(irqfd->ghrsc->capid, enable_mask, &old_flags);
-> +			if (ret)
-> +				pr_err("Failed to assert irq %d\n", irqfd->f->fn.irqfd.label);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void irqfd_ptable_queue_proc(struct file *file, wait_queue_head_t *wqh, poll_table *pt)
-> +{
-> +	struct gunyah_irqfd *irq_ctx = container_of(pt, struct gunyah_irqfd, pt);
-> +
-> +	add_wait_queue(wqh, &irq_ctx->wait);
-> +}
-> +
-> +static int gunyah_irqfd_populate(struct gunyah_vm_resource_ticket *ticket,
-> +				struct gunyah_resource *ghrsc)
-> +{
-> +	struct gunyah_irqfd *irqfd = container_of(ticket, struct gunyah_irqfd, ticket);
-> +	u64 enable_mask = GH_DBL_NONBLOCK;
-> +	u64 ack_mask = ~0;
-> +	int ret = 0;
-> +
-> +	irqfd->ghrsc = ghrsc;
-> +	if (irqfd->level) {
-> +		ret = gh_hypercall_dbl_set_mask(irqfd->ghrsc->capid, enable_mask, ack_mask);
-> +		if (ret)
-> +			pr_warn("irq %d couldn't be set as level triggered. Might cause IRQ storm if asserted\n",
-> +				irqfd->f->fn.irqfd.label);
-> +	}
-> +	kref_get(&irqfd->kref);
-> +
-> +	return 0;
-> +}
-> +
-> +static void gunyah_irqfd_unpopulate(struct gunyah_vm_resource_ticket *ticket,
-> +					struct gunyah_resource *ghrsc)
-> +{
-> +	struct gunyah_irqfd *irqfd = container_of(ticket, struct gunyah_irqfd, ticket);
-> +	u64 cnt;
-> +
-> +	eventfd_ctx_remove_wait_queue(irqfd->ctx, &irqfd->wait, &cnt);
-> +	eventfd_ctx_put(irqfd->ctx);
 
-> +	fdput(irqfd->fd);
-<--
-> +	irqfd->ctx = NULL;
-> +	irqfd->fd.file = NULL;
-> +	irqfd->ghrsc = NULL;
--->
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-How do we know that this is the last reference ?
+yamllint warnings/errors:
 
-> +	kref_put(&irqfd->kref, gh_irqfd_cleanup);
-> +}
-> +
-> +static long gunyah_irqfd_bind(struct gunyah_vm_function *f)
-> +{
-> +	__poll_t events;
-> +	struct gunyah_irqfd *irqfd;
-> +	long r;
-> +
-> +	irqfd = kzalloc(sizeof(*irqfd), GFP_KERNEL);
-> +	if (!irqfd)
-> +		return -ENOMEM;
-> +
-> +	irqfd->f = f;
-> +	f->data = irqfd;
-> +
-> +	irqfd->fd = fdget(f->fn.irqfd.fd);
-> +	if (!irqfd->fd.file) {
-> +		r = -EBADF;
-> +		goto err_free;
-> +	}
-> +
-> +	irqfd->ctx = eventfd_ctx_fileget(irqfd->fd.file);
-> +	if (IS_ERR(irqfd->ctx)) {
-> +		r = PTR_ERR(irqfd->ctx);
-> +		goto err_fdput;
-> +	}
-> +
-> +	if (f->fn.irqfd.flags & GH_IRQFD_LEVEL)
-> +		irqfd->level = true;
-> +
-> +	init_waitqueue_func_entry(&irqfd->wait, irqfd_wakeup);
-> +	init_poll_funcptr(&irqfd->pt, irqfd_ptable_queue_proc);
-> +	kref_init(&irqfd->kref);
-> +
-> +	irqfd->ticket.resource_type = GUNYAH_RESOURCE_TYPE_BELL_TX;
-> +	irqfd->ticket.label = f->fn.irqfd.label;
-> +	irqfd->ticket.owner = THIS_MODULE;
-> +	irqfd->ticket.populate = gunyah_irqfd_populate;
-> +	irqfd->ticket.unpopulate = gunyah_irqfd_unpopulate;
-> +
-> +	r = ghvm_add_resource_ticket(f->ghvm, &irqfd->ticket);
-> +	if (r)
-> +		goto err_ctx;
-> +
-> +	events = vfs_poll(irqfd->fd.file, &irqfd->pt);
-> +	if (events & EPOLLIN)
-> +		pr_warn("Premature injection of interrupt\n");
-> +
-> +	return 0;
-> +err_ctx:
-kref_put missing?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.example.dtb: pinmux@2430000: pinmux-pex-rst-c5-out:pex_rst:nvidia,pins:0: 'pex_l5_rst_n_pgg1' is not one of ['dap6_sclk_pa0', 'dap6_dout_pa1', 'dap6_din_pa2', 'dap6_fs_pa3', 'dap4_sclk_pa4', 'dap4_dout_pa5', 'dap4_din_pa6', 'dap4_fs_pa7', 'soc_gpio08_pb0', 'qspi0_sck_pc0', 'qspi0_cs_n_pc1', 'qspi0_io0_pc2', 'qspi0_io1_pc3', 'qspi0_io2_pc4', 'qspi0_io3_pc5', 'qspi1_sck_pc6', 'qspi1_cs_n_pc7', 'qspi1_io0_pd0', 'qspi1_io1_pd1', 'qspi1_io2_pd2', 'qspi1_io3_pd3', 'eqos_txc_pe0', 'eqos_td0_pe1', 'eqos_td1_pe2', 'eqos_td2_pe3', 'eqos_td3_pe4', 'eqos_tx_ctl_pe5', 'eqos_rd0_pe6', 'eqos_rd1_pe7', 'eqos_rd2_pf0', 'eqos_rd3_pf1', 'eqos_rx_ctl_pf2', 'eqos_rxc_pf3', 'eqos_sma_mdio_pf4', 'eqos_sma_mdc_pf5', 'soc_gpio13_pg0', 'soc_gpio14_pg1', 'soc_gpio15_pg2', 'soc_gpio16_pg3', 'soc_gpio17_pg4', 'soc_gpio18_pg5', 'soc_gpio19_pg6', 'soc_gpio20_pg7', 'soc_gpio21_ph0', 'soc_gpio22_ph1', 'soc_gpio06_p
+ h2', 'uart4_tx_ph3', 'uart4_rx_ph4', 'uart4_rts_ph5', 'uart4_cts_ph6', 'soc_gpio41_ph7', 'soc_gpio42_pi0', 'soc_gpio43_pi1', 'soc_gpio44_pi2', 'gen1_i2c_scl_pi3', 'gen1_i2c_sda_pi4', 'cpu_pwr_req_pi5', 'soc_gpio07_pi6', 'sdmmc1_clk_pj0', 'sdmmc1_cmd_pj1', 'sdmmc1_dat0_pj2', 'sdmmc1_dat1_pj3', 'sdmmc1_dat2_pj4', 'sdmmc1_dat3_pj5', 'pex_l0_clkreq_n_pk0', 'pex_l0_rst_n_pk1', 'pex_l1_clkreq_n_pk2', 'pex_l1_rst_n_pk3', 'pex_l2_clkreq_n_pk4', 'pex_l2_rst_n_pk5', 'pex_l3_clkreq_n_pk6', 'pex_l3_rst_n_pk7', 'pex_l4_clkreq_n_pl0', 'pex_l4_rst_n_pl1', 'pex_wake_n_pl2', 'soc_gpio34_pl3', 'dp_aux_ch0_hpd_pm0', 'dp_aux_ch1_hpd_pm1', 'dp_aux_ch2_hpd_pm2', 'dp_aux_ch3_hpd_pm3', 'soc_gpio55_pm4', 'soc_gpio36_pm5', 'soc_gpio53_pm6', 'soc_gpio38_pm7', 'dp_aux_ch3_n_pn0', 'soc_gpio39_pn1', 'soc_gpio40_pn2', 'dp_aux_ch1_p_pn3', 'dp_aux_ch1_n_pn4', 'dp_aux_ch2_p_pn5', 'dp_aux_ch2_n_pn6', 'dp_aux_ch3_p_pn7', 'extperiph1_clk_pp0', 'extperiph2_clk_pp1', 'cam_i2c_scl_pp2', 'cam_i2c_sda_pp3', 'soc_gpio23_pp4'
+ , 'soc_gpio24_pp5', 'soc_gpio25_pp6', 'pwr_i2c_scl_pp7', 'pwr_i2c_sda_pq0', 'soc_gpio28_pq1', 'soc_gpio29_pq2', 'soc_gpio30_pq3', 'soc_gpio31_pq4', 'soc_gpio32_pq5', 'soc_gpio33_pq6', 'soc_gpio35_pq7', 'soc_gpio37_pr0', 'soc_gpio56_pr1', 'uart1_tx_pr2', 'uart1_rx_pr3', 'uart1_rts_pr4', 'uart1_cts_pr5', 'soc_gpio61_pw0', 'soc_gpio62_pw1', 'gpu_pwr_req_px0', 'cv_pwr_req_px1', 'gp_pwm2_px2', 'gp_pwm3_px3', 'uart2_tx_px4', 'uart2_rx_px5', 'uart2_rts_px6', 'uart2_cts_px7', 'spi3_sck_py0', 'spi3_miso_py1', 'spi3_mosi_py2', 'spi3_cs0_py3', 'spi3_cs1_py4', 'uart5_tx_py5', 'uart5_rx_py6', 'uart5_rts_py7', 'uart5_cts_pz0', 'usb_vbus_en0_pz1', 'usb_vbus_en1_pz2', 'spi1_sck_pz3', 'spi1_miso_pz4', 'spi1_mosi_pz5', 'spi1_cs0_pz6', 'spi1_cs1_pz7', 'spi5_sck_pac0', 'spi5_miso_pac1', 'spi5_mosi_pac2', 'spi5_cs0_pac3', 'soc_gpio57_pac4', 'soc_gpio58_pac5', 'soc_gpio59_pac6', 'soc_gpio60_pac7', 'soc_gpio45_pad0', 'soc_gpio46_pad1', 'soc_gpio47_pad2', 'soc_gpio48_pad3', 'ufs0_ref_clk_pae0', 'ufs0_rst_n
+ _pae1', 'pex_l5_clkreq_n_paf0', 'pex_l5_rst_n_paf1', 'pex_l6_clkreq_n_paf2', 'pex_l6_rst_n_paf3', 'pex_l7_clkreq_n_pag0', 'pex_l7_rst_n_pag1', 'pex_l8_clkreq_n_pag2', 'pex_l8_rst_n_pag3', 'pex_l9_clkreq_n_pag4', 'pex_l9_rst_n_pag5', 'pex_l10_clkreq_n_pag6', 'pex_l10_rst_n_pag7', 'sdmmc1_comp', 'eqos_comp', 'qspi_comp', 'drive_soc_gpio08_pb0', 'drive_soc_gpio36_pm5', 'drive_soc_gpio53_pm6', 'drive_soc_gpio55_pm4', 'drive_soc_gpio38_pm7', 'drive_soc_gpio39_pn1', 'drive_soc_gpio40_pn2', 'drive_dp_aux_ch0_hpd_pm0', 'drive_dp_aux_ch1_hpd_pm1', 'drive_dp_aux_ch2_hpd_pm2', 'drive_dp_aux_ch3_hpd_pm3', 'drive_dp_aux_ch1_p_pn3', 'drive_dp_aux_ch1_n_pn4', 'drive_dp_aux_ch2_p_pn5', 'drive_dp_aux_ch2_n_pn6', 'drive_dp_aux_ch3_p_pn7', 'drive_dp_aux_ch3_n_pn0', 'drive_pex_l2_clkreq_n_pk4', 'drive_pex_wake_n_pl2', 'drive_pex_l1_clkreq_n_pk2', 'drive_pex_l1_rst_n_pk3', 'drive_pex_l0_clkreq_n_pk0', 'drive_pex_l0_rst_n_pk1', 'drive_pex_l2_rst_n_pk5', 'drive_pex_l3_clkreq_n_pk6', 'drive_pex_l3_rst_n_pk
+ 7', 'drive_pex_l4_clkreq_n_pl0', 'drive_pex_l4_rst_n_pl1', 'drive_soc_gpio34_pl3', 'drive_pex_l5_clkreq_n_paf0', 'drive_pex_l5_rst_n_paf1', 'drive_pex_l6_clkreq_n_paf2', 'drive_pex_l6_rst_n_paf3', 'drive_pex_l10_clkreq_n_pag6', 'drive_pex_l10_rst_n_pag7', 'drive_pex_l7_clkreq_n_pag0', 'drive_pex_l7_rst_n_pag1', 'drive_pex_l8_clkreq_n_pag2', 'drive_pex_l8_rst_n_pag3', 'drive_pex_l9_clkreq_n_pag4', 'drive_pex_l9_rst_n_pag5', 'drive_sdmmc1_clk_pj0', 'drive_sdmmc1_cmd_pj1', 'drive_sdmmc1_dat3_pj5', 'drive_sdmmc1_dat2_pj4', 'drive_sdmmc1_dat1_pj3', 'drive_sdmmc1_dat0_pj2']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
 
-> +	eventfd_ctx_put(irqfd->ctx);
-> +err_fdput:
-> +	fdput(irqfd->fd);
-> +err_free:
-> +	kfree(irqfd);
-> +	return r;
-> +}
-> +
-> +static void gunyah_irqfd_release(struct gunyah_vm_function *f)
-> +{
-> +	struct gunyah_irqfd *irqfd = f->data;
-> +
-> +	/* unpopulate will trigger clean up of the eventfd */
-> +	ghvm_remove_resource_ticket(irqfd->f->ghvm, &irqfd->ticket);
-> +}
-> +
-> +DECLARE_GUNYAH_VM_FUNCTION_INIT(irqfd, gunyah_irqfd_bind, gunyah_irqfd_release);
-> +MODULE_DESCRIPTION("Gunyah irqfds");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
-> index ac4879940c10..6b363707a901 100644
-> --- a/include/linux/gunyah.h
-> +++ b/include/linux/gunyah.h
-> @@ -33,6 +33,11 @@ struct gunyah_resource {
->   	u32 rm_label;
->   };
->   
-> +/**
-> + * Gunyah Doorbells
-> + */
-> +#define GH_DBL_NONBLOCK		BIT(32)
-> +
->   /**
->    * Gunyah Message Queues
->    */
-> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
-> index b4afb11f538a..a947f0317ca9 100644
-> --- a/include/uapi/linux/gunyah.h
-> +++ b/include/uapi/linux/gunyah.h
-> @@ -57,10 +57,19 @@ struct gh_fn_vcpu_arg {
->   	__u32 vcpu_id;
->   };
->   
-> +struct gh_fn_irqfd_arg {
-> +	__u32 fd;
-> +	__u32 label;
-> +#define GH_IRQFD_LEVEL			(1UL << 0)
-> +#define GH_IRQFD_DEASSIGN		(1UL << 1)
-> +	__u32 flags;
+doc reference errors (make refcheckdocs):
 
-same issue here, this is not naturaly aligned.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230207115617.12088-1-pshete@nvidia.com
 
-for details take a look at Documentation/driver-api/ioctl.rst
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +};
-> +
->   struct gh_vm_function {
->   	char name[GUNYAH_FUNCTION_NAME_SIZE];
->   	union {
-> -		struct gh_device_vcpu_arg vcpu;
-> +		struct gh_fn_vcpu_arg vcpu;
-> +		struct gh_fn_irqfd_arg irqfd;
->   		char data[GUNYAH_FUNCTION_MAX_ARG_SIZE];
->   	};
->   };
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
