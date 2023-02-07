@@ -2,111 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D6A68DC69
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1834068DC6D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 16:06:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbjBGPD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 10:03:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
+        id S232414AbjBGPGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 10:06:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232013AbjBGPD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:03:57 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A41513D70
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 07:03:56 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id r2so13845844wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 07:03:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aFW7tNlak5JNTFgYIMMRwtC1A6KUFtjNBI4Nk45Lvrc=;
-        b=GPdFjyMvf71VLRCDW/2J5DzEOsghLE8D+Xb2lSXMQ6Md9fZCxbvYYgLjnymhq1IaM5
-         7U31PpSbLdHSxL9Eq276+JJ8sQZL+sl+oEBMKc0AaclU28W+9WtjfCSPUHfzyXmOqmoX
-         X0ntnCdCvjOhynvv1w0zKzcZS7mMbQdww8TP9OHGuxD5qJguU3LaC8twn1tjPSwVh0jS
-         53UJm/uNVhgL/78h6Z30WL4yu12ZbFVSo44XihwkKvxgNrdXfltEHHfof2B6fdddEbZl
-         EejCBwye57dfhJwygT8aAREBcBJ+jm9/PlLxmPha3sLqvmLl8IcHSdEn0MXqkgDC9WJ6
-         qarw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aFW7tNlak5JNTFgYIMMRwtC1A6KUFtjNBI4Nk45Lvrc=;
-        b=6FEGRyHZMzMFzbdedDkf2P9BSykT0obEdJSAZdP9qrQieGwXcB+bzkkjQZdiNKlYC6
-         nCZ3FotHHjCtZEF45tF7R3WogvEzF3RkxFGZA8chvmrGXSRHrgQjyZjh5HZB2KIBetJv
-         rrpVp0mxHmqXY+Z6Sq27IXNLLq5qM+EghgtECxypCTCVpmpk0glyxGQLpXBHy4Ytgho4
-         skBy+9apEqa3xhIta27lGhee4jWudE08fjGTeuKJGSSNd3VbInwyx7qS1pbwTuWabQkf
-         QuMS5tC+k+RJ69+jqPYjbiK+qUw2bvbUc2qKzAUFQfZJi23ibFYJh5kMXRr1S3wTZU2m
-         7wEw==
-X-Gm-Message-State: AO0yUKV7qwLMd0mWYEIbEzGy8GzEhN4H3y5Ib71GsIGAoxUK+ehXiAQQ
-        4xCrlUtprxsU7qP9o58BC2ifiBfWrY4SVy8vZKg=
-X-Google-Smtp-Source: AK7set/f5d5Gpi6UhKbDfQwgEwNZt0VF3yOdB/3oaOKJUnDOa+42YSsOXezDfmrEfQNbLfJUts4jNg==
-X-Received: by 2002:adf:f350:0:b0:2c3:da3f:1def with SMTP id e16-20020adff350000000b002c3da3f1defmr3354645wrp.7.1675782235101;
-        Tue, 07 Feb 2023 07:03:55 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id t15-20020adfdc0f000000b002c3f81c51b6sm1174395wri.90.2023.02.07.07.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 07:03:54 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 07 Feb 2023 16:03:53 +0100
-Subject: [PATCH] dt-bindings: phy: amlogic,g12a-usb3-pcie-phy: add missing
- optional phy-supply property
+        with ESMTP id S232089AbjBGPGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 10:06:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5D415C93;
+        Tue,  7 Feb 2023 07:06:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 615FE60CF2;
+        Tue,  7 Feb 2023 15:06:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A4AC433EF;
+        Tue,  7 Feb 2023 15:06:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675782365;
+        bh=YqDF29yTDTzZofC0OrRusN/jw+sSqFWwWjB3YnAN8mA=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=asZxJim1OThPT7N/ebQJty/PhYOPN7aFj6sKP/aVDIQUStFsecBWjYU/z1Fwo4eor
+         6ElGV8nV1q4aW+V2wdnhw7ENQbNQqV5fVShFAZRy5vAFuFaU3miDJKqOQYnAE5mD/P
+         vCvk5dFDVixQFm4zarCpiEraFsialIIpxdIHrAoBxmldRTYNwRxUNU+jHEQUqV8LBW
+         MA8X0lf0/kfczCAOln2DWdu4hac1ib2WjoD1HploTeNTz+P8BxL3QqPjjRnjPY1kGN
+         O06lj23OOqxzUp9BStpP+K+64A38HMwWIhbbrUnlNS938ik+nXlmz9H5vdQKG21cRO
+         iTTTOoHtOR3nQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230206153449.596326-1-jbrunet@baylibre.com>
+References: <20230206153449.596326-1-jbrunet@baylibre.com>
+Subject: Re: (subset) [PATCH v2 0/7] ASoC: dt-bindings: meson: covert axg
+ audio to schema
+Message-Id: <167578236315.223502.6627129328138282057.b4-ty@kernel.org>
+Date:   Tue, 07 Feb 2023 15:06:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-b4-amlogic-amlogic-g12a-usb3-pcie-phy-fix-v1-1-3e437b759549@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAFho4mMC/z2OwQrDIBBEfyV47oIxSQP9ldLDrq66YI0oKS0h/
- 17poafhDcNjDtW4Cjd1Gw5V+SVNttxhvAzKRsyBQVxnZbSZtNEr0Az4TFsQ+88wGoS90QTFCkO
- JH/DyBloc+mX2tLqr6j7CxkAVs43dmPeUelkq9+3vwP1xnl/W7GQOkAAAAA==
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing optional phy-supply property used to power up PHY regulators.
+On Mon, 06 Feb 2023 16:34:42 +0100, Jerome Brunet wrote:
+> Convert AXG audio dt-binding documentation to schema
+> 
+> Changes since v1:
+> * Drop 2 patches applied with v1
+> * Drop node name patterns
+> * Fix examples indentation
+> * Yaml fixups requested by Krzysztof
+> 
+> [...]
 
-Fixes: 87a55485f2fc ("dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml          | 5 +++++
- 1 file changed, 5 insertions(+)
+Applied to
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
-index 129d26e99776..3314711292d6 100644
---- a/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
-@@ -35,6 +35,11 @@ properties:
-   "#phy-cells":
-     const: 1
- 
-+  phy-supply:
-+    description:
-+      Phandle to a regulator that provides power to the PHY. This
-+      regulator will be managed during the PHY power on/off sequence.
-+
- required:
-   - compatible
-   - reg
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
----
-base-commit: 49a8133221c71b935f36a7c340c0271c2a9ee2db
-change-id: 20230207-b4-amlogic-amlogic-g12a-usb3-pcie-phy-fix-b5daf54fb7d6
+Thanks!
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+[1/7] ASoC: dt-bindings: meson: convert axg tdm interface to schema
+      commit: cdff91122de52f480bea730fee6665a7404d758c
+[2/7] ASoC: dt-bindings: meson: convert axg tdm formatters to schema
+      commit: c5536e7be70cf2ab55c674b3c2120565e9559c50
+[3/7] ASoC: dt-bindings: meson: convert axg pdm to schema
+      commit: 4d37c72ec42374c5ad416f851b572a9fb794e8ef
+[4/7] ASoC: dt-bindings: meson: convert axg fifo to schema
+      commit: 6b6f5ea7ab0062d152a3bc9192cee45c7fc31387
+[5/7] ASoC: dt-bindings: meson: convert axg spdif input to schema
+      commit: ede6aa4087abfac527267c4ac5bb6eebdfe958ba
+[6/7] ASoC: dt-bindings: meson: convert axg spdif output to schema
+      commit: 32f7b9102bfc48a210bf655e049145f6450b03a0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
