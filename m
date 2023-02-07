@@ -2,217 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A98C268D0E1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E42A68D0F3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Feb 2023 08:52:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230483AbjBGHuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 02:50:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
+        id S230172AbjBGHwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 02:52:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbjBGHuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:50:05 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 783D020D34;
-        Mon,  6 Feb 2023 23:50:04 -0800 (PST)
-Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 5864E20C7E31;
-        Mon,  6 Feb 2023 23:50:03 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5864E20C7E31
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675756203;
-        bh=qvXsJpgHQiFB3Phr4UYarQ/CGWW+zSQX/ORJm9VS1wA=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=P7Xjp7FG3ZLu+Mh05imc4yqgtipn8j70PU99vGNOPPPWX2dkplJ2cvXNHG3vYeFJh
-         VBUpwiSfz+pyyg8M8pJJy6aApkOh5wjtABUCcNhqxUiQQP/hZTubKAolJoscXsa2VN
-         5bwAatCBGTyu9ECfunxtwY1wDDBrTkyWxqCg56i8=
-From:   Saurabh Sengar <ssengar@linux.microsoft.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com, dphadke@linux.microsoft.com
-Subject: [PATCH v4 6/6] Driver: VMBus: Add device tree support
-Date:   Mon,  6 Feb 2023 23:49:59 -0800
-Message-Id: <1675756199-5917-7-git-send-email-ssengar@linux.microsoft.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1675756199-5917-1-git-send-email-ssengar@linux.microsoft.com>
-References: <1675756199-5917-1-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231132AbjBGHv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 02:51:57 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81FACC2E;
+        Mon,  6 Feb 2023 23:51:55 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id v13so14217449eda.11;
+        Mon, 06 Feb 2023 23:51:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1MAcGBhfYJH12s1m6Mlrfjjm34y3tTLoDEvIT2WAfMg=;
+        b=d7K7xElfgp/OSqI7i4n2yCI8yumpN7UeyLpjtJx0sV/FpiLD/636yAvtiMkTtkYb0l
+         ucDlBQjpSjRU/+aOWJzRHVKBDZmOhA9zcBhNG5jaISqPzCREvE8uZC2fePI4uuhZFVb3
+         ZVouoHp1n3OcwIk5MiJh0HjBTnFDhTrgYxHmdndZjz9aHrNYR1jEt9EX39P/tut7eww2
+         ZcW5YPGlY2CrQTQvywR1fryKusmAXif+bU4ox7LT3G7pbNcV0JmP5H0Igll2IULkiee4
+         v+Wj5EP7kCIfF1E2g0QBph3fJfdfQTZAzVt/QiF+meDGsqk7AxQoWo+UjQZk24PGorhf
+         JxBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1MAcGBhfYJH12s1m6Mlrfjjm34y3tTLoDEvIT2WAfMg=;
+        b=hrFA4I0jm//HYLjjbajuD+Bk7sHl+TisG3n98PztbBeh64qsPTj+Q6HbBJVTQgQxdO
+         YkxuvkqZ5yTecrSC+ijKernYyCWqoyMHUSNSHPy55ier4Yw+Lop+uTkh864dfpt3RqD3
+         hhSYWuel2uv7oZ7p0f2N+dWFzFteDexJaqtVL3K6Q7qcCI1MuoijxltB3nuWcyl7+UDy
+         EkwyFdArK6n8AF/CamaMM7at6AYYx/CY+eCyqCaaucauHnReMCO6miivMZU6zl9VaoJb
+         XD4ytQqrPT/jRGwl99ZudynxlWRvAf1cJWzxXFt2CNUdnUDBOUJWWH+pU/dxNDEdmVGg
+         GsJg==
+X-Gm-Message-State: AO0yUKUjlmyBwSovbanBxQ3OBIXYwH5ECcZQolhSp3Jxvc04s/9KwUmU
+        0zNRTIfkM+jOOYb4JLhu9qrCC53MWVEPNoDNCmw=
+X-Google-Smtp-Source: AK7set9lt5j+w095nFTUJw9kawQv3h15WZBR3heYuhLpaFmwnyQ54oO5vLiD88vSYWR/e266zEZphxYcff6g5Hda/As=
+X-Received: by 2002:a50:8a83:0:b0:4aa:9903:ec5f with SMTP id
+ j3-20020a508a83000000b004aa9903ec5fmr656184edj.54.1675756314187; Mon, 06 Feb
+ 2023 23:51:54 -0800 (PST)
+MIME-Version: 1.0
+References: <20230207014207.1678715-1-saravanak@google.com> <20230207014207.1678715-13-saravanak@google.com>
+In-Reply-To: <20230207014207.1678715-13-saravanak@google.com>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Tue, 7 Feb 2023 10:51:41 +0300
+Message-ID: <CALHCpMgC55uTnZKPGdKmSX1f0++bSLp2odBp5gQ1kmg90JuQwQ@mail.gmail.com>
+Subject: Re: [PATCH v3 12/12] mtd: mtdpart: Don't create platform device
+ that'll never probe
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>,
+        Jean-Philippe Brucker <jpb@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the driver to support device tree boot as well along with ACPI.
-At present the device tree parsing only provides the mmio region info
-and is not the exact copy of ACPI parsing. This is sufficient to cater
-all the current device tree usecases for VMBus.
+=D0=B2=D1=82, 7 =D1=84=D0=B5=D0=B2=D1=80. 2023 =D0=B3. =D0=B2 04:42, Sarava=
+na Kannan <saravanak@google.com>:
+>
+> These "nvmem-cells" platform devices never get probed because there's no
+> platform driver for it and it's never used anywhere else. So it's a
+> waste of memory. These devices also cause fw_devlink to block nvmem
+> consumers of "nvmem-cells" partition from probing because the supplier
+> device never probes.
+>
+> So stop creating platform devices for nvmem-cells partitions to avoid
+> wasting memory and to avoid blocking probing of consumers.
+>
+> Reported-by: Maxim Kiselev <bigunclemax@gmail.com>
+> Fixes: bcdf0315a61a ("mtd: call of_platform_populate() for MTD partitions=
+")
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/mtd/mtdpart.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
+> index d442fa94c872..85f5ee6f06fc 100644
+> --- a/drivers/mtd/mtdpart.c
+> +++ b/drivers/mtd/mtdpart.c
+> @@ -577,6 +577,7 @@ static int mtd_part_of_parse(struct mtd_info *master,
+>  {
+>         struct mtd_part_parser *parser;
+>         struct device_node *np;
+> +       struct device_node *child;
+>         struct property *prop;
+>         struct device *dev;
+>         const char *compat;
+> @@ -594,6 +595,15 @@ static int mtd_part_of_parse(struct mtd_info *master=
+,
+>         else
+>                 np =3D of_get_child_by_name(np, "partitions");
+>
+> +       /*
+> +        * Don't create devices that are added to a bus but will never ge=
+t
+> +        * probed. That'll cause fw_devlink to block probing of consumers=
+ of
+> +        * this partition until the partition device is probed.
+> +        */
+> +       for_each_child_of_node(np, child)
+> +               if (of_device_is_compatible(child, "nvmem-cells"))
+> +                       of_node_set_flag(child, OF_POPULATED);
+> +
+>         of_property_for_each_string(np, "compatible", prop, compat) {
+>                 parser =3D mtd_part_get_compatible_parser(compat);
+>                 if (!parser)
+> --
+> 2.39.1.519.gcb327c4b5f-goog
+>
 
-Currently device tree is supported only for x86 systems.
+Hi, Saravana!
 
-Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
----
-[V4]
-- used __maybe_unused for 'vmbus_of_match' and safeguard vmbus_acpi_device_ids
-  under #ifdef
+Now it works pretty well. Thank you so much for your efforts.
 
- drivers/hv/Kconfig     |  4 ++--
- drivers/hv/vmbus_drv.c | 62 ++++++++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 62 insertions(+), 4 deletions(-)
+> Reported-by: Maxim Kiselev <bigunclemax@gmail.com>
+> Fixes: bcdf0315a61a ("mtd: call of_platform_populate() for MTD partitions=
+")
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
-index 0747a8f..7e44d42 100644
---- a/drivers/hv/Kconfig
-+++ b/drivers/hv/Kconfig
-@@ -4,8 +4,8 @@ menu "Microsoft Hyper-V guest support"
- 
- config HYPERV
- 	tristate "Microsoft Hyper-V client drivers"
--	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
--		|| (ARM64 && !CPU_BIG_ENDIAN))
-+	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-+		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
- 	select PARAVIRT
- 	select X86_HV_CALLBACK_VECTOR if X86
- 	select VMAP_PFN
-diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-index 7349715..1774cae 100644
---- a/drivers/hv/vmbus_drv.c
-+++ b/drivers/hv/vmbus_drv.c
-@@ -20,6 +20,7 @@
- #include <linux/completion.h>
- #include <linux/hyperv.h>
- #include <linux/kernel_stat.h>
-+#include <linux/of_address.h>
- #include <linux/clockchips.h>
- #include <linux/cpu.h>
- #include <linux/sched/isolation.h>
-@@ -2152,7 +2153,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
- 	device_unregister(&device_obj->device);
- }
- 
--
-+#ifdef CONFIG_ACPI
- /*
-  * VMBUS is an acpi enumerated device. Get the information we
-  * need from DSDT.
-@@ -2262,6 +2263,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
- 
- 	return AE_OK;
- }
-+#endif
- 
- static void vmbus_mmio_remove(void)
- {
-@@ -2282,7 +2284,7 @@ static void vmbus_mmio_remove(void)
- 	}
- }
- 
--static void vmbus_reserve_fb(void)
-+static void __maybe_unused vmbus_reserve_fb(void)
- {
- 	resource_size_t start = 0, size;
- 	struct pci_dev *pdev;
-@@ -2442,6 +2444,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
- }
- EXPORT_SYMBOL_GPL(vmbus_free_mmio);
- 
-+#ifdef CONFIG_ACPI
- static int vmbus_acpi_add(struct platform_device *pdev)
- {
- 	acpi_status result;
-@@ -2494,10 +2497,52 @@ static int vmbus_acpi_add(struct platform_device *pdev)
- 		vmbus_mmio_remove();
- 	return ret_val;
- }
-+#else
-+
-+static int vmbus_device_add(struct platform_device *pdev)
-+{
-+	struct resource **cur_res = &hyperv_mmio;
-+	struct of_range range;
-+	struct of_range_parser parser;
-+	struct device_node *np;
-+	int ret = 0;
-+
-+	hv_dev = &pdev->dev;
-+	np = pdev->dev.of_node;
-+
-+	ret = of_range_parser_init(&parser, np);
-+	if (ret) {
-+		dev_err(hv_dev, "Failed to parse resources.\n");
-+		return ret;
-+	}
-+
-+	for_each_of_range(&parser, &range) {
-+		struct resource *res;
-+
-+		res = kzalloc(sizeof(*res), GFP_ATOMIC);
-+		if (!res)
-+			return -ENOMEM;
-+
-+		res->name = "hyperv mmio";
-+		res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
-+		res->start = range.pci_addr;
-+		res->end = range.pci_addr + range.size;
-+
-+		*cur_res = res;
-+		cur_res = &res->sibling;
-+	}
-+
-+	return ret;
-+}
-+#endif
- 
- static int vmbus_platform_driver_probe(struct platform_device *pdev)
- {
-+#ifdef CONFIG_ACPI
- 	return vmbus_acpi_add(pdev);
-+#else
-+	return vmbus_device_add(pdev);
-+#endif
- }
- 
- static int vmbus_platform_driver_remove(struct platform_device *pdev)
-@@ -2643,12 +2688,24 @@ static int vmbus_bus_resume(struct device *dev)
- #define vmbus_bus_resume NULL
- #endif /* CONFIG_PM_SLEEP */
- 
-+static const struct __maybe_unused of_device_id vmbus_of_match[] = {
-+	{
-+		.compatible = "microsoft,vmbus",
-+	},
-+	{
-+		/* sentinel */
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, vmbus_of_match);
-+
-+#ifdef CONFIG_ACPI
- static const struct acpi_device_id vmbus_acpi_device_ids[] = {
- 	{"VMBUS", 0},
- 	{"VMBus", 0},
- 	{"", 0},
- };
- MODULE_DEVICE_TABLE(acpi, vmbus_acpi_device_ids);
-+#endif
- 
- /*
-  * Note: we must use the "no_irq" ops, otherwise hibernation can not work with
-@@ -2677,6 +2734,7 @@ static int vmbus_bus_resume(struct device *dev)
- 	.driver = {
- 		.name = "vmbus",
- 		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
-+		.of_match_table = of_match_ptr(vmbus_of_match),
- 		.pm = &vmbus_bus_pm,
- 		.probe_type = PROBE_FORCE_SYNCHRONOUS,
- 	}
--- 
-1.8.3.1
-
+Tested-by: Maksim Kiselev <bigunclemax@gmail.com>
