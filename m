@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1B1F68EC70
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 11:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED8BD68EC92
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 11:16:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjBHKL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 05:11:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52826 "EHLO
+        id S230356AbjBHKP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 05:15:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231220AbjBHKLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 05:11:25 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106DA3FF2D
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 02:11:24 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so1050425wma.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 02:11:23 -0800 (PST)
+        with ESMTP id S229632AbjBHKPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 05:15:52 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F5633456
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 02:15:51 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so1066505wms.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 02:15:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=huzB20qTn2hk5Sq50TcJmPrBiboHg5g3LTY+3FZ3Yb0=;
-        b=KWidLLXh9HX/nt4zg03fLQRfj3YHNKgvZjeskIue5Q9wqMMvRrH2zoh4zHSsn3PeHn
-         CiGAvL9EqDb+//F5Sebnf+NX3QFSvOVr3EnfR2zW6WAZNlgsVR6PBeRbt01bWu2K7k9z
-         4atmTMdZz06o8x3uc+D997ZjlM+GIeKFIuZsUXkbMNfpXhxI9b89rJeF8g5d4zCTBesg
-         RwLEXKYzAMe9hd1ZqmI2GWDQ/9Kc4ckwcxmIAo/NgmKfjNtOra4MNZPKlF+fL+vN5vsw
-         tAo22g/2J9hX4ObNbEQjNMEVmeEhPfCJVi5BIzhrribBe1ZCrEAecOQSh+0OVF4CI60G
-         8zqA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eU6t5S19qfP9S/338lMbvl6syTeQ25IZRs/UFhzDsMA=;
+        b=xAgJOQTtwNrVJrNTfT5OsEjumUulgPcqd+hkTlkBCkq9Q+8fyumZqYT004/fo9KeZh
+         4eES/ylqvkP/Qmcw06wqlaSFqo1tUgkzzuLQYBPy2zokiaeNOfH3p9ecuGTWTfpLUQtd
+         imQJCyYsIi1gQCM+J7YBsfjFFZpMPPlvIMCaKL+p3SKujBtA0TW6b4qR9awJM97r6vcB
+         BFE8gtZz9Dripy1Y0sNQvMrC+v+j5f0KmnBbibWGDUV0YBtfpm+LvEtpk8XlaAZvmqe2
+         QDTdxqjvhDWl0wH1djTencI1QckLv7cmcUVLDl8VTk8hdO1QabwL2IefQ77N1sRL8SjI
+         l5Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=huzB20qTn2hk5Sq50TcJmPrBiboHg5g3LTY+3FZ3Yb0=;
-        b=5yBC4nAEyUuR3EsThqkLQrkgK/FuBH5KheWtO+gOhzpoThwqFwC1h0OObGsI9VNBQX
-         wKyS9CptwM41djhW8drGnLafb1FTOjIhgHMMS2kZkc8zxZpil4iIETofwt8b0o8tRM4U
-         jfoxxhMiT/FPCinM1vnDg/qh/vrdJLbifJgWQ1YJTJ2c0PB3kfHrwcw2UkoIRxHrx3eg
-         jY2wSJCx++WnHHTKPLdcViAPrXf3ZGropUSVZWyVZbp/8jayjLgjtL45gYl6BMXNGNPs
-         ypbJEp+h4DHTTLmPJNlfdqMsm80Fg95whhN1hdj4Vg0okD6hhWtouEVnWDrZ7HjUGz8y
-         ejKQ==
-X-Gm-Message-State: AO0yUKXr9RPGBV+REKjlXBd4aU222L8wIMwvYGt5DOGorJf8p9Z71cMw
-        2fOES11TjqNkmAOPVng+1lUaOA==
-X-Google-Smtp-Source: AK7set9SFBkBwYbJsxEoEQo2yTUSMhBjOMBIM2S+qELVNcXscqrtbGDB2RZokPCNgDbPk9mqHHZjhQ==
-X-Received: by 2002:a05:600c:1606:b0:3dc:19d1:3c13 with SMTP id m6-20020a05600c160600b003dc19d13c13mr5894099wmn.12.1675851082636;
-        Wed, 08 Feb 2023 02:11:22 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f24-20020a05600c491800b003df245cd853sm1340660wmp.44.2023.02.08.02.11.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 02:11:22 -0800 (PST)
-Message-ID: <d74c7f61-46d3-4f87-5889-b3431fdfd467@linaro.org>
-Date:   Wed, 8 Feb 2023 11:11:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/1] ASoC: dt-bindings: meson: convert axg sound card
- control to schema
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eU6t5S19qfP9S/338lMbvl6syTeQ25IZRs/UFhzDsMA=;
+        b=W3YEycuTORtYoav26dqVUcKf3Ov9wX5yrFiyWDjTSJrm1kPnD9gz+tiJJrjZHcUFi1
+         lH1yRoONKwbpR+CKi2Nk8jzeToJbMmSKVDdTxezaA6Sod1gexgl+fcMpnikN+T/NjQ/6
+         IHt+FmEDb1CCfmPby1b5iOhncOXchC4wY5kNkz8zkr9ScSQaIurl8J4RgXIA2qM4twDk
+         Sg0Cb4C3pjQqQV++zysKGo0Pty1/F7dXdGy8qsRncNcSYfvBDGlXGiW2gbjfl6Jr3+3s
+         l01H0W6cOgdnNnRuFFHOURBJB+1ggHOEVZSk9Ws5wZ6PnHrcpO+BiQR8HZn48NCmkabU
+         5ahA==
+X-Gm-Message-State: AO0yUKV4afzcfNPuWhTGt8JwYb4x2S3+8W5Bd80DAz1C9E3+M6gzdifQ
+        IEEFwJqde3CYza9ZbU+tZsk8pg==
+X-Google-Smtp-Source: AK7set+3SMFP2OpvNgvLeXy7mER86UTqQJAVe/mbVxWgJzDl3CcIVKEZEMzUr63nz3N38oChbUWJ2w==
+X-Received: by 2002:a05:600c:230f:b0:3da:f665:5b66 with SMTP id 15-20020a05600c230f00b003daf6655b66mr8239345wmo.6.1675851349867;
+        Wed, 08 Feb 2023 02:15:49 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t14-20020a05600c198e00b003dc4ecfc4d7sm1496328wmq.29.2023.02.08.02.15.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 02:15:49 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230208093520.52843-1-jbrunet@baylibre.com>
- <20230208093520.52843-2-jbrunet@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230208093520.52843-2-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 1/7] arm64: dts: qcom: ipq6018: align RPM G-Link node with bindings
+Date:   Wed,  8 Feb 2023 11:15:39 +0100
+Message-Id: <20230208101545.45711-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,18 +79,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 10:35, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg sound card to
-> schema.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../bindings/sound/amlogic,axg-sound-card.txt | 124 ------------
->  .../sound/amlogic,axg-sound-card.yaml         | 183 ++++++++++++++++++
+Bindings expect (and most of DTS use) the RPM G-Link node name to be
+"rpm-requests".
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Best regards,
-Krzysztof
+Changes since v1:
+1. Add Rb tag.
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index d32c9b2515ee..bbd94025ff5d 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -176,7 +176,7 @@ rpm-glink {
+ 		qcom,rpm-msg-ram = <&rpm_msg_ram>;
+ 		mboxes = <&apcs_glb 0>;
+ 
+-		rpm_requests: glink-channel {
++		rpm_requests: rpm-requests {
+ 			compatible = "qcom,rpm-ipq6018";
+ 			qcom,glink-channels = "rpm_requests";
+ 
+-- 
+2.34.1
 
