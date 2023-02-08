@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D847E68F413
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 18:14:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 520F968F470
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 18:26:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbjBHROB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 12:14:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43678 "EHLO
+        id S229843AbjBHR0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 12:26:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbjBHROA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 12:14:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5ED913D52;
-        Wed,  8 Feb 2023 09:13:59 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7D889B81F02;
-        Wed,  8 Feb 2023 17:13:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22341C433EF;
-        Wed,  8 Feb 2023 17:13:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675876437;
-        bh=uIn14lKQnE4MQMzWpMduYFj1ngI5uQm7hYWdO129A20=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RN8YOLUV8gEKc+AyiCT/ftGUAoXNDT0DJ5CuGmHCjLmYz6q2zJx9NqcKNV+F9Q6//
-         XYXRPH8Jf9yxUbCsJCrU0a570yg7EtEfoxiDm0ZwLcxEg4x+1J3Xz/P557zioileje
-         EcSmxfxsZHFuzgVVy5RNrvZe00FE7rK9MHWWi+x461gN1RHEzoCg6QUIBfaOE02h2H
-         ox4gMmAtd5YvB+9JxT6k9vd5Kmoaz7Obj9l4CoGZjF78CPFFwzSH265At2annbgD3u
-         HvaG0ZdKKB1rOxTlagS/AU3vHagQoCDRiaWRYPVjQ4rRJUSe71LnQlTcWQINaSc/+8
-         A/y+n8r+/cUJA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pPo1h-00068l-QX; Wed, 08 Feb 2023 18:14:33 +0100
-Date:   Wed, 8 Feb 2023 18:14:33 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S229648AbjBHR0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 12:26:36 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98BBD303EB
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 09:26:05 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id j25so13985835wrc.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 09:26:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+9JFREJcKJkYdP/88uPvjsxnj+T4bEHbknUKvEXZNqY=;
+        b=WEHDYdfnJ8nDQFSNnJpgLbP+WnlJVKrnP8awHy99ZFytgDDz9IEE4eDjI1jzDgvdPT
+         SAc2+33pRmjlQcRjW6L1gSjSPYIStI/Zm4DsfuG/XUurKLRflVfsEsXKzwedIJKkFYwc
+         UTZjkt+Nx/qUZZHKwth7xsi2ggDBTAnyioEWgBFN2q46QP1tJsIZOnX/nc7ItYyuX75p
+         HSHc0rVdQnc2niLr/DqNDXemLG2Ce2N7hF6maL7Jv8a87RSY36QhmVokSGBC/Elv2ISD
+         k+2MTsNoZbVTvXyU+NkVEdR5janG7LKkb1O/lC7vP364/sVQRkJ+Y25COtefMInEZs5t
+         3AOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+9JFREJcKJkYdP/88uPvjsxnj+T4bEHbknUKvEXZNqY=;
+        b=fyOABnoU0k7tF+eVjumEepdvGDDXc4bjGkC/xxtfeUDqXiBJfTgol1b5w4q+Me05hL
+         BHUDjbnLUS0z6uQrzOeYNUrhf145a/HF7HEbPQ04tHbo5Qb1OMz5hrqMabyEMP1YwTpN
+         RTVoLh3IQT3i16Pjsfr9oAPQpFFxDBwIn3wXeeorAwDtiQr0c5P4/1HaCbJVCCO9DiKP
+         TytVzXRdSIbFD0IFflLplEy2tlEyi8pRIql3SYmoa1xlXlZ4HtrVNTdAYqfIxdbaMo/i
+         +7nifmCLWyV8ngEODLPiKxOuxfooxr2cHoEZ0xVMo26yogbYy7ZhACV03kjIQyFvmhhq
+         bCEQ==
+X-Gm-Message-State: AO0yUKXUTzebWTHd2OJK2FjFOs1a53Xk/bl1oCuv482BoMyIqwBbpwDZ
+        cmhN7625kDLF0citxfkrGcc/Og==
+X-Google-Smtp-Source: AK7set+/MQIHsZkZpnlqjVXQQcXiPMd+TF5xhMDJ5SqQGvVcxZGnm+UnuqJtdd9W8QXuWNU901LRKg==
+X-Received: by 2002:a5d:6102:0:b0:2bf:cfb4:2e1 with SMTP id v2-20020a5d6102000000b002bfcfb402e1mr7274198wrt.45.1675877156432;
+        Wed, 08 Feb 2023 09:25:56 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id c12-20020adffb4c000000b002b6bcc0b64dsm14039457wrs.4.2023.02.08.09.25.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 09:25:56 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 10/12] PCI: qcom: Add SM8550 PCIe support
-Message-ID: <Y+PYeRo8X8ugXyoi@hovoldconsulting.com>
-References: <20230203081807.2248625-1-abel.vesa@linaro.org>
- <20230203081807.2248625-11-abel.vesa@linaro.org>
- <Y9zYpE/GnxUqnIyq@hovoldconsulting.com>
- <Y+EYhe/xYSFpI1Yn@linaro.org>
- <Y+PQYxh4t/ytOe3+@hovoldconsulting.com>
- <Y+PXeYrBBL3QaznM@linaro.org>
- <Y+PXrFxobTf/+X+U@linaro.org>
+        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
+Date:   Wed,  8 Feb 2023 18:25:52 +0100
+Message-Id: <20230208172552.404324-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y+PXrFxobTf/+X+U@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,81 +71,351 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 08, 2023 at 07:11:08PM +0200, Abel Vesa wrote:
-> On 23-02-08 19:10:17, Abel Vesa wrote:
-> > On 23-02-08 17:40:03, Johan Hovold wrote:
-> > > On Mon, Feb 06, 2023 at 05:11:01PM +0200, Abel Vesa wrote:
-> > > > On 23-02-03 10:49:24, Johan Hovold wrote:
-> > > > > On Fri, Feb 03, 2023 at 10:18:05AM +0200, Abel Vesa wrote:
-> > > > > > Add compatible for both PCIe found on SM8550.
-> > > > > > Also add the cnoc_pcie_sf_axi clock needed by the SM8550.
-> > > > > 
-> > > > > nit: You're now also adding 'noc_aggr'
-> > > > > 
-> > > > > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > > > > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> > > > > > ---
-> > > 
-> > > > > > @@ -182,10 +182,10 @@ struct qcom_pcie_resources_2_3_3 {
-> > > > > >  
-> > > > > >  /* 6 clocks typically, 7 for sm8250 */
-> > > > > >  struct qcom_pcie_resources_2_7_0 {
-> > > > > > -	struct clk_bulk_data clks[12];
-> > > > > > +	struct clk_bulk_data clks[14];
-> > > > > >  	int num_clks;
-> > > > > >  	struct regulator_bulk_data supplies[2];
-> > > > > > -	struct reset_control *pci_reset;
-> > > > > > +	struct reset_control *rst;
-> > > > > 
-> > > > > Please name this one 'reset' or 'resets' (e.g. to avoid hard to parse
-> > > > > things like res->rst below).
-> > > > 
-> > > > Well, it would then be inconsitent with 2_3_3 and 2_9_0, which both use
-> > > > rst.
-> > > 
-> > > Yeah, I saw that. Fortunately these resources are completely
-> > > independent, but whatever.
-> > 
-> > Will do it in the next version then.
+Convert the Wolfson WM1811/WM8994/WM8958 audio codecs bindings to DT
+schema.
 
-Or just leave it as is.
+Changes against original binding:
+1. Add missing LDO1VDD-supply for WM1811.
+2. Use "gpios" suffix for wlf,ldo1ena and wlf,ldo2ena (Linux kernel's
+   gpiolib already looks for both variants).
+3. Do not require AVDD1-supply and DCVDD-supply, because at least on
+   Arndale board with Exynos5250 these are grounded.
 
-> > > > > >  };
-> > > > > >  
-> > > > > >  struct qcom_pcie_resources_2_9_0 {
-> > > > > > @@ -1177,9 +1177,9 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
-> > > > > >  	unsigned int idx;
-> > > > > >  	int ret;
-> > > > > >  
-> > > > > > -	res->pci_reset = devm_reset_control_get_exclusive(dev, "pci");
-> > > > > > -	if (IS_ERR(res->pci_reset))
-> > > > > > -		return PTR_ERR(res->pci_reset);
-> > > > > > +	res->rst = devm_reset_control_array_get_exclusive(dev);
-> > > > > > +	if (IS_ERR(res->rst))
-> > > > > > +		return PTR_ERR(res->rst);
-> > > > > 
-> > > > > So the reset array implementation apparently both asserts and deasserts
-> > > > > the resets in the order specified in DT (i.e. does not deassert in
-> > > > > reverse order).
-> > > > > 
-> > > > > Is that ok also for the new "pci" and "link_down" resets?
-> > > > 
-> > > > According to the HPG, yes, this is perfectly fine. It specifically says
-> > > > to assert the pcie reset and then continues saying to assert the
-> > > > link_down reset.
-> > > 
-> > > Ok, but that doesn't really say anything about whether it's ok to
-> > > *deassert* them in the same order, which was what I asked about.
-> > 
-> > Actually, what I wanted to say is that the HPG says something like this:
-> > 
-> > "assert pcie reset, then assert link_down"
-> > 
-> > and then at the end it literaly repeats the same phrase.
-> 
-> but uses deassert instead of assert ...
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/sound/wlf,wm8994.yaml | 203 ++++++++++++++++++
+ .../devicetree/bindings/sound/wm8994.txt      | 112 ----------
+ 2 files changed, 203 insertions(+), 112 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8994.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8994.txt
 
-Ok, then it seems to match the implementation. Thanks for clarifying.
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8994.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8994.yaml
+new file mode 100644
+index 000000000000..24eabca7c173
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8994.yaml
+@@ -0,0 +1,203 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8994.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Wolfson WM1811/WM8994/WM8958 audio codecs
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++  - patches@opensource.cirrus.com
++
++description: |
++  These devices support both I2C and SPI (configured with pin strapping on the
++  board).
++
++  Pins on the device (for linking into audio routes):
++  IN1LN, IN1LP, IN2LN, IN2LP:VXRN, IN1RN, IN1RP, IN2RN, IN2RP:VXRP, SPKOUTLP,
++  SPKOUTLN, SPKOUTRP, SPKOUTRN, HPOUT1L, HPOUT1R, HPOUT2P, HPOUT2N, LINEOUT1P,
++  LINEOUT1N, LINEOUT2P, LINEOUT2N.
++
++properties:
++  compatible:
++    enum:
++      - wlf,wm1811
++      - wlf,wm8994
++      - wlf,wm8958
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: MCLK1
++      - const: MCLK2
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++    description:
++      The first cell is the IRQ number. The second cell is the flags, encoded
++      as the trigger masks.
++
++  AVDD1-supply: true
++  AVDD2-supply: true
++  CPVDD-supply: true
++  DBVDD-supply: true
++  DBVDD1-supply: true
++  DBVDD2-supply: true
++  DBVDD3-supply: true
++  DCVDD-supply: true
++  LDO1VDD-supply: true
++  SPKVDD1-supply: true
++  SPKVDD2-supply: true
++
++  '#sound-dai-cells':
++    const: 0
++
++  wlf,gpio-cfg:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 11
++    description:
++      A list of GPIO configuration register values. If absent, no configuration
++      of these registers is performed. If any value is over 0xffff then the
++      register will be left as default. If present 11 values must be supplied.
++
++  wlf,micbias-cfg:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 2
++    description:
++      Two MICBIAS register values for WM1811 or WM8958.  If absent the register
++      defaults will be used.
++
++  wlf,ldo1ena-gpios:
++    maxItems: 1
++    description:
++      Control of LDO1ENA input to device.
++
++  wlf,ldo2ena-gpios:
++    maxItems: 1
++    description:
++      Control of LDO2ENA input to device.
++
++  wlf,lineout1-se:
++    type: boolean
++    description:
++      LINEOUT1 is in single ended mode.
++
++  wlf,lineout2-se:
++    type: boolean
++    description:
++      INEOUT2 is in single ended mode.
++
++  wlf,lineout1-feedback:
++    type: boolean
++    description:
++      LINEOUT1 has common mode feedback connected.
++
++  wlf,lineout2-feedback:
++    type: boolean
++    description:
++      LINEOUT2 has common mode feedback connected.
++
++  wlf,ldoena-always-driven:
++    type: boolean
++    description:
++      LDOENA is always driven.
++
++  wlf,spkmode-pu:
++    type: boolean
++    description:
++      Enable the internal pull-up resistor on the SPKMODE pin.
++
++  wlf,csnaddr-pd:
++    type: boolean
++    description:
++      Enable the internal pull-down resistor on the CS/ADDR pin.
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: dai-common.yaml#
++  - if:
++      properties:
++        compatible:
++          enum:
++            - wlf,wm1811
++            - wlf,wm8958
++    then:
++      properties:
++        DBVDD-supply: false
++      required:
++        - CPVDD-supply
++        - DBVDD1-supply
++        - DBVDD2-supply
++        - DBVDD3-supply
++        - SPKVDD1-supply
++        - SPKVDD2-supply
++      anyOf:
++        - required:
++            - AVDD1-supply
++        - required:
++            - AVDD2-supply
++    else:
++      properties:
++        DBVDD1-supply: false
++        DBVDD2-supply: false
++        DBVDD3-supply: false
++      required:
++        - AVDD1-supply
++        - AVDD2-supply
++        - CPVDD-supply
++        - DBVDD-supply
++        - DCVDD-supply
++        - SPKVDD1-supply
++        - SPKVDD2-supply
++
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        audio-codec@1a {
++            compatible = "wlf,wm1811";
++            reg = <0x1a>;
++            clocks = <&i2s0 0>;
++            clock-names = "MCLK1";
++
++            AVDD2-supply = <&main_dc_reg>;
++            CPVDD-supply = <&main_dc_reg>;
++            DBVDD1-supply = <&main_dc_reg>;
++            DBVDD2-supply = <&main_dc_reg>;
++            DBVDD3-supply = <&main_dc_reg>;
++            LDO1VDD-supply = <&main_dc_reg>;
++            SPKVDD1-supply = <&main_dc_reg>;
++            SPKVDD2-supply = <&main_dc_reg>;
++
++            wlf,ldo1ena-gpios = <&gpb0 0 GPIO_ACTIVE_HIGH>;
++            wlf,ldo2ena-gpios = <&gpb0 1 GPIO_ACTIVE_HIGH>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8994.txt b/Documentation/devicetree/bindings/sound/wm8994.txt
+deleted file mode 100644
+index 8fa947509c10..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8994.txt
++++ /dev/null
+@@ -1,112 +0,0 @@
+-WM1811/WM8994/WM8958 audio CODEC
+-
+-These devices support both I2C and SPI (configured with pin strapping
+-on the board).
+-
+-Required properties:
+-
+-  - compatible : One of "wlf,wm1811", "wlf,wm8994" or "wlf,wm8958".
+-
+-  - reg : the I2C address of the device for I2C, the chip select
+-          number for SPI.
+-
+-  - gpio-controller : Indicates this device is a GPIO controller.
+-  - #gpio-cells : Must be 2. The first cell is the pin number and the
+-    second cell is used to specify optional parameters (currently unused).
+-
+-  - power supplies for the device, as covered in
+-    Documentation/devicetree/bindings/regulator/regulator.txt, depending
+-    on compatible:
+-    - for wlf,wm1811 and wlf,wm8958:
+-      AVDD1-supply, AVDD2-supply, DBVDD1-supply, DBVDD2-supply, DBVDD3-supply,
+-      DCVDD-supply, CPVDD-supply, SPKVDD1-supply, SPKVDD2-supply
+-    - for wlf,wm8994:
+-      AVDD1-supply, AVDD2-supply, DBVDD-supply, DCVDD-supply, CPVDD-supply,
+-      SPKVDD1-supply, SPKVDD2-supply
+-
+-Optional properties:
+-
+-  - interrupts : The interrupt line the IRQ signal for the device is
+-    connected to.  This is optional, if it is not connected then none
+-    of the interrupt related properties should be specified.
+-  - interrupt-controller : These devices contain interrupt controllers
+-    and may provide interrupt services to other devices if they have an
+-    interrupt line connected.
+-  - #interrupt-cells: the number of cells to describe an IRQ, this should be 2.
+-    The first cell is the IRQ number.
+-    The second cell is the flags, encoded as the trigger masks from
+-    Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+-
+-  - clocks : A list of up to two phandle and clock specifier pairs
+-  - clock-names : A list of clock names sorted in the same order as clocks.
+-                  Valid clock names are "MCLK1" and "MCLK2".
+-
+-  - wlf,gpio-cfg : A list of GPIO configuration register values. If absent,
+-    no configuration of these registers is performed. If any value is
+-    over 0xffff then the register will be left as default. If present 11
+-    values must be supplied.
+-
+-  - wlf,micbias-cfg : Two MICBIAS register values for WM1811 or
+-    WM8958.  If absent the register defaults will be used.
+-
+-  - wlf,ldo1ena : GPIO specifier for control of LDO1ENA input to device.
+-  - wlf,ldo2ena : GPIO specifier for control of LDO2ENA input to device.
+-
+-  - wlf,lineout1-se : If present LINEOUT1 is in single ended mode.
+-  - wlf,lineout2-se : If present LINEOUT2 is in single ended mode.
+-
+-  - wlf,lineout1-feedback : If present LINEOUT1 has common mode feedback
+-    connected.
+-  - wlf,lineout2-feedback : If present LINEOUT2 has common mode feedback
+-    connected.
+-
+-  - wlf,ldoena-always-driven : If present LDOENA is always driven.
+-
+-  - wlf,spkmode-pu : If present enable the internal pull-up resistor on
+-    the SPKMODE pin.
+-
+-  - wlf,csnaddr-pd : If present enable the internal pull-down resistor on
+-    the CS/ADDR pin.
+-
+-Pins on the device (for linking into audio routes):
+-
+-  * IN1LN
+-  * IN1LP
+-  * IN2LN
+-  * IN2LP:VXRN
+-  * IN1RN
+-  * IN1RP
+-  * IN2RN
+-  * IN2RP:VXRP
+-  * SPKOUTLP
+-  * SPKOUTLN
+-  * SPKOUTRP
+-  * SPKOUTRN
+-  * HPOUT1L
+-  * HPOUT1R
+-  * HPOUT2P
+-  * HPOUT2N
+-  * LINEOUT1P
+-  * LINEOUT1N
+-  * LINEOUT2P
+-  * LINEOUT2N
+-
+-Example:
+-
+-wm8994: codec@1a {
+-	compatible = "wlf,wm8994";
+-	reg = <0x1a>;
+-
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-
+-	lineout1-se;
+-
+-	AVDD1-supply = <&regulator>;
+-	AVDD2-supply = <&regulator>;
+-	CPVDD-supply = <&regulator>;
+-	DBVDD-supply = <&regulator>;
+-	DCVDD-supply = <&regulator>;
+-	SPKVDD1-supply = <&regulator>;
+-	SPKVDD2-supply = <&regulator>;
+-};
+-- 
+2.34.1
 
-Johan
