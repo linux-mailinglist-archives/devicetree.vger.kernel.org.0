@@ -2,252 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE4E68F9FA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 22:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC2F068FAE1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 00:08:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbjBHV56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 16:57:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34696 "EHLO
+        id S229479AbjBHXIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 18:08:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232097AbjBHV56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 16:57:58 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44BC029E34
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 13:57:55 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id ml19so1128122ejb.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 13:57:55 -0800 (PST)
+        with ESMTP id S229476AbjBHXIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 18:08:42 -0500
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43AB628D13;
+        Wed,  8 Feb 2023 15:08:42 -0800 (PST)
+Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 318KwxR0023291;
+        Wed, 8 Feb 2023 23:08:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=to : cc : subject :
+ from : message-id : references : date : in-reply-to : content-type :
+ mime-version; s=corp-2022-7-12;
+ bh=0uujwXDKqrBv0zAKcq0e1g3qbuVCMfNVGNipmqXKL48=;
+ b=brd3of9oXHvnK5Js8DYIcFVpI772OG1Z6ipTbcrQC+xAVFhmFYoRKPwuYvg+qQQqnCzU
+ fwolKi3a06bgaqwxHGSyMWAd2PozB9ChdIifzDNsU5HT1Ih3DGm4wI/lLKWLiCGUNqJH
+ KBPvhLtLsxvh3PwBxabinxmBcit4emGczwKZH2LISEyGRHQRu4RqW6Mryp1vWWnIATIb
+ QYzk6LZRjenho8P/2ImVolUnXY4sVBBgF2umMTX1cAfnE90iyeXjVHV2dEFMqfKU2SNQ
+ flv0f5ot9pZIFyIigb10wmIJZqgs4fx7+H23HIg7fYBqkD6hgAo3xb16SfdYh04BCTo0 +w== 
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3nhe9nhhf3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 08 Feb 2023 23:08:30 +0000
+Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 318LRsOa035791;
+        Wed, 8 Feb 2023 23:08:29 GMT
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2175.outbound.protection.outlook.com [104.47.55.175])
+        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3nhdte7r14-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 08 Feb 2023 23:08:28 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IsLVfvYJT38kF0AlHguc9CJWipmW3nrvWkYGsE40I41WpZFjwGZLhiqGSmbOXBdx4nBRcuMzF6Rc/Ce2Xg1yoQmx64dkRY1r203vHqZP+9GsF6AZx0K/URBEVnSSxv5MPoLcUnPzy99zr5eZnOTnWVcdHFCxmYL6Iw8DaUETaTTWUTJWSQUZZNMEHyazPaoRyYMcjdHTYN8DsvnuYA+dK3dqBsNiERXG3SXQBuv6DRRCU6g3fCYTDDzQpCP0nlpz+Vb8iUrtUq1i6SSS3a1fLBmZhbzLJ0gIPutlwqqY1C9K9m7fEFnB8itO1wtSTLl4bdmllAT43ijRinhzHGUt/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0uujwXDKqrBv0zAKcq0e1g3qbuVCMfNVGNipmqXKL48=;
+ b=WxLP671t+NijaytSMkPNTAWmL6P9NrMTTTPVyNDJzhKbRlyAktHXv4NX6Zxsgz7o8UsJ44T1LRs+rGgR3odwwKRiFTC0V+YC+g1lHQNjeCgkfsGJiJcwnP/39oHD5fJpyk+xF5q1RUswBZn5ezzpILTEtY0mgI6nl0+EgCwmJLXqQxz3rqJG0f/W5sp170RvjLpKssAn5UOnbaZbxVD5U0wLQMcfeu1QcwkyXNsGEfw/7YTASVaf11SAEOVu7tFKrPMgrBkXQYA8QN4lZmAGVJvpiyCSGpuJnr7WnKqACnYANaV/mQYqbwC1E/ReDr2GUe25riBzdcVs8aU4kz3DxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MAMFt1aPJo18xP4AIsWhXb9FL9I/8bW+FhG+eCO1XZ4=;
-        b=dpJkTAswmNccKOefc+p6ku7H/zyNja7d0Y+o+0Nm2WYF8rpIVn6Tp+oJ8y3ji7LT42
-         cqdOnqg8PUEkyhw7qoxtnqJ7ya3xf8wnJUaaXasOczUrMOuI6xJTlydfky0+EY35qv1G
-         xIZh/k8mu9W8d709rCFEXHLdmN46ttir6E9KKczApoLbbtWS1eee9jfjuRmV6+M4Qw/A
-         rifUvq5FPhlQoUtvpMDlux/wjKi5BX5V3i69AkeQGMmnpVKqTJ6226Y6VQ9ViCCfyaoc
-         zd43Pk9pTNMmRfsldMQvvDYIRkoGS50E2tCka6guliSwow/pnECvwNLlyKxT4Lp6JPYJ
-         692w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MAMFt1aPJo18xP4AIsWhXb9FL9I/8bW+FhG+eCO1XZ4=;
-        b=4fV7Z1cSaazvhvc85665ry0G+C4Xxsun2nXEC7FmJ5FnS2yU9Xb1VNMFpsoQvEjItt
-         rIlv3/Xk7/TvfuQPObQcDX/EhRPWbWv6IWruNCFNDuez8AoW6WStdf3Z56wRoa7sCisz
-         98yD+nCk/nMgXOaft6LTSZ2IFiTP/0g7SNGo2uZQPlDCorSfNEoMpczSgcpvV67i5doW
-         jJN5rsqjSTNWYXvs4gOq/LC2C9GS4cniyxNm0PV5LnE4REpisgGIfgtceYNq2rhG4hlZ
-         RbK9KS50wZP7vA1ZS49l0vJRpwiT/uGFREb9cmKCXmevVRCho70lAMvhM9Ir3EchqKA3
-         JfZA==
-X-Gm-Message-State: AO0yUKV3xJYbnw2lg7tzpONKyjb3bWL1c4nBzHxnDyWBM5HWs8pqJtYp
-        /fQjrddQkzvpCm+GinnpDjKqbw==
-X-Google-Smtp-Source: AK7set/quKsrp7WTvk4iNDTfsuo8Oia95aFeSRmlzVjpzXa5AkK/EnbdW4P+pxFCzsz8odykxSRdsQ==
-X-Received: by 2002:a17:906:8d07:b0:8aa:bf47:8533 with SMTP id rv7-20020a1709068d0700b008aabf478533mr6717723ejc.31.1675893473837;
-        Wed, 08 Feb 2023 13:57:53 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id z12-20020a17090674cc00b008aac25d8f7fsm5316ejl.97.2023.02.08.13.57.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 13:57:53 -0800 (PST)
-Message-ID: <d7101ed7-12ba-4e0a-683f-718a5190ba71@linaro.org>
-Date:   Wed, 8 Feb 2023 23:57:51 +0200
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0uujwXDKqrBv0zAKcq0e1g3qbuVCMfNVGNipmqXKL48=;
+ b=drNSNs4tGkTu7DDsm+wPRCttreKh8Ndzsr7m1x948KxmlKzE3ZZKEdH69ABMAWZj5IWWgoWFSP8gwXgxrCj+MjMWYlxf1AoJxPxfEs5woOUNoGaNbOPhZyDgjm5M4lOD9NLID0lFD/1/DYAjZ+AiLh2+EUrg3awPMPkklkOs/tI=
+Received: from PH0PR10MB4759.namprd10.prod.outlook.com (2603:10b6:510:3d::12)
+ by SJ0PR10MB4735.namprd10.prod.outlook.com (2603:10b6:a03:2d1::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17; Wed, 8 Feb
+ 2023 23:08:26 +0000
+Received: from PH0PR10MB4759.namprd10.prod.outlook.com
+ ([fe80::c7e9:609f:7151:f4a6]) by PH0PR10MB4759.namprd10.prod.outlook.com
+ ([fe80::c7e9:609f:7151:f4a6%4]) with mapi id 15.20.6086.018; Wed, 8 Feb 2023
+ 23:08:26 +0000
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] ufs: host: ufs-qcom: Add support for SM8550
+From:   "Martin K. Petersen" <martin.petersen@oracle.com>
+Organization: Oracle Corporation
+Message-ID: <yq14jrv21wq.fsf@ca-mkp.ca.oracle.com>
+References: <20230119151406.4168685-1-abel.vesa@linaro.org>
+Date:   Wed, 08 Feb 2023 18:08:24 -0500
+In-Reply-To: <20230119151406.4168685-1-abel.vesa@linaro.org> (Abel Vesa's
+        message of "Thu, 19 Jan 2023 17:14:04 +0200")
+Content-Type: text/plain
+X-ClientProxiedBy: SA0PR11CA0145.namprd11.prod.outlook.com
+ (2603:10b6:806:131::30) To PH0PR10MB4759.namprd10.prod.outlook.com
+ (2603:10b6:510:3d::12)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v12 13/14] drm/msm/disp/dpu: add PSR support for eDP
- interface in dpu driver
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Vinod Polimera <vpolimer@qti.qualcomm.com>,
-        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        "swboyd@chromium.org" <swboyd@chromium.org>,
-        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
-        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-References: <1675091494-13988-1-git-send-email-quic_vpolimer@quicinc.com>
- <1675091494-13988-14-git-send-email-quic_vpolimer@quicinc.com>
- <60af517c-e22d-780c-221c-4df41f1e7c5c@linaro.org>
- <BN0PR02MB81732F599DBA2D68A4B542DAE4DB9@BN0PR02MB8173.namprd02.prod.outlook.com>
- <3c3d8533-d0b6-2c7c-32a4-8c7fc1ae4af8@linaro.org>
-In-Reply-To: <3c3d8533-d0b6-2c7c-32a4-8c7fc1ae4af8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR10MB4759:EE_|SJ0PR10MB4735:EE_
+X-MS-Office365-Filtering-Correlation-Id: 72cb6366-3520-4e42-37c9-08db0a29626c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: daXkshSyivgwQ5utOb1Mzzd5mwHXXBnChyN41G+GkrI2e3Tc5PjnjvoXIyGuV5kwgVOmppBwDlXlmkhhRUGrBv4trGKsQU68M4uYKIKnuXCsHwj/CfN5gDo9Inbaax3EFQl1GUjZl8DQ7NufIwx8/oHby2UM86nBEvDpy5Xhk20FOGBatI5MVVV5tyHOH6ErpuK84IeSqs9RbEVPNoi7nstkJDxbsMIiT2qm/1M8lTkkIHmTcCU7YsLlAye4Hy07NRy6hcnyhJOsVUoENIEjtgl99VEEndNVDEHcqDL63FHj4oM/VCNwR928I9GyT6M57L9X5f1zSvovL+kfm6QiuCJS0xdU7P6IHpWZ3ZANf3nbqrHrQ7Llc7v6v0KrsRsm5dqavNAJD/k0f6oPnBo4LpOOSQUoJzBDvBJEJg8CvbEhA+UQZANTzI3SpjeI6IylA0136jLEjr5x7LncDoAilvAwlMVoz8gAPDIT6rMDYbSbU9OLlO/kax2Fi4/rA6xSWECS6Pwo6KA6VXvpYRAskzQeel24mobFwk2OErmiMkeQ1jLrwhzvrXeqjaWDLLwsHK5R8a6WnyXIkzWtApc3KNIV+oAvO9s68qmiqM/QXC6xnyG6YY5a1Vfm9Vt7dRk9SrtVEtXPpWim+DHN+7JJeg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR10MB4759.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(136003)(376002)(346002)(39860400002)(396003)(366004)(451199018)(6506007)(6512007)(26005)(186003)(316002)(2906002)(8936002)(558084003)(36916002)(54906003)(5660300002)(7416002)(478600001)(86362001)(6486002)(66476007)(66556008)(66946007)(41300700001)(6916009)(4326008)(8676002)(38100700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zf8idp+sBXaAqYn7TSkZ5B4wtuU8McWPmBwsJxuxq+PgVwWDUaiMnt1JF/FU?=
+ =?us-ascii?Q?W/e/953dyp8l+9qRVsWEK30CFBASxsrH2iLZNKt4QkoaJdMHTVcliP+uFgg+?=
+ =?us-ascii?Q?SjYSCA7iHaxtVpnZSXiXRIYF+FH8wtAKiPqeGbY1OO7qkfX4HQT97azPUjRl?=
+ =?us-ascii?Q?K2sLP8sJTtcCA1n5NTI531YWtu3OK5LTnhlXMdA5AYs0mCtGVQODII1CtH2w?=
+ =?us-ascii?Q?8/ePiYYUJ1VOQ3Uh0zRdu980TOwAOtxablFoG3njXE6hvLH6vVGhGLfXWZ1S?=
+ =?us-ascii?Q?BhCj8hYrYEb/oYX+okZn8fOtDGYX0F+GMDS81T5mTY5ImKy8/znmO1xeilR1?=
+ =?us-ascii?Q?4gAKDC53nfHNRxaVcxO3s7FumILoxJWmhz5HBgQ4G6IADnFDKVNSMPTOv0CK?=
+ =?us-ascii?Q?D3mf3slHJkl72zkk+VYT8XRuXV87BfwUotI3h7+NGAYqbg4Wu7hchuCsNe4C?=
+ =?us-ascii?Q?9TiaW8Svrn60uhka+TRJYGm/35y55eTfg9F/vgyuE1GJJwxmJb8mUtyhj22k?=
+ =?us-ascii?Q?GbIQejBooAZJ8N8A0G8179sxT6LbYQGkb2D/NwSQPkLA0TzVrHI2NmcxiAZF?=
+ =?us-ascii?Q?8WK4r0w1PtvcGPCBcsHISGcfBZgtWqifJOpZFo0bN+v8KsBFd14PZYqj8DtR?=
+ =?us-ascii?Q?55Eo0xZAxTsMcPQVs5hfgYaWYXqYqw0LoZmsPFluJjQacxf5fRV65WR5TAej?=
+ =?us-ascii?Q?QyoJrYVsQitypP6NpP4feFw23G+eYLIo9Vdi0Ko2wzEd2G/w9Y2nzkQL2S4u?=
+ =?us-ascii?Q?524q/llA2co+H3TxLiTqoeABsGuGtcHdaH81mZHpzLP9GIH9981Te6ttsAoR?=
+ =?us-ascii?Q?iyM7rOzsnfwM1upfL78cYiQmzaQF1gTKxK1EaF+DCTcM+EuTyg5KeCoW3b5h?=
+ =?us-ascii?Q?GTG9ogK+QwPAMtyWoxFHt08rEEBtEZdNo/f/qVVAqz0JnGT+RHntSJCNEmbV?=
+ =?us-ascii?Q?zu/8wl7DaaqzMzsOw1ajKjDM11d2PNg2IjfenLpvdRFzb/6NEh8JlFRfJv15?=
+ =?us-ascii?Q?yE/xrNvO1fY8Ya6UccIacPJIVIzYmaBzqVp5aiPiqsgyfCohXpEvl2wK1JFb?=
+ =?us-ascii?Q?QOuRrW4ILEIVi4GOdXtkcDYuJPrfqIXCF8WP27zLLB7raxEuDt5luhCPFkSt?=
+ =?us-ascii?Q?6klCmJ1hqKyxTwSBH4G9JOizp1jzfrgogD2gidLfK2+98dUx3D4k1dkCh1Ue?=
+ =?us-ascii?Q?GXr6uqMwGWUXAraCQnOC7PrtNXHNnOlb72IGpWNNmT/us3Z+E3d1wjHmdvgT?=
+ =?us-ascii?Q?2eLwygrEMWocdM5zFDWQBEPisuyBn+I7laNw5OTIFeVoz1sMzXn2+qNp4sso?=
+ =?us-ascii?Q?p1hj/HydduzcKIAmSWWaC6sGRSffFEokDJpMGeS/S8Hjnw57A07pEc1LYE2D?=
+ =?us-ascii?Q?6iecHPvFFsqN5dwCnWFSbBsI0UOlwQ2dJwXVyY8Uyo/MIVGLWQbNS4nEjHxL?=
+ =?us-ascii?Q?+D2f7W0Wa9+yh8ajUewvLbLcQqk59cXV12czYFezlqmuu8T5QYAdzscU7XJp?=
+ =?us-ascii?Q?+znpClF5bnITsFIVocZO6IJMDcjqhScJurOVxTEPlP403umPG8LXPPBG7YFd?=
+ =?us-ascii?Q?WFwllt5JZTjSX/7YF5ptwPN/odXdCmYfGM21bAMzuJbJxiFgugxk9Co1IcbL?=
+ =?us-ascii?Q?Kw=3D=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?us-ascii?Q?qGLAfkQlnBkhOmMd0iHjH+wBJl1knx5TEl+gEfKHP685dlrt6GB+FdZ6wK0h?=
+ =?us-ascii?Q?YhfZyvd4AV+XFREVZxnM6VAdlcQne/v7ZwQAljFx9MyZs4py7bwLQsE7Rydr?=
+ =?us-ascii?Q?0SeqVtvC25QlVU7WTIA+5Y0WjJgxlgwYzL5Gahgc9165KVSoy8WcxLaYvz0E?=
+ =?us-ascii?Q?hRW5O1nFmf/YeLeZFO/LZtnQnZkH+KSkUmybp2WffHDPhKCtFMFjgiuSv5iL?=
+ =?us-ascii?Q?/n+jDSY2jPjd27msB79a7gPWVP07P7f0KQ0A5qTD25RAHDB6UykiHIBXoH07?=
+ =?us-ascii?Q?X/LAcf5QPou0rgr5wVSjDYlaLqJ4wG6S6n0GOex6SygjSvRZao0EUslHk0X2?=
+ =?us-ascii?Q?K6A7ZfK4Cx736Z5D3SvQ3SRqAqchG5/vbOROWmHIVv4TGAdKjr9RWNxivG+J?=
+ =?us-ascii?Q?57XzTd2LwQZJidQD8+SVc1hPJXQlXPzcFSvCkUpgQy1J/dlwLsoiK0GcpDZG?=
+ =?us-ascii?Q?QiNhWgRsb93x37BWIlqJGI+taep8NMuziCgnbM3qK8zwyh05eJaAJhQquuM1?=
+ =?us-ascii?Q?rNu4+8nNsmmDWNYD4AiOcnYd52bRTr619OlSK2DD4FZfMzGFYe+IyhCzi+mN?=
+ =?us-ascii?Q?XB2iyBaNRJdjYsfNFk3UV343RAO2/tFTvmOnZf2dJp/GCBaEmjWE8K0CjPoo?=
+ =?us-ascii?Q?pLadYpnr4gwxIYPX/3qMicfBrmdRdnzvIuWYrvoQbHF9XlBPQ4qMx2YkKoe7?=
+ =?us-ascii?Q?/JMPffRu9+w0xVcwvYeVMlpeZId30KBKeMI/XOpzuKLBMIqAGv8JSiBRVMyj?=
+ =?us-ascii?Q?y8K4LzhDxvAMXFBspSSqwsHrg/Rq6oEcJEE0+B8piJzoMfwVynJiVCeXpGwO?=
+ =?us-ascii?Q?H0RBkhMQvdjqjegv7KJDOL2c5rGq/LEsLIUFTP4o3qeWK+/xuqOgez5/OC4m?=
+ =?us-ascii?Q?l/NUy/dLHid6m5yRc2mB+uV5fafnhzfJuYrEatVF8J7RZdxFcqYKqSOa/46m?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72cb6366-3520-4e42-37c9-08db0a29626c
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB4759.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 23:08:26.7065
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qEi9Y4K3RCtygr5mDxUUSnoZAS/1idWR9P5CD3Bm7lbl4RNQ4awYk0CaaGgby09UiEzHvLvlvv0UB8M0rhoWOWYL/zqAJg+DsNKmqjRznj0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4735
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-08_09,2023-02-08_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 suspectscore=0 adultscore=0
+ malwarescore=0 mlxscore=0 phishscore=0 spamscore=0 mlxlogscore=724
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302080196
+X-Proofpoint-ORIG-GUID: KDEGEp0EBg5CpB3X0-m6_JvVCZ8QSd2C
+X-Proofpoint-GUID: KDEGEp0EBg5CpB3X0-m6_JvVCZ8QSd2C
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2023 17:25, Dmitry Baryshkov wrote:
-> On 07/02/2023 16:26, Vinod Polimera wrote:
->>
->>
->>> -----Original Message-----
->>> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> Sent: Tuesday, January 31, 2023 6:29 PM
->>> To: Vinod Polimera (QUIC) <quic_vpolimer@quicinc.com>; dri-
->>> devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
->>> freedreno@lists.freedesktop.org; devicetree@vger.kernel.org
->>> Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
->>> dianders@chromium.org; swboyd@chromium.org; Kalyan Thota (QUIC)
->>> <quic_kalyant@quicinc.com>; Kuogee Hsieh (QUIC)
->>> <quic_khsieh@quicinc.com>; Vishnuvardhan Prodduturi (QUIC)
->>> <quic_vproddut@quicinc.com>; Bjorn Andersson (QUIC)
->>> <quic_bjorande@quicinc.com>; Abhinav Kumar (QUIC)
->>> <quic_abhinavk@quicinc.com>; Sankeerth Billakanti (QUIC)
->>> <quic_sbillaka@quicinc.com>
->>> Subject: Re: [PATCH v12 13/14] drm/msm/disp/dpu: add PSR support for eDP
->>> interface in dpu driver
->>>
->>>
->>> On 30/01/2023 17:11, Vinod Polimera wrote:
->>>> Enable PSR on eDP interface using drm self-refresh librabry.
->>>> This patch uses a trigger from self-refresh library to enter/exit
->>>> into PSR, when there are no updates from framework.
->>>>
->>>> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
->>>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
->>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 13 ++++++++++++-
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 14 ++++++++++++++
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |  2 +-
->>>>    3 files changed, 27 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>>> index f29a339..60e5984 100644
->>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>>> @@ -21,6 +21,7 @@
->>>>    #include <drm/drm_probe_helper.h>
->>>>    #include <drm/drm_rect.h>
->>>>    #include <drm/drm_vblank.h>
->>>> +#include <drm/drm_self_refresh_helper.h>
->>>>
->>>>    #include "dpu_kms.h"
->>>>    #include "dpu_hw_lm.h"
->>>> @@ -1021,6 +1022,9 @@ static void dpu_crtc_disable(struct drm_crtc 
->>>> *crtc,
->>>>
->>>>        DRM_DEBUG_KMS("crtc%d\n", crtc->base.id);
->>>>
->>>> +     if (old_crtc_state->self_refresh_active)
->>>> +             return;
->>>> +
->>>
->>> I have been looking at the crtc_needs_disable(). It explicitly mentions
->>> that 'We also need to run through the crtc_funcs->disable() function
->>> [..] if it's transitioning to self refresh mode...'. Don't we need to
->>> perform some cleanup here (like disabling the vblank irq handling,
->>> freeing the bandwidth, etc)?
->>
->> When self refresh active is enabled, then we will clean up irq 
->> handling and bandwidth etc.
->> The above case is to handle display off commit triggered when we are 
->> in psr as all
->>   the resources are already cleaned up . we just need to do an early 
->> return.
->>>
->>>>        /* Disable/save vblank irq handling */
->>>>        drm_crtc_vblank_off(crtc);
->>>>
->>>> @@ -1577,7 +1581,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device
->>> *dev, struct drm_plane *plane,
->>>>    {
->>>>        struct drm_crtc *crtc = NULL;
->>>>        struct dpu_crtc *dpu_crtc = NULL;
->>>> -     int i;
->>>> +     int i, ret;
->>>>
->>>>        dpu_crtc = kzalloc(sizeof(*dpu_crtc), GFP_KERNEL);
->>>>        if (!dpu_crtc)
->>>> @@ -1614,6 +1618,13 @@ struct drm_crtc *dpu_crtc_init(struct
->>> drm_device *dev, struct drm_plane *plane,
->>>>        /* initialize event handling */
->>>>        spin_lock_init(&dpu_crtc->event_lock);
->>>>
->>>> +     ret = drm_self_refresh_helper_init(crtc);
->>>> +     if (ret) {
->>>> +             DPU_ERROR("Failed to initialize %s with self-refresh 
->>>> helpers %d\n",
->>>> +                     crtc->name, ret);
->>>> +             return ERR_PTR(ret);
->>>> +     }
->>>> +
->>>>        DRM_DEBUG_KMS("%s: successfully initialized crtc\n", dpu_crtc-
->>>> name);
->>>>        return crtc;
->>>>    }
->>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> index 01b7509..450abb1 100644
->>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> @@ -12,6 +12,7 @@
->>>>    #include <linux/kthread.h>
->>>>    #include <linux/seq_file.h>
->>>>
->>>> +#include <drm/drm_atomic.h>
->>>>    #include <drm/drm_crtc.h>
->>>>    #include <drm/drm_file.h>
->>>>    #include <drm/drm_probe_helper.h>
->>>> @@ -1212,11 +1213,24 @@ static void
->>> dpu_encoder_virt_atomic_disable(struct drm_encoder *drm_enc,
->>>>                                        struct drm_atomic_state *state)
->>>>    {
->>>>        struct dpu_encoder_virt *dpu_enc = NULL;
->>>> +     struct drm_crtc *crtc;
->>>> +     struct drm_crtc_state *old_state = NULL;
->>>>        int i = 0;
->>>>
->>>>        dpu_enc = to_dpu_encoder_virt(drm_enc);
->>>>        DPU_DEBUG_ENC(dpu_enc, "\n");
->>>>
->>>> +     crtc = drm_atomic_get_old_crtc_for_encoder(state, drm_enc);
->>>> +     if (crtc)
->>>> +             old_state = drm_atomic_get_old_crtc_state(state, crtc);
->>>> +
->>>> +     /*
->>>> +      * The encoder is already disabled if self refresh mode was 
->>>> set earlier,
->>>> +      * in the old_state for the corresponding crtc.
->>>> +      */
->>>> +     if (old_state && old_state->self_refresh_active)
->>>> +             return;
->>>> +
->>>
->>> Again the same question here, doesn't crtc_needs_disable() take care of
->>> this clause? I might be missing something in the PSR state transitions.
->>> Could you please add some explanation here?
->> Same usecase as above, applies to encoder disable also when triggered 
->> via disable commit
->> When driver is in psr state.
-> 
-> Ack, thank you for the explanations. I'd like to take another glance 
-> later today, but generally it look good to me.
 
-After another glance it still looks good to me. Please send the last 
-iteration of the series:
-- moving all core patches to the first place, as it was asked 
-previously. This will help us get them merged to drm core repo first
-- dropping the patch 09 as agreed.
+Abel,
+
+> This patchset adds UFS HC support for the new Qualcomm SM8550 SoC.
+
+Applied to 6.3/scsi-staging, thanks!
 
 -- 
-With best wishes
-Dmitry
-
+Martin K. Petersen	Oracle Linux Engineering
