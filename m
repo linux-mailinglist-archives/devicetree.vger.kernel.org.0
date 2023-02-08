@@ -2,59 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3301468F3A6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:44:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D99668F3A0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:44:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbjBHQo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 11:44:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53908 "EHLO
+        id S231563AbjBHQoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 11:44:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbjBHQoY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:44:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE002D60;
-        Wed,  8 Feb 2023 08:44:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 22F27B81ED3;
-        Wed,  8 Feb 2023 16:43:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5950C433D2;
-        Wed,  8 Feb 2023 16:43:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675874591;
-        bh=9JnV3h9dVys98lzdeX7nLKiew6Xl3wZrBHZ3W+YcEV4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cVf7PoPR0hfFREHoNOntlFKcTWcwIEawIPfSU4oA0o+namPfcpnELDHhsKGZ7+fCO
-         /908A6h77w8wfHs97Oh5qBsYnqOBSm1OTlIB+DyYkZTZd1eztbXcnAix+5cEFonI8M
-         9MblElIhNvZdsIly571mIkuVeE0AdDTVO5uKP1e4uo/gE0pmBD9ePYLYDD72QS8syD
-         6npy2WkXvy8MhU3l230C3zju6IJDPusKOF1qWRnw4zOfFlHsl1j7VW9A6SjjGUPoN2
-         GOpwrcRCY2Ctg6FNmo9x6h5U4Bh5EzCDiD+U7jzpuGEYQZmT2DL/hMF6/1JRBC2nFb
-         q6E3jf+uuWwuA==
-Date:   Wed, 8 Feb 2023 16:43:06 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Trevor Woerner <twoerner@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] riscv: dts: nezha-d1: add gpio-line-names
-Message-ID: <Y+PRGjn8a26pe5Dy@spud>
-References: <20230208014504.18899-1-twoerner@gmail.com>
+        with ESMTP id S231565AbjBHQoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:44:07 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7911639B9A
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 08:43:40 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id p9so6658874ejj.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 08:43:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ASbsE/XmAlMrDircKHKs5lE92BDcQ2dh7PvE1hQ63fE=;
+        b=EXIefF7NkFQhnz6WXVJgBWhSVN0YZG69qlxFwlhMrse5t8dtnaNwCPZFR/u/pLt3gE
+         V/DWB8M+haVNDAKX3i7vWpjm/AWl2OgxMj8E40xbBxYraC5wsGXEMXy/rjkIAsvJfdx7
+         K/b9dUDLIRuFELLr1IGqZa5ry9VZBqV6eTQJxJbB/IBX66DcLa4DVIuLIAFcd/+7LY1y
+         9fUW/FIKj6lqMVcr+wd6ewBSL5QvYdZLWr0aNqmEzyIJ8KhKWdYZUdPsz1cpyK5WGNuD
+         oZpEiOtRxqhoWJTKf0E1YNTt4WanKcqrC2qJgFeBDZzgPH8x4iMIwwAHtoSA8WfMIHa3
+         jw9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ASbsE/XmAlMrDircKHKs5lE92BDcQ2dh7PvE1hQ63fE=;
+        b=0MsfE3S7RIERDeWnEFt5YJfus5EeblKldEQez8nJAGS3837V1MYxbDRRzMK3IHYKqu
+         AVoceoBo5i3CGLsiSS02StNSwTCp75ZYZdpfvU4povWltAHEDG89VuFJ5BhNVjUH1vgc
+         K1q6FSKaSmd1MjgotczzlalfM1EMCfuX7SZmaN0BZ0l8B+LJl4j+05Zod8bt3MADJXtF
+         Ss/rvqJcvBBQb7QJd51xydVoZWnIa+mr762sOK4j6k28aj0YkrBizHN0ZndvOBWFs19b
+         0hZBrIKV7cOWxKvMN5ZhDLTHL+rvETP8w0wI0NFlQKATeWsztl4oj0yHdcQbISyXf4+G
+         grfg==
+X-Gm-Message-State: AO0yUKV2ue1NfiOpJkPqnFqeSC1u94aEBC/zz0vbxh7SGyAe4onkJK0s
+        Km23/DcO5L3aSnUQgOWtAVLbwA==
+X-Google-Smtp-Source: AK7set+RAX84i4gKstXtg9gLaHvp4VUWeWIP8mak3bhwJw+R/hfeFhIOdVQu3SHtfkpRQcIdY6Zvrg==
+X-Received: by 2002:a17:906:1286:b0:88f:9c29:d232 with SMTP id k6-20020a170906128600b0088f9c29d232mr8545358ejb.57.1675874617446;
+        Wed, 08 Feb 2023 08:43:37 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id t21-20020a170906609500b008a58c3b8daesm3912331ejj.164.2023.02.08.08.43.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 08:43:37 -0800 (PST)
+Message-ID: <9ac637ef-ab11-518a-b5bd-243712a482b3@linaro.org>
+Date:   Wed, 8 Feb 2023 17:43:34 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="S4azWlTkoRx3v2FI"
-Content-Disposition: inline
-In-Reply-To: <20230208014504.18899-1-twoerner@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: sm8350-hdk: enable GPU
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+References: <20230206145707.122937-1-dmitry.baryshkov@linaro.org>
+ <20230206145707.122937-9-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230206145707.122937-9-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,123 +87,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---S4azWlTkoRx3v2FI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey Trevor,
-
-On Tue, Feb 07, 2023 at 08:45:03PM -0500, Trevor Woerner wrote:
-> Add descriptive names so users can associate specific lines with their
-> respective pins on the 40-pin header according to the schematics found at:
->=20
-> 	http://dl.linux-sunxi.org/D1/D1_Nezha_development_board_schematic_diagra=
-m_20210224.pdf
-
-Dunno about the sunxi folk, but ideally that'd be a Link: tag IMO.
-
->=20
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+On 6.02.2023 15:57, Dmitry Baryshkov wrote:
+> Enable the GPU on the SM8350-HDK device. The ZAP shader is required for
+> the GPU to function properly.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../boot/dts/allwinner/sun20i-d1-nezha.dts    | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts b/arch/ris=
-cv/boot/dts/allwinner/sun20i-d1-nezha.dts
-> index a0769185be97..33489c7619cb 100644
-> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-> @@ -90,6 +90,15 @@ pcf8574a: gpio@38 {
->  		gpio-controller;
->  		#gpio-cells =3D <2>;
->  		#interrupt-cells =3D <2>;
-> +		gpio-line-names =3D
-> +			"pin13 [PP0,gpio8] ",
-> +			"pin16 [PP1,gpio10]",
-> +			"pin18 [PP2,gpio11]",
-> +			"pin26 [PP3,gpio17]",
-> +			"pin22 [PP4,gpio14]",
-> +			"pin28 [PP5,gpio19]",
-> +			"pin37 [PP6,gpio23]",
-> +			"pin11 [PP7,gpio6] ";
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-dtbs_check does not like this:
-arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dtb: gpio@38: 'gpio-line-name=
-s' does not match any of the regexes: '^(.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9=
-]+'
-        From schema: Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-
->  	};
+Konrad
+>  arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> index df841230d1b7..5e744423a673 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> @@ -284,6 +284,14 @@ &gpi_dma1 {
+>  	status = "okay";
 >  };
-> =20
-> @@ -164,3 +173,47 @@ &usbphy {
->  	usb1_vbus-supply =3D <&reg_vcc>;
->  	status =3D "okay";
->  };
+>  
+> +&gpu {
+> +	status = "okay";
 > +
-> +&pio {
-> +	gpio-line-names =3D
-> +		/* Port A */
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		/* Port B */
-> +		"pin5  [PB0, gpio2/twi2-sck]",
-> +		"pin3  [PB1, gpio1/twi2-sda]",
-> +		"",
-> +		"pin38 [PB3, gpio24/i2s2-din]",
-> +		"pin40 [PB4, gpio25/i2s2-dout]",
-> +		"pin12 [PB5, gpio7/i2s-clk]",
-> +		"pin35 [PB6, gpio22/i2s2-lrck]",
-> +		"",
-> +		"pin8  [PB8, gpio4/uart0-txd]",
-> +		"pin10 [PB9, gpio5/uart0-rxd]",
-> +		"",
-> +		"",
-> +		"pin15 [PB12,gpio9]",
-
-Why not pick a consistent styling w.r.t. the space between PB#, & gpio?
-
-Cheers,
-Conor.
-
-> +		"", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		/* Port C */
-> +		"",
-> +		"pin31 [PC1, gpio21]",
-> +		"", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "",
-> +		/* Port D */
-> +		"", "", "", "", "", "", "", "",
-> +		"", "",
-> +		"pin24 [PD10,gpio16/spi1-ce0]",
-> +		"pin23 [PD11,gpio15/spi1-clk]",
-> +		"pin19 [PD12,gpio12/spi1-mosi]",
-> +		"pin21 [PD13,gpio13/spi1-miso]",
-> +		"pin27 [PD14,gpio18/spi1-hold]",
-> +		"pin29 [PD15,gpio20/spi1-wp]",
-> +		"", "", "", "", "", "",
-> +		"pin7  [PD22,gpio3/pwm]";
+> +	zap-shader {
+> +		firmware-name = "qcom/sm8350/a660_zap.mbn";
+> +	};
 > +};
-> --=20
-> 2.36.0.rc2.17.g4027e30c53
->=20
-
---S4azWlTkoRx3v2FI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+PRGgAKCRB4tDGHoIJi
-0iRiAP4vgkyStKLRofn1o81fjP/aeDkslORttfK0szBbB8AwZgD7B96WjbtVAZkn
-oXsPbP3B0H5zboAMRKCEfxhs0feWaQY=
-=E3Jw
------END PGP SIGNATURE-----
-
---S4azWlTkoRx3v2FI--
+> +
+>  &i2c15 {
+>  	clock-frequency = <400000>;
+>  	status = "okay";
