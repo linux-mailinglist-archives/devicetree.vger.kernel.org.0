@@ -2,127 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D5068F7B2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 381C168F779
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:54:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbjBHTC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 14:02:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
+        id S230368AbjBHSyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 13:54:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231555AbjBHTCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:02:18 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291E753545
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:02:16 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id bk16so17779315wrb.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:02:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MhSD2EYMzeYmp4lc7JlIcu+kMhKbNZUjdV/v58pmN/I=;
-        b=LMc4BxAQ7oZVRUuNxPjR5pWqTFbCCwaFhO5KTA1zkMPBzmtlm55CRbxr9bIFtwBe0g
-         AVN1/LfqbG4JeWn/7ROoyQ4GBvJIXVffmWosMBZxFm3FvrcNIApzBlGpv0KqSqeRA1Zc
-         T+Agpkmlfwa5Xx2ifhi4bVx/D+QsWBHTgYR7kQa75kQwmc1NoHDLuPRNzFY+GESJcgZH
-         5nJ79Uv3NLy7NWhJq8+vMg3yItAXxejZoLzXGct0etsyVJcTS0SM2Fn+D1kNcET/nfMf
-         4mDgdDyBugnux9n4VG9nrK3yDKLWwn3nb7+nT/+bHXTBLm0FQ9DVs41juW8Kiv9cZSSm
-         Ifag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MhSD2EYMzeYmp4lc7JlIcu+kMhKbNZUjdV/v58pmN/I=;
-        b=1Gf3WCVDemyAiDPdT3WwUW79ZL69hi4AujVDrWi37bDhOJ4e3WT/RwD2u43Hr7MhkE
-         fE4BbxYmh/zXWV53Wq3gTszHm+429W+QUgJh/wdKdi5RAnANam++MoZjl0U0S3gO/wvm
-         5KaXvhsM4FkcDpqqHwwZgvDj+uhEl6z739y2MeJ0HBA6zGZ9r95dt37hPJj5iebpHvpN
-         I8gZLJUoGeYSV4HScd26yDpCIzw1HOVEsOzVJKN+XT02ZAIUf9ZjD8Yp5FyaZrEmoczy
-         5itzdTy1URxo/FalZuMe09zQT1evbO1r+XuJAlhCQE7c7jP5VfykBLmtYx2YEpn+Kn1T
-         DL8A==
-X-Gm-Message-State: AO0yUKW4MjJGYcFGEwdaQ+HfZyZF4S8BVtt7Jn+mA6EJOF63HCkTHvAW
-        idOS/Pz/Y7Zf8oh11JJ8mMDNfw==
-X-Google-Smtp-Source: AK7set+q01pJi05o5iDlEX6osfNZc0O0qfck2gCOu6I3wlt9jssBIk9OXQNFKR95bJ9+q3PIQi2utw==
-X-Received: by 2002:a5d:60d0:0:b0:2bd:ee0c:26a3 with SMTP id x16-20020a5d60d0000000b002bdee0c26a3mr7632764wrt.8.1675882934685;
-        Wed, 08 Feb 2023 11:02:14 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003dc1d668866sm2650327wmc.10.2023.02.08.11.02.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 11:02:14 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 7/7] arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
-Date:   Wed,  8 Feb 2023 21:02:00 +0200
-Message-Id: <20230208190200.2966723-8-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230208190200.2966723-1-abel.vesa@linaro.org>
-References: <20230208190200.2966723-1-abel.vesa@linaro.org>
+        with ESMTP id S229479AbjBHSyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:54:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A7ED18A95;
+        Wed,  8 Feb 2023 10:54:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1C5BEB81F4D;
+        Wed,  8 Feb 2023 18:54:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CB21C433D2;
+        Wed,  8 Feb 2023 18:54:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675882473;
+        bh=xTtM9WlSf7bwExmahb6XOjPHbEjpNPb+C9ZLErT3mV8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=kJN28UveNEt23ZFALxkKRAduymcXqKXXhl5ZE6krYfbalb6HMbzHo9qeVzvcHI7Wm
+         H7S6jcL16vD7PqCbUM676t6Ujn2JFJPW6F8SYQEY0t+JColJ5tdmzL8HnmWP59Mv+N
+         h1XG21jruiC7Pqu0lZhIHvhdf8KfE3r2XiOfPuEIw7UtbGW+1gt8cYhRh3sZd6iQB0
+         OKQT0joBdQfoYqU3AXs0x+0ro+BNaKQvYiFcCdFS93pX8FTqdLs62iSLZQceti8ikH
+         8vqlPouh7hbFMq94LAL+5Wj+RTZZwiFzYMUZ+IE2R0duumYDsHSZLH3uCg57RDgxC5
+         5i80rfFHy/R9Q==
+Date:   Wed, 8 Feb 2023 19:08:33 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc:     <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>,
+        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <ulf.hansson@linaro.org>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        Loic PALLARDY <loic.pallardy@st.com>
+Subject: Re: [PATCH v3 4/6] bus: stm32_sys_bus: add support for STM32MP15
+ and STM32MP13 system bus
+Message-ID: <20230208190833.532cd60c@jic23-huawei>
+In-Reply-To: <d6c659d8-2e5c-cb60-d950-685c4ba319e2@foss.st.com>
+References: <20230127164040.1047583-1-gatien.chevallier@foss.st.com>
+        <20230127164040.1047583-5-gatien.chevallier@foss.st.com>
+        <20230128161217.0e79436e@jic23-huawei>
+        <d6c659d8-2e5c-cb60-d950-685c4ba319e2@foss.st.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the PMIC eUSB2 repeater node and add the usb-repeater
-property to the eUSB2 PHY to allow it to be controlled by the
-PHY driver.
+On Tue, 7 Feb 2023 15:12:23 +0100
+Gatien CHEVALLIER <gatien.chevallier@foss.st.com> wrote:
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
+> Hi Jonathan,
+> 
+> On 1/28/23 17:12, Jonathan Cameron wrote:
+> > On Fri, 27 Jan 2023 17:40:38 +0100
+> > Gatien Chevallier <gatien.chevallier@foss.st.com> wrote:
+> >   
+> >> This driver is checking the access rights of the different
+> >> peripherals connected to the system bus. If access is denied,
+> >> the associated device tree node is skipped so the platform bus
+> >> does not probe it.
+> >>
+> >> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> >> Signed-off-by: Loic PALLARDY <loic.pallardy@st.com>  
+> > 
+> > Hi Gatien,
+> > 
+> > A few comments inline,
+> > 
+> > Thanks,
+> > 
+> > Jonathan
+> >   
+> >> diff --git a/drivers/bus/stm32_sys_bus.c b/drivers/bus/stm32_sys_bus.c
+> >> new file mode 100644
+> >> index 000000000000..c12926466bae
+> >> --- /dev/null
+> >> +++ b/drivers/bus/stm32_sys_bus.c
+> >> @@ -0,0 +1,168 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * Copyright (C) 2023, STMicroelectronics - All Rights Reserved
+> >> + */
+> >> +
+> >> +#include <linux/bitfield.h>
+> >> +#include <linux/bits.h>
+> >> +#include <linux/device.h>
+> >> +#include <linux/err.h>
+> >> +#include <linux/io.h>
+> >> +#include <linux/init.h>
+> >> +#include <linux/kernel.h>
+> >> +#include <linux/module.h>
+> >> +#include <linux/of.h>
+> >> +#include <linux/of_platform.h>
+> >> +#include <linux/platform_device.h>
+> >> +
+> >> +/* ETZPC peripheral as firewall bus */
+> >> +/* ETZPC registers */
+> >> +#define ETZPC_DECPROT			0x10
+> >> +
+> >> +/* ETZPC miscellaneous */
+> >> +#define ETZPC_PROT_MASK			GENMASK(1, 0)
+> >> +#define ETZPC_PROT_A7NS			0x3
+> >> +#define ETZPC_DECPROT_SHIFT		1  
+> > 
+> > This define makes the code harder to read.  What we care about is
+> > the number of bits in the register divided by number of entries.
+> > (which is 2) hence the shift by 1. See below for more on this.
+> > 
+> >   
+> >> +
+> >> +#define IDS_PER_DECPROT_REGS		16  
+> >   
+> >> +#define STM32MP15_ETZPC_ENTRIES		96
+> >> +#define STM32MP13_ETZPC_ENTRIES		64  
+> > 
+> > These defines just make the code harder to check.
+> > They aren't magic numbers, but rather just telling us how many
+> > entries there are, so I would just put them in the structures directly.
+> > Their use make it clear what they are without needing to give them a name.
+> >   
+> 
+> Honestly, I'd rather read the hardware configuration registers to get 
+> this information instead of differentiating MP13/15. Would you agree on 
+> that?
 
-The v4 is here:
-https://lore.kernel.org/all/20230207135551.1418637-8-abel.vesa@linaro.org/
+Sure, if they are discoverable even better.
 
-Changes since v4:
- * none
-
-Changes since v3:
- * Dropped the phy-names property from usb_1_hsphy, like Dmitry suggested
-
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 56aab7cafcbc..6b6ec0fe5e5e 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -457,6 +457,11 @@ sdc2_card_det_n: sdc2-card-det-state {
- 	};
- };
- 
-+&pm8550b_eusb2_repeater {
-+	vdd18-supply = <&vreg_l15b_1p8>;
-+	vdd3-supply = <&vreg_l5b_3p1>;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -563,6 +568,8 @@ &usb_1_hsphy {
- 	vdd-supply = <&vreg_l1e_0p88>;
- 	vdda12-supply = <&vreg_l3e_1p2>;
- 
-+	phys = <&pm8550b_eusb2_repeater>;
-+
- 	status = "okay";
- };
- 
--- 
-2.34.1
 
