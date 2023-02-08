@@ -2,121 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B49C68F5ED
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 18:46:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8512868F612
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 18:51:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232177AbjBHRqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 12:46:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
+        id S230408AbjBHRvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 12:51:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231483AbjBHRp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 12:45:27 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B7653E57;
-        Wed,  8 Feb 2023 09:44:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675878265; x=1707414265;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+jF3CDzzwW6yo4ozmXcRNVjpZY0lFCu8o1UhbMtHcsA=;
-  b=SYv0btPLcrot+UChAMRwARHn3CXimT7f/2LR3lF5GgIxtopUnSNGqEI/
-   uCTmvB0GZF9OqmVbxMCAIlSxRScx+CW8gjL/tefQ4BMP3h+CaBfMbxIFz
-   09T0WqyEU2mjZQ7rjiREme6729OTk3Pqa4K2OEJ8YW9gzCSXwyqJP6C7j
-   dHqmktyB04/L9tZOFWfh87uMZIqFHeuqdNqN+ueZnAp5NZD5Az5wdJ01O
-   akfrxkdozAi2/fcnjpUQDrxNF7UEjRK1RKsAivYGpe6k6mZbO2XX/OWJ+
-   gi3flI2++/RwwFEImMNj0SL6gXM/jo/Fd35odPzX8tiy2HfEO19vbhvup
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="317876336"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; 
-   d="scan'208";a="317876336"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2023 09:43:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="996219805"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; 
-   d="scan'208";a="996219805"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP; 08 Feb 2023 09:43:09 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pPoTH-004EYe-0x;
-        Wed, 08 Feb 2023 19:43:03 +0200
-Date:   Wed, 8 Feb 2023 19:43:02 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Vincenzo Palazzo <vincenzopalazzodev@gmail.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Dipen Patel <dipenp@nvidia.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Stefan Schmidt <stefan@datenfreihafen.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc-tw-discuss@lists.sourceforge.net,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-m68k@lists.linux-m68k.org,
-        linuxppc-dev@lists.ozlabs.org, linux-sh@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
-        linux-wireless@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
-        Yanteng Si <siyanteng@loongson.cn>,
-        Hu Haowen <src.res@email.cn>,
-        Russell King <linux@armlinux.org.uk>,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Janusz Krzysztofik <jmkrzyszt@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>,
-        Mun Yew Tham <mun.yew.tham@intel.com>,
-        Keerthy <j-keerthy@ti.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Alexander Aring <alex.aring@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Kalle Valo <kvalo@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v4 02/18] ARM: s3c24xx: Use the right include
-Message-ID: <Y+PfJr4l4U3DYpWT@smile.fi.intel.com>
-References: <20230208173343.37582-1-andriy.shevchenko@linux.intel.com>
- <20230208173343.37582-3-andriy.shevchenko@linux.intel.com>
- <30234963-33e5-e2d7-a6ef-112e89efbdd0@linaro.org>
+        with ESMTP id S230421AbjBHRvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 12:51:09 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BBB54EDF;
+        Wed,  8 Feb 2023 09:51:06 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3187gtOL029362;
+        Wed, 8 Feb 2023 11:50:36 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=ZFBvg5SCArEASMw7/Am1oR6os3aE99DgiOlHemuaHZU=;
+ b=QURa8kSGk8TMKJjhrKWJrDgWABRTSM05926YJWoojwG1y/Knz/ZqdPBksvlQG1xFCJx6
+ EKHTfDDykNrlAfcn10XhBKec2vg7A7uoFGlLfg6RHxTy1cqs/1Q361eLTpverxPxRCmv
+ lUCW3g0iRd9hCQ7rjYIWPOs8Cv0uoh02lCvwANqN1z+hUIybg9laxXfMyJ5LpHkESsEk
+ 8wz0Y4ZDvq6609mu1zzVcgMJfy+5hk81OVqRKboIZ/PHk97kywGo17A97a5yphUR3HlU
+ GI+umlduikRoUQNd/vjJPrMGGEa8T2MsdJ/ZVneC0odvEpmfipbZ8v/UXfvEQVjnRfZx eQ== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3nhmnuxf7s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Feb 2023 11:50:36 -0600
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.21; Wed, 8 Feb
+ 2023 11:50:34 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.21 via Frontend Transport; Wed, 8 Feb 2023 11:50:34 -0600
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id C308811A8;
+        Wed,  8 Feb 2023 17:50:34 +0000 (UTC)
+Date:   Wed, 8 Feb 2023 17:50:34 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lucas Tanure <lucas.tanure@collabora.com>
+CC:     David Rhodes <david.rhodes@cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>,
+        <linux-kernel@vger.kernel.org>, <kernel@collabora.com>
+Subject: Re: [PATCH v3 3/4] ALSA: cs35l41: Add shared boost feature
+Message-ID: <20230208175034.GA12852@ediswmail.ad.cirrus.com>
+References: <20230208141839.1097377-1-lucas.tanure@collabora.com>
+ <20230208141839.1097377-4-lucas.tanure@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <30234963-33e5-e2d7-a6ef-112e89efbdd0@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+In-Reply-To: <20230208141839.1097377-4-lucas.tanure@collabora.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: XpcdgWZ82SP8x475osZVgzrdr2kj6XF2
+X-Proofpoint-ORIG-GUID: XpcdgWZ82SP8x475osZVgzrdr2kj6XF2
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -124,18 +73,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 08, 2023 at 06:39:12PM +0100, Krzysztof Kozlowski wrote:
-> On 08/02/2023 18:33, Andy Shevchenko wrote:
+On Wed, Feb 08, 2023 at 02:18:38PM +0000, Lucas Tanure wrote:
+> Shared boost allows two amplifiers to share a single boost circuit by
+> communicating on the MDSYNC bus.
+> The passive amplifier does not control the boost and receives data from
+> the active amplifier.
+> 
+> Shared Boost is not supported in HDA Systems.
+> Based on David Rhodes shared boost patches.
+> 
+> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+> ---
+> +		ret = wait_for_completion_timeout(pll_lock, msecs_to_jiffies(1000));
+> +		if (ret == 0) {
+> +			ret = -ETIMEDOUT;
+> +		} else {
+> +			regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
+> +			pwr_ctrl3 |= CS35L41_SYNC_EN_MASK;
+> +			struct reg_sequence cs35l41_mdsync_up_seq[] = {
+> +				{CS35L41_PWR_CTRL3,	pwr_ctrl3},
+> +				{CS35L41_PWR_CTRL1,	0x00000000, 3000},
+> +				{CS35L41_PWR_CTRL1,	0x00000001, 3000},
+> +			};
 
-...
+I think this looks good as long as turning the DRE off wasn't an
+important part of the sequence and was just accidentally
+happening. Probably on David to confirm that one.
 
-> It's not s3c24xx anymore, so subject prefix:
-> ARM: s3c64xx:
+Although should really move the variable definition to the top of
+the code block and put a blank line after it, to pass checkpatch.
 
-Fixed locally, thanks.
+Thanks,
+Charles
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> +			ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_up_seq,
+> +						     ARRAY_SIZE(cs35l41_mdsync_up_seq));
