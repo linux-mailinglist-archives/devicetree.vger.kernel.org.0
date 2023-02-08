@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB3B968F1F7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCE668F21B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbjBHP2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 10:28:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S231709AbjBHPgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 10:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231393AbjBHP2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:28:37 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79FD72A0;
-        Wed,  8 Feb 2023 07:28:36 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E05CE616FC;
-        Wed,  8 Feb 2023 15:28:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8823AC433D2;
-        Wed,  8 Feb 2023 15:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675870115;
-        bh=HU9yDg0ckhjoVsidarnY13PzpvlqPHX5wbjSDIULsGo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bYomd0n8PB9/6/WZnQv2uVjcs5UKrELeLnk6ayos2rqUnMVE2h3FUPzQdF/1L7vzs
-         IvTqnCYWZTtD6Kb5y9vCOCoBl6KWbQnHZuE3E7lYPjgrOlVE+NF1g/eaIsoYjlfswp
-         6rsA2Kb4MEnQA0z7vwvl5AhuDSavgkfql40R8tVcGaDSzBMJEvvC/KpPJKDwAbKhXp
-         qpdWoeSIR5q2XXQ6dr1I+8l+JVtA/LAOeX6z3ieY4vmM3DICtU7Hgb9tWQ1ZOVmJMg
-         OT3NYHetABtwlJwtJQLpa5HpB39jDBF0PK4Zl21TsuZ3p/dFWmzm36JR6P5qvBArU9
-         K+hCq4poApCpg==
-Date:   Wed, 8 Feb 2023 20:58:26 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: ufs: qcom: Add SM8550 compatible
- string
-Message-ID: <20230208152826.GA13510@thinkpad>
-References: <20230119151406.4168685-1-abel.vesa@linaro.org>
- <20230119151406.4168685-3-abel.vesa@linaro.org>
+        with ESMTP id S231694AbjBHPgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:36:24 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39A443922
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 07:36:21 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so1805356wms.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 07:36:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FKePDO+31IJoF0FsJfvZs9DXqYakl2KGMty92CUWxZs=;
+        b=lDp/yheLhCJ14mwi5JBbSR5uvR8nLzGG2T2sjS6t2m0ytjQq9ZGUFLYlagTEssKD6T
+         MGqhy+s3OC3RZUi8kOaE+kVadJ4FwdA58rbaDYPOEZor3ALf/C5ZzArNJ9mBtorSCuWL
+         QYL+GvvCNqQXt4IVlpy7027J045UU/qqB8tyKYG1RU5Kr533K/dWShfQzdV89wWEUll8
+         oGb0Cysx+ENxAvIJPI7ByaLXC3JFA8K6I9Pu0dLT5CNJrgW8hc1oU5XNnPxnhf+GGT9O
+         OLWtJFCAWlzLVkfMltuQq3V8rD5PePxe2RG7hBwCXbIf90WRJzdIoqbisb4hKzjP8iH1
+         uEkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FKePDO+31IJoF0FsJfvZs9DXqYakl2KGMty92CUWxZs=;
+        b=zBgvc07sei5r8jX1x64pSGKca9Tg1zKxhzev3lNPhLPdythXvolI1RvAcIlRTURlt0
+         Be5xBGz+eRfBGkFPgMGdgu2t1SGWiZnZiVMofa5sy422LoGJD2b7aWIgre3foBJUxF3Q
+         7hOYKHIpsLlc2kUcOHfTcDDjXEWRnMPvCLmXhHslg3hqpaDzbjHFXuDcweS9xpvpgxHQ
+         qyyTv1Mz6VmlvajIPIJ7UEgRUVvoV78QcI1Q25gilx+PXRrDCxtu2xsk8NNmF5MEhUvg
+         OcTgkfZ5gFI6eZ7vw1hRNaC53AtpUn5GCFW6mH+vRYvS973oJFQZVgd/paGY1aZo10bP
+         DN2Q==
+X-Gm-Message-State: AO0yUKVT9VEuNpoPUpjSbRYy1GLl6SVtDoMz5yMkzVtu7G3N5RNT6TWW
+        IO2en2try6QjOdeyR43DqPoi1w==
+X-Google-Smtp-Source: AK7set/jWb3OUhPaWjMNeoBplH44S4cuJjQOgCubl22jNIytV6Ym7ExQyw2dq1UJvSvr5xZQTqqhTw==
+X-Received: by 2002:a05:600c:4d09:b0:3df:e549:bd27 with SMTP id u9-20020a05600c4d0900b003dfe549bd27mr7766617wmp.6.1675870580177;
+        Wed, 08 Feb 2023 07:36:20 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l16-20020a05600c2cd000b003daffc2ecdesm2459945wmc.13.2023.02.08.07.36.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 07:36:19 -0800 (PST)
+Message-ID: <2b45b511-33d5-c6b0-ad4d-78e8c15392d0@linaro.org>
+Date:   Wed, 8 Feb 2023 16:36:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230119151406.4168685-3-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 6/6] Driver: VMBus: Add device tree support
+Content-Language: en-US
+To:     Nathan Chancellor <nathan@kernel.org>
+Cc:     kernel test robot <lkp@intel.com>,
+        Saurabh Sengar <ssengar@linux.microsoft.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com, dphadke@linux.microsoft.com,
+        llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+References: <1675756199-5917-7-git-send-email-ssengar@linux.microsoft.com>
+ <202302081621.odizDzHG-lkp@intel.com>
+ <39350ee9-c899-ba88-2e4e-103f93dcd722@linaro.org>
+ <Y+O0FtUkLyvJLSrR@dev-arch.thelio-3990X>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y+O0FtUkLyvJLSrR@dev-arch.thelio-3990X>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 05:14:06PM +0200, Abel Vesa wrote:
-> Document the compatible for the UFS found on SM8550.
+On 08/02/2023 15:39, Nathan Chancellor wrote:
+> On Wed, Feb 08, 2023 at 11:25:57AM +0100, Krzysztof Kozlowski wrote:
+>> On 08/02/2023 09:22, kernel test robot wrote:
+>>> Hi Saurabh,
+>>>
+>>> Thank you for the patch! Perhaps something to improve:
+>>>
+>>> [auto build test WARNING on next-20230207]
+>>> [cannot apply to robh/for-next tip/timers/core brgl/gpio/for-next wsa/i2c/for-next linus/master v6.2-rc7 v6.2-rc6 v6.2-rc5 v6.2-rc7]
+>>> [If your patch is applied to the wrong git tree, kindly drop us a note.
+>>> And when submitting patch, we suggest to use '--base' as documented in
+>>> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>>>
+>>
+>> All of your recent patches have build errors. Can you at least build
+>> test them before sending? It's a unnecessary noise in our mailboxes to
+>> get non-buildable patches, just to trigger compilation which you can
+>> easily do by your own. GCC is a free software...
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-
-Thanks,
-Mani
-
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> For what it's worth, GCC does not have a warning like this, it just
+> accepts the incorrect location of the attribute, which has gotten others
+> in trouble before:
 > 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index 54f5f8dc5c87..108c281e9d09 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -33,6 +33,7 @@ properties:
->            - qcom,sm8250-ufshc
->            - qcom,sm8350-ufshc
->            - qcom,sm8450-ufshc
-> +          - qcom,sm8550-ufshc
->        - const: qcom,ufshc
->        - const: jedec,ufs-2.0
->  
-> @@ -106,6 +107,7 @@ allOf:
->                - qcom,sm8250-ufshc
->                - qcom,sm8350-ufshc
->                - qcom,sm8450-ufshc
-> +              - qcom,sm8550-ufshc
->      then:
->        properties:
->          clocks:
-> -- 
-> 2.34.1
+> https://lore.kernel.org/CAHk-=wgf+kHeSZbpkZumWcTXUD7ordqTMvPRNL6aQVG1DSBDnQ@mail.gmail.com/
 > 
+> So the patch probably did build clean with GCC but that is one of the
+> reasons that there is no longer a compiler monopoly for the kernel ;)
 
--- 
-மணிவண்ணன் சதாசிவம்
+OK then the patchset is reasonable/built enough.
+
+Best regards,
+Krzysztof
+
