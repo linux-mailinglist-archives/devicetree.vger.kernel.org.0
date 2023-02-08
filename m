@@ -2,95 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB66568EF0C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 13:38:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC07E68EF2E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 13:40:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230421AbjBHMh7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Feb 2023 07:37:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38974 "EHLO
+        id S229827AbjBHMkz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Feb 2023 07:40:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjBHMh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 07:37:58 -0500
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D6938002;
-        Wed,  8 Feb 2023 04:37:57 -0800 (PST)
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.95)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1pPjhm-002HdN-3f; Wed, 08 Feb 2023 13:37:42 +0100
-Received: from p57bd9464.dip0.t-ipconnect.de ([87.189.148.100] helo=[192.168.178.81])
-          by inpost2.zedat.fu-berlin.de (Exim 4.95)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1pPjhl-000IqT-Oa; Wed, 08 Feb 2023 13:37:42 +0100
-Message-ID: <91be7f6b52d8ed74798e86270d59bc5cddefe130.camel@physik.fu-berlin.de>
-Subject: Re: remove arch/sh
-From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To:     Huacai Chen <chenhuacai@kernel.org>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-Date:   Wed, 08 Feb 2023 13:37:40 +0100
-In-Reply-To: <CAAhV-H57bV855SMr6iBqoQzdak5QSnaRLjQ9oAbOtYZnik5SoQ@mail.gmail.com>
-References: <20230113062339.1909087-1-hch@lst.de>
-         <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
-         <20230116071306.GA15848@lst.de>
-         <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
-         <20230203071423.GA24833@lst.de>
-         <60ed320c8f5286e8dbbf71be29b760339fd25069.camel@physik.fu-berlin.de>
-         <0e26bf17-864e-eb22-0d07-5b91af4fde92@infradead.org>
-         <f6317e9073362b13b10df57de23e63945becea32.camel@physik.fu-berlin.de>
-         <CAAhV-H57bV855SMr6iBqoQzdak5QSnaRLjQ9oAbOtYZnik5SoQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.3 
+        with ESMTP id S229509AbjBHMkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 07:40:52 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A28F41095;
+        Wed,  8 Feb 2023 04:40:48 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DB5A124E2F8;
+        Wed,  8 Feb 2023 20:40:44 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Feb
+ 2023 20:40:44 +0800
+Received: from [192.168.125.110] (183.27.96.33) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Feb
+ 2023 20:40:43 +0800
+Message-ID: <629e070a-5138-8754-e86c-3458ae5d7a16@starfivetech.com>
+Date:   Wed, 8 Feb 2023 20:40:43 +0800
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-Originating-IP: 87.189.148.100
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 2/4] hwmon: (sfctemp) Add StarFive JH71x0 temperature
+ sensor
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230103013145.9570-1-hal.feng@starfivetech.com>
+ <20230103013145.9570-3-hal.feng@starfivetech.com>
+ <20230103221017.GA217155@roeck-us.net>
+ <ddb197c3-9c77-c8c2-1d41-1691de05847e@starfivetech.com>
+ <7580df6b-e97f-0036-8f7f-63acde8cd42a@roeck-us.net>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <7580df6b-e97f-0036-8f7f-63acde8cd42a@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.96.33]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Huacei!
-
-On Wed, 2023-02-08 at 20:24 +0800, Huacai Chen wrote:
-> Emm, maybe this patch has its chance to be merged now. :)
+On Mon, 6 Feb 2023 11:21:38 -0800, Guenter Roeck wrote:
+> On 2/6/23 09:12, Hal Feng wrote:
+>> On Tue, 3 Jan 2023 14:10:17 -0800, Guenter Roeck wrote:
+>>> On Tue, Jan 03, 2023 at 09:31:43AM +0800, Hal Feng wrote:
+[...]
+>>>> diff --git a/drivers/hwmon/sfctemp.c b/drivers/hwmon/sfctemp.c
+>>>> new file mode 100644
+>>>> index 000000000000..e56716ad9587
+>>>> --- /dev/null
+>>>> +++ b/drivers/hwmon/sfctemp.c
+>>>> @@ -0,0 +1,350 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>> +/*
+>>>> + * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
+>>>> + * Copyright (C) 2021 Samin Guo <samin.guo@starfivetech.com>
+>>>> + */
+>>>> +#include <linux/clk.h>
+>>>> +#include <linux/completion.h>
+>>>> +#include <linux/delay.h>
+>>>> +#include <linux/hwmon.h>
+>>>> +#include <linux/interrupt.h>
+>>>> +#include <linux/io.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/mutex.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/platform_device.h>
+>>>> +#include <linux/reset.h>
+>>>> +
+>>>> +/*
+>>>> + * TempSensor reset. The RSTN can be de-asserted once the analog core has
+>>>> + * powered up. Trst(min 100ns)
+>>>> + * 0:reset  1:de-assert
+>>>> + */
+>>>> +#define SFCTEMP_RSTN    BIT(0)
+>>>
+>>> Missing include of linux/bits.h
+>>
+>> Will add it. Thanks.
+>>
+>>>
+>>>> +
+>>>> +/*
+>>>> + * TempSensor analog core power down. The analog core will be powered up
+>>>> + * Tpu(min 50us) after PD is de-asserted. RSTN should be held low until the
+>>>> + * analog core is powered up.
+>>>> + * 0:power up  1:power down
+>>>> + */
+>>>> +#define SFCTEMP_PD    BIT(1)
+>>>> +
+>>>> +/*
+>>>> + * TempSensor start conversion enable.
+>>>> + * 0:disable  1:enable
+>>>> + */
+>>>> +#define SFCTEMP_RUN    BIT(2)
+>>>> +
+>>>> +/*
+>>>> + * TempSensor conversion value output.
+>>>> + * Temp(C)=DOUT*Y/4094 - K
+>>>> + */
+>>>> +#define SFCTEMP_DOUT_POS    16
+>>>> +#define SFCTEMP_DOUT_MSK    GENMASK(27, 16)
+>>>> +
+>>>> +/* DOUT to Celcius conversion constants */
+>>>> +#define SFCTEMP_Y1000    237500L
+>>>> +#define SFCTEMP_Z    4094L
+>>>> +#define SFCTEMP_K1000    81100L
+>>>> +
+>>>> +struct sfctemp {
+>>>> +    /* serialize access to hardware register and enabled below */
+>>>> +    struct mutex lock;
+>>>> +    struct completion conversion_done;
+>>>> +    void __iomem *regs;
+>>>> +    struct clk *clk_sense;
+>>>> +    struct clk *clk_bus;
+>>>> +    struct reset_control *rst_sense;
+>>>> +    struct reset_control *rst_bus;
+>>>> +    bool enabled;
+>>>> +};
+>>>> +
+>>>> +static irqreturn_t sfctemp_isr(int irq, void *data)
+>>>> +{
+>>>> +    struct sfctemp *sfctemp = data;
+>>>> +
+>>>> +    complete(&sfctemp->conversion_done);
+>>>> +    return IRQ_HANDLED;
+>>>> +}
+>>>> +
+>>>> +static void sfctemp_power_up(struct sfctemp *sfctemp)
+>>>> +{
+>>>> +    /* make sure we're powered down first */
+>>>> +    writel(SFCTEMP_PD, sfctemp->regs);
+>>>> +    udelay(1);
+>>>> +
+>>>> +    writel(0, sfctemp->regs);
+>>>> +    /* wait t_pu(50us) + t_rst(100ns) */
+>>>> +    usleep_range(60, 200);
+>>>> +
+>>>> +    /* de-assert reset */
+>>>> +    writel(SFCTEMP_RSTN, sfctemp->regs);
+>>>> +    udelay(1); /* wait t_su(500ps) */
+>>>> +}
+>>>> +
+>>>> +static void sfctemp_power_down(struct sfctemp *sfctemp)
+>>>> +{
+>>>> +    writel(SFCTEMP_PD, sfctemp->regs);
+>>>> +}
+>>>> +
+>>>> +static void sfctemp_run_single(struct sfctemp *sfctemp)
+>>>> +{
+>>>> +    writel(SFCTEMP_RSTN | SFCTEMP_RUN, sfctemp->regs);
+>>>> +    udelay(1);
+>>>> +    writel(SFCTEMP_RSTN, sfctemp->regs);
+>>>
+>>> The datasheet (or, rather, programming manual) does not appear
+>>> to be public, so I have to guess here.
+>>>
+>>> The code suggests that running a single conversion may be a choice,
+>>> not a requirement. If it is indeed a choice, the reasoning needs to be
+>>> explained since it adds a lot of complexity and dependencies to the
+>>> driver (for example, interrupt support is only mandatory or even needed
+>>> due to this choice). It also adds a significant delay to temperature
+>>> read operations, which may have practical impact on thermal control
+>>> software.
+>>>
+>>> If the chip only supports single temperature readings, that needs to be
+>>> explained as well (and why SFCTEMP_RUN has to be reset in that case).
+>>
+>> The chip supports continuous conversion. When you set SFCTEMP_RUN, the
+>> temperature raw data will be generated all the time. However, it will
+>> also generate interrupts all the time when the conversion is finished,
+>> because of the hardware limitation. So in this driver, we just support
+>> the single conversion.
+>>
 > 
-> https://lore.kernel.org/linux-sh/CAAhV-H6siOtVkZpkS4aABejgZCqTwp3TihA0+0HGZ1+mU3XAVA@mail.gmail.com/T/#u
+> Sorry, I don't follow the logic. The interrupt is, for all practical
+> purposes, useless because there are no limits and exceeding any such
+> limits is therefore not supported. The only reason to have and enable
+> to interrupt is because continuous mode is disabled.
+> 
+> The code could be simplified a lot if interrupt support would be
+> dropped and continuous mode would be enabled.
 
-Yes, that's the plan. We're collecting the various patches people have sent
-in for arch/sh, review and test them and apply them.
+If we enable continuous mode, which means SFCTEMP_RUN remains asserted,
+the conversion finished interrupt will be raised after each sample
+time (8.192 ms). Within a few minutes, a lot of interrupts are raised,
+as showed below.
 
-My test board is running the latest kernel now, so I can test new patches, too.
+# cat /proc/interrupts
+           CPU0       CPU1       CPU2       CPU3       
+  1:          0          0          0          0  SiFive PLIC   1 Edge      ccache_ecc
+  2:          1          0          0          0  SiFive PLIC   3 Edge      ccache_ecc
+  3:          1          0          0          0  SiFive PLIC   4 Edge      ccache_ecc
+  4:          0          0          0          0  SiFive PLIC   2 Edge      ccache_ecc
+  5:       1116       1670        411       1466  RISC-V INTC   5 Edge      riscv-timer
+  6:      32093          0          0          0  SiFive PLIC  81 Edge      120e0000.temperature-sensor
+ 10:       1233          0          0          0  SiFive PLIC  32 Edge      ttyS0
+IPI0:       117         62        123        117  Rescheduling interrupts
+IPI1:       278        353        105        273  Function call interrupts
+IPI2:         0          0          0          0  CPU stop interrupts
+IPI3:         0          0          0          0  CPU stop (for crash dump) interrupts
+IPI4:         0          0          0          0  IRQ work interrupts
+IPI5:         0          0          0          0  Timer broadcast interrupts
 
-Adrian
+If we enable continuous mode and drop the interrupt support in the
+driver, the kernel will not know the interrupts but a lot of interrupts
+are still raised in hardware. Can we do such like that?
+Without the interrupt support, the temperature we read may be the value
+generated in the last cycle.
 
--- 
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+I think the temperature has its value only when we read it, so we start
+conversion only when we read the temperature. Further more, it will
+consume more power if we enable continuous mode.
+
+Best regards,
+Hal
