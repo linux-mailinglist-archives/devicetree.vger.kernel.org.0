@@ -2,87 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A227168FAEF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 00:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ED4068FB09
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 00:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbjBHXMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 18:12:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37694 "EHLO
+        id S229645AbjBHXUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 18:20:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBHXMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 18:12:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A32D18E;
-        Wed,  8 Feb 2023 15:12:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F2774B81FA2;
-        Wed,  8 Feb 2023 23:12:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9807C433EF;
-        Wed,  8 Feb 2023 23:11:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675897921;
-        bh=gufkRKfxWieX6HKMKArJihwskH/QJRSmt/NO9zfWLT8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hBN8j/fttWOPC34Cxzc6MS1JwPv/SldB1DaPlkbchtqv3Lkya5gpnQ/qRjxiyco0M
-         qEdmTzcSrJH0eVKpoRwks3hVFNliY8AuoGZG72PJnOEx2bglI6LGe4lK0eW6muftQG
-         9osNQpAJUTqE3CmZVOZyT4rga+U2FHZJalbkx6pG2fpNxChcqsyG9WsKPWiHO0VmJH
-         VyzYnuW5eerHDtkXf9hj9xL5hkMQNRcEgAbj+bSE5lLGH3scp8FRS5jM9KNJTTLVVQ
-         qLVSDJ2dvwA89lE1zfz0k/GcM1bxkE7YVqasU3seN0SSl7YkzT9SD9sib0qMFZR7dY
-         LE3dX4FzKlpOA==
-Date:   Wed, 8 Feb 2023 15:14:12 -0800
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     devi priya <quic_devipriy@quicinc.com>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-Subject: Re: [PATCH V3 4/7] pinctrl: qcom: Add IPQ9574 pinctrl driver
-Message-ID: <20230208231412.yqp3rvokvmbb7ixi@ripper>
-References: <20230130125528.11509-1-quic_devipriy@quicinc.com>
- <20230130125528.11509-5-quic_devipriy@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230130125528.11509-5-quic_devipriy@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229641AbjBHXUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 18:20:07 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D81C164
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 15:20:06 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id b18-20020a253412000000b0085747dc8317so227693yba.15
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 15:20:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+6M1s6jVzcZP7H16vCeUwIRH/hJEUzDrlIpdlKRJhik=;
+        b=mBb39kHZdGoftt6jokvxEpIxgXyE4g6cQI9YaKv/PO27i8fxX5pxrgNtuSU0GYHGFA
+         cyHDBjQvthf3Xqw3OAGereXg+BotnoemG2a/dE5BTEleBFRgWKQNEh6jreR/WPI48/GM
+         Dj9tsoy79KreWNfUsTCXK3RjIqtqZlZswVAIP9vw8aNZcpc2sPui2Mkb0B+xocImQ46D
+         KmSFO2GEEvWNAxrPT715rdP2wtkq8kMwIz8CMxOThFa1t79/5WUj6tHqxDCEG75EIhiP
+         F3W91ygmCRpKyGWxKsAqsOwF3+6dI3J2f26Y08qbJASOUuC5yLyJGRe8/uafGcjrXoTh
+         5L0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+6M1s6jVzcZP7H16vCeUwIRH/hJEUzDrlIpdlKRJhik=;
+        b=3Hvw9nxsZjtKiJ7aOnH0R5KSIwIHUTXvixhYA7afHse7HhIbciIu97QwHdlU1odB/E
+         N9eC0nQs2RIX4cW8u3es1XFoltwUooFLX14qKsSV+18+VYJsLUEsCT/sJitoOq1atAqz
+         y/ERjPuLzGEu5FBE8u1OozBFqXWYiCH2N5uOGwRtPJzYd7EOVWAYTHQmsjiKWHb6A+Sz
+         nqbDHPTtIKi8nefoVTGrsGjfsw0IalVwaNxLlLAEj0w5sY36Ue6eZMGLjpX2/ARl4pQV
+         hUAvNVtxS8fRKFnPdZ85tpHNmr6YfqZ+wzp9bPuvy5b5saElcb5AX4PTpgIGJZgEmelk
+         TLeQ==
+X-Gm-Message-State: AO0yUKWREQE0fLiZjcmWAXGVexyNz60wwibKm2P03OYeEZXOsps6MPOu
+        7wqaqR4diPlvPNUsV0V0fSUMbvs/DKdNQ2Wt+GO2JQ==
+X-Google-Smtp-Source: AK7set/kS9P6unQBcb+71E7vO8XBeo8f3HWqwTvhJ1RMmwL44a8INIhB2P197E46QbsxqxFdPinayks2Z3H4MVENs7mucQ==
+X-Received: from isaacmanjarres.irv.corp.google.com ([2620:15c:2d:3:32e8:a89:521e:3f2e])
+ (user=isaacmanjarres job=sendgmr) by 2002:a0d:d543:0:b0:52b:ecfa:575a with
+ SMTP id x64-20020a0dd543000000b0052becfa575amr2ywd.0.1675898405151; Wed, 08
+ Feb 2023 15:20:05 -0800 (PST)
+Date:   Wed,  8 Feb 2023 15:19:59 -0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.39.1.581.gbfd45094c4-goog
+Message-ID: <20230208232001.2052777-1-isaacmanjarres@google.com>
+Subject: [PATCH v2 0/1] Fix kmemleak crashes when scanning CMA regions
+From:   "Isaac J. Manjarres" <isaacmanjarres@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Mike Rapoport <rppt@kernel.org>,
+        "Kirill A. Shutemov" <kirill.shtuemov@linux.intel.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Saravana Kannan <saravanak@google.com>, linux-mm@kvack.org,
+        "Isaac J. Manjarres" <isaacmanjarres@google.com>,
+        kernel-team@android.com,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 30, 2023 at 06:25:25PM +0530, devi priya wrote:
-> +static const struct msm_pingroup ipq9574_groups[] = {
-> +	PINGROUP(0, sdc_data, qspi_data, qdss_traceclk_b, _, _, _, _, _, _),
-> +	PINGROUP(1, sdc_data, qspi_data, qdss_tracectl_b, _, _, _, _, _, _),
-> +	PINGROUP(2, sdc_data, qspi_data, qdss_tracedata_b, _, _, _, _, _, _),
-> +	PINGROUP(3, sdc_data, qspi_data, qdss_tracedata_b, _, _, _, _, _, _),
-> +	PINGROUP(4, sdc_cmd, qspi_cs, qdss_tracedata_b, _, _, _, _, _, _),
-> +	PINGROUP(5, sdc_clk, qspi_clk, qdss_tracedata_b, _, _, _, _, _,
-> +		 _),
+When trying to boot a device with an ARM64 kernel with the following
+config options enabled:
 
-Please avoid line wrapping these, it just makes it hard to read.
+CONFIG_DEBUG_PAGEALLOC=y
+CONFIG_DEBUG_PAGEALLOC_ENABLE_DEFAULT=y
+CONFIG_DEBUG_KMEMLEAK=y
 
-[..]
-> +};
-> +
-> +/* Reserving GPIO59 for controlling the QFPROM LDO regulator */
+a crash is encountered when kmemleak starts to scan the list of gray
+or allocated objects that it maintains. Upon closer inspection, it was
+observed that these page-faults always occurred when kmemleak attempted
+to scan a CMA region.
 
-This seems like a property of the board, please use gpio-reserved-ranges
-in the DT node instead.
+At the moment, kmemleak is made aware of CMA regions that are specified
+through the devicetree to be dynamically allocated within a range of
+addresses. However, kmemleak should not need to scan CMA regions or any
+reserved memory region, as those regions can be used for DMA transfers
+between drivers and peripherals, and thus wouldn't contain anything
+useful for kmemleak.
 
-Thanks,
-Bjorn
+Additionally, since CMA regions are unmapped from the kernel's address
+space when they are freed to the buddy allocator at boot when
+CONFIG_DEBUG_PAGEALLOC is enabled, kmemleak shouldn't attempt to access
+those memory regions, as that will trigger a crash. Thus, kmemleak
+should ignore all dynamically allocated reserved memory regions.
+
+v1 ==> v2:
+- Simplified the original approach of informing kmemleak about all CMA
+  regions in the system to just having kmemleak ignore CMA regions it is
+  currently aware of.
+
+Isaac J. Manjarres (1):
+  of: reserved_mem: Have kmemleak ignore dynamically allocated reserved
+    mem
+
+ drivers/of/of_reserved_mem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+-- 
+2.39.1.581.gbfd45094c4-goog
+
