@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8834868EC94
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 11:16:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9EB968ECB9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 11:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbjBHKQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 05:16:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55654 "EHLO
+        id S230099AbjBHKYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 05:24:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231283AbjBHKQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 05:16:03 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148D4442F0
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 02:16:02 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id bg26so12978388wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 02:16:02 -0800 (PST)
+        with ESMTP id S230003AbjBHKYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 05:24:01 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82133B3F2
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 02:23:59 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id m14so16192149wrg.13
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 02:23:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QIP8R/xQ7Af6ETfQwAtdNDiVKk4oUEjwkSgHlIW4k74=;
-        b=xf5P1mZEQ/f8xsXxbbauz7U4oW97zmEDzPAR0GIA0F5EDCDkpZUY+iw2NzZnbALPST
-         TVc6K+bd2QnughBFtQjAMZgZm7kKlhkxxvJ39ct/UqN4rfbYPLfZ17F5zd9cMq8WmqyB
-         iIEStiLAR467EaRWFZIL2D26DlCk/x1W6S4AWVmxfgq/N6jxGI6Bhov/30Ozk1ekxdoK
-         +AIAhD8xo6sEo/W4CgDu0iXlpBOHfDcZqAGFQJ3Kj+5DUFa0VpWWFn3q3XGRrD7FqGXg
-         jIAv9a8SvAaUUYlm9kIal6+y1sYhHU4VEISUeAAAH7Xb9FBAN6eZPMHpur7FJfMtcwqe
-         Lv2g==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hu5nkFim1hAIF+aeToLOna/YVBi/v7t0xGguJL3RQ0M=;
+        b=mzkgQxJ3t5Ql9Y+Ng5kooyLTd2wve7vWgz05OygWNQEOf4E0RbbzeMXfzmlbS/UHuZ
+         jdX2wCj7dBzJpoek6e8SQMHq0zEpF+TxXBPRt/8rsBS1v/1lFrS2/4TzwoxoHXhGp/CV
+         coQjmu0YNN1LnPu+dt4i/463t8oQe1QDBzgohRM4DA98Yjxjx4xbTvEIuuUibl8xi0sJ
+         a0G2Hk1mslK/Ys1Q6V8uZgnDgFOIxCMIxDYHZHr/vUMQPevbCAjoyk6OxxcvUIJpUk46
+         ZsvwtQW4qZ7nEDB5IVS/JvBRXuMD9shmyYcflvMSFNqRXx0D9GYjURDlKGUT6Sur4adl
+         uUxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QIP8R/xQ7Af6ETfQwAtdNDiVKk4oUEjwkSgHlIW4k74=;
-        b=Gtn5mfQdLd/arcbClh9pjNo2rhqbc5E3Q7Jb6S3ZZDsRxkrkgdvPVWqJzm18xXHKTU
-         fOuMqor4meKHZfPBte0YL7PrvM+5fOxMDBBJBokA8PCsyY+f5+4v85vHaU3nfyKiuVgs
-         Z3/Vw0vZPWJ4PGEGjuZXZX217RqIky9eyYke05zqEQS8xQ6iaQNEtjy8BOTo3O1Frv10
-         lIoW3om22Qi6v8lErWX/FuR8w3MkMc1JiWO07huUMVfxvi+AY46+jrSgF/hUYoP2cChM
-         USBWOlX5gXkCmXPkOy8JOCt8eZpyAGvvBxs3RJIBdYEhi3weTkC3NEo7Z9D3uDChkReX
-         7daQ==
-X-Gm-Message-State: AO0yUKXZeJwOo4LlNJ69WYLr/2aHS9rEk5/x0zOzMoYQl1EOm7KIhTbs
-        GJFnXHXYFc4xWCSHLqL8X4huHA==
-X-Google-Smtp-Source: AK7set+f5AbP6DO1p1Rfbv0AhFB9vPMBJ9BONhfBuIOjQDgrlQaXszTkx7Bz9W4uMCB6M3CKPbrG9g==
-X-Received: by 2002:a05:600c:3c9c:b0:3dc:d5b:5f6a with SMTP id bg28-20020a05600c3c9c00b003dc0d5b5f6amr6011165wmb.30.1675851361711;
-        Wed, 08 Feb 2023 02:16:01 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05600c198e00b003dc4ecfc4d7sm1496328wmq.29.2023.02.08.02.15.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 02:16:01 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 7/7] dt-bindings: remoteproc: qcom,glink-edge: correct label description
-Date:   Wed,  8 Feb 2023 11:15:45 +0100
-Message-Id: <20230208101545.45711-7-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230208101545.45711-1-krzysztof.kozlowski@linaro.org>
-References: <20230208101545.45711-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hu5nkFim1hAIF+aeToLOna/YVBi/v7t0xGguJL3RQ0M=;
+        b=E/c0wrqpwp6z3X/+XSxT+9fEffh48yG5bp4fEmFcLeg9gOC29qUmc3RJsujDfIvM5T
+         f5m/kLGvWFpViZ2Yc1309fvDd+c/TWtppQ4jYAm1w5WFVMNNwvITjDIW56GBmc3DLNjY
+         czcxuCm4Cou2hdZp1tvO1b7XBx5BaZiz6iEXJhOYx8PUoTMKjtscA0Cf+7mHlkkLEs2l
+         bGW3zFeChzmQo8HmgasMR5ilm3xlqMbBApXG/Qe0qWj2k5J0uIkeCBu+9+bZMBuc8wec
+         13ZMZGxkD8LVBxjHMZrSE/XrvbKmcp9BSLwynVkeyktOPj8CSg4OHbkrK7rU1D9C7ca2
+         FMaA==
+X-Gm-Message-State: AO0yUKV0wq89RiN0VcX2OyelJcSG14mhtjmmdDmLpgmFEBrxyHkf5DyC
+        oyKx3qWUVQ9Z5JHC2/STK8dGRbtLrol+xKm5
+X-Google-Smtp-Source: AK7set89QhkadYjIBmhhPsZgiHa8dL9PqiaGJhzXgvgfRZzRdqqx/tJ5HHLDKBAz+vb3Q+iYVfemQg==
+X-Received: by 2002:adf:f5c5:0:b0:2bf:cbf0:e021 with SMTP id k5-20020adff5c5000000b002bfcbf0e021mr5897238wrp.71.1675851838423;
+        Wed, 08 Feb 2023 02:23:58 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id d17-20020a5d4f91000000b002c3ec85285bsm6125567wru.70.2023.02.08.02.23.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 02:23:57 -0800 (PST)
+Message-ID: <e7baedcb-0173-7603-9e51-99ead7001025@linaro.org>
+Date:   Wed, 8 Feb 2023 11:23:56 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] Documentation: cs35l41: Shared boost properties
+Content-Language: en-US
+To:     lucas.tanure@collabora.com, David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20230207104021.2842-1-lucas.tanure@collabora.com>
+ <20230207104021.2842-3-lucas.tanure@collabora.com>
+ <44faeca1-94c9-4423-d87a-03d80e286812@linaro.org>
+ <e7257f9a-86c5-74e8-c538-6f6d2ba13274@collabora.com>
+ <44c7274f-8a5e-0235-413a-6c3260018601@linaro.org>
+ <4efe9796-6d3e-09d1-d5f7-cfb25a439061@collabora.com>
+ <56ce2617-4fd1-d597-a4dc-918654cdd3f6@linaro.org>
+ <e8aa571a-2d96-47da-34f0-47cc048dc655@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e8aa571a-2d96-47da-34f0-47cc048dc655@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,33 +87,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct the description of 'label' property.
+On 07/02/2023 18:03, lucas.tanure@collabora.com wrote:
+> On 2/7/23 4:48 PM, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> On 07/02/2023 17:34, Lucas Tanure wrote:
+>>> On 07-02-2023 16:13, Krzysztof Kozlowski wrote:
+>>>> On 07/02/2023 16:46, Lucas Tanure wrote:
+>>>>>>> +      Shared boost allows two amplifiers to share a single boost circuit by
+>>>>>>> +      communicating on the MDSYNC bus. The passive amplifier does not control
+>>>>>>> +      the boost and receives data from the active amplifier. GPIO1 should be
+>>>>>>> +      configured for Sync when shared boost is used. Shared boost is not
+>>>>>>> +      compatible with External boost. Active amplifier requires
+>>>>>>> +      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
+>>>>>>>           0 = Internal Boost
+>>>>>>>           1 = External Boost
+>>>>>>> +      2 = Reserved
+>>>>>>
+>>>>>> How binding can be reserved? For what and why? Drop. 2 is shared active,
+>>>>>> 3 is shared passive.
+>>>>> 2 Is shared boost without VSPK switch, a mode not supported for new
+>>>>> system designs. But there is laptops using it, so we need to keep
+>>>>> supporting in the driver.
+>>>>
+>>>> That's not the answer. 2 is nothing here, so it cannot be reserved.
+>>>> Aren't you mixing now some register value with bindings?
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>>
+>>> I have added a new patch with propper documentation.
+>>> And I would like to use 3 and 4 for shared boost as
+>>> CS35L41_EXT_BOOST_NO_VSPK_SWITCH already exist as 2 and is used in the
+>>> current driver.
+>>
+>> I don't see CS35L41_EXT_BOOST_NO_VSPK_SWITCH in the bindings.
+>>
+>>> The laptop that uses CS35L41_EXT_BOOST_NO_VSPK_SWITCH doesn't have the
+>>> property "cirrus,boost-type", but to make everything consistent I would
+>>> prefer to use 3 and 4 for the new boost types.
+>>> Is that ok with you?
+>>
+>> I don't see how it is related. The value does not exist, so whether
+>> laptop has that property or not, is not really related, right?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+> The value does exist in the code, but no device should have that in ACPI/DTB, so yes the value doesn't exist for ACPI/DTB purposes.
+> I can change CS35L41_EXT_BOOST_NO_VSPK_SWITCH to another value, like 99, and use 2 and 3 for shared boost.
+> I will re-submit that with v3.
+> Is that ok with you?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I guess we still talk about different things. The code does not have a
+binding for the boost, therefore it does not use boost binding. Whatever
+it does with CS35L41_EXT_BOOST_NO_VSPK_SWITCH outside of DT, is not my
+topic and I don't care.
 
----
+That's why I asked folks to use strings for such enumerations, not
+register values - to avoid any confusion between the code and bindings
+(and also make it more readable for humans).
 
-Changes since v1:
-1. None
----
- .../devicetree/bindings/remoteproc/qcom,glink-edge.yaml       | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-index 8e133ab55ff3..15e6851e1ff8 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-@@ -42,7 +42,9 @@ properties:
-     maxItems: 1
- 
-   label:
--    description: The names of the state bits used for SMP2P output
-+    description:
-+      Name of the edge, used for debugging and identification purposes. The
-+      node name will be used if this is not present.
- 
-   mboxes:
-     maxItems: 1
--- 
-2.34.1
+Best regards,
+Krzysztof
 
