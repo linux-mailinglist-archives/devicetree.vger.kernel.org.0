@@ -2,166 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37C6568EE39
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 12:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4175C68EE47
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 12:51:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbjBHLrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 06:47:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40170 "EHLO
+        id S230402AbjBHLvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 06:51:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231161AbjBHLrJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 06:47:09 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B3EA5D9;
-        Wed,  8 Feb 2023 03:47:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675856828; x=1707392828;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5kU3wqaJ20/VwYQpQyjHZef6M022HHqkQEXk+jgj9l4=;
-  b=n/fqQQPGKg2BiJ94J3T3MAMRB6yCpmtesh7Xj0q66NHSVtmMgbJAhn/D
-   DMggALyw5T6J6UTnQcLXxpxQspA3Z9nWJ2MWcdOMRA4yZGqTxxylOw9e9
-   RZsbQ7YgQ5rzDs87HYjDAS+VBtLMAyArrVbCszdvhTMLidBG/9x+csOkY
-   0x/4GdFxnXvmNiRNcGvDl00/by3u+SwN/w+LRTTrriMOYREYU1+lHYdID
-   /9FeaWwpWlfJP2X+pTTQdlxPW6lVqVY2CdesTHbINEzFeDElhWm3wKTZi
-   i+d0Tkja2Swoyk3dUuDWttG/LaMso4JmzHccz3rbpZ2PlC/uMfqn4cTSl
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="328431596"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; 
-   d="scan'208";a="328431596"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2023 03:47:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="756016285"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; 
-   d="scan'208";a="756016285"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 08 Feb 2023 03:47:03 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pPiuk-0004QQ-2K;
-        Wed, 08 Feb 2023 11:47:02 +0000
-Date:   Wed, 8 Feb 2023 19:46:06 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Lucas Tanure <lucas.tanure@collabora.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
-Subject: Re: [PATCH 1/2] ALSA: cs35l41: Add shared boost feature
-Message-ID: <202302081911.MDwfUTfx-lkp@intel.com>
-References: <20230207104021.2842-2-lucas.tanure@collabora.com>
+        with ESMTP id S230360AbjBHLvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 06:51:03 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2732F49038;
+        Wed,  8 Feb 2023 03:51:00 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id fi26so20054665edb.7;
+        Wed, 08 Feb 2023 03:51:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VpzLHah2ZL4c5hmmwr1CJtR3jb4Zb36OkgfZKd35lY4=;
+        b=RkVmwtEhaN7N5woOejLRThyE/j23ltCWLsvZ0Na/roneLm0C+KY2q3ke9VAsMJSbcN
+         fIwCf2rEoZQOUnbMK0SusHW+qzHDkE61Gvas6LchiTNkftVlV5X3f2AbXDrf//jbZ9Jk
+         MDFzwowVoWFalfFFtBXNiuA969ATZU2nmKjnTVDveaJ39EleF2zUGEgc0HosDqxwvZtg
+         2XhPcA0Ple80nC9J+pCRTj9EHEMxARKD9MVtyUjhHoPaa65u9kYd4CPS0iz3NEqLm+sO
+         kpO9gmoNCtWqhLKQOjsfl6BaqvOTePAFHtmdXbaeFLxbikD90sFPG2L5ThC3AOTEjQEV
+         GrYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VpzLHah2ZL4c5hmmwr1CJtR3jb4Zb36OkgfZKd35lY4=;
+        b=g6gcahPBICevUBYiV8bDpDs9ub5MdtE+QIKwfbEr67w4/sN9Ia1lDMSAgt3yGmcE9H
+         3JiGpyDnAKWdQvVAGRe8phx60+GbsVfXcMr87kT6UjlVtyrXQ/K/YsZBrGgBiEZ+1EIS
+         xpCM+z3/QtnMV2ryFYaPDFBbeKQ7YJU+yJMT9JSLf7kcA8FpvvgTBS8g1ijaAnnF54dD
+         xmxL4jkvOIm+8gAARCVB4XUDvbgi9VLehqXVhSQZiD7qWzo/b/wX/rBAlBu2mIZg7qi/
+         u08+WIyZDxOzRya9iCjtzHvfydxfOyDR7DoyVpqpgIOgBsAGKzmxUs5F10ifXxstf141
+         LTLA==
+X-Gm-Message-State: AO0yUKX68ZyHh0qcdwTbeO6sxva4CFiCmJ+Q4/PphDVmPS9h3o6BnsTH
+        F1V6+gAyz+8PRcWKjpIp8Sc=
+X-Google-Smtp-Source: AK7set9T3VrnWt1+Yy67oP/ix7PQzAEgXSPYqdjZBvU9LNpcaEVF5ZsF/CPXcyNhqswJYKvanqmrbw==
+X-Received: by 2002:a50:ccc6:0:b0:4aa:c4bb:2372 with SMTP id b6-20020a50ccc6000000b004aac4bb2372mr7548080edj.32.1675857058573;
+        Wed, 08 Feb 2023 03:50:58 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id y12-20020a056402270c00b0049668426aa6sm7737717edd.24.2023.02.08.03.50.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 03:50:58 -0800 (PST)
+Date:   Wed, 8 Feb 2023 12:50:56 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     bhelgaas@google.com, petlozup@nvidia.com,
+        rafael.j.wysocki@intel.com, lpieralisi@kernel.org, robh@kernel.org,
+        jeffy.chen@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
+        jonathanh@nvidia.com, dmitry.osipenko@collabora.com,
+        viresh.kumar@linaro.org, gregkh@linuxfoundation.org,
+        steven.price@arm.com, kw@linux.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        vidyas@nvidia.com
+Subject: Re: [RFC,v14 3/5] PCI / PM: Add support for the PCIe WAKE# signal
+ for OF
+Message-ID: <Y+OMoKOfduwj2PYp@orome>
+References: <20230208111645.3863534-1-mmaddireddy@nvidia.com>
+ <20230208111645.3863534-4-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="1q5Qd0tqx26fwrBX"
 Content-Disposition: inline
-In-Reply-To: <20230207104021.2842-2-lucas.tanure@collabora.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230208111645.3863534-4-mmaddireddy@nvidia.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
 
-I love your patch! Perhaps something to improve:
+--1q5Qd0tqx26fwrBX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.2-rc7 next-20230208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Wed, Feb 08, 2023 at 04:46:43PM +0530, Manikanta Maddireddy wrote:
+> From: Jeffy Chen <jeffy.chen@rock-chips.com>
+>=20
+> Add of_pci_setup_wake_irq() to parse the PCIe WAKE# interrupt from the
+> device tree and set the wake irq. Add of_pci_teardown_wake_irq() to clear
+> the wake irq.
+>=20
+> Call of_pci_setup_wake_irq() in pci_device_probe() to setup PCIe WAKE#
+> interrupt during PCIe Endpoint enumeration.
+>=20
+> Enable or disable PCIe WAKE# interrupt in platform_pci_set_wakeup().
+>=20
+> Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> ---
+>=20
+> Changes in v14:
+> pci_platform_pm_ops structure is removed in latest kernel, so dropped
+> pci-of driver. Instead, enable wake in platform_pci_set_wakeup().
+>=20
+> Changes in v13:
+> Fix compiler error reported by kbuild test robot <fengguang.wu@intel.com>
+>=20
+> Changes in v12:
+> Enable the wake irq in noirq stage to avoid possible irq storm.
+>=20
+> Changes in v11:
+> Only support 1-per-device PCIe WAKE# pin as suggested.
+>=20
+> Changes in v10:
+> Use device_set_wakeup_capable() instead of device_set_wakeup_enable(),
+> since dedicated wakeirq will be lost in device_set_wakeup_enable(false).
+>=20
+> Changes in v9:
+> Fix check error in .cleanup().
+> Move dedicated wakeirq setup to setup() callback and use
+> device_set_wakeup_enable() to enable/disable.
+>=20
+> Changes in v8:
+> Add pci-of.c and use platform_pm_ops to handle the PCIe WAKE# signal.
+>=20
+> Changes in v7:
+> Move PCIE_WAKE handling into pci core.
+>=20
+> Changes in v6:
+> Fix device_init_wake error handling, and add some comments.
+>=20
+> Changes in v5:
+> Rebase.
+>=20
+> Changes in v3:
+> Fix error handling.
+>=20
+> Changes in v2:
+> Use dev_pm_set_dedicated_wake_irq.
+>=20
+>  drivers/pci/of.c         | 49 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/pci/pci-driver.c | 10 ++++++++
+>  drivers/pci/pci.c        |  7 ++++++
+>  drivers/pci/pci.h        |  8 +++++++
+>  4 files changed, 74 insertions(+)
+>=20
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index ff897c40ed71..1c348e63f175 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/of_irq.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_pci.h>
+> +#include <linux/pm_wakeirq.h>
+>  #include "pci.h"
+> =20
+>  #ifdef CONFIG_PCI
+> @@ -705,3 +706,51 @@ u32 of_pci_get_slot_power_limit(struct device_node *=
+node,
+>  	return slot_power_limit_mw;
+>  }
+>  EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+> +
+> +int of_pci_setup_wake_irq(struct pci_dev *pdev)
+> +{
+> +	struct pci_dev *ppdev;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lucas-Tanure/ALSA-cs35l41-Add-shared-boost-feature/20230207-184238
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20230207104021.2842-2-lucas.tanure%40collabora.com
-patch subject: [PATCH 1/2] ALSA: cs35l41: Add shared boost feature
-config: i386-randconfig-a011 (https://download.01.org/0day-ci/archive/20230208/202302081911.MDwfUTfx-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c1726800667180cd46986c3578e635bafa8bf01a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Lucas-Tanure/ALSA-cs35l41-Add-shared-boost-feature/20230207-184238
-        git checkout c1726800667180cd46986c3578e635bafa8bf01a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash sound/soc/codecs/
+Perhaps "parent" since that's what it is referring to? ppdev is a bit
+vague.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+> +	struct device_node *dn;
+> +	int ret, irq;
+> +
+> +	/* Get the pci_dev of our parent. Hopefully it's a port. */
+> +	ppdev =3D pdev->bus->self;
+> +	/* Nope, it's a host bridge. */
+> +	if (!ppdev)
+> +		return 0;
+> +
+> +	dn =3D pci_device_to_OF_node(ppdev);
+> +	if (!dn)
+> +		return 0;
+> +
+> +	irq =3D of_irq_get_byname(dn, "wakeup");
+> +	if (irq =3D=3D -EPROBE_DEFER) {
+> +		return irq;
+> +	} else if (irq < 0) {
+> +		/* Ignore other errors, since a missing wakeup is non-fatal. */
+> +		dev_info(&pdev->dev, "cannot get wakeup interrupt: %d\n", irq);
 
-All warnings (new ones prefixed by >>):
+dev_dbg() maybe? As it is this would add an annoying info message for
+basically every PCI controller on every DT-based board out there.
 
->> sound/soc/codecs/cs35l41-lib.c:1160:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
-           case CS35L41_SHD_BOOST_PASS:
-                ^~~~~~~~~~~~~~~~~~~~~~
-   sound/soc/codecs/cs35l41-lib.c:1169:9: note: uninitialized use occurs here
-           return ret;
-                  ^~~
-   sound/soc/codecs/cs35l41-lib.c:1136:9: note: initialize the variable 'ret' to silence this warning
-           int ret;
-                  ^
-                   = 0
-   1 warning generated.
+Thierry
 
+--1q5Qd0tqx26fwrBX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-vim +/ret +1160 sound/soc/codecs/cs35l41-lib.c
+-----BEGIN PGP SIGNATURE-----
 
-  1132	
-  1133	int cs35l41_init_boost(struct device *dev, struct regmap *regmap,
-  1134			       struct cs35l41_hw_cfg *hw_cfg)
-  1135	{
-  1136		int ret;
-  1137	
-  1138		switch (hw_cfg->bst_type) {
-  1139		case CS35L41_SHD_BOOST_ACTV:
-  1140			regmap_multi_reg_write(regmap, cs35l41_actv_seq, ARRAY_SIZE(cs35l41_actv_seq));
-  1141			fallthrough;
-  1142		case CS35L41_INT_BOOST:
-  1143			ret = cs35l41_boost_config(dev, regmap, hw_cfg->bst_ind,
-  1144						   hw_cfg->bst_cap, hw_cfg->bst_ipk);
-  1145			if (ret)
-  1146				dev_err(dev, "Error in Boost DT config: %d\n", ret);
-  1147			break;
-  1148		case CS35L41_EXT_BOOST:
-  1149		case CS35L41_EXT_BOOST_NO_VSPK_SWITCH:
-  1150			/* Only CLSA0100 doesn't use GPIO as VSPK switch, but even on that laptop we can
-  1151			 * toggle GPIO1 as is not connected to anything.
-  1152			 * There will be no other device without VSPK switch.
-  1153			 */
-  1154			regmap_write(regmap, CS35L41_GPIO1_CTRL1, 0x00000001);
-  1155			regmap_multi_reg_write(regmap, cs35l41_reset_to_safe,
-  1156					       ARRAY_SIZE(cs35l41_reset_to_safe));
-  1157			ret = regmap_update_bits(regmap, CS35L41_PWR_CTRL2, CS35L41_BST_EN_MASK,
-  1158						 CS35L41_BST_DIS_FET_OFF << CS35L41_BST_EN_SHIFT);
-  1159			break;
-> 1160		case CS35L41_SHD_BOOST_PASS:
-  1161			regmap_multi_reg_write(regmap, cs35l41_pass_seq, ARRAY_SIZE(cs35l41_pass_seq));
-  1162			break;
-  1163		default:
-  1164			dev_err(dev, "Boost type %d not supported\n", hw_cfg->bst_type);
-  1165			ret = -EINVAL;
-  1166			break;
-  1167		}
-  1168	
-  1169		return ret;
-  1170	}
-  1171	EXPORT_SYMBOL_GPL(cs35l41_init_boost);
-  1172	
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPjjKAACgkQ3SOs138+
+s6Gc1g//QDcPcTt+z4P1/kQA57KiH2zlcgzNOHcfKJtNlVguNQSSAG5ebtfi2RMP
+ZuKRK6HIBVEV7ar3yse0qNIZoYLldgL8x4vSsyPJsZu0GBwZEF+B181I/2KJ9gk9
+qM72LtQb7vc3HAoqSxmYT8JWSlQfsBVOEtEQoMphev34JXNivf5HsasEm2umzjnf
+lCP+jiCyBDiK+RWGckOuYtNTfIUussbHFt1oMbSHomRpEKr4nLlhYrfGbUiCB4wz
+MTecWQI1y4o6LYG/CUDYM/2mepNPmmcjBUA4Xn/eI+lRrX+SKFmsSx5bkZUikHFl
+6lfJwuPYiAjwcPUa88+LdvKb1l6/OuVgmk0H6ei/FBqEBWDmf8GQbH7V9H/UhWxP
+BnSpsrI5U2/eaLGwWC/Di/79rdQbkw2XdjaJqjKPL8UfBoeGRNSRP3QHrnoTXyus
+33VXhRrgVKL71a37tt3j0ZUzrwJwERg+TeY7WhoCn1+pjIwLUq9lFpQYFyDjc0Sw
+qK9Haxrs9jsjpI2M+AEb6DtkBw7u76sYyU3De9Yc5QILcFnj+mtfLbsLS9wlOhZY
+EEonuEpDhRkGFqHp5Wd4Ff0Qjm04QcPd5/zwDCu5F3WG/7H7RphNlrTKSqsDkF7a
+bgHtdYdeHec0rSwIIbHG1wMUFKkyuLIYJrChvR8pcFkAi0V4XbA=
+=ULUl
+-----END PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+--1q5Qd0tqx26fwrBX--
