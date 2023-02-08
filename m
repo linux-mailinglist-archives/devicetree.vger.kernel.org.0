@@ -2,131 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DED268F833
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A85268F85D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:51:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231923AbjBHTio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 14:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48542 "EHLO
+        id S230377AbjBHTvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 14:51:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231636AbjBHTin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:38:43 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991634B18E
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:38:42 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id ba1so13850156wrb.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:38:42 -0800 (PST)
+        with ESMTP id S229617AbjBHTvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:51:06 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102CE1C7D7
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:51:05 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id d14so17930750wrr.9
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:51:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BdAD5QrpEcQ0zzaMz4kMFeIBnTyIJbzpOOt7zHm3IRI=;
-        b=FkmfxtiPgxjuvvp4A+gPUuNqzf4PAY4/hh36cKhM/flGzlXiF9Zv4MydUlzd8fF/kQ
-         +LUEqLUIm/VeVFGaLnqhnTzrCMtqGCKJ061eSTxQYwnSt1VCKqXN9XdzT5YGh9Zbs15x
-         y79wRHq2HVwTCNYwUX68HNb2pikwg1qXjzpgvXbnPF810JZAtxVE2pLKDIv9/cDrzmJ5
-         Ga84vuFFML6iq3/dvb8y8QPrM7sOZ80Ml1Rv2aJ7UfcT5VpLifz7AWhnDG1bdhuNZcoO
-         4Drt5rZoGR5frOnpRnlBwWjx/X4D2P4PQnLe7hw8WqtDkwVBm1yjqznc+qyza4Nk09Cw
-         lCoA==
+        bh=cY1HwE63r9UqyW6Gdx6yhcFxmTguDnqyz+SAe6KoqOQ=;
+        b=Hn2pHT7CPTC3o8c4Wpog/hsIQx7uvafsHgvOxeofLCyAJV9L7gPsNScf3TeLdqqPnr
+         LUzNnDUuUwSEk4aAlXxfEaM0zrMXnNq/Cz9jO8mHY2YrfNr8ZSfgFLz3JafNViK1B0bT
+         53rAEhyJo2OFPoJrvYYNaSFu+AOUT2z3hE6WS4W+99iNSs+K++NUxAAHsqs+vnQswru7
+         g2c2FQ5Zbky3mbyXl60E6JmICG07hRBCes7yafGv0Boq39tw4NTKpnaCMM8GPAJALkiJ
+         IzP9WQ7KcVyZ+MritmxJAz+n/lPp2+TSmLh2MLkT3IRzrHIZ1barAg2zteWvZOip25aT
+         bkXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BdAD5QrpEcQ0zzaMz4kMFeIBnTyIJbzpOOt7zHm3IRI=;
-        b=khmJGCGroGjQHXDLa5U5N1FntekHrawYV6W3VWKYI1bLXMtIudub8P+EP1JNO9Jgs7
-         Pe6hSghd+NKWmZQuJcm7MvDasguEjj13k+CjnXRWpyEB0NGVsU838Xem/YhRH2zafMEI
-         eLYb8HKPk+4A+Upd5hHQ3+Yc1Lx3uyJUlRUsVqI4CeGlR9k2AJ2Cy91mdcNhunnRb5tL
-         Xl3RbUOSVgksTUEHcNoTfmgrMTXGzCFn+oAeyVWUh5dghwRKLPhMovssQAqG8bN3u4xW
-         c2dWAulJPTAtHL4DyOFgsk1o60EpiqFTlE6AxER7gPmopka66Vr3/Mtp8sARf91fhL2B
-         /D2Q==
-X-Gm-Message-State: AO0yUKVC2lN0Ix4OBFyINCoDI6pVSGl4bSjirgyHXWrTQ0E15zRa9mTd
-        hSuQaWn5IFbv8Za0AlcZLXzh+w==
-X-Google-Smtp-Source: AK7set/Sk+mM5Gp0qTAl+sx2O3tRO1dQ1UUP0ecynbikcu/9D+jv85ph6CzBBq4we+evJn0ovJMdnA==
-X-Received: by 2002:a5d:62c8:0:b0:2c3:f250:f1ed with SMTP id o8-20020a5d62c8000000b002c3f250f1edmr10154258wrv.1.1675885121164;
-        Wed, 08 Feb 2023 11:38:41 -0800 (PST)
+        bh=cY1HwE63r9UqyW6Gdx6yhcFxmTguDnqyz+SAe6KoqOQ=;
+        b=xAYPn0wIs+OfA/98jlrKcXUmFEiTSJFypIqLh6pAz2V0NjqSVOgSxDD1jwWa7ePW7e
+         JNnOgEXPZdjU1sSxmpUCf1/zdlbxV4b4gUxvywydboJ5ldG7Bin4JkjujhTvobSahImX
+         reJVHD2S7w6mJ/TH9Px0ZdwkPIL6eGpLl3R3usIAcfXbVWz1JsU4WPSUnFZ1yCy8Ah8t
+         yt/WxY3jSZQCx/OSy3eRO3hLKgmdCUIkPrn1m4QDxIoptbwan2aWFGzqZyg3HPYhIyQ2
+         TDmQfgBXwRtcnFjZL8MmCpfW+9PyytK1nbFOVafK+KzxyTCzCDW6fYUh2mtWvVAX4vkb
+         Ot+A==
+X-Gm-Message-State: AO0yUKWqWywUaj0Ufb8M1e6hGSxDnVnuQRHtaZFU2yjMfFxqyWarDutL
+        VhU8LtC4qbswKFEEqwTyeA9DNw==
+X-Google-Smtp-Source: AK7set9dhkugBafQNUYIvCX0R36B8oLdf4eHcflcqRkwcR7SGvh653bV+4HiKahZLc+dRe/stewv5A==
+X-Received: by 2002:adf:ef0d:0:b0:2c4:645:da36 with SMTP id e13-20020adfef0d000000b002c40645da36mr2643620wro.24.1675885863619;
+        Wed, 08 Feb 2023 11:51:03 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h10-20020a5d504a000000b002c3efca57e1sm6382181wrt.110.2023.02.08.11.38.39
+        by smtp.gmail.com with ESMTPSA id f9-20020adff989000000b002c3e6b39512sm8933760wrr.53.2023.02.08.11.51.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 11:38:40 -0800 (PST)
-Message-ID: <f09a89e0-c93f-dacd-2270-379e43773b61@linaro.org>
-Date:   Wed, 8 Feb 2023 20:38:39 +0100
+        Wed, 08 Feb 2023 11:51:03 -0800 (PST)
+Message-ID: <55f02cd9-d191-8454-ef67-613bc8373f9f@linaro.org>
+Date:   Wed, 8 Feb 2023 20:51:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
+Subject: Re: [PATCH net-next v2 4/6] dt-bindings: net: renesas,rzn1-gmac:
+ Document RZ/N1 GMAC support
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        - <patches@opensource.cirrus.com>, devicetree@vger.kernel.org
-References: <20230208172552.404324-1-krzysztof.kozlowski@linaro.org>
- <167588125123.2283195.8694738903913228349.robh@kernel.org>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Wong Vee Khee <veekhee@apple.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Revanth Kumar Uppala <ruppala@nvidia.com>,
+        Tan Tee Min <tee.min.tan@linux.intel.com>
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230208164203.378153-1-clement.leger@bootlin.com>
+ <20230208164203.378153-5-clement.leger@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <167588125123.2283195.8694738903913228349.robh@kernel.org>
+In-Reply-To: <20230208164203.378153-5-clement.leger@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 19:46, Rob Herring wrote:
+On 08/02/2023 17:42, Clément Léger wrote:
+> Add "renesas,rzn1-gmac" binding documentation which is compatible with
+> "snps,dwmac" compatible driver but uses a custom PCS to communicate
+> with the phy.
 > 
-> On Wed, 08 Feb 2023 18:25:52 +0100, Krzysztof Kozlowski wrote:
->> Convert the Wolfson WM1811/WM8994/WM8958 audio codecs bindings to DT
->> schema.
->>
->> Changes against original binding:
->> 1. Add missing LDO1VDD-supply for WM1811.
->> 2. Use "gpios" suffix for wlf,ldo1ena and wlf,ldo2ena (Linux kernel's
->>    gpiolib already looks for both variants).
->> 3. Do not require AVDD1-supply and DCVDD-supply, because at least on
->>    Arndale board with Exynos5250 these are grounded.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/sound/wlf,wm8994.yaml | 203 ++++++++++++++++++
->>  .../devicetree/bindings/sound/wm8994.txt      | 112 ----------
->>  2 files changed, 203 insertions(+), 112 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8994.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/sound/wm8994.txt
->>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  .../bindings/net/renesas,rzn1-gmac.yaml       | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230208172552.404324-1-krzysztof.kozlowski@linaro.org
-> 
-> 
-> audio-codec@1a: 'AVDD1-supply' is a required property
-> 	arch/arm/boot/dts/exynos5250-smdk5250.dtb
-> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
-> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
-> 
-> audio-codec@1a: 'DCVDD-supply' is a required property
-> 	arch/arm/boot/dts/exynos5250-smdk5250.dtb
-> 	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
-> 	arch/arm/boot/dts/s5pv210-galaxys.dtb
+> diff --git a/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> new file mode 100644
+> index 000000000000..944fd0d97d79
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas GMAC
+> +
+> +maintainers:
+> +  - Clément Léger <clement.leger@bootlin.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - renesas,r9a06g032-gmac
+> +          - renesas,rzn1-gmac
+> +  required:
+> +    - compatible
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a06g032-gmac
+> +          - renesas,rzn1-gmac
+> +          - snps,dwmac
 
-These two need corrections in the binding - next version of patch.
+This is still not correct and does not make any sense.
 
-> 
-> audio-codec@1a: Unevaluated properties are not allowed ('wlf,ldo1ena', 'wlf,ldo2ena' were unexpected)
-> 	arch/arm/boot/dts/exynos4412-i9300.dtb
-
-These are fixed here:
-https://lore.kernel.org/linux-samsung-soc/20230208172634.404452-1-krzysztof.kozlowski@linaro.org/T/#t
+What do you want to say here with such binding? That you describe
+"snps,dwmac" here? Then it's duplicated with snps,dwmac.yaml... Drop
+that enum and make it a proper list.
 
 Best regards,
 Krzysztof
