@@ -2,118 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82F668F786
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:55:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3587768F79B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:02:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjBHSzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 13:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
+        id S231439AbjBHTCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 14:02:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjBHSzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:55:37 -0500
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1697918A95;
-        Wed,  8 Feb 2023 10:55:37 -0800 (PST)
-Received: by mail-oi1-f182.google.com with SMTP id c15so16187780oic.8;
-        Wed, 08 Feb 2023 10:55:37 -0800 (PST)
+        with ESMTP id S231431AbjBHTCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:02:08 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838CB521C8
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:02:05 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so2199089wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:02:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3A5KG8ddYt3K2NbI6U6lMWAvkEN/aV9gsP0XbAJMpVo=;
+        b=KQ/Y2/c3NdJg1E0/3saDg4EN8eLMH/ZHol8lekGfsVkkz7gVSbqot26OEIaD88s6TM
+         ZMtr3nipTC3n4XCDBlEeSHWXtBXFXrb/AIGJJrQWHZy4fQwoByMVNmlyduIZ7tbgftBU
+         Gh6r0kqwYyNPgLYWijdBIcYitcCw9zxOIO5YauoaVkdR4mKIe0cJ7Xmqc3hzpR6unI4H
+         bpz5o4p+3kZBZY9n9u01jb9DsU9mOBmyUc9QPLeHxsXMU7SrQSvPSotw2WXW3eV7rRCC
+         lN+4ZWQ/ukr3n46SblitVuvkJAOTlKjHmveC/lZdUtB+pr+e+0DQFs+L45dMk1ES8j+1
+         cfgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=M8d0ESE5MK3b2wd99nPGv7KGBzjZjqzw2XHEjluBMZs=;
-        b=F/uk+I3pB+JSVgcLXdBUYhIj/nDMoSnNsKn0Hxr7nJQp0JXd+1WQAJBA/aSf+hj2rZ
-         +RbhKwKIIpawTn6AQILeRcBSGT+iPKSSgKbStmyk3uBDLUDC7Ps4UGMWBpH/sXgNTh0n
-         8z2YutjzAZlTSBMzos+cRArZdCupDYIVOzb3VqwidLE417tjqjph9Us/+YBaJ9UOXmpg
-         0yBpRfipVCWDlD8WkYvAUJ/izEdTUZmUy5TrHY9K2prkuaYVebnZU+/vAeVd9/JTcR6P
-         rdz51s2gv/VDab0HAh+X0KdF6x+IiJZVB1QLFADo6x262eId6tzBsa1PwdM+xaTESrCO
-         RBWA==
-X-Gm-Message-State: AO0yUKXoAWqpJS2RfZ6CCQ70avSl2/vzdvm5QuJAtt65F5MYFlRCH9vx
-        15uL1Ef6iPRwf+Zad8lC4g+XkZyAkQ==
-X-Google-Smtp-Source: AK7set8KL0fKVdt4dp3+enkzwIWYhrqb88oVzpwYio6H74+ost/bBV8ObwJWto6+y+cJg4mdOFOpew==
-X-Received: by 2002:a05:6808:643:b0:367:18a6:eb26 with SMTP id z3-20020a056808064300b0036718a6eb26mr3739093oih.42.1675882536219;
-        Wed, 08 Feb 2023 10:55:36 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p2-20020a0568301d4200b0068be61a7ac6sm8384747oth.56.2023.02.08.10.55.35
+        bh=3A5KG8ddYt3K2NbI6U6lMWAvkEN/aV9gsP0XbAJMpVo=;
+        b=GGkCBOiJkDnJvJRmE2hIsr6hFoDHkGNUxlRUwd4tUtCamyb2NGWvcKbw50sS1eL5cv
+         7kvPElHfGnixvBLYEhlpKSidwsg0yqq/tUs4eqmiQVoCb+HiHaQ6VKwIp69zZ+UkN1fu
+         uMq2KEG7PNWC+tUbDqfNEyfKOF49JZTb1WRe56eVyh2gHOOwy5tMUg4u3WW9EG/jUBZj
+         lFMx+iuG+PqVFAxx4icLFbuOZK5KAzPskPrKtuJ5hML8Mz0qlhFRjrpBsYD3f+pHnBpR
+         ikh8a2+TQb42+Q3P/989qGUu0Xsj2IPwC4+rl9HayPhzIMZUEitRiJE4/YwjJ5I5wC+1
+         qTFw==
+X-Gm-Message-State: AO0yUKV54XL4qO2lClswdnVzzpS34vZ8xcvU/np+B046f5siNlbg9n63
+        0eMnjRpqE/1O8RJd6jgzdjvPtQ==
+X-Google-Smtp-Source: AK7set82THdX95O78KDVlFQudiHHASK8Ft9xkYyq9++/erK3Gg4+fmZQAhI3tGjKYsryDyYx4Z6lBw==
+X-Received: by 2002:a05:600c:30d2:b0:3dc:4fd7:31f7 with SMTP id h18-20020a05600c30d200b003dc4fd731f7mr7142679wmn.41.1675882923974;
+        Wed, 08 Feb 2023 11:02:03 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003dc1d668866sm2650327wmc.10.2023.02.08.11.02.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 10:55:35 -0800 (PST)
-Received: (nullmailer pid 2305872 invoked by uid 1000);
-        Wed, 08 Feb 2023 18:55:35 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Richter <rric@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: cavium: Fix GICv3 ITS nodes
-Date:   Wed,  8 Feb 2023 12:55:06 -0600
-Message-Id: <20230208185506.2305349-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.1
+        Wed, 08 Feb 2023 11:02:03 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/7] sm8550: Add support for eUSB2 repeater
+Date:   Wed,  8 Feb 2023 21:01:53 +0200
+Message-Id: <20230208190200.2966723-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GICv3 ITS is an MSI controller, therefore its node name should be
-'msi-controller'. The ITS node is also expected to have '#msi-cells'.
-Add it on Thunder as there are no users. Thunder2 uses 'msi-parent', but
-Robin says that should be 'msi-map' instead and I'm not sure what's
-correct for it.
+This patchset adds support for the eUSB2 repeater found in pmic PM8550B,
+used along with SM8550. Since there is no dedicated generic framework
+for eUSB2 repeaters, the most appropriate subsystem to model it is the
+generic phy. This patchset also adds support for such repeater to the
+eUSB2 PHY found in SM8550. Basically, the eUSB2 PHY will have its own
+"phy" which is actually a repeater.
 
-The unit-addresses of both the ITS and main GIC node on thunder2 are also
-wrong, so fix them while we're here.
+This patchset is based on the following patchset:
+https://lore.kernel.org/all/20230208183421.2874423-1-abel.vesa@linaro.org/
 
-Cc: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm64/boot/dts/cavium/thunder-88xx.dtsi  | 3 ++-
- arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 3 deletions(-)
+Changes since v4:
+ * added Krzysztof's R-b tag got patch #1 and A-b tag to patch #3
 
-diff --git a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-index e0a71795261b..8ad31dee11a3 100644
---- a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-+++ b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-@@ -389,9 +389,10 @@ gic0: interrupt-controller@8010,00000000 {
- 			      <0x8010 0x80000000 0x0 0x600000>; /* GICR */
- 			interrupts = <1 9 0xf04>;
- 
--			its: gic-its@8010,00020000 {
-+			its: msi-controller@801000020000 {
- 				compatible = "arm,gic-v3-its";
- 				msi-controller;
-+				#msi-cells = <1>;
- 				reg = <0x8010 0x20000 0x0 0x200000>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-index dfb41705a9a9..3419bd252696 100644
---- a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-+++ b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-@@ -55,7 +55,7 @@ psci {
- 		method = "smc";
- 	};
- 
--	gic: interrupt-controller@400080000 {
-+	gic: interrupt-controller@4000080000 {
- 		compatible = "arm,gic-v3";
- 		#interrupt-cells = <3>;
- 		#address-cells = <2>;
-@@ -67,7 +67,7 @@ gic: interrupt-controller@400080000 {
- 		      <0x04 0x01000000 0x0 0x1000000>;	/* GICR */
- 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 
--		gicits: gic-its@40010000 {
-+		gicits: msi-controller@4000100000 {
- 			compatible = "arm,gic-v3-its";
- 			msi-controller;
- 			reg = <0x04 0x00100000 0x0 0x20000>;	/* GIC ITS */
+Changes since v3:
+ * This time is a normal patchset, rather than an RFC
+
+Changes since v2:
+ * moved the bindings qcom,spmi-pmic patch before the repeater schema
+   patch in order to avoid the repeater schema validation failure due to
+   phy pattern property not being found in qcom,spmi-pmic schema
+
+Changes since v1:
+ * the repeater driver is implemented now as a PHY rather than adding
+   a new generic framework for USB repeaters
+
+Abel Vesa (5):
+  dt-bindings: phy: Add qcom,snps-eusb2-repeater schema file
+  dt-bindings: mfd: qcom,spmi-pmic: Add pattern property for phy
+  dt-bindings: phy: qcom,snps-eusb2-phy: Add phys property for the
+    repeater
+  phy: qcom: Add QCOM SNPS eUSB2 repeater driver
+  arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
+
+Neil Armstrong (2):
+  phy: qcom: phy-qcom-snps-eusb2: Add support for eUSB2 repeater
+  arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   4 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |   5 +
+ .../phy/qcom,snps-eusb2-repeater.yaml         |  52 ++++
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi         |   6 +
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |   7 +
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 259 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    |  19 +-
+ 9 files changed, 361 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
+
 -- 
-2.39.1
+2.34.1
 
