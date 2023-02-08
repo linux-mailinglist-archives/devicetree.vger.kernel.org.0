@@ -2,129 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6FA68E60F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 03:30:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BC1368E614
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 03:31:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjBHCaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 21:30:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47012 "EHLO
+        id S229994AbjBHCbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 21:31:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbjBHCay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 21:30:54 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 990E725E33;
-        Tue,  7 Feb 2023 18:30:53 -0800 (PST)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 0429420C7E3C; Tue,  7 Feb 2023 18:30:53 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0429420C7E3C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675823453;
-        bh=FTw6lbYJqScdQtkwSa5qMiwA99Ksn8O5FYC3z9/HlBg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=n9I7YUxBxXbpcmAN709MdMZ83oYMxkJIk1il7cLnpaUFmZ65MiYNaBdw/KLGFr/Ob
-         NBiMbgHwQ3Ev11xQq3TwsfmtnNABIUYXoHNCADRs7dRQXQytlVxdRMqLifytSzrrLX
-         3h5rJrb35hrV8mRUjiy65dlx5BPw+AcWRp81M+oA=
-Date:   Tue, 7 Feb 2023 18:30:52 -0800
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Subject: Re: [PATCH v2 6/6] Driver: VMBus: Add device tree support
-Message-ID: <20230208023052.GA29547@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
- <1675188609-20913-7-git-send-email-ssengar@linux.microsoft.com>
- <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
- <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20230201174638.GA3872117-robh@kernel.org>
- <20230203173616.GA8582@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <CAL_JsqKWWg=nL5C1Hz7GQ6YCbc0ssUP71Be6kcn57v5240GQew@mail.gmail.com>
+        with ESMTP id S230132AbjBHCbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 21:31:49 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC9E27495;
+        Tue,  7 Feb 2023 18:31:44 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id EEF6B24E20C;
+        Wed,  8 Feb 2023 10:31:36 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Feb
+ 2023 10:31:37 +0800
+Received: from [192.168.125.110] (183.27.96.33) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Feb
+ 2023 10:31:36 +0800
+Message-ID: <87e31545-3107-1cc2-fc93-197f66712ccc@starfivetech.com>
+Date:   Wed, 8 Feb 2023 10:31:35 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKWWg=nL5C1Hz7GQ6YCbc0ssUP71Be6kcn57v5240GQew@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v4 0/4] Basic pinctrl support for StarFive JH7110 RISC-V
+ SoC
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Andreas Schwab <schwab@suse.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230203141801.59083-1-hal.feng@starfivetech.com>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230203141801.59083-1-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.96.33]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 11:38:55AM -0600, Rob Herring wrote:
-> On Fri, Feb 3, 2023 at 11:36 AM Saurabh Singh Sengar
-> <ssengar@linux.microsoft.com> wrote:
-> >
-> > On Wed, Feb 01, 2023 at 11:46:38AM -0600, Rob Herring wrote:
-> > > On Wed, Feb 01, 2023 at 08:51:33AM -0800, Saurabh Singh Sengar wrote:
-> > > > On Tue, Jan 31, 2023 at 02:12:53PM -0600, Rob Herring wrote:
-> > > > > On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
-> > > > > <ssengar@linux.microsoft.com> wrote:
-> > > > I wanted to have separate function for ACPI and device tree flow, which
-(...)
-> > > > can be easily maintained with #ifdef. Please let me know if its fine.
-> > >
-> > > Yes, you can have separate functions:
-> > >
-> > > static int vmbus_acpi_add(struct platform_device *pdev)
-> > > {
-> > >       if (!IS_ENABLED(CONFIG_ACPI))
-> > >               return -ENODEV;
-> > >
-> > >       ...
-> > > }
-> > >
-> > > The compiler will throw away the function in the end if CONFIG_ACPI is
-> > > not enabled.
-> > >
-> > > That is easier for us to maintain because it reduces the combinations to
-> > > build.
-> > >
-> >
-> > I tried removing #ifdef CONFIG_ACPI and use C's if(!IS_ENABLED(CONFIG_ACPI)) but looks
-> > compiler is not optimizing out the rest of function, it still throwing errors
-> > for acpi functions. This doesn't look 1:1 replacement to me.
-> > Please let me know if I have missunderstood any of your suggestion.
-> >
-> > drivers/hv/vmbus_drv.c:2175:8: error: implicit declaration of function ‘acpi_dev_resource_interrupt’ [-Werror=implicit-function-
+On Fri, 3 Feb 2023 22:17:57 +0800, Hal Feng wrote:
+> This patch series adds basic pinctrl support for StarFive JH7110 SoC.
 > 
-> That's a failure of the ACPI headers not having empty function
-> declarations. The DT functions do...
+> Changes since v3:
+> - Rebased on Linus's "devel" branch of linux-pinctrl repo, which was based on
+>   on tag v6.2-rc1.
+> - Dropped patch 1.
+> Patch 2 & 3:
+> - Added a reference for '-pins$' patternProperties.
+> - Put "additionalProperties: false" before properties section. (by Rob)
+> - Improved the description.
+> - Changed the node name in examples from "gpio" to "pinctrl".
+> Patch 4:
+> - Added some missing headers. (by Andreas)
 > 
-> Also, this is just a broken assumption:
-> 
-> #ifdef CONFIG_ACPI
-> 
-> #else
-> // Assume DT
-> #endif
-> 
-> Both ACPI and DT can be enabled at the same time. They may be mutually
-> exclusive for a platform, but not the kernel. For distro kernels, both
-> will be enabled typically if the arch supports both. On arm64, DT is
-> never disabled because the boot interface is always DT.
-> 
-> Furthermore, this makes compile testing your code difficult. The arm64
-> defconfig, allmodconfig and allyesconfig all will not build the DT
-> code. The same for x86. This means all the CI builds that happen can't
-> build test this.
+>   v3: https://lore.kernel.org/all/20221220005529.34744-1-hal.feng@starfivetech.com/
 
-Thanks for letting me know the challanges with testing. My intention was to give
-ACPI higher priority, in case ACPI is enabled system should go ACPI flow, OF flow
-should be used only when ACPI is disabled.
+Hi, Linus,
 
-I can replace #else part with #ifdef CONFIG_OF if that helps.
+I have resent the patches rebased on your "devel" branch. Rob has added
+Reviewed-by tags for DT bindings, but the DT binding patches still need
+to be modified a little bit. Could you apply this series if I modify the
+DT bindings patches and resend as v5? Or it need another round of review?
 
-Regards,
-Saurabh
-
-> 
-> Rob
+Best regards,
+Hal
