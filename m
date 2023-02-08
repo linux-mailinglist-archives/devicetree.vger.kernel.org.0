@@ -2,91 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8474468E983
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B7BF68E98A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:08:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjBHIEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 03:04:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
+        id S230366AbjBHIIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 03:08:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjBHIEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:04:10 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74EDE38E98
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:04:09 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id d14so15843969wrr.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:04:09 -0800 (PST)
+        with ESMTP id S230135AbjBHIIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:08:23 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52EB23BDBA
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:08:20 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id z13so5254436wmp.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:08:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zPZYKz9kIWG0BV1hKs7mmkywSKpqe4/iI0ZWWNXTejg=;
-        b=JDQ7cEO1o5sk/n06eAakbpT66oZ80BwGfLJ6rQUl/kuVS0pPWBerSI62m/+4k3yuLT
-         9KS5ffgX7iGFD8fSJu1Fy9tsseGZV9CNhY9knoLl8qpMUnZdl9nGOx4rwn/VUh/plBrM
-         VMTsBInoS1ym37pZsfMAOGeRNZURvNN/1FGhk7JlXpD31+DoXQOoUA/FU40Ar2MRA3sM
-         HON0JuwbYyuHh1G2QrTWEox46SWx/KYDWOfVwQ28VsGfX+B5B6atDsNb8MzFD+vufq4w
-         2HG5d/3SAe74owyHXvj3IjuLC8nLaQ9JAn9yIkDtxBYdKnGeFw4i53Um0fHNoYc1i93M
-         qmGQ==
+        bh=f0Yeqw+n9auIMr3bZDWbX/X3qmlRuGI6vJxpumVLIG0=;
+        b=ifQIbB7eWE/eET3ThPwbuLSN9zuI/7UV7B6xci7/WHSWDDSx48jhqcOdfHxYwOz2ku
+         itnFfWIJ3U+BVh9TyAMYK5Bu69q7ZAXDL59cZnEgc8yk+G97U1XL5NiVKlLzYWysFCg6
+         U9deWu9AKefCpOzP5geqkxvv8gUpB39fZOjpttxzd/K3oTYyplqN3oUKcA6XKs5jCvK2
+         l/krEa1RxzBKhHTqH/AfmjI1Aq+Fq4xXV0zmmxi00X8VH4SnzRd7sazuPgFjmIxPFCT1
+         NKgb2An0CP9uR+l9la6feJRCmebEw8II6ujHKsFCOV3kxZxU2yA5rhi5tUWfzoLLua+v
+         33Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zPZYKz9kIWG0BV1hKs7mmkywSKpqe4/iI0ZWWNXTejg=;
-        b=HqsNQ9SszINGC4Xepj7QDPBZWMzid0F2LlQ2wNa7faGL6fS4SZhdt+CBBxTnA7vKnz
-         yZDZxDv92yEgpCjLYtjM6ZBzdj2n0q10RwR5C1Py3IwkX+6wV4lfCfoqm/Cs4BrXhYOh
-         VKVjjLJLcVoyB1UgVh3REPxuBHRHWIvFFqsC81ZJOR59Ztnu2f5LbZ79XHeqcha9p35B
-         Cns5pJRuGbqUDj3IUROa3SSst/urZk01fvVBfI9Yvx4dCC7Hm7p66UHFuG7LepCZ97XH
-         BqrmoCPlA69LfN+ykyOa2sQrzuWVHlVWvVG9zSoN32cP8sg9I9ETkwIDuwlpZNi0BPX8
-         58qw==
-X-Gm-Message-State: AO0yUKVrBb3k0G5D4kS3v3iDWGtmv4Xh1rHsAxa6WWRKOlssO64nG5I9
-        QhZL4s5gta79Fb0l0uBZZuH1VA==
-X-Google-Smtp-Source: AK7set/9BRPwbInVYGqTZVlD3CNJVkBqMQafTUumpq+/ygBf8ftf4J0AcDgJI1cyDRzks+1vVM1MKg==
-X-Received: by 2002:a5d:6750:0:b0:2be:64bb:1d84 with SMTP id l16-20020a5d6750000000b002be64bb1d84mr5308759wrw.24.1675843448008;
-        Wed, 08 Feb 2023 00:04:08 -0800 (PST)
+        bh=f0Yeqw+n9auIMr3bZDWbX/X3qmlRuGI6vJxpumVLIG0=;
+        b=vvLduYaGUAOfgtffEz34aTCWUlC2LjI3Ki2+E94BQWpJsfDl1pn5WBhaBnsA6IBDGU
+         74rC9sc66joYVudmo3CdDFMVgsXt8Rygu850sCdGAnKICMSAihUTowQVlq+VGkMUz44v
+         9u/rD8fDM0eZbr6Zhz033OujCyWJIwAxPe5rsq4dTH74X3FnNZis5r+HE1MPj3VEO/J+
+         5aMM8dxK2Av3WtCWz+NDEwG+RbhHShP6fn7rCkucHvUZxCd/osNV59Ume2dbSNR7MgLc
+         KwtXhlERahKru6CN5NIbU81fc/a+TXI1+5p/IHx1t3dnxZcoKzV18jg742dCo9Yj3SCt
+         LA2A==
+X-Gm-Message-State: AO0yUKUarVJzzKogfJMMohw0eiT3EqW/3sttkIMyIJXYEFUUM/eY4BJd
+        mYlNIvlFbd2pf9K6j73bp0Dqlg==
+X-Google-Smtp-Source: AK7set/mDAP4cMkma8YGcwY/ReGVaN6v04q3dXB7uoeNcRNFBwi4qnCaq91TpMMKIFauTosYb5JmFw==
+X-Received: by 2002:a05:600c:1606:b0:3e0:39:ec9d with SMTP id m6-20020a05600c160600b003e00039ec9dmr5857039wmn.23.1675843698667;
+        Wed, 08 Feb 2023 00:08:18 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s7-20020adfeb07000000b002bff1de8d4bsm12935330wrn.49.2023.02.08.00.04.06
+        by smtp.gmail.com with ESMTPSA id i12-20020a1c540c000000b003dc5b59ed7asm1118546wmb.11.2023.02.08.00.08.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 00:04:07 -0800 (PST)
-Message-ID: <9ca854f9-3148-2f56-287a-f898c8226f67@linaro.org>
-Date:   Wed, 8 Feb 2023 09:04:06 +0100
+        Wed, 08 Feb 2023 00:08:18 -0800 (PST)
+Message-ID: <0473dd66-aa96-917e-44e2-836ae6706b6a@linaro.org>
+Date:   Wed, 8 Feb 2023 09:08:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [Patch][next] dt-bindings: power: supply: Revise Richtek RT9467
- compatible name
+Subject: Re: [PATCH v11 4/5] dt-bindings: media: i2c: imx334 add new link_freq
 Content-Language: en-US
-To:     ChiaEn Wu <chiaen_wu@richtek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sre@kernel.org
-Cc:     cy_huang@richtek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        peterwu.pub@gmail.com
-References: <dc8873c3125f7aa6f84dc7b33a44bf00907e0814.1675853673.git.chiaen_wu@richtek.com>
+To:     shravan kumar <shravan.chippa@microchip.com>,
+        paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sakari Ailus <sakari.ailus@iki.fi>
+References: <20230208050915.1958183-1-shravan.chippa@microchip.com>
+ <20230208050915.1958183-5-shravan.chippa@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dc8873c3125f7aa6f84dc7b33a44bf00907e0814.1675853673.git.chiaen_wu@richtek.com>
+In-Reply-To: <20230208050915.1958183-5-shravan.chippa@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 04:14, ChiaEn Wu wrote:
-> Revise RT9467 compatible name from "richtek,rt9467-charger" to
-> "richtek,rt9467"
-
-Missing full stop.
-
-Please explain why.
-
+On 08/02/2023 06:09, shravan kumar wrote:
+> From: Shravan Chippa <shravan.chippa@microchip.com>
 > 
-> Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467 battery charger")
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> Add new supported link frequency in dt example.
+> 
+> Suggested-by: Sakari Ailus <sakari.ailus@iki.fi>
+> Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
