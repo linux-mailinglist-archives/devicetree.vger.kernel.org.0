@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA1A268FB6F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 00:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4479E68FB73
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 00:46:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbjBHXpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 18:45:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33916 "EHLO
+        id S229977AbjBHXqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 18:46:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbjBHXpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 18:45:44 -0500
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31831EBF5;
-        Wed,  8 Feb 2023 15:45:20 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id cz14so241291oib.12;
-        Wed, 08 Feb 2023 15:45:20 -0800 (PST)
+        with ESMTP id S229952AbjBHXqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 18:46:00 -0500
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26ED1C5A9;
+        Wed,  8 Feb 2023 15:45:41 -0800 (PST)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1636eae256cso661173fac.0;
+        Wed, 08 Feb 2023 15:45:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FEDuDQhTbUvzrwdCHgeVaTGKWNza//o7siNKoCcENNM=;
-        b=u8QxbIh/n5uS9mbDb2ZMLZ6q8PF5hVlOnWhIVzA1bxOGskv4qAxa7AyAXp0lz9A4eo
-         4K4irt/Z4NFBTvEawp57pjGsABxRm8Jln1IQprwVdZL9rDlNbB1fD9HRUgi5Fzk0m47U
-         Q8C2qCZGvM778odH4fgOVhy1Cn+8J6Bf0qH/8mcUVHmfU5Hh1SaLfPjIT56z69Wke9MD
-         U6ktHz7zdPBcqYbv7z8sLE9PxzM2b1jByWuRRdayNnMketv9Et0naiUtlg/Yhbzew31+
-         Hk2ExcjSPon/szIqFbEiM/AqmvLtnSRVpi9HZ9pyG3HBy4OQnIrdwchd0LnsPpqBQ8tP
-         v03A==
-X-Gm-Message-State: AO0yUKUjpE8FnNAF+TF4bjgoVrkgPO06jSOZHZkvP3Ui8IB3TA2QjXMt
-        JWs7s5jALecNIE6h2cibICtefQtiuw==
-X-Google-Smtp-Source: AK7set+Zy5NSdZV09guplxV+kma655ogdpZI2VW4E5mHSzeVJYjl5PioVhF+Pg0JqvxfEERiyMVR4Q==
-X-Received: by 2002:a05:6808:1da:b0:378:9f53:b331 with SMTP id x26-20020a05680801da00b003789f53b331mr4038526oic.0.1675899919838;
-        Wed, 08 Feb 2023 15:45:19 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qMbsxtsPaDcMRMJxOKC0VFQqMhagFJRucIidW5fqoA4=;
+        b=jdjJnRXvrk7KJcseiSw/mG2NRms5MI1l610/eG/b691fdn1ilihKZfnfqE+ynk9BKg
+         VutXOh06ACs3ioC8D4/3zevKi+m1kN185MjW8cTP7MizNyJI/y1DQdiC+59RUICZIsC7
+         MlKTZu+GfUJmmIMqG0rkcOT/Swbhhw+GIg0Z3+axyyH53/weuM8cHW9Q5vQWfBTv6Wl9
+         /g6TkhohVZQRXtwemaSnZkv6LLrjkq8Uw8FAlfmGEJSkA67skavdcp315RXb2O4cBYlS
+         d7YVNTP197hc7sT0zlkuY3AxLDKoHJJWA+P1XVfFY+DdeTCNLKILwAv70afQ9CajrPJO
+         V8dQ==
+X-Gm-Message-State: AO0yUKUbz21lp7cSqSvCg4Z3+XE0Ei14/qIKEyCktuDcRO60w1N0DOxV
+        ULgLOBNqm3XGPeJR/siYGxcMiKDQMA==
+X-Google-Smtp-Source: AK7set/HiavAQmjdUI295azWy8VOKgmxDX+rzwF0NMVaOP/jJRv88VuTHKrnggACA0Pq2t3dOvrAyw==
+X-Received: by 2002:a05:6870:1c7:b0:160:319a:d1db with SMTP id n7-20020a05687001c700b00160319ad1dbmr5324286oad.3.1675899940841;
+        Wed, 08 Feb 2023 15:45:40 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q62-20020aca5c41000000b0037ac4a18acfsm27432oib.48.2023.02.08.15.45.19
+        by smtp.gmail.com with ESMTPSA id n189-20020acabdc6000000b003645b64d7b3sm52122oif.4.2023.02.08.15.45.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 15:45:19 -0800 (PST)
-Received: (nullmailer pid 2933513 invoked by uid 1000);
-        Wed, 08 Feb 2023 23:45:18 -0000
-Date:   Wed, 8 Feb 2023 17:45:18 -0600
+        Wed, 08 Feb 2023 15:45:40 -0800 (PST)
+Received: (nullmailer pid 2933874 invoked by uid 1000);
+        Wed, 08 Feb 2023 23:45:39 -0000
+Date:   Wed, 8 Feb 2023 17:45:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Herve Codina <herve.codina@bootlin.com>,
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Will Deacon <will@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Heiko Stuebner <heiko@sntech.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: renesas: renesas.yaml: add
- renesas,rzn1d400-eb compatible
-Message-ID: <167589990223.2933068.3125357540016259714.robh@kernel.org>
-References: <20230207145444.166950-1-clement.leger@bootlin.com>
- <20230207145444.166950-2-clement.leger@bootlin.com>
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 18/19] dt-bindings: devfreq: event: convert Rockchip
+ DFI binding to yaml
+Message-ID: <167589862804.2903789.1604184239861791827.robh@kernel.org>
+References: <20230208093830.143284-1-s.hauer@pengutronix.de>
+ <20230208093830.143284-19-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230207145444.166950-2-clement.leger@bootlin.com>
+In-Reply-To: <20230208093830.143284-19-s.hauer@pengutronix.de>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,15 +73,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 07 Feb 2023 15:54:43 +0100, Clément Léger wrote:
-> Add "renesas,rzn1d400-eb" which target the RZ/N1 EB board when a RZ/N1D-DB
-> daughter board is plugged on it.
+On Wed, 08 Feb 2023 10:38:29 +0100, Sascha Hauer wrote:
+> Convert the Rockchip DFI binding to yaml.
 > 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/devfreq/event/rockchip,dfi.yaml  | 61 +++++++++++++++++++
+>  .../bindings/devfreq/event/rockchip-dfi.txt   | 18 ------
+>  2 files changed, 61 insertions(+), 18 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+With the reference fixed:
+
+Reviewed-by: Rob Herring <robh@kernel.org>
 
