@@ -2,118 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A352F68F3B5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7751468F3C0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbjBHQre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 11:47:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57470 "EHLO
+        id S231651AbjBHQuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 11:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbjBHQrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:47:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADBEE3B0F8;
-        Wed,  8 Feb 2023 08:47:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4BC4861739;
-        Wed,  8 Feb 2023 16:47:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D0DC433EF;
-        Wed,  8 Feb 2023 16:47:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675874851;
-        bh=R1EhtcU+fclNZFQL8u7Brp4bwbZEsKYX6uSdRHsHv2A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U6bWjigrlotYRUIqlBf8CTuKUZCDW3AGSsDqyFp0kwvWC8JQRu3AlgZpFaAjcANgY
-         +7xrcdOVda0QADEWQmcdrstkLl3RUmnw6HTlO/+3VXa2n86Tff4UWmGuw4cjysRWyc
-         L4HiEDCK5VRqocjXbIEJpIdhYzGrErw31zK2EbkEbZKesAuCUQIFPObo61tkkXdh6A
-         7CzGXoDejf9KxH8Ze6wqa5LGVZNhff8HSn6o8W6M2h8xc33zdAiSy9+bFHT+qA6xbf
-         3z0LubwWlERJ8GYylBIAwRsvEljLm+KYWoCp3DDBq/ucxQtXLg9u6LUAOxypVkXzRS
-         JJrUpwUXaJ3IQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pPnc7-0005yV-DZ; Wed, 08 Feb 2023 17:48:08 +0100
-Date:   Wed, 8 Feb 2023 17:48:07 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S231772AbjBHQtu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:49:50 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E616538B54
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 08:49:47 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id j25so13875932wrc.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 08:49:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zOVpiA9bQoklU4o2dljZY43CBbu8RtR1NwpXNWDYasE=;
+        b=H29feLPkuAsqMJ3Bjfji8adSbgdNAnfPUHW8GlWuFDn/4k2xCjjJaAfKevVxKdCCZ6
+         B7xhMdg6G+Jsi4e3aJsp2HRbQXL2tLQKiYqHvUdlPHyKgQ4+L/QeAwfG7i2kyCounZfs
+         MBbyQHcXL30w8y3JdY61/LJlJF+foto0SD9gC+ZWMPWRoMmzPeq2OAk0JhNj1LQ7yYZB
+         9e7Vekg+QP0tUnoov+DtkPFbEZF8ngnroSNap7yv9Qd1brL0iKQAzeXD5oPztyniAiv/
+         e40lr6mQF/IAX3VIphsQgNEj3wzq0WpVJjK4fikT6VWqm+b1P+spgXS+vO9MUrQYvqKz
+         jfyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zOVpiA9bQoklU4o2dljZY43CBbu8RtR1NwpXNWDYasE=;
+        b=AJWcBPSr27sWMv7w2jvjTfGDqd5UzH3NulE188dJI8hDr2oXP/ONlpfPKAwNVdfk2r
+         XZS1y24N5fW/cyVaCB9bFJvDMieZyapYCEkYXh7yBLif4eaqryXWUTb5+s2/uhuuZE65
+         Vjx9P54FqoNwp0D76Y3cHz9itgML4oo9CV2s6Dsc0oHPlnsIGR46hKuS9bKQ7d0oJ6Vh
+         li8qAL3H9wlRrbg67l5dWnhsZ2zRw4vx5ar4jwxrOCS8X4sfhK1VxYUD3Ynx9Jc+9MVr
+         VeyjpYF+YOsZVJA8Hs5e3c63hBweirF21e4YtESAhXLmavJYWlhkPJTwtSZpDw2/+UwM
+         dL9w==
+X-Gm-Message-State: AO0yUKXbw8tiYeAHDI7pYMOB4ExvnLi/oMagw16qQTjmee0xGvcYKcZU
+        5T2kPKr/aX7/TN3e7IyZ1B4lVCeC8HxPdV/g
+X-Google-Smtp-Source: AK7set9K7KvdCjwK0eDX13Uh3erBqstkIvVypRtzkwfl6qhku2fcQxKP3u+1xFO9t/ej/2+T9sRcAQ==
+X-Received: by 2002:a5d:6043:0:b0:2c3:ea78:35be with SMTP id j3-20020a5d6043000000b002c3ea7835bemr2259611wrt.19.1675874986505;
+        Wed, 08 Feb 2023 08:49:46 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id x7-20020a5d4907000000b002c3e306d3eesm9637434wrq.17.2023.02.08.08.49.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 08:49:46 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v8 08/11] phy: qcom-qmp-pcie: Add support for SM8550 g3x2
- and g4x2 PCIEs
-Message-ID: <Y+PSR6DKUeoreGJL@hovoldconsulting.com>
-References: <20230206212619.3218741-1-abel.vesa@linaro.org>
- <20230206212619.3218741-9-abel.vesa@linaro.org>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: exynos: correct SPI nor compatible in SMDKv310
+Date:   Wed,  8 Feb 2023 17:49:41 +0100
+Message-Id: <20230208164942.387390-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230206212619.3218741-9-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 06, 2023 at 11:26:16PM +0200, Abel Vesa wrote:
-> Add the SM8550 both g4 and g3 configurations. In addition, there is a
-> new "lane shared" table that needs to be configured for g4, along with
-> the No-CSR list of resets. The no-CSR allows resetting the PHY without
-> actually dropping the PHY configuration. The no-CSR needs to be
-> deasserted only after the PHY has been configured and the PLL has
-> stabilized.
-> 
-> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+SPI NOR flash compatible should come with generic jedec,spi-nor fallback
+and proper vendor prefix:
 
-> @@ -2370,6 +2690,12 @@ static int qmp_pcie_power_on(struct phy *phy)
->  	if (ret)
->  		return ret;
->  
-> +	ret = reset_control_deassert(qmp->nocsr_reset);
-> +	if (ret) {
-> +		dev_err(qmp->dev, "no-csr reset deassert failed\n");
-> +		goto err_disable_pipe_clk;
-> +	}
-> +
->  	/* Pull PHY out of reset state */
->  	qphy_clrbits(pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
->  
-> @@ -2503,6 +2829,13 @@ static int qmp_pcie_reset_init(struct qmp_pcie *qmp)
->  	if (ret)
->  		return dev_err_probe(dev, ret, "failed to get resets\n");
->  
-> +	if (cfg->has_nocsr_reset) {
-> +		qmp->nocsr_reset = devm_reset_control_get_exclusive(dev, "phy_nocsr");
-> +		if (IS_ERR(qmp->nocsr_reset))
-> +			return dev_err_probe(dev, PTR_ERR(qmp->nocsr_reset),
-> +						"failed to get no-CSR reset\n");
+  exynos4210-smdkv310.dtb: /soc/spi@13940000/flash@0: failed to match any schema with compatible: ['w25x80']
 
-Nit: You're still using uppercase CSR here and lowercase elsewhere.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/exynos4210-smdkv310.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +	}
-> +
->  	return 0;
->  }
+diff --git a/arch/arm/boot/dts/exynos4210-smdkv310.dts b/arch/arm/boot/dts/exynos4210-smdkv310.dts
+index a5dfd7fd49b3..181c99eca675 100644
+--- a/arch/arm/boot/dts/exynos4210-smdkv310.dts
++++ b/arch/arm/boot/dts/exynos4210-smdkv310.dts
+@@ -203,7 +203,7 @@ &spi_2 {
+ 	flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "w25x80";
++		compatible = "winbond,w25x80", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <1000000>;
+ 
+-- 
+2.34.1
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
