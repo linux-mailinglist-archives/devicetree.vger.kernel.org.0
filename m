@@ -2,134 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0384968F86E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E91DF68F876
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:58:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231978AbjBHTyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 14:54:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
+        id S231255AbjBHT6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 14:58:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231966AbjBHTyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:54:36 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE442B0A0
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:54:34 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id r18so594306wmq.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:54:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EBwPASl/5edIqKvU/JIFgLagE7/Ou6YlCS5upqg7x2Y=;
-        b=ElaRHWbT/7/TFkvjy6RGL2e17EyHx++x8piD9HhzxfjPN7C6IjJr8KHQqMeSg3iRzn
-         JGpO17rXoVb9C0s9qHFsCF+F1dXEfBZveWiAGHPo/FywF3QkBYc7IexMRDmAGf/yx8mm
-         62bShvlBrZk/CP6VFbg2i2694PW2cGgn5Dpj4Aqza7z/CQemko/LeJmh7Wl+ZzeyCkJc
-         txZM7BLVhLvjW4seK/N+hzNUnLLIcxm7PB3fNWjYU1aleGOUXkUP3VIjiUHcHMDjUf3r
-         OKwaTESXnDBfnbQlzDQdqhyJHt4oLjsCUe2T3hW9PRIrn/gnopCojYZCNqLs0mj7k5P7
-         7Tmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EBwPASl/5edIqKvU/JIFgLagE7/Ou6YlCS5upqg7x2Y=;
-        b=6XYud0Se/f7aPBMl20iQkH58kjgAvruJJkbrGSVynGCcryf89jmslkIc1pZBxYUWur
-         LnmhZjkwWrO9HN0kPqeyCdWm4L3LQ69ozybav7yD1WGLHONljIRSf8vHi8dA/vs7Ns/N
-         p//rkL5YTjOPKHuu1dKkdwx/itqM2YIhIG+8kVT09wnHeIu76N8gHX+8aDmsSeWZ1f6F
-         S9en1quqsG+g56iG4UWaEyguCWdr277pPIGBttG6A/a6hNZT8E0Axv2MSCvvPtYsfQ25
-         N0ivBXGhQIw2rpwzwubEUZb3SCL/CNRxTsk7InTdfbrnPVCUT3N002wK4GCDYgF6uvBT
-         fzBQ==
-X-Gm-Message-State: AO0yUKUlrrrn4aIgiS/hA4+KtQdOFci269HoS7kb8W7tH0edZrGOn5jb
-        M6sOFkZAZY8LME+FkvK3RK96NA==
-X-Google-Smtp-Source: AK7set+AS16QvAEzA43WSGcYuIpVX6rFu8GnlDVRV5HqJSp5kzSyNf3stjXk01gH7tABGuOR8dPMlA==
-X-Received: by 2002:a05:600c:358b:b0:3df:9858:c02e with SMTP id p11-20020a05600c358b00b003df9858c02emr3319270wmq.3.1675886072898;
-        Wed, 08 Feb 2023 11:54:32 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c12-20020a05600c0a4c00b003dc34edacf8sm3260834wmq.31.2023.02.08.11.54.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 11:54:32 -0800 (PST)
-Message-ID: <74240c25-cbbe-1e72-b56b-13124111b390@linaro.org>
-Date:   Wed, 8 Feb 2023 20:54:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH net-next v2 6/6] ARM: dts: r9a06g032: describe GMAC1
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229740AbjBHT6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:58:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95C11E1F6;
+        Wed,  8 Feb 2023 11:58:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 71500617DA;
+        Wed,  8 Feb 2023 19:58:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0675AC433D2;
+        Wed,  8 Feb 2023 19:58:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675886292;
+        bh=tRNavg/LIgAKd9vbMfES3i4G6zF8q2JGPv+1iHnxfQE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Qija1YocLLtQPH8kUkvQhotXNzK3awUCRJunJ8vd86FGg27ObcRv/J7PcMjnnGpj5
+         rq3So6bWDFgV0t1ZR6CJuu2aszapZ7lmU6c2RkFLsJNkszP1H8Jsap1zGd/x/WbB88
+         uB7d1HF9YFZEG7Q+O4XW1vta4/4UVxticd8sKzO+70pgUCndg5VrP3NL5u1NgF36hO
+         VX2k7R4vj2k1MY+9I4AKxt00e1n2LaR8zugbDTRR0RF509rxQLjLeVNqYX7oY9Utsj
+         Jpj7p4P86qsFxFrLaCAMvxETSDnjdHcgyV4B0gsTVgxnQhLzdwk96R9y2DP8bEKa3V
+         ifStorPxWnSww==
+Date:   Wed, 8 Feb 2023 19:58:07 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Wong Vee Khee <veekhee@apple.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Revanth Kumar Uppala <ruppala@nvidia.com>,
-        Tan Tee Min <tee.min.tan@linux.intel.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230208164203.378153-1-clement.leger@bootlin.com>
- <20230208164203.378153-7-clement.leger@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230208164203.378153-7-clement.leger@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
+Message-ID: <Y+P+z8bpo9sBNOkU@sirena.org.uk>
+References: <20230208172552.404324-1-krzysztof.kozlowski@linaro.org>
+ <Y+PeR4EFfcVDbUfV@sirena.org.uk>
+ <51e8e157-3f60-1731-a8ca-4a678c8eafd6@linaro.org>
+ <Y+PlUtAmbl5TJq6z@sirena.org.uk>
+ <c876f40a-2db5-eb50-9706-3147671ec4c5@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yWn+MXqavpBjLzGe"
+Content-Disposition: inline
+In-Reply-To: <c876f40a-2db5-eb50-9706-3147671ec4c5@linaro.org>
+X-Cookie: Walk softly and carry a megawatt laser.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 17:42, Clément Léger wrote:
-> RZ/N1 SoC includes two MAC named GMACx that are compatible with the
-> "snps,dwmac" driver. GMAC1 is connected directly to the MII converter
-> port 1. Since this MII converter is represented using a PCS driver, it
-> uses the renesas specific compatible driver which uses this PCS.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
->  arch/arm/boot/dts/r9a06g032.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-> index 41e19c0986ce..ba32e4429b01 100644
-> --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> @@ -304,6 +304,24 @@ dma1: dma-controller@40105000 {
->  			data-width = <8>;
->  		};
->  
-> +		gmac1: ethernet@44000000 {
-> +			compatible = "renesas,r9a06g032-gmac", "renesas,rzn1-gmac", "snps,dwmac";
 
-Please test your DTS against the binding you send. If you did it, you
-would see here that the binding does not work and needs fixes... The
-difference between your DTS and your example should also warn you that
-it's not correct.
+--yWn+MXqavpBjLzGe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+On Wed, Feb 08, 2023 at 08:37:22PM +0100, Krzysztof Kozlowski wrote:
+> On 08/02/2023 19:09, Mark Brown wrote:
 
+> >>> Are you *sure* they are grounded and not supplied from the LDOs?
+
+> >> That's what I have on schematics (attached), if I got it right.
+
+> > You'll notice that they've got decoupling caps on rather than being
+> > grounded - there's an internal connection to the LDO output so if the
+> > LDOs are in use that's all that's required, while if the LDOs are not in
+> > use for some reason then an external supply is connected there.
+
+> Yes, indeed, not grounded. I'll rephrase the commit. I also found few
+
+Strictly the supplies are mandatory, it's just that the code was written
+such that the default configuration is that they'll be provided by the
+internal LDOs, with the DT having carried that on.
+
+--yWn+MXqavpBjLzGe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPj/s4ACgkQJNaLcl1U
+h9BAbQf/fp2AzGnjgsAH67/NkCsxNZ7u/dBsQQzFc/jiy6YbG9swrncmAaXJbmzJ
+DrXF49254VlCMpmQSM8V5k5sg7FdyWO0CFHQTj5i+vo5rccEjzuzw5c3WCqajpZt
+Lbm+MFPCClCVyhm9Dvwk7Bs2asMdN2nhOc1fxPuMDYD7c/BDODYocjSSftFBhyy0
+qFfUceF/MB/Cu6uGxpy5qA/9V2p4ih15WWgcWTs8ge6pUmWtkBVkOC7PfsaeUvVS
+yWRW5FEn084Xp/Z9+ho+xID0yR4REtUI6qqOpHpY3N9+3TzSoPIzMd8QFIHiSk0E
+wghAP39kdIgw47T8MCme16e6MbGgUw==
+=P8zq
+-----END PGP SIGNATURE-----
+
+--yWn+MXqavpBjLzGe--
