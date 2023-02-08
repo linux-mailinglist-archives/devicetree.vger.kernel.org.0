@@ -2,301 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9364068E53D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 02:07:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0203D68E55C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 02:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbjBHBHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 20:07:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38544 "EHLO
+        id S229726AbjBHBWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 20:22:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjBHBHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 20:07:20 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDDDA2C67E;
-        Tue,  7 Feb 2023 17:07:18 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 317NxCih016065;
-        Wed, 8 Feb 2023 01:06:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=A/rUYM7Oy2gqIk2+4nucnYXjlkyZyJwm07fM+yH74bw=;
- b=Nia7wKTo3rOuq+4tzTl1MYUVWArR711UjFbPVAhVTtNK32mdlkDWgAASWSQ9X4MUlGce
- LYCeQSO6F07xBoK43xjWywO2Nnr9vQ2jP9dkdRVw+VCS4U/LiwaxNWi4qrC2rVyifIOW
- ZvK67IUZYw5TknGs9DlqsOYNpkne9Msktq7djw/4tHuhENx1jF2R63uiLoGKCLCf0t/p
- 89AGCayZe7UpSoCp4QNnrxOCsfzQBuwaKCf5a+RBYMVGhx039EFpPGXLcCDjqMgbIoIb
- lo23F/KhQfr97Um62jVPQj0LkUsqtx+zqHxlPRJA5Inm5C1NUWR1x4PtMkMorjL7hW2U zw== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkeny2qhh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 08 Feb 2023 01:06:58 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31816vrA011215
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 8 Feb 2023 01:06:57 GMT
-Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 7 Feb 2023
- 17:06:57 -0800
-Message-ID: <f862ff1a-d363-894e-eedf-e33dde6ebf34@quicinc.com>
-Date:   Tue, 7 Feb 2023 17:06:56 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v9 18/27] firmware: qcom_scm: Register Gunyah platform ops
+        with ESMTP id S229515AbjBHBWX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 20:22:23 -0500
+Received: from BN6PR00CU002-vft-obe.outbound.protection.outlook.com (mail-eastus2azon11021022.outbound.protection.outlook.com [52.101.57.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FB8921A34;
+        Tue,  7 Feb 2023 17:22:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j2fAMSqBJe9po94jozZRE+F7QeTGMUYoCvAJ/JKJCdfIDPHXLn+XWvfM9E/oF2gbM8ytzESpg7V4EXLFs1DdbNYsP+MGo2TAk5JHhZxTTZR8hDS5c6w7dLwOWZtavU8Arz7tiYby/yL77PW3QKyBfomz/cSvr5wvO8Sgm7dCZCSFkq3Z70xUzRKGU+NY/iG7/kSEJRvNhFipOCXkhnawK+WmYXZDQyI1Ze38xAz40mrXNuCVr6dOWmV89dYpf95ftDXHHmKYae026T9mRVYgpsvg7+7QLJYVyZtwBq5+buCHRMduCYH8uDufdEJnFv0UWs1NaJGsDGqx8S8bAzX8xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IPaOquUYseS+tTCkFh073Bx9UCONj7NeGfdXN2UZNqg=;
+ b=FzsHwyDoBHIfwtBPwYIc7eaFGzT5mo9wYseql5ROUayGZX7dpl4LIu7kiRWioloXG4zOxIRTlqvB7xjnjGmV9Si+tjPtHgzx7bjuK9vnb/xYuq6yeNe4J/EodT0V6k/+y3tUGZsiqf3JcISnU39awu4lFEoxse29Qh/zPwUJXo2FHe5vidIFLpEO3knOQ9gFiK7TlMTri+/nNlieNSwXp9BDcqgi7DkzPNQgpFGyKUWYUlvvinxfMDu+7KY5regvhVZTd5gnI9Aflo7SqWXEC3NaPirGl8AOAjnmRqfaf6HV5Wt8iTRPVN0VWjOSzcU/DhecQSA+u7aX7k9mWxYkWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microsoft.com; dmarc=pass action=none
+ header.from=microsoft.com; dkim=pass header.d=microsoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IPaOquUYseS+tTCkFh073Bx9UCONj7NeGfdXN2UZNqg=;
+ b=DHN61JtYxtpkCgyJUXztWi0ho4d+AhIypt7Vjib5PkfczH2VHyp/0yvmNLFN1Yn0I2pcBvrxra3j/PreyYeXQCZDwNfYC9DZOeD7qhNdza2gsWLi6dqr5jjjFh7psR6Wzaz1Ag87sr6Z4HL9RqHYg0uUGLxUuwZvwpYPainKLVM=
+Received: from BYAPR21MB1688.namprd21.prod.outlook.com (2603:10b6:a02:bf::26)
+ by CY5PR21MB3422.namprd21.prod.outlook.com (2603:10b6:930:e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.6; Wed, 8 Feb
+ 2023 01:22:18 +0000
+Received: from BYAPR21MB1688.namprd21.prod.outlook.com
+ ([fe80::55a1:c339:a0fb:6bbf]) by BYAPR21MB1688.namprd21.prod.outlook.com
+ ([fe80::55a1:c339:a0fb:6bbf%8]) with mapi id 15.20.6111.002; Wed, 8 Feb 2023
+ 01:22:18 +0000
+From:   "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+To:     Saurabh Sengar <ssengar@linux.microsoft.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        KY Srinivasan <kys@microsoft.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        "wei.liu@kernel.org" <wei.liu@kernel.org>,
+        Dexuan Cui <decui@microsoft.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "virtualization@lists.linux-foundation.org" 
+        <virtualization@lists.linux-foundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+        Saurabh Singh Sengar <ssengar@microsoft.com>,
+        "dphadke@linux.microsoft.com" <dphadke@linux.microsoft.com>
+Subject: RE: [PATCH v4 1/6] drivers/clocksource/hyper-v: non ACPI support in
+ hyperv clock
+Thread-Topic: [PATCH v4 1/6] drivers/clocksource/hyper-v: non ACPI support in
+ hyperv clock
+Thread-Index: AQHZOsjMvY/hUKz0ckKIRFPtEp88lK7EQdQw
+Date:   Wed, 8 Feb 2023 01:22:18 +0000
+Message-ID: <BYAPR21MB1688524B64F4FF7FBE7BBC81D7D89@BYAPR21MB1688.namprd21.prod.outlook.com>
+References: <1675756199-5917-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675756199-5917-2-git-send-email-ssengar@linux.microsoft.com>
+In-Reply-To: <1675756199-5917-2-git-send-email-ssengar@linux.microsoft.com>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Alex Elder <elder@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
- <20230120224627.4053418-19-quic_eberman@quicinc.com>
- <5564746d-2221-8c3e-0c81-b320716ad114@linaro.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <5564746d-2221-8c3e-0c81-b320716ad114@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YGZHJBdOSvu19cF_7VjgrvQHYmGGwXHs
-X-Proofpoint-ORIG-GUID: YGZHJBdOSvu19cF_7VjgrvQHYmGGwXHs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-07_15,2023-02-06_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- clxscore=1015 phishscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
- impostorscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302080009
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ActionId=1b26ae5d-9efa-441f-85f0-851cc4922855;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ContentBits=0;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Enabled=true;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Method=Standard;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Name=Internal;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SetDate=2023-02-08T01:21:41Z;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SiteId=72f988bf-86f1-41af-91ab-2d7cd011db47;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microsoft.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR21MB1688:EE_|CY5PR21MB3422:EE_
+x-ms-office365-filtering-correlation-id: 3287eb8a-4dbb-4660-4288-08db0972eb51
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2kgAjB0iEtlYiTm12njjLlW4npnL4JNvvwLC9AtMhhILcdarrd3MnrC5cV7fuXNDmH3FwCvxjYC3VSNA4WCivEvFqDk4vAXi04/5nPNeC5MoiSSIbwDA6VKCdDBW/oua1vICEeMiPqs2ktyZiWS2tJ3o+zStfMwWQuRkDlZmEiJ6xp1NNd/w9g8qwmykNMrlaQddjpWUcInLqX3DYvbfhVB85hn46im3JTj/b2eq/3paAuwX488hyJXJ13LXtSaOs32+nnf9YCAihjM0H5mss+7e+RsUzFXyhnoaP492xacEAVfrgsIy+jtMQLxhVJ8tLIZJ9HEbbKlmWj9qrMTtndMadSfPijxLpMIxLeUYvjdhJz4SeencaoXPH3gsvOlpdFMdkWqFGF0byOkZTmrO7aCQzo2MfDaxst1SKh+J+Cg9yTexRLeHItl4h2QgwXGMQAOiOkE/sgdLlms1+Q4l3grSQu29U0AhE0tY2p2lp0hmylpT8t70u18PNfcD3bNV2YOMqI2ZaQWBv/FXqyZQ4hd7D/JWVmHGUxrV6MyEqUbBuGAX2QiZ4eIkvv7dcCS/hVJ8sDh57Ae4+gP6Hjz+PGis51QszKBNCAL1L/xo6RiL/ch2RC2lw727bw6iYFslw46QlOOrczSoRYLDcvbjtVaKD01Y41+FeXvgC6lr2iWHFLt/D/QrHSGEbP5FbFbrrKUOfSLKqKkdVNtKDPQ1xmwbrcNUSv0PZDz7DXbTneVaEAn0A++6A4UAD/1aqpRhwSWCegyCK67UCcDEo4vz1Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR21MB1688.namprd21.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(376002)(346002)(136003)(396003)(39860400002)(451199018)(8936002)(41300700001)(5660300002)(71200400001)(110136005)(7696005)(52536014)(316002)(2906002)(8676002)(66556008)(64756008)(6506007)(186003)(478600001)(26005)(66446008)(9686003)(66476007)(83380400001)(8990500004)(66946007)(38070700005)(122000001)(38100700002)(33656002)(921005)(10290500003)(76116006)(82960400001)(86362001)(55016003)(82950400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/5ysBR1j5EzCUjO92nfxGpnxkg+xxDy3+o8P8NdAeHxefHIGcQCzLgOHhOhC?=
+ =?us-ascii?Q?nceyFCO7qI953xu7nDjAbhIx9+BD9/99NnoShbrLOXkBBSQps7+1SJOeaHrw?=
+ =?us-ascii?Q?igJNB5n9DgbW+SCkI9z0AGESXqxdHiGPqL5Koqt8w3Esiz9vdoqo+gAF4LSh?=
+ =?us-ascii?Q?V+sHSizFa4JJ1bwc/HqmjR0WElCATnWYyIgWFyRWQxm5jcRoFA63nqPsbfOw?=
+ =?us-ascii?Q?1VgK+zPWptUe1Rmo67+4Aiex/oQp6gaP4gW908R3BtjESn8Hq2FRG9NwSDKd?=
+ =?us-ascii?Q?pYfnGCzdKWdJlZ09p1QW9pjFRun2VxxSYqrF0Zkdx/kM30yqeH8vbjxxZs5E?=
+ =?us-ascii?Q?bEO0494vXHcKSMZT255CEdHYtS9kcIRflD2neLV40TNkAGLFkkCsYwpYeFaZ?=
+ =?us-ascii?Q?ljKWvjzU2+pmudb8RUd/nXjzoxbqrj+mjzfP45yIMy5pL2s1tsVwycLz+37q?=
+ =?us-ascii?Q?jAFwgDvGBkhuA4n1HKYH+jmcDE7RZ/wOg0JZWhA+4z2ldvbQ3ffrjvibBggK?=
+ =?us-ascii?Q?7nJv2QfXONSKRSa+TfdypYU4Cphpezwh0dDh1FB3pxHEla8rqsboTLTz8jHk?=
+ =?us-ascii?Q?GN26N4Sv04KKrHMkUlB5Vetd5hq3my9LgW/TqwOddrJPC2sjEls7hTRtxahO?=
+ =?us-ascii?Q?YThuxlbXukcB5es8DX/tmBSgfRA5BkluWo0tpV38Kxr8cnN89QdJ7SAtvfAH?=
+ =?us-ascii?Q?nZo4UD+zW6roaVamLTBSBGgE87sWJwoL511vUVTA8hXpYVbxfxaqiJxQivRy?=
+ =?us-ascii?Q?wibT8yKIh7YcJllfGGe5TeDBM1dp8Y1Qf3IM6LNC/14tHflggqxfpxwvnwPg?=
+ =?us-ascii?Q?Y0M5PnHdQCihOLqKEp6t9XY8aEL5OPXTuzoyvIEtwe3SCoGFQ+LdZWPgX5no?=
+ =?us-ascii?Q?IWjjiKTCXe07Z/lEK0TQ2O4/fhRnu7UeKHw2HGLtZ73wG/shWBnB1uhxQDWD?=
+ =?us-ascii?Q?2ox9jcNV9JAc+Hz625/AQZAHcsFV0xLYBEQCUwyd5FCcc+H+MGG73RsuHse7?=
+ =?us-ascii?Q?mhxNYnk9rEtWnrcZJczQfs+pbWIAMj1ogN6/HrH+aHGSbCcIL92jllYXlf4K?=
+ =?us-ascii?Q?BrrRHih3rd9cMfx9WEvP1Zz6gVdN2hv2KYa3zifEAX+gds0KtXKS9Q3SJTPT?=
+ =?us-ascii?Q?lGekwQp4SA8Okb+boD6KlT+pCPYSrOGpV4xgmHWj3KekYW3/MGDctyYAKLQO?=
+ =?us-ascii?Q?4CV01luN8YXw3TvtsoufX5wg9Qu+BJvAty7h6M2Bzseuqf5DCkM84xvkjy2y?=
+ =?us-ascii?Q?mfx7xjhDvHboNFRxTQyU9S0GbB2VJxRdX4lfW5EcjiEQWdSqkZO7beUh1j+y?=
+ =?us-ascii?Q?tBRavtN1CSJm8Li+YmTi5VfppQ5DsClNmXX+FRFjnyabDA+dDU4G8bInRQR4?=
+ =?us-ascii?Q?226aVgTcShcZXyf8xCO0JebEg183+suhwMY+TeiNzPYTZKXYoWee9nduR1fS?=
+ =?us-ascii?Q?x9oYdPgUEHsWJKRNf4xYMygIudD1NVVfC92dE73+0s50uqrq2/BYz8qevpdM?=
+ =?us-ascii?Q?+s9PhUYacFiHo6y/fHs18sn6N4HG63f6emCFRbpgK504AaTseQY1YEGemOhk?=
+ =?us-ascii?Q?JTzf7tQE1ma6SylQgA4K/gC+REur/xtiM2eFkDma/0ABR8eod3eLIVRNAHyx?=
+ =?us-ascii?Q?aQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: microsoft.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR21MB1688.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3287eb8a-4dbb-4660-4288-08db0972eb51
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2023 01:22:18.0856
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kSZgpuq+PzwWptwzhvu3AelTlw3ISTDwTfCn0kzoQq6OmW682SLO+yC/28hwoebVFcMDQUkaWsw2zcGMy24If0ycH4M8YOto32G44k4xtbQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR21MB3422
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_NONE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Monday, February 6=
+, 2023 11:50 PM
+>=20
+> Add a placeholder function for the hv_setup_stimer0_irq API to accommodat=
+e
+> systems without ACPI support. Since this function is not utilized on
+> x86/x64 systems and non-ACPI support is only intended for x86/x64 systems=
+,
+> a placeholder function is sufficient for now and can be improved upon if
+> necessary in the future.
+>=20
+> This change will make it easier to add device tree support for VMBus in
+> subsequent commits.
+>=20
+> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> ---
+>  drivers/clocksource/hyperv_timer.c | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/clocksource/hyperv_timer.c b/drivers/clocksource/hyp=
+erv_timer.c
+> index c0cef92..f32948c 100644
+> --- a/drivers/clocksource/hyperv_timer.c
+> +++ b/drivers/clocksource/hyperv_timer.c
+> @@ -49,7 +49,7 @@
+>=20
+>  static int stimer0_irq =3D -1;
+>  static int stimer0_message_sint;
+> -static DEFINE_PER_CPU(long, stimer0_evt);
+> +static __maybe_unused DEFINE_PER_CPU(long, stimer0_evt);
+>=20
+>  /*
+>   * Common code for stimer0 interrupts coming via Direct Mode or
+> @@ -68,7 +68,7 @@ void hv_stimer0_isr(void)
+>   * stimer0 interrupt handler for architectures that support
+>   * per-cpu interrupts, which also implies Direct Mode.
+>   */
+> -static irqreturn_t hv_stimer0_percpu_isr(int irq, void *dev_id)
+> +static irqreturn_t __maybe_unused hv_stimer0_percpu_isr(int irq, void *d=
+ev_id)
+>  {
+>  	hv_stimer0_isr();
+>  	return IRQ_HANDLED;
+> @@ -196,6 +196,7 @@ void __weak hv_remove_stimer0_handler(void)
+>  {
+>  };
+>=20
+> +#ifdef CONFIG_ACPI
+>  /* Called only on architectures with per-cpu IRQs (i.e., not x86/x64) */
+>  static int hv_setup_stimer0_irq(void)
+>  {
+> @@ -230,6 +231,16 @@ static void hv_remove_stimer0_irq(void)
+>  		stimer0_irq =3D -1;
+>  	}
+>  }
+> +#else
+> +static int hv_setup_stimer0_irq(void)
+> +{
+> +	return 0;
+> +}
+> +
+> +static void hv_remove_stimer0_irq(void)
+> +{
+> +}
+> +#endif
+>=20
+>  /* hv_stimer_alloc - Global initialization of the clockevent and stimer0=
+ */
+>  int hv_stimer_alloc(bool have_percpu_irqs)
+> --
+> 1.8.3.1
 
+Reviewed-by: Michael Kelley <mikelley@microsoft.com>
 
-On 2/7/2023 3:52 AM, Srinivas Kandagatla wrote:
-> 
-> 
-> On 20/01/2023 22:46, Elliot Berman wrote:
->> Qualcomm platforms have a firmware entity which performs access control
->> to physical pages. Dynamically started Gunyah virtual machines use the
->> QCOM_SCM_RM_MANAGED_VMID for access. Linux thus needs to assign access
->> to the memory used by guest VMs. Gunyah doesn't do this operation for us
->> since it is the current VM (typically VMID_HLOS) delegating the access
->> and not Gunyah itself. Use the Gunyah platform ops to achieve this so
->> that only Qualcomm platforms attempt to make the needed SCM calls.
->>
->> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
->> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>   drivers/firmware/Kconfig    |   2 +
->>   drivers/firmware/qcom_scm.c | 100 ++++++++++++++++++++++++++++++++++++
->>   2 files changed, 102 insertions(+)
->>
->> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
->> index b59e3041fd62..b888068ff6f2 100644
->> --- a/drivers/firmware/Kconfig
->> +++ b/drivers/firmware/Kconfig
->> @@ -214,6 +214,8 @@ config MTK_ADSP_IPC
->>   config QCOM_SCM
->>       tristate
->> +    select VIRT_DRIVERS
->> +    select GUNYAH_PLATFORM_HOOKS
-> 
-> So far SCM usage has been as library of functions to talk to Secure 
-> world, now why is this selecting GUNYAH, it should be other way round.
-> 
-
-Gunyah runs on platforms other than Qualcomm hardware (QEMU is real, 
-existing example). The SCM calls needed on Qualcomm platforms aren't 
-needed/available on QEMU and would error out there.
-
-I tried avoiding the "select" and even "depends on", but I was facing 
-issues when QCOM_SCM=y and GUNYAH=m. When this happens, 
-GUNYAH_PLATFORM_HOOKS should be =y, and the only way I could figure out 
-to ensure that happens was by selecting it from QCOM_SCM.
-
-> 
->>   config QCOM_SCM_DOWNLOAD_MODE_DEFAULT
->>       bool "Qualcomm download mode enabled by default"
->> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
->> index 92763dce6477..20a1434087eb 100644
->> --- a/drivers/firmware/qcom_scm.c
->> +++ b/drivers/firmware/qcom_scm.c
->> @@ -17,6 +17,7 @@
->>   #include <linux/clk.h>
->>   #include <linux/reset-controller.h>
->>   #include <linux/arm-smccc.h>
->> +#include <linux/gunyah_rsc_mgr.h>
->>   #include "qcom_scm.h"
->> @@ -27,6 +28,9 @@ module_param(download_mode, bool, 0);
->>   #define SCM_HAS_IFACE_CLK    BIT(1)
->>   #define SCM_HAS_BUS_CLK        BIT(2)
->> +#define QCOM_SCM_RM_MANAGED_VMID    0x3A
->> +#define QCOM_SCM_MAX_MANAGED_VMID    0x3F
->> +
->>   struct qcom_scm {
->>       struct device *dev;
->>       struct clk *core_clk;
->> @@ -1292,6 +1296,99 @@ int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 
->> payload_reg, u32 payload_val,
->>   }
->>   EXPORT_SYMBOL(qcom_scm_lmh_dcvsh);
->> +static int qcom_scm_gh_rm_pre_mem_share(struct gh_rm *rm, struct 
->> gh_rm_mem_parcel *mem_parcel)
-> why can't this be an exported function like other scm interfaces?
-> 
-> We do not need a redirection here tbh.
-> 
-> That will also remove the need of gunyah_platform_hooks.c altogether, 
-> and you could call scm functions directly.
-> Correct me if this is not the case.
-> 
-> 
-
-Same as above comment about running on QEMU.
-
-Thanks,
-Elliot
-
-> 
->> +{
->> +    struct qcom_scm_vmperm *new_perms;
->> +    u64 src, src_cpy;
->> +    int ret = 0, i, n;
->> +    u16 vmid;
->> +
->> +    new_perms = kcalloc(mem_parcel->n_acl_entries, 
->> sizeof(*new_perms), GFP_KERNEL);
->> +    if (!new_perms)
->> +        return -ENOMEM;
->> +
->> +    for (n = 0; n < mem_parcel->n_acl_entries; n++) {
->> +        vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
->> +        if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
->> +            new_perms[n].vmid = vmid;
->> +        else
->> +            new_perms[n].vmid = QCOM_SCM_RM_MANAGED_VMID;
->> +        if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_X)
->> +            new_perms[n].perm |= QCOM_SCM_PERM_EXEC;
->> +        if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_W)
->> +            new_perms[n].perm |= QCOM_SCM_PERM_WRITE;
->> +        if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_R)
->> +            new_perms[n].perm |= QCOM_SCM_PERM_READ;
->> +    }
->> +
->> +    src = (1ull << QCOM_SCM_VMID_HLOS);
->> +
->> +    for (i = 0; i < mem_parcel->n_mem_entries; i++) {
->> +        src_cpy = src;
->> +        ret = 
->> qcom_scm_assign_mem(le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
->> +                        le64_to_cpu(mem_parcel->mem_entries[i].size),
->> +                        &src_cpy, new_perms, mem_parcel->n_acl_entries);
->> +        if (ret) {
->> +            src = 0;
->> +            for (n = 0; n < mem_parcel->n_acl_entries; n++) {
->> +                vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
->> +                if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
->> +                    src |= (1ull << vmid);
->> +                else
->> +                    src |= (1ull << QCOM_SCM_RM_MANAGED_VMID);
->> +            }
->> +
->> +            new_perms[0].vmid = QCOM_SCM_VMID_HLOS;
->> +
->> +            for (i--; i >= 0; i--) {
->> +                src_cpy = src;
->> +                ret = qcom_scm_assign_mem(
->> +                        
->> le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
->> +                        le64_to_cpu(mem_parcel->mem_entries[i].size),
->> +                        &src_cpy, new_perms, 1);
->> +                WARN_ON_ONCE(ret);
->> +            }
->> +            break;
->> +        }
->> +    }
->> +
->> +    kfree(new_perms);
->> +    return ret;
->> +}
->> +
->> +static int qcom_scm_gh_rm_post_mem_reclaim(struct gh_rm *rm, struct 
->> gh_rm_mem_parcel *mem_parcel)
->> +{
->> +    struct qcom_scm_vmperm new_perms;
->> +    u64 src = 0;
->> +    int ret = 0, i, n;
->> +    u16 vmid;
->> +
->> +    new_perms.vmid = QCOM_SCM_VMID_HLOS;
->> +    new_perms.perm = QCOM_SCM_PERM_EXEC | QCOM_SCM_PERM_WRITE | 
->> QCOM_SCM_PERM_READ;
->> +
->> +    for (n = 0; n < mem_parcel->n_acl_entries; n++) {
->> +        vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
->> +        if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
->> +            src |= (1ull << vmid);
->> +        else
->> +            src |= (1ull << QCOM_SCM_RM_MANAGED_VMID);
->> +    }
->> +
->> +    for (i = 0; i < mem_parcel->n_mem_entries; i++) {
->> +        ret = 
->> qcom_scm_assign_mem(le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
->> +                        le64_to_cpu(mem_parcel->mem_entries[i].size),
->> +                        &src, &new_perms, 1);
->> +        WARN_ON_ONCE(ret);
->> +    }
->> +
->> +    return ret;
->> +}
->> +
->> +static struct gunyah_rm_platform_ops qcom_scm_gh_rm_platform_ops = {
->> +    .pre_mem_share = qcom_scm_gh_rm_pre_mem_share,
->> +    .post_mem_reclaim = qcom_scm_gh_rm_post_mem_reclaim,
->> +};
->> +
->>   static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
->>   {
->>       struct device_node *tcsr;
->> @@ -1414,6 +1511,9 @@ static int qcom_scm_probe(struct platform_device 
->> *pdev)
->>       if (download_mode)
->>           qcom_scm_set_download_mode(true);
->> +    if (gh_rm_register_platform_ops(&qcom_scm_gh_rm_platform_ops))
->> +        dev_warn(__scm->dev, "Gunyah RM platform ops were already 
->> registered\n");
->> +
->>       return 0;
->>   }
