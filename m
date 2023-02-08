@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC6568F79F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:02:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30BCF68F7A1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:02:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbjBHTCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 14:02:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53944 "EHLO
+        id S231483AbjBHTCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 14:02:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231447AbjBHTCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:02:10 -0500
+        with ESMTP id S231451AbjBHTCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:02:11 -0500
 Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94222530F5
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:02:08 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id u10so10987266wmj.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:02:08 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37468521D2
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 11:02:10 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id z13so6569905wmp.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 11:02:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=thW52RtRlGncxJVAXaAffrOQRfnK09M5G6J/HHLJxeo=;
-        b=IJPQzDtDJMNd14JAQMKLtLY0kTY8n5Is09xQPcIVEtMbkHyV9QqiYVqGqzyEMjttkR
-         OV254jWle7m64ztlPT3PLDLNKjeVus/L1jr8TwaQ9mekCou0BdxzVJZk3CIIFeXHLWJP
-         f1S8AgBtpLmTUIzhgNIHDbUuIGr1sYzQ6H45SHwGxtiEfVti6MA4b9lCnW/IXCJQmY++
-         +I89ebBBTD9wkKeozRNmT8HPeoUmdZ4/2Lox6mkFoxm4K+xOSCe3ECFtMXL90+1DagmG
-         OBEIyUpgy9+qjfvU9wejt9VZ73EAzSfxKGZ9H2f3c4zaz8bpQ9lgF/DhynpHSxNUbGRD
-         rgAA==
+        bh=PXn1ogE9xf12HQp/S/g01Ga91SzlSkMt5w5+myYC8Ik=;
+        b=DnNvwM1HNT74gz4mLjUKMjUfy6FtNoVMpbWVmwiMxRZfP80MPZf28EsGdwnVhFbaKN
+         nCJP/V94VRMv1jACM1Y7TzBLsfP2o+54GoChiOJRwXAEfVzSeJ5i/NZkLXP4D/Go+/Ck
+         zc/YDc7u0ENrJ19WTRFYDIOnTWMvLq363AMG9pU9XSRM1MOT747eD0SNQbvRvGFm0S5j
+         09e4Guzk3Jl++8263r27MgXn6COt8vydfpdBGEYIlU1d2aNNyucxTpy0/f9q9zknBap4
+         m99KpzFQdiY5S20lSYYu1TyX0VUKRy9JChNwwl5tnILECMP3LXNk5/HGDi8I3ksXi4EU
+         t9/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=thW52RtRlGncxJVAXaAffrOQRfnK09M5G6J/HHLJxeo=;
-        b=IWgaj0+sktAaqbBOixCLqOLAMTI0p7uX5l5qT69gT6lLUF/RFrNrd+iz2Pi6CRbFL1
-         StHs5u7X/NJqYcE5Q3jSZzqkcVKFP7WIrLrrECWgZMKg7xMGELdD5Wf6vmL68i1nEx4f
-         4lpl65FR1RH5lWBdTxoizIzejNWzlcsWA1suUSh/RoVSlsPUboEH3QLkSAr8b3PtdF6O
-         NyzmUswJxGWlXJuNRL+jZc8nebNSQeSX6UBWIzzblaQ0a2Oznq5sVr6CBm79gv077LVq
-         8te7bYoylL9JcKHZyaRgqz9cYSiOHkVqCbQ6omFevFEyblJKmZMvHgtoAgO4N1nAO7G/
-         bi3Q==
-X-Gm-Message-State: AO0yUKXRnmKGIiwLALYCFORZsFC3EXmkQsnGh4f0o1TiZ6XH8Yd1wgi4
-        oGY4wyEsJvnt8tVuAokLsNI0qQ==
-X-Google-Smtp-Source: AK7set++X4dMzU1+TglBhBaz5aGpsMTEVRAyv1rwdkeuctCDcJF350WikbhtaW9nWta1HACpDwG+ng==
-X-Received: by 2002:a05:600c:991:b0:3dc:489e:1867 with SMTP id w17-20020a05600c099100b003dc489e1867mr2320129wmp.36.1675882927171;
-        Wed, 08 Feb 2023 11:02:07 -0800 (PST)
+        bh=PXn1ogE9xf12HQp/S/g01Ga91SzlSkMt5w5+myYC8Ik=;
+        b=xUSeOt3+p/n3v7ajz9hRl74IDZcVe41civJ2dnqwuljE0AMmR21s3VATc8DJzPUTk3
+         B2/6Ik9zp0aN/B/wzturfpnlk6jnoHfdo9Tc0LtMwDf/oFXgDPRgGpjm1VE2S1cQH9/b
+         7x9hF0cUx7OLea/A1t3eaYkbWt4ppLFwRhJaoi9J4AT2K3xtpXRMRvIxLymhQWr9lNjj
+         MP8WepM9hwxaZeMEC+xPMVBHgmFDVLPZGWIDh5+51E51VPeQisynbO/aOl4p05BCdZyi
+         IPu8L5ENoBOAJ1HAOgY6ny4RtqjHzokjk2vDnZPkk63S4ysFXZghCGvriFWE2b+GvFRC
+         lCSg==
+X-Gm-Message-State: AO0yUKUmFVMiS84wvgo765y7A4G2RQgoqxyFe0qlABCOgQf+rA7LPNM2
+        Sq6JBl2JuBez7nO/yYPMu69p1g==
+X-Google-Smtp-Source: AK7set9lb9+Qa05MNpj+m+C25BEZGPxEGNgImF2JJzfKCaEdItzhfXwChMvflZhKFxUV1ACea0WteA==
+X-Received: by 2002:a05:600c:43c4:b0:3dc:5302:ad9 with SMTP id f4-20020a05600c43c400b003dc53020ad9mr10116874wmn.27.1675882928813;
+        Wed, 08 Feb 2023 11:02:08 -0800 (PST)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003dc1d668866sm2650327wmc.10.2023.02.08.11.02.05
+        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003dc1d668866sm2650327wmc.10.2023.02.08.11.02.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 11:02:06 -0800 (PST)
+        Wed, 08 Feb 2023 11:02:08 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,10 +60,11 @@ To:     Andy Gross <agross@kernel.org>,
         Johan Hovold <johan+linaro@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 2/7] dt-bindings: mfd: qcom,spmi-pmic: Add pattern property for phy
-Date:   Wed,  8 Feb 2023 21:01:55 +0200
-Message-Id: <20230208190200.2966723-3-abel.vesa@linaro.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 3/7] dt-bindings: phy: qcom,snps-eusb2-phy: Add phys property for the repeater
+Date:   Wed,  8 Feb 2023 21:01:56 +0200
+Message-Id: <20230208190200.2966723-4-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230208190200.2966723-1-abel.vesa@linaro.org>
 References: <20230208190200.2966723-1-abel.vesa@linaro.org>
@@ -71,47 +72,49 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The phy pattern property will be used for providing eUSB2 repeater
-functionality. This will be modelled as a Qualcomm PHY driver.
+The phys property is used for allowing the eusb2 to interface
+with the repeater, which is modelled as a phy driver.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 
 The v4 is here:
-https://lore.kernel.org/all/20230207135551.1418637-3-abel.vesa@linaro.org/
+https://lore.kernel.org/all/20230207135551.1418637-4-abel.vesa@linaro.org/
 
 Changes since v4:
- * none
+ * added Krzysztof's A-b tag
 
 Changes since v3:
- * made this the second patch rather than the first in the series
+ * dropped the phy-names property and changed the commit message
+   accordingly
 
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml         | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index adf88245c409..1e6fadec1301 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -135,6 +135,10 @@ patternProperties:
-     type: object
-     $ref: /schemas/pinctrl/qcom,pmic-gpio.yaml#
+diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+index de72577e34a4..c53bab107b6d 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+@@ -33,6 +33,11 @@ properties:
+   resets:
+     maxItems: 1
  
-+  "phy@[0-9a-f]+$":
-+    type: object
-+    $ref: /schemas/phy/qcom,snps-eusb2-repeater.yaml#
++  phys:
++    maxItems: 1
++    description:
++      Phandle to eUSB2 to USB 2.0 repeater
 +
-   "pon@[0-9a-f]+$":
-     type: object
-     $ref: /schemas/power/reset/qcom,pon.yaml#
+   vdd-supply:
+     description:
+       Phandle to 0.88V regulator supply to PHY digital circuit.
 -- 
 2.34.1
 
