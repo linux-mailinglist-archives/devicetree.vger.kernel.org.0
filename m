@@ -2,143 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FF368EA48
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 10:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6626468EA70
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 10:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjBHJA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 04:00:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47888 "EHLO
+        id S230027AbjBHJEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 04:04:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjBHJA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 04:00:28 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A8B458B6
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 01:00:27 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id e19so10609347plc.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 01:00:27 -0800 (PST)
+        with ESMTP id S229598AbjBHJDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 04:03:54 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C19B358F
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 01:03:18 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id j25so12472837wrc.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 01:03:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EAPETRKdYetooRbExn2aw4blxNS/4Qu6CmKVgBC1MgU=;
-        b=drISNmQreCVkRTSu8p4+jH6CvionnNb0++vqRmAkk8Gu8Zu1s1Hnt5s/61cnCDAt64
-         cWe4ykZU2tZy1km1jotZtQAPJZKr6RoS+F1TA/hlpaFqEE53AiOXy1i9gsb6n6ZIBxFw
-         K+9ZLHswq8HNh0qhVHqHgVN4o+kuy275qjQtZ2kKjr1qm2es+EJYzKUCHewkv+Ksm+bI
-         WsRpHPujBHzKdQ4kijWf3AX8hlya9b2BqJ1VPMj8HYHiFCWL+niznNmRo3yGBXpw/Y+w
-         6x/AETV9ovzf6XvxHKgzNIpNWGHj9kaAhoTLADdqn21LB8ysYvxCV4xbDZ7qQmgk/aX4
-         mt/w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QNO05S5fEnwEDlCd8SuWqieT8IWig32rfB4rKatfeYc=;
+        b=hLAzW13lNas29EFppeU3uJwQwbMAppolBPjP/eYCNXFn9n3qgX7/tA3rsGvUqxU/LW
+         P+h7XLo4XNkWz1HXcIv38fDTieRLLtpfU1i9kn5i2HCy/NVTNKUXyVumPykpt3Jio0E3
+         bTLbrPuK6SuFYJml2oYA4SQwEsNcg1+8T5zIZBO7zqBqN242mMzen/L0aJS2S18muj7a
+         1DD+6inhDH9aPTnf93J4H0PIU1i2FKG1XStkprZNqksmB6xS5hQd8jZJQbrMLSiJSR+1
+         17TO7ltTIKSZ6jFQpM+Su7EHi+yVi052v1L6HfUwPNpSFoyBZ3JYVgiXOwmoe3GwuP9e
+         KDLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EAPETRKdYetooRbExn2aw4blxNS/4Qu6CmKVgBC1MgU=;
-        b=v40o/M7SojTC0UCWlNFO+zmXJ37r8JlRiRwJYJVh6N0PVKItJA0qtkMafwkwqoiXyN
-         SXIpqA31lJHhj4uJOri3AWnxk8Y7IJl+1zU9YVZxZLSFBpvs/JGNYiTUMgMn+5QmiDae
-         eWYTvzQQ5IKFLCC7klyy/pjF2upb3dHAw9hzhWGoNYRP+Oguqd7Sg7E8D42sAKVo712R
-         oAUHrmpuxrd4HaGkRZIGYwebZkGYqKD6tmrhX/YgwSTw65AlQuJ2JRqnYL53bF5QjHu4
-         CaWNeLZ9PwPMBFdLcZ+uwavsDjOV9ilgxVWcNowshc6BB21nVidLHlEvBPkTO717q5dL
-         vD1A==
-X-Gm-Message-State: AO0yUKUI6TGTC2YAsmjt0yANhZmpSUsP56zkT3kx+V+W0r7upjQRBIAw
-        6oRB3t0XH32/Ox13OOx3mG+ZcAW5Z4d2EN0otuCvjbyZif+jc4WayOU=
-X-Google-Smtp-Source: AK7set8T1MyhJ5/794hEAa0fI166hsMpG3E4dA1xxbQdUsstSNtn54g7NhKe++bybLuwWaSQqr/mut4qTmiayRfdrys=
-X-Received: by 2002:a17:902:ec8e:b0:199:1e42:2963 with SMTP id
- x14-20020a170902ec8e00b001991e422963mr1662777plg.18.1675846826532; Wed, 08
- Feb 2023 01:00:26 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QNO05S5fEnwEDlCd8SuWqieT8IWig32rfB4rKatfeYc=;
+        b=bXvzZhrCZR6FtWt4qVmDrrYrTtfE8ymrONL8LP2onL4XYgTzdHoyGIaQ4qf2xLEe+K
+         YrsNBtuh8VEPgLSk/OaloRP6eUMz0iip7J4F6nMP805G9RjrW8d6rd0tWrYvRgifIT4O
+         dMRqZn2a3xPREvvYWnBABm5B9ay89CJlSJL+G2pV2Ea6vpewzm5unZ2nNJeyHv34NK3V
+         5zdltBFo6GDZHrsQZ2xyENQBRdo3LXdnd946whs1xRiRKIynalbRdaaUNC8pVqqR1CVC
+         R4No1tMZv4obkERMdYV6kR6YDPUWX97F3jnkXJoVkh6l3Ia8QNrFoTPRTUiw6lKP6zHq
+         qXkg==
+X-Gm-Message-State: AO0yUKWXoPqK56/OxSewxNIVp9f+BDuG4q0R4xGY3sU5fg3Jgw2hyS8L
+        ff6pQ7uOjw6yZW4O7gj78C8fVw==
+X-Google-Smtp-Source: AK7set9X29yi0PJgoLwkU0q/W2EkfbkArMiu+EWXYrori579HP9kPJrRrwpKBGSJHyDWPzuAGpb/rw==
+X-Received: by 2002:a5d:6b89:0:b0:2bf:d940:29bb with SMTP id n9-20020a5d6b89000000b002bfd94029bbmr5808873wrx.6.1675846996763;
+        Wed, 08 Feb 2023 01:03:16 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id b2-20020a5d4d82000000b002c3ef7e74bdsm5257952wru.73.2023.02.08.01.03.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 01:03:16 -0800 (PST)
+Message-ID: <eda179e1-4cd1-0d1b-4e27-2fe92e959cf2@linaro.org>
+Date:   Wed, 8 Feb 2023 10:03:15 +0100
 MIME-Version: 1.0
-References: <20230206142714.4151047-1-liumartin@google.com>
- <CAL_JsqKA8pBess-zLA_2n0p8q=NBuY0EGA7qALKabwJA8ZRwrA@mail.gmail.com>
- <CAASV4h5ANYTJUN3gQxuLxeKMknyoyt7-YTxRRMcjrQXRrVRi5Q@mail.gmail.com> <20230207210458.GA4142905-robh@kernel.org>
-In-Reply-To: <20230207210458.GA4142905-robh@kernel.org>
-From:   Martin Liu <liumartin@google.com>
-Date:   Wed, 8 Feb 2023 16:59:50 +0800
-Message-ID: <CAASV4h4u7FZGMJFscGMbY8nLaWzq2stPc3YxpSVmLCq52V=Gmg@mail.gmail.com>
-Subject: Re: [PATCH] of: reserved-mem: expose reserved-mem details via debugfs
-To:     Rob Herring <robh@kernel.org>
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, surenb@google.com,
-        minchan@kernel.org, tkjos@google.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] dt-bindings: dma: qcom,bam-dma: add optional memory
+ interconnect properties
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        neil.armstrong@linaro.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230207-topic-sm8550-upstream-bam-dma-bindings-fix-v1-1-57dba71e8727@linaro.org>
+ <a188a52e-6327-f0ea-a54e-a23b88bca82f@linaro.org>
+ <a8112f61-f8d3-c1e0-9549-a9036a7e7894@linaro.org>
+ <88c31e71-55b6-a20d-1fcf-07804eace54b@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <88c31e71-55b6-a20d-1fcf-07804eace54b@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 8, 2023 at 5:05 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Feb 08, 2023 at 01:05:25AM +0800, Martin Liu wrote:
-> > On Mon, Feb 6, 2023 at 11:12 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > >
-> > > On Mon, Feb 6, 2023 at 8:27 AM Martin Liu <liumartin@google.com> wrote:
-> > > >
-> > > > It's important to know reserved-mem information in mobile world
-> > > > since reserved memory via device tree keeps increased in platform
-> > > > (e.g., 45% in our platform). Therefore, it's crucial to know the
-> > > > reserved memory sizes breakdown for the memory accounting.
-> > > >
-> > > > This patch shows the reserved memory breakdown under debugfs to
-> > > > make them visible.
-> > > >
-> > > > Below is an example output:
-> > > > cat $debugfs/reserved_mem/show
-> > > > 0x00000009fc400000..0x00000009ffffffff (   61440 KB )   map     reusable test1
-> > > > 0x00000009f9000000..0x00000009fc3fffff (   53248 KB )   map     reusable test2
-> > > > 0x00000000ffdf0000..0x00000000ffffffff (    2112 KB )   map non-reusable test3
-> > > > 0x00000009f6000000..0x00000009f8ffffff (   49152 KB )   map     reusable test4
-> > > > ...
-> > > > 0x00000000fd902000..0x00000000fd909fff (      32 KB ) nomap non-reusable test38
-> > > > 0x00000000fd90a000..0x00000000fd90bfff (       8 KB ) nomap non-reusable test39
-> > > > Total 39 regions, 1446140 KB
-> > >
-> > > This information is pretty much static, why not just print it during
-> > > boot? It's also just spitting out information that's straight from the
-> > > DT which is also available to userspace (flattened and unflattened).
-> >
-> > IIUC, for dynamic allocation cases, we can't get actual allocation layout
-> > from DT.
->
-> Right, so whomever does the allocation should print that out.
->
-> >  Also, there could be some adjustment from memblock
-> > (ex. alignment). Therefore, printing it out from the reserved_mem would
-> > be more clear.
->
-> If memblock is adjusting, then shouldn't memblock print out the
-> addresses?
+On 07/02/2023 16:27, Dmitry Baryshkov wrote:
+> On 07/02/2023 15:35, Neil Armstrong wrote:
+>> On 07/02/2023 11:32, Dmitry Baryshkov wrote:
+>>> On 07/02/2023 12:03, Neil Armstrong wrote:
+>>>> Recents SoCs like the SM8450 or SM8550 requires memory interconnect
+>>>> in order to have functional DMA.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 6 ++++++
+>>>>   1 file changed, 6 insertions(+)
+>>>
+>>> I suspect this will not work without a change for a driver.
+>>>
+>>
+>> I had the impression single interconnect entries would be taken in account
+>> by the platform core, but it doesn't seem to be the case, anyway I can;t 
+>> find
+>> any code doing that.
+> 
+> Probably you mixed interconnects and power-domains here.
+> 
 
-Yup, memblock can print out the address with _RET_IP_when the debug is on.
-In our case, the _RET_IP_ will be early_init_dt_reserve_memory_arch so it's not
-useful to find the memory owner. Thus, printing it out in of_reserved_mem
-module will be more clear and simple.
->
-> > However, as you mentioned, once the allocation is done, it should be pretty
-> > static. Thus, printing it during boot should be reasonable. If so, we
-> > could print
-> > them out in fdt_init_reserved_mem() like below. Is my understanding correct?
->
-> That looks mostly fine to me. If we can do it with the unflattened tree,
-> that would be better. I'm not sure off hand if that works here and you
-> are just incorrectly using of_get_flat_dt_prop() still, or if it is
-> indeed too early.
+The driver change was submitted some time ago:
+https://lore.kernel.org/all/20210505213731.538612-10-bhupesh.sharma@linaro.org/
 
-Yup, it's too early when fdt_init_reserved_mem() is called. I thought
-that is also
-why nomap and prop values are using of_get_flat_dt_prop() to get the property
-content in fdt_init_reserved_mem() as well.
+There is already DTS user of it and we expect driver to be resubmitted
+at some point.
 
-Another thing is we should use pr_info() to print them out as they are not the
-debug information. They're the memory layout we really want to know during
-the boot.
+What I don't really get is that crypto driver sets bandwidth for
+interconnects, not the BAM. Why BAM needs interconnect? Usually you do
+not need to initialize some middle paths. Getting the final interconnect
+path (e.g. crypto-memory) is enough, because it includes everything in
+between.
 
-Please let me know if there are any concerns. If not, I'll send a V2
-patch. Thanks.
+Maybe my review tag was a bit premature...
 
-Martin
->
-> Rob
+Best regards,
+Krzysztof
+
