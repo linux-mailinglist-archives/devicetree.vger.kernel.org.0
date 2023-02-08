@@ -2,124 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 281BE68F6D5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:21:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E9968F6EB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:34:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbjBHSVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 13:21:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57140 "EHLO
+        id S231696AbjBHSeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 13:34:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231897AbjBHSVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:21:30 -0500
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E357D113C7;
-        Wed,  8 Feb 2023 10:21:22 -0800 (PST)
-Received: from [192.168.1.103] (178.176.77.28) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Wed, 8 Feb 2023
- 21:21:12 +0300
-Subject: Re: [PATCH net-next v2 3/6] net: stmmac: add support to provide pcs
- from platform data
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230359AbjBHSeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:34:36 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6676F24CB1
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 10:34:35 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so2202189wms.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 10:34:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JLfDY/quHnwUCouz6Bzp+GXo+tVo6iB/nHd1i/j58GI=;
+        b=bIhsmexHY4yKfObCkcb5kstFWmxUpIVr63TYSAvIjRXcuZkkHdGJWBJacJPjfPdvM2
+         GX2fUWokn0vCe7y4tCQkD8U88dvs1Fp18M/A64L4MwAhjkDh/bBpxiQZAVpXYPn9zSXj
+         NmbkIShSG5ZvIIkUbEX1B3TMhkyhe/oB1yF4r9+V1jHhO11G1CLxBaSl42hadmGJ0jAD
+         0rzFV39/3m/uwklzHpHMTX1hVuce6Y7zb6VMf4PEcmSQ4difoQeXk0+lAGueQb+t1QMg
+         N6nj7OPxQYYI7jbTyln4VlhvFPO4OPQw5eM8cjnZxrXGq4wO3ezQlCRnM3Vc2jrpaIU/
+         CggA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JLfDY/quHnwUCouz6Bzp+GXo+tVo6iB/nHd1i/j58GI=;
+        b=rYiHxzTJoonTIO5bc3vaXOjWci1FJhzTmQc4UNI31KtAqpyZuTMvL5C7E5Z6WPKsYR
+         DEiPfoxNB0EPmmLhmu1ZMo/G80aVWxNhBwnpFoT4URaGTu6Cv2iEgDIQ7DiRr9I1YzNY
+         ELefgSthgfPfcIVie0GYa4zyS/6BMgCUhfNS8LoWFJJY4rkJHbUMxXfp/kFuOo/aCDgo
+         ahk5v6I9kxJ72YBQttEtZhbT6kLIGyTln9HSrS4ysdH0sWa4Du22N+Vofvwkd9RgXPuf
+         sQkHzKDOjA7rzuIvaLONpQehSxF+pgWwIdkl4bEGrZhKF3ItsT/22oovorhfb9Yhdjve
+         rHRg==
+X-Gm-Message-State: AO0yUKVkTQMzZ97vUinp9awyZ/In8DBpaB5ibDzoFchxIXZszgcMIbDq
+        V+gjA/6faUtq9Lpca23FXW1arA==
+X-Google-Smtp-Source: AK7set/xGUde5OfzB9OcfQ3EaMRQi9l5zhARcOoWUXWrZgCo0SpvATGeWPaXwf+8PBILopotmrlw/A==
+X-Received: by 2002:a05:600c:18a6:b0:3e0:e77:3056 with SMTP id x38-20020a05600c18a600b003e00e773056mr7370990wmp.30.1675881273976;
+        Wed, 08 Feb 2023 10:34:33 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id v1-20020adf8b41000000b002be505ab59asm14591304wra.97.2023.02.08.10.34.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 10:34:33 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Wong Vee Khee <veekhee@apple.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Revanth Kumar Uppala <ruppala@nvidia.com>,
-        Tan Tee Min <tee.min.tan@linux.intel.com>
-CC:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, <netdev@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230208164203.378153-1-clement.leger@bootlin.com>
- <20230208164203.378153-4-clement.leger@bootlin.com>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <c61c3e56-6b4d-8be3-6163-f05c1bf3dafe@omp.ru>
-Date:   Wed, 8 Feb 2023 21:21:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan+linaro@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-phy@lists.infradead.org
+Subject: [PATCH v6 0/6] sm8550: Add USB HC and PHYs support
+Date:   Wed,  8 Feb 2023 20:34:15 +0200
+Message-Id: <20230208183421.2874423-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <20230208164203.378153-4-clement.leger@bootlin.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [178.176.77.28]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 02/08/2023 17:56:27
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 175379 [Feb 08 2023]
-X-KSE-AntiSpam-Info: Version: 5.9.59.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 502 502 69dee8ef46717dd3cb3eeb129cb7cc8dab9e30f6
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.77.28 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.77.28 in (user)
- dbl.spamhaus.org}
-X-KSE-AntiSpam-Info: 127.0.0.199:7.1.2;178.176.77.28:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;omp.ru:7.1.1
-X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.77.28
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 02/08/2023 17:58:00
-X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 2/8/2023 4:32:00 PM
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+This patchset adds support for USB for Qualcomm SM8550 platform.
 
-On 2/8/23 7:42 PM, Clément Léger wrote:
+This patchset is based on top of the following patchset:
+[1] https://lore.kernel.org/all/20230208180020.2761766-1-abel.vesa@linaro.org/
 
-> Add a pcs field in platform_data to allow providing platform data. This is
-> gonig to be used by the renesas,rzn1-gmac compatible driver which can make
+Changes since v5:
+ * rebased on top of [1]
 
-   s/gonig/going/ :-)
+Changes since v4:
+ * dropped the dts/dtsi patches as there is no change needed to what is
+   already merged
+ * rebased on top of next-20230206 which has Luca's patches for SM6350,
+   like Johan suggested
 
-> use of a PCS.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-[...]
+Abel Vesa (6):
+  dt-bindings: phy: Add qcom,snps-eusb2-phy schema file
+  phy: qcom: Add QCOM SNPS eUSB2 driver
+  dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Document SM8550
+    compatible
+  phy: qcom-qmp: pcs-usb: Add v6 register offsets
+  phy: qcom-qmp: Add v6 DP register offsets
+  phy: qcom-qmp-combo: Add support for SM8550
 
-MBR, Sergey
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |   1 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |  74 +++
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 409 ++++++++++++++++-
+ .../phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h    |  31 ++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    | 422 ++++++++++++++++++
+ 8 files changed, 944 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+
+-- 
+2.34.1
+
