@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BA7168F229
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1E568F250
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbjBHPjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 10:39:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59542 "EHLO
+        id S231327AbjBHPqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 10:46:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231733AbjBHPjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:39:41 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2A5B48A37;
-        Wed,  8 Feb 2023 07:39:38 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id ba1so13114149wrb.5;
-        Wed, 08 Feb 2023 07:39:38 -0800 (PST)
+        with ESMTP id S231187AbjBHPqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:46:36 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B837BAA;
+        Wed,  8 Feb 2023 07:46:31 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id bg26so13644271wmb.0;
+        Wed, 08 Feb 2023 07:46:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ai4b+jYyw5cqGgwQurdqHixIHibtkEl/YStppo1UAEw=;
-        b=FQLtuY3Sl7LpxQh76NTsIOLrH8Jq1NNvlE42F4PxFgAKoKKyROk2dBtRd6tKdLq0BQ
-         BYMSYywjJj2IlUrVSD0XT+G/GssyUPR8MNtLNaAg40eoyamc2PVkC8WU0yf6pUTnj8pb
-         oruR8ENHG0Ekl4eLqlkgnVApSAYIfpevNYhNEeFOwL0QEsyxiroNzVBwYP1igR2H0JUZ
-         uIXpBQYKhPJ8BsYPi9b7/OqmAyewEfbfLYg+pZdKQF7nxZQRJhy9bDSYiWnEFBhrkaQB
-         JcazBuRam3ZEZinxwpECR3HA7DuRWQiTByWkbKP8WVsymWG2lpPXnur44brRi+IPbLdQ
-         yh4A==
+        bh=QU2t04Vz0L4YBcL3LbO96riKtXp80tCkHBnfxGNCEIU=;
+        b=pEbS3Me0KO689JUNk9hXzyEDagcWuorGVsaPjPMzRcCp/8R9MjQzAkS17PvvYwQFj8
+         LJj3rOnowahYQHDNwvPjaOnG1FGvuFc8dLIFa0GxuJbhi3UMqm4q4FmVwdmKVnQD9GHe
+         jto5qCK/KxqcVR9lGwA1JXPc9bdkQ5nwmmcuel7T3BZIZTNesZxidKWo54sWB6j58HUr
+         i8LK+UctQo5Zy2ooHtJNTN5aU+vdF1fCy9iNivxyKvvskM1JT2Wnb6lnQRIHQGjzmp4u
+         9DYeqMu04CxR7qWJX7U3gANfSMxNfljyZNQ8Sseb7UDUlc2Eus/goaasMRQS5CUrn0YX
+         ohNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ai4b+jYyw5cqGgwQurdqHixIHibtkEl/YStppo1UAEw=;
-        b=xJ4mOPX0fJoI5Q34Y2qWzawf2cQRgfWVnAid6ajtHu33OYMCwufuw35upmydZgGPWi
-         je4PDoIQlkiJWyPJsc9us6H5Vg/XjOmm6FIN8oCPehIFc3Pi5etJm+rkTCNT5oWgUqRm
-         R0jhTmMDUrvP6R1zEt/jXKRy+EpPKU+TCyOpGSS3mHcw8nxkwraJ5Sj8YGUCcBXVRRIF
-         LcBIMQyGBkZU6oJIfV7wlKHDHujDdU2pUGxyv6PQiOS0vI3YF5f2NC4vdosew6xptrTa
-         FfKWrkDjQY7RDXZ89XVgRhabRImzZsNE+fdhM95hxduAZFYARTnc+q18IOt0Y3LUq4AY
-         xBpQ==
-X-Gm-Message-State: AO0yUKVMI2yTNT8pJAUK/SBqW2wcO4iT0Oql68iwoU42PLsox/94nGUl
-        y0Wb1Yb6JnHqQLDi7Oj9kck=
-X-Google-Smtp-Source: AK7set8iBupnOqMns+N8Z1VtP4hCRBwJa7b6c/HuULlhEG/d0GgtpTQfDR6PLen9OhuZm/odPIaZnQ==
-X-Received: by 2002:a05:6000:1141:b0:2bf:e46c:8b9a with SMTP id d1-20020a056000114100b002bfe46c8b9amr7479592wrx.34.1675870777147;
-        Wed, 08 Feb 2023 07:39:37 -0800 (PST)
-Received: from localhost.localdomain (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
-        by smtp.googlemail.com with ESMTPSA id n2-20020a05600c3b8200b003dfe659f9b1sm6755596wms.3.2023.02.08.07.39.36
+        bh=QU2t04Vz0L4YBcL3LbO96riKtXp80tCkHBnfxGNCEIU=;
+        b=0+v5PBmxB4h+hJ++TZHbj5sQ1pTDGKxU39MKxDSRfpttkXt5RIy2vEA35bqcLV3qBA
+         GnHLioe5pRZq6J7nNSmmCuSxp3d2R4ZQCH205sICF7+yUKkXmNdnPSm9M2+tPaE4yi8L
+         Xvh4US+S5+7XEF7MHVPi9Cg6lEgx6sMofOWgV/8RhbfDsm2+5MMsDPohk8errhGXo8bk
+         Cv1QfBmbzQY9JL5gxmGYUCVl1UqV5RI69lBrTV2OeANuu7ARnB8frwOJzwqgTAEegR0u
+         3PM58hgd6wqwzR4LWcnDaCGIN7JVZSYSROzPeNgfO+WIPvZF/q06XuRpe5N4ZOV/nHq+
+         n9JQ==
+X-Gm-Message-State: AO0yUKUc7VoUOnIC4iuqh89wdje+vnyBz04MTftmsl5JLhmqFbeRqX19
+        iySjcG69U2+5tSzjEOwoKNU=
+X-Google-Smtp-Source: AK7set9PpKIxdxDU92yb5BTSfyg4MbnoxWJ8jiFk8RIH6B+9+Ow5++VbYuslJwDrpp27azxbKudn/g==
+X-Received: by 2002:a05:600c:1898:b0:3df:f7ba:14e1 with SMTP id x24-20020a05600c189800b003dff7ba14e1mr7732827wmp.8.1675871190204;
+        Wed, 08 Feb 2023 07:46:30 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b003daf6e3bc2fsm6368834wms.1.2023.02.08.07.46.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 07:39:36 -0800 (PST)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 3/3] dt-bindings: opp: opp-v2-kryo-cpu: enlarge opp-supported-hw maximum
-Date:   Wed,  8 Feb 2023 16:39:13 +0100
-Message-Id: <20230208153913.24436-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230208153913.24436-1-ansuelsmth@gmail.com>
-References: <20230208153913.24436-1-ansuelsmth@gmail.com>
+        Wed, 08 Feb 2023 07:46:29 -0800 (PST)
+Date:   Wed, 8 Feb 2023 16:46:28 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Prathamesh Shete <pshete@nvidia.com>, jonathanh@nvidia.com,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        smangipudi@nvidia.com
+Subject: Re: [PATCH 3/3] arm64: tegra: Add Tegra234 pinmux device
+Message-ID: <Y+PD1M6eC1QqEq7o@orome>
+References: <20230207115617.12088-1-pshete@nvidia.com>
+ <20230207115617.12088-3-pshete@nvidia.com>
+ <f0d58e5b-74df-26cf-592e-302a00d08eee@linaro.org>
+ <Y+OAthBgds9InvKp@orome>
+ <7bb3e201-954d-c8eb-9430-19626c43fe75@linaro.org>
+ <1dc0589b-2434-47c5-a1d2-d253b06d3a67@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kznfj9f1arh8i+uH"
+Content-Disposition: inline
+In-Reply-To: <1dc0589b-2434-47c5-a1d2-d253b06d3a67@linaro.org>
+User-Agent: Mutt/2.2.9 (2022-11-12)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -81,61 +81,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enlarge opp-supported-hw maximum value. In recent SoC we started
-matching more bit and we currently match mask of 112. The old maximum of
-7 was good for old SoC that didn't had complex id, but now this is
-limiting and we need to enlarge it to support more variants.
 
-Document all the various mask that can be used and limit them to only
-reasonable values instead of using a generic maximum limit.
+--kznfj9f1arh8i+uH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-changes v6:
-- No change
-Changes v5:
-- No change
-Changes v4:
-- Add review tag from Krzysztof
-Changes v3:
-- Fix dt_binding_check for missing 0x5 and 0x6 value
-Changes v2:
-- Document additional bit format
+On Wed, Feb 08, 2023 at 01:06:02PM +0100, Krzysztof Kozlowski wrote:
+> On 08/02/2023 13:01, Krzysztof Kozlowski wrote:
+> >> I wonder if there's a good way to detect these. We'd have to run checks
+> >> on the DT source files, so that's a bit difficult. I do have an
+> >> experimental script that tries to capture some common pitfalls on
+> >> sources but it's quite ugly and slow, but I guess I could add something
+> >> like this. But perhaps there are better ways?
+> >=20
+> > One way to easy spot them is to override always by label, thus every
+> > node defined like above is a new node. However I think we talked about
+> > this and you do not follow this practice, thus there is no way to tell -
+> > is the status reasonable or not.
+> >=20
+> > Automated tools could help here as well - run fdtdump on DTB and look
+> > for status=3Dokay.
+>=20
+> Eh, obviously it won't work - every node which was disabled in DTSI and
+> enabled in DTS will have the status=3Dokay...
 
- .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+Yeah, I was originally thinking along the same lines, but when things
+are overridden that check no longer works. I suppose DTC could be taught
+to check for this when it merges nodes.
 
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-index b4947b326773..bbbad31ae4ca 100644
---- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-+++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-@@ -50,12 +50,22 @@ patternProperties:
-       opp-supported-hw:
-         description: |
-           A single 32 bit bitmap value, representing compatible HW.
--          Bitmap:
-+          Bitmap for MSM8996 format:
-           0:  MSM8996, speedbin 0
-           1:  MSM8996, speedbin 1
-           2:  MSM8996, speedbin 2
--          3-31:  unused
--        maximum: 0x7
-+          3:  MSM8996, speedbin 3
-+          4-31:  unused
-+
-+          Bitmap for MSM8996SG format (speedbin shifted of 4 left):
-+          0-3:  unused
-+          4:  MSM8996SG, speedbin 0
-+          5:  MSM8996SG, speedbin 1
-+          6:  MSM8996SG, speedbin 2
-+          7-31:  unused
-+        enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
-+               0x9, 0xd, 0xe, 0xf,
-+               0x10, 0x20, 0x30, 0x70]
- 
-       clock-latency-ns: true
- 
--- 
-2.38.1
+Thierry
 
+--kznfj9f1arh8i+uH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPjw9QACgkQ3SOs138+
+s6GkwRAAkRn3zAbCODESQbqwSh+94YN9rvV18HbC7A5VXcR2IVetIFWim6Pvsh1F
+UHk7bwvlJqfsxmRnMr17UIVfIfhGzYB0QDj2Bynvb5nk2tYdSripecGq95mbtIPV
+d1wjzcHn+UkpFKP8hYzWqDn8w2fOHWqfllMVV/4z2j9zIAzcFatTQ/oYyKlPBSd1
+SDur8hIQ+VzXFuPGFlJKlqOPq7jwacZq123MoNzYo4Fye2kjJHyKZ7tHA4FEkUdi
+x2GxRg0b/nCkeTMWGxk0l/A9+nGqhQBpkovPUnwu+0i1jscQ9kDTqyu8OM85JitU
+fk3XwtM4o2kN996MPkNGiZGpIae0RtTDiM2W90MF7MR1Bo6B2Oez8an5918Gr5ao
+2GHxC12UTwLbLUcsrKB0YbHokaavoFglYbFelJ0bvmFhI9yRnBoFPcgEjBMCEoYe
+8oTUpZ6K6hXrJ9tpf9uD2XfrtcXHrIVQZMjevNAlQ4tY6IVreuBs1C4xE/URpJWv
+y34sVLqu6Eum/R360fXt/iENuaF4ynF9lX+P38fRzHZuQ5m7QXy5Xt9Yl8zUjmk/
+1uj00qrbQ+GQiD8VVt+gYVadXNZPUOrEXogcmt9grQ/6RHY/6uR+j4CxGn3pQhy/
+l3+3AsaUEUF5uXLmtWjyuPjRpDDl6lXqQWE+2x1diASq4/2bxxw=
+=sh86
+-----END PGP SIGNATURE-----
+
+--kznfj9f1arh8i+uH--
