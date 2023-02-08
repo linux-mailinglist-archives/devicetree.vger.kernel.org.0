@@ -2,121 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 607DE68F2C2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:04:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BE3768F2C5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:05:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230295AbjBHQEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 11:04:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
+        id S231341AbjBHQEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 11:04:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbjBHQEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:04:40 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194344B764
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 08:04:17 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id z13so6193515wmp.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 08:04:17 -0800 (PST)
+        with ESMTP id S231157AbjBHQEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:04:45 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991F94ABF7
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 08:04:28 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id bg5-20020a05600c3c8500b003e00c739ce4so1848874wmb.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 08:04:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l+m3F3iCUC+jLles+DVcgXooXwK7NZCMV3ti5i6vKFM=;
-        b=ejg/jsd4afdTbrNvBe+FF55hHfpxJn0Y/8BT6NTXpa/o4Tk6z8yZyt/vz39+oG+2+d
-         PxCaODODZoI4mKRsEmQovjsVgfCdoel8z3aH25CRr79ZnKKzV+ocWnG4fmSpgqSvgN1V
-         kyLmiiXRfkDvyu0FgrxULi5nAFcKHE5Ucv9EE0jPwGGhLlkDSCuHJi/T0o4wvE/FDFO8
-         TbOwMdSbGSkTHCEhnw3oBjACwBimx0cXyI2SJXcrKJpTeNvmf5MVDYMRCY/VSfWSqgns
-         gkcvhd1um6HaImYSyg13JStrCNKEIsLtC3qj2uY8ZUiRuou2hbkFTRDAcpRjZMYrVTDn
-         +KhA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R0rE8Lb8ibUWc7kHbj+yZ/hofiyZLCvQRtWGXPk+RRQ=;
+        b=ivA9vXJ5HErZ0jSUfWbxaanTS4VhVkXF/+qTcymMgj2HsI5SbC7CpaYW1pVlAA630r
+         0IybXgqzE55NBFLpmYl5ZZSOgyqHVSst5nvPe4rJN3k5VBQbyuk+fJPWA7KJ7vJe6dy3
+         97t302+R2DeFQ4SzMmMzyvYe20bJ39BWP48Vrz3M75cNKSGw7Gi5SRJcZ5ZTMlm53LQD
+         VD1hh1cu9O/BDwVEbIwGoDKPeF/SZ5fj45bmGWM/iASCrQomNJYrV3ylj2J+meWZmHmP
+         TR1YKapAr8sFwrcS4lGUz3Yc2I4vNz3USDptOt73CSR/eai7fpemnOfDe/XYxIfYkWjJ
+         5VGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l+m3F3iCUC+jLles+DVcgXooXwK7NZCMV3ti5i6vKFM=;
-        b=vo4+R5KIrSPGGZT6zgxfnad+r3auLhgLYJalRvM3K6SCIFrnL/KZ0lq3z/bxv5kSr2
-         vW+6qaCUon+VoewXzVQWSsSMbgiQyUX2rDxMT2CSlnfw8Qow7/6hPgxteLPOHxK68XfJ
-         TE7wBLmadft12dWfQk0cz6aRHN1vDVzh1yf+5Kc15A2eWNXOs4wrEi/P+MECd3rm4WTa
-         I0y9Jt7rTGESN+nMqg0zzMNOKoKdDMgBaiSiDHWpNihh62iIKnd9fWfrw6fSHB1zfs6d
-         HeudJ5yPfqxusZKE7PdH8dxXtCARhoNAvmqM5EL/iNlvQKgK2Fy4agk2r5ApPFPrlrCL
-         DStQ==
-X-Gm-Message-State: AO0yUKV6MEHOoDPufSq28A+E1NWfllbMWO8/8gSAYjj+wbw+LwHChR0C
-        o7AcdXZhcVtILv3Fh3bS6Vo8iA==
-X-Google-Smtp-Source: AK7set8omr9IactH1otM+Cqkk1aEQpSRxG3aPP3qUBcBsscAJnAoRkNQlMhTD7TwqkYrWkA0yvIJgw==
-X-Received: by 2002:a05:600c:998:b0:3dc:59ee:7978 with SMTP id w24-20020a05600c099800b003dc59ee7978mr6967187wmp.38.1675872254623;
-        Wed, 08 Feb 2023 08:04:14 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R0rE8Lb8ibUWc7kHbj+yZ/hofiyZLCvQRtWGXPk+RRQ=;
+        b=Qtt2uK0eWhfhHk1kxBJ0gcTW0ZHUQpI/UHjb1My0lPVyBVOeOfF7DiVSJqO8pC2HyI
+         pHRNWO+ha3sjiVcAXs4J92YKf5wnR4hJOzfiBUHNB+jckYpoV0PNfRJjrL+IfObbCKJF
+         xHP1MtDnFkp+OIZPsTwI69bZRc1cC2a116I1PRQBFxPoK7bK41x1nrJuUI43+egtFOTI
+         35EhiRs8XHHLMIXp1eS02QoiVAE+jsnvbYKTG7/Jsu6Dgu1frJPXiSOFG8jySQ+1MzXt
+         FzBpj5eNEKFlpC6MMOJXzdffc8Ny9juo+e/TrC1aYobO/2VJWuyKQkVOL6P3FCvxv4SD
+         LWfg==
+X-Gm-Message-State: AO0yUKWlPAAZOFIjIQlHFqv4aZPOSfFhQ7gKkAUWtBCH30xixsYNY8xg
+        9Q6LCDzBACIN3EumcWOLyByKHA==
+X-Google-Smtp-Source: AK7set+OvUX1Ujsg0vDVzePW1OFuWxgWdPpykyHrq3lV5Zs0mUMc2DcbvEzHzoz7hTiJh35Cni1OOA==
+X-Received: by 2002:a05:600c:4919:b0:3df:f2a5:49fb with SMTP id f25-20020a05600c491900b003dff2a549fbmr6719356wmp.7.1675872266974;
+        Wed, 08 Feb 2023 08:04:26 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o18-20020a05600c2e1200b003dd1b00bd9asm2169890wmf.32.2023.02.08.08.04.13
+        by smtp.gmail.com with ESMTPSA id r3-20020a05600c424300b003dc492e4430sm2114847wmm.28.2023.02.08.08.04.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 08:04:14 -0800 (PST)
+        Wed, 08 Feb 2023 08:04:26 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ASoC: codecs: max98090: simplify snd_soc_dai_driver
-Date:   Wed,  8 Feb 2023 17:04:10 +0100
-Message-Id: <20230208160410.371609-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: exynos: correct max98090 DAI argument in Snow
+Date:   Wed,  8 Feb 2023 17:04:24 +0100
+Message-Id: <20230208160424.371678-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230208160410.371609-1-krzysztof.kozlowski@linaro.org>
-References: <20230208160410.371609-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The max98090 has only one DAI, so snd_soc_dai_driver does not have to be
-an array.
+The max98090 has only one DAI and does not take argument to DAI
+phandles:
+
+  exynos5250-snow-rev5.dtb: audio-codec@10: #sound-dai-cells:0:0: 0 was expected
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- sound/soc/codecs/max98090.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/exynos5250-snow-rev5.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/codecs/max98090.c b/sound/soc/codecs/max98090.c
-index 06ed2a938108..b419c49e1e08 100644
---- a/sound/soc/codecs/max98090.c
-+++ b/sound/soc/codecs/max98090.c
-@@ -2356,8 +2356,7 @@ static const struct snd_soc_dai_ops max98090_dai_ops = {
- 	.no_capture_mute = 1,
+diff --git a/arch/arm/boot/dts/exynos5250-snow-rev5.dts b/arch/arm/boot/dts/exynos5250-snow-rev5.dts
+index 0a47597d6f0d..3d32c3476e84 100644
+--- a/arch/arm/boot/dts/exynos5250-snow-rev5.dts
++++ b/arch/arm/boot/dts/exynos5250-snow-rev5.dts
+@@ -27,7 +27,7 @@ cpu {
+ 		};
+ 
+ 		codec {
+-			sound-dai = <&max98090 0>, <&hdmi>;
++			sound-dai = <&max98090>, <&hdmi>;
+ 		};
+ 	};
+ };
+@@ -42,7 +42,7 @@ max98090: audio-codec@10 {
+ 		pinctrl-0 = <&max98090_irq>;
+ 		clocks = <&pmu_system_controller 0>;
+ 		clock-names = "mclk";
+-		#sound-dai-cells = <1>;
++		#sound-dai-cells = <0>;
+ 	};
  };
  
--static struct snd_soc_dai_driver max98090_dai[] = {
--{
-+static struct snd_soc_dai_driver max98090_dai = {
- 	.name = "HiFi",
- 	.playback = {
- 		.stream_name = "HiFi Playback",
-@@ -2374,7 +2373,6 @@ static struct snd_soc_dai_driver max98090_dai[] = {
- 		.formats = MAX98090_FORMATS,
- 	},
- 	 .ops = &max98090_dai_ops,
--}
- };
- 
- static int max98090_probe(struct snd_soc_component *component)
-@@ -2594,8 +2592,8 @@ static int max98090_i2c_probe(struct i2c_client *i2c)
- 	}
- 
- 	ret = devm_snd_soc_register_component(&i2c->dev,
--			&soc_component_dev_max98090, max98090_dai,
--			ARRAY_SIZE(max98090_dai));
-+					      &soc_component_dev_max98090,
-+					      &max98090_dai, 1);
- err_enable:
- 	return ret;
- }
 -- 
 2.34.1
 
