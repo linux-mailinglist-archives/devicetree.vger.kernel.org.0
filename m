@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FCFD68F725
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:39:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 460E368F728
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:39:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231331AbjBHSiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 13:38:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39542 "EHLO
+        id S231318AbjBHSiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 13:38:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231280AbjBHSi0 (ORCPT
+        with ESMTP id S231339AbjBHSi0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:38:26 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE40526F
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 10:38:21 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id fj20so3224591edb.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 10:38:21 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BCD13D78
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 10:38:23 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id v13so21672698eda.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 10:38:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kbuCsaZiHtUTgOWZDPPWu8eIqChDJtTAhqjY0efOttk=;
-        b=vguUz3jiIdB2R73Kp3HvwxlqAKmEGdrkEvgWB6XYdGVj6HJQY58L6k9lGiT57RkYfU
-         7ckzi3ZPcTr96wO34ptnTqRvVuYe4tKoFP8RUSRpHf6S/DxuF5fUgD6ampUEuqaXrsl6
-         +NE88NdS4yeIUvMmEMK73aWnqrCAwVWBJDXUeQRhURW5Jsb92Xxu5GWsPmv793SIhTjp
-         dUenPPFBAu3x9NeON49jYAFtkSul4gMfiNkLypHQKzRMInDzGPMSNrs/ZD3eSF3A9zDI
-         Hwo3w9GMhq8a8Lwyh6Z+XkFz3GDQSVnFi2neMRXW/fRzHv/z7t7tDw7O2wqmLgLzm426
-         hWUg==
+        bh=cz0oWSthv9m1vHslRMrBSvak5CO+z8/t3E9oDupBv5U=;
+        b=pWhVGcXPExfi7kwQnUxS6iOPVL21CHnr7uVJorN8HWlfHjeMhoySFEWl/pmDFYM55j
+         ATMOBMjKW+OPbgvLSqOgAfUt78rZuezele90NElHFZ3+GoX35Ga078wIoXpm47ultTY7
+         Neau8+D0Uj6spo80LPFaWt2FYMvv7BP2qrBOzFkXcd3UWkIkTU+5ZU92axp6M0DMEG5P
+         0BDAnw/p3boKWl/cGTib1A9SWt+Rud3z+KiZcIsmFUXgmu6yQ075rWxAlBVvrxq8+s3N
+         Qf6j0PMnwb9f9uKGVQe4DoGuktu3vPpdHsdnZPii2dhHQGHxVcHR+ZQbQAxD6ti2rY3u
+         /qxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kbuCsaZiHtUTgOWZDPPWu8eIqChDJtTAhqjY0efOttk=;
-        b=PGp403uI/ZdggTINmolSJ1bJ1LcXQIKzxU1mPVV4JU2HLgViHc1mV4zinp9CwDAI6U
-         AnWX88ldZZZ/6U3MFWpI4JjGpKbF4axFkqZt1HuIpamBZoTCWgjscVh6PAJHdMhMKpd+
-         wrB3ckCezygrEQjQQF/becV/Vy6UzK/wj3Z7rUOhUqbZTyzCAW2WnGYJ1sSHwQHsc40y
-         iot/djajYU3HqNVvZZlTOhXF5Z16iZXwgvI2Gjm8znX/7Vgue2zFlpYzgHUbgQcpwsvO
-         lVxR9v3UOMqRlgqmoIv8KJJYdP9zAk68f+EZ58rf/5inbY7pQI+vQRhqk6Z5YLCWEJy1
-         AmXQ==
-X-Gm-Message-State: AO0yUKUGTHPx3ukIz6vShBiEJ7Y2AxT6xJjrYVKZ7JCI8iCH/dTc7jpC
-        1H3H622pB/s1ozpVHre8zbo+QQ==
-X-Google-Smtp-Source: AK7set9I5yLGkPPfqYDV0wpLjNDuJD6rrJGD9rHgKxNqFPz95yOhZ9oj5sdKmM7AdwpH1HV4/osDgw==
-X-Received: by 2002:a05:6402:278a:b0:4aa:b394:7b28 with SMTP id b10-20020a056402278a00b004aab3947b28mr10466401ede.3.1675881500257;
-        Wed, 08 Feb 2023 10:38:20 -0800 (PST)
+        bh=cz0oWSthv9m1vHslRMrBSvak5CO+z8/t3E9oDupBv5U=;
+        b=HwuAz3AlSu+psfZNetdEQUMYVyNNhgmYkjaVmlqhSTScI55mXoL5aImn9SZS2wJn4A
+         tB2vMCR/pfGObWzhpR48poDP/Hw/TTN9jaPmoyFx9k57p1uzB1vh9YXVcXEyc1mzntUR
+         4vj3gubrXydS0MffoGUJK+VKfveac6GCMuRTlt4tEqZr/emNZYOQdlnO6nDtqWUQj0gL
+         ba0fDBBkX+gpIut3dfPLw5uigAjnapBBXNhlGOvY76av9Ei/nE59PuZF0tJi4RrCg8ka
+         dvZC+167jNwn5/VCaKDII0bIacGCU9jIl/K+pFOp+ETUC9p91UeQQopkuDwCBN87aWUe
+         iEyw==
+X-Gm-Message-State: AO0yUKWGReTGWwgX3DsdwzyrdQU8T/KqW1ONv2e+1dIFUNrSBgAElxof
+        udg7Qc9INZszX09tUvkoImq/hw==
+X-Google-Smtp-Source: AK7set9ag2bJyP6dEaevJZh2YbJ3Hl7I50yjzbGsfBpdCNayUpDBXicgrx6S4fcxrMcDrypiyGeQYQ==
+X-Received: by 2002:a05:6402:510f:b0:4aa:a515:58ad with SMTP id m15-20020a056402510f00b004aaa51558admr11003494edd.0.1675881501709;
+        Wed, 08 Feb 2023 10:38:21 -0800 (PST)
 Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id d22-20020a50cd56000000b004aaa8e65d0esm5179663edj.84.2023.02.08.10.38.18
+        by smtp.gmail.com with ESMTPSA id d22-20020a50cd56000000b004aaa8e65d0esm5179663edj.84.2023.02.08.10.38.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 10:38:19 -0800 (PST)
+        Wed, 08 Feb 2023 10:38:21 -0800 (PST)
 From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         "David S. Miller" <davem@davemloft.net>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-crypto@vger.kernel.org
-Subject: [PATCH v9 07/14] arm: dts: qcom: ipq4019: update a compatible for QCE IP on IPQ4019 SoC
-Date:   Wed,  8 Feb 2023 20:37:48 +0200
-Message-Id: <20230208183755.2907771-8-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH v9 08/14] arm64: dts: qcom: msm8996: update QCE compatible according to a new scheme
+Date:   Wed,  8 Feb 2023 20:37:49 +0200
+Message-Id: <20230208183755.2907771-9-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
 References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
@@ -71,35 +71,34 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change the old deprecated compatible name to a new one, which is specific
-to IPQ4019 SoC.
+Change the old deprecated compatible name of QCE IP on MSM8996 to new ones
+based on SoC name.
 
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index a73c3a17b6a4..c73098d7a4da 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -314,7 +314,7 @@ cryptobam: dma-controller@8e04000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 55180586f7b6..fe9a769afa37 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -784,7 +784,7 @@ cryptobam: dma-controller@644000 {
  		};
  
- 		crypto: crypto@8e3a000 {
--			compatible = "qcom,crypto-v5.1";
-+			compatible = "qcom,ipq4019-qce";
- 			reg = <0x08e3a000 0x6000>;
- 			clocks = <&gcc GCC_CRYPTO_AHB_CLK>,
- 				 <&gcc GCC_CRYPTO_AXI_CLK>,
+ 		crypto: crypto@67a000 {
+-			compatible = "qcom,crypto-v5.4";
++			compatible = "qcom,msm8996-qce", "qcom,ipq4019-qce";
+ 			reg = <0x0067a000 0x6000>;
+ 			clocks = <&gcc GCC_CE1_AHB_CLK>,
+ 				 <&gcc GCC_CE1_AXI_CLK>,
 -- 
 2.33.0
 
