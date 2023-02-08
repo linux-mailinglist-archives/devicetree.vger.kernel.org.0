@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB0CB68EC48
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 11:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFE5968EC4F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 11:04:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbjBHKDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 05:03:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47380 "EHLO
+        id S230434AbjBHKE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 05:04:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbjBHKDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 05:03:22 -0500
+        with ESMTP id S231179AbjBHKEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 05:04:04 -0500
 Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEC3335BB;
-        Wed,  8 Feb 2023 02:03:18 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB94535BB;
+        Wed,  8 Feb 2023 02:04:03 -0800 (PST)
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3183TBEN010218;
-        Wed, 8 Feb 2023 04:02:45 -0600
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3187LPHk011275;
+        Wed, 8 Feb 2023 04:03:38 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
  : subject : message-id : references : mime-version : content-type :
  in-reply-to; s=PODMain02222019;
- bh=ix0NSZcDZRRO7mkidkQUjWySPIOK6axDiNLFsl+FgGs=;
- b=JURhOFVfF6VjquYHFMkuDrYzaQyHZYb4riLwfVvejT0AyKtTijSSP9mountka1v+btpR
- vGoiMValeQ9BE8x0VeXlKPBK44F5ZI5QTGg1NhSk4y6zoYjhkjxCzw29MzNZgW39Mj2B
- OH+CMn9ImtQMbHTtHHB01tuwHNB82nCW3hgCw8QTBunSI9dzeElRrQPjLv2X+h7uBDqL
- GENgzQeoXmoU0mTTnWpULAj9dsxNbUNPySqJHg87MSML4FFFwd4KWEp1iFO8QkvvdUyI
- B/ynPFi3TGe9z+u331fn4tpqpHpCnzk+9TRI+Brl/ak9E9V8FNASC+4WWtV24igGN8kl fg== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3nhnn7wsn0-1
+ bh=orPW6Tl0jOf9S97zbcY2T9FCO8LqYdndxqeT8o3kDNM=;
+ b=STUJB066a2wfI44JZ73/nECnTl+bwj87qsy1/uy2EXjJd5Q5ONMlLqjYphFt+kF2LHBL
+ g3ELvrui8HRmbr9vp+Lh4i972hrQ8zySLJyUG9+g1kqDrzFn/AwCBv+hawNOixJ9M6Zy
+ R79gk8BcVt193hl+WyzUHbBTmvWscWO974KHWznbJP5SRVduH2bYitQ09n2XZkYaxvxO
+ 2u8X0Ku1jhSuU22Obih6Mbw5e1Wniddqfe9GFWeozAdUae0pb78Gh6oV6hTOnpACF3jj
+ 8Ia9wDcYRM6SvatWPYZ2HDsLxu3x/xdCvcRLEfuQv9ZK3OIsrhTUx0lLtPZLbzEFbMWq GQ== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3nhnn7wsp0-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 08 Feb 2023 04:02:45 -0600
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 08 Feb 2023 04:03:38 -0600
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.21; Wed, 8 Feb
- 2023 04:02:43 -0600
+ 2023 04:03:36 -0600
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.21 via Frontend
- Transport; Wed, 8 Feb 2023 04:02:43 -0600
+ Transport; Wed, 8 Feb 2023 04:03:36 -0600
 Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 13BBF11C7;
-        Wed,  8 Feb 2023 10:02:43 +0000 (UTC)
-Date:   Wed, 8 Feb 2023 10:02:43 +0000
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4267BB1A;
+        Wed,  8 Feb 2023 10:03:36 +0000 (UTC)
+Date:   Wed, 8 Feb 2023 10:03:36 +0000
 From:   Charles Keepax <ckeepax@opensource.cirrus.com>
 To:     Lucas Tanure <lucas.tanure@collabora.com>
 CC:     David Rhodes <david.rhodes@cirrus.com>,
@@ -52,17 +52,17 @@ CC:     David Rhodes <david.rhodes@cirrus.com>,
         Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
         <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>,
         <linux-kernel@vger.kernel.org>, <kernel@collabora.com>
-Subject: Re: [PATCH v2 1/5] ASoC: cs35l41: Only disable internal boost
-Message-ID: <20230208100243.GD36097@ediswmail.ad.cirrus.com>
+Subject: Re: [PATCH v2 2/5] ASoC: cs35l41: Refactor error release code
+Message-ID: <20230208100336.GE36097@ediswmail.ad.cirrus.com>
 References: <20230207162526.1024286-1-lucas.tanure@collabora.com>
- <20230207162526.1024286-2-lucas.tanure@collabora.com>
+ <20230207162526.1024286-3-lucas.tanure@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230207162526.1024286-2-lucas.tanure@collabora.com>
+In-Reply-To: <20230207162526.1024286-3-lucas.tanure@collabora.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: 3cmNYM5ZB62VFtii5Orae4dChnwZCC9S
-X-Proofpoint-ORIG-GUID: 3cmNYM5ZB62VFtii5Orae4dChnwZCC9S
+X-Proofpoint-GUID: TVxCZn1sGUXj3iK7Cs_MDYb5k1X8hZ9w
+X-Proofpoint-ORIG-GUID: TVxCZn1sGUXj3iK7Cs_MDYb5k1X8hZ9w
 X-Proofpoint-Spam-Reason: safe
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
@@ -73,17 +73,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 04:25:22PM +0000, Lucas Tanure wrote:
-> In error situations, only the internal boost case
-> should be disabled and re-enabled.
-> Also, for other boost cases re-enabling the boost
-> to the default internal boost config is incorrect.
+On Tue, Feb 07, 2023 at 04:25:23PM +0000, Lucas Tanure wrote:
+> Add cs35l41_error_release function to handle
+> error release sequences.
 > 
-> Fixes: 6450ef559056 ("ASoC: cs35l41: CS35L41 Boosted Smart Amplifier")
 > Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
 > ---
-
-Would quite like David to review as well, but looks good to me.
 
 Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
