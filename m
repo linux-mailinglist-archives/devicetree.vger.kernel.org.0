@@ -2,132 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06E8F68EFEA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 14:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B06868EFF9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 14:42:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbjBHNha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 08:37:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39884 "EHLO
+        id S230443AbjBHNmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 08:42:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230377AbjBHNh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 08:37:29 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BF0828213;
-        Wed,  8 Feb 2023 05:37:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675863449; x=1707399449;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mvzxSsipozkOczStJxxLS2JmQaRIUgdUKmAgwtMA4Cg=;
-  b=XMhIbX3hMjj3Vvi+7z+EybXp+lg5P5jLCYa16LrRRNwREgd1GSa4ITjr
-   rOOEnq2Pb+41o/ZPKux9DfImuCxf2KMBuwpWoZ2zNycZN2ZTL4FMcdNA0
-   hlm7iohjoOx8LleIRxXpPlg2pYdxLr1qHsm0h0u7OpPZgAfI4ktM01WBf
-   292rx18yyiifyO0SNqHdOSQ6asPa/A8AlyylNM9M2optzQhR8jPBNG9PR
-   Emefn14Y9gXGJTZ5kumqpWqBAsTmgf74lPr+4yFhHdIBZz/NzClx8+O+T
-   6S2/8IKIMsrNrguQt1Hwt74OtINeJyAuuke9VnB0sqCSEOIy0DY8yt9Ro
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="313436570"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; 
-   d="scan'208";a="313436570"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2023 05:37:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="776020864"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; 
-   d="scan'208";a="776020864"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP; 08 Feb 2023 05:37:17 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pPkdN-00485l-0I;
-        Wed, 08 Feb 2023 15:37:13 +0200
-Date:   Wed, 8 Feb 2023 15:37:12 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v3 09/12] of: property: Simplify of_link_to_phandle()
-Message-ID: <Y+OliBAHiUPzbBPG@smile.fi.intel.com>
-References: <20230207014207.1678715-1-saravanak@google.com>
- <20230207014207.1678715-10-saravanak@google.com>
- <CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com>
- <CAGETcx8DaZqS7+47PhX4hQOfSk7AzPcTu=2i+4gAgXr6wyDNgg@mail.gmail.com>
- <CAGETcx_bkuFaLCiPrAWCPQz+w79ccDp6=9e881qmK=vx3hBMyg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_bkuFaLCiPrAWCPQz+w79ccDp6=9e881qmK=vx3hBMyg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229732AbjBHNmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 08:42:21 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 765592CFFC;
+        Wed,  8 Feb 2023 05:42:20 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 318BDHPZ001389;
+        Wed, 8 Feb 2023 13:42:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=NkCxbS78vLly3nZijdZogjZfs3u+YMXxzwdQ7R3OUzQ=;
+ b=EMDg5q7XXXgWFAqDVeHA9O4iiVRb6lFHeH/fgACLcu1iZJNRde5OnAkDjIxqF+g6qABH
+ 27oGZ5gxdDGtPDQNg3O4nN2+StTRh5l59Aq8xdrDEqi9xh0dlPdZqq8pM3jcjtN/DwUm
+ Lb3Y6vqNRpERndC22dCje2OHTeHQa8p8Do5mbOKmfY3GygYggesMaTKLwHW3qERKhGUT
+ GHk33k7bOO18SFETkWeMNRJ/odA1VLN+WGNY4fGwAGlh/Gr49l3Lo3h8Zk5dyKzD6CBd
+ cPoQzWCXRlICou9ZlqzOpNMtmcnSVtS8gSV4Xga2EFiN2eksILUdc2SZmS6aoBBCnhpI mg== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nm1yf1gt0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Feb 2023 13:42:14 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 318DgArt025358;
+        Wed, 8 Feb 2023 13:42:10 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3nhgekjeqn-1;
+        Wed, 08 Feb 2023 13:42:10 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 318DgAkL025338;
+        Wed, 8 Feb 2023 13:42:10 GMT
+Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 318Dg9Rq025333;
+        Wed, 08 Feb 2023 13:42:10 +0000
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 4B7614BE0; Wed,  8 Feb 2023 05:42:09 -0800 (PST)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com, marijn.suijten@somainline.org
+Subject: [PATCH v3 0/4] Reserve DSPPs based on user request
+Date:   Wed,  8 Feb 2023 05:42:00 -0800
+Message-Id: <1675863724-28412-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: d6N19kcpsjKIYG4VmY40cCy2Xg6iyyVG
+X-Proofpoint-GUID: d6N19kcpsjKIYG4VmY40cCy2Xg6iyyVG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-08_05,2023-02-08_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 impostorscore=0 mlxscore=0 phishscore=0 clxscore=1015
+ mlxlogscore=693 suspectscore=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2302080120
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 11:31:57PM -0800, Saravana Kannan wrote:
-> On Tue, Feb 7, 2023 at 6:08 PM Saravana Kannan <saravanak@google.com> wrote:
+This series will enable color features on sc7280 target which has 
+primary panel as eDP
 
-...
+The series removes DSPP allocation based on encoder type and allows 
+the DSPP reservation based on user request via CTM.
 
-> Another way to get this to work is to:
-> 1) unload pinctrl driver, unload spi driver.
-> 2) apply overlay
-> 3) reload pinctrl driver, reload spi driver.
-> 
-> This is assuming unloading those 2 drivers doesn't crash your system.
+The series will release/reserve the dpu resources when ever there is 
+a topology change to suit the new requirements.
 
-Just a side note.
+Kalyan Thota (4):
+  drm/msm/dpu: clear DSPP reservations in rm release
+  drm/msm/dpu: add DSPPs into reservation upon a CTM request
+  drm/msm/dpu: avoid unnecessary check in DPU reservations
+  drm/msm/dpu: reserve the resources on topology change
 
-For ACPI case the ACPICA prevents appearing of the same device in the
-namespace, so the above is kinda enforced, that's why overlays work better
-there (but have a lot of limitations).
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  2 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 58 ++++++++++++++++-------------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c      |  2 +
+ 3 files changed, 37 insertions(+), 25 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.7.4
 
