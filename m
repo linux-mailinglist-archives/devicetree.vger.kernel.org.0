@@ -2,236 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34ED268E5D3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 03:08:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F6FA68E60F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 03:30:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbjBHCIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 21:08:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
+        id S229827AbjBHCaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 21:30:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjBHCIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 21:08:38 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A939F31E1C
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 18:08:37 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id v3so11730532pgh.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 18:08:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IvovDvydwtbWeac/PH7UfSyXwAMSyNiyFbqoOtJrtSo=;
-        b=WWQxHI+zVjB3sxN2VS2B69gLrKIkQgRtwbALikURfje+mgHB872p8xbeWLvH+p4IFZ
-         X8+gzwTrp4f8Iqv+GOVcMboqkGmpV6XCzVLsKb9tI8vHAtFYOS65xE0nK8FBo0FvHUS5
-         kLCUDHNKjZU2PG9fwT6xT2AwoqJ15mXjo0mYl13Pu+SA1WyKavCbdHx6PD5lqKGJ3wgC
-         7D6vVEqjeNTVTG6hQTP9QF8j56x8iWlfej2t9hwMElA86EjAiIpjOpRcB/lD6PasKIrh
-         kmZBeQKHwLAIUuLiEJoB0YPmfi5gj6Y7jc62lRAFUchW6NHbfHNbRvovubDoqex0T+1v
-         lH2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IvovDvydwtbWeac/PH7UfSyXwAMSyNiyFbqoOtJrtSo=;
-        b=HLaxFZILmSnuXoUxiI6OUye7wDGzuQHCObGyWIlXWb8kOLm+gNST490hCWeYlQ2FjD
-         HzvYZ8U2DWLPPw0N3jZq8bFRkLFPibnpPc8iiv1P9Fa4jgCcUZlGIICwDCHLGxbbIvOj
-         ZFIwi41IV2DvBAgrGJ9r04GL4GM9cbbtpyxdP++u09/dujmtj30RASVyEitte/JYCBKJ
-         TnTrTOISxN563LJhigr7kWX/J6ga1Uznef+AHsUP1g6bzJ0GrWCjifD/7bMA9TO92g/z
-         BIEDOYA1b72E7x0b/in3PoZsUhTRru0jNpYZXZusJO9t26fl7eba5b61harrAJTjTFVD
-         A6GQ==
-X-Gm-Message-State: AO0yUKWEinRQ8SfDcj+X7tHGInoGoDGi4w/ZvxgBwefHYxoyKZ+HqUxG
-        atOc6UsIpNpqF1MZWB+qYJPNMDx/lkXtq24u+DdK+w==
-X-Google-Smtp-Source: AK7set/Bb7BMdpe4sUnoHifR4lQMHdn9y6L/o7MBzyuPCkiBgdepa4Ke551WLY6JkSSLbKcR1vDbHA3Fx/XWThsP5c0=
-X-Received: by 2002:a63:7f1d:0:b0:4de:7028:d2fc with SMTP id
- a29-20020a637f1d000000b004de7028d2fcmr1133917pgd.122.1675822116756; Tue, 07
- Feb 2023 18:08:36 -0800 (PST)
+        with ESMTP id S229557AbjBHCay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 21:30:54 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 990E725E33;
+        Tue,  7 Feb 2023 18:30:53 -0800 (PST)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 0429420C7E3C; Tue,  7 Feb 2023 18:30:53 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0429420C7E3C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675823453;
+        bh=FTw6lbYJqScdQtkwSa5qMiwA99Ksn8O5FYC3z9/HlBg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n9I7YUxBxXbpcmAN709MdMZ83oYMxkJIk1il7cLnpaUFmZ65MiYNaBdw/KLGFr/Ob
+         NBiMbgHwQ3Ev11xQq3TwsfmtnNABIUYXoHNCADRs7dRQXQytlVxdRMqLifytSzrrLX
+         3h5rJrb35hrV8mRUjiy65dlx5BPw+AcWRp81M+oA=
+Date:   Tue, 7 Feb 2023 18:30:52 -0800
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Subject: Re: [PATCH v2 6/6] Driver: VMBus: Add device tree support
+Message-ID: <20230208023052.GA29547@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1675188609-20913-1-git-send-email-ssengar@linux.microsoft.com>
+ <1675188609-20913-7-git-send-email-ssengar@linux.microsoft.com>
+ <CAL_JsqK_7eTTrSd6EKDGy9A8kC5w6cjVEtSi3CB1M7Awj+zg6g@mail.gmail.com>
+ <20230201165133.GA24116@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <20230201174638.GA3872117-robh@kernel.org>
+ <20230203173616.GA8582@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <CAL_JsqKWWg=nL5C1Hz7GQ6YCbc0ssUP71Be6kcn57v5240GQew@mail.gmail.com>
 MIME-Version: 1.0
-References: <20230207014207.1678715-1-saravanak@google.com>
- <20230207014207.1678715-10-saravanak@google.com> <CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 7 Feb 2023 18:08:00 -0800
-Message-ID: <CAGETcx8DaZqS7+47PhX4hQOfSk7AzPcTu=2i+4gAgXr6wyDNgg@mail.gmail.com>
-Subject: Re: [PATCH v3 09/12] of: property: Simplify of_link_to_phandle()
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKWWg=nL5C1Hz7GQ6YCbc0ssUP71Be6kcn57v5240GQew@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 7, 2023 at 12:57 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Saravana,
->
-> On Tue, Feb 7, 2023 at 2:42 AM Saravana Kannan <saravanak@google.com> wrote:
-> > The driver core now:
-> > - Has the parent device of a supplier pick up the consumers if the
-> >   supplier never has a device created for it.
-> > - Ignores a supplier if the supplier has no parent device and will never
-> >   be probed by a driver
+On Tue, Feb 07, 2023 at 11:38:55AM -0600, Rob Herring wrote:
+> On Fri, Feb 3, 2023 at 11:36 AM Saurabh Singh Sengar
+> <ssengar@linux.microsoft.com> wrote:
 > >
-> > And already prevents creating a device link with the consumer as a
-> > supplier of a parent.
+> > On Wed, Feb 01, 2023 at 11:46:38AM -0600, Rob Herring wrote:
+> > > On Wed, Feb 01, 2023 at 08:51:33AM -0800, Saurabh Singh Sengar wrote:
+> > > > On Tue, Jan 31, 2023 at 02:12:53PM -0600, Rob Herring wrote:
+> > > > > On Tue, Jan 31, 2023 at 12:10 PM Saurabh Sengar
+> > > > > <ssengar@linux.microsoft.com> wrote:
+> > > > I wanted to have separate function for ACPI and device tree flow, which
+(...)
+> > > > can be easily maintained with #ifdef. Please let me know if its fine.
+> > >
+> > > Yes, you can have separate functions:
+> > >
+> > > static int vmbus_acpi_add(struct platform_device *pdev)
+> > > {
+> > >       if (!IS_ENABLED(CONFIG_ACPI))
+> > >               return -ENODEV;
+> > >
+> > >       ...
+> > > }
+> > >
+> > > The compiler will throw away the function in the end if CONFIG_ACPI is
+> > > not enabled.
+> > >
+> > > That is easier for us to maintain because it reduces the combinations to
+> > > build.
+> > >
 > >
-> > So, we no longer need to find the "compatible" node of the supplier or
-> > do any other checks in of_link_to_phandle(). We simply need to make sure
-> > that the supplier is available in DT.
+> > I tried removing #ifdef CONFIG_ACPI and use C's if(!IS_ENABLED(CONFIG_ACPI)) but looks
+> > compiler is not optimizing out the rest of function, it still throwing errors
+> > for acpi functions. This doesn't look 1:1 replacement to me.
+> > Please let me know if I have missunderstood any of your suggestion.
 > >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
->
-> Thanks for your patch!
->
-> This patch introduces a regression when dynamically loading DT overlays.
-> Unfortunately this happens when using the out-of-tree OF configfs,
-> which is not supported upstream.  Still, there may be (obscure)
-> in-tree users.
->
-> When loading a DT overlay[1] to enable an SPI controller, and
-> instantiate a connected SPI EEPROM:
->
->     $ overlay add 25lc040
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /keys/status
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/pinctrl-0
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/pinctrl-names
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/cs-gpios
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/status
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /__symbols__/msiof0_pins
->
-> The SPI controller and the SPI EEPROM are no longer instantiated.
->
->     # cat /sys/kernel/debug/devices_deferred
->     e6e90000.spi    platform: wait for supplier msiof0
->
-> Let's remove the overlay again:
->
->     $ overlay rm 25lc040
->     input: keys as /devices/platform/keys/input/input1
->
-> And retry:
->
->     $ overlay add 25lc040
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /keys/status
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/pinctrl-0
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/pinctrl-names
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/cs-gpios
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/status
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /__symbols__/msiof0_pins
->     spi_sh_msiof e6e90000.spi: DMA available
->     spi_sh_msiof e6e90000.spi: registered master spi0
->     spi spi0.0: setup mode 0, 8 bits/w, 100000 Hz max --> 0
->     at25 spi0.0: 512 Byte at25 eeprom, pagesize 16
->     spi_sh_msiof e6e90000.spi: registered child spi0.0
->
-> Now it succeeds, and the SPI EEPROM is available, and works.
->
-> Without this patch, or with this patch reverted after applying the
-> full series:
->
->     $ overlay add 25lc040
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /keys/status
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/pinctrl-0
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/pinctrl-names
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/cs-gpios
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /soc/spi@e6e90000/status
->     OF: overlay: WARNING: memory leak will occur if overlay removed,
-> property: /__symbols__/msiof0_pins
->     OF: Not linking spi@e6e90000 to interrupt-controller@f1010000 - No
-> struct device
->     spi_sh_msiof e6e90000.spi: DMA available
->     spi_sh_msiof e6e90000.spi: registered master spi0
->     spi spi0.0: setup mode 0, 8 bits/w, 100000 Hz max --> 0
->     at25 spi0.0: 444 bps (2 bytes in 9 ticks)
->     at25 spi0.0: 512 Byte at25 eeprom, pagesize 16
->     spi_sh_msiof e6e90000.spi: registered child spi0.0
->
-> The SPI EEPROM is available on the first try after boot.
+> > drivers/hv/vmbus_drv.c:2175:8: error: implicit declaration of function ‘acpi_dev_resource_interrupt’ [-Werror=implicit-function-
+> 
+> That's a failure of the ACPI headers not having empty function
+> declarations. The DT functions do...
+> 
+> Also, this is just a broken assumption:
+> 
+> #ifdef CONFIG_ACPI
+> 
+> #else
+> // Assume DT
+> #endif
+> 
+> Both ACPI and DT can be enabled at the same time. They may be mutually
+> exclusive for a platform, but not the kernel. For distro kernels, both
+> will be enabled typically if the arch supports both. On arm64, DT is
+> never disabled because the boot interface is always DT.
+> 
+> Furthermore, this makes compile testing your code difficult. The arm64
+> defconfig, allmodconfig and allyesconfig all will not build the DT
+> code. The same for x86. This means all the CI builds that happen can't
+> build test this.
 
-Sigh... I spent way too long trying to figure out if I caused a memory
-leak. I should have scrolled down further! Doesn't look like that part
-is related to anything I did.
+Thanks for letting me know the challanges with testing. My intention was to give
+ACPI higher priority, in case ACPI is enabled system should go ACPI flow, OF flow
+should be used only when ACPI is disabled.
 
-There are some flags set to avoid re-parsing fwnodes multiple times.
-My guess is that the issue you are seeing has to do with how many of
-the in memory structs are reused vs not when an overlay is
-applied/removed and some of these flags might not be getting cleared
-and this is having a bigger impact with this patch (because the fwnode
-links are no longer anchored on "compatible" nodes).
+I can replace #else part with #ifdef CONFIG_OF if that helps.
 
-With/without this patch (let's keep the series) can you look at how
-the following things change between each step you do above (add,
-remove, retry):
-1) List of directories under /sys/class/devlink
-2) Enable the debug logs inside __fwnode_link_add(),
-__fwnode_link_del(), device_link_add()
+Regards,
+Saurabh
 
-My guess is that the final solution would entail clearing
-FWNODE_FLAG_LINKS_ADDED for some fwnodes.
-
-Thanks,
-Saravana
+> 
+> Rob
