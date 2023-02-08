@@ -2,65 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 310FC68EF9A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 14:16:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95C9B68EFBE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 14:31:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbjBHNQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 08:16:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58224 "EHLO
+        id S230310AbjBHNaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 08:30:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjBHNQS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 08:16:18 -0500
-Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC6F46160;
-        Wed,  8 Feb 2023 05:16:15 -0800 (PST)
-Received: by mail-vs1-xe30.google.com with SMTP id p10so19844439vsu.5;
-        Wed, 08 Feb 2023 05:16:15 -0800 (PST)
+        with ESMTP id S230255AbjBHNay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 08:30:54 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2A324940F
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 05:30:52 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id q8so13323614wmo.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 05:30:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=A9kVK9c7CfGewqX3a1Lelqo2y/d2iFoRNqiWRS7Q7ZU=;
-        b=YYnTf9UOVv++gL127EoqsB1eGw2w2mfYDzpqE/hecKJaTlu9lZA6D0agL6DnQGIZMW
-         1zT1mJocutgpcu8vc9REuPUi3bD+yx+CxlFjr0PaDrC58ZcK5SGUzcXKPoJNrauvVyoY
-         PtkjUNBeomhhco8q2BiqVMmZW1dnEx9AGcE4KXVFkv2zbL09FnWrFj4kOEx4hdEiJDeR
-         6xaJeJjlchdIcB6wymMuhkkW0KugTF1Yp/xk4rfsw5uNkYdoB1aZBJmnYGq2/e+GvFRf
-         tdX+X+wLFDFJ/fkLOb3VCVd/B9WIPLIERM8a7nclcpY8u0ocR3HaV11q1+8XgM1pfroY
-         /9iA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=HpCaN7lG8XCYSDYTiFmo0cVwl51EDo9X6coy6Wp5QmY=;
+        b=MhfzlfU5sY+wGQQQMW/8ySS5pdzxzPH8iIv7OSSZT231doUM5Y6Z+M7u5cZYUTnHnn
+         Nwgh+CHswYjnoy3o7x1tfV/CchtnC6DLHjliRK0UiT1fiIu/eK0ZpKuKN/zYBS0W89mW
+         wzcipCsUFqyl24KpdhfQ7asj0yayRfi8CgmbZ7p8sMoh1y2AcxMkGdWRUdw5Vh5YV1AR
+         aV3sW8WHGpQxRjaTOLEEpIMQa5vvJOzWaRXUAuWiEY1EMXmjmLrqXqzlqcxhDtV4l1m5
+         UFafj6veS/za8W+FjVLmn8AgMj6iiavpbLYgM3jxhJzhSGEmeh99X+2wysIoM35ix9U3
+         SLaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A9kVK9c7CfGewqX3a1Lelqo2y/d2iFoRNqiWRS7Q7ZU=;
-        b=jzIHLweacP54GBaPF2w5lqMOef1SG4vgP8clbsKbqo9BftN3AaTEVHJrPeK5m7+wT4
-         ba8e/RNAoSYEBW1543YdRez+IulgZ6Ov9zP2JtFmB40mapk5eRZojD6jtQ2H+q3coRO9
-         GqRXZ3eIHeDTnrkdmPSN5HsJG7BTlyXnnfP+BRX+EuPFWWH5wDG/Jho0Sya7nB4dGrWl
-         hy4GKuBwuoCg1rTQ5vaxFjMK83GBuCPIrOnFP9vD0tE6OrbjcUNAHBYKHZpIh4vSviD7
-         SYq055z90zo/i1l01DZjx6yVY1HwQ6VlCWKmS6LLoogk3rQr+mSjNEQtja00LEePJpKZ
-         ugZg==
-X-Gm-Message-State: AO0yUKUyq4cpezH+9rPuRj6yxU1PEyPAYsolS8KdbjyjIHUQHBSdKvwQ
-        BeBRXA9zsTTZLaGV3XJ2IYv6VaM9ZnFQ0+JE6Gs=
-X-Google-Smtp-Source: AK7set8d+MuMChpHvoSGQ9u0F3j7rUBZKS6nsd4rn161k7Ag4YLcGc2J2bulDhR5rDO7Yz6hVP0FBmPynvf+9lpAz0U=
-X-Received: by 2002:a67:2487:0:b0:3f8:6b59:61b with SMTP id
- k129-20020a672487000000b003f86b59061bmr2491073vsk.40.1675862174437; Wed, 08
- Feb 2023 05:16:14 -0800 (PST)
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HpCaN7lG8XCYSDYTiFmo0cVwl51EDo9X6coy6Wp5QmY=;
+        b=QEZIq9+O+gzZXfI8YhcKq+x4BxJ8J9DRUXr8kEzMViFQS14LgGhgvNdyF9w1g5s5Oj
+         fZ7pGsTzubMTUlneOwIhzOK6p3hT4Z8etO43dxXfQr09EL5OwozRks6bbOWGj7cFhVl5
+         TT92EI3mSthjhKNRJzfYIeKMVSbvCoWK08EifM+bdLa5JiXHAJdnxhOdKcNlQsUp/Kbs
+         TllXXAMc0rVhpmwKeMt1dzAM0IUgL2VMQYARV+1LVS9c8eA9wvxD6D4I8/pV3fgvPguK
+         PFVoYKJ16RxXkEtC1WHwB5Rop0qnT/VuTI9CvS6ShMvs9S1F3c4qfmgtbO70+EG9sVQj
+         qjhQ==
+X-Gm-Message-State: AO0yUKWh3ll17snoss0hnm/+ScQPrDIIgdi7wM0Pl4cFOanlEO/Id8dl
+        ZSAHuaK9iyCYSQYkgsbHNJ7jlg==
+X-Google-Smtp-Source: AK7set8gTMHZ1IftF10m4fVg8A2AOT5sLEQhWbPfE+atmk79589ys3Tl9ZLjMH61OGI0Otb++12oXQ==
+X-Received: by 2002:a05:600c:13c8:b0:3da:28a9:a900 with SMTP id e8-20020a05600c13c800b003da28a9a900mr6401021wmg.41.1675863051197;
+        Wed, 08 Feb 2023 05:30:51 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id be7-20020a05600c1e8700b003dff2b493c8sm2162895wmb.36.2023.02.08.05.30.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 05:30:50 -0800 (PST)
+References: <20230208093520.52843-1-jbrunet@baylibre.com>
+ <Y+OJB7OPABnPfeq7@sirena.org.uk>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/1] ASoC: dt-bindings: meson: covert axg audio to
+ schema
+Date:   Wed, 08 Feb 2023 14:25:58 +0100
+In-reply-to: <Y+OJB7OPABnPfeq7@sirena.org.uk>
+Message-ID: <1j4jrwmghi.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20230206135016.6737-1-kaehndan@gmail.com> <20230206135016.6737-2-kaehndan@gmail.com>
- <20230207185007.GA3962587-robh@kernel.org>
-In-Reply-To: <20230207185007.GA3962587-robh@kernel.org>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Wed, 8 Feb 2023 07:16:03 -0600
-Message-ID: <CAP+ZCCcbT6UoWNL7g-WGqO+OjcVyQvms-3YkE2TByMAuD_keng@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus Bridge
-To:     Rob Herring <robh@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,27 +76,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 7, 2023 at 12:50 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Feb 06, 2023 at 07:50:13AM -0600, Danny Kaehn wrote:
-> > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
-> >
-> > The binding allows describing the chip's gpio and i2c controller in DT
-> > using the subnodes named "gpio" and "i2c", respectively. This is
-> > intended to be used in configurations where the CP2112 is permanently
-> > connected in hardware.
->
-> My comments on v3 still apply. Please slow down your pace of sending new
-> versions so folks have change to review.
->
-> Rob
 
-Thanks for the correction -- I definitely see how that could be
-frustrating / problematic. (until now I'd thought the ideal case was
-that comments were addressed as soon as possible, so that folks
-wouldn't be reviewing now-obsolete code that might change due to other
-comments anyways)
+On Wed 08 Feb 2023 at 11:35, Mark Brown <broonie@kernel.org> wrote:
 
-Thanks,
+> [[PGP Signed Part:Undecided]]
+> On Wed, Feb 08, 2023 at 10:35:18AM +0100, Jerome Brunet wrote:
+>> Continue conversion of AXG audio dt-binding documentation to schema
+>
+> Please don't send cover letters for single patches, if there is anything
+> that needs saying put it in the changelog of the patch or after the ---
+> if it's administrative stuff.  This reduces mail volume and ensures that 
+> any important information is recorded in the changelog rather than being
+> lost. 
 
-Danny Kaehn
+I usually don't send cover-letter for single patches.
+
+This was originally a 9 patches series and it dropped to a single one as
+you applied them. I was wondering wether to keep the cover-letter or
+not. I thought keeping it might be better to keep track of the series.
+
+If the same case happen again, I'll skip the cover-letter.
+
+>
+> [[End of PGP Signed Part]]
+
