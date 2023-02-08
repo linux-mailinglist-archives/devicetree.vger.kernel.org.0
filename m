@@ -2,150 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C64268F67C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A03668F697
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 19:09:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232193AbjBHSDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 13:03:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39724 "EHLO
+        id S231528AbjBHSJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 13:09:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230513AbjBHSCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:02:54 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B1F58949
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 10:02:14 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id n13so13908109wmr.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 10:02:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M5KNVHSrC7/cdAAppvSovX1BQYH1mlKeTzSZkndabzI=;
-        b=lhYn0UKt1gI8oDRgPLyn7ikFvTDGwf2Vq24dv2LgPHiV8ihqRT2k7qLxUMyUBPC8iL
-         1kjRzv0p5FOr/OPZoPqTsOomSmdtG6dRIDCmM2zWnykN/NsN+pnvQRcekBxPpLb+7dnJ
-         WMII8V513jFjWV6EbLbZAVMg7+7MzRwZc69Es0ZafU8E7dTwE8PemItdaGxExyYCNWB8
-         VicfQ5HP97OFsOvy5HtV54Dl9qvPAh4xrxJ0Tfty7jVCL1BqJCUFOP0rvw4UZintMu+r
-         YcjZHNEqmas9yN+Xvh+FoJd90tCEohAYODXdGcG3sjItNhs8JWgRGQ4Vm8tIfLxbUBbk
-         X96A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M5KNVHSrC7/cdAAppvSovX1BQYH1mlKeTzSZkndabzI=;
-        b=C7MRI1SdKse/zukSvV8ZVrU5p/HOlM1IKyDkWsjOp7t6YHfmdfDLxMHrgZmNeOP74D
-         qeLvsmy+SgsWFbqDCqdETNJPLMioMWtd1BZ4NnlPGWcBMROTy3q8ChrM75+sXgXEZwkt
-         yMt40bJ4mr8pP8egKIBWvug1tJnzHKZ09/NkFFXF2Nob0CckcyioDSfsq6EZVrmvYToX
-         1p7iDBWP4tlLxjAUQYy/qPTs0jFiKd7h1RAkiyMT4FM5f43tVgMmViZZVcWEww4VYs7N
-         UhFMVu4jdn0w6JheKIc3v3xeA4ogYT94eRmKQVeSGLFCQVqqXMUV42LhcsuYeynZc95U
-         TxjQ==
-X-Gm-Message-State: AO0yUKW/lMUuJEcTgsZ1Gtl9HSMCp4BTS6QEnrVWwdKNahOV/4hdNt3b
-        /e39a4QqZilRM/4Hpv4Jp/LsNA==
-X-Google-Smtp-Source: AK7set/N7X08/6/zDIwTs2SW3WqzqwHVir4In+cx7rhLGQNf+mB7g+wx8kSFQo+gWqS8ovXbhXrHVg==
-X-Received: by 2002:a05:600c:9a2:b0:3dd:393c:20b5 with SMTP id w34-20020a05600c09a200b003dd393c20b5mr7247364wmp.35.1675879326639;
-        Wed, 08 Feb 2023 10:02:06 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j40-20020a05600c1c2800b003dc4480df80sm3034104wms.34.2023.02.08.10.02.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 10:02:06 -0800 (PST)
-Message-ID: <80f5271e-6fe6-df5a-beff-f3723110edf7@linaro.org>
-Date:   Wed, 8 Feb 2023 19:02:01 +0100
+        with ESMTP id S231341AbjBHSJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 13:09:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 611CE1BED;
+        Wed,  8 Feb 2023 10:09:30 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F04DAB81EFF;
+        Wed,  8 Feb 2023 18:09:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E028BC433D2;
+        Wed,  8 Feb 2023 18:09:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675879767;
+        bh=fvO4kfoXCO71nXATxc5DoBEa0pGGL3+VW8TCkPSaDoU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CrHSSqzB0ssgQeJG5GnfaHJDTA3e1R+AXMoX3G322Oq7S5lgTdozDhfcE0kCdo+Wq
+         Us2ycozQvS+Z3C3P3MFk2zq7ifskn3QLMR2vRTbULADXEh6L77KS46FHvPuzQ4yyYJ
+         ux4V7JqcWXZ8aEukrIk470NVEircHoE72sGAhl14pVNEjEeKcytmzLyFmGV2Y36jlS
+         ya++j4uy3mOgukYIP06A+tIFvxrCY7HNM/6poQbytOsTEcU+lbSzfUgxPlHwhYvE+y
+         AGsX3SuaZMb1sA7JuWUpWF813tXJRqv5FYTpscwFpftlPZd04vJhaZOgofEFdr9ifp
+         0cWm4ZZS5SLCQ==
+Date:   Wed, 8 Feb 2023 18:09:22 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
+Message-ID: <Y+PlUtAmbl5TJq6z@sirena.org.uk>
+References: <20230208172552.404324-1-krzysztof.kozlowski@linaro.org>
+ <Y+PeR4EFfcVDbUfV@sirena.org.uk>
+ <51e8e157-3f60-1731-a8ca-4a678c8eafd6@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 02/18] ARM: s3c24xx: Use the right include
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Vincenzo Palazzo <vincenzopalazzodev@gmail.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Dipen Patel <dipenp@nvidia.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Stefan Schmidt <stefan@datenfreihafen.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc-tw-discuss@lists.sourceforge.net,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-m68k@lists.linux-m68k.org,
-        linuxppc-dev@lists.ozlabs.org, linux-sh@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
-        linux-wireless@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
-        Yanteng Si <siyanteng@loongson.cn>,
-        Hu Haowen <src.res@email.cn>,
-        Russell King <linux@armlinux.org.uk>,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Janusz Krzysztofik <jmkrzyszt@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>,
-        Mun Yew Tham <mun.yew.tham@intel.com>,
-        Keerthy <j-keerthy@ti.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Alexander Aring <alex.aring@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Kalle Valo <kvalo@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20230208173343.37582-1-andriy.shevchenko@linux.intel.com>
- <20230208173343.37582-3-andriy.shevchenko@linux.intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230208173343.37582-3-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7tf0mCliiDHI8Xod"
+Content-Disposition: inline
+In-Reply-To: <51e8e157-3f60-1731-a8ca-4a678c8eafd6@linaro.org>
+X-Cookie: Walk softly and carry a megawatt laser.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 18:33, Andy Shevchenko wrote:
-> From: Linus Walleij <linus.walleij@linaro.org>
-> 
-> The file s3c64xx.c is including <linux/gpio.h> despite using no
-> symbols from the file, however it needs it to implicitly bring in
-> of_have_populated_dt() so include <linux/of.h> explicitly instead.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
+--7tf0mCliiDHI8Xod
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, Feb 08, 2023 at 06:50:56PM +0100, Krzysztof Kozlowski wrote:
+> On 08/02/2023 18:39, Mark Brown wrote:
+> > On Wed, Feb 08, 2023 at 06:25:52PM +0100, Krzysztof Kozlowski wrote:
 
-Best regards,
-Krzysztof
+> >> 1. Add missing LDO1VDD-supply for WM1811.
 
+> > Both LDOs are present on all variants.
+
+> The schematics for Arndale with WM1811 and WM1811 datasheet I found in
+> internet say there is only LDO1VDD pin, thus "both" does not look
+> correct at least for wm1811.
+
+> But if you meant that this should be for WM8994 as well, then sure, I
+> can change it.
+
+Ah, now I think about it IIRC LDO2 uses one of the other digital input
+supplies rather than a distinct supply so there's nothing for the DT.
+
+> >> 2. Use "gpios" suffix for wlf,ldo1ena and wlf,ldo2ena (Linux kernel's
+> >>    gpiolib already looks for both variants).
+> >> 3. Do not require AVDD1-supply and DCVDD-supply, because at least on
+> >>    Arndale board with Exynos5250 these are grounded.
+
+> > Are you *sure* they are grounded and not supplied from the LDOs?
+
+> That's what I have on schematics (attached), if I got it right.
+
+You'll notice that they've got decoupling caps on rather than being
+grounded - there's an internal connection to the LDO output so if the
+LDOs are in use that's all that's required, while if the LDOs are not in
+use for some reason then an external supply is connected there.
+
+--7tf0mCliiDHI8Xod
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPj5VEACgkQJNaLcl1U
+h9B7aAf9Hx8NjZmQgmtfHsesBJ4m8zmqXIwFx7YPJGi1x4w2OjQE+cF7Drn/UtuW
+LqosJbw4u6yCvrq5gKerLywWR/wW3noJoD3gfor1EYDlUgUd8CyRwH+ZD5KBL1oQ
+89gb3O/ZHEgC5iaVN3KkUooWRu3+KhDHljeiHgWio0dDqhkDbB6BdO6GaCP/byWm
+Mx9rK1bUGI9TWTfl3ny9l0bL6VwWHsrjDgQP1XToOUDY523di/RqCNxrbL43DRUB
+0Pgqgcn3ZTGsFp+Lq+SH0AvmiVgZu/1SMiXzYci1AIWvDyK39WRT7T82fRgyEnBb
+LnuxrO3XDkxFFzFc4iSIYLnSTNtf9A==
+=PceK
+-----END PGP SIGNATURE-----
+
+--7tf0mCliiDHI8Xod--
