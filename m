@@ -2,146 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8BF68F1A1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:10:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF0B68F1AF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230447AbjBHPKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 10:10:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
+        id S231217AbjBHPMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 10:12:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbjBHPKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:10:13 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B24138002;
-        Wed,  8 Feb 2023 07:10:12 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0F3B3E79;
-        Wed,  8 Feb 2023 16:10:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1675869010;
-        bh=IWtkdqIfEEk36yRhhEcGs7EgU7XpOj/TaOe55N3zkxk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=eQajGGZbZvC3oF7ceoVnj/XCh5b5xmvygo1qNucYVXTX5l4pv9mEy7TvOs63a7/mn
-         9AzUaDE/mCGX8Hvj9q+3OhuRxA4FC1UCAMD0UuMOzWtiQLKPzA+oT8d0hagfp7dWSH
-         pc8q4kVgQcQVvrUQimGtNBKgrkxCa72ilJlub3oA=
-Message-ID: <2501ffcc-82ff-c0bc-366a-33b62bf28e76@ideasonboard.com>
-Date:   Wed, 8 Feb 2023 17:10:05 +0200
+        with ESMTP id S231321AbjBHPMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:12:01 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2224D30D4;
+        Wed,  8 Feb 2023 07:11:53 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B54511477;
+        Wed,  8 Feb 2023 07:12:35 -0800 (PST)
+Received: from [10.57.12.246] (unknown [10.57.12.246])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D28A33F8C6;
+        Wed,  8 Feb 2023 07:11:49 -0800 (PST)
+Message-ID: <7e08656f-4908-43e3-57d6-2928b1eb12d5@arm.com>
+Date:   Wed, 8 Feb 2023 15:11:47 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <4286abe2-f23f-d4c9-ef18-f351af7a3a8b@ideasonboard.com>
- <Y9EcRlooHwIjOqiZ@smile.fi.intel.com>
- <cad92dbb-43ef-fa8c-1962-13c4a8578899@ideasonboard.com>
- <Y9FBlMl4b3l1zVck@smile.fi.intel.com>
- <5d208710-f284-e6e9-18dc-f5ef63a9ea44@ideasonboard.com>
- <Y9FKcoVlgUWR4rhn@smile.fi.intel.com>
- <04a82b08-524f-8d03-ac47-73d826907fc3@ideasonboard.com>
- <Y9JUEv66Gze8FjMZ@smile.fi.intel.com>
- <Y9JbMjPM3Ea3RVzH@pendragon.ideasonboard.com>
- <0c13eac3-cadb-b923-d475-7851dbef0c4e@ideasonboard.com>
- <Y9OWFSxs9ev9hfp2@smile.fi.intel.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y9OWFSxs9ev9hfp2@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 0/9] Panfrost: Improve and add MediaTek SoCs support
+Content-Language: en-GB
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, airlied@gmail.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tomeu.vizoso@collabora.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
+From:   Steven Price <steven.price@arm.com>
+In-Reply-To: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2023 11:15, Andy Shevchenko wrote:
-> On Fri, Jan 27, 2023 at 10:24:04AM +0200, Tomi Valkeinen wrote:
->> On 26/01/2023 12:51, Laurent Pinchart wrote:
->>> On Thu, Jan 26, 2023 at 12:21:06PM +0200, Andy Shevchenko wrote:
->>>> On Thu, Jan 26, 2023 at 10:41:47AM +0200, Tomi Valkeinen wrote:
->>>>> On 25/01/2023 17:27, Andy Shevchenko wrote:
-> 
-> ...
-> 
->>>>>> But I probably don't understand the ATR structure and what exactly we need to
->>>>>> pass to it, perhaps it also can be replaced with properties (note, that we have
->>>>>> some interesting ones that called references, which is an alternative to DT
->>>>>> phandle).
->>>>>
->>>>> Well, maybe this needs a Linux bus implementation. I'm not that familiar
->>>>> with implementing a bus, but I think that would make it easier to share data
->>>>> between the deserializer and the serializer. A bus sounds a bit like an
->>>>> overkill for a 1-to-1 connection, used by a few drivers, but maybe it
->>>>> wouldn't be too much code.
->>>>
->>>> Have you looked at auxiliary bus (appeared a few releases ago in kernel)?
->>>
->>> As far as I understand, the auxiliary bus infrastructure is meant for
->>> use cases where a single hardware device needs to be split into multiple
->>> logical devices (as in struct device). Platform devices were
->>> historically (ab)used for this, and the auxiliary bus is meant as a
->>> cleaner solution. I'm not sure if it would be a good match here, or if
->>> it would be considered an abuse of the auxiliary bus API.
->>
->> The aux bus docs say "A key requirement for utilizing the auxiliary bus is
->> that there is no dependency on a physical bus, device, register accesses or
->> regmap support. These individual devices split from the core cannot live on
->> the platform bus as they are not physical devices that are controlled by
->> DT/ACPI.", which doesn't sound like a good fit.
-> 
-> Thanks for checking!
-> 
->> The deserializer and serializers are currently independent devices and
->> drivers (the pdata is the only shared thing), but I think we may need
->> something better here. The devices are more tightly tied together than
->> "normal" video devices, in my opinion, as the serializer is fully controlled
->> by the deserializer (including power).
->>
->> And if we ever want to implement something like power management, we
->> probably need something more than what we have now. Although I don't know
->> how that would be done, as all the peripherals behind the serializer would
->> also lose power...
-> 
-> I believe you have to create a power domain for them and when such device
-> is added, the power domain of it should belong to the serialized.
+On 08/02/2023 10:37, AngeloGioacchino Del Regno wrote:
+> This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
+> and improves MT8183 support: since the mtk-regulator-coupler driver
+> was picked, it is now useless for Panfrost to look for, and manage,
+> two regulators (GPU Vcore and GPU SRAM) on MediaTek;
 
-I was testing this, and got something working.
+Yay! ;) I never did like Panfrost dealing with two regulators.
 
-I have the deserializer introducing a separate power-domain for each RX 
-port, and the serializer and the sensor both refer to their port's 
-domain. I can see that the deserializer gets power on/off callbacks 
-correctly when either serializer or sensor resumes.
+> The aforementioned driver will take care of keeping the voltage
+> relation (/constraints) of the two regulators on its own when a
+> voltage change request is sent to the Vcore, solving the old time
+> issue with not working DVFS on Panfrost+MediaTek (due to devfreq
+> supporting only single regulator).
+> 
+> In the specific case of MT8183, in order to not break the ABI, it
+> was necessary to add a new compatible for enabling DVFS.
 
-The problem I have now is that while the power comes from the 
-deserializer and is thus covered with the power domain, the sensor uses 
-services from the serializer (gpios, clocks, i2c bus), and the 
-serializer is not woken up when the sensor does runtime-pm resume (the 
-power domain is powered up correctly when the sensor resumes).
+It's a shame to need a new compatible, but it seems sensible to me.
 
-The serializer creates the i2c adapter to which the sensor is added, so, 
-afaics, there should be a child-parent relationship there. But maybe I 
-have something wrong there, or it just doesn't work as I imagine it 
-would work.
+For the panfrost changes:
 
-  Tomi
+Reviewed-by: Steven Price <steven.price@arm.com>
+
+I'll let others comment on the DT binding changes.
+
+Thanks,
+
+Steve
+
+> Alyssa Rosenzweig (3):
+>   drm/panfrost: Increase MAX_PM_DOMAINS to 5
+>   drm/panfrost: Add the MT8192 GPU ID
+>   drm/panfrost: Add mediatek,mt8192-mali compatible
+> 
+> AngeloGioacchino Del Regno (6):
+>   dt-bindings: gpu: mali-bifrost: Don't allow sram-supply by default
+>   dt-bindings: gpu: mali-bifrost: Allow up to 5 power domains for MT8192
+>   dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
+>   dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
+>   dt-bindings: gpu: mali-bifrost: Add a compatible for MediaTek MT8186
+>   drm/panfrost: Add new compatible for Mali on the MT8183 SoC
+> 
+>  .../bindings/gpu/arm,mali-bifrost.yaml        | 68 +++++++++++++++++--
+>  drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
+>  drivers/gpu/drm/panfrost/panfrost_drv.c       | 28 ++++++++
+>  drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 +++
+>  4 files changed, 99 insertions(+), 7 deletions(-)
+> 
 
