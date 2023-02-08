@@ -2,131 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7458D68E501
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 01:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EBCF68E533
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 02:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbjBHAgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 19:36:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55982 "EHLO
+        id S229755AbjBHBDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 20:03:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjBHAgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 19:36:40 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBE63CE3B
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 16:36:39 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id g13so12704042ple.10
-        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 16:36:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3+bGG7y1kbAherXT7mYVUYA30E1TcsSU+mggkUydAXQ=;
-        b=W0H+U6Xyltr8ry9759aXuP7XI6Cq91ihJz3Ntu5eOQAPIEOYj+efFdkyyKMaz1LHHv
-         tIymg18AO+wSjCICvCicEcYJ0arWdC7ENofw9kDSwrujcPp9mCpjxzf6YOkJvKsZRGBd
-         TcDcgnRB7Ri0pBQ1fUGrnOG7h+mvjjbS5O0ZE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3+bGG7y1kbAherXT7mYVUYA30E1TcsSU+mggkUydAXQ=;
-        b=Vs7FuLhjNUhp+rNhTtBFzkiAb73DxNOrVLUb4z2oefsjXWjLvK9y/an5oOp/xg0UQP
-         /e81a02POpkBT7LSRR+DvHWSuIkl6dhs40QO3R6ES1zgkUXW1o7Hqc0RgygQngtmhKqw
-         3XaCAWH9moqeahFmaPT7Sg34NW+dnyzK9Iuaw5mOtI15Ieb8tGrTTd0N6zK9NgRoT0io
-         4QO3/G1liJDWmJvFfD9LDzw0MxNDCwlLps0Ui1lqc4P5fvdNaclEbE2h54xoD4w0sjDq
-         nnHCl7AS7i23YIoA9C/e7nvPXHa6Iv/GGv2xLcKUf7jGo3RJz425I7xGaTcBunphp+BR
-         yFyg==
-X-Gm-Message-State: AO0yUKVhKs8wHxxdG9zxs6gxxGAYsQTx/qyED7AIEpqOGth7GPnW80X6
-        Rba7fSPORNh5MLkuv/H3mL0Dnw==
-X-Google-Smtp-Source: AK7set/OsauGFkzcwNzAZcFZa1CdBVmUh8z09FXo6FmacJR+rgDUlKD7NfyRNyqmnfKK5gBUY+eFdg==
-X-Received: by 2002:a17:903:1386:b0:198:e63d:9a3d with SMTP id jx6-20020a170903138600b00198e63d9a3dmr470298plb.26.1675816598865;
-        Tue, 07 Feb 2023 16:36:38 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:8f31:e721:5c9:1d71])
-        by smtp.gmail.com with ESMTPSA id jg21-20020a17090326d500b0019907bfd26fsm5676738plb.178.2023.02.07.16.36.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Feb 2023 16:36:38 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     mka@chromium.org, Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7280: Power herobrine's 3.3 eDP/TS rail more properly
-Date:   Tue,  7 Feb 2023 16:36:10 -0800
-Message-Id: <20230207163550.1.I5ff72b7746d5fca8f10ea61351bde4150ed1a7f8@changeid>
-X-Mailer: git-send-email 2.39.1.519.gcb327c4b5f-goog
+        with ESMTP id S229517AbjBHBDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 20:03:31 -0500
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2104.outbound.protection.outlook.com [40.107.255.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB59975F
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 17:03:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MaIIvrHW0KWqf74JSgkkVQ8V99L2HRBLogck5gXjtAhEK/ZbHgV/uc8B/fi7373K1VQySYD2pawjbclBmfuo94HXUz8K+XNIIhrwaEyF7UfAASrNarjsD03R+7rE4osYocoglh8iMvqgLrD/cW6dDz7DM2M96Iws2ny42FCqyUvCf8qwP2naO0KnfcADcP6HJe/KZhgyZj84BrCaLAUXLWbPWECwUFBTv9wKOWYw29YNcp/XSWU73lXqzWW8Q2vrxJFkclkODXNwAxqXhtuq3f820s4JpUme1fj7MCxWlmObmsQz0ABbjBajIiEWXum97ULamKheF40T1koTM+vMCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Cjk4szjfe9yfjpz0zCIcH6lhBIifNe7pN15R2OQQnS0=;
+ b=mbFbNvK7bQCiUvyfDc9tMN1RXenOtGWLhtEKKet1MguCxr1DpWGpBpBgBZJKMC0XkfLHzI2CJQXCOrBdi66gAaQ7F7I/BrsdB0m8UIdhNiOEBYvV1E82dlR8G/nSYn+a3nZieFenXCcuTJl5J2ayJYMwHdIvmDBa26qfmwoalaIZv9GgHA6G7FB59yC7q6i/XN1cblmsIsKMu+wOhsVJIaUw8vhilhNC2fRX/LWvtl/UTA0dtbOEUefiU4shtd+57lhqbteY8uhQKPEhHkqXPNz6VgtQJaV6QuYDgPlAM7CFUet40lLqRbdIrb8bhsJ3tOUfep8BccaIMzAZofRzpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Cjk4szjfe9yfjpz0zCIcH6lhBIifNe7pN15R2OQQnS0=;
+ b=iCEyrrrS6lfeizpPBQ+RCbZLLAuoaKAphd9eEaCsp1U+YV9O0EsS/lOB+mlqF/jx7ZK1IcUm7JoH5yieCkEqiot3Loyly2pbDu6vAx0+nswLnp8jGFNVoFBM43M3BJvCREuz7pHVOxcrWrEDi08252OuJLMGJvjvKlN8X11Yjz8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by OS3PR01MB8474.jpnprd01.prod.outlook.com (2603:1096:604:195::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17; Wed, 8 Feb
+ 2023 01:03:24 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::4b75:8d8e:d89a:7860]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::4b75:8d8e:d89a:7860%9]) with mapi id 15.20.6064.035; Wed, 8 Feb 2023
+ 01:03:24 +0000
+Message-ID: <87sffht1d0.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 0/2] ASoC: dt-bindings: renesas,rsnd.yaml: adjust to R-Car Gen4
+In-Reply-To: <CAMuHMdXYwW8bk+a+7Fb7DA7kT0DdQyJSGaSnFzdgfWZxpmPHAA@mail.gmail.com>
+References: <87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com>
+        <CAMuHMdXYwW8bk+a+7Fb7DA7kT0DdQyJSGaSnFzdgfWZxpmPHAA@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date:   Wed, 8 Feb 2023 01:03:24 +0000
+X-ClientProxiedBy: TYCPR01CA0178.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b2::19) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OS3PR01MB8474:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43b8ecab-b0fb-44ef-1245-08db097047c1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YMn/diM27E6fUYLJ1rI4j0nUELltaolCmp6znVGEbviKFum0tPQM/lJIvA4OQyGuhsH3fQbbSB+eFXb3dHJ3/o9bAMk57AemznOsGNULhJzCvEuvaxAPuschUeOK3leSothFL/f6tWYMXgo4RGV9n7XjEKNh1ek8DPH7WdXbVzkkyFnKgkRLn5BzIkcrQLMIzKLofCU64TqOW+i55neqjlHGw617RcouKRz5xgd+CwIYlCVW9NhUivEQdxfoWN4fLyC60cerQ6QZF7BCQTkkoyCVOB7oKYl78+cjTVQUAf8Ra9REB5rxqzhtK3W7FG5OxsgKiO1nUQdIYqPmUnB4VWzMwWQwTlZEHY8gWtaf5jxjKt60SOsmdi54PvuaiFNw5f/91SaaupvOKikCZcDjcYzno0FmS+4Zg0pwvnRIewncz4QbpWW5yElLUwznP2bbyaN5sxwDWeqVsClbDqPm3JwU8hB9q3fnqNKwlV/1UdbB3USztK7f2zXdCm8a0ApXWvnEnuAh6M1cHFFVVF0e8XyVYtTVr+quBJFFhvdjaSO2PFmSnBueeLYCjCvF1f6tAKBiXENJMaD0dTE9OXhwjFt+sg3SjFJMRS9a/inMl4XDJxJ0xUYwXBQzv2ZFVkEfTysV+DuRYqShBvRjlaEP60dAnHMcNfk4uQ65E5dTDzRVk5iLBngjUXyoCZ+BuDxjWVoWtGCBheOu0LXQfhZonfK0KnGs6vZvKw4puK5z9gs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(396003)(39860400002)(376002)(366004)(136003)(346002)(451199018)(4744005)(41300700001)(2906002)(4326008)(6916009)(316002)(8676002)(54906003)(66476007)(66556008)(66946007)(52116002)(6486002)(5660300002)(2616005)(36756003)(86362001)(478600001)(186003)(26005)(6506007)(6512007)(8936002)(38100700002)(38350700002)(21314003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kFT/zN0L5NrLDdsWEHx2ZGVj/6nXxTIjQUwy8fcNbt45CpHkuUxSozNnQCLG?=
+ =?us-ascii?Q?6KJRSU3dRikHVOZepMhgtol9Y1cIl8+DylMbSGJ9QRg3P47BcRZ843RF2thZ?=
+ =?us-ascii?Q?p7WKXLdq26lhf3rvx6l4DR1JaiiJ80VGcYfhM0IxuWeZOzkJcNQwO1JxpnmN?=
+ =?us-ascii?Q?lyXUe8vLpn+rMKUnpGX3bJWESlXGXW/PLxPHXHCXh+AiAOOI//fn7hUzBibN?=
+ =?us-ascii?Q?kC2V7yPLyfasG+BjwFhpxrGwn7W0f1tk52V2jtRgMpP/JJAW79fR1O4+KvbR?=
+ =?us-ascii?Q?fcMiAoFOmWuTM2VM8Ya8Lz4nsbpPp9T3EBk5SixrVZvsUw5T31dpgPE9Z15k?=
+ =?us-ascii?Q?u2tYRXbr3NTwslk2XVqzJ4OziLpbjc5xjnhxwegif0+qcvgFk/kli0Jh4Pes?=
+ =?us-ascii?Q?THzt6/oXv/zODFWRbGtlhTeR8+947MyAz5GkZ4037Tt3wF1xMGxTdCjSEowC?=
+ =?us-ascii?Q?LUY7qap1FnJDDLAWxSZGnvu0ZLSU6YyAoFJbeWjwDHAY2o5ZUU1p+1iWsKb8?=
+ =?us-ascii?Q?RGu7Fywbz+dAyFTdDGTG3ibQpMgpy+du/4Frr5c4XY6KBbmhusmK2Dtc+a4E?=
+ =?us-ascii?Q?Fu2aJjgxvRFfOxw1RqVWLQzLbkokRb2E1xFaHSuFkYEwJx4pZKt3IpU0woKJ?=
+ =?us-ascii?Q?y6/U2rzs7bzwQHwir2xIR7IRPxdXY/oZULwRCo2mWuFtiRVvGsK73FGqOTmi?=
+ =?us-ascii?Q?AhUOFo8UEeCjyZqbCxHelWGhf9ATRs3zaqtcpYJtZH5Rm7mtjKDnUz3wS6YO?=
+ =?us-ascii?Q?Voo+TMY0wl1RY+Jmw3eu/oakclAMmOCb7SwMuiovWtTKdRs9NHqfW/ph7iBM?=
+ =?us-ascii?Q?DfOjYbU/fW+CnsMWeou0g2Fe+M4m69X2B5nUZs2qva7WPLqKKQ+h1w5wD8xr?=
+ =?us-ascii?Q?l3jjfWx7yiZZMQqu4WhMT6pgMNID5T4+wsZjJ6Z0Na0uFUIVJlPxOeqy+C2m?=
+ =?us-ascii?Q?rPNt72S+i1XaH0eEv14g1UuPXKgncvrqploWNSQJfCQgEdtD2lKztgAuR9Sn?=
+ =?us-ascii?Q?yp9YiZEd41T/dBAk80nzDNHkrB6yi0oVNGuBOISCyAgTXuMg0gEId65Ul4HL?=
+ =?us-ascii?Q?7FNLbM5NBtXxh0kbCcWf7PPNc/OJHc/h67KQE3rOErC8vhfJRHN3UtIl0s0A?=
+ =?us-ascii?Q?iCuh/LlGEKTRveGNCpaGdQDox+dns2cXDombi6XPyNzYuE5wmUBjZDzURvDy?=
+ =?us-ascii?Q?HbkJ8v78aof0+8VmmSb1MH3td8U5i9jxthcAjqHPAS8RdN4DkBxQFLlqacqA?=
+ =?us-ascii?Q?SKh4MXKuWTDaKy+y23BXfp/Hj7NLeYJbUaj/qf9G662drnfrT2vTXKVovjvk?=
+ =?us-ascii?Q?97QljC7l3tcdCF7bBBNFM7stkND/3P3YlIG+YS53rqFrTzxePeQxq2/bBioF?=
+ =?us-ascii?Q?HQ55hqJrTiWPtCAsnnG0I/oa7XXJ123E6gPxNbiCPyEDVdGZ60qCd1F8jc7D?=
+ =?us-ascii?Q?aEIyEB6CE/nyBtaLXlc3T2kT22f/CsFuWv9fUHs7zFKUk6l6puVmUPIToh3a?=
+ =?us-ascii?Q?RgRiJQAatw3tijYnHuyDYfsb79JNOV6wiN4ZsMhWZMfzEDDmoSAkhjATYeNC?=
+ =?us-ascii?Q?Q4MfKukwLYEPG3dTKxr7WstvBalbqM9vmI6EXuNddTwr8xAy3r8qeWgli08E?=
+ =?us-ascii?Q?JjjyzlIygNkLc/cTV17GmD4=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43b8ecab-b0fb-44ef-1245-08db097047c1
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 01:03:24.8973
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FfFGcu3er50FFnB5IQwTQREwu+uDiyphNKJj52gYFdNxZvyX4qhUna+ehvZ9CqfxkvuWWB1lAQkIeXtT4mVBkukI+fq96HJtSmq2TCr1tY4ahu9wbi8JyASv++3prX1A
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8474
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the equivalent of commit f5b4811e8758 ("arm64: dts: qcom:
-sc7180: Add trogdor eDP/touchscreen regulator off-on-time") and commit
-23ff866987de ("arm64: dts: qcom: sc7180: Start the trogdor
-eDP/touchscreen regulator on"), but for herobrine instead of trogdor.
 
-The motivations for herobrine are the same as for trogdor.
+Hi Geert
 
-NOTES:
-* Currently for herobrine all boards are eDP, not MIPI. If/when we
-  have herobrine derivatives that are MIPI they we can evaluate
-  whether the same off-on-delay makes sense for them. For trogdor we
-  didn't add the delay to MIPI panels because the problem was found
-  late and nobody had complained about it. For herobrine defaulting to
-  assuming the same 500ms makes sense and if we find we need to
-  optimize later we can.
-* Currently there are no oddball herobrine boards like homestar where
-  the panel really likes to be power cycled. If we have an oddball
-  board it will need to split the eDP and touchscreen rail anyway
-  (like homestar did) and we'll have to delete the "regulator-boot-on"
-  from that board.
+> > This patch-set adjust to R-Car Gen4 on renesas,rsnd.yaml.
+> > It works and no error reported.
+> > But by this patch, non-Gen4 leaks from "ssi-[0-9]" checking.
+> > I'm not sure why it happens.
+> 
+> If the logic becomes too complex,
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
+The logic itself is very simple IMO. The problem is that
+all case hits to if-then for some reasons under certain conditions.
+Under "patternProperties" or "xxx,yyy" style are the point ?
+I'm not sure.
+
+> you can also split the binding
+> description in 4 files, one per R-Car generation.
+> That would lead to lots of duplication, though.
+
+It is nightmare for me...
+
+Actually, to be very strict, dmas/dma-names are not mandatory,
+because it supports PIO transfer mode.
+
+I'm still trying to solve this issue by using many kind of schemas ways,
+but all cases doesn't work for me...
+
+Let's remove dmas/dma-names from required for now.
+It is not a wrong schema.
+
+Thank you for your help !!
+
+Best regards
 ---
-This patch should be applied atop my recent series adjusting the
-herobrine touchscreen rails [1]. If I need to send a v2 of that series
-I will add this at the end of it as patch #8.
-
-[1] https://lore.kernel.org/all/20230207024816.525938-1-dianders@chromium.org/
-
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index ded36b5d28c7..312cc0e1cbc7 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -110,6 +110,22 @@ pp3300_left_in_mlb: pp3300-left-in-mlb-regulator {
- 
- 		regulator-enable-ramp-delay = <3000>;
- 
-+		/*
-+		 * eDP panel specs nearly always have a spec that says you
-+		 * shouldn't turn them off an on again without waiting 500ms.
-+		 * Add this as a board constraint since this rail is shared
-+		 * between the panel and touchscreen.
-+		 */
-+		off-on-delay-us = <500000>;
-+
-+		/*
-+		 * Stat the regulator on. This has the advantage of starting
-+		 * the slow process of powering the panel on as soon as we
-+		 * probe the regulator. It also avoids tripping the
-+		 * off-on-delay immediately on every bootup.
-+		 */
-+		regulator-boot-on;
-+
- 		vin-supply = <&pp3300_z1>;
- 	};
- 
--- 
-2.39.1.519.gcb327c4b5f-goog
-
+Kuninori Morimoto
