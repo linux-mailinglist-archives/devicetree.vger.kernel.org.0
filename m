@@ -2,244 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC07E68EF2E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 13:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F190E68EF2B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 13:40:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjBHMkz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Feb 2023 07:40:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41000 "EHLO
+        id S229679AbjBHMky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 07:40:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjBHMkw (ORCPT
+        with ESMTP id S229483AbjBHMkw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 07:40:52 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A28F41095;
-        Wed,  8 Feb 2023 04:40:48 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DB5A124E2F8;
-        Wed,  8 Feb 2023 20:40:44 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Feb
- 2023 20:40:44 +0800
-Received: from [192.168.125.110] (183.27.96.33) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Feb
- 2023 20:40:43 +0800
-Message-ID: <629e070a-5138-8754-e86c-3458ae5d7a16@starfivetech.com>
-Date:   Wed, 8 Feb 2023 20:40:43 +0800
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B47D3A879
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 04:40:51 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id j25so13080384wrc.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 04:40:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SoZzOz36xn+BgE1e6kZnc3ii3Vw8oIG1xUizj+g3lJs=;
+        b=PCWnnJ0O1JCCUgSraQE5Zv4V3gCiohSzwp1M51kueo0+pADF9LJnBKoPvU8rulV4ff
+         asNUYcrfBk50sj68ZIagE0QKYvSvTArr1yj+nzsRrPElGXsFVXoHrPM1PVILajirPILw
+         uQz0I7/FeQtL+XgttTblL/w8njJt3BJClsyCvIwBfIx+lfnpLCCqsnOI1Flj+UhP1+nK
+         RLCP2vr1gvOzMzi2LGL6aX/jkIS6PB7Cdvfts8H16PeLX7GjQLsl4qX0F4Esg9wJKubP
+         MN2ddFA2uLacaJIC4z6pDKdwtwAw/m7TGD2KFjAGgLA7sSlcBCmMYKMzRqcFPIrAVIr7
+         KDIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SoZzOz36xn+BgE1e6kZnc3ii3Vw8oIG1xUizj+g3lJs=;
+        b=6bIwOtALLYc85iZ3SI0yguuho3h8otUpJW8H8m223X1JffWRNW7MWHLOFOnQvrZqy/
+         OVabPZ9zAz8032f0I8KcHFHiTEKCc1ED9NGPNkcugqCIDYCEA0tVSwROhLLfA7Zq01TF
+         pmtYRq230zytWJsJyTmUuAEuuAygbaOPZQjzFS+6TQsyVrfqJTa2bx8MdJTeG1hjGc/+
+         IYM22Zgmj2E6Zj39uuOIlveNJSodAmqluD/iKj0Ou5GFTwqZ6ChH7qrsZeffaW3wwEyB
+         PBpLw9wX4RvckGfX3K83McHHrABS3651joU537+jV9PAJeVC6TYr4poDopWAMopHzufK
+         oZSA==
+X-Gm-Message-State: AO0yUKVMAAZQDbjEKoGphVHVIkbQd48o32tP+M3gx2HH7+Kc3+LZI16i
+        DFWVm6K6bQukz9eFRFubYkN4zw==
+X-Google-Smtp-Source: AK7set98/DHovmfyhRgw7rfcf1Kqy4IHwDZOKbv09SNFqZ8LFy392y2+i2ttuEXDWAWA4pWoTvZo7Q==
+X-Received: by 2002:a05:6000:1141:b0:2c3:db5b:727d with SMTP id d1-20020a056000114100b002c3db5b727dmr7667367wrx.53.1675860049313;
+        Wed, 08 Feb 2023 04:40:49 -0800 (PST)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id r6-20020a5d4986000000b002bfc24e1c55sm13360757wrq.78.2023.02.08.04.40.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 04:40:48 -0800 (PST)
+Message-ID: <61db3f1c-b780-4385-f991-ebb4c3423791@linaro.org>
+Date:   Wed, 8 Feb 2023 13:40:46 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 2/4] hwmon: (sfctemp) Add StarFive JH71x0 temperature
- sensor
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.6.1
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Make mmc host controller
+ interrupts level-sensitive
+Content-Language: fr, en-GB
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230103013145.9570-1-hal.feng@starfivetech.com>
- <20230103013145.9570-3-hal.feng@starfivetech.com>
- <20230103221017.GA217155@roeck-us.net>
- <ddb197c3-9c77-c8c2-1d41-1691de05847e@starfivetech.com>
- <7580df6b-e97f-0036-8f7f-63acde8cd42a@roeck-us.net>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <7580df6b-e97f-0036-8f7f-63acde8cd42a@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [183.27.96.33]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <d9721029-780e-09f1-0207-72d3897032a4@gmail.com>
+ <f06d1676-4fce-846d-d8fe-fa68439b119e@linaro.org>
+ <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <84d40502-fe1a-ef61-e945-9c581557f528@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Feb 2023 11:21:38 -0800, Guenter Roeck wrote:
-> On 2/6/23 09:12, Hal Feng wrote:
->> On Tue, 3 Jan 2023 14:10:17 -0800, Guenter Roeck wrote:
->>> On Tue, Jan 03, 2023 at 09:31:43AM +0800, Hal Feng wrote:
-[...]
->>>> diff --git a/drivers/hwmon/sfctemp.c b/drivers/hwmon/sfctemp.c
->>>> new file mode 100644
->>>> index 000000000000..e56716ad9587
->>>> --- /dev/null
->>>> +++ b/drivers/hwmon/sfctemp.c
->>>> @@ -0,0 +1,350 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
->>>> + * Copyright (C) 2021 Samin Guo <samin.guo@starfivetech.com>
->>>> + */
->>>> +#include <linux/clk.h>
->>>> +#include <linux/completion.h>
->>>> +#include <linux/delay.h>
->>>> +#include <linux/hwmon.h>
->>>> +#include <linux/interrupt.h>
->>>> +#include <linux/io.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/mutex.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/platform_device.h>
->>>> +#include <linux/reset.h>
->>>> +
->>>> +/*
->>>> + * TempSensor reset. The RSTN can be de-asserted once the analog core has
->>>> + * powered up. Trst(min 100ns)
->>>> + * 0:reset  1:de-assert
->>>> + */
->>>> +#define SFCTEMP_RSTN    BIT(0)
->>>
->>> Missing include of linux/bits.h
+Le 27/01/2023 à 14:02, Heiner Kallweit a écrit :
+> On 27.01.2023 08:59, Neil Armstrong wrote:
+>> Hi,
 >>
->> Will add it. Thanks.
+>> On 26/01/2023 15:03, Heiner Kallweit wrote:
+>>> The usage of edge-triggered interrupts lead to lost interrupts under load,
+>>> see [0]. This was confirmed to be fixed by using level-triggered
+>>> interrupts.
+>>> The report was about SDIO. However, as the host controller is the same
+>>> for SD and MMC, apply the change to all mmc controller instances.
+>>
+>> Thanks, I applied it in for-next so it runs on the CI tests.
 >>
 >>>
->>>> +
->>>> +/*
->>>> + * TempSensor analog core power down. The analog core will be powered up
->>>> + * Tpu(min 50us) after PD is de-asserted. RSTN should be held low until the
->>>> + * analog core is powered up.
->>>> + * 0:power up  1:power down
->>>> + */
->>>> +#define SFCTEMP_PD    BIT(1)
->>>> +
->>>> +/*
->>>> + * TempSensor start conversion enable.
->>>> + * 0:disable  1:enable
->>>> + */
->>>> +#define SFCTEMP_RUN    BIT(2)
->>>> +
->>>> +/*
->>>> + * TempSensor conversion value output.
->>>> + * Temp(C)=DOUT*Y/4094 - K
->>>> + */
->>>> +#define SFCTEMP_DOUT_POS    16
->>>> +#define SFCTEMP_DOUT_MSK    GENMASK(27, 16)
->>>> +
->>>> +/* DOUT to Celcius conversion constants */
->>>> +#define SFCTEMP_Y1000    237500L
->>>> +#define SFCTEMP_Z    4094L
->>>> +#define SFCTEMP_K1000    81100L
->>>> +
->>>> +struct sfctemp {
->>>> +    /* serialize access to hardware register and enabled below */
->>>> +    struct mutex lock;
->>>> +    struct completion conversion_done;
->>>> +    void __iomem *regs;
->>>> +    struct clk *clk_sense;
->>>> +    struct clk *clk_bus;
->>>> +    struct reset_control *rst_sense;
->>>> +    struct reset_control *rst_bus;
->>>> +    bool enabled;
->>>> +};
->>>> +
->>>> +static irqreturn_t sfctemp_isr(int irq, void *data)
->>>> +{
->>>> +    struct sfctemp *sfctemp = data;
->>>> +
->>>> +    complete(&sfctemp->conversion_done);
->>>> +    return IRQ_HANDLED;
->>>> +}
->>>> +
->>>> +static void sfctemp_power_up(struct sfctemp *sfctemp)
->>>> +{
->>>> +    /* make sure we're powered down first */
->>>> +    writel(SFCTEMP_PD, sfctemp->regs);
->>>> +    udelay(1);
->>>> +
->>>> +    writel(0, sfctemp->regs);
->>>> +    /* wait t_pu(50us) + t_rst(100ns) */
->>>> +    usleep_range(60, 200);
->>>> +
->>>> +    /* de-assert reset */
->>>> +    writel(SFCTEMP_RSTN, sfctemp->regs);
->>>> +    udelay(1); /* wait t_su(500ps) */
->>>> +}
->>>> +
->>>> +static void sfctemp_power_down(struct sfctemp *sfctemp)
->>>> +{
->>>> +    writel(SFCTEMP_PD, sfctemp->regs);
->>>> +}
->>>> +
->>>> +static void sfctemp_run_single(struct sfctemp *sfctemp)
->>>> +{
->>>> +    writel(SFCTEMP_RSTN | SFCTEMP_RUN, sfctemp->regs);
->>>> +    udelay(1);
->>>> +    writel(SFCTEMP_RSTN, sfctemp->regs);
+>>> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
 >>>
->>> The datasheet (or, rather, programming manual) does not appear
->>> to be public, so I have to guess here.
->>>
->>> The code suggests that running a single conversion may be a choice,
->>> not a requirement. If it is indeed a choice, the reasoning needs to be
->>> explained since it adds a lot of complexity and dependencies to the
->>> driver (for example, interrupt support is only mandatory or even needed
->>> due to this choice). It also adds a significant delay to temperature
->>> read operations, which may have practical impact on thermal control
->>> software.
->>>
->>> If the chip only supports single temperature readings, that needs to be
->>> explained as well (and why SFCTEMP_RUN has to be reset in that case).
+>>> Fixes: 1499218c80c9 ("arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi")
 >>
->> The chip supports continuous conversion. When you set SFCTEMP_RUN, the
->> temperature raw data will be generated all the time. However, it will
->> also generate interrupts all the time when the conversion is finished,
->> because of the hardware limitation. So in this driver, we just support
->> the single conversion.
+>> I think we should find a better Fixes or perhaps split in 3 so it targets the
+>> right commit adding the nodes for each family.
 >>
+> This would be the cleanest option, right. Practically it shouldn't make
+> much of a difference. The chosen commit is from 2019, SDIO interrupt
+> support has been added just recently, and regarding MMC/SD it seems no
+> problems caused by edge-triggered interrupts are known.
+
+I understand, but the Fixes tag must reflect what commit introduced the breakage,
+so either keep a single patch but list all commits introducing the MMC, SD & SDIO nodes
+on the 3 families, or split in 3 and specify the commit introducing the MMC, SD & SDIO
+node on each family.
+
+I'll prefer the later.
+
+If the patch isn't applicable for older kernels, it doesn't matter as the stable team
+will only apply the fix on a tree if it applies and builds.
+If you target an older release you can submit them a patch reworked to apply
+correctly if the original patch is already only Linus master tree.
+
+And don't forget adding the Tested-by tags.
+
+Thanks,
+Neil
+
 > 
-> Sorry, I don't follow the logic. The interrupt is, for all practical
-> purposes, useless because there are no limits and exceeding any such
-> limits is therefore not supported. The only reason to have and enable
-> to interrupt is because continuous mode is disabled.
+>> If the test doesn't report any breakage, I'll probably ask you that.
+>>
+> Sure.
 > 
-> The code could be simplified a lot if interrupt support would be
-> dropped and continuous mode would be enabled.
+>> Neil
+>>
+> Heiner
+> 
 
-If we enable continuous mode, which means SFCTEMP_RUN remains asserted,
-the conversion finished interrupt will be raised after each sample
-time (8.192 ms). Within a few minutes, a lot of interrupts are raised,
-as showed below.
-
-# cat /proc/interrupts
-           CPU0       CPU1       CPU2       CPU3       
-  1:          0          0          0          0  SiFive PLIC   1 Edge      ccache_ecc
-  2:          1          0          0          0  SiFive PLIC   3 Edge      ccache_ecc
-  3:          1          0          0          0  SiFive PLIC   4 Edge      ccache_ecc
-  4:          0          0          0          0  SiFive PLIC   2 Edge      ccache_ecc
-  5:       1116       1670        411       1466  RISC-V INTC   5 Edge      riscv-timer
-  6:      32093          0          0          0  SiFive PLIC  81 Edge      120e0000.temperature-sensor
- 10:       1233          0          0          0  SiFive PLIC  32 Edge      ttyS0
-IPI0:       117         62        123        117  Rescheduling interrupts
-IPI1:       278        353        105        273  Function call interrupts
-IPI2:         0          0          0          0  CPU stop interrupts
-IPI3:         0          0          0          0  CPU stop (for crash dump) interrupts
-IPI4:         0          0          0          0  IRQ work interrupts
-IPI5:         0          0          0          0  Timer broadcast interrupts
-
-If we enable continuous mode and drop the interrupt support in the
-driver, the kernel will not know the interrupts but a lot of interrupts
-are still raised in hardware. Can we do such like that?
-Without the interrupt support, the temperature we read may be the value
-generated in the last cycle.
-
-I think the temperature has its value only when we read it, so we start
-conversion only when we read the temperature. Further more, it will
-consume more power if we enable continuous mode.
-
-Best regards,
-Hal
