@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 953A968E9A6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6846668E9AB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:17:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbjBHIQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 03:16:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54398 "EHLO
+        id S229537AbjBHIR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 03:17:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjBHIQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:16:30 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD18366BA
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:16:28 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id ba1so11818938wrb.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:16:28 -0800 (PST)
+        with ESMTP id S229865AbjBHIR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:17:26 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB3AB4223
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:17:24 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id m2so49241020ejb.8
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:17:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RIHBZkbNrO62XMNrJJK8z4cLpR4TSFuzo5oIxTwhhE0=;
-        b=XZ+YSr1O8bGdAtUUD06C/G0MN+cIjt6SMBMjZJtvGe5f1MFkb0fWa3gLTd3ygER3P3
-         jW7svKKXmDDQlT8BNfhh54ouct0fORZPbyM2R61X/e36T8e6Hp0JrV8hjjt6fHEwPpwG
-         INYLUcSiZWxI4BU6WcmdrXLN33UAcqRqmZGELZ06VhA5bhP/dcMfUGBU/r7JY6P8YW+j
-         YT4rlWmKzc1JikFqd6m1Bl/GUPDrqyga4kZ1JI1F/ZMvwh6X4Zvm5gxNvaeAO2pNdLcm
-         Rf7w1oVySK7B9OuC0IpKyg62/G8zPZf8DJuAIvUXCGVdxyksSVbc6sNBaaprG/JzcQAA
-         Bmvg==
+        bh=mgNVLPP81e/ZJyUA32o0ZH9mBi/iQe4yk7ouaJGZuy0=;
+        b=ycOguIPKYX/vFlY/CaadB5taIqR8a5Z90ZR+FhhA0KfrTvQx7qS75v4O4A91qx+Ss2
+         Qe2J2ZreNR8NHh7Ezzwwuvp9J2s3ea3G+ZC1fzhQmzgaN2xs33AC3qOL1YqWIUZw9XPe
+         ENkoROCgHPYZvl55g7AQ1IzABLWOp0vAw3Go9Ti2Dx6YYEtqKuv4Fiagu+8l+VuORyO9
+         Ih7tuU2LzAGgbY2znBewTxo1ulYH5lahSn+Y7WkecAa8+eukNAGlMYSlP70N28Oq81wr
+         7Nb8pwcs706J+8BcOrV2fl9MBh4RUmEmeTAS5aD/Zgd6aMK/IU3deGZX9u6LVHQqZ0Mv
+         +RqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RIHBZkbNrO62XMNrJJK8z4cLpR4TSFuzo5oIxTwhhE0=;
-        b=63ubAZlCtwRfChXvAuiCI81Zkbh/Z3hibrxoRbW4roY8XGNRNpxNpdAnZt+KzDKC5J
-         g0Bw5qD6ymsJ4Hgf7ZW11aD5PA5zwI0R4B1m7MA1SohFOiPwreTq9sXJwOIl8cYs25yp
-         MgR+t7xpP65lr63UhQvG8ijwoQtCi7EQOZKNz/scZlGpQ7EvoVfxwtPPs0ny7G4r4O/g
-         nRYLWwiGVr1d6mRNOjRK/e58qDWdNuZskPBk99GkG9tH0PV8eNxZBTO6vn7BQyrE2f5n
-         gWmNMgFXP2ZdlJVKcjJAIKbeIoxuQduSWSTA4KfDofiYyI+H8d+z2YmMjKdbyEve5zzJ
-         6KwA==
-X-Gm-Message-State: AO0yUKUEpsUVLefigWPfYKXXokNQi6fpZASwGre1gx51TtoSBhyM2rph
-        Pkf4IbKeuuvSeHOHU1h0n5CSQA==
-X-Google-Smtp-Source: AK7set+SVBDj4BO5fl38Hh82paJ/TAHcWytuuayTi6LTqfHjo8burdCkPBlLF/pMYrOvOORLEmOw3A==
-X-Received: by 2002:adf:fa10:0:b0:2bf:ad43:8f08 with SMTP id m16-20020adffa10000000b002bfad438f08mr5956744wrr.14.1675844187560;
-        Wed, 08 Feb 2023 00:16:27 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h10-20020a5d504a000000b002c3efca57e1sm5086542wrt.110.2023.02.08.00.16.26
+        bh=mgNVLPP81e/ZJyUA32o0ZH9mBi/iQe4yk7ouaJGZuy0=;
+        b=d2fRpe9i5C2wd6gJsZmOFCfg2AO2ui+tSZLWHG0qwUI3AbOG+pLzsWS1W5yCzNwrbZ
+         +MUUkClpB9Q9kAncimIRG0+ZcJTEBDPX0Tj6eii0pPS9uhaclsKviEQu/+cuN6iR//Jr
+         q7cf5U26zC+rMA/vuOzNdQWVrZIFqPNpEZBNA97jp4jYtwFZnjlvwhGRRC1UK3QzD5CE
+         G3OuByr49bU+d4FsQvbfL0uSv8CnhoXAmr/s6LYqcppY/jvGe6crpiYKQ1sOidaW5p3J
+         jizQYdwE2V/ZeBRhKymlCJyh6y4BP8EzL6FQ9HwbJ5K2541Ec0c7f2iEApGOEvNmhsFh
+         uG7A==
+X-Gm-Message-State: AO0yUKUx04c0zKsPbY0UPqT/Qc5E3FcKX9af1WKO4e6ZMPvwjVCY09Pu
+        5pcWrkaxJl7XBb+zEMNIY2AvIQ==
+X-Google-Smtp-Source: AK7set+WYZqi41ew+EAKbO82xbTbuL+1CayQDZfUvoUbK1GE7bTWHRU6wKzSpURzm1/aC0UeSRXiCg==
+X-Received: by 2002:a17:906:7952:b0:884:b467:ae4a with SMTP id l18-20020a170906795200b00884b467ae4amr8205385ejo.64.1675844243558;
+        Wed, 08 Feb 2023 00:17:23 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id g4-20020a170906348400b007add62dafbasm7954162ejb.157.2023.02.08.00.17.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 00:16:27 -0800 (PST)
-Message-ID: <a743cc0d-7a6d-d5e2-2c7b-53baaeb87ba0@linaro.org>
-Date:   Wed, 8 Feb 2023 09:16:26 +0100
+        Wed, 08 Feb 2023 00:17:23 -0800 (PST)
+Message-ID: <79c1cc0e-137d-af37-0069-f01f9a25e99b@linaro.org>
+Date:   Wed, 8 Feb 2023 09:17:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: renesas,rsnd.yaml: tidyup
- reg/reg-name
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Power herobrine's 3.3 eDP/TS
+ rail more properly
 Content-Language: en-US
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc:     Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-References: <87r0v1t02h.wl-kuninori.morimoto.gx@renesas.com>
- <87pmalt01x.wl-kuninori.morimoto.gx@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <87pmalt01x.wl-kuninori.morimoto.gx@renesas.com>
+To:     Douglas Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     mka@chromium.org, Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230207163550.1.I5ff72b7746d5fca8f10ea61351bde4150ed1a7f8@changeid>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230207163550.1.I5ff72b7746d5fca8f10ea61351bde4150ed1a7f8@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,20 +77,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 02:31, Kuninori Morimoto wrote:
+
+
+On 8.02.2023 01:36, Douglas Anderson wrote:
+> This is the equivalent of commit f5b4811e8758 ("arm64: dts: qcom:
+> sc7180: Add trogdor eDP/touchscreen regulator off-on-time") and commit
+> 23ff866987de ("arm64: dts: qcom: sc7180: Start the trogdor
+> eDP/touchscreen regulator on"), but for herobrine instead of trogdor.
 > 
-
-All your commits still have this blank line before.
-
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> The motivations for herobrine are the same as for trogdor.
 > 
-> Tidyup reg/reg-name "maxItems".
-> Pointed by Krzysztof, and corrected by Rob.
+> NOTES:
+> * Currently for herobrine all boards are eDP, not MIPI. If/when we
+>   have herobrine derivatives that are MIPI they we can evaluate
+>   whether the same off-on-delay makes sense for them. For trogdor we
+>   didn't add the delay to MIPI panels because the problem was found
+>   late and nobody had complained about it. For herobrine defaulting to
+>   assuming the same 500ms makes sense and if we find we need to
+>   optimize later we can.
+> * Currently there are no oddball herobrine boards like homestar where
+>   the panel really likes to be power cycled. If we have an oddball
+>   board it will need to split the eDP and touchscreen rail anyway
+>   (like homestar did) and we'll have to delete the "regulator-boot-on"
+>   from that board.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Drop the sentence, you should instead explain what is here to correct.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Konrad
+> This patch should be applied atop my recent series adjusting the
+> herobrine touchscreen rails [1]. If I need to send a v2 of that series
+> I will add this at the end of it as patch #8.
+> 
+> [1] https://lore.kernel.org/all/20230207024816.525938-1-dianders@chromium.org/
+> 
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index ded36b5d28c7..312cc0e1cbc7 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -110,6 +110,22 @@ pp3300_left_in_mlb: pp3300-left-in-mlb-regulator {
+>  
+>  		regulator-enable-ramp-delay = <3000>;
+>  
+> +		/*
+> +		 * eDP panel specs nearly always have a spec that says you
+> +		 * shouldn't turn them off an on again without waiting 500ms.
+> +		 * Add this as a board constraint since this rail is shared
+> +		 * between the panel and touchscreen.
+> +		 */
+> +		off-on-delay-us = <500000>;
+> +
+> +		/*
+> +		 * Stat the regulator on. This has the advantage of starting
+> +		 * the slow process of powering the panel on as soon as we
+> +		 * probe the regulator. It also avoids tripping the
+> +		 * off-on-delay immediately on every bootup.
+> +		 */
+> +		regulator-boot-on;
+> +
+>  		vin-supply = <&pp3300_z1>;
+>  	};
+>  
