@@ -2,215 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E62B68E8B7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 08:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4ADF68E8BB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 08:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjBHHK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 02:10:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44092 "EHLO
+        id S230075AbjBHHMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 02:12:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjBHHKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 02:10:55 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96E216ACC;
-        Tue,  7 Feb 2023 23:10:52 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3DEF8240005;
-        Wed,  8 Feb 2023 07:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1675840251;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=aMJxOP//3lmrdw4Ez3gU5F4BL9UKnlN7VOGF3OJa748=;
-        b=OMnfkutDt91abAJjp/6eauDG4dn+ggxo319G0cGWyRerN8lLWv11QT+Q2aXz0hYl18sfcr
-        1nyuc2cnZez0LUK59e9ONCp7mG1JLW/oSfTh+nmn3GefZ7tf8GDA2pSi2dwnFSxNjVzN3m
-        7xvfUg5TGFKW2/bauuCcMxiG4W4bw/i6PYUyQe7F4tWnZQM6CtT9yJ92d9Hr24dqzNgmVM
-        duzmoNKG8VJJHzy2h8n2IkgRFNZpo30RPq0LCK6DCkCgKXheSLd3PaKT3CIkP28nfX7zYG
-        yp5ZngE3YFdFDtbWkb0z+1aYLotqX8/B3KtQwIwovQ9yES4CESUYt0scjA+56Q==
-Date:   Wed, 8 Feb 2023 08:10:48 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Infineon PEB2466
- codec
-Message-ID: <20230208081048.0708037f@bootlin.com>
-In-Reply-To: <fd3ccda3-f964-6904-6056-f93c43b85a0f@wanadoo.fr>
-References: <20230206144904.91078-1-herve.codina@bootlin.com>
-        <20230206144904.91078-3-herve.codina@bootlin.com>
-        <fd3ccda3-f964-6904-6056-f93c43b85a0f@wanadoo.fr>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S229450AbjBHHMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 02:12:02 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0598227AB
+        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 23:11:58 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id bx13so14716136oib.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Feb 2023 23:11:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MmYj+CB2YxZipjgrDEGrb8ZnVv0SQ/HUrSGEL3siE4M=;
+        b=e0m/dkVWvK4/WjFu5xg2U0k2v/GGF0Cl68in7HEd6+Jz4ksJQZPvvKezIV+mvWkLD0
+         rvBtr9xIGB7dUPz4ZEeXMn1tDoCREzz2Q5MKi5HGCYUoNUKSeMbQFRTPuPvm0+7X5uif
+         mCX+UysMTRfPWfQFUcDZs9DWhIMnmu6XK52rE6JwgLnDxZI3znyq5CiyosktjTtEO0pm
+         cOIu5CvonT/G2OwYucQNZPkDAWdxrgQkd9iOkNl31BZBNHfXRiBBf+LMk3yZX2jy3ign
+         TPttO9Vwoo2BR+fxXiX8gNwxUu/NGn4qAzzLmrbWoZuCutb61H0cBF88kyxMhKBeK5hb
+         Eutg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:sender:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MmYj+CB2YxZipjgrDEGrb8ZnVv0SQ/HUrSGEL3siE4M=;
+        b=s6avM5G1irr7R0mNL6qcaSktTAVLkUh20EYLe9myS/8mVUy3/UW1g20IRFghQSPchF
+         cxg39WBoEvZRicTKFTq2f/auanqbCHhMOcbNw4qjSA8CLaFH+IHOuq5SmF88JRpAxVdu
+         cSxvRLg/3E3JvoloTRaiXikIi6r2/fL8fUFi+P9uFzciQYFUYrd5mQT315Q9rVUL4dVK
+         3Rzg71QcORPAE6kHUrIX68soRqA6rqHYez7oLoLELFhtoaSdJ5oZHDiz10rREWc6lhbO
+         XEbJLExFNpUSPKCERXfOjhz/HPkxkPJENKEzYPM9tMgwmGtMHQo8pFXfnlqsb3gKzX88
+         ETsg==
+X-Gm-Message-State: AO0yUKVA/r6vJm/ML1RA8DWg+qwj+aH9IOLzl7zdmLO4tsbWSF+6ChPa
+        G8XJ/TF17j7EUoAyx1UogL90o3fJq7XASPYLkY8=
+X-Google-Smtp-Source: AK7set+NLnNyPEHkqxsravCxuS1aNb3b63DMXGWkiWF8l4HC706h1qEURQqHGlm1uTMUi3it6HEdkffVRCF1KyU4Fgk=
+X-Received: by 2002:aca:5f06:0:b0:37a:b856:d35a with SMTP id
+ t6-20020aca5f06000000b0037ab856d35amr129340oib.22.1675840317566; Tue, 07 Feb
+ 2023 23:11:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Sender: nicolemarois101@gmail.com
+Received: by 2002:a05:6358:7291:b0:ef:d569:610c with HTTP; Tue, 7 Feb 2023
+ 23:11:56 -0800 (PST)
+From:   AVA SMITH <avasmith1181@gmail.com>
+Date:   Wed, 8 Feb 2023 07:11:56 +0000
+X-Google-Sender-Auth: aX4H_cmkmJEOYwXbVY0of0lcQOI
+Message-ID: <CAKZDbpzxn11r=qeWsAz6WuFZQHip59iBDk-VuwU-23BdA+POXQ@mail.gmail.com>
+Subject: Hello Dear
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Feb 2023 22:17:39 +0100
-Hi Christophe,
+Hello Dear
+My name is Dr Ava Smith,a medical doctor from United States.I have
+Dual citizenship which is English and French.I will share pictures and
+more details about me as soon as i get a response from you.
 
-Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
-
-> Le 06/02/2023 =C3=A0 15:49, Herve Codina a =C3=A9crit=C2=A0:
-> > The Infineon PEB2466 codec is a programmable DSP-based four channels
-> > codec with filters capabilities.
-> > It also provides signals as GPIOs.
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >   sound/soc/codecs/Kconfig   |   12 +
-> >   sound/soc/codecs/Makefile  |    2 +
-> >   sound/soc/codecs/peb2466.c | 2071 ++++++++++++++++++++++++++++++++++++
-> >   3 files changed, 2085 insertions(+)
-> >   create mode 100644 sound/soc/codecs/peb2466.c
-> >  =20
->=20
-> [...]
->=20
-> > +static int peb2466_spi_probe(struct spi_device *spi)
-> > +{
-> > +	struct peb2466 *peb2466;
-> > +	unsigned long mclk_rate;
-> > +	int ret;
-> > +	u8 xr5;
-> > +
-> > +	spi->bits_per_word =3D 8;
-> > +	ret =3D spi_setup(spi);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	peb2466 =3D devm_kzalloc(&spi->dev, sizeof(*peb2466), GFP_KERNEL);
-> > +	if (!peb2466)
-> > +		return -ENOMEM;
-> > +
-> > +	peb2466->spi =3D spi;
-> > +
-> > +	peb2466->regmap =3D devm_regmap_init(&peb2466->spi->dev, NULL, peb246=
-6,
-> > +					   &peb2466_regmap_config);
-> > +	if (IS_ERR(peb2466->regmap))
-> > +		return PTR_ERR(peb2466->regmap);
-> > +
-> > +	peb2466->reset_gpio =3D devm_gpiod_get_optional(&peb2466->spi->dev,
-> > +						      "reset", GPIOD_OUT_LOW);
-> > +	if (IS_ERR(peb2466->reset_gpio))
-> > +		return PTR_ERR(peb2466->reset_gpio);
-> > +
-> > +	peb2466->mclk =3D devm_clk_get(&peb2466->spi->dev, "mclk"); =20
->=20
-> Hi,
->=20
-> Up to you to decide if it is a good idea or not, but using=20
-> devm_clk_get_enabled() would save the 'mclk' field in peb2466 ...
->=20
-> > +	if (IS_ERR(peb2466->mclk))
-> > +		return PTR_ERR(peb2466->mclk);
-> > +	ret =3D clk_prepare_enable(peb2466->mclk);
-> > +	if (ret)
-> > +		return ret; =20
->=20
-> ... these 3 lines ...
->=20
-> > +
-> > +	if (peb2466->reset_gpio) {
-> > +		gpiod_set_value_cansleep(peb2466->reset_gpio, 1);
-> > +		udelay(4);
-> > +		gpiod_set_value_cansleep(peb2466->reset_gpio, 0);
-> > +		udelay(4);
-> > +	}
-> > +
-> > +	spi_set_drvdata(spi, peb2466); =20
->=20
-> ... this spi_set_drvdata() call ...
->=20
-> > +
-> > +	mclk_rate =3D clk_get_rate(peb2466->mclk);
-> > +	switch (mclk_rate) {
-> > +	case 1536000:
-> > +		xr5 =3D PEB2466_XR5_MCLK_1536;
-> > +		break;
-> > +	case 2048000:
-> > +		xr5 =3D PEB2466_XR5_MCLK_2048;
-> > +		break;
-> > +	case 4096000:
-> > +		xr5 =3D PEB2466_XR5_MCLK_4096;
-> > +		break;
-> > +	case 8192000:
-> > +		xr5 =3D PEB2466_XR5_MCLK_8192;
-> > +		break;
-> > +	default:
-> > +		dev_err(&peb2466->spi->dev, "Unsupported clock rate %lu\n",
-> > +			mclk_rate);
-> > +		ret =3D -EINVAL;
-> > +		goto failed;
-> > +	}
-> > +	ret =3D regmap_write(peb2466->regmap, PEB2466_XR5, xr5);
-> > +	if (ret) {
-> > +		dev_err(&peb2466->spi->dev, "Setting MCLK failed (%d)\n", ret);
-> > +		goto failed;
-> > +	}
-> > +
-> > +	ret =3D devm_snd_soc_register_component(&spi->dev, &peb2466_component=
-_driver,
-> > +					      &peb2466_dai_driver, 1);
-> > +	if (ret)
-> > +		goto failed;
-> > +
-> > +	if (IS_ENABLED(CONFIG_GPIOLIB)) {
-> > +		ret =3D peb2466_gpio_init(peb2466);
-> > +		if (ret)
-> > +			goto failed;
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +failed:
-> > +	clk_disable_unprepare(peb2466->mclk);
-> > +	return ret; =20
->=20
-> ... this error handling path ...
->=20
-> > +}
-> > +
-> > +static void peb2466_spi_remove(struct spi_device *spi)
-> > +{
-> > +	struct peb2466 *peb2466 =3D spi_get_drvdata(spi);
-> > +
-> > +	clk_disable_unprepare(peb2466->mclk);
-> > +} =20
->=20
-> ... and the remove function.
->=20
-> CJ
->=20
-
-Thanks for pointing this.
-I will use devm_clk_get_enabled() in the next series iteration as suggested.
-
-Best regards,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks
+Ava
