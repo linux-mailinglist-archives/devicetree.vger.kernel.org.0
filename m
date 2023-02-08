@@ -2,59 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E91DF68F876
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 20:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9A868F905
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 21:46:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjBHT6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 14:58:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
+        id S232258AbjBHUq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 15:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjBHT6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 14:58:14 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95C11E1F6;
-        Wed,  8 Feb 2023 11:58:13 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 71500617DA;
-        Wed,  8 Feb 2023 19:58:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0675AC433D2;
-        Wed,  8 Feb 2023 19:58:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675886292;
-        bh=tRNavg/LIgAKd9vbMfES3i4G6zF8q2JGPv+1iHnxfQE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qija1YocLLtQPH8kUkvQhotXNzK3awUCRJunJ8vd86FGg27ObcRv/J7PcMjnnGpj5
-         rq3So6bWDFgV0t1ZR6CJuu2aszapZ7lmU6c2RkFLsJNkszP1H8Jsap1zGd/x/WbB88
-         uB7d1HF9YFZEG7Q+O4XW1vta4/4UVxticd8sKzO+70pgUCndg5VrP3NL5u1NgF36hO
-         VX2k7R4vj2k1MY+9I4AKxt00e1n2LaR8zugbDTRR0RF509rxQLjLeVNqYX7oY9Utsj
-         Jpj7p4P86qsFxFrLaCAMvxETSDnjdHcgyV4B0gsTVgxnQhLzdwk96R9y2DP8bEKa3V
-         ifStorPxWnSww==
-Date:   Wed, 8 Feb 2023 19:58:07 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S232172AbjBHUq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 15:46:56 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D805E18B24;
+        Wed,  8 Feb 2023 12:46:53 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 318KGhOx026102;
+        Wed, 8 Feb 2023 20:46:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=gtevRq5R05dpq27eDHQy4nXcSPGzivauM0owH2HF9Hk=;
+ b=YVzbuEMR1qGIgwBVTIhiSD3pviS/Adm7Zr4a/yCwziskysT2fzBTn3XcPdVyxjkSha8w
+ 42e5+emoxpkl5bcjtiiwndcQNbK20BnYG1Du2H1GpYgP7Iqx6zwrWzDPRS4CcBWvw1+Z
+ dCG+Vvbnwl3MnC5Ccbs+ILmurUPT6p8ljUsmDYvM4BZ9TdwTgEhQ3uRQBT24X5I1tDIc
+ PyDkXv5JEonXzf7Kk/CtGyTJgqevV+FovioTR6TB/aFwBV7AafarTlVaeVf8UFNQ7QLP
+ a4qnf5pu3drrecdZZI1GBe3N9PmZl+lD7k5ZxZSW1fmQEiQkVffhVHtDBuRHMQsqcFbO Kg== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nmjm681qf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Feb 2023 20:46:38 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 318KkasL019453
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 8 Feb 2023 20:46:36 GMT
+Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 8 Feb 2023
+ 12:46:36 -0800
+Message-ID: <bc274d7c-4c69-25a8-7463-de3c36e36ac8@quicinc.com>
+Date:   Wed, 8 Feb 2023 12:46:35 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v9 08/27] mailbox: Add Gunyah message queue mailbox
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+CC:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
-Message-ID: <Y+P+z8bpo9sBNOkU@sirena.org.uk>
-References: <20230208172552.404324-1-krzysztof.kozlowski@linaro.org>
- <Y+PeR4EFfcVDbUfV@sirena.org.uk>
- <51e8e157-3f60-1731-a8ca-4a678c8eafd6@linaro.org>
- <Y+PlUtAmbl5TJq6z@sirena.org.uk>
- <c876f40a-2db5-eb50-9706-3147671ec4c5@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yWn+MXqavpBjLzGe"
-Content-Disposition: inline
-In-Reply-To: <c876f40a-2db5-eb50-9706-3147671ec4c5@linaro.org>
-X-Cookie: Walk softly and carry a megawatt laser.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
+ <20230120224627.4053418-9-quic_eberman@quicinc.com>
+ <e5acd00c-7a53-a789-8dab-a69cffda34f5@linaro.org>
+Content-Language: en-US
+In-Reply-To: <e5acd00c-7a53-a789-8dab-a69cffda34f5@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EfdVe_XgxIDegBwspnwssRlNrUzPHiGW
+X-Proofpoint-ORIG-GUID: EfdVe_XgxIDegBwspnwssRlNrUzPHiGW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-08_09,2023-02-08_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 clxscore=1015 bulkscore=0 mlxscore=0 spamscore=0
+ mlxlogscore=635 phishscore=0 priorityscore=1501 adultscore=0
+ impostorscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2302080176
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,41 +99,256 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---yWn+MXqavpBjLzGe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Wed, Feb 08, 2023 at 08:37:22PM +0100, Krzysztof Kozlowski wrote:
-> On 08/02/2023 19:09, Mark Brown wrote:
+On 2/2/2023 1:59 AM, Srinivas Kandagatla wrote:
+> 
+> 
+> On 20/01/2023 22:46, Elliot Berman wrote:
+>> Gunyah message queues are a unidirectional inter-VM pipe for messages up
+>> to 1024 bytes. This driver supports pairing a receiver message queue and
+>> a transmitter message queue to expose a single mailbox channel.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
 
-> >>> Are you *sure* they are grounded and not supplied from the LDOs?
+[snip]
 
-> >> That's what I have on schematics (attached), if I got it right.
+>> +static irqreturn_t gh_msgq_rx_irq_handler(int irq, void *data)
+>> +{
+>> +    struct gh_msgq *msgq = data;
+>> +    struct gh_msgq_rx_data rx_data;
+>> +    unsigned long gh_err;
+>> +    bool ready = true;
+>> +
+>> +    while (ready) {
+>> +        gh_err = gh_hypercall_msgq_recv(msgq->rx_ghrsc->capid,
+>> +                (uintptr_t)&rx_data.data, sizeof(rx_data.data),
+> you should proabably use  GH_MSGQ_MAX_MSG_SIZE instead of calling sizeof 
+> for every loop.
+> 
+>> +                &rx_data.length, &ready);
+>> +        if (gh_err == GH_ERROR_OK) {
+>> +            mbox_chan_received_data(gh_msgq_chan(msgq), &rx_data);
+>> +        } else if (gh_err == GH_ERROR_MSGQUEUE_EMPTY) {
+>> +            break;
+>> +        } else {
+>> +            pr_warn("Failed to receive data from msgq for %s: %zd\n",
+>> +                msgq->mbox.dev ? dev_name(msgq->mbox.dev) : "", gh_err);
+>> +            break;
+>> +        }
+>> +    }
+>> +
+>> +    return IRQ_HANDLED;
+>> +}
+> How about making this more readable.
+> also use of gh_ in local variables is not really adding any value.
+> > while (ready) {
+>      err = gh_hypercall_msgq_recv(...);
+>      if (err) {
+>          if (err != GH_ERROR_MSGQUEUE_EMPTY)
+>                      dev_warn(msgq->mbox.dev, "Failedto receive data 
+> %zd\n", err);
+>                  break;
+> 
+>                 }
+>      mbox_chan_received_data(gh_msgq_chan(msgq), &rx_data);
+> }
+> 
+> 
 
-> > You'll notice that they've got decoupling caps on rather than being
-> > grounded - there's an internal connection to the LDO output so if the
-> > LDOs are in use that's all that's required, while if the LDOs are not in
-> > use for some reason then an external supply is connected there.
+Done
 
-> Yes, indeed, not grounded. I'll rephrase the commit. I also found few
+>> +
+>> +static irqreturn_t gh_msgq_tx_irq_handler(int irq, void *data)
+>> +{
+>> +    struct gh_msgq *msgq = data;
+>> +
+>> +    mbox_chan_txdone(gh_msgq_chan(msgq), 0);
+> What is this irq for? Is it for tx done ack?
+> 
 
-Strictly the supplies are mandatory, it's just that the code was written
-such that the default configuration is that they'll be provided by the
-internal LDOs, with the DT having carried that on.
+This IRQ is asserted when the message queue transitions from "full" to 
+"space available". For mailbox framework, it is tx done ack.
 
---yWn+MXqavpBjLzGe
-Content-Type: application/pgp-signature; name="signature.asc"
+>> +
+>> +    return IRQ_HANDLED;
+>> +}
+>> +
+>> +static void gh_msgq_txdone_tasklet(struct tasklet_struct *tasklet)
+>> +{
+>> +    struct gh_msgq *msgq = container_of(tasklet, struct gh_msgq, 
+>> txdone_tasklet);
+>> +
+>> +    mbox_chan_txdone(gh_msgq_chan(msgq), msgq->last_ret);
+>> +}
+>> +
+>> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
+>> +{
+>> +    struct gh_msgq *msgq = mbox_chan_to_msgq(chan);
+>> +    struct gh_msgq_tx_data *msgq_data = data;
+>> +    u64 tx_flags = 0;
+>> +    unsigned long ret;
+>> +    bool ready;
+>> +
+>> +    if (msgq_data->push)
+>> +        tx_flags |= GH_HYPERCALL_MSGQ_TX_FLAGS_PUSH;
+>> +
+>> +    ret = gh_hypercall_msgq_send(msgq->tx_ghrsc->capid, 
+>> msgq_data->length,
+>> +                    (uintptr_t)msgq_data->data, tx_flags, &ready);
+>> +
+>> +    /**
+>> +     * unlikely because Linux tracks state of msgq and should not try to
+>> +     * send message when msgq is full.
+>> +     */
+>> +    if (unlikely(ret == GH_ERROR_MSGQUEUE_FULL))
+>> +        return -EAGAIN;
+>> +
+>> +    /**
+>> +     * Propagate all other errors to client. If we return error to 
+>> mailbox
+>> +     * framework, then no other messages can be sent and nobody will 
+>> know
+>> +     * to retry this message.
+>> +     */
+>> +    msgq->last_ret = gh_remap_error(ret);
+>> +
+>> +    /**
+>> +     * This message was successfully sent, but message queue isn't 
+>> ready to
+>> +     * receive more messages because it's now full.Mailbox framework
+>> +     * requires that we only report that message was transmitted when
+>> +     * we're ready to transmit another message. We'll get that in the 
+>> form
+>> +     * of tx IRQ once the other side starts to drain the msgq.
+>> +     */
+>> +    if (ret == GH_ERROR_OK && !ready)
+>> +        return 0;
+>> +
+>> +    /**
+>> +     * We can send more messages. Mailbox frameworkrequires that tx 
+>> done
+>> +     * happens asynchronously to sending the message. Gunyah message 
+>> queues
+>> +     * tell us right away on the hypercall return whether we can send 
+>> more
+>> +     * messages. To work around this, defer the txdone to a tasklet.
+>> +     */
+>> +    tasklet_schedule(&msgq->txdone_tasklet);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static struct mbox_chan_ops gh_msgq_ops = {
+>> +    .send_data = gh_msgq_send_data,
+>> +};
+>> +
+>> +/**
+>> + * gh_msgq_init() - Initialize a Gunyah message queue with an 
+>> mbox_client
+>> + * @parent: optional, device parent used for the mailbox controller
+>> + * @msgq: Pointer to the gh_msgq to initialize
+>> + * @cl: A mailbox client to bind to the mailbox channel that the 
+>> message queue creates
+>> + * @tx_ghrsc: optional, the transmission side of the message queue
+>> + * @rx_ghrsc: optional, the receiving side of the message queue
+>> + *
+>> + * At least one of tx_ghrsc and rx_ghrsc should be not NULL. Most 
+>> message queue use cases come with
+>> + * a pair of message queues to facilitate bidirectional 
+>> communication. When tx_ghrsc is set,
+>> + * the client can send messages with 
+>> mbox_send_message(gh_msgq_chan(msgq), msg). When rx_ghrsc
+>> + * is set, the mbox_client should register an .rx_callback() and the 
+>> message queue driver will
+>> + * push all available messages upon receiving the RX ready interrupt. 
+>> The messages should be
+>> + * consumed or copied by the client right away as the gh_msgq_rx_data 
+>> will be replaced/destroyed
+>> + * after the callback.
+>> + *
+>> + * Returns - 0 on success, negative otherwise
+>> + */
+>> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct 
+>> mbox_client *cl,
+>> +             struct gunyah_resource *tx_ghrsc, struct gunyah_resource 
+>> *rx_ghrsc)
+>> +{
+>> +    int ret;
+>> +
+>> +    /* Must have at least a tx_ghrsc or rx_ghrsc and that they are 
+>> the right device types */
+>> +    if ((!tx_ghrsc && !rx_ghrsc) ||
+>> +        (tx_ghrsc && tx_ghrsc->type != GUNYAH_RESOURCE_TYPE_MSGQ_TX) ||
+>> +        (rx_ghrsc && rx_ghrsc->type != GUNYAH_RESOURCE_TYPE_MSGQ_RX))
+>> +        return -EINVAL;
+>> +
+>> +    if (gh_api_version() != GUNYAH_API_V1) {
+>> +        pr_warn("Unrecognized gunyahversion: %u. Currently 
+>> supported: %d\n",
+>> +            gh_api_version(), GUNYAH_API_V1);
+> how about using dev_err here?
+> 
+>> +        return -ENODEV;
+> 
+> -EOPNOTSUPP?
+> 
 
------BEGIN PGP SIGNATURE-----
+Done.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPj/s4ACgkQJNaLcl1U
-h9BAbQf/fp2AzGnjgsAH67/NkCsxNZ7u/dBsQQzFc/jiy6YbG9swrncmAaXJbmzJ
-DrXF49254VlCMpmQSM8V5k5sg7FdyWO0CFHQTj5i+vo5rccEjzuzw5c3WCqajpZt
-Lbm+MFPCClCVyhm9Dvwk7Bs2asMdN2nhOc1fxPuMDYD7c/BDODYocjSSftFBhyy0
-qFfUceF/MB/Cu6uGxpy5qA/9V2p4ih15WWgcWTs8ge6pUmWtkBVkOC7PfsaeUvVS
-yWRW5FEn084Xp/Z9+ho+xID0yR4REtUI6qqOpHpY3N9+3TzSoPIzMd8QFIHiSk0E
-wghAP39kdIgw47T8MCme16e6MbGgUw==
-=P8zq
------END PGP SIGNATURE-----
+>> +    }
+>> +
+>> +    if (!gh_api_has_feature(GH_API_FEATURE_MSGQUEUE))
+>> +        return -EOPNOTSUPP;
+>> +
+>> +    msgq->tx_ghrsc = tx_ghrsc;
+>> +    msgq->rx_ghrsc = rx_ghrsc;
+>> +
+>> +    msgq->mbox.dev = parent;
+>> +    msgq->mbox.ops = &gh_msgq_ops;
+>> +    msgq->mbox.num_chans = 1;
+>> +    msgq->mbox.chans = kcalloc(msgq->mbox.num_chans, 
+>> sizeof(*msgq->mbox.chans), GFP_KERNEL);
+>> +    if (!msgq->mbox.chans)
+>> +        return -ENOMEM;
+> 
+> new line here would be nice.
+>> +    msgq->mbox.txdone_irq = true;
+>> +
+>> +    if (msgq->tx_ghrsc) {
+>> +        ret = request_irq(msgq->tx_ghrsc->irq, 
+>> gh_msgq_tx_irq_handler, 0, "gh_msgq_tx",
+>> +                msgq);
+>> +        if (ret)
+>> +            gotoerr_chans;
+>> +    }
+>> +
+>> +    if (msgq->rx_ghrsc) {
+>> +        ret = request_threaded_irq(msgq->rx_ghrsc->irq, NULL, 
+>> gh_msgq_rx_irq_handler,
+>> +                        IRQF_ONESHOT, "gh_msgq_rx", msgq);
+>> +        if (ret)
+>> +            gotoerr_tx_irq;
+>> +    }
+>> +
+>> +    tasklet_setup(&msgq->txdone_tasklet, gh_msgq_txdone_tasklet);
+> 
+> AFAIU, this looks like duplicating what core already has with 
+> TXDONE_BY_POLL.
+> 
+> can we not use
+> txdone_poll = true
+> and implement last_tx_done callback to use hrtimer from the core to tick 
+> tx.
+> 
 
---yWn+MXqavpBjLzGe--
+The TXDONE_BY_POLL suits when message queue is immediately ready to 
+receive more data. In the other case, we have an interrupt to indicate 
+when it can receive more data and the poll doesn't make sense. IMO, the 
+IRQ handler should immediately tick the mailbox controller and I don't 
+know a way to do that if using TXDONE_BY_POLL -- there isn't an 
+interface to reset the timer and mbox_chan_done() only works with 
+TXDONE_BY_IRQ.
+
+Thanks,
+Elliot
