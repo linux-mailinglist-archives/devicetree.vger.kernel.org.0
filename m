@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4478368E8AC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 08:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E62B68E8B7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 08:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231144AbjBHHDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 02:03:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37576 "EHLO
+        id S229982AbjBHHK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 02:10:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230488AbjBHHCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 02:02:34 -0500
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139A5457DC;
-        Tue,  7 Feb 2023 23:00:46 -0800 (PST)
-Received: from toolbox.int.toradex.com ([213.55.227.109]) by
- mrelay.perfora.net (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id
- 1MxVGn-1ofG2r0JVB-00xvE0; Wed, 08 Feb 2023 08:00:00 +0100
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S229450AbjBHHKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 02:10:55 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96E216ACC;
+        Tue,  7 Feb 2023 23:10:52 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3DEF8240005;
+        Wed,  8 Feb 2023 07:10:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1675840251;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=aMJxOP//3lmrdw4Ez3gU5F4BL9UKnlN7VOGF3OJa748=;
+        b=OMnfkutDt91abAJjp/6eauDG4dn+ggxo319G0cGWyRerN8lLWv11QT+Q2aXz0hYl18sfcr
+        1nyuc2cnZez0LUK59e9ONCp7mG1JLW/oSfTh+nmn3GefZ7tf8GDA2pSi2dwnFSxNjVzN3m
+        7xvfUg5TGFKW2/bauuCcMxiG4W4bw/i6PYUyQe7F4tWnZQM6CtT9yJ92d9Hr24dqzNgmVM
+        duzmoNKG8VJJHzy2h8n2IkgRFNZpo30RPq0LCK6DCkCgKXheSLd3PaKT3CIkP28nfX7zYG
+        yp5ZngE3YFdFDtbWkb0z+1aYLotqX8/B3KtQwIwovQ9yES4CESUYt0scjA+56Q==
+Date:   Wed, 8 Feb 2023 08:10:48 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: imx8mp-verdin-yavia: trivial minor updates
-Date:   Wed,  8 Feb 2023 07:59:47 +0100
-Message-Id: <20230208065947.24195-2-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230208065947.24195-1-marcel@ziswiler.com>
-References: <20230208065947.24195-1-marcel@ziswiler.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Infineon PEB2466
+ codec
+Message-ID: <20230208081048.0708037f@bootlin.com>
+In-Reply-To: <fd3ccda3-f964-6904-6056-f93c43b85a0f@wanadoo.fr>
+References: <20230206144904.91078-1-herve.codina@bootlin.com>
+        <20230206144904.91078-3-herve.codina@bootlin.com>
+        <fd3ccda3-f964-6904-6056-f93c43b85a0f@wanadoo.fr>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:cTJ6kJnf8XRJsOhc1jXKDGl7QFr8mISdwaay4+fQqDXl/YtriX+
- gFMH4hQyw/FpfgpVwML6D4XPqtG1UD4rjymQ1wrqAMKinMhfuqwGtUBJid0L9nCUE46o6ps
- 2rYFVctLK7E2bwwsfoYXSaSHrioJNM16Xyf1A4r5MdgSMJbpGddGj2UQG9ImMOGubz1Nfx6
- 5Y7KCGfDMLQT+FJxMmKoA==
-UI-OutboundReport: notjunk:1;M01:P0:YI1IeALrQZM=;qnQeqodD42/1s4fPIHO97+LV7Dc
- qlhpKMcp86+JJwHWnZa+bUbyX4RQEOmfIRQnTsmH6YmIUMLCTygu/hc9a7ju8pMgoQ8bl7RkX
- JvkaKTXuSSADU4lV23TkDy64N/sGMey1H7ZsLJVsLwG2hlJN8YHKUAM1lruzbax8110BWaRpB
- lEmko4eGXn+SmO/+Y1ez6kmXWjCw7VZg7nNoWJ+bKfTaLMY5MQmracdEqHKuHLo4WjGKgLXVd
- mlZ3cCLC6s3yFv48109/ZshUnoAiJD4tXVNFDSBW8iSY/4GVAa2GfXqdq5ac/i50N27gwaDff
- bwWTPixQhdQCqqMy0ku2pIBzwdBl5eGZm5r0m9H7uU3bQkswQSIu26WLyHRQOtXNlNJd/0Lkz
- IoPmCMxmT6EZN5/Fnzti0IzNW/9svBf/o03BFftT1woe/kbr9jlo96UXmrZfY1aJCMrrbKmNf
- ytgcAejLY0hAXA/TXf88g+/VeBa26Q5P8xkR/q+tv52rHs2zqVNz574yxpJ69n7X/cXH3be5+
- T1mWA3BFkkASwcqOGSEn/3jClYZGF+a7Z1R6nRj4/nxBfnu9CXMx+W3soxd5izIWK66zmQpK4
- ZTEgkJQaiWT7uOtYWHwwlnkwDujlztz13bSQcCKRZOXiZK8cHPn1iZ1qz0M5UMOxLZyfXpr4Q
- pQFpzXQqocnle7J0W96RqD1wUm+i+kOb15TVi1JWPA==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,42 +66,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On Tue, 7 Feb 2023 22:17:39 +0100
+Hi Christophe,
 
-Capitalise Yavia in comment and add missing whitespace.
+Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Le 06/02/2023 =C3=A0 15:49, Herve Codina a =C3=A9crit=C2=A0:
+> > The Infineon PEB2466 codec is a programmable DSP-based four channels
+> > codec with filters capabilities.
+> > It also provides signals as GPIOs.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >   sound/soc/codecs/Kconfig   |   12 +
+> >   sound/soc/codecs/Makefile  |    2 +
+> >   sound/soc/codecs/peb2466.c | 2071 ++++++++++++++++++++++++++++++++++++
+> >   3 files changed, 2085 insertions(+)
+> >   create mode 100644 sound/soc/codecs/peb2466.c
+> >  =20
+>=20
+> [...]
+>=20
+> > +static int peb2466_spi_probe(struct spi_device *spi)
+> > +{
+> > +	struct peb2466 *peb2466;
+> > +	unsigned long mclk_rate;
+> > +	int ret;
+> > +	u8 xr5;
+> > +
+> > +	spi->bits_per_word =3D 8;
+> > +	ret =3D spi_setup(spi);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	peb2466 =3D devm_kzalloc(&spi->dev, sizeof(*peb2466), GFP_KERNEL);
+> > +	if (!peb2466)
+> > +		return -ENOMEM;
+> > +
+> > +	peb2466->spi =3D spi;
+> > +
+> > +	peb2466->regmap =3D devm_regmap_init(&peb2466->spi->dev, NULL, peb246=
+6,
+> > +					   &peb2466_regmap_config);
+> > +	if (IS_ERR(peb2466->regmap))
+> > +		return PTR_ERR(peb2466->regmap);
+> > +
+> > +	peb2466->reset_gpio =3D devm_gpiod_get_optional(&peb2466->spi->dev,
+> > +						      "reset", GPIOD_OUT_LOW);
+> > +	if (IS_ERR(peb2466->reset_gpio))
+> > +		return PTR_ERR(peb2466->reset_gpio);
+> > +
+> > +	peb2466->mclk =3D devm_clk_get(&peb2466->spi->dev, "mclk"); =20
+>=20
+> Hi,
+>=20
+> Up to you to decide if it is a good idea or not, but using=20
+> devm_clk_get_enabled() would save the 'mclk' field in peb2466 ...
+>=20
+> > +	if (IS_ERR(peb2466->mclk))
+> > +		return PTR_ERR(peb2466->mclk);
+> > +	ret =3D clk_prepare_enable(peb2466->mclk);
+> > +	if (ret)
+> > +		return ret; =20
+>=20
+> ... these 3 lines ...
+>=20
+> > +
+> > +	if (peb2466->reset_gpio) {
+> > +		gpiod_set_value_cansleep(peb2466->reset_gpio, 1);
+> > +		udelay(4);
+> > +		gpiod_set_value_cansleep(peb2466->reset_gpio, 0);
+> > +		udelay(4);
+> > +	}
+> > +
+> > +	spi_set_drvdata(spi, peb2466); =20
+>=20
+> ... this spi_set_drvdata() call ...
+>=20
+> > +
+> > +	mclk_rate =3D clk_get_rate(peb2466->mclk);
+> > +	switch (mclk_rate) {
+> > +	case 1536000:
+> > +		xr5 =3D PEB2466_XR5_MCLK_1536;
+> > +		break;
+> > +	case 2048000:
+> > +		xr5 =3D PEB2466_XR5_MCLK_2048;
+> > +		break;
+> > +	case 4096000:
+> > +		xr5 =3D PEB2466_XR5_MCLK_4096;
+> > +		break;
+> > +	case 8192000:
+> > +		xr5 =3D PEB2466_XR5_MCLK_8192;
+> > +		break;
+> > +	default:
+> > +		dev_err(&peb2466->spi->dev, "Unsupported clock rate %lu\n",
+> > +			mclk_rate);
+> > +		ret =3D -EINVAL;
+> > +		goto failed;
+> > +	}
+> > +	ret =3D regmap_write(peb2466->regmap, PEB2466_XR5, xr5);
+> > +	if (ret) {
+> > +		dev_err(&peb2466->spi->dev, "Setting MCLK failed (%d)\n", ret);
+> > +		goto failed;
+> > +	}
+> > +
+> > +	ret =3D devm_snd_soc_register_component(&spi->dev, &peb2466_component=
+_driver,
+> > +					      &peb2466_dai_driver, 1);
+> > +	if (ret)
+> > +		goto failed;
+> > +
+> > +	if (IS_ENABLED(CONFIG_GPIOLIB)) {
+> > +		ret =3D peb2466_gpio_init(peb2466);
+> > +		if (ret)
+> > +			goto failed;
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +failed:
+> > +	clk_disable_unprepare(peb2466->mclk);
+> > +	return ret; =20
+>=20
+> ... this error handling path ...
+>=20
+> > +}
+> > +
+> > +static void peb2466_spi_remove(struct spi_device *spi)
+> > +{
+> > +	struct peb2466 *peb2466 =3D spi_get_drvdata(spi);
+> > +
+> > +	clk_disable_unprepare(peb2466->mclk);
+> > +} =20
+>=20
+> ... and the remove function.
+>=20
+> CJ
+>=20
 
----
+Thanks for pointing this.
+I will use devm_clk_get_enabled() in the next series iteration as suggested.
 
-Changes in v2:
-- New commit with trivial minor updates.
+Best regards,
+Herv=C3=A9
 
- arch/arm64/boot/dts/freescale/imx8mp-verdin-yavia.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-yavia.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-yavia.dtsi
-index bd7b31cc3760..de5489c2b3e8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-yavia.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-yavia.dtsi
-@@ -87,7 +87,7 @@ &eeprom_display_adapter {
- 	status = "okay";
- };
- 
--/* EEPROM on Verdin yavia board */
-+/* EEPROM on Verdin Yavia board */
- &eeprom_carrier_board {
- 	status = "okay";
- };
-@@ -122,7 +122,7 @@ &pcie {
- 	status = "okay";
- };
- 
--&pcie_phy{
-+&pcie_phy {
- 	status = "okay";
- };
- 
--- 
-2.36.1
-
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
