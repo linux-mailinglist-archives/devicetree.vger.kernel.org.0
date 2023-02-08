@@ -2,199 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C35CF68F2DC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D72268F2ED
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230080AbjBHQJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 11:09:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
+        id S231288AbjBHQOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 11:14:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjBHQJX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:09:23 -0500
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6254C0D2;
-        Wed,  8 Feb 2023 08:09:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675872553; x=1707408553;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=i5wiQk9WC9xvE/C0qbZGsEhSgL1Eg53js8pBjXRU6aA=;
-  b=CW05pcpaKHof8vIYk8QTqiOPv5WlwhBdJiwUmzEl6xJQ2c10GFYxG8rF
-   NkmLygfi6ElYrwBskY9O/dDa2PvNjMmd+e4hJl2CpPE5VmrpVVX2JDVgm
-   n4uNULnp2inBh296U9e7iP9EAmzoP2wVb+7Dcz7pCRVSdLD7RWSc2SZXo
-   2yJ+jzV1Q5XYZXG4aTaivkHrGhdhh2jDBlsNdOoR3FMxU0BEnFB2tq8op
-   vE5f4VhFH5lpvpVbu4Dp3J0bNaaY+9RdNNFGS93c52ZgW06zjOMsxAi2C
-   yC4GwTxIJTBvH7XD17X35E6gVMEyI3KG3MxH5I2WbfWJcobxSu1TpqbUd
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="310195990"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; 
-   d="scan'208";a="310195990"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2023 08:09:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="791264474"
-X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; 
-   d="scan'208";a="791264474"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 08 Feb 2023 08:09:08 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pPn0N-0004Wa-1m;
-        Wed, 08 Feb 2023 16:09:07 +0000
-Date:   Thu, 9 Feb 2023 00:08:33 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Lucas Tanure <lucas.tanure@collabora.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     oe-kbuild-all@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Lucas Tanure <lucas.tanure@collabora.com>
-Subject: Re: [PATCH v3 3/4] ALSA: cs35l41: Add shared boost feature
-Message-ID: <202302090037.Ndp45WTg-lkp@intel.com>
-References: <20230208141839.1097377-4-lucas.tanure@collabora.com>
+        with ESMTP id S230262AbjBHQOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:14:10 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30FB4A206;
+        Wed,  8 Feb 2023 08:14:08 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id gr7so52403096ejb.5;
+        Wed, 08 Feb 2023 08:14:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rYG5PD7dbKaNKYs/ubsHHBhPjaWtLkpK6btkRG/jkM0=;
+        b=DDMt3dOpyFyyVI2WTGlfQaz9N/WCY+1lI2SHnzeIfeSAiqqYzxl01kZpB5DNCcLseA
+         TisUEkz6tjW7a0g1spZmcZ/EX2/H+UYbf20Is589WqAa9jxVTNeeAVvsrRFHmpmE0v5p
+         R6S0BqRzHQTz9Uc1Q10rUSdDgT9hVJLoCXdWBzAdwibk2mrkWSzNeIwzKwKa/K90qt6n
+         /OTkIzTZigzwU2aTkFfUitHrsqlScuZ86RWaZNWuRHQXiicbDAGjWrAAThi7xMH/IDTN
+         Jud1flYcNi3gGuvnTrb9BvWkrD/EPmYFvPGMCxT+ktCjK9fWhNHVIdCIfDARDR7OON85
+         7RHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rYG5PD7dbKaNKYs/ubsHHBhPjaWtLkpK6btkRG/jkM0=;
+        b=pWhp686Qp2M4KcAtvN8nBRV+4xYxqps6/1FdWN+ooX+hwBaY2sg16msN8ayuXHjebW
+         m25cnDtS28zWqHcO3q5urnTM+5wbCvTHXINwn1I8LJ+sTWkCJoJSmMwg2LHOeT9TA8AS
+         ++c4y3VGjBknVJxamu7aW2G78ly+is5K4gPlWyLYETCFk5OpKmMgkhvC25jx/1rJZZto
+         3VlMszmJ4DBHZcZuf9VGVG7LDKcHqxBhKSzzdHDSV9Qj/M/yX16NStUWmiBp+2Yn4el4
+         C/alIWLxw1KCrsW5rKjONVV0pgzlkIzz6MPkOt1s/iPk0LdPP4bZmh1NDTkQxwsXF/PB
+         +Blg==
+X-Gm-Message-State: AO0yUKXVc7iqL9wc2w1WBiiIb+EKN2F2WgMI+6V1ECHZTlNiwSAZF81r
+        6nz9KNGEpD0cI9PYoJMmXhc=
+X-Google-Smtp-Source: AK7set+401vwRKb0yki0/knYX8QgRvAvUQe8tTdDwJhTuerst/mRXgHfimD/UV/0cGJBD4kB1q9diA==
+X-Received: by 2002:a17:906:ca0f:b0:8a6:93a4:c897 with SMTP id jt15-20020a170906ca0f00b008a693a4c897mr8841126ejb.33.1675872847254;
+        Wed, 08 Feb 2023 08:14:07 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id b21-20020a170906195500b008779b5c7db6sm8448605eje.107.2023.02.08.08.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 08:14:06 -0800 (PST)
+Date:   Wed, 8 Feb 2023 17:14:04 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     bhelgaas@google.com, petlozup@nvidia.com,
+        rafael.j.wysocki@intel.com, lpieralisi@kernel.org, robh@kernel.org,
+        jeffy.chen@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
+        jonathanh@nvidia.com, dmitry.osipenko@collabora.com,
+        viresh.kumar@linaro.org, gregkh@linuxfoundation.org,
+        steven.price@arm.com, kw@linux.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        vidyas@nvidia.com
+Subject: Re: [RFC,v14 4/5] arm64: tegra: Add PCIe port node with PCIe WAKE#
+ for C1 controller
+Message-ID: <Y+PKTNEAuPHBdwqX@orome>
+References: <20230208111645.3863534-1-mmaddireddy@nvidia.com>
+ <20230208111645.3863534-5-mmaddireddy@nvidia.com>
+ <Y+OJaGY6mcxM0JOF@orome>
+ <1b24e9f5-539a-dd0f-6485-5dbf3757ef27@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/k1dyoR/zukO1rxq"
 Content-Disposition: inline
-In-Reply-To: <20230208141839.1097377-4-lucas.tanure@collabora.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1b24e9f5-539a-dd0f-6485-5dbf3757ef27@nvidia.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
 
-I love your patch! Perhaps something to improve:
+--/k1dyoR/zukO1rxq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on tiwai-sound/for-next]
-[also build test WARNING on tiwai-sound/for-linus linus/master v6.2-rc7 next-20230208]
-[cannot apply to broonie-sound/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Wed, Feb 08, 2023 at 05:43:35PM +0530, Manikanta Maddireddy wrote:
+>=20
+> On 2/8/2023 5:07 PM, Thierry Reding wrote:
+> > On Wed, Feb 08, 2023 at 04:46:44PM +0530, Manikanta Maddireddy wrote:
+> > > Add PCIe port node under the PCIe controller-1 device tree node to su=
+pport
+> > > PCIe WAKE# interrupt for WiFi.
+> > >=20
+> > > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> > > ---
+> > >=20
+> > > Changes in v14:
+> > > New patch in the series to support PCIe WAKE# in NVIDIA Jetson AGX Or=
+in.
+> > >=20
+> > >   .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 11 ++++++++=
++++
+> > >   1 file changed, 11 insertions(+)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-000=
+0.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> > > index 8a9747855d6b..9c89be263141 100644
+> > > --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> > > +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> > > @@ -2147,6 +2147,17 @@ pcie@14100000 {
+> > >   			phys =3D <&p2u_hsio_3>;
+> > >   			phy-names =3D "p2u-0";
+> > > +
+> > > +			pci@0,0 {
+> > > +				reg =3D <0x0000 0 0 0 0>;
+> > > +				#address-cells =3D <3>;
+> > > +				#size-cells =3D <2>;
+> > > +				ranges;
+> > > +
+> > > +				interrupt-parent =3D <&gpio>;
+> > > +				interrupts =3D <TEGRA234_MAIN_GPIO(L, 2) IRQ_TYPE_LEVEL_LOW>;
+> > > +				interrupt-names =3D "wakeup";
+> > > +			};
+> > Don't we need to wire this to the PMC interrupt controller and the wake
+> > event corresponding to the L2 GPIO? Otherwise none of the wake logic in
+> > PMC will get invoked.
+> >=20
+> > Thierry
+> PCIe wake is gpio based not pmc, only wake support is provided by PMC
+> controller.
+> I verified this patch and able to wake up Tegra from suspend.
+> Petlozu, correct me if my understanding is wrong.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lucas-Tanure/ASoC-cs35l41-Only-disable-internal-boost/20230208-222109
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git for-next
-patch link:    https://lore.kernel.org/r/20230208141839.1097377-4-lucas.tanure%40collabora.com
-patch subject: [PATCH v3 3/4] ALSA: cs35l41: Add shared boost feature
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230209/202302090037.Ndp45WTg-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/87a5c357d253db3453537a973252d044ce02ad91
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Lucas-Tanure/ASoC-cs35l41-Only-disable-internal-boost/20230208-222109
-        git checkout 87a5c357d253db3453537a973252d044ce02ad91
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash sound/soc/codecs/
+The way that this usually works is that you need to use something like
+this:
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+	interrupt-parent =3D <&pmc>;
+	interrupts =3D <1 IRQ_TYPE_LEVEL_LOW>;
+	interrupt-names =3D "wakeup";
 
-All warnings (new ones prefixed by >>):
+This will then cause the PMC's interrupt chip callbacks to setup all the
+wake-related interrupts and use the internal wake event tables to
+forward the GPIO/IRQ corresponding to the PMC wake event to the GPIO
+controller or GIC, respectively.
 
-   sound/soc/codecs/cs35l41-lib.c: In function 'cs35l41_global_enable':
->> sound/soc/codecs/cs35l41-lib.c:1212:17: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
-    1212 |                 struct reg_sequence cs35l41_mdsync_down_seq[] = {
-         |                 ^~~~~~
-   sound/soc/codecs/cs35l41-lib.c:1217:46: error: 'cs35l45' undeclared (first use in this function)
-    1217 |                 ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_down_seq,
-         |                                              ^~~~~~~
-   sound/soc/codecs/cs35l41-lib.c:1217:46: note: each undeclared identifier is reported only once for each function it appears in
-   sound/soc/codecs/cs35l41-lib.c:1231:25: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
-    1231 |                         struct reg_sequence cs35l41_mdsync_up_seq[] = {
-         |                         ^~~~~~
+If you use &gpio as the interrupt parent, none of the PMC logic will be
+invoked, so unless this is somehow set up correctly by default, the PMC
+wouldn't be able to wake up the system.
 
+Thierry
 
-vim +1212 sound/soc/codecs/cs35l41-lib.c
+--/k1dyoR/zukO1rxq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  1190	
-  1191	int cs35l41_global_enable(struct regmap *regmap, enum cs35l41_boost_type b_type, int enable,
-  1192				  struct completion *pll_lock)
-  1193	{
-  1194		int ret;
-  1195		unsigned int gpio1_func, pad_control, pwr_ctrl1, pwr_ctrl3;
-  1196	
-  1197		switch (b_type) {
-  1198		case CS35L41_SHD_BOOST_ACTV:
-  1199		case CS35L41_SHD_BOOST_PASS:
-  1200			regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
-  1201			regmap_read(regmap, CS35L41_GPIO_PAD_CONTROL, &pad_control);
-  1202	
-  1203			pwr_ctrl3 &= ~CS35L41_SYNC_EN_MASK;
-  1204			pwr_ctrl1 = enable << CS35L41_GLOBAL_EN_SHIFT;
-  1205	
-  1206			gpio1_func = enable ? CS35L41_GPIO1_MDSYNC : CS35L41_GPIO1_HIZ;
-  1207			gpio1_func <<= CS35L41_GPIO1_CTRL_SHIFT;
-  1208	
-  1209			pad_control &= ~CS35L41_GPIO1_CTRL_MASK;
-  1210			pad_control |= gpio1_func & CS35L41_GPIO1_CTRL_MASK;
-  1211	
-> 1212			struct reg_sequence cs35l41_mdsync_down_seq[] = {
-  1213				{CS35L41_PWR_CTRL3,		pwr_ctrl3},
-  1214				{CS35L41_GPIO_PAD_CONTROL,	pad_control},
-  1215				{CS35L41_PWR_CTRL1,		pwr_ctrl1, 3000},
-  1216			};
-  1217			ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_down_seq,
-  1218						     ARRAY_SIZE(cs35l41_mdsync_down_seq));
-  1219			if (!enable)
-  1220				break;
-  1221	
-  1222			if (!pll_lock)
-  1223				return -EINVAL;
-  1224	
-  1225			ret = wait_for_completion_timeout(pll_lock, msecs_to_jiffies(1000));
-  1226			if (ret == 0) {
-  1227				ret = -ETIMEDOUT;
-  1228			} else {
-  1229				regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
-  1230				pwr_ctrl3 |= CS35L41_SYNC_EN_MASK;
-  1231				struct reg_sequence cs35l41_mdsync_up_seq[] = {
-  1232					{CS35L41_PWR_CTRL3,	pwr_ctrl3},
-  1233					{CS35L41_PWR_CTRL1,	0x00000000, 3000},
-  1234					{CS35L41_PWR_CTRL1,	0x00000001, 3000},
-  1235				};
-  1236				ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_up_seq,
-  1237							     ARRAY_SIZE(cs35l41_mdsync_up_seq));
-  1238			}
-  1239			break;
-  1240		case CS35L41_INT_BOOST:
-  1241			ret = regmap_update_bits(regmap, CS35L41_PWR_CTRL1, CS35L41_GLOBAL_EN_MASK,
-  1242						 enable << CS35L41_GLOBAL_EN_SHIFT);
-  1243			usleep_range(3000, 3100);
-  1244			break;
-  1245		case CS35L41_EXT_BOOST:
-  1246		case CS35L41_EXT_BOOST_NO_VSPK_SWITCH:
-  1247			if (enable)
-  1248				ret = regmap_multi_reg_write(regmap, cs35l41_safe_to_active,
-  1249							     ARRAY_SIZE(cs35l41_safe_to_active));
-  1250			else
-  1251				ret = regmap_multi_reg_write(regmap, cs35l41_active_to_safe,
-  1252							     ARRAY_SIZE(cs35l41_active_to_safe));
-  1253			break;
-  1254		default:
-  1255			ret = -EINVAL;
-  1256			break;
-  1257		}
-  1258	
-  1259		return ret;
-  1260	}
-  1261	EXPORT_SYMBOL_GPL(cs35l41_global_enable);
-  1262	
+-----BEGIN PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPjykwACgkQ3SOs138+
+s6HZGA//TdSXsFLTgVmkZ6PXU0yOasPm2tuDlJGey7FwCCVqzKyQ/dbdqrnfl/Vj
+JRcbXKKomD+oVLvRepvBSVk5HfDeL60Kf4N4iyectGJ+31UjRLMucnM/YMqgOoi2
+yQPfcd8B9rJ5l1R9nVlLlP8jfLGusaUixSvdC2TaqsNzJmmtPaCgD3UXcHEMMI00
+wrsVdK0TinpV7EqD93j9crNZkGoXl+8qjczoHeMLzf5XRac+ff6Js9120FJAfAbq
+y5BPEYRsIyDDVG/iYz55t8YoS2xR4Hc5gcPR/euxwFk6QrnN0CnuULhWO4Ihfa66
+h/NYwuBt477NY0Za/EbH/X1w3k7TzFUSxch1wkIhMirQYWrwDptcgg5T1C46sw0r
+LHi1F553vy7QIjprEKLzpT9iEyjfzqRsNvXttNONXZK3zA83CMGaatqSK8UYcOxx
+8i7t8E9ZKzOzattJ0X7hXrfGsRfE5hJP7HmQql91RPoOcHxFA2WWWKWYQoE3/Qp5
+qHl0tQQB8qtMmg//kzrxoC2s4557786dRjcATnkOt4NbrniHTdSDTWe+7WjFT+sU
+Mj7FVyIrnrbfj9qSngbZVmzwvaqysxPYfLWXZ/kBSdRiZ2WSWF7dQs32hVn0TsLK
+0i1WObI5YyF/sSl+uxbfXoPea5Pc61EelCRKdeQXzLtU+RYyMj0=
+=P8ai
+-----END PGP SIGNATURE-----
+
+--/k1dyoR/zukO1rxq--
