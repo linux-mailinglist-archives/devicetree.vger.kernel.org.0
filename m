@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBC568E7CA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 06:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B5A168E7EA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 06:57:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjBHFj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 00:39:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
+        id S229668AbjBHF5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 00:57:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbjBHFj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 00:39:58 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CE02528A;
-        Tue,  7 Feb 2023 21:39:22 -0800 (PST)
-X-UUID: e1163d3aa77211eda06fc9ecc4dadd91-20230208
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=BZeA43XoOAkEaxyj8RL5V/54tyfKVdYzibdG9XTu4Dc=;
-        b=A8XHCV4/Ir4wiI4MzpszaFk48EheS5wPWekSumfIHT0mEwF/346V8eWLP+C6mbR/xK4NBmqePD9cI8CNbG/ggR+I1CPKKJO0fyvxBIpxHT21HOWlgcT7LFt2et7OvgS/HmTX86mlEIyMw2w+OJ3bjhRkH0Xqx2n4tIw/V33m5YI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.19,REQID:86ec7934-0248-4946-9b20-4386a2609b01,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.19,REQID:86ec7934-0248-4946-9b20-4386a2609b01,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:885ddb2,CLOUDID:c1193e8e-8530-4eff-9f77-222cf6e2895b,B
-        ulkID:230208133859YBXLKTZR,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-UUID: e1163d3aa77211eda06fc9ecc4dadd91-20230208
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1276488235; Wed, 08 Feb 2023 13:38:56 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+        with ESMTP id S229559AbjBHF5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 00:57:32 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0438A2714;
+        Tue,  7 Feb 2023 21:57:31 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3185ncuU028288;
+        Wed, 8 Feb 2023 05:57:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=qzwML2fEJSb0jf7wFSzk5+ZaQdTZxJguLIg/pfeDW20=;
+ b=FKb/a9Pyxey6Sx5ueDoBtOV/TpoGl6URkFb/ynkRLM8sMVA6G7QRJ1gaa6BxORZb5fSb
+ jXjiHPs3egf5j1jU6tOo3MOVXqY1tzM4S5JVfV9AWEvLTr9wSiHtGP1400JKnGa5JrcI
+ CxBPMMmJGdx6PrhOfBk0oZYyd26p+1h5COaq0YRTuldXw69Yc/6PRY9VCxyDcE8yDnZM
+ 0gsxm95z/ZSy9MXa2gdhUEMeUXj60r5vdhcgIHwEDRl906691qw1TYnVWtbxTfSjYxGD
+ wwBqoc29+10SCPCA3w6GNKQFkiQ9AChvioYZhv3aOiL1U0dKPD8mE29znPqOoFWmU2Lu 4w== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkfesbdpc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Feb 2023 05:57:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3185vQ8A014665
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 8 Feb 2023 05:57:27 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 8 Feb 2023 13:38:54 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 8 Feb 2023 13:38:53 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, <nfraprado@collabora.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
-        <libo.kang@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>,
-        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
-        <chengci.xu@mediatek.com>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>, Yong Wu <yong.wu@mediatek.com>
-Subject: [PATCH v2 10/10] arm64: dts: mt8186: Add dma-ranges for the parent "soc" node
-Date:   Wed, 8 Feb 2023 13:36:43 +0800
-Message-ID: <20230208053643.28249-11-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230208053643.28249-1-yong.wu@mediatek.com>
-References: <20230208053643.28249-1-yong.wu@mediatek.com>
+ 15.2.986.36; Tue, 7 Feb 2023 21:57:22 -0800
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
+        Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH 0/2] Add socinfo support for IPQ5332 variants
+Date:   Wed, 8 Feb 2023 11:27:07 +0530
+Message-ID: <20230208055709.13162-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MTK:  N
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0-0jjGQLFjkkkToFlbf58BQhqVe05vKx
+X-Proofpoint-ORIG-GUID: 0-0jjGQLFjkkkToFlbf58BQhqVe05vKx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-08_02,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 suspectscore=0 mlxlogscore=531 impostorscore=0 mlxscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302080053
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Prepare for the MM nodes whose dma-ranges(iova range) is 16GB.
+This series adds support for qcom-socinfo for IPQ5332 family of SoCs.
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Functionally this series needs SMEM support which is added in download
+mode support patches.
+https://lore.kernel.org/linux-arm-msm/20230130170155.27266-1-quic_kathirav@quicinc.com/
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index a0d3e1f731bd..251eace411c0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -324,6 +324,7 @@
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		compatible = "simple-bus";
-+		dma-ranges = <0x0 0x0 0x0 0x0 0x4 0x0>;
- 		ranges;
- 
- 		gic: interrupt-controller@c000000 {
+Kathiravan T (2):
+  dt-bindings: arm: qcom,ids: Add IDs for IPQ5332 and its variant
+  soc: qcom: socinfo: Add IDs for IPQ5332 and its variant
+
+ drivers/soc/qcom/socinfo.c         | 2 ++
+ include/dt-bindings/arm/qcom,ids.h | 2 ++
+ 2 files changed, 4 insertions(+)
+
 -- 
-2.18.0
+2.17.1
 
