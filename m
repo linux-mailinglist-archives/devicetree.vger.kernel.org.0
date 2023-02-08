@@ -2,114 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBCF68E533
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 02:03:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9364068E53D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 02:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbjBHBDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Feb 2023 20:03:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37082 "EHLO
+        id S229565AbjBHBHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Feb 2023 20:07:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjBHBDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 20:03:31 -0500
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2104.outbound.protection.outlook.com [40.107.255.104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB59975F
-        for <devicetree@vger.kernel.org>; Tue,  7 Feb 2023 17:03:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MaIIvrHW0KWqf74JSgkkVQ8V99L2HRBLogck5gXjtAhEK/ZbHgV/uc8B/fi7373K1VQySYD2pawjbclBmfuo94HXUz8K+XNIIhrwaEyF7UfAASrNarjsD03R+7rE4osYocoglh8iMvqgLrD/cW6dDz7DM2M96Iws2ny42FCqyUvCf8qwP2naO0KnfcADcP6HJe/KZhgyZj84BrCaLAUXLWbPWECwUFBTv9wKOWYw29YNcp/XSWU73lXqzWW8Q2vrxJFkclkODXNwAxqXhtuq3f820s4JpUme1fj7MCxWlmObmsQz0ABbjBajIiEWXum97ULamKheF40T1koTM+vMCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cjk4szjfe9yfjpz0zCIcH6lhBIifNe7pN15R2OQQnS0=;
- b=mbFbNvK7bQCiUvyfDc9tMN1RXenOtGWLhtEKKet1MguCxr1DpWGpBpBgBZJKMC0XkfLHzI2CJQXCOrBdi66gAaQ7F7I/BrsdB0m8UIdhNiOEBYvV1E82dlR8G/nSYn+a3nZieFenXCcuTJl5J2ayJYMwHdIvmDBa26qfmwoalaIZv9GgHA6G7FB59yC7q6i/XN1cblmsIsKMu+wOhsVJIaUw8vhilhNC2fRX/LWvtl/UTA0dtbOEUefiU4shtd+57lhqbteY8uhQKPEhHkqXPNz6VgtQJaV6QuYDgPlAM7CFUet40lLqRbdIrb8bhsJ3tOUfep8BccaIMzAZofRzpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Cjk4szjfe9yfjpz0zCIcH6lhBIifNe7pN15R2OQQnS0=;
- b=iCEyrrrS6lfeizpPBQ+RCbZLLAuoaKAphd9eEaCsp1U+YV9O0EsS/lOB+mlqF/jx7ZK1IcUm7JoH5yieCkEqiot3Loyly2pbDu6vAx0+nswLnp8jGFNVoFBM43M3BJvCREuz7pHVOxcrWrEDi08252OuJLMGJvjvKlN8X11Yjz8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by OS3PR01MB8474.jpnprd01.prod.outlook.com (2603:1096:604:195::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17; Wed, 8 Feb
- 2023 01:03:24 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860%9]) with mapi id 15.20.6064.035; Wed, 8 Feb 2023
- 01:03:24 +0000
-Message-ID: <87sffht1d0.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 0/2] ASoC: dt-bindings: renesas,rsnd.yaml: adjust to R-Car Gen4
-In-Reply-To: <CAMuHMdXYwW8bk+a+7Fb7DA7kT0DdQyJSGaSnFzdgfWZxpmPHAA@mail.gmail.com>
-References: <87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com>
-        <CAMuHMdXYwW8bk+a+7Fb7DA7kT0DdQyJSGaSnFzdgfWZxpmPHAA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Wed, 8 Feb 2023 01:03:24 +0000
-X-ClientProxiedBy: TYCPR01CA0178.jpnprd01.prod.outlook.com
- (2603:1096:400:2b2::19) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        with ESMTP id S229525AbjBHBHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Feb 2023 20:07:20 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDDDA2C67E;
+        Tue,  7 Feb 2023 17:07:18 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 317NxCih016065;
+        Wed, 8 Feb 2023 01:06:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=A/rUYM7Oy2gqIk2+4nucnYXjlkyZyJwm07fM+yH74bw=;
+ b=Nia7wKTo3rOuq+4tzTl1MYUVWArR711UjFbPVAhVTtNK32mdlkDWgAASWSQ9X4MUlGce
+ LYCeQSO6F07xBoK43xjWywO2Nnr9vQ2jP9dkdRVw+VCS4U/LiwaxNWi4qrC2rVyifIOW
+ ZvK67IUZYw5TknGs9DlqsOYNpkne9Msktq7djw/4tHuhENx1jF2R63uiLoGKCLCf0t/p
+ 89AGCayZe7UpSoCp4QNnrxOCsfzQBuwaKCf5a+RBYMVGhx039EFpPGXLcCDjqMgbIoIb
+ lo23F/KhQfr97Um62jVPQj0LkUsqtx+zqHxlPRJA5Inm5C1NUWR1x4PtMkMorjL7hW2U zw== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkeny2qhh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Feb 2023 01:06:58 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31816vrA011215
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 8 Feb 2023 01:06:57 GMT
+Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 7 Feb 2023
+ 17:06:57 -0800
+Message-ID: <f862ff1a-d363-894e-eedf-e33dde6ebf34@quicinc.com>
+Date:   Tue, 7 Feb 2023 17:06:56 -0800
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OS3PR01MB8474:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43b8ecab-b0fb-44ef-1245-08db097047c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YMn/diM27E6fUYLJ1rI4j0nUELltaolCmp6znVGEbviKFum0tPQM/lJIvA4OQyGuhsH3fQbbSB+eFXb3dHJ3/o9bAMk57AemznOsGNULhJzCvEuvaxAPuschUeOK3leSothFL/f6tWYMXgo4RGV9n7XjEKNh1ek8DPH7WdXbVzkkyFnKgkRLn5BzIkcrQLMIzKLofCU64TqOW+i55neqjlHGw617RcouKRz5xgd+CwIYlCVW9NhUivEQdxfoWN4fLyC60cerQ6QZF7BCQTkkoyCVOB7oKYl78+cjTVQUAf8Ra9REB5rxqzhtK3W7FG5OxsgKiO1nUQdIYqPmUnB4VWzMwWQwTlZEHY8gWtaf5jxjKt60SOsmdi54PvuaiFNw5f/91SaaupvOKikCZcDjcYzno0FmS+4Zg0pwvnRIewncz4QbpWW5yElLUwznP2bbyaN5sxwDWeqVsClbDqPm3JwU8hB9q3fnqNKwlV/1UdbB3USztK7f2zXdCm8a0ApXWvnEnuAh6M1cHFFVVF0e8XyVYtTVr+quBJFFhvdjaSO2PFmSnBueeLYCjCvF1f6tAKBiXENJMaD0dTE9OXhwjFt+sg3SjFJMRS9a/inMl4XDJxJ0xUYwXBQzv2ZFVkEfTysV+DuRYqShBvRjlaEP60dAnHMcNfk4uQ65E5dTDzRVk5iLBngjUXyoCZ+BuDxjWVoWtGCBheOu0LXQfhZonfK0KnGs6vZvKw4puK5z9gs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(396003)(39860400002)(376002)(366004)(136003)(346002)(451199018)(4744005)(41300700001)(2906002)(4326008)(6916009)(316002)(8676002)(54906003)(66476007)(66556008)(66946007)(52116002)(6486002)(5660300002)(2616005)(36756003)(86362001)(478600001)(186003)(26005)(6506007)(6512007)(8936002)(38100700002)(38350700002)(21314003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kFT/zN0L5NrLDdsWEHx2ZGVj/6nXxTIjQUwy8fcNbt45CpHkuUxSozNnQCLG?=
- =?us-ascii?Q?6KJRSU3dRikHVOZepMhgtol9Y1cIl8+DylMbSGJ9QRg3P47BcRZ843RF2thZ?=
- =?us-ascii?Q?p7WKXLdq26lhf3rvx6l4DR1JaiiJ80VGcYfhM0IxuWeZOzkJcNQwO1JxpnmN?=
- =?us-ascii?Q?lyXUe8vLpn+rMKUnpGX3bJWESlXGXW/PLxPHXHCXh+AiAOOI//fn7hUzBibN?=
- =?us-ascii?Q?kC2V7yPLyfasG+BjwFhpxrGwn7W0f1tk52V2jtRgMpP/JJAW79fR1O4+KvbR?=
- =?us-ascii?Q?fcMiAoFOmWuTM2VM8Ya8Lz4nsbpPp9T3EBk5SixrVZvsUw5T31dpgPE9Z15k?=
- =?us-ascii?Q?u2tYRXbr3NTwslk2XVqzJ4OziLpbjc5xjnhxwegif0+qcvgFk/kli0Jh4Pes?=
- =?us-ascii?Q?THzt6/oXv/zODFWRbGtlhTeR8+947MyAz5GkZ4037Tt3wF1xMGxTdCjSEowC?=
- =?us-ascii?Q?LUY7qap1FnJDDLAWxSZGnvu0ZLSU6YyAoFJbeWjwDHAY2o5ZUU1p+1iWsKb8?=
- =?us-ascii?Q?RGu7Fywbz+dAyFTdDGTG3ibQpMgpy+du/4Frr5c4XY6KBbmhusmK2Dtc+a4E?=
- =?us-ascii?Q?Fu2aJjgxvRFfOxw1RqVWLQzLbkokRb2E1xFaHSuFkYEwJx4pZKt3IpU0woKJ?=
- =?us-ascii?Q?y6/U2rzs7bzwQHwir2xIR7IRPxdXY/oZULwRCo2mWuFtiRVvGsK73FGqOTmi?=
- =?us-ascii?Q?AhUOFo8UEeCjyZqbCxHelWGhf9ATRs3zaqtcpYJtZH5Rm7mtjKDnUz3wS6YO?=
- =?us-ascii?Q?Voo+TMY0wl1RY+Jmw3eu/oakclAMmOCb7SwMuiovWtTKdRs9NHqfW/ph7iBM?=
- =?us-ascii?Q?DfOjYbU/fW+CnsMWeou0g2Fe+M4m69X2B5nUZs2qva7WPLqKKQ+h1w5wD8xr?=
- =?us-ascii?Q?l3jjfWx7yiZZMQqu4WhMT6pgMNID5T4+wsZjJ6Z0Na0uFUIVJlPxOeqy+C2m?=
- =?us-ascii?Q?rPNt72S+i1XaH0eEv14g1UuPXKgncvrqploWNSQJfCQgEdtD2lKztgAuR9Sn?=
- =?us-ascii?Q?yp9YiZEd41T/dBAk80nzDNHkrB6yi0oVNGuBOISCyAgTXuMg0gEId65Ul4HL?=
- =?us-ascii?Q?7FNLbM5NBtXxh0kbCcWf7PPNc/OJHc/h67KQE3rOErC8vhfJRHN3UtIl0s0A?=
- =?us-ascii?Q?iCuh/LlGEKTRveGNCpaGdQDox+dns2cXDombi6XPyNzYuE5wmUBjZDzURvDy?=
- =?us-ascii?Q?HbkJ8v78aof0+8VmmSb1MH3td8U5i9jxthcAjqHPAS8RdN4DkBxQFLlqacqA?=
- =?us-ascii?Q?SKh4MXKuWTDaKy+y23BXfp/Hj7NLeYJbUaj/qf9G662drnfrT2vTXKVovjvk?=
- =?us-ascii?Q?97QljC7l3tcdCF7bBBNFM7stkND/3P3YlIG+YS53rqFrTzxePeQxq2/bBioF?=
- =?us-ascii?Q?HQ55hqJrTiWPtCAsnnG0I/oa7XXJ123E6gPxNbiCPyEDVdGZ60qCd1F8jc7D?=
- =?us-ascii?Q?aEIyEB6CE/nyBtaLXlc3T2kT22f/CsFuWv9fUHs7zFKUk6l6puVmUPIToh3a?=
- =?us-ascii?Q?RgRiJQAatw3tijYnHuyDYfsb79JNOV6wiN4ZsMhWZMfzEDDmoSAkhjATYeNC?=
- =?us-ascii?Q?Q4MfKukwLYEPG3dTKxr7WstvBalbqM9vmI6EXuNddTwr8xAy3r8qeWgli08E?=
- =?us-ascii?Q?JjjyzlIygNkLc/cTV17GmD4=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43b8ecab-b0fb-44ef-1245-08db097047c1
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 01:03:24.8973
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FfFGcu3er50FFnB5IQwTQREwu+uDiyphNKJj52gYFdNxZvyX4qhUna+ehvZ9CqfxkvuWWB1lAQkIeXtT4mVBkukI+fq96HJtSmq2TCr1tY4ahu9wbi8JyASv++3prX1A
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8474
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v9 18/27] firmware: qcom_scm: Register Gunyah platform ops
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Alex Elder <elder@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230120224627.4053418-1-quic_eberman@quicinc.com>
+ <20230120224627.4053418-19-quic_eberman@quicinc.com>
+ <5564746d-2221-8c3e-0c81-b320716ad114@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <5564746d-2221-8c3e-0c81-b320716ad114@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YGZHJBdOSvu19cF_7VjgrvQHYmGGwXHs
+X-Proofpoint-ORIG-GUID: YGZHJBdOSvu19cF_7VjgrvQHYmGGwXHs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-07_15,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ clxscore=1015 phishscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=999
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302080009
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -117,37 +101,202 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi Geert
 
-> > This patch-set adjust to R-Car Gen4 on renesas,rsnd.yaml.
-> > It works and no error reported.
-> > But by this patch, non-Gen4 leaks from "ssi-[0-9]" checking.
-> > I'm not sure why it happens.
+On 2/7/2023 3:52 AM, Srinivas Kandagatla wrote:
 > 
-> If the logic becomes too complex,
+> 
+> On 20/01/2023 22:46, Elliot Berman wrote:
+>> Qualcomm platforms have a firmware entity which performs access control
+>> to physical pages. Dynamically started Gunyah virtual machines use the
+>> QCOM_SCM_RM_MANAGED_VMID for access. Linux thus needs to assign access
+>> to the memory used by guest VMs. Gunyah doesn't do this operation for us
+>> since it is the current VM (typically VMID_HLOS) delegating the access
+>> and not Gunyah itself. Use the Gunyah platform ops to achieve this so
+>> that only Qualcomm platforms attempt to make the needed SCM calls.
+>>
+>> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+>> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   drivers/firmware/Kconfig    |   2 +
+>>   drivers/firmware/qcom_scm.c | 100 ++++++++++++++++++++++++++++++++++++
+>>   2 files changed, 102 insertions(+)
+>>
+>> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+>> index b59e3041fd62..b888068ff6f2 100644
+>> --- a/drivers/firmware/Kconfig
+>> +++ b/drivers/firmware/Kconfig
+>> @@ -214,6 +214,8 @@ config MTK_ADSP_IPC
+>>   config QCOM_SCM
+>>       tristate
+>> +    select VIRT_DRIVERS
+>> +    select GUNYAH_PLATFORM_HOOKS
+> 
+> So far SCM usage has been as library of functions to talk to Secure 
+> world, now why is this selecting GUNYAH, it should be other way round.
+> 
 
-The logic itself is very simple IMO. The problem is that
-all case hits to if-then for some reasons under certain conditions.
-Under "patternProperties" or "xxx,yyy" style are the point ?
-I'm not sure.
+Gunyah runs on platforms other than Qualcomm hardware (QEMU is real, 
+existing example). The SCM calls needed on Qualcomm platforms aren't 
+needed/available on QEMU and would error out there.
 
-> you can also split the binding
-> description in 4 files, one per R-Car generation.
-> That would lead to lots of duplication, though.
+I tried avoiding the "select" and even "depends on", but I was facing 
+issues when QCOM_SCM=y and GUNYAH=m. When this happens, 
+GUNYAH_PLATFORM_HOOKS should be =y, and the only way I could figure out 
+to ensure that happens was by selecting it from QCOM_SCM.
 
-It is nightmare for me...
+> 
+>>   config QCOM_SCM_DOWNLOAD_MODE_DEFAULT
+>>       bool "Qualcomm download mode enabled by default"
+>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>> index 92763dce6477..20a1434087eb 100644
+>> --- a/drivers/firmware/qcom_scm.c
+>> +++ b/drivers/firmware/qcom_scm.c
+>> @@ -17,6 +17,7 @@
+>>   #include <linux/clk.h>
+>>   #include <linux/reset-controller.h>
+>>   #include <linux/arm-smccc.h>
+>> +#include <linux/gunyah_rsc_mgr.h>
+>>   #include "qcom_scm.h"
+>> @@ -27,6 +28,9 @@ module_param(download_mode, bool, 0);
+>>   #define SCM_HAS_IFACE_CLK    BIT(1)
+>>   #define SCM_HAS_BUS_CLK        BIT(2)
+>> +#define QCOM_SCM_RM_MANAGED_VMID    0x3A
+>> +#define QCOM_SCM_MAX_MANAGED_VMID    0x3F
+>> +
+>>   struct qcom_scm {
+>>       struct device *dev;
+>>       struct clk *core_clk;
+>> @@ -1292,6 +1296,99 @@ int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 
+>> payload_reg, u32 payload_val,
+>>   }
+>>   EXPORT_SYMBOL(qcom_scm_lmh_dcvsh);
+>> +static int qcom_scm_gh_rm_pre_mem_share(struct gh_rm *rm, struct 
+>> gh_rm_mem_parcel *mem_parcel)
+> why can't this be an exported function like other scm interfaces?
+> 
+> We do not need a redirection here tbh.
+> 
+> That will also remove the need of gunyah_platform_hooks.c altogether, 
+> and you could call scm functions directly.
+> Correct me if this is not the case.
+> 
+> 
 
-Actually, to be very strict, dmas/dma-names are not mandatory,
-because it supports PIO transfer mode.
+Same as above comment about running on QEMU.
 
-I'm still trying to solve this issue by using many kind of schemas ways,
-but all cases doesn't work for me...
+Thanks,
+Elliot
 
-Let's remove dmas/dma-names from required for now.
-It is not a wrong schema.
-
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+> 
+>> +{
+>> +    struct qcom_scm_vmperm *new_perms;
+>> +    u64 src, src_cpy;
+>> +    int ret = 0, i, n;
+>> +    u16 vmid;
+>> +
+>> +    new_perms = kcalloc(mem_parcel->n_acl_entries, 
+>> sizeof(*new_perms), GFP_KERNEL);
+>> +    if (!new_perms)
+>> +        return -ENOMEM;
+>> +
+>> +    for (n = 0; n < mem_parcel->n_acl_entries; n++) {
+>> +        vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
+>> +        if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
+>> +            new_perms[n].vmid = vmid;
+>> +        else
+>> +            new_perms[n].vmid = QCOM_SCM_RM_MANAGED_VMID;
+>> +        if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_X)
+>> +            new_perms[n].perm |= QCOM_SCM_PERM_EXEC;
+>> +        if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_W)
+>> +            new_perms[n].perm |= QCOM_SCM_PERM_WRITE;
+>> +        if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_R)
+>> +            new_perms[n].perm |= QCOM_SCM_PERM_READ;
+>> +    }
+>> +
+>> +    src = (1ull << QCOM_SCM_VMID_HLOS);
+>> +
+>> +    for (i = 0; i < mem_parcel->n_mem_entries; i++) {
+>> +        src_cpy = src;
+>> +        ret = 
+>> qcom_scm_assign_mem(le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
+>> +                        le64_to_cpu(mem_parcel->mem_entries[i].size),
+>> +                        &src_cpy, new_perms, mem_parcel->n_acl_entries);
+>> +        if (ret) {
+>> +            src = 0;
+>> +            for (n = 0; n < mem_parcel->n_acl_entries; n++) {
+>> +                vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
+>> +                if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
+>> +                    src |= (1ull << vmid);
+>> +                else
+>> +                    src |= (1ull << QCOM_SCM_RM_MANAGED_VMID);
+>> +            }
+>> +
+>> +            new_perms[0].vmid = QCOM_SCM_VMID_HLOS;
+>> +
+>> +            for (i--; i >= 0; i--) {
+>> +                src_cpy = src;
+>> +                ret = qcom_scm_assign_mem(
+>> +                        
+>> le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
+>> +                        le64_to_cpu(mem_parcel->mem_entries[i].size),
+>> +                        &src_cpy, new_perms, 1);
+>> +                WARN_ON_ONCE(ret);
+>> +            }
+>> +            break;
+>> +        }
+>> +    }
+>> +
+>> +    kfree(new_perms);
+>> +    return ret;
+>> +}
+>> +
+>> +static int qcom_scm_gh_rm_post_mem_reclaim(struct gh_rm *rm, struct 
+>> gh_rm_mem_parcel *mem_parcel)
+>> +{
+>> +    struct qcom_scm_vmperm new_perms;
+>> +    u64 src = 0;
+>> +    int ret = 0, i, n;
+>> +    u16 vmid;
+>> +
+>> +    new_perms.vmid = QCOM_SCM_VMID_HLOS;
+>> +    new_perms.perm = QCOM_SCM_PERM_EXEC | QCOM_SCM_PERM_WRITE | 
+>> QCOM_SCM_PERM_READ;
+>> +
+>> +    for (n = 0; n < mem_parcel->n_acl_entries; n++) {
+>> +        vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
+>> +        if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
+>> +            src |= (1ull << vmid);
+>> +        else
+>> +            src |= (1ull << QCOM_SCM_RM_MANAGED_VMID);
+>> +    }
+>> +
+>> +    for (i = 0; i < mem_parcel->n_mem_entries; i++) {
+>> +        ret = 
+>> qcom_scm_assign_mem(le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
+>> +                        le64_to_cpu(mem_parcel->mem_entries[i].size),
+>> +                        &src, &new_perms, 1);
+>> +        WARN_ON_ONCE(ret);
+>> +    }
+>> +
+>> +    return ret;
+>> +}
+>> +
+>> +static struct gunyah_rm_platform_ops qcom_scm_gh_rm_platform_ops = {
+>> +    .pre_mem_share = qcom_scm_gh_rm_pre_mem_share,
+>> +    .post_mem_reclaim = qcom_scm_gh_rm_post_mem_reclaim,
+>> +};
+>> +
+>>   static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
+>>   {
+>>       struct device_node *tcsr;
+>> @@ -1414,6 +1511,9 @@ static int qcom_scm_probe(struct platform_device 
+>> *pdev)
+>>       if (download_mode)
+>>           qcom_scm_set_download_mode(true);
+>> +    if (gh_rm_register_platform_ops(&qcom_scm_gh_rm_platform_ops))
+>> +        dev_warn(__scm->dev, "Gunyah RM platform ops were already 
+>> registered\n");
+>> +
+>>       return 0;
+>>   }
