@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57C6468E9BE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 458E868E9C3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:22:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229942AbjBHIUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 03:20:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
+        id S230094AbjBHIWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 03:22:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbjBHIUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:20:20 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE30C4345A
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:20:10 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id bu23so39149wrb.8
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:20:10 -0800 (PST)
+        with ESMTP id S229781AbjBHIWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:22:07 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43725FE3
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:22:03 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id u21so19356905edv.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:22:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rL8LBItn4StHZi6ZJiCbES8DujHjLAlePtXEF4dNf0g=;
-        b=H/nofoqIUmp53A1gy27FWZ/m0jJJznQ/E/KZPS80H3GOLmSOB4nm0pO/duSckPYhNg
-         AVXMeq1840d1Qa0wNphY03L3u0TgrtcBvHZRz/kUIo75jq4GRha2P6Gh/bohMJwvIvOb
-         yChvJipGdl5ODYy2btTWHsJlEu+MttL+hnKtgpLRimD6eSrT1n8BBYFKhjt7uNBtVlOJ
-         2sD4eAfr6ruQJumXpUzDjzZBmy6KDApknk9ZrPh4RlbjznvAUdkZlBr9fUyyeoGeeXJq
-         xJJVMlP7TaIaz9P5B/o4Exd4aw4rYP7dLETT+oQ1c9H32aB8ZH11F4ndlxT7gHfwCchr
-         73aQ==
+        bh=KhVDOtrjgfl3p3xmeZfZNTKzoX1bymO3mmsKmoRlJio=;
+        b=WmahEArlGNc6e+SBemlYqrp9e8xwTroRBeySeaKedbWu4MijhmfjVYJUEgErAQnWoc
+         Vt0QQCBcvPf80tZmgSS488A+2MDwN20saKS0bNRFi5zll5zOnHpKJHf0mlhZ4jYWmvez
+         TKD9Oasj0muKCDFFA6GmsZQEQX6QyAKnHHR/WfKVRrgYCtEu8PtWbXCLgXZnM0FYUg+2
+         E4iRXVMGJCYmBdm0YYIZgKuIH0PS675rA0gOKIMXb1eqigGHRJW+xJ+/TmeJNALeZXlX
+         ksAA4UzG8Urny0JIXQoqb+i3htcCKOWuMkihlyfc+vYpsaT7YREx+4G8MJn0nDrtFkgU
+         48WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rL8LBItn4StHZi6ZJiCbES8DujHjLAlePtXEF4dNf0g=;
-        b=4zteSlCHSpkF9vGIGMmPdicZRMSQPkkdA778C2+vxNpSfsmPbNu9DP7cnjCuDikYZP
-         tn6Os+EZ0Jhlrxng/VkeU7O0D69NX4kTlKoe3NlAa+rylhawcmpeNCfZl3Z0J+gaADM8
-         oz0ub3wUvlpa4LSnlbrfGW2YIKB/8ZiFqkZrJqtWEWEpNbvnW4s9AvwrUD2fzC75rSn+
-         DwVeMSLKRDY2vETaqUTWowxKi6F3tepWdSmBHM4rVnkwoyEE2+B5fubjrA4J9L/Y6/TJ
-         AjQluCQKH1c3nSiZhjou/xGWDYxWBp35g+mIXO/4uvXAmi1F7irIUb1kNLso6HHdajUE
-         tE1Q==
-X-Gm-Message-State: AO0yUKUmmPONxt6d1UeusjdkpitrMQiaXEF4sT/AKDLe1zuGMNrL5rad
-        3qbZosRpZNhqLjdELASL64ncDg==
-X-Google-Smtp-Source: AK7set+8uThdO0z7pThPVeFWUZwaQVGSujdTBqV6nNjhDNcCzQS1w5bFHAVYpw4AaPnYueRPtqVU8A==
-X-Received: by 2002:adf:ed11:0:b0:2bd:d45c:3929 with SMTP id a17-20020adfed11000000b002bdd45c3929mr5331107wro.54.1675844409094;
-        Wed, 08 Feb 2023 00:20:09 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o21-20020a5d58d5000000b002c3f0a78e39sm4368258wrf.9.2023.02.08.00.20.08
+        bh=KhVDOtrjgfl3p3xmeZfZNTKzoX1bymO3mmsKmoRlJio=;
+        b=cKjKoCO8xPksa4Q53o46cuJhowru6Izs/LmdE+clswS1AQ1rO6IaZVPoxILRNNGY7l
+         DA+88oiajwlS8fvZ/El+K9eCQt+JOcnSFb6u40mP+J6k1vhMo2f/1B5MOcswbZo8pGzS
+         Jx5sbVPmTX248r+1iqnfO3EYD1ZvRf+84RkhQBApWMSVTU7xqGOYIhD1gm5KOnPZLMEL
+         eCwyihFau6jTRutOFCU6BLYN21VWIT1RlpA6+a/o9nSVA1aTVScZT6yIJxbaIPPc0Hge
+         06t0ZxiM2Wc/xzJD7iXl4H90936CFamcXXP498Rsq28cEVAe9htBEpi4lRVf1wS4n4ad
+         4yZg==
+X-Gm-Message-State: AO0yUKXS1HF0QYLP+Uiuz0D5QYPQ8WRl5kH+Dgmvl+Mu7VCs/cMRALWq
+        oBEIPEMvkxjPWEAQ+7wWfzMYgQ==
+X-Google-Smtp-Source: AK7set97fSbuXgBdSKrixsU3CdVuu2exe5iO5joNKUPY/9E7IjbBhzCdygzGeRrub0jKIcfBG5mtfg==
+X-Received: by 2002:a50:cdc8:0:b0:4aa:a4e8:8d5a with SMTP id h8-20020a50cdc8000000b004aaa4e88d5amr6885426edj.33.1675844522341;
+        Wed, 08 Feb 2023 00:22:02 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id p10-20020aa7cc8a000000b004a21c620266sm7513699edt.83.2023.02.08.00.22.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 00:20:08 -0800 (PST)
-Message-ID: <8fa6a9eb-df09-73c0-528b-a2efd9b262e7@linaro.org>
-Date:   Wed, 8 Feb 2023 09:20:07 +0100
+        Wed, 08 Feb 2023 00:22:02 -0800 (PST)
+Message-ID: <6802d77c-f135-ad92-1f28-84a104ca9438@linaro.org>
+Date:   Wed, 8 Feb 2023 09:21:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: adjust to R-Car
- Gen4
+Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: sc8280xp: Define uart2
 Content-Language: en-US
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc:     Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-References: <87r0v1t02h.wl-kuninori.morimoto.gx@renesas.com>
- <87o7q5t012.wl-kuninori.morimoto.gx@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <87o7q5t012.wl-kuninori.morimoto.gx@renesas.com>
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>,
+        Brian Masney <bmasney@redhat.com>
+References: <20230207052829.3996-1-steev@kali.org>
+ <20230207052829.3996-4-steev@kali.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230207052829.3996-4-steev@kali.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,137 +89,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 02:32, Kuninori Morimoto wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+
+On 7.02.2023 06:28, Steev Klimaszewski wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
 > 
-> R-Car Gen4 is not compatible with Gen3, this patch adjusts
-> to R-Car Gen4.
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-Same below.
-
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> Reviewed-by: Brian Masney <bmasney@redhat.com>
 > 
-> By this patch, "dmas/dma-names" under "rcar_sound,ssi" are dropped
-> from "required:" property, because (A) these are not mandatory if it
-> was PIO transfer mode, (B) Json schema if-then-else doesn't work
-> correctly on there for some reasons. see the Link for detail.
-
-You gave three links, so why? You should rather explain why it does not
-work.
-
-> 
-> Link: https://lore.kernel.org/r/CAMuHMdW_QHmODAKvn_GwHHUWw-=z4Tdq0NkhdK2u2piG_YgB-Q@mail.gmail.com
-> Link: https://lore.kernel.org/all/87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com/#r
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
->  .../bindings/sound/renesas,rsnd.yaml          | 72 ++++++++++++++-----
->  1 file changed, 55 insertions(+), 17 deletions(-)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index c3bea5b0ec40..3214ca9bcc78 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -99,20 +99,6 @@ properties:
->      minItems: 1
->      maxItems: 31
+> Changes since v3:
+>  * Fix commit message changelog
+> 
+> Changes since v2:
+>  * No changes since v2
+> 
+> Changes since v1:
+>  * change subject line, move node, and add my s-o-b
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index fa2d0d7d1367..eab54aab3b76 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1207,6 +1207,20 @@ spi2: spi@988000 {
+>  				status = "disabled";
+>  			};
 >  
-> -  clock-names:
-> -    description: List of necessary clock names.
-> -    minItems: 1
-> -    maxItems: 31
-
-Don't remove properties from top-level.
-
-> -    items:
-> -      oneOf:
-> -        - const: ssi-all
-> -        - pattern: '^ssi\.[0-9]$'
-> -        - pattern: '^src\.[0-9]$'
-> -        - pattern: '^mix\.[0-1]$'
-> -        - pattern: '^ctu\.[0-1]$'
-> -        - pattern: '^dvc\.[0-1]$'
-> -        - pattern: '^clk_(a|b|c|i)$'
-> -
->    ports:
->      $ref: audio-graph-port.yaml#/definitions/port-base
->      unevaluatedProperties: false
-> @@ -256,8 +242,6 @@ properties:
->              $ref: /schemas/types.yaml#/definitions/flag
->          required:
->            - interrupts
-> -          - dmas
-> -          - dma-names
-
-Even with your explanation in commit this does not look related to this
-patch. Don't mix features and fixes.
-
->      additionalProperties: false
->  
->    # For DAI base
-> @@ -305,7 +289,14 @@ allOf:
->                - scu
->                - ssi
->                - adg
-> -    else:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,rcar_sound-gen2
-> +              - renesas,rcar_sound-gen3
-> +    then:
->        properties:
->          reg:
->            minItems: 5
-> @@ -317,6 +308,53 @@ allOf:
->                - ssiu
->                - ssi
->                - audmapp
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,rcar_sound-gen4
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 4
-
-
-You now add the same mistakes you corrected in 1/2. Really - the same.
-
-> +        reg-names:
-> +          items:
-> +            enum:
-> +              - adg
-> +              - ssiu
-> +              - ssi
-> +              - sdmc
+> +			uart2: serial@988000 {
+> +				compatible = "qcom,geni-uart";
+> +				reg = <0 0x00988000 0 0x4000>;
+> +				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
+> +				clock-names = "se";
+> +				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
+> +				operating-points-v2 = <&qup_opp_table_100mhz>;
+> +				power-domains = <&rpmhpd SC8280XP_CX>;
+> +				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
+> +						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
+> +				interconnect-names = "qup-core", "qup-config";
+> +				status = "disabled";
+> +			};
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,rcar_sound-gen4
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          description: List of necessary clock names.
-> +          minItems: 3
-
-maxItems
-
-> +          items:
-> +            enum:
-> +              - ssi.0
-> +              - ssiu.0
-> +              - clkin
-> +    else:
-
-Best regards,
-Krzysztof
-
+>  			i2c3: i2c@98c000 {
+>  				compatible = "qcom,geni-i2c";
+>  				reg = <0 0x0098c000 0 0x4000>;
