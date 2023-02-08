@@ -2,119 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FCE668F21B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CA768F227
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 16:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231709AbjBHPgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 10:36:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57282 "EHLO
+        id S231414AbjBHPjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 10:39:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231694AbjBHPgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:36:24 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39A443922
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 07:36:21 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so1805356wms.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 07:36:21 -0800 (PST)
+        with ESMTP id S231588AbjBHPjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 10:39:39 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8449A4615D;
+        Wed,  8 Feb 2023 07:39:36 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso1759396wmp.3;
+        Wed, 08 Feb 2023 07:39:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FKePDO+31IJoF0FsJfvZs9DXqYakl2KGMty92CUWxZs=;
-        b=lDp/yheLhCJ14mwi5JBbSR5uvR8nLzGG2T2sjS6t2m0ytjQq9ZGUFLYlagTEssKD6T
-         MGqhy+s3OC3RZUi8kOaE+kVadJ4FwdA58rbaDYPOEZor3ALf/C5ZzArNJ9mBtorSCuWL
-         QYL+GvvCNqQXt4IVlpy7027J045UU/qqB8tyKYG1RU5Kr533K/dWShfQzdV89wWEUll8
-         oGb0Cysx+ENxAvIJPI7ByaLXC3JFA8K6I9Pu0dLT5CNJrgW8hc1oU5XNnPxnhf+GGT9O
-         OLWtJFCAWlzLVkfMltuQq3V8rD5PePxe2RG7hBwCXbIf90WRJzdIoqbisb4hKzjP8iH1
-         uEkA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IZ2CaI/V2FdeNF+FZ2q8IFjrwh7v5x9Z6pVcuoKOE+s=;
+        b=EscWcKO9aDv4lw1VYLc1R8eMRNuuaUZo7ShY+3T4Pw+6EbHsYJoiZdLEYBkMThqH/Q
+         mbfGF/T6Ma9vy9y2YQBmr1M0xAvjXJSW/pk/04o4TChh1j03LFrPGivnrdD31dJ4T+9M
+         em+V5VZNSe4i/opFx/oHCRoIpQkXX4PHQkRe17STrC+p3OpHd7vfFvK0lAv70Mbgh3E1
+         7nvOEO7UB0+JCDpvIuLh91gPvZ0Syr36mFo3WUqsLpRnR92fsafTgC/Ffk7YgX5iai2b
+         cclnEBdJtIQWwGAP+kict8qT+xTarUVs8f96Lp98lRkouoTjmjRiIEFKKPqHuhfraSTQ
+         +5nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKePDO+31IJoF0FsJfvZs9DXqYakl2KGMty92CUWxZs=;
-        b=zBgvc07sei5r8jX1x64pSGKca9Tg1zKxhzev3lNPhLPdythXvolI1RvAcIlRTURlt0
-         Be5xBGz+eRfBGkFPgMGdgu2t1SGWiZnZiVMofa5sy422LoGJD2b7aWIgre3foBJUxF3Q
-         7hOYKHIpsLlc2kUcOHfTcDDjXEWRnMPvCLmXhHslg3hqpaDzbjHFXuDcweS9xpvpgxHQ
-         qyyTv1Mz6VmlvajIPIJ7UEgRUVvoV78QcI1Q25gilx+PXRrDCxtu2xsk8NNmF5MEhUvg
-         OcTgkfZ5gFI6eZ7vw1hRNaC53AtpUn5GCFW6mH+vRYvS973oJFQZVgd/paGY1aZo10bP
-         DN2Q==
-X-Gm-Message-State: AO0yUKVT9VEuNpoPUpjSbRYy1GLl6SVtDoMz5yMkzVtu7G3N5RNT6TWW
-        IO2en2try6QjOdeyR43DqPoi1w==
-X-Google-Smtp-Source: AK7set/jWb3OUhPaWjMNeoBplH44S4cuJjQOgCubl22jNIytV6Ym7ExQyw2dq1UJvSvr5xZQTqqhTw==
-X-Received: by 2002:a05:600c:4d09:b0:3df:e549:bd27 with SMTP id u9-20020a05600c4d0900b003dfe549bd27mr7766617wmp.6.1675870580177;
-        Wed, 08 Feb 2023 07:36:20 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l16-20020a05600c2cd000b003daffc2ecdesm2459945wmc.13.2023.02.08.07.36.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 07:36:19 -0800 (PST)
-Message-ID: <2b45b511-33d5-c6b0-ad4d-78e8c15392d0@linaro.org>
-Date:   Wed, 8 Feb 2023 16:36:17 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IZ2CaI/V2FdeNF+FZ2q8IFjrwh7v5x9Z6pVcuoKOE+s=;
+        b=1bLyam4jALhfVhuZkHMxZxXgHtLt+ciGQERyJB6bvk09YudOUcNsMRZ1aqPPG7IWGj
+         ICE0gnpwIkSqTaaAsv1+X9brO9UbwOVvDBJUbPZHGJShv7Wawzm9L8ZsvEBMmrCWDzwd
+         vazBlgY9FVPuhb4YcEHOGQtOcwUxDP3FTEtG3SZr/3XJZI93YlsW40kTk7N/TinRFpEA
+         xnY9L8kuF9nd554mYNlxjzhSF961Ev/oMfoIvQpNGEJTDuj/s093J14oif+N3H0KJo85
+         8bIg0KtvS+ZFf5ld1GVTK3Ya/rkzLU0vtgrBD2pRLfSoY7QUOBYO7SacNcfZ8NKnvm3m
+         vbxg==
+X-Gm-Message-State: AO0yUKUP9oGRey+5mPskPEMppj6i8bzhMOJsbMVFXA+MkSys4y0taZR7
+        xyPKbEfeLmV6ieJ9Eul1lME=
+X-Google-Smtp-Source: AK7set8qO09YDtSj6g/rsPEetfbuIk6UE1JE0R+tTm2JERmPloHu6672cbPQGMrfz8eZQp1HeBLKZw==
+X-Received: by 2002:a05:600c:920:b0:3dc:5390:6499 with SMTP id m32-20020a05600c092000b003dc53906499mr6992838wmp.1.1675870774900;
+        Wed, 08 Feb 2023 07:39:34 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
+        by smtp.googlemail.com with ESMTPSA id n2-20020a05600c3b8200b003dfe659f9b1sm6755596wms.3.2023.02.08.07.39.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 07:39:34 -0800 (PST)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH v6 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: specify supported opp tables
+Date:   Wed,  8 Feb 2023 16:39:11 +0100
+Message-Id: <20230208153913.24436-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 6/6] Driver: VMBus: Add device tree support
-Content-Language: en-US
-To:     Nathan Chancellor <nathan@kernel.org>
-Cc:     kernel test robot <lkp@intel.com>,
-        Saurabh Sengar <ssengar@linux.microsoft.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com, dphadke@linux.microsoft.com,
-        llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-References: <1675756199-5917-7-git-send-email-ssengar@linux.microsoft.com>
- <202302081621.odizDzHG-lkp@intel.com>
- <39350ee9-c899-ba88-2e4e-103f93dcd722@linaro.org>
- <Y+O0FtUkLyvJLSrR@dev-arch.thelio-3990X>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y+O0FtUkLyvJLSrR@dev-arch.thelio-3990X>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 15:39, Nathan Chancellor wrote:
-> On Wed, Feb 08, 2023 at 11:25:57AM +0100, Krzysztof Kozlowski wrote:
->> On 08/02/2023 09:22, kernel test robot wrote:
->>> Hi Saurabh,
->>>
->>> Thank you for the patch! Perhaps something to improve:
->>>
->>> [auto build test WARNING on next-20230207]
->>> [cannot apply to robh/for-next tip/timers/core brgl/gpio/for-next wsa/i2c/for-next linus/master v6.2-rc7 v6.2-rc6 v6.2-rc5 v6.2-rc7]
->>> [If your patch is applied to the wrong git tree, kindly drop us a note.
->>> And when submitting patch, we suggest to use '--base' as documented in
->>> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->>>
->>
->> All of your recent patches have build errors. Can you at least build
->> test them before sending? It's a unnecessary noise in our mailboxes to
->> get non-buildable patches, just to trigger compilation which you can
->> easily do by your own. GCC is a free software...
-> 
-> For what it's worth, GCC does not have a warning like this, it just
-> accepts the incorrect location of the attribute, which has gotten others
-> in trouble before:
-> 
-> https://lore.kernel.org/CAHk-=wgf+kHeSZbpkZumWcTXUD7ordqTMvPRNL6aQVG1DSBDnQ@mail.gmail.com/
-> 
-> So the patch probably did build clean with GCC but that is one of the
-> reasons that there is no longer a compiler monopoly for the kernel ;)
+Add additional info on what opp tables the defined devices in this schema
+supports (operating-points-v2-kryo-cpu and operating-points-v2-qcom-level)
+and reference them.
 
-OK then the patchset is reasonable/built enough.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+Changes v6:
+- No change
+Changes v5:
+- Swap patch 1 and patch 2 to fix dt_check_warning on single
+  patch bisecting 
+Changes v4:
+- Add patch split from patch 1
 
-Best regards,
-Krzysztof
+ .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 35 ++++++++++++++-----
+ 1 file changed, 26 insertions(+), 9 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+index 9c086eac6ca7..7c42d9439abd 100644
+--- a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
++++ b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+@@ -55,15 +55,32 @@ properties:
+ 
+ patternProperties:
+   '^opp-table(-[a-z0-9]+)?$':
+-    if:
+-      properties:
+-        compatible:
+-          const: operating-points-v2-kryo-cpu
+-    then:
+-      patternProperties:
+-        '^opp-?[0-9]+$':
+-          required:
+-            - required-opps
++    allOf:
++      - if:
++          properties:
++            compatible:
++              const: operating-points-v2-kryo-cpu
++        then:
++          $ref: /schemas/opp/opp-v2-kryo-cpu.yaml#
++
++      - if:
++          properties:
++            compatible:
++              const: operating-points-v2-kryo-cpu
++        then:
++          patternProperties:
++            '^opp-?[0-9]+$':
++              required:
++                - required-opps
++
++      - if:
++          properties:
++            compatible:
++              const: operating-points-v2-qcom-level
++        then:
++          $ref: /schemas/opp/opp-v2-qcom-level.yaml#
++
++    unevaluatedProperties: false
+ 
+ additionalProperties: true
+ 
+-- 
+2.38.1
 
