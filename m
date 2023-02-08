@@ -2,143 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 062FD68F062
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 15:13:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D421668F08E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 15:18:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbjBHOND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 09:13:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60798 "EHLO
+        id S231206AbjBHOSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 09:18:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbjBHONB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 09:13:01 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC5437F1E;
-        Wed,  8 Feb 2023 06:12:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231253AbjBHOSq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 09:18:46 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F341446708;
+        Wed,  8 Feb 2023 06:18:44 -0800 (PST)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 99DC5B81C76;
-        Wed,  8 Feb 2023 14:12:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6EF7C4339C;
-        Wed,  8 Feb 2023 14:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675865539;
-        bh=CM9X2AuKUJbsYimacCNPKUAK4TpbgQFBIKIrx7h4lJw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LVucjxu+REx2vxJaU73V9LeqN0VfNlpVqOVjlgapAR7+Js6CJh2wUlBGjryat06Mx
-         D9i30JRbIJdOspvFUtAoFUTSjc7q9zKrJAeQbeBiwFIiiX8euIEbk0Ty1Tz6V657+T
-         FLA5gRRVsKUOtlkaWGYAvOyX2NIaQlgKRJiFZbCRwtUw7qjRf/eGTg/jPYZv/0q1tt
-         FcUOC2BCeTia4s8YYIZRIs5mKBJvajFbiu7xD8C4mv+0OOcBl6e5vyuvgWOBBh+MUZ
-         xz5q4YEAPB/J4RrPpxV69F8ll/mVwhh9Od/sV4/BiL8f+TOBF8F2/I8j5Fv6bLISdE
-         LVYCGEEzxvGgw==
-Date:   Wed, 8 Feb 2023 15:12:16 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-Subject: Re: remove arch/sh
-Message-ID: <Y+OtwCqt26UjCwkZ@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-References: <20230113062339.1909087-1-hch@lst.de>
- <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
- <20230116071306.GA15848@lst.de>
- <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
- <20230203071423.GA24833@lst.de>
- <60ed320c8f5286e8dbbf71be29b760339fd25069.camel@physik.fu-berlin.de>
- <0e26bf17-864e-eb22-0d07-5b91af4fde92@infradead.org>
- <f6317e9073362b13b10df57de23e63945becea32.camel@physik.fu-berlin.de>
- <CAAhV-H57bV855SMr6iBqoQzdak5QSnaRLjQ9oAbOtYZnik5SoQ@mail.gmail.com>
- <91be7f6b52d8ed74798e86270d59bc5cddefe130.camel@physik.fu-berlin.de>
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B5B9F66020AE;
+        Wed,  8 Feb 2023 14:18:42 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675865923;
+        bh=jMasCdl9yyyie/Tih/oiOYUJw0OxzU1n9Bub9TdVQjs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=K9cMVr7HmZpwa30ytjo/8PoLFe41PTEIHOPMCbd0TqAvM28XaJQfJCaCO9tGzRJ9L
+         6AI7/eaNrRsWY+nsWr6St4tUkkOXAZDw0IIFnAzqIX7K1L67qknRHS82YbtD9kPNIa
+         yc/kX5Fan3rZbF2rwANzSdsyjD+Tb+9p2D04p+NraVeCGac7UR0n2s/8SnuOtALvLb
+         8lZWQWRh9e8z/gZydWnGF15ZQ3Y3grVjDIdAwR58QLiccZIki00wZJiMiO2KjGq/H5
+         KM6iw3d6RnXyyrZCcGyHKbW6cquamS9K5rHNkeryeKS5Qh7pRX/P6lb9YCcWHMXbBl
+         ynE7uY2Dg5FXA==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
+Subject: [PATCH v3 0/4] Add CS35L41 shared boost feature
+Date:   Wed,  8 Feb 2023 14:18:35 +0000
+Message-Id: <20230208141839.1097377-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="H/y3lZ2MEalioY2m"
-Content-Disposition: inline
-In-Reply-To: <91be7f6b52d8ed74798e86270d59bc5cddefe130.camel@physik.fu-berlin.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Valve's Steam Deck uses CS35L41 in shared boost mode, where both speakers
+share the boost circuit.
+Add this support in the shared lib, but for now, shared boost is not
+supported in HDA systems as would require BIOS changes.
 
---H/y3lZ2MEalioY2m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Based on David Rhodes shared boost patches.
 
+Also, fix boost config overwriting in IRQ found in the review and do a
+small refactor of the code.
 
-> Yes, that's the plan. We're collecting the various patches people have se=
-nt
-> in for arch/sh, review and test them and apply them.
->=20
-> My test board is running the latest kernel now, so I can test new patches=
-, too.
+Changes from V2:
+ - Drop External boost without VSPK Documentation
+ - Move Shared boost to use values 2 and 3
+ - Revert back to reg_sequence but reading the value first and only update
+the necessary bits
+ - Fix bug found by Intel kernel Test Robot
 
-I am just witnessing this development, but I want to say thanks for your
-effort and congrats on your progress. Looks like you do the right things
-correctly, cool! Kudos also to Geert and others for their assistance.
+Changes from V1:
+ - Fix Documentation patch subject
+ - New patch for External boost without VSPK Documentation
+ - New patch to fix boost IRQ overwriting issue
+ - New patch to refactor IRQ release error code
+ - reinit_completion on pcm_startup
+ - fix DRE switch overwriting
+ - return IRQ_HANDLED in PLL_LOCK case
 
+Lucas Tanure (4):
+  ASoC: cs35l41: Only disable internal boost
+  ASoC: cs35l41: Refactor error release code
+  ALSA: cs35l41: Add shared boost feature
+  ASoC: cs35l41: Document CS35l41 shared boost
 
---H/y3lZ2MEalioY2m
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/sound/cirrus,cs35l41.yaml        |  10 +-
+ include/sound/cs35l41.h                       |  13 +-
+ sound/pci/hda/cs35l41_hda.c                   |   6 +-
+ sound/soc/codecs/cs35l41-lib.c                |  69 +++++++++-
+ sound/soc/codecs/cs35l41.c                    | 125 +++++++++---------
+ sound/soc/codecs/cs35l41.h                    |   1 +
+ 6 files changed, 153 insertions(+), 71 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.39.1
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPjrbwACgkQFA3kzBSg
-KbYHCw//YV/RG0PWJ1txmpgpA0mLX7EfhxqJS6vwNlqziCSd910A+/ZNL7p2Q5Hx
-wVdeRoLHd9OcZFYXr0HLH0VCIJUYpr57DCy0AoIKL9q9CWET1hAMZjsIv5Kx2uVa
-1obdyCX46XEMqpSBhcsq8Vsq0TMQ4sCLdpVq/wPqBEDGUBGAIhkWX1UMQv2kiS1T
-uuYPKgsFmI2kl52owcOU2yZ42SVZNTEWiO2A8/4BXFfhhzKLWVcZQpEV9OInJ30n
-iXm6abMFAsFavgI90NZl1H4UKKLOzD5Jgr9Rv6DfYuyeADsKe2oQN1NvioHHVqvm
-qWG2b2UnZ7oS+dXxhS7YsQeiiTyZP/mpUprmrCrm0HMsl6iKCgCU8ceuRzy80Obt
-7u9CpA+ceRJ05Gfgo18YElk42l4Qhwk4zSWDQdOwtOlk1FpX9TBxOtOVngYEprMM
-UDRSSXFIJZTEyUAbqWqsMDuGRVcq3S9XAPYINbzig3H+Iy7an/wpxWBnYrRm+eCz
-/eb7eQ/iQYmBd7Zn8XO74E6vvH+pG8f9nqr2sRPpk89ZDPsZEk0wFCHpJQShIYJt
-iSeMDaLVGP+e+YlW7qvKavsdPISxlLhNFA1kj66ccHNZVbNQ5xyGhps/8qefpitG
-nN9N+KCLmNvyC8QCuMiMRDD9RVq8OSQ3VcL2zT8pj3XuJo2po4s=
-=9hIS
------END PGP SIGNATURE-----
-
---H/y3lZ2MEalioY2m--
