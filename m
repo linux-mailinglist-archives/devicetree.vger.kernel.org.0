@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BAD468EF86
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 14:09:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 310FC68EF9A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 14:16:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231142AbjBHNJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 08:09:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55350 "EHLO
+        id S229548AbjBHNQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 08:16:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231321AbjBHNJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 08:09:36 -0500
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2827D47095;
-        Wed,  8 Feb 2023 05:09:26 -0800 (PST)
-Received: by mail-oo1-f49.google.com with SMTP id c29-20020a4ad21d000000b00517a55a78d4so1710995oos.12;
-        Wed, 08 Feb 2023 05:09:26 -0800 (PST)
+        with ESMTP id S229483AbjBHNQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 08:16:18 -0500
+Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC6F46160;
+        Wed,  8 Feb 2023 05:16:15 -0800 (PST)
+Received: by mail-vs1-xe30.google.com with SMTP id p10so19844439vsu.5;
+        Wed, 08 Feb 2023 05:16:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=A9kVK9c7CfGewqX3a1Lelqo2y/d2iFoRNqiWRS7Q7ZU=;
+        b=YYnTf9UOVv++gL127EoqsB1eGw2w2mfYDzpqE/hecKJaTlu9lZA6D0agL6DnQGIZMW
+         1zT1mJocutgpcu8vc9REuPUi3bD+yx+CxlFjr0PaDrC58ZcK5SGUzcXKPoJNrauvVyoY
+         PtkjUNBeomhhco8q2BiqVMmZW1dnEx9AGcE4KXVFkv2zbL09FnWrFj4kOEx4hdEiJDeR
+         6xaJeJjlchdIcB6wymMuhkkW0KugTF1Yp/xk4rfsw5uNkYdoB1aZBJmnYGq2/e+GvFRf
+         tdX+X+wLFDFJ/fkLOb3VCVd/B9WIPLIERM8a7nclcpY8u0ocR3HaV11q1+8XgM1pfroY
+         /9iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sKctfRFevEGzylkJxSTY3VRpoj1hZvHSm640h9Em5z4=;
-        b=tqudxdEEH9DTZxcn6SrSB2g5saQjtvlQwvcjSxqIhNctJYHI9V2o6mIYdWt/T1GTTd
-         BVVW0ajMgV4p6KtaMS9UgdiXBJL33jVo8Zr9CHYbQ5mHQhPZvnKYAq/jFKcaci4c6J/I
-         bk4cBOYi2s6zC/VrtnUONEvNlkwIq4tO6wAWSGgvhHS7Xc1caQDWF46s4ktbrMBe6HWQ
-         JSLWsaFDFhGMmihITd1l+cBR9frvAm8ZMQ5zPo4ISUo05VTK6CTdgLdwhVe5wSfAmFzC
-         /4CfCzinIsgQnsTGBXckwjJexwOJukdc3iQgFootFP7tAjvgy67IFmKxOtIi89ihdCe1
-         cSwg==
-X-Gm-Message-State: AO0yUKUDNiWW29c89E2sZsLD12uayLfb7cHUvdeAWlvCKpXAah3rErqm
-        rzjB3HVXDHLwix5kdGjN99/CqZk/Ug==
-X-Google-Smtp-Source: AK7set92nRxfqLhEo6VH3xIGRC1voySix/Y+GAklX6sGfkt1mG8OhseTlmNN7FZBChOHr6TFaCdmIw==
-X-Received: by 2002:a4a:e091:0:b0:51a:4c5d:fd1e with SMTP id w17-20020a4ae091000000b0051a4c5dfd1emr3445841oos.9.1675861765298;
-        Wed, 08 Feb 2023 05:09:25 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m14-20020a9d6ace000000b0068bce0cd4e1sm8000848otq.9.2023.02.08.05.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 05:09:24 -0800 (PST)
-Received: (nullmailer pid 1735857 invoked by uid 1000);
-        Wed, 08 Feb 2023 13:09:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A9kVK9c7CfGewqX3a1Lelqo2y/d2iFoRNqiWRS7Q7ZU=;
+        b=jzIHLweacP54GBaPF2w5lqMOef1SG4vgP8clbsKbqo9BftN3AaTEVHJrPeK5m7+wT4
+         ba8e/RNAoSYEBW1543YdRez+IulgZ6Ov9zP2JtFmB40mapk5eRZojD6jtQ2H+q3coRO9
+         GqRXZ3eIHeDTnrkdmPSN5HsJG7BTlyXnnfP+BRX+EuPFWWH5wDG/Jho0Sya7nB4dGrWl
+         hy4GKuBwuoCg1rTQ5vaxFjMK83GBuCPIrOnFP9vD0tE6OrbjcUNAHBYKHZpIh4vSviD7
+         SYq055z90zo/i1l01DZjx6yVY1HwQ6VlCWKmS6LLoogk3rQr+mSjNEQtja00LEePJpKZ
+         ugZg==
+X-Gm-Message-State: AO0yUKUyq4cpezH+9rPuRj6yxU1PEyPAYsolS8KdbjyjIHUQHBSdKvwQ
+        BeBRXA9zsTTZLaGV3XJ2IYv6VaM9ZnFQ0+JE6Gs=
+X-Google-Smtp-Source: AK7set8d+MuMChpHvoSGQ9u0F3j7rUBZKS6nsd4rn161k7Ag4YLcGc2J2bulDhR5rDO7Yz6hVP0FBmPynvf+9lpAz0U=
+X-Received: by 2002:a67:2487:0:b0:3f8:6b59:61b with SMTP id
+ k129-20020a672487000000b003f86b59061bmr2491073vsk.40.1675862174437; Wed, 08
+ Feb 2023 05:16:14 -0800 (PST)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-        Heiko Stuebner <heiko@sntech.de>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Will Deacon <will@kernel.org>
-In-Reply-To: <20230208093830.143284-19-s.hauer@pengutronix.de>
-References: <20230208093830.143284-1-s.hauer@pengutronix.de>
- <20230208093830.143284-19-s.hauer@pengutronix.de>
-Message-Id: <167586156991.1727589.15971216744751237430.robh@kernel.org>
-Subject: Re: [PATCH v2 18/19] dt-bindings: devfreq: event: convert Rockchip
- DFI binding to yaml
-Date:   Wed, 08 Feb 2023 07:09:24 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+References: <20230206135016.6737-1-kaehndan@gmail.com> <20230206135016.6737-2-kaehndan@gmail.com>
+ <20230207185007.GA3962587-robh@kernel.org>
+In-Reply-To: <20230207185007.GA3962587-robh@kernel.org>
+From:   Daniel Kaehn <kaehndan@gmail.com>
+Date:   Wed, 8 Feb 2023 07:16:03 -0600
+Message-ID: <CAP+ZCCcbT6UoWNL7g-WGqO+OjcVyQvms-3YkE2TByMAuD_keng@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus Bridge
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, ethan.twardy@plexus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,42 +68,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Feb 7, 2023 at 12:50 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Feb 06, 2023 at 07:50:13AM -0600, Danny Kaehn wrote:
+> > This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+> >
+> > The binding allows describing the chip's gpio and i2c controller in DT
+> > using the subnodes named "gpio" and "i2c", respectively. This is
+> > intended to be used in configurations where the CP2112 is permanently
+> > connected in hardware.
+>
+> My comments on v3 still apply. Please slow down your pace of sending new
+> versions so folks have change to review.
+>
+> Rob
 
-On Wed, 08 Feb 2023 10:38:29 +0100, Sascha Hauer wrote:
-> Convert the Rockchip DFI binding to yaml.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  .../bindings/devfreq/event/rockchip,dfi.yaml  | 61 +++++++++++++++++++
->  .../bindings/devfreq/event/rockchip-dfi.txt   | 18 ------
->  2 files changed, 61 insertions(+), 18 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
-> 
+Thanks for the correction -- I definitely see how that could be
+frustrating / problematic. (until now I'd thought the ideal case was
+that comments were addressed as soon as possible, so that folks
+wouldn't be reviewing now-obsolete code that might change due to other
+comments anyways)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks,
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml: Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230208093830.143284-19-s.hauer@pengutronix.de
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Danny Kaehn
