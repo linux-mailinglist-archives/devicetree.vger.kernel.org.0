@@ -2,106 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BE3768F2C5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C35CF68F2DC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 17:09:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231341AbjBHQEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 11:04:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49936 "EHLO
+        id S230080AbjBHQJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 11:09:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231157AbjBHQEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:04:45 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991F94ABF7
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 08:04:28 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id bg5-20020a05600c3c8500b003e00c739ce4so1848874wmb.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 08:04:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=R0rE8Lb8ibUWc7kHbj+yZ/hofiyZLCvQRtWGXPk+RRQ=;
-        b=ivA9vXJ5HErZ0jSUfWbxaanTS4VhVkXF/+qTcymMgj2HsI5SbC7CpaYW1pVlAA630r
-         0IybXgqzE55NBFLpmYl5ZZSOgyqHVSst5nvPe4rJN3k5VBQbyuk+fJPWA7KJ7vJe6dy3
-         97t302+R2DeFQ4SzMmMzyvYe20bJ39BWP48Vrz3M75cNKSGw7Gi5SRJcZ5ZTMlm53LQD
-         VD1hh1cu9O/BDwVEbIwGoDKPeF/SZ5fj45bmGWM/iASCrQomNJYrV3ylj2J+meWZmHmP
-         TR1YKapAr8sFwrcS4lGUz3Yc2I4vNz3USDptOt73CSR/eai7fpemnOfDe/XYxIfYkWjJ
-         5VGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R0rE8Lb8ibUWc7kHbj+yZ/hofiyZLCvQRtWGXPk+RRQ=;
-        b=Qtt2uK0eWhfhHk1kxBJ0gcTW0ZHUQpI/UHjb1My0lPVyBVOeOfF7DiVSJqO8pC2HyI
-         pHRNWO+ha3sjiVcAXs4J92YKf5wnR4hJOzfiBUHNB+jckYpoV0PNfRJjrL+IfObbCKJF
-         xHP1MtDnFkp+OIZPsTwI69bZRc1cC2a116I1PRQBFxPoK7bK41x1nrJuUI43+egtFOTI
-         35EhiRs8XHHLMIXp1eS02QoiVAE+jsnvbYKTG7/Jsu6Dgu1frJPXiSOFG8jySQ+1MzXt
-         FzBpj5eNEKFlpC6MMOJXzdffc8Ny9juo+e/TrC1aYobO/2VJWuyKQkVOL6P3FCvxv4SD
-         LWfg==
-X-Gm-Message-State: AO0yUKWlPAAZOFIjIQlHFqv4aZPOSfFhQ7gKkAUWtBCH30xixsYNY8xg
-        9Q6LCDzBACIN3EumcWOLyByKHA==
-X-Google-Smtp-Source: AK7set+OvUX1Ujsg0vDVzePW1OFuWxgWdPpykyHrq3lV5Zs0mUMc2DcbvEzHzoz7hTiJh35Cni1OOA==
-X-Received: by 2002:a05:600c:4919:b0:3df:f2a5:49fb with SMTP id f25-20020a05600c491900b003dff2a549fbmr6719356wmp.7.1675872266974;
-        Wed, 08 Feb 2023 08:04:26 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r3-20020a05600c424300b003dc492e4430sm2114847wmm.28.2023.02.08.08.04.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 08:04:26 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: exynos: correct max98090 DAI argument in Snow
-Date:   Wed,  8 Feb 2023 17:04:24 +0100
-Message-Id: <20230208160424.371678-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229632AbjBHQJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 11:09:23 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6254C0D2;
+        Wed,  8 Feb 2023 08:09:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675872553; x=1707408553;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=i5wiQk9WC9xvE/C0qbZGsEhSgL1Eg53js8pBjXRU6aA=;
+  b=CW05pcpaKHof8vIYk8QTqiOPv5WlwhBdJiwUmzEl6xJQ2c10GFYxG8rF
+   NkmLygfi6ElYrwBskY9O/dDa2PvNjMmd+e4hJl2CpPE5VmrpVVX2JDVgm
+   n4uNULnp2inBh296U9e7iP9EAmzoP2wVb+7Dcz7pCRVSdLD7RWSc2SZXo
+   2yJ+jzV1Q5XYZXG4aTaivkHrGhdhh2jDBlsNdOoR3FMxU0BEnFB2tq8op
+   vE5f4VhFH5lpvpVbu4Dp3J0bNaaY+9RdNNFGS93c52ZgW06zjOMsxAi2C
+   yC4GwTxIJTBvH7XD17X35E6gVMEyI3KG3MxH5I2WbfWJcobxSu1TpqbUd
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="310195990"
+X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; 
+   d="scan'208";a="310195990"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2023 08:09:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10615"; a="791264474"
+X-IronPort-AV: E=Sophos;i="5.97,281,1669104000"; 
+   d="scan'208";a="791264474"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 08 Feb 2023 08:09:08 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pPn0N-0004Wa-1m;
+        Wed, 08 Feb 2023 16:09:07 +0000
+Date:   Thu, 9 Feb 2023 00:08:33 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lucas Tanure <lucas.tanure@collabora.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     oe-kbuild-all@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Lucas Tanure <lucas.tanure@collabora.com>
+Subject: Re: [PATCH v3 3/4] ALSA: cs35l41: Add shared boost feature
+Message-ID: <202302090037.Ndp45WTg-lkp@intel.com>
+References: <20230208141839.1097377-4-lucas.tanure@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230208141839.1097377-4-lucas.tanure@collabora.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The max98090 has only one DAI and does not take argument to DAI
-phandles:
+Hi Lucas,
 
-  exynos5250-snow-rev5.dtb: audio-codec@10: #sound-dai-cells:0:0: 0 was expected
+I love your patch! Perhaps something to improve:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/exynos5250-snow-rev5.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+[auto build test WARNING on tiwai-sound/for-next]
+[also build test WARNING on tiwai-sound/for-linus linus/master v6.2-rc7 next-20230208]
+[cannot apply to broonie-sound/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm/boot/dts/exynos5250-snow-rev5.dts b/arch/arm/boot/dts/exynos5250-snow-rev5.dts
-index 0a47597d6f0d..3d32c3476e84 100644
---- a/arch/arm/boot/dts/exynos5250-snow-rev5.dts
-+++ b/arch/arm/boot/dts/exynos5250-snow-rev5.dts
-@@ -27,7 +27,7 @@ cpu {
- 		};
- 
- 		codec {
--			sound-dai = <&max98090 0>, <&hdmi>;
-+			sound-dai = <&max98090>, <&hdmi>;
- 		};
- 	};
- };
-@@ -42,7 +42,7 @@ max98090: audio-codec@10 {
- 		pinctrl-0 = <&max98090_irq>;
- 		clocks = <&pmu_system_controller 0>;
- 		clock-names = "mclk";
--		#sound-dai-cells = <1>;
-+		#sound-dai-cells = <0>;
- 	};
- };
- 
+url:    https://github.com/intel-lab-lkp/linux/commits/Lucas-Tanure/ASoC-cs35l41-Only-disable-internal-boost/20230208-222109
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git for-next
+patch link:    https://lore.kernel.org/r/20230208141839.1097377-4-lucas.tanure%40collabora.com
+patch subject: [PATCH v3 3/4] ALSA: cs35l41: Add shared boost feature
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230209/202302090037.Ndp45WTg-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/87a5c357d253db3453537a973252d044ce02ad91
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Lucas-Tanure/ASoC-cs35l41-Only-disable-internal-boost/20230208-222109
+        git checkout 87a5c357d253db3453537a973252d044ce02ad91
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash sound/soc/codecs/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   sound/soc/codecs/cs35l41-lib.c: In function 'cs35l41_global_enable':
+>> sound/soc/codecs/cs35l41-lib.c:1212:17: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+    1212 |                 struct reg_sequence cs35l41_mdsync_down_seq[] = {
+         |                 ^~~~~~
+   sound/soc/codecs/cs35l41-lib.c:1217:46: error: 'cs35l45' undeclared (first use in this function)
+    1217 |                 ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_down_seq,
+         |                                              ^~~~~~~
+   sound/soc/codecs/cs35l41-lib.c:1217:46: note: each undeclared identifier is reported only once for each function it appears in
+   sound/soc/codecs/cs35l41-lib.c:1231:25: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+    1231 |                         struct reg_sequence cs35l41_mdsync_up_seq[] = {
+         |                         ^~~~~~
+
+
+vim +1212 sound/soc/codecs/cs35l41-lib.c
+
+  1190	
+  1191	int cs35l41_global_enable(struct regmap *regmap, enum cs35l41_boost_type b_type, int enable,
+  1192				  struct completion *pll_lock)
+  1193	{
+  1194		int ret;
+  1195		unsigned int gpio1_func, pad_control, pwr_ctrl1, pwr_ctrl3;
+  1196	
+  1197		switch (b_type) {
+  1198		case CS35L41_SHD_BOOST_ACTV:
+  1199		case CS35L41_SHD_BOOST_PASS:
+  1200			regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
+  1201			regmap_read(regmap, CS35L41_GPIO_PAD_CONTROL, &pad_control);
+  1202	
+  1203			pwr_ctrl3 &= ~CS35L41_SYNC_EN_MASK;
+  1204			pwr_ctrl1 = enable << CS35L41_GLOBAL_EN_SHIFT;
+  1205	
+  1206			gpio1_func = enable ? CS35L41_GPIO1_MDSYNC : CS35L41_GPIO1_HIZ;
+  1207			gpio1_func <<= CS35L41_GPIO1_CTRL_SHIFT;
+  1208	
+  1209			pad_control &= ~CS35L41_GPIO1_CTRL_MASK;
+  1210			pad_control |= gpio1_func & CS35L41_GPIO1_CTRL_MASK;
+  1211	
+> 1212			struct reg_sequence cs35l41_mdsync_down_seq[] = {
+  1213				{CS35L41_PWR_CTRL3,		pwr_ctrl3},
+  1214				{CS35L41_GPIO_PAD_CONTROL,	pad_control},
+  1215				{CS35L41_PWR_CTRL1,		pwr_ctrl1, 3000},
+  1216			};
+  1217			ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_down_seq,
+  1218						     ARRAY_SIZE(cs35l41_mdsync_down_seq));
+  1219			if (!enable)
+  1220				break;
+  1221	
+  1222			if (!pll_lock)
+  1223				return -EINVAL;
+  1224	
+  1225			ret = wait_for_completion_timeout(pll_lock, msecs_to_jiffies(1000));
+  1226			if (ret == 0) {
+  1227				ret = -ETIMEDOUT;
+  1228			} else {
+  1229				regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
+  1230				pwr_ctrl3 |= CS35L41_SYNC_EN_MASK;
+  1231				struct reg_sequence cs35l41_mdsync_up_seq[] = {
+  1232					{CS35L41_PWR_CTRL3,	pwr_ctrl3},
+  1233					{CS35L41_PWR_CTRL1,	0x00000000, 3000},
+  1234					{CS35L41_PWR_CTRL1,	0x00000001, 3000},
+  1235				};
+  1236				ret = regmap_multi_reg_write(cs35l45->regmap, cs35l41_mdsync_up_seq,
+  1237							     ARRAY_SIZE(cs35l41_mdsync_up_seq));
+  1238			}
+  1239			break;
+  1240		case CS35L41_INT_BOOST:
+  1241			ret = regmap_update_bits(regmap, CS35L41_PWR_CTRL1, CS35L41_GLOBAL_EN_MASK,
+  1242						 enable << CS35L41_GLOBAL_EN_SHIFT);
+  1243			usleep_range(3000, 3100);
+  1244			break;
+  1245		case CS35L41_EXT_BOOST:
+  1246		case CS35L41_EXT_BOOST_NO_VSPK_SWITCH:
+  1247			if (enable)
+  1248				ret = regmap_multi_reg_write(regmap, cs35l41_safe_to_active,
+  1249							     ARRAY_SIZE(cs35l41_safe_to_active));
+  1250			else
+  1251				ret = regmap_multi_reg_write(regmap, cs35l41_active_to_safe,
+  1252							     ARRAY_SIZE(cs35l41_active_to_safe));
+  1253			break;
+  1254		default:
+  1255			ret = -EINVAL;
+  1256			break;
+  1257		}
+  1258	
+  1259		return ret;
+  1260	}
+  1261	EXPORT_SYMBOL_GPL(cs35l41_global_enable);
+  1262	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
