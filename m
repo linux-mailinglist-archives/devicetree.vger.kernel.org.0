@@ -2,131 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 055C468E9C8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D7F68E9D6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Feb 2023 09:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjBHIXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 03:23:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59632 "EHLO
+        id S230332AbjBHIZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 03:25:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjBHIXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:23:03 -0500
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25AFEB746;
-        Wed,  8 Feb 2023 00:23:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1675844582; x=1707380582;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eT7LyT1k1N1zT8h2h1TIVWuk3jB5eyl3BSlItLElxuw=;
-  b=gceGxfvgj/pRYd+OvN3pm45rr22v25Jc612QAJSOtzw5i9rKCdDhuhrN
-   P07YijBybzQ9MBFZrOa+zeNmwhQw8WdC4wE8Hj69qKtA2ICyD67iVuEyT
-   Bx08Q/Pc5haGm8znw1UskSiRT9By62+SbShEYwJHQDpvWZOKB9JOu34yb
-   5fFYYmBsfFIHKsshyxea7MNP9Nc3WyVZevIHiZ/Rojakitf9zviLJJpEG
-   8AB8fl6DyfImLTM8F8EbUm7bjbh8oFzVqvT4rXEV/+vJT9FAM7WNk2wyK
-   oU3y/FBmcV7oDjFAWPpSyNJ3RNvUOR00ZM5SF5AMj3q5SxPJ1nt+h+ysH
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="331874274"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; 
-   d="scan'208";a="331874274"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2023 00:23:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10614"; a="996049097"
-X-IronPort-AV: E=Sophos;i="5.97,280,1669104000"; 
-   d="scan'208";a="996049097"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 08 Feb 2023 00:22:57 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pPfjE-0004JC-1f;
-        Wed, 08 Feb 2023 08:22:56 +0000
-Date:   Wed, 8 Feb 2023 16:22:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com, dphadke@linux.microsoft.com
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v4 6/6] Driver: VMBus: Add device tree support
-Message-ID: <202302081621.odizDzHG-lkp@intel.com>
-References: <1675756199-5917-7-git-send-email-ssengar@linux.microsoft.com>
+        with ESMTP id S230073AbjBHIZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 03:25:31 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660CA2201A
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 00:25:29 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id hx15so49169847ejc.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 00:25:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i0tjf5bOdya1SAOSzwjPrA8wEI9QG75gdxmrCv7IQRU=;
+        b=WqTeOEEm+XZ4EQSj0CJVpiGag+IMvYAWv97c9fHJshb0FweRC/kgCLEZIy3S+IInPk
+         ZAV9wJmRoh3OxtVHNF7WSekXzrs8pvAMyW0Hr62aEo1tUx5kUNqqp8cFVLt5F9co99al
+         btptW8Vb154mjTIxF/7ppWVDd6qPxBSbtJ115fmISxIaOa9gDFfbkaHCmpG2IMBWEzvB
+         0bOYtJ7uN9egxGUpJxOE5tblk24aB5w9kg+UCRsnQzG+kU5tMoW1l5hwWZAktVVKJ2w/
+         Fb+wBQ5y6fPWzMZSgWVk/rJWNmboNhzaTh5ecPFlK5IGzklw06DpjXVy3mA74V02ymDw
+         ge5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i0tjf5bOdya1SAOSzwjPrA8wEI9QG75gdxmrCv7IQRU=;
+        b=WMtP67n7p7v3peY5mW9yZBCWU64/DCZgVT+tshOtJGvc7ajtFa+bucmHVDDUtpDkW0
+         TKxAxsNF6v13ZtMSkUHiekjBLtkcWXiglThV15fcLZMueOJzA0hm3H9tuQIiai6Eq0rh
+         H6oRYkDzlxsmBdg9TQ8conBvRJ3OQMD71fguxOpZZkV9uZF63XWQ5K6e6enDSCvq7ttP
+         3DNQmtEuurvOrtygRZrp/zFWwrgERUkXcBPhhif2kj5xrxQQRIPfWFMjDtIWp28+VGhe
+         K99zprgZq/bpibpqkjwQtKdaom/so6BBpTPw6FHXkKoBRT/hr7Q+qaYCUlhNlv7zyuKu
+         /JAg==
+X-Gm-Message-State: AO0yUKVbk46RuVIwRZpGEeHARTQwX08gT0cXAgu3XYHU8spZ+dIIGb9O
+        Quhe47X83vNqkfAVt7HMhAedFg==
+X-Google-Smtp-Source: AK7set+htJDiUcMQiBN0Q2V/YcqNp3RNT+mcHyVIubVIJkF1oZFmyV2neM3xAaBxniiMrvD9BfQu2Q==
+X-Received: by 2002:a17:907:9914:b0:873:393f:1bda with SMTP id ka20-20020a170907991400b00873393f1bdamr6666688ejc.47.1675844727974;
+        Wed, 08 Feb 2023 00:25:27 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id qt17-20020a170906ecf100b0085fc3dec567sm8114020ejb.175.2023.02.08.00.25.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Feb 2023 00:25:26 -0800 (PST)
+Message-ID: <0a1e1e27-f704-4875-7789-0995525235f8@linaro.org>
+Date:   Wed, 8 Feb 2023 09:25:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1675756199-5917-7-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: thinkpad-x13s: Add bluetooth
+Content-Language: en-US
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>
+References: <20230207052829.3996-1-steev@kali.org>
+ <20230207052829.3996-5-steev@kali.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230207052829.3996-5-steev@kali.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saurabh,
-
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on next-20230207]
-[cannot apply to robh/for-next tip/timers/core brgl/gpio/for-next wsa/i2c/for-next linus/master v6.2-rc7 v6.2-rc6 v6.2-rc5 v6.2-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Saurabh-Sengar/drivers-clocksource-hyper-v-non-ACPI-support-in-hyperv-clock/20230207-155113
-patch link:    https://lore.kernel.org/r/1675756199-5917-7-git-send-email-ssengar%40linux.microsoft.com
-patch subject: [PATCH v4 6/6] Driver: VMBus: Add device tree support
-config: i386-randconfig-a015 (https://download.01.org/0day-ci/archive/20230208/202302081621.odizDzHG-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/b3cd029f78e9c1f5cd1633e1ffc7c5a09deae98f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Saurabh-Sengar/drivers-clocksource-hyper-v-non-ACPI-support-in-hyperv-clock/20230207-155113
-        git checkout b3cd029f78e9c1f5cd1633e1ffc7c5a09deae98f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/hv/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/hv/vmbus_drv.c:2691:21: warning: attribute declaration must precede definition [-Wignored-attributes]
-   static const struct __maybe_unused of_device_id vmbus_of_match[] = {
-                       ^
-   include/linux/compiler_attributes.h:355:56: note: expanded from macro '__maybe_unused'
-   #define __maybe_unused                  __attribute__((__unused__))
-                                                          ^
-   include/linux/mod_devicetable.h:268:8: note: previous definition is here
-   struct of_device_id {
-          ^
-   1 warning generated.
 
 
-vim +2691 drivers/hv/vmbus_drv.c
+On 7.02.2023 06:28, Steev Klimaszewski wrote:
+> The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
+> add this.
+> 
+> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> ---
+> 
+> Changes since v3:
+>  * Add vreg_s1c
+>  * Add regulators and not dead code
+>  * Fix commit message changelog
+> 
+> Changes since v2:
+>  * Remove dead code and add TODO comment
+>  * Make dtbs_check happy with the pin definitions
+> ---
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index f936b020a71d..8e3c6524e7c6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -24,6 +24,8 @@ / {
+>  	aliases {
+>  		i2c4 = &i2c4;
+>  		i2c21 = &i2c21;
+> +		serial0 = &uart17;
+> +		serial1 = &uart2;
+>  	};
+>  
+>  	wcd938x: audio-codec {
+> @@ -297,6 +299,14 @@ pmc8280c-rpmh-regulators {
+>  		qcom,pmic-id = "c";
+>  		vdd-bob-supply = <&vreg_vph_pwr>;
+>  
+> +		vreg_s1c: smps1 {
+> +			regulator-name = "vreg_s1c";
+> +			regulator-min-microvolt = <1880000>;
+> +			regulator-max-microvolt = <1900000>;
+> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_AUTO>;
+Wouldn't you be interested in MODE_RET too?
 
-  2690	
-> 2691	static const struct __maybe_unused of_device_id vmbus_of_match[] = {
-  2692		{
-  2693			.compatible = "microsoft,vmbus",
-  2694		},
-  2695		{
-  2696			/* sentinel */
-  2697		},
-  2698	};
-  2699	MODULE_DEVICE_TABLE(of, vmbus_of_match);
-  2700	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> +			regulator-allow-set-load;
+> +		};
+> +
+>  		vreg_l1c: ldo1 {
+>  			regulator-name = "vreg_l1c";
+>  			regulator-min-microvolt = <1800000>;
+> @@ -712,6 +722,32 @@ &qup0 {
+>  	status = "okay";
+>  };
+>  
+> +&uart2 {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart2_state>;
+pinctrl-0
+pinctrl-names
+status
+
+> +
+> +	bluetooth {
+> +		compatible = "qcom,wcn6855-bt";
+> +
+> +		vddio-supply = <&vreg_s10b>;
+> +		vddbtcxmx-supply = <&vreg_s12b>;
+> +		vddrfacmn-supply = <&vreg_s12b>;
+> +		vddrfa0p8-supply = <&vreg_s12b>;
+> +		vddrfa1p2-supply = <&vreg_s11b>;
+> +		vddrfa1p7-supply = <&vreg_s1c>;
+> +
+> +		max-speed = <3200000>;
+> +
+> +		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
+> +		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_en>;
+pinctrl-0
+pinctrl-names
+
+> +	};
+> +};
+> +
+>  &qup1 {
+>  	status = "okay";
+>  };
+> @@ -720,6 +756,12 @@ &qup2 {
+>  	status = "okay";
+>  };
+>  
+> +&uart17 {
+> +	compatible = "qcom,geni-debug-uart";
+> +
+Not sure if this newline is necessary.
+
+
+Konrad
+> +	status = "okay";
+> +};
+> +
+>  &remoteproc_adsp {
+>  	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
+>  
+> @@ -980,6 +1022,19 @@ hastings_reg_en: hastings-reg-en-state {
+>  &tlmm {
+>  	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
+>  
+> +	bt_en: bt-en-state {
+> +		hstp-sw-ctrl-pins {
+> +			pins = "gpio132";
+> +			function = "gpio";
+> +		};
+> +
+> +		hstp-bt-en-pins {
+> +			pins = "gpio133";
+> +			function = "gpio";
+> +			drive-strength = <16>;
+> +		};
+> +	};
+> +
+>  	edp_reg_en: edp-reg-en-state {
+>  		pins = "gpio25";
+>  		function = "gpio";
+> @@ -1001,6 +1056,27 @@ i2c4_default: i2c4-default-state {
+>  		bias-disable;
+>  	};
+>  
+> +	uart2_state: uart2-state {
+> +		cts-pins {
+> +			pins = "gpio122";
+> +			function = "qup2";
+> +			bias-disable;
+> +		};
+> +
+> +		rts-tx-pins {
+> +			pins = "gpio122", "gpio123";
+> +			function = "qup2";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +
+> +		rx-pins {
+> +			pins = "gpio124";
+> +			function = "qup2";
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+>  	i2c21_default: i2c21-default-state {
+>  		pins = "gpio81", "gpio82";
+>  		function = "qup21";
