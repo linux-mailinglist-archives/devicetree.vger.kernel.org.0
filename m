@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B37DE6905D8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E146905D9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbjBIK5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 05:57:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51634 "EHLO
+        id S230238AbjBIK5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 05:57:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbjBIK4w (ORCPT
+        with ESMTP id S230165AbjBIK4w (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:56:52 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8AB56EEA
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:56:39 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso1182609wms.4
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:56:39 -0800 (PST)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48B1446D44
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:56:41 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so3576331wma.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:56:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DkQfpvEXLkkBGK82faSfAh95Y59PRiFEur7hbwKeQSE=;
-        b=mPqy6Bcrf4sv+Zqx/JqWjfw6kNqQEjkOzJg47tM/lr6WZOhvgFRLyUogxhmLjJWgfP
-         SbXqRyTrxwAOzaADo4YCEZLCWhFHNAx5aXCIcdaJIpHCg+rYFstoSBdUnitgZj9JTV8P
-         nzsjbzm7EcjUmU/DuMZ4PRRHiUAoSFNuED0rBkmTW1Q0LvBFTcHsdSv4rzU7gs/jfTlq
-         U4Yb0NPwk5gLMCIbaFTf9xC+HbXhNvQ+Bvw/U23TtSj45tLXmjoVjTTXk+ayFUEwk5C/
-         4Qaen5CJzIXybkok+/rKTZUikX9lQAcz24K6xL3eORUN8xcLXnoB0bbMI/JMs00+ba+y
-         tZGQ==
+        bh=2q8hw26gwJWXtp5r1FRgkbv2qRbakWQ2u6PTXa3lZjY=;
+        b=pBkOx0touhkuyBlg2qnghsZt/3FUPu7IDpVUv/kK+iSBh5RDtfv01cEGnzb1CaHnR4
+         eUl4QIoHA+RHfnlg9Km7NGoqmxJU9cOnVECgKnJm6+buPcalE2dnHcpKnoN3ORrrHkC6
+         cPPLfdjm3Cmp8w7DLTkDQnNHH8tSkYwNKiby0oJihM1NH3RR/Nc7SORmTiDZDtP/r/mH
+         MadwHIZtTfO/3XBPJzBNQZuw0g1xDHLYUrr2j/mMyeVfUZNOtTthR2ao3kiDcWlkKOe7
+         LKWZ2p1Abxj7ZG3/kAuA/0/hMGgGqbYAmT9+HY9yFpE/lmmsQndS1yS1wQY4pzaxcVVR
+         thLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DkQfpvEXLkkBGK82faSfAh95Y59PRiFEur7hbwKeQSE=;
-        b=pg36KnN7eXdhcfjOchkAeEo7/Q9l+kfzl6HOX/spMi5tma2VDPq8IAdVo8hlia260J
-         VFCAq7n++xKoVhSAkfYH6Jtjt3bDYNnm6FrMPQTBXllfHctdnFKJnV6uIFka71VQ9gJo
-         ohWL15xcSF9JgXOOGh9fgchVjiQh0wRXczFPAF/G7ADdSQmREuUsz6z6P52gnnT0Aiy/
-         gPbq21LNOjdSVvstOCRQHgbmOC99HmPy9E8RMzQH73oe/vl1WzdCETX5AXVzbf7I2LHa
-         2V3HhLKQJZDXXtz2adVNBFD1B9EFgr7VK+WpVAGSekyt2sd3CIQlpe0cF8HpjwSrLANE
-         IuIQ==
-X-Gm-Message-State: AO0yUKUQxqKrHeb+VZzaH+2RCQOgt+9aOu9a5P68UQT47uGJcgfCIZl/
-        KjHmPHvq37Rx05rUqI3xivPfTg==
-X-Google-Smtp-Source: AK7set9lMcnihuaam5mA7briorjCYjSvgNWxH6qnlI03x7Jc/W9gTnLZZl1Rx8dG/YamZlz0s+xj3A==
-X-Received: by 2002:a05:600c:2e89:b0:3e1:bfc:d16e with SMTP id p9-20020a05600c2e8900b003e10bfcd16emr6400221wmn.39.1675940198536;
-        Thu, 09 Feb 2023 02:56:38 -0800 (PST)
+        bh=2q8hw26gwJWXtp5r1FRgkbv2qRbakWQ2u6PTXa3lZjY=;
+        b=UJmPsnKE22VVSd5BzcfSTZEhExoL36AsJjRIeVNq+M7CZzZ9fpwNgr+xaDonIR/KuV
+         K9aSCiwnhhUYG9OMW6PDne9UOcS9nRnfMD3dQO1o6Ypzst561s1S7GV93a6vQSZ4x+c5
+         z4nHmmSPZqzVEM3NaIwVNZpRBLqHprKtHZjkNsPNfzxx1DhkL3RDxvap99gp6JQYKJcC
+         tRQBtoteo89NLZiTlR/bilu4+EdrcOTngboY6ZN3mcRRl2IqEOzmPhDqRAYeOky0JH3v
+         uGn+6pGcAbTFmOWFyWrod25qXKDRZDIKJ7/1Moat8s8fSUk9V1YKBd/ANSQXc67oAA+r
+         xfOg==
+X-Gm-Message-State: AO0yUKWm4J56jvVpjR0Ow44Eh0uYOkHjB5rsrCVG5moCdHfJvyJzfK7y
+        8ZjyFxIYI42nAEJmSmPxaCw5rA==
+X-Google-Smtp-Source: AK7set8sJM+sYYdkMocTL4fw90ZAvRg4fpY02hAKNq8bcpW4Pul93Z1dRtAKSyvd9IWEj0/DFw12EA==
+X-Received: by 2002:a05:600c:35cd:b0:3df:eda1:439c with SMTP id r13-20020a05600c35cd00b003dfeda1439cmr5578177wmq.11.1675940199925;
+        Thu, 09 Feb 2023 02:56:39 -0800 (PST)
 Received: from t480-bl003.. (185.173.185.81.rev.sfr.net. [81.185.173.185])
-        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b003daf6e3bc2fsm9140466wms.1.2023.02.09.02.56.37
+        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b003daf6e3bc2fsm9140466wms.1.2023.02.09.02.56.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 02:56:38 -0800 (PST)
+        Thu, 09 Feb 2023 02:56:39 -0800 (PST)
 From:   bchihi@baylibre.com
 To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
         rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
@@ -60,17 +60,17 @@ Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         khilman@baylibre.com, james.lo@mediatek.com,
         rex-bc.chen@mediatek.com
-Subject: [PATCH v14 5/6] arm64: dts: mediatek: mt8195: Add thermal zones and thermal nodes
-Date:   Thu,  9 Feb 2023 11:56:27 +0100
-Message-Id: <20230209105628.50294-6-bchihi@baylibre.com>
+Subject: [PATCH v14 6/6] arm64: dts: mediatek: mt8195: Add temperature mitigation threshold
+Date:   Thu,  9 Feb 2023 11:56:28 +0100
+Message-Id: <20230209105628.50294-7-bchihi@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230209105628.50294-1-bchihi@baylibre.com>
 References: <20230209105628.50294-1-bchihi@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,172 +79,287 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Balsam CHIHI <bchihi@baylibre.com>
 
-Add thermal zones and thermal nodes for the mt8195.
+The mt8195 SoC has several hotspots around the CPUs. Specify the
+targeted temperature threshold when to apply the mitigation and define
+the associated cooling devices.
 
 Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 129 +++++++++++++++++++++++
- 1 file changed, 129 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 169 ++++++++++++++++++++---
+ 1 file changed, 153 insertions(+), 16 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 09df105f4606d..c7e958f8f1b5a 100644
+index c7e958f8f1b5a..10c8fb0856bc4 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
 @@ -14,6 +14,7 @@
  #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
  #include <dt-bindings/power/mt8195-power.h>
  #include <dt-bindings/reset/mt8195-resets.h>
-+#include <dt-bindings/thermal/mediatek,lvts-thermal.h>
++#include <dt-bindings/thermal/thermal.h>
+ #include <dt-bindings/thermal/mediatek,lvts-thermal.h>
  
  / {
- 	compatible = "mediatek,mt8195";
-@@ -954,6 +955,17 @@ spi0: spi@1100a000 {
- 			status = "disabled";
+@@ -2413,107 +2414,243 @@ dp_tx: dp-tx@1c600000 {
+ 
+ 	thermal_zones: thermal-zones {
+ 		cpu0-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU0>;
++
+ 			trips {
++				cpu0_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu0_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu0_alert>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
  		};
  
-+		lvts_ap: thermal-sensor@1100b000 {
-+			compatible = "mediatek,mt8195-lvts-ap";
-+			reg = <0 0x1100b000 0 0x1000>;
-+			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+			resets = <&infracfg_ao MT8195_INFRA_RST0_THERM_CTRL_SWRST>;
-+			nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-+			nvmem-cell-names = "lvts-calib-data-1", "lvts-calib-data-2";
-+			#thermal-sensor-cells = <1>;
-+		};
+ 		cpu1-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU1>;
 +
- 		spi1: spi@11010000 {
- 			compatible = "mediatek,mt8195-spi",
- 				     "mediatek,mt6765-spi";
-@@ -1114,6 +1126,17 @@ mmc2: mmc@11250000 {
- 			status = "disabled";
+ 			trips {
++				cpu1_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu1_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu1_alert>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
  		};
  
-+		lvts_mcu: thermal-sensor@11278000 {
-+			compatible = "mediatek,mt8195-lvts-mcu";
-+			reg = <0 0x11278000 0 0x1000>;
-+			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+			resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-+			nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-+			nvmem-cell-names = "lvts-calib-data-1", "lvts-calib-data-2";
-+			#thermal-sensor-cells = <1>;
-+		};
+ 		cpu2-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU2>;
 +
- 		xhci1: usb@11290000 {
- 			compatible = "mediatek,mt8195-xhci",
- 				     "mediatek,mtk-xhci";
-@@ -2387,4 +2410,110 @@ dp_tx: dp-tx@1c600000 {
- 			status = "disabled";
+ 			trips {
++				cpu2_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu2_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu2_alert>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
+ 		};
+ 
+ 		cpu3-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU3>;
++
+ 			trips {
++				cpu3_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu3_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu3_alert>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
+ 		};
+ 
+ 		cpu4-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU0>;
++
+ 			trips {
++				cpu4_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu4_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu4_alert>;
++					cooling-device = <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
+ 		};
+ 
+ 		cpu5-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU1>;
++
+ 			trips {
++				cpu5_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu5_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu5_alert>;
++					cooling-device = <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
+ 		};
+ 
+ 		cpu6-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU2>;
++
+ 			trips {
++				cpu6_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu6_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu6_alert>;
++					cooling-device = <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
+ 		};
+ 
+ 		cpu7-thermal {
+-			polling-delay = <0>;
+-			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++			polling-delay-passive = <250>;
+ 			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU3>;
++
+ 			trips {
++				cpu7_alert: trip-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
+ 				cpu7_crit: trip-crit {
+ 					temperature = <100000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
+ 			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu7_alert>;
++					cooling-device = <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++								<&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
  		};
  	};
-+
-+	thermal_zones: thermal-zones {
-+		cpu0-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU0>;
-+			trips {
-+				cpu0_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu1-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU1>;
-+			trips {
-+				cpu1_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu2-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU2>;
-+			trips {
-+				cpu2_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu3-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_LITTLE_CPU3>;
-+			trips {
-+				cpu3_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu4-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU0>;
-+			trips {
-+				cpu4_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu5-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU1>;
-+			trips {
-+				cpu5_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu6-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU2>;
-+			trips {
-+				cpu6_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu7-thermal {
-+			polling-delay = <0>;
-+			polling-delay-passive = <0>;
-+			thermal-sensors = <&lvts_mcu MT8195_MCU_BIG_CPU3>;
-+			trips {
-+				cpu7_crit: trip-crit {
-+					temperature = <100000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
  };
 -- 
 2.34.1
