@@ -2,68 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 012686910F6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5477691105
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbjBITHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 14:07:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
+        id S229450AbjBITKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 14:10:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjBITHb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:07:31 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B25CAD15;
-        Thu,  9 Feb 2023 11:07:30 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id bh15so2500924oib.4;
-        Thu, 09 Feb 2023 11:07:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ljNnToeTIL1TFk9BZIDWfKvJLhPyA6JgaKeGR7D+Uy8=;
-        b=Wqua+6pxuFi6oAnYLNUGvVHskErAB164JIuCWrZGLQefpGPMDKOa+wfpIQZlUKd0HM
-         uDoRpCO5OFEAFlaRMlXYEhFKWk0rPnh0FGxnirZ80VrPcvfyYE5+pDqOk+tMK26duLFt
-         3OR4gATIQwB9P+Bgv+6dmLWtibAJmyWYZ0xRmXcLfvwcFsM0cLn+dWkWZAoDFhsNpt4M
-         TU0Cnpq2fFRggGTVcoMwMMtk5H1sRXEMlCQmucyZO4ZOOlI8dDmdR8sT49YmgQreWsD9
-         s7cal84ZoxTlRD4fV0SEYPOiDVuSX5Ju7mq3WifrtX30s+QocBCf9kfc0KV89QFN4HFZ
-         c/Hg==
-X-Gm-Message-State: AO0yUKWUVmUP6bUiZkVXunYY8AaUdEdM558pCrkRpRPMoTQRlpTPhJuk
-        V9NpJ2hh8TmNwjWTnPOw2w==
-X-Google-Smtp-Source: AK7set9kNL5f2SUSoOcy3zcL5Ej8M7/ppJqU+XYT7yBpDlUf9vvh4vTus6vEzRSNOxkw8vmpoD8elw==
-X-Received: by 2002:a05:6808:6292:b0:378:1e37:ff44 with SMTP id du18-20020a056808629200b003781e37ff44mr6380288oib.33.1675969649382;
-        Thu, 09 Feb 2023 11:07:29 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m128-20020acabc86000000b0037880fdb1f6sm1200297oif.24.2023.02.09.11.07.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 11:07:28 -0800 (PST)
-Received: (nullmailer pid 647682 invoked by uid 1000);
-        Thu, 09 Feb 2023 19:07:27 -0000
-Date:   Thu, 9 Feb 2023 13:07:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     bchihi@baylibre.com
-Cc:     linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
-        rdunlap@infradead.org, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
-        linux-pm@vger.kernel.org, rafael@kernel.org, amitk@kernel.org,
-        rui.zhang@intel.com, krzysztof.kozlowski+dt@linaro.org,
-        ye.xingchen@zte.com.cn, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v14 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
- controllers
-Message-ID: <167596964747.647630.15058465615417584783.robh@kernel.org>
-References: <20230209105628.50294-1-bchihi@baylibre.com>
- <20230209105628.50294-3-bchihi@baylibre.com>
+        with ESMTP id S229604AbjBITKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:10:15 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8841C66FAF
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 11:10:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 30F78B822D7
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 19:10:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1152EC433D2;
+        Thu,  9 Feb 2023 19:09:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1675969798;
+        bh=D15Kq849woOVI1YLNhoXChEYCGgOX9FUI/uMUN08w9o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ixjIUr/4Aunsg+LKNcYh3mSpOoSfkqUSQNFRrqSzbrhQ0TqW58+KIWNRRrDvZp0ke
+         6xt+R4X9+q98VLEQcUqr1VpRie9hmfFANT+quUBv/2kZT48vCBYhBE6dbKp55tNU2I
+         EE0fK/T/C8loHbHKct78AeJo+kKK9OuEVnqRYLkhLux6sI4t5ar7Hd0nsBmD9zG3nd
+         9rDalPUVjgV1HrlGHPdwXySYm3lXIEcZThSR4GoJWP72nZCZ6AGA9GfvhnPLvgHDWY
+         fjjZdUEZgTXzLkVZiMAUnNDEhFSDlo2F3pXV3SQ+m/2BVhXiKdsjiICsPW0So+qbSB
+         jzk4eCB4452Sg==
+Date:   Thu, 9 Feb 2023 19:09:53 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Andrew Jones <ajones@ventanamicro.com>
+Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        'Anup Patel ' <apatel@ventanamicro.com>,
+        'Palmer Dabbelt ' <palmer@dabbelt.com>,
+        'Paul Walmsley ' <paul.walmsley@sifive.com>,
+        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
+        'Atish Patra ' <atishp@rivosinc.com>,
+        'Heiko Stuebner ' <heiko@sntech.de>,
+        'Jisheng Zhang ' <jszhang@kernel.org>,
+        'Rob Herring ' <robh@kernel.org>,
+        'Albert Ou ' <aou@eecs.berkeley.edu>,
+        'Conor Dooley ' <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 6/8] RISC-V: Use Zicboz in clear_page when available
+Message-ID: <Y+VFAUZ2smkKO0EZ@spud>
+References: <20230209152628.129914-1-ajones@ventanamicro.com>
+ <20230209152628.129914-7-ajones@ventanamicro.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="veppz8gDaqvg02hq"
 Content-Disposition: inline
-In-Reply-To: <20230209105628.50294-3-bchihi@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230209152628.129914-7-ajones@ventanamicro.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,19 +65,69 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 09 Feb 2023 11:56:24 +0100, bchihi@baylibre.com wrote:
-> From: Balsam CHIHI <bchihi@baylibre.com>
-> 
-> Add LVTS thermal controllers dt-binding definition for mt8192 and mt8195.
-> 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> ---
->  .../thermal/mediatek,lvts-thermal.yaml        | 142 ++++++++++++++++++
->  .../thermal/mediatek,lvts-thermal.h           |  19 +++
->  2 files changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
->  create mode 100644 include/dt-bindings/thermal/mediatek,lvts-thermal.h
-> 
+--veppz8gDaqvg02hq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Thu, Feb 09, 2023 at 04:26:26PM +0100, Andrew Jones wrote:
+> Using memset() to zero a 4K page takes 563 total instructions, where
+> 20 are branches. clear_page(), with Zicboz and a 64 byte block size,
+> takes 169 total instructions, where 4 are branches and 33 are nops.
+> Even though the block size is a variable, thanks to alternatives, we
+> can still implement a Duff device without having to do any preliminary
+> calculations. This is achieved by taking advantage of 'vendor_id'
+> being used as application-specific data for alternatives, enabling us
+> to stop patching / unrolling when 4K bytes have been zeroed (we would
+> loop and continue after 4K if the page size would be larger)
+>=20
+> For 4K pages, unrolling 16 times allows block sizes of 64 and 128 to
+> only loop a few times and larger block sizes to not loop at all. Since
+> cbo.zero doesn't take an offset, we also need an 'add' after each
+> instruction, making the loop body 112 to 160 bytes. Hopefully this
+> is small enough to not cause icache misses.
+>=20
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 74736b4f0624..42246bbfa532 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -280,6 +280,17 @@ void __init riscv_fill_hwcap(void)
+>  #ifdef CONFIG_RISCV_ALTERNATIVE
+>  static bool riscv_cpufeature_application_check(u32 feature, u16 data)
+>  {
+> +	switch (feature) {
+> +	case RISCV_ISA_EXT_ZICBOZ:
+> +		/*
+> +		 * Zicboz alternative applications provide the maximum
+
+I like the comment, rather than this being some wizardry.
+I find the word "applications" to be a little unclear, perhaps, iff this
+series needs a respin, this would work better as "Users of the Zicboz
+alternative provide..." (or s/Users/Callers)?
+
+> +		 * supported block size order, or zero when it doesn't
+> +		 * matter. If the current block size exceeds the maximum,
+> +		 * then the alternative cannot be applied.
+> +		 */
+> +		return data =3D=3D 0 || riscv_cboz_block_size <=3D (1U << data);
+> +	}
+> +
+>  	return data =3D=3D 0;
+>  }
+
+--veppz8gDaqvg02hq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+VFAQAKCRB4tDGHoIJi
+0mviAP4rLh2m+MLdM3RrIndb+WmlOQSSSRoaFx36yjj37BnHaAD/dhvxfhFkKQ6r
+UZR4CNvcoA4Bf0uG3ag4YsqP3yI2iAw=
+=6AcS
+-----END PGP SIGNATURE-----
+
+--veppz8gDaqvg02hq--
