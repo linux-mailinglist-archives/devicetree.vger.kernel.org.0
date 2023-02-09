@@ -2,152 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81ABE690E7E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 17:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BBE4690E90
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 17:45:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbjBIQkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 11:40:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48172 "EHLO
+        id S229741AbjBIQpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 11:45:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBIQkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 11:40:23 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 386E05D1CD;
-        Thu,  9 Feb 2023 08:40:22 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.97,284,1669042800"; 
-   d="scan'208";a="152269612"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 10 Feb 2023 01:40:21 +0900
-Received: from localhost.localdomain (unknown [10.226.92.132])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1D5E24002C2D;
-        Fri, 10 Feb 2023 01:40:18 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzg2ul-smarc-som: Enable serial NOR flash
-Date:   Thu,  9 Feb 2023 16:40:16 +0000
-Message-Id: <20230209164016.645399-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229728AbjBIQpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 11:45:38 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B414660BB7
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 08:45:37 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id by3so1083093wrb.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 08:45:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5uR5i0FrMW5N/c1BvQuZ5egyuH7BVj5RSnsyknMvLzQ=;
+        b=XaUegsDxVj5QXZDHVD7KSRMczAS+lUxthkMpuK4CerQmBlvHQNoBNpIvqVyaiBM91l
+         bLJL457lpw4igMDHcFVjRooyjly+y7KQxf2yN3xXap1m9Ae/nn8fW94Ap2R8g5lU6DwS
+         vPLvvfDy7XAYrqJXLotfkJl+o4g35ARzuNG6szs5XHhL3jFGojpgN1CVZzOHM/ACQXHO
+         8MIY4OIFNBH/I+26/y2mM+3wAnugSOnhfjOg1/ABjiYmN2OfdHmutuXl9MZewLh54qzM
+         vQaWjDoGPssQTK2v3O4JDd0KwHrEaHNVrX9EhyZiVONHFNHRC6FKZ48VFs714X+CtzpP
+         5Fig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5uR5i0FrMW5N/c1BvQuZ5egyuH7BVj5RSnsyknMvLzQ=;
+        b=gD79cFrJJywzW+erHY2hM81FesB85cqKw0P2+RSJJg9l1auQAJzYwa0D6broXgkX/w
+         XgWWwmb6ZmX8+VIHTLB9GZtiKQEbpZVx5qe2ESERRkKRQBIjo6FomQIWmQLGwqfkdgPx
+         NzzR6ajRl5xvTUXigLndzcO2h2XIvpUYSD6PUSs/yxIZl1+K1z8c6UFH3o2KtILCEaLE
+         KyAZVW86OdUUuU0S56UBB9RQsScO7ppZ8Ywv6BuExi6CZgIMHbkEmZ5h3wLc6HOo4BcK
+         Ji9lgagVp1FOZpDP1Tun2SAwMLYySD1KXM6EvG+WdCEHiS74wTurkEbYb3VYvGk/bBqw
+         fQzA==
+X-Gm-Message-State: AO0yUKUachJ484g2Mc5cELSFh13wPUy5qCuRldhwh4iA6+GifgMTzrXu
+        3ycvU9qe8eBJlowGhedTkJd7Yg==
+X-Google-Smtp-Source: AK7set+p7l3XRf70/iTHIzo4O2nXKUZqUcmJodQy8/cPPK7RklqnjaQsmn5XZrA/tviz7lznisNvLQ==
+X-Received: by 2002:a5d:498d:0:b0:2c4:b150:9273 with SMTP id r13-20020a5d498d000000b002c4b1509273mr2836816wrq.19.1675961136292;
+        Thu, 09 Feb 2023 08:45:36 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d4001000000b002bcaa47bf78sm1649946wrp.26.2023.02.09.08.45.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 08:45:35 -0800 (PST)
+Message-ID: <3c1b7ab9-c228-6d72-47e9-855e12fdba4f@linaro.org>
+Date:   Thu, 9 Feb 2023 17:45:33 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v5 1/8] arm64: dts: qcom: sc7280: Extract audio nodes from
+ common idp dtsi file
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
+        konrad.dybcio@somainline.org, mka@chromium.org,
+        quic_mohs@quicinc.com
+References: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com>
+ <1675700201-12890-2-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1675700201-12890-2-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Renesas at25ql128a flash connected to QSPI0. Also disable
-the node from rzfive-smarc-som as it is untested.
+On 06/02/2023 17:16, Srinivasa Rao Mandadapu wrote:
+> Split common idp dtsi file into audio specific dtsi and common
+> idp dtsi file.
+> 
+> It is required to isolate idp and crd-rev3 platform device tree nodes
+> and convert crd-rev3 platform device tree nodes into audioreach specific
+> device tree nodes.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi | 135 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |   1 +
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 126 -----------------------
+>  3 files changed, 136 insertions(+), 126 deletions(-)
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-logs:
-root@smarc-rzg2ul:~# modprobe spi-rpc-if
-[  105.775964] spi-nor spi1.0: spi-nor-generic (16384 Kbytes)
-[  105.823268] 2 fixed-partitions partitions found on MTD device spi1.0
-[  105.829767] Creating 2 MTD partitions on "spi1.0":
-[  105.835867] 0x000000000000-0x000000200000 : "boot"
-[  105.849639] 0x000000200000-0x000001000000 : "user"
+Actually you need to rebase on latest Bjorn's tree or linux-next as few
+properties were removed, so you need to remove them from
+sc7280-audio-idp.dtsi:
 
-# cat /sys/devices/platform/soc/10060000.spi/rpc-if-spi/spi_master/spi1/spi1.0/spi-nor/jedec_id
-1f42181f4218
-# cat /sys/devices/platform/soc/10060000.spi/rpc-if-spi/spi_master/spi1/spi1.0/spi-nor/partname
-spi-nor-generic
+https://lore.kernel.org/all/20230119122205.73372-2-krzysztof.kozlowski@linaro.org/
 
-Read/Write test
-root@smarc-rzg2ul:/cip-test-scripts# ./rpcif_t_001.sh
-
-EXIT|PASS|rpcif_t_001.sh|[00:03:25] ||
----
- .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    | 44 +++++++++++++++++++
- .../boot/dts/renesas/rzfive-smarc-som.dtsi    |  4 ++
- 2 files changed, 48 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-index 49ecd33aeeb8..d1a00f1d1b8c 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-@@ -179,6 +179,18 @@ eth1_pins: eth1 {
- 			 <RZG2L_PORT_PINMUX(18, 5, 1)>; /* IRQ7 */
- 	};
- 
-+	qspi0_pins: qspi0 {
-+		qspi0-data {
-+			pins = "QSPI0_IO0", "QSPI0_IO1", "QSPI0_IO2", "QSPI0_IO3";
-+			power-source = <1800>;
-+		};
-+
-+		qspi0-ctrl {
-+			pins = "QSPI0_SPCLK", "QSPI0_SSL";
-+			power-source = <1800>;
-+		};
-+	};
-+
- 	sdhi0_emmc_pins: sd0emmc {
- 		sd0_emmc_data {
- 			pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-@@ -230,6 +242,38 @@ sd0_mux_uhs {
- 	};
- };
- 
-+&sbc {
-+	pinctrl-0 = <&qspi0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <50000000>;
-+		spi-tx-bus-width = <1>;
-+		spi-rx-bus-width = <4>;
-+
-+		spi-cpol;
-+		spi-cpha;
-+		m25p,fast-read;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			boot@0 {
-+				reg = <0x00000000 0x200000>;
-+				read-only;
-+			};
-+			user@200000 {
-+				reg = <0x200000 0xE00000>;
-+			};
-+		};
-+	};
-+};
-+
- #if (SW_SW0_DEV_SEL)
- &sdhi0 {
- 	pinctrl-0 = <&sdhi0_emmc_pins>;
-diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-index d6f18754eb5d..56a907180485 100644
---- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-+++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-@@ -40,6 +40,10 @@ phy1: ethernet-phy@7 {
- 	};
- };
- 
-+&sbc {
-+	status = "disabled";
-+};
-+
- &sdhi0 {
- 	status = "disabled";
- };
--- 
-2.25.1
+Best regards,
+Krzysztof
 
