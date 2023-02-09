@@ -2,124 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FCDF6913B9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 23:49:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6FBF6913C8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 23:56:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230310AbjBIWtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 17:49:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49994 "EHLO
+        id S230334AbjBIW4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 17:56:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230335AbjBIWs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 17:48:59 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 379C05775C
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 14:48:50 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id l12so3480634edb.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 14:48:50 -0800 (PST)
+        with ESMTP id S230122AbjBIW4B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 17:56:01 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A845B76B
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 14:55:59 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id y19so3922551ljq.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 14:55:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XyWo2zO4dvGXWFJtJgoJZZVyO6XKnm2xahOkMMOVXbI=;
-        b=EcK8gFkjOvcbUZ26ixzm9QOa2qF939D8fpnzfkQSvGBx/nyOzSJlCE/1THc0A/7YAE
-         HWfUmwGem6g1e1tufjh56UXbvnjITp54gsyYGHpFmzjpiNjo9LccXpisLXa+S8G9DCZY
-         KKD20EmdT68+qrjTR8HY+IuyuUKDKL2I95fNQNLoPTy/Pi9T99BVEVwlT1e6TauVmglP
-         CzWvWiOuvlmLTQlhcl4PVbGCYnsEEopmYK8ZD/TNYTHtng+zrRzK5L25HvMx+SnZJDS2
-         OhVjMe+dJ9q9QKoQ41TJ6xXqRWBPiYec9ulS2o62DJ6dbTBjBB3qn3aHHv+XLcTt8q+Y
-         UtTA==
+        d=chromium.org; s=google;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+/3WdsTnQdOHde9msyQKMoio/ECH8a5tpAu+T/cYiEY=;
+        b=aRzGLdiNL3eF8phfIt/X7mZWoYj/8IzoLLTcAaXgn7QP0njSJYpssKCVpXQg9rIbDg
+         kk/kyO3fWq0ZDRcQmQGXPqMLHMkvxIP+PCrcQz5fxtiWTx3IQjcqBqCTK68551Dgyz88
+         Lww+qF8HyOkYhI4VNqfUUfdRZEZFaM0SFtpvU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XyWo2zO4dvGXWFJtJgoJZZVyO6XKnm2xahOkMMOVXbI=;
-        b=zOiIymivA24tiUrdl82Lki6T9CxvwvbTd29RLG0m6HoKUOA1BmdCw8U5mk9qjTSBGa
-         v60+cgKMk/cbV5Qwrn6zrshmyUiZ9+aod9UGibTDM9lETy7U+BqZnX830nnm4pMRdSo7
-         BdquF6FhK4y+TqtRVKwCEnJ3Jh28udaGI/j0z8U6GPhSB6CMjHWdFerxZjYtFalq+tAG
-         OnUr+Y/gZPbyZ7t5IU35Cb2/pNFd/ZrSrJTJGVSQRAEqFQhU7NFH0IOCA0iHq5PT4359
-         MUxhwE7AReV1KgAuwEQCI9UO+SoKhTL93nriEO8zeEbQetEK1ixPT9zATXeXrI5o6yEx
-         an0A==
-X-Gm-Message-State: AO0yUKUE0YCD4QdHgVVz8KWzgxrCVbuSL5JnWSM8OqAfQl5mtskmreGu
-        RAJ7guLOLZu3IS9ywJ3r2YCbZxPMcxwlxUjI
-X-Google-Smtp-Source: AK7set9A7Ra/aegx3S43kpP81yyoupcto0SVS0hA9tCaVI+cpBVBi6mYv35KfR3JD8WMB0EnMJDiQA==
-X-Received: by 2002:a50:9eee:0:b0:49d:9ff4:d82b with SMTP id a101-20020a509eee000000b0049d9ff4d82bmr14323132edf.15.1675982928827;
-        Thu, 09 Feb 2023 14:48:48 -0800 (PST)
-Received: from localhost (h-46-59-89-207.A463.priv.bahnhof.se. [46.59.89.207])
-        by smtp.gmail.com with ESMTPSA id k26-20020a50c09a000000b004a21304f5a0sm1379071edf.72.2023.02.09.14.48.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 14:48:48 -0800 (PST)
-Date:   Thu, 9 Feb 2023 23:48:47 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] thermal/drivers/rcar_gen3: Add support for R-Car V4H
-Message-ID: <Y+V4T0KuX9BTEcW6@oden.dyn.berto.se>
-References: <cover.1675958665.git.geert+renesas@glider.be>
- <852048eb5f4cc001be7a97744f4c5caea912d071.1675958665.git.geert+renesas@glider.be>
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+/3WdsTnQdOHde9msyQKMoio/ECH8a5tpAu+T/cYiEY=;
+        b=E7YMK958ZUZhj0UdVCKikEcSi2GeD4yY98hg1G/9Q2O3+1LL5tdGT50HxdIVL85BIE
+         igJy97EHP6M1uTMyiPo1mju+z97NYOxW8dZ8CGazT/PEfW5vGzQF7aw8qL4NsCU4B+pF
+         86E17mLKcLW7/WYJtbKIMFJogK7I8PJ2W4xS2J6Z7RTXNo9B5H6zokmxRqDuCj8Nz+hq
+         +3F+ilDZtnr5B5rjAZByfodypqtqdG12D6G5G8sMHLWCJCCwtu1qRrUEnJT1WJEL9JAT
+         E3gRJyzcUof5InNlU5ggg3hMZl5nSu007fhyIKc/Oel7RtIgk9Ev7CyrWU93sh1EyOIx
+         DA1Q==
+X-Gm-Message-State: AO0yUKU7OEAMgEerX+9u7VNqu0QaL3sVcPb4mR7I0Um6AtEU3ZX5ehR6
+        adcs6TZkSrsUFcU6zJpuzQzLcgdcN5rJ7pc3RakN2qcS8asrhg==
+X-Google-Smtp-Source: AK7set+i6F2muyublkl3zPHwaGKHmip/aE9IKN/2NWtEl3MCsCwksdVhnIOPhSnHD2GYLH1+A2DsbkPPT6t5/4vraiE=
+X-Received: by 2002:a2e:8206:0:b0:290:5b9d:e97 with SMTP id
+ w6-20020a2e8206000000b002905b9d0e97mr2076244ljg.187.1675983357541; Thu, 09
+ Feb 2023 14:55:57 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 9 Feb 2023 17:55:56 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <852048eb5f4cc001be7a97744f4c5caea912d071.1675958665.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <1675700201-12890-4-git-send-email-quic_srivasam@quicinc.com>
+References: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com> <1675700201-12890-4-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 9 Feb 2023 17:55:56 -0500
+Message-ID: <CAE-0n53uReg41RrHrBDaNt+BgaPem_JO-2Wwq8e_g0NeNCvgXg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/8] arm64: dts: qcom: sc7280: Add LPASS PIL node
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        andersson@kernel.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        judyhsiao@chromium.org, konrad.dybcio@somainline.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        quic_mohs@quicinc.com, quic_rjendra@quicinc.com,
+        quic_rohkumar@quicinc.com, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, vkoul@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thanks for your work.
-
-On 2023-02-09 17:11:54 +0100, Geert Uytterhoeven wrote:
-> Add support for the Thermal Sensor/Chip Internal Voltage Monitor/Core
-> Voltage Monitor (THS/CIVM/CVM) on the Renesas R-Car V4H (R8A779G0) SoC.
-> 
-> According to the R-Car V4H Hardware User's Manual Rev. 0.70, the
-> (preliminary) conversion formula for the thermal sensor is the same as
-> for most other R-Car Gen3 and Gen4 SoCs, while the (preliminary)
-> conversion formula for the chip internal voltage monitor differs.
-> As the driver only uses the former, no further changes are needed.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> ---
->  drivers/thermal/rcar_gen3_thermal.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/thermal/rcar_gen3_thermal.c b/drivers/thermal/rcar_gen3_thermal.c
-> index 4ef927437842af74..04245393e78d02c5 100644
-> --- a/drivers/thermal/rcar_gen3_thermal.c
-> +++ b/drivers/thermal/rcar_gen3_thermal.c
-> @@ -403,6 +403,10 @@ static const struct of_device_id rcar_gen3_thermal_dt_ids[] = {
->  		.compatible = "renesas,r8a779f0-thermal",
->  		.data = &rcar_gen3_ths_tj_1,
->  	},
-> +	{
-> +		.compatible = "renesas,r8a779g0-thermal",
-> +		.data = &rcar_gen3_ths_tj_1,
-> +	},
->  	{},
+Quoting Srinivasa Rao Mandadapu (2023-02-06 08:16:36)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> index 1810a36..5e99f49 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> @@ -107,3 +107,7 @@
+>                 };
+>         };
 >  };
->  MODULE_DEVICE_TABLE(of, rcar_gen3_thermal_dt_ids);
-> -- 
-> 2.34.1
-> 
+> +
+> +&remoteproc_adsp {
+> +       status = "okay";
+> +};
 
--- 
-Kind Regards,
-Niklas Söderlund
+Sort this file by phandle alphabetically?
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 6908bca..27ab992 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3439,6 +3441,97 @@
+>                         status = "disabled";
+>                 };
+>
+> +               remoteproc_adsp: remoteproc@3000000 {
+
+This should be sorted on physical address. I think the node above is
+spi@88dc000 so this is in the wrong place.
+
+> +                       compatible = "qcom,sc7280-adsp-pil";
+> +                       reg = <0 0x03000000 0 0x5000>, <0 0x0355b000 0 0x10>;
+> +                       reg-names = "qdsp6ss_base", "lpass_efuse";
+> +
+> +                       interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&adsp_smp2p_in 0 IRQ_TYPE_NONE>,
+
+Can these have proper irq flags? Doubtful they're IRQ_TYPE_NONE.
+
+> +                                             <&adsp_smp2p_in 1 IRQ_TYPE_NONE>,
+> +                                             <&adsp_smp2p_in 2 IRQ_TYPE_NONE>,
+> +                                             <&adsp_smp2p_in 3 IRQ_TYPE_NONE>,
+> +                                             <&adsp_smp2p_in 7 IRQ_TYPE_NONE>;
+> +
+> +                       interrupt-names = "wdog", "fatal", "ready",
+> +                                         "handover", "stop-ack",
+> +                                         "shutdown-ack";
+> +
+> +                       qcom,qmp = <&aoss_qmp>;
+> +
+> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +                                <&gcc GCC_CFG_NOC_LPASS_CLK>;
+> +
+
+Drop newline so clocks properties are together please.
+
+> +                       clock-names = "xo", "gcc_cfg_noc_lpass";
+> +
+> +                       iommus = <&apps_smmu 0x1800 0x0>;
+> +
+> +                       power-domains = <&rpmhpd SC7280_CX>;
+> +                       power-domain-names = "cx";
+> +
+> +                       required-opps = <&rpmhpd_opp_nom>;
+> +
+> +                       resets = <&pdc_reset PDC_AUDIO_SYNC_RESET>,
+> +                                <&aoss_reset AOSS_CC_LPASS_RESTART>;
+> +
+
+Drop newline so reset properties are together please.
+
+> +                       reset-names =  "pdc_sync", "cc_lpass";
+> +                       qcom,halt-regs = <&tcsr_1 0x3000 0x5000 0x8000 0x13000>;
+> +
+> +                       memory-region = <&adsp_mem>;
+> +
+> +                       qcom,smem-states = <&adsp_smp2p_out 0>;
+> +                       qcom,smem-state-names = "stop";
+> +
+> +                       status = "disabled";
+> +
+> +                       glink-edge {
+> +                               interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
+> +                                                      IPCC_MPROC_SIGNAL_GLINK_QMP
+> +                                                      IRQ_TYPE_EDGE_RISING>;
+> +
+> +                               mboxes = <&ipcc IPCC_CLIENT_LPASS
+> +                                        IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +                               label = "lpass";
+> +                               qcom,remote-pid = <2>;
+> +
+> +                               gpr {
+
+This node name should be apr per the qcom,glink-edge.yaml binding?
+
+> +                                       compatible = "qcom,gpr";
+> +                                       qcom,glink-channels = "adsp_apps";
+> +                                       qcom,domain = <GPR_DOMAIN_ID_ADSP>;
+> +                                       qcom,intents = <512 20>;
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       q6apm: service@1 {
+> +                                               compatible = "qcom,q6apm";
+> +                                               reg = <GPR_APM_MODULE_IID>;
+> +                                               #sound-dai-cells = <0>;
+> +
+> +                                               q6apmdai: dais {
+> +                                                       compatible = "qcom,q6apm-dais";
+> +                                                       iommus = <&apps_smmu 0x1801 0x0>;
+> +                                               };
+> +
+> +                                               q6apmbedai: bedais {
+> +                                                       compatible = "qcom,q6apm-lpass-dais";
+> +                                                       #sound-dai-cells = <1>;
+> +                                               };
+> +                                       };
+> +
+> +                                       q6prm: service@2 {
+> +                                               compatible = "qcom,q6prm";
+> +                                               reg = <GPR_PRM_MODULE_IID>;
+> +
+> +                                               q6prmcc: clock-controller {
+> +                                                       compatible = "qcom,q6prm-lpass-clocks";
+
+This is clk binding but not a clk driver? I'll look away now.
+
+> +                                                       #clock-cells = <2>;
+> +                                               };
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
