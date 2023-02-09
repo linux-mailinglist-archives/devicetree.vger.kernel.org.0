@@ -2,104 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFAEA69094A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 741ED690958
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:56:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjBIMvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 07:51:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56388 "EHLO
+        id S229577AbjBIM4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 07:56:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjBIMvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:51:52 -0500
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D741D92A
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:51:51 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id h4so1931327lja.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:51:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iRYps+Ma2Qqyq4fQTjr9b3fPUVRBD6fsZfpuH1A4tX8=;
-        b=XGvH++3FCk8W6dx2NRDYnbaEoBBeofbx5VgO0Gu8DITu5Jmmzj7c+ExPBXtarLXiju
-         kR+Svl6ZeOVtP0hhV5YLymJg0s0heXv4HQtgnkZfMMT0lEyQMEQ4qsm/tckVh32Vbm/T
-         7CC43LQPkxg4UQgUB6WGlZcc1+cGReHx5t6qBlSivY7E6pJ+V8FTyywwrKXI9GrxkYc3
-         6iaOf0wZ6ZsG5IkBbvQVwDuogdg8vLz+ITz3fS2UdE10oshfMzHUSlUOIx/Daq1HPyfX
-         iQJ882tLXxf85Vi7IDH/ztS1WJYHINQCNxwpZ/jlWDWmiYvxc9tKA5vesBe7X9eHwRvz
-         /EqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iRYps+Ma2Qqyq4fQTjr9b3fPUVRBD6fsZfpuH1A4tX8=;
-        b=r+0ClL4PqN8aSYo4USIaauFr9aO+e19Hr8tvJtx11AFXvQbsByzbydmHo7Q1c2o5wu
-         V/MA67ycrk0sM2vwGA66Qp8ACeWO49xapwDnqxOrhOb2A8qYzgnyn18AeLKnpN4QxUvq
-         kBsqKV8eq3RVJ9IEPhcyiaqTA7Q04AOoDit+8+4I1PD4xQ1ttlE6DyGhSQ8Dh3oh2G3R
-         6CF/zQruOCebKvAmBsPpqFFYOTYg7uQBjbtyh4yGgIKDk/08FgIyhszAf3SugUfOiqUn
-         CDxriHo7S754nxLwYN9G+dCDFyZ4MhWwgj/+9R2sD4eDsvp2Dm7g2tVT0vjMhl/jzl+P
-         MjTQ==
-X-Gm-Message-State: AO0yUKUTuOTczOvyeW6Fk+AyMLI/TGLcfu1iJoVJ6HeTnD7V8NzJabFJ
-        yC2VVRW3rqJ/rzMzP1vQN2h744paJ0WTt/wkRwI=
-X-Google-Smtp-Source: AK7set/XE1SNap4g0Dj2Hjnd2tly0EI3O+pxqsXwSemk4UFkVYZETNuYGvVg/9nGfDjb1YYz+vE2v0q08lPreSr5Tbo=
-X-Received: by 2002:a2e:141c:0:b0:293:2986:4981 with SMTP id
- u28-20020a2e141c000000b0029329864981mr1018331ljd.99.1675947109468; Thu, 09
- Feb 2023 04:51:49 -0800 (PST)
+        with ESMTP id S229526AbjBIM4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:56:52 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A653CA08;
+        Thu,  9 Feb 2023 04:56:51 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B4E7766020C1;
+        Thu,  9 Feb 2023 12:56:48 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675947410;
+        bh=B5hP3G6FgIwkwEQg0vRoKUhdtFs0lIrWXYoejF8e8E8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DpNy81Y8cZBUImPcWpwdydIZDClrhB11oZkdB51NOK1gdJxTSZKa17INB6Y1qOA/e
+         1aBmlAIARNWb05savxMJ34bL1fEHn13Xxc2YLaIrQK8HWlxrjKDZij9GO45nzBQhjn
+         YuxI0QTVwSzZKW62zvUvRnd5b1OwwIaIQd1LXWLo9UqM6F2Dg7DC1x4ApKe9+oBk4i
+         loSoUCPgPnZO/w/0yMqrEpm7uOa3/TKrOhHzgLVSznM7Y8xdZqd9UvMzpOEZwyxxKg
+         /YA1Dvjh27HhPl18JDBra/T38K5VUZLdfPcVnwlcnllMegylMsh3zyO8az1Q3genrP
+         LELxvgOf5mSQA==
+Message-ID: <28f167b7-c468-8752-29d1-2a122e8142dd@collabora.com>
+Date:   Thu, 9 Feb 2023 13:56:45 +0100
 MIME-Version: 1.0
-Received: by 2002:a2e:b5a1:0:0:0:0:0 with HTTP; Thu, 9 Feb 2023 04:51:48 -0800 (PST)
-Reply-To: loanoffer2323@gmail.com
-From:   Loan Offer <jp948888@gmail.com>
-Date:   Thu, 9 Feb 2023 04:51:48 -0800
-Message-ID: <CAG54AJeZvvrnhV8ML1ZJqs_kmEyLMVg4xcVOaXbfA0ZWu5wexQ@mail.gmail.com>
-Subject: LOAN ORFER
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,UNDISC_FREEM
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:241 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5503]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [loanoffer2323[at]gmail.com]
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [jp948888[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [jp948888[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] media: mediatek: vcodec: Force capture queue format to
+ MM21
+Content-Language: en-US
+To:     Tommaso Merciai <tomm.merciai@gmail.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230209074025.1816-1-yunfei.dong@mediatek.com>
+ <Y+S1cA4PXT1MVJm8@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <Y+S1cA4PXT1MVJm8@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-LOAN OFFER.....
+Il 09/02/23 09:57, Tommaso Merciai ha scritto:
+> Hi Yunfei Dong,
+> 
+> On Thu, Feb 09, 2023 at 03:40:25PM +0800, Yunfei Dong wrote:
+>> In order to conver the format of capture queue from mediatek MM21 to
+>> standard yuv420 with Libyuv, need to force capture queue format to
+>> MM21 for Libyuv can't covert mediatek MT21 format.
+> 
+> Sorry, just some clarifications on my side, just to understand :)
+> The problem is that libyuv can't convert mm21 format into yuv420
+> than you need to use mm21 (forcing this).
+> Did I understand correctly?
+> 
+
+vcodec can output either MM21 or MT21C; libyuv can't handle the MT21C format,
+at least for now, hence he is forcing vcodec to always give MM21 for things
+to actually work... at a later time, I hope and suppose that this driver will
+change to not force anything anymore.
+
+> Thanks in advance,
+> Tommaso
+> 
+
+Yunfei, since this is required to get "basic" functionality, this commit needs
+a Fixes tag: can you please add the right one?
+
+Thanks!
+Angelo
 
 
-                           I need a loan to start up a business, pay
-up debt, we  gives out loan at 2% interest rate and gives out any
-amount requested. Contact us now via this email below ............
-loanoffer2323@gmail.com
-
- Whatsapp number +393297834184...
