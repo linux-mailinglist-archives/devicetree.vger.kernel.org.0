@@ -2,99 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48E65691172
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:37:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF73691187
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:45:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjBIThu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 14:37:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59740 "EHLO
+        id S229935AbjBITpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 14:45:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjBIThu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:37:50 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F642CC6F;
-        Thu,  9 Feb 2023 11:37:49 -0800 (PST)
-Received: from localhost (unknown [86.120.32.152])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E2F0766020CE;
-        Thu,  9 Feb 2023 19:37:47 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675971468;
-        bh=rhDtpmqy4aWizG8w41QdC/uCJpCIZ4JNM87GvHiVTm0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=bWKmBIUWt8UglmQLQVTp2+M07vvVWXpqa77cjPwDR82g7g6wcWB6XtqnuMek7G/K1
-         tdcpQUNs/q9yz7JqzIBgNfylx3LEz3feeAuRiOTdJnTUfydqlt8DaeSaJrNafdNlzI
-         1M7+ZwM+zluWZ1Udm1yoO1Xp2Twl/VOSz6XbckbBRT8zLigfUBSKteuaE2zlT3UYPM
-         LQLjOlJ2Ztd1NnkFrGw4UPqW+nn3qghRVVzIaMMdgFE3piST6UsMoOh+/gm5bQcxRT
-         mVMquwQ+W7u8j8sHuVLdFUK6BEQomVR/tdSNkWLthxjN9QfmXefph/3o2UbV8UyHur
-         /Nbo3mG4B4+bQ==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH v2 1/1] dt-bindings: Fix multi pattern support in DT_SCHEMA_FILES
-Date:   Thu,  9 Feb 2023 21:37:35 +0200
-Message-Id: <20230209193735.795288-1-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.39.1
+        with ESMTP id S229579AbjBITpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:45:34 -0500
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12CCC5AB38
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 11:45:33 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id o1so1101465ioo.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 11:45:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tx7x78jzB/5TcK335na29BDCwW6N/hAYlq6Sp4YpsiI=;
+        b=RZ3yuuESZOagfSBmS5EF9BxQF8Z6uzBibqMujT1Q2VYT/kbeqhgat8wvBSUaQmrsS5
+         3LSQUloXf4nb2orTPziz8csXjYZbzsXrxwEShXVmj4GWoW/P0DQKs1Pp3xW3W6s9Fo8y
+         i6goArMbCCbMAE7lhk59fFsiLBp5EtgqZJIzg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tx7x78jzB/5TcK335na29BDCwW6N/hAYlq6Sp4YpsiI=;
+        b=BfCWcCL4ulYGvPeUM6r6IA4R6UBFhtl4PJMhTPumvZwRTIq75TdWKFFFImZ4smRYkE
+         2rhcjpA9L1aqmQpRvx5U1oSpYFA6n/iqWhsPww+ZkdbrEQebDT8htRR7ojd5BRFTRHB+
+         khSranODM9gMG4plYNJSh8qjoYzRdix0NSDKQfF1Ls6f1U9DGnrbunlftj6c+5bjiQDB
+         irRGp1vEtTLYN8VS6kmWZlJbwk3fVQ/y81Rz0f41yulZwcNm3cofQI+Z3KstTl8An2Ga
+         oqln80LWNWQH3nnsQUSZB/EoMk06e7lBzwQs0JGb+4tykf7IkSa9LrEdcaWLrtKJYvdh
+         FzBA==
+X-Gm-Message-State: AO0yUKVGe6Tg77ISLbdGJiA0uRr0Gd/GwcvORBL99yVsYiqrD5MBn5ns
+        3GJktEIrIfP2fwVTHscO6mqvSw==
+X-Google-Smtp-Source: AK7set8G93lun+KOXmMrPTB4I5i7w/4YIym7oI6fbFcw1C8vh2FLRyL91TcDy9MjGF5dHvdNY1Su1g==
+X-Received: by 2002:a5e:a908:0:b0:734:8f86:b78d with SMTP id c8-20020a5ea908000000b007348f86b78dmr8497317iod.11.1675971932453;
+        Thu, 09 Feb 2023 11:45:32 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id s26-20020a056602241a00b0071f4551300csm671672ioa.2.2023.02.09.11.45.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 11:45:32 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+X-Google-Original-From: Matthias Kaehlcke <mka@google.com>
+Date:   Thu, 9 Feb 2023 19:45:31 +0000
+To:     Owen Yang <ecs.taipeikernel@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Gavin Lee <gavin.lee@ecs.com.tw>,
+        Doug Anderson <dianders@chromium.org>,
+        Harvey <hunge@google.com>, Abner Yen <abner.yen@ecs.com.tw>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bob Moragues <moragues@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Adjust zombie PWM frequency
+Message-ID: <Y+VNW3ikQVgXK4VV@google.com>
+References: <20230209102807.1.I3e1463cd0fb66311a269f2698d0767a2acfaac3f@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230209102807.1.I3e1463cd0fb66311a269f2698d0767a2acfaac3f@changeid>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT_SCHEMA_FILES used to allow specifying a space separated list of file
-paths, but the introduction of partial matches support broke this
-feature:
+On Thu, Feb 09, 2023 at 10:28:16AM +0800, Owen Yang wrote:
+> Tune the PWM to solve screen flashing issue and high frequency noise.
+> 
+> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+> ---
+> 
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+> index 64deaaabac0f..000f64d27ab9 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+> @@ -61,8 +61,8 @@ ap_tp_i2c: &i2c0 {
+>  };
+>  
+>  &pm8350c_pwm_backlight {
+> -	/* Set the PWM period to 200 microseconds (5kHz duty cycle) */
+> -	pwms = <&pm8350c_pwm 3 200000>;
+> +	/* Set the PWM period to 320 microseconds (8kHz duty cycle) */
+> +	pwms = <&pm8350c_pwm 3 320000>;
 
-$ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
-[...]
-  LINT    Documentation/devicetree/bindings
-usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [...]
-                [-v]
-                [FILE_OR_DIR ...]
-yamllint: error: one of the arguments FILE_OR_DIR - is required
-[...]
+Is 'duty cycle' really correct here? The unit of the duty cycle is
+percent, not kHz and it shouldn't be impacted by this change. I guess
+you mean frequency.
 
-Restore the lost functionality by preparing a grep filter that is able
-to handle multiple search patterns.
-
-Additionally, as suggested by Rob, use ':' instead of ' ' as the
-patterns separator char. Hence, the command above becomes:
-
-$ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml:path/to/schema2.yaml"
-
-Fixes: 309d955985ee ("dt-bindings: kbuild: Support partial matches with DT_SCHEMA_FILES")
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
-Changes in v2:
- - Use ':' instead of ' ' as the patterns separator char, per Rob's review
- - Drop empty line between Fixes and Signed-off-by tags
-
- Documentation/devicetree/bindings/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index bf2d8a8ced77..8b395893bd85 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -28,7 +28,7 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
- find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
- 		-name 'processed-schema*' \)
- 
--find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
-+find_cmd = $(find_all_cmd) | grep -F -e "$(subst :," -e ",$(DT_SCHEMA_FILES))"
- CHK_DT_DOCS := $(shell $(find_cmd))
- 
- quiet_cmd_yamllint = LINT    $(src)
--- 
-2.39.1
-
+And how does this change result in a frequency of 8kHz? Wouldn't it be
+3.125 kHz with a peridod of 320us?
