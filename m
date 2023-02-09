@@ -2,258 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA7A1690EA7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 17:52:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B13BD690EB1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 17:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjBIQwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 11:52:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58376 "EHLO
+        id S229875AbjBIQ4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 11:56:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjBIQwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 11:52:22 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B54D21817B;
-        Thu,  9 Feb 2023 08:52:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=wvGkVNR7Kt7J6/yu+Te1okCnObmv66IkihKqSceI0Dc=; b=Wj2hJZKPNL80bvox5/FV1a6sg5
-        Oc+cEMQCo6GY/A4nxogX20wUKQYDJiERuH2xRHxBzBbkLuXoCsddt90ihfyDHkxWhd7PxT/5gJADB
-        JH58J4KjZvv2zZVag82gdwKKWXA7HnJdgs11/UycXLdLd8IcPZIKTxX368aWP6/c1K2DeCLo2nKZv
-        +6qeddXumJqwYVxsHqgcYGGlOtfutYBfLNKaxURyNPjKV4tHO21YEehqQ2pyojfoQJbRLduEvcTiF
-        7rzX3GdM7Xy36SLQm7X3WSqHfGj6P1AKqclJTr9RyDRmt+MT/X+I8Sz/QNBhji4TIRYck4btkCtvQ
-        36n4Xnhw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36484)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1pQA9H-00089d-5m; Thu, 09 Feb 2023 16:51:50 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1pQA9A-0004kb-Bs; Thu, 09 Feb 2023 16:51:44 +0000
-Date:   Thu, 9 Feb 2023 16:51:44 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Wong Vee Khee <veekhee@apple.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Revanth Kumar Uppala <ruppala@nvidia.com>,
-        Tan Tee Min <tee.min.tan@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v2 5/6] net: stmmac: add support for RZ/N1 GMAC
-Message-ID: <Y+UkoNpA9NiXlGmT@shell.armlinux.org.uk>
-References: <20230208164203.378153-1-clement.leger@bootlin.com>
- <20230208164203.378153-6-clement.leger@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+        with ESMTP id S229723AbjBIQ4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 11:56:40 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A057963139
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 08:56:37 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id v6-20020a17090ad58600b00229eec90a7fso6714144pju.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 08:56:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O1B0P7kRw0A7INu1hUkCmO2swChbGm7ak1r7O2nw4cg=;
+        b=akGeJBJYTsZpfLpuwHKiDhUMrQmm8DSQi1b5UQd4YNoJMaxQ1z3+Ds1rMzKquS0XNM
+         b77gjLHEkKB1vEyyjBmLbv11nFDzM4Y2ZPa8yGpzRRpC5vzX0noLZB+gc5AM+L/5XdhQ
+         Z1JcU+eieX0oEtZ5GJrLI+8cNAi6/5geW4qvJ2lbmpWl9Hn6HAWw1cWfoKxWZy+ZAZkA
+         TopR1N7Wos7UvMinYLkG9d8DxsLV9Ynu3utVnuDzoygYS1uLERX5NohGwcglMOuQaGwY
+         bnjIiEgbcG/fCh/G+OME0R/CCCkm1Lpojr00P2hGxZR2vCdfR9Hs1g98rjNo60DMTnOb
+         KCLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O1B0P7kRw0A7INu1hUkCmO2swChbGm7ak1r7O2nw4cg=;
+        b=uPfEI5h3YR2Z3uIOu1jlJDen/uj2Km7mrYAsSHS6E+xhWI4CcJ/qPFyVGU654TE/S8
+         wCD6IbtpdC1XS2Vwc2H8L478xFweSj1uw0NCBx+uZ92LHiAq3yz/6FwV/Z6P8L4U3xde
+         DVB1ELSbF+VwUql3d4En8obwAeEONayXb+8t6mCl4z7vKz1YLrVR5M+uYnIFe024UZu+
+         Vp2HXtOoyFQXd3LtQ71m69rAKij/2V0ixwmFiqWqkQ97zdK/MEhpiAhN9rvWcDQOBmM+
+         mDAjYOckyv7bG6yBFUduSOfoHcEhaYee8I+S/TNvt9YNrYNNRjJ4ERDVHrrcl5Evh/Ve
+         k1oQ==
+X-Gm-Message-State: AO0yUKWA+LJvJKdyH6AgFw8aQcfd0H5B0GVQQut41LJ1r0zrEux6llCU
+        rWCtElJKjjZWpAqsN8WNAKCOAg==
+X-Google-Smtp-Source: AK7set+IFIC9LYMc/R+5eflMD1UV/9SFCKBMosB4sENh4YTE84tfbEm6BKrtA0yTtNBZBE2Hh+IVNg==
+X-Received: by 2002:a05:6a21:1105:b0:bc:7bdd:551b with SMTP id oh5-20020a056a21110500b000bc7bdd551bmr9708617pzb.45.1675961796995;
+        Thu, 09 Feb 2023 08:56:36 -0800 (PST)
+Received: from localhost ([135.180.226.51])
+        by smtp.gmail.com with ESMTPSA id bt19-20020a632913000000b004dea53e52desm1544467pgb.27.2023.02.09.08.56.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 08:56:36 -0800 (PST)
+Date:   Thu, 09 Feb 2023 08:56:36 -0800 (PST)
+X-Google-Original-Date: Thu, 09 Feb 2023 08:56:33 PST (-0800)
+Subject:     Re: [PATCH v2 0/6] RISC-V Hardware Probing User Interface
+In-Reply-To: <de7fec14-7c43-6584-db72-b4c3a9f1423a@canonical.com>
+CC:     evan@rivosinc.com, heiko@sntech.de, jszhang@kernel.org,
+        linux-doc@vger.kernel.org, catalin.marinas@arm.com,
+        abrestic@rivosinc.com, Atish Patra <atishp@rivosinc.com>,
+        robh+dt@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        coelacanthus@outlook.com, krzysztof.kozlowski+dt@linaro.org,
+        panqinglin2020@iscas.ac.cn, bagasdotme@gmail.com, shuah@kernel.org,
+        linux-riscv@lists.infradead.org, corbet@lwn.net,
+        xianting.tian@linux.alibaba.com, research_trasio@irq.a4lg.com,
+        tklauser@distanz.ch, ajones@ventanamicro.com,
+        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
+        Arnd Bergmann <arnd@arndb.de>,
+        Vineet Gupta <vineetg@rivosinc.com>, broonie@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, c141028@gmail.com,
+        apatel@ventanamicro.com, linux-kselftest@vger.kernel.org,
+        slewis@rivosinc.com, rdunlap@infradead.org,
+        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+        dramforever@live.com, guoren@kernel.org, daolu@rivosinc.com,
+        jrtc27@jrtc27.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     heinrich.schuchardt@canonical.com
+Message-ID: <mhng-3155d460-77a4-4edb-8e26-db4447bce07e@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230208164203.378153-6-clement.leger@bootlin.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 08, 2023 at 05:42:02PM +0100, Clément Léger wrote:
-> Add support for Renesas RZ/N1 GMAC. This support uses a custom PCS (MIIC)
-> which is handle by parsing the pcs-handle device tree property.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
->  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->  .../net/ethernet/stmicro/stmmac/dwmac-rzn1.c  | 120 ++++++++++++++++++
->  3 files changed, 132 insertions(+)
->  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index f77511fe4e87..be5429b7e192 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -153,6 +153,17 @@ config DWMAC_ROCKCHIP
->  	  This selects the Rockchip RK3288 SoC glue layer support for
->  	  the stmmac device driver.
->  
-> +config DWMAC_RZN1
-> +	tristate "Renesas RZ/N1 dwmac support"
-> +	default ARCH_RZN1
-> +	depends on OF && (ARCH_RZN1 || COMPILE_TEST)
-> +	select PCS_RZN1_MIIC
-> +	help
-> +	  Support for Ethernet controller on Renesas RZ/N1 SoC family.
-> +
-> +	  This selects the Renesas RZ/N1 SoC glue layer support for
-> +	  the stmmac device driver.
-> +
->  config DWMAC_SOCFPGA
->  	tristate "SOCFPGA dwmac support"
->  	default ARCH_INTEL_SOCFPGA
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> index 057e4bab5c08..53a0f74c1cb5 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> @@ -22,6 +22,7 @@ obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
->  obj-$(CONFIG_DWMAC_OXNAS)	+= dwmac-oxnas.o
->  obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
->  obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
-> +obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
->  obj-$(CONFIG_DWMAC_SOCFPGA)	+= dwmac-altr-socfpga.o
->  obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
->  obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c
-> new file mode 100644
-> index 000000000000..82118d8cb50e
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c
-> @@ -0,0 +1,120 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (C) 2022 Schneider-Electric
-> + *
-> + * Clément Léger <clement.leger@bootlin.com>
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/pcs-rzn1-miic.h>
-> +#include <linux/phylink.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "stmmac_platform.h"
-> +#include "stmmac.h"
-> +
-> +struct rzn1_dwmac {
-> +	struct phylink_pcs *pcs;
-> +};
+On Mon, 06 Feb 2023 14:47:35 PST (-0800), heinrich.schuchardt@canonical.com wrote:
+> On 2/6/23 22:11, Jessica Clarke wrote:
+>> On 6 Feb 2023, at 20:14, Evan Green <evan@rivosinc.com> wrote:
+>>>
+>>>
+>>> These are very much up for discussion, as it's a pretty big new user
+>>> interface and it's quite a bit different from how we've historically
+>>> done things: this isn't just providing an ISA string to userspace, this
+>>> has its own format for providing information to userspace.
+>>>
+>>> There's been a bunch of off-list discussions about this, including at
+>>> Plumbers.  The original plan was to do something involving providing an
+>>> ISA string to userspace, but ISA strings just aren't sufficient for a
+>>> stable ABI any more: in order to parse an ISA string users need the
+>>> version of the specifications that the string is written to, the version
+>>> of each extension (sometimes at a finer granularity than the RISC-V
+>>> releases/versions encode), and the expected use case for the ISA string
+>>> (ie, is it a U-mode or M-mode string).  That's a lot of complexity to
+>>> try and keep ABI compatible and it's probably going to continue to grow,
+>>> as even if there's no more complexity in the specifications we'll have
+>>> to deal with the various ISA string parsing oddities that end up all
+>>> over userspace.
+>>>
+>>> Instead this patch set takes a very different approach and provides a set
+>>> of key/value pairs that encode various bits about the system.  The big
+>>> advantage here is that we can clearly define what these mean so we can
+>>> ensure ABI stability, but it also allows us to encode information that's
+>>> unlikely to ever appear in an ISA string (see the misaligned access
+>>> performance, for example).  The resulting interface looks a lot like
+>>> what arm64 and x86 do, and will hopefully fit well into something like
+>>> ACPI in the future.
+>>>
+>>> The actual user interface is a syscall.  I'm not really sure that's the
+>>> right way to go about this, but it makes for flexible prototying.
+>>> Various other approaches have been talked about like making HWCAP2 a
+>>> pointer, having a VDSO routine, or exposing this via sysfs.  Those seem
+>>> like generally reasonable approaches, but I've yet to figure out a way
+>>> to get the general case working without a syscall as that's the only way
+>>> I've come up with to deal with the heterogenous CPU case.  Happy to hear
+>>> if someone has a better idea, though, as I don't really want to add a
+>>> syscall if we can avoid it.
+>
+> Operating systems tend to reschedule threads moving them between harts.
+> New threads may be created by processes at any time.
+>
+> It is not clear to me what information the syscall shall convey in the
+> heterogeneous case. I see the following alternatives:
+>
+> * The syscall describes the current hart.
+> * The syscall provides individual properties of all harts.
+> * The syscall provides a set of properties that is valid for any hart on
+> which the thread might be scheduled.
+> * The syscall provides a set of properties that is valid for any hart
+> that any thread of the current process might be scheduled to.
+>
+> Describing only the current hart would not be helpful as the thread
+> might be rescheduled to a hart with a smaller set of available extensions.
+>
+> Describing the properties of all harts would not be helpful if the
+> thread has no control to which hart it is scheduled.
+>
+> Processes that don't control scheduling would most benefit from a
+> guaranteed set of properties valid for all threads of the process.
+>
+> Processes that take control of scheduling would probably want
+> information about all harts.
 
-I don't understand why you need this...
+There's a cpu_set_t argument.  We tried to answer this via the 
+Documentation patch.  It's just the single sentence
 
-> +
-> +static int rzn1_dt_parse(struct device *dev, struct rzn1_dwmac *dwmac)
+    The CPU set is defined by CPU_SET(3), the indicated features will be 
+    supported on all CPUs in the set.
 
-You could pass a pointer to struct plat_stmmacenet_data into here, and
-have it fill in your new ->pcs directly, and save the extra devm
-allocations.
+so maybe it needs beefing up...  Do you mind commenting on the doc diff, 
+if you've got any ideas as to how to word it better?  That way anyone 
+else reviewing the docs will see too.
 
-> +{
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *pcs_node;
-> +	struct phylink_pcs *pcs;
-> +	int ret;
-> +
-> +	pcs_node = of_parse_phandle(np, "pcs-handle", 0);
-> +	if (!pcs_node)
-> +		return 0;
-> +
-> +	pcs = miic_create(dev, pcs_node);
-
-Don't you need to put pcs_node?
-
-> +	if (IS_ERR(pcs))
-> +		return PTR_ERR(pcs);
-> +
-> +	ret = miic_early_setup(pcs, dev);
-> +	if (ret) {
-> +		miic_destroy(pcs);
-> +		return ret;
-> +	}
-> +
-> +	dwmac->pcs = pcs;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rzn1_dwmac_probe(struct platform_device *pdev)
-> +{
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct stmmac_resources stmmac_res;
-> +	struct device *dev = &pdev->dev;
-> +	struct rzn1_dwmac *dwmac;
-> +	int ret;
-> +
-> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +	if (ret)
-> +		return ret;
-> +
-> +	plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +	if (IS_ERR(plat_dat))
-> +		return PTR_ERR(plat_dat);
-> +
-> +	dwmac = devm_kzalloc(dev, sizeof(*dwmac), GFP_KERNEL);
-> +	if (!dwmac) {
-> +		ret = -ENOMEM;
-> +		goto err_remove_config_dt;
-> +	}
-> +
-> +	ret = rzn1_dt_parse(dev, dwmac);
-> +	if (ret)
-> +		goto err_remove_config_dt;
-> +
-> +	plat_dat->bsp_priv = dwmac;
-
-You could set this to point back to plat_dat.
-
-> +	plat_dat->pcs = dwmac->pcs;
-> +
-> +	ret = stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
-> +	if (ret)
-> +		goto err_free_pcs;
-> +
-> +	return 0;
-> +
-> +err_free_pcs:
-> +	if (dwmac->pcs)
-> +		miic_destroy(dwmac->pcs);
-> +
-> +err_remove_config_dt:
-> +	stmmac_remove_config_dt(pdev, plat_dat);
-> +
-> +	return ret;
-> +}
-> +
-> +static int rzn1_dwmac_remove(struct platform_device *pdev)
-> +{
-> +	struct rzn1_dwmac *dwmac = get_stmmac_bsp_priv(&pdev->dev);
-
-... which means you get plat_dat back here...
-
-> +	int ret = stmmac_dvr_remove(&pdev->dev);
-> +
-> +	if (dwmac->pcs)
-> +		miic_destroy(dwmac->pcs);
-
-and can still destroy the pcs.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> Best regards
+>
+> Heinrich
+>
+>>
+>> Please work with https://github.com/riscv-non-isa/riscv-c-api-doc as
+>> itâ€™s crucial we have a portable standard interface for applications to
+>> query this information that works on OSes other than Linux. This can be
+>> backed by whatever you want, whether a syscall, magic VDSO thing,
+>> sysfs, etc, but itâ€™s key that the exposed interface outside of libc is
+>> not Linux-specific otherwise weâ€™re going to get fragmentation in this
+>> space.
+>>
+>> I would encourage figuring out the right shape for the exposed
+>> interface first before continuing to refine details of how that
+>> information gets communicated between the kernel and libc.
+>>
+>> Jess
+>>
+>>> An example series in glibc exposing this syscall and using it in an
+>>> ifunc selector for memcpy can be found at [1].
+>>>
+>>> [1] https://public-inbox.org/libc-alpha/20230206194819.1679472-1-evan@rivosinc.com/T/#t
+>>>
+>>> Changes in v2:
+>>> - Changed the interface to look more like poll(). Rather than supplying
+>>>    key_offset and getting back an array of values with numerically
+>>>    contiguous keys, have the user pre-fill the key members of the array,
+>>>    and the kernel will fill in the corresponding values. For any key it
+>>>    doesn't recognize, it will set the key of that element to -1. This
+>>>    allows usermode to quickly ask for exactly the elements it cares
+>>>    about, and not get bogged down in a back and forth about newer keys
+>>>    that older kernels might not recognize. In other words, the kernel
+>>>    can communicate that it doesn't recognize some of the keys while
+>>>    still providing the data for the keys it does know.
+>>> - Added a shortcut to the cpuset parameters that if a size of 0 and
+>>>    NULL is provided for the CPU set, the kernel will use a cpu mask of
+>>>    all online CPUs. This is convenient because I suspect most callers
+>>>    will only want to act on a feature if it's supported on all CPUs, and
+>>>    it's a headache to dynamically allocate an array of all 1s, not to
+>>>    mention a waste to have the kernel loop over all of the offline bits.
+>>> - Fixed logic error in if(of_property_read_string...) that caused crash
+>>> - Include cpufeature.h in cpufeature.h to avoid undeclared variable
+>>>    warning.
+>>> - Added a _MASK define
+>>> - Fix random checkpatch complaints
+>>> - Updated the selftests to the new API and added some more.
+>>> - Fixed indentation, comments in .S, and general checkpatch complaints.
+>>>
+>>> Evan Green (4):
+>>>   RISC-V: Move struct riscv_cpuinfo to new header
+>>>   RISC-V: Add a syscall for HW probing
+>>>   RISC-V: hwprobe: Support probing of misaligned access performance
+>>>   selftests: Test the new RISC-V hwprobe interface
+>>>
+>>> Palmer Dabbelt (2):
+>>>   RISC-V: hwprobe: Add support for RISCV_HWPROBE_BASE_BEHAVIOR_IMA
+>>>   dt-bindings: Add RISC-V misaligned access performance
+>>>
+>>> .../devicetree/bindings/riscv/cpus.yaml       |  15 ++
+>>> Documentation/riscv/hwprobe.rst               |  66 ++++++
+>>> Documentation/riscv/index.rst                 |   1 +
+>>> arch/riscv/include/asm/cpufeature.h           |  23 +++
+>>> arch/riscv/include/asm/hwprobe.h              |  13 ++
+>>> arch/riscv/include/asm/smp.h                  |   9 +
+>>> arch/riscv/include/asm/syscall.h              |   3 +
+>>> arch/riscv/include/uapi/asm/hwprobe.h         |  35 ++++
+>>> arch/riscv/include/uapi/asm/unistd.h          |   8 +
+>>> arch/riscv/kernel/cpu.c                       |  11 +-
+>>> arch/riscv/kernel/cpufeature.c                |  31 ++-
+>>> arch/riscv/kernel/sys_riscv.c                 | 192 +++++++++++++++++-
+>>> tools/testing/selftests/Makefile              |   1 +
+>>> tools/testing/selftests/riscv/Makefile        |  58 ++++++
+>>> .../testing/selftests/riscv/hwprobe/Makefile  |  10 +
+>>> .../testing/selftests/riscv/hwprobe/hwprobe.c |  89 ++++++++
+>>> .../selftests/riscv/hwprobe/sys_hwprobe.S     |  12 ++
+>>> tools/testing/selftests/riscv/libc.S          |  46 +++++
+>>> 18 files changed, 613 insertions(+), 10 deletions(-)
+>>> create mode 100644 Documentation/riscv/hwprobe.rst
+>>> create mode 100644 arch/riscv/include/asm/cpufeature.h
+>>> create mode 100644 arch/riscv/include/asm/hwprobe.h
+>>> create mode 100644 arch/riscv/include/uapi/asm/hwprobe.h
+>>> create mode 100644 tools/testing/selftests/riscv/Makefile
+>>> create mode 100644 tools/testing/selftests/riscv/hwprobe/Makefile
+>>> create mode 100644 tools/testing/selftests/riscv/hwprobe/hwprobe.c
+>>> create mode 100644 tools/testing/selftests/riscv/hwprobe/sys_hwprobe.S
+>>> create mode 100644 tools/testing/selftests/riscv/libc.S
+>>>
+>>> --
+>>> 2.25.1
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-riscv mailing list
+>>> linux-riscv@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>>
