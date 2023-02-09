@@ -2,61 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9814690F74
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 580D7690F71
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:45:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjBIRqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 12:46:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34966 "EHLO
+        id S229580AbjBIRp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 12:45:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjBIRp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:45:58 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872815C8A1
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 09:45:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE04DB82222
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 17:45:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60AC0C433D2;
-        Thu,  9 Feb 2023 17:45:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675964754;
-        bh=wsKWY5mniDEA1VyD/3e1Ls9PGad1tG04MhtLT/kvItI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=asShUOZaxIoVjnLISWa1NaM0y/ECxHF7AhpbLfLkijADdE0m19CCOaHARRzydFFk+
-         B8yi2Nr3LByleOHHc5htw90M1loC1peaiDrAWiGT9dDHdnlvuFBgD0IDTvPtjndm+z
-         frlh1CG/Grj/f+0C3Gz/t6oCPkGLlvvTvI/NFvAsWhnMqNyPVa5SXSiAEhGDQcKqOe
-         fS9ZfZuVeIF8j2KIO14pmMis8f8AkX7sZZYhKWVUUDCeNYCkYitjfh6K6fk4pRljzI
-         wGWAh9kDYTjtZWMRfUIq/HqyEs1oezg3KcdsO49eH8yjzJS2lKSxbj49KCFaXkxQDg
-         MFzkXKGZ4KGhg==
-Date:   Thu, 9 Feb 2023 17:45:48 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Rob Herring ' <robh@kernel.org>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Conor Dooley ' <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 0/8] RISC-V: Apply Zicboz to clear_page
-Message-ID: <Y+UxTBmegHqqHDCQ@spud>
-References: <20230209152628.129914-1-ajones@ventanamicro.com>
+        with ESMTP id S229468AbjBIRpz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:45:55 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845C35ACFB;
+        Thu,  9 Feb 2023 09:45:54 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id s17so2272398ois.10;
+        Thu, 09 Feb 2023 09:45:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0DrSTVU0MouuPAPgDnH3bvO6W0mBoIKC+iPYe6f7yQ8=;
+        b=NvYDTBDPFa+6x9dhLyqEGqjSMWeuiIG/34HvcJwFBCJ/L/Hj49cz8bs3XJhBrUqI9s
+         fCic/siVexNp1kG9kdSx7CAD5fde313O1vj67erhWVXGJH/oLOHf1SaC5l1AOyW2Zseq
+         r51T7trudUBB/f5lu/TAzi2dTF8oiwNf93iS199UECKyo+ksIpW/UJNv5RHZxAvOtp9f
+         fMbElOL3OldJOWUVyedlvZYnbreRyFDJs789SGjcIaag7j93de1BXw8kqwktzle1bKED
+         9DBIxYOH+xYAmP+xf9Mrvn6UH9MXzq4ZJonSXZwe+uQqwoK2yvgsAiLKDDSORxE6hCeP
+         +3OA==
+X-Gm-Message-State: AO0yUKXqlptBurg3XLppvjaIU5HwKRRqBoEfL1B2br5clXe7JXHsr0/c
+        48mfUe9Wm/dv0RCy4OsqNg==
+X-Google-Smtp-Source: AK7set9jyx6LMJhbcKNlh1fXP27jxIMoQEJ+KUbwmEZRPY53UW1ny3huB384noPvethCecih31RSAw==
+X-Received: by 2002:a05:6808:279a:b0:37b:3177:65c with SMTP id es26-20020a056808279a00b0037b3177065cmr5747500oib.28.1675964753686;
+        Thu, 09 Feb 2023 09:45:53 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z14-20020a0568301dae00b0068d56f93d73sm973117oti.26.2023.02.09.09.45.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 09:45:53 -0800 (PST)
+Received: (nullmailer pid 556291 invoked by uid 1000);
+        Thu, 09 Feb 2023 17:45:52 -0000
+Date:   Thu, 9 Feb 2023 11:45:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     anan.sun@mediatek.com, Xia Jiang <xia.jiang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>, yf.wang@mediatek.com,
+        chengci.xu@mediatek.com, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, Yunfei Dong <yunfei.dong@mediatek.com>,
+        Robin Murphy <robin.murphy@arm.com>, mingyuan.ma@mediatek.com,
+        Joerg Roedel <joro@8bytes.org>,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        libo.kang@mediatek.com,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        youlin.pei@mediatek.com, Matthias Brugger <matthias.bgg@gmail.com>,
+        nfraprado@collabora.com, Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Bin Liu <bin.liu@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 02/10] dt-bindings: media: mediatek,jpeg: Remove
+ dma-ranges property
+Message-ID: <167596475165.556224.15663986433586946843.robh@kernel.org>
+References: <20230208053643.28249-1-yong.wu@mediatek.com>
+ <20230208053643.28249-3-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9mBYdTmiZ9WKdOsk"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230209152628.129914-1-ajones@ventanamicro.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230208053643.28249-3-yong.wu@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,87 +81,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---9mBYdTmiZ9WKdOsk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 08 Feb 2023 13:36:35 +0800, Yong Wu wrote:
+> After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
+> controllers"), the dma-ranges of the leaf node doesn't work. Remove
+> it for jpeg here.
+> 
+> Currently there is only mt8195 jpeg node has this property in upstream,
+> and it already uses parent-child node, this property did work. But instead,
+> MediaTek iommu will control the masters' iova ranges by the master's
+> larb/port id internally, then this property is unnecessary.
+> 
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Bin Liu <bin.liu@mediatek.com>
+> Cc: kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>
+> Cc: Xia Jiang <xia.jiang@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml | 7 -------
+>  .../devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml | 7 -------
+>  .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml   | 5 -----
+>  3 files changed, 19 deletions(-)
+> 
 
-Hey Drew,
+Acked-by: Rob Herring <robh@kernel.org>
 
-On Thu, Feb 09, 2023 at 04:26:20PM +0100, Andrew Jones wrote:
-> When the Zicboz extension is available we can more rapidly zero naturally
-> aligned Zicboz block sized chunks of memory. As pages are always page
-> aligned and are larger than any Zicboz block size will be, then
-> clear_page() appears to be a good candidate for the extension. While cycle
-> count and energy consumption should also be considered, we can be pretty
-> certain that implementing clear_page() with the Zicboz extension is a win
-> by comparing the new dynamic instruction count with its current count[1].
-> Doing so we see that the new count is just over a quarter of the old count
-> (see patch4's commit message for more details).
->=20
-> For those of you who reviewed v1[2], you may be looking for the memset()
-> patches. As pointed out in v1, and a couple follow-up emails, it's not
-> clear that patching memset() is a win yet. When I get a chance to test
-> on real hardware with a comprehensive benchmark collection then I can
-> post the memset() patches separately (assuming the benchmarks show it's
-> worthwhile).
->=20
-> Based on riscv-linux/for-next plus the dependencies listed below.
->=20
-> Dependencies:
-> https://lore.kernel.org/all/20230108163356.3063839-1-conor@kernel.org/
-> https://lore.kernel.org/all/20230105192610.1940841-1-heiko@sntech.de/
-
-I've had a short (due to FOSDEM) & busy week since we discussed the
-automagic dependency collection. I'll try to get to it in the next few
-days.
-
-> The patches are also available here
-> https://github.com/jones-drew/linux/commits/riscv/zicboz-v4
->=20
-> To test over QEMU this branch may be used to enable Zicboz
-> https://gitlab.com/jones-drew/qemu/-/commits/riscv/zicboz
->=20
-> To test running a KVM guest with Zicboz this kvmtool branch may be used
-> https://github.com/jones-drew/kvmtool/commits/riscv/zicboz
->=20
-> Thanks,
-> drew
->=20
-> [1] I ported the functions under test to userspace and linked them with
->     a test program. Then, I ran them under gdb with a script[3] which
->     counted instructions by single stepping.
-> [2] https://lore.kernel.org/all/20221027130247.31634-1-ajones@ventanamicr=
-o.com/
-> [3] https://gist.github.com/jones-drew/487791c956ceca8c18adc2847eec9c60
->=20
-> v4:
->   - Rebased on latest for-next which allowed dropping one dependency
->   - Added "RISC-V: alternatives: Support patching multiple insns in assem=
-bly"
->     since I needed to use more than one instruction in an ALTERNATIVE call
->     from assembly. I can post this patch separately as a fix if desired.
->   - Improved the dt-binding patch commit message [Conor]
->   - Picked up some tags from Conor and Rob (I kept Conor's a-b on the
->     clear_page patch, even though there are several changes to it, because
->     I interpreted the a-b as "OK by me to implement a Zicboz clear_page")
-
-Yea, it was a "I am far from qualified to review your implementation,
-but I am okay with it existing and the remainder of the patch".
-
-Cheers,
-Conor.
-
-
---9mBYdTmiZ9WKdOsk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+UxSQAKCRB4tDGHoIJi
-0nXrAP9VAQ3j262sR5fkIWgKXnnVcwlk0HxuhiGpu+7dH1JcTQD/e+mZEdP1X1PR
-UiYGOGgLZYOVDwTZVxkkf9gZ5EzcGAI=
-=k+w3
------END PGP SIGNATURE-----
-
---9mBYdTmiZ9WKdOsk--
