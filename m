@@ -2,122 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E6F66908EA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9633B690915
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbjBIMc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 07:32:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44128 "EHLO
+        id S229862AbjBIMmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 07:42:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229767AbjBIMcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:32:35 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4CD2D7E
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:32:34 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id qw12so5910664ejc.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:32:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mI4A2A/YRcpk0KsG7+KaCv38yTM/sk8ZRuS5AtlWkYQ=;
-        b=uEXiZv8uI0iDjLIXc1PYXiwS+u0Nq9dfXCD6Kn9rWyF6pARLTEka8Na+KXb6kyU/wH
-         loK4kq5BGZ7L5nIzKb1x2/BuIm+O1WkvAo3MFaOS3oEguw7Dv2/rrSiNszsCgQ9gCmkk
-         0qDdt6jwfXk01cQLM/1V3PC+lVRtmV2LxcthQlya0+mYJl4oI5ywb8ZywhM9bxnkaH0T
-         9H6SdIp/b48DaKWM5uP3SWo8OfXbowTo5jyrWOuClwLu7xtHYKfcC28lP1Z5HsCrjCjx
-         SwQXvkAS0Cmg+5bBOPivh8bW+2Nhb24MgqDj8dmlMkYOwMi3kagpd5ZMpBKgD8yX3lwc
-         qs2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mI4A2A/YRcpk0KsG7+KaCv38yTM/sk8ZRuS5AtlWkYQ=;
-        b=xLaq7Tlpq6sfWDKHqj6kPl4OgXn/YTeA1x+2yRLFQi65JsVtrRkwX7aDwuorx1I7MF
-         cUjS67PVs90UYnNEGnTDCAcRDZrGejqqLrqVFTdTH6FpeEPDmPygsp3Hs8yzvlcX0BYD
-         F0sOMFQDVaVGgcWj7+wHX3KyuuLFvi4KG9iBh6usvUTHJsx5vMmrFYBbODfx8/Q/kpqG
-         5xLIJ7/qtUSjXYQ+9fLEL/gNQPU1dj8UEsuP2WBgirO37zJXtXuDyRDF/U5CtMkm9iXz
-         uilusagGKVSSM3UTRZj5x/D3FY1+4Ci1nv2EmZhbPZvT4QD+qstTdeyjnSslEk+jbEU8
-         5c2w==
-X-Gm-Message-State: AO0yUKWIqgSKVkErTCzQTE2bj6hknbPlCtvawbFvJ/FgIXtqAU9q0Hrx
-        c7Wed32OBQrTyGt1+VAbgUtWxg==
-X-Google-Smtp-Source: AK7set8nWM/OSDeX2zOKTTybXG+LAP0FSQqgfmkdWfTQ2Cc0RIYIPycfvojWDhMZq00YKJq9jdxrRQ==
-X-Received: by 2002:a17:907:20ac:b0:7c9:6e0e:1427 with SMTP id pw12-20020a17090720ac00b007c96e0e1427mr11740156ejb.6.1675945952630;
-        Thu, 09 Feb 2023 04:32:32 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id a12-20020a17090640cc00b008a47ee398a9sm819738ejk.47.2023.02.09.04.32.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 04:32:32 -0800 (PST)
-Message-ID: <76311e72-0e18-d6b7-6dfc-a312e930e095@linaro.org>
-Date:   Thu, 9 Feb 2023 13:32:30 +0100
+        with ESMTP id S229896AbjBIMmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:42:00 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C695BA7C;
+        Thu,  9 Feb 2023 04:41:58 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1561166020BA;
+        Thu,  9 Feb 2023 12:41:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675946516;
+        bh=9ZiZO6TQy+6UG16GtB4iYGKykwkEi6tuqIO9D0PiM+A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OGx/LlK/ICf1fItu4WhsFtk9Jk6bVEF7ZUvj5+EU/KXrkWt2Q52OaUSVA83TQGh9X
+         sNtFLRFi+Hg0UN7LDNKKgw9pCz4V68Mq9lldnaGO/cBG1G6FTIB/dBOWaTIHdp11sc
+         5BuVdLqCe9xhXu09inmLAyaPjE9Gp7RX+vg2YTw+NfJXjQB6wZy0mYI+AUamvLyBgu
+         rMRQp9HXO2PIUxcRf6Uo2tEB8Qd8QhoJBLBb5+HqmjrSeKU1SN4YbSlZ6c1eGJy/ab
+         udkvTJbMJdI/ILvYIexMzNfFdGrPdYJq+PWT4ddPh6amRozvC9siZl3nvc7WdT2EMR
+         7wKMlrWpCak2g==
+Message-ID: <a4aa8595-fc7a-06de-ef2d-804dfe2137e2@collabora.com>
+Date:   Thu, 9 Feb 2023 13:41:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 07/12] remoteproc: mediatek: Probe multi-core SCP
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
- <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
- <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
- <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
- <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
- <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
- <b2307e91-3373-539a-ecfb-e2542b9f83db@linaro.org>
- <ed737e67-eabc-6f29-b734-f4698767ca8e@linaro.org>
- <fa2e0db7-5b27-5a41-920b-b786dc4e521c@linaro.org>
- <027268b7-4b04-f52e-06a8-9d924dc6efe4@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <027268b7-4b04-f52e-06a8-9d924dc6efe4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230209074021.13936-1-tinghan.shen@mediatek.com>
+ <20230209074021.13936-8-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230209074021.13936-8-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9.02.2023 13:22, Bryan O'Donoghue wrote:
-> On 09/02/2023 12:11, Bryan O'Donoghue wrote:
->>> If the bootloader splash is enabled then this memory is used until the
->>> DPU driver instructs MDP5 pipes to suck data from a newly assigned address,
->>> so there's a short window where it is.
->>
->> It seems a shame to reserve 30 something megabytes of memory for continuous splash unless we are actually using it is my point.
->>
->> If I'm running headless its just wasted memory.
+Il 09/02/23 08:40, Tinghan Shen ha scritto:
+> The difference of single-core SCP and multi-core SCP device tree is
+> the presence of child device nodes described SCP cores. The SCP
+> driver populates the platform device and checks the child nodes
+> to identify whether it's a single-core SCP or a multi-core SCP.
 > 
-> Couldn't we
+> The resource structure of the multi-core SCP is a list of remoteproc
+> instances which is different to the single-core SCP. The corresponding
+> resource releasing action is added based on the type of SCP.
 > 
-> 1. Find reserved continuous splash memory
-> 2. Fee it in the MDP when we make the transition
-> 
-> It must be possible
-I suppose we could mark it as shared-dma-pool, pass it to
-MDSS, reserve it from there (by occupying the whole thing)
-and either use it or free it before jumping to the newly
-allocated region.
-
-The MDSS driver can already accept it through memory-region = <>
-IIRC, but *nobody* uses that, so I'm not sure it even still works..
-
-Konrad
-> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
-> bod
+>   drivers/remoteproc/mtk_common.h |   7 ++
+>   drivers/remoteproc/mtk_scp.c    | 173 ++++++++++++++++++++++++++++----
+>   2 files changed, 160 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 20c1a90be77d..0b2c4bbb55f0 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -119,6 +119,10 @@ struct mtk_scp_of_regs {
+>   	phys_addr_t l1tcm_phys;
+>   };
+>   
+> +struct mtk_scp_cluster {
+> +	struct list_head cores;
+> +};
+> +
+>   struct mtk_scp {
+>   	struct device *dev;
+>   	struct rproc *rproc;
+> @@ -147,6 +151,9 @@ struct mtk_scp {
+>   	size_t dram_size;
+>   
+>   	struct rproc_subdev *rpmsg_subdev;
+> +
+> +	struct list_head elem;
+> +	struct mtk_scp_cluster *cluster;
+>   };
+>   
+>   /**
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index feebcadd56cd..a25141c6c4cb 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -855,7 +855,9 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
+>   }
+>   
+>   static int scp_rproc_init(struct platform_device *pdev,
+> -			  struct mtk_scp_of_regs *of_regs)
+> +			  struct mtk_scp_of_regs *of_regs,
+> +			  const struct mtk_scp_of_data *of_data,
+> +			  struct mtk_scp_cluster *cluster)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct device_node *np = dev->of_node;
+> @@ -876,7 +878,8 @@ static int scp_rproc_init(struct platform_device *pdev,
+>   	scp = (struct mtk_scp *)rproc->priv;
+>   	scp->rproc = rproc;
+>   	scp->dev = dev;
+> -	scp->data = of_device_get_match_data(dev);
+> +	scp->data = of_data;
+> +	scp->cluster = cluster;
+>   	platform_set_drvdata(pdev, scp);
+>   
+>   	scp->reg_base = of_regs->reg_base;
+> @@ -925,9 +928,13 @@ static int scp_rproc_init(struct platform_device *pdev,
+>   		goto remove_subdev;
+>   	}
+>   
+> -	ret = rproc_add(rproc);
+> -	if (ret)
+> -		goto remove_subdev;
+> +	if (scp->cluster) {
+> +		list_add_tail(&scp->elem, &scp->cluster->cores);
+> +	} else {
+> +		ret = rproc_add(rproc);
+> +		if (ret)
+> +			goto remove_subdev;
+> +	}
+>   
+>   	return 0;
+>   
+> @@ -943,11 +950,115 @@ static int scp_rproc_init(struct platform_device *pdev,
+>   	return ret;
+>   }
+>   
+> +static void scp_rproc_free(struct mtk_scp *scp)
+> +{
+> +	int i;
+> +
+> +	scp_remove_rpmsg_subdev(scp);
+> +	scp_ipi_unregister(scp, SCP_IPI_INIT);
+> +	scp_unmap_memory_region(scp);
+> +	for (i = 0; i < SCP_IPI_MAX; i++)
+> +		mutex_destroy(&scp->ipi_desc[i].lock);
+> +	mutex_destroy(&scp->send_lock);
+> +}
+> +
+> +static void scp_rproc_exit(void *data)
+> +{
+> +	struct mtk_scp *scp = platform_get_drvdata(data);
+> +
+> +	rproc_del(scp->rproc);
+> +	scp_rproc_free(scp);
+> +}
+> +
+> +static int scp_cluster_init(struct platform_device *pdev,
+> +			    struct mtk_scp_of_regs *of_regs)
+> +{
+> +	struct mtk_scp_cluster *cluster = platform_get_drvdata(pdev);
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev_of_node(dev);
+> +	struct platform_device *cpdev;
+> +	struct device_node *child;
+> +	const struct mtk_scp_of_data **cluster_of_data;
+> +	struct mtk_scp *scp, *temp;
+> +	int core_id, num_cores;
+> +	int ret;
+> +
+> +	cluster_of_data = (const struct mtk_scp_of_data **)of_device_get_match_data(dev);
+> +
+> +	for (num_cores = 0; cluster_of_data[num_cores]; num_cores++)
+> +		;
+> +
+> +	core_id = 0;
+> +	for_each_available_child_of_node(np, child) {
+> +		if (core_id >= num_cores) {
+> +			ret = -EINVAL;
+> +			dev_err(dev, "Not support core %d\n", core_id);
+> +			of_node_put(child);
+> +			goto init_fail;
+> +		}
+> +
+> +		cpdev = of_find_device_by_node(child);
+> +		if (!cpdev) {
+> +			ret = -ENODEV;
+> +			dev_err(dev, "Not found platform device for core %d\n", core_id);
+> +			of_node_put(child);
+> +			goto init_fail;
+> +		}
+> +
+> +		ret = scp_rproc_init(cpdev, of_regs, cluster_of_data[core_id], cluster);
+> +		put_device(&cpdev->dev);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to initialize core %d rproc\n", core_id);
+> +			of_node_put(child);
+> +			goto init_fail;
+> +		}
+> +
+> +		of_node_put(child);
+> +		core_id++;
+> +	}
+> +
+> +	list_for_each_entry_safe_reverse(scp, temp, &cluster->cores, elem) {
+> +		ret = rproc_add(scp->rproc);
+> +		if (ret)
+> +			goto add_fail;
+> +	}
+> +
+> +	return 0;
+> +
+> +add_fail:
+> +	list_for_each_entry_continue(scp, &cluster->cores, elem) {
+> +		rproc_del(scp->rproc);
+> +	}
+> +init_fail:
+> +	list_for_each_entry_safe_reverse(scp, temp, &cluster->cores, elem) {
+> +		list_del(&scp->elem);
+> +		cpdev = to_platform_device(scp->dev);
+> +		scp_rproc_free(scp);
+> +	}
+> +	return ret;
+> +}
+> +
+> +static void scp_cluster_exit(void *data)
+> +{
+> +	struct mtk_scp_cluster *cluster = platform_get_drvdata(data);
+> +	struct platform_device *cpdev;
+> +	struct mtk_scp *scp, *temp;
+> +
+> +	list_for_each_entry_safe_reverse(scp, temp, &cluster->cores, elem) {
+> +		list_del(&scp->elem);
+> +		cpdev = to_platform_device(scp->dev);
+> +		scp_rproc_exit(cpdev);
+> +	}
+> +}
+> +
+>   static int scp_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct device_node *core_node;
+>   	struct resource *res;
+>   	struct mtk_scp_of_regs scp_regs;
+> +	struct mtk_scp_cluster *cluster;
+>   	int ret;
+>   
+>   	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+> @@ -968,23 +1079,39 @@ static int scp_probe(struct platform_device *pdev)
+>   		scp_regs.l1tcm_phys = res->start;
+>   	}
+>   
+> -	return scp_rproc_init(pdev, of_device_get_match_data(dev), &scp_regs);
+> -}
+> +	ret = devm_of_platform_populate(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to populate platform devices\n");
+>   
+> -static int scp_remove(struct platform_device *pdev)
+> -{
+> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
+> -	int i;
+> +	core_node = of_get_child_by_name(np, "scp");
+> +	of_node_put(core_node);
+>   
+> -	rproc_del(scp->rproc);
+> -	scp_remove_rpmsg_subdev(scp);
+> -	scp_ipi_unregister(scp, SCP_IPI_INIT);
+> -	scp_unmap_memory_region(scp);
+> -	for (i = 0; i < SCP_IPI_MAX; i++)
+> -		mutex_destroy(&scp->ipi_desc[i].lock);
+> -	mutex_destroy(&scp->send_lock);
+> +	if (!core_node) {
+> +		dev_info(dev, "single-core scp\n");
+>   
+> -	return 0;
+> +		ret = scp_rproc_init(pdev, &scp_regs, of_device_get_match_data(dev), NULL);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to init single core scp\n");
+> +
+> +		ret = devm_add_action_or_reset(dev, scp_rproc_exit, pdev);
+> +	} else {
+> +		dev_info(dev, "multi-core scp\n");
+> +
+> +		cluster = devm_kzalloc(dev, sizeof(*cluster), GFP_KERNEL);
+> +		if (!cluster)
+> +			return dev_err_probe(dev, -ENOMEM, "Unable to allocate scp cluster\n");
+> +
+> +		INIT_LIST_HEAD(&cluster->cores);
+> +		platform_set_drvdata(pdev, cluster);
+> +
+> +		ret = scp_cluster_init(pdev, &scp_regs);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to initialize scp cluster\n");
+> +
+> +		ret = devm_add_action_or_reset(dev, scp_cluster_exit, pdev);
+> +	}
+> +
+> +	return ret;
+>   }
+>   
+>   static const struct mtk_scp_of_data mt8183_of_data = {
+> @@ -1061,19 +1188,25 @@ static const struct mtk_scp_of_data mt8195_of_data_c1 = {
+>   	.host_to_scp_int_bit = MT8195_CORE1_HOST_IPC_INT_BIT,
+>   };
+>   
+> +static const struct mtk_scp_of_data *mt8195_of_data_cores[] = {
+> +	&mt8195_of_data,
+> +	&mt8195_of_data_c1,
+> +	NULL
+> +};
+> +
+>   static const struct of_device_id mtk_scp_of_match[] = {
+>   	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
+>   	{ .compatible = "mediatek,mt8186-scp", .data = &mt8186_of_data },
+>   	{ .compatible = "mediatek,mt8188-scp", .data = &mt8188_of_data },
+>   	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
+>   	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
+> +	{ .compatible = "mediatek,mt8195-scp-dual", .data = &mt8195_of_data_cores },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
+>   
+>   static struct platform_driver mtk_scp_driver = {
+>   	.probe = scp_probe,
+> -	.remove = scp_remove,
+
+I'm sorry, but this is unacceptable: you're removing any ability to remove this
+device (read: to unload, if module, or to remove from sysfs, if builtin).
+
+Please fix that.
+
+Regards,
+Angelo
+
+>   	.driver = {
+>   		.name = "mtk-scp",
+>   		.of_match_table = mtk_scp_of_match,
+
