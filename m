@@ -2,73 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CC36902CF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2DA86902EB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:10:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbjBIJFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:05:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
+        id S229447AbjBIJKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:10:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjBIJFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:05:46 -0500
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AEA193D6
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:05:45 -0800 (PST)
-Received: by mail-qt1-x834.google.com with SMTP id w3so1181009qts.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:05:44 -0800 (PST)
+        with ESMTP id S229641AbjBIJKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:10:35 -0500
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D9055281
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:10:27 -0800 (PST)
+Received: by mail-ua1-x92d.google.com with SMTP id ch22so250498uab.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:10:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=g6COeyPGMXf7U7lGKG1YayluAHCueh6BFLzJHyo0CpI=;
-        b=NAvo6+k/InUrLzFKPDcv7XK88ILDJg3zbxr+6QIXKdqXACWk9YTFTZtZp1WMLj+7Ft
-         n6FtPkxpsKuGyLdP9O1cNuVb437Yr59eycUih2mnYbsBwVzDuC3H5Uug8ZByvHrfVl1G
-         1tEk3H0oENr/DlKlis1zVBNIABBMc+FxkBMZj5npBK7OfGSNRn04MYoth25gIJRypN9i
-         ZLDFWZQvfSXrEttGKHfmhrZxn1Hqm4C53mlRG5JBr69lCgoO7mS3sw3fj0HOiQwgTiuB
-         gSQHVB66kvBtau9PKEayhj8xBn6D4G+J6x/lVye7jToUpAwgdI0OCzCbO0TlRZgAjZCm
-         gosQ==
+        bh=gUiV/qw4JVOOcTovWw+xyQ31ogBLTJYuBUEOiv2Lb9U=;
+        b=QIIdel1hmP8z81Hism+qg1TEwzk5Q4RapO0/kQvbT2plytwESYSceZGMKXLlsMHLnJ
+         aQwTjjAYJQpFz0W0Q9oBoHZAVdYNXekXiEQ69PeqGwM/y6MTkxHOr539NoK1u1ne5tJs
+         YzOWq9vDJkLexZVnCS4T9l4rHtNeFWP6KBsT8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=g6COeyPGMXf7U7lGKG1YayluAHCueh6BFLzJHyo0CpI=;
-        b=w0hcoHX03GkcUJ7V+h0MtOxtjd67+AwvQX6+qDSDzd1pbmQ+gDgQ87AKl+gOuZuibH
-         e+AG0pPIbh0frAXSuMmtasgLX4m4NYKwU7lirf407xh9lViV45wm3lgtc2w4rGKkN1V1
-         kxxTxKGC8IFoFdkvMSgtxDE2KvHfjihytuP4O2LEZlQPyvMEHHKJE5iTmXHN2cIyHI7Y
-         wumv4UU6qFLmVtIJPKcPKp1lORhWH21QW2lnQL/tV7sLRch+Qa10s0L2GVfMVPRcKpKW
-         mB2nDOkrbUf+lo+IBtyVfiOMmg2GhulkAFHQPcTbG5/ZwnaMdW/5fhTJQWpcjSNdtfW1
-         1UQg==
-X-Gm-Message-State: AO0yUKW80+zXugn4l2cv2JmYo4OStXGcO4u/JuyV8fsXYW7a6fz30X9k
-        2lAZ5HBPC7RaVL0Xu3R9EjHNSwJLbBIWT0eh/91tqA==
-X-Google-Smtp-Source: AK7set98BmFRfRbWA4HYK3suSqo8xIlNgU19F+J1543PBuObgKzeMLFN9+wEEGAOqsIed6lAMzglCbfL1p3tV0c9s1Y=
-X-Received: by 2002:ac8:5c49:0:b0:3b6:2e70:d0ba with SMTP id
- j9-20020ac85c49000000b003b62e70d0bamr1843244qtj.124.1675933544040; Thu, 09
- Feb 2023 01:05:44 -0800 (PST)
+        bh=gUiV/qw4JVOOcTovWw+xyQ31ogBLTJYuBUEOiv2Lb9U=;
+        b=ZjasNh9juev2Dlzn4mnGdShpDFdqBbgcLID69WvTktYI7cJghBzDcQ4L7doUP9tykP
+         IHGbWMxa9/35YzlIK/IEz0sBLFg1oR248MhVsxpx3s1wrTiCMyhDOricFnOH53gSX0jd
+         Y5B/lblialxrE6shOM1VasYqFBZLJPNcwLT7vZn88Ao4QTPF7GrGxWhT8B3NWPvahLaM
+         X0HRP5KvkVvlP5XOH7v+cibOAuk6XkBoSZ8ZyQPQr+g7naAtq28gtiBqNJh/Qzb4odCJ
+         I/nL/sUrkn7OE927d540YpDNXfBjt/esr6IGmfoTu9AMpcsquwaxzDI68YnNZJNlaYsg
+         xOWQ==
+X-Gm-Message-State: AO0yUKWOIbd0ydMGLTHTi5Uk6E0EGi6tX92e18mfHjzxFShsigOfT7dS
+        nLJymZOGc8D/+RkCGoCO9K9ll3aNNtPqiIZ1tE0Y5L/3aSniqdvK
+X-Google-Smtp-Source: AK7set9iFbENJrUNl+hKyQ+MIZq2ziVgQa1lldvrUJbRi6mBlcQ3E1DlqRIz/5dmXyM5bWmpsndHSjVSmc3EWCSsyvc=
+X-Received: by 2002:ab0:2bd5:0:b0:5e6:3536:22e4 with SMTP id
+ s21-20020ab02bd5000000b005e6353622e4mr2456477uar.55.1675933826994; Thu, 09
+ Feb 2023 01:10:26 -0800 (PST)
 MIME-Version: 1.0
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
- <39751511-3f06-7c39-9c21-208d4c272113@linaro.org> <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
- <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org> <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
-In-Reply-To: <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Thu, 9 Feb 2023 14:35:07 +0530
-Message-ID: <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
+References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 9 Feb 2023 17:10:15 +0800
+Message-ID: <CAGXv+5HkdWUWmq0Jk5F2ZuFVHN5T07CYwBdzSWR7Z0=pmkJ5Mw@mail.gmail.com>
+Subject: Re: [PATCH 0/9] Panfrost: Improve and add MediaTek SoCs support
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, steven.price@arm.com,
+        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
+        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,72 +68,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Jan 2023 at 19:03, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> On 31/01/2023 14:45, Konrad Dybcio wrote:
-> >
-> >
-> > On 31.01.2023 12:06, Dmitry Baryshkov wrote:
-> >> On Tue, 31 Jan 2023 at 12:54, Bryan O'Donoghue
-> >> <bryan.odonoghue@linaro.org> wrote:
-> >>>
-> >>> On 24/01/2023 18:28, Amit Pundir wrote:
-> >>>> Put cont splash memory region under the reserved-memory
-> >>>> as confirmed by the downstream code as well.
-> >>>>
-> >>>> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> >>>> ---
-> >>>>    arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
-> >>>>    1 file changed, 8 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> >>>> index f41c6d600ea8..2ae59432cbda 100644
-> >>>> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> >>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> >>>> @@ -100,6 +100,14 @@ hdmi_con: endpoint {
-> >>>>                };
-> >>>>        };
-> >>>>
-> >>>> +     reserved-memory {
-> >>>> +             /* Cont splash region set up by the bootloader */
-> >>>> +             cont_splash_mem: framebuffer@9d400000 {
-> >>>> +                     reg = <0x0 0x9d400000 0x0 0x2400000>;
-> >>>> +                     no-map;
-> >>>> +             };
-> >>>> +     };
-> >>>> +
-> >>>>        lt9611_1v8: lt9611-vdd18-regulator {
-> >>>>                compatible = "regulator-fixed";
-> >>>>                regulator-name = "LT9611_1V8";
-> >>>
-> >>> Doesn't this mean we loose 0x2400000 of DRAM for all rb3 platforms
-> >>> though ? About what 37 megabytes.. ?
-> >>
-> >> I think this memory is further used for display memory allocation. So
-> >> we are not loosing it, but dedicating it to the framebuffer memory.
-> > Not exactly, to do so, you'd have to use the memory-region property
-> > with mdss, which nobody does. Otherwise it's just a hole for Linux.
+> This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
+> and improves MT8183 support: since the mtk-regulator-coupler driver
+> was picked, it is now useless for Panfrost to look for, and manage,
+> two regulators (GPU Vcore and GPU SRAM) on MediaTek;
 >
-> Then maybe it's time to start using that property?
+> The aforementioned driver will take care of keeping the voltage
+> relation (/constraints) of the two regulators on its own when a
+> voltage change request is sent to the Vcore, solving the old time
+> issue with not working DVFS on Panfrost+MediaTek (due to devfreq
+> supporting only single regulator).
+>
+> In the specific case of MT8183, in order to not break the ABI, it
+> was necessary to add a new compatible for enabling DVFS.
 
-Hi, So what is the verdict on this patch?
+Tested on MT8183 Juniper (Kukui-based device), MT8192 Hayato (Asurada-based),
+and MT8195 Tomato (Cherry-based).
 
-I submitted this fix to make sure UFS don't map and crash on it, which
-I have seen happening occassionaly on db845c and Caleb reported
-similar issues on his sdm845 device iirc. I should have probably put
-that in my commit message as well.
+GPU probed. When running glmark-es2-drm, observed state transitions in
+/sys/class/devfreq/13040000.gpu/trans_stat , as well as actual changes to
+values for regulators and clocks.
 
-Regards,
-Amit Pundir
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
->
-> >
-> > Konrad
-> >>
-> >>
->
-> --
-> With best wishes
-> Dmitry
->
+Also observed that sometimes when glmark terminated, the GPU would not be
+brought down to the lowest OPP.
