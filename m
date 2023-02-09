@@ -2,44 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A909B69145B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 00:26:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6001D691466
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 00:29:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230425AbjBIX0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 18:26:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34282 "EHLO
+        id S229925AbjBIX3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 18:29:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbjBIX0K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 18:26:10 -0500
-Received: from irl.hu (irl.hu [95.85.9.111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96EB5658EE;
-        Thu,  9 Feb 2023 15:26:00 -0800 (PST)
-Received: from localhost.localdomain (51b6913b.dsl.pool.telekom.hu [::ffff:81.182.145.59])
-  (AUTH: CRAM-MD5 soyer@irl.hu, )
-  by irl.hu with ESMTPSA
-  id 000000000006F771.0000000063E58107.002B65BC; Fri, 10 Feb 2023 00:25:59 +0100
-From:   Gergo Koteles <soyer@irl.hu>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230309AbjBIX3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 18:29:46 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01EED76B3;
+        Thu,  9 Feb 2023 15:29:45 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pQGMJ-0002DS-2G;
+        Fri, 10 Feb 2023 00:29:43 +0100
+Date:   Thu, 9 Feb 2023 23:27:31 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>,
-        Gergo Koteles <soyer@irl.hu>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sdm845-oneplus: add tri-state-key
-Date:   Fri, 10 Feb 2023 00:25:56 +0100
-Message-Id: <20230209232556.91554-1-soyer@irl.hu>
-X-Mailer: git-send-email 2.39.1
-Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mime-Autoconverted: from 8bit to 7bit by courier 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Jianhui Zhao <zhaojh329@gmail.com>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>
+Subject: [PATCH v3 02/12] dt-bindings: net: mediatek,net: add mt7981-eth
+ binding
+Message-ID: <83a7d040126f213b4c45072044a7e069218650d9.1675984550.git.daniel@makrotopia.org>
+References: <cover.1675984550.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1675984550.git.daniel@makrotopia.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,76 +62,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The tri-state-key is a sound profile switch found on the OnePlus 6,
-Android maps the states to "mute", "vibrate" and "ring". Expose them as
-ABS_SND_PROFILE events.
-The previous GPIO numbers were wrong. Update them to the correct
-ones.
+Introduce DT bindings for the MT7981 SoC to mediatek,net.yaml.
 
-Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-Signed-off-by: Gergo Koteles <soyer@irl.hu>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
- .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 39 ++++++++++++++++++-
- 1 file changed, 38 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/net/mediatek,net.yaml | 43 ++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 64638ea94db7..e45d4fdead82 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -52,6 +52,43 @@ key-vol-up {
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+index 7ef696204c5a..76a46a7b8228 100644
+--- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
++++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+@@ -21,6 +21,7 @@ properties:
+       - mediatek,mt7623-eth
+       - mediatek,mt7622-eth
+       - mediatek,mt7629-eth
++      - mediatek,mt7981-eth
+       - mediatek,mt7986-eth
+       - ralink,rt5350-eth
  
-+	tri-state-key {
-+		compatible = "gpio-keys";
-+		label = "Tri-state key";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tri_state_key_default>;
-+		state-top {
-+			label = "Tri-state key top";
-+			linux,input-type = <EV_ABS>;
-+			linux,code = <ABS_SND_PROFILE>;
-+			linux,input-value = <0>;
-+			gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+			linux,can-disable;
-+		};
-+
-+		state-middle {
-+			label = "Tri-state key middle";
-+			linux,input-type = <EV_ABS>;
-+			linux,code = <ABS_SND_PROFILE>;
-+			linux,input-value = <1>;
-+			gpios = <&tlmm 52 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+			linux,can-disable;
-+
-+		};
-+
-+		state-bottom {
-+			label = "Tri-state key bottom";
-+			linux,input-type = <EV_ABS>;
-+			linux,code = <ABS_SND_PROFILE>;
-+			linux,input-value = <2>;
-+			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+			linux,can-disable;
-+		};
-+	};
-+
- 	reserved-memory {
- 		/*
- 		 * The rmtfs_mem needs to be guarded due to "XPU limitations"
-@@ -754,7 +791,7 @@ &tlmm {
- 	gpio-reserved-ranges = <0 4>, <81 4>;
+@@ -210,7 +211,7 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: mediatek,mt7986-eth
++            const: mediatek,mt7981-eth
+     then:
+       properties:
+         interrupts:
+@@ -225,8 +226,8 @@ allOf:
+             - const: fe
+             - const: gp2
+             - const: gp1
+-            - const: wocpu1
+             - const: wocpu0
++            - const: sgmii_ck
+             - const: sgmii_tx250m
+             - const: sgmii_rx250m
+             - const: sgmii_cdr_ref
+@@ -247,6 +248,44 @@ allOf:
+           description:
+             Phandle to the mediatek wed-pcie controller.
  
- 	tri_state_key_default: tri-state-key-default-state {
--		pins = "gpio40", "gpio42", "gpio26";
-+		pins = "gpio126", "gpio52", "gpio24";
- 		function = "gpio";
- 		drive-strength = <2>;
- 		bias-disable;
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt7986-eth
++    then:
++      properties:
++        interrupts:
++          minItems: 4
++
++        clocks:
++          minItems: 15
++          maxItems: 15
++
++        clock-names:
++          items:
++            - const: fe
++            - const: gp2
++            - const: gp1
++            - const: wocpu1
++            - const: wocpu0
++            - const: sgmii_tx250m
++            - const: sgmii_rx250m
++            - const: sgmii_cdr_ref
++            - const: sgmii_cdr_fb
++            - const: sgmii2_tx250m
++            - const: sgmii2_rx250m
++            - const: sgmii2_cdr_ref
++            - const: sgmii2_cdr_fb
++            - const: netsys0
++            - const: netsys1
++
++        mediatek,sgmiisys:
++          minItems: 2
++          maxItems: 2
++
++        mediatek,wed-pcie: true
++
+ patternProperties:
+   "^mac@[0-1]$":
+     type: object
 -- 
 2.39.1
 
