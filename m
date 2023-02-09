@@ -2,106 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D61A68FF0B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 05:32:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31BF768FFD5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 06:20:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjBIEcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 23:32:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47974 "EHLO
+        id S229788AbjBIFUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 00:20:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbjBIEbs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 23:31:48 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038A0410A4;
-        Wed,  8 Feb 2023 20:31:24 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id cr22so740513qtb.10;
-        Wed, 08 Feb 2023 20:31:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VYWiP+RsM80H7wNl1WU3UTCyecPhj1rDTS0XQ6/EiJw=;
-        b=hbYjs18CuQ0IQIi/4UFBBwFlt4MSIr6vr81jKyijX8hbDAOoyJN3fTFZjDoMHUG1bM
-         0iIhI3c62lP2A4OrZEnGXHLhMTNnGsO1RnuaHvqAiPT66Z/L0AcirFHqvngA05AA2WvT
-         NFAm7bgGiHeu/JNV2zkLZdWEyRXt9JeOXCVKbaeRnU5sfmkKE8mWIqR2bEtMy24mM0QK
-         XKjnLUFEIz07fE1krRmq/21MV48wsOFCIbomIIM8oqgbxQRfsM+K5aPe7IfKIwPXdqBz
-         tSkSj4WVRYZy9I4VIe5nSz/kjjvZd/Bnc1T/rX1pQsvv/0wCxWZsmWl5/dw2GKaFU2FF
-         JJNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VYWiP+RsM80H7wNl1WU3UTCyecPhj1rDTS0XQ6/EiJw=;
-        b=PdyzyKYa8PoIVlFIhxIFVbAPzTqni0sUUhbgGW6onEh+XWFXU++9L5JOjrTGcAbyWA
-         midH2vVQqB390AEJGkLcl7MO9W9vQ5Om/YQD3Zt/qEJnmx8YtnXMZ9JdIySbfu74NxeJ
-         E/8U1xGe4t990gQf8l5szDMkVYak905jsMK74qcTapcmVuskPfmq29hdAqip1tUA3fqH
-         o2//gmAVi087uYizEeL2x1JQyJDjswC18jjZvlyZknsEcbFuoAayBWxTbhEnksepyEgE
-         z3aDapJiGIDmieGUl4af3P0o5Ls+wA/GJCUg5QgM/Vk3kUYEHBLHwBGVtfHF92A3j0oG
-         b5vg==
-X-Gm-Message-State: AO0yUKVPPzPwAEirZL0qlqLI+NT30QyLqjkaYtWcOCMApd879gUmdhIJ
-        ezetJQgBRQL7CdaM/tR3M41LWi8UF4k=
-X-Google-Smtp-Source: AK7set8dGL84ssKLZLSeE60Lv0RqogRPo+cGf2+zrA1Ok1ed4iVWSrC5cSgmpAS+7CG0FqkagsDylw==
-X-Received: by 2002:ac8:48cd:0:b0:3b9:bc8c:c213 with SMTP id l13-20020ac848cd000000b003b9bc8cc213mr844571qtr.30.1675917076899;
-        Wed, 08 Feb 2023 20:31:16 -0800 (PST)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id ca16-20020a05622a1f1000b003a7e38055c9sm548560qtb.63.2023.02.08.20.31.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 20:31:16 -0800 (PST)
-From:   Trevor Woerner <twoerner@gmail.com>
-To:     linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: gpio: nxp,pcf8575: add gpio-line-names
-Date:   Wed,  8 Feb 2023 23:31:00 -0500
-Message-Id: <20230209043100.1508-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.36.0.rc2.17.g4027e30c53
-In-Reply-To: <20230209041752.35380-1-twoerner@gmail.com>
-References: <20230209041752.35380-1-twoerner@gmail.com>
+        with ESMTP id S229743AbjBIFUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 00:20:49 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF0EE2DE7C;
+        Wed,  8 Feb 2023 21:20:46 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31949Kx0030005;
+        Thu, 9 Feb 2023 05:20:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Qi01A4DARysTADEqiJHBihKXJUpLwxjlAn34mXKmldc=;
+ b=NhT1YVbMzr9TdxYQwid6J53k1TQC/tPCZEfcSh54k7mPzi5sCkI1/QKTRZKL1hpo9U8I
+ TspzPshhpnlXLtYVBOItyGALSeuUcwYrvJ72+3g38tijAMDGVc3WYurfh+FspfnDgHk3
+ Z9cjwofYv2SFi2mCf5oF7Q/DeagW2uwnyIK2RS4R6exsI++5EUchcg37ECJeu3kFK2Bt
+ QcuknbCHlwOB4lrEDLX9nU9uF5VNzReU5247xlGlIT/eWaN3divkg4Upi8vL15+8KWat
+ oLNtfdaZTUXjeu8vq1XFFtvmg3lOipCjOWLpwUfQE/3C7bK6nrFRqajKa1CPFiqA77gX PQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nm86mtnyq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 09 Feb 2023 05:20:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3195KeTQ010936
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 9 Feb 2023 05:20:40 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 8 Feb 2023
+ 21:20:36 -0800
+Message-ID: <e40b3122-30e6-4619-57db-085d480deef1@quicinc.com>
+Date:   Thu, 9 Feb 2023 10:50:33 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V2 5/5] arm64: dts: qcom: ipq5332: enable the CPUFreq
+ support
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
+References: <20230208042850.1687-1-quic_kathirav@quicinc.com>
+ <20230208042850.1687-6-quic_kathirav@quicinc.com>
+ <61ca391d-05d4-d02b-f57e-5dd0297feceb@linaro.org>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <61ca391d-05d4-d02b-f57e-5dd0297feceb@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Vd3Oo-h3ibUXmvFWTMj3sSMw-h0tc5Pe
+X-Proofpoint-ORIG-GUID: Vd3Oo-h3ibUXmvFWTMj3sSMw-h0tc5Pe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-09_02,2023-02-08_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ malwarescore=0 phishscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
+ adultscore=0 mlxscore=0 mlxlogscore=999 lowpriorityscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302090048
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The family of PCF857x-compatible chips describe 8-bit i2c i/o expanders.
-Allow the user to specify names for the 8 gpio lines.
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
-changes in v2:
-- the original said [PATCH 1/2], there is no 2/2
+On 2/8/2023 2:11 PM, Konrad Dybcio wrote:
+>
+> On 8.02.2023 05:28, Kathiravan T wrote:
+>> Add the APCS, A53 PLL, cpu-opp-table nodes to bump the CPU frequency
+>> above 800MHz.
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>> Changes in V2:
+>> 	- No changes
+>>
+>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 37 +++++++++++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> index bdf33ef30e10..cec2828c51f8 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> @@ -5,6 +5,7 @@
+>>    * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>> +#include <dt-bindings/clock/qcom,apss-ipq.h>
+>>   #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   
+>> @@ -35,6 +36,8 @@
+>>   			reg = <0x0>;
+>>   			enable-method = "psci";
+>>   			next-level-cache = <&L2_0>;
+>> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>   		};
+>>   
+>>   		CPU1: cpu@1 {
+>> @@ -43,6 +46,8 @@
+>>   			reg = <0x1>;
+>>   			enable-method = "psci";
+>>   			next-level-cache = <&L2_0>;
+>> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>   		};
+>>   
+>>   		CPU2: cpu@2 {
+>> @@ -51,6 +56,8 @@
+>>   			reg = <0x2>;
+>>   			enable-method = "psci";
+>>   			next-level-cache = <&L2_0>;
+>> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>   		};
+>>   
+>>   		CPU3: cpu@3 {
+>> @@ -59,6 +66,8 @@
+>>   			reg = <0x3>;
+>>   			enable-method = "psci";
+>>   			next-level-cache = <&L2_0>;
+>> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>> +			operating-points-v2 = <&cpu_opp_table>;
+>>   		};
+>>   
+>>   		L2_0: l2-cache {
+>> @@ -67,6 +76,16 @@
+>>   		};
+>>   	};
+>>   
+>> +	cpu_opp_table: opp-table-cpu{
+> opp-table-cpu {
+> + sort this properly (by node name, not label), please
 
----
- Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-index f0ff66c4c74e..81b825a4353c 100644
---- a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-+++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-@@ -39,6 +39,10 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 8
-+
-   gpio-controller: true
- 
-   '#gpio-cells':
--- 
-2.36.0.rc2.17.g4027e30c53
+ahh, missed this. Will fix it in next spin.
 
+
+>
+>> +		compatible = "operating-points-v2";
+>> +		opp-shared;
+>> +
+>> +		opp-1488000000 {
+> Why only one (presumably FMAX) target? This sounds
+> very destructive to power consumption, and by extension
+> heat output.
+
+
+SKU is designed to operate on 1.48GHz only.
+
+
+>
+> The other changes generally look good fwiw.
+>
+> Konrad
+>> +			opp-hz = /bits/ 64 <1488000000>;
+>> +			clock-latency-ns = <200000>;
+>> +		};
+>> +	};
+>> +
+>>   	firmware {
+>>   		scm {
+>>   			compatible = "qcom,scm-ipq5332", "qcom,scm";
+>> @@ -199,6 +218,24 @@
+>>   			};
+>>   		};
+>>   
+>> +		apcs_glb: mailbox@b111000 {
+>> +			compatible = "qcom,ipq5332-apcs-apps-global",
+>> +				     "qcom,ipq6018-apcs-apps-global";
+>> +			reg = <0x0b111000 0x1000>;
+>> +			#clock-cells = <1>;
+>> +			clocks = <&a53pll>, <&xo_board>;
+>> +			clock-names = "pll", "xo";
+>> +			#mbox-cells = <1>;
+>> +		};
+>> +
+>> +		a53pll: clock@b116000 {
+>> +			compatible = "qcom,ipq5332-a53pll";
+>> +			reg = <0x0b116000 0x40>;
+>> +			#clock-cells = <0>;
+>> +			clocks = <&xo_board>;
+>> +			clock-names = "xo";
+>> +		};
+>> +
+>>   		timer@b120000 {
+>>   			compatible = "arm,armv7-timer-mem";
+>>   			reg = <0x0b120000 0x1000>;
