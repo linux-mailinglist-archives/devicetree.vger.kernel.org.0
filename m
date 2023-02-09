@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13FFD690BA0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 15:23:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E086F690BC4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 15:30:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbjBIOXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 09:23:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48468 "EHLO
+        id S230045AbjBIOao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 09:30:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230401AbjBIOXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 09:23:30 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D0B21954
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 06:23:27 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id m14so1902678wrg.13
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 06:23:27 -0800 (PST)
+        with ESMTP id S230490AbjBIOaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 09:30:24 -0500
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6895EBC7
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 06:30:21 -0800 (PST)
+Received: by mail-ed1-x544.google.com with SMTP id q19so2286804edd.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 06:30:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/AaeFwDtGgsiJbC0QTZeuI5q7NDTwTp278cldLgwfac=;
-        b=vSt7aNDoWSfjIgrViM6B4VY/+XFxgyEMsaZleT91wpKO7/dqn5YcVbOk1IGp9tY4zT
-         xlxw1jYHXf92U5xl0BnRer2u8AcNT0DWfMJoH5KjxZbp9YG9aG1KWwW1cyyIhkSCffGC
-         1AUMs53Ej7JklXcXWMaIcgUIe67hR7NOd2powaGjka9DZ23UjRAS2JXHdh1vGCOW/xKw
-         mhAxvxmnHNH8pWHAFewTpFnSEe/sr95llNpzXSNoWHmVMNE4sS+SqNnyNnfADAuupG5g
-         PaJRommS/p+5ndzqULeuSOWTKq0Sjhyv1+Sem5RwA8a1dZS9VRl4tTwbRZbKAZI5+9J1
-         pkBw==
+        bh=G8CEuoh8/tO2WNNegwThQxagifKl5T8FJBwqfoW5Qnc=;
+        b=SLGQcgFTk/Q7umfCm+MrcT/2zfBfsY9XWR6t8bXBJw05C+0rMFcK4Z/xQMX6wGtpL6
+         SGMPId3De6pc/g9HmwUn1T2FhUt6whVHN+xb0rcIvu0EbgFSqsiZiKyyTR6f4yRkn/Pc
+         22VI8DLNLF+gAEDs0/OuwADncNQt5WrRQ61gJMlBVRyEoMAlV2TBpWSdYYYShiBwAVda
+         ig1uLWuZZwelZ3DBQXFwfWw9kN3L1i/KxnEDlQ+bfdyiKRsqraRlxBMAyw4panDajrRp
+         T7ht0+06i3UD1pvoI8GlZeT2Boe/2K3OGn8t/z1vZassa39GpFZgwFpfMpMBMvHSVes1
+         brrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/AaeFwDtGgsiJbC0QTZeuI5q7NDTwTp278cldLgwfac=;
-        b=YoptvFI8jWS0DN+QhjSskCGYKU6hWpgbw0nTumff3HoA+i6ZxLWSUnSXx9leC6tXyO
-         /yI/KibVoZf12zuRl4OA5gJx6tHFWVH0uhw6kc+p7srIFeM1hEJj03RIBGj/AD3Zrt4Y
-         CIb+4UZIJbmbPfuPtCKYKSAVhvVuzjc/XnwkEnqkPlxhHwYzNr2X7lXsA8yDxvO5QNYw
-         WsInCToUdaQ+U8A1RwWpCa8TlHXhrVw+kAUpspsezhlKepHxUN8gh4f7y12IBIgn82l2
-         2UK1ZZmPQYVhEguNNpveLGb4Q3QVlKxcIz/T80qAKWtwr/zCT5DOTq9pacHmURtiCgpf
-         yK9w==
-X-Gm-Message-State: AO0yUKUnQhKyR1FzEHiwR2Ui4lTDaPkApELJWxUUVxj8vxsWgeXTdaeY
-        Q5dZ4g7ITe8dtE+djYQ978rI6g==
-X-Google-Smtp-Source: AK7set/zIQgNCvI0NgV6LI0l0/eN2Kv8XajaYfnqYSl6iIgopnqcYNooxoPE3JWlBjVwcWq/6NAHJg==
-X-Received: by 2002:a05:6000:18ca:b0:2c3:db9e:4b06 with SMTP id w10-20020a05600018ca00b002c3db9e4b06mr10707805wrq.45.1675952605632;
-        Thu, 09 Feb 2023 06:23:25 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y1-20020a5d4ac1000000b002c3be6ae0b1sm1353515wrs.65.2023.02.09.06.23.24
+        bh=G8CEuoh8/tO2WNNegwThQxagifKl5T8FJBwqfoW5Qnc=;
+        b=siAcLBN3cHbjvhhCscmljiYvVLYyDL2gL+Z8Avw88oDj1tXBGdAlz3u0+3m9nCnWvT
+         qiKVAPp45tDhl6810/X8e1UlOo2Qk4SUirg0UFjB0wnIMU1hDb42mZ+S/g4k0uOVJgUc
+         J7pXAfcyyKHuxjlEFYMy5HQnmdtKE9fX2zJhGAI9xnakuS2pRN1ZYQ8EydZNetO2hfoq
+         sCmQYgqdUhPi6ZQKSVpKHyxBjLKjkl3jx2HM8ix/xhGWQag3KaCheyGCXMFIdTlnc4hY
+         9Mab6SIQIpe20lwBGjcK0NvJR2AXbKHH36CpbvdEz2PmAjEI6204+dWKC3GzD+rJnnv/
+         hWdw==
+X-Gm-Message-State: AO0yUKXmCo4qv0iFqxCKavJV8R6qxi54e8g2Rd6BmHHmdKhpUgUO0dFt
+        1IBSSGMSgrtF6RaDl2Kqb8H4VD49kbPJstKrBTqRFiGs
+X-Google-Smtp-Source: AK7set/YQoyOdPS8Zp+k/ZHZSM5vg5zjI3jXX8fddlGMbqeVIPumeeTulTVDogjdrTt4rG8rFZ4dAg==
+X-Received: by 2002:a05:6402:268b:b0:4a2:2e9e:c2ec with SMTP id w11-20020a056402268b00b004a22e9ec2ecmr14059882edd.4.1675953019947;
+        Thu, 09 Feb 2023 06:30:19 -0800 (PST)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id v28-20020a50d59c000000b004aaa09d50adsm815359edi.94.2023.02.09.06.30.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 06:23:25 -0800 (PST)
-Message-ID: <99a17d21-2cf9-a573-29cb-827568c9709b@linaro.org>
-Date:   Thu, 9 Feb 2023 15:23:23 +0100
+        Thu, 09 Feb 2023 06:30:19 -0800 (PST)
+Message-ID: <ce42e852-fb73-08ca-48c7-9826ab087289@linaro.org>
+Date:   Thu, 9 Feb 2023 16:30:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 2/2] ARM: dts: exynos: add mmc aliases
+ Thunderbird/102.0.2
+Subject: Re: [PATCH v9 11/14] arm64: dts: qcom: sm8250: add description of
+ Qualcomm Crypto Engine IP
 Content-Language: en-US
-To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        m.szyprowski@samsung.com, jenneron@protonmail.com,
-        markuss.broks@gmail.com, martin.juecker@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Cc:     Valentine Iourine <iourine@iourine.msk.su>
-References: <20230128133151.29471-1-henrik@grimler.se>
- <20230128133151.29471-3-henrik@grimler.se>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230128133151.29471-3-henrik@grimler.se>
-Content-Type: text/plain; charset=UTF-8
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
+ <20230208183755.2907771-12-vladimir.zapolskiy@linaro.org>
+ <7b38331c-3b29-03c1-fbed-f5799d11ca1f@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <7b38331c-3b29-03c1-fbed-f5799d11ca1f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -80,136 +85,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/01/2023 14:31, Henrik Grimler wrote:
-> Add aliases for eMMC, SD card and WiFi where applicable, so that
-> assigned mmcblk numbers are always the same.
+Hi Bhupesh,
+
+On 2/9/23 14:21, Bhupesh Sharma wrote:
+> Hi Vladimir,
 > 
-> Co-developed-by: Anton Bambura <jenneron@protonmail.com>
-> Signed-off-by: Anton Bambura <jenneron@protonmail.com>
-> [ Tested on exynos5800-peach-pi ]
-> Tested-by: Valentine Iourine <iourine@iourine.msk.su>
-> Signed-off-by: Henrik Grimler <henrik@grimler.se>
-> ---
->  arch/arm/boot/dts/exynos3250-artik5-eval.dts        | 5 +++++
->  arch/arm/boot/dts/exynos3250-artik5.dtsi            | 5 +++++
->  arch/arm/boot/dts/exynos3250-monk.dts               | 1 +
->  arch/arm/boot/dts/exynos3250-rinato.dts             | 2 ++
->  arch/arm/boot/dts/exynos4210-i9100.dts              | 6 ++++++
->  arch/arm/boot/dts/exynos4210-origen.dts             | 5 +++++
->  arch/arm/boot/dts/exynos4210-smdkv310.dts           | 4 ++++
->  arch/arm/boot/dts/exynos4210-trats.dts              | 6 ++++++
->  arch/arm/boot/dts/exynos4210-universal_c210.dts     | 6 ++++++
->  arch/arm/boot/dts/exynos4412-itop-elite.dts         | 5 +++++
->  arch/arm/boot/dts/exynos4412-midas.dtsi             | 3 +++
->  arch/arm/boot/dts/exynos4412-odroid-common.dtsi     | 5 +++++
->  arch/arm/boot/dts/exynos4412-origen.dts             | 5 +++++
->  arch/arm/boot/dts/exynos4412-p4note.dtsi            | 6 ++++++
->  arch/arm/boot/dts/exynos4412-smdk4412.dts           | 4 ++++
->  arch/arm/boot/dts/exynos4412-tiny4412.dts           | 4 ++++
->  arch/arm/boot/dts/exynos5250-arndale.dts            | 5 +++++
->  arch/arm/boot/dts/exynos5250-smdk5250.dts           | 2 ++
->  arch/arm/boot/dts/exynos5250-snow-common.dtsi       | 3 +++
->  arch/arm/boot/dts/exynos5250-spring.dts             | 5 +++++
->  arch/arm/boot/dts/exynos5260-xyref5260.dts          | 5 +++++
->  arch/arm/boot/dts/exynos5410-odroidxu.dts           | 2 ++
->  arch/arm/boot/dts/exynos5410-smdk5410.dts           | 5 +++++
->  arch/arm/boot/dts/exynos5420-arndale-octa.dts       | 5 +++++
->  arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi | 5 +++++
->  arch/arm/boot/dts/exynos5420-peach-pit.dts          | 3 +++
->  arch/arm/boot/dts/exynos5420-smdk5420.dts           | 5 +++++
->  arch/arm/boot/dts/exynos5422-odroid-core.dtsi       | 5 +++++
->  arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi  | 4 ++++
->  arch/arm/boot/dts/exynos5422-samsung-k3g.dts        | 4 ++++
->  arch/arm/boot/dts/exynos5800-peach-pi.dts           | 3 +++
->  31 files changed, 133 insertions(+)
+> On 2/9/23 12:07 AM, Vladimir Zapolskiy wrote:
+>> Add description of QCE and its corresponding BAM DMA IPs on SM8250 SoC.
+>>
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
+>>    arch/arm64/boot/dts/qcom/sm8250.dtsi | 24 ++++++++++++++++++++++++
+>>    1 file changed, 24 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index e59c16f74d17..d8698d18223e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -2215,6 +2215,30 @@ ufs_mem_phy_lanes: phy@1d87400 {
+>>    			};
+>>    		};
+>>    
+>> +		cryptobam: dma-controller@1dc4000 {
+>> +			compatible = "qcom,bam-v1.7.0";
+>> +			reg = <0x0 0x01dc4000 0x0 0x24000>;
+>> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+>> +			#dma-cells = <1>;
+>> +			qcom,ee = <0>;
+>> +			qcom,controlled-remotely;
+>> +			num-channels = <8>;
+>> +			qcom,num-ees = <2>;
+>> +			iommus = <&apps_smmu 0x586 0x11>,
+>> +				 <&apps_smmu 0x596 0x11>;
+>> +		};
+>> +
+>> +		crypto: crypto@1dfa000 {
+>> +			compatible = "qcom,sm8250-qce", "qcom,sm8150-qce";
+>> +			reg = <0x0 0x01dfa000 0x0 0x6000>;
+>> +			dmas = <&cryptobam 6>, <&cryptobam 7>;
+>> +			dma-names = "rx", "tx";
+>> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+>> +			interconnect-names = "memory";
+>> +			iommus = <&apps_smmu 0x586 0x11>,
+>> +				 <&apps_smmu 0x596 0x11>;
+>> +		};
+>> +
+>>    		tcsr_mutex: hwlock@1f40000 {
+>>    			compatible = "qcom,tcsr-mutex";
+>>    			reg = <0x0 0x01f40000 0x0 0x40000>;
 > 
-> diff --git a/arch/arm/boot/dts/exynos3250-artik5-eval.dts b/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-> index a1e22f630638..83266a66124b 100644
-> --- a/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-> +++ b/arch/arm/boot/dts/exynos3250-artik5-eval.dts
-> @@ -16,6 +16,11 @@ / {
->  	model = "Samsung ARTIK5 evaluation board";
->  	compatible = "samsung,artik5-eval", "samsung,artik5",
->  			"samsung,exynos3250", "samsung,exynos3";
-> +
-> +	aliases {
-> +		mmc2 = &mshc_2;
-> +	};
-> +
->  };
->  
->  &mshc_2 {
-> diff --git a/arch/arm/boot/dts/exynos3250-artik5.dtsi b/arch/arm/boot/dts/exynos3250-artik5.dtsi
-> index 0ac3f284fbb8..a6e2f46917a8 100644
-> --- a/arch/arm/boot/dts/exynos3250-artik5.dtsi
-> +++ b/arch/arm/boot/dts/exynos3250-artik5.dtsi
-> @@ -17,6 +17,11 @@
->  / {
->  	compatible = "samsung,artik5", "samsung,exynos3250", "samsung,exynos3";
->  
-> +	aliases {
-> +		mmc0 = &mshc_0;
-> +		mmc1 = &mshc_1;
-> +	};
-> +
->  	chosen {
->  		stdout-path = &serial_2;
->  	};
-> diff --git a/arch/arm/boot/dts/exynos3250-monk.dts b/arch/arm/boot/dts/exynos3250-monk.dts
-> index 80d90fe7fad1..a68e5f81404c 100644
-> --- a/arch/arm/boot/dts/exynos3250-monk.dts
-> +++ b/arch/arm/boot/dts/exynos3250-monk.dts
-> @@ -22,6 +22,7 @@ / {
->  
->  	aliases {
->  		i2c7 = &i2c_max77836;
-> +		mmc0 = &mshc_0;
->  	};
->  
->  	memory@40000000 {
-> diff --git a/arch/arm/boot/dts/exynos3250-rinato.dts b/arch/arm/boot/dts/exynos3250-rinato.dts
-> index 1f9cba0607e1..f0fb6890e4a8 100644
-> --- a/arch/arm/boot/dts/exynos3250-rinato.dts
-> +++ b/arch/arm/boot/dts/exynos3250-rinato.dts
-> @@ -23,6 +23,8 @@ / {
->  
->  	aliases {
->  		i2c7 = &i2c_max77836;
-> +		mmc0 = &mshc_0;
-> +		mmc1 = &mshc_1;
->  	};
->  
->  	chosen {
-> diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-> index bba85011ecc9..7051e2c4b391 100644
-> --- a/arch/arm/boot/dts/exynos4210-i9100.dts
-> +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-> @@ -25,6 +25,12 @@ memory@40000000 {
->  		reg = <0x40000000 0x40000000>;
->  	};
->  
-> +	aliases {
-> +		mmc0 = &sdhci_0;
-> +		mmc2 = &sdhci_2;
-> +		mmc3 = &sdhci_3;
+> This patch was part of the v7 arm64 dts fixes I sent out - see [1].
 
-1. Is this actually correct? Since mmc1 was disabled, sdhci_2 had mmc1
-index but now will have mmc2.
+thank you for pointing it out, so there are two different v7 series of related
+patches, as it's stated in the cover letter I based my v8 on top of linux-crypto
+changes [*], and this particular change was developed independently from yours.
 
-2. I tested Odroid U3 and the ID changed. emmc went from 1 to 0. Any
-idea why? Both patches should be transparent.
+And so, there are some differences, can you please comment on them?
 
-3. Patchset does not look bisectable, so both patches should be squashed.
+- My change does not have 'interconnects' property under dma-controller@1dc4000
+   device tree node, I believe it is not needed, but please correct me here.
+- My change uses DMA channel number taken from the downstream code [**], is
+   there a reason to use different ones like in your change?
+- My change has a shorter list of IOMMUs also copied from the same downstream
+   code, is there a reason to use a different extended list like in your change?
+- On my end I have to retest your change without 'num-channels' and 'qcom,num-ees'
+   properties, since this also seems as an important difference between two patches.
 
-4. Your patch has several whitespace issues:
-patch:264: trailing whitespace.
+Nevertheless, thank you again for bringing my attention to a different patch
+series, I'll reuse the changes from it, and also publish all of them together and
+in a separate changeset as Krzysztof suggested.
 
-patch:279: trailing whitespace.
+> Probably you can use it as a base and make the changes (interconnect
+> property for the BAM DMA node and qce-compatible names) directly there
+> and include it in your patch series.
 
-patch:461: trailing whitespace.
+[*]  https://lore.kernel.org/linux-arm-msm/20220920114051.1116441-1-bhupesh.sharma@linaro.org/
+[**] https://source.codeaurora.org/quic/la/kernel/msm-4.19/tree/arch/arm64/boot/dts/qcom/kona.dtsi?h=LA.UM.8.12.3.1&id=f3dd4aaeb34438c877ccd42f5a48ccd554dd765a#n2979
 
+> [1].
+> https://lore.kernel.org/linux-arm-msm/20220921045602.1462007-3-bhupesh.sharma@linaro.org/
 
-
-Best regards,
-Krzysztof
-
+--
+Best wishes,
+Vladimir
