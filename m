@@ -2,113 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC746903C9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:32:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2BFE6903D6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230257AbjBIJc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:32:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38956 "EHLO
+        id S229739AbjBIJdi convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Feb 2023 04:33:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbjBIJc1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:32:27 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3984B62798
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:32:26 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id d14so1097472wrr.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:32:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3eL7i9b5wRY0WQmCcwLWaepV6oMtyTPsC0kIIjAbWos=;
-        b=BRQ7FvOa7WzSiV9lkz2IJt8gO7JaWUx8exju0lZChG71KN1KtoPl+nRG2tNFgvNh+Y
-         dNXXQ6b0oEhKK6B/zFwlCax2PavvZxrkry8H5BejD/nVC9fcWi2wlKpkJkwXsrul8qHj
-         eI6IeiZGDUWE9y3z3wx2qE6JOSi8RsUPHLS/P0P97DW0GgSN9izSzHKQVKQMrwaNOVmr
-         EVzu+BlHkixgNObqr177mOh3BOTcp9Cxsg6r5BU84mAf8VvLzQyi7/z6io0bMMIt5/O2
-         WeW7kCJVzjDXho+Dj94lBcWidpEFZ3N0rYVewGdYnOwMQRh3t/ay1L+C2FVI67c9xIoV
-         AKzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3eL7i9b5wRY0WQmCcwLWaepV6oMtyTPsC0kIIjAbWos=;
-        b=A+1mzTteY74wA8Q+2M51uSlnOrBNND7m79Jf1mIrqZ/JtdASNDOP19yPWwJ/1EPZ7X
-         uOsbvqbmH1cyADcM02YLMv+kV19K5MPARrIw8sotya5nQP6z4/OB5Xo0ch2B6B2xwqX2
-         /Fgu6cdbHO1Eju4pm/vlwD6s+5gLpYD9LbVgJxMYjX3qBMsZZ/a1f5OjkhP2uYOWk1OK
-         U/we7B+t1AmXVNXGy1XScsdb1eAbX36yJvADU9ZK0WMM2QT78fHJ36G94z8puRbnZOeQ
-         ZRo7pMwzjLXBXUPUPSY+OgSptVP24kiuV27qa/mo30tPdaTSMSwfF9JV5zzZsrDZ30SY
-         vLfQ==
-X-Gm-Message-State: AO0yUKX4UlfkDUjC8aS7SJgRHOy9D90yitsdit79v7+isdLNWHymJv68
-        Do70TFofp/dLWvhV6fQ5Au/7dg==
-X-Google-Smtp-Source: AK7set8I2xZbbr8G3cp/CpHdQlhfy0CfuBS3MAzNnpmRXGn+oP+zQZcQ4KmZTBzwEZBwmmC6Ow2r0Q==
-X-Received: by 2002:a05:6000:136c:b0:2c3:db87:977c with SMTP id q12-20020a056000136c00b002c3db87977cmr9632412wrz.12.1675935144773;
-        Thu, 09 Feb 2023 01:32:24 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t12-20020adfe44c000000b002c3dd9bb283sm803503wrm.37.2023.02.09.01.32.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 01:32:24 -0800 (PST)
-Message-ID: <9f0a1202-1a98-22e1-873b-2d70ed63de72@linaro.org>
-Date:   Thu, 9 Feb 2023 10:32:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 10/11] dt-bindings: clock: remove stih416 bindings
-Content-Language: en-US
-To:     Alain Volmat <avolmat@me.com>, Jonathan Corbet <corbet@lwn.net>,
+        with ESMTP id S230315AbjBIJdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:33:23 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78CE65ED4;
+        Thu,  9 Feb 2023 01:33:13 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id AF01B24E2B9;
+        Thu,  9 Feb 2023 17:33:06 +0800 (CST)
+Received: from EXMBX167.cuchost.com (172.16.6.77) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Feb
+ 2023 17:33:06 +0800
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX167.cuchost.com
+ (172.16.6.77) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Feb
+ 2023 17:33:06 +0800
+Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
+ EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
+ 15.00.1497.044; Thu, 9 Feb 2023 17:33:06 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+CC:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20230209091659.1409-1-avolmat@me.com>
- <20230209091659.1409-11-avolmat@me.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230209091659.1409-11-avolmat@me.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
+Thread-Topic: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
+Thread-Index: AQHZNMIM/vLXVq3JgUiER7vBRC/T367F3jsAgACIQGA=
+Date:   Thu, 9 Feb 2023 09:33:06 +0000
+Message-ID: <88a62a7a11814d629e2198583a0349b6@EXMBX168.cuchost.com>
+References: <20230130154242.112613-1-jiajie.ho@starfivetech.com>
+ <20230130154242.112613-5-jiajie.ho@starfivetech.com>
+ <Y+S5fBjZQZli9nBg@gondor.apana.org.au>
+In-Reply-To: <Y+S5fBjZQZli9nBg@gondor.apana.org.au>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [202.188.176.82]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 10:16, Alain Volmat wrote:
-> Remove the stih416 clock dt-bindings since this platform is no
-> more supported.
+
+
+> -----Original Message-----
+> From: Herbert Xu <herbert@gondor.apana.org.au>
+> Sent: 9 February, 2023 5:15 PM
+> To: JiaJie Ho <jiajie.ho@starfivetech.com>
+> Cc: David S . Miller <davem@davemloft.net>; Rob Herring
+> <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Emil Renner Berthing
+> <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>; linux-
+> crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
+> Subject: Re: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
 > 
-> Signed-off-by: Alain Volmat <avolmat@me.com>
-> ---
+> On Mon, Jan 30, 2023 at 11:42:42PM +0800, Jia Jie Ho wrote:
+> >
+> > +	cryp->hash_data = (void *)__get_free_pages(GFP_KERNEL |
+> GFP_DMA32,
+> > +pages);
+> 
+> Why do you copy everything before you feed it to the hardware?
+> If the issue is alignment then surely you should only to copy a small amount
+> of header (and perhaps trailer) for that?
+> 
 
+The DMA can only support 32-bit addressing.
+So, I am copying everything in case kernel allocated memory region >32-bit for a user app.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > +static int starfive_hash_export(struct ahash_request *req, void *out)
+> > +{
+> > +	struct starfive_cryp_request_ctx *rctx = ahash_request_ctx(req);
+> > +
+> > +	memcpy(out, rctx, sizeof(*rctx));
+> > +
+> > +	return 0;
+> > +}
+> 
+> You are supposed to extract the entire hardware state after each operation
+> and store that in the request context.  Since your request context doesn't
+> appear to contain any hash state, this can't possibly work.
+> 
+> Does your hardware allow the non-finalised hash state to be exported, and
+> re-imported later? If not then you can only implement support for digest and
+> must use a fallback for everything else.
 
-Best regards,
-Krzysztof
+The hardware doesn't support this. I'll add the fallback in the next version.
+Thanks for taking time reviewing this patch series.
+
+Regards,
+Jia Jie
+
 
