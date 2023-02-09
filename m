@@ -2,86 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87A7B691390
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 23:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 644A76913A4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 23:45:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbjBIWkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 17:40:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42452 "EHLO
+        id S230465AbjBIWpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 17:45:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbjBIWjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 17:39:16 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB1F6BABE;
-        Thu,  9 Feb 2023 14:38:47 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 796CA100004;
-        Thu,  9 Feb 2023 22:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1675982325;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=GlmlRq1SwmIoi67aUVNcS7ctofjzfmDlTqR+bZ6hmVg=;
-        b=GyHZle2edxB4Pl2ob6GyRhceamq4ZPeyBsxTMi8lsmZdGLJwLEYKtxnGFCrcg59J7qdMyY
-        fGL/E+WH29LnkgMXcjHndhwpe6NHCCAsxOEhzA4NKuNtpP3DXKXMOQ08Nw1zyL4qCQZyYM
-        EcEAwnT/hO2LFwAIIrmuH8BQu4VBpKqS8t3enrSHDDkHtlqCFD0upMQk4CH6ThbYZ34Gv4
-        Aic9WnwO5hAne8ECWhy3bAqDJwU69QHIUld+ZDUWZIoIXDjiSmbJmhaFeUGXXtZwFsaJSl
-        rbn9M0rP9BTkO5qQgf+O8IvWnqp3nJ7X8RyHdMSbI1ltH/e+4ox2Q/Ay1yV7jA==
-Date:   Thu, 9 Feb 2023 23:38:43 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
+        with ESMTP id S230411AbjBIWpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 17:45:03 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1FF4FC1E
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 14:45:01 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id ud5so11070695ejc.4
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 14:45:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VyDWUrztbgFwlIvsJFzPjp39A/vmSkMB6yGFg9/7R7g=;
+        b=a7VbZDZ9LlplVn6DkvWI53f+eYSvwVYLIfYa4y8Fh+DZ1yqnlI23OJtJAc+I1I3g7s
+         PwnAgMpi713Gf6tsnb3HFPoWKrziGfAqe3ogF/1+OedCTBC5fU7jmSLe6YYsnBZI46ri
+         2FRNuY0PNC++3/bBZZpU3w1JEWkhO1dj1fJ8kIqHrogQmwiDN9+b+AUWuEXOptovE+IE
+         c9WvotEGOs/NQdvQmuyA00SAOuPUcngCcomR5wwxZ82E3fNHE8DTO87tYVgbykz2rf1W
+         PYQaHa3nMc4rPm0to6zrmv7u35lJOpynnKNkC+1QZTITmsPxpxpx/eiFUF64Zj6vpLAN
+         aQFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VyDWUrztbgFwlIvsJFzPjp39A/vmSkMB6yGFg9/7R7g=;
+        b=ZBs3HWwgYKpXR0cDUemMTK36qixN1hErBme9OaO+EZOKBKe2EChamo1GYWvPdgXKLe
+         6MCoOKTk67bHrLPrtSJsZAdgqH2rIpA9KbP1DzkXTDBsigFolciwxM+nbAAnZFHFMD0B
+         4h8AQ8vS78ih4rn7NdYbzeiYqy/UfDrkYca8Ej932iPwccGDDkR6zBDEHE8JR2Au7+1A
+         zE6W2/I1AtVhROZZQUsQR9iqH/a00Lmy2SlIIz0tAsXWWY24v/HdWOOEHHi8LgnPlj3q
+         jJbpkbLVa3T7iMp9Dia+gbz/zifzkun7KV14LmIAF3rEG9KzVGBd6uqkzciwPRqlZAIB
+         iybg==
+X-Gm-Message-State: AO0yUKX3SkgU8siloceuodEpBx5GtZgw050hCJo+s/Pj9w65Lfx3vF3n
+        txcQFFbjfjK98eXJyIOX9QKbrA==
+X-Google-Smtp-Source: AK7set8lrfQop3nJu4PGRzMJfEQOX1MuZ0erjBkaR+He1Cj8SwMKepaGOem3o7BlOHOhSpE7Bb3uDA==
+X-Received: by 2002:a17:906:1286:b0:88f:9c29:d232 with SMTP id k6-20020a170906128600b0088f9c29d232mr13576848ejb.57.1675982699769;
+        Thu, 09 Feb 2023 14:44:59 -0800 (PST)
+Received: from localhost (h-46-59-89-207.A463.priv.bahnhof.se. [46.59.89.207])
+        by smtp.gmail.com with ESMTPSA id n1-20020a17090625c100b0088c224bf5adsm1466525ejb.147.2023.02.09.14.44.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 14:44:59 -0800 (PST)
+Date:   Thu, 9 Feb 2023 23:44:58 +0100
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        list@opendingux.net
-Subject: Re: [PATCH v3 0/4] rtc: jz4740: Various updates
-Message-ID: <167598230483.1658778.17605710915150090375.b4-ty@bootlin.com>
-References: <20230129120442.22858-1-paul@crapouillou.net>
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: rcar-gen3-thermal: Add
+ r8a779g0 support
+Message-ID: <Y+V3arOqT4eW/g5k@oden.dyn.berto.se>
+References: <cover.1675958665.git.geert+renesas@glider.be>
+ <11f740522ec479011cc8eef6bb450603be394def.1675958665.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230129120442.22858-1-paul@crapouillou.net>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <11f740522ec479011cc8eef6bb450603be394def.1675958665.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
-On Sun, 29 Jan 2023 12:04:38 +0000, Paul Cercueil wrote:
-> Here's a revised patchset that introduces a few updates to the
-> jz4740-rtc driver.
+Thanks for your work.
+
+On 2023-02-09 17:11:53 +0100, Geert Uytterhoeven wrote:
+> Document support for the Thermal Sensor/Chip Internal Voltage
+> Monitor/Core Voltage Monitor (THS/CIVM/CVM) on the Renesas R-Car V4H
+> (R8A779G0) SoC.
 > 
-> Patch [1/4] used to break ABI, it does not anymore.
-> Patch [2/4] did not change, patch [3/4] is new.
+> Unlike most other R-Car Gen3 and Gen4 SoCs, it has 4 instead of 3
+> sensors, so increase the maximum number of reg tuples.
+> Just like other R-Car Gen4 SoCs, interrupts are not routed to the
+> INTC-AP but to the ECM.
 > 
-> Patch [3/4] has been updated to use dev_err_probe(), use __clk_hw_get()
-> instead of looking up the parent's clock by name, and will now register
-> the CLK32K clock when the #clock-cells device property is present
-> instead of doing it based on the compatible string.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> ---
+>  .../devicetree/bindings/thermal/rcar-gen3-thermal.yaml         | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> [...]
-
-Applied, thanks!
-
-[1/4] dt-bindings: rtc: Add #clock-cells property
-      commit: 4737a703528c769c4fde6b68462f656f91f4ad99
-[2/4] rtc: jz4740: Use readl_poll_timeout
-      commit: d644b133f78d6d8efd36f7b1703bebca09036f0b
-[3/4] rtc: jz4740: Use dev_err_probe()
-      commit: ff6fd3770e9687d7b849a0e826a32563bfcb98da
-[4/4] rtc: jz4740: Register clock provider for the CLK32K pin
-      commit: 5ddfa148de8cf5491fd1c89522c7cad859db8c88
-
-Best regards,
+> diff --git a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> index 0f05f5c886c5fe1d..ecf276fd155cfb27 100644
+> --- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> @@ -28,6 +28,7 @@ properties:
+>        - renesas,r8a77980-thermal # R-Car V3H
+>        - renesas,r8a779a0-thermal # R-Car V3U
+>        - renesas,r8a779f0-thermal # R-Car S4-8
+> +      - renesas,r8a779g0-thermal # R-Car V4H
+>  
+>    reg: true
+>  
+> @@ -80,6 +81,7 @@ else:
+>          - description: TSC1 registers
+>          - description: TSC2 registers
+>          - description: TSC3 registers
+> +        - description: TSC4 registers
+>    if:
+>      not:
+>        properties:
+> @@ -87,6 +89,7 @@ else:
+>            contains:
+>              enum:
+>                - renesas,r8a779f0-thermal
+> +              - renesas,r8a779g0-thermal
+>    then:
+>      required:
+>        - interrupts
+> -- 
+> 2.34.1
+> 
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Kind Regards,
+Niklas Söderlund
