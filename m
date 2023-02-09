@@ -2,133 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EEA6690D10
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 16:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96851690D6E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 16:45:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbjBIPef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 10:34:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43400 "EHLO
+        id S229725AbjBIPp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 10:45:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230470AbjBIPea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 10:34:30 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0094A60D5D;
-        Thu,  9 Feb 2023 07:34:16 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 319FXqnU125642;
-        Thu, 9 Feb 2023 09:33:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1675956832;
-        bh=bQs2LuMKvXtGlz/nyDz00lfj4KMUBI7mZMrw6IqBs2k=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=joRjVW9boTlaeJHW0l9pr2Vae3H8UU5Hfd2oQWp12s/2AsT0QNiGcYqFNV9p6AZsf
-         VuA3Feztb1MsaK+A+e/R2qEQJaqCbGR/tR1CdaP9x5WYZtP1iSEOH5xEaCs4fMitCB
-         7vHlQnOwUTsio2vDnuEwgVNFGQg8USrKdBaI0jWY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 319FXq9r078704
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 9 Feb 2023 09:33:52 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
- Feb 2023 09:33:52 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 9 Feb 2023 09:33:52 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 319FXqaZ117869;
-        Thu, 9 Feb 2023 09:33:52 -0600
-Date:   Thu, 9 Feb 2023 09:33:52 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <francesco.dolcini@toradex.com>
-Subject: Re: K3 AM62x SoC dts/dtsi include hierarchy and naming scheme
-Message-ID: <20230209153352.5tgkqe3xbby7pmju@polio>
-References: <Y+KcJdvgDw9EqFCz@francesco-nb.int.toradex.com>
+        with ESMTP id S231579AbjBIPpv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 10:45:51 -0500
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A247864D86
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 07:45:30 -0800 (PST)
+Received: by mail-vs1-xe2d.google.com with SMTP id h19so2505154vsv.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 07:45:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PqrEeOYy3mjqh5KmY+3gTVjzv8Do3LhWFceA0QbUl+Q=;
+        b=QPhmCpMd6ZPgvRGEQa4k/r0HMG+R8wiKBF803a4KjRNUmfaoIIFAc2uCF46INTnhLM
+         vaZbHXCdTMO68szrINPHDbqFen2qNdxCGL3IYrhajFTsYXd2EXax9Ne0lzSzxukIMOVh
+         /sB9flevqoes/H9c4f0s8BgrpQDlyXHB4vd28=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PqrEeOYy3mjqh5KmY+3gTVjzv8Do3LhWFceA0QbUl+Q=;
+        b=0X0uBm1lwYiIpDpPfw1xNHY9dp1hCMZ/JGXJLnUkusUC3GNG+1OsvsiA26fv8j+GlX
+         FAGH2r/iRBfa4mS+65vnkcBLOkEL0d2WKZ5oKrxZMMO9rBCPbzrQabAbIPu0jd2ycCB0
+         mwv1IJ5n3c5jb4SrAl9edUiirWyhr81dSzpgExS8xEMFqm/+FOocIV54cCec0u6xBQjD
+         2UyTVD++frdExXrruYf+FO2lMIgYWZnOgzccVxY/VZBx/UZXDmOqSNg+KzFy3wF4TDRD
+         +xXe7i3HxCYnvWp7ycYIUFHk1JpLerb/9WbeYw99Ytf/nCtBbrouilQ2SxJfjkG3g7Qo
+         DdJw==
+X-Gm-Message-State: AO0yUKUehvm9ugNudIEZsUiBCDQQYjoKK/IQdi40hTKhHIbGcQd7vcQ4
+        5CDliGy1vnxwz6Cb3Z3RLf/4FKReChwzOvqfG/0=
+X-Google-Smtp-Source: AK7set/cA6W4o+k/uUBUAA/DjJov6XjRUHu894/UiRJ8JpEb/p5zQHjjz+ym5rRMQC8fYSH4lBJW2A==
+X-Received: by 2002:a05:6102:c91:b0:3ee:fe79:f0fc with SMTP id f17-20020a0561020c9100b003eefe79f0fcmr10489500vst.23.1675957524908;
+        Thu, 09 Feb 2023 07:45:24 -0800 (PST)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id h16-20020ab04710000000b00686fd08183bsm155795uac.28.2023.02.09.07.45.23
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 07:45:23 -0800 (PST)
+Received: by mail-vs1-f43.google.com with SMTP id g3so2524285vsr.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 07:45:23 -0800 (PST)
+X-Received: by 2002:a67:6743:0:b0:411:c22d:8433 with SMTP id
+ b64-20020a676743000000b00411c22d8433mr837593vsc.73.1675957523229; Thu, 09 Feb
+ 2023 07:45:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Y+KcJdvgDw9EqFCz@francesco-nb.int.toradex.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <1675863724-28412-1-git-send-email-quic_kalyant@quicinc.com>
+ <CAD=FV=WbzmF_Jkwrcm27eqXaqNhGq_D=8yfCKqELET+=+EaLAA@mail.gmail.com>
+ <BN0PR02MB8142207261497BE76A6EA07096D99@BN0PR02MB8142.namprd02.prod.outlook.com>
+ <BN0PR02MB81426F878B10DDF4AD2F95A896D99@BN0PR02MB8142.namprd02.prod.outlook.com>
+In-Reply-To: <BN0PR02MB81426F878B10DDF4AD2F95A896D99@BN0PR02MB8142.namprd02.prod.outlook.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 9 Feb 2023 07:45:10 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WP_XLpvnLe8qDTOYNuhZBCf-PynPa-SOMdfUFEWCYYvg@mail.gmail.com>
+Message-ID: <CAD=FV=WP_XLpvnLe8qDTOYNuhZBCf-PynPa-SOMdfUFEWCYYvg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/4] Reserve DSPPs based on user request
+To:     Kalyan Thota <kalyant@qti.qualcomm.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robdclark@chromium.org" <robdclark@chromium.org>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:44-20230207, Francesco Dolcini wrote:
-> Hello Vignesh and all,
-> I am writing you to get some clarification on the way the dts/dtsi
-> naming and include hierarchy is designed for the TI K3 AM62x SOC family.
-> 
-> I read commit f1d17330a5be ("arm64: dts: ti: Introduce base support for AM62x SoC").
-> 
-> I plan to send in the next few weeks some device tree files for
-> inclusion in the kernel for SOM (or computer on module) based on the
-> AM62x SOC.
-> 
-> I do envision to have the same dts file for different machine that are
-> going to use different variant of the AM62x SOC, e.g. AM623 vs AM625 or
-> just a different number of CPU cores, handling the differences at
-> runtime (patching the .dtb in U-Boot?) to limit the maintenance effort and
-> limit the amount of very similar dts files.
-> 
-> Said that we would prefer to stay close with what is considered/agreed
-> to be the best approach.
-> 
-> Would something like that work or you would have a completely different
-> expectation?
-> 
-> What would be the expected naming scheme? k3-am62-${board_name}.dts ?
-> Something else?
-> 
-> k3-am625.dtsi defines the CPU nodes, why are these in a AM625 specific
-> file? To me this looks like something that would be just the same with
-> AM623, and at the same time AM6251 has only one core (see [0] Table 5-1).
-> Am I missing something?
-> 
-> Thanks for your help,
-> Francesco
-> 
-> [0] https://www.ti.com/lit/ds/symlink/am625.pdf 
-> 
+Hi,
 
-Typically, our strategy has been to introduce the superset device,
-primarily because the device variants are quite a few, and without
-actual users, it makes no sense to introduce a dtsi in kernel
-in-anticipation of a potential board. Now that said, also keep in mind
-the part number definitions do change depending on the market demands
-over time (qualification requirements etc..), The initial device tree
-was based on the definition we had at the time, as usual, over time,
-definitions are changing :(.
+On Thu, Feb 9, 2023 at 3:26 AM Kalyan Thota <kalyant@qti.qualcomm.com> wrot=
+e:
+>
+> Kindly ignore my previous email. Sent too early !!
+>
+> We have tested the changes on top of tip: https://chromium.googlesource.c=
+om/chromiumos/third_party/kernel/+log/refs/heads/chromeos-5.15 + 5 CTM patc=
+hes ( that you have quoted )
+> We didn=E2=80=99t see the issue that you have reported on herobrine. Nigh=
+t light always came up on primary display as the reservation with dspp was =
+successful.  Are you seeing any reservation failures for primary display ?
+>
+> Attached a debug patch, can you share the logs when you see the issue.
 
-Considering the potential combinatorial explosion if we are trying
-to constantly catching up with variations of chip configurations as
-market definitions change over time, we need to be a bit pragmatic in
-the various dtsi files we introduce. With that in mind, If we have
-just one board using the part variant, we should reduce the churn in
-the tree by keeping the processor variation isolated to the board
-(See arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi as an
-example), on the other hand, the AM6251 (Single A53 variant) promises
-to be a variant that will probably get used in multiple boards, I'd
-suggest introducing a dtsi that is reused across the boards.
+Sounds good. Since officially this hardware is not available to the
+public at this time, I have shared the `dmesg` privately to your (and
+Abhinav's) Google partner accounts. Yell if you don't see the
+notificatioin. I don't have any reason to believe there's anything
+secret in the dmesg, but it didn't seem worth the time to fully audit
+it.
 
-NOTE: this would be no different from similar strategies we have
-followed in OMAP devices, for example.
+For that dmesg, I:
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+1. Made sure that night light was off.
+
+2. Updated the kernel with the 5 patches + the debug patch.
+
+3. Booted up and logged into ChromeOS
+
+4. Tried turning night light off/on several times and saw nothing on
+dmesg while I did this (and night light didn't work)
+
+5. Unplugged power and servo (just to make sure they didn't interfere)
+
+6. Echoed "DOUG: plug in external display now" several times to "/dev/kmsg"
+
+7. Plugged in my external display, which is behind a Type C dock
+
+8. Turned night light on/off several times. Night light worked on the
+internal display.
+
+In case it matters, my ChromeOS root filesystem is R111-15328.0.0
+
+
+> >-----Original Message-----
+> >From: Kalyan Thota
+> >Sent: Thursday, February 9, 2023 9:47 AM
+> >To: Doug Anderson <dianders@chromium.org>; Kalyan Thota (QUIC)
+> ><quic_kalyant@quicinc.com>
+> >Cc: dri-devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
+> >freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
+> >kernel@vger.kernel.org; robdclark@chromium.org; swboyd@chromium.org;
+> >Vinod Polimera (QUIC) <quic_vpolimer@quicinc.com>;
+> >dmitry.baryshkov@linaro.org; Abhinav Kumar (QUIC)
+> ><quic_abhinavk@quicinc.com>; marijn.suijten@somainline.org
+> >Subject: RE: [PATCH v3 0/4] Reserve DSPPs based on user request
+> >
+> >Hi Doug,
+> >
+> >Have you picked the core change to program dspp's  (below) ? the current=
+ series
+> >will go on top of it.
+> >https://patchwork.kernel.org/project/linux-arm-msm/patch/1671542719-1265=
+5-
+> >1-git-send-email-quic_kalyant@quicinc.com/
+> >
+> >Thanks,
+> >Kalyan
+> >
+> >>-----Original Message-----
+> >>From: Doug Anderson <dianders@chromium.org>
+> >>Sent: Wednesday, February 8, 2023 10:44 PM
+> >>To: Kalyan Thota (QUIC) <quic_kalyant@quicinc.com>
+> >>Cc: dri-devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
+> >>freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
+> >>kernel@vger.kernel.org; robdclark@chromium.org; swboyd@chromium.org;
+> >>Vinod Polimera (QUIC) <quic_vpolimer@quicinc.com>;
+> >>dmitry.baryshkov@linaro.org; Abhinav Kumar (QUIC)
+> >><quic_abhinavk@quicinc.com>; marijn.suijten@somainline.org
+> >>Subject: Re: [PATCH v3 0/4] Reserve DSPPs based on user request
+> >>
+> >>WARNING: This email originated from outside of Qualcomm. Please be wary
+> >>of any links or attachments, and do not enable macros.
+> >>
+> >>Hi,
+> >>
+> >>On Wed, Feb 8, 2023 at 5:42 AM Kalyan Thota <quic_kalyant@quicinc.com>
+> >>wrote:
+> >>>
+> >>> This series will enable color features on sc7280 target which has
+> >>> primary panel as eDP
+> >>>
+> >>> The series removes DSPP allocation based on encoder type and allows
+> >>> the DSPP reservation based on user request via CTM.
+> >>>
+> >>> The series will release/reserve the dpu resources when ever there is
+> >>> a topology change to suit the new requirements.
+> >>>
+> >>> Kalyan Thota (4):
+> >>>   drm/msm/dpu: clear DSPP reservations in rm release
+> >>>   drm/msm/dpu: add DSPPs into reservation upon a CTM request
+> >>>   drm/msm/dpu: avoid unnecessary check in DPU reservations
+> >>>   drm/msm/dpu: reserve the resources on topology change
+> >>>
+> >>>  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  2 +
+> >>>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 58
+> >>> ++++++++++++++++------
+> >>-------
+> >>>  drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c      |  2 +
+> >>>  3 files changed, 37 insertions(+), 25 deletions(-)
+> >>
+> >>I tried out your changes, but unfortunately it seems like there's somet=
+hing
+> >wrong.
+> >>:( I did this:
+> >>
+> >>1. Picked your 5 patches to the chromeos-5.15 tree (this series plus
+> >>[1])
+> >>
+> >>2. Put them on herobrine villager.
+> >>
+> >>3. Booted up with no external display plugged in.
+> >>
+> >>4. Tried to enable night light in the ChromeOS UI.
+> >>
+> >>5. Night light didn't turn on for the internal display.
+> >>
+> >>
+> >>I also tried applying them to the top of msm-next (had to resolve some
+> >>small conflicts). Same thing, night light didn't work.
+> >>
+> >>
+> >>I thought maybe this was because the Chrome browser hasn't been updated
+> >>to properly use atomic_check for testing for night light, so I hacked
+> >>my herobrine device tree to not mark "mdss_dp" as "okay". Now there's _=
+only_
+> >an eDP display.
+> >>Same thing, night light didn't work.
+> >>
+> >>
+> >>I could only get night light to work for the internal display if I
+> >>plugged and unplugged an external display in.
+> >>
+> >>
+> >>Is the above the behavior that's expected right now?
+> >>
+> >>
+> >>[1] https://lore.kernel.org/all/1674814487-2112-1-git-send-email-
+> >>quic_kalyant@quicinc.com/
