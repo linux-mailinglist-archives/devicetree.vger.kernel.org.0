@@ -2,84 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A958690606
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB34690623
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:10:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbjBILEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 06:04:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60886 "EHLO
+        id S229782AbjBILKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 06:10:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229963AbjBILDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:03:37 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A59C142
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 03:03:35 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso1202984wms.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 03:03:35 -0800 (PST)
+        with ESMTP id S229632AbjBILKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:10:48 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA6212F30
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 03:10:46 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id ba1so1384637wrb.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 03:10:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a9JBQ25n949SzT0aJCa+SmK4nxBdxfr7uXV4RhT7iBk=;
-        b=bst5SA4qticmOdvwRLGEk4GcHbbnovNjbC4y7JMi1T7NETj309mIGUT6EPYuL4HF/q
-         yG0w65mbn65/GaxxJBcSloHGsmYyG2z1C9elgvdeOW7R/0OF3zk6drFaYUwznUJWItRh
-         SYAM+3MQRjhs/6UeXi0lB4+dhKI2pYnJM5T2hm/kLNuXTEZAxk+1nE2+62mOIAdGdWKq
-         HsXkFhGulTWLAoF2WlFb+9ZQKkIFomaUmmkhi2wmX6Iap4QraT6U7cggDdx1YRbQR4mj
-         u0xa7vug0pTrDxfGvdjSEk9D/seyq2forobXnPFTF01RetynHiMvBsNENRmXxOBlZZ7f
-         B5rg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wAHgUFFB8B91xSxCVq9O+/tpcsV4Moe9Qo0Y3nmJ+sY=;
+        b=klB0nkBqN03kCUxivHzjIIPKYz3tiTdD1IGyymPdM7uLF19Of6GMX4e0XD6gYLv8ko
+         vKs7U0CqFUPQTQYf0ZZg2rsr9FVygckISOHJ8pMLQ7McVJvzY9GUf21k+GnV39MJiPvb
+         4qSfbRyd8uWKzz2W/mtxf3tUBE1sorFXeJijcENVzb09IWo+6MQ1UAyRNymdiu/+vcAX
+         asS4mATnWYFw4FX5epYC3+ZXCroYbE5s+O5j38kxcQ4VvIe02SVkh55x186chyXlR2x+
+         csqNBF6PiyGV7GbHTK0rx7nF2XIE3J1VNCVztYlfFJvCOZ+4j9f19t3cFt7V6doYtz3H
+         DSlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a9JBQ25n949SzT0aJCa+SmK4nxBdxfr7uXV4RhT7iBk=;
-        b=DjqrbdpE5IhrRHTSQtHj8kik07Mmyep7f+q6+9pD0jNRWHRVnpEm5qEIPx2XrkCA8m
-         /1xDrPp0zLq4phG2JBqFjrKQ7IC72VL0zu/fEqW1Rh0uZ88lzaXUlHNnn4YdJzjpbCkM
-         g4Nj7fp4utDtdkticbB3PP1GMA3hbHVG1qEecygmPOl/Llg/5NJb4R4hFR+IhOAFohkV
-         9IgIrN4YOqOcS3ya4NSLZMIu0tu6P8EEdaXpnutdoxaKyr9LdXjf/GAsCSJ/02M8DLQz
-         oxtOMXVO8Erby2w5iK5Xu2T8QaGuZt4MYaQ2uuskjd76gJrZScdoAC+NLdMyTZ82uFBn
-         owaQ==
-X-Gm-Message-State: AO0yUKXbXhaX1glYfaq69ISSYb8vrm0tt6JrsNsetjMsmt48WC4HSnPa
-        3SKcPS6nDnNwm+whppvCESHz0Q==
-X-Google-Smtp-Source: AK7set+wrDuM7dfiMg34ZRVXU/WMO1xfv411HGqLDsbK+fxlDG3sfnsUn6oDwIykAcPRKPd5OQC64w==
-X-Received: by 2002:a05:600c:45cf:b0:3df:9858:c03c with SMTP id s15-20020a05600c45cf00b003df9858c03cmr5675306wmo.17.1675940614477;
-        Thu, 09 Feb 2023 03:03:34 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003de664d4c14sm1643092wmq.36.2023.02.09.03.03.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 03:03:34 -0800 (PST)
-Message-ID: <b2307e91-3373-539a-ecfb-e2542b9f83db@linaro.org>
-Date:   Thu, 9 Feb 2023 11:03:33 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
-Content-Language: en-US
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wAHgUFFB8B91xSxCVq9O+/tpcsV4Moe9Qo0Y3nmJ+sY=;
+        b=R0QexH8Bk+yTe8TrW/L3pOubYqB5w3SH3Y1ljuPmkTVyOPf0YKtUwCA61zG2fA5AZK
+         rGwKBK7ipGCvxRmKxeSPu9vvc9+EgfB6CbRCbvztAOyMR4gZLHwIWEofh0iZ9MIlR5kf
+         skUeGKmwYx6XJa8DKkOK9qLchM4pecbk/cyct3+o/aH7n62CWNNceF8aLICWdY3JSm8W
+         FGyrnt67STdCQkwEcgDomxf0IuKpa7WYM138+TIrfeV7J4y9+TkmtLPTFiOKOgg8rmNx
+         58lWdosx5V0+bzygVq8TS2vREXFwgb9mQThRTbV2rXJDkZ9p/JZ62SGNZ3RYwNI6rK5o
+         LjWA==
+X-Gm-Message-State: AO0yUKXX8Kqq1G0fTcoM8D50tRodoNjrFWlf+DmLpL1sODZHlqprr/aN
+        tcERe0wSO8XUuE40gud3tmD+NA==
+X-Google-Smtp-Source: AK7set/cAuKdrLZsyfQPNQ8/RUFqsxEyxq7hdoyt6Ega0UXCf/gkDIxPgyUWXUzROVcG3VsnXfbIYg==
+X-Received: by 2002:adf:d0c7:0:b0:2c3:d9cf:f406 with SMTP id z7-20020adfd0c7000000b002c3d9cff406mr10269635wrh.13.1675941045569;
+        Thu, 09 Feb 2023 03:10:45 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id q13-20020adff94d000000b002be099f78c0sm963207wrr.69.2023.02.09.03.10.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 03:10:45 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
- <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
- <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
- <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
- <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
- <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] ARM: dts: exynos: correct SPI nor compatible in SMDKv310
+Date:   Thu,  9 Feb 2023 12:10:37 +0100
+Message-Id: <167594102110.781687.10084161117064383763.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230208164942.387390-1-krzysztof.kozlowski@linaro.org>
+References: <20230208164942.387390-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,21 +76,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 09:05, Amit Pundir wrote:
-> Hi, So what is the verdict on this patch?
+On Wed, 8 Feb 2023 17:49:41 +0100, Krzysztof Kozlowski wrote:
+> SPI NOR flash compatible should come with generic jedec,spi-nor fallback
+> and proper vendor prefix:
 > 
-> I submitted this fix to make sure UFS don't map and crash on it, which
-> I have seen happening occassionaly on db845c and Caleb reported
-> similar issues on his sdm845 device iirc. I should have probably put
-> that in my commit message as well.
+>   exynos4210-smdkv310.dtb: /soc/spi@13940000/flash@0: failed to match any schema with compatible: ['w25x80']
 > 
-> Regards,
-> Amit Pundir
+> 
 
-So the memory _is_ being used by ... continuous splash on an Android 
-image, i.e. your Android ? limited to Android - image continues on with 
-the splash but other blocks erroneously reuse the memory then, UFS as an 
-example ?
+Applied, thanks!
 
----
-bod
+[1/2] ARM: dts: exynos: correct SPI nor compatible in SMDKv310
+      https://git.kernel.org/krzk/linux/c/44ffd27d83042e31c4dd85c148204b7610f0dc6c
+[2/2] ARM: dts: exynos: correct SPI nor compatible in SMDK5250
+      https://git.kernel.org/krzk/linux/c/428218307dd2ef175314f39f141beb93163ae1ca
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
