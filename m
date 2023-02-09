@@ -2,101 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B566A69062F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A770F690634
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230162AbjBILLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 06:11:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37334 "EHLO
+        id S229526AbjBILM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 06:12:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjBILK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:10:56 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE8547402
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 03:10:52 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id bu23so1370019wrb.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 03:10:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V89hB8P9aljMFaI4JVhG1UB7ptSBWBngnxQJmHuqEqU=;
-        b=eL7Pu7g5g0LHCZLE/2uwHQbquviWqM+ui1NcQVYBmzALmBW2z+8w+HHfzi7ezO8PjH
-         vG+xlrc8jAcgoLbxRLMLmXL4PKp/N64nj2u+BMllyaqSoxj3iSO+BZUnTkJEliT+yPgq
-         9YIX0IaEIP+Bf8xcMetAcnJs10ka/AaDWf5Ku56uFmDjeltfdQ5EDeoPkAS3ujQmFpKC
-         3RPwT3CAwR0GpQwxLe2OE9D0dXzIsM76RP4cahnqjS5+Q2fOXK2tjZqiTNAF825Grn4R
-         gxwuTS0lAvs9Sk8V3pyIGPQNPPh1KAWKUCPJ2T/KomCWqS7haIOwwZGLrpiZDHcjFTQU
-         WvUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V89hB8P9aljMFaI4JVhG1UB7ptSBWBngnxQJmHuqEqU=;
-        b=QtiyJsoWkDjteIyGYyD6rhsZqGDNE9ZtzMseFka41pTzsjF22OmGEmXjhJIVBBQ8xP
-         aAIP8RH3V6U6+agglORbkdgLRpRzlZO/P0ksUnLKh31lHpdmejcphUKdx5CTF5G3Mb94
-         De5V9Kidqbfk2QHLYpmpwdBUXy4VWcCKIIvEwoY91kVWSeuFnQYV8fybiwWF2PTfrkaE
-         VTKMF16YFAxxO1JchjZiumeg4n8gFHUY3nM8Ih/q6LMZGpJnsK1USZkHrm7U4ybS8fvq
-         plZXJ53/hE02i1y8irzNt7sPdHfMR7BCtOB8IeQB5RjnrbGVOvYKeZVrAmZRreGcAKbE
-         EYZQ==
-X-Gm-Message-State: AO0yUKXQdWfHjJhakzkV5vh3vwZQprP4m7I0h2CNLPL6Tm+MXgcrNk/m
-        et0GGt6SUhXSEtBqfkRTahTNmw==
-X-Google-Smtp-Source: AK7set9DRa8qVIxG0cZVTMfZRttELsRCFtgifHQea5sUv2Utsl7IJv8U5sa+TDnFwWB0SvKYeWZCbA==
-X-Received: by 2002:adf:f34d:0:b0:2c5:3fcb:6823 with SMTP id e13-20020adff34d000000b002c53fcb6823mr226977wrp.25.1675941051537;
-        Thu, 09 Feb 2023 03:10:51 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q13-20020adff94d000000b002be099f78c0sm963207wrr.69.2023.02.09.03.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 03:10:51 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229511AbjBILMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:12:35 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB5055E4C;
+        Thu,  9 Feb 2023 03:12:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1675941140; x=1707477140;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3v3T1RO8GO+qbSn+Gl7E77noF1h3fEPhedIwbOQFC3A=;
+  b=BcBCnY8c8tOylDUb4QRf9j9/LhRYYIcFOR7U6yEZ5xXB++wRn2lt+uoH
+   sxOYkYKj+MN3HoN4v2DUv6X6TRyGjfnQ3OoWQG5pULoWENY2jd9V9jAWJ
+   vi1AI2pY/o5ZunoDNvrg0LoXd12Wt69vRghWxTM2nzabY9rHleJ5s6b2v
+   2zTzhkfv1d6WB2rVXmTqiOfFEty8CGtEeiOxqwt9dKzwFVkoFwNnBBezn
+   mf0S6TTfkf+nwBxwz4+OuggJhxuq9xQGPHYRNM313w2zUwHsxwjnv3RiQ
+   hLWhu0jf7MgeiNzPI0pAZ4VzxwkpSsF6+JvprpE7QMvltEg2cY8Bjy0V7
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,283,1669100400"; 
+   d="asc'?scan'208";a="200225984"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Feb 2023 04:12:20 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 9 Feb 2023 04:12:19 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Thu, 9 Feb 2023 04:12:16 -0700
+Date:   Thu, 9 Feb 2023 11:11:51 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor@kernel.org>,
+        Hal Feng <hal.feng@starfivetech.com>
+CC:     Hal Feng <hal.feng@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Henrik Grimler <henrik@grimler.se>,
-        ~postmarketos/upstreaming@lists.sr.ht, replicant@osuosl.org,
-        phone-devel@vger.kernel.org,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
-Subject: Re: [RFT PATCH 1/3] ARM: dts: exynos: add "gpios" suffix to wlf,ldo1ena on Midas
-Date:   Thu,  9 Feb 2023 12:10:42 +0100
-Message-Id: <167594102111.781687.5239598797684494010.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230208172634.404452-1-krzysztof.kozlowski@linaro.org>
-References: <20230208172634.404452-1-krzysztof.kozlowski@linaro.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+Message-ID: <Y+TU98PLIvtkD8/R@wendy>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com>
+ <Y6zHy9oL4xzl+6Rd@spud>
+ <c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com>
+ <Y9og8Q2UnJ452KH/@wendy>
+ <df6755ed-a358-ea01-d89e-f3c004b9c297@starfivetech.com>
+ <Y9wR7Up+iObw5qoE@spud>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="MTMULKwH45x5IHVU"
+Content-Disposition: inline
+In-Reply-To: <Y9wR7Up+iObw5qoE@spud>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Feb 2023 18:26:32 +0100, Krzysztof Kozlowski wrote:
-> The GPIOs properties should end with "gpios" suffix and Linux gpiolib
-> already handles both names, so switch to preferred one.
-> 
-> While touching the lines, replace open-coded GPIO_ACTIVE_HIGH flag.
-> 
-> 
+--MTMULKwH45x5IHVU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Applied, thanks!
+On Thu, Feb 02, 2023 at 07:41:33PM +0000, Conor Dooley wrote:
+> On Fri, Feb 03, 2023 at 02:56:41AM +0800, Hal Feng wrote:
+> > On Wed, 1 Feb 2023 08:21:05 +0000, Conor Dooley wrote:
+> > > On Wed, Feb 01, 2023 at 03:21:48PM +0800, Hal Feng wrote:
+> > >> On Wed, 28 Dec 2022 22:48:43 +0000, Conor Dooley wrote:
+> > >> > On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
 
-[1/3] ARM: dts: exynos: add "gpios" suffix to wlf,ldo1ena on Midas
-      https://git.kernel.org/krzk/linux/c/0e06b987d1b7469ff1b4f7a68466859f94e7221a
-[2/3] ARM: dts: exynos: add "gpios" suffix to wlf,ldo1ena on Arndale
-      https://git.kernel.org/krzk/linux/c/149a903eceb73b8b8af25e12b552c68aa9991802
-[3/3] ARM: dts: s5pv210: add "gpios" suffix to wlf,ldo1ena on Aries
-      https://git.kernel.org/krzk/linux/c/a81cc43abd23f2769b044b79f4cf58a9ff6e2201
+> FWIW, the deadline for getting material in for v6.3 has already passed,
+> so you can send the next version of this series without waiting for
+> clarification on the compatibles & ISA string. We should have plenty of
+> time to get those fixed up before the series gets applied.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Also, as it looks like the pinctrl driver is going to land in time for
+v6.3, that leaves just this series and the clock driver required for
+base support.
+
+In the original submission, you sent the clock driver and dt in the same
+series & I think it might make the process a bit faster if you sent them
+both together for the next version again.
+
+That way, both the drivers and dts can go together as their have an
+inter dependence.
+
+That's my opinion anyway, will make trying to sequence things between
+trees easier.
+
+Cheers,
+Conor.
+
+
+--MTMULKwH45x5IHVU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+TU9wAKCRB4tDGHoIJi
+0u9vAP0Xf4VDqqzWZ4yBX8QlUBK8vmtbnhR61S1/MxTyPlIRcwEAiTc0AaIbs07K
+ETN+C6SSJIg4FTQiNJheaT1H5PhrYQI=
+=w1v/
+-----END PGP SIGNATURE-----
+
+--MTMULKwH45x5IHVU--
