@@ -2,223 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE3B8690881
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8905E69088E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:21:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbjBIMRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 07:17:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58480 "EHLO
+        id S229457AbjBIMV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 07:21:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbjBIMRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:17:13 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 02B67DBE5;
-        Thu,  9 Feb 2023 04:16:53 -0800 (PST)
-Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 09A7020C8AF4;
-        Thu,  9 Feb 2023 04:15:44 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 09A7020C8AF4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675944944;
-        bh=tcypQPfMSnfnYp3JE6Trh1CtkCM96kzsYYRghzAy49I=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=bMVGNRK2D9pFEslGphWYzkl5YMZc6Ohj7OrdblC71KSHkCd3cjxa4eb3gt+Wj+Y0+
-         ohsGiJ/OT2VGXVCzJ6a3EEkeP0Z5cpLWfmOSOnO8uFq0NAMMbHvjHNwSsGE0+WNwFJ
-         xS/LDWhVoVX1iHsfc9Tsc+tubf5H8zqef5++b7IY=
-From:   Saurabh Sengar <ssengar@linux.microsoft.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@linux.microsoft.com, dphadke@linux.microsoft.com
-Subject: [PATCH v5 5/5] Driver: VMBus: Add device tree support
-Date:   Thu,  9 Feb 2023 04:15:39 -0800
-Message-Id: <1675944939-22631-6-git-send-email-ssengar@linux.microsoft.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1675944939-22631-1-git-send-email-ssengar@linux.microsoft.com>
-References: <1675944939-22631-1-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229538AbjBIMV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:21:28 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8159171A
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:21:25 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id u75so1418349pgc.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:21:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7kOs7sC2FIm1iO3NpfdUuEs1p01vyNH33hBJhAwcmDs=;
+        b=XzCnCXQbk+rtSUDcAJUcX9DuqzMGcSpXXwhzAl0BTT3YIu2j0ohJUqEFakrMMqZQRv
+         MSx03y1VRxwRrJxkmwyA2im7SMKM/7/iiZss5OxproE7UBewoCQw6QBn/CqClv7VLpzY
+         m4tVFXJheNgKIaWdnoSGIaARzhoTijEI0ORHt3KUwqCfqweAInum/9lNoioyA65bSCVP
+         MXNsILXzs6oitTz43SAPvrOUkYFf4tu+HTGx73MJNOaeziLLDMNlf6f2oq1kTkhxG/ne
+         s0PcbrBXH3g1OsaEo+BQDGjv79qz0mIiaVaw4gtViqkTBdsO2lj/dBCNT5B8K2wQT7hE
+         gZZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7kOs7sC2FIm1iO3NpfdUuEs1p01vyNH33hBJhAwcmDs=;
+        b=IIE3In05HXPaPZbqj1vqHJCNwUokm+TsfKl0XP7HwDzhdXxFqj/zOsCYlF9eaAlaSB
+         /dVnI5AiPcV/0CVRgk+z7hYJ3XAPLyU0eluX1GeN0zmm6j4QENJOO5zzvTFddKplU/Px
+         2fOPSyBA/qTu2tDUAPROCZHSpn3s+w1S/BKGDnlc54iqv0VO1nJ2McCDzK2QfOgmLdCb
+         mLyGEtleDbrfwKzayog5DEy1AOmEow2k+QdgaDq1vcQMD+f0wWGKAqh0m55YMUycwehk
+         asTrRYInyEw03/WSPS6EUFiMhqcil83XbIt2Umdt/mX4LNsNopELIESZTafjJeX+S0+u
+         KS2Q==
+X-Gm-Message-State: AO0yUKVBkLnGDnFhd8mrgrPis/JhKmPivkguUMt0QgYai4Mv2vLp/RSH
+        y/rNRBVGx0talRJl44RfU5XQYA==
+X-Google-Smtp-Source: AK7set8GpSN1A9MlZL+SCVntv8ObFNFEyzB5vL4OhjfjJspfRANTpB/kHJZkd63/tWMV4Rai1Xofsg==
+X-Received: by 2002:a62:5243:0:b0:5a8:5271:5a2e with SMTP id g64-20020a625243000000b005a852715a2emr1651099pfb.0.1675945285249;
+        Thu, 09 Feb 2023 04:21:25 -0800 (PST)
+Received: from ?IPV6:2401:4900:1c5f:7a7d:9c44:b2ee:ae34:5374? ([2401:4900:1c5f:7a7d:9c44:b2ee:ae34:5374])
+        by smtp.gmail.com with ESMTPSA id e22-20020aa78256000000b00592626fe48csm1278584pfn.122.2023.02.09.04.21.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 04:21:24 -0800 (PST)
+Message-ID: <7b38331c-3b29-03c1-fbed-f5799d11ca1f@linaro.org>
+Date:   Thu, 9 Feb 2023 17:51:19 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v9 11/14] arm64: dts: qcom: sm8250: add description of
+ Qualcomm Crypto Engine IP
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
+ <20230208183755.2907771-12-vladimir.zapolskiy@linaro.org>
+Content-Language: en-US
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <20230208183755.2907771-12-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the driver to support device tree boot as well along with ACPI.
-At present the device tree parsing only provides the mmio region info
-and is not the exact copy of ACPI parsing. This is sufficient to cater
-all the current device tree usecases for VMBus.
+Hi Vladimir,
 
-Currently device tree is supported only for x86 systems.
+On 2/9/23 12:07 AM, Vladimir Zapolskiy wrote:
+> Add description of QCE and its corresponding BAM DMA IPs on SM8250 SoC.
+> 
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index e59c16f74d17..d8698d18223e 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -2215,6 +2215,30 @@ ufs_mem_phy_lanes: phy@1d87400 {
+>   			};
+>   		};
+>   
+> +		cryptobam: dma-controller@1dc4000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x0 0x01dc4000 0x0 0x24000>;
+> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			num-channels = <8>;
+> +			qcom,num-ees = <2>;
+> +			iommus = <&apps_smmu 0x586 0x11>,
+> +				 <&apps_smmu 0x596 0x11>;
+> +		};
+> +
+> +		crypto: crypto@1dfa000 {
+> +			compatible = "qcom,sm8250-qce", "qcom,sm8150-qce";
+> +			reg = <0x0 0x01dfa000 0x0 0x6000>;
+> +			dmas = <&cryptobam 6>, <&cryptobam 7>;
+> +			dma-names = "rx", "tx";
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "memory";
+> +			iommus = <&apps_smmu 0x586 0x11>,
+> +				 <&apps_smmu 0x596 0x11>;
+> +		};
+> +
+>   		tcsr_mutex: hwlock@1f40000 {
+>   			compatible = "qcom,tcsr-mutex";
+>   			reg = <0x0 0x01f40000 0x0 0x40000>;
 
-Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
----
-- Removed #else for device tree parsing code. This should help better
-  test coverage.
-- Fix macro '__maybe_unused' warning
-- Added below options in Kconfig to enable device tree options for HYPERV
-	select OF if !ACPI
-	select OF_EARLY_FLATTREE if !ACPI
+This patch was part of the v7 arm64 dts fixes I sent out - see [1].
+Probably you can use it as a base and make the changes (interconnect 
+property for the BAM DMA node and qce-compatible names) directly there
+and include it in your patch series.
 
- drivers/hv/Kconfig     |  6 +++--
- drivers/hv/vmbus_drv.c | 60 ++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 62 insertions(+), 4 deletions(-)
+[1]. 
+https://lore.kernel.org/linux-arm-msm/20220921045602.1462007-3-bhupesh.sharma@linaro.org/
 
-diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
-index 0747a8f1fcee..1a55bf32d195 100644
---- a/drivers/hv/Kconfig
-+++ b/drivers/hv/Kconfig
-@@ -4,11 +4,13 @@ menu "Microsoft Hyper-V guest support"
- 
- config HYPERV
- 	tristate "Microsoft Hyper-V client drivers"
--	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
--		|| (ARM64 && !CPU_BIG_ENDIAN))
-+	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-+		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
- 	select PARAVIRT
- 	select X86_HV_CALLBACK_VECTOR if X86
- 	select VMAP_PFN
-+	select OF if !ACPI
-+	select OF_EARLY_FLATTREE if !ACPI
- 	help
- 	  Select this option to run Linux as a Hyper-V client operating
- 	  system.
-diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-index 73497157a23a..02f6bab61c37 100644
---- a/drivers/hv/vmbus_drv.c
-+++ b/drivers/hv/vmbus_drv.c
-@@ -20,6 +20,7 @@
- #include <linux/completion.h>
- #include <linux/hyperv.h>
- #include <linux/kernel_stat.h>
-+#include <linux/of_address.h>
- #include <linux/clockchips.h>
- #include <linux/cpu.h>
- #include <linux/sched/isolation.h>
-@@ -2152,7 +2153,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
- 	device_unregister(&device_obj->device);
- }
- 
--
-+#ifdef CONFIG_ACPI
- /*
-  * VMBUS is an acpi enumerated device. Get the information we
-  * need from DSDT.
-@@ -2262,6 +2263,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
- 
- 	return AE_OK;
- }
-+#endif
- 
- static void vmbus_mmio_remove(void)
- {
-@@ -2282,7 +2284,7 @@ static void vmbus_mmio_remove(void)
- 	}
- }
- 
--static void vmbus_reserve_fb(void)
-+static void __maybe_unused vmbus_reserve_fb(void)
- {
- 	resource_size_t start = 0, size;
- 	struct pci_dev *pdev;
-@@ -2442,6 +2444,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
- }
- EXPORT_SYMBOL_GPL(vmbus_free_mmio);
- 
-+#ifdef CONFIG_ACPI
- static int vmbus_acpi_add(struct platform_device *pdev)
- {
- 	acpi_status result;
-@@ -2494,10 +2497,50 @@ static int vmbus_acpi_add(struct platform_device *pdev)
- 		vmbus_mmio_remove();
- 	return ret_val;
- }
-+#endif
-+
-+static int vmbus_device_add(struct platform_device *pdev)
-+{
-+	struct resource **cur_res = &hyperv_mmio;
-+	struct of_range range;
-+	struct of_range_parser parser;
-+	struct device_node *np;
-+	int ret = 0;
-+
-+	hv_dev = &pdev->dev;
-+	np = pdev->dev.of_node;
-+
-+	ret = of_range_parser_init(&parser, np);
-+	if (ret) {
-+		dev_err(hv_dev, "Failed to parse resources.\n");
-+		return ret;
-+	}
-+
-+	for_each_of_range(&parser, &range) {
-+		struct resource *res;
-+
-+		res = kzalloc(sizeof(*res), GFP_ATOMIC);
-+		if (!res)
-+			return -ENOMEM;
-+
-+		res->name = "hyperv mmio";
-+		res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
-+		res->start = range.pci_addr;
-+		res->end = range.pci_addr + range.size;
-+
-+		*cur_res = res;
-+		cur_res = &res->sibling;
-+	}
-+
-+	return ret;
-+}
- 
- static int vmbus_platform_driver_probe(struct platform_device *pdev)
- {
-+#ifdef CONFIG_ACPI
- 	return vmbus_acpi_add(pdev);
-+#endif
-+	return vmbus_device_add(pdev);
- }
- 
- static int vmbus_platform_driver_remove(struct platform_device *pdev)
-@@ -2643,12 +2686,24 @@ static int vmbus_bus_resume(struct device *dev)
- #define vmbus_bus_resume NULL
- #endif /* CONFIG_PM_SLEEP */
- 
-+static const __maybe_unused struct of_device_id vmbus_of_match[] = {
-+	{
-+		.compatible = "microsoft,vmbus",
-+	},
-+	{
-+		/* sentinel */
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, vmbus_of_match);
-+
-+#ifdef CONFIG_ACPI
- static const struct acpi_device_id vmbus_acpi_device_ids[] = {
- 	{"VMBUS", 0},
- 	{"VMBus", 0},
- 	{"", 0},
- };
- MODULE_DEVICE_TABLE(acpi, vmbus_acpi_device_ids);
-+#endif
- 
- /*
-  * Note: we must use the "no_irq" ops, otherwise hibernation can not work with
-@@ -2677,6 +2732,7 @@ static struct platform_driver vmbus_platform_driver = {
- 	.driver = {
- 		.name = "vmbus",
- 		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
-+		.of_match_table = of_match_ptr(vmbus_of_match),
- 		.pm = &vmbus_bus_pm,
- 		.probe_type = PROBE_FORCE_SYNCHRONOUS,
- 	}
--- 
-2.34.1
-
+Thanks,
+Bhupesh
