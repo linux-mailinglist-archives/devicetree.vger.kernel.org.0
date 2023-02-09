@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E5536910D4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 19:56:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B58EB6910E5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:03:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjBIS4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 13:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58252 "EHLO
+        id S229723AbjBITDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 14:03:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBIS4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 13:56:24 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 556212594E;
-        Thu,  9 Feb 2023 10:56:22 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1442977d77dso3794496fac.6;
-        Thu, 09 Feb 2023 10:56:22 -0800 (PST)
+        with ESMTP id S229695AbjBITDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:03:02 -0500
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674C05D1EB;
+        Thu,  9 Feb 2023 11:03:00 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 14-20020a9d010e000000b0068bdddfa263so846289otu.2;
+        Thu, 09 Feb 2023 11:03:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IDdJLl/I2QNjpdO825TEwCGc0DaecEW+rgD7gN8oIZY=;
-        b=gSG0CjisJS+AxFbFwbud6Rgpmpod8Pd/i2gBkPbYPNj+yoSIGlIkH+IPF/8advAgDn
-         K9ZHjO8bn3i3MvxLzNG14LSodDcziWIjUe+xOyaqXS3TH8xN+fKf8sBdiYBCS1abdXs7
-         wX8SaZAK4q7tm3o1vUmlUpPXHQWGeKTrkTVN/7c/S6SzaRBfT4Fz4rsRrq5u7fNbf+wi
-         l0cCSWpgly5fzcL8L+bAkJeK+rkA4GI7OUTbjCF4NIXe5Y8PFUImwuvlAiRRxj6mJKVw
-         zaIN9dckq/UdIo232zdy1aYPlIchuVDf0t1sJVGGkbIT6r05FKgzu2Y0E8/RQGLsV/0l
-         Ks/A==
-X-Gm-Message-State: AO0yUKUMjYaC1ZHmIQDNtBGmqhPrhmeDQ7sHe41bLw8AYZTSrGyAIBqW
-        1a2xP5l5YM2yeaCcKE+iTg==
-X-Google-Smtp-Source: AK7set8wvXkxStxQda+9e/UpPnApKqoGe5N+cFZTKOBh6yMrhDNfyn3R4rsni5Zm8h3NV7MUwQSC2A==
-X-Received: by 2002:a05:6870:50f:b0:15e:cd80:8dfa with SMTP id j15-20020a056870050f00b0015ecd808dfamr7432066oao.17.1675968981572;
-        Thu, 09 Feb 2023 10:56:21 -0800 (PST)
+        bh=CIG7XVUrEvHxHM2W2SVN/mGj6ui8gtTwgh3+jRqlHdg=;
+        b=8IM8V3G5OWrZr6iwAs3K9hQ84jkviqvHg97FpWrp1TpU21hLJbd9tFO8JCTr9FnwAX
+         z4KrAD9bxULAShLqed467hhp5xIvf6e1lZXxFfGSMFEXxY543ebpXMxpdp/ls2ZlfCFU
+         IMpRjOysLaNQgNX4cNHzfh/JXluEz52OpDXiAQ/S3z2IlYyiNPdL/6MBqI45EI2yLWJC
+         xnF6Y8ysQUuH58p8rL8ozxnZi0ZGYKJXm7mSWYLZpKpw7HhQGIZVH5IOATwqMXaI6oz4
+         +aVwru8iiuKArdYJCyyglYzYYtONj0DCt9l7x3hYbuqB0dFhTjDtWeSo6xPuR3t5m5V6
+         R1Fg==
+X-Gm-Message-State: AO0yUKUNZHdniVSPmU8FjhVQm0cWtaKMtlRLMqA9qAYMxxttiEKAMGnD
+        Xq3EyLF6feTOf9yt5zNb8mMFehRTvg==
+X-Google-Smtp-Source: AK7set890dZ1sGgTNR93HC0ONDrNKfdkvrQ0cgzhuVqPSxNlKEotCQrIOOY1TJCe6wzGYabR5mBGyw==
+X-Received: by 2002:a9d:12cc:0:b0:68b:c490:5372 with SMTP id g70-20020a9d12cc000000b0068bc4905372mr7565476otg.22.1675969379619;
+        Thu, 09 Feb 2023 11:02:59 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b15-20020a4a98cf000000b00516d4eac864sm1062231ooj.29.2023.02.09.10.56.21
+        by smtp.gmail.com with ESMTPSA id u4-20020a9d4d84000000b0068d752f1870sm1065872otk.5.2023.02.09.11.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 10:56:21 -0800 (PST)
-Received: (nullmailer pid 632505 invoked by uid 1000);
-        Thu, 09 Feb 2023 18:56:20 -0000
-Date:   Thu, 9 Feb 2023 12:56:20 -0600
+        Thu, 09 Feb 2023 11:02:59 -0800 (PST)
+Received: (nullmailer pid 639835 invoked by uid 1000);
+        Thu, 09 Feb 2023 19:02:58 -0000
+Date:   Thu, 9 Feb 2023 13:02:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH 1/1] dt-bindings: Fix multi pattern support in
- DT_SCHEMA_FILES
-Message-ID: <20230209185620.GA624026-robh@kernel.org>
-References: <20230209002634.745163-1-cristian.ciocaltea@collabora.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 01/12] dt-bindings: remoteproc: mediatek: Improve the
+ rpmsg subnode definition
+Message-ID: <167596937758.639777.17645426181511229001.robh@kernel.org>
+References: <20230209074021.13936-1-tinghan.shen@mediatek.com>
+ <20230209074021.13936-2-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230209002634.745163-1-cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230209074021.13936-2-tinghan.shen@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 09, 2023 at 02:26:34AM +0200, Cristian Ciocaltea wrote:
-> DT_SCHEMA_FILES used to allow specifying a space separated list of file
-> paths, but the introduction of partial matches support broke this
-> feature:
 
-That only happened to work by chance...
-
+On Thu, 09 Feb 2023 15:40:10 +0800, Tinghan Shen wrote:
+> Improve the definition of the rpmsg subnode by
+> assigning a distinct node name and adding the
+> definition source of node properties.
 > 
-> $ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
-
-Spaces are valid in filenames though we avoid them. Perhaps it would be 
-better to use ':'.
-
-> [...]
->   LINT    Documentation/devicetree/bindings
-> usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [...]
->                 [-v]
->                 [FILE_OR_DIR ...]
-> yamllint: error: one of the arguments FILE_OR_DIR - is required
-
-I think this also happens if nothing matches.
-
-> [...]
-> 
-> Restore the lost functionality by preparing a grep filter that is able
-> to handle multiple search patterns.
-> 
-> Fixes: 309d955985ee ("dt-bindings: kbuild: Support partial matches with DT_SCHEMA_FILES")
-> 
-
-Should be no blank line.
-
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/remoteproc/mtk,scp.yaml          | 31 +++++++++----------
+>  1 file changed, 15 insertions(+), 16 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> index bf2d8a8ced77..5475c25ae803 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-> @@ -28,7 +28,7 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
->  find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
->  		-name 'processed-schema*' \)
->  
-> -find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
-> +find_cmd = $(find_all_cmd) | grep -F -e "$(subst $() ," -e ",$(strip $(DT_SCHEMA_FILES)))"
->  CHK_DT_DOCS := $(shell $(find_cmd))
->  
->  quiet_cmd_yamllint = LINT    $(src)
-> -- 
-> 2.39.1
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
+
