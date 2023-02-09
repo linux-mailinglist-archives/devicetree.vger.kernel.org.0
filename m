@@ -2,135 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38473690EC3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF88E690EC9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:01:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbjBIRAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 12:00:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33804 "EHLO
+        id S229479AbjBIRBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 12:01:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbjBIRAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:00:24 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42ED464D9C
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 09:00:23 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id bu23so2427421wrb.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 09:00:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DCUzptGdhNRoLsQxPfzAcinkNrT7Vx/8giyevnoyNho=;
-        b=qkba8wJoG3k+LFlIbfjPH0vT6zxrMzLuKLI310GF0rO+OVXaLyRx2jWQoyXwd3KQub
-         XFiEGXeMUYyOzJFWfNMlIy2hycJeuX/Ex2GmYW9TTcDB5cmyXEWZ7nfy5EmukxP/VtLk
-         5UNCjveSDUuRkaymN1qs0p5PMKs/ooJYhUdAAe4AfsgEGM7UaydjnC+NjX0KteYsV8Y6
-         6pktuAbBIVC4wz6dLn8l4Rrq0bHeVkQAYe14Us/DO1tQ5YLlgrM14UiAqoypAqakKKg+
-         SG+0CSPHVGvmEkdFUQICFB4Tz8Q/WZWSQU4WRC3y+lvnD9VcB9zFS6y451bJ0/ax/M5Y
-         5W0w==
+        with ESMTP id S229517AbjBIRBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:01:51 -0500
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642AB5FED;
+        Thu,  9 Feb 2023 09:01:48 -0800 (PST)
+Received: by mail-qv1-f41.google.com with SMTP id d13so1744726qvj.8;
+        Thu, 09 Feb 2023 09:01:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DCUzptGdhNRoLsQxPfzAcinkNrT7Vx/8giyevnoyNho=;
-        b=bKMJcwmr6as9ZTkZVWSFIoiDo0xjTiMV32eFMSc5SWdJpfKnnawNDqnz8PEfBhTaz2
-         8nvOhzJCQ9Q8C/J7FRWKl59m/cE08NxlIBvZ/3H9cUla+Hyk98lEYF9eZZsRV8E5G0rP
-         ZgfPvRUMUqa+tFmrPW5RMcg6LnXoHCN0WR5rcoNHSnw0tSWhEFRFZ4vQoBUAxkrZ1i8n
-         nNY1UJBQj8VbXC7f1ujekDmgmPET/+UWsbAjqnDIQcz/2U4cGPM1BXWBp2kESSCj+WQp
-         8um3jIZna70hEJSlWDEAAEW4HzciJ+9rAtCj2sugAv4x8Dmzdnl6VIfl3O6NSVbrjv4g
-         ewmw==
-X-Gm-Message-State: AO0yUKXtA9+KuPxNIi6v05o982DQwUwHLomrCFvrGHB+R+G8CIb1lUx4
-        8Thxzbr38VTOEeorPDOqgFHhXQzrm7UwZz/+
-X-Google-Smtp-Source: AK7set8zdyHlHR77dZ0O4tJIb2Yb0XyL2RtU6SQ0l70mEUULs0vePnKPIDuIbMuHEur5KebYz0mYGw==
-X-Received: by 2002:a5d:6707:0:b0:2c3:db5c:55c with SMTP id o7-20020a5d6707000000b002c3db5c055cmr10903131wru.2.1675962021869;
-        Thu, 09 Feb 2023 09:00:21 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c1-20020a056000104100b002c5465f7da8sm109185wrx.102.2023.02.09.09.00.20
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u6eP2iG0J519XNQxcdOCAFcleHBjRH+XT7X5573aPPQ=;
+        b=3/bll7YAYefmYbtkIjbiag7OZYb8PgzOWxYEQsz59dwlcpoRMsScCDiB8KXgz90Qb/
+         rJJZA7Y4F8fk03ad4w48wPFLyqMLPyG9VZtRZXdit4yO/wLnuUp8Ixf6ORbr55EyCHJ7
+         YZdhhmSn+AMZD0uEC8a+Zitqp1JZhVvHdyIVpdnTqWtQYO5oNQd+Po0p6/RFgwhNiAJY
+         s9CErrbLjck9qm1uSqSvt9vVWuQRob4koZIn0poEP9yT+++q+FlEQWjTCJUjy8uN9oEw
+         GU9A6p65qAg+zmVtXSPU1I2jOouM2OffYFKfOdzdaK5B/1+OVrAIr0FCpxUuRU5gzPi+
+         hVYw==
+X-Gm-Message-State: AO0yUKV0eOjmFmmqINaAVAgLWi2NWRwtL5D7jUk0lFOr0Ew9tm7PAWAX
+        pm4SrSiDWO+KeMLmjHZIsRXKiB03mSeJfxxy
+X-Google-Smtp-Source: AK7set+dIKlq8J8SEhNdTxbykQQiYUKqmGPws3WRfnOYoBoQPAEb/ddbHzAW7UA7yigYrpGT9y5FUA==
+X-Received: by 2002:a05:6214:c48:b0:56b:ef2c:5938 with SMTP id r8-20020a0562140c4800b0056bef2c5938mr20582345qvj.50.1675962106515;
+        Thu, 09 Feb 2023 09:01:46 -0800 (PST)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id d206-20020a3768d7000000b00725d8d6983asm1718091qkc.61.2023.02.09.09.01.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 09:00:21 -0800 (PST)
-Message-ID: <bc02ca87-acc2-d28f-ba75-b5ba4128e70a@linaro.org>
-Date:   Thu, 9 Feb 2023 18:00:19 +0100
+        Thu, 09 Feb 2023 09:01:46 -0800 (PST)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-52bfa3dfd95so33450237b3.9;
+        Thu, 09 Feb 2023 09:01:46 -0800 (PST)
+X-Received: by 2002:a0d:e9c1:0:b0:514:a90f:10ea with SMTP id
+ s184-20020a0de9c1000000b00514a90f10eamr1125133ywe.316.1675962105673; Thu, 09
+ Feb 2023 09:01:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v5 2/8] arm64: dts: qcom: sc7280: Add sound node for
- crd-rev3 board
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
-        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
-        konrad.dybcio@somainline.org, mka@chromium.org,
-        quic_mohs@quicinc.com
-References: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com>
- <1675700201-12890-3-git-send-email-quic_srivasam@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1675700201-12890-3-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com> <167595345406.213374.1795032702431324096.robh@kernel.org>
+In-Reply-To: <167595345406.213374.1795032702431324096.robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 9 Feb 2023 18:01:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV_i8crAKW3yxpHWw7MXYsrdpUh4JH6PQZ_kr+qVViH4A@mail.gmail.com>
+Message-ID: <CAMuHMdV_i8crAKW3yxpHWw7MXYsrdpUh4JH6PQZ_kr+qVViH4A@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: iommu: renesas,ipmmu-vmsa: Update for
+ R-Car Gen4
+To:     Rob Herring <robh@kernel.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        will@kernel.org, iommu@lists.linux.dev, joro@8bytes.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, robh+dt@kernel.org,
+        robin.murphy@arm.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 17:16, Srinivasa Rao Mandadapu wrote:
-> Add sound node for sc7280 ADSP based audioreach platforms
-> such as crd-rev3 board.
-> 
-> Include audioreach dtsi into crd-rev3 platform specific dts file.
-> Also remove phandle to sound node, as audio routing is same as
-> audioreach specific dtsi file.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Hi Rob,
 
-Thank you for your patch. There is something to discuss/improve.
+On Thu, Feb 9, 2023 at 3:54 PM Rob Herring <robh@kernel.org> wrote:
+> On Thu, 09 Feb 2023 22:34:40 +0900, Yoshihiro Shimoda wrote:
+> > Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, update
+> > the renesas,ipmmu-main property which sets maxItems as 1.
+> >
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > ---
+> > Changes from v2:
+> > https://lore.kernel.org/all/20230127140446.1728102-1-yoshihiro.shimoda.uh@renesas.com/
+> >  - Set maxItems to renesas,ipmmu-main if R-Car Gen4.
+> >
+> > Changes from v1:
+> > https://lore.kernel.org/all/20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com/
+> >  - Change number of argument for R-Car Gen4 instead of "module id".
+> >    On the discussion, using 'minItems' is a solution. But, it causes
+> >    "too short" errors on dtbs_check. So, using "oneOf" instead.
+> >
+> >  .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 19 ++++++++++++++-----
+> >  1 file changed, 14 insertions(+), 5 deletions(-)
+> >
+>
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+>
+> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com
+>
+>
+> iommu@ee480000: renesas,ipmmu-main: [[40], [10]] is too long
+>         arch/arm64/boot/dts/renesas/r8a779f0-spider.dtb
 
-> +/{
-> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
-> +	sound: sound {
-> +		compatible = "google,sc7280-herobrine";
-> +		model = "AR-wcd938x-max98360a-1mic";
-> +		audio-routing =
-> +			"IN1_HPHL", "HPHL_OUT",
-> +			"IN2_HPHR", "HPHR_OUT",
-> +			"AMIC1", "MIC BIAS1",
-> +			"AMIC2", "MIC BIAS2",
-> +			"VA DMIC0", "MIC BIAS1",
-> +			"VA DMIC1", "MIC BIAS1",
-> +			"VA DMIC2", "MIC BIAS3",
-> +			"VA DMIC3", "MIC BIAS3",
-> +			"TX SWR_ADC0", "ADC1_OUTPUT",
-> +			"TX SWR_ADC1", "ADC2_OUTPUT",
-> +			"TX SWR_ADC2", "ADC3_OUTPUT",
-> +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
-> +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
-> +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
-> +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
-> +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
-> +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
-> +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
-> +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#sound-dai-cells = <0>;
+This is expected, as we're changing the bindings to match the (updated)
+documentation, but haven't updated the DTS yet.
 
-This line looks incorrect - drop dai cells.
+Gr{oetje,eeting}s,
 
-> +
-> +		dai-link@0 {
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
