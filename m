@@ -2,133 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3E26911F8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 21:12:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A4D69121A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 21:31:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjBIUME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 15:12:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
+        id S229698AbjBIUbu convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Feb 2023 15:31:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbjBIUMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 15:12:02 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67076113D5
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 12:12:01 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id bg5-20020a05600c3c8500b003e00c739ce4so2459632wmb.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 12:12:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HX5+bsUoRcit21y2lZwuj3iAM0iGpU6sJ2wwTNOKg8k=;
-        b=h8HQDOVhqCkZnNSCHwOdR5X+BsckmXM1D8mWvh5+dzp8Owq3bQgMHun4k1EHSs4IUg
-         V9nUBri8JIYHOg8wf1Ab9iGA3hv8zDPrIezYs2OHYVS5m597I22IOcl1N7/391nBsufC
-         L00na/rE8PutELxD/CkX3wgCfUM2cvCFahdjgCBIu30kTlfQTtchFV2rfiovtbIH+p8x
-         oilT3wjfB4EN1AOX9V0zo2wcIm5Ajfry8H3GsWV4Y3ruAI47VQv4BYM1FoLN/EVbvQMe
-         kZ9cW+znnz1OKJfa9HQDx6w8wCm32iMn4hdTFIRYui0LQqRpLPvQacJbDMZr4kvpxDx0
-         3wyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HX5+bsUoRcit21y2lZwuj3iAM0iGpU6sJ2wwTNOKg8k=;
-        b=hPw0l3RszLfWoDMCjJMQRPcFF0X5CgIObe1WvDdTDjjvTlg8hsrldCZF4FByUvlj9O
-         F/JmfD/az6YtuJpdOb+UDEhnTJHeMp/oM1hdxU9NoMGLJSSjHHB/9Io11woxOjIrR9yg
-         r+DuZgVsZPzfkvfrA4vFHKpkdkL3OPyNxw3Q+2bN6yIGakq7yyBMQI7zFNjh/UjT/Lyx
-         ZKNMM+M85RTCtDaq/o1u5YDQS03qwWVjrHLxmflSkyIJwSuLotdhUxDLogwE+CD7a8q3
-         xMZ7/7vmrIr9oOL6w3yzOFJVsDUi4JgJnMSl539kG67MqLOWy8Zc/rQ3elj9gf9IIcVD
-         /GKQ==
-X-Gm-Message-State: AO0yUKVe59TpWycSvcSyErchla4WcOCvm4O79s2qI9UYbPi+BuVdfgAn
-        HbDxNbIY060W7d3oaRq/6gU=
-X-Google-Smtp-Source: AK7set9Qf/KKD6IPbprjTnoDTiu7VisN5LhPrRzFk/J5OaSlofn7lmmuY+VABs2zUXD77fd2S/u0NA==
-X-Received: by 2002:a05:600c:3c9c:b0:3dc:d5b:5f6a with SMTP id bg28-20020a05600c3c9c00b003dc0d5b5f6amr11254251wmb.30.1675973519896;
-        Thu, 09 Feb 2023 12:11:59 -0800 (PST)
-Received: from ?IPV6:2a01:c23:c4df:e300:c146:1250:ead2:43ad? (dynamic-2a01-0c23-c4df-e300-c146-1250-ead2-43ad.c23.pool.telefonica.de. [2a01:c23:c4df:e300:c146:1250:ead2:43ad])
-        by smtp.googlemail.com with ESMTPSA id s12-20020adfdb0c000000b002c3ec1fbc0bsm1945149wri.94.2023.02.09.12.11.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 12:11:59 -0800 (PST)
-Message-ID: <76e042e0-a610-5ed5-209f-c4d7f879df44@gmail.com>
-Date:   Thu, 9 Feb 2023 21:11:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: [PATCH 3/3] arm64: dts: meson-gx: Make mmc host controller interrupts
- level-sensitive
-Content-Language: en-US
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229580AbjBIUbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 15:31:50 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD1CF10E1;
+        Thu,  9 Feb 2023 12:31:46 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A72134B3;
+        Thu,  9 Feb 2023 12:32:28 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4AC993F703;
+        Thu,  9 Feb 2023 12:31:44 -0800 (PST)
+Date:   Thu, 9 Feb 2023 20:29:52 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Andreas Feldner <andreas@feldner-bv.de>
+Cc:     Andreas Feldner <pelzi@flying-snail.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Nan Li <nan.li@amlogic.com>,
-        Vyacheslav Bocharov <adeep@lexina.in>
-References: <8a99341b-8546-8f90-c9a5-087d927cac48@gmail.com>
-In-Reply-To: <8a99341b-8546-8f90-c9a5-087d927cac48@gmail.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230209202952.673d5a60@slackpad.lan>
+In-Reply-To: <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+ <20230207011608.2ce24d17@slackpad.lan>
+ <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The usage of edge-triggered interrupts lead to lost interrupts under load,
-see [0]. This was confirmed to be fixed by using level-triggered
-interrupts.
-The report was about SDIO. However, as the host controller is the same
-for SD and MMC, apply the change to all mmc controller instances.
+On Wed, 8 Feb 2023 13:50:04 +0100
+Andreas Feldner <andreas@feldner-bv.de> wrote:
 
-[0] https://www.spinics.net/lists/linux-mmc/msg73991.html
+Hi Andreas,
 
-Fixes: ef8d2ffedf18 ("ARM64: dts: meson-gxbb: add MMC support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+CC:ing Maxime, who wrote the debouncing code back then.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index e3c12e0be..5eed15035 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -603,21 +603,21 @@ apb: apb@d0000000 {
- 			sd_emmc_a: mmc@70000 {
- 				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
- 				reg = <0x0 0x70000 0x0 0x800>;
--				interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
- 			};
- 
- 			sd_emmc_b: mmc@72000 {
- 				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
- 				reg = <0x0 0x72000 0x0 0x800>;
--				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
- 			};
- 
- 			sd_emmc_c: mmc@74000 {
- 				compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
- 				reg = <0x0 0x74000 0x0 0x800>;
--				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.39.1
+> Am 07.02.23 um 02:16 schrieb Andre Przywara:
+> > On Mon, 6 Feb 2023 20:51:50 +0100
+> > Andreas Feldner <pelzi@flying-snail.de> wrote:
+> >
+> > Hi Andreas,
+> >
+> > thanks for taking care about this board and sending patches!  
+> Thank YOU for maintaining it!
+> >> The SoC features debounce logic for external interrupts. Per default,
+> >> this is based on a 32kHz oscillator, in effect filtering away multiple
+> >> interrupts separated by less than roughly 100ï¿½s.
+> >>
+> >> This patch sets different defaults for this filter for this board:
+> >> PG is connected to non-mechanical components, without any risk for
+> >> showing bounces. PA is mostly exposed to GPIO pins, however the
+> >> existence of a debounce filter is undesirable as well if electronic
+> >> components are connected.  
+> > So how do you know if that's the case? It seems to be quite normal to
+> > just connect mechanical switches to GPIO pins.
+> >
+> > If you are trying to fix a particular issue you encountered, please
+> > describe that here, and say how (or at least that) the patch fixes it.
+> >
+> > And I would suggest to treat port G and port A differently. If you
+> > need a lower debounce threshold for port A, you can apply a DT overlay
+> > in U-Boot, just for your board.  
+> 
+> Fair enough. You run into problems when you connect (electronic)
+> devices to bank A (typically by the 40pin CON2 connector), where
+> the driver requires fast IRQs to work. In my case this has been a
+> DHT22 sensor, and the default debounce breaking the dht11.ko
+> driver.
 
+Sure, what I meant is that this is a property of your particular
+setup (because you attach something to the *headers*) , so it shouldn't
+be in the generic DT, but just in your copy. Which ideally means using
+a DT overlay.
+
+> Now, what kind of problem is this - I'm no way sure:
+> 
+> a) is it an unlucky default, because whoever connects a mechanical
+> switch will know about the problem of bouncing and be taking
+> care to deal with it (whereas at least I was complete unsuspecting
+> when connecting an electronic device that a debounce function
+> might be in place), or
+
+The Linux default is basically the reset default: just leave the
+register at 0x0. It seems like you cannot really turn that off at all
+in hardware, and the reset setting is indeed 32KHz/1. So far there
+haven't been any complaints, though I don't know if people just
+don't use it in anger, or cannot be bothered to send a report to the
+list.
+
+> b) is it a bug in the devicetree for (at least) the BananaPi M2 Zero,
+> because the IRQ bank G is hard wired to electronic devices that
+> should not be fenced by a debouncing function, or
+
+Well, we could try to turn that "off" as much as possible, but on the
+other hand the debounce only affects *GPIO* *interrupts*, so not sure
+that gives us anything. The PortG pins are used for the SDIO Wifi, BT
+UART, and the wakeup pins for the Wifi chip. Only the wakeup pins would
+be affected, and I doubt that we wake up that often that it matters. If
+you've made other observations, please let me know.
+
+Certainly no board with an in-tree DT sets the debounce property, which
+means everyone uses 32KHz/1, and also did so before the functionality
+was introduced.
+
+I'd say we should try to only fix things that are actually broken: hence
+I was asking whether you have seen actual problems. Which apparently you
+have, with your sensor, but not on PortG?
+
+> c) is it missing dt binding documentation of the input-debounce
+> attribute?
+
+Documentation for what, exactly? The default behaviour? Yes, we should
+add that, though not sure that really belongs into the binding.
+
+> Anyway, the combination of these is quite irritating. To me it
+> seems a sufficiently elegant solution to explicitly include the
+> setting in the devicetree and leave it to whoever is unhappy
+> with it, to create a better suited device tree overlay.
+> 
+> >> Additionally, the clock-frequency attribute is added for each of
+> >> the 4 cores to eliminate the kernel error message on boot, that
+> >> the attribute is missing.
+> >>
+> >> Signed-off-by: Andreas Feldner <pelzi@flying-snail.de>
+> >> ---
+> >>   .../dts/sun8i-h2-plus-bananapi-m2-zero.dts     | 18 ++++++++++++++++++
+> >>   1 file changed, 18 insertions(+)
+> >>
+> >> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> >> index d729b7c705db..1fc0d5d1e51a 100644
+> >> --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> >> +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> >> @@ -113,6 +113,22 @@ wifi_pwrseq: wifi_pwrseq {
+> >>   
+> >>   &cpu0 {
+> >>   	cpu-supply = <&reg_vdd_cpux>;
+> >> +	clock-frequency = <1296000000>;  
+> > I see where you are coming from, this is really an unnecessary warning
+> > message. However this message should be really removed from the kernel
+> > instead of adding some rather meaningless value here.
+> > The current DT spec marks this property as required, though, so I added
+> > a PR there to get this fixed:
+> > https://github.com/devicetree-org/devicetree-specification/pull/61
+> > Once this is through, we can try to remove the kernel message.  
+> 
+> OK, so I'll take care to have this change removed from my patch.
+> I thought so, but then it was the configuration I'd been testing with...
+> 
+> >> +};
+> >> +
+> >> +&cpu1 {
+> >> +	cpu-supply = <&reg_vdd_cpux>;  
+> > I don't think we need this for every core?  
+> 
+> I came across a discussion that this was marked required on the
+> cpu@... level whereas it would make sense on the cpus level. I did
+> not check if this suggestion was implemented in the meantime,
+> sorry!
+> 
+> >> +	clock-frequency = <1296000000>;
+> >> +};
+> >> +
+> >> +&cpu2 {
+> >> +	cpu-supply = <&reg_vdd_cpux>;
+> >> +	clock-frequency = <1296000000>;
+> >> +};
+> >> +
+> >> +&cpu3 {
+> >> +	cpu-supply = <&reg_vdd_cpux>;
+> >> +	clock-frequency = <1296000000>;
+> >>   };
+> >>   
+> >>   &de {
+> >> @@ -193,6 +209,8 @@ bluetooth {
+> >>   };
+> >>   
+> >>   &pio {
+> >> +	/* 1ï¿½s debounce filter on both IRQ banks */  
+> > Is that supposed to be <micro> in UTF-8? It seems to have got lost in
+> > translation, or is that just me?  
+> O yes, the Greek character slipped into the comment.
+> >> +	input-debounce = <1 1>;  
+> > As mentioned above, I am not so sure this is generic enough to put it
+> > here for PA. And what is the significance of "1 us", in particular? Is
+> > that just the smallest value?  
+> 
+> Yes indeed it's a bit more complicated than I feel it needs to be. The
+> configuration is taken as microseconds and translated into the best
+> matching clock and divider by the driver. However, 0 is not translated
+> to the lowest divider of the high speed clock as would be logical if
+> you ask for zero microseconds, but to "leave at default". The default
+> of the board is 0 in the register, translating to lowest divider on the
+> _low_ speed clock.
+
+I'd say the "if (!debounce) continue;" code is just to defend against
+the division by zero, which would be the next statement to execute.
+
+We might want to change that to interpret 0 as "lowest possible", which
+would be 24MHz/1. Please feel free to send a patch in this regard, and
+CC: Maxime, to get some input on that idea.
+
+> To me this is mindboggling.
+> 
+> If you want to keep IRQ bank A as it is today and switch off the
+> definitely unnecessary (and _potentially_ IRQ eating) debounce off
+> for bank G only, I'd suggest the following setting:
+> 
+>      input-debounce = <31 1>;
+
+It should be documented that the effective default is 31, I guess the
+binding is the right place.
+
+> This is because 31 Microseconds is exactly the time that is best
+> matched by the low speed clock with low divider and translated
+> to a 0 in the config register by the driver.
+> 
+> The absolutely equivalent setting, with the only drawback that it
+> would have confused me to death is:
+> 
+>      input-debounce = <0 1>;
+> 
+> (because it skips setting IRQ bank A debouncing, leaving it at 31.25 us)
+> 
+> Or, and that was my suggestion, you set both correctly for
+> electronic devices and leave the task of switching on debouncing
+> to the implementors of applications with mechanical switches:
+> 
+>      input-debounce = <1 1>;
+> 
+> To me, any of these being present in the devicetree would have been
+> of great help, because I would have seen that there is something
+> to set.
+> 
+> 
+> One final question: how would you like this change:
+> 
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> @@ -1467,6 +1467,10 @@ static int sunxi_pinctrl_setup_debounce(struct 
+> sunxi_pinctrl *pctl,
+>                  writel(src | div << 4,
+>                         pctl->membase +
+> sunxi_irq_debounce_reg_from_bank(pctl->desc, i));
+> +
+> +               pr_info("Debounce filter for IRQ bank %d configured to "
+> +                       "%d us (reg %x)\n",
+> +                       i, debounce, src | div << 4);
+
+That looks certainly useful, please send a proper patch.
+
+Cheers,
+Andre
+
+>          }
+> 
+>          return 0;
+> 
+> It helped me to cross-check what the driver is really doing, and it
+> again would have helped me with me DHT problem to learn about
+> the existence of a debouncing filter.
+> 
+> Yours,
+> 
+> Andreas.
+> 
+> 
 
