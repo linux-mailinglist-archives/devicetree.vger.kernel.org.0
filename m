@@ -2,89 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D06F690368
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:22:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B3B690374
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbjBIJWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:22:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
+        id S230256AbjBIJWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:22:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbjBIJVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:21:52 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93326627A0;
-        Thu,  9 Feb 2023 01:20:52 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2093366020BC;
-        Thu,  9 Feb 2023 09:20:48 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675934448;
-        bh=XK89DpHTkrbWesh1OFAIn18zG/r2PRgD+/v++LschwY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lqtvD/mTT0Ly2chZp849w/RLuviHsFeOJD1cgW9SpALvw1pwRE8yT88jAUe2ufll4
-         6AWlK77SBPAlnFztsCo9KFtM87fQTk1BcnhfYQfRponS3JVsPEpgsCy4Q9h3ivveI+
-         LDmYQ5fL/rA2f4/vt9vHT4x2Z6ABhoBwABrXfRC6FT9Zbi12hasLs7uBhkL4FmZmGU
-         5+yYxapS1gsYEQ2Mbs5gRHvt1+VTnABTwUboGxPgRv30vUFMx6Qtejs/lC1CKSNv7W
-         uLkCvo1z3CZ936nCMnQqbqlbNLcj2vtMjQwD+Gxs/gkckCtgohqkcYYB/UcOmMszSp
-         F/6dOiDm357Pg==
-Message-ID: <7784f5a2-3cfc-9999-0ad6-cb9cfc1f2822@collabora.com>
-Date:   Thu, 9 Feb 2023 10:20:45 +0100
+        with ESMTP id S230221AbjBIJVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:21:55 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97EFF6186A
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:20:57 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id a2so1083146wrd.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:20:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p4OHHewCXMH/ESw/iOq51Yxy324ZCr/Q6fY+cFJPb9o=;
+        b=c4sm3hGpQhJtNqSGg8zl3bmA0K8B2T1VTD2Ekjg/rIvQFAWJxreW7n7y8bAPdN1pbz
+         Rc5M9UywHycDJqq2595ikzLwOsbzswDwzgDYqadImQ1ypld3BlbfjmJo1JvzOqBX3hPT
+         sbcc/jgjIyuvEHyenfBkct314uq9bFrEkTK7x8vDjFnQANz8pPNqBdgZ5QP+2Ze7hFqV
+         yZYCJiaA8rJnnhy5t+hQy/gIksHjLinFtTMemnagal4w3SoZplQagUxCeWfBucqba26f
+         V14BK9ssLwDtHF8BCLKZ0pYc3J4M/7R2GOQw7ox6Ti/T4xVUaRW8Ca9m5LfmHe2OP1/y
+         fH/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p4OHHewCXMH/ESw/iOq51Yxy324ZCr/Q6fY+cFJPb9o=;
+        b=dDSa1jW5k+tiLSy2P8C98VHKapatzKdATDaggYsdQjCnvZ6EAKIL1SvyXjtxjF9TN8
+         kYGLrJgeZcvEsQqxQvYh2kmdIh30y6UKe04NUNNcV18VKUxbNQ4GxBrEc9jm1000LU8T
+         zCZWOSdFLtmEFjXfzzhJ5vwkYpdS7XKv8EKaR+TdbBAy4aVxfTUKsMOZADtYWzUmnXQ/
+         NcGsDs1AnhpWK1t/G0IwYaEZ3oWYw+jxER8ypGj5Lxhg0IUh0Ibzi34zYzRSiz6Fe/Gs
+         Yd5vsKvEr+rtQcc1O24PFtwRbqNMYe96W5f7zhBHh0er6yrCYO7iMMHEtZf9aVUKXV+Y
+         rfUg==
+X-Gm-Message-State: AO0yUKWJ+39hwR+4aF3jdiIkQhXR1eypTbRv0ptZHaQp7HOgOVaCZCgC
+        q01OhK3T/ZldM/U0Y28qDQcHHg==
+X-Google-Smtp-Source: AK7set/7rSkyXYPTGM0hSVKodADiRAbask66tCwsOHESg3yjYZ0N70LCroNzcPasIlbT43byuK0tmg==
+X-Received: by 2002:a05:6000:1803:b0:2bf:afaf:9d71 with SMTP id m3-20020a056000180300b002bfafaf9d71mr9437503wrh.48.1675934453758;
+        Thu, 09 Feb 2023 01:20:53 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h1-20020a056000000100b002c405e19010sm777081wrx.11.2023.02.09.01.20.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 01:20:53 -0800 (PST)
+Message-ID: <b2d75c0a-a9f3-3d28-5e05-25fe3a18dcfb@linaro.org>
+Date:   Thu, 9 Feb 2023 10:20:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 5/9] dt-bindings: gpu: mali-bifrost: Add a compatible for
- MediaTek MT8186
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v9 06/14] dt-bindings: qcom-qce: document optional clocks
+ and clock-names properties
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, steven.price@arm.com,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
-        Fei Shao <fshao@chromium.org>, Nick Fan <Nick.Fan@mediatek.com>
-References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
- <20230208103709.116896-6-angelogioacchino.delregno@collabora.com>
- <CAGXv+5FZqrGzzG8FrmLVzMd7=a23ZJPYGSy5yhYWgH+BFHNmxw@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5FZqrGzzG8FrmLVzMd7=a23ZJPYGSy5yhYWgH+BFHNmxw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
+ <20230208183755.2907771-7-vladimir.zapolskiy@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230208183755.2907771-7-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/02/23 09:49, Chen-Yu Tsai ha scritto:
-> On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Get GPU support on MT8186 by adding its compatible.
+On 08/02/2023 19:37, Vladimir Zapolskiy wrote:
+> On newer Qualcomm SoCs the crypto engine clocks are enabled by default
+> by security firmware. To drop clocks and clock-names from the list of
+> required properties use 'qcom,sm8150-qce' compatible name.
 > 
-> I'd skip MT8186 for now. We have to work out some binning details for the
-> OPP, in particular how to deal with both Panfrost (or Mali) and SVS adding
-> the OPP table. We were just looking at the Mali driver today.
+> The change is based on Neil Armstrong's observation and an original change.
 > 
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  .../devicetree/bindings/crypto/qcom-qce.yaml      | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> index f6f1759a2f6e..d0f6b830a5dd 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> @@ -79,11 +79,22 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - clocks
+> -  - clock-names
+>    - dmas
+>    - dma-names
+>  
+> +if:
 
-Dealing with binning is fairly easy... I have something already done for
-that one, but I'm not sure that it would be the best option.
-My solution makes use of opp-supported-hw by "standard means", but perhaps
-let's have a separated conversation about it?
+This should be in allOf, like I wrote in last discussion.
 
-I don't think that skipping this would give any benefit though, because
-that is only adding a compatible and whatever binning support would have
-to be generic and 99% not bound to any mediatek specific compatible.
 
-Angelo
-
-> ChenYu
+Best regards,
+Krzysztof
 
