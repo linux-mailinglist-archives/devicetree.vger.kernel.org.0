@@ -2,89 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4B3690B23
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:58:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 614C3690B36
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 15:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbjBIN6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 08:58:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S230342AbjBIOCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 09:02:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbjBIN6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:58:34 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228235D1F8;
-        Thu,  9 Feb 2023 05:58:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7C980B8214C;
-        Thu,  9 Feb 2023 13:58:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B734C433AC;
-        Thu,  9 Feb 2023 13:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675951109;
-        bh=93VyRdd+x46c6JfnCI26c2eQ2tKwTRA+5LoCiqT+VC0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=jmQdnIc4ohWuhyM/wboCHrBLSTj4CBb+bA/6XmgM59Q+I305QMacZrl3VDyL2kBav
-         V+1/wPdF7b0HEIXSoijDHkuPV5z0XqxTJanmcMWS5lO34S8DhKBpd7T3TP+FUZpLUh
-         tZJBxTdDaccDbjmQ5ndcwIGj+l7Iwvq8iMsQdVXrYHTIqdPf/Gw/zaZWqIXkyFj5of
-         ajadWgbeABINJgNePiULZcqGc0DQSJYpJMU7JkD0JEAX7Zszy2qoLcTzfAMF02hgoF
-         XsPx7jDziQAd1KU3raoq78O7x+gHUmPk6F1amZhrmlpRwglJ1YOlWVIOES7eTgbJAT
-         oO2I2RcwNsTZA==
-Received: by mail-vs1-f54.google.com with SMTP id k6so2204264vsk.1;
-        Thu, 09 Feb 2023 05:58:28 -0800 (PST)
-X-Gm-Message-State: AO0yUKVjOZ3WFSDe114eZdtB7unpPCYvwuyjOzy2rWFpFxJhjC0eLQMG
-        gh2iV93htisD6BEJl4LZHBV52bB7VugIRStHww==
-X-Google-Smtp-Source: AK7set+jecLjckPcdRc6heEopqoGnC8BMT68O2x6tSHaNNqZRNC1BW5aLQrtdmUMcVM3DFY1urReQ/39uyBueeBrXyw=
-X-Received: by 2002:a67:cc1d:0:b0:3f3:5ce0:85ab with SMTP id
- q29-20020a67cc1d000000b003f35ce085abmr3125109vsl.26.1675951107969; Thu, 09
- Feb 2023 05:58:27 -0800 (PST)
-MIME-Version: 1.0
-References: <20230204133040.1236799-1-treapking@chromium.org>
- <20230204133040.1236799-8-treapking@chromium.org> <20230207205221.GA4121517-robh@kernel.org>
- <CAEXTbpf5KqH7zev+kooUmz2DiMya-53UmvAMJfcOYcm7CCDthQ@mail.gmail.com>
-In-Reply-To: <CAEXTbpf5KqH7zev+kooUmz2DiMya-53UmvAMJfcOYcm7CCDthQ@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 9 Feb 2023 07:58:16 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ35gJnpwfOtW8jQP2RmzJtLG2YdTC6dt7pf-GjJggORw@mail.gmail.com>
-Message-ID: <CAL_JsqJ35gJnpwfOtW8jQP2RmzJtLG2YdTC6dt7pf-GjJggORw@mail.gmail.com>
-Subject: Re: [PATCH v11 7/9] dt-bindings: display: bridge: it6505: Add
- mode-switch support
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230308AbjBIOCa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 09:02:30 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF593B74F
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 06:02:28 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1pQ7VL-000108-2X; Thu, 09 Feb 2023 15:02:27 +0100
+Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1pQ7VJ-0001XR-Se; Thu, 09 Feb 2023 15:02:25 +0100
+Date:   Thu, 9 Feb 2023 15:02:25 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
-        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Xin Ji <xji@analogixsemi.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        chrome-platform@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 08/16] ARM: dts: imx7d: add node for PXP
+Message-ID: <20230209140225.GC30549@pengutronix.de>
+Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+ <20230112-imx-pxp-v2-8-e2281da1db55@pengutronix.de>
+ <Y8V6yU8bZoVt32wN@pendragon.ideasonboard.com>
+ <20230120090609.GB13264@pengutronix.de>
+ <Y8pc2IZl09iNaUiR@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Y8pc2IZl09iNaUiR@pendragon.ideasonboard.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,129 +75,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 8, 2023 at 10:00 PM Pin-yen Lin <treapking@chromium.org> wrote:
->
-> Hi Rob,
->
-> Thanks for the review.
->
-> On Wed, Feb 8, 2023 at 4:52 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Sat, Feb 04, 2023 at 09:30:38PM +0800, Pin-yen Lin wrote:
-> > > ITE IT6505 can be used in systems to switch the DP traffic between
-> > > two downstreams, which can be USB Type-C DisplayPort alternate mode
-> > > lane or regular DisplayPort output ports.
-> > >
-> > > Update the binding to accommodate this usage by introducing a
-> > > data-lanes and a mode-switch property on endpoints.
-> > >
-> > > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> > >
-> > > ---
-> > >
-> > > Changes in v11:
-> > > - Updated the description of the endpoints in the bindings
-> > > - Referenced video-interfaces.yaml instead for the endpoints binding
-> > > - Removed duplicated definitions from inherited schema
-> > >
-> > > Changes in v9:
-> > > - Fixed subject prefix again
-> > > - Changed the naming of the example node for it6505
-> > >
-> > > Changes in v8:
-> > > - Updated bindings for data-lanes property
-> > > - Fixed subject prefix
-> > >
-> > > Changes in v7:
-> > > - Fixed issues reported by dt_binding_check.
-> > > - Updated the schema and the example dts for data-lanes.
-> > > - Changed to generic naming for the example dts node.
-> > >
-> > > Changes in v6:
-> > > - Remove switches node and use endpoints and data-lanes property to
-> > >   describe the connections.
-> > >
-> > >  .../bindings/display/bridge/ite,it6505.yaml   | 101 +++++++++++++++---
-> > >  1 file changed, 88 insertions(+), 13 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > > index b16a9d9127dd..8ae9c5cba22c 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > > @@ -75,22 +75,49 @@ properties:
-> > >        port@1:
-> > >          $ref: /schemas/graph.yaml#/$defs/port-base
-> > >          unevaluatedProperties: false
-> > > -        description: Video port for DP output
-> > > +        description:
-> > > +          Video port for DP output. Each endpoint connects to a video output
-> > > +          downstream, and the "data-lanes" property is used to describe the pin
-> > > +          connections. 0, 1, 2, 3 in "data-lanes" maps to TX0, TX1, TX2, TX3,
-> > > +          respectively.
-> > >
-> > > -        properties:
-> > > -          endpoint:
-> > > -            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > > +
-> > > +        patternProperties:
-> > > +          "^endpoint@[01]$":
-> > > +            $ref: /schemas/media/video-interfaces.yaml#
-> > >              unevaluatedProperties: false
-> > >
-> > >              properties:
-> > > +              reg: true
-> > > +
-> > > +              remote-endpoint: true
-> > > +
-> > >                data-lanes:
-> > > -                minItems: 1
-> > > -                uniqueItems: true
-> > > -                items:
-> > > -                  - enum: [ 0, 1 ]
-> > > -                  - const: 1
-> > > -                  - const: 2
-> > > -                  - const: 3
-> > > +                oneOf:
-> > > +                  - items:
-> > > +                      - enum: [0, 1, 2, 3]
-> > > +
-> > > +                  - items:
-> > > +                      - const: 0
-> > > +                      - const: 1
-> > > +
-> > > +                  - items:
-> > > +                      - const: 2
-> > > +                      - const: 3
-> > > +
-> > > +                  - items:
-> > > +                      - const: 0
-> > > +                      - const: 1
-> > > +                      - const: 2
-> > > +                      - const: 3
-> > > +
-> > > +              mode-switch:
-> > > +                type: boolean
-> > > +                description: Register this node as a Type-C mode switch or not.
-> >
-> > Existing users put this property in the device's node, not the endpoint.
-> > That seems more like a property of the device, than the DP link.
->
-> In our use case, we want to register two mode switches for the same
-> device. That's why we put the "mode-switch" property in the endpoints
-> instead of the device node.
+Hi Shawn,
 
-Then do that. Register a mode switch for each endpoint connected to a
-USB-C connector. You can walk the graph to see what type of connector.
+On Fri, 20 Jan 2023 11:20:24 +0200, Laurent Pinchart wrote:
+> On Fri, Jan 20, 2023 at 10:06:09AM +0100, Michael Tretter wrote:
+> > On Mon, 16 Jan 2023 18:26:49 +0200, Laurent Pinchart wrote:
+> > > On Fri, Jan 13, 2023 at 10:54:14AM +0100, Michael Tretter wrote:
+> > > > The i.MX7d contains a Pixel Pipeline in version 3.0. Add the device tree
+> > > > node to make it available.
+> > > > 
+> > > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> > > 
+> > > Should this go through Shawn's tree ? If so, how would you like to
+> > > handle the dependency on the DT bindings in patch 01/16 ?
+> > 
+> > There is no actual dependency. The binding was already specified as a txt,
+> > just not as a yaml, and the added node matches both.
+> 
+> Good point. I'll send a pull request for the series then, without this
+> patch, which can be picked by Shawn separately.
 
-The only way I could see this as an issue is you have 2 USB-C
-connectors and one is a mode switch and one is not. Not sure if such a
-scenario is likely or possible. If it is, please educate me.
+Can you pick this patch or should I resend it as a separate series?
 
-> > You are using fwnode_typec_mux_get(), right?
->
-> Yes. This is called by cros_ec_typec.c[1] in our use case.
+Michael
 
-That code looks for 'mode-switch' in the device's node, not the
-endpoint. So how does it work for you?
-
-Rob
+> 
+> > > > ---
+> > > > Changelog
+> > > > 
+> > > > v2:
+> > > > 
+> > > > - fix alignment
+> > > > ---
+> > > >  arch/arm/boot/dts/imx7d.dtsi | 9 +++++++++
+> > > >  1 file changed, 9 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
+> > > > index 7ceb7c09f7ad..4b94b8afb55d 100644
+> > > > --- a/arch/arm/boot/dts/imx7d.dtsi
+> > > > +++ b/arch/arm/boot/dts/imx7d.dtsi
+> > > > @@ -165,6 +165,15 @@ pcie_phy: pcie-phy@306d0000 {
+> > > >  		  reg = <0x306d0000 0x10000>;
+> > > >  		  status = "disabled";
+> > > >  	};
+> > > > +
+> > > > +	pxp: pxp@30700000 {
+> > > > +		compatible = "fsl,imx7d-pxp";
+> > > > +		reg = <0x30700000 0x10000>;
+> > > > +		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> > > > +			     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +		clocks = <&clks IMX7D_PXP_CLK>;
+> > > > +		clock-names = "axi";
+> > > > +	};
+> > > >  };
+> > > >  
+> > > >  &aips3 {
