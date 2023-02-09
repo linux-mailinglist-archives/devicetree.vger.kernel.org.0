@@ -2,177 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 441DC68FEA5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 05:26:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F2B68FEBD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 05:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbjBIE0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 23:26:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39694 "EHLO
+        id S229498AbjBIEaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 23:30:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbjBIEZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 23:25:52 -0500
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA5D38B54
-        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 20:25:20 -0800 (PST)
-Received: by mail-il1-x130.google.com with SMTP id m15so389179ilh.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 20:25:20 -0800 (PST)
+        with ESMTP id S229866AbjBIE3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 23:29:53 -0500
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725AF3D929
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 20:29:25 -0800 (PST)
+Received: by mail-il1-x132.google.com with SMTP id a5so400186ilk.6
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 20:29:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=X3JCdbvKeiUcH/OkexvFMP8KnMjvRlzLquNMe2eJDPM=;
-        b=YbUbDyPLqiPzWst58OZ6HfyZTQdO47nm+/kxW34nvPdgReGLE8CZKTkEAsRznj1YyQ
-         Jo+m685SMmEizOIuzU3KvveGYv2W8fURphN+KyHUCLe4XS+I7UPupca2pJiRF0aZ7TYT
-         glzF7jMl7nHOvLmU1nRcYvPKovPfoTljGDOPU=
+        bh=bescMjn7FtyPXif9z42K5Kti4WQibJgEOUCofteOlbU=;
+        b=efbpqpZ8ruVdXCPyxPr8jDefM3U8oaOj3EXWBJQevNTETQvcO2dE/qtmWax943hsRR
+         hXvF9OSBw1p+PC27CXPrMC2rOofIy441d7jZSKzpR3sOkGqwzMVORaVIxNJkydQm7TzH
+         8ViDfzFimT4EAz6hz5X1Yn6/9z/6vbonm+MDU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=X3JCdbvKeiUcH/OkexvFMP8KnMjvRlzLquNMe2eJDPM=;
-        b=LQoFM95N2ueAwpAVQGiYTwva7LWEJzZbqRI11H1+3GKPf2+csrL3P9HoINPVKi7lfs
-         m1ugSYr3zSL2CSQJ+MH0ERMlEVjv4fRxx5z2eKqElfWNeR85Fi9mFUBwIforvMArLtB+
-         QsUXm4gntX4IKte7lBwHQll/MbpxtuOzsXLoHJmPMyHZna5gBpA4tzoXU0rmpcxMtxgX
-         LG5cwgt/6JeTG1tF1SKkoj7PytK1SHTYgz5TF8nDOtAeZmRzcFfSGJGPSlCEKNGu6ikg
-         pliL05v5TGual6Azux3Z6zdW9T4z36ZVM1sZnHhR8FAaJQyIL6hlFlOIDNGqW/iB3FkS
-         TYQQ==
-X-Gm-Message-State: AO0yUKXlsdpKGrfRHXw/7fnJgqe/2wrVPDkYbRcAieLjPZP4PxiI6bjn
-        Eze3ZTcS3+eGDIEy0thlIIsfFAKM/ED//WlBaLE=
-X-Google-Smtp-Source: AK7set9FaIukLNgaqSoBceMIl6m4uQmlKKEPJCHe/pr4lab7uGXm/vtNkYi8ZKVIqEbudJdmtj7IVg==
-X-Received: by 2002:a05:6e02:5c1:b0:311:ad48:ff23 with SMTP id l1-20020a056e0205c100b00311ad48ff23mr2968267ils.11.1675916665285;
-        Wed, 08 Feb 2023 20:24:25 -0800 (PST)
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com. [209.85.166.170])
-        by smtp.gmail.com with ESMTPSA id y7-20020a02ce87000000b003a9cab5c5e3sm104072jaq.116.2023.02.08.20.24.24
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Feb 2023 20:24:24 -0800 (PST)
-Received: by mail-il1-f170.google.com with SMTP id f10so395456ilc.7
-        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 20:24:24 -0800 (PST)
-X-Received: by 2002:a92:b513:0:b0:310:9276:5d29 with SMTP id
- f19-20020a92b513000000b0031092765d29mr5213990ile.76.1675916663704; Wed, 08
- Feb 2023 20:24:23 -0800 (PST)
+        bh=bescMjn7FtyPXif9z42K5Kti4WQibJgEOUCofteOlbU=;
+        b=aR/NLUE9vm6s01n1F8CBV2/MgCQjB0k/wEPPWVtzQwD5ASzXOrAIh1nHZZIr+lOP0f
+         nzuvmA25lwhZwvVQYrY8v1PXnv4N85Xkohe5K3yq+afzDNq67pz+0NLK6bCQz5LGEOsv
+         AVJ3hzLG9N/2zGGZyPjXpZ3kkoBkxVyN774LyW7FV7RylWzGYiF1tzb0GPmH1UYNECA2
+         lsY/axFG97nsd/FEL6Af+QB98cxHsHNvY8HmeMYZqB6TvlDyH4P1aisejNgC6U4UfMVL
+         hBXZXD8Y31bLXsPMYNiUCRaVbE4sSfq3qaaKuDIL22unceqMG2NP3dTr0VNjB90h76jB
+         niTQ==
+X-Gm-Message-State: AO0yUKWiV4YRncDVZ9fcJlnnExiBR+5d+GKYNR16aDYKAGoicx8YkEdQ
+        R+m+4Khdrfrk7z+UsD7N/d4I3Wk7AO917mdwOfc/BA==
+X-Google-Smtp-Source: AK7set+YCKJbelSZgHy/neopyqons0VAhG7SjB9chuOXUmdoUIbOQBP9AdNx/HVfzI+OikZm7IrbjJahfEHqdtFqiQw=
+X-Received: by 2002:a92:4412:0:b0:310:fd95:6d81 with SMTP id
+ r18-20020a924412000000b00310fd956d81mr5201921ila.42.1675916924769; Wed, 08
+ Feb 2023 20:28:44 -0800 (PST)
 MIME-Version: 1.0
-References: <1675863724-28412-1-git-send-email-quic_kalyant@quicinc.com>
- <CAD=FV=WbzmF_Jkwrcm27eqXaqNhGq_D=8yfCKqELET+=+EaLAA@mail.gmail.com> <BN0PR02MB8142207261497BE76A6EA07096D99@BN0PR02MB8142.namprd02.prod.outlook.com>
-In-Reply-To: <BN0PR02MB8142207261497BE76A6EA07096D99@BN0PR02MB8142.namprd02.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 8 Feb 2023 20:24:08 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XVaEzyZybZ3JmFnPQkSZyw-3UfD0Mupt_adnnJcYy_iQ@mail.gmail.com>
-Message-ID: <CAD=FV=XVaEzyZybZ3JmFnPQkSZyw-3UfD0Mupt_adnnJcYy_iQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Reserve DSPPs based on user request
-To:     Kalyan Thota <kalyant@qti.qualcomm.com>
-Cc:     "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@chromium.org" <robdclark@chromium.org>,
-        "swboyd@chromium.org" <swboyd@chromium.org>,
-        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>
+References: <20230204133040.1236799-1-treapking@chromium.org>
+ <20230204133040.1236799-2-treapking@chromium.org> <Y+AbhnfJvScvHTGY@kekkonen.localdomain>
+In-Reply-To: <Y+AbhnfJvScvHTGY@kekkonen.localdomain>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Thu, 9 Feb 2023 12:28:33 +0800
+Message-ID: <CAEXTbpf-s8NQKwSxhe=cO-KO=TTSXFznm=1J-ikhc558M6brdQ@mail.gmail.com>
+Subject: Re: [PATCH v11 1/9] device property: Add remote endpoint to devcon matcher
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        chrome-platform@lists.linux.dev, Chen-Yu Tsai <wenst@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Sakari,
 
-On Wed, Feb 8, 2023 at 8:16 PM Kalyan Thota <kalyant@qti.qualcomm.com> wrote:
+Thanks for the review.
+
+On Mon, Feb 6, 2023 at 5:11 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
 >
-> Hi Doug,
+> Hi Pin-yen,
 >
-> Have you picked the core change to program dspp's  (below) ? the current series will go on top of it.
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/1671542719-12655-1-git-send-email-quic_kalyant@quicinc.com/
-
-I didn't pick v11 of it like you link, but I did pick v12 of the same
-patch. In my response I said that I picked 5 patches, this series plus
-[1] where [1] is:
-
-[1] https://lore.kernel.org/all/1674814487-2112-1-git-send-email-quic_kalyant@quicinc.com/
-
-
-> Thanks,
-> Kalyan
+> On Sat, Feb 04, 2023 at 09:30:32PM +0800, Pin-yen Lin wrote:
+> > From: Prashant Malani <pmalani@chromium.org>
+> >
+> > When searching the device graph for device matches, check the
+> > remote-endpoint itself for a match.
+> >
+> > Some drivers register devices for individual endpoints. This allows
+> > the matcher code to evaluate those for a match too, instead
+> > of only looking at the remote parent devices. This is required when a
+> > device supports two mode switches in its endpoints, so we can't simply
+> > register the mode switch with the parent node.
+> >
+> > Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> > Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 >
-> >-----Original Message-----
-> >From: Doug Anderson <dianders@chromium.org>
-> >Sent: Wednesday, February 8, 2023 10:44 PM
-> >To: Kalyan Thota (QUIC) <quic_kalyant@quicinc.com>
-> >Cc: dri-devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
-> >freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
-> >kernel@vger.kernel.org; robdclark@chromium.org; swboyd@chromium.org;
-> >Vinod Polimera (QUIC) <quic_vpolimer@quicinc.com>;
-> >dmitry.baryshkov@linaro.org; Abhinav Kumar (QUIC)
-> ><quic_abhinavk@quicinc.com>; marijn.suijten@somainline.org
-> >Subject: Re: [PATCH v3 0/4] Reserve DSPPs based on user request
+> Thanks for the update.
+>
+> I intended to give my Reviewed-by: but there's something still needs to be
+> addressed. See below.
+>
 > >
-> >WARNING: This email originated from outside of Qualcomm. Please be wary of
-> >any links or attachments, and do not enable macros.
+> > ---
 > >
-> >Hi,
+> > Changes in v11:
+> > - Added missing fwnode_handle_put in drivers/base/property.c
 > >
-> >On Wed, Feb 8, 2023 at 5:42 AM Kalyan Thota <quic_kalyant@quicinc.com>
-> >wrote:
-> >>
-> >> This series will enable color features on sc7280 target which has
-> >> primary panel as eDP
-> >>
-> >> The series removes DSPP allocation based on encoder type and allows
-> >> the DSPP reservation based on user request via CTM.
-> >>
-> >> The series will release/reserve the dpu resources when ever there is a
-> >> topology change to suit the new requirements.
-> >>
-> >> Kalyan Thota (4):
-> >>   drm/msm/dpu: clear DSPP reservations in rm release
-> >>   drm/msm/dpu: add DSPPs into reservation upon a CTM request
-> >>   drm/msm/dpu: avoid unnecessary check in DPU reservations
-> >>   drm/msm/dpu: reserve the resources on topology change
-> >>
-> >>  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  2 +
-> >>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 58 ++++++++++++++++------
-> >-------
-> >>  drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c      |  2 +
-> >>  3 files changed, 37 insertions(+), 25 deletions(-)
+> > Changes in v10:
+> > - Collected Reviewed-by and Tested-by tags
 > >
-> >I tried out your changes, but unfortunately it seems like there's something wrong.
-> >:( I did this:
+> > Changes in v6:
+> > - New in v6
 > >
-> >1. Picked your 5 patches to the chromeos-5.15 tree (this series plus [1])
+> >  drivers/base/property.c | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
 > >
-> >2. Put them on herobrine villager.
+> > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > index 2a5a37fcd998..e6f915b72eb7 100644
+> > --- a/drivers/base/property.c
+> > +++ b/drivers/base/property.c
+> > @@ -1223,6 +1223,22 @@ static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> >                       break;
+> >               }
 > >
-> >3. Booted up with no external display plugged in.
-> >
-> >4. Tried to enable night light in the ChromeOS UI.
-> >
-> >5. Night light didn't turn on for the internal display.
-> >
-> >
-> >I also tried applying them to the top of msm-next (had to resolve some small
-> >conflicts). Same thing, night light didn't work.
-> >
-> >
-> >I thought maybe this was because the Chrome browser hasn't been updated to
-> >properly use atomic_check for testing for night light, so I hacked my herobrine
-> >device tree to not mark "mdss_dp" as "okay". Now there's _only_ an eDP display.
-> >Same thing, night light didn't work.
-> >
-> >
-> >I could only get night light to work for the internal display if I plugged and
-> >unplugged an external display in.
-> >
-> >
-> >Is the above the behavior that's expected right now?
-> >
-> >
-> >[1] https://lore.kernel.org/all/1674814487-2112-1-git-send-email-
-> >quic_kalyant@quicinc.com/
+> > +             /*
+> > +              * Some drivers may register devices for endpoints. Check
+> > +              * the remote-endpoints for matches in addition to the remote
+> > +              * port parent.
+> > +              */
+> > +             node = fwnode_graph_get_remote_endpoint(ep);
+>
+> Here fwnode_graph_get_remote_endpoint() returns an endpoint...
+>
+> > +             if (fwnode_device_is_available(node)) {
+>
+> and you're calling fwnode_device_is_available() on the endpoint node, which
+> always returns true.
+>
+> Shouldn't you call this on the device node instead? What about match()
+> below?
+
+Yes we should have checked the availability on the device node itself
+instead of the endpoint node. But regarding the match() call, we need
+to call it with the endpoint node because that's where we put the
+"mode-switch" properties and register the mode switches on. We can't
+use the device node because we want to register two mode switches for
+the same device node.
+
+Regards,
+Pin-yen
+>
+> > +                     ret = match(node, con_id, data);
+> > +                     if (ret) {
+> > +                             if (matches)
+> > +                                     matches[count] = ret;
+> > +                             count++;
+> > +                     }
+> > +             }
+> > +             fwnode_handle_put(node);
+> > +
+> >               node = fwnode_graph_get_remote_port_parent(ep);
+> >               if (!fwnode_device_is_available(node)) {
+> >                       fwnode_handle_put(node);
+>
+> --
+> Kind regards,
+>
+> Sakari Ailus
