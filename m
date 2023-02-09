@@ -2,80 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 252D4690328
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73198690336
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:19:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjBIJRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:17:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51502 "EHLO
+        id S230034AbjBIJTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:19:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbjBIJRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:17:37 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E5465EFBD;
-        Thu,  9 Feb 2023 01:17:36 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id EB13C66020BC;
-        Thu,  9 Feb 2023 09:17:34 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675934255;
-        bh=SmEEed0/w9t+DOmwxx6nn0/cBAy3WOhaxgIaTq2QUGY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RjRMLHa9DQyYjgEJTdj9y2UKpNYXrDxiwe0Nsdyqun3ERbtc+aEJkgAQrPsm/oiuq
-         ff+COemd4QoHbUOzOdB2T4GWEkBs5at3KockNuCnyG7qYWjJXHtvSbmJeFarwfexau
-         RL1xhgtKz7si1kw1MXiX2sUkxsm8OgnDzSVvSFNwKWHUwmFhCvQWVU3rpLOqfu1rR2
-         3wiN5CNeKT5UmsRGM1akdWK6Cp3FzG1pb1wo2mlzZKPQFfmDnAJ+gxW2fKpV1kUZ9g
-         mktesPGKIGisx6N9AhLM6+Awhv++RLIDt66UoAi18X+mrj/tz7Olm10i1J7Pih4iMi
-         IxM4FBKVFXCKg==
-Message-ID: <4ca94d3d-40e3-45c7-8f75-b8c09db8e20d@collabora.com>
-Date:   Thu, 9 Feb 2023 10:17:32 +0100
+        with ESMTP id S230054AbjBIJTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:19:10 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3946184B
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:18:54 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso986524wms.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:18:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8xKTTF13TuTGcMYnAy1hWjGraIh0S3K+pSaF1w8Q3zo=;
+        b=xs7Q4mmPj8u33vupAygAL8RuVKlC6EKKdmfyF+kkgWOujcytRxJIOx5Y4SAs6FaS5V
+         HIyn9tFlA4cBihMXK9hzx8q170ZLTncfXKdo8vXjbkG810AG8fKWLPRcvB+qYbxdTgqh
+         cHRWM1oxcgBAgZM28jKebD8VWvN2+XUr7zdIsJwxgcl6bDgBjVnaSL7rUj+1VYoY8+Ay
+         S/hpfjMt6n76SB049n5M9Nj6YBu60al6ieUMhf0S6hmHo5itpzM7JKoAzlKhSEdeeVGo
+         PK+1HuzxjXtVWr552yVPcfMJf9I24fwUHd3ihi+OnQgCLkdA/idhQdy9+1o/lRo3u80n
+         Rekg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xKTTF13TuTGcMYnAy1hWjGraIh0S3K+pSaF1w8Q3zo=;
+        b=KlCZOzMpS+FVvCSyHFYvvIMiDpM5e/rn5LeAzo4hOBjWGc3CYBI6VU4b6c+PLqoIY9
+         1dqCMN/fQdH+Shaw+EXi/RxsGiQenYTRwUXQsnwaKwFrIzU3X61j2Ph/w8qEz+fj741v
+         mFlD9CdHEvfFmv7HbLLQ0armISJsj0v1iankO/OZMTYlcK/xbdcAxRSvlev1vjvhYRBG
+         nFdWqwsawiJgtyvh1CQjGAnhskaltWr3hzmqPxwrwuAN83pYM61OsHNcwacAwnDn4YNU
+         4Asf7jRZFBNRDR/t+nCbOzc3snxE80Fp+6mQkl9lOFJ1vy5G4ljLlOLrGa8/rptnwTuA
+         T96w==
+X-Gm-Message-State: AO0yUKWLOtXrv+RpyiiHXoWZ3JHuH5kTc7DDHaD5TKZc+bMZkmmL9P6B
+        e5OE95HxLZ/B9HzzXMewuOlXVg==
+X-Google-Smtp-Source: AK7set9XI6TCiVDXHBQ00wIrpN5n0MrSPkmDWY0y02F6jIukBOaxh8N9JZIw08zehf0kd3ep1rJmAQ==
+X-Received: by 2002:a05:600c:16c8:b0:3da:2ba4:b97 with SMTP id l8-20020a05600c16c800b003da2ba40b97mr3753928wmn.19.1675934332766;
+        Thu, 09 Feb 2023 01:18:52 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id g12-20020a5d540c000000b002bff1de8d4bsm757371wrv.49.2023.02.09.01.18.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 01:18:52 -0800 (PST)
+Message-ID: <bc088534-ac1d-0504-9961-d3cd3740e2f3@linaro.org>
+Date:   Thu, 9 Feb 2023 10:18:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/9] dt-bindings: gpu: mali-bifrost: Allow up to 5 power
- domains for MT8192
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v9 05/14] dt-bindings: qcom-qce: Add new SoC compatible
+ strings for qcom-qce
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, steven.price@arm.com,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org
-References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
- <20230208103709.116896-3-angelogioacchino.delregno@collabora.com>
- <CAGXv+5FXqEJaADrhgu-tPfEPPkP1B=bo_KytBH55xCRea4CmTQ@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5FXqEJaADrhgu-tPfEPPkP1B=bo_KytBH55xCRea4CmTQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
+ <20230208183755.2907771-6-vladimir.zapolskiy@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230208183755.2907771-6-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/02/23 09:33, Chen-Yu Tsai ha scritto:
-> On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> MediaTek MT8192 (and similar) needs five power domains for the
->> Mali GPU and no sram-supply: change the binding to allow so.
->>
+On 08/02/2023 19:37, Vladimir Zapolskiy wrote:
+> Change QCE IP version specific compatible to two QCE IP family compatibles
+> based on SoC name and populate these two IP families with particular SoC
+> specific IP compatible names, which are known at the moment.
 > 
-> mt8192 compatible was already added, so this should have:
+> Keep the old compatible 'qcom,crypto-v5.1' for backward compatibility
+> of DTB ABI, but mark it as deprecated.
 > 
-> Fixes: 5d82e74a97c2 ("dt-bindings: Add compatible for Mali Valhall (JM)")
+> The change is based on the original one written by Bhupesh Sharma.
 > 
+> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  .../devicetree/bindings/crypto/qcom-qce.yaml  | 24 +++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> index 4e00e7925fed..f6f1759a2f6e 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> @@ -15,7 +15,27 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,crypto-v5.1
+> +    oneOf:
+> +      - const: qcom,crypto-v5.1
+> +        deprecated: true
+> +        description: Kept only for ABI backward compatibility
+> +      - const: qcom,crypto-v5.4
 
-Yeah, agreed.
+You should mention in commit msg that you document existing compatible
+v5.4. Otherwise it looks unrelated/unexplained. Especially adding
+deprecated compatible is unexpected.
 
+> +        deprecated: true
+> +        description: Kept only for ABI backward compatibility
+
+
+Best regards,
+Krzysztof
 
