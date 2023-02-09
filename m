@@ -2,103 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 064A86902C6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:03:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86CC36902CF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:05:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjBIJDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40046 "EHLO
+        id S229875AbjBIJFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:05:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbjBIJDU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:03:20 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423FA7DB3
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:03:19 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id a2so1037364wrd.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:03:19 -0800 (PST)
+        with ESMTP id S229735AbjBIJFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:05:46 -0500
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AEA193D6
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:05:45 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id w3so1181009qts.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:05:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KddnvB+SXjb84cC3PE1XW8IOwMIgrVI+rE/YkSmOZX0=;
-        b=f8Bj8q1SFmwuKD2GFvYlhUixzeuCqp0yWlnDo13eYYidcOzljksBZyU1Sb6unC8ek7
-         s/t4PNwFmfvEjoe0orcN+CJ+3spZjAk3RWEzkeMQmSnbg9qOWvY92NXOZnF56q6/327O
-         MoDfIbzyAWo31LhJ5a0UEouIfTCDDpqPk5pFA1Anh3e2yonZ79fENVrpAPYPrMhxOY1+
-         LLIxCkFqvxhpzHHnSQgvaVKtNy7zc/txqQlhGb3NkyU+ypDpd9EwiPvwgCHQE62bS8xG
-         pY4XbkuQ8/Dws9GeGbRZVj/RDNDYO2jYb/XGh0EY7UVisUYSFXeyVRukwjLW7+XuitMu
-         ScfA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=g6COeyPGMXf7U7lGKG1YayluAHCueh6BFLzJHyo0CpI=;
+        b=NAvo6+k/InUrLzFKPDcv7XK88ILDJg3zbxr+6QIXKdqXACWk9YTFTZtZp1WMLj+7Ft
+         n6FtPkxpsKuGyLdP9O1cNuVb437Yr59eycUih2mnYbsBwVzDuC3H5Uug8ZByvHrfVl1G
+         1tEk3H0oENr/DlKlis1zVBNIABBMc+FxkBMZj5npBK7OfGSNRn04MYoth25gIJRypN9i
+         ZLDFWZQvfSXrEttGKHfmhrZxn1Hqm4C53mlRG5JBr69lCgoO7mS3sw3fj0HOiQwgTiuB
+         gSQHVB66kvBtau9PKEayhj8xBn6D4G+J6x/lVye7jToUpAwgdI0OCzCbO0TlRZgAjZCm
+         gosQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KddnvB+SXjb84cC3PE1XW8IOwMIgrVI+rE/YkSmOZX0=;
-        b=r1ybY2Uvw8mxDuy367eUowB5qF2Zebuofgm1g7NezOwqGo/gkfeE6Q3irM8zAeoJ/y
-         R8LSissI2MJCa901teTGIWAODqrNU9CkoXJr38nSwXqlIAXiX9k5chq3MVkdIG6Av/U8
-         TVeVLaagjfoNJWZkpRuSRTuriNrtlmU2z9NHHtvz3LLXIupW+zxO2mt7ojpAPDKuR//q
-         R0m7GvpcrqX939F6neEWM6I9FxUS8LpzyaoSOw2hcmC1820/6GHcA74p024SQYRE+NCb
-         Vsd3nqHa24TVzDPr3SG0epI3I4vJbG+Vb9P02m4x9E6+9QpagJ4qHsXLF5dtgGp/NpyQ
-         d+oQ==
-X-Gm-Message-State: AO0yUKU34LlL1Tf5mCzmImkp94XwLpbqLYjwD0ZUSnrMrv/+tU2X7OMZ
-        9jzOGkQeWJMDlVOIBAyyF/iG5w==
-X-Google-Smtp-Source: AK7set/Wf+UTKLXXpE+qh5czFozFlsmwQv2QwSegX9rUL/3WcoNIm4M2PM/Yh78fR38M6Yu3h0XAVw==
-X-Received: by 2002:a5d:6206:0:b0:2c3:e868:cf54 with SMTP id y6-20020a5d6206000000b002c3e868cf54mr12210476wru.13.1675933397888;
-        Thu, 09 Feb 2023 01:03:17 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o26-20020a5d58da000000b002c3f1223059sm735417wrf.36.2023.02.09.01.03.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 01:03:17 -0800 (PST)
-Message-ID: <e5bcad37-c7d3-9c3c-4947-d3f2f6d9fc60@linaro.org>
-Date:   Thu, 9 Feb 2023 10:03:16 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g6COeyPGMXf7U7lGKG1YayluAHCueh6BFLzJHyo0CpI=;
+        b=w0hcoHX03GkcUJ7V+h0MtOxtjd67+AwvQX6+qDSDzd1pbmQ+gDgQ87AKl+gOuZuibH
+         e+AG0pPIbh0frAXSuMmtasgLX4m4NYKwU7lirf407xh9lViV45wm3lgtc2w4rGKkN1V1
+         kxxTxKGC8IFoFdkvMSgtxDE2KvHfjihytuP4O2LEZlQPyvMEHHKJE5iTmXHN2cIyHI7Y
+         wumv4UU6qFLmVtIJPKcPKp1lORhWH21QW2lnQL/tV7sLRch+Qa10s0L2GVfMVPRcKpKW
+         mB2nDOkrbUf+lo+IBtyVfiOMmg2GhulkAFHQPcTbG5/ZwnaMdW/5fhTJQWpcjSNdtfW1
+         1UQg==
+X-Gm-Message-State: AO0yUKW80+zXugn4l2cv2JmYo4OStXGcO4u/JuyV8fsXYW7a6fz30X9k
+        2lAZ5HBPC7RaVL0Xu3R9EjHNSwJLbBIWT0eh/91tqA==
+X-Google-Smtp-Source: AK7set98BmFRfRbWA4HYK3suSqo8xIlNgU19F+J1543PBuObgKzeMLFN9+wEEGAOqsIed6lAMzglCbfL1p3tV0c9s1Y=
+X-Received: by 2002:ac8:5c49:0:b0:3b6:2e70:d0ba with SMTP id
+ j9-20020ac85c49000000b003b62e70d0bamr1843244qtj.124.1675933544040; Thu, 09
+ Feb 2023 01:05:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3] ASoC: SMA1303: Remove the sysclk setting in devicetree
-Content-Language: en-US
-To:     Ki-Seok Jo <kiseok.jo@irondevice.com>,
+References: <20230124182857.1524912-1-amit.pundir@linaro.org>
+ <39751511-3f06-7c39-9c21-208d4c272113@linaro.org> <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
+ <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org> <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
+In-Reply-To: <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Thu, 9 Feb 2023 14:35:07 +0530
+Message-ID: <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
+ region as reserved
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230209084903.13000-2-kiseok.jo@irondevice.com>
- <da3e7391-ee89-3089-8501-91e9411161a7@linaro.org>
- <SLXP216MB00777BF2377ECE2366F694228CD99@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SLXP216MB00777BF2377ECE2366F694228CD99@SLXP216MB0077.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 10:01, Ki-Seok Jo wrote:
-> 
->>> In SMA1303, this device does not support MCLK.
->>> So it need to remove sysclk setting in devicetree.
->>> v2: Modify the sysclk setting - using devm_clk_get for mclk.
->>>
->>> Signed-off-by: Kiseok Jo <kiseok.jo@irondevice.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Where? Where did you get this tag?
->>
->> Best regards,
->> Krzysztof
-> 
-> I'm sorry, I don’t' know what you're talking about.
-> What tag are you talking about?
-> Sorry, could you please elaborate?
+On Tue, 31 Jan 2023 at 19:03, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 31/01/2023 14:45, Konrad Dybcio wrote:
+> >
+> >
+> > On 31.01.2023 12:06, Dmitry Baryshkov wrote:
+> >> On Tue, 31 Jan 2023 at 12:54, Bryan O'Donoghue
+> >> <bryan.odonoghue@linaro.org> wrote:
+> >>>
+> >>> On 24/01/2023 18:28, Amit Pundir wrote:
+> >>>> Put cont splash memory region under the reserved-memory
+> >>>> as confirmed by the downstream code as well.
+> >>>>
+> >>>> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> >>>> ---
+> >>>>    arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
+> >>>>    1 file changed, 8 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> >>>> index f41c6d600ea8..2ae59432cbda 100644
+> >>>> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> >>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> >>>> @@ -100,6 +100,14 @@ hdmi_con: endpoint {
+> >>>>                };
+> >>>>        };
+> >>>>
+> >>>> +     reserved-memory {
+> >>>> +             /* Cont splash region set up by the bootloader */
+> >>>> +             cont_splash_mem: framebuffer@9d400000 {
+> >>>> +                     reg = <0x0 0x9d400000 0x0 0x2400000>;
+> >>>> +                     no-map;
+> >>>> +             };
+> >>>> +     };
+> >>>> +
+> >>>>        lt9611_1v8: lt9611-vdd18-regulator {
+> >>>>                compatible = "regulator-fixed";
+> >>>>                regulator-name = "LT9611_1V8";
+> >>>
+> >>> Doesn't this mean we loose 0x2400000 of DRAM for all rb3 platforms
+> >>> though ? About what 37 megabytes.. ?
+> >>
+> >> I think this memory is further used for display memory allocation. So
+> >> we are not loosing it, but dedicating it to the framebuffer memory.
+> > Not exactly, to do so, you'd have to use the memory-region property
+> > with mdss, which nobody does. Otherwise it's just a hole for Linux.
+>
+> Then maybe it's time to start using that property?
 
-From where the tag "Reviewed-by: Krzysztof..." appear?
+Hi, So what is the verdict on this patch?
 
-Best regards,
-Krzysztof
+I submitted this fix to make sure UFS don't map and crash on it, which
+I have seen happening occassionaly on db845c and Caleb reported
+similar issues on his sdm845 device iirc. I should have probably put
+that in my commit message as well.
 
+Regards,
+Amit Pundir
+
+>
+> >
+> > Konrad
+> >>
+> >>
+>
+> --
+> With best wishes
+> Dmitry
+>
