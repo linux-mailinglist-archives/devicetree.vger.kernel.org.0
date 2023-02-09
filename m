@@ -2,88 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2DA86902EB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:10:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D68256902F2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:11:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjBIJKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:10:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
+        id S229698AbjBIJLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:11:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbjBIJKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:10:35 -0500
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D9055281
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:10:27 -0800 (PST)
-Received: by mail-ua1-x92d.google.com with SMTP id ch22so250498uab.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:10:27 -0800 (PST)
+        with ESMTP id S229530AbjBIJLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:11:36 -0500
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F43244AD
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:11:35 -0800 (PST)
+Received: by mail-vs1-xe2f.google.com with SMTP id k4so1437197vsc.4
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:11:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gUiV/qw4JVOOcTovWw+xyQ31ogBLTJYuBUEOiv2Lb9U=;
-        b=QIIdel1hmP8z81Hism+qg1TEwzk5Q4RapO0/kQvbT2plytwESYSceZGMKXLlsMHLnJ
-         aQwTjjAYJQpFz0W0Q9oBoHZAVdYNXekXiEQ69PeqGwM/y6MTkxHOr539NoK1u1ne5tJs
-         YzOWq9vDJkLexZVnCS4T9l4rHtNeFWP6KBsT8=
+        bh=w68fjacIbYROHj9NrwdwNA0c0aQCtfhI8MuuSuFFTGU=;
+        b=ZIYZaanS4Y+2sOHLh37grO5tgcR4JefyElqlYAUc1JIKKZAgas3J6AID8Itlb6wbKc
+         AAfgAJqufU0jImwFeaP/YnfqImuC7ohwXwWBnzxJmM1nhMj8LPnDfRooMWAeeV3d2WS+
+         wSs9SJPo19TuBsLQaRpmUwVnQzff9s24CscOs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gUiV/qw4JVOOcTovWw+xyQ31ogBLTJYuBUEOiv2Lb9U=;
-        b=ZjasNh9juev2Dlzn4mnGdShpDFdqBbgcLID69WvTktYI7cJghBzDcQ4L7doUP9tykP
-         IHGbWMxa9/35YzlIK/IEz0sBLFg1oR248MhVsxpx3s1wrTiCMyhDOricFnOH53gSX0jd
-         Y5B/lblialxrE6shOM1VasYqFBZLJPNcwLT7vZn88Ao4QTPF7GrGxWhT8B3NWPvahLaM
-         X0HRP5KvkVvlP5XOH7v+cibOAuk6XkBoSZ8ZyQPQr+g7naAtq28gtiBqNJh/Qzb4odCJ
-         I/nL/sUrkn7OE927d540YpDNXfBjt/esr6IGmfoTu9AMpcsquwaxzDI68YnNZJNlaYsg
-         xOWQ==
-X-Gm-Message-State: AO0yUKWOIbd0ydMGLTHTi5Uk6E0EGi6tX92e18mfHjzxFShsigOfT7dS
-        nLJymZOGc8D/+RkCGoCO9K9ll3aNNtPqiIZ1tE0Y5L/3aSniqdvK
-X-Google-Smtp-Source: AK7set9iFbENJrUNl+hKyQ+MIZq2ziVgQa1lldvrUJbRi6mBlcQ3E1DlqRIz/5dmXyM5bWmpsndHSjVSmc3EWCSsyvc=
-X-Received: by 2002:ab0:2bd5:0:b0:5e6:3536:22e4 with SMTP id
- s21-20020ab02bd5000000b005e6353622e4mr2456477uar.55.1675933826994; Thu, 09
- Feb 2023 01:10:26 -0800 (PST)
+        bh=w68fjacIbYROHj9NrwdwNA0c0aQCtfhI8MuuSuFFTGU=;
+        b=aoQkuWQR0V4zqOQwAHylfe5TWFZIAaX9vnR3ZgEWbihpdj1AHV9z6z+cIHfcGzvNfk
+         4AnAbYWULNY+W2wUYcTA00gUajueNkJgkKDxzfqyIfAcCdIUhinNJ6ogRkrgx/Jyc9DU
+         ar7pFndSLfRwF0efaSn/FWPsev+TKGDfb35FJvDIhnIZb9U6iKu2Kb7v/8EXdHuQPPC5
+         UWHxdG8sP4inBaXTwqQsp6WYjzpKM2NT1Wqf644wi8G/svo6Ad/zL6Cd31hk/Hlbt0Pd
+         H0rZOU5jxPzArG25f8fJBY3hY5Mf/QRcXJPlL6CAnDVjpgaqPBkVcuIEYNAUxCHnz4kJ
+         aSjg==
+X-Gm-Message-State: AO0yUKUPwfT4G3OwwiuQY3gswKtRF5Fnd1onoGevGTHcHzBG+dB+pp/W
+        2Tm/21vAscmpvKzUvroxfod76ilB48nBK7CSDLh1aQ==
+X-Google-Smtp-Source: AK7set+KPzqBwjxATKFm3ww9TDUL0+dlDvBQLmcuye57In75cyMGFwgEmQXHgRNRnpRNwOctDpjGIdp71O9nke3/6hg=
+X-Received: by 2002:a67:d202:0:b0:411:c830:e5b5 with SMTP id
+ y2-20020a67d202000000b00411c830e5b5mr364925vsi.65.1675933894598; Thu, 09 Feb
+ 2023 01:11:34 -0800 (PST)
 MIME-Version: 1.0
-References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
+References: <20230208104527.118929-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230208104527.118929-1-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 9 Feb 2023 17:10:15 +0800
-Message-ID: <CAGXv+5HkdWUWmq0Jk5F2ZuFVHN5T07CYwBdzSWR7Z0=pmkJ5Mw@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Panfrost: Improve and add MediaTek SoCs support
+Date:   Thu, 9 Feb 2023 17:11:23 +0800
+Message-ID: <CAGXv+5Hd+XBqKX5w294KVw56BHkkD3NW9ED_RLDP0OXYDxv=nQ@mail.gmail.com>
+Subject: Re: [PATCH 00/16] Enable GPU with DVFS support on MediaTek SoCs
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, steven.price@arm.com,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
+On Wed, Feb 8, 2023 at 6:45 PM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
-> and improves MT8183 support: since the mtk-regulator-coupler driver
-> was picked, it is now useless for Panfrost to look for, and manage,
-> two regulators (GPU Vcore and GPU SRAM) on MediaTek;
+> We finally have working GPU DVFS on MediaTek SoCs.
+> On Panfrost.
+> For real.
+> ...and the best part is that it's going upstream.
 >
-> The aforementioned driver will take care of keeping the voltage
-> relation (/constraints) of the two regulators on its own when a
-> voltage change request is sent to the Vcore, solving the old time
-> issue with not working DVFS on Panfrost+MediaTek (due to devfreq
-> supporting only single regulator).
+> In order to get GPU DVFS working, it was necessary to satisfy a
+> specific constraint (which is different, depending on the SoC)
+> between two regulators: GPU VCORE and GPU SRAM.
+> This was done through adding the mtk-regulator-coupler driver,
+> which transparently manages the voltage relation between these
+> two vregs, hence completely eliminating the need to manage these
+> regulators in the Panfrost driver; this solves the long standing
+> issue with devfreq+opp tables not supporting managing voltages
+> for two regulators per opp entry out of the box, due to which
+> we never got GPU DVFS on those SoCs, often locking them out to
+> a low GPU frequency.
 >
-> In the specific case of MT8183, in order to not break the ABI, it
-> was necessary to add a new compatible for enabling DVFS.
+> This changes. Right now!
+>
+> Tested on MT8192, MT8195 Chromebooks.
+>
+> This series depends on [1].
+>
+> [1]: https://lore.kernel.org/lkml/20230208103709.116896-1-angelogioacchino.delregno@collabora.com/
+
+Whole series is
+
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
 Tested on MT8183 Juniper (Kukui-based device), MT8192 Hayato (Asurada-based),
 and MT8195 Tomato (Cherry-based).
@@ -91,8 +103,6 @@ and MT8195 Tomato (Cherry-based).
 GPU probed. When running glmark-es2-drm, observed state transitions in
 /sys/class/devfreq/13040000.gpu/trans_stat , as well as actual changes to
 values for regulators and clocks.
-
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
 Also observed that sometimes when glmark terminated, the GPU would not be
 brought down to the lowest OPP.
