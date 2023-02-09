@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EFEF69039A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F32136903AD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbjBIJ01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:26:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33846 "EHLO
+        id S230136AbjBIJaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:30:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbjBIJ00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:26:26 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9A72A158
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:26:24 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so1021068wms.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:26:24 -0800 (PST)
+        with ESMTP id S229664AbjBIJaA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:30:00 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDA25EFAC
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:29:59 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id y1so1125307wru.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:29:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HdNCaQA/ISgeLU5P3fZ4D7O83T+ao8B3Lddz0QCvUKg=;
-        b=dSjZgdi7QEnveCnZRK7wW3MF7Yivb43goIbFe2YhF9tExKUmw5Xr/YEe2+C7H8rJq1
-         LIe3hZJSrWhxh8djiBk69uJz08uNxQlKjPbo63HZmGK8e4Qfe0FJ1WvcsjVvPuTi8lLi
-         mHWUcpR/pw/nSh5fGXNx7r3zgN/R/Z+ArIL0b08049Jx0lDFFh7fzEIV5yqKBG3pcpr1
-         ce5KhD0gsLwW1+NjFrjM7DEZDvO1NcBCtyzLSh9KVMLeN8PmJ3lbbJbinxKDfdcK84SU
-         Yet8YNyCYE2mCRFCb7hZEKPc/AojaDOtXK7j1WLfT+oe58FbXF5CoX7kzTeNh+WcgFb8
-         AGNg==
+        bh=gCVLv0yCFVHZfvArLek6WTlYqONgG0fn0UVa0wLiFeo=;
+        b=GtP1PpX5UFqxDd7fPSgM5FnQpTMBGKkFEbKq5qbBynITNJS4wr+JnNZWzmrK8m0s4w
+         /DWtyViy1Erx2yglIEirlH6UWPX5Moyrlx/IomcAZ0yJqghT3OzBMzOzBYOlBxSf+pvp
+         EBzCCR5s+uSzYRU73CVf9romeOkS1PZN4viE/W0fhpXw0vyfXhwbFrFY1x3zYcGxrJfp
+         jieJwlK2SkWAShdzpDuOOFh3g/J/s8bqIxtc+FWTZc9QibfZPepvhZT+djq96EtQzXXJ
+         cbMd9ZiesSzGMpAmR10rX4YxWK4PnmUCp5EWoIQxd8cocesTFFIDT1KMy02+tSd9TG3Y
+         jWlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HdNCaQA/ISgeLU5P3fZ4D7O83T+ao8B3Lddz0QCvUKg=;
-        b=eGYQ43yRlZArKsSlWhOqfRHfxvIfo0QkMF0YEhepkVFrKCHEeX/BhpHLECYXVQt8Ax
-         1Ls3aK+45Piqw64QuL7eokf5fYXUy1w3VKnFoCElcmn7Kt1CxgIbe6IAR0TMnDJ/D1Is
-         qq5lSHDunRaufqdNvhLSHAmwyvDduL9aK73iTGNoorbg2jOtgB8FWSjopmj3TtAN1TPe
-         AZq4zVtUACtLj8RIi4qIBfnVCbpOoexEBhM4y6h9KAxhS6tZX9JkP8fcWx9D2uhG4day
-         Y/t/el9CkKFW5/QrkzH4TYfw8ej0KfDacnhlOSMGAlfCSxvGehXrL+BjNPD6O4nzb9ug
-         FcPg==
-X-Gm-Message-State: AO0yUKXUkwIXv8mTiSXgqn4uwKACzrhAtiG0lYVqnQ1z0NPNwzMKIM0e
-        I86tIV0Riiz4TRJv5OA5zNaEOLV7i5lugBsA
-X-Google-Smtp-Source: AK7set9215hWm4e1DkjEGdEPr1xhYcHwud0zS7JOIfssFkz9PA+uWdAidKNp2x5dBGXkXC4xZMjgdA==
-X-Received: by 2002:a05:600c:358b:b0:3df:9858:c02e with SMTP id p11-20020a05600c358b00b003df9858c02emr5320055wmq.3.1675934782803;
-        Thu, 09 Feb 2023 01:26:22 -0800 (PST)
+        bh=gCVLv0yCFVHZfvArLek6WTlYqONgG0fn0UVa0wLiFeo=;
+        b=cL4QTqFH61hkcegBxIExeMjU2t0PqnCRCOA5gIn6jEJxQG4c1xbFHoPwdXZB8jOAsr
+         lYnODe+SmNz/jj2wwpQzrsaY0oDAdVQZu9JaWTgvedhlZNmyLuirxTGVitDczw/9p7yl
+         PSyMjOrQrLsSNu6nh2Z3i5BzIaSu68/Zbgpcoqlh2Sgh892kKo2mHw2Yn4F7kKAVPtYJ
+         hov8PhZu9r1b74DUWuURwMa4h3fbPPldw0tns7MkfUk7I+w2WcGB9sBSi5Ix0dmEzFAP
+         JkdEViX4fQsiFvBexsw7kshYCzBbgkV7n7qZz8vErY5TU1YaL3qoLCkiAeBxPIvKBrcM
+         /9dQ==
+X-Gm-Message-State: AO0yUKVq5/rXs5mk/Pd1ZICPvArfdAKfByYsVdBzQ1XeD60yUAIDJ4S2
+        ort2MoJEa7ZAwGZEQxGGetHPsQ==
+X-Google-Smtp-Source: AK7set9AVtfTdH8bY245wbUqhbQU9zpYNOboLM+wXyB1lN7SZsadOztEe86bQgjrZoBDxmIebpdyAQ==
+X-Received: by 2002:adf:ecc1:0:b0:2c5:3d7d:8662 with SMTP id s1-20020adfecc1000000b002c53d7d8662mr616932wro.58.1675934997655;
+        Thu, 09 Feb 2023 01:29:57 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f21-20020a05600c43d500b003dc522dd25esm1234234wmn.30.2023.02.09.01.26.20
+        by smtp.gmail.com with ESMTPSA id i3-20020adffc03000000b002c53d69a8easm337100wrr.92.2023.02.09.01.29.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 01:26:22 -0800 (PST)
-Message-ID: <f747cfaf-ef50-743e-216b-6f950f9f23ff@linaro.org>
-Date:   Thu, 9 Feb 2023 10:26:20 +0100
+        Thu, 09 Feb 2023 01:29:57 -0800 (PST)
+Message-ID: <8cf0cfac-2998-39aa-e5e1-7b674d13d2cb@linaro.org>
+Date:   Thu, 9 Feb 2023 10:29:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v9 14/14] crypto: qce: core: Add a compatible based on a
- SoC name
+Subject: Re: [PATCH 04/11] dt-bindings: irqchip: sti: remove stih415/stih416
+ and stid127
 Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+To:     Alain Volmat <avolmat@me.com>, Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
- <20230208183755.2907771-15-vladimir.zapolskiy@linaro.org>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230209091659.1409-1-avolmat@me.com>
+ <20230209091659.1409-5-avolmat@me.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230208183755.2907771-15-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20230209091659.1409-5-avolmat@me.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,21 +100,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 19:37, Vladimir Zapolskiy wrote:
-> The added 'qcom,ipq4019-qce' and 'qcom,sm8150-qce' compatible values will
-> serve as QCE IP family compatibles, so that the crypto engine on added
-> platforms can derive from one of these two. Also the compatibles serve as
-> a fall-back for currently supported QCE IP variants on Qualcomm platforms.
+On 09/02/2023 10:16, Alain Volmat wrote:
+> Remove bindings for the stih415/stih416/stid127 since they are
+> not supported within the kernel anymore.
 > 
-> At the moment there is no need to differentiate or add any other SoC
-> specific compatible values to the list, however it's known in advance
-> that the two QCE IP families are not fully compatible between each other.
-> 
-> The IP version based compatibles are left untouched to preserve backward
-> DTB ABI compatibility.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
