@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4095F690896
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E6F66908EA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:33:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjBIMXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 07:23:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36328 "EHLO
+        id S229577AbjBIMc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 07:32:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjBIMW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:22:59 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB563AA2
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:22:58 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso3759245wms.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:22:58 -0800 (PST)
+        with ESMTP id S229767AbjBIMcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:32:35 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4CD2D7E
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:32:34 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id qw12so5910664ejc.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:32:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LSnO37B34hy1pNZA6pCiDi9wzcXDsjOg5QyQA1q+Ms4=;
-        b=OuLFbs3kk5PBuZV1uVbAjaYQdXyT2NX7mXCS04oJUM7Xa2FHT/XMcyVHEp78GSXeqy
-         FrKWhvbBnZVt2Wbz+os/9+v8AieE0a8OwzrV318CBrG7YWWj949GfCH8ZbEae/HzQv4j
-         hRy3A5oS5i3zzcgb1I7FYbijRH/9TUOdZFVXA+6czIvZGXSqb2NDPuTEQiGiRaBx01M8
-         pYFvndv97Uce4pzf/VnPmRcNSk0qqFCbAEpRnjxgSQO7sb+IGlQ17fBxSoiM05f9Vufl
-         /n0gtyi71PEFKQ0uuyTf1TpHHon9AKiFLc+cKm2HB33p2rM/77l42dvdPoejKImyb8I8
-         3/sg==
+        bh=mI4A2A/YRcpk0KsG7+KaCv38yTM/sk8ZRuS5AtlWkYQ=;
+        b=uEXiZv8uI0iDjLIXc1PYXiwS+u0Nq9dfXCD6Kn9rWyF6pARLTEka8Na+KXb6kyU/wH
+         loK4kq5BGZ7L5nIzKb1x2/BuIm+O1WkvAo3MFaOS3oEguw7Dv2/rrSiNszsCgQ9gCmkk
+         0qDdt6jwfXk01cQLM/1V3PC+lVRtmV2LxcthQlya0+mYJl4oI5ywb8ZywhM9bxnkaH0T
+         9H6SdIp/b48DaKWM5uP3SWo8OfXbowTo5jyrWOuClwLu7xtHYKfcC28lP1Z5HsCrjCjx
+         SwQXvkAS0Cmg+5bBOPivh8bW+2Nhb24MgqDj8dmlMkYOwMi3kagpd5ZMpBKgD8yX3lwc
+         qs2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LSnO37B34hy1pNZA6pCiDi9wzcXDsjOg5QyQA1q+Ms4=;
-        b=NcZW6+2yfZsdUdQ1AWqqGkaX1kUh9g1MCgR4Kd3OAkhu+Qirf/TDTeVn9mF6GZAAtk
-         zEcgschbp8h4kI5xIgMKq1ZasWCkLQqWIMryscIbghxzb1uOACIJdpJ207cnacGI0VK7
-         WO9C5aLQQaw8l9XYzG/p0lMeH6h8ZQH5Gt00e68feXef5k6lhkhNOUZoNKSpJ+J0AKaG
-         ImTrGGPVRPre0QGY6S5A+WVZTqf/LLrYI8jQ1uQlwCvqOwKxfX/DH+INGWingAhHUjCe
-         V7y6n27c2CGJlCAZyhnU8u/eFztATsxsxGxNw0Ucy0p9yj5o/2odKRBeo2aVkmoOk0U7
-         620g==
-X-Gm-Message-State: AO0yUKVzR+qtqVdprRdOSWdPm2bMz8R9YkKjKIfOlY/W7WP+o5Npa3jK
-        5RQtfdmWE+4j7lE+a+FmUz7m5g==
-X-Google-Smtp-Source: AK7set8vBWfXVH0I3G7ClYmPs1n81MK1qNsDlSUnJEVAfy1Nyh+CRYkg6nzQx4o/eaCCvokyLt3ubw==
-X-Received: by 2002:a05:600c:130f:b0:3cf:7197:e68a with SMTP id j15-20020a05600c130f00b003cf7197e68amr9902039wmf.18.1675945377311;
-        Thu, 09 Feb 2023 04:22:57 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id t8-20020a7bc3c8000000b003e00c9888besm4850980wmj.30.2023.02.09.04.22.56
+        bh=mI4A2A/YRcpk0KsG7+KaCv38yTM/sk8ZRuS5AtlWkYQ=;
+        b=xLaq7Tlpq6sfWDKHqj6kPl4OgXn/YTeA1x+2yRLFQi65JsVtrRkwX7aDwuorx1I7MF
+         cUjS67PVs90UYnNEGnTDCAcRDZrGejqqLrqVFTdTH6FpeEPDmPygsp3Hs8yzvlcX0BYD
+         F0sOMFQDVaVGgcWj7+wHX3KyuuLFvi4KG9iBh6usvUTHJsx5vMmrFYBbODfx8/Q/kpqG
+         5xLIJ7/qtUSjXYQ+9fLEL/gNQPU1dj8UEsuP2WBgirO37zJXtXuDyRDF/U5CtMkm9iXz
+         uilusagGKVSSM3UTRZj5x/D3FY1+4Ci1nv2EmZhbPZvT4QD+qstTdeyjnSslEk+jbEU8
+         5c2w==
+X-Gm-Message-State: AO0yUKWIqgSKVkErTCzQTE2bj6hknbPlCtvawbFvJ/FgIXtqAU9q0Hrx
+        c7Wed32OBQrTyGt1+VAbgUtWxg==
+X-Google-Smtp-Source: AK7set8nWM/OSDeX2zOKTTybXG+LAP0FSQqgfmkdWfTQ2Cc0RIYIPycfvojWDhMZq00YKJq9jdxrRQ==
+X-Received: by 2002:a17:907:20ac:b0:7c9:6e0e:1427 with SMTP id pw12-20020a17090720ac00b007c96e0e1427mr11740156ejb.6.1675945952630;
+        Thu, 09 Feb 2023 04:32:32 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id a12-20020a17090640cc00b008a47ee398a9sm819738ejk.47.2023.02.09.04.32.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 04:22:56 -0800 (PST)
-Message-ID: <027268b7-4b04-f52e-06a8-9d924dc6efe4@linaro.org>
-Date:   Thu, 9 Feb 2023 12:22:55 +0000
+        Thu, 09 Feb 2023 04:32:32 -0800 (PST)
+Message-ID: <76311e72-0e18-d6b7-6dfc-a312e930e095@linaro.org>
+Date:   Thu, 9 Feb 2023 13:32:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
+ Thunderbird/102.7.1
 Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
  region as reserved
 Content-Language: en-US
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Amit Pundir <amit.pundir@linaro.org>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Bjorn Andersson <andersson@kernel.org>,
@@ -78,8 +77,10 @@ References: <20230124182857.1524912-1-amit.pundir@linaro.org>
  <b2307e91-3373-539a-ecfb-e2542b9f83db@linaro.org>
  <ed737e67-eabc-6f29-b734-f4698767ca8e@linaro.org>
  <fa2e0db7-5b27-5a41-920b-b786dc4e521c@linaro.org>
-In-Reply-To: <fa2e0db7-5b27-5a41-920b-b786dc4e521c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <027268b7-4b04-f52e-06a8-9d924dc6efe4@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <027268b7-4b04-f52e-06a8-9d924dc6efe4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -90,23 +91,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 12:11, Bryan O'Donoghue wrote:
->> If the bootloader splash is enabled then this memory is used until the
->> DPU driver instructs MDP5 pipes to suck data from a newly assigned 
->> address,
->> so there's a short window where it is.
+
+
+On 9.02.2023 13:22, Bryan O'Donoghue wrote:
+> On 09/02/2023 12:11, Bryan O'Donoghue wrote:
+>>> If the bootloader splash is enabled then this memory is used until the
+>>> DPU driver instructs MDP5 pipes to suck data from a newly assigned address,
+>>> so there's a short window where it is.
+>>
+>> It seems a shame to reserve 30 something megabytes of memory for continuous splash unless we are actually using it is my point.
+>>
+>> If I'm running headless its just wasted memory.
 > 
-> It seems a shame to reserve 30 something megabytes of memory for 
-> continuous splash unless we are actually using it is my point.
+> Couldn't we
 > 
-> If I'm running headless its just wasted memory.
+> 1. Find reserved continuous splash memory
+> 2. Fee it in the MDP when we make the transition
+> 
+> It must be possible
+I suppose we could mark it as shared-dma-pool, pass it to
+MDSS, reserve it from there (by occupying the whole thing)
+and either use it or free it before jumping to the newly
+allocated region.
 
-Couldn't we
+The MDSS driver can already accept it through memory-region = <>
+IIRC, but *nobody* uses that, so I'm not sure it even still works..
 
-1. Find reserved continuous splash memory
-2. Fee it in the MDP when we make the transition
-
-It must be possible
-
----
-bod
+Konrad
+> 
+> ---
+> bod
