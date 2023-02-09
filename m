@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0356D69014D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 08:40:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D397E69017E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 08:45:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbjBIHkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 02:40:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45190 "EHLO
+        id S229632AbjBIHpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 02:45:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjBIHkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 02:40:36 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8DF244A0;
-        Wed,  8 Feb 2023 23:40:32 -0800 (PST)
-X-UUID: 05c721bea84d11eda06fc9ecc4dadd91-20230209
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=9ueEDOzSLy4hgT0sgq3Tpiss3SjJVIgmjkG1FZhZ+pw=;
-        b=T7yRDpPF4NTAc6ah7Iu383tyWwJEAgD/qsxhGtO9AyC3OwgE/+ZDVhkIqXvyilJEUoGaMgdzJyEFMZ5yRyPeu6InOphQOa5qPV0KJGI+hZ0L5JsaALb6TY8sn+1uSOqSLZgrRU1IRkHgV14WdViwcWYutjnpisbQJMVpSJi4nRc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.19,REQID:d2424df5-c65c-4c03-971d-9b903a960ae6,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:885ddb2,CLOUDID:8616eff7-ff42-4fb0-b929-626456a83c14,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-UUID: 05c721bea84d11eda06fc9ecc4dadd91-20230209
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1697651023; Thu, 09 Feb 2023 15:40:28 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 9 Feb 2023 15:40:26 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 9 Feb 2023 15:40:25 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH] media: mediatek: vcodec: Force capture queue format to MM21
-Date:   Thu, 9 Feb 2023 15:40:25 +0800
-Message-ID: <20230209074025.1816-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229571AbjBIHpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 02:45:24 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A810A359A
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 23:45:22 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so3224256wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 23:45:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9TkylMnx0XQBQew9nKf+BKJgpUdEs2B8pdYOfjTDzfQ=;
+        b=mJGpNRd/F4LQdfBYXiJpWkXwj8GEt0IjRpQBjZOnO6dLb5qFtcfi83WQg2Wa5Whl85
+         dDKrubK9L1NpoG9AO6o+buLCb7grKDImJPolYmnr/gX1Fgf71D0P2sYwfumBUECYDi7p
+         FH2blYdNjoGH/bstRynqbsF/ZFeSnPLQXDOXRhDNDUFckjgACFk/adDbUeH4A1bu1tl1
+         tRPY0oiLluOn3zF8H8izL6h9uUo7TdiO/0wrzovumlXjIsTAcxyKyhPcewzApejP0R/C
+         LrsfGESibzYe8+5zaMxm+/S2gOeieI+fP3XM6OC8lG5bdNKtuLdd6sRLueBYQwng1BYh
+         9x0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9TkylMnx0XQBQew9nKf+BKJgpUdEs2B8pdYOfjTDzfQ=;
+        b=xuwi9Em+RPU8wDcQxYctsuin3R0Zx+fv1r7ucV0kQL06FKNmsdmQGpsUMdS0Hu3qew
+         DMG99IO2EKtCht02fy53zb5gHeJeXZfU2SJtcRp0l5JRW9HOg8GWn5JqKl8vFuvki6g8
+         vYB4CU3IhyfuUlmpPhYHYLqHgntiNWokqSC8nobI9FiQHtBpkkG5C0WjeBZEKwXXEa7Q
+         YFneoAQz1u9gBM7ctpefvIDs3yNQmMZB8UyMrCs9j3GRzQBZcSHZHrG/1B/CzlShqIwz
+         E239LFM/ZcsUfkUUXx/FD9Bp+w+xPLgUZJp/7jEeKlduvTBsfXgZjG1n6+StXs2U94Tn
+         nA7A==
+X-Gm-Message-State: AO0yUKV6c5/gp8ShIC6kK8ip8dpe4usJfQyrlwLnV3lysZYxnb3ExACw
+        YTrBEJaAKrnfb2MYdReHbsOqaQ==
+X-Google-Smtp-Source: AK7set89HhsrBhTriSqbmLeEi21fPXSAahsF5YD1NGqBEG7pnypTG60x39SPE6byhfuwbIloSUNjtw==
+X-Received: by 2002:a05:600c:491c:b0:3dc:1687:9ba2 with SMTP id f28-20020a05600c491c00b003dc16879ba2mr8734012wmp.35.1675928721190;
+        Wed, 08 Feb 2023 23:45:21 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id f8-20020a05600c4e8800b003da28dfdedcsm1115472wmq.5.2023.02.08.23.45.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Feb 2023 23:45:19 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-gpio@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v4 1/2] pinctrl: qcom: Add support for i2c specific pull feature
+Date:   Thu,  9 Feb 2023 09:45:09 +0200
+Message-Id: <20230209074510.4153294-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,37 +75,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to conver the format of capture queue from mediatek MM21 to
-standard yuv420 with Libyuv, need to force capture queue format to
-MM21 for Libyuv can't covert mediatek MT21 format.
+Add support for the new i2c_pull property introduced for SM8550 setting
+a I2C specific pull mode on I2C able pins. Add the bit to the SM8550
+specific driver while at it.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.org>
+Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-index 641f533c417f..4f5e9c20214f 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-@@ -41,7 +41,7 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_ctx *ctx, int format_index)
- 	const struct mtk_video_fmt *fmt;
- 	struct mtk_q_data *q_data;
- 	int num_frame_count = 0, i;
--	bool ret = true;
-+	bool ret = false;
- 
- 	for (i = 0; i < *dec_pdata->num_formats; i++) {
- 		if (dec_pdata->vdec_formats[i].type != MTK_FMT_FRAME)
-@@ -63,7 +63,7 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_ctx *ctx, int format_index)
- 	case V4L2_PIX_FMT_H264_SLICE:
- 	case V4L2_PIX_FMT_VP9_FRAME:
- 		if (fmt->fourcc == V4L2_PIX_FMT_MM21)
--			ret = false;
-+			ret = true;
+The v3 of this specific patch is here:
+https://lore.kernel.org/all/20230208081836.984673-1-abel.vesa@linaro.org/
+
+Changes since v3:
+ * changed the condition in msm_config_group_set to "arg == MSM_I2C_STRONG_PULL_UP"
+   as Bjorn suggested
+
+Changes since v2:
+ * This time, this patch is sent separate w.r.t. SM8550 pinctrl driver
+ * The qcom,i2c-pull is dropped, bias-pull-up with value is used instead
+ * Default value for i2c pull up is 2.2kOhms and since SM8550 is the
+   first one to use it, we hard code it for now
+ * changed the authorship as the implementation looks entirely different now
+
+ drivers/pinctrl/qcom/pinctrl-msm.c    | 7 +++++++
+ drivers/pinctrl/qcom/pinctrl-msm.h    | 1 +
+ drivers/pinctrl/qcom/pinctrl-sm8550.c | 1 +
+ 3 files changed, 9 insertions(+)
+
+diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
+index 5142c363480a..a69f93e74435 100644
+--- a/drivers/pinctrl/qcom/pinctrl-msm.c
++++ b/drivers/pinctrl/qcom/pinctrl-msm.c
+@@ -310,6 +310,8 @@ static int msm_config_reg(struct msm_pinctrl *pctrl,
+ 	case PIN_CONFIG_BIAS_PULL_UP:
+ 		*bit = g->pull_bit;
+ 		*mask = 3;
++		if (g->i2c_pull_bit)
++			*mask |= BIT(g->i2c_pull_bit) >> *bit;
  		break;
- 	default:
- 		ret = true;
+ 	case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+ 		*bit = g->od_bit;
+@@ -336,6 +338,7 @@ static int msm_config_reg(struct msm_pinctrl *pctrl,
+ #define MSM_KEEPER		2
+ #define MSM_PULL_UP_NO_KEEPER	2
+ #define MSM_PULL_UP		3
++#define MSM_I2C_STRONG_PULL_UP	2200
+ 
+ static unsigned msm_regval_to_drive(u32 val)
+ {
+@@ -387,6 +390,8 @@ static int msm_config_group_get(struct pinctrl_dev *pctldev,
+ 	case PIN_CONFIG_BIAS_PULL_UP:
+ 		if (pctrl->soc->pull_no_keeper)
+ 			arg = arg == MSM_PULL_UP_NO_KEEPER;
++		else if (arg & BIT(g->i2c_pull_bit))
++			arg = MSM_I2C_STRONG_PULL_UP;
+ 		else
+ 			arg = arg == MSM_PULL_UP;
+ 		if (!arg)
+@@ -467,6 +472,8 @@ static int msm_config_group_set(struct pinctrl_dev *pctldev,
+ 		case PIN_CONFIG_BIAS_PULL_UP:
+ 			if (pctrl->soc->pull_no_keeper)
+ 				arg = MSM_PULL_UP_NO_KEEPER;
++			else if (g->i2c_pull_bit && arg == MSM_I2C_STRONG_PULL_UP)
++				arg = BIT(g->i2c_pull_bit) | MSM_PULL_UP;
+ 			else
+ 				arg = MSM_PULL_UP;
+ 			break;
+diff --git a/drivers/pinctrl/qcom/pinctrl-msm.h b/drivers/pinctrl/qcom/pinctrl-msm.h
+index 05a1209bf9ae..985eceda2517 100644
+--- a/drivers/pinctrl/qcom/pinctrl-msm.h
++++ b/drivers/pinctrl/qcom/pinctrl-msm.h
+@@ -80,6 +80,7 @@ struct msm_pingroup {
+ 
+ 	unsigned pull_bit:5;
+ 	unsigned drv_bit:5;
++	unsigned i2c_pull_bit:5;
+ 
+ 	unsigned od_bit:5;
+ 	unsigned egpio_enable:5;
+diff --git a/drivers/pinctrl/qcom/pinctrl-sm8550.c b/drivers/pinctrl/qcom/pinctrl-sm8550.c
+index 0b7db7d4054a..c9d038098f2c 100644
+--- a/drivers/pinctrl/qcom/pinctrl-sm8550.c
++++ b/drivers/pinctrl/qcom/pinctrl-sm8550.c
+@@ -47,6 +47,7 @@
+ 		.mux_bit = 2,			\
+ 		.pull_bit = 0,			\
+ 		.drv_bit = 6,			\
++		.i2c_pull_bit = 13,		\
+ 		.egpio_enable = 12,		\
+ 		.egpio_present = 11,		\
+ 		.oe_bit = 9,			\
 -- 
-2.18.0
+2.34.1
 
