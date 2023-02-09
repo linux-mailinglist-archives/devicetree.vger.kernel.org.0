@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E446A690280
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2587B690286
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:54:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbjBIIvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 03:51:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58922 "EHLO
+        id S229794AbjBIIxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 03:53:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjBIIvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:51:19 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E9FF48A03
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:51:17 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso926694wms.4
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:51:17 -0800 (PST)
+        with ESMTP id S229782AbjBIIxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:53:52 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3434053E62
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:53:51 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id r18so901117wmq.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:53:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eUi0+pogx97QXn9Rou5pDGb9vpsF0M/z1DxS9OrlVt8=;
-        b=D0xWK2k4J17lzN1JTnVZZLkR/zBiywl6ZILZC+DlL6jrOlWFbSXF6oZb80PMMOR8fQ
-         YtaYePUeL5CDLM3hFUn0aPZ3Lt8CmWSRXKTSNGcaaIbajfbHAXUmwLgsoPMcPsv9+kG5
-         S5mZvVutg91cRWcVJqxqZfJlTtpCLiE9+7YPJ/zkDcI1icQQe3a+u+N41ugvaskBQ4hZ
-         j4nheCT1W1EDNRZGAzMfkX3gBF3Cw8eC8izpcalohsgh8VPeaJ6c4bE8tFz9gHbuehwV
-         PRnBj4QakLPvD6nRRPeSJ/o7Ef3cZXKPDeLJnZQRIXYCKJbyxyThBLY0Lrixq8i/d1Tv
-         +NhA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l5y/lhUdrwmVTQsjBWST0jsa/VEAXBndCCvJ3Ss9nl0=;
+        b=jJ8GHpG5opwaKmvBVdBJ8hjVp1FujZRP8vtZjQaozd3gMS3i3CfMTWWn5G764k9WsO
+         t26wh+lFnsmUMhAoq4xGic2R37rcMU0tcU2Gwj7IUKFx1LrZsh3ln1irfnILVVfBMCG2
+         9ehqdSIkA5phIg2zWzAbNkievBhA7QMEtO9nK0NRa098B/HGMrQAM/5Kk5Dmp2F+TcV9
+         gjzGIN8TwfuiV24Yl/rwVvNVbF0kbkLxefbn39qe/vBPMjFHrM/n0Xgdr8h765s0q++a
+         /FE27shEXZvVgGHw1BPfH6wvkImKaH+8brQSWF6qzyCvBNjI2v+QpJW883RmAIjx1bsF
+         HP8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eUi0+pogx97QXn9Rou5pDGb9vpsF0M/z1DxS9OrlVt8=;
-        b=7BL383pUGKjO8Mz/LdGxfHBTLhSFy00RK/F7hEMeV9iG1s+9fT34Z5qjqwIE+5FitP
-         rFMPZudqSyORc05SGzxdajvCbm3G9R+FUHv1LGGhNEPToWTDsNWWDPNhq0/LnTtlHWYv
-         49qjeFYs7yulz6Zf4y7TCBSQj9fvNrOIBjuOC2M/QsRaZUddbQDPoMK9d75ioK8bFWyo
-         wDL9LXzW2zCpTic3rxzz23ezidv3cNnc1j56h+JdXbH/+erysIWaFjQK8YKYPtgA45nW
-         RNM/CVAb5Uah/+YeYwiHGi8Zo7/gYzqr/jnjPwr2g9r8ZxBzNnfn+MWc4S6mmZAeJ6Be
-         e7Og==
-X-Gm-Message-State: AO0yUKUrxJdkhGOKPRAIr2SD6hcCPjQ8vm3wrrYa5K8HX/nEUYoIKKg8
-        Sl2U/g/Cv9MmcB2LE2MFqS7AWdvw3vypE1EO
-X-Google-Smtp-Source: AK7set8JFBpCe5jDMzxfhVcIA++GWsEDtFaCTKiFFNZALmRqoMovDG1mXJo0c8dvi4wiqVRsMb7qrA==
-X-Received: by 2002:a05:600c:91e:b0:3db:331b:bd57 with SMTP id m30-20020a05600c091e00b003db331bbd57mr9153036wmp.23.1675932676186;
-        Thu, 09 Feb 2023 00:51:16 -0800 (PST)
+        bh=l5y/lhUdrwmVTQsjBWST0jsa/VEAXBndCCvJ3Ss9nl0=;
+        b=zdpW1UUiAgmoDDTZ81eWb6SS80yyFZpLnAO9W0EhiWgCR5V8jkzigB/U5A0CX/l9Ka
+         8nOuslETxYNWkCf2U3ZYpe0s6VkRnhWEnhHhF3+v7Bt6nLKahrKIEmiOr1dJbAKvEZri
+         drPGZN5rqASy0APwddY8suNs1n3H4BIVK5fcabHD7EhMnAYZbuFQ/2rxNxW3GMpR2ori
+         UeLV0laeyd9/WTwBHhDPqDxH4B6ocn+JIo5AHV84BwZOpbv66o2yiyeF2cT5M803bA8s
+         xA4eMJTdStPgnbkk5q1ibD3LgrCNQLToK2zC+X4SWDHKUrBI062pX/ZcY0AurGOdTTEX
+         6s7Q==
+X-Gm-Message-State: AO0yUKW1llZLLBLStkoAA9YML4YsVAX/FYCPe/jcAmisKB7JX6zhhZgh
+        pmnppVa/4RpPJLekNEtx7n2qsQ==
+X-Google-Smtp-Source: AK7set942EB9Jb29ks+FpmiTWa1FyKDdc2GHg0NYJV+La/gDtKTu6Gdj9I8FuRlj2RlpihjeGBhQWg==
+X-Received: by 2002:a05:600c:331a:b0:3dd:f286:5ae9 with SMTP id q26-20020a05600c331a00b003ddf2865ae9mr9399968wmp.9.1675932829783;
+        Thu, 09 Feb 2023 00:53:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a3-20020a05600c224300b003db01178b62sm4287082wmm.40.2023.02.09.00.51.15
+        by smtp.gmail.com with ESMTPSA id q3-20020a1ce903000000b003dfdeb57027sm4274596wmc.38.2023.02.09.00.53.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 00:51:15 -0800 (PST)
-Message-ID: <cbf10de1-ba6a-8e5a-6222-25f2322995c9@linaro.org>
-Date:   Thu, 9 Feb 2023 09:51:14 +0100
+        Thu, 09 Feb 2023 00:53:49 -0800 (PST)
+Message-ID: <9b20bdb2-64e0-4888-e8df-fdf1b021c445@linaro.org>
+Date:   Thu, 9 Feb 2023 09:53:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: ata: Add UniPhier controller binding
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>
-Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230209014052.17654-1-hayashi.kunihiko@socionext.com>
+Subject: Re: [PATCH v4 4/4] ASoC: cs35l41: Document CS35l41 shared boost
 Content-Language: en-US
-In-Reply-To: <20230209014052.17654-1-hayashi.kunihiko@socionext.com>
+To:     Lucas Tanure <lucas.tanure@collabora.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230209083726.1337150-1-lucas.tanure@collabora.com>
+ <20230209083726.1337150-5-lucas.tanure@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230209083726.1337150-5-lucas.tanure@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,39 +83,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 02:40, Kunihiko Hayashi wrote:
-> Add UniPhier SATA controller compatible string to the platform binding.
-> This controller needs two reset controls.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  Documentation/devicetree/bindings/ata/ahci-platform.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> index 7dc2a2e8f598..3f6b21032d02 100644
-> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> @@ -45,6 +45,9 @@ properties:
->                - marvell,armada-8k-ahci
->                - marvell,berlin2-ahci
->                - marvell,berlin2q-ahci
-> +              - socionext,uniphier-pro4-ahci
-> +              - socionext,uniphier-pxs2-ahci
-> +              - socionext,uniphier-pxs3-ahci
->            - const: generic-ahci
->        - enum:
->            - cavium,octeon-7130-ahci
-> @@ -74,7 +77,8 @@ properties:
->      maxItems: 1
->  
->    resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+On 09/02/2023 09:37, Lucas Tanure wrote:
+> Describe the properties used for shared boost configuration.
+> Based on David Rhodes shared boost patches.
 
-You now allow two resets for each other platform, which is not justified
-in commit msg. Constrain it per device/compatible.
+No improvements in subject, I asked twice for it. What does the command,
+I gave you, print?
+
+> 
+With fixed subject:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
