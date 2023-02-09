@@ -2,151 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2118690A85
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9CD8690A8F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:40:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbjBINjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 08:39:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
+        id S230281AbjBINkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 08:40:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbjBINjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:39:18 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F0D10D4;
-        Thu,  9 Feb 2023 05:39:17 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D2A5566020C1;
-        Thu,  9 Feb 2023 13:39:14 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675949956;
-        bh=el4tNcyCAEC+oZUCSzKc3hOlEvtwGNspm+w1ZpzJ3Xc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PnIJTG5CsdKRvBB73UJzYfCjjNgqY23zH/q7x5WGlFRPSrLBHu9CyGzclXShDplHr
-         45GsGoCaH00ri7vEucAQPXhh/joZ9GEq9XG99bRA+up1lx2CqyxK4xVHKuN2SP8gxg
-         lEju+dRBhSt0L+rz020G7wc3zzIGABTZI3iHjwTVcRZc2WbwN2dY+JblmWU4PGVeNC
-         HLk+2yPVDm3nY8fAzXqQDf7IfbABLHe19vK47nnz+pAsEHyhOQDe7X7YtlQJY8PDYW
-         BiUUvawIe6u27YSuqS7Pkmw6HXEOOTxrwmqwFRoRZTK01bW65YDAvAsieLMfpy6egQ
-         AGblF49BAwfhw==
-Message-ID: <cab40506-8b3a-0b53-b45d-a8000e953289@collabora.com>
-Date:   Thu, 9 Feb 2023 14:39:11 +0100
+        with ESMTP id S230215AbjBINkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:40:24 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1424B46D44
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 05:40:23 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id hx15so6366157ejc.11
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 05:40:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=G/9XwFYeUJst3WJ5sHdQjwXF4qwQvevEf5WU7yUqIXY=;
+        b=OMw/A+V2/U2vAN546ixC6VrsB9usPnMiYZ1EGlPxuAOxWOMjTiKzuwiUruCmZ+0HlE
+         5Sp63S1ZpYZVQTOqaN6t6gUA9o3xy9nImsCREWI5h3iMStvajaS1JjKUqPM6JkYgBpDE
+         3+mnH2e1S1uHxCl553jXTY8nl0pus4Iln/TAoKk9arW14IzuDP4UvjXFPbUF/Pzn89id
+         I8d/W49sVknCcIiL9D3riigh6YM0A6B/IjMwxl0l5IIhVgen/+gv8HChuEeE6vZI6rOV
+         TnZmKKE8Ubb9EQcOZ1R5lTkJprUk20Ju7BsDrM92K7bamJBLiPFipfOn9InyaQ2UjivK
+         IK/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=G/9XwFYeUJst3WJ5sHdQjwXF4qwQvevEf5WU7yUqIXY=;
+        b=oQVlZEu0ty1aASOUID4Sybx1TO5sWoOL/beQbkTNa/YGwdEX7hpznG5wTlxBpiGyCX
+         Z4ZTGtSYx8jp7QgjKYFLSc12/zR/YUX2BjHoqLqXP6alo/f2vgRUPB+J76RAOWfO+xmU
+         WcxfBfhpl1pKidiWMAJgUi1rbRLS5vZzRJFhclJrP2mJHerCIK0bxhKSPv7BUBMPBoSj
+         1KfxLhWGnhlvnWDJJ+OOYXAAxyFAPon/2H35aDCJCShEfIV9fWpWBSbvAIVCO7rnWq3U
+         zEzIz8jZZRV5N623dr41IsxHp2vMjnXYnv2+xXbcaaYk1UoOFualqv6beiaRrZl8E5Ns
+         qNBA==
+X-Gm-Message-State: AO0yUKX01/HP++iG7XOWXBe81SAoQrdQ5DdBqMnwKWLbu1lsLc61Vrh5
+        WPFN5v4ofbyEuEAkdRjeMjPwlw==
+X-Google-Smtp-Source: AK7set/izK6rzb2b5i3ycv/Vv8MsWMV7WDdfIFo7kARlIFT3ylMk6KZs8PsO+wT3uFrG2bxHo8cvmw==
+X-Received: by 2002:a17:906:4f99:b0:887:981:5f7c with SMTP id o25-20020a1709064f9900b0088709815f7cmr11967561eju.11.1675950021723;
+        Thu, 09 Feb 2023 05:40:21 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id b5-20020a170906d10500b008784bc1dd05sm877502ejz.76.2023.02.09.05.40.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 05:40:20 -0800 (PST)
+Message-ID: <dea3c40e-bdd8-1276-409d-3ddb35b004bc@linaro.org>
+Date:   Thu, 9 Feb 2023 15:40:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 03/10] iommu/mediatek: Get regionid from larb/port id
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 4/8] arm64: dts: qcom: sm8350: reorder device nodes
+Content-Language: en-GB
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, nfraprado@collabora.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, libo.kang@mediatek.com,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
-        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com
-References: <20230208053643.28249-1-yong.wu@mediatek.com>
- <20230208053643.28249-4-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230208053643.28249-4-yong.wu@mediatek.com>
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+References: <20230206145707.122937-1-dmitry.baryshkov@linaro.org>
+ <20230206145707.122937-5-dmitry.baryshkov@linaro.org>
+ <20230209032841.ybqveepeyjqo63ql@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230209032841.ybqveepeyjqo63ql@ripper>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 08/02/23 06:36, Yong Wu ha scritto:
-> After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
-> controllers"), the dma-ranges is not allowed for dts leaf node.
-> but we still would like to separate to different masters
-> into different iova regions.
+On 09/02/2023 05:28, Bjorn Andersson wrote:
+> On Mon, Feb 06, 2023 at 04:57:03PM +0200, Dmitry Baryshkov wrote:
+>> Start ordering DT nodes according to agreed order. Move apps SMMU, GIC,
+>> timer, apps RSC, cpufreq ADSP and cDSP nodes to the end to the proper
+>> position at the end of /soc/.
+>>
 > 
-> Thus we have to separate it by the HW larbid and portid. For example,
-> larb1/2 are in region2 and larb3 is in region3. The problem is that
-> some ports inside a larb are in region4 while some ports inside this
-> larb are in region5. Therefore I define a "larb_region_msk" to help
-> record the information for each a port. Take a example for a larb:
->   [1] = ~0: means all ports in this larb are in region1;
->   [2] = BIT(3) | BIT(4): means port3/4 in this larb are region2;
->   [3] = ~(BIT(3) | BIT(4)): means all the other ports except port3/4
->                             in this larb are region3.
+> I think "according to agreed order" means "sorted by address", but it
+> would be nice to have that expressed in the message. If nothing else for
+> others to know what such agreed order might be.
 > 
-> This method also avoids the users forget/abuse the iova regions.
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->   drivers/iommu/mtk_iommu.c | 43 +++++++++++++++++++++------------------
->   1 file changed, 23 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index d5a4955910ff..fc3d9be120a0 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -8,7 +8,6 @@
->   #include <linux/clk.h>
->   #include <linux/component.h>
->   #include <linux/device.h>
-> -#include <linux/dma-direct.h>
->   #include <linux/err.h>
->   #include <linux/interrupt.h>
->   #include <linux/io.h>
-> @@ -194,6 +193,7 @@ struct mtk_iommu_plat_data {
->   	enum mtk_iommu_plat	m4u_plat;
->   	u32			flags;
->   	u32			inv_sel_reg;
-> +	const u32		(*larb_region_msk)[32];
+> Unfortunately this doesn't apply to my tree, and it's not clear where it
+> failed. Could you please rebase this?
 
-Can you please document this larb region mask in code, other than the commit
-description?
+Done
 
-I can see this being essential for the next person reading this driver's code
-without digging through the commit history. At least some comment on top of
-the pointer, or on top of the struct declaration... and perhaps also describe
-briefly that the array is "indexed by region" (so 1 = region 1; 2 = region 2)
-and that the region index corresponds to the same index as `mtk_iommu_iova_region`.
-
-
-Before doing that, I'd like to check if anyone else has a better solution for
-that... because when looking at data for one of the SoCs in here, it looks a bit
-intimidating!
-
-Copy-paste from patch [04/10] of this series for the reader's commodity:
-
-static const unsigned int mt8195_larb_region_msk[][32] = {
-	[0] = {~0, ~0, ~0, ~0},               /* Region0: all ports for larb0/1/2/3 */
-	[1] = {0, 0, 0, 0, 0, 0, 0, 0,
-	       0, 0, 0, 0, 0, 0, 0, 0,
-	       0, 0, 0, ~0, ~0, ~0, ~0, ~0,   /* Region1: larb19/20/21/22/23/24 */
-	       ~0},
-	[2] = {0, 0, 0, 0, ~0, ~0, ~0, ~0,    /* Region2: the other larbs. */
-	       ~0, ~0, ~0, ~0, ~0, ~0, ~0, ~0,
-	       ~0, ~0, 0, 0, 0, 0, 0, 0,
-	       0, ~0, ~0, ~0, ~0},
-	[3] = {0},
-	[4] = {[18] = BIT(0) | BIT(1)},       /* Only larb18 port0/1 */
-	[5] = {[18] = BIT(2) | BIT(3)},       /* Only larb18 port2/3 */
-};
-
-^^^^ That's what I actually mean by "intimidating"... :-P
-
-It's just looks though, there's nothing much complicated here.
-
-Regards,
-Angelo
-
+-- 
+With best wishes
+Dmitry
 
