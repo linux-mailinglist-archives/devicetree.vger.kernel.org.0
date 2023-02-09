@@ -2,291 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A4D69121A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 21:31:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E8C3691259
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 22:01:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbjBIUbu convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Feb 2023 15:31:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37520 "EHLO
+        id S229604AbjBIVBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 16:01:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbjBIUbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 15:31:50 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD1CF10E1;
-        Thu,  9 Feb 2023 12:31:46 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A72134B3;
-        Thu,  9 Feb 2023 12:32:28 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4AC993F703;
-        Thu,  9 Feb 2023 12:31:44 -0800 (PST)
-Date:   Thu, 9 Feb 2023 20:29:52 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Andreas Feldner <andreas@feldner-bv.de>
-Cc:     Andreas Feldner <pelzi@flying-snail.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
- default
-Message-ID: <20230209202952.673d5a60@slackpad.lan>
-In-Reply-To: <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
-References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
- <20230207011608.2ce24d17@slackpad.lan>
- <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229609AbjBIVBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 16:01:41 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E17222EB
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 13:01:37 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id x71so3074016ybg.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 13:01:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kRymlVwLANM+2BndZj52kIP1SG2WPzhe274FWVd+TWk=;
+        b=GYJl10KhchUr5fRUNv3KEWdNCkYlAKHDBkPGUKy6IYTsjHceFqMD/Gl3e4EQKq1x2r
+         i64uPRuZ9kHI40liYvHSCQQv3Ii9+BDLLhwf+OtDhMJdFh8QLK53kuDHTNog1O+Kjw/4
+         6lfauPRnRvYF1rYXS8ebctpeNAp/97OPdDRO/hnKX/qVpQuSi44rCpUwBomvKLP1Ylf9
+         KMD/Lhxzra0AlV7mztFAD17VrAg+aQbTbSZ0hFriSSdQdRBProm88dEtLg0PWvC4pyLV
+         eX6zpMovvvJQvTKMEccZt7yka0gABsRHT2mqNFi+ViAgkp+lzfL8L1IJbhDKh5H5+oC4
+         RfZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kRymlVwLANM+2BndZj52kIP1SG2WPzhe274FWVd+TWk=;
+        b=cYF6voJovDyzNXsFM9xzcl94Zwq4Wla/88sYMJHUHbjWvhPhu+b6a1WSZBsFIUw+kZ
+         AwiHISfhkBW5fAC9cJP51p137Ura1yymao6JIltAfbvagFxBJN6G3QqgeqWnP4tdjr9r
+         ww2g19j/IScdr9AVaRO/MO0G/vgt4dJNdNP6Lkbg1uwucOrXlUfbrLe01OtnFCQHD+TT
+         bgeRpxvpd5BXZCYHewY2P8bNoy7TYtTtKoHhBdQo2pb96QhmBiMW9QBtIx6NYSU1Iobv
+         uguKy0ISqKJjs/v1S6qsDt5/bxLKwH9b1dKybfo9P3Wlp2XiyPlB6w5PoEj7PsUseL4T
+         U1sg==
+X-Gm-Message-State: AO0yUKUD8nmsU4/10gJtQLe7b0aBVvOgz9Ne2usILqAazdFNlm48hG4N
+        HGsWxdkCjyWswtlO7P+DAm/3MaF+yaTtSUk89BlCXQ==
+X-Google-Smtp-Source: AK7set9CcU5eqJ2xx6feLzQdSjYtmHkadI2u/XueUgTsj3/bIaOz4tMDkeDVPsKwfrZsAyWl7X2zpubQUT+9LvODDfo=
+X-Received: by 2002:a5b:4d:0:b0:8ce:ad3d:d37d with SMTP id e13-20020a5b004d000000b008cead3dd37dmr552588ybp.117.1675976496401;
+ Thu, 09 Feb 2023 13:01:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230205145450.3396-1-kaehndan@gmail.com> <20230205145450.3396-5-kaehndan@gmail.com>
+ <20230206163912.GA182582-robh@kernel.org>
+In-Reply-To: <20230206163912.GA182582-robh@kernel.org>
+From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date:   Thu, 9 Feb 2023 22:01:25 +0100
+Message-ID: <CACMJSeuP9sVcadnD+yL5LGOcxGkJnyn7DKQB2=GUcZW2FUdC0A@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] HID: cp2112: Devicetree Support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Danny Kaehn <kaehndan@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, ethan.twardy@plexus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Feb 2023 13:50:04 +0100
-Andreas Feldner <andreas@feldner-bv.de> wrote:
-
-Hi Andreas,
-
-CC:ing Maxime, who wrote the debouncing code back then.
-
-> Am 07.02.23 um 02:16 schrieb Andre Przywara:
-> > On Mon, 6 Feb 2023 20:51:50 +0100
-> > Andreas Feldner <pelzi@flying-snail.de> wrote:
+On Mon, 6 Feb 2023 at 17:39, Rob Herring <robh@kernel.org> wrote:
+>
+> +Bartosz
+>
+> On Sun, Feb 05, 2023 at 08:54:50AM -0600, Danny Kaehn wrote:
+> > Bind i2c and gpio interfaces to subnodes with names
+> > "i2c" and "gpio" if they exist, respectively. This
+> > allows the gpio and i2c controllers to be described
+> > in DT as usual. Additionally, support configuring the
+> > i2c bus speed from the clock-frequency property.
 > >
-> > Hi Andreas,
+> > Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
+> > ---
+> >  drivers/hid/hid-cp2112.c | 22 ++++++++++++++++++++--
+> >  1 file changed, 20 insertions(+), 2 deletions(-)
 > >
-> > thanks for taking care about this board and sending patches!  
-> Thank YOU for maintaining it!
-> >> The SoC features debounce logic for external interrupts. Per default,
-> >> this is based on a 32kHz oscillator, in effect filtering away multiple
-> >> interrupts separated by less than roughly 100ï¿½s.
-> >>
-> >> This patch sets different defaults for this filter for this board:
-> >> PG is connected to non-mechanical components, without any risk for
-> >> showing bounces. PA is mostly exposed to GPIO pins, however the
-> >> existence of a debounce filter is undesirable as well if electronic
-> >> components are connected.  
-> > So how do you know if that's the case? It seems to be quite normal to
-> > just connect mechanical switches to GPIO pins.
+> > diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
+> > index 27cadadda7c9..aa634accdfb0 100644
+> > --- a/drivers/hid/hid-cp2112.c
+> > +++ b/drivers/hid/hid-cp2112.c
+> > @@ -1234,6 +1234,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+> >       u8 buf[3];
+> >       struct cp2112_smbus_config_report config;
+> >       struct gpio_irq_chip *girq;
+> > +     struct i2c_timings timings;
+> >       int ret;
 > >
-> > If you are trying to fix a particular issue you encountered, please
-> > describe that here, and say how (or at least that) the patch fixes it.
+> >       dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
+> > @@ -1292,6 +1293,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+> >               goto err_power_normal;
+> >       }
 > >
-> > And I would suggest to treat port G and port A differently. If you
-> > need a lower debounce threshold for port A, you can apply a DT overlay
-> > in U-Boot, just for your board.  
-> 
-> Fair enough. You run into problems when you connect (electronic)
-> devices to bank A (typically by the 40pin CON2 connector), where
-> the driver requires fast IRQs to work. In my case this has been a
-> DHT22 sensor, and the default debounce breaking the dht11.ko
-> driver.
+> > +     dev->adap.dev.of_node   = of_get_child_by_name(hdev->dev.of_node, "i2c");
+> > +     i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
+> > +
+> > +     config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
+> >       config.retry_time = cpu_to_be16(1);
+> >
+> >       ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
+> > @@ -1300,7 +1305,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+> >               hid_err(hdev, "error setting SMBus config\n");
+> >               if (ret >= 0)
+> >                       ret = -EIO;
+> > -             goto err_power_normal;
+> > +             goto err_free_i2c_of;
+> >       }
+> >
+> >       hid_set_drvdata(hdev, (void *)dev);
+> > @@ -1322,7 +1327,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+> >
+> >       if (ret) {
+> >               hid_err(hdev, "error registering i2c adapter\n");
+> > -             goto err_power_normal;
+> > +             goto err_free_i2c_of;
+> >       }
+> >
+> >       hid_dbg(hdev, "adapter registered\n");
+> > @@ -1336,6 +1341,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
+> >       dev->gc.ngpio                   = 8;
+> >       dev->gc.can_sleep               = 1;
+> >       dev->gc.parent                  = &hdev->dev;
+> > +#if IS_ENABLED(CONFIG_OF_GPIO)
+> > +     dev->gc.of_node                 = of_get_child_by_name(hdev->dev.of_node, "gpio");
+> > +#endif
+>
+> The scarcity of CONFIG_OF_GPIO ifdefs in the tree tells me this is
+> wrong. I think you want to use the fwnode pointer instead. GPIO
+> maintainers should review this.
+>
+> Rob
 
-Sure, what I meant is that this is a property of your particular
-setup (because you attach something to the *headers*) , so it shouldn't
-be in the generic DT, but just in your copy. Which ideally means using
-a DT overlay.
+Yep, we're moving away from OF in favor of fwnode - so you'd need to
+use device_get_named_child_node() and assign gc.fwnode.
 
-> Now, what kind of problem is this - I'm no way sure:
-> 
-> a) is it an unlucky default, because whoever connects a mechanical
-> switch will know about the problem of bouncing and be taking
-> care to deal with it (whereas at least I was complete unsuspecting
-> when connecting an electronic device that a debounce function
-> might be in place), or
-
-The Linux default is basically the reset default: just leave the
-register at 0x0. It seems like you cannot really turn that off at all
-in hardware, and the reset setting is indeed 32KHz/1. So far there
-haven't been any complaints, though I don't know if people just
-don't use it in anger, or cannot be bothered to send a report to the
-list.
-
-> b) is it a bug in the devicetree for (at least) the BananaPi M2 Zero,
-> because the IRQ bank G is hard wired to electronic devices that
-> should not be fenced by a debouncing function, or
-
-Well, we could try to turn that "off" as much as possible, but on the
-other hand the debounce only affects *GPIO* *interrupts*, so not sure
-that gives us anything. The PortG pins are used for the SDIO Wifi, BT
-UART, and the wakeup pins for the Wifi chip. Only the wakeup pins would
-be affected, and I doubt that we wake up that often that it matters. If
-you've made other observations, please let me know.
-
-Certainly no board with an in-tree DT sets the debounce property, which
-means everyone uses 32KHz/1, and also did so before the functionality
-was introduced.
-
-I'd say we should try to only fix things that are actually broken: hence
-I was asking whether you have seen actual problems. Which apparently you
-have, with your sensor, but not on PortG?
-
-> c) is it missing dt binding documentation of the input-debounce
-> attribute?
-
-Documentation for what, exactly? The default behaviour? Yes, we should
-add that, though not sure that really belongs into the binding.
-
-> Anyway, the combination of these is quite irritating. To me it
-> seems a sufficiently elegant solution to explicitly include the
-> setting in the devicetree and leave it to whoever is unhappy
-> with it, to create a better suited device tree overlay.
-> 
-> >> Additionally, the clock-frequency attribute is added for each of
-> >> the 4 cores to eliminate the kernel error message on boot, that
-> >> the attribute is missing.
-> >>
-> >> Signed-off-by: Andreas Feldner <pelzi@flying-snail.de>
-> >> ---
-> >>   .../dts/sun8i-h2-plus-bananapi-m2-zero.dts     | 18 ++++++++++++++++++
-> >>   1 file changed, 18 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-> >> index d729b7c705db..1fc0d5d1e51a 100644
-> >> --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-> >> +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-> >> @@ -113,6 +113,22 @@ wifi_pwrseq: wifi_pwrseq {
-> >>   
-> >>   &cpu0 {
-> >>   	cpu-supply = <&reg_vdd_cpux>;
-> >> +	clock-frequency = <1296000000>;  
-> > I see where you are coming from, this is really an unnecessary warning
-> > message. However this message should be really removed from the kernel
-> > instead of adding some rather meaningless value here.
-> > The current DT spec marks this property as required, though, so I added
-> > a PR there to get this fixed:
-> > https://github.com/devicetree-org/devicetree-specification/pull/61
-> > Once this is through, we can try to remove the kernel message.  
-> 
-> OK, so I'll take care to have this change removed from my patch.
-> I thought so, but then it was the configuration I'd been testing with...
-> 
-> >> +};
-> >> +
-> >> +&cpu1 {
-> >> +	cpu-supply = <&reg_vdd_cpux>;  
-> > I don't think we need this for every core?  
-> 
-> I came across a discussion that this was marked required on the
-> cpu@... level whereas it would make sense on the cpus level. I did
-> not check if this suggestion was implemented in the meantime,
-> sorry!
-> 
-> >> +	clock-frequency = <1296000000>;
-> >> +};
-> >> +
-> >> +&cpu2 {
-> >> +	cpu-supply = <&reg_vdd_cpux>;
-> >> +	clock-frequency = <1296000000>;
-> >> +};
-> >> +
-> >> +&cpu3 {
-> >> +	cpu-supply = <&reg_vdd_cpux>;
-> >> +	clock-frequency = <1296000000>;
-> >>   };
-> >>   
-> >>   &de {
-> >> @@ -193,6 +209,8 @@ bluetooth {
-> >>   };
-> >>   
-> >>   &pio {
-> >> +	/* 1ï¿½s debounce filter on both IRQ banks */  
-> > Is that supposed to be <micro> in UTF-8? It seems to have got lost in
-> > translation, or is that just me?  
-> O yes, the Greek character slipped into the comment.
-> >> +	input-debounce = <1 1>;  
-> > As mentioned above, I am not so sure this is generic enough to put it
-> > here for PA. And what is the significance of "1 us", in particular? Is
-> > that just the smallest value?  
-> 
-> Yes indeed it's a bit more complicated than I feel it needs to be. The
-> configuration is taken as microseconds and translated into the best
-> matching clock and divider by the driver. However, 0 is not translated
-> to the lowest divider of the high speed clock as would be logical if
-> you ask for zero microseconds, but to "leave at default". The default
-> of the board is 0 in the register, translating to lowest divider on the
-> _low_ speed clock.
-
-I'd say the "if (!debounce) continue;" code is just to defend against
-the division by zero, which would be the next statement to execute.
-
-We might want to change that to interpret 0 as "lowest possible", which
-would be 24MHz/1. Please feel free to send a patch in this regard, and
-CC: Maxime, to get some input on that idea.
-
-> To me this is mindboggling.
-> 
-> If you want to keep IRQ bank A as it is today and switch off the
-> definitely unnecessary (and _potentially_ IRQ eating) debounce off
-> for bank G only, I'd suggest the following setting:
-> 
->      input-debounce = <31 1>;
-
-It should be documented that the effective default is 31, I guess the
-binding is the right place.
-
-> This is because 31 Microseconds is exactly the time that is best
-> matched by the low speed clock with low divider and translated
-> to a 0 in the config register by the driver.
-> 
-> The absolutely equivalent setting, with the only drawback that it
-> would have confused me to death is:
-> 
->      input-debounce = <0 1>;
-> 
-> (because it skips setting IRQ bank A debouncing, leaving it at 31.25 us)
-> 
-> Or, and that was my suggestion, you set both correctly for
-> electronic devices and leave the task of switching on debouncing
-> to the implementors of applications with mechanical switches:
-> 
->      input-debounce = <1 1>;
-> 
-> To me, any of these being present in the devicetree would have been
-> of great help, because I would have seen that there is something
-> to set.
-> 
-> 
-> One final question: how would you like this change:
-> 
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> @@ -1467,6 +1467,10 @@ static int sunxi_pinctrl_setup_debounce(struct 
-> sunxi_pinctrl *pctl,
->                  writel(src | div << 4,
->                         pctl->membase +
-> sunxi_irq_debounce_reg_from_bank(pctl->desc, i));
-> +
-> +               pr_info("Debounce filter for IRQ bank %d configured to "
-> +                       "%d us (reg %x)\n",
-> +                       i, debounce, src | div << 4);
-
-That looks certainly useful, please send a proper patch.
-
-Cheers,
-Andre
-
->          }
-> 
->          return 0;
-> 
-> It helped me to cross-check what the driver is really doing, and it
-> again would have helped me with me DHT problem to learn about
-> the existence of a debouncing filter.
-> 
-> Yours,
-> 
-> Andreas.
-> 
-> 
-
+Bart
