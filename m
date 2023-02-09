@@ -2,131 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C356909EF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61B4C690A5E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbjBIN2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 08:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54746 "EHLO
+        id S230403AbjBINff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 08:35:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbjBIN2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:28:39 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4F0425EBFF;
-        Thu,  9 Feb 2023 05:28:33 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 464641477;
-        Thu,  9 Feb 2023 05:29:15 -0800 (PST)
-Received: from [192.168.1.110] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B500B3F703;
-        Thu,  9 Feb 2023 05:28:31 -0800 (PST)
-Message-ID: <ff471140-5bbb-fb64-f000-eb7ba97dd74e@arm.com>
-Date:   Thu, 9 Feb 2023 13:28:11 +0000
+        with ESMTP id S230355AbjBINfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:35:18 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CD28E60D63;
+        Thu,  9 Feb 2023 05:34:59 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.97,283,1669042800"; 
+   d="scan'208";a="152256220"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 09 Feb 2023 22:34:46 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8D19743638B8;
+        Thu,  9 Feb 2023 22:34:46 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v3] dt-bindings: iommu: renesas,ipmmu-vmsa: Update for R-Car Gen4
+Date:   Thu,  9 Feb 2023 22:34:40 +0900
+Message-Id: <20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: layerscape: Fix GICv3 ITS node names
-To:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230208183437.2283665-1-robh@kernel.org>
-Content-Language: en-GB
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230208183437.2283665-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-08 18:34, Rob Herring wrote:
-> The GICv3 ITS is an MSI controller, therefore its node name should be
-> 'msi-controller'.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Note that this exposes an issue that #msi-cells is missing. In turn, the
-> use of msi-parent in PCI nodes is wrong and should be msi-map according
-> to my sources (Robin M), but I have no idea what is correct there.
+Since R-Car Gen4 doens't have the main IPMMU IMSSTR register, update
+the renesas,ipmmu-main property which sets maxItems as 1.
 
-This is a funny one, since AIUI those "msi-parent" properties are now 
-really only there for the bootloader to pick up the phandle to build a 
-proper "msi-map" property[1][2]. As such, I imagine it should *probably* 
-be OK to add a dummy argument so that "#msi-cells = <1>" can be 
-correctly specified, however I can't claim to be an expert on these 
-systems and whether there are any other bootloader behaviours that also 
-need to be supported.
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+---
+Changes from v2:
+https://lore.kernel.org/all/20230127140446.1728102-1-yoshihiro.shimoda.uh@renesas.com/
+ - Set maxItems to renesas,ipmmu-main if R-Car Gen4.
 
-Thanks,
-Robin.
+Changes from v1:
+https://lore.kernel.org/all/20230123012940.1250879-1-yoshihiro.shimoda.uh@renesas.com/
+ - Change number of argument for R-Car Gen4 instead of "module id".
+   On the discussion, using 'minItems' is a solution. But, it causes
+   "too short" errors on dtbs_check. So, using "oneOf" instead.
 
-[1] 
-https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/net/fsl-mc/mc.c#L328
-[2] 
-https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/pci/pcie_layerscape_fixup.c
+ .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
->   arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
->   arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 2 +-
->   arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 2 +-
->   arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 2 +-
->   4 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> index 1b33cabb4e14..dd1c8f60fad1 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> @@ -131,7 +131,7 @@ gic: interrupt-controller@6000000 {
->   		interrupt-controller;
->   		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0xf) |
->   					 IRQ_TYPE_LEVEL_LOW)>;
-> -		its: gic-its@6020000 {
-> +		its: msi-controller@6020000 {
->   			compatible = "arm,gic-v3-its";
->   			msi-controller;
->   			reg = <0x0 0x06020000 0 0x20000>;/* GIC Translater */
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 260d045dbd9a..6dd680fb1b22 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -123,7 +123,7 @@ gic: interrupt-controller@6000000 {
->   		#size-cells = <2>;
->   		ranges;
->   
-> -		its: gic-its@6020000 {
-> +		its: msi-controller@6020000 {
->   			compatible = "arm,gic-v3-its";
->   			msi-controller;
->   			reg = <0x0 0x6020000 0 0x20000>;
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> index 348d9e3a9125..d2f5345d0560 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> @@ -60,7 +60,7 @@ gic: interrupt-controller@6000000 {
->   		interrupt-controller;
->   		interrupts = <1 9 0x4>;
->   
-> -		its: gic-its@6020000 {
-> +		its: msi-controller@6020000 {
->   			compatible = "arm,gic-v3-its";
->   			msi-controller;
->   			reg = <0x0 0x6020000 0 0x20000>;
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> index 50c19e8405d5..ea6a94b57aeb 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> @@ -395,7 +395,7 @@ gic: interrupt-controller@6000000 {
->   		interrupt-controller;
->   		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->   
-> -		its: gic-its@6020000 {
-> +		its: msi-controller@6020000 {
->   			compatible = "arm,gic-v3-its";
->   			msi-controller;
->   			reg = <0x0 0x6020000 0 0x20000>;
+diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+index 72308a4c14e7..cc81bce44f3f 100644
+--- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
++++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+@@ -74,11 +74,10 @@ properties:
+   renesas,ipmmu-main:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     items:
+-      - items:
+-          - description: phandle to main IPMMU
+-          - description: the interrupt bit number associated with the particular
+-              cache IPMMU device. The interrupt bit number needs to match the main
+-              IPMMU IMSSTR register. Only used by cache IPMMU instances.
++      - description: phandle to main IPMMU
++      - description: the interrupt bit number associated with the particular
++          cache IPMMU device. The interrupt bit number needs to match the main
++          IPMMU IMSSTR register. Only used by cache IPMMU instances.
+     description:
+       Reference to the main IPMMU phandle plus 1 cell. The cell is
+       the interrupt bit number associated with the particular cache IPMMU
+@@ -109,6 +108,16 @@ allOf:
+       required:
+         - power-domains
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,rcar-gen4-ipmmu-vmsa
++    then:
++      properties:
++        renesas,ipmmu-main:
++          maxItems: 1
++
+ examples:
+   - |
+     #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
+-- 
+2.25.1
+
