@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF9B6905F0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:59:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EED556905F3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:59:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjBIK7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 05:59:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
+        id S230094AbjBIK7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 05:59:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbjBIK7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:59:25 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE97126FC
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:58:55 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id bu23so1336288wrb.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:58:55 -0800 (PST)
+        with ESMTP id S229892AbjBIK71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:59:27 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956A18A46
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:58:59 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id d14so1330660wrr.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:58:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NW8d1CGtjwetV0FuZkQ8UhJ3cZd+mwFPksIQWf8yAmE=;
-        b=B96HxkHRe0ODPHdHscD7CraXhoQabYh/jYhraIHmKZSjuk7OYhDWLhqUwwiBaWdCvY
-         5cUoXXGJfV6Jppkxl3xdPR397G62eBk0Yw2Pdq2pGMSPxSq6p0jf24EcoNSBLTskJ/jL
-         2o4cA7swb5lcbD2TBPyauQJfDhuxVPIfTOflDQZqMylYhhPO6C01SDS5im0A5UfuEtF6
-         KpyAv4BzC5gfOz8ZscsVooPY09tcHrSVGlHfi40s3p2gl5R9VBD/QVWBFfAlFwL0sxez
-         9vt3XgY/DEGkuxBjrXr1CS+OHDAmwtgJsUqVDmxpfx/rLbALclyPhsmKnxQf9tXdX6sg
-         LKwQ==
+        bh=MNu/Kq5YO5u+A14KW4yemS89GxvSBvk/6+CEjY6IekA=;
+        b=iz/gWjsHgtekoOHBySRM8twbFpzAeFgs07tGqu+gRe3S5q5NcYzl3nBt9K8Ox2uiFN
+         KRihdcm5pXZo2x0M2M+ZXgpaZksnyf7PvtGY+JPJgwlgmv6QJRU+6POgc+XpgKzEM89e
+         gqlE0xoL1HzWhxK0I075RQpbBpPojxIPKSeViZ0GsuC+MpZmKfF9QzK9MDWLj9rx/CTK
+         yYRdXB4BB82wSrPno91cC3MkYQTBHAaudoRypXJ9xe0d0soKKbSj7rWyOEcXRFMFp/oW
+         vWFxV28qcUou0C/kcQ6CBdQJHr8eArOiHnBVK/fsXEZNe813sYkdxP9PUUS/nkfo+x+1
+         E03Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NW8d1CGtjwetV0FuZkQ8UhJ3cZd+mwFPksIQWf8yAmE=;
-        b=XqkPEs/5bnIl/L/Gz3MJi6EbkHvQlebsYdaS8bsPi3LcBbgt+DBzmcWX7fAHW6GzrZ
-         ggbhpsb1hFPbHZeBMw2WduZohjy2P1+wnUUOxwDCMJP9qKaxTpZHIU/uugcxJBZbpzFT
-         A6+v2asoYMR8QM7BY05QGSGe6W1oBJsTq+9PYAprDC6cAwm0KqfF4pqTUJVONtp0f/Bh
-         v23jmTVU58MLejCgzBHhw1LVmamkk7lJUgd6eYYlwS5D3i6eBQBdTkOt4ykvZoAsfW3E
-         qGxANwKjqe1Oo7FriAJ5KjIeW2z7pES2WHfU8f7+4rxY/1Utq8KKl/bSjTisZ/kbOqm1
-         vT4g==
-X-Gm-Message-State: AO0yUKUNvba5MlIaUWsrfUQ/3WQisl5CyW7DUv2d9RZ7xwTO5KzZzEPN
-        eXmMGtrW/S1IMOVmXF6cTqX9nA==
-X-Google-Smtp-Source: AK7set+ahucFx9qwKF5jFDEGGE2FLbmQxxpbsz9rVs7KPuuc3z5kvcheSAqtDhXNbkN2UiEi5tX1Qw==
-X-Received: by 2002:adf:d0c7:0:b0:2c3:d9cf:f406 with SMTP id z7-20020adfd0c7000000b002c3d9cff406mr10226041wrh.13.1675940332010;
-        Thu, 09 Feb 2023 02:58:52 -0800 (PST)
+        bh=MNu/Kq5YO5u+A14KW4yemS89GxvSBvk/6+CEjY6IekA=;
+        b=egkF1mqTMjIvT7pMyWix5sxPHBQFHhdq1nbTVAp/q75ZVN1CxCunGonhnWyXlYPnwW
+         0bSkAYfCyOHdEiRQcBHNNfHksSofopA0nXLbeXMcyc6BOSGhwuZxa6AKjqShPLq1kHKo
+         BpJ61jHoDDiXQtpuxNM8unNUuU9jhCNNAUeM8Cg7IvyxOzMDqHE+Yyv0+2mqT7LkaflD
+         rhUgvN9W51Z3+rXc/a0B9WSdNKkkGDlk8aWBK1EBjSGAnH6Wrv57PmzPUZQxPzvlwhaD
+         44F74hIuTjCsakD52GhAWhM9U7TW4q3bV9psJjOdW8H/PEjOyj1iNSrekvp3LojVHVBW
+         dMFQ==
+X-Gm-Message-State: AO0yUKU5lv4QfTUIKeim14a0KEh7HC1BN08zM71SZpp0aAzUmaEcMHBe
+        c7M6myOI1oHF2Qwu9vmkhhXIJQ==
+X-Google-Smtp-Source: AK7set87pvI0dw38uqL6CIrDJGb0xhuuFb/5Ocw4iZx+rV/bw4EmO3TXPdXGt5x+oxS/X5mc+112yw==
+X-Received: by 2002:adf:da42:0:b0:2c3:dbaf:dcdc with SMTP id r2-20020adfda42000000b002c3dbafdcdcmr9394736wrl.18.1675940333391;
+        Thu, 09 Feb 2023 02:58:53 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g7-20020a5d6987000000b002be063f6820sm927987wru.81.2023.02.09.02.58.50
+        by smtp.gmail.com with ESMTPSA id g7-20020a5d6987000000b002be063f6820sm927987wru.81.2023.02.09.02.58.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 02:58:51 -0800 (PST)
+        Thu, 09 Feb 2023 02:58:53 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -63,9 +63,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         stable@vger.kernel.org
-Subject: [PATCH 4/6] ARM: dts: exynos: correct TMU phandle in Odroid XU
-Date:   Thu,  9 Feb 2023 11:58:39 +0100
-Message-Id: <20230209105841.779596-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/6] ARM: dts: exynos: correct TMU phandle in Odroid HC1
+Date:   Thu,  9 Feb 2023 11:58:40 +0100
+Message-Id: <20230209105841.779596-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230209105841.779596-1-krzysztof.kozlowski@linaro.org>
 References: <20230209105841.779596-1-krzysztof.kozlowski@linaro.org>
@@ -81,29 +81,73 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 TMU node uses 0 as thermal-sensor-cells, thus thermal zone referencing
-it must not have an argument to phandle.  Since thermal-sensors property
-is already defined in included exynosi5410.dtsi, drop it from
-exynos5410-odroidxu.dts to fix the error and remoev redundancy.
+it must not have an argument to phandle.  This was not critical before,
+but since rework of thermal Devicetree initialization in the
+commit 3fd6d6e2b4e8 ("thermal/of: Rework the thermal device tree
+initialization"), this leads to errors registering thermal zones other
+than first one:
 
-Fixes: 88644b4c750b ("ARM: dts: exynos: Configure PWM, usb3503, PMIC and thermal on Odroid XU board")
+  thermal_sys: cpu0-thermal: Failed to read thermal-sensors cells: -2
+  thermal_sys: Failed to find thermal zone for tmu id=0
+  exynos-tmu 10064000.tmu: Failed to register sensor: -2
+  exynos-tmu: probe of 10064000.tmu failed with error -2
+
+Fixes: 1ac49427b566 ("ARM: dts: exynos: Add support for Hardkernel's Odroid HC1 board")
 Cc: <stable@vger.kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/exynos5410-odroidxu.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/exynos5422-odroidhc1.dts | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos5410-odroidxu.dts b/arch/arm/boot/dts/exynos5410-odroidxu.dts
-index 232561620da2..6ddd1dd2fb0b 100644
---- a/arch/arm/boot/dts/exynos5410-odroidxu.dts
-+++ b/arch/arm/boot/dts/exynos5410-odroidxu.dts
-@@ -120,7 +120,6 @@ &clock_audss {
- };
+diff --git a/arch/arm/boot/dts/exynos5422-odroidhc1.dts b/arch/arm/boot/dts/exynos5422-odroidhc1.dts
+index 3de7019572a2..5e4280393706 100644
+--- a/arch/arm/boot/dts/exynos5422-odroidhc1.dts
++++ b/arch/arm/boot/dts/exynos5422-odroidhc1.dts
+@@ -31,7 +31,7 @@ led-1 {
  
- &cpu0_thermal {
--	thermal-sensors = <&tmu_cpu0 0>;
- 	polling-delay-passive = <0>;
- 	polling-delay = <0>;
- 
+ 	thermal-zones {
+ 		cpu0_thermal: cpu0-thermal {
+-			thermal-sensors = <&tmu_cpu0 0>;
++			thermal-sensors = <&tmu_cpu0>;
+ 			trips {
+ 				cpu0_alert0: cpu-alert-0 {
+ 					temperature = <70000>; /* millicelsius */
+@@ -86,7 +86,7 @@ map1 {
+ 			};
+ 		};
+ 		cpu1_thermal: cpu1-thermal {
+-			thermal-sensors = <&tmu_cpu1 0>;
++			thermal-sensors = <&tmu_cpu1>;
+ 			trips {
+ 				cpu1_alert0: cpu-alert-0 {
+ 					temperature = <70000>;
+@@ -130,7 +130,7 @@ map1 {
+ 			};
+ 		};
+ 		cpu2_thermal: cpu2-thermal {
+-			thermal-sensors = <&tmu_cpu2 0>;
++			thermal-sensors = <&tmu_cpu2>;
+ 			trips {
+ 				cpu2_alert0: cpu-alert-0 {
+ 					temperature = <70000>;
+@@ -174,7 +174,7 @@ map1 {
+ 			};
+ 		};
+ 		cpu3_thermal: cpu3-thermal {
+-			thermal-sensors = <&tmu_cpu3 0>;
++			thermal-sensors = <&tmu_cpu3>;
+ 			trips {
+ 				cpu3_alert0: cpu-alert-0 {
+ 					temperature = <70000>;
+@@ -218,7 +218,7 @@ map1 {
+ 			};
+ 		};
+ 		gpu_thermal: gpu-thermal {
+-			thermal-sensors = <&tmu_gpu 0>;
++			thermal-sensors = <&tmu_gpu>;
+ 			trips {
+ 				gpu_alert0: gpu-alert-0 {
+ 					temperature = <70000>;
 -- 
 2.34.1
 
