@@ -2,99 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F15E1691099
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 19:47:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BBB36910D1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 19:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbjBISr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 13:47:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53556 "EHLO
+        id S229604AbjBISzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 13:55:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjBISr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 13:47:28 -0500
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48052166D5;
-        Thu,  9 Feb 2023 10:47:27 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-16a7f5b6882so3726704fac.10;
-        Thu, 09 Feb 2023 10:47:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qNaA54ncyf5PWWN1fTCkDz/pbo/DWHHSJveDPsBxHU4=;
-        b=RC5fDeLU4vuqW2lgOkZmG/ERSu/X56JhgOTDiJ33opR0qE6xsGWUSPAUbAI2+pN68J
-         BF+Or19LaJNlJtubikdVvwliG7A/L8GtfNeXunbOSL5d9MI1WdDapVqM1Df8PJKJtYED
-         e5n00a21wtPj5ZUaNl+1ruFP9svmvkggSpLlRGfTV5/MRsuLrn4YrTi044viEqhcNOlk
-         DHjCl/7UUU77jSz9tKqQ7Dr7a35LBhUHo6uVEnzuRw2b7cTjsK9z71ZORNJpkSvhwXrP
-         datW8n/N9EBpA+WBNSu0H8F2Bu/XWSYaN51laHBiHtB4Azs7LJZs5212/XVDavxkHUBD
-         r0eA==
-X-Gm-Message-State: AO0yUKXyEZfLNf0khnz3kTgc6ygOApyXTa9GK/wH78mz/znZy/lJKxVs
-        V+CoHgBpS+29/G3HU+RHNw==
-X-Google-Smtp-Source: AK7set+LpAAQrdDi21BmP35c4QuiXWbAckRokthyKVqKkwsAlsFerd9xp/Vfd28aqzRs2F+J01ZqkQ==
-X-Received: by 2002:a05:6870:428f:b0:163:3f73:b0fc with SMTP id y15-20020a056870428f00b001633f73b0fcmr6970166oah.18.1675968446460;
-        Thu, 09 Feb 2023 10:47:26 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u36-20020a056870b0e400b0014ff15936casm1008335oag.40.2023.02.09.10.47.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 10:47:26 -0800 (PST)
-Received: (nullmailer pid 622962 invoked by uid 1000);
-        Thu, 09 Feb 2023 18:47:25 -0000
-Date:   Thu, 9 Feb 2023 12:47:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, - <patches@opensource.cirrus.com>,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
-Message-ID: <167596844504.622906.11149464288778013778.robh@kernel.org>
-References: <20230208195235.453774-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229447AbjBISzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 13:55:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13F81287E;
+        Thu,  9 Feb 2023 10:55:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 22C6CB822C2;
+        Thu,  9 Feb 2023 18:55:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2466C433D2;
+        Thu,  9 Feb 2023 18:55:45 +0000 (UTC)
+Date:   Thu, 9 Feb 2023 18:55:42 +0000
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     "Isaac J. Manjarres" <isaacmanjarres@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Mike Rapoport <rppt@kernel.org>,
+        "Kirill A. Shutemov" <kirill.shtuemov@linux.intel.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Saravana Kannan <saravanak@google.com>, linux-mm@kvack.org,
+        kernel-team@android.com,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/1] of: reserved_mem: Have kmemleak ignore
+ dynamically allocated reserved mem
+Message-ID: <Y+VBrpGfwFD82PVF@arm.com>
+References: <20230208232001.2052777-1-isaacmanjarres@google.com>
+ <20230208232001.2052777-2-isaacmanjarres@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230208195235.453774-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230208232001.2052777-2-isaacmanjarres@google.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Feb 08, 2023 at 03:20:00PM -0800, Isaac J. Manjarres wrote:
+> Currently, kmemleak ignores dynamically allocated reserved memory
+> regions that don't have a kernel mapping. However, regions that do
+> retain a kernel mapping (e.g. CMA regions) do get scanned by kmemleak.
+> 
+> This is not ideal for two reasons:
+> 
+> 1. kmemleak works by scanning memory regions for pointers to
+> allocated objects to determine if those objects have been leaked
+> or not. However, reserved memory regions can be used between drivers
+> and peripherals for DMA transfers, and thus, would not contain pointers
+> to allocated objects, making it unnecessary for kmemleak to scan
+> these reserved memory regions.
+> 
+> 2. When CONFIG_DEBUG_PAGEALLOC is enabled, along with kmemleak, the
+> CMA reserved memory regions are unmapped from the kernel's address
+> space when they are freed to buddy at boot. These CMA reserved regions
+> are still tracked by kmemleak, however, and when kmemleak attempts to
+> scan them, a crash will happen, as accessing the CMA region will result
+> in a page-fault, since the regions are unmapped.
+> 
+> Thus, use kmemleak_ignore_phys() for all dynamically allocated reserved
+> memory regions, instead of those that do not have a kernel mapping
+> associated with them.
+> 
+> Cc: <stable@vger.kernel.org>    # 5.15+
+> Fixes: a7259df76702 ("memblock: make memblock_find_in_range method private")
+> Signed-off-by: Isaac J. Manjarres <isaacmanjarres@google.com>
 
-On Wed, 08 Feb 2023 20:52:35 +0100, Krzysztof Kozlowski wrote:
-> Convert the Wolfson WM1811/WM8994/WM8958 audio codecs bindings to DT
-> schema.
-> 
-> Changes against original binding:
-> 1. Add missing LDO1VDD-supply and LDO2VDD-supply.
-> 2. Use "gpios" suffix for wlf,ldo1ena and wlf,ldo2ena (Linux kernel's
->    gpiolib already looks for both variants).
-> 3. Do not require AVDD1-supply and DCVDD-supply, because at least on
->    Arndale board with Exynos5250 these are being supplied by internal
->    LDOs.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Add LDO2VDD-supply.
-> 2. Do not require AVDD1-supply on WM8994.
-> 3. Move requiring of common supplies to top-level "required:".
-> 
-> DTS is being corrected here:
-> https://lore.kernel.org/linux-samsung-soc/20230208172634.404452-1-krzysztof.kozlowski@linaro.org/T/#t
-> ---
->  .../devicetree/bindings/sound/wlf,wm8994.yaml | 194 ++++++++++++++++++
->  .../devicetree/bindings/sound/wm8994.txt      | 112 ----------
->  2 files changed, 194 insertions(+), 112 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8994.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wm8994.txt
-> 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Acked-by: Catalin Marinas <catalin.marinas@arm.com>
