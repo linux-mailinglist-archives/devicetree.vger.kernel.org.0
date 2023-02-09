@@ -2,220 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29FAC6905B5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:53:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225FB6905C0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjBIKxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 05:53:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47608 "EHLO
+        id S229933AbjBIKzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 05:55:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjBIKxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:53:30 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2084.outbound.protection.outlook.com [40.107.223.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEC921950;
-        Thu,  9 Feb 2023 02:53:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nYkF0bO3vEOmFPR4IZLtjrDgtQifyXd+w154SkvPcIjhqlY0DT2X4LTSE/GOeRUybgYXWegGeftf2mfR1DMj+7WZZPu/TLRAd7SVES3ZHaSlFuwt3opsHFeQ7LonWspTHPLn2Qm65upbmdVinGyibH4IjbJbabiY10lOI0r8MW8xVNZt9SWKGtM2BOQJhXWIxTjA/sIK5A0zByRWa/VS9932rJ2FZpbCFXkvRr7oOnhXzW6VxSicVgeNHfpt6EGtpeT7BQQjxwiUA56RXrA2U1MfDAN7gPCdPxsDc0j64KN1swx9ROb86TrnMrisV9ekPTMxjfwbYG7LteaHNVRhTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=texo4TYrmE29u2JgtGOJgf4ffQ46IxvKjkN+pxQ5s3o=;
- b=f2BHoVPbqMia3YAMhKqLJzLQtj1BYyb7PsdJiZ2Tuvyf7P0tpy/EhjG5cUsov14EOHBpOU18gBWF9Jyt9ua93QevHILnnNiZV1WpB51G7hSZHmAJGtGgPe22Yuu7MgN+SjK/oWEEgxFszSUC+y+P/pjFuDxM9WZPSgKIVaqaYfQGGp0n5qds1naRrwq126OzTgvaommSzsLCe8/lEoq/aPNUyt0WtrQpYm+98cT9RUEcT6yszq7ga6sBR3+k1bnLJqqcSBEBVwx8jRwbWmi3vDco/Hs75t+qd6ielPbH45JnLH1PMndAHtU7TZCdMCb1vL70wttXGg5yFAvtXX3cEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=texo4TYrmE29u2JgtGOJgf4ffQ46IxvKjkN+pxQ5s3o=;
- b=EzwtLAf92jO9lBkZWbkYG5qB1IbnP8Mss4snr17eS71fX1Cf042aYehWOM8LGV4bikdUK7E9cMChlL3USf9599N6zmSwBYV+oQZNKOUfGYP9VBwMY6D0J+czRQzcpkKGw9Px3mbLKHZjEEWoROEGcJeHnq9KNt/Or3gGk/7Zp8fNXBAaQpm08QAMHb/w+OFlLwbNZpDVGLPyN+Wh9p7nFyLrqZ3+SusWKWvODVG1Ugs5JGdKEWXSwYrzTfOSYqpYHsbl5nNTzoHeuGy3zUQ3LnYW2sIv4ytw3NOlSvk2rfInutnf6eIirRfL09REnCWTBNUcVZCX2lmcBSPQLQ9fPg==
-Received: from DM6PR12MB3164.namprd12.prod.outlook.com (2603:10b6:5:188::30)
- by CH3PR12MB7548.namprd12.prod.outlook.com (2603:10b6:610:144::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.19; Thu, 9 Feb
- 2023 10:53:26 +0000
-Received: from DM6PR12MB3164.namprd12.prod.outlook.com
- ([fe80::ce1d:8f53:31a7:44db]) by DM6PR12MB3164.namprd12.prod.outlook.com
- ([fe80::ce1d:8f53:31a7:44db%7]) with mapi id 15.20.6064.034; Thu, 9 Feb 2023
- 10:53:25 +0000
-From:   Petlozu Pravareshwar <petlozup@nvidia.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "rafael.j.wysocki@intel.com" <rafael.j.wysocki@intel.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "jeffy.chen@rock-chips.com" <jeffy.chen@rock-chips.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "steven.price@arm.com" <steven.price@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Vidya Sagar <vidyas@nvidia.com>
-Subject: RE: [RFC,v14 4/5] arm64: tegra: Add PCIe port node with PCIe WAKE#
- for C1 controller
-Thread-Topic: [RFC,v14 4/5] arm64: tegra: Add PCIe port node with PCIe WAKE#
- for C1 controller
-Thread-Index: AQHZO678uN8JYxCqt0W2Vps0E+YCz67E7AAAgAAKKoCAAEMxAIABLSog
-Date:   Thu, 9 Feb 2023 10:53:25 +0000
-Message-ID: <DM6PR12MB316420D07FBB9F8CE9AF5CD3B5D99@DM6PR12MB3164.namprd12.prod.outlook.com>
-References: <20230208111645.3863534-1-mmaddireddy@nvidia.com>
- <20230208111645.3863534-5-mmaddireddy@nvidia.com> <Y+OJaGY6mcxM0JOF@orome>
- <1b24e9f5-539a-dd0f-6485-5dbf3757ef27@nvidia.com> <Y+PKTNEAuPHBdwqX@orome>
-In-Reply-To: <Y+PKTNEAuPHBdwqX@orome>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR12MB3164:EE_|CH3PR12MB7548:EE_
-x-ms-office365-filtering-correlation-id: 0c6619bb-e79c-4947-30f3-08db0a8bdedb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5BEPwVCa3WJPIWeynlDcPBQRE8k2Atjb/XXo7WKLwzfUYeQ1Cb/4Qs90G5VP0gU0bKFBt5XS5O850yw5tQmeZ0hdXN1r3SIEfrsdl7Vv15asmSywnvuG/tagwRupQsTI8qHp7NlhS28uLgSMkQnUT1OjHrIhm2/NNMsk4ZW3cH1QPaaUCVkPD+vvwsXRMr3TKhjk3u5iIxYxgrqwwdRphrLpEiKwecFTeIXCxOnoss89CR1JAXd2hKHLpPsjaCtOFQhYB/QNmn6Feb53J4x4aV6VMAXQ3SXYAVHoGq/SGnBKN9YO20nJA4vPX8bWpmGd1yb93qHHopZX6YB8BUgThksqj0AFfoeTZs+ipp8DrvGkZ/4DWMJm+ZPNfLhX4LciBx7GUPKHq0UR3ddXSxqW56OFxcdffY4O6AWOslifx9zCOn9K5PYODLaYLkaC/+uguHdxihJPFd8FySFbKiETAGbtbP1Yf8WrQ8hhL6ztYcJBSD2PvlkeWo4Ef4RNUpnKazfUKOQ/gxIsaR12Tt0QEyxmZSbGyKcX5RZXA6b25TmCbzhEMCNCNqo1sacRaQOTGCO3DsZEp7Whiu0BT/kqcpSgX8qQYpzwsYu7i3cqqP6pOVnelLdjEflTaDDDkiALQ72wR0DdlhvSPTBibrqBKIezxgWGJ0js0R1dclve0oYIVy7qHMZHvj7K+1rEU+GoeLu+fhLUkxupTwMYoWmr7SCWRfo5/ZinayAZjWOG5YOyn/FTlQGY/ATeAdZZ/REReVYl8PwIcYHaV5hyumoT1s7kUhwjpRgKxd3mdjsXD8g=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3164.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(136003)(376002)(39860400002)(396003)(346002)(451199018)(83380400001)(9686003)(2906002)(33656002)(110136005)(38070700005)(54906003)(6636002)(38100700002)(66446008)(478600001)(66946007)(7696005)(71200400001)(64756008)(66556008)(8676002)(966005)(66476007)(76116006)(4326008)(53546011)(41300700001)(6506007)(186003)(26005)(107886003)(8936002)(122000001)(52536014)(316002)(55016003)(86362001)(5660300002)(7416002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JYu0Ww5h8HzTwzVsKyF8uZ1yvyg67jshCYIbLvQYA7YlEoY2Oe6fhV4JarOz?=
- =?us-ascii?Q?4Vr/WmUzhsbHg3tDND5OCFw8mHJrdItpWgj1/Qoq3KiOjYcuW8LBFZaocntp?=
- =?us-ascii?Q?R0oMow3LyOks8w8uO0FqYrFEwNE+Fr0eVyGBm+fYVXHpeTb2I3XCRq70WjiG?=
- =?us-ascii?Q?G56JCf7U2VF81bIRyq18BOrYp4Bt7SMK/jt35KcMDpplGRDdFswDQCtoRQ9l?=
- =?us-ascii?Q?34NvQwNSoUtZ19CFGfWPBQROVcasS0mM8asUjux+H2/fGPhKWX4cdjI4pIDc?=
- =?us-ascii?Q?YviXz38kZPCV6I0bF5zokG6vLcpRFCh6hrzW0YCb9ByEhl+7S2FPhgF4EcMA?=
- =?us-ascii?Q?rEKwP4LQothb+pC0V44f7/V14MU3XDr8sZCVacwFKLsohsZV/c2bA2hUJ/lm?=
- =?us-ascii?Q?xA0gQ7iqBBXWYRD5QWxX8mUftEmuq32HGDO+YLTcepSsn9yGVVU1TZ5zgZP2?=
- =?us-ascii?Q?mMTnsCgkxI3qAEM87gJWTe3Ssh9LFzzjQU2mpkeIsUbXPl2DYMCkimDYIXDW?=
- =?us-ascii?Q?Sr7YmjhXMUsTF1xqKvp58Ntw61bgLvS7138welkFmnLr6KGpFt4BWVe0eTXA?=
- =?us-ascii?Q?c4PrwuH9QaqbEkTAviN2cJfvr4cXoPSfRkngalvvx8TBuiUwVHmc4vH7/Tt1?=
- =?us-ascii?Q?/Ar5/pJ6dl9cJM2HBpbv3NA0g8ufm/bR0yfmkpiflxkzcBMmG5wDpbPJzcyk?=
- =?us-ascii?Q?aqttr/iMHOZKVR7zmbthgcoBta0i5lxUazU9iNzC4PLeZTUR9Of7g8Ci7pj6?=
- =?us-ascii?Q?A4jGogS0LMIGcbmb/+mOHD/CGzUjX7/u69XB02I7ua1ypc+nNi2MdBvwp6ut?=
- =?us-ascii?Q?mgJ0nZ1/H9/U9O69lh0Yi7Q7PEnxPvkJeFFYupT+gqig774RDuZgdQHw1MaS?=
- =?us-ascii?Q?cgpn9d3BFE3AhGVuCtxkBTJJ86OWQ30UM8UeaHkD+D9d6SkMAxS3n77/bB2u?=
- =?us-ascii?Q?YVEF2VhPoNaWeWuKYhUbDu4uPsCsrnOhalrvdodautnoD+rNmUVd8nBKkZXn?=
- =?us-ascii?Q?Vbh5nD7fLDEWXGhw+tqJQSy7KGAqpBbmF8+MF9+YM/u3igRDSH+OQz3EVUhB?=
- =?us-ascii?Q?UBHcGZaqMwKWuJ1OxlI8N8o+aTfj/XK/6BXivbdyhqw7ISUyKDA2yuxB4mvZ?=
- =?us-ascii?Q?Ru/uy9C8s8DB16XdmqfSbux9mDzh9k3b7HRCiP1E/40zUNhuVidFDqxRd5vD?=
- =?us-ascii?Q?FKFXJ+dhBBPUvoI4/CSGh7XDTgWA6T7LmBGlf6YhWBmGMqlIsjPY+aS60yO1?=
- =?us-ascii?Q?k0IE2bY8PKo6RmIojcGzzhCqYTg6PGVo0GYQXkAfsQYi9AYfJsEltuesTGXE?=
- =?us-ascii?Q?jka8LAWyNQGFhLgw3h7tXSLk6rZwTAzsnH83IqlnOWvISqY8iW0/9y5VOOZI?=
- =?us-ascii?Q?2xQsEfwudwtgl8Q1ItgwesTmzfegc+UjT43lZw6yHu4LiuoIuA+ixbr+C46Y?=
- =?us-ascii?Q?upbhVUaKGJlo5RKGhzXRNRoneJRe90KmR5Nf9yJc+YSWmFOWpf0D6P7Gc3ul?=
- =?us-ascii?Q?mabbiYRetmVcDsxPYJik/QdEKVKgFfmJwhV3IrGJXSM1nxc0u7J9i5Hm3bLR?=
- =?us-ascii?Q?vD57EacHTEI52JiZVexDzWyHhDSf0mE4guhxoluH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230280AbjBIKy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:54:58 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636D945203;
+        Thu,  9 Feb 2023 02:54:55 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7CF129CA;
+        Thu,  9 Feb 2023 11:54:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1675940092;
+        bh=73IEMIN1hCTZFD2vBhICWx4cAg+zQeBz89tcm2fOb70=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PRBIqnLGDG+WmtiDpUW/dEBwJuPdpOGjKyomTlPMpiEJfwJO5yhzObdwIR5aP7IVy
+         XjhH2HGBkTGsNcAmiMEJMWuP2r+Sdw6XEk1mpY4aaNcjchdCSUGz9HUf3Lk4bqS412
+         i2LX8IPQ0gMGBKL3V9Odumv2sakCLo/YOT+tEAx8=
+Date:   Thu, 9 Feb 2023 12:54:51 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
+Message-ID: <Y+TQ+60w3T0HH+FY@pendragon.ideasonboard.com>
+References: <cad92dbb-43ef-fa8c-1962-13c4a8578899@ideasonboard.com>
+ <Y9FBlMl4b3l1zVck@smile.fi.intel.com>
+ <5d208710-f284-e6e9-18dc-f5ef63a9ea44@ideasonboard.com>
+ <Y9FKcoVlgUWR4rhn@smile.fi.intel.com>
+ <04a82b08-524f-8d03-ac47-73d826907fc3@ideasonboard.com>
+ <Y9JUEv66Gze8FjMZ@smile.fi.intel.com>
+ <Y9JbMjPM3Ea3RVzH@pendragon.ideasonboard.com>
+ <0c13eac3-cadb-b923-d475-7851dbef0c4e@ideasonboard.com>
+ <Y9OWFSxs9ev9hfp2@smile.fi.intel.com>
+ <2501ffcc-82ff-c0bc-366a-33b62bf28e76@ideasonboard.com>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3164.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c6619bb-e79c-4947-30f3-08db0a8bdedb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2023 10:53:25.8227
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NnUKH399eaitQhWM8Kzru36cY6A5bRZWhxA2/qGaWO71cGjy1Z3t/lOihBLpWa1Zd4s2KSW3ZyU+IZ7CqySUng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7548
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2501ffcc-82ff-c0bc-366a-33b62bf28e76@ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->=20
-> On Wed, Feb 08, 2023 at 05:43:35PM +0530, Manikanta Maddireddy wrote:
-> >
-> > On 2/8/2023 5:07 PM, Thierry Reding wrote:
-> > > On Wed, Feb 08, 2023 at 04:46:44PM +0530, Manikanta Maddireddy
-> wrote:
-> > > > Add PCIe port node under the PCIe controller-1 device tree node to
-> > > > support PCIe WAKE# interrupt for WiFi.
-> > > >
-> > > > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> > > > ---
-> > > >
-> > > > Changes in v14:
-> > > > New patch in the series to support PCIe WAKE# in NVIDIA Jetson AGX
-> Orin.
-> > > >
-> > > >   .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 11
-> +++++++++++
-> > > >   1 file changed, 11 insertions(+)
-> > > >
-> > > > diff --git
-> > > > a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> > > > b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> > > > index 8a9747855d6b..9c89be263141 100644
-> > > > ---
-> > > > a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> > > > +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-
-> 0000.dt
-> > > > +++ s
-> > > > @@ -2147,6 +2147,17 @@ pcie@14100000 {
-> > > >   			phys =3D <&p2u_hsio_3>;
-> > > >   			phy-names =3D "p2u-0";
-> > > > +
-> > > > +			pci@0,0 {
-> > > > +				reg =3D <0x0000 0 0 0 0>;
-> > > > +				#address-cells =3D <3>;
-> > > > +				#size-cells =3D <2>;
-> > > > +				ranges;
-> > > > +
-> > > > +				interrupt-parent =3D <&gpio>;
-> > > > +				interrupts =3D <TEGRA234_MAIN_GPIO(L, 2)
-> IRQ_TYPE_LEVEL_LOW>;
-> > > > +				interrupt-names =3D "wakeup";
-> > > > +			};
-> > > Don't we need to wire this to the PMC interrupt controller and the
-> > > wake event corresponding to the L2 GPIO? Otherwise none of the wake
-> > > logic in PMC will get invoked.
-> > >
-> > > Thierry
-> > PCIe wake is gpio based not pmc, only wake support is provided by PMC
-> > controller.
-> > I verified this patch and able to wake up Tegra from suspend.
-> > Petlozu, correct me if my understanding is wrong.
->=20
-> The way that this usually works is that you need to use something like
-> this:
->=20
-> 	interrupt-parent =3D <&pmc>;
-> 	interrupts =3D <1 IRQ_TYPE_LEVEL_LOW>;
-> 	interrupt-names =3D "wakeup";
->=20
-> This will then cause the PMC's interrupt chip callbacks to setup all the =
-wake-
-> related interrupts and use the internal wake event tables to forward the
-> GPIO/IRQ corresponding to the PMC wake event to the GPIO controller or
-> GIC, respectively.
->=20
-> If you use &gpio as the interrupt parent, none of the PMC logic will be
-> invoked, so unless this is somehow set up correctly by default, the PMC
-> wouldn't be able to wake up the system.
->=20
-> Thierry
-Thierry,
-Since PMC's IRQ domain is made as parent of GPIO controller's IRQ domain,
-I think, for GPIO based wakes setting &gpio as the interrupt parent can sti=
-ll
-invoke PMC logic to program the required registers to enable such wakes.
-Related commit in this regard:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/=
-drivers/gpio/gpio-tegra186.c?id=3D2a36550567307b881ce570a81189682ae1c9d08d
+Hi Tomi,
 
-Thanks.
+On Wed, Feb 08, 2023 at 05:10:05PM +0200, Tomi Valkeinen wrote:
+> On 27/01/2023 11:15, Andy Shevchenko wrote:
+> > On Fri, Jan 27, 2023 at 10:24:04AM +0200, Tomi Valkeinen wrote:
+> >> On 26/01/2023 12:51, Laurent Pinchart wrote:
+> >>> On Thu, Jan 26, 2023 at 12:21:06PM +0200, Andy Shevchenko wrote:
+> >>>> On Thu, Jan 26, 2023 at 10:41:47AM +0200, Tomi Valkeinen wrote:
+> >>>>> On 25/01/2023 17:27, Andy Shevchenko wrote:
+> > 
+> > ...
+> > 
+> >>>>>> But I probably don't understand the ATR structure and what exactly we need to
+> >>>>>> pass to it, perhaps it also can be replaced with properties (note, that we have
+> >>>>>> some interesting ones that called references, which is an alternative to DT
+> >>>>>> phandle).
+> >>>>>
+> >>>>> Well, maybe this needs a Linux bus implementation. I'm not that familiar
+> >>>>> with implementing a bus, but I think that would make it easier to share data
+> >>>>> between the deserializer and the serializer. A bus sounds a bit like an
+> >>>>> overkill for a 1-to-1 connection, used by a few drivers, but maybe it
+> >>>>> wouldn't be too much code.
+> >>>>
+> >>>> Have you looked at auxiliary bus (appeared a few releases ago in kernel)?
+> >>>
+> >>> As far as I understand, the auxiliary bus infrastructure is meant for
+> >>> use cases where a single hardware device needs to be split into multiple
+> >>> logical devices (as in struct device). Platform devices were
+> >>> historically (ab)used for this, and the auxiliary bus is meant as a
+> >>> cleaner solution. I'm not sure if it would be a good match here, or if
+> >>> it would be considered an abuse of the auxiliary bus API.
+> >>
+> >> The aux bus docs say "A key requirement for utilizing the auxiliary bus is
+> >> that there is no dependency on a physical bus, device, register accesses or
+> >> regmap support. These individual devices split from the core cannot live on
+> >> the platform bus as they are not physical devices that are controlled by
+> >> DT/ACPI.", which doesn't sound like a good fit.
+> > 
+> > Thanks for checking!
+> > 
+> >> The deserializer and serializers are currently independent devices and
+> >> drivers (the pdata is the only shared thing), but I think we may need
+> >> something better here. The devices are more tightly tied together than
+> >> "normal" video devices, in my opinion, as the serializer is fully controlled
+> >> by the deserializer (including power).
+> >>
+> >> And if we ever want to implement something like power management, we
+> >> probably need something more than what we have now. Although I don't know
+> >> how that would be done, as all the peripherals behind the serializer would
+> >> also lose power...
+> > 
+> > I believe you have to create a power domain for them and when such device
+> > is added, the power domain of it should belong to the serialized.
+> 
+> I was testing this, and got something working.
+
+As discussed offline, I'm not sure power domains are the right tool for
+this. I would model the power supplies as regulators, provided by the
+deserializer, and acquired by the serializers. If the devices on the
+remote side are all children of the serializer (which I think they
+should be), then enabling the regulator in the PM resume handler of the
+serializer should be all you need.
+
+> I have the deserializer introducing a separate power-domain for each RX 
+> port, and the serializer and the sensor both refer to their port's 
+> domain. I can see that the deserializer gets power on/off callbacks 
+> correctly when either serializer or sensor resumes.
+> 
+> The problem I have now is that while the power comes from the 
+> deserializer and is thus covered with the power domain, the sensor uses 
+> services from the serializer (gpios, clocks, i2c bus), and the 
+> serializer is not woken up when the sensor does runtime-pm resume (the 
+> power domain is powered up correctly when the sensor resumes).
+
+Is the sensor not a child of the serializer ?
+
+> The serializer creates the i2c adapter to which the sensor is added, so, 
+> afaics, there should be a child-parent relationship there. But maybe I 
+> have something wrong there, or it just doesn't work as I imagine it 
+> would work.
+
+You can check the parent/child relationships fairly easily in sysfs.
+
+-- 
+Regards,
+
+Laurent Pinchart
