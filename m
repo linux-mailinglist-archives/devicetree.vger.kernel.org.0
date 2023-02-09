@@ -2,100 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C5A69048D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:24:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67DA36904BC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:27:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbjBIKX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 05:23:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45460 "EHLO
+        id S229939AbjBIK1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 05:27:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjBIKX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:23:58 -0500
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6705DC35
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:23:56 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id x71so869398ybg.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:23:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ESBIV/kNJUNeYCMfLMjpk+d6xlstSirIwM474nZZD/0=;
-        b=VvSf7nsrTc1HWEqNg6MATvElyfdndYn0+jgpiSPmGNALuJ2YaX+mF3GB/ewxj4du63
-         QYjMg9xZjfdGGfYXEJauxvtHUoY+ohbFXPT1kDLMUdtQRav/86bqucl9bKzjAsldzBnq
-         EGumfKi+HVT8/8afw7Nz5WoNOA2vMT6V3YZ1kdLl2KbuI5hVDl6mJ24nMh8RHAckeE2N
-         HdLAL1lFLsG7Bju0uufjPwWNpOlz5vUVcdnOOV3mt+imkZMufdKt8VYuQz2jqLvGUPfG
-         d4/uChKWIB9oWeOxwMJE2OmYkV1FwuSWdWPXCME8aFd0foD/hv00k824AFxOWTu3l5QJ
-         gizw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ESBIV/kNJUNeYCMfLMjpk+d6xlstSirIwM474nZZD/0=;
-        b=XMqcX/9DKwySJ065FkwVUsrP8b1PHMtUGz8HsVD+xFmXc6SKFBTvctXD0VWyohpVrd
-         J+A4nPbVXWbTfkqcGHsmqFYwx/j+9JC70OvTl2XeuGwYrCSq14zxfmI4wXfzYypwSIfN
-         GB31M3PQaMcpTO3Odh7Zk9hms2u+sAmZ3PAwaPsZaEW5qbh7MzQnq9/TzSPmdbIHi5r2
-         J3YzEKzaE/YYt1lFldZL27a5o5cpqBlRF3lTZqssqMKbO+6qX9GVwQb+Ov9w6fIJKv/E
-         uPP0BzVNEkblxT4zSpuf1KkewXfAg25cYglsmzXl91Ku/R25FjZcLkGNzR8eeocrC2O7
-         MiwA==
-X-Gm-Message-State: AO0yUKUezucmBXtzUHR9Fbbp3BiN9NvN8R4JAvEYwITOTHukIqDGP0pJ
-        a+PUF0y9Yomwq7Z7u5q17JwRxYMab3Ptb45wGZSaAw==
-X-Google-Smtp-Source: AK7set+C4DcjTmcYWBgoWWJilkxDTiApY+tMJci86TbkIHE286R71lPvBSO/vStE0DPkyAJ6+h7YG1xPTY8D86Vb1XQ=
-X-Received: by 2002:a25:5d02:0:b0:889:f225:d942 with SMTP id
- r2-20020a255d02000000b00889f225d942mr30014ybb.518.1675938235680; Thu, 09 Feb
- 2023 02:23:55 -0800 (PST)
+        with ESMTP id S230172AbjBIK1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:27:35 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A59968132;
+        Thu,  9 Feb 2023 02:27:18 -0800 (PST)
+Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B7A0A66020BA;
+        Thu,  9 Feb 2023 10:26:38 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675938399;
+        bh=eHmPGXHNcPrTmMdQR0QDsjblTVBOeO8w5mDS6XIEA3U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=VuOEMjMfqMpDKVUM6/ks3zjKObkU0jXs2lXmRc3TeIVqVZeglz7WfHD4lD7cKTOg0
+         KAdg/X01ricApYBBMR6MxIGqM7pMDTxlY8hh2nCFXiPH/HHKzKRx1Iin1HBHZejmH1
+         v31bD+G2zX1AIsBZLvmUAAwhLWzbGC6P+YV5y/ow0V3MPbnCc/ha28N9egpUW0Ec4i
+         +SW3LTU8sIB/bHcjM4E4kpceaaK4R3lCJBm/o0W7UDky9z0gZsVl13lbydI1EWMfjF
+         3KHfJsH3WMBgvspGKYf/WmLmaLEDtC4qGM43ZeBDR4qFPYplxQQTR6QKXWNPJ9o1/P
+         PdMjR1aIdzZFw==
+Message-ID: <a6601fb7-284b-f51a-25a5-09b7733fd5f6@collabora.com>
+Date:   Thu, 9 Feb 2023 10:26:36 +0000
 MIME-Version: 1.0
-References: <20230127192139.299228-1-brgl@bgdev.pl> <167591660368.1230100.1469946170144348483.b4-ty@kernel.org>
-In-Reply-To: <167591660368.1230100.1469946170144348483.b4-ty@kernel.org>
-From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date:   Thu, 9 Feb 2023 11:23:44 +0100
-Message-ID: <CACMJSet=0TW2u5PNPZFmb3WNrjCxRDaozkS9KLaEcEwPp6zHeQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: firmware: qcom,scm: add qcom,scm-sa8775p compatible
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v4 4/4] ASoC: cs35l41: Document CS35l41 shared boost
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230209083726.1337150-1-lucas.tanure@collabora.com>
+ <20230209083726.1337150-5-lucas.tanure@collabora.com>
+ <9b20bdb2-64e0-4888-e8df-fdf1b021c445@linaro.org>
+Content-Language: en-US
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+In-Reply-To: <9b20bdb2-64e0-4888-e8df-fdf1b021c445@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Feb 2023 at 05:21, Bjorn Andersson <andersson@kernel.org> wrote:
->
-> On Fri, 27 Jan 2023 20:21:39 +0100, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add a compatible for the sa8775p platform's Secure Channel Manager
-> > firmware interface.
-> >
-> >
->
-> Applied, thanks!
->
-> [1/1] dt-bindings: firmware: qcom,scm: add qcom,scm-sa8775p compatible
->       commit: 27d71e8063d99b4429832bc52de171ace6b1e562
->
+On 09-02-2023 08:53, Krzysztof Kozlowski wrote:
+> On 09/02/2023 09:37, Lucas Tanure wrote:
+>> Describe the properties used for shared boost configuration.
+>> Based on David Rhodes shared boost patches.
+> 
+> No improvements in subject, I asked twice for it. What does the command,
+> I gave you, print?
+> 
+Should be
+ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
+
+ok?
+
+>>
+> With fixed subject:
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > Best regards,
-> --
-> Bjorn Andersson <andersson@kernel.org>
+> Krzysztof
+> 
 
-Bjorn,
-
-FYI I resent this patch as part of an integration series later[1] as
-per Krzysztof's suggestion. Could you pick the entire thing up too?
-
-Thanks!
-Bart
-
-[1] https://lore.kernel.org/linux-arm-msm/20230201152038.203387-1-brgl@bgdev.pl/
