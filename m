@@ -2,115 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD5769025F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F340690268
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:47:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjBIIot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 03:44:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55504 "EHLO
+        id S229745AbjBIIrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 03:47:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjBIIos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:44:48 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D22C2C666
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:44:47 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso3314544wmp.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:44:46 -0800 (PST)
+        with ESMTP id S229701AbjBIIrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:47:15 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BE922A21
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:47:14 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h16so968209wrz.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:47:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9PQYFfhPvS1XMnCTyI1izWMjlhb8SZHCdTPDA+HAHbo=;
-        b=ufEpAtAVV50RYl4U3ECphhrDbUAX8E6N8askj6fthLaplFh62WakNZiAwkmw5YzmuQ
-         sVa2rAmbxqHFS7dVxbSQK5rXoX0NsAuA1fS86f0itKqa0i9wXImYkXvqXYa/4NMWjUsY
-         QX0DM0VLOxIVPlMwO/KjNstaDGGEJIuwSDQQSMz5kP5PfkKfOyaZQn+Xd6L7cKC7CZP0
-         gO/fj3a4Iz5cmG3DCd4ZMBRYYqeHRrprNllY19e7Wpru2IKkT3Iz+ko4O1VmAez3ujkc
-         w8h7Khd6uua5+hfB0Ybh023KNqXSp49ENAjjGuv3Ummzmo7lRzjW3sa08k6ntqcAjLxG
-         luUw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gNxrYafZPgwkI9Zs1VddIiODgFm8O0UYgQsUcqELM8E=;
+        b=M/IqiT5bfF2H2m7rp+kNBZYDXUMi6g0BSid0W4hQ+sVsYfyCr4xv0e+OcKt3THpg3D
+         aeF8u4euFYL3Vk97qTsryho5y//inzGHfXQAX4JAWC+SuQp6RWlCU8Q4cv/Wbh5Z1Oix
+         cZ4e9/PjUR3lczRKICPz5erR6N2wsJi97x9OzBqGBaUBesUhBaRhpQL1dr32PqTQ9nNM
+         YJqIkY1rAuP5eWX6ONuFl4x1aI0gRrjoWWDA5KAai6JiiHN7h7tkYDnOpza8g1SFSyL2
+         CZT55WZ/OsGr8sNNh17AgaKt4e9YIC64hOrd7zwWMILXYJgGM2u8IPaSIVfYUErSPinS
+         F0yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9PQYFfhPvS1XMnCTyI1izWMjlhb8SZHCdTPDA+HAHbo=;
-        b=LD+faJY72v7oz4o/VkiF9yCc0LrGGB8ffUPMG253hynkaBU23VHU8f0ruR+p7Spggx
-         Tuh9QkEWJ3vaMdG/ZMlnhAMQiqv2gxeaJQqUgsa3D7DL3jkDZhXFtqRYKZwY8quUXg4O
-         LYa/U/piepuMWZTVQZCOXMLBiZhyn+YqHpLJn9Rr1IcHUgNLJxRN4gDcfsekt92Tnzw0
-         B9jzJZC2UwGyyFE1t2ap5S0Jrr2rcVBPwg9nmrVgI7tQ0rQFxqDPGkADdbho7yMFWm+D
-         lcM9n8+PfnPOwvAWdti6e6nOTNKdbbcXajsvfL/QcOqf/UZa/WxuJ+X32t5UDxoL6k6j
-         wTrA==
-X-Gm-Message-State: AO0yUKX5KDUyLi04/LviRePAGAetuIq7mYAW8cGUFN5sIE9eLKEjwj7f
-        wgrgkgM4x2KtJGfim4IONvT2Dg==
-X-Google-Smtp-Source: AK7set+sG7tpdWpQpa7p6C6ykijC1sZ0How8x7QFLJ1pZ/7zzL2u9Bflc96JeroZ0T6tjEq0h2YwDw==
-X-Received: by 2002:a05:600c:4b1d:b0:3de:3ee3:4f6f with SMTP id i29-20020a05600c4b1d00b003de3ee34f6fmr9514830wmp.8.1675932285607;
-        Thu, 09 Feb 2023 00:44:45 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id o19-20020a05600c379300b003b47b80cec3sm4146392wmr.42.2023.02.09.00.44.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 00:44:45 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 09 Feb 2023 09:44:43 +0100
-Subject: [PATCH] arm64: dts: qcom: sm8550: remove invalid interconnect
- property from cryptobam
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gNxrYafZPgwkI9Zs1VddIiODgFm8O0UYgQsUcqELM8E=;
+        b=v1Bpkx+1ZC4W/LS1e9XBk379enO6o9bcE8bUktlr2k0EezHN2HsuflCVpd7wUNUHUF
+         W/GKgnSTZ4yAIII6NtZ+pj6OxV59rY2SwI4/IZRVY+AdrrU7Csk9JiSyAhIFWazEzg7Y
+         7hoc7joUAZAJJAvu4ho1qhr8jLRnZ+KuuS1komgs3wNnggPT8bKKeIw5nOx3SMtT6cRc
+         ZQTpX0Mlnee0vLecJAno0tCxHt4GtqHIMWbBQpK3qNXtIsgwXzjHSb4RoYZbmJ6vfiNU
+         bLH2sf+XRfgnSHyoRyyfkd+SOoEJX/kQCIMOl+bsCNFgd08DBgq3dPD3iJabN41RwJLl
+         wMtA==
+X-Gm-Message-State: AO0yUKWLYmDUe+g+JYfi21kOuCpyR83F4SxRL98pIwNlWWi6JUnxWR1D
+        nlBPYZI/c1Ge1aRFp2/OJEbBXusblyregVyi
+X-Google-Smtp-Source: AK7set+CAKpxvDUCxsfDlhqJVlXOXj4uGBOiNFeNOcybsM4BZdQQKESjC9ggTPmEbdrpp99Z3EPGEw==
+X-Received: by 2002:adf:db88:0:b0:2bf:b92b:8a8a with SMTP id u8-20020adfdb88000000b002bfb92b8a8amr9410439wri.7.1675932432804;
+        Thu, 09 Feb 2023 00:47:12 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p3-20020adff203000000b002c3f6d7d5fesm682882wro.44.2023.02.09.00.47.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 00:47:12 -0800 (PST)
+Message-ID: <072724aa-2bf3-32a6-dee8-e74c74b01019@linaro.org>
+Date:   Thu, 9 Feb 2023 09:47:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car
+ Gen4 support
+Content-Language: en-US
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc:     Linux-DT <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+References: <87y1p7bpma.wl-kuninori.morimoto.gx@renesas.com>
+ <87v8kbbpl4.wl-kuninori.morimoto.gx@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <87v8kbbpl4.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230209-topic-sm8550-upstream-cryptobam-remove-interconnect-v1-1-84587c7bad0f@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAHuy5GMC/x2OwQrDIBBEfyV47oIxtTT9lZKDmm0jxFVWE1pC/
- r1Lb/MG5jGHqsgRq3p0h2LcY42ZBPpLp8Li6I0QZ2FltBm00SO0XGKAmu7WathKbYwuQeBvadl
- LYkx5lxU15JCJMDS4un62oze3wVklZu8qgmdHYRE3besqZWF8xc//ynM6zx/4Cx7NmgAAAA==
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The interconnect property is already present in the qce node, which
-is the consumer of the cryptobam, so no need for an interconnect property
-as documented by the bindings.
+On 09/02/2023 02:22, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> There are no compatible for "reg/reg-names" and "clock-name"
+> between previous R-Car series and R-Car Gen4.
+> 
+> "reg/reg-names" needs 3 categorize (for Gen1, for Gen2/Gen3, for Gen4),
+> therefore, use 3 if-then to avoid nested if-then-else.
+> 
+> Move "clock-name" property to under allOf to use if-then-else.
+> 
+> Link: https://lore.kernel.org/all/87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com/#r
+> Link: https://lore.kernel.org/all/87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com/#r
+> Link: https://lore.kernel.org/all/87r0v1t02h.wl-kuninori.morimoto.gx@renesas.com/#r
+> Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../bindings/sound/renesas,rsnd.yaml          | 80 +++++++++++++++----
+>  1 file changed, 65 insertions(+), 15 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 12ccf29338d9..5fd6435f4873 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -99,20 +99,6 @@ properties:
+>      minItems: 1
+>      maxItems: 31
+>  
+> -  clock-names:
+> -    description: List of necessary clock names.
+> -    minItems: 1
+> -    maxItems: 31
 
-Fixes: 433477c3bf0b ("arm64: dts: qcom: sm8550: add QCrypto nodes")
-Suggested-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-[1] https://lore.kernel.org/all/20230207-topic-sm8550-upstream-bam-dma-bindings-fix-v1-1-57dba71e8727@linaro.org/
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+No improvements here. Your argument that you need to remove it to
+customize is not correct.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 6ff135191ee0..206056890100 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1858,8 +1858,6 @@ cryptobam: dma-controller@1dc4000 {
- 			qcom,controlled-remotely;
- 			iommus = <&apps_smmu 0x480 0x0>,
- 				 <&apps_smmu 0x481 0x0>;
--			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
--			interconnect-names = "memory";
- 		};
- 
- 		crypto: crypto@1de0000 {
-
----
-base-commit: 49a8133221c71b935f36a7c340c0271c2a9ee2db
-change-id: 20230209-topic-sm8550-upstream-cryptobam-remove-interconnect-4a1d59b263a5
+https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
 
 Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+Krzysztof
 
