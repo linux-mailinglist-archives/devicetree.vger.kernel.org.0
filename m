@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B955690448
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:58:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B6C69044A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbjBIJ6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229685AbjBIJ6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 9 Feb 2023 04:58:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60116 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjBIJ57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:57:59 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2962D13D55
+        with ESMTP id S229615AbjBIJ6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:58:00 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1622193F6
         for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:57:58 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id bg5-20020a05600c3c8500b003e00c739ce4so1058776wmb.5
+Received: by mail-wm1-x336.google.com with SMTP id z13so1039881wmp.2
         for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:57:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sfV9Do/HdQcq0uCvQUoySDURgWgOboDw/UZwNSh/pAM=;
-        b=fSx63I84gOz9OPIxJw6+FADvwnIIRIyjvbWceLbEwIzlrgvMjqfe9MEm61vibCO1zO
-         mThigyA7VOoeAMZdqZteWUtdoDker/xSwP/d23xWlB+GACN1nsnZElYk/Em7g/Nwb4GX
-         QxSyjCBZk46NrajzwZII3P074OVe0p7Cc4k8sZEA2zT2ymo3E6Qy3BBzQW4yobfT1eOa
-         BUaNNAV0F+1Xa+na5S7A4ojplSzUOmJeRY7utxeMigfwUFxrsAremUQyWkml3akMmXD1
-         y23yO4nNh5v7bnFKnkW6Y725JL18oxzZ1q1eqmD8Lapn7LOC0vKqoPzl8uc+YGAKnX1K
-         QovA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lP3LW9NZPdbKneTPu60IP6N2yeUEfnsbaq/RO1FZGIU=;
+        b=exRlt/trCA1+LFWdH3XaKTDpX5mPO1nAW8DUS7pbKkAHiMiDhJEOJbeUse41DIuYtE
+         zQI8HNbKhv0eqGkvpDHctcmFFyDMbqI7waN+0mOnXOpPizQ2UwFvEDiI4uerraBAxm1E
+         2SuX0chT16/SwaAdQSJRmZIL4VADd7XR6bgqkH2Ms1Sx1r9JeEqvbwjR8hLAhiYf5ZgL
+         y/c3g+rl/D4p0Xz/HpcAr+s/0w7bgNUuyP4IaJtojS02hVo9pGsyRXeNSZnS6NUh5KAf
+         27wkExddO5neGul6ZcI4945hu8F/gu9NLmYdtaBrzcfyA6NN70HSKJUAy1A2uITcjSPH
+         e4Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sfV9Do/HdQcq0uCvQUoySDURgWgOboDw/UZwNSh/pAM=;
-        b=ND1pMbM3GrFe3qUF1osbq5ThkESJwh6vL5R8GWwVjnCrMSS6YgaTz+nTQNAsfeF5oG
-         xCe6ZZURS5RiKR1K8WDAQwZu4rl8YbM3haM7qIyVuQpC4kiQoWLZ5GJsFJ1pWfXMXffn
-         3nD4wGvDDlqGqCq/hYx56FpGILewCZqzQu9qzcoKHRwFZVFAKa80PnJ5Pu8sLyaARBhp
-         qMWT2gn06FwBD1c2E98zJCzL8bdJkxuwqKD10WjY/WqPMVYl0cl4bY4RFiXYhZy9yxTR
-         2k7C39UJ5lx8Tsv6aPIVF9/64inLddG9X7Hszt8k5CrbtAUgwEwR0HLVvZ3gZUZNk2BM
-         uK2w==
-X-Gm-Message-State: AO0yUKUPIcT8HsElxGsM1mtxlBlpayi4QURufWD6lmEHfr+1w1oYTqif
-        ySINJ7spnbdj+kAJG6XIklGUrg==
-X-Google-Smtp-Source: AK7set+qS3I9bog7FRrEMzV0+pxdlS90NpWG0myLi+/1qLIMC28to8WdM8qVVaZcgrCl9AQrTayQjw==
-X-Received: by 2002:a05:600c:1713:b0:3dc:5b88:e6dd with SMTP id c19-20020a05600c171300b003dc5b88e6ddmr10730501wmn.10.1675936676768;
-        Thu, 09 Feb 2023 01:57:56 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lP3LW9NZPdbKneTPu60IP6N2yeUEfnsbaq/RO1FZGIU=;
+        b=PbS1JpOsyiCXKM7VbRLPt5dFBT9Prxy32YeKDNF8Kw8CLZP9qyeLPcaULtcctAeFN7
+         DBFh5+ha0XPUgplWF4+oyWQHbOgVjHqDZ92KC4IGAvqs14BAPr88HwFrjkc9GK/n1ySK
+         sf42CEIt7BKfv8IT5NWIUl7b7UoX8LbhKcc4xqVQo4FOoh638ePPABzNCSj/N2KG3t4r
+         VpT8jhuTo29Z6Lb1yHX45x4B9bGyKAFchh4k/0EeYv7PZSTCGyBY/kDT3Xuf5QoCLjnp
+         Y/AnAROG0Vfvv9lNtg+Eu4piTsXTgh/oIIDC6Er96kAdpQZKKToPMCtkD1OndtSyuUa8
+         mFQg==
+X-Gm-Message-State: AO0yUKXWwfw4y1Y974gLjluDxIOk2l3z6LREYxtDDd2e+w9Mr6C28n7t
+        23EaUVjVwbsROkdngQ4OYdua5Q==
+X-Google-Smtp-Source: AK7set9lRbjY0oa2Wgr181VmopQdekxSfxjUOlUs9nH0779U2luC8H5QPcm6KynHC+fwuE7jZXpx5Q==
+X-Received: by 2002:a05:600c:4b1e:b0:3df:e549:da54 with SMTP id i30-20020a05600c4b1e00b003dfe549da54mr9627778wmp.17.1675936677614;
+        Thu, 09 Feb 2023 01:57:57 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:7e6e:bfb6:975d:225b])
-        by smtp.gmail.com with ESMTPSA id c63-20020a1c3542000000b003df14531724sm4628913wma.21.2023.02.09.01.57.55
+        by smtp.gmail.com with ESMTPSA id c63-20020a1c3542000000b003df14531724sm4628913wma.21.2023.02.09.01.57.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 01:57:56 -0800 (PST)
+        Thu, 09 Feb 2023 01:57:57 -0800 (PST)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,10 +58,12 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v2 0/3] arm: qcom: sa8775p: add socinfo support
-Date:   Thu,  9 Feb 2023 10:57:50 +0100
-Message-Id: <20230209095753.447347-1-brgl@bgdev.pl>
+Subject: [PATCH v2 1/3] soc: qcom: smem: update max processor count
+Date:   Thu,  9 Feb 2023 10:57:51 +0100
+Message-Id: <20230209095753.447347-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230209095753.447347-1-brgl@bgdev.pl>
+References: <20230209095753.447347-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,23 +77,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-This series adds support for qcom-socinfo for SA8775P SoCs.
+Update max processor count to reflect the number of co-processors on
+SA8775P SoCs.
 
-v1 -> v2:
-- fix ordering of socinfo defines
-- fix the commit subject line for patch 2/3
-- collect the Ack from Krzysztof
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ drivers/soc/qcom/smem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Bartosz Golaszewski (3):
-  soc: qcom: smem: update max processor count
-  dt-bindings: arm: qcom: add the SoC ID for SA8775P
-  soc: qcom: socinfo: add support for SA8775P
-
- drivers/soc/qcom/smem.c            | 2 +-
- drivers/soc/qcom/socinfo.c         | 1 +
- include/dt-bindings/arm/qcom,ids.h | 1 +
- 3 files changed, 3 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/soc/qcom/smem.c b/drivers/soc/qcom/smem.c
+index 4f163d62942c..7666b3425b7c 100644
+--- a/drivers/soc/qcom/smem.c
++++ b/drivers/soc/qcom/smem.c
+@@ -85,7 +85,7 @@
+ #define SMEM_GLOBAL_HOST	0xfffe
+ 
+ /* Max number of processors/hosts in a system */
+-#define SMEM_HOST_COUNT		15
++#define SMEM_HOST_COUNT		20
+ 
+ /**
+   * struct smem_proc_comm - proc_comm communication struct (legacy)
 -- 
 2.37.2
 
