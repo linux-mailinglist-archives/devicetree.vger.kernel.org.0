@@ -2,106 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7961691125
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48E65691172
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:37:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjBITTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 14:19:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
+        id S229552AbjBIThu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 14:37:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjBITTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:19:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59486BA9C;
-        Thu,  9 Feb 2023 11:18:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229525AbjBIThu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:37:50 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F642CC6F;
+        Thu,  9 Feb 2023 11:37:49 -0800 (PST)
+Received: from localhost (unknown [86.120.32.152])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D824AB82287;
-        Thu,  9 Feb 2023 19:18:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CE50C433D2;
-        Thu,  9 Feb 2023 19:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675970323;
-        bh=mDkzITMeQax7M/mdpkLZOTnU0VTywWzADEO1NFt7WtI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=I5qAoAZlJ9ktZK+svpS08bNObcipk6QOo528BUt0+E0F/IbWtNriGeVTjYWXmhIi8
-         xc9Q+c3W+39q0AnwG6PKz1lglgKQSdbOMz5x8L21aRTpLYqbmnn2AN9TYQ1f9dUHav
-         KUj2fgjx0OzhFJwCR0RjuYkFcExiWDXSfSlxEkFptutZ99LeA4ds9f28eHkdcEueCM
-         +RvxK5Wkk5mN5/y3nZgEyxHrE2vOGk/GE23D1c4qxvvAHw5gImOqMG04DkWMp9uedJ
-         zEhwd6gzST5oXrtSowKOb7KZyZGBaIQcWZ5AEmeeVlElZsMnsyOrbfHgmUE9djggEC
-         II+2tN3RKcm2A==
-From:   Mark Brown <broonie@kernel.org>
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E2F0766020CE;
+        Thu,  9 Feb 2023 19:37:47 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675971468;
+        bh=rhDtpmqy4aWizG8w41QdC/uCJpCIZ4JNM87GvHiVTm0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bWKmBIUWt8UglmQLQVTp2+M07vvVWXpqa77cjPwDR82g7g6wcWB6XtqnuMek7G/K1
+         tdcpQUNs/q9yz7JqzIBgNfylx3LEz3feeAuRiOTdJnTUfydqlt8DaeSaJrNafdNlzI
+         1M7+ZwM+zluWZ1Udm1yoO1Xp2Twl/VOSz6XbckbBRT8zLigfUBSKteuaE2zlT3UYPM
+         LQLjOlJ2Ztd1NnkFrGw4UPqW+nn3qghRVVzIaMMdgFE3piST6UsMoOh+/gm5bQcxRT
+         mVMquwQ+W7u8j8sHuVLdFUK6BEQomVR/tdSNkWLthxjN9QfmXefph/3o2UbV8UyHur
+         /Nbo3mG4B4+bQ==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-Cc:     Chuanhong Guo <gch981213@gmail.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        benliang.zhao@mediatek.com, bin.zhang@mediatek.com
-In-Reply-To: <20230201020921.26712-1-xiangsheng.hou@mediatek.com>
-References: <20230201020921.26712-1-xiangsheng.hou@mediatek.com>
-Subject: Re: [PATCH v6 0/5] Add MediaTek MT7986 SPI NAND support
-Message-Id: <167597032096.933619.6758508358414336782.b4-ty@kernel.org>
-Date:   Thu, 09 Feb 2023 19:18:40 +0000
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: [PATCH v2 1/1] dt-bindings: Fix multi pattern support in DT_SCHEMA_FILES
+Date:   Thu,  9 Feb 2023 21:37:35 +0200
+Message-Id: <20230209193735.795288-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Feb 2023 10:09:16 +0800, Xiangsheng Hou wrote:
-> This patch series split from bellow series which pick-up spi relevant patches
-> https://lore.kernel.org/all/20230130030656.12127-1-xiangsheng.hou@mediatek.com.
-> This series add MediaTek MT7986 SPI NAND controller support, add read latch
-> latency, smaple delay adjust and add optional nfi_hclk.
-> 
-> Changes since V5:
->  - Split spi relevant patches from previous series V4
-> 
-> [...]
+DT_SCHEMA_FILES used to allow specifying a space separated list of file
+paths, but the introduction of partial matches support broke this
+feature:
 
-Applied to
+$ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
+[...]
+  LINT    Documentation/devicetree/bindings
+usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [...]
+                [-v]
+                [FILE_OR_DIR ...]
+yamllint: error: one of the arguments FILE_OR_DIR - is required
+[...]
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Restore the lost functionality by preparing a grep filter that is able
+to handle multiple search patterns.
 
-Thanks!
+Additionally, as suggested by Rob, use ':' instead of ' ' as the
+patterns separator char. Hence, the command above becomes:
 
-[1/5] spi: mtk-snfi: Change default page format to setup default setting
-      commit: 2b1e19811a8ecc776d15da4ca89df48db6974d66
-[2/5] spi: mtk-snfi: Add optional nfi_hclk which is needed for MT7986
-      commit: e40fa328551dd67d14e5dc3e4ed82b5b770f027f
-[3/5] dt-bindings: spi: mtk-snfi: Add compatible for MT7986
-      commit: 8aa2ef233fa3b985ced1ed31b86fddddfd6be4b2
-[4/5] spi: mtk-snfi: Add snfi sample delay and read latency adjustment
-      commit: 1d36c99062bf4e809271cc534486342442508d4a
-[5/5] dt-bindings: spi: mtk-snfi: Add read latch latency property
-      commit: 351c02cb740472c659145b0027e77a3353e58185
+$ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml:path/to/schema2.yaml"
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Fixes: 309d955985ee ("dt-bindings: kbuild: Support partial matches with DT_SCHEMA_FILES")
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v2:
+ - Use ':' instead of ' ' as the patterns separator char, per Rob's review
+ - Drop empty line between Fixes and Signed-off-by tags
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+ Documentation/devicetree/bindings/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index bf2d8a8ced77..8b395893bd85 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -28,7 +28,7 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
+ find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
+ 		-name 'processed-schema*' \)
+ 
+-find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
++find_cmd = $(find_all_cmd) | grep -F -e "$(subst :," -e ",$(DT_SCHEMA_FILES))"
+ CHK_DT_DOCS := $(shell $(find_cmd))
+ 
+ quiet_cmd_yamllint = LINT    $(src)
+-- 
+2.39.1
 
