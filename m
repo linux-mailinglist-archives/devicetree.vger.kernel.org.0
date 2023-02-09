@@ -2,132 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5477691105
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:10:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D154D691110
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:14:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbjBITKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 14:10:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42754 "EHLO
+        id S229525AbjBITOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 14:14:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbjBITKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:10:15 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8841C66FAF
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 11:10:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229468AbjBITOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:14:34 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9580E8A58;
+        Thu,  9 Feb 2023 11:14:33 -0800 (PST)
+Received: from [192.168.1.90] (unknown [86.120.32.152])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 30F78B822D7
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 19:10:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1152EC433D2;
-        Thu,  9 Feb 2023 19:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675969798;
-        bh=D15Kq849woOVI1YLNhoXChEYCGgOX9FUI/uMUN08w9o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ixjIUr/4Aunsg+LKNcYh3mSpOoSfkqUSQNFRrqSzbrhQ0TqW58+KIWNRRrDvZp0ke
-         6xt+R4X9+q98VLEQcUqr1VpRie9hmfFANT+quUBv/2kZT48vCBYhBE6dbKp55tNU2I
-         EE0fK/T/C8loHbHKct78AeJo+kKK9OuEVnqRYLkhLux6sI4t5ar7Hd0nsBmD9zG3nd
-         9rDalPUVjgV1HrlGHPdwXySYm3lXIEcZThSR4GoJWP72nZCZ6AGA9GfvhnPLvgHDWY
-         fjjZdUEZgTXzLkVZiMAUnNDEhFSDlo2F3pXV3SQ+m/2BVhXiKdsjiICsPW0So+qbSB
-         jzk4eCB4452Sg==
-Date:   Thu, 9 Feb 2023 19:09:53 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Rob Herring ' <robh@kernel.org>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Conor Dooley ' <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 6/8] RISC-V: Use Zicboz in clear_page when available
-Message-ID: <Y+VFAUZ2smkKO0EZ@spud>
-References: <20230209152628.129914-1-ajones@ventanamicro.com>
- <20230209152628.129914-7-ajones@ventanamicro.com>
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B9E0966020CE;
+        Thu,  9 Feb 2023 19:14:31 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1675970072;
+        bh=UITjvKFtBFIU7eyLYMT0x/CRHRnXh/iOOdcpo4cUrSU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WDRmZuWu0I4VSCsTIMXaxccFxr6hRNpITjW4J28iumja2Z9s6UohwxVOCucXA42xP
+         EaidOjgHWCHjY3bD1CNw8Aut5Gvm/cN31Jy6nFoexWxEJi9itpi6qtj6vcFcWT9j7D
+         uvG7XTBYNvL4HXd2Hhm+zdLds4iURD5g/HXVfalvevn8psGwEhRxawpt6C84rvn73D
+         i/kPofmRAbmxFnqbXz6EkHKqKRKz4Q6a24CtWNwZLQUZoSU/7LJHlkBiwrIRP1magq
+         Lxy4bQ43lckeSF4I1jYMGc7PjjJDQ5OUaU4NYXMpEHwZXzqvm9dKSvgYfJko3OUOzl
+         N2svv6j0BU5qA==
+Message-ID: <10a16e9b-a796-9699-ca70-99eba7175e76@collabora.com>
+Date:   Thu, 9 Feb 2023 21:14:28 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="veppz8gDaqvg02hq"
-Content-Disposition: inline
-In-Reply-To: <20230209152628.129914-7-ajones@ventanamicro.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/1] dt-bindings: Fix multi pattern support in
+ DT_SCHEMA_FILES
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20230209002634.745163-1-cristian.ciocaltea@collabora.com>
+ <20230209185620.GA624026-robh@kernel.org>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230209185620.GA624026-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/9/23 20:56, Rob Herring wrote:
+> On Thu, Feb 09, 2023 at 02:26:34AM +0200, Cristian Ciocaltea wrote:
+>> DT_SCHEMA_FILES used to allow specifying a space separated list of file
+>> paths, but the introduction of partial matches support broke this
+>> feature:
+> 
+> That only happened to work by chance...
+> 
 
---veppz8gDaqvg02hq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah, I remember you mentioned that a while ago when I provided a 
+similar fix (96993a59f94d). I still find this useful, though..
 
-On Thu, Feb 09, 2023 at 04:26:26PM +0100, Andrew Jones wrote:
-> Using memset() to zero a 4K page takes 563 total instructions, where
-> 20 are branches. clear_page(), with Zicboz and a 64 byte block size,
-> takes 169 total instructions, where 4 are branches and 33 are nops.
-> Even though the block size is a variable, thanks to alternatives, we
-> can still implement a Duff device without having to do any preliminary
-> calculations. This is achieved by taking advantage of 'vendor_id'
-> being used as application-specific data for alternatives, enabling us
-> to stop patching / unrolling when 4K bytes have been zeroed (we would
-> loop and continue after 4K if the page size would be larger)
->=20
-> For 4K pages, unrolling 16 times allows block sizes of 64 and 128 to
-> only loop a few times and larger block sizes to not loop at all. Since
-> cbo.zero doesn't take an offset, we also need an 'add' after each
-> instruction, making the loop body 112 to 160 bytes. Hopefully this
-> is small enough to not cause icache misses.
->=20
-> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> $ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
+> 
+> Spaces are valid in filenames though we avoid them. Perhaps it would be
+> better to use ':'.
 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 74736b4f0624..42246bbfa532 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -280,6 +280,17 @@ void __init riscv_fill_hwcap(void)
->  #ifdef CONFIG_RISCV_ALTERNATIVE
->  static bool riscv_cpufeature_application_check(u32 feature, u16 data)
->  {
-> +	switch (feature) {
-> +	case RISCV_ISA_EXT_ZICBOZ:
-> +		/*
-> +		 * Zicboz alternative applications provide the maximum
+Agree, will handle this in v2.
 
-I like the comment, rather than this being some wizardry.
-I find the word "applications" to be a little unclear, perhaps, iff this
-series needs a respin, this would work better as "Users of the Zicboz
-alternative provide..." (or s/Users/Callers)?
+>> [...]
+>>    LINT    Documentation/devicetree/bindings
+>> usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [...]
+>>                  [-v]
+>>                  [FILE_OR_DIR ...]
+>> yamllint: error: one of the arguments FILE_OR_DIR - is required
+> 
+> I think this also happens if nothing matches.
+> 
+>> [...]
+>>
+>> Restore the lost functionality by preparing a grep filter that is able
+>> to handle multiple search patterns.
+>>
+>> Fixes: 309d955985ee ("dt-bindings: kbuild: Support partial matches with DT_SCHEMA_FILES")
+>>
+> 
+> Should be no blank line.
 
-> +		 * supported block size order, or zero when it doesn't
-> +		 * matter. If the current block size exceeds the maximum,
-> +		 * then the alternative cannot be applied.
-> +		 */
-> +		return data =3D=3D 0 || riscv_cboz_block_size <=3D (1U << data);
-> +	}
-> +
->  	return data =3D=3D 0;
->  }
+Thanks for noticing, that was unintentional.
 
---veppz8gDaqvg02hq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+VFAQAKCRB4tDGHoIJi
-0mviAP4rLh2m+MLdM3RrIndb+WmlOQSSSRoaFx36yjj37BnHaAD/dhvxfhFkKQ6r
-UZR4CNvcoA4Bf0uG3ag4YsqP3yI2iAw=
-=6AcS
------END PGP SIGNATURE-----
-
---veppz8gDaqvg02hq--
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>   Documentation/devicetree/bindings/Makefile | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+>> index bf2d8a8ced77..5475c25ae803 100644
+>> --- a/Documentation/devicetree/bindings/Makefile
+>> +++ b/Documentation/devicetree/bindings/Makefile
+>> @@ -28,7 +28,7 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
+>>   find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
+>>   		-name 'processed-schema*' \)
+>>   
+>> -find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
+>> +find_cmd = $(find_all_cmd) | grep -F -e "$(subst $() ," -e ",$(strip $(DT_SCHEMA_FILES)))"
+>>   CHK_DT_DOCS := $(shell $(find_cmd))
+>>   
+>>   quiet_cmd_yamllint = LINT    $(src)
+>> -- 
+>> 2.39.1
+>>
