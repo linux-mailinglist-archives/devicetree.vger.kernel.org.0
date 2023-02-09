@@ -2,134 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EEF5690943
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFAEA69094A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:51:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbjBIMtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 07:49:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
+        id S229780AbjBIMvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 07:51:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjBIMtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:49:00 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27595EA03;
-        Thu,  9 Feb 2023 04:48:59 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B58DE66020C1;
-        Thu,  9 Feb 2023 12:48:57 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675946938;
-        bh=WIeAtzp/L0JbuRqFiBgonx+z+AnLyNZgpaAp7pibERE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JW2RNBxz7CoiZuLvoGyrMCcIEQV0ybAtjZQSn6JgNbhoS5FUKoiSoe4nhhP0S27dz
-         0EU6s0JDCImnCpox9hqLOsXR1sJunGIbnDiD0QiBIY++rVOXlxinYdkiOW2TcZJL3T
-         0kduMSYiHv+9BVQPj31es1bOLypbx27GBdQZ2i3M1jh903LuM1iir0GlsjgrRl3c3b
-         mQ0g8Qs0eaPNrwQabXcYucwPLNB5j8KGqvA+4nheccQBj4+e0S/vb1jCYL1pRTTwkL
-         JLgd/KuJ2V6TViNkYe5BrTAfaUUA3tFpLW3A/Yh/JxNbI0GrhQOIy8jsL6wFfTx5yv
-         DxFgqzCqX3//A==
-Message-ID: <5c677b40-7bbd-5d69-9f9b-4879c8aeddf8@collabora.com>
-Date:   Thu, 9 Feb 2023 13:48:55 +0100
+        with ESMTP id S229589AbjBIMvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:51:52 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D741D92A
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:51:51 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id h4so1931327lja.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:51:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iRYps+Ma2Qqyq4fQTjr9b3fPUVRBD6fsZfpuH1A4tX8=;
+        b=XGvH++3FCk8W6dx2NRDYnbaEoBBeofbx5VgO0Gu8DITu5Jmmzj7c+ExPBXtarLXiju
+         kR+Svl6ZeOVtP0hhV5YLymJg0s0heXv4HQtgnkZfMMT0lEyQMEQ4qsm/tckVh32Vbm/T
+         7CC43LQPkxg4UQgUB6WGlZcc1+cGReHx5t6qBlSivY7E6pJ+V8FTyywwrKXI9GrxkYc3
+         6iaOf0wZ6ZsG5IkBbvQVwDuogdg8vLz+ITz3fS2UdE10oshfMzHUSlUOIx/Daq1HPyfX
+         iQJ882tLXxf85Vi7IDH/ztS1WJYHINQCNxwpZ/jlWDWmiYvxc9tKA5vesBe7X9eHwRvz
+         /EqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iRYps+Ma2Qqyq4fQTjr9b3fPUVRBD6fsZfpuH1A4tX8=;
+        b=r+0ClL4PqN8aSYo4USIaauFr9aO+e19Hr8tvJtx11AFXvQbsByzbydmHo7Q1c2o5wu
+         V/MA67ycrk0sM2vwGA66Qp8ACeWO49xapwDnqxOrhOb2A8qYzgnyn18AeLKnpN4QxUvq
+         kBsqKV8eq3RVJ9IEPhcyiaqTA7Q04AOoDit+8+4I1PD4xQ1ttlE6DyGhSQ8Dh3oh2G3R
+         6CF/zQruOCebKvAmBsPpqFFYOTYg7uQBjbtyh4yGgIKDk/08FgIyhszAf3SugUfOiqUn
+         CDxriHo7S754nxLwYN9G+dCDFyZ4MhWwgj/+9R2sD4eDsvp2Dm7g2tVT0vjMhl/jzl+P
+         MjTQ==
+X-Gm-Message-State: AO0yUKUTuOTczOvyeW6Fk+AyMLI/TGLcfu1iJoVJ6HeTnD7V8NzJabFJ
+        yC2VVRW3rqJ/rzMzP1vQN2h744paJ0WTt/wkRwI=
+X-Google-Smtp-Source: AK7set/XE1SNap4g0Dj2Hjnd2tly0EI3O+pxqsXwSemk4UFkVYZETNuYGvVg/9nGfDjb1YYz+vE2v0q08lPreSr5Tbo=
+X-Received: by 2002:a2e:141c:0:b0:293:2986:4981 with SMTP id
+ u28-20020a2e141c000000b0029329864981mr1018331ljd.99.1675947109468; Thu, 09
+ Feb 2023 04:51:49 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 10/12] remoteproc: mediatek: Handle MT8195 SCP core 1
- watchdog timeout
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230209074021.13936-1-tinghan.shen@mediatek.com>
- <20230209074021.13936-11-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230209074021.13936-11-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a2e:b5a1:0:0:0:0:0 with HTTP; Thu, 9 Feb 2023 04:51:48 -0800 (PST)
+Reply-To: loanoffer2323@gmail.com
+From:   Loan Offer <jp948888@gmail.com>
+Date:   Thu, 9 Feb 2023 04:51:48 -0800
+Message-ID: <CAG54AJeZvvrnhV8ML1ZJqs_kmEyLMVg4xcVOaXbfA0ZWu5wexQ@mail.gmail.com>
+Subject: LOAN ORFER
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,UNDISC_FREEM
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:241 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5503]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [loanoffer2323[at]gmail.com]
+        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [jp948888[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [jp948888[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/02/23 08:40, Tinghan Shen ha scritto:
-> The MT8195 SCP core 1 watchdog timeout needs to be handled in the
-> SCP core 0 IRQ handler because the MT8195 SCP core 1 watchdog timeout
-> IRQ is wired on the same IRQ entry for core 0 watchdog timeout.
-> MT8195 SCP has a watchdog status register to identify the watchdog
-> timeout source when IRQ triggered.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->   drivers/remoteproc/mtk_common.h |  4 ++++
->   drivers/remoteproc/mtk_scp.c    | 24 +++++++++++++++++++++++-
->   2 files changed, 27 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index e4ef97f2d3a1..ca2395b98d27 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -55,6 +55,10 @@
->   #define MT8192_CORE0_WDT_IRQ		0x10030
->   #define MT8192_CORE0_WDT_CFG		0x10034
->   
-> +#define MT8195_SYS_STATUS		0x4004
-> +#define MT8195_CORE0_WDT		BIT(16)
-> +#define MT8195_CORE1_WDT		BIT(17)
-> +
->   #define MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS		GENMASK(7, 4)
->   
->   #define MT8195_CPU1_SRAM_PD			0x1084
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index cfcb719ba50b..9fbbc4751433 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -222,6 +222,28 @@ static void mt8192_scp_irq_handler(struct mtk_scp *scp)
->   	}
->   }
->   
-> +static void mt8195_scp_irq_handler(struct mtk_scp *scp)
-
-Looking at the C1 interrupt handler, I don't see any WDT timeout handling, hence
-a question naturally arises:
-
-Would it ever be possible for *both* CORE0 and CORE1 WDT timeout to happen
-at the same time?
-
-Meaning that MT8195_SYS_STATUS has *both* CORE0_WDT and CORE1_WDT bits set when
-we reach this interrupt handler?
-In that case, the fix would be to just change....
-
-> +{
-> +	u32 scp_to_host;
-> +
-> +	scp_to_host = readl(scp->reg_base + MT8192_SCP2APMCU_IPC_SET);
-> +
-> +	if (scp_to_host & MT8192_SCP_IPC_INT_BIT) {
-> +		scp_ipi_handler(scp);
-> +	} else {
-> +		u32 reason = readl(scp->reg_base + MT8195_SYS_STATUS);
-> +
-> +		if (reason & MT8195_CORE1_WDT)
-> +			writel(1, scp->reg_base + MT8195_CORE1_WDT_IRQ);
-> +		else
-
-...the 'else' to another conditional :-)
-
-Regards,
-Angelo
+-- 
+LOAN OFFER.....
 
 
+                           I need a loan to start up a business, pay
+up debt, we  gives out loan at 2% interest rate and gives out any
+amount requested. Contact us now via this email below ............
+loanoffer2323@gmail.com
+
+ Whatsapp number +393297834184...
