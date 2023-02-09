@@ -2,98 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A975B690F3E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 668DC690F54
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:35:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230108AbjBIR3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 12:29:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54514 "EHLO
+        id S229677AbjBIRfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 12:35:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbjBIR3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:29:44 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF5825EA17;
-        Thu,  9 Feb 2023 09:29:34 -0800 (PST)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 3634620C8AF1; Thu,  9 Feb 2023 09:29:34 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3634620C8AF1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1675963774;
-        bh=emY42uIRumszqRhel26tyEAGXIFmQmbZSW8GjvPknrM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i6OIuT4iJOL2QQ9oIro7GVTIuckp0NeGkW1II0NYN0Bv1hKKLOoieA66qIRAA83Nq
-         4jOVBhOcZpVsImXwM/5b4SLkoli4jKP7RbJ8lFSJFbbSc835PFdkDjxPqRbeSo8zRp
-         HmQ4+VYw/cSNfAFKIvag0voeAdR0mTdx4/Cm1gJw=
-Date:   Thu, 9 Feb 2023 09:29:34 -0800
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        dphadke@linux.microsoft.com
-Subject: Re: [PATCH v5 2/5] Drivers: hv: allow non ACPI compilation for
- hv_is_hibernation_supported
-Message-ID: <20230209172934.GA1346@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1675944939-22631-1-git-send-email-ssengar@linux.microsoft.com>
- <1675944939-22631-3-git-send-email-ssengar@linux.microsoft.com>
- <CAL_JsqJisFuagtm_VyzTiMzRiB18z+ZX8j63+efTDLWNaccoOQ@mail.gmail.com>
+        with ESMTP id S229460AbjBIRfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:35:37 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744E04216;
+        Thu,  9 Feb 2023 09:35:36 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id bd6so2269727oib.6;
+        Thu, 09 Feb 2023 09:35:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uDg+0168zHr+2g1dStzDLeHsdA5LJsyBUjIXGQnr0Uw=;
+        b=gn+5FWReEXgPlJ6dbbq8/0iqe4/yRNcSND+zPnLnfWe98/E9hyWRMX7jGq6svzfL1P
+         QUSGG3OJArd6rVrrro+lqBOpVXPnEtYwvwHXjhrJcqyKjyYlon9Rn/hOGdU7CO5q3SHL
+         fzeYdCVCURQUNzI0MpW2JtEJxo6Jo0QtJR3O9SLYqEFmVg52JIgPzKPEQ/EbwOjx9nHj
+         IAlfbOOYVnQ+Z9IoTh0DFfasP/y1mVw1L6ZOrKXFjuU8kMhHjqoPLLHNH/WqEcfJHWCd
+         4498k3f/IpUKByS3wkRy3bAjgEHb+2Fd3i5qMgOwD82aULQLA6bqx6kbZg3U3gUcWtMu
+         WS3g==
+X-Gm-Message-State: AO0yUKWQeQggX2AM3eairXlGEOsOCVr4JVF8CG7fcwaPB+ZA9V0wK3rF
+        N20iiiAzlVoyVLOrgPD+7m+6DFp58g==
+X-Google-Smtp-Source: AK7set/+azMMFBXOEiuPtaHsvq8e3IvjnwMin5dScWkMDL2fWCaP2EyrZgGMmOcrSa3aOQo3MObWmw==
+X-Received: by 2002:a05:6808:7cf:b0:35b:ae91:db53 with SMTP id f15-20020a05680807cf00b0035bae91db53mr6067889oij.42.1675964135655;
+        Thu, 09 Feb 2023 09:35:35 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h7-20020a056808014700b0037d59e90a07sm502835oie.55.2023.02.09.09.35.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 09:35:35 -0800 (PST)
+Received: (nullmailer pid 543618 invoked by uid 1000);
+        Thu, 09 Feb 2023 17:35:34 -0000
+Date:   Thu, 9 Feb 2023 11:35:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tony Lindgren <tony@atomide.com>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        soc@kernel.org, Olof Johansson <olof@lixom.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: omap: add phytec pcm-049 som
+ and pcm-959 dev board
+Message-ID: <20230209173534.GA539622-robh@kernel.org>
+References: <20230209025525.148872-1-colin.foster@in-advantage.com>
+ <20230209025525.148872-2-colin.foster@in-advantage.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqJisFuagtm_VyzTiMzRiB18z+ZX8j63+efTDLWNaccoOQ@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230209025525.148872-2-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 09, 2023 at 09:17:45AM -0600, Rob Herring wrote:
-> On Thu, Feb 9, 2023 at 6:15 AM Saurabh Sengar
-> <ssengar@linux.microsoft.com> wrote:
-> >
-> > acpi_sleep_state_supported() currently is defined only when
-> > CONFIG_ACPI=y.  For future work to enable device tree builds, put this
-> > function under #ifdef CONFIG_ACPI.  Otherwise, return 'false' from
-> > hv_is_hibernation_supported() as Hyper-V guest configs using device
-> > tree don't support hibernation.
-> >
-> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> > Reviewed-by: Michael Kelley <mikelley@microsoft.com>
-> > ---
-> >  drivers/hv/hv_common.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
-> > index 52a6f89ccdbd..370ec20d1993 100644
-> > --- a/drivers/hv/hv_common.c
-> > +++ b/drivers/hv/hv_common.c
-> > @@ -234,7 +234,11 @@ EXPORT_SYMBOL_GPL(hv_setup_dma_ops);
-> >
-> >  bool hv_is_hibernation_supported(void)
-> >  {
-> > +#ifdef CONFIG_ACPI
-> >         return !hv_root_partition && acpi_sleep_state_supported(ACPI_STATE_S4);
+On Wed, Feb 08, 2023 at 06:55:24PM -0800, Colin Foster wrote:
+> Add documentation for additional OMAP SOMs and development platforms,
+> provided by Phytec as the PCM-049 SOM and the PCM-959 development kit.
 > 
-> Rework the acpi_bus.h header so that this is defined for !CONFIG_ACPI:
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 > 
-> static inline bool acpi_sleep_state_supported(u8 sleep_state) { return false; }
+> v2->v3
+>     * Add Krzysztof Acked
+> 
+> v1->v2
+>     * New patch
+> 
+> ---
+>  Documentation/devicetree/bindings/arm/omap/omap.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/omap/omap.txt b/Documentation/devicetree/bindings/arm/omap/omap.txt
+> index fa8b31660cad..0a28215dfa12 100644
+> --- a/Documentation/devicetree/bindings/arm/omap/omap.txt
+> +++ b/Documentation/devicetree/bindings/arm/omap/omap.txt
+> @@ -131,6 +131,9 @@ Boards (incomplete list of examples):
+>  - OMAP4 PandaBoard : Low cost community board
+>    compatible = "ti,omap4-panda", "ti,omap4430", "ti,omap4"
+>  
+> +- OMAP4 PCM-959 : Commercial dev kit with PCM-049 SOM
+> +  compatible = "phytec,pcm959", "phytec,pcm049", "ti,omap4460", "ti,omap4430", "ti,omap4";
 
-Sure,
-acpi_bus.h doesn't get included in case of !ACPI, I will put this in include/linux/acpi.h
+OMAP maintainers, if no one is going to convert all of omap.txt over to 
+schema, can we at least start an empty schema and add to it instead of 
+here...
 
-Regards,
-Saurabh
-
-> 
-> Then you don't need this change here. That or using IS_ENABLED() is
-> strongly preferred over #ifdefs.
-> 
-> Rob
+Rob
