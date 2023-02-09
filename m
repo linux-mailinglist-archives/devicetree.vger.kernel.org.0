@@ -2,213 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7E3A690D95
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 16:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B63E6690D98
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 16:51:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbjBIPvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 10:51:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38578 "EHLO
+        id S229910AbjBIPvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 10:51:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbjBIPvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 10:51:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F1F46AB;
-        Thu,  9 Feb 2023 07:50:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 97D41B821AD;
-        Thu,  9 Feb 2023 15:50:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 354A5C4339B;
-        Thu,  9 Feb 2023 15:50:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675957844;
-        bh=PcQb5EXD82ehWz/kUmq5dLcqukqM3Eq4OivEW2pmy74=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bzJEBupAE5+WdVZyemB3w+F9Auwh74W7EQ7cVSPzOkhKuP2jkd5ssEr7+ub6/EcQ3
-         sii9KrQMOz0O/6NBmSGupUYrX/AsitNsf3xisNi0AuPwpvHobONU/NNwwNwr3vnj37
-         EIx3EeYAZ1Nu4h0oyReDZHCeh/JBPZvhrc8zALmMFqf8//sSbne9Sngm62MDA2V/K+
-         5JC8NjU4kWyz5kkcQW/gom79FoTJ72/4vuNjD+NLgITmtQJoHRctwLoIKJ4mH/7nlk
-         Hf44zzGWbykNMTjLtn/m8qFESy0pN82ipSlG1+z5EtJ609mEpkRr91azTtTs2ZpXyp
-         hn5Cl+xAvbVHg==
-Received: by mail-vs1-f48.google.com with SMTP id x8so2578274vso.2;
-        Thu, 09 Feb 2023 07:50:44 -0800 (PST)
-X-Gm-Message-State: AO0yUKVlt5EcmFcHHlDbdIP0M2QCQbptCceJEUYQypo80gtmuRnxg6S+
-        oXrstfH7qrONDtJTf9mIwpoKGYqXmnma6nxOEw==
-X-Google-Smtp-Source: AK7set+0s6rlT6DBbfpKcXjPlPYn3BYpXG9+A9MtPsC+XYb7kIjGFKHEqP71x76XyAJ72BsrEE69YTO5o8atZ4nArM0=
-X-Received: by 2002:a67:cc1d:0:b0:3f3:5ce0:85ab with SMTP id
- q29-20020a67cc1d000000b003f35ce085abmr3199727vsl.26.1675957843111; Thu, 09
- Feb 2023 07:50:43 -0800 (PST)
+        with ESMTP id S231522AbjBIPvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 10:51:09 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E703656A2
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 07:50:53 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id o18so2235327wrj.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 07:50:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y41lQosy76/yd9ref3+nY9Q/B9QUKYofOTeSAFeUKd8=;
+        b=op7Ecgx+UGtYR0W7tsKb33AnkDioq7r+B763L2/dKL79TbMfnSRDVKtNNYl/Y5WHEg
+         yKoeCU8emBxORGaZE13irxCi8wrsKhfuoFvkfcJPqerIyLvvpgrs3/ShXiB8FBmLcmkl
+         KscxaMtFH43h2OPlKBvizUO30BAUgAWk8vc/qHLbqm7Y2xnaAwBdcE8TgWkyX0Jdwa7b
+         2+q1JQUwZWFoukHaWJeLypMORBLSL4VoZLDvJ+cs+/CrwAHY6u/tkiVZDdHBbkb1Y3GE
+         1hCOJPo8NrCPix003k2Fv2pyqDZkGFEIHkS1Zz4aOJ6nQyXL+OQiGbu1qf1BvTR5mLhb
+         dChA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y41lQosy76/yd9ref3+nY9Q/B9QUKYofOTeSAFeUKd8=;
+        b=m5PA6WGRclAx5Vy+JBo1FEGmunKwVKmvMDGG8KD6axRlYXoXtZQ+NWsT6Rwi+L980P
+         vgzBBrotxn0sOoAuIvuxWsVqtVEp9NByQoZXyqVJWIkeJdZBPMyb7HoMXvozaJzdArbI
+         PWq/d2vrRBCrhHPYDJi+/BBII1icm3DGz8DAJhU5PGGX/QSSIR2IkiMg9ZfhgCD3wcOK
+         5PRoQ//8a9P6YB8MWu3gjTY485JLw8Q53eegYHQGHZqpeRneaKcfY1lwimXOu/Nrn0B4
+         1cDyidbKQvSerxPdhxOTWRR4D5zFtWIaqtFp5OqrtkFtr3aQC2tCTdlC92d+Lraa9UhT
+         FW2g==
+X-Gm-Message-State: AO0yUKUbbyPhhLGXF8BZLL7U/NBccvuwi8qF2kRbcM1yOfMQkeJRXRx4
+        FusoBUVOp1+FFaotgwg8h6tjoQ==
+X-Google-Smtp-Source: AK7set+rlrXad6Dg6sDEUQG+buCHs3h5raoC/DQhwWKs+hgdPlWUZxs2FHzaC/cvLHJAmhjTmmmjqw==
+X-Received: by 2002:a05:6000:18cf:b0:2c4:8ea:bfd4 with SMTP id w15-20020a05600018cf00b002c408eabfd4mr3694049wrq.33.1675957851853;
+        Thu, 09 Feb 2023 07:50:51 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f13-20020a5d568d000000b002bfb8f829eesm1494122wrv.71.2023.02.09.07.50.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 07:50:51 -0800 (PST)
+Message-ID: <6edc8fcd-d6d3-916d-c2f4-a44b8485ab77@linaro.org>
+Date:   Thu, 9 Feb 2023 16:50:49 +0100
 MIME-Version: 1.0
-References: <1675944939-22631-1-git-send-email-ssengar@linux.microsoft.com> <1675944939-22631-6-git-send-email-ssengar@linux.microsoft.com>
-In-Reply-To: <1675944939-22631-6-git-send-email-ssengar@linux.microsoft.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 9 Feb 2023 09:50:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK0WgWm-mG=fYyDVAi4uhL+fM0OD7KEF+xYYOOGNX8-oQ@mail.gmail.com>
-Message-ID: <CAL_JsqK0WgWm-mG=fYyDVAi4uhL+fM0OD7KEF+xYYOOGNX8-oQ@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] Driver: VMBus: Add device tree support
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
-        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        virtualization@lists.linux-foundation.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] pinctrl: at91: adding new macros
+Content-Language: en-US
+To:     Ryan.Wanner@microchip.com, ludovic.desroches@microchip.com,
+        linus.walleij@linaro.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, claudiu.beznea@microchip.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        dphadke@linux.microsoft.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        manikandan.M@microchip.com
+References: <20230209154544.535136-1-Ryan.Wanner@microchip.com>
+ <20230209154544.535136-3-Ryan.Wanner@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230209154544.535136-3-Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 9, 2023 at 6:15 AM Saurabh Sengar
-<ssengar@linux.microsoft.com> wrote:
->
-> Update the driver to support device tree boot as well along with ACPI.
+On 09/02/2023 16:45, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Devicetree
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-> At present the device tree parsing only provides the mmio region info
-
-Devicetree
-
-And anywhere else.
-
-> and is not the exact copy of ACPI parsing. This is sufficient to cater
-> all the current device tree usecases for VMBus.
->
-> Currently device tree is supported only for x86 systems.
->
-> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> 
+> Adding macros for sama7g drive strength.
+> 
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
-> - Removed #else for device tree parsing code. This should help better
->   test coverage.
-> - Fix macro '__maybe_unused' warning
-> - Added below options in Kconfig to enable device tree options for HYPERV
->         select OF if !ACPI
->         select OF_EARLY_FLATTREE if !ACPI
->
->  drivers/hv/Kconfig     |  6 +++--
->  drivers/hv/vmbus_drv.c | 60 ++++++++++++++++++++++++++++++++++++++++--
->  2 files changed, 62 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
-> index 0747a8f1fcee..1a55bf32d195 100644
-> --- a/drivers/hv/Kconfig
-> +++ b/drivers/hv/Kconfig
-> @@ -4,11 +4,13 @@ menu "Microsoft Hyper-V guest support"
->
->  config HYPERV
->         tristate "Microsoft Hyper-V client drivers"
-> -       depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-> -               || (ARM64 && !CPU_BIG_ENDIAN))
-> +       depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-> +               || (ACPI && ARM64 && !CPU_BIG_ENDIAN)
->         select PARAVIRT
->         select X86_HV_CALLBACK_VECTOR if X86
->         select VMAP_PFN
-> +       select OF if !ACPI
-> +       select OF_EARLY_FLATTREE if !ACPI
->         help
->           Select this option to run Linux as a Hyper-V client operating
->           system.
-> diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
-> index 73497157a23a..02f6bab61c37 100644
-> --- a/drivers/hv/vmbus_drv.c
-> +++ b/drivers/hv/vmbus_drv.c
-> @@ -20,6 +20,7 @@
->  #include <linux/completion.h>
->  #include <linux/hyperv.h>
->  #include <linux/kernel_stat.h>
-> +#include <linux/of_address.h>
->  #include <linux/clockchips.h>
->  #include <linux/cpu.h>
->  #include <linux/sched/isolation.h>
-> @@ -2152,7 +2153,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
->         device_unregister(&device_obj->device);
->  }
->
-> -
-> +#ifdef CONFIG_ACPI
->  /*
->   * VMBUS is an acpi enumerated device. Get the information we
->   * need from DSDT.
-> @@ -2262,6 +2263,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
->
->         return AE_OK;
->  }
-> +#endif
->
->  static void vmbus_mmio_remove(void)
->  {
-> @@ -2282,7 +2284,7 @@ static void vmbus_mmio_remove(void)
->         }
->  }
->
-> -static void vmbus_reserve_fb(void)
-> +static void __maybe_unused vmbus_reserve_fb(void)
->  {
->         resource_size_t start = 0, size;
->         struct pci_dev *pdev;
-> @@ -2442,6 +2444,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
->  }
->  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
->
-> +#ifdef CONFIG_ACPI
->  static int vmbus_acpi_add(struct platform_device *pdev)
->  {
->         acpi_status result;
-> @@ -2494,10 +2497,50 @@ static int vmbus_acpi_add(struct platform_device *pdev)
->                 vmbus_mmio_remove();
->         return ret_val;
->  }
-> +#endif
-> +
-> +static int vmbus_device_add(struct platform_device *pdev)
-> +{
-> +       struct resource **cur_res = &hyperv_mmio;
-> +       struct of_range range;
-> +       struct of_range_parser parser;
-> +       struct device_node *np;
-> +       int ret = 0;
+>  include/dt-bindings/pinctrl/at91.h | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/pinctrl/at91.h b/include/dt-bindings/pinctrl/at91.h
+> index e8e117306b1b..fd0a389b2a0f 100644
+> --- a/include/dt-bindings/pinctrl/at91.h
+> +++ b/include/dt-bindings/pinctrl/at91.h
+> @@ -42,8 +42,14 @@
+>  #define AT91_PERIPH_C		3
+>  #define AT91_PERIPH_D		4
+>  
+> -#define ATMEL_PIO_DRVSTR_LO	1
 
-No need to initialize.
+That's an ABI break, so no. You need to keep it.
 
-> +
-> +       hv_dev = &pdev->dev;
-> +       np = pdev->dev.of_node;
+> +#define ATMEL_PIO_DRVSTR_LO_0	0
+> +#define ATMEL_PIO_DRVSTR_LO_1	1
+>  #define ATMEL_PIO_DRVSTR_ME	2
+>  #define ATMEL_PIO_DRVSTR_HI	3
+>  
+> +#define ATMEL_PIO_DRVSTR_LO_D 0
+> +#define ATMEL_PIO_DRVSTR_HI_A 1
+> +#define ATMEL_PIO_DRVSTR_LO_C 2
+> +#define ATMEL_PIO_DRVSTR_LO_B 3
 
-Set this on the declaration.
+Explanation for all of these would be useful, it's a bit of cryptic.
 
-> +
-> +       ret = of_range_parser_init(&parser, np);
-> +       if (ret) {
-> +               dev_err(hv_dev, "Failed to parse resources.\n");
 
-If a print is needed, put it in of_range_parser_init().
+Best regards,
+Krzysztof
 
-> +               return ret;
-> +       }
-> +
-> +       for_each_of_range(&parser, &range) {
-> +               struct resource *res;
-> +
-> +               res = kzalloc(sizeof(*res), GFP_ATOMIC);
-> +               if (!res)
-> +                       return -ENOMEM;
-> +
-> +               res->name = "hyperv mmio";
-> +               res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
-> +               res->start = range.pci_addr;
-
-This is not PCI. It's a union, so use 'bus_addr' instead.
-
-But wait, resources and IORESOURCE_MEM are *CPU* addresses. You need
-cpu_addr here. Your DT happens to do 1:1 addresses so it happens to
-work either way.
-
-Rob
