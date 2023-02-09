@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0F2690A9A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D46F1690A9C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:41:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230301AbjBINlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 08:41:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
+        id S229589AbjBINlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 08:41:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbjBINlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:41:45 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38FC4740A
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 05:41:41 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id r18so1439617wmq.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 05:41:41 -0800 (PST)
+        with ESMTP id S230295AbjBINlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:41:46 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80255BA52
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 05:41:42 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id r18so1439661wmq.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 05:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CU99A3qAz7AXXrQplpT1MuuDMQU9ldkAjGA2AqUf0T0=;
-        b=ImlKFUeQ2taGX0SvIp26PSGxKa3dwwl1tmuZ5M06ujHzWh3hl3rd60sY83lv+qCenI
-         0qSza1Y/OBLJB+j9fCJpRl32j0bK+sa8GFPagG81MyG0fN7r5iK+CVleCcV/URfEAB0f
-         AVa9JouaiSTi2Viojvw8h2p3FFt9reL9nJzooThQQbCy5F9Awhulg9YjFhRrCKOAIc7y
-         WqVkmKaX9fAxus7LCSrQlMrSF0mzvcuZ8TPCMbhx4G6LEjg8VmfnyCbGQChwu2/Td8uQ
-         CXAgnnxdZ6xPgXTbLqTnea8RHfK0GHRaB/iw/beQkRv2WbIFDVj/qXFiSehgBSb+GDJQ
-         h61g==
+        bh=RGW2oT94HK6ngpZmBKHolnNTHtBBlnG2dCVlzG6CWeE=;
+        b=Qledw9xPLq/PvO+4IvdhHggxZshP/QGS+twZn4DOnVjLBXRpws8wY3UzjQhwfiMu79
+         JWq3NT4amqXdro2bvg24B6Cf+b6Iijvzbmdy61S/HZdaYpP/89NIBjQ3bX3A0t0P71Bs
+         MJ2R49zCyJBkDiASjvFg7g4WVnjFqH3VBZ92ljgajD5R4dLyMCL/IfAzBgYD+ycYRxm6
+         exNEAZVJiFPPoylgypSxcFv6sZY2pp+xVqoIFD4G2NFwy9py+nbEaCv6M+YcH0TAAwGF
+         WLRviEUCziru4V1XyMKO13ycJ6cRFj1nyzRlIN/PBD5QGmtofk2kmwIS8PGyJIsebDOr
+         q9Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CU99A3qAz7AXXrQplpT1MuuDMQU9ldkAjGA2AqUf0T0=;
-        b=Po394km2SP/Dc0K5LY6yn8d9i1wzZQA1Ovzx5iBjB/DXzCYQI6q3nTVWnsCE+2x6v5
-         Bn9J7BiPkpw9NrWe6/hhxm3utZOPMKJT16vyxcF777BNT4TqatInfB9/r/dE16aUirU8
-         Np0G67Alpg0yM0UYu6ZVMBFOnzxIN+bQzmwCUfsxyfU5DYLKFgKDcAyyShxy0apSeTBU
-         CprGAKDQZWZqwn8uZUS3AjNxmf98uJ1EsyzROr2MyzDGSiagEEjyJBo8Mb/69YpJ81q9
-         +GF0amYgF7XGTdY9KfnY3uQ7S/bxbQrV2RfdILjTBN3RyymiDNF6fdu7WFOYTB2hnFI3
-         WfcA==
-X-Gm-Message-State: AO0yUKVyOunNtAAR7TxtRfajTkdVOWPTpIrEffbC08R3Yv2scsT+9C8z
-        3wQdtFE2dX49EbZo288UFYch8A==
-X-Google-Smtp-Source: AK7set9KbStsFCWSuek/BkTuzJIPXd3DaYisd2ak/58gga5zQlIerOgkiYECAD2ikHl+dqpxsBFq8g==
-X-Received: by 2002:a05:600c:2e94:b0:3df:e46f:c226 with SMTP id p20-20020a05600c2e9400b003dfe46fc226mr9731856wmn.16.1675950100407;
-        Thu, 09 Feb 2023 05:41:40 -0800 (PST)
+        bh=RGW2oT94HK6ngpZmBKHolnNTHtBBlnG2dCVlzG6CWeE=;
+        b=jgx7VvGtDv57Hu2m1E7tmc3/GU/QaRi2v+QtrQ7A6qiNoa1UC6VHw52CYh9t/ZX3l/
+         bkRT9EWaf/ppao/QAGc8XV4I3hKAN7NYpR5L3YCAltJlOXQR2jJRAAJyrmLvkqD9NJ92
+         rJT5vRyQO6ZOXGYXTk0FJlFUNhAgjUzqR7d7RMskGOrF9iH6UF6o0vzA2FtRKpA06idi
+         dUx5yhaCUwpVIbDixXSNTEwIvFIR0mammF9xPs9AqPupX1y8oRq3t4Hu6iYrwl4EBxWj
+         Suz3omyvxduP5m+Z6G/uPP2ro5b2uX8AlrvR6AaxKXtBHKvKo4xpXjKiOHQOuK56FRJ/
+         huZQ==
+X-Gm-Message-State: AO0yUKWKdToQN9aDScc3Rhi9azorf78dNhEbZuOcwq5/ueZbc0a32PRa
+        qiYbpgDtJXy+16ggFLqQLvO/9Q==
+X-Google-Smtp-Source: AK7set8tF+m+2BDy4Jqj9n4mBkHnqUS7RpYgJU7ApYsJuiqWKroRaqouDy7YBCcw28uEE1HvKDcWAQ==
+X-Received: by 2002:a05:600c:3416:b0:3df:50eb:7ca6 with SMTP id y22-20020a05600c341600b003df50eb7ca6mr10258428wmp.15.1675950101385;
+        Thu, 09 Feb 2023 05:41:41 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k12-20020a7bc40c000000b003dfe549da4fsm4946991wmi.18.2023.02.09.05.41.39
+        by smtp.gmail.com with ESMTPSA id k12-20020a7bc40c000000b003dfe549da4fsm4946991wmi.18.2023.02.09.05.41.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 05:41:39 -0800 (PST)
+        Thu, 09 Feb 2023 05:41:41 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 09 Feb 2023 14:41:37 +0100
-Subject: [PATCH 1/6] dt-bindings: rtc: convert rtc-meson-vrtc.txt to
+Date:   Thu, 09 Feb 2023 14:41:38 +0100
+Subject: [PATCH 2/6] dt-bindings: soc: amlogic: convert clk-measure.txt to
  dt-schema
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230209-b4-amlogic-bindings-convert-take2-v1-1-c4fe9049def9@linaro.org>
+Message-Id: <20230209-b4-amlogic-bindings-convert-take2-v1-2-c4fe9049def9@linaro.org>
 References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
 In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
 To:     Alessandro Zummo <a.zummo@towertech.it>,
@@ -84,46 +84,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Amlogic Virtual RTC bindings to dt-schema.
+Convert the Amlogic Internal Clock Measurer bindings to dt-schema.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/rtc/amlogic,meson-vrtc.yaml           | 42 ++++++++++++++++++++++
- .../devicetree/bindings/rtc/rtc-meson-vrtc.txt     | 22 ------------
- 2 files changed, 42 insertions(+), 22 deletions(-)
+ .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  | 40 ++++++++++++++++++++++
+ .../bindings/soc/amlogic/clk-measure.txt           | 21 ------------
+ 2 files changed, 40 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
 new file mode 100644
-index 000000000000..1d5694c08965
+index 000000000000..77c281153010
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
-@@ -0,0 +1,42 @@
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+@@ -0,0 +1,40 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/rtc/amlogic,meson-vrtc.yaml#
++$id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-clk-measure.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Virtual RTC (VRTC)
++title: Amlogic Internal Clock Measurer
++
++description:
++  The Amlogic SoCs contains an IP to measure the internal clocks.
++  The precision is multiple of MHz, useful to debug the clock states.
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
 +
-+description:
-+  The interface is 1 register where an alarm time (in seconds) is to be written.
-+
-+  The alarm register is a simple scratch register shared between the
-+  application processors (AP) and the secure co-processor (SCP).
-+  When the AP suspends, the SCP will use the value of this register to
-+  program an always-on timer before going sleep. When the timer expires,
-+  the SCP will wake up and will then wake the AP.
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
 +properties:
 +  compatible:
-+    const: amlogic,meson-vrtc
++    enum:
++      - amlogic,meson-gx-clk-measure
++      - amlogic,meson8-clk-measure
++      - amlogic,meson8b-clk-measure
++      - amlogic,meson-axg-clk-measure
++      - amlogic,meson-g12a-clk-measure
++      - amlogic,meson-sm1-clk-measure
 +
 +  reg:
 +    maxItems: 1
@@ -136,37 +134,36 @@ index 000000000000..1d5694c08965
 +
 +examples:
 +  - |
-+    vrtc: rtc@a8 {
-+        compatible = "amlogic,meson-vrtc";
-+        reg = <0x000a8 0x4>;
++    clock-measure@8758 {
++        compatible = "amlogic,meson-gx-clk-measure";
++        reg = <0x8758 0x10>;
 +    };
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-meson-vrtc.txt b/Documentation/devicetree/bindings/rtc/rtc-meson-vrtc.txt
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
 deleted file mode 100644
-index c014f54a9853..000000000000
---- a/Documentation/devicetree/bindings/rtc/rtc-meson-vrtc.txt
+index 3dd563cec794..000000000000
+--- a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
 +++ /dev/null
-@@ -1,22 +0,0 @@
--* Amlogic Virtual RTC (VRTC)
+@@ -1,21 +0,0 @@
+-Amlogic Internal Clock Measurer
+-===============================
 -
--This is a Linux interface to an RTC managed by firmware, hence it's
--virtual from a Linux perspective.  The interface is 1 register where
--an alarm time (in seconds) is to be written.
+-The Amlogic SoCs contains an IP to measure the internal clocks.
+-The precision is multiple of MHz, useful to debug the clock states.
 -
 -Required properties:
--- compatible: should be "amlogic,meson-vrtc"
--- reg: physical address for the alarm register
--
--The alarm register is a simple scratch register shared between the
--application processors (AP) and the secure co-processor (SCP.)  When
--the AP suspends, the SCP will use the value of this register to
--program an always-on timer before going sleep. When the timer expires,
--the SCP will wake up and will then wake the AP.
+-- compatible: Shall contain one of the following :
+-			"amlogic,meson-gx-clk-measure" for GX SoCs
+-			"amlogic,meson8-clk-measure" for Meson8 SoCs
+-			"amlogic,meson8b-clk-measure" for Meson8b SoCs
+-			"amlogic,meson-axg-clk-measure" for AXG SoCs
+-			"amlogic,meson-g12a-clk-measure" for G12a SoCs
+-			"amlogic,meson-sm1-clk-measure" for SM1 SoCs
+-- reg: base address and size of the Clock Measurer register space.
 -
 -Example:
--
--	vrtc: rtc@0a8 {
--		compatible = "amlogic,meson-vrtc";
--		reg = <0x0 0x000a8 0x0 0x4>;
+-	clock-measure@8758 {
+-		compatible = "amlogic,meson-gx-clk-measure";
+-		reg = <0x0 0x8758 0x0 0x10>;
 -	};
 
 -- 
