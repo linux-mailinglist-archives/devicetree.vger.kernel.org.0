@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 369DD690FA0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDDAF690FA2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 18:56:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbjBIRzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 12:55:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42550 "EHLO
+        id S229640AbjBIR4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 12:56:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbjBIRzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:55:18 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D10BA611D3
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 09:54:28 -0800 (PST)
+        with ESMTP id S229853AbjBIR4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 12:56:07 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B545CBCC
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 09:55:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1675965267;
+        s=mimecast20190719; t=1675965318;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=iWmHhHrlFcrfX0liIBaTbm4WQumXe+aAPuhg0kV7U5w=;
-        b=BjDMvBX0kBy/PpS/DRXLX/Z554bGFqq86nNNtT7dNederou9EUAlhBM7wmVsOIo00+BiuK
-        dxH7aN03najbtw53jhJGUiHx6LNMBDE4yohz81YBzDEdkMY1EXJKL98ZAugY6i3+IxK476
-        S+dukXVzkGa/D9OZCaslIuARC67OIXQ=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=cfSndtfzj6buNB/Mqo3dLMDWEWOsRwTKIh0xVw3PscQ=;
+        b=b83b5LuR7rtTIpMLI/9P6m/cUs4Pdlx+pynw76+l5kJvoQ/Ja+/DLaebno0eeX8OeHnV2p
+        qVXBuG920+H54crC3NQFissCwhI89mvACUK8xJFM8FlhFlFQ+nwSZ7k1pvoF9MTOSblHu6
+        ytzPwjedyn5KxXsZwzokV3FW2kcJZvI=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-582-88LndIgnNMGjFd3ItyOv8A-1; Thu, 09 Feb 2023 12:54:26 -0500
-X-MC-Unique: 88LndIgnNMGjFd3ItyOv8A-1
-Received: by mail-qt1-f199.google.com with SMTP id c14-20020ac87d8e000000b003ba2d72f98aso1526775qtd.10
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 09:54:26 -0800 (PST)
+ us-mta-113-liiGGxeJOtClTqC7LnHrqw-1; Thu, 09 Feb 2023 12:55:17 -0500
+X-MC-Unique: liiGGxeJOtClTqC7LnHrqw-1
+Received: by mail-qv1-f71.google.com with SMTP id ec11-20020ad44e6b000000b0056c2005684aso1657360qvb.23
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 09:55:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iWmHhHrlFcrfX0liIBaTbm4WQumXe+aAPuhg0kV7U5w=;
-        b=3SvXFY9q+dOJsYuo+NQES+2QxxhUXVvFGn/1xKRHEaR+wAztm04EEMo4fQszrmG8Yz
-         /B+L6yR6ncOKHZDr1v1q7VqoYueYVXwoOhbw/8mGlLZOVHrh60Ito4GObx8SGmz+WDMv
-         aqpGWqMap7Qa2bx3ZWNLKfpYq5uPjkP1YgF36hJARt9iZWHSqiA1609X8RlF628w81F8
-         DhrVJudJ6V/boD+to9XMTR2EXPlzlU7KgQ55jPpIcks8PxFMGIjZyJ5a3OyRMgi9nb+i
-         P3aV8yYT3S6Xqh8aHGGshpwTdJqhQcbsk5tiWlA3D4cgHKZgP06oru9KS2OHDGGXubFt
-         pkAw==
-X-Gm-Message-State: AO0yUKWZlRMLR+N/t77nJ0VYHiL47aunprSiFy9B/YFVZ0grWRD8Xyry
-        quBURlB+41Ir/ZcKseaVKShVDvyTuRG4GKFPCyBPu+1O8N1kzLCr3rwBcJKBDe9dzmg8fNSfe+G
-        edV2NBrajP/dYcWuk4kx73g==
-X-Received: by 2002:a05:622a:15d6:b0:3b8:2602:9a35 with SMTP id d22-20020a05622a15d600b003b826029a35mr16919028qty.52.1675965266417;
-        Thu, 09 Feb 2023 09:54:26 -0800 (PST)
-X-Google-Smtp-Source: AK7set/+rx+Cayi7SmGL5gCWRNZyS33BKhGJK4OJ/W0EcrerxiGF4DtqkTA46DnNUHBs/xStt+uzcg==
-X-Received: by 2002:a05:622a:15d6:b0:3b8:2602:9a35 with SMTP id d22-20020a05622a15d600b003b826029a35mr16919012qty.52.1675965266216;
-        Thu, 09 Feb 2023 09:54:26 -0800 (PST)
+        bh=cfSndtfzj6buNB/Mqo3dLMDWEWOsRwTKIh0xVw3PscQ=;
+        b=y1RrQknJlZkiDyHi5ZtxCOgd9qgsWnwB+efqETggM6kzYVrSrDwdlZiNyt29Ix7CpZ
+         25/ev6NMt8mMPtAQ0062VQMx4g3O1Rt6NtW0/x1/bTyvK7IPm2+DRSIeQ/hRZbcKX6q6
+         jQwo6Tl2QeoZNzICIoxzLq38Gut9o+9QH4CJgZ6DTB+lVf4s6BGkN+ZOh3lU/ftaQBp4
+         sAQ/i8iKhTRdTybOzO6rxnKzrUw8HHAV3GRs+H8Hffz+h4O+4T8OvAITX2Jz3FWyVTzh
+         MxC1tgdUr5/yua6aix0U49710iCm7G6oHO+Ha7mYmCg4b1wbdGiEahfaequldxAVo8fw
+         TG4g==
+X-Gm-Message-State: AO0yUKWgTe1hkhxZQManZDmNW+7H1/rQJybfGvomcU+1rKba1/xB3GET
+        CKTKagyNyewy55kpmk1PywOo6at4nGcn1j/5i0gFa76A3shVCQAKexl5/4kwApLxDsOqVVRWq00
+        iEbCdBrlhU7ph/Xcm4+09LA==
+X-Received: by 2002:a05:6214:519e:b0:53d:ab5f:d46f with SMTP id kl30-20020a056214519e00b0053dab5fd46fmr18023197qvb.44.1675965317062;
+        Thu, 09 Feb 2023 09:55:17 -0800 (PST)
+X-Google-Smtp-Source: AK7set/J1GkXSNiF1pdtEd7Yj6teE0aUrr3u6Q9rshfIv82y92vJxVQqykEMC3O2ahqTXrW6Ym26wA==
+X-Received: by 2002:a05:6214:519e:b0:53d:ab5f:d46f with SMTP id kl30-20020a056214519e00b0053dab5fd46fmr18023173qvb.44.1675965316834;
+        Thu, 09 Feb 2023 09:55:16 -0800 (PST)
 Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
-        by smtp.gmail.com with ESMTPSA id a21-20020ac84355000000b003bb764fe4ffsm1740735qtn.3.2023.02.09.09.54.25
+        by smtp.gmail.com with ESMTPSA id t185-20020a37aac2000000b0071eddd3bebbsm1799087qke.81.2023.02.09.09.55.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 09:54:25 -0800 (PST)
-Date:   Thu, 9 Feb 2023 12:54:25 -0500
+        Thu, 09 Feb 2023 09:55:16 -0800 (PST)
+Date:   Thu, 9 Feb 2023 12:55:15 -0500
 From:   Eric Chanudet <echanude@redhat.com>
 To:     Bartosz Golaszewski <brgl@bgdev.pl>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -64,15 +64,16 @@ Cc:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 1/3] soc: qcom: smem: update max processor count
-Message-ID: <20230209175425.kevrdvjf5zno5edb@echanude>
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: qcom: add the SoC ID for SA8775P
+Message-ID: <20230209175515.xrebz5edmsi4xkzv@echanude>
 References: <20230209095753.447347-1-brgl@bgdev.pl>
- <20230209095753.447347-2-brgl@bgdev.pl>
+ <20230209095753.447347-3-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230209095753.447347-2-brgl@bgdev.pl>
+In-Reply-To: <20230209095753.447347-3-brgl@bgdev.pl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
@@ -83,16 +84,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 09, 2023 at 10:57:51AM +0100, Bartosz Golaszewski wrote:
+On Thu, Feb 09, 2023 at 10:57:52AM +0100, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Update max processor count to reflect the number of co-processors on
-> SA8775P SoCs.
+> Add the SoC ID entry for SA8775P.
 > 
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/soc/qcom/smem.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  include/dt-bindings/arm/qcom,ids.h | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Eric Chanudet <echanude@redhat.com>
 Tested-by: Eric Chanudet <echanude@redhat.com>
