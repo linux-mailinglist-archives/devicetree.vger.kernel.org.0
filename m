@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAEB4690DEF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 17:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33E54690DF0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 17:07:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231641AbjBIQHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 11:07:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52318 "EHLO
+        id S231732AbjBIQHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 11:07:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231737AbjBIQG7 (ORCPT
+        with ESMTP id S231741AbjBIQG7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 11:06:59 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88A4663D2
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 08:06:36 -0800 (PST)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D42658CC;
+        Thu,  9 Feb 2023 08:06:36 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1BBB2B82195
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 16:06:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B1EC433D2;
-        Thu,  9 Feb 2023 16:06:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D9DB61B29;
+        Thu,  9 Feb 2023 16:06:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F961C433EF;
+        Thu,  9 Feb 2023 16:06:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675958793;
-        bh=Hd5wMGWSXhYUc7Fz/5I9lG7OSwU+bPyOWklhykUOozs=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=X38YgFZBgZCyg9wfqfHaDcwVGVtRcVoMsHYGnPAMrSo75YCtPhqUGo+ioqhggWsJh
-         1Q793+GsjtSu8uBKspHrHg1tct28JGfPTcui/uC/SyYA0y1eExWYA86OYCWvnpMDXT
-         1MQ3iteZyJZRIsJPwnnBvtGj1N6up63ZJUIhRBUdlBdjhP0TiQttFNQla9WtDZtzEY
-         gyaUzJqJx2HhZHfGyx4wt+apoNyLKNAuID8SnsuSEZNNrCLUprdz0a+koiWyRbLka6
-         ctR/eSEiLVmcBHbr4pBQdBrHf4U7z8CFFfvuhpAR8iShK4URDnbUK+ICKUrtCzg1b2
-         csNvh6Y3rWYUA==
+        s=k20201202; t=1675958795;
+        bh=T4VIMR/tzQuwfeVBQ2ksYdSEBgoAycBIAu8jyPAnMKY=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=HzmbNhf7+ikl96209BumKZWyN0sqqK+GyVUB/ep2x87Lf/3s1uexROtJDPHyM/PeC
+         UDW5soYdlskeE+XU9X6l1PXQxbxI26nlhzx4ZJWRa3/yHsifQpPlRVy+eBbc+S2flK
+         eUWDU4MjS/ru/ZWMJQoNKvFA0SrU/7KQ3YeFtxI4u7j8vBvRaWobJc6ZvLxadP6BJF
+         TG8k38GEIW05m9T+C527fEACdD0fzXrWoX/7dVnRuGaSe0k0KsZVs/hG0fVr9gMawg
+         kbFXNdZlczm4hmM7WHas7c/Ivx1W1lTSrVw47w31B621NM+MRsfoorbzBS9xiwST0Q
+         AuV4yn32lxOkg==
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kiseok Jo <kiseok.jo@irondevice.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230209084903.13000-2-kiseok.jo@irondevice.com>
-References: <20230209084903.13000-2-kiseok.jo@irondevice.com>
-Subject: Re: [PATCH v3] ASoC: SMA1303: Remove the sysclk setting in
- devicetree
-Message-Id: <167595879198.443322.14924870138902391536.b4-ty@kernel.org>
-Date:   Thu, 09 Feb 2023 16:06:31 +0000
+In-Reply-To: <20230208160410.371609-1-krzysztof.kozlowski@linaro.org>
+References: <20230208160410.371609-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: maxim,max98090: Convert to
+ dtschema
+Message-Id: <167595879391.443322.9482805543558463715.b4-ty@kernel.org>
+Date:   Thu, 09 Feb 2023 16:06:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,10 +58,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Feb 2023 08:49:03 +0000, Kiseok Jo wrote:
-> In SMA1303, this device does not support MCLK.
-> So it need to remove sysclk setting in devicetree.
-> v2: Modify the sysclk setting - using devm_clk_get for mclk.
+On Wed, 08 Feb 2023 17:04:09 +0100, Krzysztof Kozlowski wrote:
+> Convert the Maxim Integrated MAX98090/MAX98091 audio codecs bindings to
+> DT schema.
 > 
 > 
 
@@ -70,8 +70,10 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: SMA1303: Remove the sysclk setting in devicetree
-      commit: 2512839dd648ffa2c2a752e1403aaeb928cff71a
+[1/2] ASoC: dt-bindings: maxim,max98090: Convert to dtschema
+      commit: 0551ff7cf51abefe7351a8c486e6318196b3b6fe
+[2/2] ASoC: codecs: max98090: simplify snd_soc_dai_driver
+      commit: 35ff1051b9594b05041eb2444a339345944b3241
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
