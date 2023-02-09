@@ -2,143 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597FE690601
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:01:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A958690606
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:04:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230151AbjBILBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 06:01:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56400 "EHLO
+        id S229834AbjBILEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 06:04:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbjBILB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:01:28 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98457A99
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 03:00:47 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id rp23so5145906ejb.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 03:00:47 -0800 (PST)
+        with ESMTP id S229963AbjBILDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:03:37 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A59C142
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 03:03:35 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso1202984wms.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 03:03:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dEiNvwdsh50/luN7kcdBw0tT4i5v1/6EEunHYjmNZXs=;
-        b=Cc5tn2CKinqZh1y6GDQOh3jtJ28lfw2AwbOsVKLtGeveXXSVLDmwew92x9ux+0z56F
-         OfAYNU/fNb6jcMpYuzPpdqEP+cy1mUVEFyu9uOmyx9g2lYIp4o9FqtnL+bv04Ojl193D
-         BUU/NFJ8GwOYJ8E7P2goc0AceLXUIIbs8jlTxm6w9sRRkXKfV1vviPHYRD543YgiL4Q4
-         pivztwB4TrK7gBRgy5u2ivXhVjbx3SNjI2kr+zn2GO8xZ7oLhCjtviVLKl66WkEaViyu
-         pujsrnKl/l5Z4xl0Dd1Wm+OgAfj7DVpTK6iyBB+gyKK9YmCSR27IIyhsIaAbHQGoTTLm
-         z1Rw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a9JBQ25n949SzT0aJCa+SmK4nxBdxfr7uXV4RhT7iBk=;
+        b=bst5SA4qticmOdvwRLGEk4GcHbbnovNjbC4y7JMi1T7NETj309mIGUT6EPYuL4HF/q
+         yG0w65mbn65/GaxxJBcSloHGsmYyG2z1C9elgvdeOW7R/0OF3zk6drFaYUwznUJWItRh
+         SYAM+3MQRjhs/6UeXi0lB4+dhKI2pYnJM5T2hm/kLNuXTEZAxk+1nE2+62mOIAdGdWKq
+         HsXkFhGulTWLAoF2WlFb+9ZQKkIFomaUmmkhi2wmX6Iap4QraT6U7cggDdx1YRbQR4mj
+         u0xa7vug0pTrDxfGvdjSEk9D/seyq2forobXnPFTF01RetynHiMvBsNENRmXxOBlZZ7f
+         B5rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dEiNvwdsh50/luN7kcdBw0tT4i5v1/6EEunHYjmNZXs=;
-        b=k1fJsrQcGA8sVi/OZX5XVgyVZ1Uh5jolre/BphscgT+th+Qpu41h7aw9Ji/qGFv6cV
-         jUxUEKSjs4SprdAKrQYnZw5z4R+w8tr1fYGAnPUTJtJwVPszc/8Vk/JGynN1Wlyd0BWX
-         JyNG22BgF/l2vKezgl7q0ox56tmSyDKjncFQBfkv7kzJfVwc4nPTzH97BOyB7YPvmKvQ
-         ImB7gz0BepocXlBmHDm6aPUusmYwQtOF3bpzYgdO2PgYJ5AxlcXD+BBHdON1KqRoIuiA
-         rRBvrEG0oYpCfeK1GLdoCfN+T4XFdcgk6ByFB0pNzR1t2h4P12ixkThrgwM8IcCAwea/
-         SDqQ==
-X-Gm-Message-State: AO0yUKV1KlQVTBNR+FlxsqAP2Yi6nVHpcooN2iRcGoSlFCyvJx11xG7d
-        of8c0yFkbUPO6CcnjD68FhI7l7z8PbxWpgbQGInlnw==
-X-Google-Smtp-Source: AK7set+RaPbg+SOCzwGndo1Wa91cwrheg38QQCBg99GhoVwyzzAvFtOaofSU6Q5pBzPM0CXKp4JFifhFaFx0rd/k0bs=
-X-Received: by 2002:a17:906:ca04:b0:7c0:f45e:22ff with SMTP id
- jt4-20020a170906ca0400b007c0f45e22ffmr2702674ejb.104.1675940443471; Thu, 09
- Feb 2023 03:00:43 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a9JBQ25n949SzT0aJCa+SmK4nxBdxfr7uXV4RhT7iBk=;
+        b=DjqrbdpE5IhrRHTSQtHj8kik07Mmyep7f+q6+9pD0jNRWHRVnpEm5qEIPx2XrkCA8m
+         /1xDrPp0zLq4phG2JBqFjrKQ7IC72VL0zu/fEqW1Rh0uZ88lzaXUlHNnn4YdJzjpbCkM
+         g4Nj7fp4utDtdkticbB3PP1GMA3hbHVG1qEecygmPOl/Llg/5NJb4R4hFR+IhOAFohkV
+         9IgIrN4YOqOcS3ya4NSLZMIu0tu6P8EEdaXpnutdoxaKyr9LdXjf/GAsCSJ/02M8DLQz
+         oxtOMXVO8Erby2w5iK5Xu2T8QaGuZt4MYaQ2uuskjd76gJrZScdoAC+NLdMyTZ82uFBn
+         owaQ==
+X-Gm-Message-State: AO0yUKXbXhaX1glYfaq69ISSYb8vrm0tt6JrsNsetjMsmt48WC4HSnPa
+        3SKcPS6nDnNwm+whppvCESHz0Q==
+X-Google-Smtp-Source: AK7set+wrDuM7dfiMg34ZRVXU/WMO1xfv411HGqLDsbK+fxlDG3sfnsUn6oDwIykAcPRKPd5OQC64w==
+X-Received: by 2002:a05:600c:45cf:b0:3df:9858:c03c with SMTP id s15-20020a05600c45cf00b003df9858c03cmr5675306wmo.17.1675940614477;
+        Thu, 09 Feb 2023 03:03:34 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003de664d4c14sm1643092wmq.36.2023.02.09.03.03.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 03:03:34 -0800 (PST)
+Message-ID: <b2307e91-3373-539a-ecfb-e2542b9f83db@linaro.org>
+Date:   Thu, 9 Feb 2023 11:03:33 +0000
 MIME-Version: 1.0
-References: <20230207130958.608305-2-bchihi@baylibre.com> <202302080018.wNeWiKqz-lkp@intel.com>
-In-Reply-To: <202302080018.wNeWiKqz-lkp@intel.com>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Thu, 9 Feb 2023 12:00:07 +0100
-Message-ID: <CAGuA+ori24xtbHnzYXGVSUOiU-T+V=33DPsHnsruGnP5Y_L7ZA@mail.gmail.com>
-Subject: Re: [PATCH v13 1/6] thermal: drivers: mediatek: Relocate driver to
- mediatek folder
-To:     kernel test robot <lkp@intel.com>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
+ region as reserved
+Content-Language: en-US
+To:     Amit Pundir <amit.pundir@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230124182857.1524912-1-amit.pundir@linaro.org>
+ <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
+ <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
+ <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
+ <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
+ <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-this warning has been fixed by this patch :
-https://lore.kernel.org/all/20230113064449.15061-1-rdunlap@infradead.org/
+On 09/02/2023 09:05, Amit Pundir wrote:
+> Hi, So what is the verdict on this patch?
+> 
+> I submitted this fix to make sure UFS don't map and crash on it, which
+> I have seen happening occassionaly on db845c and Caleb reported
+> similar issues on his sdm845 device iirc. I should have probably put
+> that in my commit message as well.
+> 
+> Regards,
+> Amit Pundir
 
-On Tue, Feb 7, 2023 at 5:14 PM kernel test robot <lkp@intel.com> wrote:
->
-> Hi,
->
-> Thank you for the patch! Perhaps something to improve:
->
-> [auto build test WARNING on a2c81dc59d41e92362ab7d41d0c15471ea50637d]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/bchihi-baylibre-com/thermal-drivers-mediatek-Relocate-driver-to-mediatek-folder/20230207-211351
-> base:   a2c81dc59d41e92362ab7d41d0c15471ea50637d
-> patch link:    https://lore.kernel.org/r/20230207130958.608305-2-bchihi%40baylibre.com
-> patch subject: [PATCH v13 1/6] thermal: drivers: mediatek: Relocate driver to mediatek folder
-> config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230208/202302080018.wNeWiKqz-lkp@intel.com/config)
-> compiler: sparc64-linux-gcc (GCC) 12.1.0
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # https://github.com/intel-lab-lkp/linux/commit/0eb89997925c0d7b47bbeee93016146fc660b259
->         git remote add linux-review https://github.com/intel-lab-lkp/linux
->         git fetch --no-tags linux-review bchihi-baylibre-com/thermal-drivers-mediatek-Relocate-driver-to-mediatek-folder/20230207-211351
->         git checkout 0eb89997925c0d7b47bbeee93016146fc660b259
->         # save the config file
->         mkdir build_dir && cp config build_dir/.config
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/thermal/mediatek/
->
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
->
-> All warnings (new ones prefixed by >>):
->
-> >> drivers/thermal/mediatek/auxadc_thermal.c:562: warning: expecting prototype for raw_to_mcelsius(). Prototype was for raw_to_mcelsius_v1() instead
->
->
-> vim +562 drivers/thermal/mediatek/auxadc_thermal.c
->
-> a4ffe6b52d27f4 drivers/thermal/mtk_thermal.c Michael Kao   2019-02-01  551
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  552  /**
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  553   * raw_to_mcelsius - convert a raw ADC value to mcelsius
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  554   * @mt:     The thermal controller
-> 3772bb422072d4 drivers/thermal/mtk_thermal.c Amit Kucheria 2019-11-20  555   * @sensno: sensor number
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  556   * @raw:    raw ADC value
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  557   *
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  558   * This converts the raw ADC value to mcelsius using the SoC specific
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  559   * calibration constants
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  560   */
-> 54bf1e5a629dfb drivers/thermal/mtk_thermal.c Henry Yen     2020-04-30  561  static int raw_to_mcelsius_v1(struct mtk_thermal *mt, int sensno, s32 raw)
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30 @562  {
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  563      s32 tmp;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  564
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  565      raw &= 0xfff;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  566
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  567      tmp = 203450520 << 3;
-> f84514766985d3 drivers/thermal/mtk_thermal.c Michael Kao   2019-02-01  568      tmp /= mt->conf->cali_val + mt->o_slope;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  569      tmp /= 10000 + mt->adc_ge;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  570      tmp *= raw - mt->vts[sensno] - 3350;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  571      tmp >>= 3;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  572
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  573      return mt->degc_cali * 500 - tmp;
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  574  }
-> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  575
->
-> --
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests
+So the memory _is_ being used by ... continuous splash on an Android 
+image, i.e. your Android ? limited to Android - image continues on with 
+the splash but other blocks erroneously reuse the memory then, UFS as an 
+example ?
+
+---
+bod
