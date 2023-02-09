@@ -2,136 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6995690AAA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6B1A690AB8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 14:43:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbjBINmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 08:42:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42180 "EHLO
+        id S229635AbjBINnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 08:43:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229993AbjBINlz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:41:55 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBA25FB6F
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 05:41:46 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so1555548wmb.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 05:41:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SwVQYGDJxIHxSzhFFyXo6DVH/Gg58TP+SeHZlEpYtaE=;
-        b=G8dQmklTOh+/FvxQUB0Gk5udClxwmsyEKDn7Rp2hrIpRgrY/EeEEmKKoam3xtYneHC
-         wfJPDL5CBU87tibavUNzoPSTcJ2Qk9IegXRWalEqNxsXdz33oTSKFA5qiQYh9SJVmGFQ
-         gsDwoumaVa2S543zVbMQcsIOwaB6bwsHXYRUvyH3rhjRepG4FYbRmRnPAT71wJKyH0WV
-         qV7LBhGK5ouyZUTngAaoXEruf/qZgT+m+YACGoBzOj4im80IXnMvY3AojsAlF3ErNqVA
-         culMEdkUa4YT9uGHDzZ111BX2gho2+jhjJbkJyZTN6m2gJS7BuSUwnSDQCvUf/VWQgyf
-         WrUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SwVQYGDJxIHxSzhFFyXo6DVH/Gg58TP+SeHZlEpYtaE=;
-        b=NJ+S1Y0iZTstZVR3FmdhNpOI5zkBfnzlZTx8KwHES04bj8e0jI0uWb9Co29OMFomL1
-         /lnUzq9X9c02YvNHTp3cKgTZ78laJyoDPqqYkhyWfg9Y5G7b+UlGznresRt655dsUiB4
-         KMFtyrnYkvIMRHfve60MN93IdsisOucdLAEOHZMRiChenr+CkhUWyj8/5H5pemoCWLP4
-         IN/W7BX+INHOgbT7PHQuhDPNt9Ht4Md7QYRq3kd0Y72CnCjkyvUAHL55Dgqug0W5pfbX
-         x6pdlqo1TrkIj5iME9Gm3GDoz2h9zc/P8RH8sL+fHXHj8LpfAb5cL4RVagBm3FRklmSc
-         lJzw==
-X-Gm-Message-State: AO0yUKU0JnQn+WKzosh68RyZODQGEZ1zga/f5vXiQDTtXU8xjk3Cxx4i
-        YpRTxyHy7a8whSAUSH+LTou3cQ==
-X-Google-Smtp-Source: AK7set+E0AI0A+CBa5LewIRNFwdZw77cSx29mVZd6Uam4cfv7UMTtK6R4/ZdsEbQkl5Go57ylXr77g==
-X-Received: by 2002:a05:600c:4b1d:b0:3de:3ee3:4f6f with SMTP id i29-20020a05600c4b1d00b003de3ee34f6fmr10371624wmp.8.1675950105625;
-        Thu, 09 Feb 2023 05:41:45 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k12-20020a7bc40c000000b003dfe549da4fsm4946991wmi.18.2023.02.09.05.41.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 05:41:45 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 09 Feb 2023 14:41:42 +0100
-Subject: [PATCH 6/6] dt-bindings: soc: amlogic: update sysctrl
- clock-controller subnode type
+        with ESMTP id S230094AbjBINnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 08:43:51 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDAF59033;
+        Thu,  9 Feb 2023 05:43:47 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 319DhA6R105540;
+        Thu, 9 Feb 2023 07:43:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1675950190;
+        bh=dgHsVYHmJBdvU52aLxjPJo8tYRLoSKGIbYO5fWx3LXA=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Idq1SfWFixJzWdRsOdir8YfF/tSlWPIASeMhQuIoFnWRUQKngm2832ZxELtcyXxKa
+         dLyoL1MCU+Gvz1E/b8Je4P8dfXqDSONVThharoFML8wuGNuDMhOPQBEnAPNa6P8cBO
+         95Nll4IM0LcWj+ei8NjgQhZfa2YoNmOSJXDArf3M=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 319DhAGn055822
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 9 Feb 2023 07:43:10 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
+ Feb 2023 07:43:10 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 9 Feb 2023 07:43:10 -0600
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 319Dh4S1075823;
+        Thu, 9 Feb 2023 07:43:05 -0600
+Message-ID: <82620758-3363-c011-c41b-748f8a7d62ee@ti.com>
+Date:   Thu, 9 Feb 2023 19:13:04 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230209-b4-amlogic-bindings-convert-take2-v1-6-c4fe9049def9@linaro.org>
-References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
-In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [EXTERNAL] Re: [EXTERNAL] Re:
+ [PATCH v4 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
+To:     Roger Quadros <rogerq@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+CC:     MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>,
+        <ssantosh@kernel.org>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230206060708.3574472-1-danishanwar@ti.com>
+ <20230206060708.3574472-3-danishanwar@ti.com> <Y+ELeSQX+GWS5N2p@lunn.ch>
+ <42503a0d-b434-bbcc-553d-a326af5b4918@ti.com>
+ <e8158969-08d0-1edc-24be-8c300a71adbd@kernel.org>
+ <4438fb71-7e20-6532-a858-b688bc64e826@ti.com> <Y+Ob8++GWciL127K@lunn.ch>
+ <6713252d-6f86-c674-9229-c4512ebf1d72@ti.com>
+ <9cc8df06-8ad3-234d-b221-b1af2ee3719a@kernel.org>
+Content-Language: en-US
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <9cc8df06-8ad3-234d-b221-b1af2ee3719a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the clock controllers are now documented define the right ref
-for the clock-controller subnodes and fill up the example node.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml         | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-index 672eabd90c09..57eae355f1b9 100644
---- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-@@ -43,6 +43,10 @@ allOf:
-             - amlogic,meson-gx-hhi-sysctrl
-             - amlogic,meson-axg-hhi-sysctrl
-     then:
-+      properties:
-+        clock-controller:
-+          $ref: /schemas/clock/amlogic,gxbb-clkc.yaml#
-+
-       required:
-         - power-controller
- 
-@@ -53,6 +57,10 @@ allOf:
-             - amlogic,meson-gx-ao-sysctrl
-             - amlogic,meson-axg-ao-sysctrl
-     then:
-+      properties:
-+        clock-controller:
-+          $ref: /schemas/clock/amlogic,gxbb-aoclkc.yaml#
-+
-       required:
-         - pinctrl
- 
-@@ -81,7 +89,12 @@ examples:
-         compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
-         reg = <0 0x400>;
- 
--        clock-controller { };
-+        clock-controller {
-+            compatible = "amlogic,gxbb-clkc";
-+            #clock-cells = <1>;
-+            clocks = <&xtal>;
-+            clock-names = "xtal";
-+        };
- 
-         power-controller {
-             compatible = "amlogic,meson-gxbb-pwrc";
+On 09/02/23 18:28, Roger Quadros wrote:
+> 
+> 
+> On 09/02/2023 12:29, Md Danish Anwar wrote:
+>> Hi Andrew,
+>>
+>> On 08/02/23 18:26, Andrew Lunn wrote:
+>>>>>>>> +static int prueth_config_rgmiidelay(struct prueth *prueth,
+>>>>>>>> +				    struct device_node *eth_np,
+>>>>>>>> +				    phy_interface_t phy_if)
+>>>>>>>> +{
+>>>>>>>
+>>>>>>> ...
+>>>>>>>
+>>>>>>>> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
+>>>>>>>> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
+>>>>>>>> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
+>>>>>>>> +
+>>>>>>>> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
+>>>>>
+>>>>> This is only applicable to some devices so you need to restrict this only
+>>>>> to those devices.
+>>>>>
+>>>>
+>>>> Currently ICSSG driver is getting upstreamed for AM65 SR2.0 device, so I don't
+>>>> think there is any need for any device related restriction. Once support for
+>>>> other devices are enabled for upstream, we can modify this accordingly.
+>>>
+>>> The problem is, this is a board property, not a SoC property. What if
+>>> somebody designs a board with extra long clock lines in order to add
+>>> the delay?
+>>>
+>>>> I checked the latest Technical Reference Manual [1] (Section 5.1.3.4.49, Table
+>>>> 5-624) for AM65 Silicon Revision 2.0.
+>>>>
+>>>> Below is the description in Table 5-624
+>>>>
+>>>> BIT	    : 24
+>>>> Field	    : RGMII0_ID_MODE
+>>>> Type	    : R/W
+>>>> Reset	    : 0h
+>>>> Description : Controls the PRU_ICSSG0 RGMII0 port internal transmit delay
+>>>> 	      0h - Internal transmit delay is enabled
+>>>> 	      1h - Reserved
+>>>>
+>>>> The TX internal delay is always enabled and couldn't be disabled as 1h is
+>>>> reserved. So hardware support for disabling TX internal delay is not there.
+>>>
+>>> So if somebody passes a phy-mode which requires it disabled, you need
+>>> to return -EINVAL, to indicate the hardware cannot actually do it.
+>>>
+>>
+>> Sure, I'll do that. In the list of all phy modes described in [1], I can only
+>> see phy-mode "rgmii-txid", for which we can return -EINVAL. Is there any other
+>> phy-mode that requires enabling/disabling TX internal delays? Please let me
+>> know if any other phy-mode also needs this. I will add check for that as well.
+>>
+>>>> As, TX internal delay is always there, there is no need to enable it in MAC or
+>>>> PHY. So no need of API prueth_config_rgmiidelay().
+>>>>
+>>>> My approach to handle delay would be as below.
+>>>>
+>>>> *) Keep phy-mode = "rgmii-id" in DT as asked by Andrew.
+>>>
+>>> As i said this depends on the board, not the SoC. In theory, you could
+>>> design a board with an extra long RX clock line, and then use phy-mode
+>>> rgmii-txid, meaning the MAC/PHY combination needs to add the TX delay.
+>>>
+>>
+>> Yes I understand that board can have any phy-mode in it's DTS. We need to be
+>> able to handle all different phy modes.
+>>
+>>>> *) Let TX internal delay enabled in Hardware.
+>>>> *) Let PHY configure RX internal delay.
+>>>> *) Remove prueth_config_rgmiidelay() API is there is no use of this. TX
+>>>> Internal delay is always enabled.
+>>>> *) Instead of calling prueth_config_rgmiidelay() API in prueth_netdev_init()
+>>>> API, add below if condition.
+>>>>
+>>>> 	if(emac->phy_if == PHY_INTERFACE_MODE_RGMII_ID)
+>>>> 		emac->phy_if == PHY_INTERFACE_MODE_RGMII_RXID
+>>>
+>>> You should handle all cases where a TX delay is requested, not just
+>>> ID.
+>>>
+>>
+>> So there could be four different RGMII phy modes as described in [1]. Below is
+>> the handling mechanism for different phy modes.
+>>
+>> 1)    # RGMII with internal RX and TX delays provided by the PHY,
+>>       # the MAC should not add the RX or TX delays in this case
+>>       - rgmii-id
+>>
+>> For phy-mode="rgmii-id", phy needs to add both TX and RX internal delays. But
+>> in our SoC TX internal delay is always enabled. So to handle this, we'll change
+> 
+> OK. I thought that this MAC forced TX delay issue was fixed in Later Silicon Revisions.
+> But it looks like it hasn't been fixed yet.
+> 
+
+Yes, I confirmed with the Hardware folks, the forced TX delay issue is still
+there. It's not fixed as of now.
+
+> 
+>> the phy-mode in driver to "rgmii-rxid" and then pass it ti PHY, so that PHY
+>> will enable RX internal delay only.
+> 
+> OK.
+> 
+
+Noted.
+
+>>
+>> 2)    # RGMII with internal RX delay provided by the PHY, the MAC
+>>       # should not add an RX delay in this case
+>>       - rgmii-rxid
+>>
+>> For phy-mode="rgmii-rxid", phy needs to add only RX internal delay. We will do
+>> nothing in the driver and just pass the same mode to phy, so that PHY will
+>> enable RX internal delay only.
+> 
+> But the MAC is forcing TX-delay right? So this case can't be implemented.
+> you have to return error.
+> 
+
+Yes, My bad. "rgmii-rxid" is not possible. I'll return -EINVAL here.
+
+>>
+>> 3)    # RGMII with internal TX delay provided by the PHY, the MAC
+>>       # should not add an TX delay in this case
+>>       - rgmii-txid
+>>
+>> For phy-mode="rgmii-txid", phy needs to add only TX internal delay,the MAC
+>> should not add an TX delay in this case. But in our SoC TX internal delay is
+>> always enabled. So this scenario can not be handled. We will return -EINVAL in
+>> this case.
+> 
+> As you didn't return error for 1st case "rgmii-id" even though TX delay was requested
+> for PHY but you added it in the MAC I see no reason to return error here.
+> 
+> You just do the delay in MAC and pass "rgmii" to the PHY.
+> 
+
+Yes Noted, TX delay will be forced and phy-mode "rgmii" will be passed to PHY.
+
+>>
+>>
+>> 4)    # RX and TX delays are added by the MAC when required
+>>       - rgmii
+>>
+>> For phy-mode="rgmii", MAC needs to add both TX and RX delays. But in our SoC TX
+>> internal delay is always enabled so no need to add TX delay. For RX I am not
+>> sure what should we do as there is no provision of adding RX delay in MAC
+>> currently. Should we ask PHY to add RX delay?
+>>
+> 
+> I don't think it will work so you can error out in this case.
+>  
+
+Sure, Noted.
+
+So just to summarize,
+
+For "rgmii-id" phy mode, pass "rgmii-rxid" to phy.
+For "rgmii-rxid", return error.
+For "rgmii-txid", TX delay is forced, pass "rgmii" to PHY.
+For "rgmii", return error.
+
+
+>> Andrew, Roger, Can you please comment on this.
+>>
+>> Apart from Case 4, below code change will be able to handle all other cases.
+>>
+>> 	if(emac->phy_if == PHY_INTERFACE_MODE_RGMII_ID)
+>> 		emac->phy_if = PHY_INTERFACE_MODE_RGMII_RXID;
+>> 	if(emac->phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
+>> 		return -EINVAL;
+>>
+>> Please let me know if I am missing any other phy modes.
+>>
+>> [1] Documentation/devicetree/bindings/net/ethernet-controller.yaml
+>>
+>>> 	Andrew
+>>
+> 
+> cheers,
+> -roger
 
 -- 
-2.34.1
-
+Thanks and Regards,
+Danish.
