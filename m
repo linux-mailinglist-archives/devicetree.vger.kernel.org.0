@@ -2,162 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A65FD68FE13
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 04:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A7D68FE2D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 05:00:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232629AbjBIDpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 22:45:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
+        id S232919AbjBIEAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 23:00:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbjBIDpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 22:45:54 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466CE4EDA;
-        Wed,  8 Feb 2023 19:45:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E6F96B81FED;
-        Thu,  9 Feb 2023 03:45:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8D3DC433EF;
-        Thu,  9 Feb 2023 03:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1675914350;
-        bh=SgaZeBovg+cJiTGR96CRC/f9213cSmpP7QQslM0XFOc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ban8km4gYbC2F3wZAIAvSVaX0ylttF8Di1P3hCjQYRZguzANEMQIwaOC5pqm8SD81
-         dFm51ZwBfk5PPQ5b3YbOb38XAQB4jaKRytkPvkZGHqDtl7oxvzeVXPMBLy16U/KA1B
-         KI2g6WO//a4T9lT+xYMMgYa7VHU0ULhy6m93IyvQM7062ainbKBXwmqJDR68SaipwT
-         nriHhZQtN4W1L/1YvW86YYbneT2sm+dGb0z4FQSNyvOAoEboM/fnK12gHfe6KO7XVS
-         kI573NQVN6Ld8BGEaVvky05j54ilSSM4KpwJBLPTuhy20CjPe5P+jle0BWv2rKEQD0
-         G2drXWbfHUvXg==
-Date:   Wed, 8 Feb 2023 19:48:01 -0800
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 1/2] pinctrl: qcom: Add support for i2c specific pull
- feature
-Message-ID: <20230209034801.owvldpyfbeerfj6x@ripper>
-References: <20230208081836.984673-1-abel.vesa@linaro.org>
+        with ESMTP id S232926AbjBIEA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 23:00:27 -0500
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30FEC2F7B9
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 20:00:10 -0800 (PST)
+Received: by mail-il1-x135.google.com with SMTP id o13so388501ilt.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 20:00:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=34Uu0qtbvg+E2V6qRqNRr/5yhYdeODS4LYeIVgn0e/w=;
+        b=L+LZotxGbkC/ea5aziXyB5kDAXu/00XaiNFq7qjU349gx85ZWVqVqVJOPx1Ycff2Qj
+         h9UJ2Ky7l/C0ANtBgLm94WG8B/uljRTSCOr0gkEnhmz9BJrAf8vzCjo4x/zeFrokxA4f
+         riR65zYnEeV4d4dQc08Og30zjVbziNpDdwsMY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=34Uu0qtbvg+E2V6qRqNRr/5yhYdeODS4LYeIVgn0e/w=;
+        b=MqfKHPTfyV8b1hU3jEYOF3xowtdDZkB0Uzashi87Moy74we3ouLsPGEjEM+Jjn1+ZQ
+         +VMDnbpQAg+S5izZL8FG3GCosj8G7lKPxL1XLvThHGS+VXA0PGoB3qx6AXKxQGu94Lb5
+         oSnNgqMXAxCk/Xy2UeS0Ea0jRqnoG2hPXwo6GbNyblTMGVCJ9iksHsfnEsLKUtOylsdR
+         4BU1uh93F6N2fJomPD68ymabAL2uQWuuWo+pePrg1Y6jnorWCR0zZazaAL17lCGLOdhH
+         uAGbyi4JTxFgn/FACdXX7QuTAiLqYj64w72a+arW6nZbKzm5ClYGoV4guVJ3PCF4Qc9N
+         Ua1g==
+X-Gm-Message-State: AO0yUKVLnZOMkMCcfdacBFxa6Y4lpmRoLXOV/GyZu40wT7LWW+I1K4EC
+        AipfuZodm3R9xkuzmg4SOwU7gwBsuEr1G6fSOc9WJQ==
+X-Google-Smtp-Source: AK7set+l0pt1FAbMRKYKU/2kZgCf6I4kbl87a3ND+oDvLUM04gmKSbfsd44gMP6Wx2Z/u6v4Lr8N353uQ/EI6t+S3hc=
+X-Received: by 2002:a92:670a:0:b0:310:e753:59c9 with SMTP id
+ b10-20020a92670a000000b00310e75359c9mr5569807ilc.10.1675915209445; Wed, 08
+ Feb 2023 20:00:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230208081836.984673-1-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230204133040.1236799-1-treapking@chromium.org>
+ <20230204133040.1236799-8-treapking@chromium.org> <20230207205221.GA4121517-robh@kernel.org>
+In-Reply-To: <20230207205221.GA4121517-robh@kernel.org>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Thu, 9 Feb 2023 11:59:58 +0800
+Message-ID: <CAEXTbpf5KqH7zev+kooUmz2DiMya-53UmvAMJfcOYcm7CCDthQ@mail.gmail.com>
+Subject: Re: [PATCH v11 7/9] dt-bindings: display: bridge: it6505: Add
+ mode-switch support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        chrome-platform@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 08, 2023 at 10:18:35AM +0200, Abel Vesa wrote:
-> Add support for the new i2c_pull property introduced for SM8550 setting
-> a I2C specific pull mode on I2C able pins. Add the bit to the SM8550
-> specific driver while at it.
-> 
-> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> 
-> The v2 of this specific patch is here:
-> https://lore.kernel.org/all/20221123152001.694546-4-abel.vesa@linaro.org/
-> 
-> Changes since v2:
->  * This time, this patch is sent separate w.r.t. SM8550 pinctrl driver
->  * The qcom,i2c-pull is dropped, bias-pull-up with value is used instead
->  * Default value for i2c pull up is 2.2kOhms and since SM8550 is the
->    first one to use it, we hard code it for now
->  * changed the authorship as the implementation looks entirely different now
-> 
->  drivers/pinctrl/qcom/pinctrl-msm.c    | 7 +++++++
->  drivers/pinctrl/qcom/pinctrl-msm.h    | 1 +
->  drivers/pinctrl/qcom/pinctrl-sm8550.c | 1 +
->  3 files changed, 9 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
-> index 5142c363480a..510c964dd0f5 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-msm.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-msm.c
-> @@ -310,6 +310,8 @@ static int msm_config_reg(struct msm_pinctrl *pctrl,
->  	case PIN_CONFIG_BIAS_PULL_UP:
->  		*bit = g->pull_bit;
->  		*mask = 3;
-> +		if (g->i2c_pull_bit)
-> +			*mask |= BIT(g->i2c_pull_bit) >> *bit;
->  		break;
->  	case PIN_CONFIG_DRIVE_OPEN_DRAIN:
->  		*bit = g->od_bit;
-> @@ -336,6 +338,7 @@ static int msm_config_reg(struct msm_pinctrl *pctrl,
->  #define MSM_KEEPER		2
->  #define MSM_PULL_UP_NO_KEEPER	2
->  #define MSM_PULL_UP		3
-> +#define MSM_I2C_STRONG_PULL_UP	2200
->  
->  static unsigned msm_regval_to_drive(u32 val)
->  {
-> @@ -387,6 +390,8 @@ static int msm_config_group_get(struct pinctrl_dev *pctldev,
->  	case PIN_CONFIG_BIAS_PULL_UP:
->  		if (pctrl->soc->pull_no_keeper)
->  			arg = arg == MSM_PULL_UP_NO_KEEPER;
-> +		else if (arg & BIT(g->i2c_pull_bit))
-> +			arg = MSM_I2C_STRONG_PULL_UP;
->  		else
->  			arg = arg == MSM_PULL_UP;
->  		if (!arg)
-> @@ -467,6 +472,8 @@ static int msm_config_group_set(struct pinctrl_dev *pctldev,
->  		case PIN_CONFIG_BIAS_PULL_UP:
->  			if (pctrl->soc->pull_no_keeper)
->  				arg = MSM_PULL_UP_NO_KEEPER;
-> +			else if (g->i2c_pull_bit && arg > 1)
+Hi Rob,
 
-I would prefer that we do arg == MSM_I2C_STRONG_PULL_UP, primarily to
-improve the symmetry with the getter, but also just to ensure that
-someone accidentally writing bias-pull-up = <1>; gets less of a
-surprise.
+Thanks for the review.
 
-Looks good otherwise.
+On Wed, Feb 8, 2023 at 4:52 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, Feb 04, 2023 at 09:30:38PM +0800, Pin-yen Lin wrote:
+> > ITE IT6505 can be used in systems to switch the DP traffic between
+> > two downstreams, which can be USB Type-C DisplayPort alternate mode
+> > lane or regular DisplayPort output ports.
+> >
+> > Update the binding to accommodate this usage by introducing a
+> > data-lanes and a mode-switch property on endpoints.
+> >
+> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> >
+> > ---
+> >
+> > Changes in v11:
+> > - Updated the description of the endpoints in the bindings
+> > - Referenced video-interfaces.yaml instead for the endpoints binding
+> > - Removed duplicated definitions from inherited schema
+> >
+> > Changes in v9:
+> > - Fixed subject prefix again
+> > - Changed the naming of the example node for it6505
+> >
+> > Changes in v8:
+> > - Updated bindings for data-lanes property
+> > - Fixed subject prefix
+> >
+> > Changes in v7:
+> > - Fixed issues reported by dt_binding_check.
+> > - Updated the schema and the example dts for data-lanes.
+> > - Changed to generic naming for the example dts node.
+> >
+> > Changes in v6:
+> > - Remove switches node and use endpoints and data-lanes property to
+> >   describe the connections.
+> >
+> >  .../bindings/display/bridge/ite,it6505.yaml   | 101 +++++++++++++++---
+> >  1 file changed, 88 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > index b16a9d9127dd..8ae9c5cba22c 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > @@ -75,22 +75,49 @@ properties:
+> >        port@1:
+> >          $ref: /schemas/graph.yaml#/$defs/port-base
+> >          unevaluatedProperties: false
+> > -        description: Video port for DP output
+> > +        description:
+> > +          Video port for DP output. Each endpoint connects to a video output
+> > +          downstream, and the "data-lanes" property is used to describe the pin
+> > +          connections. 0, 1, 2, 3 in "data-lanes" maps to TX0, TX1, TX2, TX3,
+> > +          respectively.
+> >
+> > -        properties:
+> > -          endpoint:
+> > -            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > +
+> > +        patternProperties:
+> > +          "^endpoint@[01]$":
+> > +            $ref: /schemas/media/video-interfaces.yaml#
+> >              unevaluatedProperties: false
+> >
+> >              properties:
+> > +              reg: true
+> > +
+> > +              remote-endpoint: true
+> > +
+> >                data-lanes:
+> > -                minItems: 1
+> > -                uniqueItems: true
+> > -                items:
+> > -                  - enum: [ 0, 1 ]
+> > -                  - const: 1
+> > -                  - const: 2
+> > -                  - const: 3
+> > +                oneOf:
+> > +                  - items:
+> > +                      - enum: [0, 1, 2, 3]
+> > +
+> > +                  - items:
+> > +                      - const: 0
+> > +                      - const: 1
+> > +
+> > +                  - items:
+> > +                      - const: 2
+> > +                      - const: 3
+> > +
+> > +                  - items:
+> > +                      - const: 0
+> > +                      - const: 1
+> > +                      - const: 2
+> > +                      - const: 3
+> > +
+> > +              mode-switch:
+> > +                type: boolean
+> > +                description: Register this node as a Type-C mode switch or not.
+>
+> Existing users put this property in the device's node, not the endpoint.
+> That seems more like a property of the device, than the DP link.
 
-Thanks,
-Bjorn
+In our use case, we want to register two mode switches for the same
+device. That's why we put the "mode-switch" property in the endpoints
+instead of the device node.
 
-> +				arg = BIT(g->i2c_pull_bit) | MSM_PULL_UP;
->  			else
->  				arg = MSM_PULL_UP;
->  			break;
-> diff --git a/drivers/pinctrl/qcom/pinctrl-msm.h b/drivers/pinctrl/qcom/pinctrl-msm.h
-> index 05a1209bf9ae..985eceda2517 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-msm.h
-> +++ b/drivers/pinctrl/qcom/pinctrl-msm.h
-> @@ -80,6 +80,7 @@ struct msm_pingroup {
->  
->  	unsigned pull_bit:5;
->  	unsigned drv_bit:5;
-> +	unsigned i2c_pull_bit:5;
->  
->  	unsigned od_bit:5;
->  	unsigned egpio_enable:5;
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sm8550.c b/drivers/pinctrl/qcom/pinctrl-sm8550.c
-> index 0b7db7d4054a..c9d038098f2c 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-sm8550.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-sm8550.c
-> @@ -47,6 +47,7 @@
->  		.mux_bit = 2,			\
->  		.pull_bit = 0,			\
->  		.drv_bit = 6,			\
-> +		.i2c_pull_bit = 13,		\
->  		.egpio_enable = 12,		\
->  		.egpio_present = 11,		\
->  		.oe_bit = 9,			\
-> -- 
-> 2.34.1
-> 
+>
+> You are using fwnode_typec_mux_get(), right?
+
+Yes. This is called by cros_ec_typec.c[1] in our use case.
+
+[1]: https://elixir.bootlin.com/linux/latest/source/drivers/platform/chrome/cros_ec_typec.c#L148
+
+Regards,
+Pin-yen
+>
+> Rob
