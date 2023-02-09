@@ -2,96 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7093469023E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:37:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD5769025F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjBIIhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 03:37:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
+        id S229743AbjBIIot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 03:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbjBIIhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:37:34 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675DC47418;
-        Thu,  9 Feb 2023 00:37:33 -0800 (PST)
-Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0588766020F9;
-        Thu,  9 Feb 2023 08:37:32 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675931852;
-        bh=C0OI1qwPWT41mKr8+9Yc1IBANnC4emoX3gfzOr04Lww=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JM9jO42Nn2fAoudPkdBN6kPvO+X6qBra6mucyb2wlMLpUMXfRZKLrTgibGqy3Mvop
-         6qBAqPg/tVQEJfC60Cyf2DElWn0XssntMpW/nDyfwuZrlnqstzDW/xbQKZ9DcuiAc6
-         kI9GkfEJkhrdxpE+LElEjrJ6uGYfYbq6iU6vkrV8iwYDmUjj9YuJKtCKGXfP7Ww9xo
-         gZFe0z+j5GIZ1N3EApPYWuny5DkEpsbAJRtvhLMu98oBRWb6IJYZv0wHDl3KA3pHBL
-         xtZR6roYG4++pu5v78G0pPhiMJF0EHaBOlERGGuRAGbJP6rMEvViYhZK/OZAJ0CGom
-         HGdwvcruodt9Q==
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-To:     David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
-Subject: [PATCH v4 4/4] ASoC: cs35l41: Document CS35l41 shared boost
-Date:   Thu,  9 Feb 2023 08:37:26 +0000
-Message-Id: <20230209083726.1337150-5-lucas.tanure@collabora.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230209083726.1337150-1-lucas.tanure@collabora.com>
-References: <20230209083726.1337150-1-lucas.tanure@collabora.com>
+        with ESMTP id S229722AbjBIIos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:44:48 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D22C2C666
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:44:47 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso3314544wmp.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:44:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9PQYFfhPvS1XMnCTyI1izWMjlhb8SZHCdTPDA+HAHbo=;
+        b=ufEpAtAVV50RYl4U3ECphhrDbUAX8E6N8askj6fthLaplFh62WakNZiAwkmw5YzmuQ
+         sVa2rAmbxqHFS7dVxbSQK5rXoX0NsAuA1fS86f0itKqa0i9wXImYkXvqXYa/4NMWjUsY
+         QX0DM0VLOxIVPlMwO/KjNstaDGGEJIuwSDQQSMz5kP5PfkKfOyaZQn+Xd6L7cKC7CZP0
+         gO/fj3a4Iz5cmG3DCd4ZMBRYYqeHRrprNllY19e7Wpru2IKkT3Iz+ko4O1VmAez3ujkc
+         w8h7Khd6uua5+hfB0Ybh023KNqXSp49ENAjjGuv3Ummzmo7lRzjW3sa08k6ntqcAjLxG
+         luUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9PQYFfhPvS1XMnCTyI1izWMjlhb8SZHCdTPDA+HAHbo=;
+        b=LD+faJY72v7oz4o/VkiF9yCc0LrGGB8ffUPMG253hynkaBU23VHU8f0ruR+p7Spggx
+         Tuh9QkEWJ3vaMdG/ZMlnhAMQiqv2gxeaJQqUgsa3D7DL3jkDZhXFtqRYKZwY8quUXg4O
+         LYa/U/piepuMWZTVQZCOXMLBiZhyn+YqHpLJn9Rr1IcHUgNLJxRN4gDcfsekt92Tnzw0
+         B9jzJZC2UwGyyFE1t2ap5S0Jrr2rcVBPwg9nmrVgI7tQ0rQFxqDPGkADdbho7yMFWm+D
+         lcM9n8+PfnPOwvAWdti6e6nOTNKdbbcXajsvfL/QcOqf/UZa/WxuJ+X32t5UDxoL6k6j
+         wTrA==
+X-Gm-Message-State: AO0yUKX5KDUyLi04/LviRePAGAetuIq7mYAW8cGUFN5sIE9eLKEjwj7f
+        wgrgkgM4x2KtJGfim4IONvT2Dg==
+X-Google-Smtp-Source: AK7set+sG7tpdWpQpa7p6C6ykijC1sZ0How8x7QFLJ1pZ/7zzL2u9Bflc96JeroZ0T6tjEq0h2YwDw==
+X-Received: by 2002:a05:600c:4b1d:b0:3de:3ee3:4f6f with SMTP id i29-20020a05600c4b1d00b003de3ee34f6fmr9514830wmp.8.1675932285607;
+        Thu, 09 Feb 2023 00:44:45 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id o19-20020a05600c379300b003b47b80cec3sm4146392wmr.42.2023.02.09.00.44.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 00:44:45 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Thu, 09 Feb 2023 09:44:43 +0100
+Subject: [PATCH] arm64: dts: qcom: sm8550: remove invalid interconnect
+ property from cryptobam
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230209-topic-sm8550-upstream-cryptobam-remove-interconnect-v1-1-84587c7bad0f@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAHuy5GMC/x2OwQrDIBBEfyV47oIxtTT9lZKDmm0jxFVWE1pC/
+ r1Lb/MG5jGHqsgRq3p0h2LcY42ZBPpLp8Li6I0QZ2FltBm00SO0XGKAmu7WathKbYwuQeBvadl
+ LYkx5lxU15JCJMDS4un62oze3wVklZu8qgmdHYRE3besqZWF8xc//ynM6zx/4Cx7NmgAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the properties used for shared boost configuration.
-Based on David Rhodes shared boost patches.
+The interconnect property is already present in the qce node, which
+is the consumer of the cryptobam, so no need for an interconnect property
+as documented by the bindings.
 
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+Fixes: 433477c3bf0b ("arm64: dts: qcom: sm8550: add QCrypto nodes")
+Suggested-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../devicetree/bindings/sound/cirrus,cs35l41.yaml      | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+[1] https://lore.kernel.org/all/20230207-topic-sm8550-upstream-bam-dma-bindings-fix-v1-1-57dba71e8727@linaro.org/
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-index 18fb471aa891..f3c0a66f3474 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-@@ -85,11 +85,19 @@ properties:
-       boost-cap-microfarad.
-       External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
-       enable boost voltage.
-+      Shared boost allows two amplifiers to share a single boost circuit by
-+      communicating on the MDSYNC bus. The passive amplifier does not control
-+      the boost and receives data from the active amplifier. GPIO1 should be
-+      configured for Sync when shared boost is used. Shared boost is not
-+      compatible with External boost. Active amplifier requires
-+      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
-       0 = Internal Boost
-       1 = External Boost
-+      2 = Shared Boost Active
-+      3 = Shared Boost Passive
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
--    maximum: 1
-+    maximum: 3
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 6ff135191ee0..206056890100 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -1858,8 +1858,6 @@ cryptobam: dma-controller@1dc4000 {
+ 			qcom,controlled-remotely;
+ 			iommus = <&apps_smmu 0x480 0x0>,
+ 				 <&apps_smmu 0x481 0x0>;
+-			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
+-			interconnect-names = "memory";
+ 		};
  
-   cirrus,gpio1-polarity-invert:
-     description:
+ 		crypto: crypto@1de0000 {
+
+---
+base-commit: 49a8133221c71b935f36a7c340c0271c2a9ee2db
+change-id: 20230209-topic-sm8550-upstream-cryptobam-remove-interconnect-4a1d59b263a5
+
+Best regards,
 -- 
-2.39.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
