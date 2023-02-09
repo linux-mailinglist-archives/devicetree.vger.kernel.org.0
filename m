@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA30690865
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B87690870
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 13:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbjBIMMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 07:12:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
+        id S229582AbjBIMQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 07:16:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbjBIMMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:12:19 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BA7D51C
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 04:11:33 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id u10so1275284wmj.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 04:11:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Df0R/1IsIEBizIIioRMRApD+5BCz/Cj0WUyoSJvsVgw=;
-        b=rpn8yyR6+aUJwDrOJrJjq18RlJ6tXQItoSv2xO46b0Plpa2MWPZYEMNbJ0ZYaB1sjy
-         Bjt1yfrymHDwmJnCR6lLArpuJV1o2xGURIlUqeOHfi+0sVqbxSeFbSu6zVt6Bm+oLhTi
-         XUubJAnTcet3x6gXW5QCsoOLixrl9IcZgV+XVpzW5KMDQEQ5B3Lyz5ClpsA9lRvSGyHI
-         nQWgyah3Hw023Y6HGVEDFSsEakUnIx1Cmg3pMZbl4ArhlN6lr5BQTT7ELfZqMvcB9FkI
-         6JkhMwZqlOCIRnW8NR2eJej0v5U9mu9pznGRaqt8c54hdatbmca3vL+uTZVW3F1H2SNm
-         73YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Df0R/1IsIEBizIIioRMRApD+5BCz/Cj0WUyoSJvsVgw=;
-        b=4nzibxIyplDt4w6wJVEUsQeSpbx4XTlyipmBU/4uLsNazVbUkrwne1jLpqTxNyvPWi
-         L8xENlIFdAj0DVAqV4etKS/xKcnoZnwtAAhZ7a4GrE4eY5jKRDXlRPnoMj4sW0i3VcQw
-         uoGGIfaGdZNTCBJKR/6HwlDq6hN+IJVEk5RcdBqXQwEzssCoau+/5Iqi2tTcxNmv39PZ
-         tNuOy7i67W7D9xIYQCkh96ITnkx/oUidh9LH4XKkwOia+MxvdaOrfMubvcwROMoT3qJs
-         aORSwSro0Gk0fu212B5NwfEDVZqo4sLaDuyVe2bhsAeXlBZlD7eYUbyNOebeYVW1QS6v
-         STbw==
-X-Gm-Message-State: AO0yUKWow1L2tNc9F+hyqazN0VuzWbuw+Cyb02Zk/40ZOAOG7h7jlbdf
-        LiO1o0KSuUL8RLcBr5r1RC92mw==
-X-Google-Smtp-Source: AK7set8UCw1fqq7pOokTqqBwG55lf07NMHtWhTdB3dAiI5zggOD6rqDMVTlIW50ALOYB/+Djcvmc3g==
-X-Received: by 2002:a05:600c:1e8a:b0:3df:e57d:f4ba with SMTP id be10-20020a05600c1e8a00b003dfe57df4bamr12758098wmb.7.1675944692400;
-        Thu, 09 Feb 2023 04:11:32 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id x2-20020a1c7c02000000b003df30c94850sm4753348wmc.25.2023.02.09.04.11.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 04:11:32 -0800 (PST)
-Message-ID: <fa2e0db7-5b27-5a41-920b-b786dc4e521c@linaro.org>
-Date:   Thu, 9 Feb 2023 12:11:31 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory
- region as reserved
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230124182857.1524912-1-amit.pundir@linaro.org>
- <39751511-3f06-7c39-9c21-208d4c272113@linaro.org>
- <CAA8EJppLBuA08hkqTrZx_wwbtCxK9sAjv48c9_DxgPENgo7a8Q@mail.gmail.com>
- <1a840d88-e5b1-711c-b980-f57620c54472@linaro.org>
- <8508e3d5-7468-0b2f-5a43-7c439ecf2d8b@linaro.org>
- <CAMi1Hd2UNxXHUVWO-=sWh=-bVnrqE3UdLguFOq+62SfvUiEs0A@mail.gmail.com>
- <b2307e91-3373-539a-ecfb-e2542b9f83db@linaro.org>
- <ed737e67-eabc-6f29-b734-f4698767ca8e@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <ed737e67-eabc-6f29-b734-f4698767ca8e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229449AbjBIMQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 07:16:47 -0500
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3B9F66A4F;
+        Thu,  9 Feb 2023 04:16:29 -0800 (PST)
+Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 81C4B20C8AEA;
+        Thu,  9 Feb 2023 04:15:43 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 81C4B20C8AEA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1675944943;
+        bh=NJCW5JSyQq5dAWVf5JpWprMe43t8PWxMWSTw86YjVx4=;
+        h=From:To:Subject:Date:From;
+        b=WwNLMKmd4LzkY4E1aUPH3nKpUlJ9ZpjvqSuIfGSAsvKJlaQHSJ37Y5FVPP4Ff9c6K
+         5GFXTF92lm1N4M0YbGffAYnDwBg1/4hXAM2CprgZM5QK6Oz00e5peI6cKoQgWACzJq
+         t6hVYMF5yRfSyi3+Ur6yJtNJ5xHuGJ1Puttg6ONo=
+From:   Saurabh Sengar <ssengar@linux.microsoft.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@linux.microsoft.com, dphadke@linux.microsoft.com
+Subject: [PATCH v5 0/5] Device tree support for Hyper-V VMBus driver
+Date:   Thu,  9 Feb 2023 04:15:34 -0800
+Message-Id: <1675944939-22631-1-git-send-email-ssengar@linux.microsoft.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 12:08, Konrad Dybcio wrote:
-> If the bootloader splash is enabled then this memory is used until the
-> DPU driver instructs MDP5 pipes to suck data from a newly assigned address,
-> so there's a short window where it is.
+This set of patches expands the VMBus driver to include device tree
+support. This feature allows for a kernel boot without the use of ACPI
+tables, resulting in a smaller memory footprint and potentially faster
+boot times. This is tested by enabling CONFIG_FLAT and OF_EARLY_FLATTREE
+for x86.
 
-It seems a shame to reserve 30 something megabytes of memory for 
-continuous splash unless we are actually using it is my point.
+The first two patches enable compilation of Hyper-V APIs in a non-ACPI
+build.
 
-If I'm running headless its just wasted memory.
+The third patch converts the VMBus driver from acpi to more generic
+platform driver.
 
----
-bod
+Further to add device tree documentation for VMBus, it needs to club with
+other virtualization driver's documentation. For this rename the virtio
+folder to more generic hypervisor, so that all the hypervisor based
+devices can co-exist in a single place in device tree documentation. The
+fourth patch does this renaming.
+
+The fifth patch introduces the device tree documentation for VMBus.
+
+The sixth patch adds device tree support to the VMBus driver. Currently
+this is tested only for x86 and it may not work for other archs.
+
+[V5]
+- Removed #else for device tree parsing code. This should help better
+  test coverage.
+- Fix macro '__maybe_unused' warning
+- Added below options in Kconfig to enable device tree options for HYPERV
+	select OF if !ACPI
+	select OF_EARLY_FLATTREE if !ACPI
+- moved dt documantation to bus folder
+- update the dt node to have 'bus' as parent node instead of 'soc'. Also
+  added compatible and ranges property for parent node.
+- Made sure dt_binding_check have no error/varnings for microsoft,vmbus.yaml file
+- Fix commit messages and add Reviwed-by from Michael for first 3 patches
+
+[V4]
+- rebased which fixed return type of 'vmbus_mmio_remove' from int to void
+- used __maybe_unused for 'vmbus_of_match' and safeguard vmbus_acpi_device_ids
+  under #ifdef
+
+[V3]
+- Changed the logic to use generic api (for_each_of_range) for parsing "ranges".
+- Remove dependency of ACPI for HYPERV in case of x86.
+- Removed "device tree bindings" from title and patch subject.
+- Removed duplicate vendor prefix, used microsoft instead of msft.
+- Use 'soc' in example of device tree documantation for parent node.
+- Fixed compatible schemas error generated in other modules referring to
+  virtio.
+- Drop hex notation and leading zeros from device tree cell properties.
+
+Saurabh Sengar (5):
+  drivers/clocksource/hyper-v: non ACPI support in hyperv clock
+  Drivers: hv: allow non ACPI compilation for
+    hv_is_hibernation_supported
+  Drivers: hv: vmbus: Convert acpi_device to more generic
+    platform_device
+  dt-bindings: hypervisor: VMBus
+  Driver: VMBus: Add device tree support
+
+ .../bindings/bus/microsoft,vmbus.yaml         |  50 ++++++++
+ MAINTAINERS                                   |   1 +
+ drivers/clocksource/hyperv_timer.c            |  15 ++-
+ drivers/hv/Kconfig                            |   6 +-
+ drivers/hv/hv_common.c                        |   4 +
+ drivers/hv/vmbus_drv.c                        | 118 ++++++++++++++----
+ 6 files changed, 165 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+
+-- 
+2.34.1
+
