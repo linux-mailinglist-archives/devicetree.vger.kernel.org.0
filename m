@@ -2,137 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B9669045C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C5A69048D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:24:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbjBIJ7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:59:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33888 "EHLO
+        id S229519AbjBIKX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 05:23:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbjBIJ7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:59:14 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDF268118;
-        Thu,  9 Feb 2023 01:58:54 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B6A0D66020BA;
-        Thu,  9 Feb 2023 09:58:51 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1675936732;
-        bh=hmwCcLx8WeTfeTxPPlEq4SNZKG/+gNYPhLzgXs1TNbM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Uhbxg3iE7yYU/WPGRsHACnAzEfaS2O2azB5IhRKIevyKca4aaC24X39aY3WBpu4Yc
-         Fij8iU9I5DPTGaBNCSMiqogPn6ZuoTLeKRMGphrNsF0mu9UKDVX8+tYVYy4bcLS7dH
-         jmJiiZxGVOvOIccfDoMKORomGWxE+CijIXlcuVkiVU787yNSXuMRT4e5v7lnatRr8z
-         NhxCPFelQM6JFNEiKOq54ejABVV9nVg6/qc2WzoNnYo4NFxfpedlDX3E4pF+SJ6old
-         WqbIbFQ3hVJvUGdSxngA7kKgu+KPuyWIFm8P33Uv8UXVjD/9DEFBZcL405q44d0jmG
-         /OGCMtM/jb+zg==
-Message-ID: <33ae8a64-277b-0c53-fcf3-f4eb2fccda49@collabora.com>
-Date:   Thu, 9 Feb 2023 10:58:49 +0100
+        with ESMTP id S229516AbjBIKX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:23:58 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6705DC35
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:23:56 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id x71so869398ybg.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:23:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ESBIV/kNJUNeYCMfLMjpk+d6xlstSirIwM474nZZD/0=;
+        b=VvSf7nsrTc1HWEqNg6MATvElyfdndYn0+jgpiSPmGNALuJ2YaX+mF3GB/ewxj4du63
+         QYjMg9xZjfdGGfYXEJauxvtHUoY+ohbFXPT1kDLMUdtQRav/86bqucl9bKzjAsldzBnq
+         EGumfKi+HVT8/8afw7Nz5WoNOA2vMT6V3YZ1kdLl2KbuI5hVDl6mJ24nMh8RHAckeE2N
+         HdLAL1lFLsG7Bju0uufjPwWNpOlz5vUVcdnOOV3mt+imkZMufdKt8VYuQz2jqLvGUPfG
+         d4/uChKWIB9oWeOxwMJE2OmYkV1FwuSWdWPXCME8aFd0foD/hv00k824AFxOWTu3l5QJ
+         gizw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ESBIV/kNJUNeYCMfLMjpk+d6xlstSirIwM474nZZD/0=;
+        b=XMqcX/9DKwySJ065FkwVUsrP8b1PHMtUGz8HsVD+xFmXc6SKFBTvctXD0VWyohpVrd
+         J+A4nPbVXWbTfkqcGHsmqFYwx/j+9JC70OvTl2XeuGwYrCSq14zxfmI4wXfzYypwSIfN
+         GB31M3PQaMcpTO3Odh7Zk9hms2u+sAmZ3PAwaPsZaEW5qbh7MzQnq9/TzSPmdbIHi5r2
+         J3YzEKzaE/YYt1lFldZL27a5o5cpqBlRF3lTZqssqMKbO+6qX9GVwQb+Ov9w6fIJKv/E
+         uPP0BzVNEkblxT4zSpuf1KkewXfAg25cYglsmzXl91Ku/R25FjZcLkGNzR8eeocrC2O7
+         MiwA==
+X-Gm-Message-State: AO0yUKUezucmBXtzUHR9Fbbp3BiN9NvN8R4JAvEYwITOTHukIqDGP0pJ
+        a+PUF0y9Yomwq7Z7u5q17JwRxYMab3Ptb45wGZSaAw==
+X-Google-Smtp-Source: AK7set+C4DcjTmcYWBgoWWJilkxDTiApY+tMJci86TbkIHE286R71lPvBSO/vStE0DPkyAJ6+h7YG1xPTY8D86Vb1XQ=
+X-Received: by 2002:a25:5d02:0:b0:889:f225:d942 with SMTP id
+ r2-20020a255d02000000b00889f225d942mr30014ybb.518.1675938235680; Thu, 09 Feb
+ 2023 02:23:55 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 5/9] dt-bindings: gpu: mali-bifrost: Add a compatible for
- MediaTek MT8186
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, steven.price@arm.com,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
-        Fei Shao <fshao@chromium.org>, Nick Fan <Nick.Fan@mediatek.com>
-References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com>
- <20230208103709.116896-6-angelogioacchino.delregno@collabora.com>
- <CAGXv+5FZqrGzzG8FrmLVzMd7=a23ZJPYGSy5yhYWgH+BFHNmxw@mail.gmail.com>
- <7784f5a2-3cfc-9999-0ad6-cb9cfc1f2822@collabora.com>
- <CAGXv+5EhDGuzoBA9ZV2=3PVZ209eFq+wOOcTGVvG+gmOnf5txQ@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5EhDGuzoBA9ZV2=3PVZ209eFq+wOOcTGVvG+gmOnf5txQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230127192139.299228-1-brgl@bgdev.pl> <167591660368.1230100.1469946170144348483.b4-ty@kernel.org>
+In-Reply-To: <167591660368.1230100.1469946170144348483.b4-ty@kernel.org>
+From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date:   Thu, 9 Feb 2023 11:23:44 +0100
+Message-ID: <CACMJSet=0TW2u5PNPZFmb3WNrjCxRDaozkS9KLaEcEwPp6zHeQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: qcom,scm: add qcom,scm-sa8775p compatible
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/02/23 10:45, Chen-Yu Tsai ha scritto:
-> On Thu, Feb 9, 2023 at 5:20 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 09/02/23 09:49, Chen-Yu Tsai ha scritto:
->>> On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>
->>>> Get GPU support on MT8186 by adding its compatible.
->>>
->>> I'd skip MT8186 for now. We have to work out some binning details for the
->>> OPP, in particular how to deal with both Panfrost (or Mali) and SVS adding
->>> the OPP table. We were just looking at the Mali driver today.
->>>
->>
->> Dealing with binning is fairly easy... I have something already done for
->> that one, but I'm not sure that it would be the best option.
->> My solution makes use of opp-supported-hw by "standard means", but perhaps
->> let's have a separated conversation about it?
->>
->> I don't think that skipping this would give any benefit though, because
->> that is only adding a compatible and whatever binning support would have
->> to be generic and 99% not bound to any mediatek specific compatible.
-> 
-> The binning is related to voltage range, not maximum OPP. So it's more
-> like fast/slow example in Documentation/devicetree/bindings/opp/opp-v2.yaml
-> or the opp/allwinner,sun50i-h6-operating-points.yaml, minus the efuse node.
-> 
-> The downstream DT currently looks like this:
-> 
-> opp-950000000 {
->          opp-hz = /bits/ 64 <950000000>;
-> 
-> /* This is Mali specific; ignore
->          opp-hz-real = /bits/ 64 <950000000>,
->                        /bits/ 64 <950000000>;
-> */
->          opp-microvolt = <900000>, <1000000>;
->          opp-microvolt-bin4 = <875000>, <975000>;
->          opp-microvolt-bin5 = <850000>, <950000>;
-> };
-> 
+On Thu, 9 Feb 2023 at 05:21, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Fri, 27 Jan 2023 20:21:39 +0100, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add a compatible for the sa8775p platform's Secure Channel Manager
+> > firmware interface.
+> >
+> >
+>
+> Applied, thanks!
+>
+> [1/1] dt-bindings: firmware: qcom,scm: add qcom,scm-sa8775p compatible
+>       commit: 27d71e8063d99b4429832bc52de171ace6b1e562
+>
+> Best regards,
+> --
+> Bjorn Andersson <andersson@kernel.org>
 
-Yes, my option is, in short:
+Bjorn,
 
-	opp-900000000 {
-		opp-hz = /bits/ 64 <900000000>;
-		opp-microvolt = <850000>;
-		opp-supported-hw = <0xcf>;
-	};
+FYI I resent this patch as part of an integration series later[1] as
+per Krzysztof's suggestion. Could you pick the entire thing up too?
 
-	opp-900000000-bin4 {
-		opp-hz = /bits/ 64 <900000000>;
-		opp-microvolt = <837500>;
-		opp-supported-hw = <0x10>;
-	};
+Thanks!
+Bart
 
-	opp-900000000-bin5 {
-		opp-hz = /bits/ 64 <900000000>;
-		opp-microvolt = <825000>;
-		opp-supported-hw = <0x20>;
-	};
-
-
-
-> 
-> ChenYu
-
-
-
+[1] https://lore.kernel.org/linux-arm-msm/20230201152038.203387-1-brgl@bgdev.pl/
