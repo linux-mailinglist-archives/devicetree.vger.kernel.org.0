@@ -2,153 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EF96905F9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 11:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 597FE690601
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 12:01:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbjBIK7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 05:59:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56348 "EHLO
+        id S230151AbjBILBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 06:01:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbjBIK7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 05:59:39 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7DFA5D2
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 02:59:12 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id d14so1330726wrr.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 02:59:12 -0800 (PST)
+        with ESMTP id S230154AbjBILB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 06:01:28 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98457A99
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 03:00:47 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id rp23so5145906ejb.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 03:00:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E4qWySFdPWlDDj6CvZ29MtpOtvG59NiLUFJ1wNv+nZw=;
-        b=EUolExRwf4LfrDwUiAGQ5FhG8nDREc494r+eapphjzQWifcAV3dtqumlcac504K2Az
-         Tf03G8fnZvqpWdSJNyXO7uU6tOm3RZ7bYASOq76hlPN9fpu1dRqe6S5ciPUKRsJDvxE+
-         vQPDbJjmsVJ+zSsyY/z0FBVPlX9qR2TzhkD/Ek+D0wmkuoKZ0xNx3QUZ0K3fzgL9vXhC
-         U9ok/0mXFFxluDXd7o+0UaEvwmnTTxkuNik4H3yzoa5OdD2p/z9OzKNAFB+4pNCT72ON
-         glEJGsLpXqvlVLf4UNynoBVvtiAty1QGC4Sx8T85Em1uJsVhddPZLSafG06nvQ2mnXOK
-         db5A==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dEiNvwdsh50/luN7kcdBw0tT4i5v1/6EEunHYjmNZXs=;
+        b=Cc5tn2CKinqZh1y6GDQOh3jtJ28lfw2AwbOsVKLtGeveXXSVLDmwew92x9ux+0z56F
+         OfAYNU/fNb6jcMpYuzPpdqEP+cy1mUVEFyu9uOmyx9g2lYIp4o9FqtnL+bv04Ojl193D
+         BUU/NFJ8GwOYJ8E7P2goc0AceLXUIIbs8jlTxm6w9sRRkXKfV1vviPHYRD543YgiL4Q4
+         pivztwB4TrK7gBRgy5u2ivXhVjbx3SNjI2kr+zn2GO8xZ7oLhCjtviVLKl66WkEaViyu
+         pujsrnKl/l5Z4xl0Dd1Wm+OgAfj7DVpTK6iyBB+gyKK9YmCSR27IIyhsIaAbHQGoTTLm
+         z1Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E4qWySFdPWlDDj6CvZ29MtpOtvG59NiLUFJ1wNv+nZw=;
-        b=Q3HUyJ7qQJtOwLWUEgelp2vSYYbaN5rKByT2+5hln0MtNVMjquVtY2q1McC6sw5B9L
-         kqwdpKFapMwP0gA7DlGzNlt1sIurC0KOuTUfsUWNt31+3TRlg9hEBTv7mmWvfiyrTngt
-         2/i0Ee4IQy8pijXwbXsIJK6tIj14oNphF5O9OnarP/YqCH5SuQQ/CCFaaKFLYQ5tbRjI
-         cWBxcb4BNPgGBXFkmcEOREDCGuNWeYI67SyZjXrifvhrynfMoCbzPKGAOCSzX1owFFUM
-         lvX7kVPycVVWvgG8kOz31elXWKhRzDE1Xk9TqiqM48YGSgIXGH1Jl5+3TTEPE1H8n44G
-         FpGg==
-X-Gm-Message-State: AO0yUKWDjiQi7ZNb++9uAgmSKoQFrE2GOPZVC+gco825qwqdeDToFovP
-        V9vOO599lT7KFxa6ne7NUx4Kwg==
-X-Google-Smtp-Source: AK7set+atwKYMV7RT2tbpxUR8z1N14xNVSqX1awpewm7AY0VYOHXhzDGhP8g+m7t5X7BRFFIqUmsAg==
-X-Received: by 2002:a05:6000:124f:b0:2c3:ea68:c580 with SMTP id j15-20020a056000124f00b002c3ea68c580mr3963480wrx.11.1675940334812;
-        Thu, 09 Feb 2023 02:58:54 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g7-20020a5d6987000000b002be063f6820sm927987wru.81.2023.02.09.02.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 02:58:54 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Lukasz Majewski <l.majewski@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>,
-        Javier Martinez Canillas <javier@osg.samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        stable@vger.kernel.org
-Subject: [PATCH 6/6] ARM: dts: exynos: correct TMU phandle in Odroid XU3 family
-Date:   Thu,  9 Feb 2023 11:58:41 +0100
-Message-Id: <20230209105841.779596-6-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230209105841.779596-1-krzysztof.kozlowski@linaro.org>
-References: <20230209105841.779596-1-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dEiNvwdsh50/luN7kcdBw0tT4i5v1/6EEunHYjmNZXs=;
+        b=k1fJsrQcGA8sVi/OZX5XVgyVZ1Uh5jolre/BphscgT+th+Qpu41h7aw9Ji/qGFv6cV
+         jUxUEKSjs4SprdAKrQYnZw5z4R+w8tr1fYGAnPUTJtJwVPszc/8Vk/JGynN1Wlyd0BWX
+         JyNG22BgF/l2vKezgl7q0ox56tmSyDKjncFQBfkv7kzJfVwc4nPTzH97BOyB7YPvmKvQ
+         ImB7gz0BepocXlBmHDm6aPUusmYwQtOF3bpzYgdO2PgYJ5AxlcXD+BBHdON1KqRoIuiA
+         rRBvrEG0oYpCfeK1GLdoCfN+T4XFdcgk6ByFB0pNzR1t2h4P12ixkThrgwM8IcCAwea/
+         SDqQ==
+X-Gm-Message-State: AO0yUKV1KlQVTBNR+FlxsqAP2Yi6nVHpcooN2iRcGoSlFCyvJx11xG7d
+        of8c0yFkbUPO6CcnjD68FhI7l7z8PbxWpgbQGInlnw==
+X-Google-Smtp-Source: AK7set+RaPbg+SOCzwGndo1Wa91cwrheg38QQCBg99GhoVwyzzAvFtOaofSU6Q5pBzPM0CXKp4JFifhFaFx0rd/k0bs=
+X-Received: by 2002:a17:906:ca04:b0:7c0:f45e:22ff with SMTP id
+ jt4-20020a170906ca0400b007c0f45e22ffmr2702674ejb.104.1675940443471; Thu, 09
+ Feb 2023 03:00:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230207130958.608305-2-bchihi@baylibre.com> <202302080018.wNeWiKqz-lkp@intel.com>
+In-Reply-To: <202302080018.wNeWiKqz-lkp@intel.com>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Thu, 9 Feb 2023 12:00:07 +0100
+Message-ID: <CAGuA+ori24xtbHnzYXGVSUOiU-T+V=33DPsHnsruGnP5Y_L7ZA@mail.gmail.com>
+Subject: Re: [PATCH v13 1/6] thermal: drivers: mediatek: Relocate driver to
+ mediatek folder
+To:     kernel test robot <lkp@intel.com>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TMU node uses 0 as thermal-sensor-cells, thus thermal zone referencing
-it must not have an argument to phandle.  This was not critical before,
-but since rework of thermal Devicetree initialization in the
-commit 3fd6d6e2b4e8 ("thermal/of: Rework the thermal device tree
-initialization"), this leads to errors registering thermal zones other
-than first one:
+this warning has been fixed by this patch :
+https://lore.kernel.org/all/20230113064449.15061-1-rdunlap@infradead.org/
 
-  thermal_sys: cpu0-thermal: Failed to read thermal-sensors cells: -2
-  thermal_sys: Failed to find thermal zone for tmu id=0
-  exynos-tmu 10064000.tmu: Failed to register sensor: -2
-  exynos-tmu: probe of 10064000.tmu failed with error -2
-
-Fixes: f1722d7dd8b8 ("ARM: dts: Define default thermal-zones for exynos5422")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-index a6961ff24030..e6e7e2ff2a26 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-@@ -50,7 +50,7 @@ fan0: pwm-fan {
- 
- 	thermal-zones {
- 		cpu0_thermal: cpu0-thermal {
--			thermal-sensors = <&tmu_cpu0 0>;
-+			thermal-sensors = <&tmu_cpu0>;
- 			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 			trips {
-@@ -139,7 +139,7 @@ cpu0_cooling_map4: map4 {
- 			};
- 		};
- 		cpu1_thermal: cpu1-thermal {
--			thermal-sensors = <&tmu_cpu1 0>;
-+			thermal-sensors = <&tmu_cpu1>;
- 			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 			trips {
-@@ -212,7 +212,7 @@ cpu1_cooling_map4: map4 {
- 			};
- 		};
- 		cpu2_thermal: cpu2-thermal {
--			thermal-sensors = <&tmu_cpu2 0>;
-+			thermal-sensors = <&tmu_cpu2>;
- 			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 			trips {
-@@ -285,7 +285,7 @@ cpu2_cooling_map4: map4 {
- 			};
- 		};
- 		cpu3_thermal: cpu3-thermal {
--			thermal-sensors = <&tmu_cpu3 0>;
-+			thermal-sensors = <&tmu_cpu3>;
- 			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 			trips {
-@@ -358,7 +358,7 @@ cpu3_cooling_map4: map4 {
- 			};
- 		};
- 		gpu_thermal: gpu-thermal {
--			thermal-sensors = <&tmu_gpu 0>;
-+			thermal-sensors = <&tmu_gpu>;
- 			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 			trips {
--- 
-2.34.1
-
+On Tue, Feb 7, 2023 at 5:14 PM kernel test robot <lkp@intel.com> wrote:
+>
+> Hi,
+>
+> Thank you for the patch! Perhaps something to improve:
+>
+> [auto build test WARNING on a2c81dc59d41e92362ab7d41d0c15471ea50637d]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/bchihi-baylibre-com/thermal-drivers-mediatek-Relocate-driver-to-mediatek-folder/20230207-211351
+> base:   a2c81dc59d41e92362ab7d41d0c15471ea50637d
+> patch link:    https://lore.kernel.org/r/20230207130958.608305-2-bchihi%40baylibre.com
+> patch subject: [PATCH v13 1/6] thermal: drivers: mediatek: Relocate driver to mediatek folder
+> config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230208/202302080018.wNeWiKqz-lkp@intel.com/config)
+> compiler: sparc64-linux-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/intel-lab-lkp/linux/commit/0eb89997925c0d7b47bbeee93016146fc660b259
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review bchihi-baylibre-com/thermal-drivers-mediatek-Relocate-driver-to-mediatek-folder/20230207-211351
+>         git checkout 0eb89997925c0d7b47bbeee93016146fc660b259
+>         # save the config file
+>         mkdir build_dir && cp config build_dir/.config
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/thermal/mediatek/
+>
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+>
+> All warnings (new ones prefixed by >>):
+>
+> >> drivers/thermal/mediatek/auxadc_thermal.c:562: warning: expecting prototype for raw_to_mcelsius(). Prototype was for raw_to_mcelsius_v1() instead
+>
+>
+> vim +562 drivers/thermal/mediatek/auxadc_thermal.c
+>
+> a4ffe6b52d27f4 drivers/thermal/mtk_thermal.c Michael Kao   2019-02-01  551
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  552  /**
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  553   * raw_to_mcelsius - convert a raw ADC value to mcelsius
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  554   * @mt:     The thermal controller
+> 3772bb422072d4 drivers/thermal/mtk_thermal.c Amit Kucheria 2019-11-20  555   * @sensno: sensor number
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  556   * @raw:    raw ADC value
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  557   *
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  558   * This converts the raw ADC value to mcelsius using the SoC specific
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  559   * calibration constants
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  560   */
+> 54bf1e5a629dfb drivers/thermal/mtk_thermal.c Henry Yen     2020-04-30  561  static int raw_to_mcelsius_v1(struct mtk_thermal *mt, int sensno, s32 raw)
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30 @562  {
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  563      s32 tmp;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  564
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  565      raw &= 0xfff;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  566
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  567      tmp = 203450520 << 3;
+> f84514766985d3 drivers/thermal/mtk_thermal.c Michael Kao   2019-02-01  568      tmp /= mt->conf->cali_val + mt->o_slope;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  569      tmp /= 10000 + mt->adc_ge;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  570      tmp *= raw - mt->vts[sensno] - 3350;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  571      tmp >>= 3;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  572
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  573      return mt->degc_cali * 500 - tmp;
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  574  }
+> a92db1c8089e82 drivers/thermal/mtk_thermal.c Sascha Hauer  2015-11-30  575
+>
+> --
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests
