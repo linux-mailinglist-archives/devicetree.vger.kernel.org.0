@@ -2,103 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E4368FD1A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 03:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8437E68FD5D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 03:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231348AbjBIC22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Feb 2023 21:28:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56042 "EHLO
+        id S232412AbjBICxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Feb 2023 21:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230369AbjBIC21 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 21:28:27 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96246184;
-        Wed,  8 Feb 2023 18:28:26 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id ki19-20020a17090ae91300b00232cba666bbso1155785pjb.2;
-        Wed, 08 Feb 2023 18:28:26 -0800 (PST)
+        with ESMTP id S232421AbjBICwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Feb 2023 21:52:46 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA13A5F1
+        for <devicetree@vger.kernel.org>; Wed,  8 Feb 2023 18:50:30 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id e204so200091iof.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Feb 2023 18:50:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BP1oeZnFYAqo6OKyA/b+ZVJvzM2i3K7jg0+1yWRBc1g=;
-        b=HUmmBge72hoqvTRYsHNY/+t+bZskey6seLM+zu/lU46hxQ047PYnZY2t17sIOciCI6
-         HzROywm4uATkmAiJFzfWUHDF1gqM/0hQB9GEiB2rumkNWELxfc3F22/PZY9DbG1CrOSd
-         o40+GxwCqSnBfaZ1IvOZpVFH6oKAu3YMy8+F4FVnpWRr9doKwotEClnRX0yJY0xJPihP
-         eUfFxIZ+OWq/rn+5mL1ZoT2ETA2sehO3y84ek9+zdZtM9c/mufNaR0Z/a7zkYdmmR6jU
-         HqXLgUtzuva0d0kLQvpa2lbPpHaI/zepxZtQiRvli2E4XMZCzpqPYbcq+Ll+61WQ2/bB
-         +QJw==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BYIk4P2p6gp1gkykneVTXGgTOGI8BQeMJrJn0G8vBFQ=;
+        b=HtmNzDuqZVPNnKVKdiDx+Z3cYsXnlZoWJEZPqX81nlx4s12FG5mKWN7Iz8QgRroITS
+         uI/SE/a6wLxuTbZ2XqIIRFA0hAyZXeC//DLKyZBwhoYviw0jixTfnpdaGsaTmcSOV3n6
+         NcyRBoPWk0t+FdFXhhVMlviUuItG+Tvvb8OQg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BP1oeZnFYAqo6OKyA/b+ZVJvzM2i3K7jg0+1yWRBc1g=;
-        b=58iyEPbi5ZxeUsa7DR1ZOuZ0hYIvk+3GX5sRl8GOU+y6mht/uS/jMyTXn5jbslTsmQ
-         aB1epUEFUaQ1BvBMr4c42fmqB28FKvNIg9QMtN5NCzPD2Tq8qMhElR+d8HuSNAlY4jD1
-         rDFIqlWwvErGUv5khrypqsgyqPQ2oXRtA8N2c+A02dTB2KQcF1ilrcWknU2rofrM+GJA
-         Kn8YJ/n0uPHaTGjDLgFaLJu8/uZgeZxfSCuZEkrDhgY4wERoMkmL9JAkh1wjVlgPKmgL
-         V1Z0keClIAOrD/RdaZtbilSFG9rQgXUDqETjB/nEzglFvTUGyDaWmx1BLKpoWdQbcFUD
-         oABQ==
-X-Gm-Message-State: AO0yUKV0ozXt31keSYi2BT1fLR2FC/tZhSRgn0oxHrKGGJC5GRY4J4Ri
-        4ts8MLMpnyTy6zbFAiCOZgI6ikkdVxo=
-X-Google-Smtp-Source: AK7set/y4rEkOLWVWBqz2g9CMIgzOYsc9RUpwCQG6Id5BAehzOegFxWYuAcs3FSZAhpNQSSavbU3Nw==
-X-Received: by 2002:a05:6a21:6d82:b0:bc:8bd6:d460 with SMTP id wl2-20020a056a216d8200b000bc8bd6d460mr12497833pzb.3.1675909705403;
-        Wed, 08 Feb 2023 18:28:25 -0800 (PST)
-Received: from localhost.localdomain (2001-b400-e27c-1c35-0ce2-b4ea-bbbd-f504.emome-ip6.hinet.net. [2001:b400:e27c:1c35:ce2:b4ea:bbbd:f504])
-        by smtp.gmail.com with ESMTPSA id j11-20020a637a4b000000b004e6adc2a8desm198833pgn.30.2023.02.08.18.28.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Feb 2023 18:28:24 -0800 (PST)
-From:   Owen Yang <ecs.taipeikernel@gmail.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Matthias Kaehlcke <mka@google.com>,
-        Gavin Lee <gavin.lee@ecs.com.tw>,
-        Doug Anderson <dianders@chromium.org>,
-        Harvey <hunge@google.com>, Abner Yen <abner.yen@ecs.com.tw>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bob Moragues <moragues@google.com>,
-        Owen Yang <ecs.taipeikernel@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7280: Adjust zombie PWM frequency
-Date:   Thu,  9 Feb 2023 10:28:16 +0800
-Message-Id: <20230209102807.1.I3e1463cd0fb66311a269f2698d0767a2acfaac3f@changeid>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BYIk4P2p6gp1gkykneVTXGgTOGI8BQeMJrJn0G8vBFQ=;
+        b=CIixWtlf8cdeEDvw+W8FELHKgOTM8rf4S8Q/V6vxCQKwDlyVs4J41jR3wi4bWeXzhf
+         ab49QApX8ADaXqQ9OZmaUhJvBO8bmLQwUnLM5E5ZJlTNjXMRPbAmhccbRaZSCRrpulxn
+         14//9jmuCJf/gjN6bYcpFAxdcyo+44obIBGjsRFO1SRqHZUrgQNF9jaasgAoyauD6URV
+         vkp8LYEF5RgbOo0x8zGUdJx4Su9kx+E65PUYOjTlKcFZDQ2hCUov2MXpyQIrkaRM7lIy
+         STGofxk2LKltBBCrs6VMpO4nz8A/iSHE/A7vTbsrkvQFCMqpygmuALnJ3GP5MTXTv1hs
+         IySA==
+X-Gm-Message-State: AO0yUKVXU5NDy90GVLu5KKrPCyytKQM/ZX1MJtHmOj+PdsdHhzPDX6di
+        Z2vIqkr4jl8PS7sRUm1cobpMldxU1g/5ib1bap13/ta/aszvUQgg
+X-Google-Smtp-Source: AK7set+bvKsydzGygJFYL5iQOvjw3Jv58rqgkJyZjXTUoGYryQCk+flVM83OAnzthJ9iLUo6Kt6Ev143YXLr6ftrCik=
+X-Received: by 2002:a02:cc37:0:b0:3a9:6b85:41ed with SMTP id
+ o23-20020a02cc37000000b003a96b8541edmr6496673jap.57.1675911029590; Wed, 08
+ Feb 2023 18:50:29 -0800 (PST)
+MIME-Version: 1.0
+References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com> <20230208103709.116896-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230208103709.116896-2-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 9 Feb 2023 10:50:18 +0800
+Message-ID: <CAGXv+5Gm=Onu2RK+skLgN4Kzo9yP1n5Zb48oQNkQ019838QeEQ@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: gpu: mali-bifrost: Don't allow
+ sram-supply by default
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, steven.price@arm.com,
+        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
+        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tune the PWM to solve screen flashing issue and high frequency noise.
+On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> The sram-supply is MediaTek-specific, it is and will ever be used
+> only for the mediatek,mt8183-mali compatible due to the addition of
+> the mediatek-regulator-coupler driver: change the binding to add
+> this supply when mediatek,mt8183-mali is present as a compatible
+> instead of disabling it when not present.
+>
+> This is done in preparation for adding new bindings for other
+> MediaTek SoCs, such as MT8192 and others.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> index 78964c140b46..69212f3b1328 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> @@ -57,8 +57,6 @@ properties:
+>
+>    mali-supply: true
+>
+> -  sram-supply: true
+> -
 
-Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
----
+Have you tried actually validating the device trees against this?
+Based on my previous tests this gives out errors.
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+The reason is that each conditional is a separate sub-schema, and the
+validator is run against each schema and sub-schema separately, instead
+of collapsing matching schemas and sub-schemas together and validating
+once. So we'll get a validation error on sram-supply not being a valid
+property when validating current mt8183 against the base schema.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-index 64deaaabac0f..000f64d27ab9 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-@@ -61,8 +61,8 @@ ap_tp_i2c: &i2c0 {
- };
- 
- &pm8350c_pwm_backlight {
--	/* Set the PWM period to 200 microseconds (5kHz duty cycle) */
--	pwms = <&pm8350c_pwm 3 200000>;
-+	/* Set the PWM period to 320 microseconds (8kHz duty cycle) */
-+	pwms = <&pm8350c_pwm 3 320000>;
- };
- 
- &pwmleds {
--- 
-2.17.1
+We have a similar issue with power-domain-names, for which I'll send
+a patch to fix. See the following for the fix:
 
+    http://git.kernel.org/wens/c/d1adb38ab2ad0442755607c2bcc726cc17cce2c7
+
+and the following for what I did for MT8192 on top of the previous patch:
+
+    http://git.kernel.org/wens/c/049bd164884398d7e5f72c710da6aaa9a95bc10a
+
+
+Regards
+ChenYu
+
+>    operating-points-v2: true
+>
+>    power-domains:
+> @@ -157,6 +155,7 @@ allOf:
+>              - const: core0
+>              - const: core1
+>              - const: core2
+> +        sram-supply: true
+>
+>        required:
+>          - sram-supply
+> @@ -166,7 +165,6 @@ allOf:
+>        properties:
+>          power-domains:
+>            maxItems: 1
+> -        sram-supply: false
+>    - if:
+>        properties:
+>          compatible:
+> --
+> 2.39.1
+>
