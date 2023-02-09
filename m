@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73198690336
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A6069036E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbjBIJTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:19:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53694 "EHLO
+        id S230286AbjBIJVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:21:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbjBIJTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:19:10 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3946184B
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:18:54 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso986524wms.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:18:54 -0800 (PST)
+        with ESMTP id S230106AbjBIJUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:20:49 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9784965EC4
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:19:43 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so1002567wmb.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:19:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8xKTTF13TuTGcMYnAy1hWjGraIh0S3K+pSaF1w8Q3zo=;
-        b=xs7Q4mmPj8u33vupAygAL8RuVKlC6EKKdmfyF+kkgWOujcytRxJIOx5Y4SAs6FaS5V
-         HIyn9tFlA4cBihMXK9hzx8q170ZLTncfXKdo8vXjbkG810AG8fKWLPRcvB+qYbxdTgqh
-         cHRWM1oxcgBAgZM28jKebD8VWvN2+XUr7zdIsJwxgcl6bDgBjVnaSL7rUj+1VYoY8+Ay
-         S/hpfjMt6n76SB049n5M9Nj6YBu60al6ieUMhf0S6hmHo5itpzM7JKoAzlKhSEdeeVGo
-         PK+1HuzxjXtVWr552yVPcfMJf9I24fwUHd3ihi+OnQgCLkdA/idhQdy9+1o/lRo3u80n
-         Rekg==
+        bh=+lf8QLPCcyDvpw7oAginkoSV3mAKj3y/9VzlqPF8+0U=;
+        b=V6UTmWV3UklUG+BCKfVbpD51PLxvQjUgRckjuijCqks573cOtprivY/CE341/dRA3v
+         NxjFR8dLkFGCVDNDL00gCoMurLeBPxUHxBwVkcLbLVbR5dOcixpxl5nMtjq3383RW6bc
+         xNzHeTYsh25RNmAoIIS6X1WYg3beRHXhBNGpfSCPh5QvHEW2ghaMecMtmkhYwjFWe+i7
+         U2Lo6LzfXzkPYsqiSKK884KWfJOrWJq8sma892RLZ7PC0VZ3Rcwjp5eKX7E+AdWSzaZb
+         TwxBfnVrwBjcBYZ9hiHVOLu0NV9zXV47CFjALkBPotjd9tYzuhIc9fgw/3iBFgx/xDT/
+         nQ9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xKTTF13TuTGcMYnAy1hWjGraIh0S3K+pSaF1w8Q3zo=;
-        b=KlCZOzMpS+FVvCSyHFYvvIMiDpM5e/rn5LeAzo4hOBjWGc3CYBI6VU4b6c+PLqoIY9
-         1dqCMN/fQdH+Shaw+EXi/RxsGiQenYTRwUXQsnwaKwFrIzU3X61j2Ph/w8qEz+fj741v
-         mFlD9CdHEvfFmv7HbLLQ0armISJsj0v1iankO/OZMTYlcK/xbdcAxRSvlev1vjvhYRBG
-         nFdWqwsawiJgtyvh1CQjGAnhskaltWr3hzmqPxwrwuAN83pYM61OsHNcwacAwnDn4YNU
-         4Asf7jRZFBNRDR/t+nCbOzc3snxE80Fp+6mQkl9lOFJ1vy5G4ljLlOLrGa8/rptnwTuA
-         T96w==
-X-Gm-Message-State: AO0yUKWLOtXrv+RpyiiHXoWZ3JHuH5kTc7DDHaD5TKZc+bMZkmmL9P6B
-        e5OE95HxLZ/B9HzzXMewuOlXVg==
-X-Google-Smtp-Source: AK7set9XI6TCiVDXHBQ00wIrpN5n0MrSPkmDWY0y02F6jIukBOaxh8N9JZIw08zehf0kd3ep1rJmAQ==
-X-Received: by 2002:a05:600c:16c8:b0:3da:2ba4:b97 with SMTP id l8-20020a05600c16c800b003da2ba40b97mr3753928wmn.19.1675934332766;
-        Thu, 09 Feb 2023 01:18:52 -0800 (PST)
+        bh=+lf8QLPCcyDvpw7oAginkoSV3mAKj3y/9VzlqPF8+0U=;
+        b=ujoVRmBMm0oLheI+SI5NqeIKgAcB4N/iRrqwcUY+nLkAAnLMYxYSYE40ni4ZkQ2Z1Y
+         f15Z9ma7cZxJfXOTAEdMID5r2vMMwDQsUXskpPHzkclAQDyOOvHkhW2mVeuIJo7aRMdQ
+         AoIz5RbLwGyNGd5LnN12fFYbge6ArjXMVfZjyhra+9lE/qd1VHRsW70paRM+WchAqaqH
+         F6RtRA1yEc2he2VofIgQMynWBCdxybsRUGCrSTmtZ94haFjnRKoAIq5GedIwS0iL1tpW
+         aeZOVLqU5gfNBs90A7gnD5e9z9xwKAIhDA+7ZXKrzOYHbZOHNu0abHtW+O5i4JCtszC5
+         uinw==
+X-Gm-Message-State: AO0yUKXtRfWVjw0ar7fcT265mXESGXRLfxcTGlWTIsObrbYrEoLTS0ic
+        zcyKBqwS3D8nBVzu0aBQPnfmPQ==
+X-Google-Smtp-Source: AK7set8uToABk3UaRvkBw8DeoFe9DRIQaKr2AnU5CSys7VDnbZYgBchuU1hSCnSy3xb7kGjg2GKSwg==
+X-Received: by 2002:a05:600c:43d2:b0:3da:fc07:5e80 with SMTP id f18-20020a05600c43d200b003dafc075e80mr3817799wmn.12.1675934381973;
+        Thu, 09 Feb 2023 01:19:41 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g12-20020a5d540c000000b002bff1de8d4bsm757371wrv.49.2023.02.09.01.18.51
+        by smtp.gmail.com with ESMTPSA id az10-20020a05600c600a00b003dc3f07c876sm4527444wmb.46.2023.02.09.01.19.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 01:18:52 -0800 (PST)
-Message-ID: <bc088534-ac1d-0504-9961-d3cd3740e2f3@linaro.org>
-Date:   Thu, 9 Feb 2023 10:18:50 +0100
+        Thu, 09 Feb 2023 01:19:41 -0800 (PST)
+Message-ID: <a5c8355c-4181-d106-2f6b-a48126cb2b70@linaro.org>
+Date:   Thu, 9 Feb 2023 10:19:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
 Subject: Re: [PATCH v9 05/14] dt-bindings: qcom-qce: Add new SoC compatible
  strings for qcom-qce
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -71,58 +72,59 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-crypto@vger.kernel.org
 References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
  <20230208183755.2907771-6-vladimir.zapolskiy@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230208183755.2907771-6-vladimir.zapolskiy@linaro.org>
+ <bc088534-ac1d-0504-9961-d3cd3740e2f3@linaro.org>
+In-Reply-To: <bc088534-ac1d-0504-9961-d3cd3740e2f3@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2023 19:37, Vladimir Zapolskiy wrote:
-> Change QCE IP version specific compatible to two QCE IP family compatibles
-> based on SoC name and populate these two IP families with particular SoC
-> specific IP compatible names, which are known at the moment.
+On 09/02/2023 10:18, Krzysztof Kozlowski wrote:
+> On 08/02/2023 19:37, Vladimir Zapolskiy wrote:
+>> Change QCE IP version specific compatible to two QCE IP family compatibles
+>> based on SoC name and populate these two IP families with particular SoC
+>> specific IP compatible names, which are known at the moment.
+>>
+>> Keep the old compatible 'qcom,crypto-v5.1' for backward compatibility
+>> of DTB ABI, but mark it as deprecated.
+>>
+>> The change is based on the original one written by Bhupesh Sharma.
+>>
+>> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
+>>  .../devicetree/bindings/crypto/qcom-qce.yaml  | 24 +++++++++++++++++--
+>>  1 file changed, 22 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>> index 4e00e7925fed..f6f1759a2f6e 100644
+>> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>> @@ -15,7 +15,27 @@ description:
+>>  
+>>  properties:
+>>    compatible:
+>> -    const: qcom,crypto-v5.1
+>> +    oneOf:
+>> +      - const: qcom,crypto-v5.1
+>> +        deprecated: true
+>> +        description: Kept only for ABI backward compatibility
+>> +      - const: qcom,crypto-v5.4
 > 
-> Keep the old compatible 'qcom,crypto-v5.1' for backward compatibility
-> of DTB ABI, but mark it as deprecated.
+> You should mention in commit msg that you document existing compatible
+> v5.4. Otherwise it looks unrelated/unexplained. Especially adding
+> deprecated compatible is unexpected.
 > 
-> The change is based on the original one written by Bhupesh Sharma.
-> 
-> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../devicetree/bindings/crypto/qcom-qce.yaml  | 24 +++++++++++++++++--
->  1 file changed, 22 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> index 4e00e7925fed..f6f1759a2f6e 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> @@ -15,7 +15,27 @@ description:
->  
->  properties:
->    compatible:
-> -    const: qcom,crypto-v5.1
-> +    oneOf:
-> +      - const: qcom,crypto-v5.1
-> +        deprecated: true
-> +        description: Kept only for ABI backward compatibility
-> +      - const: qcom,crypto-v5.4
 
-You should mention in commit msg that you document existing compatible
-v5.4. Otherwise it looks unrelated/unexplained. Especially adding
-deprecated compatible is unexpected.
+With commit msg adjustement for v5.4 compatible:
 
-> +        deprecated: true
-> +        description: Kept only for ABI backward compatibility
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
