@@ -2,80 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADD6690274
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:49:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E446A690280
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 09:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjBIIt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 03:49:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58284 "EHLO
+        id S229548AbjBIIvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 03:51:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjBIIt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:49:28 -0500
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CDB411EB3
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:49:27 -0800 (PST)
-Received: by mail-vs1-xe2c.google.com with SMTP id k4so1385308vsc.4
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:49:27 -0800 (PST)
+        with ESMTP id S229461AbjBIIvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 03:51:19 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E9FF48A03
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 00:51:17 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso926694wms.4
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 00:51:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=22xHVaizGQeKTJvsqtfI5zTT40uK/PwvcQY9ndeXRhM=;
-        b=nEEpvk7/fdi+G4pqGRp67+yXUNRS9lFzkJh9kf6sbHjy8/UxKIbI0VqqffhzwZS2pa
-         oiBb8fdNaKoWz+iGdBMH7HIDvnywsSa/qktrKHgqmY6E0Xd35NbFH0LC0Se2ufdapwWL
-         M/666v2WvN1+4gAnk0Hk1aS0jGVqHGi3Qaxec=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eUi0+pogx97QXn9Rou5pDGb9vpsF0M/z1DxS9OrlVt8=;
+        b=D0xWK2k4J17lzN1JTnVZZLkR/zBiywl6ZILZC+DlL6jrOlWFbSXF6oZb80PMMOR8fQ
+         YtaYePUeL5CDLM3hFUn0aPZ3Lt8CmWSRXKTSNGcaaIbajfbHAXUmwLgsoPMcPsv9+kG5
+         S5mZvVutg91cRWcVJqxqZfJlTtpCLiE9+7YPJ/zkDcI1icQQe3a+u+N41ugvaskBQ4hZ
+         j4nheCT1W1EDNRZGAzMfkX3gBF3Cw8eC8izpcalohsgh8VPeaJ6c4bE8tFz9gHbuehwV
+         PRnBj4QakLPvD6nRRPeSJ/o7Ef3cZXKPDeLJnZQRIXYCKJbyxyThBLY0Lrixq8i/d1Tv
+         +NhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=22xHVaizGQeKTJvsqtfI5zTT40uK/PwvcQY9ndeXRhM=;
-        b=Lqv8EFTSYGKRPBDscygk7EcW3Lo02nYWF0U46iPF6s/aHG1agbXM5jBFpZHVWS3Zl/
-         nJh6Mg5VbPBg0kT/KiifhKu04w/vSE6S27CNmIkaso3Am57fE4MXMFlNmrkg4y6VVqHI
-         nLow/3NtcW3XfZPgU8dAd8EmBNgW+tcjAYyQLAlCteqn9nQ8a26KmFwhBzhmcZvP6Air
-         fTjqzVSfdJ7Upmmy9ReUOfHF95796mC9nCBBq+883y+P9QFxc7HJbyW9Ol00AHg8nPwz
-         UqpeAN3wxziqWL9MHuf4f53F+qWaWy3JVgOaFjPVtXzZWHZKUhv5+mkn2ZCGLBMbtsM1
-         Z3Ww==
-X-Gm-Message-State: AO0yUKWqZ7UW8+tvkQCQd7p5B7LFLWgNNgoPaZ3wiIcT0QWQAxjOMvne
-        zg5b5SOHKkeBswJql3k3C+SfS8dxBqb+Wxr+rUqWyw==
-X-Google-Smtp-Source: AK7set+QkzxKXW4pEMAPFic1Jd0HAeOizDIe+SLOSX/iixyH3n7tgpUonX30kC85rHKw9l8o8gB7revPyLNojTYB0e4=
-X-Received: by 2002:a05:6102:3d18:b0:3f7:93c4:9e56 with SMTP id
- i24-20020a0561023d1800b003f793c49e56mr3105328vsv.85.1675932566080; Thu, 09
- Feb 2023 00:49:26 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eUi0+pogx97QXn9Rou5pDGb9vpsF0M/z1DxS9OrlVt8=;
+        b=7BL383pUGKjO8Mz/LdGxfHBTLhSFy00RK/F7hEMeV9iG1s+9fT34Z5qjqwIE+5FitP
+         rFMPZudqSyORc05SGzxdajvCbm3G9R+FUHv1LGGhNEPToWTDsNWWDPNhq0/LnTtlHWYv
+         49qjeFYs7yulz6Zf4y7TCBSQj9fvNrOIBjuOC2M/QsRaZUddbQDPoMK9d75ioK8bFWyo
+         wDL9LXzW2zCpTic3rxzz23ezidv3cNnc1j56h+JdXbH/+erysIWaFjQK8YKYPtgA45nW
+         RNM/CVAb5Uah/+YeYwiHGi8Zo7/gYzqr/jnjPwr2g9r8ZxBzNnfn+MWc4S6mmZAeJ6Be
+         e7Og==
+X-Gm-Message-State: AO0yUKUrxJdkhGOKPRAIr2SD6hcCPjQ8vm3wrrYa5K8HX/nEUYoIKKg8
+        Sl2U/g/Cv9MmcB2LE2MFqS7AWdvw3vypE1EO
+X-Google-Smtp-Source: AK7set8JFBpCe5jDMzxfhVcIA++GWsEDtFaCTKiFFNZALmRqoMovDG1mXJo0c8dvi4wiqVRsMb7qrA==
+X-Received: by 2002:a05:600c:91e:b0:3db:331b:bd57 with SMTP id m30-20020a05600c091e00b003db331bbd57mr9153036wmp.23.1675932676186;
+        Thu, 09 Feb 2023 00:51:16 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id a3-20020a05600c224300b003db01178b62sm4287082wmm.40.2023.02.09.00.51.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 00:51:15 -0800 (PST)
+Message-ID: <cbf10de1-ba6a-8e5a-6222-25f2322995c9@linaro.org>
+Date:   Thu, 9 Feb 2023 09:51:14 +0100
 MIME-Version: 1.0
-References: <20230208103709.116896-1-angelogioacchino.delregno@collabora.com> <20230208103709.116896-6-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230208103709.116896-6-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 9 Feb 2023 16:49:15 +0800
-Message-ID: <CAGXv+5FZqrGzzG8FrmLVzMd7=a23ZJPYGSy5yhYWgH+BFHNmxw@mail.gmail.com>
-Subject: Re: [PATCH 5/9] dt-bindings: gpu: mali-bifrost: Add a compatible for
- MediaTek MT8186
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, tomeu.vizoso@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, steven.price@arm.com,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
-        Fei Shao <fshao@chromium.org>, Nick Fan <Nick.Fan@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: ata: Add UniPhier controller binding
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230209014052.17654-1-hayashi.kunihiko@socionext.com>
+Content-Language: en-US
+In-Reply-To: <20230209014052.17654-1-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 8, 2023 at 6:37 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Get GPU support on MT8186 by adding its compatible.
+On 09/02/2023 02:40, Kunihiko Hayashi wrote:
+> Add UniPhier SATA controller compatible string to the platform binding.
+> This controller needs two reset controls.
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  Documentation/devicetree/bindings/ata/ahci-platform.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> index 7dc2a2e8f598..3f6b21032d02 100644
+> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> @@ -45,6 +45,9 @@ properties:
+>                - marvell,armada-8k-ahci
+>                - marvell,berlin2-ahci
+>                - marvell,berlin2q-ahci
+> +              - socionext,uniphier-pro4-ahci
+> +              - socionext,uniphier-pxs2-ahci
+> +              - socionext,uniphier-pxs3-ahci
+>            - const: generic-ahci
+>        - enum:
+>            - cavium,octeon-7130-ahci
+> @@ -74,7 +77,8 @@ properties:
+>      maxItems: 1
+>  
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
 
-I'd skip MT8186 for now. We have to work out some binning details for the
-OPP, in particular how to deal with both Panfrost (or Mali) and SVS adding
-the OPP table. We were just looking at the Mali driver today.
+You now allow two resets for each other platform, which is not justified
+in commit msg. Constrain it per device/compatible.
 
-ChenYu
+Best regards,
+Krzysztof
+
