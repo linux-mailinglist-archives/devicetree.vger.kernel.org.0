@@ -2,120 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60D97691037
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 19:20:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99C81691053
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 19:34:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbjBISUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 13:20:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38154 "EHLO
+        id S229510AbjBISen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 13:34:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjBISUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 13:20:46 -0500
-Received: from out-123.mta1.migadu.com (out-123.mta1.migadu.com [IPv6:2001:41d0:203:375::7b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C783718B39
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 10:20:43 -0800 (PST)
-Date:   Thu, 9 Feb 2023 19:20:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-        t=1675966841;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=183SMf2nAH4QkN2wPxRVbmQZxrMWhKzQtKvEVPjSMg0=;
-        b=lvwftqjY5IhD81XTl0ruR++xWv68m0RjKbYH8ZSP2kQcwvSlIyDTl4pL3F2VAWvaJ/4/iu
-        6UclhUQg2UYSQ6ErNoeyoGAVtT4MToQGMUfWkis0rd131Acvjj6+tuAJCluvlJG1Zg8C8j
-        LKUhVACMSACKKLfc+RMEnlQcJJ1opAs=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Henrik Grimler <henrik@grimler.se>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        jenneron@protonmail.com, markuss.broks@gmail.com,
-        martin.juecker@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Valentine Iourine <iourine@iourine.msk.su>
-Subject: Re: [PATCH v2 2/2] ARM: dts: exynos: add mmc aliases
-Message-ID: <Y+U5d7dpKceXkh6f@L14.lan>
-References: <20230128133151.29471-1-henrik@grimler.se>
- <20230128133151.29471-3-henrik@grimler.se>
- <CGME20230209142330eucas1p2d7ba56b6496bb90ed6af2054fe929c9d@eucas1p2.samsung.com>
- <99a17d21-2cf9-a573-29cb-827568c9709b@linaro.org>
- <8fd04935-0553-e04b-7d8c-470573816e6f@samsung.com>
- <e6c8ba8a-7d53-6931-a2e8-bcf4ecfbcd81@linaro.org>
+        with ESMTP id S229450AbjBISen (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 13:34:43 -0500
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62C0301AF;
+        Thu,  9 Feb 2023 10:34:41 -0800 (PST)
+Received: by mail-qt1-x82c.google.com with SMTP id cr22so3003102qtb.10;
+        Thu, 09 Feb 2023 10:34:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=424ItKXECZ1vtWn5439ntytHd7BjZUN5BpgjEhecZg0=;
+        b=b2A3abpTsaM+BigvT/lYo1hRes+4v11U9ZVu4kOk4vGeav74ECqm5ZUar2qmu0ll3c
+         qssEcUvRAXYU/6y1fFl3sDmkD3G52Oj9ZtKXlIrASCQeA5A/2LpOfSx1hba5+RA30iYa
+         Ghle0XguCD1Y32ozfxwvUrqyQRjaUdFtdHNEp+Q+2Fhpb2IJa+GdnhF7jDBktuLrNrCv
+         +yaCKmvjFfzun9tdgwOiXBGf+cqTmxi3YRqPTr4iqwKI3umH55voa3J68+Z7HWegeHfu
+         ClLFIwy/4eUoNwRZd9Vi/hWWCHONvgWHDRCVKB4kItob+RU9TFGhFtoiWDHUbc+B5P2I
+         knCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=424ItKXECZ1vtWn5439ntytHd7BjZUN5BpgjEhecZg0=;
+        b=ZVuwL0oZGdduzXSB9Kge5s4cDxqOioYkVUXaBPSubdnaRJphfKH+8H0xV1kHZIPAA5
+         tOPTFeKpLSh3ltWYLlyXFGLt/AWTiN9felj4iRuyO8gLAEFmMFMaIMStmL4rRqRQzLC8
+         DN0nZ2UVIAYiTnBSesPgBdJJUcJY13GERcsAGQDx+O7xT2yQHFEZ9dGeiJsF7uKflYV5
+         iPa2XFenIKIRtjgfkgh6yCW2GU+F45617WCXygcQnKJW4nQpzgLnCuIYGLSYmr0xpyBB
+         qGxOLwughZqnInEasnPZCYzr7nVLzgKQc8Mbrvgfe/1zWWw7xmzn3LT6vUKzUnmiY92N
+         fi1w==
+X-Gm-Message-State: AO0yUKXkUXNLUeLMZAeRo3FRpOMmUCyrszvkLkuGlcOKL2smyOL6jiMx
+        ccC1ni7jmPbPlCLKlsmWgpY=
+X-Google-Smtp-Source: AK7set/vVP11HlyoEy8Pew6HH8WQycG3ohLKBAXNCVgCHN48gAa8V+j0T/KQJfdoNe5Az2BuDEVUxg==
+X-Received: by 2002:a05:622a:1344:b0:3b6:5d23:8748 with SMTP id w4-20020a05622a134400b003b65d238748mr21968000qtk.52.1675967680909;
+        Thu, 09 Feb 2023 10:34:40 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id y13-20020a05622a164d00b003b860983973sm1760159qtj.60.2023.02.09.10.34.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 10:34:40 -0800 (PST)
+Message-ID: <ac6591f3-0420-3cd0-28b5-8b2ea333d723@gmail.com>
+Date:   Thu, 9 Feb 2023 10:34:34 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e6c8ba8a-7d53-6931-a2e8-bcf4ecfbcd81@linaro.org>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 00/15] spi: bcm63xx-hsspi: driver and doc updates
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        William Zhang <william.zhang@broadcom.com>
+Cc:     kursad.oney@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, dregan@mail.com,
+        joel.peshkin@broadcom.com, jonas.gorski@gmail.com,
+        tomer.yacoby@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230207065826.285013-1-william.zhang@broadcom.com>
+ <167596308461.673456.2324521897149973878.b4-ty@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <167596308461.673456.2324521897149973878.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 09, 2023 at 04:18:33PM +0100, Krzysztof Kozlowski wrote:
-> On 09/02/2023 15:50, Marek Szyprowski wrote:
-> > On 09.02.2023 15:23, Krzysztof Kozlowski wrote:
-> >> On 28/01/2023 14:31, Henrik Grimler wrote:
-> >>> Add aliases for eMMC, SD card and WiFi where applicable, so that
-> >>> assigned mmcblk numbers are always the same.
-
-[ ... ]
-
-> >>> +	aliases {
-> >>> +		mmc0 = &sdhci_0;
-> >>> +		mmc2 = &sdhci_2;
-> >>> +		mmc3 = &sdhci_3;
-> >> 1. Is this actually correct? Since mmc1 was disabled, sdhci_2 had mmc1
-> >> index but now will have mmc2.
-> >>
-> >> 2. I tested Odroid U3 and the ID changed. emmc went from 1 to 0. Any
-> >> idea why? Both patches should be transparent.
-> > 
-> > Nope, eMMC and SD order changed a few times in the past and now they get 
-> > indices based on the probe time, so any order is possible depending on 
-> > the presence of the sd card / eMMC module.
-> > 
-> >> 3. Patchset does not look bisectable, so both patches should be squashed.
-> > 
-> > Why? First patch removes obsolete mshc aliases, which don't determine 
-> > the logical MMC device number in the system. The second one adds fixed 
-> > indices to the local MMC devices created by the respective MMC host 
-> > controllers.
+On 2/9/23 09:18, Mark Brown wrote:
+> On Mon, 06 Feb 2023 22:58:11 -0800, William Zhang wrote:
+>> This patch series include the accumulative updates and fixes for the
+>> driver from Broadcom. It also added a new driver for the updated SPI
+>> controller found in the new BCMBCA SoC. The device tree document is
+>> converted to yaml format and updated accordingly.
+>>
+>> Changes in v3:
+>> - Clean up spi-controller.yaml and update the example
+>> - Drop the generic compatible string brcm,bcmbca-hsspi from the document
+>>    and dts files
+>> - Port the cs_change and cs_off logic from SPI core
+>>    spi_transfer_one_message function to both controller drivers.
+>> - Factor dummy cs workaround into a function, adjust the logic for
+>>    different xfer modes and fine tune message level in bcm63xx-hsspi
+>>    controller driver
+>> - Replace hard-coded opcode with SPINOR_OP definition
+>> - Add a new patch to export export spi_transfer_cs_change_delay_exec
+>>    function in the spi core
+>> - Add a new patch to include compatible string brcm,bcmbca-hsspi-v1.0 in
+>>    bcm63xx-hsspi controller driver
+>> - Minor coding style fix in bcmbca-hsspi controller driver
+>> - Add Acked-by and Reviewed-by tag
+>>
+>> [...]
 > 
-> Ah, I see now, so mshc only determined the caps. That makes sense and
-> answers my two questions.
+> Applied to
 > 
-> But my question (1) a bit remains - these numbers of aliases should
-> reflect what is wired on the board, so:
-> A. before indices were mmc0, mmc1, mmc2 (and sdhcio_1 disabled). Now
-> indices will be mmc0, mmc2 and mmc3, right?
+>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> 
+> Thanks!
+> 
+> [01/15] dt-bindings: spi: Convert bcm63xx-hsspi bindings to json-schema
+>          commit: fff948a44b44a628c81294af5498226cb66a2594
+> [02/15] dt-bindings: spi: Add bcmbca-hsspi controller support
+>          commit: 0ba979f995324417fd773881bc5a39910a9f2362
+> [03/15] ARM: dts: broadcom: bcmbca: Add spi controller node
+>          (no commit info)
+> [04/15] arm64: dts: broadcom: bcmbca: Add spi controller node
+>          (no commit info)
 
-Yes (and before indices could change between reboots).
+Usually we have SoC maintainers pick up the DTS patches affecting the 
+platforms they cover to avoid conflicts... I suppose that is fine.
+-- 
+Florian
 
-> B. How the interface is called on the board? For some boards we actually
-> can check with schematics.
-
-Based on the limited public information like user manuals ([1] and
-[2]) I *think* the internal storage, sdhci_0 and mshc_0 on 4210 and
-4412 (respectively), is connected to data lines belonging to both
-SDMMC0 and SDMMC1 (4+4 data lines, SDMMC# is what the IP is called in
-user manuals), since they have a bus-width of 8.  The sdcard reader
-however has a bus-width of 4 and is connected to just SDMMC2 on both.
-
-So, I think suggested aliases best describe the hardware.  Maybe Marek
-or someone else at Samsung has a better understanding of these boards
-though :)
-
-> Best regards,
-> Krzysztof
-
-[1] https://web.archive.org/web/20170918162018/http://www.samsung.com/global/business/semiconductor/file/product/Pulbicmanual_Exynos_4_Dual_45nm_Ver00-2.pdf
-[2] https://github.com/lian494362816/Tiny4412/blob/master/Pdf/Exynos%204412%20SCP_Users%20Manual_Ver.0.10.00_Preliminary0.pdf
-
-Best regards,
-Henrik Grimler
