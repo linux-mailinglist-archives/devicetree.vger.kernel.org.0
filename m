@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4BAA6910EF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:06:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 012686910F6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 20:07:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjBITGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 14:06:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37638 "EHLO
+        id S229741AbjBITHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 14:07:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjBITGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:06:24 -0500
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF76F6A305;
-        Thu,  9 Feb 2023 11:05:56 -0800 (PST)
-Received: by mail-oo1-f41.google.com with SMTP id x15-20020a4ab90f000000b004e64a0a967fso311621ooo.2;
-        Thu, 09 Feb 2023 11:05:56 -0800 (PST)
+        with ESMTP id S229483AbjBITHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 14:07:31 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B25CAD15;
+        Thu,  9 Feb 2023 11:07:30 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id bh15so2500924oib.4;
+        Thu, 09 Feb 2023 11:07:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=urg+eaKblq3L8ne5lHKwBHgDVzOQbYqpVZVsI1JK9JU=;
-        b=25GIWdsLWnfzps01tq32rEAsY1tMWmH97ACgJ9CsHG9F1apAnDFkAeZAqlXlY33Zx9
-         C2HEbz40H7n1r+RNBWY3Cip0Tv9KrOBwnbB5RzORoGEw0RGqu1winFWaQ4EXP10MiwNb
-         8YswXDro0BrYDtI5ReLad+32CGQrxpCrn+0trIT+mklnSqPV0ooLEHjox8SDVDfAC5IK
-         zO0AytAColqlVprbyRzAkKJxyOIe+vWyPxxQv7NYhz1QHSsnhAh1nofAkTrI6uUZkkkm
-         bpfghi9LRNQCj7TGpRsVGS646ucc4X7//XPu1j09fXRgSRq9LNGUd7PgG91HHsOkOjEr
-         lAvg==
-X-Gm-Message-State: AO0yUKVBsoJy6aYPeD1EbmiPjtqgHhIkrqQhJGhxqVBjGkoPyN5smwUJ
-        mnY5eJY2lf/wkqrbZ+OODw==
-X-Google-Smtp-Source: AK7set+X2fhODBsNXBrX5cbrghiX/x1jE483HtaRu+qBarbWD/hb6POuqdG0rL7h/UlsrX/sPKTFNQ==
-X-Received: by 2002:a4a:e385:0:b0:519:b605:9d78 with SMTP id l5-20020a4ae385000000b00519b6059d78mr5794383oov.7.1675969556165;
-        Thu, 09 Feb 2023 11:05:56 -0800 (PST)
+        bh=ljNnToeTIL1TFk9BZIDWfKvJLhPyA6JgaKeGR7D+Uy8=;
+        b=Wqua+6pxuFi6oAnYLNUGvVHskErAB164JIuCWrZGLQefpGPMDKOa+wfpIQZlUKd0HM
+         uDoRpCO5OFEAFlaRMlXYEhFKWk0rPnh0FGxnirZ80VrPcvfyYE5+pDqOk+tMK26duLFt
+         3OR4gATIQwB9P+Bgv+6dmLWtibAJmyWYZ0xRmXcLfvwcFsM0cLn+dWkWZAoDFhsNpt4M
+         TU0Cnpq2fFRggGTVcoMwMMtk5H1sRXEMlCQmucyZO4ZOOlI8dDmdR8sT49YmgQreWsD9
+         s7cal84ZoxTlRD4fV0SEYPOiDVuSX5Ju7mq3WifrtX30s+QocBCf9kfc0KV89QFN4HFZ
+         c/Hg==
+X-Gm-Message-State: AO0yUKWUVmUP6bUiZkVXunYY8AaUdEdM558pCrkRpRPMoTQRlpTPhJuk
+        V9NpJ2hh8TmNwjWTnPOw2w==
+X-Google-Smtp-Source: AK7set9kNL5f2SUSoOcy3zcL5Ej8M7/ppJqU+XYT7yBpDlUf9vvh4vTus6vEzRSNOxkw8vmpoD8elw==
+X-Received: by 2002:a05:6808:6292:b0:378:1e37:ff44 with SMTP id du18-20020a056808629200b003781e37ff44mr6380288oib.33.1675969649382;
+        Thu, 09 Feb 2023 11:07:29 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w17-20020a9d6751000000b0067781a9292asm1089490otm.2.2023.02.09.11.05.55
+        by smtp.gmail.com with ESMTPSA id m128-20020acabc86000000b0037880fdb1f6sm1200297oif.24.2023.02.09.11.07.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 11:05:55 -0800 (PST)
-Received: (nullmailer pid 645960 invoked by uid 1000);
-        Thu, 09 Feb 2023 19:05:55 -0000
-Date:   Thu, 9 Feb 2023 13:05:55 -0600
+        Thu, 09 Feb 2023 11:07:28 -0800 (PST)
+Received: (nullmailer pid 647682 invoked by uid 1000);
+        Thu, 09 Feb 2023 19:07:27 -0000
+Date:   Thu, 9 Feb 2023 13:07:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 03/12] dt-bindings: remoteproc: mediatek: Support
- MT8195 dual-core SCP
-Message-ID: <167596955460.645898.16236583347331840174.robh@kernel.org>
-References: <20230209074021.13936-1-tinghan.shen@mediatek.com>
- <20230209074021.13936-4-tinghan.shen@mediatek.com>
+To:     bchihi@baylibre.com
+Cc:     linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
+        rdunlap@infradead.org, daniel.lezcano@linaro.org,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
+        linux-pm@vger.kernel.org, rafael@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com, krzysztof.kozlowski+dt@linaro.org,
+        ye.xingchen@zte.com.cn, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v14 2/6] dt-bindings: thermal: mediatek: Add LVTS thermal
+ controllers
+Message-ID: <167596964747.647630.15058465615417584783.robh@kernel.org>
+References: <20230209105628.50294-1-bchihi@baylibre.com>
+ <20230209105628.50294-3-bchihi@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230209074021.13936-4-tinghan.shen@mediatek.com>
+In-Reply-To: <20230209105628.50294-3-bchihi@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,17 +71,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 09 Feb 2023 15:40:12 +0800, Tinghan Shen wrote:
-> Extend the SCP binding to describe the MT8195 dual-core SCP.
+On Thu, 09 Feb 2023 11:56:24 +0100, bchihi@baylibre.com wrote:
+> From: Balsam CHIHI <bchihi@baylibre.com>
 > 
-> Under different applications, the MT8195 SCP can be used as single-core
-> or dual-core. This change keeps the single-core definition and
-> adds new definitions for dual-core use case.
+> Add LVTS thermal controllers dt-binding definition for mt8192 and mt8195.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 > ---
->  .../bindings/remoteproc/mtk,scp.yaml          | 145 +++++++++++++++++-
->  1 file changed, 141 insertions(+), 4 deletions(-)
+>  .../thermal/mediatek,lvts-thermal.yaml        | 142 ++++++++++++++++++
+>  .../thermal/mediatek,lvts-thermal.h           |  19 +++
+>  2 files changed, 161 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+>  create mode 100644 include/dt-bindings/thermal/mediatek,lvts-thermal.h
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
