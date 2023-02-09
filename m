@@ -2,107 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D68256902F2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99950690305
+	for <lists+devicetree@lfdr.de>; Thu,  9 Feb 2023 10:15:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbjBIJLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 04:11:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45266 "EHLO
+        id S229943AbjBIJPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 04:15:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjBIJLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:11:36 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F43244AD
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 01:11:35 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id k4so1437197vsc.4
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 01:11:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=w68fjacIbYROHj9NrwdwNA0c0aQCtfhI8MuuSuFFTGU=;
-        b=ZIYZaanS4Y+2sOHLh37grO5tgcR4JefyElqlYAUc1JIKKZAgas3J6AID8Itlb6wbKc
-         AAfgAJqufU0jImwFeaP/YnfqImuC7ohwXwWBnzxJmM1nhMj8LPnDfRooMWAeeV3d2WS+
-         wSs9SJPo19TuBsLQaRpmUwVnQzff9s24CscOs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w68fjacIbYROHj9NrwdwNA0c0aQCtfhI8MuuSuFFTGU=;
-        b=aoQkuWQR0V4zqOQwAHylfe5TWFZIAaX9vnR3ZgEWbihpdj1AHV9z6z+cIHfcGzvNfk
-         4AnAbYWULNY+W2wUYcTA00gUajueNkJgkKDxzfqyIfAcCdIUhinNJ6ogRkrgx/Jyc9DU
-         ar7pFndSLfRwF0efaSn/FWPsev+TKGDfb35FJvDIhnIZb9U6iKu2Kb7v/8EXdHuQPPC5
-         UWHxdG8sP4inBaXTwqQsp6WYjzpKM2NT1Wqf644wi8G/svo6Ad/zL6Cd31hk/Hlbt0Pd
-         H0rZOU5jxPzArG25f8fJBY3hY5Mf/QRcXJPlL6CAnDVjpgaqPBkVcuIEYNAUxCHnz4kJ
-         aSjg==
-X-Gm-Message-State: AO0yUKUPwfT4G3OwwiuQY3gswKtRF5Fnd1onoGevGTHcHzBG+dB+pp/W
-        2Tm/21vAscmpvKzUvroxfod76ilB48nBK7CSDLh1aQ==
-X-Google-Smtp-Source: AK7set+KPzqBwjxATKFm3ww9TDUL0+dlDvBQLmcuye57In75cyMGFwgEmQXHgRNRnpRNwOctDpjGIdp71O9nke3/6hg=
-X-Received: by 2002:a67:d202:0:b0:411:c830:e5b5 with SMTP id
- y2-20020a67d202000000b00411c830e5b5mr364925vsi.65.1675933894598; Thu, 09 Feb
- 2023 01:11:34 -0800 (PST)
+        with ESMTP id S229641AbjBIJPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 04:15:14 -0500
+Received: from formenos.hmeau.com (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF59811148;
+        Thu,  9 Feb 2023 01:15:10 -0800 (PST)
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+        id 1pQ30m-009DIL-7L; Thu, 09 Feb 2023 17:14:37 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 09 Feb 2023 17:14:36 +0800
+Date:   Thu, 9 Feb 2023 17:14:36 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
+Message-ID: <Y+S5fBjZQZli9nBg@gondor.apana.org.au>
+References: <20230130154242.112613-1-jiajie.ho@starfivetech.com>
+ <20230130154242.112613-5-jiajie.ho@starfivetech.com>
 MIME-Version: 1.0
-References: <20230208104527.118929-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230208104527.118929-1-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 9 Feb 2023 17:11:23 +0800
-Message-ID: <CAGXv+5Hd+XBqKX5w294KVw56BHkkD3NW9ED_RLDP0OXYDxv=nQ@mail.gmail.com>
-Subject: Re: [PATCH 00/16] Enable GPU with DVFS support on MediaTek SoCs
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230130154242.112613-5-jiajie.ho@starfivetech.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 8, 2023 at 6:45 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Mon, Jan 30, 2023 at 11:42:42PM +0800, Jia Jie Ho wrote:
 >
-> We finally have working GPU DVFS on MediaTek SoCs.
-> On Panfrost.
-> For real.
-> ...and the best part is that it's going upstream.
->
-> In order to get GPU DVFS working, it was necessary to satisfy a
-> specific constraint (which is different, depending on the SoC)
-> between two regulators: GPU VCORE and GPU SRAM.
-> This was done through adding the mtk-regulator-coupler driver,
-> which transparently manages the voltage relation between these
-> two vregs, hence completely eliminating the need to manage these
-> regulators in the Panfrost driver; this solves the long standing
-> issue with devfreq+opp tables not supporting managing voltages
-> for two regulators per opp entry out of the box, due to which
-> we never got GPU DVFS on those SoCs, often locking them out to
-> a low GPU frequency.
->
-> This changes. Right now!
->
-> Tested on MT8192, MT8195 Chromebooks.
->
-> This series depends on [1].
->
-> [1]: https://lore.kernel.org/lkml/20230208103709.116896-1-angelogioacchino.delregno@collabora.com/
+> +	cryp->hash_data = (void *)__get_free_pages(GFP_KERNEL | GFP_DMA32, pages);
 
-Whole series is
+Why do you copy everything before you feed it to the hardware?
+If the issue is alignment then surely you should only to copy
+a small amount of header (and perhaps trailer) for that?
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> +static int starfive_hash_export(struct ahash_request *req, void *out)
+> +{
+> +	struct starfive_cryp_request_ctx *rctx = ahash_request_ctx(req);
+> +
+> +	memcpy(out, rctx, sizeof(*rctx));
+> +
+> +	return 0;
+> +}
 
-Tested on MT8183 Juniper (Kukui-based device), MT8192 Hayato (Asurada-based),
-and MT8195 Tomato (Cherry-based).
+You are supposed to extract the entire hardware state after each
+operation and store that in the request context.  Since your
+request context doesn't appear to contain any hash state, this 
+can't possibly work.
 
-GPU probed. When running glmark-es2-drm, observed state transitions in
-/sys/class/devfreq/13040000.gpu/trans_stat , as well as actual changes to
-values for regulators and clocks.
+Does your hardware allow the non-finalised hash state to be
+exported, and re-imported later? If not then you can only
+implement support for digest and must use a fallback for
+everything else.
 
-Also observed that sometimes when glmark terminated, the GPU would not be
-brought down to the lowest OPP.
+Cheers,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
