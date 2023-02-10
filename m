@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B04A691ED1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 13:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CE64691ED2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 13:04:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbjBJMDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 07:03:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35744 "EHLO
+        id S232144AbjBJMEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 07:04:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232144AbjBJMDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 07:03:51 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6BE7DB6
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 04:03:43 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id o36so3673578wms.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 04:03:43 -0800 (PST)
+        with ESMTP id S231422AbjBJMEa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 07:04:30 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 971182120
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 04:04:29 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l21-20020a05600c1d1500b003dfe462b7e4so5515806wms.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 04:04:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=djG58yZ8ScjKHTlb7u/JoT5mgJ3cYOqQ0+1uFZGl2kw=;
-        b=jtG+cnbrCmXiVys1MVnAHSJpWaN20CVamSfTfr8kqYVmgnZK6hI92opOecPqZnPCLi
-         VFsdUY87mVzopicC6zXd8Ygti7pwnmnAsHdYq/vpTxvdHBjHsv1PJjylNVPkMzApGDkQ
-         lpfT/ozSf83B9J7iZ/nu9oK6qG2qrVdJ79RW7/jWdwkb4emSxSubwHJozc3bi0+yM1cz
-         6crv237q6OoTdPnNuGP8gmIE0jJF3KpNkzUW20N5ROxj5LIlQLMnFH6bTbOjkUN0cD3d
-         vPaPWfr5eLohlI00O9Qb5DKrzIGT3ZxG+LYjwxtnusxY7aFJQAcpGzOvjdDQyQu68dSL
-         SKDw==
+        bh=NW4lRb3x8TNx1Gls/PFO5RtEAOnWrB+KO6v1IvaIkD0=;
+        b=Yyf32YWMAGugyXZbUISG33prMvfHLEuWa0TtwnHpvxxHUhIT/hGEUBqWF6KpoP8b/I
+         7uLPmVphkaPQoAmju5QEXmhqo5AxV3E0BUbyILPOjN0StI+FWfuzamFwMyg6jHVeelAQ
+         lUBY+bwoD2Ry4LqyC828TuR10CXJC9Soj4I1EcQ+YY94HGIIfTyUiqb/rI8Y7j1AXhrg
+         GgytlqlCkNFSSMTX6ZP6uZV72dl8jCvlXAJQCgCjVqkaA3YE4nNtz4a/yISwczMML1z9
+         HkRpIe0SWCU7CoL5ZqPofr0Dw09eXiG6xA5wI2ntdtGR3OeamCFthW15aTpjHzI/Ytcb
+         sv7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=djG58yZ8ScjKHTlb7u/JoT5mgJ3cYOqQ0+1uFZGl2kw=;
-        b=HCZMeGdwblWHfykczxXWFKIac3JMaVcDIBNyUBSEEapiHQPybw6FUoNqQ5tfSRtJYx
-         3gd+6LjefVNUDe7ZaWM9TAFzbSPPx0ZUALOtUjA79NV8XlMMniI/EOXwIdOswDjvL1xM
-         DbMvv3CtlS5yNFz8bn9rjCjBX7pIWIMB0gnsIKZR292LNIb31UBRYPuLUzZMW50Cru+3
-         j+IqZJlTGqVC0Bdi5Hxr9UPh3bR8pCFhjhxOAbhbJYeGJqjN9BhKhGkeqXCVfzQxQm0A
-         BqqYKX4QCnF7jqq2a19K/nMGGAl3wQQBwRsR+AndeZMEOcuQgSRBZcII8qnoIZJI+W6x
-         MRMA==
-X-Gm-Message-State: AO0yUKVmyXGEXRJp5VEXt32loFe3k4GZ0Mh+m6lNWmfHMB0CzLhq9kmu
-        P5aDCWzfZIXJgZ7XILSzEy2oIg==
-X-Google-Smtp-Source: AK7set95CyHNnHgFHkCsOwk6ljUFnwGj/zdy3lXiLvk6plweszWGQktL4oujiqYdo6rSN2AgFtSXbg==
-X-Received: by 2002:a05:600c:164a:b0:3dc:5009:bc74 with SMTP id o10-20020a05600c164a00b003dc5009bc74mr12483798wmn.7.1676030622170;
-        Fri, 10 Feb 2023 04:03:42 -0800 (PST)
+        bh=NW4lRb3x8TNx1Gls/PFO5RtEAOnWrB+KO6v1IvaIkD0=;
+        b=tbjWLHzgcXQ9nCha6wJLoLs635wjCKv/nQod78nKPYkgtyQ+sCA8UE37g+YUuGOfSO
+         OaHrmFNmiTQNWxc1NkOOeYxWDciRBB8DzcKaHfhyWga3Z4dd8npooXSISE2pK2F9ix4A
+         vlukVNA+LAczvrzQSERHYG72RkmqTzp4RZHEU1W/UgzaSMuJFtpERqx2qlT/fd4BjzbS
+         rprerz8AO03WRQUFYFBoS8UYGrzCWnTsMR110PgaRijOGqS5IdOLo4cyKmktDoT+9oVX
+         qIMU1TfGSqUOsN1949OGFloNsE9HAYjNI6QZG2Snb1X08g9Jn6HquqDH6h1bhP3Y5TYx
+         qPgw==
+X-Gm-Message-State: AO0yUKXMCd5toGLcoF5KeXdNrxpvj/Atqj2HsVjxxyb1EeBX56eotYfU
+        WVYKYumtv45/ByxnAhRv63prAA1E+Rzymqgm
+X-Google-Smtp-Source: AK7set/mbNck+O74h+wNhQp30sLJ/+Jmho6eC2OYjrXdjxbmlhLi9yt7MySqAkMzWTXJLPVJT14z2A==
+X-Received: by 2002:a05:600c:43d2:b0:3db:3e8:feca with SMTP id f18-20020a05600c43d200b003db03e8fecamr1887994wmn.15.1676030668173;
+        Fri, 10 Feb 2023 04:04:28 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003de664d4c14sm5430432wmq.36.2023.02.10.04.03.38
+        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b003daf6e3bc2fsm13251783wms.1.2023.02.10.04.04.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 04:03:41 -0800 (PST)
-Message-ID: <49bc1ba1-1aa5-4c87-3b9c-783da202f7b4@linaro.org>
-Date:   Fri, 10 Feb 2023 13:03:35 +0100
+        Fri, 10 Feb 2023 04:04:27 -0800 (PST)
+Message-ID: <6a87b6b7-2059-3b16-b592-ba2ac6e0e4e0@linaro.org>
+Date:   Fri, 10 Feb 2023 13:04:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
+Subject: Re: [PATCH 3/3] watchdog: mt7621-wdt: avoid globals and arch
+ dependencies
 Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
- <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
- <36b6f8f2-c438-f5e6-b48f-326e8b709de8@linaro.org>
- <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
- <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
- <4fdd5618-fc35-00a8-7a6b-2dd231700686@linaro.org>
- <4dd74e75-9412-b6e6-4077-719ef28d4b35@linaro.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230210065621.598120-1-sergio.paracuellos@gmail.com>
+ <20230210065621.598120-4-sergio.paracuellos@gmail.com>
+ <21af8c63-f489-8c3f-e1e3-cf976b1d20d0@linaro.org>
+ <CAMhs-H8O634ZbRW7BVkQmTA=B7p3Osu6d9hFGZ7DqXtXydkHBQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4dd74e75-9412-b6e6-4077-719ef28d4b35@linaro.org>
+In-Reply-To: <CAMhs-H8O634ZbRW7BVkQmTA=B7p3Osu6d9hFGZ7DqXtXydkHBQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,51 +82,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2023 12:12, Vladimir Zapolskiy wrote:
-> On 2/7/23 01:45, Dmitry Baryshkov wrote:
->> On 02/02/2023 18:16, Vladimir Zapolskiy wrote:
->>> On 2/2/23 16:21, Neil Armstrong wrote:
->>>> On 02/02/2023 15:04, Vladimir Zapolskiy wrote:
->>>>> Hi Krzysztof,
->>>>>
->>>>> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
->>>>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->>>>>>> From: Neil Armstrong <neil.armstrong@linaro.org>
->>>>>>>
->>>>>>> On certain Snapdragon processors, the crypto engine clocks are
->>>>>>> enabled by
->>>>>>> default by security firmware.
->>>>>>
->>>>>> Then probably we should not require them only on these variants.
->>>>>
->>>>> I don't have the exact list of the affected SoCs, I believe Neil can
->>>>> provide
->>>>> such a list, if you find it crucial.
->>>>
->>>> It's the case for SM8350, SM8450 & SM8550.
->>>>
->>>
->>> On SM8250 there is no QCE clocks also, so I'll add it to the list, and I
->>> hope
->>> that now the list is complete.
->>>
->>> It could be that the relevant platforms are the ones with
->>> 'qcom,no-clock-support'
->>> property of QCE in the downstream.
->>>
+On 10/02/2023 12:35, Sergio Paracuellos wrote:
+>>> -     mt7621_wdt_reset = devm_reset_control_get_exclusive(dev, NULL);
+>>> -     if (!IS_ERR(mt7621_wdt_reset))
+>>> -             reset_control_deassert(mt7621_wdt_reset);
+>>> +     drvdata->sysc = syscon_regmap_lookup_by_phandle(np, "ralink,sysctl");
+>>> +     if (IS_ERR(drvdata->sysc))
+>>> +             return PTR_ERR(drvdata->sysc);
 >>
->> Then, sc7180, sc8180x, sdx55, sm6150, sm7150, sm8150 also have this
->> property in QCE device. And, I think, it should also be applicable to
->> sc7280 and sc8280xp.
+>> You claim in commit title that you remove some global usage, but you add
+>> here several new features and refactor the code significantly. You need
+>> to split refactorings, improvements from completely new features. The
+>> entire patch is very difficult to understand in current form.
 > 
-> So maybe do you have a better candidate among the SoCs for a QCE IP family
-> name than SM8150 based? Likely it could be the first released SoC among
-> mentioned above.
+> I am removing global usage and architecture dependencies using a
+> watchdog driver data structure so I thought the changes were easy
+> enough to review in this way. It seems they are not according to your
+> reply :). If preferred I can split this in two commits:
+> - Avoid globals using and introducing all the related new driver data
+> structure.
+> - Add request for regmap syscon from the phandle and remove the
+> architecture dependent calls and includes.
+> 
 
-If you have access to the docs, you will see clear mapping of version to
-the SoCs. Just choose the oldest SoC from the list (or something looking
-as the oldest - there is no need to be very accurate).
-
+Yes, such split sounds better. Thanks.
 
 Best regards,
 Krzysztof
