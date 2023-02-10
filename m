@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D09E6919C1
+	by mail.lfdr.de (Postfix) with ESMTP id 115C86919C0
 	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231409AbjBJIG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 03:06:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46958 "EHLO
+        id S231191AbjBJIG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 03:06:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231837AbjBJIFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:05:50 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F43476D1F
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:05:25 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id m2so13601596ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:05:25 -0800 (PST)
+        with ESMTP id S231776AbjBJIGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:06:19 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1666080777
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:05:49 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id r18so3181265wmq.5
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:05:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YmDT4zBOv7f5zRYd/LGifmvLvDTU12OHORT99G1LfOU=;
-        b=Y9zpKSImEri04j45mKwlwM/eZAqNEzxYls5b0gDiTbUkhmHKXlUzSnJAcc5CQWEr1y
-         Gvxk6Rn8WpZDY1RCzcyXg0pGMkFBcxINtHSMZddcKPjXhYD/5P9Vwx0B36agZT1hFOdK
-         Tk+l2ypqlkeKXymvELryxGdGfP8SU7yMZ7mtkQWwAWyA4HjkRBjK9GimVT15ktAd7/Oh
-         aeQm352qT3lkhQBbvoy3mHbFadvAjOtuWoiy//uiv87Phz1YA8rfk3jO+7mHXoMxKSmE
-         4yKgJLHbveUe+iYTefT9cqX41+4+/1w3RqLyz4NibTN5cNtR8aeUux//zDuSnBsvyW7k
-         vNEQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tRxo67T25+0gjEyyraFdudNI5jjD/ABVgQ3aCUXeUik=;
+        b=pbT2mUJO+lF/78vhJ0LJ8+oAVak7mpDcARTg57+pKBCUFm38i2yNnno14mOBVLjoCI
+         gwFTvIKjx04FaMiqA3G6tWU01sgnQEcbHFJGDG+vIKqpnkAsaRVI/RQ3XjfGIPlQVklC
+         7qRqA3SqNJFcagLFjOlj8Rq9wrYC2tFhiLqhXgHEz5buZZ0Qo0VzZYnfA3w5LyAP9cKU
+         47qYScrBTr3ZuxdFDBdV+HnMMoLQPvdohReT5GmvlpBNjeYrIvh+QAkganaHiPVILALy
+         02z1D6dJZcP07rPHi3lETeMJ0Y7YcWoTnKCeV+ja4W1XglMHllShMsYPBGM3Z0xwJvTw
+         e+Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YmDT4zBOv7f5zRYd/LGifmvLvDTU12OHORT99G1LfOU=;
-        b=brJMycuKOWSpLyZrKRLzI4MDnFIv4psYbboeyaYsGy02dtrXc/EDGABuC+SVIDRPCP
-         tO3xlEGss/lNhXIqAvwMcnLyxKgM3neVdrSMHOEMIaD0te6C0l/jQq2sc5UkK0P1ar3h
-         n/SMm99e0nI9S1KUlNT5QlpRUHwgeDA4tJkuvVtC39i5AyoKgBv0gXp3OxGI+M1w4yng
-         IENuQBpNkPKcRs97q9HI9HE61V0EfgJkceDskkxfzN+QOOY4cJZZZIbgXA0MUD9tZozU
-         BDzeQ/nrlPj0BsmdPv2UlUNkBhGHzARbHGfvFgES9/v+u5lrOUvZSgr5URCkyQ1Fx+2i
-         4akQ==
-X-Gm-Message-State: AO0yUKUMqauVYjb1iybWRGerDfXIM10Hr05riupqo2Lj0Oy5N/f8TfKN
-        //3PmoP0Lk0yxNfJ5Wf+iKn+nQ==
-X-Google-Smtp-Source: AK7set/GmZ7x5k7vkcggDqpyfSq4+49rR67zA9Au4+fWjYyYJduZ7NpbIFaApG4e7v1zNQg0P0/Okw==
-X-Received: by 2002:a17:906:edbb:b0:887:2248:efd5 with SMTP id sa27-20020a170906edbb00b008872248efd5mr16697995ejb.77.1676016316810;
-        Fri, 10 Feb 2023 00:05:16 -0800 (PST)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id o12-20020a170906768c00b007bff9fb211fsm2031989ejm.57.2023.02.10.00.05.15
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tRxo67T25+0gjEyyraFdudNI5jjD/ABVgQ3aCUXeUik=;
+        b=gnfTimapOKJZEnEMmaJIpkiDYbRuocZcSqXxg5bWcu8N5WLLQU1OEfvmQlL/DHw6/w
+         Vij4MzvsNrW+Tn41gXnilqNhPafNG8R6tmHIoAJ1eaADqzanunn0QZEkfnkySSzjU5CX
+         Luct99IP8XuZ6L3Sp3aUk0GgBXZKZPjVqdoH+XFJE8XgSdllShTfLYmn6E+blyFvaT9E
+         UjsSLE5wEtmbN2drurRLEdd1tcuwJuMYYcdtaEw+UAFxGCSajMSaCsfHr/X3MWECMgCv
+         Dq02+lfvk3aHJZK62VHv/yOFB3zmPZbz5hyXUwtHpWRYzfXqtvEFD3ddZMsLKEvToAT9
+         7oAg==
+X-Gm-Message-State: AO0yUKXhyYXULy0MSTMpLDj4yXASoYhZIkKKCiADSutNrJtJZP8NvYfW
+        oMBuVhQ15RXGiNbhIeRl/8Nnlg==
+X-Google-Smtp-Source: AK7set/20j1icqVn7U9Btadx5iyr0po7qpEg944rGdW8LSC9mxlQHBjpp8IrLVqYCOBDZiAt1dPvNQ==
+X-Received: by 2002:a05:600c:1894:b0:3de:1d31:1048 with SMTP id x20-20020a05600c189400b003de1d311048mr12234734wmp.29.1676016340171;
+        Fri, 10 Feb 2023 00:05:40 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003de664d4c14sm4642196wmq.36.2023.02.10.00.05.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 00:05:16 -0800 (PST)
-Date:   Fri, 10 Feb 2023 09:05:15 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Rob Herring ' <robh@kernel.org>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Conor Dooley ' <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 6/8] RISC-V: Use Zicboz in clear_page when available
-Message-ID: <20230210080515.lbguxxg4efxudjzg@orel>
-References: <20230209152628.129914-1-ajones@ventanamicro.com>
- <20230209152628.129914-7-ajones@ventanamicro.com>
- <Y+VFAUZ2smkKO0EZ@spud>
+        Fri, 10 Feb 2023 00:05:39 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Nan Li <nan.li@amlogic.com>,
+        Vyacheslav Bocharov <adeep@lexina.in>
+In-Reply-To: <8a99341b-8546-8f90-c9a5-087d927cac48@gmail.com>
+References: <8a99341b-8546-8f90-c9a5-087d927cac48@gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: amlogic: Make mmc host controller
+ interrupts level-sensitive
+Message-Id: <167601633914.2233184.2742706111229690687.b4-ty@linaro.org>
+Date:   Fri, 10 Feb 2023 09:05:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y+VFAUZ2smkKO0EZ@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -81,62 +79,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 09, 2023 at 07:09:53PM +0000, Conor Dooley wrote:
-> On Thu, Feb 09, 2023 at 04:26:26PM +0100, Andrew Jones wrote:
-> > Using memset() to zero a 4K page takes 563 total instructions, where
-> > 20 are branches. clear_page(), with Zicboz and a 64 byte block size,
-> > takes 169 total instructions, where 4 are branches and 33 are nops.
-> > Even though the block size is a variable, thanks to alternatives, we
-> > can still implement a Duff device without having to do any preliminary
-> > calculations. This is achieved by taking advantage of 'vendor_id'
-> > being used as application-specific data for alternatives, enabling us
-> > to stop patching / unrolling when 4K bytes have been zeroed (we would
-> > loop and continue after 4K if the page size would be larger)
-> > 
-> > For 4K pages, unrolling 16 times allows block sizes of 64 and 128 to
-> > only loop a few times and larger block sizes to not loop at all. Since
-> > cbo.zero doesn't take an offset, we also need an 'add' after each
-> > instruction, making the loop body 112 to 160 bytes. Hopefully this
-> > is small enough to not cause icache misses.
-> > 
-> > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Hi,
+
+On Thu, 09 Feb 2023 21:09:25 +0100, Heiner Kallweit wrote:
+> The usage of edge-triggered interrupts lead to lost interrupts under load,
+> see [0]. This was confirmed to be fixed by using level-triggered
+> interrupts.
+> The report was about SDIO. However, as the host controller is the same
+> for SD and MMC, apply the change to all mmc controller instances.
 > 
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> > index 74736b4f0624..42246bbfa532 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -280,6 +280,17 @@ void __init riscv_fill_hwcap(void)
-> >  #ifdef CONFIG_RISCV_ALTERNATIVE
-> >  static bool riscv_cpufeature_application_check(u32 feature, u16 data)
-> >  {
-> > +	switch (feature) {
-> > +	case RISCV_ISA_EXT_ZICBOZ:
-> > +		/*
-> > +		 * Zicboz alternative applications provide the maximum
+> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
 > 
-> I like the comment, rather than this being some wizardry.
-> I find the word "applications" to be a little unclear, perhaps, iff this
-> series needs a respin, this would work better as "Users of the Zicboz
-> alternative provide..." (or s/Users/Callers)?
+> [...]
 
-Right, "applications" is an overloaded word. "users" is probably a better
-choice. "callers" isn't quite right, to me, since it's a code patching
-"application" / "use". Do you think the function name should change as
-well?
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/fixes)
 
-Thanks,
-drew
+[1/3] arm64: dts: meson-axg: Make mmc host controller interrupts level-sensitive
+      https://git.kernel.org/amlogic/c/d182bcf300772d8b2e5f43e47fa0ebda2b767cc4
+[2/3] arm64: dts: meson-g12-common: Make mmc host controller interrupts level-sensitive
+      https://git.kernel.org/amlogic/c/ac8db4cceed218cca21c84f9d75ce88182d8b04f
+[3/3] arm64: dts: meson-gx: Make mmc host controller interrupts level-sensitive
+      https://git.kernel.org/amlogic/c/66e45351f7d6798751f98001d1fcd572024d87f0
 
-> 
-> > +		 * supported block size order, or zero when it doesn't
-> > +		 * matter. If the current block size exceeds the maximum,
-> > +		 * then the alternative cannot be applied.
-> > +		 */
-> > +		return data == 0 || riscv_cboz_block_size <= (1U << data);
-> > +	}
-> > +
-> >  	return data == 0;
-> >  }
+These changes has been applied on the intermediate git tree [1].
 
+The v6.2/fixes branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
