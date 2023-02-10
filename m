@@ -2,123 +2,423 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7BC76920B1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:20:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B64056920B9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:21:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232470AbjBJOUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 09:20:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
+        id S232416AbjBJOVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 09:21:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232459AbjBJOUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:20:04 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3FCF30B14
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:20:00 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id lu11so16277413ejb.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:20:00 -0800 (PST)
+        with ESMTP id S231958AbjBJOVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:21:35 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB52A303FB
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:21:33 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id ud5so16293945ejc.4
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:21:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1yeTUYV9DwvmvumapxveCYKLkr4TLgt1HykRgiLQgSg=;
-        b=PZD18EyHYR2HZg93WKDj6/g1Sl72V5Gg9ccQiT7XyhsvH7ZH6xBrflo9dWbWVzLNQM
-         WFlCaJ61SA+fCHm9frVrgTVH9mBzLVKpy7hr8XMS81emZOkp8PBdgiKRJBYTHJv5X2RH
-         yeyxQiMz0ZfBw/3YatSc1Yvrff4iDRpMhEx4VIu85HITwU0Wu+zILpGQOrBWTcwPceLB
-         qjYTq/P5CEssy6TTTR0qHjeeWQfdMiK/eR+f3OYL+7HMMrXB644BEq69ikyJ0881bLM/
-         ffgT2CQdWVi5HbSzIa10b5X+MXcFW/FBnXRLaKWGSx11OGtzPIhmNp2678bqHS3u2X/u
-         gtBg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PFa0rHkdpQOgTA52rN1YNMw0CD3vASMGWTDIij4Zh70=;
+        b=QOEnxemH1FIO2QuRsKmEx5hXjCRwb+w/YFbaSEjC8mrTA+TZEdY330/drjHnFb0g9O
+         Hit4I6+iYritmmlcB5YmSENtFmRTrFV5b65r2NcHCJTLCzSy7Qba1uusz2PStVV74B59
+         J+4gO0N0vpSHA0kFvUk3hL5b/lAIt9tF4sOKS3qIKHVxgkjN0glo9Jkyp+8LNKt1LlMo
+         lUffQoKya5o9/mgYRoLsTEb9xUo6dTG+PkOVw6ax2M70oPMX4bOTC5Ewxttdt8g3oukx
+         wt49YP2HVarhbzd+KrPTdOwrRD07ewmnDKCwnK2GJOKXZ0ozA+KHLwezpvFy/ZnJhY5I
+         ecWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1yeTUYV9DwvmvumapxveCYKLkr4TLgt1HykRgiLQgSg=;
-        b=LlYE5u4dB9FXVwaU3WnU9s9ZUALp0iPsB+Kpd1W94UOTA/v+Nv762GnJ3ecCxqbmn6
-         pCdLBt/+E2ZwSdBYMhgPIocTRYR5AHoJTJPlXvkOd+Ky8I5oKkwpd6EuMeQ5+O8llxno
-         Eoe5a34i5zAXqwz75JtsGCAKgw9xhxhmIZeW4N0Ih2rnQR3k8gfSdSRIo8TOVkiuCxBa
-         ijY2vItRVRC/aDhDBpVA4azdftS2/1ffFuGPj30zrQs6tHkf44/Fik9dNwUK01+/KJJm
-         IGZKNw/Ku0bqDiCZ5uVFoy19Em+evZwXuPGpl2oEtUCjxzHJ6gKdNxVFWgMPDSlBcu4h
-         +zGg==
-X-Gm-Message-State: AO0yUKXY8rvouCgi/fBV4yF0CeQBDssNaC7AwNhYRPNcSoY0pSAI8yJA
-        dVvZdSJggPerFDratFdkFOflcQ==
-X-Google-Smtp-Source: AK7set+NpQMZbv5ZXwmnSHxh8Yc3tiwUG09wLMeLAvVpFA5+yXPGm2Glt6S1EsUDBk30Kyow7w+/3A==
-X-Received: by 2002:a17:906:6a20:b0:8af:33f8:dcb3 with SMTP id qw32-20020a1709066a2000b008af33f8dcb3mr8466028ejc.57.1676038799317;
-        Fri, 10 Feb 2023 06:19:59 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id c18-20020a17090618b200b0088452ca0666sm2410748ejf.196.2023.02.10.06.19.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 06:19:58 -0800 (PST)
-Message-ID: <97d75a6d-0b75-f0c2-1327-ceece0e4a17a@linaro.org>
-Date:   Fri, 10 Feb 2023 16:19:57 +0200
+        h=cc:to:subject:message-id:date:from:reply-to:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PFa0rHkdpQOgTA52rN1YNMw0CD3vASMGWTDIij4Zh70=;
+        b=rgndQ1uAjgnaErjHIXi3So83XT4ENa9y3fNR3NmjjPEUcaSRJWiiOYtnytlGjc1bOK
+         MWdoffb+3LRcTME1q+eMKgHjz/hN/kCFLzbv0NPOv6+3abstzckympenBRa8iCoRrNLN
+         0DfdxhPX/D+lCOdHRp9xGpgJDl6awMMOMbcl+BPPCaygO8VxNt6PFFB8+hOc1eC08Ni1
+         GbVPFAO7Gpsg07TyNGULB8hjhR1hUophXm/u5c/nzxOzpv+dlDhKG3uQ0YeZdimQvuED
+         eyjX+pT0nvVXkDpcERs85cO9bqMhfToFAb+4gsEr/zaThmysxafl1ujh3bDNXgbIxSo3
+         /dmQ==
+X-Gm-Message-State: AO0yUKVoeb+PvYheBvxfyUewvBf9tCmEc4+9+MQHTE3h6V+pgmhdTl8U
+        EGmxSIMpAINsa/CffheyVGedC1RBQywdo48E6Rs=
+X-Google-Smtp-Source: AK7set/u9XNa9yRyDSTg5Vgy2KdkrhZPdVH6DOwmLYY/zv376VZU1eFqfKTsns3RskODdrA9/jhfHVYM2Wnr3kRgYWE=
+X-Received: by 2002:a17:906:fb87:b0:8a5:c8bd:4ac4 with SMTP id
+ lr7-20020a170906fb8700b008a5c8bd4ac4mr1247934ejb.15.1676038892176; Fri, 10
+ Feb 2023 06:21:32 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sm8350: add dp controller
-Content-Language: en-GB
-To:     neil.armstrong@linaro.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230206-topic-sm8450-upstream-dp-controller-v2-0-529da2203659@linaro.org>
- <20230206-topic-sm8450-upstream-dp-controller-v2-3-529da2203659@linaro.org>
- <df068428-c086-4f6a-3cda-9ef6ce665f13@linaro.org>
- <37d23af4-7920-055f-76b0-87ad907896e2@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <37d23af4-7920-055f-76b0-87ad907896e2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230113192823.6301-1-mr.bo.jangles3@gmail.com>
+ <20230113192823.6301-2-mr.bo.jangles3@gmail.com> <ef8eec8a-2ce5-ad1a-afcf-86ee78231017@kernel.org>
+In-Reply-To: <ef8eec8a-2ce5-ad1a-afcf-86ee78231017@kernel.org>
+Reply-To: mr.bo.jangles3@gmail.com
+From:   Logan B <mrbojangles3@gmail.com>
+Date:   Fri, 10 Feb 2023 09:21:21 -0500
+Message-ID: <CAFR4CiuYqp5k6gcjmt8JV0a=LeNh5hTyVUEaa1HshYkYnS_rXQ@mail.gmail.com>
+Subject: Re: [PATCH] Add support for SolidRun Clearfog CN9130 base,pro.
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.org, jon@solid-run.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2023 16:18, Neil Armstrong wrote:
-> On 10/02/2023 12:08, Dmitry Baryshkov wrote:
->> On 10/02/2023 12:34, Neil Armstrong wrote:
->>> Add the Display Port controller subnode to the MDSS node.
->>>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 82 
->>> +++++++++++++++++++++++++++++++++++-
->>>   1 file changed, 80 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi 
->>> b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>> index d490ce84a022..eb636b7dffa7 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>> @@ -2862,13 +2862,20 @@ ports {
->>>                       port@0 {
->>>                           reg = <0>;
->>> -                        dpu_intf1_out: endpoint {
->>> -                            remote-endpoint = <&mdss_dsi0_in>;
->>> +                        dpu_intf0_out: endpoint {
->>> +                            remote-endpoint = <&mdss_dp_in>;
->>
->> No need to reorder these ports. Please add DP to the end.
-> 
-> Right, but I'll keep the dpu_intf0_out label for this port,
-> but having dpu_intf1_out, dpu_intf2_out then dpu_intf0_out isn't very 
-> clean...
-
-I don't have a strong opinion here. I think we can ignore it.
+On Fri, Feb 10, 2023 at 7:32 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel.
+>
+> There is no one to apply your patch as you missed several people.
+>
+> On 13/01/2023 20:28, Logan Blyth wrote:
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> 1. Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching).
+>
+> 2. Subject: no full stop.
+>
+> > From: Logan Blyth <mrbojangles3@gmail.com>
+> >
+>
+> 3. Missing commit msg. Please describe here hardware.
+>
+>
+> > Signed-off-by: Logan Blyth <mrbojangles3@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/marvell/Makefile          |   2 +
+> >  .../arm64/boot/dts/marvell/cn9130-cf-base.dts | 367 +++++++++++++++
+> >  arch/arm64/boot/dts/marvell/cn9130-cf-pro.dts | 428 ++++++++++++++++++
+>
+> 4. As I wrote on IRC, missing bindings patch (first in the series).
+>
+> >  3 files changed, 797 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
+> >  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-cf-pro.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+> > index 058237681fe5..6b3b4c4856c1 100644
+> > --- a/arch/arm64/boot/dts/marvell/Makefile
+> > +++ b/arch/arm64/boot/dts/marvell/Makefile
+> > @@ -25,4 +25,6 @@ dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
+> >  dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db-B.dtb
+> >  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-A.dtb
+> >  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-B.dtb
+> > +dtb-$(CONFIG_ARCH_MVEBU) += cn9130-cf-pro.dtb
+> > +dtb-$(CONFIG_ARCH_MVEBU) += cn9130-cf-base.dtb
+> >  dtb-$(CONFIG_ARCH_MVEBU) += ac5-98dx35xx-rd.dtb
+> > diff --git a/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts b/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
+> > new file mode 100644
+> > index 000000000000..f258a539e378
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/marvell/cn9130-cf-base.dts
+> > @@ -0,0 +1,367 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright SolidRun Ltd.
+> > + *
+> > + * Device tree for the       CN9130 based SOM.
+>
+> 5. Drop weird space/indent in the middle.
+>
+> > + */
+> > +
+> > +#include "cn9130.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > +     model = "SolidRun CN9130 based SOM Clearfog Base";
+>
+> 6. Missing compatible.
+>
+> > +
+> > +     chosen {
+> > +             stdout-path = "serial0:115200n8";
+> > +     };
+> > +
+> > +     aliases {
+> > +             gpio1 = &cp0_gpio1;
+> > +             gpio2 = &cp0_gpio2;
+> > +             i2c0 = &cp0_i2c0;
+> > +             ethernet0 = &cp0_eth0;
+> > +             ethernet1 = &cp0_eth1;
+> > +             ethernet2 = &cp0_eth2;
+> > +             spi1 = &cp0_spi0;
+> > +             spi2 = &cp0_spi1;
+> > +     };
+> > +
+> > +     memory@00000000 {
+> > +             device_type = "memory";
+> > +             reg = <0x0 0x0 0x0 0x80000000>;
+> > +     };
+>
+> Missing blank line.
+>
+> > +     v_3_3: regulator-3-3v {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "v_3_3";
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             regulator-always-on;
+> > +             status = "okay";
+>
+> Drop, it's by default okay.
+>
+> > +     };
+>
+> Missing blank line.
+>
+> > +     ap0_reg_sd_vccq: ap0_sd_vccq@0 {
+>
+> Do not use undercores in node names.
+>
+> Node names should contain generic prefix or suffix. In your case -
+> "regulator-" prefix as your node above.
+>
+>
+> > +             compatible = "regulator-gpio";
+> > +             regulator-name = "ap0_sd_vccq";
+> > +             regulator-min-microvolt = <1800000>;
+> > +             regulator-max-microvolt = <1800000>;
+> > +             states = <1800000 0x1 3300000 0x0>;
+> > +     };
+> > +
+> > +     cp0_reg_usb3_vbus0: cp0_usb3_vbus@0 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "cp0-xhci0-vbus";
+> > +             regulator-min-microvolt = <5000000>;
+> > +             regulator-max-microvolt = <5000000>;
+> > +             enable-active-high;
+>
+> That's not correct property if you do not have GPIO... where is GPIO?
+>
+> > +     };
+> > +
+> > +     cp0_usb3_0_phy0: cp0_usb3_phy@0 {
+>
+> Multiple issues here...
+>
+> Node names should be generic, so "phy".
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>
+> @0 points you have reg=0, where is it? Why 0?
+>
+> All problems above are also in other places.
+>
+>
+> > +             compatible = "usb-nop-xceiv";
+> > +             vcc-supply = <&cp0_reg_usb3_vbus0>;
+> > +     };
+> > +
+> > +     cp0_reg_usb3_vbus1: cp0_usb3_vbus@1 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "cp0-xhci1-vbus";
+> > +             regulator-min-microvolt = <5000000>;
+> > +             regulator-max-microvolt = <5000000>;
+> > +             enable-active-high;
+> > +     };
+> > +
+> > +     cp0_usb3_0_phy1: cp0_usb3_phy@1 {
+> > +             compatible = "usb-nop-xceiv";
+> > +             vcc-supply = <&cp0_reg_usb3_vbus1>;
+> > +     };
+> > +
+> > +     cp0_reg_sd_vccq: cp0_sd_vccq@0 {
+> > +             compatible = "regulator-gpio";
+> > +             regulator-name = "cp0_sd_vccq";
+> > +             regulator-min-microvolt = <1800000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             states = <1800000 0x1
+> > +                     3300000 0x0>;
+> > +     };
+> > +
+> > +     cp0_reg_sd_vcc: cp0_sd_vcc@0 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "cp0_sd_vcc";
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             enable-active-high;
+> > +             regulator-always-on;
+> > +     };
+> > +
+> > +     cp0_sfp_eth0: sfp-eth@0 {
+> > +             compatible = "sff,sfp";
+> > +             i2c-bus = <&cp0_i2c1>;
+> > +             los-gpio = <&expander0 12 GPIO_ACTIVE_HIGH>;
+> > +             mod-def0-gpio = <&expander0 15 GPIO_ACTIVE_LOW>;
+> > +             tx-disable-gpio = <&expander0 14 GPIO_ACTIVE_HIGH>;
+> > +             tx-fault-gpio = <&expander0 13 GPIO_ACTIVE_HIGH>;
+> > +             maximum-power-milliwatt = <2000>;
+>
+> Be sure you run `make dtbs_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>
+>
+> > +     };
+> > +};
+> > +
+> > +&uart0 {
+>
+> Overrides are usually ordered by name. Isn't the case for Marvell?
+>
+> > +     status = "okay";
+> > +};
+> > +
+> > +// on-board eMMC
+>
+> Comment style /* */
+>
+> > +&ap_sdhci0 {
+> > +     pinctrl-names = "default";
+> > +     bus-width = <8>;
+> > +     vqmmc-supply = <&ap0_reg_sd_vccq>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&cp0_crypto {
+> > +     status = "disabled";
+> > +};
+> > +
+> > +&cp0_ethernet {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&cp0_gpio1 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&cp0_gpio2 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +// EEPROM
+> > +&cp0_i2c0 {
+> > +     status = "okay";
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&cp0_i2c0_pins>;
+> > +     clock-frequency = <100000>;
+> > +
+> > +     /*
+> > +      * PCA9655 GPIO expander, up to 1MHz clock.
+> > +      *      0-CON3 CLKREQ#
+> > +      *      1-CON3 PERST#
+> > +      *      2-CON2 PERST#
+> > +      *      3-CON3 W_DISABLE
+> > +      *      4-CON2 CLKREQ#
+> > +      *      5-USB3 overcurrent
+> > +      *      6-USB3 power
+> > +      *      7-CON2 W_DISABLE
+> > +      *      8-JP4 P1
+> > +      *      9-JP4 P4
+> > +      * 10-JP4 P5
+> > +      * 11-m.2 DEVSLP
+> > +      * 12-SFP_LOS
+> > +      * 13-SFP_TX_FAULT
+> > +      * 14-SFP_TX_DISABLE
+> > +      * 15-SFP_MOD_DEF0
+> > +      */
+> > +     expander0: gpio-expander@20 {
+> > +             /*
+> > +              * This is how it should be:
+> > +              * compatible = "onnn,pca9655", "nxp,pca9555";
+> > +              * but you can't do this because of the way I2C works.
+>
+> ??? Why?
+>
+> > +              */
+> > +             compatible = "nxp,pca9555";
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +             reg = <0x20>;
+>
+> reg is usually second property, after compatible
+>
+> > +
+> > +             pcie1_0_clkreq {
+>
+> No underscores in node names. Use hyphens/dashes.
+>
+> > +                     gpio-hog;
+> > +                     gpios = <0 GPIO_ACTIVE_LOW>;
+> > +                     input;
+> > +                     line-name = "pcie1.0-clkreq";
+> > +             };
+> > +             pcie1_0_w_disable {
+> > +                     gpio-hog;
+> > +                     gpios = <3 GPIO_ACTIVE_LOW>;
+> > +                     output-low;
+> > +                     line-name = "pcie1.0-w-disable";
+> > +             };
+> > +             usb3_ilimit {
+> > +                     gpio-hog;
+> > +                     gpios = <5 GPIO_ACTIVE_LOW>;
+> > +                     input;
+> > +                     line-name = "usb3-current-limit";
+> > +             };
+> > +             usb3_power {
+> > +                     gpio-hog;
+> > +                     gpios = <6 GPIO_ACTIVE_HIGH>;
+> > +                     output-high;
+> > +                     line-name = "usb3-power";
+> > +             };
+> > +             m2_devslp {
+> > +                     gpio-hog;
+> > +                     gpios = <11 GPIO_ACTIVE_HIGH>;
+> > +                     output-low;
+> > +                     line-name = "m.2 devslp";
+> > +             };
+> > +     };
+> > +
+> > +     // The MCP3021 supports standard and fast modes
+> > +     mikrobus_adc: mcp3021@4c {
+>
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>
+> > +             compatible = "microchip,mcp3021";
+> > +             reg = <0x4c>;
+> > +     };
+> > +
+> > +     // EEPROM on the SOM
+> > +     eeprom@53 {
+> > +             compatible = "atmel,24c02";
+> > +             reg = <0x53>;
+> > +             pagesize = <16>;
+> > +     };
+> > +};
+> > +
+> > +// I2C Master
+> > +&cp0_i2c1 {
+> > +     status = "okay";
+> > +     clock-frequency = <100000>;
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&cp0_i2c1_pins>;
+> > +};
+> > +
+> > +&cp0_gpio1 {
+> > +     // Release switch reset
+> > +     phy_reset {
+>
+> No underscores in node names
+>
+> All the comments apply everywhere else. I'll stop review at this place.
+>
+> Best regards,
+> Krzysztof
+>
+Thank you for your comments and instructions. I will use the scripts
+provided in the kernel and make the changes you have indicated.
 
 -- 
-With best wishes
-Dmitry
-
+Logan
