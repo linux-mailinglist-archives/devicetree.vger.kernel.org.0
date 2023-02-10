@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F96D691E87
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 202D8691E8D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:43:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbjBJLm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:42:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
+        id S232192AbjBJLnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:43:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231834AbjBJLm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:42:29 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47242A6F5
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:42:27 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id y1so4805190wru.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:42:27 -0800 (PST)
+        with ESMTP id S232214AbjBJLnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:43:45 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4392A6EF
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:43:42 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id bg26so3659920wmb.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:43:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ySFMVBlnxHOb5Y96rtve9uPJPbijU4A0bfrUpEuxnxI=;
-        b=cBtmB/qS2YRjTQINDzh4Uev44unqt248JmvcIQWQySbdWIs9og6UYKQPi4Vj43FVae
-         M20C5g2TPa8H6soNBdCiknRSzq+NfdzxXMNz4E87dSifQ2mkNpcPtDGxADTChjNv6kkb
-         DyP9mHOf+Jhq285bfm1UwfqDdJ6Tg4jarVXXqEUK/VAHiE60k1Eh4t4fvPqi1dDI8LyR
-         wt/FjjWPyccx79ZnI9TnWVMy5VNA4bl2ZwrQGFl92aVpPUp56rwvAyn4dbUFOYhh4WKB
-         EOEtFo58jwZWJaS2DzHg6cXpfEjbeSpcy8B65r2sYOaEkSXkWB1a/exnSwsSTFeQN3OU
-         2/5g==
+        bh=ZpJmB+ETEmIvVLEPcQCzpqfP31qhd1j/4sBxO0QaEzs=;
+        b=dbdZNnwpGU6CqMUBUuO0dM7pxm7zPSFS4kfdvqDcT2WKSuXt91QGQHb7Xf5uCMhaDi
+         fQmS64YvYzR+LutejL1ndam6j1BJB9zvF/CTUe0LkhIpsGJ7hazQcltCiQ9YdJPfI6Zf
+         XpNUEVdJlkSINo2ZMzEo/99z1W0B6B4KygKJ2LNY6s47j6avOgd5SW2yvJa+1iJ2EOWd
+         9jFwz5ZwwVPmQmr/mgrizJOjKjGRox40gunUNUYqnKpGDFvnf5ujJ6lgGpCSPReIby7n
+         30gn0HqB+1/Gu8Rqs+dKyPs9DEVHsPOq+dxqT/n/kTGwnP/80WWgQSpASHF77dZljlzE
+         G1PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ySFMVBlnxHOb5Y96rtve9uPJPbijU4A0bfrUpEuxnxI=;
-        b=dcI4ebleDfBiVDyohFR0rG+CKQ+6PKDSZOe1KV47lmCgGmTBoTvTuAUb6KdhKRUEoy
-         KzrY4NXg+e5RdW3tuOXFt8mdTeEDb73XlTTkrUS2wy5bCTIE7UT1hMD/M95EV9MUG5gF
-         YdcR5CsuSJqS3puqcToWdS0Z3O13MhRwsDmvMWeHBNloCMXUraz+gB6N1g9izcMOlyit
-         usz5BVXRH9R2rMcJ7dCIc+SaIrzhP8NXXht41NE7Xv6RZxFyyTp7+eZYJR3kM0MYEJ1P
-         8BRWGtlf8n+8DGLnKyD/MkUmzFIySy/hPysmgeTCzR7V6OzGlVBXlCB0oINRDukxF5IY
-         a0Lg==
-X-Gm-Message-State: AO0yUKWpkCX6dIS0G3PYEzd8MpdZlaamn6CceZQgWcEfAc3gmhYS7WVm
-        W0Mmz1hFENu53CXJGb4qEs+OFg==
-X-Google-Smtp-Source: AK7set8XXnPNrt7IWyasppe1/1a8+HcM15XPzrRHWU+jxvFbBG89hkqokhp7yTCcVa+37B621VmN/Q==
-X-Received: by 2002:a5d:654a:0:b0:2bf:b3e9:d338 with SMTP id z10-20020a5d654a000000b002bfb3e9d338mr13034559wrv.31.1676029346256;
-        Fri, 10 Feb 2023 03:42:26 -0800 (PST)
+        bh=ZpJmB+ETEmIvVLEPcQCzpqfP31qhd1j/4sBxO0QaEzs=;
+        b=pkRsdNRelPYp7chqpOTdX7IPrO3PjHVxJANnZKE3HYSBXNo0ILITsnLwC7samXdKKs
+         YhnlsOyGpEjV2FjkZlWUMfXM6+NxP2fNykVxhPriVfRAO4EDAlujYL+al5AtXoI3nie7
+         cDsNOUw9UgzEStL4iFVCe+/Ug4LSqRRu5FS49rzUFDRSZ1Q/g3k1P9BrC8Tl6iDPPcxt
+         6n7bxOw3F3FAktOa+3jXJpVtTkX+IEElDyxBpdw/ylO83PtPByXH43wrJgJYq4MrZwVN
+         PL3wP6JNSi2I4ow68FgUhCrLcUFdVUmrkYgwvFhL28VttYGLVroSHf3WIwOERBjFapaI
+         EKzg==
+X-Gm-Message-State: AO0yUKVBuIdjHTSZGSVwqd/fwfjJ1ZbJe+cyBfS3ydfbZXA+MGK1ZjKq
+        9idfRzE1ecY8zR25cwRuCE3VuQ==
+X-Google-Smtp-Source: AK7set+Rco9Ht8woHgwauIhMlB1a7EFxs3tW2SDCkzBKeiLgGfEX0DoqvL34Vr5XVJcp5q4xsxy00g==
+X-Received: by 2002:a05:600c:4b1b:b0:3dc:5987:fe9 with SMTP id i27-20020a05600c4b1b00b003dc59870fe9mr13941504wmp.2.1676029421562;
+        Fri, 10 Feb 2023 03:43:41 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t2-20020a0560001a4200b002c3ef7e74bdsm3330917wry.73.2023.02.10.03.42.24
+        by smtp.gmail.com with ESMTPSA id t8-20020a7bc3c8000000b003e00c9888besm7920156wmj.30.2023.02.10.03.43.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:42:25 -0800 (PST)
-Message-ID: <8e78d645-c3e6-0575-0e3e-412d03eec640@linaro.org>
-Date:   Fri, 10 Feb 2023 12:42:24 +0100
+        Fri, 10 Feb 2023 03:43:41 -0800 (PST)
+Message-ID: <8cd6cf2b-834a-bcfe-d440-5c9795cd1f0b@linaro.org>
+Date:   Fri, 10 Feb 2023 12:43:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v4 4/4] ASoC: cs35l41: Document CS35l41 shared boost
+Subject: Re: [PATCH v5 2/7] dt-bindings: mfd: qcom,spmi-pmic: Add pattern
+ property for phy
 Content-Language: en-US
-To:     Lucas Tanure <lucas.tanure@collabora.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230209083726.1337150-1-lucas.tanure@collabora.com>
- <20230209083726.1337150-5-lucas.tanure@collabora.com>
- <9b20bdb2-64e0-4888-e8df-fdf1b021c445@linaro.org>
- <a6601fb7-284b-f51a-25a5-09b7733fd5f6@collabora.com>
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20230208190200.2966723-1-abel.vesa@linaro.org>
+ <20230208190200.2966723-3-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a6601fb7-284b-f51a-25a5-09b7733fd5f6@collabora.com>
+In-Reply-To: <20230208190200.2966723-3-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,20 +84,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 11:26, Lucas Tanure wrote:
-> On 09-02-2023 08:53, Krzysztof Kozlowski wrote:
->> On 09/02/2023 09:37, Lucas Tanure wrote:
->>> Describe the properties used for shared boost configuration.
->>> Based on David Rhodes shared boost patches.
->>
->> No improvements in subject, I asked twice for it. What does the command,
->> I gave you, print?
->>
-> Should be
-> ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
->
+On 08/02/2023 20:01, Abel Vesa wrote:
+> The phy pattern property will be used for providing eUSB2 repeater
+> functionality. This will be modelled as a Qualcomm PHY driver.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-Yes, thanks.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
