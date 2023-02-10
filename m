@@ -2,153 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0687691AFC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E74A1691B05
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:13:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbjBJJNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 04:13:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48210 "EHLO
+        id S231839AbjBJJNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 04:13:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231753AbjBJJNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:13:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B3737724
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:13:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 71578B82413
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 09:13:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22583C433A4
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 09:13:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676020380;
-        bh=LVzdYfeGwPTm9G+fnamH1Y+Cz6sFuRktwUg5yc4DoSA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eLAsKHUqaMaGwlNLCgBOCvwyZGZSrz86/7Gk6QL2d00xY5Xa5M3ZQx/XqxDS1ghxt
-         5V8rlfXhhpXqIIFoCOaWC7T43ivdVqEgsnHZfu+ZNz4m1GEGgzDwMENPIRNvEa7QkQ
-         A5VczzDHV5/GMB+u1SAmOHQdv4XXz3RpBhRneQvAt3V7Q9vdOPoMbHPeKvl1qOuSHC
-         BWqg4dJx7miUU6QLhCK7EhUikd3uU2vswZMjNa4qu7Al2KZ8ufjBPp6f4ytoONxTJW
-         Lc4kXPa6e1DBszCoKj/sBg9F7so+FSEeIMoyZmmTv+GxDHbliXobiI8rVruL2qP9SN
-         g0pTfsP2qA20Q==
-Received: by mail-lf1-f50.google.com with SMTP id cf42so7335876lfb.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:13:00 -0800 (PST)
-X-Gm-Message-State: AO0yUKVRvY1pIOD9tu0NFij507udzYXE/NL+NbTgTdHj+otNhbBHMwPT
-        kAVDnn7WuT+fgA2LjPSmOyMLJZTX8pM3zBez4hI=
-X-Google-Smtp-Source: AK7set9KQck/Ealw8C9Web+8SZRXe/i5hZ/l+CtaR+UbFz1/eItI7Ay1ZYYeOTefuM+PH4jjGI4f++ecB/tP0/sDdT8=
-X-Received: by 2002:ac2:5102:0:b0:4da:ee90:4529 with SMTP id
- q2-20020ac25102000000b004daee904529mr2546965lfb.63.1676020378142; Fri, 10 Feb
- 2023 01:12:58 -0800 (PST)
+        with ESMTP id S231628AbjBJJNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:13:32 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835D05BA6D
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:13:24 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id qw12so14091031ejc.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8fZFf2yI4NiZ1ohXSbStbdFw0GfjyGPBHrzhVz49z0Y=;
+        b=b2tb5/OmuOTxoKVQ1J47Qg4rdMcs72fXWi2DfegMVNDSgLn/zmioHttGI9DFW+/qzO
+         96+2ePEG/zrjdP3GQl7vtsyP9kRPGLutO27ermYdpR0e4tHx7pko4FrB0tILW41i8pj+
+         lJC2lLEgiqa39+x8zVHZEfRw6ZyQwxKpS73UR37olSz5OGLmHnSbLV3yAGCIkezCx+bZ
+         3YKLECmvyv1A336QZ3mUaN3cQ2YSd2yz6iSe2D+ptr82EpDptxzhcW8pJ+sLw5hn2CGJ
+         yl7czinS3HoNadZ0i7ykVJoirTqSh+11oUPnlCzAIxf1R22L/6/bBQ//MSXFOy7yRTX/
+         5fvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8fZFf2yI4NiZ1ohXSbStbdFw0GfjyGPBHrzhVz49z0Y=;
+        b=V1r/pKhIoJshswFT9JVMOIFzRn50YmJsWJd0yZc6fQWTTr7b4ckdZAajap24+6RLkI
+         L/APIgPVbQ8IuheGCAEcnnno5djOWEvIke5W3fAn0kGiV6RptGNw3eI3xi6a7TN7vmJu
+         YZs6T0PEoXEqV5YBH3pNcYKP0X3CqD7H38x/kIenyj4U/61FtL5HMqXf86KYaCSc8Zmv
+         JAavPSYm5nX/54y0OHcpDDlZKIa6tm9TUTbtJAuUUUXGYzurmVfxAhzxKNySqw6gu4Jv
+         NcXYoNfwbk3G9L94ZGZje+FSm49N1Dq9DZYSQTVyeta3YiCN4qvMmO4PC/PatmKrDwIj
+         A6qA==
+X-Gm-Message-State: AO0yUKVcQKtDmrNB1r+vI7Ji+414aRm56a5HqxWk9h3YV2fzUBl/iuvB
+        LsAGvWRa7pavAoK1WfynkSYhEaYZTvo6nZcsx40B8g==
+X-Google-Smtp-Source: AK7set8z0VVs9Ynm8YK8/sg/s2hoilc5vUf32Iszp/v3ATNK4ku2TS/dWRb+ymTJE6AxLofb6FZhMsS0juAOG5sQLBU=
+X-Received: by 2002:a17:906:ca04:b0:7c0:f45e:22ff with SMTP id
+ jt4-20020a170906ca0400b007c0f45e22ffmr3467086ejb.104.1676020403067; Fri, 10
+ Feb 2023 01:13:23 -0800 (PST)
 MIME-Version: 1.0
-References: <20230204001959.935268-1-sjg@chromium.org> <CALeDE9N2KSwA=HMLS9EPFL00UxxUgi=r_M8F7W2tWT6y+dMzeQ@mail.gmail.com>
- <CAPnjgZ297NH1oiRG9iU8=U0dSAnPLQ4WGYF7=+71aUZCYctWTA@mail.gmail.com>
- <CAL_Jsq+mUNeEx=jwc4JF7fGCa7zkOTChoVb5CoMfHaqCi+bYpg@mail.gmail.com>
- <CAPnjgZ3c0Tmtfzgv74vWovme0mVoF3N1hfoCnz61Hyzc-QE8vQ@mail.gmail.com>
- <CAL_JsqLW3GkXtr0oD28XB3MNK36Vjjzb10MhWFh85-MfN2oc3Q@mail.gmail.com>
- <24dba2278350ea222251be80f6aade104c2319ce.camel@pengutronix.de>
- <CAPnjgZ3MU+_=BibC_VmC4FRBre4+43psX0DzJmOBA2okqoVD0w@mail.gmail.com>
- <bc6d46732b36aad3d9da9fc537c0feeb73adaf0a.camel@pengutronix.de>
- <CAPnjgZ0oxE44-LYYtFb6+nyws+bPZYskwz21U3fweQAK0trXJw@mail.gmail.com>
- <db6baf0fe0a98476ada68f4a0a0acb4c642fa04e.camel@pengutronix.de> <CAPnjgZ3=uB8Vbf83dXTZu9LhkL20nXDW+z1F309sFcWihc_10w@mail.gmail.com>
-In-Reply-To: <CAPnjgZ3=uB8Vbf83dXTZu9LhkL20nXDW+z1F309sFcWihc_10w@mail.gmail.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Fri, 10 Feb 2023 10:12:46 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXEX9sEvf1NpKVbdXyEgTz_Fbshrg=t-p8w1GRO9jbo5CQ@mail.gmail.com>
-Message-ID: <CAMj1kXEX9sEvf1NpKVbdXyEgTz_Fbshrg=t-p8w1GRO9jbo5CQ@mail.gmail.com>
-Subject: Re: [PATCH] schemas: Add schema for firmware logs
-To:     Simon Glass <sjg@chromium.org>
-Cc:     =?UTF-8?Q?Jan_L=C3=BCbbe?= <jlu@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        devicetree@vger.kernel.org,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>
+References: <20230209105628.50294-1-bchihi@baylibre.com> <b41930f9-89d9-1b12-b024-05fb12700769@linaro.org>
+In-Reply-To: <b41930f9-89d9-1b12-b024-05fb12700769@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 10 Feb 2023 10:12:47 +0100
+Message-ID: <CAGuA+oo+1tSDhVkrc-2feH9e8wMpBgAa-N1VEOuGN8_c=uo1zw@mail.gmail.com>
+Subject: Re: [PATCH v14 0/6] Add LVTS Thermal Architecture
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Feb 2023 at 19:05, Simon Glass <sjg@chromium.org> wrote:
+Hi Daniel,
+
+On Fri, Feb 10, 2023 at 7:44 AM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
 >
-> Hi Jan,
+> On 09/02/2023 11:56, bchihi@baylibre.com wrote:
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> >
+> > The LVTS (Low Voltage Thermal Sensor) driver is capable of monitoring
+> > multiple hot points. For that, it contains 7 thermal control blocks
+> > dedicated to specific devices on the die. Each control block can handle
+> > up to 4 sensors.
+> >
+> > The thermal controller supports several interrupts. One for the cold
+> > trip point, the hot trip point, the return to the normal trip point,
+> > and a specific programmable trip point to monitor the temperature
+> > dynamically.
+> >
+> > The temperature measurement can be done in two ways, the immediate mode
+> > where the temperature read is instantaneous and the filtered mode where
+> > the controller uses, by configuration, an average of a set of values
+> > removing the minimum and the maximum.
+> >
+> > Finally, it is composed of 2 finite-state machines responsible for
+> > the state of the temperature (cold, hot, hot 2 normal, hot hot),
+> > the triggering of the interrupts, and the monitoring of the temperature=
+.
+> >
+> > As requested, the thermal driver has been reworked to reduce
+> > the complexity of the code. At this time, the 4 little CPUs and
+> > the 4 big CPUs are supported by the thermal driver.They are described
+> > in a data structure and more devices can be added later.
+> > The calibration routine has been simplified also.
+> >
+> > The series provide the following changes:
+> >   - Move the Mediatek drivers inside a dedicated folder as their number
+> >     is increasing
+> >   - Add the DT bindings for the controller
+> >   - Add the efuse node for the mt8195
+> >   - The LVTS driver
+> >   - The thermal zones description in the DT
 >
-> On Wed, 8 Feb 2023 at 01:15, Jan L=C3=BCbbe <jlu@pengutronix.de> wrote:
-> >
-> > On Tue, 2023-02-07 at 11:39 -0700, Simon Glass wrote:
-> > > Hi Jan,
-> > >
-> > > On Tue, 7 Feb 2023 at 08:39, Jan L=C3=BCbbe <jlu@pengutronix.de> wrot=
-e:
-> > > >
-> > > > On Tue, 2023-02-07 at 06:38 -0700, Simon Glass wrote:
-> > > > > Hi Jan,
-> > > > >
-> > > > > On Tue, 7 Feb 2023 at 04:56, Jan L=C3=BCbbe <jlu@pengutronix.de> =
-wrote:
-> > > > >
-> > [snip]
-> > > > > Thanks for the pointer. I had a look at this. How do you deal wit=
-h
-> > > > > updating a filesystem that might be corrupt? Is that even a good =
-idea,
-> > > > > if the purpose of it is to collect data from a kernel crash?
-> > > >
-> > > > This uses only the ramoops "backend" in pstore, so no filesystems a=
-re involved.
-> > > > If I remember correctly, ramoops in the kernel just discards any da=
-ta that is
-> > > > too corrupted to process. Barebox should behave the same, as the co=
-de was ported
-> > > > from the kernel.
-> > >
-> > > Yes...actually I found that U-Boot has pstore too, but it does not
-> > > support writing the console into it. I suppose it would be easy
-> > > enough, but it seems that U-Boot's pstore is not as advanced.
-> > > >
-> >
-> > > > > We are working on a firmware 'Transfer List' which is a simple da=
-ta
-> > > > > structure to communicate through the different firmware phases. S=
-ince
-> > > > > U-Boot is the last one, in this case, I suppose it could do the
-> > > > > ramoops thing and add files for each of the firmware phases.
-> > > >
-> > > > For passing logs "forward" to the next step in the boot chain, this=
- should work
-> > > > as well and could be more explicit than the ramoops console. One be=
-nefit would
-> > > > be that keeping the logs from each step separate, right?
-> > >
-> > > Yes. But we can't use this to pass it to the kernel.
-> > >
-> >
-> > Hmm, because we would need to reserve space for the text memory regions=
-, which
-> > couldn't be used by the kernel later?
+> Applied patch 1,2 and 4 for v6.3
+
+Thank you very much!
+
 >
-> Because the transfer list does not get passed to the kernel. We don't
-> want to invent another way to pass info to Linux, since we already
-> have FDT, ACPI and cmdline. In fact I have a horrible suspicion that
-> someone added a structured cmdline a bit like an FDT but in text...
+> Patches 5 and 6 should go through the Mediatek tree.
+>
+> Thanks!
+>
+>    -- Daniel
+>
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
 >
 
-Yes, the tracing folks in Linux cooked up 'bootconfig' without
-involving a single person that was already active in boot
-architecture, boot loaders, firmware, etc. I was quite shocked by that
-as well.
-
-It seems to be another hierarchical key/value pair store, used for
-passing a large set of command line arguments which may otherwise
-exceed the maximum length of the kernel command line. It is appended
-to the initrd by the boot loader. Android have already started using
-it as well.
-
---=20
-Ard.
+Best regards,
+Balsam
