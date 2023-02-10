@@ -2,236 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F76691A2C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:43:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 832DE691A3B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:45:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbjBJInP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 03:43:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
+        id S231222AbjBJIp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 03:45:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbjBJInO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:43:14 -0500
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5554210DC
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:43:13 -0800 (PST)
-Received: by mail-io1-xd32.google.com with SMTP id d16so1665821ioz.12
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:43:13 -0800 (PST)
+        with ESMTP id S231501AbjBJIpz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:45:55 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B015A9D6
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:45:54 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so3505226wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:45:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bZdTaoQdI84eQVm+vowEVZgNB1qPoT93d6+CHcz4blI=;
-        b=iyvEHGe6/7SbWqRS09KX0I+WywD0bnenAZGLlHm5sfjEHyNlDI4l22hm+KQEtrgKZE
-         R1fXVtPTQCsz8siZwhwpUvt+AwDA7Np2E63V//ExCV+a0C3BJUGbXnV4efB3gR+9zt2h
-         qlR2l5eyXw1krz28H+TQq+pLLfQ0HzyhMAQcU=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qA3qvbnssW7q8kXQFDPaNXVdxo8ZJzAN4ti+xF1gQ5M=;
+        b=jgpNqU5WlUekv99IWQquuXrNQLE/1uSEKexafpZM3OI/DHNAPIDTQuOv/cMKnEaO3s
+         jWyJ4G94/heiFfv6ZPvieOdG0mnBTRijfe21S6sKCHLqc4fDLY2GwnJ07Oy5fNPvI5uz
+         2zRaM8D20COYy7LTiWC6LkZC3hOaaCadiVE1CfJjTnCAgIsiI6PDOvcxfA2BkYHmHdoo
+         ZevvEya0tneI+VNJQBWOmrpSU5WRObiF/pHuHISmHet5qNl1bCvPucYR1EjepIovc/fo
+         HlI/mLpjQq5OpzLN5S2WKr7mN2ePcbN6SY5hDLHJpgxTGU9uH44pbt/9iMthDC3PPUVS
+         aSjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bZdTaoQdI84eQVm+vowEVZgNB1qPoT93d6+CHcz4blI=;
-        b=TunnhfNHGdaie5eE/YtUmnNjbyFlfXuRI32dRuDn5tmQTMsuzJ2R+a+aMRipzzah0/
-         FfQzt6b8g6tz8LrDjqv1tMRCaOKgC0Q7Gp+/uZh+BSEifeQseLPTStAjTTUfz6LEWBkC
-         rwbfCz7VjVpZQomkzjX/WfrUmXZvrsELSZc2akKrxf+DAaM5lY4fIcdbpumyI51EN1ib
-         OORGX54MhkaBbwKhizebVSGttFzuL17dwxGlTy+DeZRSR26ZJmKN1UXsmWzsOY2IWVWG
-         jgBqaRU+rrKoJotnfCDxKhnu14IrtYsTzJmGZ/ytEtlwy2OSxEMe5kwp0/HgrhHaDABd
-         FiTg==
-X-Gm-Message-State: AO0yUKUAMZQj1ZR1d2TrOS44cUSLHfhixuU7noqaFgXcl+9X/611MSO+
-        VjZKZ/6WMfc1ClWSkyuKXDcT4pE/BiN8DO20hcF+8w==
-X-Google-Smtp-Source: AK7set/VfS77SYvoCBXeLjVPuFwQjPzNpXxw20gUzrrgPUaIYOvSb9+5aL4Cd9lr+FCStNinLRHbmx9wj26VQvZpD4w=
-X-Received: by 2002:a05:6602:348:b0:6de:383e:4146 with SMTP id
- w8-20020a056602034800b006de383e4146mr7976471iou.48.1676018592711; Fri, 10 Feb
- 2023 00:43:12 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qA3qvbnssW7q8kXQFDPaNXVdxo8ZJzAN4ti+xF1gQ5M=;
+        b=ErvDJL/dSod174SBfSmw8O1amz9zcmApc8MZNle1AGdiH8wP8/gZqDPKzwrYv/beJr
+         MADfQZ27NJy9Zsfq/rTV3z6W0jQ7jOajSLYqDUiapjeBYSppaesMdEzKfcrtMZv9Gh9V
+         Z2iiBXAu1+RImH/KjftWRGqEF+G13c2IUmnAmgYboGTFhw80r91H7KLKrasCzCOPowM4
+         YjRdcy9lE0OXI3gWK1VrhkO9qDhQmuGjrolLW5mcd7kyS5e2xdmj/C9lP/i0b3Dd3Tgz
+         GNjxsKXNjkYvTOwZ2HPVumGqxFHonQzpAeWcWxQ/xO1+krwfmFwkm44VMWe+eJpVfia/
+         P/aQ==
+X-Gm-Message-State: AO0yUKUx6pjdGdZQymK7QL9NB3B2fVscHpQul05KNlnb1HLr9HoSbuAs
+        n1HHAvkeVuYrot58yL+FKIVmvQ==
+X-Google-Smtp-Source: AK7set9x6sBH4Hw//pRNQ8QpNO2VKH3YQMChRW1yO4t8kC4SPlcv4uzYZTfstMMz6m3zHCQMBt8S8A==
+X-Received: by 2002:a05:600c:35cd:b0:3df:eda1:439c with SMTP id r13-20020a05600c35cd00b003dfeda1439cmr8977658wmq.11.1676018752808;
+        Fri, 10 Feb 2023 00:45:52 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n13-20020a05600c3b8d00b003dc434900e1sm4753511wms.34.2023.02.10.00.45.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 00:45:52 -0800 (PST)
+Message-ID: <9570b0fb-1fe2-00fe-e224-229752f26a9a@linaro.org>
+Date:   Fri, 10 Feb 2023 09:45:50 +0100
 MIME-Version: 1.0
-References: <20230204133040.1236799-1-treapking@chromium.org>
- <20230204133040.1236799-8-treapking@chromium.org> <20230207205221.GA4121517-robh@kernel.org>
- <CAEXTbpf5KqH7zev+kooUmz2DiMya-53UmvAMJfcOYcm7CCDthQ@mail.gmail.com> <CAL_JsqJ35gJnpwfOtW8jQP2RmzJtLG2YdTC6dt7pf-GjJggORw@mail.gmail.com>
-In-Reply-To: <CAL_JsqJ35gJnpwfOtW8jQP2RmzJtLG2YdTC6dt7pf-GjJggORw@mail.gmail.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Fri, 10 Feb 2023 16:43:01 +0800
-Message-ID: <CAEXTbpcoS6us6Qz4UmdR8zC7n-euLQr25dv4Hg2JkqVL2pX5LA@mail.gmail.com>
-Subject: Re: [PATCH v11 7/9] dt-bindings: display: bridge: it6505: Add
- mode-switch support
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
-        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Xin Ji <xji@analogixsemi.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        chrome-platform@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] arm64: tegra: Audio codec support on Jetson AGX Orin
+Content-Language: en-US
+To:     Sameer Pujar <spujar@nvidia.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, oder_chiou@realtek.com, broonie@kernel.org
+Cc:     perex@perex.cz, tiwai@suse.com, lgirdwood@gmail.com,
+        kuninori.morimoto.gx@renesas.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org
+References: <1675953417-8686-1-git-send-email-spujar@nvidia.com>
+ <1675953417-8686-3-git-send-email-spujar@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1675953417-8686-3-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 9, 2023 at 9:58 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Feb 8, 2023 at 10:00 PM Pin-yen Lin <treapking@chromium.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > Thanks for the review.
-> >
-> > On Wed, Feb 8, 2023 at 4:52 AM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Sat, Feb 04, 2023 at 09:30:38PM +0800, Pin-yen Lin wrote:
-> > > > ITE IT6505 can be used in systems to switch the DP traffic between
-> > > > two downstreams, which can be USB Type-C DisplayPort alternate mode
-> > > > lane or regular DisplayPort output ports.
-> > > >
-> > > > Update the binding to accommodate this usage by introducing a
-> > > > data-lanes and a mode-switch property on endpoints.
-> > > >
-> > > > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> > > >
-> > > > ---
-> > > >
-> > > > Changes in v11:
-> > > > - Updated the description of the endpoints in the bindings
-> > > > - Referenced video-interfaces.yaml instead for the endpoints binding
-> > > > - Removed duplicated definitions from inherited schema
-> > > >
-> > > > Changes in v9:
-> > > > - Fixed subject prefix again
-> > > > - Changed the naming of the example node for it6505
-> > > >
-> > > > Changes in v8:
-> > > > - Updated bindings for data-lanes property
-> > > > - Fixed subject prefix
-> > > >
-> > > > Changes in v7:
-> > > > - Fixed issues reported by dt_binding_check.
-> > > > - Updated the schema and the example dts for data-lanes.
-> > > > - Changed to generic naming for the example dts node.
-> > > >
-> > > > Changes in v6:
-> > > > - Remove switches node and use endpoints and data-lanes property to
-> > > >   describe the connections.
-> > > >
-> > > >  .../bindings/display/bridge/ite,it6505.yaml   | 101 +++++++++++++++---
-> > > >  1 file changed, 88 insertions(+), 13 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > > > index b16a9d9127dd..8ae9c5cba22c 100644
-> > > > --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > > > @@ -75,22 +75,49 @@ properties:
-> > > >        port@1:
-> > > >          $ref: /schemas/graph.yaml#/$defs/port-base
-> > > >          unevaluatedProperties: false
-> > > > -        description: Video port for DP output
-> > > > +        description:
-> > > > +          Video port for DP output. Each endpoint connects to a video output
-> > > > +          downstream, and the "data-lanes" property is used to describe the pin
-> > > > +          connections. 0, 1, 2, 3 in "data-lanes" maps to TX0, TX1, TX2, TX3,
-> > > > +          respectively.
-> > > >
-> > > > -        properties:
-> > > > -          endpoint:
-> > > > -            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > > > +
-> > > > +        patternProperties:
-> > > > +          "^endpoint@[01]$":
-> > > > +            $ref: /schemas/media/video-interfaces.yaml#
-> > > >              unevaluatedProperties: false
-> > > >
-> > > >              properties:
-> > > > +              reg: true
-> > > > +
-> > > > +              remote-endpoint: true
-> > > > +
-> > > >                data-lanes:
-> > > > -                minItems: 1
-> > > > -                uniqueItems: true
-> > > > -                items:
-> > > > -                  - enum: [ 0, 1 ]
-> > > > -                  - const: 1
-> > > > -                  - const: 2
-> > > > -                  - const: 3
-> > > > +                oneOf:
-> > > > +                  - items:
-> > > > +                      - enum: [0, 1, 2, 3]
-> > > > +
-> > > > +                  - items:
-> > > > +                      - const: 0
-> > > > +                      - const: 1
-> > > > +
-> > > > +                  - items:
-> > > > +                      - const: 2
-> > > > +                      - const: 3
-> > > > +
-> > > > +                  - items:
-> > > > +                      - const: 0
-> > > > +                      - const: 1
-> > > > +                      - const: 2
-> > > > +                      - const: 3
-> > > > +
-> > > > +              mode-switch:
-> > > > +                type: boolean
-> > > > +                description: Register this node as a Type-C mode switch or not.
-> > >
-> > > Existing users put this property in the device's node, not the endpoint.
-> > > That seems more like a property of the device, than the DP link.
-> >
-> > In our use case, we want to register two mode switches for the same
-> > device. That's why we put the "mode-switch" property in the endpoints
-> > instead of the device node.
->
-> Then do that. Register a mode switch for each endpoint connected to a
-> USB-C connector. You can walk the graph to see what type of connector.
->
-> The only way I could see this as an issue is you have 2 USB-C
-> connectors and one is a mode switch and one is not. Not sure if such a
-> scenario is likely or possible. If it is, please educate me.
+On 09/02/2023 15:36, Sameer Pujar wrote:
+> Jetson AGX Orin has onboard RT5640 audio codec. This patch adds the
+> codec device node and the bindings to I2S1 interface.
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts  | 47 +++++++++++++++++++++-
+>  1 file changed, 46 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> index 8a97478..5881fbf 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> @@ -3,6 +3,7 @@
+>  
+>  #include <dt-bindings/input/linux-event-codes.h>
+>  #include <dt-bindings/input/gpio-keys.h>
+> +#include <dt-bindings/sound/rt5640.h>
+>  
+>  #include "tegra234-p3701-0000.dtsi"
+>  #include "tegra234-p3737-0000.dtsi"
+> @@ -49,7 +50,7 @@
+>  
+>  							i2s1_dap: endpoint {
+>  								dai-format = "i2s";
+> -								/* placeholder for external codec */
+> +								remote-endpoint = <&rt5640_ep>;
+>  							};
+>  						};
+>  					};
+> @@ -2017,6 +2018,32 @@
+>  			status = "okay";
+>  		};
+>  
+> +		i2c@31e0000 {
+> +			status = "okay";
+> +
+> +			audio-codec@1c {
+> +				status = "okay";
 
-We can know which endpoints should be registered as a MUX by walking
-through the graph, but the typec_mux_match[1] checks if the node
-explicitly specifies a "mode-switch" property. So we still have to put
-the property in the endpoints.
+Are you sure you need this?
 
-[1]: https://elixir.bootlin.com/linux/latest/source/drivers/usb/typec/mux.c#L265
->
-> > > You are using fwnode_typec_mux_get(), right?
-> >
-> > Yes. This is called by cros_ec_typec.c[1] in our use case.
->
-> That code looks for 'mode-switch' in the device's node, not the
-> endpoint. So how does it work for you?
+Best regards,
+Krzysztof
 
-We modified the function in patch 1/9 of this series to make it also
-look for endpoints.
->
-> Rob
-
-Regards,
-Pin-yen
