@@ -2,118 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FEAC692007
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 14:46:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6347692012
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 14:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbjBJNqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 08:46:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60418 "EHLO
+        id S232229AbjBJNsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 08:48:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbjBJNqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 08:46:00 -0500
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C38973954;
-        Fri, 10 Feb 2023 05:45:59 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id 139so4940915ybe.3;
-        Fri, 10 Feb 2023 05:45:59 -0800 (PST)
+        with ESMTP id S232242AbjBJNst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 08:48:49 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0061C34F69
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 05:48:47 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id u10so3858826wmj.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 05:48:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hB+mOJqD5Y0H3JYjXP2CcVgplj5XVV1e0fTBRG32UaQ=;
-        b=WX5QCkNjdJQ8c0rOOlxK/JExQefxLbENbWB8LclIHqEilDbLyE+wQEKp/7P2huRAUr
-         8i+AG2rbESwOr/sThtxE8/PEe4Gj+CMPqMMAody/v8RAr3/cx1mXKaHO9K/DUkRicQll
-         7oMnIsjR5qJTMCC9OXk/jMLLWWZo03yHiIw7tkIiyRkx4rrkKyHw78e2ohOKjN3zn4f9
-         /K0MU2yvOjVXBlIOyXllKDLm5yHdFJu9kYuddAoHxTQ1oblKI94r+hwths2m0P4boBzN
-         rvrrZ8tcssXiFw6Q8azKfFkttRYJX8vsZnYac+VgR02320HCNxAEUutYslA4JTpTmBrn
-         BDIQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lgX1/zqimi/YLqc0ROTjcTpl2PIFnD1dAnCrk5r/m5U=;
+        b=pgpP3es6XyDBan70UlIhRinUQaDlKfIJoKHjs+Dblw9qmX20Y7du+QACZj+wX73XPv
+         +aOnS7z0uKcKvSPVJH8IGQxNpqNqfNCzZiM8nwUUGsPnUmhuKL8PnkrV12wZaNJNiKja
+         RpshlKvShYt2dnjI6y32FooWVcF41WOwwnHTIIw7oU0Bmql+fwnmMatS3sIUmXysWQkD
+         DTJRUaqHUn2vwFMgLPP9fW1uZ/c9j3LGF+qbpCGdQIM+4RtPqbXwpVCtM+dfP0lrgims
+         YuaFbck+0feUTfMLBghyGRWV8eiQEQZ5u+wD3vzRk7HhkKQy1kNjaPw+9gYS86auie0H
+         At8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hB+mOJqD5Y0H3JYjXP2CcVgplj5XVV1e0fTBRG32UaQ=;
-        b=k9E6p9uFAFgUwQabbJlNFHXAAAW553IQZBsUuPVz6INdwGIqyPUy5KdJB6GnFlIrMH
-         vq2IGxVXn11TEtvs9AbOayAXZDqsw41bmAO7fLHqTMQ0u5M2aipzS7Ityp9nGEAtHjzo
-         y/URiBFbi2EeX70ePPtOjoTzo06F2xgLi7Vc/mQ0ch2zrnMA5YpQPRTpxctIxPeO09RW
-         oIkbFeQbkb7XNrXvO4+gSOxpMHd2NHBsG09uCK8mFC4MA86apNtSQd8RXn4ZLytz7/xB
-         PkW3BSMXd8MbPD3tA7fA0+CvMZyKej3p+KHDMYQOHsJGqQBXrJLUD2cWJpIJm2UagIld
-         w3eQ==
-X-Gm-Message-State: AO0yUKWKNx0XJ5BbMYoVZVq9DPkKTIoo6IsOxN9v+tDvgSGHqGCJrTBe
-        iBAw8yqA0hZyP3cNXgXldhICgXvlb6HVUzJnbrU=
-X-Google-Smtp-Source: AK7set9p/mFPR8AIII7jz3WOMjkRUH0Ch3Js3xuR613P1LexlUXemUWuB53vPhLb9B1ej5nch2AYNjVrD/5+KoHTKps=
-X-Received: by 2002:a5b:d09:0:b0:8a0:96fa:f8f1 with SMTP id
- y9-20020a5b0d09000000b008a096faf8f1mr1722831ybp.535.1676036758352; Fri, 10
- Feb 2023 05:45:58 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lgX1/zqimi/YLqc0ROTjcTpl2PIFnD1dAnCrk5r/m5U=;
+        b=oq63yHcZOkGK+WAcG0sWHrCKSkqHzUdppyjgkQAmFSWYMg1BAywLfiEY93hh8/DXMY
+         jgVVaVHearfAhhkTp+9mseCtgEeryEAFkbuusKz+9yQUyrondNDpehq3QOGjmamuxWWc
+         1+RdV91OtHDbWTOSXeiqgohs/7Yw8CSbbvfZW9tsUPxRQiDAzT9BnCjJzNQzSqeak8Fa
+         6brkZl+OPD4uLTaQcGJeKjJTCrRFop6W5RBoGA62zlzHOIlvfWsJk+SWWWu3TePNwued
+         CJB5pJm7anM0I1b6EeQgSubgWT71+ByahoYZ3D6GuIe/yqhBiOcMfbj/XaGgREPbDHhA
+         BONQ==
+X-Gm-Message-State: AO0yUKUaGBiUVj+sFjdiQClOeYZkf+s7GoChAuedFekuXiHvZaugAy2C
+        DtpgDY7i5wMdAFSLqDcnNJB45A==
+X-Google-Smtp-Source: AK7set+wCpWmrcrA+BnOSJaSi1jOtj8FGpwUPGWJxV7mIKYA2FHgmLYCrTsknLK4f6wOi+tvOJEo+Q==
+X-Received: by 2002:a05:600c:450b:b0:3df:9858:c03b with SMTP id t11-20020a05600c450b00b003df9858c03bmr9896080wmo.16.1676036926504;
+        Fri, 10 Feb 2023 05:48:46 -0800 (PST)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id n16-20020a1c7210000000b003dc1d668866sm7948569wmc.10.2023.02.10.05.48.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 05:48:46 -0800 (PST)
+Message-ID: <3b215d83-9b8e-d881-44c4-ee1301bb9044@linaro.org>
+Date:   Fri, 10 Feb 2023 14:48:38 +0100
 MIME-Version: 1.0
-References: <20230206002136.29401-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUXXrYPcNiD3M_ONjX2Jn16KKXdY=4JMqJbm9F=9GMBvA@mail.gmail.com>
-In-Reply-To: <CAMuHMdUXXrYPcNiD3M_ONjX2Jn16KKXdY=4JMqJbm9F=9GMBvA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 10 Feb 2023 13:45:32 +0000
-Message-ID: <CA+V-a8uWyCrziE2+LNy7jK0hU-5bKUC2i++oQqEt8qoqwjm07Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Drop specifying the
- GIC_CPU_MASK_SIMPLE() for GICv3 systems
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 2/4] thermal: qoriq: add i.MX93 TMU support
+Content-Language: en-US
+To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com
+References: <20230105101748.6714-1-alice.guo@oss.nxp.com>
+ <20230105101748.6714-3-alice.guo@oss.nxp.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230105101748.6714-3-alice.guo@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 05/01/2023 11:17, Alice Guo (OSS) wrote:
+> From: Alice Guo <alice.guo@nxp.com>
+> 
+> The procedure to program the calibration table of i.MX93 TMU:
+> 1. disable monitoring mode
+> 2. configure TCMCFG
+> 3. write TTCFGR with TTCFGR[CAL_PT] = n
+> 4. write TSCFGR with the sensor value of the calibration point n
+> 5. write TTRCRn associated with the calibration point n
+> Need to repeat steps 3—5 for all calibration points from the calibration
+> table provided by the TMU device node.
+> 
+> When TRITSR[V] = 1 and TRITSR[TP5] = 1, need to add 0.5K to
+> TRITSR[TEMP].
+> 
+> IPBRR0s of lx2160ardb, lx2162aqds and i.MX93 have the same value
+> 0x01900201 so that use the compatible to determine whether the current
+> TMU belongs to i.MX93 or not.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Ye Li <ye.li@nxp.com>
+> Acked-by: Jason Liu <jason.hui.liu@nxp.com>
+> ---
 
-Thank you for the review.
+[ ... ]
 
-On Fri, Feb 10, 2023 at 11:10 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Feb 6, 2023 at 1:28 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > The GICv3 interrupts binding does not have a cpumask. The CPU mask only
-> > applies to pre-GICv3. So just drop using them from GICv3 systems.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v6.4...
->
-> > ---
-> > Note, this patch applies on top of [0]
-> >
-> > [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
->
-> As this patch is a fix, I think it makes sense to drop that dependency.
->
-Agreed.
+> @@ -369,6 +416,7 @@ static SIMPLE_DEV_PM_OPS(qoriq_tmu_pm_ops,
+>   static const struct of_device_id qoriq_tmu_match[] = {
+>   	{ .compatible = "fsl,qoriq-tmu", },
+>   	{ .compatible = "fsl,imx8mq-tmu", },
+> +	{ .compatible = "fsl,imx93-tmu", },
+>   	{},
 
-> So I'll do
->
->     git show -- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | sed -e
-> 's/044/054/g' | patch -p1 && git commit -a --amend
->
-Hmm that's something new for me to learn!
+Now that you have more than 2, I suggest the pass a ops structure to 
+.data, so you can call them directly instead of checking the TMU version 
+in the calibration, the initialization and get the temperature.
 
-> while applying.
->
-Thanks.
+>   };
+>   MODULE_DEVICE_TABLE(of, qoriq_tmu_match);
 
-Cheers,
-Prabhakar
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
