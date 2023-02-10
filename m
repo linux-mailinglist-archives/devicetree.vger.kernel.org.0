@@ -2,114 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C8169154C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 01:22:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F729691561
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 01:30:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbjBJAWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 19:22:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48390 "EHLO
+        id S229840AbjBJAak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 19:30:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjBJAWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 19:22:42 -0500
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2091.outbound.protection.outlook.com [40.107.255.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9224560308
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 16:22:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IS2If1Yl92XIqE+iPEVKVQOxCvd2hU2r/4tMGlAWP07d79TunUSw4WbZHto/oAKebbR7reB+d9oUeqJCV44OEpapmxPxxB08i+MALQXbILQdBYLmKklKarl+YqGDgzKrexMD5FgIlIHYVRAhe4rUMctLB3MW6XQQj1q/H6H1ArHWkuG0xavwIu4T3lOj/GrN1Cm+KPx3/tw5A2t+BnSEDEjp/4eS12xLIrigcfKYeoHrhpk6i0RIQH05yHpEyTJAcwntlUVlWXZPPtVfNtgIkDqaiHnxMR0cYY+ZQCG+/Rym6HDvG8scXyjDu9Az4L15qD8uXZQr0sn+gw/972TtaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wzDgPIvX8xgAC608dGMnSNKWX0ldgVR1mt6ABDj+0xI=;
- b=AOQYHSrRjTzczCk+yFhloTkNQ2f3jTXDuq9cp/T/qIM9tRnkXY93WMihR6VUS3O5Fxorx7due+a3Co+3NN+w7BXFpvPnuHRwA4f7oajbHCSAoTnAqcZ6ii6bh51zKOKZ+UBNoATOG+trsvgTHsI7VzbxuBkW3GL0qp7QKrJl4ZCaXL+mKUeVYvQOvZk5eGiw1344ugUeiQsbh/6bBNm7c1Tu1rkaOaALniy9Sv/0U56SFUqJj6RYHEaaZpvMWOT4ADzvsKafXQT88XqmVC6boz56M1hWkuzsp97pYj57L6KmIUqTfygK6Bwwi7eOvaCmUdE4ZCNeZbM2Xd4gdM2ANA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wzDgPIvX8xgAC608dGMnSNKWX0ldgVR1mt6ABDj+0xI=;
- b=jeL0/2G9XyUtUqaWBn33msxEhbmpdoz0nc4T8jBvVnID/mEw/66tlFMFfPv2Y2DH1iIQzKfJtVwMbwj4weqGnX2cexUVsnZpkU6jI8V0sjD0U6Di1uVxE+7DvC3G/Ggya11eQ85xoYBLQ2woN4xzhW819i9cirrA/Zk6wQPPLR8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by OS3PR01MB10280.jpnprd01.prod.outlook.com (2603:1096:604:1e1::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.19; Fri, 10 Feb
- 2023 00:22:38 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860%9]) with mapi id 15.20.6086.019; Fri, 10 Feb 2023
- 00:22:37 +0000
-Message-ID: <87fsbe1i9e.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car Gen4 support
-In-Reply-To: <072724aa-2bf3-32a6-dee8-e74c74b01019@linaro.org>
-References: <87y1p7bpma.wl-kuninori.morimoto.gx@renesas.com>
-        <87v8kbbpl4.wl-kuninori.morimoto.gx@renesas.com>
-        <072724aa-2bf3-32a6-dee8-e74c74b01019@linaro.org>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Fri, 10 Feb 2023 00:22:37 +0000
-X-ClientProxiedBy: TYCP286CA0112.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29c::7) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        with ESMTP id S229762AbjBJAaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 19:30:39 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E5C125A4;
+        Thu,  9 Feb 2023 16:30:37 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id s8so2678534pgg.11;
+        Thu, 09 Feb 2023 16:30:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j/k0erUD/kDhxh7/K7OwX/bqJpwb0bJwB0iaNCFMZK4=;
+        b=m45PZQvJM/hD/Xj9vlTDu7tBQyIzoAKV+Ug121N7xEPFN7JnwalygRfN9Deee662VD
+         1QVbr7FN2GjKS80HHKfM2VRvvS5Vumhqz4Q+X5SC3+HRHqlG8a7QYMW60YZ5vMmXuVWT
+         Whj682Dxwd3DP/j9rmnilydYjFYDO78yDRgj3f2c7t5Yh9pLdW/rRTvgu6ytHpVWH4Bp
+         WyfwWCyWVkyOkZzxzrnyvN21unxPk7gjxu9VkavwgK4rgme7Roz1XT+g6ILjuGTvn1Ca
+         djNyiDLTeCH+LIzJyxsFu0Lca5uXhw3bVHkTtzSaYa2Z8GkE/XD13cpHeodi0b9EwBno
+         w3Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j/k0erUD/kDhxh7/K7OwX/bqJpwb0bJwB0iaNCFMZK4=;
+        b=imNCB5YEGb78LKNyU+wzeL/H1iYwWxeAuK2mArDGOf8lHLPeMjSO63NSt9NtamWke7
+         Zcr1OXH1HLFVaFBBU4wfpjEbQ/UYisapCy9S7MDHXPPkQ41ZpA2n4YVxkNzwqs+x2Yl5
+         /Ue9tX/AmGog2dcdokrZz+QskLqzb7mKVUb0/8lxxMBR4TbDi3D7hlinmqCba2HwZbPe
+         BsCI7girFxG8nsN3PkftaAkfmvcB8i+YOOo5k4yo5JRYX9aa6jdjQZeDLgaU7EjOK9Lq
+         r6X5u/8V9dgrfGMv2nfAhhGzLJZmsQhX9879r/5XEJwW2rsavEqo2QUXmcVq7kDphFzz
+         wpAA==
+X-Gm-Message-State: AO0yUKWUstSy+4URxhLVCpX38XSe2jM5U1EZo/Lv9PIW/6ovqAysQb8h
+        En0lN9dqQExrKBxM//3uyGU=
+X-Google-Smtp-Source: AK7set8J843VCb5Swh1of6p2yfW1raUVGGmO4Q3S+xAJAvwl45nss0avFGNhPNql2c/P0j9nxUjhIg==
+X-Received: by 2002:aa7:9e42:0:b0:5a8:5424:d13a with SMTP id z2-20020aa79e42000000b005a85424d13amr3990100pfq.11.1675989036714;
+        Thu, 09 Feb 2023 16:30:36 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:4b3d:5db5:694e:89d0])
+        by smtp.gmail.com with ESMTPSA id e24-20020aa78c58000000b005815217e665sm392161pfd.65.2023.02.09.16.30.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 16:30:35 -0800 (PST)
+Date:   Thu, 9 Feb 2023 16:30:29 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Vincenzo Palazzo <vincenzopalazzodev@gmail.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stefan Schmidt <stefan@datenfreihafen.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc-tw-discuss@lists.sourceforge.net,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-m68k@lists.linux-m68k.org,
+        linuxppc-dev@lists.ozlabs.org, linux-sh@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com, linux-arch@vger.kernel.org,
+        devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+        Yanteng Si <siyanteng@loongson.cn>,
+        Hu Haowen <src.res@email.cn>,
+        Russell King <linux@armlinux.org.uk>,
+        Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>,
+        Mun Yew Tham <mun.yew.tham@intel.com>,
+        Keerthy <j-keerthy@ti.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alexander Aring <alex.aring@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Kalle Valo <kvalo@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v4 08/18] gpiolib: remove gpio_set_debounce()
+Message-ID: <Y+WQJTsdeZeAEs/S@google.com>
+References: <20230208173343.37582-1-andriy.shevchenko@linux.intel.com>
+ <20230208173343.37582-9-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OS3PR01MB10280:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9c221d79-5f44-49e8-ecd7-08db0afcea09
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 57xAQtKwH0WNCN59E2a6BglCfw2noL+FuuuFN9XkMWRBWULG0+ljWF344MXNAW/VlY/Y0pSaHfstfRem9VEPpZQce17m0vPCzW+IRZDyJy+Q3cXXU+lZWVoeNwK/8H+1yhuHA/sf2vkpxtdrNDBfQxrRIkyCELg4ZRtvZkAUzdz1AKGSkv06NqzYjOc02/5TB9uY+77SJMw3giATBzMlC48RSVN8lor22KwsRkwhW6j/jRyhUKCfm8CM7YBDDqhUszZtopE9sDU5jbU5HO/c9TC4Z/+EGoxv13kDFb5ifbld+KpCwOAV9TE7r6wlkxydnmGWkpuug+5KhndNplkkwa08DsiahlOVABPMB9LLGpKNmjmvzp3HPn6F9+ETihyT7SRjjGTWwvldCnm/1/XFsFbnTSngO2326wYI1toC9ngiL7Zt1S2SZoaiCbwVKF/izPqoarhOk6qm13ChYDLlL0u8HBrY7Atiuc3f1wDnZRdeW3wl4MOIeroT/uxUgikVH6sD/pBoDy1MXYHFP/HWrSd0zpyu2TU/XdDasCP1SFIJQ7n8LcsSJ+e/JcCIYKdLygSFO3kh6tOqAd5S2KumBYMSrTVbYyy10orXIlrdcrtc1yOczm2ltbgrVkTzh8cl/AhNltLch1vxbjJAWwD2G1DiiZIH8robAHj2M1oPabxeqJYBz8ztBB3RNnEnWFtvXxM/M8TICUwcSuSePHE4LA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(346002)(396003)(376002)(39860400002)(366004)(451199018)(38100700002)(38350700002)(5660300002)(8936002)(41300700001)(6916009)(8676002)(66946007)(66556008)(66476007)(4326008)(86362001)(4744005)(2616005)(316002)(478600001)(54906003)(6506007)(6512007)(186003)(26005)(52116002)(6486002)(2906002)(36756003)(83380400001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LgIz1iK26pzPfMe0WZFACQq7CSf+ALR3AVv9omMySbFo9FXUlQ1f5v7ZsTe+?=
- =?us-ascii?Q?Xy6vokxhaO6Hn0k4vXIEEoF7EKmAzW+pA9vooAZ6t/hCLQIF9W11ZCOMV2AC?=
- =?us-ascii?Q?Kbpbw4CMuh0o/iQiuosaX1Y8n6x9JAr+a+IcTcc/vj6a48E//Opo8UqoZCsD?=
- =?us-ascii?Q?bX3gwJ1REfIxAR3ZL80DRznF52DGWYrFYu6VFJT/57praUpTYJpFqJj2JiAV?=
- =?us-ascii?Q?gwnyM3gSU1aAk+AOnbdanVw79B63nsN6kV48Pi8EuHSeUMqAISlxAfzbWBDz?=
- =?us-ascii?Q?1nLcXEhtl/ebtkDtxjYa6TBgzMz9shCMVJng60Gx88SAK/DUNSgSWHEWMCpr?=
- =?us-ascii?Q?QekzD2JQ9Qd8lVNstIsuk8Q4GuQCWheDOqGsKBKGhoDtIsKy7xKq6qenBpR8?=
- =?us-ascii?Q?OVtFquWjvZhrIVKyNEMF20xShiE0npAtj6QL2iZgI//T1CuzKjvtIWBZQRpg?=
- =?us-ascii?Q?QKbMrb2XjKXaSVKODOlPW2Ft2435ErA+iKbvfUvkxJKg5Jkf9H3U/TmRlKp7?=
- =?us-ascii?Q?k6LgQYoMWosgdTjDn0xcEkFt0dOUxpRAkE8wcvwcv97ljZbYIkNlG6mruPQJ?=
- =?us-ascii?Q?Atw63k2YipaT+2K9tbLvn1JBiJ6FMlTCC+maK93cSUS70lzbAWhNuzlQ6bFr?=
- =?us-ascii?Q?iV2ObfJ49JDJIH51u6oFq8jdlTtSkWUs/8iGdH70I4G7R04U5DSIjNFf8a9g?=
- =?us-ascii?Q?bCx4PyTxSCVpHh6+EZu6gWxhaKRqREEDRmF7DQZzp5bwvrfcwAalwXpJVkE4?=
- =?us-ascii?Q?VJieluTCr12DC+W3/+ftIaRZHxF+m93O5zDmwF1xQbxSREDofIuAf7yiT3CO?=
- =?us-ascii?Q?77w9w7oDLLTEnP29vY/BGycEH3ZcsotUPv0z8jqK7s4Lg9YAUxnA9aNEZucO?=
- =?us-ascii?Q?CBzaRdbbqXdbNkWAdY2y/0vwYIII1j/GsZa+Lru0Ty1Hu2y7F/reD1it5fEL?=
- =?us-ascii?Q?Lrbiyp9y5SP8VqVhCynCxR1the6oQhFD45OWAMQYiX24ECF+Z9t5CEoVWBcS?=
- =?us-ascii?Q?z1INSXZfqxoO0NQYlF8FPNLFo7i9bVK44I1YGnf4PYlMTA13enxKG1ILp1pi?=
- =?us-ascii?Q?n/0Y5jPTNopIXCZp9lEJWYvR63f9rh+kxt0VwNkO+Hvl+Zl0Fl65JF+3Cun1?=
- =?us-ascii?Q?xLGxZ2SaQQupuLMwL/q7e10SqWdBHJpsNq8xsLTwko3otZBGqk00fBUJ1ISU?=
- =?us-ascii?Q?Tx/yXDx04/ndsk858j/q/3AQ1cmKERShu2Z9squj/OyYK5VB5XzRy5DVrIfS?=
- =?us-ascii?Q?I+k2qwDcKrv//6u0wlXWRJPu4gLskbZzf+3LS4g1heOmxWiV/1gPXRr3RzpF?=
- =?us-ascii?Q?oTuf+BGxvaXDEj8/bndl0t5+0IPmGGOh9uSx1kbnkeaBVQ58R5lAKgGGf7Gs?=
- =?us-ascii?Q?SsmJd4NKgTzrKVF4XIhvFZwseVz5rSq42SwPa6dtnACOvMc++UrkT2J1rXhy?=
- =?us-ascii?Q?fIp2liqUFOZBARcWTm3PdJISnZKxJGkZqwejtmqeGBPhCR8myesdReZAHX4X?=
- =?us-ascii?Q?0PN6JiO/5CVUMPPSOe3Wjc+9ISnoi1nibvxvyYyi60H30lys3Mc0wmT+q4mh?=
- =?us-ascii?Q?hlRmkPPzqRguEe88icjt+V6u6eGlkuikGuMAabiyuESI4HBcUC+YRFK+fGjb?=
- =?us-ascii?Q?fiTN/uFXmb0ABAat+cNm9dk=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c221d79-5f44-49e8-ecd7-08db0afcea09
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2023 00:22:37.8549
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gfgC/Xjf5CepabvqFEJAaE87/xV1U25o8mWeKzp9jFYQrfxRFv6ivSEDDZv7YbVqzcJGNQ8wU+l05oiQPSgAZxc2eaRH75Wv8SjuwrzzoRTVqEqLUVhXBxdhfaIUMmEz
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB10280
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230208173343.37582-9-andriy.shevchenko@linux.intel.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -117,36 +128,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Krzysztof
-
-> > From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > 
-> > There are no compatible for "reg/reg-names" and "clock-name"
-> > between previous R-Car series and R-Car Gen4.
-> > 
-> > "reg/reg-names" needs 3 categorize (for Gen1, for Gen2/Gen3, for Gen4),
-> > therefore, use 3 if-then to avoid nested if-then-else.
-> > 
-> > Move "clock-name" property to under allOf to use if-then-else.
-(snip)
-> > -  clock-names:
-> > -    description: List of necessary clock names.
-> > -    minItems: 1
-> > -    maxItems: 31
+On Wed, Feb 08, 2023 at 07:33:33PM +0200, Andy Shevchenko wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
 > 
-> No improvements here. Your argument that you need to remove it to
-> customize is not correct.
+> gpio_set_debounce() only has a single user, which is trivially
+> converted to gpiod_set_debounce().
+> 
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-???
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-	Move "clock-name" property to under allOf to use if-then-else.
-	^^^^
+Thanks.
 
-"move", not "remove".
-
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+-- 
+Dmitry
