@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25397691E81
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:40:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C01BD691E84
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231868AbjBJLkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:40:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51122 "EHLO
+        id S231846AbjBJLmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:42:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231710AbjBJLki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:40:38 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4822A6C1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:40:37 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id r18so3602063wmq.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:40:37 -0800 (PST)
+        with ESMTP id S231603AbjBJLl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:41:59 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859401422A
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:41:56 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id o15so1486119wrc.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:41:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=G/8Pm8otgvuIcD10Zw5d+1Xdi4JIWGeXmfgq3MAhdLo=;
-        b=lZdJWdlCGsoSvv2HrB5MxOYBR9t7M0m/6es/J29iRkHJwIg2FYiHSUnWuRPJlXvOkf
-         82lx3K2u612x++dzVtirRuDsUw3G/+ocPDLOdYqsgWMYam63n4GtEHQthNPhmSTF2KQk
-         pSw/a5T5VHYMTBrEkhVhq30kI8b+CnceSduwssaJCjWDbt1ETce8vFqx/2QgVLHf5ngA
-         9yFCUa5bQOxvHIevK/QGKra1CRUxGuMu1kOSb7wh+9d9O5nHJ2e9gwDI/2GyWWUnBTuL
-         ppP7B03ywEspPwIEiCEZowRH0XmPWa8i3F1RDy6taGqdNfajySg8AScTPfUCqj9mh315
-         /34w==
+        bh=+1Hokza/rU47NXkUNadYe1UXBqBUr2w3Zg790aE96A0=;
+        b=ltdGgJD9bbf6fuoivKqor5pMjRN+/pLdfKU6sgMhGrmDai/QeZoFwsrA72u+zKBO7G
+         yfwhepNDPNouSZfew/vRQqiJk9Z/g8o9gC4IgN07oUMVt/JDIA5SawQM195TJSs2YxKR
+         R5nYedqCGOJPLrfdn89Lq8ahA2Eh0pYD+c8evEkFRXnszQWdHTqLc+QaS0LYKzxKRnhA
+         GluyHZ5UjtlHyR7nbIW48eQ8cCSv2Vx7vr5iIm8Bl++B2raMkV5+T5rx4mNpm3y4Hjbd
+         Xr3K3ZymlWJrND3M4WwYW1k3ZrFomQzoqEq5QsDZDBR6KtE8mb+HaEpuOwgDU9YcJKOI
+         x8pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G/8Pm8otgvuIcD10Zw5d+1Xdi4JIWGeXmfgq3MAhdLo=;
-        b=ooSsJJhV2g1OKJHpLZyiALjJEMBd2zc4RhmRRb+coG7C8elt1l35s22TbIW6zhLGPC
-         DQbTz9UupiDJCt63+VPQk4A5N+RnhSOueChnP1fOwZP2CmMhg2nNsxpdhfRua0rt2Bsw
-         y2m7gIwYB9odvogPXW55flcCoSxqhzLOEAMrCP2olhr8d5xSbqIi3E17+dyQj+VVbFJo
-         FJ8sGIWOIrRoAPvq8rOJCsByTz3dXBJ4c5wx/5ncc8DH00UDFD7+sBoRn7YGX5+MUo/F
-         kgcgEE0OiGmCtcNxlpCq8La9wkfMI9fFU44u6SpZcPYbmMXfGQW+z4BMKGiNzztJPOZ7
-         Rt/w==
-X-Gm-Message-State: AO0yUKXtOQjbBdr9GC9eW54IoLrZxD7lY+H/FTn3LYur6RLS4ivknDcF
-        vDVwTFlEqb8XT7Qx4MvA/myGSw==
-X-Google-Smtp-Source: AK7set+WjGBjahYz9ocoZeCt+9iNkzBLgdueVDR1ZSpT8QU8aOfFDcfbToNfZqxXc4TJ5eBgmnLhLA==
-X-Received: by 2002:a05:600c:703:b0:3da:fd07:1e3 with SMTP id i3-20020a05600c070300b003dafd0701e3mr12649869wmn.22.1676029235975;
-        Fri, 10 Feb 2023 03:40:35 -0800 (PST)
+        bh=+1Hokza/rU47NXkUNadYe1UXBqBUr2w3Zg790aE96A0=;
+        b=WfYcmCozCIAJ8zuzIX3O7p18gLHiScetMi8PVqmd22L3mAriNm5VJtqxiHlY2CRniN
+         U2p0IY4tTeiCvWGCpIPHCBKS8aVNxKHi4uUpsHGj9PNYmBf7JGNVgr8St2sYbtrwZi/5
+         PEzZnLe4N5b0voidB2JZOGuCrMH+JvQMhd7OpQPNU/To4CRmNhwrclgUSAJnj0o8Hoow
+         zW9ItqyAJjIagx8IQOugtBr+ytec3nSTAHiN4CaTTUabcm486Q7yP5uK6xecoslPxJpy
+         zXsdgPvgUmgfskMQUjagtQTZ9dBKUiqUFozaf6ZBwxqrBkaE2WLOIe9vBvCzVdMJOs03
+         IupQ==
+X-Gm-Message-State: AO0yUKWZWqeJATYdS2I47ut+mbz2OJ0+GlMBoN28srfPClJ8mGfjaWox
+        W/sS4SX62DFUxNLGVFQJzfHiAA==
+X-Google-Smtp-Source: AK7set+ywEK8ZNR0oaDC5Zo5ahb+nJPy87HEcyapQ8T1F6CTrcWTftpJgtSLQHM8hr3ISPDNr2bKTg==
+X-Received: by 2002:adf:f287:0:b0:2c5:3d1c:efda with SMTP id k7-20020adff287000000b002c53d1cefdamr4503616wro.31.1676029315093;
+        Fri, 10 Feb 2023 03:41:55 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o41-20020a05600c512900b003dc4aae4739sm9030580wms.27.2023.02.10.03.40.34
+        by smtp.gmail.com with ESMTPSA id e1-20020a5d5941000000b002c54241b4fesm2376840wri.80.2023.02.10.03.41.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:40:35 -0800 (PST)
-Message-ID: <9b523fe7-ef94-bcaf-62b0-9e8503f592e4@linaro.org>
-Date:   Fri, 10 Feb 2023 12:40:34 +0100
+        Fri, 10 Feb 2023 03:41:54 -0800 (PST)
+Message-ID: <07d2aad9-ce87-01d2-fb21-0301606231d3@linaro.org>
+Date:   Fri, 10 Feb 2023 12:41:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V5 1/3] dt-bindings: i2c: xiic: Add 'xlnx,axi-iic-2.1' to
- compatible
+Subject: Re: [PATCH] dt-bindings: mmc: Add resets property to cadence SDHCI
+ binding
 Content-Language: en-US
-To:     Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
-        michal.simek@xilinx.com, michal.simek@amd.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     git@amd.com, srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-        manion05gk@gmail.com,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-References: <1675942646-31006-1-git-send-email-manikanta.guntupalli@amd.com>
- <1675942646-31006-2-git-send-email-manikanta.guntupalli@amd.com>
+References: <20230209014211.17816-1-hayashi.kunihiko@socionext.com>
+ <ec412378-ae31-e199-b5a1-f37a4731f31a@linaro.org>
+ <8d80a837-b2bd-26af-e633-5b6081caaaef@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1675942646-31006-2-git-send-email-manikanta.guntupalli@amd.com>
+In-Reply-To: <8d80a837-b2bd-26af-e633-5b6081caaaef@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,33 +79,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 12:37, Manikanta Guntupalli wrote:
-> From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+On 09/02/2023 12:34, Kunihiko Hayashi wrote:
+> Hi Krzysztof,
 > 
-> Add xilinx I2C new version 'xlnx,axi-iic-2.1' string to compatible
-
-A nit: Missing full stop in this sentence.
-
-> Add clock-frequency as optional property.
+> On 2023/02/09 18:14, Krzysztof Kozlowski wrote:
+>> On 09/02/2023 02:42, Kunihiko Hayashi wrote:
+>>> Cadence SDHCI controller allows reset control support on UniPhier SoC.
+>>> Add resets property to cadence SDHCI binding.
+>>>
+>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> index d3dce4d6c168..adacd0535c14 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> @@ -29,6 +29,9 @@ properties:
+>>>     clocks:
+>>>       maxItems: 1
+>>>
+>>> +  resets:
+>>> +    maxItems: 1
+>>
+>> This looks specific to UniPhier, doesn't it?
 > 
-> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> Acked-by: Michal Simek <michal.simek@amd.com>
-> ---
+> I think this IP has some hardware reset lines, however,
 
 
->  
-> +  clock-frequency:
-> +    description:
-> +      Optional I2C SCL clock frequency. If not specified, do not configure
-> +      in software, rely only on hardware design value. Supported frequencies
-> +      are 100KHz, 400KHz and 1MHz.
-> +    default: 100000
+Hm, fine with me. It's actually expected.
 
-Then also:
-enum: [ 100000, 400000, 1000000 ]
+> it depends on the implementation whether the lines can be
+> soft controlled or controlled by power-on-reset.
+> 
+> In case of UniPhier SoC, these lines are connected to the syscon
+> reset controller, but deasserted with initial state.
+> 
+> Currently, the binding has one compatible.
+> If drawing this dependency, Is the device dependent compatible necessary?
+> Or I can remove reset property from DT.
 
-and drop the freeform text (last sentence from description).
+No, its okay.
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
