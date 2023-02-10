@@ -2,114 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E12D691973
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 08:59:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 064D9691976
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:01:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231139AbjBJH7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 02:59:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44484 "EHLO
+        id S231268AbjBJIBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 03:01:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbjBJH7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 02:59:18 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CB5367C0
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 23:59:17 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id o36so3195779wms.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 23:59:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+XjYK20Z08CMJ61Ae3bO9K0sPsABFePhKjoRZaxPj0w=;
-        b=FwTQagCqHZBABtqT7c2YOwFGXCN4n/i8P6ss2C3cdcne9PvIgZ/n8RNBzfdYdd5Si8
-         Pv0dZMkhvEzjYq1/ZvR5aM17Wa8lfkRaxx+zKN31zB6lqcxxvx/ghEx7UXpyKE07uVYd
-         R5jmmUgGvEP21U38aEB7bWT/JGCDAF/YywEOCMtkVkloY+NC0nZJXF4GxE141qiTx8iB
-         hdSn7Irwyzgwpsqw9CppmGO7ctpmJqS1jxRHQxDtGxr4Whih4Pt1j0nJ95qemacPqyq/
-         AJCkDQXp+PGRV1RlvHdcfWXRnP+C6+GFFvrwm8q3B8xBUqKhJoJr/TcKZ2ckVA6UODnE
-         MamQ==
+        with ESMTP id S230484AbjBJIBQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:01:16 -0500
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3C57AE3D
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:01:15 -0800 (PST)
+Received: by mail-qt1-f171.google.com with SMTP id ch10so3807164qtb.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:01:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+XjYK20Z08CMJ61Ae3bO9K0sPsABFePhKjoRZaxPj0w=;
-        b=E7iAicMv/v5gHBMdIOhXFIKLnQR1gbupJ3DL/HaEd4piJ4bArI4PFgudFjLXU7MuTu
-         PW3ae19BHk6ULmEB191XXZ+MZLiyhBMNXrWB/M9qY2w3qfYRcRRQF1A3pPjY8zvcpEkO
-         3CZQwaVI8rs2BWxgpWNa5u4FddhtkskuobP4oznnVG9jOkAm/b2LVZZ6dzyd2cSrwmqf
-         kvihiGNhxOwXssy4jPXbDBOenVgLvE7bXtpnFD5Qrpd5oFISqSFBHYCQredFIi8TWOHN
-         UDQe0dA/hjR51sItYSGPhxonQyukE+yIbbW2AIgZmEsXqsBWnVIW+1qCfbNb4CNbSPL3
-         jl7Q==
-X-Gm-Message-State: AO0yUKXt9+uI+ZWccymSd/B22y4dZ+a/Ni8NSlgiqyVcYgBgxkoCBUxE
-        q+nijoJLBkAPMzmUjdNOwGT4TQ==
-X-Google-Smtp-Source: AK7set/m1cnuBqZci0vEZGzyB1pxqMFjdCFZt8wrHM88utT0HRNglMauCq2td0Bpzoz6YabJk2s4iw==
-X-Received: by 2002:a05:600c:1819:b0:3dc:58a2:3900 with SMTP id n25-20020a05600c181900b003dc58a23900mr11965948wmp.29.1676015955694;
-        Thu, 09 Feb 2023 23:59:15 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5a65:5553:55cf:3027? ([2a01:e0a:982:cbb0:5a65:5553:55cf:3027])
-        by smtp.gmail.com with ESMTPSA id o41-20020a05600c512900b003dc4aae4739sm8320580wms.27.2023.02.09.23.59.14
+        bh=kI8PQ2ugfDhm2FkPLEtWMsmZfNCcA7o5O0RvlqX8c74=;
+        b=wNudya1Wv5lmAN5n9qQy3M6Q2Fb1wB9sZ62JHPGicXfvxrGzEyzf2k63LiA3t3cAkq
+         bdM4Z1nttb7Y+Pf0e/a48LYdzPIYY9SFp+geqH+7PS+qr3GckxVcesgZShDrGYzI4dEw
+         b0k/0nh4Q8LaIMCWCi982yK+bbemeQUsMCA/BlWe+96aztMufDUyQ9d5M/jS4kvuBUQH
+         88AkftQdE6iGxCVIN6B8HwCoWCpBV3jZj2mZXqgK5O+3iJdTXVHjlHOSWhJB6iXDhS8O
+         GsH5vTC8cmKSonGshtT4KjKmh/izbVILUBTPB9Ub6O/tPajyGKt+O1KMqr45/DO3S8Bc
+         xcfg==
+X-Gm-Message-State: AO0yUKV5406/VV4wzvAwoES6GQRm3+wp7p+2kPfUKi2SwccdGDx1/xaJ
+        wNhk1xr0Dzp6wk2Jnr3NyE228CL+2bSCFdXz
+X-Google-Smtp-Source: AK7set8ogJgE4X2qz1z34uI3BxBFVQN7H+5L3DD2biMtaAb5e34VCTMT5332aQFmLMN9YKqpffP41Q==
+X-Received: by 2002:ac8:5e54:0:b0:3bb:88e2:7625 with SMTP id i20-20020ac85e54000000b003bb88e27625mr6552235qtx.24.1676016074102;
+        Fri, 10 Feb 2023 00:01:14 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id a7-20020ac86107000000b003ba11bfe4fcsm2938795qtm.28.2023.02.10.00.01.13
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Feb 2023 23:59:15 -0800 (PST)
-Message-ID: <b3d972c8-6230-c818-7e80-968996985ac3@linaro.org>
-Date:   Fri, 10 Feb 2023 08:59:14 +0100
+        Fri, 10 Feb 2023 00:01:13 -0800 (PST)
+Received: by mail-yb1-f179.google.com with SMTP id x4so5463269ybp.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:01:13 -0800 (PST)
+X-Received: by 2002:a5b:24c:0:b0:87a:68fd:181a with SMTP id
+ g12-20020a5b024c000000b0087a68fd181amr1746337ybp.36.1676016073446; Fri, 10
+ Feb 2023 00:01:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/3] arm64: dts: amlogic: Make mmc host controller
- interrupts level-sensitive
-Content-Language: en-US
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Nan Li <nan.li@amlogic.com>,
-        Vyacheslav Bocharov <adeep@lexina.in>
-References: <8a99341b-8546-8f90-c9a5-087d927cac48@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <8a99341b-8546-8f90-c9a5-087d927cac48@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <87y1p7bpma.wl-kuninori.morimoto.gx@renesas.com>
+ <87v8kbbpl4.wl-kuninori.morimoto.gx@renesas.com> <072724aa-2bf3-32a6-dee8-e74c74b01019@linaro.org>
+ <87fsbe1i9e.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87fsbe1i9e.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 10 Feb 2023 09:00:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVOgnxSkAyy_3MGYeQyRcsr5aM00qSfhrXTMBLy1aa7yA@mail.gmail.com>
+Message-ID: <CAMuHMdVOgnxSkAyy_3MGYeQyRcsr5aM00qSfhrXTMBLy1aa7yA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car
+ Gen4 support
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 21:09, Heiner Kallweit wrote:
-> The usage of edge-triggered interrupts lead to lost interrupts under load,
-> see [0]. This was confirmed to be fixed by using level-triggered
-> interrupts.
-> The report was about SDIO. However, as the host controller is the same
-> for SD and MMC, apply the change to all mmc controller instances.
-> 
-> [0] https://www.spinics.net/lists/linux-mmc/msg73991.html
-> 
-> This series replaces the prior "TEST"-annotated patch.
-> 
-> Heiner Kallweit (3):
->    arm64: dts: meson-axg: Make mmc host controller interrupts
->      level-sensitive
->    arm64: dts: meson-g12-common: Make mmc host controller interrupts
->      level-sensitive
->    arm64: dts: meson-gx: Make mmc host controller interrupts
->      level-sensitive
-> 
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 +++---
->   arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 6 +++---
->   3 files changed, 8 insertions(+), 8 deletions(-)
-> 
+Hi Morimoto-san,
 
-For whole serie:
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Fri, Feb 10, 2023 at 1:22 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> > > From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > >
+> > > There are no compatible for "reg/reg-names" and "clock-name"
+> > > between previous R-Car series and R-Car Gen4.
+> > >
+> > > "reg/reg-names" needs 3 categorize (for Gen1, for Gen2/Gen3, for Gen4),
+> > > therefore, use 3 if-then to avoid nested if-then-else.
+> > >
+> > > Move "clock-name" property to under allOf to use if-then-else.
+> (snip)
+> > > -  clock-names:
+> > > -    description: List of necessary clock names.
+> > > -    minItems: 1
+> > > -    maxItems: 31
+> >
+> > No improvements here. Your argument that you need to remove it to
+> > customize is not correct.
+>
+> ???
+>
+>         Move "clock-name" property to under allOf to use if-then-else.
+>         ^^^^
+>
+> "move", not "remove".
+
+The point is that you did remove the common
+
+      clock-names:
+        description: List of necessary clock names.
+
+from the top level, and added two copies of it under if/then/else.
+
+Please keep common stuff as high up in the hierarchy as possible,
+to avoid the need for duplication.
+In this case, that means:
+  - Keep the description at the top level,
+  - Put only {min,max}Items and items under if/then/else.
+
+I hope my explanation helps.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
