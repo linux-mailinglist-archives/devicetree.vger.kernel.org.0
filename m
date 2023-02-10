@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F12691EF5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 13:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A02691F14
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 13:28:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232312AbjBJMRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 07:17:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
+        id S231960AbjBJM20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 07:28:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231893AbjBJMRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 07:17:46 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41CD7289B;
-        Fri, 10 Feb 2023 04:17:44 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso3916277wms.4;
-        Fri, 10 Feb 2023 04:17:44 -0800 (PST)
+        with ESMTP id S231949AbjBJM2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 07:28:25 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4814314226;
+        Fri, 10 Feb 2023 04:28:24 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id m14so4883008wrg.13;
+        Fri, 10 Feb 2023 04:28:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=85Jcqp/n5GNk4Jt2RN2nNjpswbRqJZ3Mt7tqEL5Vzsk=;
-        b=KU4zhpdKF64gnPrZSYtRctPRLhs18rAmuzm73jQWx1HnMfCJmhcCsD+puNvmFx+wTM
-         5hXWGs2wYVB6tzARbIFZfdIZJs2E5L1ikjnoRMy/8mlq52h69ra1WH7cB/ScK+hyUtns
-         UmIHo3Qx996o1d4Y4+ExP0Kemq34n0F8Z9U9krPtWLpi6+z04spnIPlebMOe5m//ZtZB
-         OUJSgL44cDCq8MsKd+lYeFqcBXrVCtuT1K4BIGziyzMr57rcHLMsaMe98/WF+XvDjYCY
-         KksOnWAtCKu8o1xCcdAVGHl/BgRAbAbGGII6aFreadXRE9xpjdGPVyggPsFjDeYV/oeo
-         sJSQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tsGNvhireWD4mNV5rJb2McKZOxhDc9wHPt6shXZhutQ=;
+        b=jyP4fa8a6rGSNGgFV+LtOyKyJmPJUG2VVJwgFUcKZM33bq15Uvmdq6NcX/JT8AFNWM
+         TvIupQ2MybJrObyL3RBPxufnvMyPZJaAUMIm+wcx14zKW2yvyH1y7hMKjo0sp93nTwbI
+         yPY7ylfPvwdUjOTHNNrVh29F1p8cZuHIpbtRwfqcaQhbR96WTwySf9d9jQi04Z4CWw5U
+         ViFmGX6N0axQHBij9WQ+CZtQHmPc7H2u0n4RWORte1auSkzfnZZOoI5vkJzT1lRkKX16
+         PTCNps92zNQpcLQZNh+Z2uMTNV7RYt0PY5BXIG8URajdBM3sZdpLU5N+zaPzHuR0N9bF
+         hMWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=85Jcqp/n5GNk4Jt2RN2nNjpswbRqJZ3Mt7tqEL5Vzsk=;
-        b=5VQuAvjQOE/9Fvx6qKrDiTDSzzKEmoVw/9lXxpkG5oA0YVFpubtl0IoUpJg7U83Yym
-         3ouwE1cXR+EFWPgg9eawFNeyKOZj0ZBsisVxQWCXh6W0WusKPcjctlwW+43N6aj7AD89
-         gcOsG43DJDXFQ1oZqnq8o+6rQxJ3zR3SUa+il9qzOVUcNm3+Z1wGYHCifV9WW1felrjA
-         AeGS9tkQ3WEkhL7YQFDEb3/tIxtK8kc5FUD+8gI8PkTt/4q77fWjiIPhMBOd41z6cTJI
-         y/3dchTFPxpZdZUNhdt4w+M0AcLAaYOKDHeJR+AWJ6juIu8P6uZsaQNshR/i97gBjXWk
-         mzRQ==
-X-Gm-Message-State: AO0yUKV4zDZwVX9D/keOjchd7eGw5R7SQmSjDsw1+9F8j8fhs/x7UjX1
-        EtcTtZKCy64VTE9cVTlgBUqyLhkHULw=
-X-Google-Smtp-Source: AK7set+qS6x4BJ+LtKe95F/2SO4xZ8r/N6WDScelOSSAg3g2uSEJKjzn5Lnq9yVuJJ9xzfPxkUroEw==
-X-Received: by 2002:a05:600c:1887:b0:3dc:4318:d00d with SMTP id x7-20020a05600c188700b003dc4318d00dmr12224825wmp.11.1676031462935;
-        Fri, 10 Feb 2023 04:17:42 -0800 (PST)
-Received: from localhost.localdomain (23.red-88-10-60.dynamicip.rima-tde.net. [88.10.60.23])
-        by smtp.gmail.com with ESMTPSA id p13-20020a05600c468d00b003e001afa274sm5359820wmo.2.2023.02.10.04.17.41
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tsGNvhireWD4mNV5rJb2McKZOxhDc9wHPt6shXZhutQ=;
+        b=4B22upGSUcgwHXhp7nrE5X6+/Rv0Sy8M9J3GBwAPAxaBLqK2B8/Rzf7PY5qN0plnJY
+         rDZUSi6+b82I52eoeuF9yub/pebdMrIhTVZfejWyHBTBKSJh+hSYNPFyDf6oGqa4AYIe
+         /xjj7JJjDzZ12kFcGoAs71q29v7V4Tziu9cPgoGklvuevuBBWlpVBquCPtRwsgM0fDvg
+         J961JaFRgmqKuEtoCF7llaIMWP8aTCdXNy8bs+b8LibnNi//7Tyy/cSj9KHodQQYTzw1
+         ZXY3i1o6s3Gv2t5egTrm2W0kGi/ymkuBuc0L/X1XqK1MkyMm0Tjzw2wiJNpOwi+q0gdo
+         uRsg==
+X-Gm-Message-State: AO0yUKUSsOH/bkm/3MPGB6ovzwpYR6A92OV5fH5iHQcuQVYAOBK0Ivji
+        Mvyo6F9SJezy/1IABUxQMys=
+X-Google-Smtp-Source: AK7set9O+rFcCoO6ppeRXI0IbW8z6ql/sCNVW+HCaPoQq4/g82X9kh32Cs6HGJf8H2VVTg9hL9gPog==
+X-Received: by 2002:a5d:690b:0:b0:2bf:b839:c48b with SMTP id t11-20020a5d690b000000b002bfb839c48bmr15161203wru.51.1676032102792;
+        Fri, 10 Feb 2023 04:28:22 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id i8-20020a5d4388000000b002c5493a17efsm1540989wrq.25.2023.02.10.04.28.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 04:17:42 -0800 (PST)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: [PATCH v2 4/4] watchdog: mt7621-wdt: avoid ralink architecture dependent code
-Date:   Fri, 10 Feb 2023 13:17:35 +0100
-Message-Id: <20230210121735.639089-5-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230210121735.639089-1-sergio.paracuellos@gmail.com>
-References: <20230210121735.639089-1-sergio.paracuellos@gmail.com>
+        Fri, 10 Feb 2023 04:28:21 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 0/3] arm64: dts: meson: gxbb-kii-pro: device-tree updates
+Date:   Fri, 10 Feb 2023 12:28:14 +0000
+Message-Id: <20230210122817.1027765-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,100 +74,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT7621 SoC has a system controller node. Watchdog need to access to reset
-status register. Ralink architecture and related driver are old and from
-the beggining they are using some architecture dependent operations for
-accessing this shared registers through 'asm/mach-ralink/ralink_regs.h'
-header file. However this is not ideal from a driver perspective which can
-just access to the system controller registers in an arch independent way
-using regmap syscon APIs. Update Kconfig accordingly to select new added
-dependencies and allow driver to be compile tested.
+First we sort nodes in the current dts and remove some blank lines. Then we
+add the remaining bits needed for Bluetooth to work. And finally we add the
+AIU audio card to have HDMI and S/PDIF audio output.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- drivers/watchdog/Kconfig      |  2 ++
- drivers/watchdog/mt7621_wdt.c | 19 ++++++++++++++-----
- 2 files changed, 16 insertions(+), 5 deletions(-)
+Christian Hewitt (3):
+  arm64: dts: meson: gxbb-kii-pro: sort and tidy the dts
+  arm64: dts: meson: gxbb-kii-pro: complete the bluetooth node
+  arm64: dts: meson: gxbb-kii-pro: add initial audio support
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index b64bc49c7..0759de670 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -1865,6 +1865,8 @@ config GXP_WATCHDOG
- config MT7621_WDT
- 	tristate "Mediatek SoC watchdog"
- 	select WATCHDOG_CORE
-+	select REGMAP_MMIO
-+	select MFD_SYSCON
- 	depends on SOC_MT7620 || SOC_MT7621
- 	help
- 	  Hardware driver for the Mediatek/Ralink MT7621/8 SoC Watchdog Timer.
-diff --git a/drivers/watchdog/mt7621_wdt.c b/drivers/watchdog/mt7621_wdt.c
-index f1c702971..a7480fd2b 100644
---- a/drivers/watchdog/mt7621_wdt.c
-+++ b/drivers/watchdog/mt7621_wdt.c
-@@ -15,8 +15,8 @@
- #include <linux/moduleparam.h>
- #include <linux/platform_device.h>
- #include <linux/mod_devicetable.h>
--
--#include <asm/mach-ralink/ralink_regs.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/regmap.h>
- 
- #define SYSC_RSTSTAT			0x38
- #define WDT_RST_CAUSE			BIT(1)
-@@ -34,6 +34,7 @@
- struct mt7621_wdt_data {
- 	void __iomem *base;
- 	struct reset_control *rst;
-+	struct regmap *sysc;
- 	struct watchdog_device wdt;
- };
- 
-@@ -104,9 +105,12 @@ static int mt7621_wdt_stop(struct watchdog_device *w)
- 	return 0;
- }
- 
--static int mt7621_wdt_bootcause(void)
-+static int mt7621_wdt_bootcause(struct mt7621_wdt_data *d)
- {
--	if (rt_sysc_r32(SYSC_RSTSTAT) & WDT_RST_CAUSE)
-+	u32 val;
-+
-+	regmap_read(d->sysc, SYSC_RSTSTAT, &val);
-+	if (val & WDT_RST_CAUSE)
- 		return WDIOF_CARDRESET;
- 
- 	return 0;
-@@ -134,6 +138,7 @@ static const struct watchdog_ops mt7621_wdt_ops = {
- 
- static int mt7621_wdt_probe(struct platform_device *pdev)
- {
-+	struct device_node *np = pdev->dev.of_node;
- 	struct device *dev = &pdev->dev;
- 	struct watchdog_device *mt7621_wdt;
- 	struct mt7621_wdt_data *drvdata;
-@@ -143,6 +148,10 @@ static int mt7621_wdt_probe(struct platform_device *pdev)
- 	if (!drvdata)
- 		return -ENOMEM;
- 
-+	drvdata->sysc = syscon_regmap_lookup_by_phandle(np, "ralink,sysctl");
-+	if (IS_ERR(drvdata->sysc))
-+		return PTR_ERR(drvdata->sysc);
-+
- 	drvdata->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(drvdata->base))
- 		return PTR_ERR(drvdata->base);
-@@ -158,7 +167,7 @@ static int mt7621_wdt_probe(struct platform_device *pdev)
- 	mt7621_wdt->max_timeout = 0xfffful / 1000;
- 	mt7621_wdt->parent = dev;
- 
--	mt7621_wdt->bootstatus = mt7621_wdt_bootcause();
-+	mt7621_wdt->bootstatus = mt7621_wdt_bootcause(drvdata);
- 
- 	watchdog_init_timeout(mt7621_wdt, mt7621_wdt->max_timeout, dev);
- 	watchdog_set_nowayout(mt7621_wdt, nowayout);
+ .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 84 ++++++++++++++++---
+ 1 file changed, 73 insertions(+), 11 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
