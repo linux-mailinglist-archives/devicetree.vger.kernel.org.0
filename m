@@ -2,119 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4910691D7A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B37691D80
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:02:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232261AbjBJLCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:02:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
+        id S232285AbjBJLCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:02:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbjBJLCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:02:01 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F404B37F0F;
-        Fri, 10 Feb 2023 03:01:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 94A5DB824CE;
-        Fri, 10 Feb 2023 11:01:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3026C433D2;
-        Fri, 10 Feb 2023 11:01:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1676026912;
-        bh=0SjioCiP64GPWMqzyQ75xWspd1FmGySB99HbUwvewbU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fuWd6/7aDLHPNmEXDV+yyDNYQmxmenV6uugq1zrDc/NHIfE2NPNC+7OUX3N+7BcM6
-         NLIFl+1kDo6H4q/SsQp4//GPRBpLMCvjHI0HIf50CBMUQSv1kXXMFAO/wyzUXfsxQe
-         bS+1MAjZUrjPJKiXNvFevfKb4Agg1fZyiL3pSWyc=
-Date:   Fri, 10 Feb 2023 12:01:49 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/7] usb: typec: ucsi: add PMIC Glink UCSI driver
-Message-ID: <Y+YkHZASzN97QtUY@kroah.com>
-References: <20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org>
- <20230130-topic-sm8450-upstream-pmic-glink-v1-1-0b0acfad301e@linaro.org>
- <Y9jcYdc30G026/fs@kroah.com>
- <720aee1d-87e8-5291-c6a0-ef53e830a21d@linaro.org>
- <Y+YerQrfWgmwTErM@kroah.com>
- <06670a10-c8e9-6f87-9c16-e88a90a74469@linaro.org>
+        with ESMTP id S232225AbjBJLCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:02:46 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B299193E1
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:02:45 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id o15so1381027wrc.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:02:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+EnqTz1YFzzm355lric6PP3Xk3l60GjJs6A/Opi0T5A=;
+        b=ZXaq5KdSHlBXKfBrRY6zyvMfZ3KaFxSBYA99mbg9F/SU1qO2oVTyR8+2ueUD/DhQf0
+         lKWXiUL709Htq6HKwxPA0yHNZOqmDV6GJnFYWyIP5LvhopWfoI/t8DPfSuLg4Ys8ykWK
+         JA3MMsbWJSNJXg2zPAAl9QZ2QYGEulElXq5JXMFws1lsyFuLIXh4ShIi/qmbNtshI0AQ
+         Xowd4+00/LL86CodqQk4slCCIhvB/FSdpRLGrgy1gy1hmFYJKZ/UdeOO3u+O/ES2PVxq
+         V/tQCvkfmisOE8kIEiSLDbkc/LH1TsG6xu3EIkpmX8zjv+MZ49mOq7rsl888/MyBVTh4
+         542w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+EnqTz1YFzzm355lric6PP3Xk3l60GjJs6A/Opi0T5A=;
+        b=PdbPDaOD7+I74+SiH1BqISIPJsmF2flsyIP297mGsD9imBOK66JGQYd1mfXUwMp2b6
+         MbBbkP2IN6/i4TgqMSV2RvwH7WBLyvYR+5YILkspcDxJaqVD3vZRcuJwiX/SmX/g8VXu
+         en7/cGJ63lbPRfqCoV7YJYAUtMJzlDttk0uDYG5Lo1HGg19qtcOTFadrKQ4Bk0DHTd87
+         jNf6MQSY+j+ZjGc1aT5DPtT6DIAWhQka4xS3I7D3eyQ8YLrrfJw0GTHosDIjAvP1uJdl
+         C2s2tTrirxTVVik3p+2MojaxuDry+AQdOz55HSV2Zuhuhw6qkak2xJ34n82ygzAmXGEY
+         lp+Q==
+X-Gm-Message-State: AO0yUKUgmNUhTNE6tP4uHB0r+n96h/KzPIa34qCMXtp2c+V809X5sH25
+        9Rud+30xx/5wClEhhT5ikrGd6Q==
+X-Google-Smtp-Source: AK7set9xnP131W6BXBX3n7EiErBvLgvay/AsVe09DA7FZSxUa2WHmsg0LQjhBIdoU1pd90N59kMalA==
+X-Received: by 2002:adf:ee52:0:b0:2bd:e7a0:6b5e with SMTP id w18-20020adfee52000000b002bde7a06b5emr16104273wro.40.1676026963167;
+        Fri, 10 Feb 2023 03:02:43 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id w13-20020a5d608d000000b002c54b6382c8sm811552wrt.82.2023.02.10.03.02.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 03:02:42 -0800 (PST)
+Message-ID: <21af8c63-f489-8c3f-e1e3-cf976b1d20d0@linaro.org>
+Date:   Fri, 10 Feb 2023 12:02:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <06670a10-c8e9-6f87-9c16-e88a90a74469@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 3/3] watchdog: mt7621-wdt: avoid globals and arch
+ dependencies
+Content-Language: en-US
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230210065621.598120-1-sergio.paracuellos@gmail.com>
+ <20230210065621.598120-4-sergio.paracuellos@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230210065621.598120-4-sergio.paracuellos@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 10, 2023 at 11:44:22AM +0100, Neil Armstrong wrote:
-> On 10/02/2023 11:38, Greg Kroah-Hartman wrote:
-> > On Fri, Feb 10, 2023 at 11:31:08AM +0100, Neil Armstrong wrote:
-> > > On 31/01/2023 10:16, Greg Kroah-Hartman wrote:
-> > > > On Mon, Jan 30, 2023 at 10:54:32AM +0100, Neil Armstrong wrote:
-> > > > > Introduce the UCSI PMIC Glink aux driver that communicates
-> > > > > with the aDSP firmware with the UCSI protocol which handles
-> > > > > the USB-C Port(s) Power Delivery.
-> > > > > 
-> > > > > The UCSI messaging is necessary on newer Qualcomm SoCs to
-> > > > > provide USB role switch and altmode notifications.
-> > > > > 
-> > > > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > > > ---
-> > > > >    drivers/usb/typec/ucsi/Kconfig      |   7 +
-> > > > >    drivers/usb/typec/ucsi/Makefile     |   1 +
-> > > > >    drivers/usb/typec/ucsi/ucsi_glink.c | 321 ++++++++++++++++++++++++++++++++++++
-> > > > >    3 files changed, 329 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
-> > > > > index 8f9c4b9f31f7..dee6069e46a2 100644
-> > > > > --- a/drivers/usb/typec/ucsi/Kconfig
-> > > > > +++ b/drivers/usb/typec/ucsi/Kconfig
-> > > > > @@ -58,4 +58,11 @@ config UCSI_STM32G0
-> > > > >    	  To compile the driver as a module, choose M here: the module will be
-> > > > >    	  called ucsi_stm32g0.
-> > > > > +config UCSI_PMIC_GLINK
-> > > > > +	tristate "UCSI Qualcomm PMIC GLINK Interface Driver"
-> > > > > +	depends on QCOM_PMIC_GLINK
-> > > > 
-> > > > No way to test build this code without this option?
-> > > 
-> > > Nop, the QCOM_PMIC_GLINK is a build dependency, this can't be removed
-> > 
-> > Then perhaps the QCOM_PMIC_GLINK code needs to be fixed up to allow for
-> > it to be built on all platforms properly?  Otherwise you are
-> > guaranteeing you will not get much, if any, build coverage and api
-> > changes will cause this code to stagnate over time :(
+On 10/02/2023 07:56, Sergio Paracuellos wrote:
+> MT7621 SoC has a system controller node. Watchdog need to access to reset
+> status register. Ralink architecture and related driver are old and from
+> the beggining they ar providing some architecture dependent operations
+> for accessing this shared registers through 'asm/mach-ralink/ralink_regs.h'
+> header file. However this is not ideal from a driver perspective which can
+> just access to the system controller registers in am arch independent way
+> using regmap syscon APIs. Hence, add a new structure for driver data and
+> use it along the code. This way architecture dependencies and global vars
+> are not needed anymore. Update Kconfig accordingly to select new added
+> dependencies and allow driver to be compile tested.
 > 
-> The QCOM_PMIC_GLINK deps are:
->         depends on RPMSG
->         depends on TYPEC
->         depends on DRM
->         depends on NET
->         depends on OF
->         select AUXILIARY_BUS
->         select QCOM_PDR_HELPERS
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
+>  drivers/watchdog/Kconfig      |   4 +-
+>  drivers/watchdog/mt7621_wdt.c | 121 ++++++++++++++++++++++------------
+>  2 files changed, 83 insertions(+), 42 deletions(-)
 > 
-> What would be the changes needed here ?
 
-I do not know, try unwinding it and maybe just adding a COMPILE_TEST
-build option in a few places is all that is needed?
 
-thanks,
+> -
+>  static int mt7621_wdt_probe(struct platform_device *pdev)
+>  {
+> +	struct device_node *np = pdev->dev.of_node;
+>  	struct device *dev = &pdev->dev;
+> -	mt7621_wdt_base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(mt7621_wdt_base))
+> -		return PTR_ERR(mt7621_wdt_base);
+> +	struct watchdog_device *mt7621_wdt;
+> +	struct mt7621_wdt_data *drvdata;
+> +	int err;
+> +
+> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> +	if (!drvdata)
+> +		return -ENOMEM;
+>  
+> -	mt7621_wdt_reset = devm_reset_control_get_exclusive(dev, NULL);
+> -	if (!IS_ERR(mt7621_wdt_reset))
+> -		reset_control_deassert(mt7621_wdt_reset);
+> +	drvdata->sysc = syscon_regmap_lookup_by_phandle(np, "ralink,sysctl");
+> +	if (IS_ERR(drvdata->sysc))
+> +		return PTR_ERR(drvdata->sysc);
 
-greg k-h
+You claim in commit title that you remove some global usage, but you add
+here several new features and refactor the code significantly. You need
+to split refactorings, improvements from completely new features. The
+entire patch is very difficult to understand in current form.
+
+Best regards,
+Krzysztof
+
