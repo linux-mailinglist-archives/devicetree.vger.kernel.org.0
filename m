@@ -2,85 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2868A691B26
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:21:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D56AE691B5F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:31:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231569AbjBJJV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 04:21:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55684 "EHLO
+        id S230286AbjBJJb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 04:31:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231515AbjBJJVz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:21:55 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F05E1F905
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:21:53 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id bj22so3921928oib.11
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:21:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ufispace-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZLJ9kUfyKKHaAUOuvBcSKOFNG4PBe8Yek1lAbaYVe84=;
-        b=BGtIzqujNvP5ygAUGUtaVYK1ma2XD5w88MoJBEH6cCZ/DwQqtw2pN0KqU9dvfNOcm+
-         rhutDRysUEaZCaCquskxooDWSlxf/d1BiIqDg/AT8H7xrrUX3a6Nd4tbiRYWOCewB4Q0
-         sScEXP5lFFkvaVdmb+i8hA9XPXH156sm9DYp9axgQjLUnbwPzqQatANIk1HI4lZ3az36
-         MNQew1OY9G4r/q+CjLERXzRKwWnoywGmwkaS5P+IBpqlgb7WF5cmSgfoxhLDtM58Welp
-         uuBKqcLSfw36MrMG0c7JUGkh0jQvq6FjsGfXafiRiPSruefpMzaDqA0L89tjLVrGV8j+
-         PZCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZLJ9kUfyKKHaAUOuvBcSKOFNG4PBe8Yek1lAbaYVe84=;
-        b=E8ojocivBNxzbRLz96EUQHdMMxZuewvgqBJLBVIZoOOwZSXs6t66DE3jKbvy9UA1TE
-         Q0dWT81zNaxgoLCW83zpzIpQwwWT6wFpz/+Vq2eMuGnMKm0RXDEnK+OCtFP+fdXSn1xr
-         gTBF+bRNK+7W2/CEH80unbkVLLJGvWSjkvTZlORXFuXoR+gCpRsuBHfpxFk1dkaijgQ5
-         irhRorugmVggrs6vdPjPXc2VX8g7582lI7+oJCW/NrobquGRrMAuzc1+qiMUQblSlh7a
-         6u4z0FkYjuNpU2gbyJ7zSgn7RAOzOKixZmnK0RsO2prWWailggvYAagKMi7sahDGPVyD
-         asIA==
-X-Gm-Message-State: AO0yUKUiew+x3vP6OjcYp1ktEAfFZDSAadRYsmu9EdJjr+/nuAgVg6DY
-        3V0JTMsySGbzVPQ1YKPsX8GBMeHGDH4Px8SFBsUagw==
-X-Google-Smtp-Source: AK7set8C44utWhn3k0gZ0S4j9LEYnK479SBTtpKBr5/+G6jMC0jVZb7eMcTkoSXOmhB2KvQqikWf1SaF1JQiDYGkWMQ=
-X-Received: by 2002:a05:6808:14c8:b0:378:7c48:f8d6 with SMTP id
- f8-20020a05680814c800b003787c48f8d6mr959901oiw.166.1676020912907; Fri, 10 Feb
- 2023 01:21:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20230210055451.72153-1-jordan.chang@ufispace.com>
- <20230210055451.72153-4-jordan.chang@ufispace.com> <4b735136-d9c0-cf01-e453-c8da31754a93@linaro.org>
-In-Reply-To: <4b735136-d9c0-cf01-e453-c8da31754a93@linaro.org>
-From:   Jordan Chang <jordan.chang@ufispace.com>
-Date:   Fri, 10 Feb 2023 17:21:41 +0800
-Message-ID: <CAJ3czeSeuPx1L-qkXFVLR+UQDyJHF_G4Z5MdoYSeLaifWNnn=A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] ARM: dts: aspeed: Add device tree for Ufispace
- NCPLite BMC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, robh+dt@kernel.org,
-        jay.tc.lin@ufispace.com, eason.ys.huang@ufispace.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231667AbjBJJbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:31:48 -0500
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D165245219;
+        Fri, 10 Feb 2023 01:31:45 -0800 (PST)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 70CE7672EC;
+        Fri, 10 Feb 2023 09:31:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1676021504; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wnyh3ERVtrJcQax+/pzemQ3sT6BIlPSO2Zi7DS4QHlQ=;
+        b=hom8TnlsJnGfIp54M3G0L2dCrM7Bh9JWE4TXv8+d8ALXOVjqDgXweC1lHOFZv0UQdjVJKK
+        44OxXmUmNqapsE7wupRC4FuuRFUJw1mt+H+Ak6sG8m9R8x3dlQjCGsJuXo/uRv+WX7mM+f
+        lZJTZ7E/MTY3kVPKwe0SXctEcf/QuHM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1676021504;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wnyh3ERVtrJcQax+/pzemQ3sT6BIlPSO2Zi7DS4QHlQ=;
+        b=lFGVWH4Gtq49LKsHqOlzk+FK6mhk3tGDi3HjEJhuyt0f60sfW1qD4NnXMvuxv3rKBG3imd
+        nHCdNNAJAcXSOHDA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2FF0913206;
+        Fri, 10 Feb 2023 09:31:44 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id GAbxCgAP5mP/KwAAMHmgww
+        (envelope-from <tiwai@suse.de>); Fri, 10 Feb 2023 09:31:44 +0000
+Date:   Fri, 10 Feb 2023 10:31:43 +0100
+Message-ID: <87pmahj280.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Lucas Tanure <lucas.tanure@collabora.com>
+Cc:     David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v5 0/4] Add CS35L41 shared boost feature
+In-Reply-To: <20230210091942.10866-1-lucas.tanure@collabora.com>
+References: <20230210091942.10866-1-lucas.tanure@collabora.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Fri, 10 Feb 2023 10:19:38 +0100,
+Lucas Tanure wrote:
+> 
+> Valve's Steam Deck uses CS35L41 in shared boost mode, where both speakers
+> share the boost circuit.
+> Add this support in the shared lib, but for now, shared boost is not
+> supported in HDA systems as would require BIOS changes.
+> 
+> Based on David Rhodes shared boost patches.
+> 
+> Also, fix boost config overwriting in IRQ found in the review and do a
+> small refactor of the code.
+> 
+> Changes from V4:
+>  - Fix Document subject
+> 
+> Changes from V3:
+>  - Fix wrong code sent
+>  - Fix ISO C90 mixed declarations and code 
+> 
+> Changes from V2:
+>  - Drop External boost without VSPK Documentation
+>  - Move Shared boost to use values 2 and 3
+>  - Revert back to reg_sequence but reading the value first and only update
+> the necessary bits
+>  - Fix bug found by Intel kernel Test Robot
+> 
+> Changes from V1:
+>  - Fix Documentation patch subject
+>  - New patch for External boost without VSPK Documentation
+>  - New patch to fix boost IRQ overwriting issue
+>  - New patch to refactor IRQ release error code
+>  - reinit_completion on pcm_startup
+>  - fix DRE switch overwriting
+>  - return IRQ_HANDLED in PLL_LOCK case
+> 
+> Lucas Tanure (4):
+>   ASoC: cs35l41: Only disable internal boost
+>   ASoC: cs35l41: Refactor error release code
+>   ALSA: cs35l41: Add shared boost feature
+>   ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
 
-On Fri, Feb 10, 2023 at 4:56 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> From where did you get my Ack? I don't recall it.
->
+In case the series going through Mark's tree:
 
-I misunderstood the usage of acked-by, please ignore this email patch.
-Apology for the mistakes.
-Should I resend an email patch or it still works on the previous v2 email?
+Reviewed-by: Takashi Iwai <tiwai@suse.de>
 
-Best Regards,
-Jordan Chang
+
+thanks,
+
+Takashi
