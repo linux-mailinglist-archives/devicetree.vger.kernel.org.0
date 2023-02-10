@@ -2,134 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C396D691DDE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B7EB691DE5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:14:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbjBJLNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:13:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53838 "EHLO
+        id S231992AbjBJLOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:14:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232361AbjBJLNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:13:36 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48A6A72AF
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:13:04 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id fj20so4491276edb.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:13:04 -0800 (PST)
+        with ESMTP id S231948AbjBJLOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:14:46 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8072C649
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:14:19 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id da9so4406613edb.12
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:14:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0F5V8u32FkjZ6JTMcQQ2ae07GfQcwmVc4zZnvRqmXRs=;
-        b=S21+MFb+tXtaWrsM+rK9N7Bzg92fDQf4ErvwKLcuouOry/H3Y+PDE9IJU3W8+XIVQV
-         JtiY7ioCJmg0eWG67ecjPXMzGDo3+n2sdxImCN8CBh7+fkIjMctLzI/ZGaJHHn5VeePm
-         QCAG0dNotPZ2cG4PU7hu6GYqi/gXzkwG5ZTeqf479SwpdBQpquuyPVhu0gIXEyi9dPrL
-         cGKIf47XxG1qQkeo42pswqSCx2uTmEj7dEjNR4AW+OvXaaTlQjpi8bCZnhC7Zd57kuzS
-         KsVY9t55fG7UnNdKANALQmbbaiL6GBFEECd6V7gFwGKkGeI9IMFZ/kPwg2ATCmv6Ci19
-         nfVA==
+        bh=70vAhiupv9yMZP8MYL4Z5/w//H8J/qCxdLW4cuPyvw0=;
+        b=qPskg7Fj7rU+NU7n4p7TIQTEJndpAkFpdo0SbmruEACpogsZ0rYXAxXgSyokU/Txpp
+         spBnuPfhJU9t++QvpoiQuP5qLr9Y4a1JaMLv2UVL+NNZvlsiHTGYRnxwZ4ukHsEHhPf8
+         I5SiEyiVGZk5OWOIqenzzpQJ6SiTvG53ROLbw+cXI+/1HOLnszLA+UebhQLe8OVL6WqR
+         wHWuVQmyVaWriN+g8KzPJKwlDRdOeIyEkG9TrybUuePAbmVN5TDCO3Cf0PKH3hmBsj0l
+         2TE/Xz1Yogt8uQCXBOwdbuTNmwMpnY5jiWQVd2yg+NU2GuXEPpoVhATVj+Qw/fA28lmz
+         vbkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0F5V8u32FkjZ6JTMcQQ2ae07GfQcwmVc4zZnvRqmXRs=;
-        b=oDbQOEPrrV6bfyBIbNcsNmRspApp70X48BgFwwQZWjsxFM3Gm22kvTDpggxf504ZJ0
-         lF1eH8MwQRwLZ0toyxwtJJyLrNIc3nO6f9qfhw7mEZoCn2jzdJ0n3Rh/ojsXh6VSbSVI
-         kFmGVPmcR4Qy9EjsXq2+cM4s2OTSiJ/vUk3rUC+nE/pNIC5iCnB3zTfZhOnrMNZFsBH4
-         cDmoZG2ZIp6cJ+1MtCpyB1YnxG5YyAJSpEnxqz6O5FhQoPXxG5iGa1Vudw6grIKRGlvX
-         nwN/GrkUewnon/96q2bkOFw/CFuWMtvTq31Ng/wiEbnw5ZPA7UBici+WCoB2T09KO4i2
-         TIJQ==
-X-Gm-Message-State: AO0yUKVBsCzAdsAlJUHsiiyTZrGz5LArMV6NTfMb7cNl00SE70HdYRgB
-        3RXCYg8K8ToawQdTqXbE4x7DAg==
-X-Google-Smtp-Source: AK7set9RvWvTSPxyoIeX9cMUXBUxTpSjONcNj5Cfqc1SMbCe6hopnlaOSNUMiM8c6e8TIB6ZJJITCA==
-X-Received: by 2002:a05:6402:5252:b0:4ac:373e:9d18 with SMTP id t18-20020a056402525200b004ac373e9d18mr339003edd.0.1676027577497;
-        Fri, 10 Feb 2023 03:12:57 -0800 (PST)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id r12-20020a50c00c000000b0049dd7eec977sm2063655edb.41.2023.02.10.03.12.55
+        bh=70vAhiupv9yMZP8MYL4Z5/w//H8J/qCxdLW4cuPyvw0=;
+        b=jSx0DD3bu17YzrbecI1NDrCPi/xQvjbe6OoO5Pcs/nuhmdK31jfg8WGbnGiFRZW32A
+         PTjm1hUVRHgcMBrx7yMK9s0FTiwKZh5rJPtkCXRzgk+kngnoed5gxk6nP0bItDJ55KDo
+         T0KFHmTQwlcBY7KG89VuQsFVxyQAuwl132d3qC/oTf+8kTVkE9uXdnD3pPJoWTW930td
+         0Am3Pd7kLKhI7bg6zVkAbBHsuUUfrHULHx/rplZjdlT1L5FRbd8k/Tg+OBOPxhMQAWzE
+         t3GV/OwGyLoLappjBDP5PB+5cicOW9juONzYxmOQQ9h1WsS/y9eRPVw7I8uABUZtNjg/
+         DYTg==
+X-Gm-Message-State: AO0yUKViqqcMlA+b5eOX39eYuSoVm8Hb1LjFKIhgHWH9Br5VrfMCEqiE
+        Qys9PpPe6Initz7jrnegQ3/YjQ==
+X-Google-Smtp-Source: AK7set9pBvN0pwFN96tQH7oqaWGerfjL7VFYX2nOqefHZBD3lRjXDpbMnRlqEpzqFh8TzUdwGorprg==
+X-Received: by 2002:a50:9b0d:0:b0:4ab:ec2:3cd1 with SMTP id o13-20020a509b0d000000b004ab0ec23cd1mr8354037edi.25.1676027639960;
+        Fri, 10 Feb 2023 03:13:59 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id u12-20020a50950c000000b004aac44175e7sm2033244eda.12.2023.02.10.03.13.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:12:56 -0800 (PST)
-Message-ID: <4dd74e75-9412-b6e6-4077-719ef28d4b35@linaro.org>
-Date:   Fri, 10 Feb 2023 13:12:55 +0200
+        Fri, 10 Feb 2023 03:13:59 -0800 (PST)
+Message-ID: <84b657db-a129-fec2-2b67-32e125e116e9@linaro.org>
+Date:   Fri, 10 Feb 2023 12:13:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH v8 5/9] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: sm8350: finish reordering nodes
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-References: <20230202135036.2635376-1-vladimir.zapolskiy@linaro.org>
- <20230202135036.2635376-6-vladimir.zapolskiy@linaro.org>
- <32c23da1-45f0-82a4-362d-ae5c06660e20@linaro.org>
- <36b6f8f2-c438-f5e6-b48f-326e8b709de8@linaro.org>
- <a2e4dff0-af8f-dccb-9074-8244b054c448@linaro.org>
- <61eb2a01-762e-b83b-16b7-2c9b178407da@linaro.org>
- <4fdd5618-fc35-00a8-7a6b-2dd231700686@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <4fdd5618-fc35-00a8-7a6b-2dd231700686@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230209133839.762631-1-dmitry.baryshkov@linaro.org>
+ <20230209133839.762631-5-dmitry.baryshkov@linaro.org>
+ <a8bb4bf1-c4b6-ff02-d2e6-1407900bb006@linaro.org>
+ <7f85af25-efc5-6907-70ac-b264f110918d@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <7f85af25-efc5-6907-70ac-b264f110918d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/7/23 01:45, Dmitry Baryshkov wrote:
-> On 02/02/2023 18:16, Vladimir Zapolskiy wrote:
->> On 2/2/23 16:21, Neil Armstrong wrote:
->>> On 02/02/2023 15:04, Vladimir Zapolskiy wrote:
->>>> Hi Krzysztof,
->>>>
->>>> On 2/2/23 15:53, Krzysztof Kozlowski wrote:
->>>>> On 02/02/2023 14:50, Vladimir Zapolskiy wrote:
->>>>>> From: Neil Armstrong <neil.armstrong@linaro.org>
->>>>>>
->>>>>> On certain Snapdragon processors, the crypto engine clocks are
->>>>>> enabled by
->>>>>> default by security firmware.
->>>>>
->>>>> Then probably we should not require them only on these variants.
->>>>
->>>> I don't have the exact list of the affected SoCs, I believe Neil can
->>>> provide
->>>> such a list, if you find it crucial.
+
+
+On 10.02.2023 12:12, Dmitry Baryshkov wrote:
+> On 10/02/2023 13:09, Konrad Dybcio wrote:
+>>
+>>
+>> On 9.02.2023 14:38, Dmitry Baryshkov wrote:
+>>> Finish reordering DT nodes by their address. Move PDC, tsens, AOSS,
+>>> SRAM, SPMI and TLMM nodes to the proper position.
 >>>
->>> It's the case for SM8350, SM8450 & SM8550.
->>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>> [...]
 >>
->> On SM8250 there is no QCE clocks also, so I'll add it to the list, and I
->> hope
->> that now the list is complete.
->>
->> It could be that the relevant platforms are the ones with
->> 'qcom,no-clock-support'
->> property of QCE in the downstream.
->>
+>>> +                phys = <&mdss_dsi1_phy>;
+>>> +
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <0>;
+>>> +
+>>> +                status = "disabled";
+>>> +
+>>> +                dsi1_opp_table: opp-table {
+>>> +                    compatible = "operating-points-v2";
+>>> +
+>>> +                    /* TODO: opp-187500000 should work with
+>>> +                     * &rpmhpd_opp_low_svs, but one some of
+>>> +                     * sm8350_hdk boards reboot using this
+>>> +                     * opp.
+>>> +                     */
+>> It's not a part of this patch, but an idea came into my
+>> head.. could you check with socid that your HDK has an
+>> 8350v2.1?
 > 
-> Then, sc7180, sc8180x, sdx55, sm6150, sm7150, sm8150 also have this
-> property in QCE device. And, I think, it should also be applicable to
-> sc7280 and sc8280xp.
+> I checked with the bootloader instead, if you don't mind:
+> 
+> Platform Init  [ 2701] BDS
+> UEFI Ver   : 6.0.210914.BOOT.MXF.1.0-00848-LAHAINA-1
+> Platform           : HDK
+> Subtype            : 0
+> Boot Device        : UFS
+> Chip Name          : SMP_LAHAINA
+> Chip Ver           : 2.1
+Hm okay, perhaps it was something else..
 
-So maybe do you have a better candidate among the SoCs for a QCE IP family
-name than SM8150 based? Likely it could be the first released SoC among
-mentioned above.
-
---
-Best wishes,
-Vladimir
+Konrad
+> 
