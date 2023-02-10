@@ -2,189 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1761A692235
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 16:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D092692258
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 16:36:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232768AbjBJPb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 10:31:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60632 "EHLO
+        id S232792AbjBJPgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 10:36:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232755AbjBJPby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 10:31:54 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF5035596;
-        Fri, 10 Feb 2023 07:31:48 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31AFV6Pr040918;
-        Fri, 10 Feb 2023 09:31:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1676043066;
-        bh=Fjzk5JVx8ctbdtCLPvudP63oV7cXI9Tq/NfyxDy4p7U=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=QU3toFf8xybywgYfzBShVZqqMl8TdwU0b3me6WZQcKMZtcMP6MD/79CR6wcjN5rEK
-         y8YQP7pNiQCecghMxGdWQI/7U/ApoT/gVa0ypal2cMyN5wFrS7LocrUvjHVcjo5yyQ
-         QvxQkkRBVPxTMI9dhKKfmXc4hge9X6Mm+dugq09A=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31AFV6YF009143
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 10 Feb 2023 09:31:06 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 10
- Feb 2023 09:31:05 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 10 Feb 2023 09:31:05 -0600
-Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31AFUxRW127820;
-        Fri, 10 Feb 2023 09:31:00 -0600
-Message-ID: <69f54246-5541-7899-f4ed-76d0a600e1b0@ti.com>
-Date:   Fri, 10 Feb 2023 21:00:59 +0530
+        with ESMTP id S232789AbjBJPgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 10:36:10 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF7177BA0
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:36:08 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so6570619wma.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:36:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=B0iJ9ifSxWtyxJLdg8qNKxhkPjPgSJPt4W8qmCIqg0Q=;
+        b=HfNMVsmPPDvMYvt5+tJkozBjMlVdYJItOX28z5S2ADhR2yM3++LVa0ez+38on/yuKa
+         HqsAaYjJ2EtFYAa3Yh8caBZG+2cJfnlULiqsNBt9Lhp/pd2iY3s6pPSC5eD7wQFAkho2
+         x6yD+LC3ka9DW/O1HzcoxLSdpocpgptkr4VEmzxBpNFgWJOqE/RhpLWcrFC1Zikm1IGD
+         8FnPhEGX3RH4GRbiSoncBItI/i8fgJUjtMIJVKspNKu/oQH5fsF26ebzcXrERaJszpCE
+         ha9nM6Y5qlVn7z9YIQRbaBUgKe0AWXnuuOJOsv1hECz3O9p9mlLgSLQlDCI+o5iIwPYV
+         qf/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B0iJ9ifSxWtyxJLdg8qNKxhkPjPgSJPt4W8qmCIqg0Q=;
+        b=UsTWeO50OSTs+D57NJjjY6mwdT/N46iAdP2+/TOcxIEQqn0FuJmDNBePHY/0Xv7GI4
+         ZWbFKyg6Oc2HSQNq3e+Tp8+B8OFhwDI96M6U35psgjzDyLIBxgaXg6aiPcomn0yQR2Pn
+         uB17RBId2mm7lA0t1cKiPJ43EJOAzwN2lXvoGty6F89gMTsLHDBpqsG2OWY6XwtoQj9n
+         6W7kvyQNhNPvAlWPrZVa3nSgFi8OKsj6eNffB9pFzDzRBR8eF3BcYmKNTTA033e9O6PJ
+         0ITNH3fecGKiNX8ptQIHJKSoniXzPcg13n5uVhr2c6/02FeA7tAcUYPheei95z0AD1f4
+         aApg==
+X-Gm-Message-State: AO0yUKX9UgMqNHd6T4FISjrq30CITZSFu7fu5Vf8is+F3aOs1twc2OQS
+        S5n5NGsmNPJFjbSAzvUgOd0wFA==
+X-Google-Smtp-Source: AK7set9f0qq7kzrpbHSL06E28VSOJyoJFskmV0IOe9AnouV/GnHZKvzhSNxuFumH/NZ3ZMOfYhmZVg==
+X-Received: by 2002:a05:600c:a68f:b0:3db:1f68:28f with SMTP id ip15-20020a05600ca68f00b003db1f68028fmr12508990wmb.24.1676043366716;
+        Fri, 10 Feb 2023 07:36:06 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5a65:5553:55cf:3027? ([2a01:e0a:982:cbb0:5a65:5553:55cf:3027])
+        by smtp.gmail.com with ESMTPSA id p1-20020a1c7401000000b003cfa622a18asm8806159wmc.3.2023.02.10.07.36.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 07:36:06 -0800 (PST)
+Message-ID: <09b018a6-ffd7-b929-4ce0-bac18ebcb2b1@linaro.org>
+Date:   Fri, 10 Feb 2023 16:36:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [PATCH v5 1/2] dt-bindings: net: Add ICSSG
- Ethernet
-To:     Rob Herring <robh@kernel.org>, MD Danish Anwar <danishanwar@ti.com>
-CC:     "Andrew F. Davis" <afd@ti.com>, Paolo Abeni <pabeni@redhat.com>,
-        <srk@ti.com>, <andrew@lunn.ch>, Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <ssantosh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <nm@ti.com>, "David S. Miller" <davem@davemloft.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Roger Quadros <rogerq@kernel.org>
-References: <20230210114957.2667963-1-danishanwar@ti.com>
- <20230210114957.2667963-2-danishanwar@ti.com>
- <167603709479.2486232.8105868847286398852.robh@kernel.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/3] arm64: dts: meson: gxbb-kii-pro: add initial audio
+ support
 Content-Language: en-US
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <167603709479.2486232.8105868847286398852.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Ferass El Hafidi <vitali64pmemail@protonmail.com>
+References: <20230210122817.1027765-1-christianshewitt@gmail.com>
+ <20230210122817.1027765-4-christianshewitt@gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230210122817.1027765-4-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/02/2023 13:28, Christian Hewitt wrote:
+> Add initial support for HDMI and S/PDIF audio output.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Ferass El Hafidi <vitali64pmemail@protonmail.com>
+> ---
+>   .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 61 +++++++++++++++++++
+>   1 file changed, 61 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> index 435ae2aa404e..b6ee76011d82 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> @@ -9,11 +9,19 @@
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/input/input.h>
+>   #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/sound/meson-aiu.h>
+>   
+>   / {
+>   	compatible = "videostrong,kii-pro", "amlogic,meson-gxbb";
+>   	model = "Videostrong KII Pro";
+>   
+> +	spdif_dit: audio-codec-0 {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dit";
+> +		status = "okay";
+> +		sound-name-prefix = "DIT";
+> +	};
+> +
+>   	leds {
+>   		compatible = "gpio-leds";
+>   
+> @@ -35,6 +43,59 @@ button-reset {
+>   			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
+>   		};
+>   	};
+> +
+> +	sound {
+> +		compatible = "amlogic,gx-sound-card";
+> +		model = "KII-PRO";
+> +		assigned-clocks = <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>,
+> +				  <&clkc CLKID_MPLL2>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
+
+Drop this okay
+
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
+> +			dai-format = "i2s";
+> +			mclk-fs = <256>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+> +			};
+> +		};
+> +
+> +		dai-link-3 {
+> +			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&spdif_dit>;
+> +			};
+> +		};
+> +
+> +		dai-link-4 {
+> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&aiu {
+> +	status = "okay";
+> +	pinctrl-0 = <&spdif_out_y_pins>;
+> +	pinctrl-names = "default";
+>   };
+>   
+>   &ethmac {
 
 
-On 10/02/23 19:28, Rob Herring wrote:
->=20
-> On Fri, 10 Feb 2023 17:19:56 +0530, MD Danish Anwar wrote:
->> From: Puranjay Mohan <p-mohan@ti.com>
->>
->> Add a YAML binding document for the ICSSG Programmable real time unit
->> based Ethernet hardware. The ICSSG driver uses the PRU and PRUSS consu=
-mer
->> APIs to interface the PRUs and load/run the firmware for supporting
->> ethernet functionality.
->>
->> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
->> ---
->>  .../bindings/net/ti,icssg-prueth.yaml         | 184 +++++++++++++++++=
-+
->>  1 file changed, 184 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-pru=
-eth.yaml
->>
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
-k'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> ./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml: Unable to=
- find schema file matching $id: http://devicetree.org/schemas/remoteproc/=
-ti,pru-consumer.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/net/ti,icssg-prueth.example.dtb: ethernet: False schema does not allow {=
-'compatible': ['ti,am654-icssg-prueth'], 'pinctrl-names': ['default'], 'p=
-inctrl-0': [[4294967295]], 'ti,sram': [[4294967295]], 'ti,prus': [[429496=
-7295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295]], 'firm=
-ware-name': ['ti-pruss/am65x-pru0-prueth-fw.elf', 'ti-pruss/am65x-rtu0-pr=
-ueth-fw.elf', 'ti-pruss/am65x-txpru0-prueth-fw.elf', 'ti-pruss/am65x-pru1=
--prueth-fw.elf', 'ti-pruss/am65x-rtu1-prueth-fw.elf', 'ti-pruss/am65x-txp=
-ru1-prueth-fw.elf'], 'ti,pruss-gp-mux-sel': [[2, 2, 2, 2, 2, 2]], 'dmas':=
- [[4294967295, 49920], [4294967295, 49921], [4294967295, 49922], [4294967=
-295, 49923], [4294967295, 49924], [4294967295, 49925], [4294967295, 49926=
-], [4294967295, 49927], [4294967295, 17152], [4294967295, 17153]], 'dma-n=
-ames': ['tx0-0', 'tx0-1', 'tx0-2', 'tx0-3', 'tx1-0', 'tx1-1', 'tx1-2', 't=
-x1-3', 'rx0', 'rx1'], 'ti,mii-g-rt': [[429!
->  4967295]], 'interrupts': [[24, 0, 2], [25, 1, 3]], 'interrupt-names': =
-['tx_ts0', 'tx_ts1'], 'ethernet-ports': {'#address-cells': [[1]], '#size-=
-cells': [[0]], 'port@0': {'reg': [[0]], 'phy-handle': [[4294967295]], 'ph=
-y-mode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 24]], 'ti,sys=
-con-rgmii-delay': [[4294967295, 16672]], 'local-mac-address': [[0, 0, 0, =
-0, 0, 0]]}, 'port@1': {'reg': [[1]], 'phy-handle': [[4294967295]], 'phy-m=
-ode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 25]], 'ti,syscon=
--rgmii-delay': [[4294967295, 16676]], 'local-mac-address': [[0, 0, 0, 0, =
-0, 0]]}}, '$nodename': ['ethernet']}
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devic=
-etree/bindings/net/ti,icssg-prueth.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/net/ti,icssg-prueth.example.dtb: ethernet: Unevaluated properties are no=
-t allowed ('firmware-name', 'ti,prus', 'ti,pruss-gp-mux-sel' were unexpec=
-ted)
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devic=
-etree/bindings/net/ti,icssg-prueth.yaml
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2023=
-0210114957.2667963-2-danishanwar@ti.com
+With that change:
 
-Hi Rob,
-This patch depends on the patch [1] which is posted through series [2]. P=
-atch
-[1] is currently approved, reviewed and will soon be merged to mainline L=
-inux.
-Once it is merged this patch won't throw the above error.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-In the meantime I have posted this patch to get it reviewed so that once =
-patch
-[1] gets merged, this will be ready to be merged.
-
-[1] https://lore.kernel.org/all/20230106121046.886863-2-danishanwar@ti.co=
-m/
-[2] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.co=
-m/
-
->=20
-> The base for the series is generally the latest rc1. A different depend=
-ency
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to=
-
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. No=
-te
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checkin=
-g
-> your schema. However, it must be unset to test all examples with your s=
-chema.
->=20
-
---=20
-Thanks and Regards,
-Danish.
