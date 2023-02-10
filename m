@@ -2,84 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73541692043
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 14:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F45C692059
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 14:58:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjBJNyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 08:54:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39730 "EHLO
+        id S232345AbjBJN6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 08:58:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbjBJNyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 08:54:00 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CBF244A0
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 05:53:58 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id gr7so16032751ejb.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 05:53:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wTgaNvNSBXacoigODkFGC4lM/nCnl6tx2W6/KFPue5E=;
-        b=TBP/5WZs44JJu17WijTEUoTCSiV5LffIEdKbnA5WkCSsQfMx0VH3DZxnPlU6+FoI3t
-         p23hA7dQE3PV/ry/MABbn05OvV0Uz8pja1+bIlySBJ0CEpt8gaJaaZMVLApXb/QwoLhz
-         +NEbXbVgowHFKwHtZ5MX5j1aUmBQU1uc9DWGxTsdXNlDNjfK9anQOEUbak9xqKSUZ8f3
-         Pm3rdVqhw2Yna8kXv6+R0eyuiWPE3C9Ih+MQfjKk8Qph+zDuEb/XCBBu/1gwA4ewISQX
-         uDwue6aDcz2HSCHLgh+0CFk6MlZPObsP6stfjFYRh8sQJi/zJ/ANI6ll8KMshUp3I+Ng
-         gshw==
+        with ESMTP id S231979AbjBJN6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 08:58:36 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B746A707;
+        Fri, 10 Feb 2023 05:58:35 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id d21-20020a056830005500b0068bd2e0b25bso1546283otp.1;
+        Fri, 10 Feb 2023 05:58:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wTgaNvNSBXacoigODkFGC4lM/nCnl6tx2W6/KFPue5E=;
-        b=1O44KJvKHdRCQFunjFyxbDsqfK9KMwOChTPpgd4LfJ8zNpCP26MeXCMGwlbO5tGk/S
-         oz7l4psRb8Y55LZK4bdTaQ5vGkWr5W+Quz9SX0uPUpKIEfyCQpZiPRFkgKZeKgmi4iEl
-         E+ph8aMHEBY1i0pAQlQ/3hSVBOxicC/2t7eGEwiI9rbfATCjIHjnejkGRr0e7W6R4PdT
-         aXroirXyk1SoEMSTsMe/oZhFfd+81l9XxuvlMJ/D1hAkRTDiBoR/842KjTa6ombHHBOc
-         tnUnvyiyZqsPBJG0ykNevrFTJM4JQQ2Szeu9wzHXrOGsgDEj5yAS5eUd5BoXDvRJw1lN
-         /Ing==
-X-Gm-Message-State: AO0yUKX2vGvkPatLRU+46KO/cptx2qD6MeBlY1yIn6XpX0D1JWZ866bY
-        m/sm2Gukpwa5NjPeY06MpY5lUBWR8OntO8cu
-X-Google-Smtp-Source: AK7set98zYl2amDorB/c04/44wkpCjMLbHA3ZdridMJU7kVz2p/YRsGqCL7LbTKESHSin/DPZKCPkQ==
-X-Received: by 2002:a17:906:1c90:b0:878:7291:d558 with SMTP id g16-20020a1709061c9000b008787291d558mr15473819ejh.34.1676037237153;
-        Fri, 10 Feb 2023 05:53:57 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id y22-20020a170906449600b0084d35ffbc20sm2399729ejo.68.2023.02.10.05.53.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 05:53:56 -0800 (PST)
-Message-ID: <6942b30a-3d97-c306-a3c5-6b5adae5e814@linaro.org>
-Date:   Fri, 10 Feb 2023 14:53:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm845-oneplus: add
- tri-state-key
-Content-Language: en-US
-To:     Gergo Koteles <soyer@irl.hu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>
-References: <20230209232556.91554-1-soyer@irl.hu>
- <dd77a886-5ab4-c6d3-bb84-5849c411aa7b@linaro.org>
- <59ea3842-1c9d-11d1-8dd9-17d5d2308357@irl.hu>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <59ea3842-1c9d-11d1-8dd9-17d5d2308357@irl.hu>
-Content-Type: text/plain; charset=UTF-8
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=x6ZAgwWF/VUwU4zZqfR/sTQryZXeoKEBbQY/zLmHl1c=;
+        b=J7q260AXfsiNVcxf6cHUnICf+I1gCec4u3prLL0oBJ91f+QfD/raQjnsq5xulMEjVM
+         ctzc4LZibTDfPU9rUiqc1EHkRG0G/uZHW2lUzpMF7YqSLX/64KGidgSD1am1xNGSd+N7
+         8kuN9597fMOVmap7HhMkH8McT+tD7+K48sXDaqMXzK74UNP91fRpSt2tIv+GYvu7Kr06
+         JoJISrluuqT8JvBHN/PQfKEOhoKz43qdn2TtBZvAY664uo4Z7p0cH88d1aIpJ+TVM0xy
+         DB+4Awb7Vb2pwkUZYk6/qTdORSvE1FLjbRV0dyBtqD5slNUtbn0n7fxl9e0AC7s429a/
+         T5cQ==
+X-Gm-Message-State: AO0yUKVmT+iNK374V1nLwHfdH93rjORc1xxULBKzuG/RkCm3W8bhvW7A
+        eMLkeu4oTqUyzH+crRTSNQ==
+X-Google-Smtp-Source: AK7set+u6KQcX0GiHN1DnJNApQ90AmwZcuRPf7A4yG3G1e8Xrs7q6Pbo37r993MC4QCznDKyzDJ61A==
+X-Received: by 2002:a9d:1b6e:0:b0:68b:d220:b280 with SMTP id l101-20020a9d1b6e000000b0068bd220b280mr9873155otl.27.1676037514571;
+        Fri, 10 Feb 2023 05:58:34 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j11-20020a9d738b000000b00684cbd8dd49sm1962404otk.79.2023.02.10.05.58.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Feb 2023 05:58:34 -0800 (PST)
+Received: (nullmailer pid 2493637 invoked by uid 1000);
+        Fri, 10 Feb 2023 13:58:31 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     "Andrew F. Davis" <afd@ti.com>, Paolo Abeni <pabeni@redhat.com>,
+        srk@ti.com, andrew@lunn.ch, Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, ssantosh@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        nm@ti.com, "David S. Miller" <davem@davemloft.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>, netdev@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Suman Anna <s-anna@ti.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230210114957.2667963-2-danishanwar@ti.com>
+References: <20230210114957.2667963-1-danishanwar@ti.com>
+ <20230210114957.2667963-2-danishanwar@ti.com>
+Message-Id: <167603709479.2486232.8105868847286398852.robh@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: net: Add ICSSG Ethernet
+Date:   Fri, 10 Feb 2023 07:58:31 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,85 +73,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Fri, 10 Feb 2023 17:19:56 +0530, MD Danish Anwar wrote:
+> From: Puranjay Mohan <p-mohan@ti.com>
+> 
+> Add a YAML binding document for the ICSSG Programmable real time unit
+> based Ethernet hardware. The ICSSG driver uses the PRU and PRUSS consumer
+> APIs to interface the PRUs and load/run the firmware for supporting
+> ethernet functionality.
+> 
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
+> ---
+>  .../bindings/net/ti,icssg-prueth.yaml         | 184 ++++++++++++++++++
+>  1 file changed, 184 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> 
 
-On 10.02.2023 14:45, Gergo Koteles wrote:
-> On 2023. 02. 10. 12:33, Krzysztof Kozlowski wrote:
->> On 10/02/2023 00:25, Gergo Koteles wrote:
->>> The tri-state-key is a sound profile switch found on the OnePlus 6,
->>> Android maps the states to "mute", "vibrate" and "ring". Expose them as
->>> ABS_SND_PROFILE events.
->>> The previous GPIO numbers were wrong. Update them to the correct
->>> ones.
->>>
->>> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
->>> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
->>> Signed-off-by: Gergo Koteles <soyer@irl.hu>
->>
->> Where are other patches? I got only 3/3.
->>
-> Hi Krzysztof,
-> 
-> Sorry, I missed the --thread option for git format-patch.
-> 
->>> ---
->>>   .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 39 ++++++++++++++++++-
->>>   1 file changed, 38 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->>> index 64638ea94db7..e45d4fdead82 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->>> @@ -52,6 +52,43 @@ key-vol-up {
->>>           };
->>>       };
->>>   +    tri-state-key {
->>> +        compatible = "gpio-keys";
->>> +        label = "Tri-state key";
->>> +        pinctrl-names = "default";
->>> +        pinctrl-0 = <&tri_state_key_default>;
->>
->> Missing blank line.
->>
-> 
-> I'll add it to v3.
-While at it, please put pinctrl-names after pinctrl-0.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> 
->>> +        state-top {
->>
->> Does not look like you tested the DTS against bindings. Please run `make
->> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
->> for instructions).
->>
-> 
-> I ran dtbs_check with DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/qcom.yaml. It only shows warnings for msm8996-oneplus3, but not for sdm845-oneplus phones. Is there anything else I need to check?
-You're only checking against a schema file which validates msm-id and
-machine compatibles. The goal is to not introduce *any* new warnings.
+yamllint warnings/errors:
 
-You want to run:
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dtb: ethernet: False schema does not allow {'compatible': ['ti,am654-icssg-prueth'], 'pinctrl-names': ['default'], 'pinctrl-0': [[4294967295]], 'ti,sram': [[4294967295]], 'ti,prus': [[4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295]], 'firmware-name': ['ti-pruss/am65x-pru0-prueth-fw.elf', 'ti-pruss/am65x-rtu0-prueth-fw.elf', 'ti-pruss/am65x-txpru0-prueth-fw.elf', 'ti-pruss/am65x-pru1-prueth-fw.elf', 'ti-pruss/am65x-rtu1-prueth-fw.elf', 'ti-pruss/am65x-txpru1-prueth-fw.elf'], 'ti,pruss-gp-mux-sel': [[2, 2, 2, 2, 2, 2]], 'dmas': [[4294967295, 49920], [4294967295, 49921], [4294967295, 49922], [4294967295, 49923], [4294967295, 49924], [4294967295, 49925], [4294967295, 49926], [4294967295, 49927], [4294967295, 17152], [4294967295, 17153]], 'dma-names': ['tx0-0', 'tx0-1', 'tx0-2', 'tx0-3', 'tx1-0', 'tx1-1', 'tx1-2', 'tx1-3', 'rx0', 'rx1'], 'ti,mii-g-rt': [[4294967295]]
+ , 'interrupts': [[24, 0, 2], [25, 1, 3]], 'interrupt-names': ['tx_ts0', 'tx_ts1'], 'ethernet-ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'phy-handle': [[4294967295]], 'phy-mode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 24]], 'ti,syscon-rgmii-delay': [[4294967295, 16672]], 'local-mac-address': [[0, 0, 0, 0, 0, 0]]}, 'port@1': {'reg': [[1]], 'phy-handle': [[4294967295]], 'phy-mode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 25]], 'ti,syscon-rgmii-delay': [[4294967295, 16676]], 'local-mac-address': [[0, 0, 0, 0, 0, 0]]}}, '$nodename': ['ethernet']}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dtb: ethernet: Unevaluated properties are not allowed ('firmware-name', 'ti,prus', 'ti,pruss-gp-mux-sel' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
 
-make (your make args) CHECK_DTBS=1 qcom/sdm845-oneplus-enchilada.dtb
+doc reference errors (make refcheckdocs):
 
-pre and post your patch.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230210114957.2667963-2-danishanwar@ti.com
 
-Konrad
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> 
-> 
-> ...
-> arch/arm64/boot/dts/qcom/msm8996-oneplus3.dtb: /: qcom,board-id: 'oneOf' conditional failed, one must be fixed:
->     [8, 0, 15801, 15, 8, 0, 15801, 16] is too long
->     From schema: /Documentation/devicetree/bindings/arm/qcom.yaml
-> ...
->   DTC_CHK arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
->   DTC_CHK arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-> 
-> 
-> Thanks,
-> Gergo
-> 
->>
->> Best regards,
->> Krzysztof
->>
-> 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
