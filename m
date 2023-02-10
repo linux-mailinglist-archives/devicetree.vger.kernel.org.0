@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED4FB691B19
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:19:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2868A691B26
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:21:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231578AbjBJJT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 04:19:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
+        id S231569AbjBJJV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 04:21:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231720AbjBJJTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:19:50 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1103F5B77F;
-        Fri, 10 Feb 2023 01:19:49 -0800 (PST)
-Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 73D28660212A;
-        Fri, 10 Feb 2023 09:19:47 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676020787;
-        bh=FDdWYxRQmEn9lqbN9IJIbgkv0wfcIfO4bbvrfnG0Q9c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=cHNwTosLSQW427eZrMd2Ls54CeMSGUhlg0WbKrxk/ujzUSmrgLxXkDQ+gt0vT7AZK
-         iu/aLz4D4kLF2W47+gc/a0hpEzh5RDe7XLze/OO+qwUkqDH9RHJ2AgQ+5QulRRU1Vu
-         9EIOZB2SBdeLSZas4GAn7GRkhphSk5EYJsSr0p9Ga7b3M/mEu9uyMRCaAO0VG5I3+H
-         cTG4//HevKZR7GK0jiIurcZUm3Jr8ZWxnRkS37bvUSKQap8Uaxu6Ln066/5PMWRAnB
-         oHqLnvgb7rvO6tkIA8Yrcpa2kndKNGTaLLMrGs28yb0fgU4WEeHOR8dOee2mlGotjb
-         O3p1BmZR1NBlg==
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-To:     David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 4/4] ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
-Date:   Fri, 10 Feb 2023 09:19:42 +0000
-Message-Id: <20230210091942.10866-5-lucas.tanure@collabora.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230210091942.10866-1-lucas.tanure@collabora.com>
-References: <20230210091942.10866-1-lucas.tanure@collabora.com>
+        with ESMTP id S231515AbjBJJVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:21:55 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F05E1F905
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:21:53 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id bj22so3921928oib.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:21:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ufispace-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLJ9kUfyKKHaAUOuvBcSKOFNG4PBe8Yek1lAbaYVe84=;
+        b=BGtIzqujNvP5ygAUGUtaVYK1ma2XD5w88MoJBEH6cCZ/DwQqtw2pN0KqU9dvfNOcm+
+         rhutDRysUEaZCaCquskxooDWSlxf/d1BiIqDg/AT8H7xrrUX3a6Nd4tbiRYWOCewB4Q0
+         sScEXP5lFFkvaVdmb+i8hA9XPXH156sm9DYp9axgQjLUnbwPzqQatANIk1HI4lZ3az36
+         MNQew1OY9G4r/q+CjLERXzRKwWnoywGmwkaS5P+IBpqlgb7WF5cmSgfoxhLDtM58Welp
+         uuBKqcLSfw36MrMG0c7JUGkh0jQvq6FjsGfXafiRiPSruefpMzaDqA0L89tjLVrGV8j+
+         PZCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZLJ9kUfyKKHaAUOuvBcSKOFNG4PBe8Yek1lAbaYVe84=;
+        b=E8ojocivBNxzbRLz96EUQHdMMxZuewvgqBJLBVIZoOOwZSXs6t66DE3jKbvy9UA1TE
+         Q0dWT81zNaxgoLCW83zpzIpQwwWT6wFpz/+Vq2eMuGnMKm0RXDEnK+OCtFP+fdXSn1xr
+         gTBF+bRNK+7W2/CEH80unbkVLLJGvWSjkvTZlORXFuXoR+gCpRsuBHfpxFk1dkaijgQ5
+         irhRorugmVggrs6vdPjPXc2VX8g7582lI7+oJCW/NrobquGRrMAuzc1+qiMUQblSlh7a
+         6u4z0FkYjuNpU2gbyJ7zSgn7RAOzOKixZmnK0RsO2prWWailggvYAagKMi7sahDGPVyD
+         asIA==
+X-Gm-Message-State: AO0yUKUiew+x3vP6OjcYp1ktEAfFZDSAadRYsmu9EdJjr+/nuAgVg6DY
+        3V0JTMsySGbzVPQ1YKPsX8GBMeHGDH4Px8SFBsUagw==
+X-Google-Smtp-Source: AK7set8C44utWhn3k0gZ0S4j9LEYnK479SBTtpKBr5/+G6jMC0jVZb7eMcTkoSXOmhB2KvQqikWf1SaF1JQiDYGkWMQ=
+X-Received: by 2002:a05:6808:14c8:b0:378:7c48:f8d6 with SMTP id
+ f8-20020a05680814c800b003787c48f8d6mr959901oiw.166.1676020912907; Fri, 10 Feb
+ 2023 01:21:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230210055451.72153-1-jordan.chang@ufispace.com>
+ <20230210055451.72153-4-jordan.chang@ufispace.com> <4b735136-d9c0-cf01-e453-c8da31754a93@linaro.org>
+In-Reply-To: <4b735136-d9c0-cf01-e453-c8da31754a93@linaro.org>
+From:   Jordan Chang <jordan.chang@ufispace.com>
+Date:   Fri, 10 Feb 2023 17:21:41 +0800
+Message-ID: <CAJ3czeSeuPx1L-qkXFVLR+UQDyJHF_G4Z5MdoYSeLaifWNnn=A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] ARM: dts: aspeed: Add device tree for Ufispace
+ NCPLite BMC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        joel@jms.id.au, andrew@aj.id.au, robh+dt@kernel.org,
+        jay.tc.lin@ufispace.com, eason.ys.huang@ufispace.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the properties used for shared boost configuration.
-Based on David Rhodes shared boost patches.
+Hi Krzysztof,
 
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/sound/cirrus,cs35l41.yaml      | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+On Fri, Feb 10, 2023 at 4:56 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> From where did you get my Ack? I don't recall it.
+>
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-index 18fb471aa891..f3c0a66f3474 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-@@ -85,11 +85,19 @@ properties:
-       boost-cap-microfarad.
-       External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
-       enable boost voltage.
-+      Shared boost allows two amplifiers to share a single boost circuit by
-+      communicating on the MDSYNC bus. The passive amplifier does not control
-+      the boost and receives data from the active amplifier. GPIO1 should be
-+      configured for Sync when shared boost is used. Shared boost is not
-+      compatible with External boost. Active amplifier requires
-+      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
-       0 = Internal Boost
-       1 = External Boost
-+      2 = Shared Boost Active
-+      3 = Shared Boost Passive
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
--    maximum: 1
-+    maximum: 3
- 
-   cirrus,gpio1-polarity-invert:
-     description:
--- 
-2.39.1
+I misunderstood the usage of acked-by, please ignore this email patch.
+Apology for the mistakes.
+Should I resend an email patch or it still works on the previous v2 email?
 
+Best Regards,
+Jordan Chang
