@@ -2,124 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832DE691A3B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61DC5691A6D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:56:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbjBJIp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 03:45:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46446 "EHLO
+        id S231659AbjBJI4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 03:56:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231501AbjBJIpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:45:55 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B015A9D6
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:45:54 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so3505226wmb.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:45:54 -0800 (PST)
+        with ESMTP id S231652AbjBJI4d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:56:33 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D3730E82
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:56:32 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso5747706wms.5
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:56:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qA3qvbnssW7q8kXQFDPaNXVdxo8ZJzAN4ti+xF1gQ5M=;
-        b=jgpNqU5WlUekv99IWQquuXrNQLE/1uSEKexafpZM3OI/DHNAPIDTQuOv/cMKnEaO3s
-         jWyJ4G94/heiFfv6ZPvieOdG0mnBTRijfe21S6sKCHLqc4fDLY2GwnJ07Oy5fNPvI5uz
-         2zRaM8D20COYy7LTiWC6LkZC3hOaaCadiVE1CfJjTnCAgIsiI6PDOvcxfA2BkYHmHdoo
-         ZevvEya0tneI+VNJQBWOmrpSU5WRObiF/pHuHISmHet5qNl1bCvPucYR1EjepIovc/fo
-         HlI/mLpjQq5OpzLN5S2WKr7mN2ePcbN6SY5hDLHJpgxTGU9uH44pbt/9iMthDC3PPUVS
-         aSjg==
+        bh=kZ+f3iNC4UgNVPziXFfD8EZktQn5DJOz0Zpd0I2PkVM=;
+        b=VH99WeYMF5yNKSPDbejJR2fnGBGHu7owHpzE83+tg1SQCsUAPGia+aPCjhlnzuICBJ
+         7LXDjJ5ubhKDKAfU7IkOCcuLjo4S/TIaN8ljH4S8kH1Cv0m8QujlNoyPxgFflCqb88Bn
+         EZgDZhZShm7956siFhfcOzONw/5HKMor98dQRvOZbZBlHIagrMDqpBdcpJNNdyIyLCqh
+         F7+9DP8SWzi7ZkTXGHSMKneKMv2BubXlI7GKaPG9EUvPmG8JTUKGOYl6U1pckU364J/J
+         wmoMe2Q9KYhuYZWO7My+UlzsPggI9X5PFL2lDZyLzkIWPFcfyuaKjie9dlXq0iVjMJQe
+         DMgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qA3qvbnssW7q8kXQFDPaNXVdxo8ZJzAN4ti+xF1gQ5M=;
-        b=ErvDJL/dSod174SBfSmw8O1amz9zcmApc8MZNle1AGdiH8wP8/gZqDPKzwrYv/beJr
-         MADfQZ27NJy9Zsfq/rTV3z6W0jQ7jOajSLYqDUiapjeBYSppaesMdEzKfcrtMZv9Gh9V
-         Z2iiBXAu1+RImH/KjftWRGqEF+G13c2IUmnAmgYboGTFhw80r91H7KLKrasCzCOPowM4
-         YjRdcy9lE0OXI3gWK1VrhkO9qDhQmuGjrolLW5mcd7kyS5e2xdmj/C9lP/i0b3Dd3Tgz
-         GNjxsKXNjkYvTOwZ2HPVumGqxFHonQzpAeWcWxQ/xO1+krwfmFwkm44VMWe+eJpVfia/
-         P/aQ==
-X-Gm-Message-State: AO0yUKUx6pjdGdZQymK7QL9NB3B2fVscHpQul05KNlnb1HLr9HoSbuAs
-        n1HHAvkeVuYrot58yL+FKIVmvQ==
-X-Google-Smtp-Source: AK7set9x6sBH4Hw//pRNQ8QpNO2VKH3YQMChRW1yO4t8kC4SPlcv4uzYZTfstMMz6m3zHCQMBt8S8A==
-X-Received: by 2002:a05:600c:35cd:b0:3df:eda1:439c with SMTP id r13-20020a05600c35cd00b003dfeda1439cmr8977658wmq.11.1676018752808;
-        Fri, 10 Feb 2023 00:45:52 -0800 (PST)
+        bh=kZ+f3iNC4UgNVPziXFfD8EZktQn5DJOz0Zpd0I2PkVM=;
+        b=vRpE7yUYcNT8UwLhVYZ86vAtlCaFc8JBvJWw79j7gjI2tIwlzdfkfGt7my0Bk0jw9W
+         zi0DtQavniEvyW96KlXp/iDa0v+6XFfxSeQyUY8WXZmDeOMNyYHzsO4nuqe8nZmVj4pM
+         f5kb/7xBTPK/p/OF5cm7YMiEm509VABmrreJc5kR/DSew96gtjYgPTvyQzfJxAaGhcAh
+         1j/drnSOP2Tw7GJo0c9f1OWh0GAvrrFbTTn/2qifoKA9kMx9inm7xPGud346Y84ojf39
+         fW34Kbx67e/lErVDgnP+VWLJbi/qZf6r6+nlJrgEi+hniA4ZJ3yaBfRLQgKSIF0Xw8cC
+         mhvw==
+X-Gm-Message-State: AO0yUKV3hd/whtzbB30vm5bTKBqJW3Qax08Y9AGRKNcrKbgxs4o6a6nk
+        z9ngOMDsrXrIc6ZCHUS0Rzp35g==
+X-Google-Smtp-Source: AK7set/WowO5q/KnieW1zymc9H4EETfqzpWgHbPuDdPwkHpc6T3r4xFw+0Tyid295hdXskt7OZiEfQ==
+X-Received: by 2002:a05:600c:2ac8:b0:3dd:638d:bc31 with SMTP id t8-20020a05600c2ac800b003dd638dbc31mr15440661wme.26.1676019391138;
+        Fri, 10 Feb 2023 00:56:31 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n13-20020a05600c3b8d00b003dc434900e1sm4753511wms.34.2023.02.10.00.45.50
+        by smtp.gmail.com with ESMTPSA id s11-20020adfeccb000000b002bfcc9d9607sm3028821wro.68.2023.02.10.00.56.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 00:45:52 -0800 (PST)
-Message-ID: <9570b0fb-1fe2-00fe-e224-229752f26a9a@linaro.org>
-Date:   Fri, 10 Feb 2023 09:45:50 +0100
+        Fri, 10 Feb 2023 00:56:30 -0800 (PST)
+Message-ID: <4b735136-d9c0-cf01-e453-c8da31754a93@linaro.org>
+Date:   Fri, 10 Feb 2023 09:56:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] arm64: tegra: Audio codec support on Jetson AGX Orin
+Subject: Re: [PATCH v3 3/3] ARM: dts: aspeed: Add device tree for Ufispace
+ NCPLite BMC
 Content-Language: en-US
-To:     Sameer Pujar <spujar@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, oder_chiou@realtek.com, broonie@kernel.org
-Cc:     perex@perex.cz, tiwai@suse.com, lgirdwood@gmail.com,
-        kuninori.morimoto.gx@renesas.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-References: <1675953417-8686-1-git-send-email-spujar@nvidia.com>
- <1675953417-8686-3-git-send-email-spujar@nvidia.com>
+To:     Jordan Chang <jordan.chang@ufispace.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        joel@jms.id.au, andrew@aj.id.au, robh+dt@kernel.org
+Cc:     jay.tc.lin@ufispace.com, eason.ys.huang@ufispace.com
+References: <20230210055451.72153-1-jordan.chang@ufispace.com>
+ <20230210055451.72153-4-jordan.chang@ufispace.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1675953417-8686-3-git-send-email-spujar@nvidia.com>
+In-Reply-To: <20230210055451.72153-4-jordan.chang@ufispace.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 15:36, Sameer Pujar wrote:
-> Jetson AGX Orin has onboard RT5640 audio codec. This patch adds the
-> codec device node and the bindings to I2S1 interface.
+On 10/02/2023 06:54, Jordan Chang wrote:
+> Add initial version of device tree for Ufispace NCPLite platform
+> which is equipped with AST2600-based BMC.
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts  | 47 +++++++++++++++++++++-
->  1 file changed, 46 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> index 8a97478..5881fbf 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> @@ -3,6 +3,7 @@
->  
->  #include <dt-bindings/input/linux-event-codes.h>
->  #include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/sound/rt5640.h>
->  
->  #include "tegra234-p3701-0000.dtsi"
->  #include "tegra234-p3737-0000.dtsi"
-> @@ -49,7 +50,7 @@
->  
->  							i2s1_dap: endpoint {
->  								dai-format = "i2s";
-> -								/* placeholder for external codec */
-> +								remote-endpoint = <&rt5640_ep>;
->  							};
->  						};
->  					};
-> @@ -2017,6 +2018,32 @@
->  			status = "okay";
->  		};
->  
-> +		i2c@31e0000 {
-> +			status = "okay";
-> +
-> +			audio-codec@1c {
-> +				status = "okay";
+> Signed-off-by: Jordan Chang <jordan.chang@ufispace.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Are you sure you need this?
+From where did you get my Ack? I don't recall it.
 
 Best regards,
 Krzysztof
