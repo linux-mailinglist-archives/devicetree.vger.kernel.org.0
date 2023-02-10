@@ -2,193 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2160E692110
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CB0692129
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:53:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232539AbjBJOom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 09:44:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
+        id S232166AbjBJOxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 09:53:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232316AbjBJOof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:44:35 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F6271037
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:44:34 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id n28-20020a05600c3b9c00b003ddca7a2bcbso4220730wms.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:44:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oB/TvOEFZT+W+sDYygPAtotZsUziIZY1jUdQwqpQGl4=;
-        b=oLF0a73loPNaqavl96UdisNYXdtJXeqN6xIdiG927eZjyuErwCqfQ7x6CMAd8N2Y4s
-         OS0EbKlfNC9ah58QdEY6Wyz3YBOH272Qcxi6omYBSgjr2Z55iMcC5/6u/whZoUeiPWP7
-         OKbEBtsHBhKGSNYr8uNKds90xe8Hn+csABnGcH/Q64M1F7UT5BjoCY/P3Q/2WisqL3hz
-         HCllgFcM3PRWtsj1XReV0aavOSkmPXKOsFBU2lkBNsrHkpcKGdMLeHUAwN2iy+Y8EENI
-         XW8KV0EMd0uKFaPw4qAcjGgxPUX6xuFC5IxMnYJlyTmEJ6b9pmmXVbSAqEblx44KCMkS
-         zaBw==
+        with ESMTP id S231984AbjBJOxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:53:35 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED645635A6
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:52:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1676040769;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=W1qMoGyZitDLtPNourhoy8BxIjCzMdWzl566A9X9xVk=;
+        b=QKkol+PRdR/FUuLJ49xMB2CH3lufeTkUQ7Ppj4NXSLAabKTOFQpTmqt8r4BUEErHMuYzRE
+        h4jy+zuZZAIqe7iclweLGHoLmIjJ+O7uevwUmUT1G/pIyJWTz+XJ0ZSYseMY9KktDbgjH5
+        D4jRvJCHrCDGxU5+1oLpuMkAXMKJ8DQ=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-304-cgixbl9-MqW9GojHCrkihQ-1; Fri, 10 Feb 2023 09:52:47 -0500
+X-MC-Unique: cgixbl9-MqW9GojHCrkihQ-1
+Received: by mail-qk1-f197.google.com with SMTP id x14-20020a05620a14ae00b0072f7f0f356bso3416003qkj.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:52:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oB/TvOEFZT+W+sDYygPAtotZsUziIZY1jUdQwqpQGl4=;
-        b=0Z61EV1ggDnAEf2JIor4f7XvGa3uelLtxCcdLt8S53ATtu+5kGVRgDCgLAvV9a20rR
-         YilJTnHaU70PbjF/QbNnGIYtYPFHky2yO4elS1Ahkm35sPEMdQL71fzONy6QwhH1cT9q
-         h0wHiVYRTQEGrtvBsnPoAcnhmxnlB7nWwXFn/U+cu5KI8N+ANFg1ln8LQyZPGf540vSn
-         x29evpwW0dXVIoryilunhp9vAw35Vd5HznJjuZE5d7Gv2rjw9UVM/8mvXhvF7gNCgImX
-         BfDtAJFYZBh0iZPvqP01vH3jyiSW1BZ7aCARhoeHSpIYbS9nAwP6pkKBsgkKMQqeaIuE
-         SGkg==
-X-Gm-Message-State: AO0yUKWoJ+zZ7MYhw6Q2aqNQkJmqtMdccijPnxxHIloygYCZpxW/+dWg
-        CR7zeBecpNjrCuK2Rdi5zr8ZIQ==
-X-Google-Smtp-Source: AK7set/bpm2sO+qBJOu0PVt39/eQpQu2LGg5gAcFgui5x/8vlhsySdyVoXrfTbwkLjEdgumDqQujcA==
-X-Received: by 2002:a05:600c:4a9c:b0:3dd:1b6f:4f30 with SMTP id b28-20020a05600c4a9c00b003dd1b6f4f30mr17297527wmp.3.1676040272957;
-        Fri, 10 Feb 2023 06:44:32 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id l40-20020a05600c1d2800b003dd1b00bd9asm6103000wms.32.2023.02.10.06.44.31
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W1qMoGyZitDLtPNourhoy8BxIjCzMdWzl566A9X9xVk=;
+        b=flwPZ3DAR9n4extCx4HSVwg6jc6Pop6oK+5aCATfUJUsZbb+oaVZ2q1hNLE9OBy1AW
+         STrIW56qKHo3Py0JbeI5lHQ/SENBadQZbFuZXvfHExP4UcU0LHXF01Vi4EWwMC8gra+q
+         7NHirqIEU9vTHbPyvEDzlEvp3OBEO2ifIvftxPdWKKmoA4afmBdEUm87lfMV0wPgoYb4
+         Yq91wLWO0ySbFuA1gYk63s0WgkH9/WKRTRiCDjdQxYDm8dq58+47MHsBwSf8HIkVsaC3
+         Tfve0xX7GIvhepmLg5HyAfKon5eYkNmht12vRrd79o0rMJmf1VnexYFJZRJ/GZYmJNs3
+         VZmg==
+X-Gm-Message-State: AO0yUKUygqOhvVRi6sIPPXDs5YBHXr2ybtX0WBpu05NdYjCSph+uPal9
+        KXt9fx8q0iXlGYyJOnW/RwcTUmtgq8kGflQLqBvV2vM2n3X7/WjVwEf1algFGQyB64i8TTsqsWL
+        LyjOizCYutmRZ/xZSUYHk5A==
+X-Received: by 2002:ad4:5be9:0:b0:56c:14a1:b751 with SMTP id k9-20020ad45be9000000b0056c14a1b751mr19283558qvc.8.1676040767451;
+        Fri, 10 Feb 2023 06:52:47 -0800 (PST)
+X-Google-Smtp-Source: AK7set/0E8zBTwg/UC/GsP0b0P/sbs7EikwLvTC+cGGNrrA3jEg1RBwChVEkVmdpw7sOGcdiM3HM2w==
+X-Received: by 2002:ad4:5be9:0:b0:56c:14a1:b751 with SMTP id k9-20020ad45be9000000b0056c14a1b751mr19283526qvc.8.1676040767235;
+        Fri, 10 Feb 2023 06:52:47 -0800 (PST)
+Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
+        by smtp.gmail.com with ESMTPSA id 145-20020a370697000000b007195af894e7sm3644010qkg.76.2023.02.10.06.52.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 06:44:32 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 10 Feb 2023 15:44:25 +0100
-Subject: [PATCH v3 5/5] arm64: dts: qcom: sm8450: add dp controller
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230206-topic-sm8450-upstream-dp-controller-v3-5-636ef9e99932@linaro.org>
-References: <20230206-topic-sm8450-upstream-dp-controller-v3-0-636ef9e99932@linaro.org>
-In-Reply-To: <20230206-topic-sm8450-upstream-dp-controller-v3-0-636ef9e99932@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Fri, 10 Feb 2023 06:52:46 -0800 (PST)
+Date:   Fri, 10 Feb 2023 09:52:45 -0500
+From:   Eric Chanudet <echanude@redhat.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: qcom: add the SoC ID for SA8775P
+Message-ID: <20230210145245.jyqir6odnkyr5zdl@echanude>
+References: <20230209095753.447347-1-brgl@bgdev.pl>
+ <20230209095753.447347-3-brgl@bgdev.pl>
+ <20230209175515.xrebz5edmsi4xkzv@echanude>
+ <d1d1bd4e-0205-24d1-9589-6d6b57b6d477@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d1d1bd4e-0205-24d1-9589-6d6b57b6d477@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Display Port controller subnode to the MDSS node.
+On Fri, Feb 10, 2023 at 09:58:29AM +0100, Krzysztof Kozlowski wrote:
+> On 09/02/2023 18:55, Eric Chanudet wrote:
+> > On Thu, Feb 09, 2023 at 10:57:52AM +0100, Bartosz Golaszewski wrote:
+> >> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >>
+> >> Add the SoC ID entry for SA8775P.
+> >>
+> >> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >>  include/dt-bindings/arm/qcom,ids.h | 1 +
+> >>  1 file changed, 1 insertion(+)
+> > 
+> > Reviewed-by: Eric Chanudet <echanude@redhat.com>
+> > Tested-by: Eric Chanudet <echanude@redhat.com>
+> 
+> How can you test a header? What type of testing Redhat does on the headers?
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 79 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 6caa2c8efb46..72d54beb7d7c 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2751,6 +2751,13 @@ dpu_intf2_out: endpoint {
- 						};
- 					};
- 
-+					port@2 {
-+						reg = <2>;
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&mdss_dp0_in>;
-+						};
-+					};
-+
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -2783,6 +2790,78 @@ opp-500000000 {
- 				};
- 			};
- 
-+			mdss_dp0: displayport-controller@ae90000 {
-+				compatible = "qcom,sm8350-dp";
-+				reg = <0 0xae90000 0 0xfc>,
-+				      <0 0xae90200 0 0xc0>,
-+				      <0 0xae90400 0 0x770>,
-+				      <0 0xae91000 0 0x98>,
-+				      <0 0xae91400 0 0x98>;
-+				interrupt-parent = <&mdss>;
-+				interrupts = <12>;
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-+				clock-names = "core_iface",
-+					      "core_aux",
-+					      "ctrl_link",
-+			                      "ctrl_link_iface",
-+					      "stream_pixel";
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-+				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-+
-+				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
-+			        phy-names = "dp";
-+
-+			        #sound-dai-cells = <0>;
-+
-+				operating-points-v2 = <&dp_opp_table>;
-+				power-domains = <&rpmhpd SM8450_MMCX>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dp0_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+				};
-+
-+				dp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-160000000 {
-+						opp-hz = /bits/ 64 <160000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
- 			mdss_dsi0: dsi@ae94000 {
- 				compatible = "qcom,sm8450-dsi-ctrl", "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae94000 0 0x400>;
+IIUC that ID is compared against the one read from SMEM by the socinfo
+driver. I meant to confirm it matched the number the board I have
+returned. My apologies in advance if that was inappropriate.
 
 -- 
-2.34.1
+Eric Chanudet
 
