@@ -2,66 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAAD6691A27
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F76691A2C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:43:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230525AbjBJIlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 03:41:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43046 "EHLO
+        id S231562AbjBJInP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 03:43:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231555AbjBJIlB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:41:01 -0500
-Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B916F8EE
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:40:58 -0800 (PST)
-Received: by mail.tryweryn.pl (Postfix, from userid 1002)
-        id CD611A441F; Fri, 10 Feb 2023 08:40:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
-        t=1676018456; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
-        h=Date:From:To:Subject:From;
-        b=IFG3Tjke4SuPYinvSVNXYD+M0AYRJPw2rprVDv9nElL+aMrq4m0U3oTR1Q3Dszkxw
-         MyFMmXUYc6nLeNhX0GmNM/TnwsO2wMA+EsM449hh9fdMJkt6cBnt5FZ2E1ZMJ+0o8E
-         paUm49/Cy3aySwYf/eeEah0Bg+uOiWxiv4lPjSm/2Uw1dUBx2DTSet6utu518Y2Z6Q
-         gRlGUPnM2ml6O+RG5dPMSx/hsGiG33gxEr20wmYJfbIRU66FB0LcfVJjJIpqWlxYCI
-         13rqc7ViAWotiSG2rY9S8y1ZW9llTSVew3m3hJlcXeP772P/3RZiDSGtyHOhoXYQR9
-         VTdJkYcvhSR7A==
-Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 08:40:47 GMT
-Message-ID: <20230210074500-0.1.83.2v36y.0.q42ivu987k@tryweryn.pl>
-Date:   Fri, 10 Feb 2023 08:40:47 GMT
-From:   "Karol Michun" <karol.michun@tryweryn.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Prezentacja
-X-Mailer: mail.tryweryn.pl
+        with ESMTP id S231549AbjBJInO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:43:14 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5554210DC
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:43:13 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id d16so1665821ioz.12
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:43:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bZdTaoQdI84eQVm+vowEVZgNB1qPoT93d6+CHcz4blI=;
+        b=iyvEHGe6/7SbWqRS09KX0I+WywD0bnenAZGLlHm5sfjEHyNlDI4l22hm+KQEtrgKZE
+         R1fXVtPTQCsz8siZwhwpUvt+AwDA7Np2E63V//ExCV+a0C3BJUGbXnV4efB3gR+9zt2h
+         qlR2l5eyXw1krz28H+TQq+pLLfQ0HzyhMAQcU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bZdTaoQdI84eQVm+vowEVZgNB1qPoT93d6+CHcz4blI=;
+        b=TunnhfNHGdaie5eE/YtUmnNjbyFlfXuRI32dRuDn5tmQTMsuzJ2R+a+aMRipzzah0/
+         FfQzt6b8g6tz8LrDjqv1tMRCaOKgC0Q7Gp+/uZh+BSEifeQseLPTStAjTTUfz6LEWBkC
+         rwbfCz7VjVpZQomkzjX/WfrUmXZvrsELSZc2akKrxf+DAaM5lY4fIcdbpumyI51EN1ib
+         OORGX54MhkaBbwKhizebVSGttFzuL17dwxGlTy+DeZRSR26ZJmKN1UXsmWzsOY2IWVWG
+         jgBqaRU+rrKoJotnfCDxKhnu14IrtYsTzJmGZ/ytEtlwy2OSxEMe5kwp0/HgrhHaDABd
+         FiTg==
+X-Gm-Message-State: AO0yUKUAMZQj1ZR1d2TrOS44cUSLHfhixuU7noqaFgXcl+9X/611MSO+
+        VjZKZ/6WMfc1ClWSkyuKXDcT4pE/BiN8DO20hcF+8w==
+X-Google-Smtp-Source: AK7set/VfS77SYvoCBXeLjVPuFwQjPzNpXxw20gUzrrgPUaIYOvSb9+5aL4Cd9lr+FCStNinLRHbmx9wj26VQvZpD4w=
+X-Received: by 2002:a05:6602:348:b0:6de:383e:4146 with SMTP id
+ w8-20020a056602034800b006de383e4146mr7976471iou.48.1676018592711; Fri, 10 Feb
+ 2023 00:43:12 -0800 (PST)
 MIME-Version: 1.0
+References: <20230204133040.1236799-1-treapking@chromium.org>
+ <20230204133040.1236799-8-treapking@chromium.org> <20230207205221.GA4121517-robh@kernel.org>
+ <CAEXTbpf5KqH7zev+kooUmz2DiMya-53UmvAMJfcOYcm7CCDthQ@mail.gmail.com> <CAL_JsqJ35gJnpwfOtW8jQP2RmzJtLG2YdTC6dt7pf-GjJggORw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ35gJnpwfOtW8jQP2RmzJtLG2YdTC6dt7pf-GjJggORw@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Fri, 10 Feb 2023 16:43:01 +0800
+Message-ID: <CAEXTbpcoS6us6Qz4UmdR8zC7n-euLQr25dv4Hg2JkqVL2pX5LA@mail.gmail.com>
+Subject: Re: [PATCH v11 7/9] dt-bindings: display: bridge: it6505: Add
+ mode-switch support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        chrome-platform@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry!
+On Thu, Feb 9, 2023 at 9:58 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Feb 8, 2023 at 10:00 PM Pin-yen Lin <treapking@chromium.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > Thanks for the review.
+> >
+> > On Wed, Feb 8, 2023 at 4:52 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sat, Feb 04, 2023 at 09:30:38PM +0800, Pin-yen Lin wrote:
+> > > > ITE IT6505 can be used in systems to switch the DP traffic between
+> > > > two downstreams, which can be USB Type-C DisplayPort alternate mode
+> > > > lane or regular DisplayPort output ports.
+> > > >
+> > > > Update the binding to accommodate this usage by introducing a
+> > > > data-lanes and a mode-switch property on endpoints.
+> > > >
+> > > > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> > > >
+> > > > ---
+> > > >
+> > > > Changes in v11:
+> > > > - Updated the description of the endpoints in the bindings
+> > > > - Referenced video-interfaces.yaml instead for the endpoints binding
+> > > > - Removed duplicated definitions from inherited schema
+> > > >
+> > > > Changes in v9:
+> > > > - Fixed subject prefix again
+> > > > - Changed the naming of the example node for it6505
+> > > >
+> > > > Changes in v8:
+> > > > - Updated bindings for data-lanes property
+> > > > - Fixed subject prefix
+> > > >
+> > > > Changes in v7:
+> > > > - Fixed issues reported by dt_binding_check.
+> > > > - Updated the schema and the example dts for data-lanes.
+> > > > - Changed to generic naming for the example dts node.
+> > > >
+> > > > Changes in v6:
+> > > > - Remove switches node and use endpoints and data-lanes property to
+> > > >   describe the connections.
+> > > >
+> > > >  .../bindings/display/bridge/ite,it6505.yaml   | 101 +++++++++++++++---
+> > > >  1 file changed, 88 insertions(+), 13 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > > > index b16a9d9127dd..8ae9c5cba22c 100644
+> > > > --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > > > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > > > @@ -75,22 +75,49 @@ properties:
+> > > >        port@1:
+> > > >          $ref: /schemas/graph.yaml#/$defs/port-base
+> > > >          unevaluatedProperties: false
+> > > > -        description: Video port for DP output
+> > > > +        description:
+> > > > +          Video port for DP output. Each endpoint connects to a video output
+> > > > +          downstream, and the "data-lanes" property is used to describe the pin
+> > > > +          connections. 0, 1, 2, 3 in "data-lanes" maps to TX0, TX1, TX2, TX3,
+> > > > +          respectively.
+> > > >
+> > > > -        properties:
+> > > > -          endpoint:
+> > > > -            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > > > +
+> > > > +        patternProperties:
+> > > > +          "^endpoint@[01]$":
+> > > > +            $ref: /schemas/media/video-interfaces.yaml#
+> > > >              unevaluatedProperties: false
+> > > >
+> > > >              properties:
+> > > > +              reg: true
+> > > > +
+> > > > +              remote-endpoint: true
+> > > > +
+> > > >                data-lanes:
+> > > > -                minItems: 1
+> > > > -                uniqueItems: true
+> > > > -                items:
+> > > > -                  - enum: [ 0, 1 ]
+> > > > -                  - const: 1
+> > > > -                  - const: 2
+> > > > -                  - const: 3
+> > > > +                oneOf:
+> > > > +                  - items:
+> > > > +                      - enum: [0, 1, 2, 3]
+> > > > +
+> > > > +                  - items:
+> > > > +                      - const: 0
+> > > > +                      - const: 1
+> > > > +
+> > > > +                  - items:
+> > > > +                      - const: 2
+> > > > +                      - const: 3
+> > > > +
+> > > > +                  - items:
+> > > > +                      - const: 0
+> > > > +                      - const: 1
+> > > > +                      - const: 2
+> > > > +                      - const: 3
+> > > > +
+> > > > +              mode-switch:
+> > > > +                type: boolean
+> > > > +                description: Register this node as a Type-C mode switch or not.
+> > >
+> > > Existing users put this property in the device's node, not the endpoint.
+> > > That seems more like a property of the device, than the DP link.
+> >
+> > In our use case, we want to register two mode switches for the same
+> > device. That's why we put the "mode-switch" property in the endpoints
+> > instead of the device node.
+>
+> Then do that. Register a mode switch for each endpoint connected to a
+> USB-C connector. You can walk the graph to see what type of connector.
+>
+> The only way I could see this as an issue is you have 2 USB-C
+> connectors and one is a mode switch and one is not. Not sure if such a
+> scenario is likely or possible. If it is, please educate me.
 
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
-=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
-zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
+We can know which endpoints should be registered as a MUX by walking
+through the graph, but the typec_mux_match[1] checks if the node
+explicitly specifies a "mode-switch" property. So we still have to put
+the property in the endpoints.
 
-Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
-=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
-dostaw.
+[1]: https://elixir.bootlin.com/linux/latest/source/drivers/usb/typec/mux.c#L265
+>
+> > > You are using fwnode_typec_mux_get(), right?
+> >
+> > Yes. This is called by cros_ec_typec.c[1] in our use case.
+>
+> That code looks for 'mode-switch' in the device's node, not the
+> endpoint. So how does it work for you?
 
-Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
-nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
- co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
+We modified the function in patch 1/9 of this series to make it also
+look for endpoints.
+>
+> Rob
 
-Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
-=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
-zania w Pa=C5=84stwa firmie.
-
-
-Pozdrawiam
-Karol Michun
+Regards,
+Pin-yen
