@@ -2,152 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E0F1691C92
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:18:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE75C691CB8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:31:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231875AbjBJKSU convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Feb 2023 05:18:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39412 "EHLO
+        id S232048AbjBJKbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 05:31:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231345AbjBJKST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:18:19 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1561F6CC63;
-        Fri, 10 Feb 2023 02:18:18 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 48C4A4B3;
-        Fri, 10 Feb 2023 02:19:00 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 487C03F8C6;
-        Fri, 10 Feb 2023 02:18:16 -0800 (PST)
-Date:   Fri, 10 Feb 2023 10:18:14 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Andreas Feldner <andreas@feldner-bv.de>,
-        Andreas Feldner <pelzi@flying-snail.de>,
+        with ESMTP id S232025AbjBJKbO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:31:14 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB4C6D635
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:31:11 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id o15so1289184wrc.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:31:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EoP3N0+HyfNxDRuzpcPoBnYi1M7DcjjI/H/2+p16pBQ=;
+        b=y53wZ1cyUbE2DR60T8dKx8BlNMPI4M6CzHQq2hL7tlvbpH1a3t5yBjcGd+7Piwlibs
+         rOGJSj20Jx0vmI4MN4IcVu7tIRPYIBVPi2sw99/K8fpi+ujYrXEvxmqjQKQobzNFNX5F
+         M7OfrvbUsyiZVUnQ9ZO4G1pjoB6LacQbfiRD9yPQ0eCkklQ/tOfgGLpcewnsPcaDa9nU
+         nMeT6QRwJpKHvvn3LNne3bgKQoD+Z4nB0RfTAuzDmBj2Bn1M+ba1UXct1iBBsYdnEJQw
+         aXCyWUSEiAQeP2+1klY5QzzKJD/HTnXN03/TaylEBDBVJ85DL7891MSXaFK+/ErwzaTD
+         cVRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EoP3N0+HyfNxDRuzpcPoBnYi1M7DcjjI/H/2+p16pBQ=;
+        b=P9SLyFdClxJXlaTFrkAMcUvkIpmC05rmBQ1BpWh4lK4bPdVuF0mv1CtFP749EgtWos
+         1UrEFJZq3oec/7JBmWgW97UG+3ONUg81uSGFBpY87IuJpBkYzEiUQFPlnj+IRsIUqJ6e
+         +eqLPi3nEPlheoODUPbOrcxupZuhFrWuLfu3UGqgBnuLGYWaOFm+XtX7AK/RZfUsLOuJ
+         DYFtTo/2isTdWJ8uu9m9ZMXT7wzlPHfKkMN7iDMPctz5UkcwUDFms2b1uR6uQkVM+nBs
+         6O8rd6DXmaurMh109tKClzeEVzpnaRG0m48uotrcBK24TiduCflXbV0T6m/S7m+yA1yN
+         8HwQ==
+X-Gm-Message-State: AO0yUKV2mdlZXKpmyus26li+K6fVfJQURMEp7VOL9qEK2zke5qzv/DbR
+        JO2P7Yp77aWYNwnwTlO6gwuxBA==
+X-Google-Smtp-Source: AK7set83bAYzbIOw3hqSGA3caGrA7n0CkMX9pgiGQddnRDcI///tWiZjqyHj7uimc9mqXiVcWn0E7A==
+X-Received: by 2002:a05:6000:4:b0:2bf:ae17:bf58 with SMTP id h4-20020a056000000400b002bfae17bf58mr13181044wrx.37.1676025069861;
+        Fri, 10 Feb 2023 02:31:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5a65:5553:55cf:3027? ([2a01:e0a:982:cbb0:5a65:5553:55cf:3027])
+        by smtp.gmail.com with ESMTPSA id a1-20020a05600c348100b003db0ee277b2sm7854940wmq.5.2023.02.10.02.31.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 02:31:09 -0800 (PST)
+Message-ID: <720aee1d-87e8-5291-c6a0-ef53e830a21d@linaro.org>
+Date:   Fri, 10 Feb 2023 11:31:08 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/7] usb: typec: ucsi: add PMIC Glink UCSI driver
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
- default
-Message-ID: <20230210101814.2d36ae57@donnerap.cambridge.arm.com>
-In-Reply-To: <20230210100620.z6j7rvkiwyu7paij@houat>
-References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
-        <20230207011608.2ce24d17@slackpad.lan>
-        <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
-        <20230209202952.673d5a60@slackpad.lan>
-        <20230210082936.qefzz4fsp3jpalvp@houat>
-        <20230210094425.474cfba5@donnerap.cambridge.arm.com>
-        <20230210100620.z6j7rvkiwyu7paij@houat>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org>
+ <20230130-topic-sm8450-upstream-pmic-glink-v1-1-0b0acfad301e@linaro.org>
+ <Y9jcYdc30G026/fs@kroah.com>
+Organization: Linaro Developer Services
+In-Reply-To: <Y9jcYdc30G026/fs@kroah.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Feb 2023 11:06:20 +0100
-Maxime Ripard <maxime@cerno.tech> wrote:
+On 31/01/2023 10:16, Greg Kroah-Hartman wrote:
+> On Mon, Jan 30, 2023 at 10:54:32AM +0100, Neil Armstrong wrote:
+>> Introduce the UCSI PMIC Glink aux driver that communicates
+>> with the aDSP firmware with the UCSI protocol which handles
+>> the USB-C Port(s) Power Delivery.
+>>
+>> The UCSI messaging is necessary on newer Qualcomm SoCs to
+>> provide USB role switch and altmode notifications.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/usb/typec/ucsi/Kconfig      |   7 +
+>>   drivers/usb/typec/ucsi/Makefile     |   1 +
+>>   drivers/usb/typec/ucsi/ucsi_glink.c | 321 ++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 329 insertions(+)
+>>
+>> diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
+>> index 8f9c4b9f31f7..dee6069e46a2 100644
+>> --- a/drivers/usb/typec/ucsi/Kconfig
+>> +++ b/drivers/usb/typec/ucsi/Kconfig
+>> @@ -58,4 +58,11 @@ config UCSI_STM32G0
+>>   	  To compile the driver as a module, choose M here: the module will be
+>>   	  called ucsi_stm32g0.
+>>   
+>> +config UCSI_PMIC_GLINK
+>> +	tristate "UCSI Qualcomm PMIC GLINK Interface Driver"
+>> +	depends on QCOM_PMIC_GLINK
+> 
+> No way to test build this code without this option?
 
-> On Fri, Feb 10, 2023 at 09:44:25AM +0000, Andre Przywara wrote:
-> > On Fri, 10 Feb 2023 09:29:36 +0100
-> > Maxime Ripard <maxime@cerno.tech> wrote:
-> > 
-> > Hi Maxime,
-> > 
-> > thanks for the reply!
-> >   
-> > > On Thu, Feb 09, 2023 at 08:29:52PM +0000, Andre Przywara wrote:  
-> > > > > >>   &pio {
-> > > > > >> +	/* 1ï¿½s debounce filter on both IRQ banks */    
-> > > > > > Is that supposed to be <micro> in UTF-8? It seems to have got lost in
-> > > > > > translation, or is that just me?    
-> > > > > O yes, the Greek character slipped into the comment.    
-> > > > > >> +	input-debounce = <1 1>;    
-> > > > > > As mentioned above, I am not so sure this is generic enough to put it
-> > > > > > here for PA. And what is the significance of "1 us", in particular? Is
-> > > > > > that just the smallest value?      
-> > > > > 
-> > > > > Yes indeed it's a bit more complicated than I feel it needs to be. The
-> > > > > configuration is taken as microseconds and translated into the best
-> > > > > matching clock and divider by the driver. However, 0 is not translated
-> > > > > to the lowest divider of the high speed clock as would be logical if
-> > > > > you ask for zero microseconds, but to "leave at default". The default
-> > > > > of the board is 0 in the register, translating to lowest divider on the
-> > > > > _low_ speed clock.    
-> > > > 
-> > > > I'd say the "if (!debounce) continue;" code is just to defend against
-> > > > the division by zero, which would be the next statement to execute.
-> > > > 
-> > > > We might want to change that to interpret 0 as "lowest possible", which
-> > > > would be 24MHz/1. Please feel free to send a patch in this regard, and
-> > > > CC: Maxime, to get some input on that idea.    
-> > > 
-> > > I never had any complaint on that part either, so the default looks sane
-> > > to me.
-> > > 
-> > > If some board needs a higher debouncing rate, then we should obviously
-> > > set it up in the device tree of that board, but changing it for every
-> > > user also introduces the risk of breaking other boards that actually
-> > > require a lower debouncing frequency.  
-> > 
-> > Yeah, we definitely should keep the default at 32KHz/1, as this is also
-> > the hardware reset value.
-> > 
-> > Not sure if you were actually arguing this, but the change I sketched
-> > above (interpreting 0 as 24MHz/1) is separate though, as the current
-> > default is "no DT property", and not 0. There is no input-debounce
-> > property user in the kernel tree at the moment, so we wouldn't break
-> > anyone. The only thing that would change is if a downstream user was
-> > relying on "0" being interpreted as "skip the setup", which isn't
-> > really documented and could be argued to be an implementation detail.
-> > 
-> > So I'd suggest to implement 0 as "lowest possible", and documenting that
-> > and the 32KHz/1 default if no property is given.  
-> 
-> Ah, my bad.
-> 
-> There's another thing to consider: there's already a generic per-pin
-> input-debounce property in pinctrl.
-> 
-> Since we can't control it per pin but per bank, we moved it to the
-> controller back then, but there's always been this (implicit)
-> expectation that it was behaving the same way.
-> 
-> And the generic, per-pin, input-debounce documentation says:
-> 
-> > Takes the debounce time in usec as argument or 0 to disable debouncing  
-> 
-> I agree that silently ignoring it is not great, but interpreting 0 as
-> the lowest possible is breaking that behaviour which, I believe, is a
-> worse outcome.
+Nop, the QCOM_PMIC_GLINK is a build dependency, this can't be removed
 
-Is it really? If I understand the hardware manuals correctly, we cannot
-really turn that feature off, so isn't the lowest possible time period (24
-MHz/1 at the moment) the closest we can get to "turn it off"? So
-implementing this would bring us actually closer to the documented
-behaviour? Or did I get the meaning of this time period wrong?
-At least that's my understanding of how it fixed Andreas' problem: 1µs
-is still not "off", but much better than the 31µs of the default. The new
-0 would then be 0.041µs.
-
-Cheers,
-Andre
-
-> So I'm not sure what's the best course of action here. Rejecting the
-> configuration entirely would prevent the entire pinctrl driver from
-> probing which sounds really bad. Maybe we could just print an error that
-> we rejected it to make it more obvious?
 > 
-> Maxime
+>> +	help
+>> +	  This driver enables UCSI support on platforms that expose UCSI
+>> +	  interface as PMIC GLINK device.
+> 
+> Module name when built?
+
+OK will add a follow-patch if needed
+
+Thanks,
+Neil
+
+> 
+> A follow-on patch can be sent, this is minor.
+> 
+> thanks,
+> 
+> greg k-h
 
