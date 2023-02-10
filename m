@@ -2,50 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81288691EBC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:59:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3636C691EBF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:59:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231400AbjBJL7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:59:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60340 "EHLO
+        id S231954AbjBJL7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:59:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231769AbjBJL7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:59:34 -0500
+        with ESMTP id S231963AbjBJL7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:59:37 -0500
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D493E34035;
-        Fri, 10 Feb 2023 03:59:33 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A2834C2C;
+        Fri, 10 Feb 2023 03:59:36 -0800 (PST)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 58DDE66020D9;
-        Fri, 10 Feb 2023 11:59:31 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 30C0066020E2;
+        Fri, 10 Feb 2023 11:59:35 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676030371;
-        bh=R8WWjxf5J7RMeHFDaBzUtdy3/qBuqs+WTluEnKiLZJY=;
+        s=mail; t=1676030375;
+        bh=W2w7G0CFz52SMRlmsVCgP3JC3dX/JJaZNMtkuS6CvU8=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TBZ/yXOo0MGokwkmNaqbiMlDvg6zFAWaa3pIdeSjzURDsbPV8TpgadSPO38bsJjer
-         TC7VhAxxw+DcT4gfl+G1lFr+Y+Q1UvM2T6mgqii7KyXYTIgVmfXQd9AKvway/IxtKq
-         yWg+pvD7fCO1zGM1esebEu9XXKLCbtn1Xg0fCP3rs48pshBt/k1MIynPHBU5wBpi9+
-         zocZ37EullRo2akYQ1f2YcmlerWCoe7Mie/EVGjaumsw5b5XThOjC9OQE2XUqSKLDw
-         +oY3rNsO4oLOr8TlbsFs62FUxYulcianRupxmuDp/VD6OdpO992p6pQaTEr04Aohh2
-         ZuAL36Rj4re6Q==
-Message-ID: <75e61244-3927-d6c7-39af-520f7f1855f2@collabora.com>
-Date:   Fri, 10 Feb 2023 12:59:28 +0100
+        b=A1sEgloRL5M/48bHPh/GK4wMo5fXBgGN8SJWR5vJr4CNmxXAlL5ywkwML9Pl6ugY9
+         OhPxYBa4sP0XcGnXbZ+8EUMSYb1dJ0Z/AJQXjfPlw+TIkwynL785ya+U7XzX/vnDSl
+         FHyqlp0YkxTt7lYKkhEEGEIqLTlxLcDGPrxs5PjVC5QNShQAiRKoEuYaowBGbCZzHJ
+         ETn8sRp1GYv1xeIZ2ON0Ea1W19MOvGdftYm3QqZSeZnFVKUd9/VsNbCTGPqZxW9QUR
+         ISu/DGSoB+EHsrkpv4nzh1sxy+nYkhrgv99t35Er6ocLeC/jyfF3aB/IPNKScW71t4
+         EZcZPg8g7q2cg==
+Message-ID: <2b9471b8-1797-4190-e2ff-641f0e926fa7@collabora.com>
+Date:   Fri, 10 Feb 2023 12:59:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
-Subject: Re: [PATCH v1 1/4] arm64: dts: mt8195: Update vdosys compatible
+Subject: Re: [PATCH v1 3/4] arm64: dts: mt8195: Align vppsys node to dtschema
+Content-Language: en-US
 To:     matthias.bgg@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
 Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230209160357.19307-1-matthias.bgg@kernel.org>
-Content-Language: en-US
+ <20230209160357.19307-3-matthias.bgg@kernel.org>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230209160357.19307-1-matthias.bgg@kernel.org>
+In-Reply-To: <20230209160357.19307-3-matthias.bgg@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -60,8 +61,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 Il 09/02/23 17:03, matthias.bgg@kernel.org ha scritto:
 > From: Matthias Brugger <matthias.bgg@gmail.com>
 > 
-> In an effort to fix the vdosys implementation, the compatible has
-> changes. Fix the device tree to adhere the binding definition.
+> As the node is a syscon, this has to be reflected in the compatible and
+> the node name.
 > 
 > Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
 
