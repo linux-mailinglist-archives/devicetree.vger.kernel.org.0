@@ -2,234 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C38126920F1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6AD6920FB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:44:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232398AbjBJOkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 09:40:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38108 "EHLO
+        id S231772AbjBJOoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 09:44:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232396AbjBJOkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:40:04 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D544B74077;
-        Fri, 10 Feb 2023 06:39:59 -0800 (PST)
-Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 22A6A66020EC;
-        Fri, 10 Feb 2023 14:39:58 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676039998;
-        bh=jAmj0RGTbJe31/wJNJOtBK00bSvRA/WFct2zqCkKvQc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=n8fZM4DLbj+rsWKXPth6DfwVrom2jMbsSNsQo4LcQivcAFQILz2tx9G6H/IB4aEtB
-         YNI4hc0/OLyoiUDtMZaWRBDNkaZBxpYbMv920uqgJ/HP7e2l/eaqHDNRgXZ0mF9FW1
-         FKhDX2q4LD74iIkuJu1jgboDNgweps0UXhncQJRBi31poHST2YARS7UJeKDTfon8ev
-         deyXuj1aMcxj/z/0AsDrpWO6pWA8IrQ0yz0GGP/0IHr49D+Jo/XQqlYVq9+VL6XCk0
-         uYCS4aFJ7ToiMIZ03ElXmzGvLwRIagNtZRakD1jgfBljfMOAEwBFBYkA/uwUCpYPgw
-         XicfLV4Me+mXw==
-Message-ID: <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
-Date:   Fri, 10 Feb 2023 14:39:56 +0000
+        with ESMTP id S231680AbjBJOo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:44:29 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F87D7101F
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:44:28 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so4266924wms.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:44:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JUqcgjjujHjgkEdrCVWav46MZqcwfOU+3rk+uktWyHw=;
+        b=Tcm3kjkA01LfVgB8goZfB68FwZ9QASyREqArn5psyMdXx/nm4CJgHWDoUzWaE5/03g
+         8hd2cTfrLT1E3NvDqhrzAo1VJEmZ9tbiNmqaQ8lK0iGRhOR4561wh4x7clrw4sB/mfg1
+         rggiYF8vvQlzsnu0MFJGHdh5Am3Ibilc/tLBF8rHFpeUy3Mlu4MDrDaqYBA21XMP8x5W
+         q8ypksvm15BDjFQ1RAV2mlj1+mfRFfN8WXCEihGHi9DoHam5ziw07Qnb0jKoNY4XE6ds
+         eaDrs5x3yseXV5HBE1Q3hlnqvsTDiDSUT/HS3nDdEf7ffk6Jx5zFwsY2qW+XOFgS/V9f
+         JCRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JUqcgjjujHjgkEdrCVWav46MZqcwfOU+3rk+uktWyHw=;
+        b=o0DQXsLFyiLG11nfH2nepCxt/doV6sghM9lGueBJXhGcOXy+tHE0qEV4h+FaUfMbKT
+         wyNI86Jndn3IbbcJ10ktXRwPmGwHSOd5WHRlhddlOsu+teI3A6wBVtlRO7O5WjHTTWlk
+         0oNi+iNpLP2F+PxlAWvn/pUNyZ/a6+J/x5/ZQmyOkG9DAML4HVC06SWsd1NLnFbXFU8R
+         NDl92ExLWw6tSUvv2HOkW/Nfjgv47FduxjSNjLV7myzh0kgO3blB8GtbGr7YXysT2vBE
+         3RiJlXb+3ERS7Fdo96tg3zD6BucLLnkb1NL6BczuqgrPokhg3zeMZGLABqIYAcfGsHot
+         Rvtw==
+X-Gm-Message-State: AO0yUKVZMetBxkuFESNJ2VNCwH60YbprfOEJCexMhYH0mBegwU4l8U8f
+        1fPW90/2PMl1+5LWUZymXaMElA==
+X-Google-Smtp-Source: AK7set9Yfx6thYGeqLRFFTpxS8OxPb6iS6nN6p/mF+ff7zlCZ++CU90uPOwp6syQ2BAvxOxvTiXajQ==
+X-Received: by 2002:a05:600c:4b1b:b0:3d9:f836:3728 with SMTP id i27-20020a05600c4b1b00b003d9f8363728mr12967771wmp.11.1676040266901;
+        Fri, 10 Feb 2023 06:44:26 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id l40-20020a05600c1d2800b003dd1b00bd9asm6103000wms.32.2023.02.10.06.44.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Feb 2023 06:44:26 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/5] arm64: dts: qcom: add DP Controller to SM8350 &
+ SM8450 DTS
+Date:   Fri, 10 Feb 2023 15:44:20 +0100
+Message-Id: <20230206-topic-sm8450-upstream-dp-controller-v3-0-636ef9e99932@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v5 3/4] ALSA: cs35l41: Add shared boost feature
-Content-Language: en-US
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     David Rhodes <david.rhodes@cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230210091942.10866-1-lucas.tanure@collabora.com>
- <20230210091942.10866-4-lucas.tanure@collabora.com>
- <20230210134341.GF68926@ediswmail.ad.cirrus.com>
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-In-Reply-To: <20230210134341.GF68926@ediswmail.ad.cirrus.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAERY5mMC/52OQQ6CMBBFr0K6dswwUEVX3sO4KHSUJrUlUyAaw
+ 92t7Fzq8v3Fe/+lEovjpI7FSwnPLrkYMlSbQnW9CTcGZzMrQqqQcAdjHFwH6d7UGmEa0ihs7mA
+ H6GIYJXrPAoSoa9NSg5ZVNrUmMbRiQtdnV5i8z+MgfHWPNX2+ZO5dGqM81ydz+Vl/i84lIFzLq
+ tbNntiWh5N3wUjcRrmpT2CmP6SUpZoO1hBhtdPf0mVZ3pB6XpFBAQAA
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-02-2023 13:43, Charles Keepax wrote:
-> On Fri, Feb 10, 2023 at 09:19:41AM +0000, Lucas Tanure wrote:
->> Shared boost allows two amplifiers to share a single boost circuit by
->> communicating on the MDSYNC bus.
->> The passive amplifier does not control the boost and receives data from
->> the active amplifier.
->>
->> Shared Boost is not supported in HDA Systems.
->> Based on David Rhodes shared boost patches.
->>
->> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
->> ---
-> 
-> Ok I found a copy of David's internal patch which helps a litte.
-> 
->> --- a/sound/soc/codecs/cs35l41-lib.c
->> +++ b/sound/soc/codecs/cs35l41-lib.c
->> @@ -1114,12 +1114,31 @@ static const struct reg_sequence cs35l41_reset_to_safe[] = {
->>   	{ 0x00000040,			0x00000033 },
->>   };
->>   
->> +static const struct reg_sequence cs35l41_actv_seq[] = {
->> +	/* SYNC_BST_CTL_RX_EN = 0; SYNC_BST_CTL_TX_EN = 1 */
->> +	{CS35L41_MDSYNC_EN,        0x00001000},
-> 
-> David's internal patch appears to set 0x3000 on the active side,
-> not sure where that difference snuck in, or which is the correct
-> value. Your settings appear to make logical sense to me though, TX
-> on the active side, RX on the passive side.
-Yes, I an e-mail David said that the passive was controlling the boost 
-and out putting the value to the active one, but in the Documentation 
-patch he sent the explanation was exactly the opposite.
+Switch the QMP PHY to the newly documented USB3/DP Combo PHY
+bindings at [1] and add the DP controller nodes.
 
-Quote:
-" The passive amplifier does not control the boost and receives data 
-from the active amplifier."
+The DP output is shared with the USB3 SuperSpeed lanes and is
+usually connected to an USB-C port which Altmode is controlled
+by the PMIC Glink infrastructure in discution at [2] & [3].
 
-And as the patch sets TX and RX in the same chip I changed to follow the 
-documentation.
+DT changes tying the DP controller to the USB-C port on the HDK
+boards will be sent later.
 
-> 
->> +	/* BST_CTL_SEL = CLASSH */
->> +	{CS35L41_BSTCVRT_VCTRL2,    0x00000001},
-> 
-> BST_CTL_SEL is in BSTCVRT_VCTRL1 (or BOOST_VOLTAGE_CFG, as it
-> is called in the datasheet, yay us for using the same names).
-> That does not mean this write is wrong, could just be the
-> comment, but what this does write is a bit odd so I would like
-> David to confirm this isn't some typo in his original patch.
+Bindings dependencies at [1]
 
-I can't find BOOST_VOLTAGE_CFG on my datasheet, but BST_CTL_SEL is at 
-0x00003804 ( BSTCVRT_VCTRL2 / VBST_CTL_2 ).
-This write here is to select the boost control source, which for the 
-active should be "Class H tracking value".
-So I still think this is correct.
+[1] https://lore.kernel.org/all/20230206-topic-sm8350-upstream-usb-dp-combo-phy-v1-1-ed849ae6b849@linaro.org/
+[2] https://lore.kernel.org/all/20230201041853.1934355-1-quic_bjorande@quicinc.com/
+[3] https://lore.kernel.org/all/20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org/
 
-> 
->> +};
->> +
->> +static const struct reg_sequence cs35l41_pass_seq[] = {
->> +	/* SYNC_BST_CTL_RX_EN = 1; SYNC_BST_CTL_TX_EN = 0 */
->> +	{CS35L41_MDSYNC_EN,        0x00002000},
->> +	/* BST_EN = 0 */
->> +	{CS35L41_PWR_CTRL2,        0x00003300},
->> +	/* BST_CTL_SEL = MDSYNC */
->> +	{CS35L41_BSTCVRT_VCTRL2,    0x00000002},
-> 
-> Ditto here, comment doesn't match the write.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Added Reviewed-by, Tested-by tags
+- Used QMP PHY constants for phandle parameters
+- Dropped reordering of mdp ports
+- Added p1 dp regs address space
+- Link to v2: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v2-0-529da2203659@linaro.org
 
-Same as above, re-write to be the passive, with RX not TX.
+Changes in v2:
+- fixed the bindings
+- cleaned up the usb_1_qmpphy &  displayport-controller nodes as requested by dmitry
+- removed invalid mdss_dp0 change in sm8450-hdk.dts
+- Link to v1: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v1-0-f1345872ed19@linaro.org
 
-> 
->> -int cs35l41_global_enable(struct regmap *regmap, enum cs35l41_boost_type b_type, int enable)
->> +int cs35l41_global_enable(struct regmap *regmap, enum cs35l41_boost_type b_type, int enable,
->> +			  struct completion *pll_lock)
->>   {
->>   	int ret;
->> +	unsigned int gpio1_func, pad_control, pwr_ctrl1, pwr_ctrl3;
->> +	struct reg_sequence cs35l41_mdsync_down_seq[] = {
->> +		{CS35L41_PWR_CTRL3,		0},
->> +		{CS35L41_GPIO_PAD_CONTROL,	0},
->> +		{CS35L41_PWR_CTRL1,		0, 3000},
->> +	};
->> +	struct reg_sequence cs35l41_mdsync_up_seq[] = {
->> +		{CS35L41_PWR_CTRL3,	0},
->> +		{CS35L41_PWR_CTRL1,	0x00000000, 3000},
->> +		{CS35L41_PWR_CTRL1,	0x00000001, 3000},
->> +	};
->>   
->>   	switch (b_type) {
->> +	case CS35L41_SHD_BOOST_ACTV:
->> +	case CS35L41_SHD_BOOST_PASS:
->> +		regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
->> +		regmap_read(regmap, CS35L41_GPIO_PAD_CONTROL, &pad_control);
->> +
->> +		pwr_ctrl3 &= ~CS35L41_SYNC_EN_MASK;
->> +		pwr_ctrl1 = enable << CS35L41_GLOBAL_EN_SHIFT;
-> 
-> Are you sure this is what you want? In the case of powering up,
-> the sequence would end up being:
-> 
-> mdsync_down
->   -> sets GLOBAL_EN on
-> mdsync_up
->   -> sets GLOBAL_EN off
->   -> sets GLOBAL_EN on
-> 
-> Feels like mdsync_down should always turn global_enable off? But
-> again I don't know for sure. But then I guess why is there the
-> extra write to turn it off in mdsync_up? 
+---
+Neil Armstrong (5):
+      dt-bindings: display: msm: dp-controller: document SM8450 compatible
+      arm64: dts: qcom: sm8350: switch to combo usb3/dp phy
+      arm64: dts: qcom: sm8350: add dp controller
+      arm64: dts: qcom: sm8450: switch to usb3/dp combo phy
+      arm64: dts: qcom: sm8450: add dp controller
 
-For the disable case (DAPM turning everything off) SYNC and Global 
-enable are off and the code hits
+ .../bindings/display/msm/dp-controller.yaml        |  25 +++--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 121 ++++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 121 ++++++++++++++++-----
+ 3 files changed, 203 insertions(+), 64 deletions(-)
+---
+base-commit: 2c733385c7b8923b03e9730b87f595589a007b46
+change-id: 20230206-topic-sm8450-upstream-dp-controller-20054ab280de
 
-if (!enable)
-	break;
-
-But for for enable case (DAPM turning everything On) the code continues 
-enabling SYNC_EN, and turning off Global enable, as requested by
-"4.10.1 Multidevice Synchronization Enable" page 70.
-But as it is a enable path Global should be enabled again.
-
-I can't see any sign of
-> GLOBAL_EN bouncing in David's internal patch.
-
-Yes, but it is required by :
-"4.10.1 Multidevice Synchronization Enable" page 70.
-
-Thanks
-Lucas
-
-> 
->> +
->> +		gpio1_func = enable ? CS35L41_GPIO1_MDSYNC : CS35L41_GPIO1_HIZ;
->> +		gpio1_func <<= CS35L41_GPIO1_CTRL_SHIFT;
-> 
-> Hm... this is a good point, probably would be nice to return an
-> error if the user sets a shared boost mode and a specific function
-> for the GPIO1 pin.
-> 
->> +		pad_control &= ~CS35L41_GPIO1_CTRL_MASK;
->> +		pad_control |= gpio1_func & CS35L41_GPIO1_CTRL_MASK;
->> +
->> +		cs35l41_mdsync_down_seq[0].def = pwr_ctrl3;
->> +		cs35l41_mdsync_down_seq[1].def = pad_control;
->> +		cs35l41_mdsync_down_seq[2].def = pwr_ctrl1;
->> +		ret = regmap_multi_reg_write(regmap, cs35l41_mdsync_down_seq,
->> +					     ARRAY_SIZE(cs35l41_mdsync_down_seq));
->> +		if (!enable)
->> +			break;
->> +
->> +		if (!pll_lock)
->> +			return -EINVAL;
->> +
->> +		ret = wait_for_completion_timeout(pll_lock, msecs_to_jiffies(1000));
->> +		if (ret == 0) {
->> +			ret = -ETIMEDOUT;
->> +		} else {
->> +			regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
->> +			pwr_ctrl3 |= CS35L41_SYNC_EN_MASK;
->> +			cs35l41_mdsync_up_seq[0].def = pwr_ctrl3;
->> +			ret = regmap_multi_reg_write(regmap, cs35l41_mdsync_up_seq,
->> +						     ARRAY_SIZE(cs35l41_mdsync_up_seq));
->> +		}
->> +		break;
-> 
-> Thanks,
-> Charles
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
