@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6C76691CC1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8527691CCE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:35:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232012AbjBJKc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 05:32:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
+        id S232090AbjBJKe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 05:34:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232009AbjBJKc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:32:58 -0500
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790416D609
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:32:57 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-52bfa3dfd95so61843637b3.9
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:32:57 -0800 (PST)
+        with ESMTP id S232084AbjBJKe5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:34:57 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D9F06D622
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:34:55 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so5936142wmb.4
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:34:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=T1MawgD5LNBGzOmeVRwqtAYkl3sDhmQa4D6GTdWIOGM=;
-        b=DG9/ACm943ayV14N7GO9Kglp2CJZguAFiwBJtEWgbvAIM94k8oD0hn3M/RYo+kEnFd
-         VaHGe4PzJD08j1j6Mnjcce0iDAMZ+Hlf88WWeChh1GiBcXcRLaWgzAdxwuNHD6rGEg7a
-         ck+6iCh/rO5qW8xJBYlO1wgJOx1a6q4ofawz53BTDZ6w6SoiH/BowN5OO0LDKKpqXtys
-         TjMhQccSGSwS+XDNuQIpBU+yu5XX9C7HTtb5QTSNxOX4uwCkA7Th+LcNqUJrpTym4deR
-         PRkHOsy761yd0Z9oELZwsetJX5ua/1PtEjqp84DY/jJBUjBvj4fZNWFMUS4wVGwgicsC
-         mtZQ==
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8XZSQeymgbSKF089aMqGe9wzwMVmhXvBiXAbN2uEqt8=;
+        b=lzHJBaJl8AJTpnefmvl94FhPLlq5ip7BTHqmKgHyD1SWYoYi7hUbDVVFdYcIfo7zu5
+         hCFEn2aLgEx4wJBDAj6ZxoPX6fmiaCxqsFCU2KzGX4ehNSGESszrSq1Sd9MxOlEVb9RM
+         L84COcM9LjwmBe/RAeina+Ux+fbWBOXRwlVx49HFay0j5x5lNHDVEoX8L0cQnphTT5I9
+         UYoXQN9atsK9aIvcK9fWsk9FhNO49ZnW1wm24VwGEJwJSgs1bkCnZcybWGZ3WXZsKFIv
+         cymIySIBkkZgxKYurb8wZqoQSkeBMQkmYKeuHI8R71dk2idM1DqXmkBdzZl05JTf9RA2
+         Z6Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=T1MawgD5LNBGzOmeVRwqtAYkl3sDhmQa4D6GTdWIOGM=;
-        b=xEH3V20lIBdu2s95J3TMrZ9PWxvfLFX+izQTWCywhMX2ilKxcmK4f0du695mW8hkrJ
-         VQ7VN98fLqJ2lrbWG/58hU7nJQs0E9KD6rZp65gAj9x8nCxif9dJpycd5VLijmyHO7Rw
-         blIIFAR32E4+hkiZQFrFikCszsIdVWqXIN8NFb+krAbXjrUKqJl6Epc4e9QXQYXoJeGU
-         rP0lo5c3bKwpzq3sAuGWCftNrgVXsHbfGFWGusckwSlBBAEWtzY74uKZVuBSOhkJ/a/H
-         ZHp4/i0WwSihsv5HilyfnfTaUny9mXZtsLS3nB/v2huDRxmFGzrntUl+oqR/LhSBPmt4
-         Gl/Q==
-X-Gm-Message-State: AO0yUKWawAdr3C+b1oGCO2xbZkCHhitWOkIEUezfVTUhGFJGRZmOT/j+
-        LGHTLG/64D+axBUS+wAkosZVTkkyL4faY6kiLPL23A==
-X-Google-Smtp-Source: AK7set+yHiwZIUkgKfyIp0RgEEYwOLV5C6zFmOqExHmj2S2WWZXngZCB6wlaPcHpfPh3Dytgvp9+GxR7KmPD3b+wz08=
-X-Received: by 2002:a81:62c2:0:b0:506:79fc:3df6 with SMTP id
- w185-20020a8162c2000000b0050679fc3df6mr1413118ywb.127.1676025176713; Fri, 10
- Feb 2023 02:32:56 -0800 (PST)
+        bh=8XZSQeymgbSKF089aMqGe9wzwMVmhXvBiXAbN2uEqt8=;
+        b=4smvcU5UoCwyXwT1UM4X9pahWP9ep383QoqxG7d6GcXvuamNTsLYXA+xJl4xRpfjx7
+         say3Euxmkh0r2MSPSv1FP1nXQ6JlA+hYyfnIEBD5ZtWd2puWh0olG6q9TqHh8T+VvDZ8
+         hYqvsrY+X8IdzpQRqluX5D97bb2Jf5SiCUI+K4KaTbZyCK9CXyNa0bby91FQEIZm+hpk
+         xeDaF74mY1B/ARML/6BYwauAMHI3Xlo1TAJfk+YoXmA+B4Ts/e18Fmsy7hzYUu7CiHMc
+         X3ZFA6Xpt3CbavzPDIZFQwguchK+md/efQX2Y6c80p/MQ70lVs9XkoK90vMkV/KU+ioG
+         jK7w==
+X-Gm-Message-State: AO0yUKWep9Ie4PWl2gv9x8NcliQDjKa7G/xTy4+58oRtiRiorfafF2/d
+        g15OkxBif/7p+bhFw3uqFE3O78cgvKxX3jwNfls=
+X-Google-Smtp-Source: AK7set9T2/fE1SAQdTpAMcLuRXTrYLj5mQyAfoiq6FSHMrseUqen3bW1riS3g/jAfnvbHBDI5yAzug==
+X-Received: by 2002:a05:600c:993:b0:3e1:577:80f5 with SMTP id w19-20020a05600c099300b003e1057780f5mr10366027wmp.31.1676025294226;
+        Fri, 10 Feb 2023 02:34:54 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id b18-20020a05600c4e1200b003e00c453447sm7937958wmq.48.2023.02.10.02.34.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Feb 2023 02:34:53 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/5] arm64: dts: qcom: add DP Controller to SM8350 &
+ SM8450 DTS
+Date:   Fri, 10 Feb 2023 11:34:49 +0100
+Message-Id: <20230206-topic-sm8450-upstream-dp-controller-v2-0-529da2203659@linaro.org>
 MIME-Version: 1.0
-References: <20230209133839.762631-1-dmitry.baryshkov@linaro.org> <3fe5605e-de5a-53dc-0bf0-c6aff81f2453@linaro.org>
-In-Reply-To: <3fe5605e-de5a-53dc-0bf0-c6aff81f2453@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 10 Feb 2023 12:32:45 +0200
-Message-ID: <CAA8EJpoj3xepq032n1q2UmKGAk5k0q5DJPe15UcJz+tkrwNWNg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] arm64: dts: qcom: sm8350: enable GPU on the HDK board
-To:     neil.armstrong@linaro.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMkd5mMC/5WOQQ6DIBBFr9Kw7jSA2tqueo/GBcKoJAhkQNPGe
+ PdSb9Dle4v//sYSksXEHqeNEa422eALyPOJ6Un5EcGawkxyWXHJr5BDtBrS3NYNhyWmTKhmMBF
+ 08JmCc0ggOW9q1cuWG2RlqVcJoSfl9VS2/OJckZFwsO8j/eoKTzblQJ/jySp+9r/oKoDDIKq6a
+ W8Sjbg/nfWKwiXQyLp937+lTmzz7AAAAA==
+To:     Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -76,70 +86,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Feb 2023 at 10:29, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> On 09/02/2023 14:38, Dmitry Baryshkov wrote:
-> > Add A660 device to the Qualcomm SM8350 platform and enable it for the
-> > sm8350-hdk board. Unfortunately while adding the GPU & related devices I
-> > noticed that DT nodes on SM8350 are greatly out of the adress sorting
-> > order, so patches 2-4 reorder DT nodes to follow the agreement.
-> >
-> > Changes since v1:
-> > - Dropped merged patches
-> > - Expanded commit messages to mention the sort order (by the node
-> >    address)
-> > - Rebased on top of latest Bjorn's tree
->
-> Can you specify which tree and commit ?
->
-> I tried next-20230207, next-20230208 & next-20230209 and patch 2 doesn't apply.
+Switch the QMP PHY to the newly documented USB3/DP Combo PHY
+bindings at [1] and add the DP controller nodes.
 
-It was crafted on top of Bjorn's tree and as such it applies on top of
-20230210 without any issues.
+The DP output is shared with the USB3 SuperSpeed lanes and is
+usually connected to an USB-C port which Altmode is controlled
+by the PMIC Glink infrastructure in discution at [2] & [3].
 
->
-> On the 3 trees I have:
-> d7133d6d25fb arm64: dts: qcom: sm8350: use qcom,sm8350-dsi-ctrl compatibles
-> b904227a4b69 arm64: dts: qcom: sm8350: Hook up DSI1 to MDP
-> 2a07efb8c086 arm64: dts: qcom: sm8350: Add mdss_ prefix to DSIn out labels
-> e3e654ced376 arm64: dts: qcom: sm8350: Fix DSI PLL size
-> 45cd807de143 arm64: dts: qcom: sm8350: Fix DSI PHY compatibles
-> 0af6a4012b38 arm64: dts: qcom: sm8350: Feed DSI1 PHY clocks to DISPCC
-> 1eed7995d9da arm64: dts: qcom: sm8350: Fix DSI1 interrupt
-> 6636818ecf0f arm64: dts: qcom: sm8350: Add missing #address/size-cells to DSIn
-> f3c08ae6fea7 arm64: dts: qcom: sm8350: Pad addresses to 8 hex digits
-> 1ccad21aa996 Merge tag 'qcom-arm64-fixes-for-6.2' into arm64-for-6.3
-> ...
->
-> Can you use --base in format-patch (or use b4 prep !) ?
->
-> Thanks,
-> Neil
->
-> >
-> > Changes since v1:
-> > - Fixed the subject and commit message for patch 1
-> > - Fixed GMU's clocks to follow the vendor kernel
-> > - Marked Adreno SMMU as dma-coherent
-> > - Dropped comments targeting sm8350 v1, we do not support that chip
-> >    revision.
-> >
-> > Dmitry Baryshkov (6):
-> >    dt-bindings: display/msm/gmu: add Adreno 660 support
-> >    arm64: dts: qcom: sm8350: reorder device nodes
-> >    arm64: dts: qcom: sm8350: move more nodes to correct place
-> >    arm64: dts: qcom: sm8350: finish reordering nodes
-> >    arm64: dts: qcom: sm8350: add GPU, GMU, GPU CC and SMMU nodes
-> >    arm64: dts: qcom: sm8350-hdk: enable GPU
-> >
-> >   .../devicetree/bindings/display/msm/gmu.yaml  |    1 +
-> >   arch/arm64/boot/dts/qcom/sm8350-hdk.dts       |    8 +
-> >   arch/arm64/boot/dts/qcom/sm8350.dtsi          | 2512 +++++++++--------
-> >   3 files changed, 1354 insertions(+), 1167 deletions(-)
-> >
->
+DT changes tying the DP controller to the USB-C port on the HDK
+boards will be sent later.
 
+Bindings dependencies at [1]
 
+[1] https://lore.kernel.org/all/20230206-topic-sm8350-upstream-usb-dp-combo-phy-v1-1-ed849ae6b849@linaro.org/
+[2] https://lore.kernel.org/all/20230201041853.1934355-1-quic_bjorande@quicinc.com/
+[3] https://lore.kernel.org/all/20230130-topic-sm8450-upstream-pmic-glink-v1-0-0b0acfad301e@linaro.org/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- fixed the bindings
+- cleaned up the usb_1_qmpphy &  displayport-controller nodes as requested by dmitry
+- removed invalid mdss_dp0 change in sm8450-hdk.dts
+- Link to v1: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v1-0-f1345872ed19@linaro.org
+
+---
+Neil Armstrong (5):
+      dt-bindings: display: msm: dp-controller: document SM8450 compatible
+      arm64: dts: qcom: sm8350: switch to combo usb3/dp phy
+      arm64: dts: qcom: sm8350: add dp controller
+      arm64: dst: qcom: sm8450: switch to usb3/dp combo phy
+      arm64: dts: qcom: sm8450: add dp controller
+
+ .../bindings/display/msm/dp-controller.yaml        |  25 +++--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 122 +++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 123 ++++++++++++++++-----
+ 3 files changed, 202 insertions(+), 68 deletions(-)
+---
+base-commit: 20f513df926fac0594a3b65f79d856bd64251861
+change-id: 20230206-topic-sm8450-upstream-dp-controller-20054ab280de
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Neil Armstrong <neil.armstrong@linaro.org>
+
