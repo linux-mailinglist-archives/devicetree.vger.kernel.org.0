@@ -2,104 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B23691E51
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8080691E5F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231814AbjBJLbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:31:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43642 "EHLO
+        id S231889AbjBJLeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:34:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231935AbjBJLbo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:31:44 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099626ADD1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:31:43 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id f23-20020a05600c491700b003dff4480a17so5289704wmp.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:31:42 -0800 (PST)
+        with ESMTP id S231882AbjBJLeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:34:00 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6710272DC2
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:33:46 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id ba1so4768395wrb.5
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:33:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+fkGBGr95U+qrVIC9uAZjtOGVLAEHb6P+HpqT5os4ec=;
-        b=C2Z685sdL3QNJbkbChCFUGy/wgUn4zWw3tnLrbJYbDypS0y0Q5iJORk1/IFHWd2mSZ
-         4DPHq7DZHEjaL1m6gXsoZzuAnvkDFP+Gd2GjDavBFfePj41wU9WqMtRO6EqMyGtz/R+m
-         dIS/qLWbY8EbVNeBPo/yoxuJl1psj629D4iT+1uV0bg0bwvLeWCz1nl1Voms9nEg+2Zw
-         jGnYhk3GcxjX+R6jxy8W0lQCnpZzwsl8J+bxOZPyhi/2llo2AFk5JqS55/rwntHP3LdT
-         9NZMN/lu6k+xsCGHQAFAtk+toem+1cdeX1RzjjUeemkZHinvtBtfQl+eAxNhM6Dv0d8V
-         8njA==
+        bh=L24ZYQXVUaFcxVZjnJ4h/yK6UJ8A4vFjYSvIAf+wKNo=;
+        b=FTcH6VwikNtTRT5l1ycXuunT71/9B1P0kYVP741ljPnx4rR3IjD58WeoSRura4RH+9
+         7KjIHJmAFk1ISxjrBtNxJ4P4rezuOXmNrW1gFWetK3KYTukBHozP4xxite+6eLgRIUj5
+         pdYkpBFq4Ahp1apaPJQryi84MQE4UeBSWPjaYDcIS5X4T6JqobAGeiQ/eEWm+Sx9GyTx
+         DDaOlt9XLfSfpiA+SDTsvo+Vk5RyF6AXqxKrKDrl+xu+v65MUBNR+H755joPc5U0388J
+         4Ddypl4z19Y2JK+nVHWsrBq6L3Ha3vUVNNX3mlOM0gyCZ93uEcEmeKc1CAwz0Qm+QddY
+         7hlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+fkGBGr95U+qrVIC9uAZjtOGVLAEHb6P+HpqT5os4ec=;
-        b=teJBzz+7MUN6968Ih2Y6D5M2iEVZqa21bsKREv42mCSGjC1Y5DJRa8t8Msi4vBQKom
-         K6ISlPzogFuVfhHUWHmF+x0rm+QeVNZ88RywvGLnNkGGfRQB7ZHxzJWwb2/dP0WhKMdl
-         9JOaMLwpvtYPz1VrC0ONjeZMJUikJAMdZbfxOCHQaN3nZJA0+V6qU1fG8ofSSURek8HP
-         1y4JPCer4oa1NNJuj6yUhpVUKtJyOzytiRaUaVEjb01XQ2vWTtd8tvK8IfRwhh1LRW3z
-         DY/PKKTL3ejFxT335ThDUW0LGKZTDXA3a06K8K4xVgwuYC43V5xNP2JMYfVGcUOkUtUS
-         z+RQ==
-X-Gm-Message-State: AO0yUKUnLrOTHcQSHFTR3qbuhMl79jNC8SzpISoMf1bVovXQWslaCZ12
-        YDZeRp/bAH91zhY1sJPwzSDcvQ==
-X-Google-Smtp-Source: AK7set8Ks+xOIu4NjxStV+AEAvbuyg368JTwQzaml5z21nUEgP5oAuUJDuSxL5cIEMWaihVm+0YOkQ==
-X-Received: by 2002:a05:600c:45cf:b0:3df:9858:c03c with SMTP id s15-20020a05600c45cf00b003df9858c03cmr9537555wmo.17.1676028701638;
-        Fri, 10 Feb 2023 03:31:41 -0800 (PST)
+        bh=L24ZYQXVUaFcxVZjnJ4h/yK6UJ8A4vFjYSvIAf+wKNo=;
+        b=l9jdtTp9mCKpLNRqsf+qRlj3s6mY/63r49C84taZsPyuIQryI77PeGco67fjmkkOWI
+         r5H19GBIkYchjJBNOeeKC6T5yt+R/sGEnk3QXFGVt38tLV0/3IGu+EBJnGgVjeHJKB3Q
+         dRPB7FxJqpEKSrrhBKdsQzwzLfop3Eu/9jxXhYKdShHV0Lj86CAUTy7Wh/4oCmE54tHE
+         n1PStcJv6sfGpzcvHZc4RNjo9xDNrbTju8E/1DqS5Mcpb7XrhagfXEbRDpSTEBSr7eoH
+         +9qKu26VkMh4n/RRw2rhXESkuGVmMKZ+i0gv8NA5HmeJY/hyVftSD9hDCjU5/bGvFBkb
+         gTSA==
+X-Gm-Message-State: AO0yUKUDMXVkA4Awr6uLbEA6kS49RoBfl25o3u0O9ABBGQsQrBc+3EEu
+        Y0h0giJcqgI9Mx6NRmvMQIQDPA==
+X-Google-Smtp-Source: AK7set/HaqsvPluiOKrBX5uvMfObqaydOBTJS3Q4mwFA4S735gUUTGtca0BfR0u4UUvsxuOrqdinyA==
+X-Received: by 2002:a05:6000:1803:b0:2bf:afaf:9d71 with SMTP id m3-20020a056000180300b002bfafaf9d71mr13338512wrh.48.1676028824975;
+        Fri, 10 Feb 2023 03:33:44 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05600c198e00b003dff870ce0esm8611529wmq.2.2023.02.10.03.31.40
+        by smtp.gmail.com with ESMTPSA id n10-20020adffe0a000000b002c3ec35f360sm3321345wrr.56.2023.02.10.03.33.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:31:41 -0800 (PST)
-Message-ID: <cd94db40-32c1-6541-c1a7-bf937802e464@linaro.org>
-Date:   Fri, 10 Feb 2023 12:31:39 +0100
+        Fri, 10 Feb 2023 03:33:44 -0800 (PST)
+Message-ID: <dd77a886-5ab4-c6d3-bb84-5849c411aa7b@linaro.org>
+Date:   Fri, 10 Feb 2023 12:33:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] mips: dts: ralink: mt7621: add phandle to system
- controller node for watchdog
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm845-oneplus: add
+ tri-state-key
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20230210065621.598120-1-sergio.paracuellos@gmail.com>
- <20230210065621.598120-3-sergio.paracuellos@gmail.com>
- <23d2f23f-b063-c417-e85d-40f09b509d04@linaro.org>
- <CAMhs-H-rozEWNvRV0_CA1UeAZ9YJtg8PsHWjRnwBZp8ojqOcjQ@mail.gmail.com>
+To:     Gergo Koteles <soyer@irl.hu>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Caleb Connolly <caleb@connolly.tech>
+References: <20230209232556.91554-1-soyer@irl.hu>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H-rozEWNvRV0_CA1UeAZ9YJtg8PsHWjRnwBZp8ojqOcjQ@mail.gmail.com>
+In-Reply-To: <20230209232556.91554-1-soyer@irl.hu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2023 12:29, Sergio Paracuellos wrote:
-> Hi Krzysztof,
+On 10/02/2023 00:25, Gergo Koteles wrote:
+> The tri-state-key is a sound profile switch found on the OnePlus 6,
+> Android maps the states to "mute", "vibrate" and "ring". Expose them as
+> ABS_SND_PROFILE events.
+> The previous GPIO numbers were wrong. Update them to the correct
+> ones.
 > 
-> On Fri, Feb 10, 2023 at 12:00 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 10/02/2023 07:56, Sergio Paracuellos wrote:
->>> To allow to access system controller registers from watchdog driver code
->>> add a phandle in the watchdog 'wdt' node. This avoid using arch dependent
->>
->> ??? This does not make sense.
-> 
-> What do you mean? The commit message itself? I need the phandle to
-> 'sysc' system controller node for accessing reset status registers
-> inside the watchdog driver code.
+> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: Gergo Koteles <soyer@irl.hu>
 
-The message makes sense. The message for the code does not make anymore.
-I meant, you want to access system controller registers from watchdog,
-so you add syscon to watchdog...
+Where are other patches? I got only 3/3.
+
+> ---
+>  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 39 ++++++++++++++++++-
+>  1 file changed, 38 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> index 64638ea94db7..e45d4fdead82 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> @@ -52,6 +52,43 @@ key-vol-up {
+>  		};
+>  	};
+>  
+> +	tri-state-key {
+> +		compatible = "gpio-keys";
+> +		label = "Tri-state key";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&tri_state_key_default>;
+
+Missing blank line.
+
+> +		state-top {
+
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
+
 
 Best regards,
 Krzysztof
