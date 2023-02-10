@@ -2,116 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26ACC691DEB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7B8691DE9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbjBJLOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:14:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55094 "EHLO
+        id S231491AbjBJLO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:14:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231954AbjBJLOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:14:48 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BC8772DE8
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:14:20 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so3811317wms.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:14:20 -0800 (PST)
+        with ESMTP id S231400AbjBJLOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:14:55 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2EC272AF
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:14:26 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id m2so14881249ejb.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:14:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5b+yVSfBFeZHjbbMYH6BQhmXFltHa3Qt3/YVtSfAf1A=;
-        b=EzYFV0WX/cXIrguAo5DNgvSDhZTz8eNXyu7IwoN+GmDXPvfzld7Gt0d+0FDICPGQit
-         hwqJGhUYdXhiE1NZTyaNn6asWYaFdjG9GrpDNnNLzKXpkLsDk4yicw6ezMDUwb6I1BE8
-         fN6aowfYcUJRC4gLAfpPyiZCv1hhb6ZtX/qUkRuZ7ZnUXWdoKIjBkCwY2iigvlpz41H3
-         DTQj35jQFl+PWEoK4gnblwo+bGF8mNZySlsB0dhouXWnE0nHTPcFKViowtqQdiQoiAUg
-         L/FRLcyFtD3tnYkBo3XOeA/mCT2LUHxdj/LeEoo0tcAzHKcRVN97RcK6PmEgb2R2ZF0G
-         zrOQ==
+        bh=0grgAqJN0xknu8n5/Ukj+HgzecxXCJVi84wvQRhRSfg=;
+        b=NwkxdlwfyIztSAyEmYXf0vfZvRy8Zn4bdBpmk5cNxPABOS8N6Bmq+cbLvtCUWCpX/D
+         6yp9AWUZTFmwzF8xYcM5hdr2k+64gDXT2SmP41Z8TuiDK1bUUseTx0nu5fZtgMkcZMiV
+         ua1xyyGz6ENhbZyh7gyy+pIvnpf1ubnKI09sSV03GchZ4xu0cVvtuVIde7lYPd0yXmBh
+         5Y1WxASnOtvemPUy0aPSJmIRUXG0ztLl18I3uXKXPXjGnGEpJSxteHRkcBfArhahiSNA
+         LgtP3sE4FwqvVyWTm86AlyyCR6j6fFUNeekIaS49YC7TWjV75nuKKW4IYsN+UUd/Ijlf
+         8oxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5b+yVSfBFeZHjbbMYH6BQhmXFltHa3Qt3/YVtSfAf1A=;
-        b=uJKmG1QFZJ4Ln7izj1SLhOpoqTxnIsN55sj+IEYHMYtCI03Yg3Z1sEvaJOXZF01MZZ
-         pUX4FEy5w+ya5qOROt8lhbbQkW3acnEWX66l2NRDRoRAFMbe+qDfMRruUrWtY1Pr4VLy
-         wO4oLwAdJyERETQpS8A/02kLfEZA2kh7FHAxi5BUQ6rATnrX8jCgC1i9NDMXazGmWwk0
-         pihg4kXtdb7GtpnHCf+gEgQmENxnpLdipUIkOxq85niD/rl+W4Kr83hIAZfQAzy5lAnK
-         51VzlqZHSr68HXONA/Nm7PjzIy6Jug9Q85y9eMVzfwwTJwuWZlx9tsS2AUXpNewbeYWS
-         YnbQ==
-X-Gm-Message-State: AO0yUKUhEOWh5PhcSdO10hGsMre2UBaKbaATh/dYoT4a4I00p0F7e9ot
-        05TkF1dDW/UpGrgQpUwjZfvcwQ==
-X-Google-Smtp-Source: AK7set/pOE7BMe56hO0DEZ5F9vS1ipJHrd5K89AnU0ajKIXsAw5OZ+LT5izjSQ0DLsFjqKokOVg4vw==
-X-Received: by 2002:a05:600c:329d:b0:3dd:97d6:8f2e with SMTP id t29-20020a05600c329d00b003dd97d68f2emr12260341wmp.17.1676027639995;
-        Fri, 10 Feb 2023 03:13:59 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h4-20020a1ccc04000000b003dc4a47605fsm8076413wmb.8.2023.02.10.03.13.58
+        bh=0grgAqJN0xknu8n5/Ukj+HgzecxXCJVi84wvQRhRSfg=;
+        b=ciFYpDhkKhZahM+vjQa4qFjwPha/2GS9QrkNGYC3OC36cy4MEXUJDKQq+M13CUqy4K
+         k3MZ92HL8oxhzzBKGLaGF0wPsdC0U7uaKrf1pdIBgMlljw4VYJ7D4qscl1PhNtYspNeC
+         /2Mjs2iTa+Z3+RzEUlb9yToKZlcSvIUY5Z4uew0z6g2NZ+C8MxgwkXv85Let7nc8WmZq
+         mqa7Y2l1WT28td25jGcSYZxo+6Fyv6lQ32imibDsgmh5YyYpoZqyhIP2RMg9TaaQ6CiF
+         YfQtLDCunryVDlQNv3l8Pt53wH7QuinIJr25Bx0L5LN4GE4iXTiW8XXXiG2q0HE3M0zj
+         wkwA==
+X-Gm-Message-State: AO0yUKVJmkfS7KPJPkAct+P+bN18b/Qy1w5LTg2Rzc/RSH8kvCiiltAV
+        5eNbBkXiy9Ex+YHWr0NgpGT39A==
+X-Google-Smtp-Source: AK7set+EFw6M44T/jPCghkzoioHk8fyVg38/DBVJOZ8VNKdfcrqjP8DKS8+nXoObOX/6LM/EvWU+MA==
+X-Received: by 2002:a17:906:f56:b0:88c:5a80:a7bb with SMTP id h22-20020a1709060f5600b0088c5a80a7bbmr12891031ejj.6.1676027663230;
+        Fri, 10 Feb 2023 03:14:23 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id 23-20020a170906101700b008aedc51fc02sm2254343ejm.210.2023.02.10.03.14.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:13:59 -0800 (PST)
-Message-ID: <a68d90d9-ed26-1493-55f8-8e3d60501179@linaro.org>
-Date:   Fri, 10 Feb 2023 12:13:57 +0100
+        Fri, 10 Feb 2023 03:14:22 -0800 (PST)
+Message-ID: <0a18c5ef-541a-3c7e-1729-e1429edf909f@linaro.org>
+Date:   Fri, 10 Feb 2023 13:14:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v5 4/8] arm64: dts: qcom: sc7280: Update VA/RX/TX macro
- clock nodes
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
-        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
-        konrad.dybcio@somainline.org, mka@chromium.org,
-        quic_mohs@quicinc.com
-References: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com>
- <1675700201-12890-5-git-send-email-quic_srivasam@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1675700201-12890-5-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: sm8350: add GPU, GMU, GPU CC and
+ SMMU nodes
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230209133839.762631-1-dmitry.baryshkov@linaro.org>
+ <20230209133839.762631-6-dmitry.baryshkov@linaro.org>
+ <0ae75004-1cbb-4b72-0492-942becc401d6@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <0ae75004-1cbb-4b72-0492-942becc401d6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/02/2023 17:16, Srinivasa Rao Mandadapu wrote:
-> Update VA, RX and TX macro and lpass_tlmm clock properties and
-> enable them.
-
-Please explain why power domains have to be disabled here and not in SoC
-DTSI. I still do not get why these clocks are not inputs for every case
-- also non-AudioReach. The hardware is the same...
-
+On 10/02/2023 13:10, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> ---
->  .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 37 ++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> index 5e99f49..9b04491 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> @@ -108,6 +108,43 @@
->  	};
->  };
->  
-> +&lpass_rx_macro {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
+> On 9.02.2023 14:38, Dmitry Baryshkov wrote:
+>> Add device nodes required to enable GPU on the SM8350 platform.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 178 +++++++++++++++++++++++++++
+>>   1 file changed, 178 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> index 742e9dd17084..4c1a2f814b5c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> @@ -7,6 +7,7 @@
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   #include <dt-bindings/clock/qcom,dispcc-sm8350.h>
+>>   #include <dt-bindings/clock/qcom,gcc-sm8350.h>
+>> +#include <dt-bindings/clock/qcom,gpucc-sm8350.h>
+>>   #include <dt-bindings/clock/qcom,rpmh.h>
+>>   #include <dt-bindings/dma/qcom-gpi.h>
+>>   #include <dt-bindings/gpio/gpio.h>
+>> @@ -1765,6 +1766,183 @@ tcsr_mutex: hwlock@1f40000 {
+>>   			#hwlock-cells = <1>;
+>>   		};
+>>   
+>> +		gpu: gpu@3d00000 {
+>> +			compatible = "qcom,adreno-660.1", "qcom,adreno";
+>> +
+> The newlines between compatible and reg trigger my OCD..
+> 
+> But the patch looks good!
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Konrad
+> 
+> P.S I can add binning after the big GMUless series lands..
+> And maybe I should also rework the binning code a bit to
+> be cleaner..
 
+Good! I didn't see (or maybe I didn't notice binning for v2.1), so I 
+skipped it.
 
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
