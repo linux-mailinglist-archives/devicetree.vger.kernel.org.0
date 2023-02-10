@@ -2,97 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBA66924C8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 18:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A93D6924F4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:00:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232521AbjBJRrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 12:47:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52340 "EHLO
+        id S232428AbjBJSAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 13:00:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232965AbjBJRrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 12:47:13 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 662161CAE3;
-        Fri, 10 Feb 2023 09:47:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676051205; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=UQ3aLwYRNiudVAC8MzpRBVjQwZMc9SlQabizeZewOVzjZ3WnmCWnquR6zOh+u+LRXdw7QdTVQNxfOos7pO368pgVF3GHRZYM5Sn615H1Gkqh2yJiP4sDpQfeBfHofnASvOeoa93bH1Zpjr2L7viNQx91Tpdnny5RnTGQxKo/78w=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1676051205; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=iJbOjnXEW4dyp/XUoILzsS4muhY8sjkr0h1zI2/NyAE=; 
-        b=C8bX1R6KC/+eMgf8rdL41qdiRRA4jFo7ppraM2S6ZpddmNWvTZn6oI3BY2P0Al7tgl20iD5FpvagEmfNAnIZ6ozBMH/fxIG7ziLHulPEjS/Rkyw/bDvh5u3/DM9rd1cHXaAKltlOmwcuvpSBf3oGpaxk+FlYAcKa5wNViIvl/Ls=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676051205;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=iJbOjnXEW4dyp/XUoILzsS4muhY8sjkr0h1zI2/NyAE=;
-        b=JtmY47SxtBqshYc9GF1qQcVRCvOr4Yc29InmE8vE+IPa2L+0kdGNPAssT91Ort73
-        S2/7xQbabuih3JP9Ya2rLl3D4RA7AQf2G5a/0Q+KwHcfxPZQ7k0ro0VBLM92yqA0FVG
-        bfuYVDwWZm6YUFL1hSnAxnCFnRYjwBaF5+YUbwIw=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1676051202563779.3472396397366; Fri, 10 Feb 2023 09:46:42 -0800 (PST)
-Message-ID: <3ca26ba2-80f5-32a2-0357-d91c87efd1c0@arinc9.com>
-Date:   Fri, 10 Feb 2023 20:46:38 +0300
+        with ESMTP id S232163AbjBJSAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:00:43 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738794F852
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 10:00:42 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pQXhH-0001UQ-UW; Fri, 10 Feb 2023 19:00:31 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pQXh4-0042Xf-8S; Fri, 10 Feb 2023 19:00:19 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pQXh4-002UH0-SH; Fri, 10 Feb 2023 19:00:18 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Danilo Krummrich <dakr@redhat.com>,
+        Liu Ying <victor.liu@nxp.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 0/2] drm/imx/lcdc: Implement DRM driver for imx25
+Date:   Fri, 10 Feb 2023 19:00:12 +0100
+Message-Id: <20230210180014.173379-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 2/4] mips: dts: ralink: mt7621: add phandle to system
- controller node for watchdog
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20230210173841.705783-1-sergio.paracuellos@gmail.com>
- <20230210173841.705783-3-sergio.paracuellos@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230210173841.705783-3-sergio.paracuellos@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2052; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=7l5mxHoZRbMAg4sXmEaUsC/6Vqo/ZnWe47QzOFaC5eo=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBj5oYeQtTsUT30R9vBgbJdBhUn4Vt7q1E2ylqgMLUr xP4/WHiJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY+aGHgAKCRDB/BR4rcrsCTUiB/ wNxTwe0HO77r9cHm/bkPZ6ukfV8+lldR/Yggyil4+M/MeZKzFKj2EqO5J19LHVSMlsfpJww8XmMR+L sDKYedbRPW1JaJng0P7Quscu+hmHWIGkcjV5Ye8yLXNLg4KkFmzZpbHwC2GISVHXTOExgsIZONRc6a xmyK8iRrWcegYgvrRDnBqohXaOK8R/LRE05W8BNFV1wmDymUeJMAlHAtwWmCKHjoK7zH6E5wtxcQKO vo8syJ0XgT2YHWLiZG4T+kcD7HQoGGSwj2IBRPI0MXTHPNZalo/7CSIUrGgBmik2WTKfgFRgJPJC98 g2768wUg9I0FpcZLPUUnO2rGu60eLc
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Could you also change the node name to watchdog@100? make dtbs_check 
-points it out:
+Hello,
 
-wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0-9a-f])?$'
+Changes since v4:
 
-Thanks.
-Arınç
+ - Explicitly handle the connector and pass
+   DRM_BRIDGE_ATTACH_NO_CONNECTOR to drm_bridge_attach (Laurent)
+ - Fix binding syntax hopfully makeing Rob's dt-checker bot happy
+ - Resort #includes alphabetically
 
-On 10.02.2023 20:38, Sergio Paracuellos wrote:
-> To allow to access system controller registers from watchdog driver code
-> add a phandle in the watchdog 'wdt' node. This avoid using arch dependent
-> operations in driver code.
-> 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> ---
->   arch/mips/boot/dts/ralink/mt7621.dtsi | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> index 5ca40fd21..764916eaf 100644
-> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> @@ -73,6 +73,7 @@ sysc: syscon@0 {
->   		wdt: wdt@100 {
->   			compatible = "mediatek,mt7621-wdt";
->   			reg = <0x100 0x100>;
-> +			mediatek,sysctl = <&sysc>;
->   		};
->   
->   		gpio: gpio@600 {
+A big thanks to Philipp who (again!) was a great help to get v5 out.
+
+Patch 1 depends on patch "dt-bindings: display: Convert fsl,imx-fb.txt
+to dt-schema" which currently sits in Rob's tree as
+93266da2409b1709474be00f1becbbdaddb2b706. Patch 2 bases on "drm/imx:
+move IPUv3 driver into separate subdirectory" which currentlich sits in
+drm-misc-next-2023-01-03 as 4b6cb2b67da883bc5095ee6d77f951f1cd7a1c24.
+
+Unchanged since v3 is that the binding is using a different compatible. This is
+a bit ugly, but a drm driver needs a considerably different binding anyhow and
+this is the chance to pick a better name: The legacy binding uses "imx25-fb"
+(and similar for other SoCs), but the hardware unit is called LCDC and so I
+picked "imx25-lcdc" as new name. The idea is to deprecate imx25-fb (et al) and
+convert the imx25.dtsi to imx25-lcdc. (So I don't plan to have both variants in
+the dtsi file which Rob considered ugly.)
+
+Marian Cichy (1):
+  drm/imx/lcdc: Implement DRM driver for imx25
+
+Uwe Kleine-König (1):
+  dt-bindings: display: imx: Describe drm binding for fsl,imx-lcdc
+
+ .../bindings/display/imx/fsl,imx-lcdc.yaml    |  46 +-
+ drivers/gpu/drm/imx/Kconfig                   |   1 +
+ drivers/gpu/drm/imx/Makefile                  |   1 +
+ drivers/gpu/drm/imx/lcdc/Kconfig              |   7 +
+ drivers/gpu/drm/imx/lcdc/Makefile             |   1 +
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c           | 553 ++++++++++++++++++
+ 6 files changed, 608 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/imx/lcdc/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/lcdc/Makefile
+ create mode 100644 drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+
+base-commit: 2591939e881cf728b6ac45971eeec2f58051c101
+prerequisite-patch-id: c3ef3de02516b5c159e76b40d2b4348a5ce0fe51
+-- 
+2.39.0
+
