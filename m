@@ -2,193 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED6E691C17
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C964691C37
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231540AbjBJKAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 05:00:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51434 "EHLO
+        id S231429AbjBJKDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 05:03:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231656AbjBJKAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:00:38 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC7A38673;
-        Fri, 10 Feb 2023 02:00:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676023237; x=1707559237;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=skyO+n4E72IHbnF1r9khsegze0IsfBWcm+0BlzjaYsw=;
-  b=dtWo2Pitu6c/ZKjQNq00iezoXwGx3H5tPqkVJU1Jm6/TvufKJv+Ee3og
-   ISkCauBgo338h5WAUz+MPx3Ugofbx/dZtksRNOVymVbQ8wE3LmqvE6DP4
-   KGRqfFtQvzZ1hDgZANRKbBtDEKzGGDEy4eniHXQTkg1MDkujRIQiZlIYg
-   buH9G/mPGNGUYoo6sbPkaEn9ijyMzBarHILRVnKvwuWyRxelK8ohCosEp
-   mE1hYk90vNrcVaoM77TzIKR/nyZXVz2rBDvuMCzD53EGxCqKE6UfBrFxl
-   ldrDWXyzDEO4X9Sd5m4j2XMNSO0QceZpmr9pt2OP3AaysPQKrWv8si14q
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10616"; a="314027993"
-X-IronPort-AV: E=Sophos;i="5.97,286,1669104000"; 
-   d="scan'208";a="314027993"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2023 02:00:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10616"; a="661355216"
-X-IronPort-AV: E=Sophos;i="5.97,286,1669104000"; 
-   d="scan'208";a="661355216"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 10 Feb 2023 02:00:32 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pQQCm-0005jh-0Q;
-        Fri, 10 Feb 2023 10:00:32 +0000
-Date:   Fri, 10 Feb 2023 18:00:31 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        jirislaby@kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/4] soc: aspeed: Add UART DMA support
-Message-ID: <202302101749.ctd9pkv1-lkp@intel.com>
-References: <20230210072643.2772-3-chiawei_wang@aspeedtech.com>
+        with ESMTP id S231579AbjBJKDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:03:30 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF3930FC;
+        Fri, 10 Feb 2023 02:03:21 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id hx15so14323498ejc.11;
+        Fri, 10 Feb 2023 02:03:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHUKpkdGd++gIe1TTqGxf+onHwGJzdjk6BqCtOyUWvo=;
+        b=B25J+RQN4hbCSUxZHXRFFwp33OvvgN0dBQzT282s5MI7kUYCNiby7K17JStLnnUCcC
+         46mdcIDgqSfpVzx1xpKPLTud12CfnL15O+g5lyV7si4Vuwmlp6JoVi3bGsbf4mck+MnF
+         kVQ1nDv85/hVeOQSXgre5inRNCMh0FPNSUtY3MbtAP7f9eutqv2Fj9JOsWwIRWVMY0rE
+         OG/tNEROztQ5uJQjLkZj5Xd68jOtfHi3FgmCMY6B76A3/zhmKXBvUFM8WS0eNFOSpRAf
+         kz67laa3To7OxMpGMEL1CEmZPrOOuZt9gcE1rmsbFKS1aIXXuSBsDl7f1WuvTT0Z+A5D
+         9ShA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XHUKpkdGd++gIe1TTqGxf+onHwGJzdjk6BqCtOyUWvo=;
+        b=69mY0iPBggEDAebyCEsGfb73nkoZszA2xkppYqpdiGsWL/spQl4JdEf7fCuCg/d+d0
+         JN/+9JZKzZ0QgPUbvC7mqKsplZVRQcFiiMr0IT6GrpI6XjWAxx4IemT3NeANV5f1kDzM
+         pcXRUXGfjvxkf8cmi1ZAF6xttAhqUhFJuOhe3bJyg46686ppChlD1YQwLJrEU4DDvGhE
+         zHVj5BDIFJy/UzoatF3C/bmsxQd+Y7FdjCUiiT2oOa4myomgNWt2dHl9EHTWR1SsUXgY
+         H7TYVWG0644VA5KnoLf5AJSiYkS18/yDUZi32Xm1bwZe4vXE6jfZH4YsLOlX73G+gA3n
+         JKzg==
+X-Gm-Message-State: AO0yUKVwj8BCIhPBI+jZiCvcPgPzlBNlfvkFnddhMt6p+7y5/IWm8P4B
+        PX8LnQpgN6BQ25TiEMZrN2kS8m9db2dT0xdkuyI=
+X-Google-Smtp-Source: AK7set8Me7MZ4F9pBrAU7Tp/HAMc22VtwSTNVx3364jQvI8VRWK34oOx3/MuG5UbwaGmdEfiy06Y4EjoA9wWAaCaaFc=
+X-Received: by 2002:a17:907:c715:b0:8af:449f:8fae with SMTP id
+ ty21-20020a170907c71500b008af449f8faemr763617ejc.3.1676023400392; Fri, 10 Feb
+ 2023 02:03:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230210072643.2772-3-chiawei_wang@aspeedtech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1673227292.git.zhoubinbin@loongson.cn> <Y88VIXerF5Wk/9kj@mail.local>
+ <CAMpQs4+8m0r98eGMHO7ktS2_AuNCA_u3Yk1q06i99TdbVZJ_Cg@mail.gmail.com>
+In-Reply-To: <CAMpQs4+8m0r98eGMHO7ktS2_AuNCA_u3Yk1q06i99TdbVZJ_Cg@mail.gmail.com>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Fri, 10 Feb 2023 18:03:07 +0800
+Message-ID: <CAMpQs4+uW75TdkMicdfU+5LYQxA_7kfbdabwO=iDiKwW-PzO9Q@mail.gmail.com>
+Subject: Re: [PATCH V2 0/7] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
+        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        zhaoxiao <zhaoxiao@uniontech.com>, zhzhl555@gmail.com,
+        Kelvin Cheung <keguang.zhang@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chia-Wei,
+On Tue, Jan 31, 2023 at 8:59 PM Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
+>
+> Hi Kelvin:
+>
+> Excuse me.
+> I am submitting the Loongson-2K/LS7A RTC driver and Alexandre would
+> like me to merge the ls1x rtc driver in parallel.
+> Unfortunately I found out that the loongson-1 does not yet support DT
+> and would like to ask if you have any plans to support DT?
+>
+> I think this is the prerequisite for the merge.
+>
+> Regards.
+> Binbin
+>
+>
 
-Thank you for the patch! Perhaps something to improve:
+Hi Alexandre:
 
-[auto build test WARNING on tty/tty-testing]
-[also build test WARNING on tty/tty-next tty/tty-linus robh/for-next driver-core/driver-core-testing driver-core/driver-core-next driver-core/driver-core-linus usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.2-rc7 next-20230210]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Unfortunately there has been no reply from Keguang for the past week
+or so. Can we try rtc-ls2x and rtc-ls1x to coexist until Loongson-1
+supports DT?
+Later on, if Keguang or someone else familiar with Loongson-1 adds DT
+support, I would be happy to continue trying to merge the two drivers.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chia-Wei-Wang/dt-bindings-aspeed-Add-UART-controller/20230210-152832
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20230210072643.2772-3-chiawei_wang%40aspeedtech.com
-patch subject: [PATCH 2/4] soc: aspeed: Add UART DMA support
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20230210/202302101749.ctd9pkv1-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/b1e3a89584657d9b0398f3f46b09dc4229835fa3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Chia-Wei-Wang/dt-bindings-aspeed-Add-UART-controller/20230210-152832
-        git checkout b1e3a89584657d9b0398f3f46b09dc4229835fa3
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/soc/aspeed/
+Regards.
+Binbin
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302101749.ctd9pkv1-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/aspeed/aspeed-udma.c: In function 'aspeed_udma_request_chan':
->> drivers/soc/aspeed/aspeed-udma.c:194:13: warning: variable 'retval' set but not used [-Wunused-but-set-variable]
-     194 |         int retval = 0;
-         |             ^~~~~~
-
-
-vim +/retval +194 drivers/soc/aspeed/aspeed-udma.c
-
-   189	
-   190	static int aspeed_udma_request_chan(u32 ch_no, dma_addr_t addr,
-   191			struct circ_buf *rb, u32 rb_sz,
-   192			aspeed_udma_cb_t cb, void *id, bool dis_tmout, bool is_tx)
-   193	{
- > 194		int retval = 0;
-   195		int rbsz_code;
-   196	
-   197		u32 reg;
-   198		unsigned long flags;
-   199		struct aspeed_udma_chan *ch;
-   200	
-   201		if (ch_no > UDMA_MAX_CHANNEL) {
-   202			retval = -EINVAL;
-   203			goto out;
-   204		}
-   205	
-   206		if (IS_ERR_OR_NULL(rb) || IS_ERR_OR_NULL(rb->buf)) {
-   207			retval = -EINVAL;
-   208			goto out;
-   209		}
-   210	
-   211		rbsz_code = aspeed_udma_get_bufsz_code(rb_sz);
-   212		if (rbsz_code < 0) {
-   213			retval = -EINVAL;
-   214			goto out;
-   215		}
-   216	
-   217		spin_lock_irqsave(&udma->lock, flags);
-   218	
-   219		if (is_tx) {
-   220			reg = readl(udma->regs + UDMA_TX_DMA_INT_EN);
-   221			if (reg & (0x1 << ch_no)) {
-   222				retval = -EBUSY;
-   223				goto unlock_n_out;
-   224			}
-   225	
-   226			reg |= (0x1 << ch_no);
-   227			writel(reg, udma->regs + UDMA_TX_DMA_INT_EN);
-   228	
-   229			reg = readl(udma->regs + UDMA_CHX_TX_CTRL(ch_no));
-   230			reg |= (dis_tmout) ? UDMA_TX_CTRL_TMOUT_DISABLE : 0;
-   231			reg |= (rbsz_code << UDMA_TX_CTRL_BUFSZ_SHIFT) & UDMA_TX_CTRL_BUFSZ_MASK;
-   232			writel(reg, udma->regs + UDMA_CHX_TX_CTRL(ch_no));
-   233	
-   234			writel(addr, udma->regs + UDMA_CHX_TX_BUF_BASE(ch_no));
-   235		} else {
-   236			reg = readl(udma->regs + UDMA_RX_DMA_INT_EN);
-   237			if (reg & (0x1 << ch_no)) {
-   238				retval = -EBUSY;
-   239				goto unlock_n_out;
-   240			}
-   241	
-   242			reg |= (0x1 << ch_no);
-   243			writel(reg, udma->regs + UDMA_RX_DMA_INT_EN);
-   244	
-   245			reg = readl(udma->regs + UDMA_CHX_RX_CTRL(ch_no));
-   246			reg |= (dis_tmout) ? UDMA_RX_CTRL_TMOUT_DISABLE : 0;
-   247			reg |= (rbsz_code << UDMA_RX_CTRL_BUFSZ_SHIFT) & UDMA_RX_CTRL_BUFSZ_MASK;
-   248			writel(reg, udma->regs + UDMA_CHX_RX_CTRL(ch_no));
-   249	
-   250			writel(addr, udma->regs + UDMA_CHX_RX_BUF_BASE(ch_no));
-   251		}
-   252	
-   253		ch = (is_tx) ? &udma->tx_chs[ch_no] : &udma->rx_chs[ch_no];
-   254		ch->rb = rb;
-   255		ch->rb_sz = rb_sz;
-   256		ch->cb = cb;
-   257		ch->cb_arg = id;
-   258		ch->dma_addr = addr;
-   259		ch->dis_tmout = dis_tmout;
-   260	
-   261	unlock_n_out:
-   262		spin_unlock_irqrestore(&udma->lock, flags);
-   263	out:
-   264		return 0;
-   265	}
-   266	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>
+>
+> On Tue, Jan 24, 2023 at 7:24 AM Alexandre Belloni
+> <alexandre.belloni@bootlin.com> wrote:
+> >
+> > On 09/01/2023 09:35:10+0800, Binbin Zhou wrote:
+> > > Hi all:
+> > >
+> > > The initial DT-base ls2x rtc driver was written by Wang Xuerui, He has
+> > > released five versions of patchset before, and all related mail records
+> > > are shown below if you are interested:
+> > >
+> > > https://lore.kernel.org/all/?q=ls2x-rtc
+> > >
+> > > In this series of patches, based on the code above, I have added the
+> > > following support:
+> > >
+> > > 1. Add ACPI-related support, as Loongson-3A5000 + LS7A is now ACPI-base
+> > >    by default under LoongArch architecture;
+> > > 2. Add rtc alarm/walarm related functions.
+> > >
+> > > I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA
+> > > and Loongson-2K0500.
+> > >
+> > > BTW:
+> > > There have been discussions about merging the rtc drivers of ls1x and
+> > > ls2x, but the following reasons made the merger difficult to achieve:
+> > >
+> > > 1. ls1x does not support ACPI, for it is only on MIPS-based system;
+> >
+> > This is not a good justification, you have to support both in your
+> > driver anyway, as shown by your CONFIG_ACPI ifdefery.
+> >
+> > > 2. ls1x does not support alarm function.
+> >
+> > It is just a matter of clearing a single bit, this is not difficult at
+> > all.
+> >
+> > >
+> > > Thanks.
+> > >
+> > > -------
+> > > Changes since v1:
+> > > 1. Rebased on top of latest loongarch-next;
+> > > 2. Add interrupt descriptions to the ls2k and ls7a DTS files to avoid
+> > > errors when the driver gets the IRQ number, Thanks to Qing Zhang for
+> > > testing;
+> > > 3. Remove some inexact CONFIG_ACPI.
+> > >
+> > > Binbin Zhou (4):
+> > >   rtc: Add support for the Loongson-2K/LS7A RTC
+> > >   LoongArch: Enable LS2X RTC in loongson3_defconfig
+> > >   MIPS: Loongson64: DTS: Add RTC support to LS7A
+> > >   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
+> > >
+> > > WANG Xuerui (3):
+> > >   dt-bindings: rtc: Add Loongson LS2X RTC support
+> > >   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
+> > >   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
+> > >
+> > >  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
+> > >  arch/loongarch/configs/loongson3_defconfig    |   1 +
+> > >  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   7 +
+> > >  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +
+> > >  arch/mips/configs/loongson2k_defconfig        |   1 +
+> > >  arch/mips/configs/loongson3_defconfig         |   1 +
+> > >  drivers/rtc/Kconfig                           |  11 +
+> > >  drivers/rtc/Makefile                          |   1 +
+> > >  drivers/rtc/rtc-ls2x.c                        | 379 ++++++++++++++++++
+> > >  9 files changed, 410 insertions(+)
+> > >  create mode 100644 drivers/rtc/rtc-ls2x.c
+> > >
+> > > --
+> > > 2.31.1
+> > >
+> >
+> > --
+> > Alexandre Belloni, co-owner and COO, Bootlin
+> > Embedded Linux and Kernel engineering
+> > https://bootlin.com
+> >
