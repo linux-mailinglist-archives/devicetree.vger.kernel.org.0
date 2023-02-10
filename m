@@ -2,181 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D54CA69254D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:25:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BBB69255C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:29:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233073AbjBJSZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 13:25:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50428 "EHLO
+        id S232575AbjBJS3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 13:29:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233051AbjBJSZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:25:26 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE4263582;
-        Fri, 10 Feb 2023 10:25:25 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id ml19so18340305ejb.0;
-        Fri, 10 Feb 2023 10:25:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YyBzoWonyroiVWOV9YyUOPxjVW7NIqHXUCfTqPDs494=;
-        b=ebLy1htRwAGPgbF4vheWwt/5UYmixRi8gd57rvXUC7dUEqTvLJgMh3/BgPbUsv5XlY
-         pmQ5wje3aKntpnAOSHtpUDeHVJsgmwHPtJzIUVFn4F5+t3wM2EIlqRH5QljT/bGupf1p
-         YE/Jt3Q5CEeXA89z+ybYm0JqLb/L6qgFrY5rUD2vORu6X9rLrt4sfUCOcDP5lOEwPCSh
-         Buvpt2eYPkxkPpDFn6abMQI42nxoXYz0SgnBqSQk5Dj/hQ4rTwXWz0RuBhaD8tWfU39V
-         wf0o/hZzd1G6rfpYWdFoAhzSHF5/oMnwT9RU22FPp2/Gqv4iQjarvFf/EVDiJhOLv/6S
-         /F2Q==
+        with ESMTP id S232505AbjBJS3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:29:38 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1456C7C7;
+        Fri, 10 Feb 2023 10:29:37 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id bd6so5168860oib.6;
+        Fri, 10 Feb 2023 10:29:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YyBzoWonyroiVWOV9YyUOPxjVW7NIqHXUCfTqPDs494=;
-        b=eIIUJQEdwQhN4csdvtjr8aD7PR+mD1tjyz0bIZOBRte+SDnnv/A78KnozhoCoYrnjG
-         C+mNOyl7Ud3ajy1LHRbl18Ra/akCOQnF/Q8PDEYg/WrItBOubRQwTPdYMTJPbPOHiNXH
-         znlvCU+E1J6UZbIQxH65cd73RdoUpnYFXud7JlCcRgnjTlZcn3zLcMikWyay4vrkK+kA
-         ceUtUEM8QNwOPmRqnj60nh5am/Yh8O5AqDsoDnJAWUAlUONUJXP2LWK5xS1kzS/LU4T2
-         9CH7MnP2b8KsE7PNdbnvPhbSMwhJYWA5a0pKujhDRIZKtWHCq9RCyyjVBZdka/g50GXb
-         o3ew==
-X-Gm-Message-State: AO0yUKVYtmk8HEJfH5ew0ZnZ9SK/r21MQ9FciD2KPzSdqC/qHeMUlzWV
-        F3Ik5yApK1xzU14/CQKG+Ok=
-X-Google-Smtp-Source: AK7set9xA/Pdz2Tf7LtUnn5pvUgmMkZJr4RCfb4ZnexC6hSS+IRoYOLRpI/4WFVbv7fJ1z1XAThcng==
-X-Received: by 2002:a17:906:7952:b0:884:b467:ae4a with SMTP id l18-20020a170906795200b00884b467ae4amr20535503ejo.64.1676053524019;
-        Fri, 10 Feb 2023 10:25:24 -0800 (PST)
-Received: from arinc9-PC.lan ([37.120.152.236])
-        by smtp.gmail.com with ESMTPSA id 4-20020a170906024400b008aef19f678asm2708966ejl.165.2023.02.10.10.25.22
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wGTEo37sO/PejdrEzawXo41Wh2Us1e4LKILpN2RdcKM=;
+        b=Axk5tU1qpwc47CWQIMIgBGDWaZNWxvUtp6LXq0DS4nIA6KVSjnLwI/2RiTAg+CIt/L
+         u/bumYgSnZHJXxkQQwKNZlHgVaT+LK/enCy2R+LmVixYuiHS+d47KFplHxySrLDTGDTs
+         /+lGGDVgWQilStS0QLTEb3D3ACOYX5WJ7l0A0OyuPe+fwY87ytEBw/2ADBWCRZRaNMwV
+         YQber8z02yz/f/WpR1lgIl8BGtJU8ZF/oNDSo8h+y8yuf55hLHcXrS9f6ooGvLo+Usis
+         YWDS19tn/HLHrGwtwvHJL/SHyEkeHEaHU05XkOA2wxRJWVZF79jzwHVlwyJzjOKxP2h0
+         8fww==
+X-Gm-Message-State: AO0yUKVhFcQYf8DkFG5GZZYaCtp9Dr9KiR/peBKww0nmUs/gFy+MG1HW
+        BmM7gtegFNz1X2dme0WHvA==
+X-Google-Smtp-Source: AK7set/47StQR2IteFFtY5K4A8e4jlFxeqFxgq613Kt0yzg/tmsRzIzQLGKF92qW8nmFbDRMVTy8Vw==
+X-Received: by 2002:a05:6808:616:b0:364:862d:29c5 with SMTP id y22-20020a056808061600b00364862d29c5mr7107671oih.26.1676053776722;
+        Fri, 10 Feb 2023 10:29:36 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q2-20020a0568080ec200b0037d6c3fc8aasm616760oiv.45.2023.02.10.10.29.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 10:25:23 -0800 (PST)
-From:   arinc9.unal@gmail.com
-X-Google-Original-From: arinc.unal@arinc9.com
-To:     Rob Herring <robh+dt@kernel.org>,
+        Fri, 10 Feb 2023 10:29:36 -0800 (PST)
+Received: (nullmailer pid 2916782 invoked by uid 1000);
+        Fri, 10 Feb 2023 18:29:35 -0000
+Date:   Fri, 10 Feb 2023 12:29:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        erkin.bozoglu@xeront.com
-Subject: [PATCH v3 5/5] arm: dts: mt7623: add port@5 as CPU port
-Date:   Fri, 10 Feb 2023 21:25:05 +0300
-Message-Id: <20230210182505.24597-6-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230210182505.24597-1-arinc.unal@arinc9.com>
-References: <20230210182505.24597-1-arinc.unal@arinc9.com>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 2/4] dt-bindings: phy: Add starfive,jh7110-dphy-rx
+Message-ID: <20230210182935.GA2914589-robh@kernel.org>
+References: <20230210061713.6449-1-changhuang.liang@starfivetech.com>
+ <20230210061713.6449-3-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230210061713.6449-3-changhuang.liang@starfivetech.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
+On Thu, Feb 09, 2023 at 10:17:11PM -0800, Changhuang Liang wrote:
+> Starfive SoC like the jh7110 use a MIPI D-PHY RX controller based on
+> a M31 IP. Add a binding for it.
+> 
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  .../bindings/phy/starfive,jh7110-dphy-rx.yaml | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+> new file mode 100644
+> index 000000000000..1c1e5c7cbee2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/starfive,jh7110-dphy-rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Starfive SoC MIPI D-PHY Rx Controller
+> +
+> +maintainers:
+> +  - Jack Zhu <jack.zhu@starfivetech.com>
+> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+> +
+> +description: |
 
-On the MT7623AI SoC and Bananapi BPI-R2, port 5 of the MT7530 switch is
-connected to the second MAC of the SoC as a CPU port. Add the port and set
-up the second MAC on the bindings.
+Don't need '|'
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/arm/boot/dts/mt7623a.dtsi                | 24 +++++++++++++++++++
- arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 24 +++++++++++++++++++
- 2 files changed, 48 insertions(+)
+> +  The Starfive SOC has a MIPI CSI D-PHY based on M31 IP use to transfer
+> +  the CSI cameras data.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: "starfive,jh7110-dphy-rx"
 
-diff --git a/arch/arm/boot/dts/mt7623a.dtsi b/arch/arm/boot/dts/mt7623a.dtsi
-index 2a50b5c0c933..bcf909d58a1c 100644
---- a/arch/arm/boot/dts/mt7623a.dtsi
-+++ b/arch/arm/boot/dts/mt7623a.dtsi
-@@ -28,6 +28,17 @@ fixed-link {
- 	};
- };
- 
-+&gmac1 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+		pause;
-+	};
-+};
-+
- &eth {
- 	status = "okay";
- 	power-domains = <&scpsys MT7623A_POWER_DOMAIN_ETH>;
-@@ -79,6 +90,19 @@ port@4 {
- 					label = "swp4";
- 				};
- 
-+				port@5 {
-+					reg = <5>;
-+					label = "cpu";
-+					ethernet = <&gmac1>;
-+					phy-mode = "rgmii";
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+
- 				port@6 {
- 					reg = <6>;
- 					label = "cpu";
-diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-index dc9b4f99eb8b..642b1c0a96ba 100644
---- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-+++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-@@ -182,6 +182,17 @@ fixed-link {
- 	};
- };
- 
-+&gmac1 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+		pause;
-+	};
-+};
-+
- &eth {
- 	status = "okay";
- 
-@@ -225,6 +236,19 @@ port@4 {
- 					label = "lan3";
- 				};
- 
-+				port@5 {
-+					reg = <5>;
-+					label = "cpu";
-+					ethernet = <&gmac1>;
-+					phy-mode = "rgmii";
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+
- 				port@6 {
- 					reg = <6>;
- 					label = "cpu";
--- 
-2.37.2
+Drop quotes.
 
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+> +    maxItems: 3
+
+Just maxItems is enough.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cfg
+> +      - const: ref
+> +      - const: tx
+> +
+> +  resets:
+> +    minItems: 2
+> +    maxItems: 2
+
+Need to define what each reset is.
+
+> +
+> +  starfive,aon-syscon:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+
+Drop quotes.
+
+> +    items:
+> +      items:
+> +        - description: phandle of AON SYSCON
+> +        - description: register offset
+> +    description: The register of dphy rx driver can be configured
+> +      by AON SYSCON in this property.
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - starfive,aon-syscon
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
+> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
+> +
+> +    dphy@19820000 {
+> +      compatible = "starfive,jh7110-dphy-rx";
+> +      reg = <0x19820000 0x10000>;
+> +      clocks = <&ispcrg JH7110_ISPCLK_M31DPHY_CFGCLK_IN>,
+> +               <&ispcrg JH7110_ISPCLK_M31DPHY_REFCLK_IN>,
+> +               <&ispcrg JH7110_ISPCLK_M31DPHY_TXCLKESC_LAN0>;
+> +      clock-names = "cfg", "ref", "tx";
+> +      resets = <&ispcrg JH7110_ISPRST_M31DPHY_HW>,
+> +               <&ispcrg JH7110_ISPRST_M31DPHY_B09_ALWAYS_ON>;
+> +      starfive,aon-syscon = <&aon_syscon 0x00>;
+> +      #phy-cells = <0>;
+> +    };
+> -- 
+> 2.25.1
+> 
