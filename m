@@ -2,132 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8F9692087
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:10:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D176920A7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232447AbjBJOJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 09:09:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50326 "EHLO
+        id S232395AbjBJOSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 09:18:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232448AbjBJOJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:09:40 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C887405C;
-        Fri, 10 Feb 2023 06:09:32 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D125E66020E9;
-        Fri, 10 Feb 2023 14:09:30 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676038171;
-        bh=pFrTCC7DRf148QSpFOVkQrb6mUMqtPZiFny6QHbySyY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jHl0QRG/yGbw9Gzc6p6UkO4OcCuobFrTlhyYDOZzWJeQt8KPhwVDMQe5ZMvbHjdit
-         9qCVu4bwO3u6mPt+hWtHvKyr7CeeSDvCfV7mnQbLL3OZQW6UnMj3IsmCIdaBK6E2mh
-         1jFe0FOYU/lTlhZ+96OGQZtC9+3EizLpFwU8Nakp3MYHAvK94t7GsxME1YAO17b3AV
-         HLmk53qxhfo7VpkEbDVNmT4EYQAr8udfiJb31tprcoDltn9ysJa6KhJtwcOWurUZ6n
-         f8BEcB5QkfBbuaTQPhDN/bI8WYdyEA8QtQK8fh0d4f5gg9Q+o/c9xSvEUb+RC9skg8
-         DJXOSUPerRdZw==
-Message-ID: <db22c545-da11-9869-ef20-31d5a7a33318@collabora.com>
-Date:   Fri, 10 Feb 2023 15:09:28 +0100
+        with ESMTP id S232381AbjBJOSG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:18:06 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B75303FB
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:18:04 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso4158750wms.4
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:18:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=7gCIwjkW4mj7GEg4UX9SIJbxJsdVXdDoLdVX95U4ZAQ=;
+        b=M3meFAUZgc4u9VSgIMNLyini72JXil8R3ReEZy3l+Bsoz3c0UwpsB/hKm305UETshl
+         MFQBDze7HK6wxEUG3/dRu4ElC+I/uF/VMx85M6FQ+K7hIrO0Lz0zxK8YQR4mCn5anGM7
+         4hS/z/LBg0+KBiiBbqhBBvbBlQCQLkq6jNqKEGxoeOFy9FQl8s+vIzIcFL4L0rKP6wOb
+         COEn8tIf5vKXfMct526CvjCQJcmRUdgMV6NoLT8GlJSWdGmzfVEkWWdkSFp0UOTuck0P
+         17snSHuLRHQfzAvzxd2EKyT8S5OAmaLZjAFHzsoQsH/HeMZnRo6o6GRFdIZ3F3gTDleS
+         QoGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7gCIwjkW4mj7GEg4UX9SIJbxJsdVXdDoLdVX95U4ZAQ=;
+        b=Weobl1Z7gWgCT+z/oLvOhHNa0zfOER9RzWOEJYdZAmjvuxAuhDQu/5gQJMB9h9OXv5
+         edRXV6FlzvRTljryGSn5oZZX9IfTEDCQ9jNMJEFUAS3cAhP8MVxIeE2fpr4eJRkguthe
+         C+9qddhYYlWlUiC4cgj/BwyaQZhMifmQy7XwJ0zbxQn9oANSeUYUIdLJ8orizK7TxUSa
+         QlS3WUnbUb1Uirh5miuH/B2mPhG2Vcvq+7rJdxSjesQ1DDEcAGb2F0877wBXeOlKCIYr
+         Z+gCx+lPzYLkhRdpScfYY8x5SdwKNJ892Hc5IGKy+/F2Tm401CUEq/Mj5s6Ll5xV4Rnl
+         gY6g==
+X-Gm-Message-State: AO0yUKW2Ah44BP2tlYHwJYx6sIt0mUA4NwsPrrOzopbzKV4jBcl0oSgb
+        dRFqNzlzEIH6ypjAZEGy5WYhx5CsG3iItYQKvQA=
+X-Google-Smtp-Source: AK7set+T/gE/eEuVsE9zQ3Jy0gI89TK3IKOAoZY4Znv+SjSwr9woOUaDXg3eq8Dj9gXBQxyJoubVBg==
+X-Received: by 2002:a05:600c:1684:b0:3dc:52fc:7f06 with SMTP id k4-20020a05600c168400b003dc52fc7f06mr12894199wmn.41.1676038683509;
+        Fri, 10 Feb 2023 06:18:03 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5a65:5553:55cf:3027? ([2a01:e0a:982:cbb0:5a65:5553:55cf:3027])
+        by smtp.gmail.com with ESMTPSA id p24-20020a05600c1d9800b003dd1bd0b915sm8173477wms.22.2023.02.10.06.18.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 06:18:02 -0800 (PST)
+Message-ID: <37d23af4-7920-055f-76b0-87ad907896e2@linaro.org>
+Date:   Fri, 10 Feb 2023 15:18:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v5 12/12] arm64: dts: mediatek: mt8195: Add SCP 2nd core
+ Thunderbird/102.7.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sm8350: add dp controller
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230210085931.8941-1-tinghan.shen@mediatek.com>
- <20230210085931.8941-13-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230210085931.8941-13-tinghan.shen@mediatek.com>
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230206-topic-sm8450-upstream-dp-controller-v2-0-529da2203659@linaro.org>
+ <20230206-topic-sm8450-upstream-dp-controller-v2-3-529da2203659@linaro.org>
+ <df068428-c086-4f6a-3cda-9ef6ce665f13@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <df068428-c086-4f6a-3cda-9ef6ce665f13@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 10/02/23 09:59, Tinghan Shen ha scritto:
-> Rewrite the MT8195 SCP device node as a cluster and
-> add the SCP 2nd core in it.
+On 10/02/2023 12:08, Dmitry Baryshkov wrote:
+> On 10/02/2023 12:34, Neil Armstrong wrote:
+>> Add the Display Port controller subnode to the MDSS node.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 82 +++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 80 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> index d490ce84a022..eb636b7dffa7 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> @@ -2862,13 +2862,20 @@ ports {
+>>                       port@0 {
+>>                           reg = <0>;
+>> -                        dpu_intf1_out: endpoint {
+>> -                            remote-endpoint = <&mdss_dsi0_in>;
+>> +                        dpu_intf0_out: endpoint {
+>> +                            remote-endpoint = <&mdss_dp_in>;
 > 
-> Since the SCP device node is changed to multi-core structure,
-> enable SCP cluster to enable probing SCP core 0.
+> No need to reorder these ports. Please add DP to the end.
+
+Right, but I'll keep the dpu_intf0_out label for this port,
+but having dpu_intf1_out, dpu_intf2_out then dpu_intf0_out isn't very clean...
+
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->   .../boot/dts/mediatek/mt8195-cherry.dtsi      |  4 +++
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 30 ++++++++++++++-----
->   2 files changed, 27 insertions(+), 7 deletions(-)
+>>                           };
+>>                       };
+>>                       port@1 {
+>>                           reg = <1>;
+>> +                        dpu_intf1_out: endpoint {
+>> +                            remote-endpoint = <&mdss_dsi0_in>;
+>> +                        };
+>> +                    };
+>> +
+>> +                    port@2 {
+>> +                        reg = <2>;
+>>                           dpu_intf2_out: endpoint {
+>>                               remote-endpoint = <&mdss_dsi1_in>;
+>>                           };
+>> @@ -2876,6 +2883,77 @@ dpu_intf2_out: endpoint {
+>>                   };
+>>               };
+>> +            mdss_dp: displayport-controller@ae90000 {
+>> +                compatible = "qcom,sm8350-dp";
+>> +                reg = <0 0xae90000 0 0x200>,
+>> +                      <0 0xae90200 0 0x200>,
+>> +                      <0 0xae90400 0 0x600>,
+>> +                      <0 0xae91000 0 0x400>;
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> index 56749cfe7c33..4f9bc7581adb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -933,6 +933,10 @@
->   	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
->   };
->   
-> +&scp_cluster {
-> +	status = "okay";
-> +};
-> +
->   &scp {
->   	status = "okay";
->   
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 8f1264d5290b..87e49f5fb7b3 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -826,14 +826,30 @@
->   			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
->   		};
->   
-> -		scp: scp@10500000 {
-> -			compatible = "mediatek,mt8195-scp";
-> -			reg = <0 0x10500000 0 0x100000>,
-> -			      <0 0x10720000 0 0xe0000>,
-> -			      <0 0x10700000 0 0x8000>;
-> -			reg-names = "sram", "cfg", "l1tcm";
-> -			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		scp_cluster: scp@10500000 {
-> +			compatible = "mediatek,mt8195-scp-dual";
-> +			reg = <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
-> +			reg-names = "cfg", "l1tcm";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0 0 0x10500000 0x100000>;
->   			status = "disabled";
-> +
-> +			scp: scp@0 {
+> This will not validate against the schema. Please add p1 region at the end (I assume it is <0 0x0ae91400 0 0x400>).
+> 
+>> +                interrupt-parent = <&mdss>;
+>> +                interrupts = <12>;
+>> +                clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+>> +                clock-names = "core_iface",
+>> +                          "core_aux",
+>> +                          "ctrl_link",
+>> +                                  "ctrl_link_iface",
+>> +                          "stream_pixel";
+>> +
+>> +                assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+>> +                          <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+>> +                assigned-clock-parents = <&usb_1_qmpphy 1>,
+>> +                             <&usb_1_qmpphy 2>;
+> 
+> Please use defined names here and in the phys below
 
-Minor nit: Please change this to `scp_c0:`.
-Like that, we keep consistency and increase readability, as we're clearly then
-reading that one node is for core 0, the other is for core 1.
+Ack, will do in all the patches
 
-This is fine even on devices using only a single SCP core, because in devicetree
-we are describing the hardware, not the software implemetation of it - and the
-MT8195 SoC does, by hardware, have two SCP cores anyway :-)
-
-After which,
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+> 
+>> +
+>> +                phys = <&usb_1_qmpphy 1>;
+>> +                    phy-names = "dp";
+>> +
+>> +                    #sound-dai-cells = <0>;
+>> +
+>> +                operating-points-v2 = <&dp_opp_table>;
+>> +                power-domains = <&rpmhpd SM8350_MMCX>;
+>> +
+>> +                status = "disabled";
+>> +
+>> +                ports {
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <0>;
+>> +
+>> +                    port@0 {
+>> +                        reg = <0>;
+>> +                        mdss_dp_in: endpoint {
+>> +                            remote-endpoint = <&dpu_intf0_out>;
+>> +                        };
+>> +                    };
+>> +                };
+>> +
+>> +                dp_opp_table: opp-table {
+>> +                    compatible = "operating-points-v2";
+>> +
+>> +                    opp-160000000 {
+>> +                        opp-hz = /bits/ 64 <160000000>;
+>> +                        required-opps = <&rpmhpd_opp_low_svs>;
+>> +                    };
+>> +
+>> +                    opp-270000000 {
+>> +                        opp-hz = /bits/ 64 <270000000>;
+>> +                        required-opps = <&rpmhpd_opp_svs>;
+>> +                    };
+>> +
+>> +                    opp-540000000 {
+>> +                        opp-hz = /bits/ 64 <540000000>;
+>> +                        required-opps = <&rpmhpd_opp_svs_l1>;
+>> +                    };
+>> +
+>> +                    opp-810000000 {
+>> +                        opp-hz = /bits/ 64 <810000000>;
+>> +                        required-opps = <&rpmhpd_opp_nom>;
+>> +                    };
+>> +                };
+>> +            };
+>> +
+>>               mdss_dsi0: dsi@ae94000 {
+>>                   compatible = "qcom,sm8350-dsi-ctrl", "qcom,mdss-dsi-ctrl";
+>>                   reg = <0 0x0ae94000 0 0x400>;
+>>
+> 
 
