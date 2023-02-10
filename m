@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F2F692573
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 213276925AC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233100AbjBJShv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Feb 2023 13:37:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60338 "EHLO
+        id S232178AbjBJSrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 13:47:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232558AbjBJShu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:37:50 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A284475F46;
-        Fri, 10 Feb 2023 10:37:47 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id x15-20020a4ab90f000000b004e64a0a967fso617346ooo.2;
-        Fri, 10 Feb 2023 10:37:47 -0800 (PST)
+        with ESMTP id S232462AbjBJSrK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:47:10 -0500
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B846E2748B;
+        Fri, 10 Feb 2023 10:46:53 -0800 (PST)
+Received: by mail-oo1-xc2e.google.com with SMTP id y17-20020a4ade11000000b0051762fdf955so620452oot.3;
+        Fri, 10 Feb 2023 10:46:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EwjFHE2WCeedwk4Ul5BLBOk2dOLSdKUShflb4M1ORn0=;
+        b=CoZOgjn4tlIm4i3BqhchLol8SxzuduqpcCTDcoSF33+I1d5E9/lOqP0h1IWj0u1PHt
+         Xsf00FGwvtoOW5I+nJ9/BxLCrc3GUmiPuoGSyMyNaXtF3LkgbuuHYIODjJHHg4qUXB7H
+         5gWBsFRHmN5skXmL8Mw6qF80jytfwttxt3/1WgtSwjgfS6+2LG1J/2+gJ0lr3FUQw0/U
+         58NbIHYP5kIIYZxYiqs5NJclqtpvjoP230StwZ/5AfQdPg8TsDQOlmQ3spaqnTiuMgoV
+         1GKUPg74qVcRT1spw1aICM6fj363fX9oEO0HDoXDTFBcASQgm0rjCpJ+m//TVVJBCax1
+         WONw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j7h/WebataPPaEa1u0vdSZ4RcwWXCSihrRS9Y13n00s=;
-        b=MCk+IEoY1bMnkVFM1ciZG+EaTzzzIkMkut8w2pQHWC8j6IzzpXbn3TSyzMfqnmGj20
-         NxIigeHvkAK54w13H02gljyg9IR12F4IMKUqFpfyxVtBp5T/VZHHaQFeKIzNsIdFz+t8
-         HLuaV5K5RuIK6YjubZCS6dLSNtRQSZHMaHFecnvea6KZHkLvnm6rP/kPdYMiDw94TyWj
-         wjSvIB/2ecigX/hmjhKONqVd2bJdT/zxHVfiTiKHPb2N8LuMJl95h9ytFWMoMuoQuh3J
-         4JuqVHMiWPYmFSpnDjwAqZQQb+CkqfC2hzSXc+o+0TgIiDAkXbXKBWxPs2MWJHPlSYdE
-         cASg==
-X-Gm-Message-State: AO0yUKUXV4KeD2pgZ2EaBU5Q1EaCTu34bC7SvFDeDb4f+7jTnLF4MNb1
-        RVOHCJa47K/9TJuKw7wFmw==
-X-Google-Smtp-Source: AK7set830zF5ycsji4Hw2LbzEHyGO0HXDM7rD8uyVm2n3BwbUfUR1WJMnLdu6EWioWTCmNi77JlAxA==
-X-Received: by 2002:a05:6820:449:b0:51a:7a15:9758 with SMTP id p9-20020a056820044900b0051a7a159758mr7198969oou.5.1676054266872;
-        Fri, 10 Feb 2023 10:37:46 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t5-20020a4adbc5000000b00511e01623bbsm2286985oou.7.2023.02.10.10.37.45
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EwjFHE2WCeedwk4Ul5BLBOk2dOLSdKUShflb4M1ORn0=;
+        b=MVOsv0vvKxg8mzmpUrpkJZGKOt/6x17IhB2IuU/lPdgdLeKEk7K06yVWW49SNTPV6o
+         5DqgoDGAmwhrOnZ6OSNf8iEjYdIwkraTj1foTPGOYFKIiSB53ich2LUZHbUPKMVxuBEg
+         LRtCztqoI1Cecstrw8dVu1g0eYmGO9Corz24hWHpXzTeR9mcMrb2LgSthVu8YGkvbm5Y
+         tsKGFeFNAycvQGWr0sTizDpSvr1mGX/xPNWQxjpkG7Kk269fLzXm/OI40wFU6Bj/QZOG
+         fqdl4JKsn2Up34W9jfv5TL0nnDpZzPUu/sxuglyyK1unUOB6TXwOyHUrx1yVFDqVguQO
+         vfGw==
+X-Gm-Message-State: AO0yUKUgLJqXPwiX96oLLXMi2FkkkEQc9cnvNEewJlAv+u9KhcX4da6W
+        4A85ksl/EzMHkokbBOjmhw8=
+X-Google-Smtp-Source: AK7set+dyohZI6NjI2q3dLAsKNT6dM/Gk5XggCjESy3IaxV+9Tig5Io4R/1kP+eVSIPLz6JUw4BMzQ==
+X-Received: by 2002:a4a:dece:0:b0:517:a7d1:9762 with SMTP id w14-20020a4adece000000b00517a7d19762mr7898089oou.7.1676054813066;
+        Fri, 10 Feb 2023 10:46:53 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c21-20020a4a4f15000000b0051d1f285509sm1267975oob.6.2023.02.10.10.46.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 10:37:46 -0800 (PST)
-Received: (nullmailer pid 2925630 invoked by uid 1000);
-        Fri, 10 Feb 2023 18:37:45 -0000
-Date:   Fri, 10 Feb 2023 12:37:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Md Danish Anwar <a0501179@ti.com>
-Cc:     MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Paolo Abeni <pabeni@redhat.com>,
-        srk@ti.com, andrew@lunn.ch, Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        ssantosh@kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        nm@ti.com, "David S. Miller" <davem@davemloft.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>, netdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Suman Anna <s-anna@ti.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: Re: [EXTERNAL] Re: [PATCH v5 1/2] dt-bindings: net: Add ICSSG
- Ethernet
-Message-ID: <20230210183745.GA2923614-robh@kernel.org>
-References: <20230210114957.2667963-1-danishanwar@ti.com>
- <20230210114957.2667963-2-danishanwar@ti.com>
- <167603709479.2486232.8105868847286398852.robh@kernel.org>
- <69f54246-5541-7899-f4ed-76d0a600e1b0@ti.com>
+        Fri, 10 Feb 2023 10:46:52 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 10 Feb 2023 10:46:51 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, arinc.unal@arinc9.com,
+        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] watchdog: mt7621-wdt: avoid static global
+ declarations
+Message-ID: <20230210184651.GD3670524@roeck-us.net>
+References: <20230210173841.705783-1-sergio.paracuellos@gmail.com>
+ <20230210173841.705783-4-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <69f54246-5541-7899-f4ed-76d0a600e1b0@ti.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <20230210173841.705783-4-sergio.paracuellos@gmail.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,55 +79,212 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 10, 2023 at 09:00:59PM +0530, Md Danish Anwar wrote:
+On Fri, Feb 10, 2023 at 06:38:40PM +0100, Sergio Paracuellos wrote:
+> Instead of using static global definitions in driver code, refactor code
+> introducing a new watchdog driver data structure and use it along the
+> code.
 > 
-> 
-> On 10/02/23 19:28, Rob Herring wrote:
-> > 
-> > On Fri, 10 Feb 2023 17:19:56 +0530, MD Danish Anwar wrote:
-> >> From: Puranjay Mohan <p-mohan@ti.com>
-> >>
-> >> Add a YAML binding document for the ICSSG Programmable real time unit
-> >> based Ethernet hardware. The ICSSG driver uses the PRU and PRUSS consumer
-> >> APIs to interface the PRUs and load/run the firmware for supporting
-> >> ethernet functionality.
-> >>
-> >> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> >> Signed-off-by: Md Danish Anwar <danishanwar@ti.com>
-> >> ---
-> >>  .../bindings/net/ti,icssg-prueth.yaml         | 184 ++++++++++++++++++
-> >>  1 file changed, 184 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> >>
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > ./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dtb: ethernet: False schema does not allow {'compatible': ['ti,am654-icssg-prueth'], 'pinctrl-names': ['default'], 'pinctrl-0': [[4294967295]], 'ti,sram': [[4294967295]], 'ti,prus': [[4294967295, 4294967295, 4294967295, 4294967295, 4294967295, 4294967295]], 'firmware-name': ['ti-pruss/am65x-pru0-prueth-fw.elf', 'ti-pruss/am65x-rtu0-prueth-fw.elf', 'ti-pruss/am65x-txpru0-prueth-fw.elf', 'ti-pruss/am65x-pru1-prueth-fw.elf', 'ti-pruss/am65x-rtu1-prueth-fw.elf', 'ti-pruss/am65x-txpru1-prueth-fw.elf'], 'ti,pruss-gp-mux-sel': [[2, 2, 2, 2, 2, 2]], 'dmas': [[4294967295, 49920], [4294967295, 49921], [4294967295, 49922], [4294967295, 49923], [4294967295, 49924], [4294967295, 49925], [4294967295, 49926], [4294967295, 49927], [4294967295, 17152], [4294967295, 17153]], 'dma-names': ['tx0-0', 'tx0-1', 'tx0-2', 'tx0-3', 'tx1-0', 'tx1-1', 'tx1-2', 'tx1-3', 'rx0', 'rx1'], 'ti,mii-g-rt': [[429!
-> >  4967295]], 'interrupts': [[24, 0, 2], [25, 1, 3]], 'interrupt-names': ['tx_ts0', 'tx_ts1'], 'ethernet-ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'phy-handle': [[4294967295]], 'phy-mode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 24]], 'ti,syscon-rgmii-delay': [[4294967295, 16672]], 'local-mac-address': [[0, 0, 0, 0, 0, 0]]}, 'port@1': {'reg': [[1]], 'phy-handle': [[4294967295]], 'phy-mode': ['rgmii-id'], 'interrupts-extended': [[4294967295, 25]], 'ti,syscon-rgmii-delay': [[4294967295, 16676]], 'local-mac-address': [[0, 0, 0, 0, 0, 0]]}}, '$nodename': ['ethernet']}
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dtb: ethernet: Unevaluated properties are not allowed ('firmware-name', 'ti,prus', 'ti,pruss-gp-mux-sel' were unexpected)
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> > 
-> > doc reference errors (make refcheckdocs):
-> > 
-> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230210114957.2667963-2-danishanwar@ti.com
-> 
-> Hi Rob,
-> This patch depends on the patch [1] which is posted through series [2]. Patch
-> [1] is currently approved, reviewed and will soon be merged to mainline Linux.
-> Once it is merged this patch won't throw the above error.
-> 
-> In the meantime I have posted this patch to get it reviewed so that once patch
-> [1] gets merged, this will be ready to be merged.
-> 
-> [1] https://lore.kernel.org/all/20230106121046.886863-2-danishanwar@ti.com/
-> [2] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-State that in *this* patch if you don't want to get the report.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Rob
+> ---
+>  drivers/watchdog/mt7621_wdt.c | 102 ++++++++++++++++++++++------------
+>  1 file changed, 65 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/watchdog/mt7621_wdt.c b/drivers/watchdog/mt7621_wdt.c
+> index a8aa3522c..40fb2c9ba 100644
+> --- a/drivers/watchdog/mt7621_wdt.c
+> +++ b/drivers/watchdog/mt7621_wdt.c
+> @@ -31,8 +31,11 @@
+>  #define TMR1CTL_RESTART			BIT(9)
+>  #define TMR1CTL_PRESCALE_SHIFT		16
+>  
+> -static void __iomem *mt7621_wdt_base;
+> -static struct reset_control *mt7621_wdt_reset;
+> +struct mt7621_wdt_data {
+> +	void __iomem *base;
+> +	struct reset_control *rst;
+> +	struct watchdog_device wdt;
+> +};
+>  
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
+>  module_param(nowayout, bool, 0);
+> @@ -40,27 +43,31 @@ MODULE_PARM_DESC(nowayout,
+>  		 "Watchdog cannot be stopped once started (default="
+>  		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+>  
+> -static inline void rt_wdt_w32(unsigned reg, u32 val)
+> +static inline void rt_wdt_w32(void __iomem *base, unsigned reg, u32 val)
+>  {
+> -	iowrite32(val, mt7621_wdt_base + reg);
+> +	iowrite32(val, base + reg);
+>  }
+>  
+> -static inline u32 rt_wdt_r32(unsigned reg)
+> +static inline u32 rt_wdt_r32(void __iomem *base, unsigned reg)
+>  {
+> -	return ioread32(mt7621_wdt_base + reg);
+> +	return ioread32(base + reg);
+>  }
+>  
+>  static int mt7621_wdt_ping(struct watchdog_device *w)
+>  {
+> -	rt_wdt_w32(TIMER_REG_TMRSTAT, TMR1CTL_RESTART);
+> +	struct mt7621_wdt_data *drvdata = watchdog_get_drvdata(w);
+> +
+> +	rt_wdt_w32(drvdata->base, TIMER_REG_TMRSTAT, TMR1CTL_RESTART);
+>  
+>  	return 0;
+>  }
+>  
+>  static int mt7621_wdt_set_timeout(struct watchdog_device *w, unsigned int t)
+>  {
+> +	struct mt7621_wdt_data *drvdata = watchdog_get_drvdata(w);
+> +
+>  	w->timeout = t;
+> -	rt_wdt_w32(TIMER_REG_TMR1LOAD, t * 1000);
+> +	rt_wdt_w32(drvdata->base, TIMER_REG_TMR1LOAD, t * 1000);
+>  	mt7621_wdt_ping(w);
+>  
+>  	return 0;
+> @@ -68,29 +75,31 @@ static int mt7621_wdt_set_timeout(struct watchdog_device *w, unsigned int t)
+>  
+>  static int mt7621_wdt_start(struct watchdog_device *w)
+>  {
+> +	struct mt7621_wdt_data *drvdata = watchdog_get_drvdata(w);
+>  	u32 t;
+>  
+>  	/* set the prescaler to 1ms == 1000us */
+> -	rt_wdt_w32(TIMER_REG_TMR1CTL, 1000 << TMR1CTL_PRESCALE_SHIFT);
+> +	rt_wdt_w32(drvdata->base, TIMER_REG_TMR1CTL, 1000 << TMR1CTL_PRESCALE_SHIFT);
+>  
+>  	mt7621_wdt_set_timeout(w, w->timeout);
+>  
+> -	t = rt_wdt_r32(TIMER_REG_TMR1CTL);
+> +	t = rt_wdt_r32(drvdata->base, TIMER_REG_TMR1CTL);
+>  	t |= TMR1CTL_ENABLE;
+> -	rt_wdt_w32(TIMER_REG_TMR1CTL, t);
+> +	rt_wdt_w32(drvdata->base, TIMER_REG_TMR1CTL, t);
+>  
+>  	return 0;
+>  }
+>  
+>  static int mt7621_wdt_stop(struct watchdog_device *w)
+>  {
+> +	struct mt7621_wdt_data *drvdata = watchdog_get_drvdata(w);
+>  	u32 t;
+>  
+>  	mt7621_wdt_ping(w);
+>  
+> -	t = rt_wdt_r32(TIMER_REG_TMR1CTL);
+> +	t = rt_wdt_r32(drvdata->base, TIMER_REG_TMR1CTL);
+>  	t &= ~TMR1CTL_ENABLE;
+> -	rt_wdt_w32(TIMER_REG_TMR1CTL, t);
+> +	rt_wdt_w32(drvdata->base, TIMER_REG_TMR1CTL, t);
+>  
+>  	return 0;
+>  }
+> @@ -105,7 +114,9 @@ static int mt7621_wdt_bootcause(void)
+>  
+>  static int mt7621_wdt_is_running(struct watchdog_device *w)
+>  {
+> -	return !!(rt_wdt_r32(TIMER_REG_TMR1CTL) & TMR1CTL_ENABLE);
+> +	struct mt7621_wdt_data *drvdata = watchdog_get_drvdata(w);
+> +
+> +	return !!(rt_wdt_r32(drvdata->base, TIMER_REG_TMR1CTL) & TMR1CTL_ENABLE);
+>  }
+>  
+>  static const struct watchdog_info mt7621_wdt_info = {
+> @@ -121,30 +132,39 @@ static const struct watchdog_ops mt7621_wdt_ops = {
+>  	.set_timeout = mt7621_wdt_set_timeout,
+>  };
+>  
+> -static struct watchdog_device mt7621_wdt_dev = {
+> -	.info = &mt7621_wdt_info,
+> -	.ops = &mt7621_wdt_ops,
+> -	.min_timeout = 1,
+> -	.max_timeout = 0xfffful / 1000,
+> -};
+> -
+>  static int mt7621_wdt_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> -	mt7621_wdt_base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(mt7621_wdt_base))
+> -		return PTR_ERR(mt7621_wdt_base);
+> +	struct watchdog_device *mt7621_wdt;
+> +	struct mt7621_wdt_data *drvdata;
+> +	int err;
+> +
+> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> +	if (!drvdata)
+> +		return -ENOMEM;
+>  
+> -	mt7621_wdt_reset = devm_reset_control_get_exclusive(dev, NULL);
+> -	if (!IS_ERR(mt7621_wdt_reset))
+> -		reset_control_deassert(mt7621_wdt_reset);
+> +	drvdata->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(drvdata->base))
+> +		return PTR_ERR(drvdata->base);
+>  
+> -	mt7621_wdt_dev.bootstatus = mt7621_wdt_bootcause();
+> +	drvdata->rst = devm_reset_control_get_exclusive(dev, NULL);
+> +	if (!IS_ERR(drvdata->rst))
+> +		reset_control_deassert(drvdata->rst);
+>  
+> -	watchdog_init_timeout(&mt7621_wdt_dev, mt7621_wdt_dev.max_timeout,
+> -			      dev);
+> -	watchdog_set_nowayout(&mt7621_wdt_dev, nowayout);
+> -	if (mt7621_wdt_is_running(&mt7621_wdt_dev)) {
+> +	mt7621_wdt = &drvdata->wdt;
+> +	mt7621_wdt->info = &mt7621_wdt_info;
+> +	mt7621_wdt->ops = &mt7621_wdt_ops;
+> +	mt7621_wdt->min_timeout = 1;
+> +	mt7621_wdt->max_timeout = 0xfffful / 1000;
+> +	mt7621_wdt->parent = dev;
+> +
+> +	mt7621_wdt->bootstatus = mt7621_wdt_bootcause();
+> +
+> +	watchdog_init_timeout(mt7621_wdt, mt7621_wdt->max_timeout, dev);
+> +	watchdog_set_nowayout(mt7621_wdt, nowayout);
+> +	watchdog_set_drvdata(mt7621_wdt, drvdata);
+> +
+> +	if (mt7621_wdt_is_running(mt7621_wdt)) {
+>  		/*
+>  		 * Make sure to apply timeout from watchdog core, taking
+>  		 * the prescaler of this driver here into account (the
+> @@ -154,17 +174,25 @@ static int mt7621_wdt_probe(struct platform_device *pdev)
+>  		 * we first disable the watchdog, set the new prescaler
+>  		 * and timeout, and then re-enable the watchdog.
+>  		 */
+> -		mt7621_wdt_stop(&mt7621_wdt_dev);
+> -		mt7621_wdt_start(&mt7621_wdt_dev);
+> -		set_bit(WDOG_HW_RUNNING, &mt7621_wdt_dev.status);
+> +		mt7621_wdt_stop(mt7621_wdt);
+> +		mt7621_wdt_start(mt7621_wdt);
+> +		set_bit(WDOG_HW_RUNNING, &mt7621_wdt->status);
+>  	}
+>  
+> -	return devm_watchdog_register_device(dev, &mt7621_wdt_dev);
+> +	err = devm_watchdog_register_device(dev, &drvdata->wdt);
+> +	if (err)
+> +		return err;
+> +
+> +	platform_set_drvdata(pdev, drvdata);
+> +
+> +	return 0;
+>  }
+>  
+>  static void mt7621_wdt_shutdown(struct platform_device *pdev)
+>  {
+> -	mt7621_wdt_stop(&mt7621_wdt_dev);
+> +	struct mt7621_wdt_data *drvdata = platform_get_drvdata(pdev);
+> +
+> +	mt7621_wdt_stop(&drvdata->wdt);
+>  }
+>  
+>  static const struct of_device_id mt7621_wdt_match[] = {
+> -- 
+> 2.25.1
+> 
