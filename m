@@ -2,145 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 031C3691A01
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:29:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F3C691A08
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 09:29:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbjBJI3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 03:29:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37774 "EHLO
+        id S230140AbjBJI3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 03:29:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbjBJI3I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:29:08 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE395AB24
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:29:04 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id o15so943102wrc.9
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 00:29:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6tE1c8DX1v8mq8zoUCAIlPkRHC7+cDeEHJZKSrjk8IA=;
-        b=hHm3T8b07r++hVJS3bQDQPb8kda5vBpkvDme6ZbXdLqhcM9fDX5oFyYu/n6qlFQcZ+
-         iYnatEhZBe2gJ2wPUQHlIp6tOWV+kFRO6IFOsML793dYvUdmykYe5h4kstTSQKQSctaj
-         oCGaxEXxiwEUGjY3YtXmK+ClIf4Wch7r5ypjWXB0RjDIg+HyfTeRc0RdO8FR6ncCp1f7
-         4anrFnVwmlc7tdaIo13VsLpIFr/SrIxAD/c8iMq7w5+CyAxHQnglEHkXJ9KBF4plk6Op
-         g4bpFy0zj4RO/xfYfqVNoZeBhIXZH0VdUI6o1Y50ypaAjEohACrSg5Y2ZZbr35Ta6Ymh
-         Rhvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6tE1c8DX1v8mq8zoUCAIlPkRHC7+cDeEHJZKSrjk8IA=;
-        b=n3ZkFWOefVitZgOVdMqMk+JR+DN+g8TZ4/q2ZTaVWt2hrWlI0qGx3ON0vuP+HblfiJ
-         EAQrDB5WlQhEWW+wF7yD+iPZoDQOPbRJeBCQYPBqGERrVtl8iLF4DihaGB6SoKnjNb97
-         uL7Nx/NMb3yENUh7l1el32zPOQI4SoCsKLSqFhwM5fs2f52j9nbfIn5k5v48AOkyk5Xi
-         8hN2UAZ31ccOvk2vKzkkV53HeOhsbqFvvR51LJmNdmLmSPY+mL49/PkWue188OLk990M
-         b6qTKxlbiZwW9JUss4JZKlTM2AbH0dj+K4AMhfrN9gUU3jFp/eMtsbvKXfMsijELPn4D
-         DULQ==
-X-Gm-Message-State: AO0yUKX3JIaj0qKpTUDzZsW1Or6LvMfydGtuVxnu5Jfbp0x/I1zHklCR
-        cqpujtCT5z3al795OA242oC/2g==
-X-Google-Smtp-Source: AK7set8CXKm1YKEByQG/0WbPGVGfw7alomSEHGXKLAfAg83bzNQrVs9gDjx9S1V0J6uUMIHVjvhQXg==
-X-Received: by 2002:adf:f308:0:b0:2c4:242:1e09 with SMTP id i8-20020adff308000000b002c402421e09mr8851999wro.41.1676017743399;
-        Fri, 10 Feb 2023 00:29:03 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5a65:5553:55cf:3027? ([2a01:e0a:982:cbb0:5a65:5553:55cf:3027])
-        by smtp.gmail.com with ESMTPSA id g16-20020adfe410000000b002bfae1398bbsm2965946wrm.42.2023.02.10.00.29.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 00:29:02 -0800 (PST)
-Message-ID: <3fe5605e-de5a-53dc-0bf0-c6aff81f2453@linaro.org>
-Date:   Fri, 10 Feb 2023 09:29:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 0/6] arm64: dts: qcom: sm8350: enable GPU on the HDK
- board
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S230525AbjBJI3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 03:29:44 -0500
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52FFF38653;
+        Fri, 10 Feb 2023 00:29:42 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id AD7F95C00E4;
+        Fri, 10 Feb 2023 03:29:40 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Fri, 10 Feb 2023 03:29:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1676017780; x=1676104180; bh=uiCqwTBEe0
+        viYok2ufMUsJ+Af16OiXAcjw4HpacnMW8=; b=CdqPoCjRjHWyCt876eRW7jlDxI
+        Uu1x/7QDk31H0wd7iGPfTDiT6iZTVxbJ7jcHvoJgVzniIsfiaR2XbCKXdQhz2+Bz
+        yMvrK3cqSxmtso9E6i+qP/D8XgZS1/bDkmmxFsEN9nsLaFEJd1DZZ2FS8gmYURyx
+        luDHBvhPMO/+0qbsILTUlcWoRXJYeRmigmAnRNc3kFh3mLzl6b7f+5qHpP9Q+lx4
+        6hTZ+X68BxlWtYqXeVTc1LewfYdpUi16BKloI5u4tzni0G7wU7vdSw3Xn65Vfi2y
+        /ibVkOB2DE4iFkH+/5G3VQJz3/5vE8hemNk4nJqVHOfVJ4ojR+8nsodaam5g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1676017780; x=1676104180; bh=uiCqwTBEe0viYok2ufMUsJ+Af16O
+        iXAcjw4HpacnMW8=; b=q1oILHirAjf/5bseLhy6ayhC17Y8jgiwf5VaZiV3D11C
+        bykVUmLjB7bD9cZUNU9uLfzuo6bzivWv0W9884ctvsSgCvL6npffip9YfWstrccD
+        9+gzmOtwidOF+RnRFgkhQSL+tECUpGiJtRf2ukkeNZ6dKoZ0hjFktXtWyMak7Wjw
+        81+4WWowjwhWiT/C69qdFbX3cE5vt1VC3EZ0mJp4+XdtwL+7lt3oTtjQctDlJ8u3
+        r8TXHebWQ2JntmPZ2wSQZOGTCHUM7VcIJ1/SsBsbrWUdCN5lXWaK+bnMd6B0F3Ii
+        ndQZRPlsFotHrvBbKg2YdrUFif9S4XW44XMIy93TAw==
+X-ME-Sender: <xms:cwDmY-5wwv-8qWHlTbLIJ2YybO6v8LiAFkeZ5TbuuykS-fRNDrRBrQ>
+    <xme:cwDmY34Fnl6SYM4fxrbRomAuxPEK0Rs6S_Lvix9e8x1oan_OGRXAWKtI7_l8iH6e7
+    39Bso7cVxpxixWbTco>
+X-ME-Received: <xmr:cwDmY9fiv41Kis3OVoe36JAIhjVxnZfvlDQRn1tRn1LQb58byoMvQYy9GHVuGqjeeD5M4A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudehgedguddujecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgig
+    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+    grthhtvghrnhepjeevfeehfeekieffgeevleevtefgffefkedtfeeuhfettdegjeehgfeg
+    udffffdunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:cwDmY7IrmJWCbPG6dElEm1mJ47CTqc3zAG2P8Zb_9CAAkuVRKZAy4w>
+    <xmx:cwDmYyJLaEnvEDC6-MH3Py79FNY4XGMNo-yAkuRtQA-cT4-EgkCB4A>
+    <xmx:cwDmY8wlJzVJMytapZgW9i53wqW8Sp0X103aieDA1J9BxdpcnkCRnQ>
+    <xmx:dADmYy6aGPaSxQgtI488ULeJ1kCAuThA_NOt0uj6eEnTw_ixRk_Sdw>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 10 Feb 2023 03:29:39 -0500 (EST)
+Date:   Fri, 10 Feb 2023 09:29:36 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Andreas Feldner <andreas@feldner-bv.de>,
+        Andreas Feldner <pelzi@flying-snail.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230209133839.762631-1-dmitry.baryshkov@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230209133839.762631-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230210082936.qefzz4fsp3jpalvp@houat>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+ <20230207011608.2ce24d17@slackpad.lan>
+ <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+ <20230209202952.673d5a60@slackpad.lan>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3nragrb2jbk2zyfl"
+Content-Disposition: inline
+In-Reply-To: <20230209202952.673d5a60@slackpad.lan>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 14:38, Dmitry Baryshkov wrote:
-> Add A660 device to the Qualcomm SM8350 platform and enable it for the
-> sm8350-hdk board. Unfortunately while adding the GPU & related devices I
-> noticed that DT nodes on SM8350 are greatly out of the adress sorting
-> order, so patches 2-4 reorder DT nodes to follow the agreement.
-> 
-> Changes since v1:
-> - Dropped merged patches
-> - Expanded commit messages to mention the sort order (by the node
->    address)
-> - Rebased on top of latest Bjorn's tree
 
-Can you specify which tree and commit ?
+--3nragrb2jbk2zyfl
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I tried next-20230207, next-20230208 & next-20230209 and patch 2 doesn't apply.
+On Thu, Feb 09, 2023 at 08:29:52PM +0000, Andre Przywara wrote:
+> > >>   &pio {
+> > >> +	/* 1=EF=BF=BDs debounce filter on both IRQ banks */
+> > > Is that supposed to be <micro> in UTF-8? It seems to have got lost in
+> > > translation, or is that just me?
+> > O yes, the Greek character slipped into the comment.
+> > >> +	input-debounce =3D <1 1>;
+> > > As mentioned above, I am not so sure this is generic enough to put it
+> > > here for PA. And what is the significance of "1 us", in particular? Is
+> > > that just the smallest value? =20
+> >=20
+> > Yes indeed it's a bit more complicated than I feel it needs to be. The
+> > configuration is taken as microseconds and translated into the best
+> > matching clock and divider by the driver. However, 0 is not translated
+> > to the lowest divider of the high speed clock as would be logical if
+> > you ask for zero microseconds, but to "leave at default". The default
+> > of the board is 0 in the register, translating to lowest divider on the
+> > _low_ speed clock.
+>=20
+> I'd say the "if (!debounce) continue;" code is just to defend against
+> the division by zero, which would be the next statement to execute.
+>=20
+> We might want to change that to interpret 0 as "lowest possible", which
+> would be 24MHz/1. Please feel free to send a patch in this regard, and
+> CC: Maxime, to get some input on that idea.
 
-On the 3 trees I have:
-d7133d6d25fb arm64: dts: qcom: sm8350: use qcom,sm8350-dsi-ctrl compatibles
-b904227a4b69 arm64: dts: qcom: sm8350: Hook up DSI1 to MDP
-2a07efb8c086 arm64: dts: qcom: sm8350: Add mdss_ prefix to DSIn out labels
-e3e654ced376 arm64: dts: qcom: sm8350: Fix DSI PLL size
-45cd807de143 arm64: dts: qcom: sm8350: Fix DSI PHY compatibles
-0af6a4012b38 arm64: dts: qcom: sm8350: Feed DSI1 PHY clocks to DISPCC
-1eed7995d9da arm64: dts: qcom: sm8350: Fix DSI1 interrupt
-6636818ecf0f arm64: dts: qcom: sm8350: Add missing #address/size-cells to DSIn
-f3c08ae6fea7 arm64: dts: qcom: sm8350: Pad addresses to 8 hex digits
-1ccad21aa996 Merge tag 'qcom-arm64-fixes-for-6.2' into arm64-for-6.3
-...
+I never had any complaint on that part either, so the default looks sane
+to me.
 
-Can you use --base in format-patch (or use b4 prep !) ?
+If some board needs a higher debouncing rate, then we should obviously
+set it up in the device tree of that board, but changing it for every
+user also introduces the risk of breaking other boards that actually
+require a lower debouncing frequency.
 
-Thanks,
-Neil
+And any default is always going to be debated, there's one, it seems to
+create little controversy, it seems to work in most case, I'd just stick
+with it.
 
-> 
-> Changes since v1:
-> - Fixed the subject and commit message for patch 1
-> - Fixed GMU's clocks to follow the vendor kernel
-> - Marked Adreno SMMU as dma-coherent
-> - Dropped comments targeting sm8350 v1, we do not support that chip
->    revision.
-> 
-> Dmitry Baryshkov (6):
->    dt-bindings: display/msm/gmu: add Adreno 660 support
->    arm64: dts: qcom: sm8350: reorder device nodes
->    arm64: dts: qcom: sm8350: move more nodes to correct place
->    arm64: dts: qcom: sm8350: finish reordering nodes
->    arm64: dts: qcom: sm8350: add GPU, GMU, GPU CC and SMMU nodes
->    arm64: dts: qcom: sm8350-hdk: enable GPU
-> 
->   .../devicetree/bindings/display/msm/gmu.yaml  |    1 +
->   arch/arm64/boot/dts/qcom/sm8350-hdk.dts       |    8 +
->   arch/arm64/boot/dts/qcom/sm8350.dtsi          | 2512 +++++++++--------
->   3 files changed, 1354 insertions(+), 1167 deletions(-)
-> 
+> > To me this is mindboggling.
+> >=20
+> > If you want to keep IRQ bank A as it is today and switch off the
+> > definitely unnecessary (and _potentially_ IRQ eating) debounce off
+> > for bank G only, I'd suggest the following setting:
+> >=20
+> >  =A0=A0=A0 input-debounce =3D <31 1>;
+>=20
+> It should be documented that the effective default is 31, I guess the
+> binding is the right place.
 
+Yeah, if the documentation is lacking, we should definitely improve it.
+
+Maxime
+
+--3nragrb2jbk2zyfl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY+YAawAKCRDj7w1vZxhR
+xYg7AP0ckcuX2nOcAZ6OY/Rg9KQEpnr6I19NX9UOSX+nlSREVgD+JSHvch+fVoZk
+53OrNbFnFVJH7IBNYSyVW1yqOhvuoA4=
+=eFLj
+-----END PGP SIGNATURE-----
+
+--3nragrb2jbk2zyfl--
