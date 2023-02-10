@@ -2,65 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6D176920A7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:18:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7BC76920B1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:20:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232395AbjBJOSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 09:18:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
+        id S232470AbjBJOUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 09:20:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232381AbjBJOSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:18:06 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B75303FB
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:18:04 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso4158750wms.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:18:04 -0800 (PST)
+        with ESMTP id S232459AbjBJOUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:20:04 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3FCF30B14
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:20:00 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id lu11so16277413ejb.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:20:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7gCIwjkW4mj7GEg4UX9SIJbxJsdVXdDoLdVX95U4ZAQ=;
-        b=M3meFAUZgc4u9VSgIMNLyini72JXil8R3ReEZy3l+Bsoz3c0UwpsB/hKm305UETshl
-         MFQBDze7HK6wxEUG3/dRu4ElC+I/uF/VMx85M6FQ+K7hIrO0Lz0zxK8YQR4mCn5anGM7
-         4hS/z/LBg0+KBiiBbqhBBvbBlQCQLkq6jNqKEGxoeOFy9FQl8s+vIzIcFL4L0rKP6wOb
-         COEn8tIf5vKXfMct526CvjCQJcmRUdgMV6NoLT8GlJSWdGmzfVEkWWdkSFp0UOTuck0P
-         17snSHuLRHQfzAvzxd2EKyT8S5OAmaLZjAFHzsoQsH/HeMZnRo6o6GRFdIZ3F3gTDleS
-         QoGg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1yeTUYV9DwvmvumapxveCYKLkr4TLgt1HykRgiLQgSg=;
+        b=PZD18EyHYR2HZg93WKDj6/g1Sl72V5Gg9ccQiT7XyhsvH7ZH6xBrflo9dWbWVzLNQM
+         WFlCaJ61SA+fCHm9frVrgTVH9mBzLVKpy7hr8XMS81emZOkp8PBdgiKRJBYTHJv5X2RH
+         yeyxQiMz0ZfBw/3YatSc1Yvrff4iDRpMhEx4VIu85HITwU0Wu+zILpGQOrBWTcwPceLB
+         qjYTq/P5CEssy6TTTR0qHjeeWQfdMiK/eR+f3OYL+7HMMrXB644BEq69ikyJ0881bLM/
+         ffgT2CQdWVi5HbSzIa10b5X+MXcFW/FBnXRLaKWGSx11OGtzPIhmNp2678bqHS3u2X/u
+         gtBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7gCIwjkW4mj7GEg4UX9SIJbxJsdVXdDoLdVX95U4ZAQ=;
-        b=Weobl1Z7gWgCT+z/oLvOhHNa0zfOER9RzWOEJYdZAmjvuxAuhDQu/5gQJMB9h9OXv5
-         edRXV6FlzvRTljryGSn5oZZX9IfTEDCQ9jNMJEFUAS3cAhP8MVxIeE2fpr4eJRkguthe
-         C+9qddhYYlWlUiC4cgj/BwyaQZhMifmQy7XwJ0zbxQn9oANSeUYUIdLJ8orizK7TxUSa
-         QlS3WUnbUb1Uirh5miuH/B2mPhG2Vcvq+7rJdxSjesQ1DDEcAGb2F0877wBXeOlKCIYr
-         Z+gCx+lPzYLkhRdpScfYY8x5SdwKNJ892Hc5IGKy+/F2Tm401CUEq/Mj5s6Ll5xV4Rnl
-         gY6g==
-X-Gm-Message-State: AO0yUKW2Ah44BP2tlYHwJYx6sIt0mUA4NwsPrrOzopbzKV4jBcl0oSgb
-        dRFqNzlzEIH6ypjAZEGy5WYhx5CsG3iItYQKvQA=
-X-Google-Smtp-Source: AK7set+T/gE/eEuVsE9zQ3Jy0gI89TK3IKOAoZY4Znv+SjSwr9woOUaDXg3eq8Dj9gXBQxyJoubVBg==
-X-Received: by 2002:a05:600c:1684:b0:3dc:52fc:7f06 with SMTP id k4-20020a05600c168400b003dc52fc7f06mr12894199wmn.41.1676038683509;
-        Fri, 10 Feb 2023 06:18:03 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5a65:5553:55cf:3027? ([2a01:e0a:982:cbb0:5a65:5553:55cf:3027])
-        by smtp.gmail.com with ESMTPSA id p24-20020a05600c1d9800b003dd1bd0b915sm8173477wms.22.2023.02.10.06.18.02
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1yeTUYV9DwvmvumapxveCYKLkr4TLgt1HykRgiLQgSg=;
+        b=LlYE5u4dB9FXVwaU3WnU9s9ZUALp0iPsB+Kpd1W94UOTA/v+Nv762GnJ3ecCxqbmn6
+         pCdLBt/+E2ZwSdBYMhgPIocTRYR5AHoJTJPlXvkOd+Ky8I5oKkwpd6EuMeQ5+O8llxno
+         Eoe5a34i5zAXqwz75JtsGCAKgw9xhxhmIZeW4N0Ih2rnQR3k8gfSdSRIo8TOVkiuCxBa
+         ijY2vItRVRC/aDhDBpVA4azdftS2/1ffFuGPj30zrQs6tHkf44/Fik9dNwUK01+/KJJm
+         IGZKNw/Ku0bqDiCZ5uVFoy19Em+evZwXuPGpl2oEtUCjxzHJ6gKdNxVFWgMPDSlBcu4h
+         +zGg==
+X-Gm-Message-State: AO0yUKXY8rvouCgi/fBV4yF0CeQBDssNaC7AwNhYRPNcSoY0pSAI8yJA
+        dVvZdSJggPerFDratFdkFOflcQ==
+X-Google-Smtp-Source: AK7set+NpQMZbv5ZXwmnSHxh8Yc3tiwUG09wLMeLAvVpFA5+yXPGm2Glt6S1EsUDBk30Kyow7w+/3A==
+X-Received: by 2002:a17:906:6a20:b0:8af:33f8:dcb3 with SMTP id qw32-20020a1709066a2000b008af33f8dcb3mr8466028ejc.57.1676038799317;
+        Fri, 10 Feb 2023 06:19:59 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id c18-20020a17090618b200b0088452ca0666sm2410748ejf.196.2023.02.10.06.19.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 06:18:02 -0800 (PST)
-Message-ID: <37d23af4-7920-055f-76b0-87ad907896e2@linaro.org>
-Date:   Fri, 10 Feb 2023 15:18:01 +0100
+        Fri, 10 Feb 2023 06:19:58 -0800 (PST)
+Message-ID: <97d75a6d-0b75-f0c2-1327-ceece0e4a17a@linaro.org>
+Date:   Fri, 10 Feb 2023 16:19:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
 Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sm8350: add dp controller
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
+Content-Language: en-GB
+To:     neil.armstrong@linaro.org, Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -76,147 +72,53 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
 References: <20230206-topic-sm8450-upstream-dp-controller-v2-0-529da2203659@linaro.org>
  <20230206-topic-sm8450-upstream-dp-controller-v2-3-529da2203659@linaro.org>
  <df068428-c086-4f6a-3cda-9ef6ce665f13@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <df068428-c086-4f6a-3cda-9ef6ce665f13@linaro.org>
+ <37d23af4-7920-055f-76b0-87ad907896e2@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <37d23af4-7920-055f-76b0-87ad907896e2@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2023 12:08, Dmitry Baryshkov wrote:
-> On 10/02/2023 12:34, Neil Armstrong wrote:
->> Add the Display Port controller subnode to the MDSS node.
+On 10/02/2023 16:18, Neil Armstrong wrote:
+> On 10/02/2023 12:08, Dmitry Baryshkov wrote:
+>> On 10/02/2023 12:34, Neil Armstrong wrote:
+>>> Add the Display Port controller subnode to the MDSS node.
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 82 
+>>> +++++++++++++++++++++++++++++++++++-
+>>>   1 file changed, 80 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>>> index d490ce84a022..eb636b7dffa7 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>>> @@ -2862,13 +2862,20 @@ ports {
+>>>                       port@0 {
+>>>                           reg = <0>;
+>>> -                        dpu_intf1_out: endpoint {
+>>> -                            remote-endpoint = <&mdss_dsi0_in>;
+>>> +                        dpu_intf0_out: endpoint {
+>>> +                            remote-endpoint = <&mdss_dp_in>;
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 82 +++++++++++++++++++++++++++++++++++-
->>   1 file changed, 80 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->> index d490ce84a022..eb636b7dffa7 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->> @@ -2862,13 +2862,20 @@ ports {
->>                       port@0 {
->>                           reg = <0>;
->> -                        dpu_intf1_out: endpoint {
->> -                            remote-endpoint = <&mdss_dsi0_in>;
->> +                        dpu_intf0_out: endpoint {
->> +                            remote-endpoint = <&mdss_dp_in>;
+>> No need to reorder these ports. Please add DP to the end.
 > 
-> No need to reorder these ports. Please add DP to the end.
+> Right, but I'll keep the dpu_intf0_out label for this port,
+> but having dpu_intf1_out, dpu_intf2_out then dpu_intf0_out isn't very 
+> clean...
 
-Right, but I'll keep the dpu_intf0_out label for this port,
-but having dpu_intf1_out, dpu_intf2_out then dpu_intf0_out isn't very clean...
+I don't have a strong opinion here. I think we can ignore it.
 
-> 
->>                           };
->>                       };
->>                       port@1 {
->>                           reg = <1>;
->> +                        dpu_intf1_out: endpoint {
->> +                            remote-endpoint = <&mdss_dsi0_in>;
->> +                        };
->> +                    };
->> +
->> +                    port@2 {
->> +                        reg = <2>;
->>                           dpu_intf2_out: endpoint {
->>                               remote-endpoint = <&mdss_dsi1_in>;
->>                           };
->> @@ -2876,6 +2883,77 @@ dpu_intf2_out: endpoint {
->>                   };
->>               };
->> +            mdss_dp: displayport-controller@ae90000 {
->> +                compatible = "qcom,sm8350-dp";
->> +                reg = <0 0xae90000 0 0x200>,
->> +                      <0 0xae90200 0 0x200>,
->> +                      <0 0xae90400 0 0x600>,
->> +                      <0 0xae91000 0 0x400>;
-> 
-> This will not validate against the schema. Please add p1 region at the end (I assume it is <0 0x0ae91400 0 0x400>).
-> 
->> +                interrupt-parent = <&mdss>;
->> +                interrupts = <12>;
->> +                clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->> +                     <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
->> +                     <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
->> +                     <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
->> +                     <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
->> +                clock-names = "core_iface",
->> +                          "core_aux",
->> +                          "ctrl_link",
->> +                                  "ctrl_link_iface",
->> +                          "stream_pixel";
->> +
->> +                assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
->> +                          <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
->> +                assigned-clock-parents = <&usb_1_qmpphy 1>,
->> +                             <&usb_1_qmpphy 2>;
-> 
-> Please use defined names here and in the phys below
-
-Ack, will do in all the patches
-
-> 
->> +
->> +                phys = <&usb_1_qmpphy 1>;
->> +                    phy-names = "dp";
->> +
->> +                    #sound-dai-cells = <0>;
->> +
->> +                operating-points-v2 = <&dp_opp_table>;
->> +                power-domains = <&rpmhpd SM8350_MMCX>;
->> +
->> +                status = "disabled";
->> +
->> +                ports {
->> +                    #address-cells = <1>;
->> +                    #size-cells = <0>;
->> +
->> +                    port@0 {
->> +                        reg = <0>;
->> +                        mdss_dp_in: endpoint {
->> +                            remote-endpoint = <&dpu_intf0_out>;
->> +                        };
->> +                    };
->> +                };
->> +
->> +                dp_opp_table: opp-table {
->> +                    compatible = "operating-points-v2";
->> +
->> +                    opp-160000000 {
->> +                        opp-hz = /bits/ 64 <160000000>;
->> +                        required-opps = <&rpmhpd_opp_low_svs>;
->> +                    };
->> +
->> +                    opp-270000000 {
->> +                        opp-hz = /bits/ 64 <270000000>;
->> +                        required-opps = <&rpmhpd_opp_svs>;
->> +                    };
->> +
->> +                    opp-540000000 {
->> +                        opp-hz = /bits/ 64 <540000000>;
->> +                        required-opps = <&rpmhpd_opp_svs_l1>;
->> +                    };
->> +
->> +                    opp-810000000 {
->> +                        opp-hz = /bits/ 64 <810000000>;
->> +                        required-opps = <&rpmhpd_opp_nom>;
->> +                    };
->> +                };
->> +            };
->> +
->>               mdss_dsi0: dsi@ae94000 {
->>                   compatible = "qcom,sm8350-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->>                   reg = <0 0x0ae94000 0 0x400>;
->>
-> 
+-- 
+With best wishes
+Dmitry
 
