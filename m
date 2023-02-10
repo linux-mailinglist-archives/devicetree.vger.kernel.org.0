@@ -2,188 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C964691C37
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:03:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD631691C40
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:06:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbjBJKDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 05:03:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54898 "EHLO
+        id S231584AbjBJKG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 05:06:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231579AbjBJKDa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:03:30 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF3930FC;
-        Fri, 10 Feb 2023 02:03:21 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id hx15so14323498ejc.11;
-        Fri, 10 Feb 2023 02:03:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XHUKpkdGd++gIe1TTqGxf+onHwGJzdjk6BqCtOyUWvo=;
-        b=B25J+RQN4hbCSUxZHXRFFwp33OvvgN0dBQzT282s5MI7kUYCNiby7K17JStLnnUCcC
-         46mdcIDgqSfpVzx1xpKPLTud12CfnL15O+g5lyV7si4Vuwmlp6JoVi3bGsbf4mck+MnF
-         kVQ1nDv85/hVeOQSXgre5inRNCMh0FPNSUtY3MbtAP7f9eutqv2Fj9JOsWwIRWVMY0rE
-         OG/tNEROztQ5uJQjLkZj5Xd68jOtfHi3FgmCMY6B76A3/zhmKXBvUFM8WS0eNFOSpRAf
-         kz67laa3To7OxMpGMEL1CEmZPrOOuZt9gcE1rmsbFKS1aIXXuSBsDl7f1WuvTT0Z+A5D
-         9ShA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XHUKpkdGd++gIe1TTqGxf+onHwGJzdjk6BqCtOyUWvo=;
-        b=69mY0iPBggEDAebyCEsGfb73nkoZszA2xkppYqpdiGsWL/spQl4JdEf7fCuCg/d+d0
-         JN/+9JZKzZ0QgPUbvC7mqKsplZVRQcFiiMr0IT6GrpI6XjWAxx4IemT3NeANV5f1kDzM
-         pcXRUXGfjvxkf8cmi1ZAF6xttAhqUhFJuOhe3bJyg46686ppChlD1YQwLJrEU4DDvGhE
-         zHVj5BDIFJy/UzoatF3C/bmsxQd+Y7FdjCUiiT2oOa4myomgNWt2dHl9EHTWR1SsUXgY
-         H7TYVWG0644VA5KnoLf5AJSiYkS18/yDUZi32Xm1bwZe4vXE6jfZH4YsLOlX73G+gA3n
-         JKzg==
-X-Gm-Message-State: AO0yUKVwj8BCIhPBI+jZiCvcPgPzlBNlfvkFnddhMt6p+7y5/IWm8P4B
-        PX8LnQpgN6BQ25TiEMZrN2kS8m9db2dT0xdkuyI=
-X-Google-Smtp-Source: AK7set8Me7MZ4F9pBrAU7Tp/HAMc22VtwSTNVx3364jQvI8VRWK34oOx3/MuG5UbwaGmdEfiy06Y4EjoA9wWAaCaaFc=
-X-Received: by 2002:a17:907:c715:b0:8af:449f:8fae with SMTP id
- ty21-20020a170907c71500b008af449f8faemr763617ejc.3.1676023400392; Fri, 10 Feb
- 2023 02:03:20 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1673227292.git.zhoubinbin@loongson.cn> <Y88VIXerF5Wk/9kj@mail.local>
- <CAMpQs4+8m0r98eGMHO7ktS2_AuNCA_u3Yk1q06i99TdbVZJ_Cg@mail.gmail.com>
-In-Reply-To: <CAMpQs4+8m0r98eGMHO7ktS2_AuNCA_u3Yk1q06i99TdbVZJ_Cg@mail.gmail.com>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Fri, 10 Feb 2023 18:03:07 +0800
-Message-ID: <CAMpQs4+uW75TdkMicdfU+5LYQxA_7kfbdabwO=iDiKwW-PzO9Q@mail.gmail.com>
-Subject: Re: [PATCH V2 0/7] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, linux-rtc@vger.kernel.org,
-        linux-mips@vger.kernel.org, loongarch@lists.linux.dev,
+        with ESMTP id S231324AbjBJKG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:06:27 -0500
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81599212B;
+        Fri, 10 Feb 2023 02:06:25 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id B25FB5C017F;
+        Fri, 10 Feb 2023 05:06:24 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Fri, 10 Feb 2023 05:06:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1676023584; x=1676109984; bh=v4XDh8PM5t
+        Dnz8mIeCYu/IW0nOTb8snlg/3tdK26gH0=; b=QnNw1uViaW+9bjW7xaHnJYXBh6
+        yLzWlWbhv5mnsOlNDF2sOScqyZMfcW7Gi2G7ZVgeDAU+sY7JRD7CDx8tqaXFwHM1
+        tWCI0vCqJ69l/jRo0DNmr76MdUa/cpxWQ01W6BaEjX3l3zUg7cbAaFsjKA/kXkwm
+        DeBaZKz9HrhgBrHlw8N2sZZ5FqYlyrnxgNEV8eq3F5CX5r4xhkeSyF430IeJAJNQ
+        ZgEjvQ5/yK0w/TMC8AzxIZ0YvPSQfk6b289ikQAqviVq4aKDIcTIOvs5sQ6Q9RMf
+        OpcnQVRT69Zf965SvUcvk70LJCiwl3L048QSKI4eOefx1wQUjVWXQbmkFImg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1676023584; x=1676109984; bh=v4XDh8PM5tDnz8mIeCYu/IW0nOTb
+        8snlg/3tdK26gH0=; b=pbJkq/eOZdp8GouBxGfYJqUuMTzi9TeRCe8fL86B6vbr
+        UXAC//eySK1LMAKcLqX+wTc/JqsIdDEeExUZ0V0zqngEKIQtK+pnnPq9PlpAvsGM
+        p+trjMzNa5nJEyVd61loyDGgASFv+t2RIKKX9qDbVIEhI7CYA7/MiBFfKKlVG5p/
+        lyshuurRG8YeiLlWmVdoq1bjfNf8LH7+sxam8NArMzL5mQ8Xtyf6ZWQRWTVW9Aw6
+        +7MIWwFx3kdUJLCApAE7lU+kqLoPsmEdvC8I8rM6IlnPsjXG/J395R8cBDUpsNTT
+        XdE+XoAzPkWpnbMaRAWr+C4jLqCazmMqZfhgbGgDZA==
+X-ME-Sender: <xms:HxfmY2wIe7mrROdR33-K3rE-KWbFcyyNo4Cty9CxHebN16BsDfH6mQ>
+    <xme:HxfmYyS6eTaT5BSCxLFK-PD6BtSDTc2XxMUwvziQa_vjo1kn5b1-y-ZcLHLKxfy-u
+    N1yqYBVKTQNHnqFDJg>
+X-ME-Received: <xmr:HxfmY4XxoFeKhIZroy1xKkLM4WIs0Py6eOkCMRgLAklp-S2AWjq4XkW_qlJA3kUlN-lxZg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudehhedgudduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+    ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HxfmY8i_Ayp5CjKerLoRLOs-AePWIVgwDBcQYne6DN32Qh__iefQwA>
+    <xmx:HxfmY4Aciro5h3zQiBaEP5Wh8Fzs33sWGLNN8H4jmjPmDfRnQC1ugQ>
+    <xmx:HxfmY9K-T0kee8Ry5GvbWYNzCKvfmF-9UOtPRFNcJ_H6sNvPpsgGFw>
+    <xmx:IBfmY6zImKOja7p9ceC7C1mVD2mY_9NyjJsyh7hiT2IFkVYnmezzaQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 10 Feb 2023 05:06:22 -0500 (EST)
+Date:   Fri, 10 Feb 2023 11:06:20 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Andreas Feldner <andreas@feldner-bv.de>,
+        Andreas Feldner <pelzi@flying-snail.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        zhaoxiao <zhaoxiao@uniontech.com>, zhzhl555@gmail.com,
-        Kelvin Cheung <keguang.zhang@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230210100620.z6j7rvkiwyu7paij@houat>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+ <20230207011608.2ce24d17@slackpad.lan>
+ <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+ <20230209202952.673d5a60@slackpad.lan>
+ <20230210082936.qefzz4fsp3jpalvp@houat>
+ <20230210094425.474cfba5@donnerap.cambridge.arm.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dptlal3vq5nbftml"
+Content-Disposition: inline
+In-Reply-To: <20230210094425.474cfba5@donnerap.cambridge.arm.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 31, 2023 at 8:59 PM Binbin Zhou <zhoubb.aaron@gmail.com> wrote:
->
-> Hi Kelvin:
->
-> Excuse me.
-> I am submitting the Loongson-2K/LS7A RTC driver and Alexandre would
-> like me to merge the ls1x rtc driver in parallel.
-> Unfortunately I found out that the loongson-1 does not yet support DT
-> and would like to ask if you have any plans to support DT?
->
-> I think this is the prerequisite for the merge.
->
-> Regards.
-> Binbin
->
->
 
-Hi Alexandre:
+--dptlal3vq5nbftml
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Unfortunately there has been no reply from Keguang for the past week
-or so. Can we try rtc-ls2x and rtc-ls1x to coexist until Loongson-1
-supports DT?
-Later on, if Keguang or someone else familiar with Loongson-1 adds DT
-support, I would be happy to continue trying to merge the two drivers.
+On Fri, Feb 10, 2023 at 09:44:25AM +0000, Andre Przywara wrote:
+> On Fri, 10 Feb 2023 09:29:36 +0100
+> Maxime Ripard <maxime@cerno.tech> wrote:
+>=20
+> Hi Maxime,
+>=20
+> thanks for the reply!
+>=20
+> > On Thu, Feb 09, 2023 at 08:29:52PM +0000, Andre Przywara wrote:
+> > > > >>   &pio {
+> > > > >> +	/* 1=EF=BF=BDs debounce filter on both IRQ banks */ =20
+> > > > > Is that supposed to be <micro> in UTF-8? It seems to have got los=
+t in
+> > > > > translation, or is that just me? =20
+> > > > O yes, the Greek character slipped into the comment. =20
+> > > > >> +	input-debounce =3D <1 1>; =20
+> > > > > As mentioned above, I am not so sure this is generic enough to pu=
+t it
+> > > > > here for PA. And what is the significance of "1 us", in particula=
+r? Is
+> > > > > that just the smallest value?   =20
+> > > >=20
+> > > > Yes indeed it's a bit more complicated than I feel it needs to be. =
+The
+> > > > configuration is taken as microseconds and translated into the best
+> > > > matching clock and divider by the driver. However, 0 is not transla=
+ted
+> > > > to the lowest divider of the high speed clock as would be logical if
+> > > > you ask for zero microseconds, but to "leave at default". The defau=
+lt
+> > > > of the board is 0 in the register, translating to lowest divider on=
+ the
+> > > > _low_ speed clock. =20
+> > >=20
+> > > I'd say the "if (!debounce) continue;" code is just to defend against
+> > > the division by zero, which would be the next statement to execute.
+> > >=20
+> > > We might want to change that to interpret 0 as "lowest possible", whi=
+ch
+> > > would be 24MHz/1. Please feel free to send a patch in this regard, and
+> > > CC: Maxime, to get some input on that idea. =20
+> >=20
+> > I never had any complaint on that part either, so the default looks sane
+> > to me.
+> >=20
+> > If some board needs a higher debouncing rate, then we should obviously
+> > set it up in the device tree of that board, but changing it for every
+> > user also introduces the risk of breaking other boards that actually
+> > require a lower debouncing frequency.
+>=20
+> Yeah, we definitely should keep the default at 32KHz/1, as this is also
+> the hardware reset value.
+>=20
+> Not sure if you were actually arguing this, but the change I sketched
+> above (interpreting 0 as 24MHz/1) is separate though, as the current
+> default is "no DT property", and not 0. There is no input-debounce
+> property user in the kernel tree at the moment, so we wouldn't break
+> anyone. The only thing that would change is if a downstream user was
+> relying on "0" being interpreted as "skip the setup", which isn't
+> really documented and could be argued to be an implementation detail.
+>=20
+> So I'd suggest to implement 0 as "lowest possible", and documenting that
+> and the 32KHz/1 default if no property is given.
 
-Regards.
-Binbin
+Ah, my bad.
 
->
->
-> On Tue, Jan 24, 2023 at 7:24 AM Alexandre Belloni
-> <alexandre.belloni@bootlin.com> wrote:
-> >
-> > On 09/01/2023 09:35:10+0800, Binbin Zhou wrote:
-> > > Hi all:
-> > >
-> > > The initial DT-base ls2x rtc driver was written by Wang Xuerui, He has
-> > > released five versions of patchset before, and all related mail records
-> > > are shown below if you are interested:
-> > >
-> > > https://lore.kernel.org/all/?q=ls2x-rtc
-> > >
-> > > In this series of patches, based on the code above, I have added the
-> > > following support:
-> > >
-> > > 1. Add ACPI-related support, as Loongson-3A5000 + LS7A is now ACPI-base
-> > >    by default under LoongArch architecture;
-> > > 2. Add rtc alarm/walarm related functions.
-> > >
-> > > I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA
-> > > and Loongson-2K0500.
-> > >
-> > > BTW:
-> > > There have been discussions about merging the rtc drivers of ls1x and
-> > > ls2x, but the following reasons made the merger difficult to achieve:
-> > >
-> > > 1. ls1x does not support ACPI, for it is only on MIPS-based system;
-> >
-> > This is not a good justification, you have to support both in your
-> > driver anyway, as shown by your CONFIG_ACPI ifdefery.
-> >
-> > > 2. ls1x does not support alarm function.
-> >
-> > It is just a matter of clearing a single bit, this is not difficult at
-> > all.
-> >
-> > >
-> > > Thanks.
-> > >
-> > > -------
-> > > Changes since v1:
-> > > 1. Rebased on top of latest loongarch-next;
-> > > 2. Add interrupt descriptions to the ls2k and ls7a DTS files to avoid
-> > > errors when the driver gets the IRQ number, Thanks to Qing Zhang for
-> > > testing;
-> > > 3. Remove some inexact CONFIG_ACPI.
-> > >
-> > > Binbin Zhou (4):
-> > >   rtc: Add support for the Loongson-2K/LS7A RTC
-> > >   LoongArch: Enable LS2X RTC in loongson3_defconfig
-> > >   MIPS: Loongson64: DTS: Add RTC support to LS7A
-> > >   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
-> > >
-> > > WANG Xuerui (3):
-> > >   dt-bindings: rtc: Add Loongson LS2X RTC support
-> > >   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
-> > >   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
-> > >
-> > >  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
-> > >  arch/loongarch/configs/loongson3_defconfig    |   1 +
-> > >  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   7 +
-> > >  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +
-> > >  arch/mips/configs/loongson2k_defconfig        |   1 +
-> > >  arch/mips/configs/loongson3_defconfig         |   1 +
-> > >  drivers/rtc/Kconfig                           |  11 +
-> > >  drivers/rtc/Makefile                          |   1 +
-> > >  drivers/rtc/rtc-ls2x.c                        | 379 ++++++++++++++++++
-> > >  9 files changed, 410 insertions(+)
-> > >  create mode 100644 drivers/rtc/rtc-ls2x.c
-> > >
-> > > --
-> > > 2.31.1
-> > >
-> >
-> > --
-> > Alexandre Belloni, co-owner and COO, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com
-> >
+There's another thing to consider: there's already a generic per-pin
+input-debounce property in pinctrl.
+
+Since we can't control it per pin but per bank, we moved it to the
+controller back then, but there's always been this (implicit)
+expectation that it was behaving the same way.
+
+And the generic, per-pin, input-debounce documentation says:
+
+> Takes the debounce time in usec as argument or 0 to disable debouncing
+
+I agree that silently ignoring it is not great, but interpreting 0 as
+the lowest possible is breaking that behaviour which, I believe, is a
+worse outcome.
+
+So I'm not sure what's the best course of action here. Rejecting the
+configuration entirely would prevent the entire pinctrl driver from
+probing which sounds really bad. Maybe we could just print an error that
+we rejected it to make it more obvious?
+
+Maxime
+
+--dptlal3vq5nbftml
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY+YXFwAKCRDj7w1vZxhR
+xTFrAQCdGF3qrNAzaAFjIUXOhNcaohzIyQtoXdUESrPe4GjXMAD+JilJvMPYMQ5m
+AXTNk41unbUwC1kxQEaZheLAV9LBHgg=
+=iTHV
+-----END PGP SIGNATURE-----
+
+--dptlal3vq5nbftml--
