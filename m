@@ -2,111 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55CEC692189
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 16:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80FC46921A3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 16:08:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbjBJPDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 10:03:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56424 "EHLO
+        id S232427AbjBJPIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 10:08:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232557AbjBJPCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 10:02:35 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D7025297
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:02:23 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so6496512wma.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:02:23 -0800 (PST)
+        with ESMTP id S232513AbjBJPIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 10:08:40 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59F227534F
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:08:28 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id g8so5976489qtq.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:08:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lvOBAwwV60ZD2h7rbngoovNR8grtWCnCAwynEM/2Dd8=;
-        b=WZndIevqsL/POGAtdUehX6x2NY8Xlry1rr0CgVySmTtxHR+gyRd4GMXyl/7AS1LBwi
-         eKoN50QbpNSKIJTs3U+36EoIZxz+sqYW8HyzbfgM599bTeebbsGbEweSvmoxP9PxFx1W
-         XvPO9ZW1XCOy61NiBP0srpGb2AZxILYXzhxUr6HUsLy+2Qe3xwZk0lzP/bGcq4TW2YY4
-         WVrSjJwHvv+PZpYXOHivw6wZfJUqTEi0zckAJdc4HGsjv2Zp8M17Dx4o1rj8MZQUSmno
-         oZZXKqNLJXCZQoavm2F5QBaW3+/brLWWgYYELkB9M/8se0A8p7uQ82vchdKtx9ii4Oc2
-         aLEw==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=NeXajktN08gdTqt/pb1PeyZwlRPXP0HIHSrcxP/wobQ=;
+        b=4tz0G1FmuViqvkhIudhqhbw7o48RF15bvCVJ8whu4nFj5BzkWYRhwDP0DBuBbHvyOV
+         2TCufrhYIxparXIirM90ae67HytZTXY/OMR8LIdwRNjy47yvWYpCcRUNfgOxK1Ndv9F+
+         Wamp2/MbQ3FQO/OZ85pKweJ9/iJI15npFgEqKYhdrgM7mpuh1nEUKAMQmw23Jw3GZrvg
+         Axdqe4O7ahSdl0QU8+5JfRxdubpUHIxL9jskCp5CSGAdWY8daWMIExB6afUNwedX2jWu
+         YYJqYpVKt0h0BPR7B7jcN+2hen/rwlidcyifr/DFVHQ05EO1URsMHg0w/DaEApuGGlG6
+         RASQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lvOBAwwV60ZD2h7rbngoovNR8grtWCnCAwynEM/2Dd8=;
-        b=OiQy8P8ojoDZP6uT5AFc1XWDIUI7LHQV2jMVSrgAM5Jz3MgO+oM2W7VRTQ8aR5FB0u
-         qJm9JB+4Anfpn6yy6XStGI1i6soiOjlgC2mYNqjsiP9nacU0/Wf0O+tkpM3Gb3z6prg7
-         dv0S1WS8D6a2aSSivTxrvlvCOVJXvwr7S55Dyc+re3hPxEDaCaFPJE0ShKOK4L3jIKbt
-         eM+36I5Lrrf95LLEuwjm8CiWVwjE3qs8lSdluD1ZeJWgQRKjJlkvzhhuGfKjhLsH7DmV
-         QhoUfdYewqRF/7IDAGcxqI6gyrd1yMSOSy49WNVo2p9VqITrNPS4t9Q6g+nVkoNX7oS1
-         Dj6A==
-X-Gm-Message-State: AO0yUKUHWLW8NJgGCzyuuWDA98f55rpCOG/vBoB7lwxvkxLin5LnS5xf
-        aB8ljJVGoMfXpbRUNNtw2Gt80g==
-X-Google-Smtp-Source: AK7set+RY5YCyTtc4HcGm5wOlP+232l9/FS2ziabwpUVjm1HAgiLSuDpxr7UDO9oqkNNCH/IONZbJg==
-X-Received: by 2002:a05:600c:4d92:b0:3df:dea7:8e3 with SMTP id v18-20020a05600c4d9200b003dfdea708e3mr14391119wmp.21.1676041341843;
-        Fri, 10 Feb 2023 07:02:21 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id w23-20020a1cf617000000b003db1d9553e7sm8282482wmc.32.2023.02.10.07.02.20
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NeXajktN08gdTqt/pb1PeyZwlRPXP0HIHSrcxP/wobQ=;
+        b=IjPCoGHTtamPCJjCsfcVN6hVDxd71eFPktHq73Y9iyWF+IhLbpifDwyxlnJ0ksiHsz
+         fgYNCdItw5ETOQn1Zq5NjNPoIcqAmvN2yQPSXIHahPb6hzDG9EWdLaimh0OLqjHsihGu
+         bxvC9B9VLmdUGolRb74nujL2jmnHxz4mhkvwK0XcWRDIhfJnm7IyFYfGHQ3YTvHDD+Q1
+         6jrycxC0RaKZI096bmA/TFnZK8u9BMc2rWeB6ATSe4Ewo/s44zYr3sE1lJtFl5M10i6n
+         ZJeV9vV94ABZDjhqfApoTAqDaWxl6S42OhCjmS3IKdrC1CA7p8u6mSSL/955NR71GCBj
+         loXQ==
+X-Gm-Message-State: AO0yUKUKvMbMDuhwbRhNsPvYKpw1xek8wSmHh7pk+IVsyp1gab4yQG9D
+        wVejf7kpklH/hJS5vl0Uzfiwtg==
+X-Google-Smtp-Source: AK7set+gB8I7SsaibW3tqxP2qGOehyGAfE7YysBkVatv5LZKtMsvyz4C6ypUP2jUhOysRHv/ioF2JQ==
+X-Received: by 2002:a05:622a:11c3:b0:3ab:d932:6c4e with SMTP id n3-20020a05622a11c300b003abd9326c4emr28225693qtk.18.1676041707499;
+        Fri, 10 Feb 2023 07:08:27 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id d10-20020ac800ca000000b003b0b903720esm3579310qtg.13.2023.02.10.07.08.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 07:02:21 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 10 Feb 2023 16:02:14 +0100
-Subject: [PATCH v2 11/11] arm64: defconfig: add PMIC GLINK modules
+        Fri, 10 Feb 2023 07:08:26 -0800 (PST)
+Message-ID: <e60e4abcc9a4ae149844982afd65135d6e1c87b6.camel@ndufresne.ca>
+Subject: Re: [EXT] Re: [PATCH 01/10] media: Add P012 and P012M video format
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Ming Qian <ming.qian@nxp.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "X.H. Bao" <xiahong.bao@nxp.com>, dl-linux-imx <linux-imx@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 10 Feb 2023 10:08:25 -0500
+In-Reply-To: <AM6PR04MB63418538B02868455752C74DE7D39@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1671071730.git.ming.qian@nxp.com>
+         <dfaef3c8eb29108b1837a1959d598c8b0db63422.1671071730.git.ming.qian@nxp.com>
+         <05bfc909-1ebb-b74f-dcdd-adc70dd97f3e@xs4all.nl>
+         <AM6PR04MB63418538B02868455752C74DE7D39@AM6PR04MB6341.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v2-11-71fea256474f@linaro.org>
-References: <20230130-topic-sm8450-upstream-pmic-glink-v2-0-71fea256474f@linaro.org>
-In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v2-0-71fea256474f@linaro.org>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMIC GLINK core, altmode, battery and UCSI
-aux drivers as module to enable USB Type-C management
-over the PMIC GLINK protocol on modern Qcom platforms.
+Le lundi 30 janvier 2023 =C3=A0 08:15 +0000, Ming Qian a =C3=A9crit=C2=A0:
+> > > diff --git a/include/uapi/linux/videodev2.h
+> > > b/include/uapi/linux/videodev2.h index 1befd181a4cc..5448aa3b7858
+> > > 100644
+> > > --- a/include/uapi/linux/videodev2.h
+> > > +++ b/include/uapi/linux/videodev2.h
+> > > @@ -626,12 +626,14 @@ struct v4l2_pix_format {
+> > > =C2=A0 #define V4L2_PIX_FMT_NV24=C2=A0=C2=A0=C2=A0 v4l2_fourcc('N', '=
+V', '2', '4') /* 24=C2=A0
+> > > Y/CbCr
+> > 4:4:4=C2=A0 */
+> > > =C2=A0 #define V4L2_PIX_FMT_NV42=C2=A0=C2=A0=C2=A0 v4l2_fourcc('N', '=
+V', '4', '2') /* 24=C2=A0
+> > > Y/CrCb
+> > 4:4:4=C2=A0 */
+> > > =C2=A0 #define V4L2_PIX_FMT_P010=C2=A0=C2=A0=C2=A0 v4l2_fourcc('P', '=
+0', '1', '0') /* 24=C2=A0
+> > > Y/CbCr
+> > 4:2:0 10-bit per component */
+> > > +#define V4L2_PIX_FMT_P012=C2=A0=C2=A0=C2=A0 v4l2_fourcc('P', '0', '1=
+', '2') /* 24=C2=A0
+> > > Y/CbCr
+> > 4:2:0 12-bit per component */
+> > >=20
+> > > =C2=A0 /* two non contiguous planes - one Y, one Cr + Cb interleaved=
+=C2=A0 */
+> > > =C2=A0 #define V4L2_PIX_FMT_NV12M=C2=A0=C2=A0 v4l2_fourcc('N', 'M', '=
+1', '2') /* 12=C2=A0
+> > > Y/CbCr
+> > 4:2:0=C2=A0 */
+> > > =C2=A0 #define V4L2_PIX_FMT_NV21M=C2=A0=C2=A0 v4l2_fourcc('N', 'M', '=
+2', '1') /* 21=C2=A0
+> > > Y/CrCb
+> > 4:2:0=C2=A0 */
+> > > =C2=A0 #define V4L2_PIX_FMT_NV16M=C2=A0=C2=A0 v4l2_fourcc('N', 'M', '=
+1', '6') /* 16=C2=A0
+> > > Y/CbCr
+> > 4:2:2=C2=A0 */
+> > > =C2=A0 #define V4L2_PIX_FMT_NV61M=C2=A0=C2=A0 v4l2_fourcc('N', 'M', '=
+6', '1') /* 16=C2=A0
+> > > Y/CrCb
+> > 4:2:2=C2=A0 */
+> > > +#define V4L2_PIX_FMT_P012M=C2=A0=C2=A0 v4l2_fourcc('P', 'M', '1', '2=
+') /* 24=C2=A0
+> > > Y/CbCr
+> > 4:2:0 12-bit per component */
+> >=20
+> > The name of the V4L2_PIX_FMT_ defines in this series are hard to decode=
+.
+> >=20
+> > In this case is it derived from V4L2_PIX_FMT_P010, which really should =
+have
+> > been named differently, but it's too late now :-(
+> >=20
+> > So I guess we'll stick with this naming, but it's not obvious what 'P01=
+2'
+> > means
+> > without referring to documentation.
+> >=20
+> > Oh well.
+> >=20
+> > Regards,
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Hans
+>=20
+> Hi Hans,
+> =C2=A0=C2=A0=C2=A0 I'll update the format name, as you know,=C2=A0 the P0=
+12 is following the P010,
+> as they are almost the same, and the Y212 comes from gstreamer
+> (GST_VIDEO_FORMAT_Y212_LE), then I did some naming like that.
+> =C2=A0=C2=A0=C2=A0 I'll correct them in v2 patch.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+I agree these naming are not obvious. In GStreamer, appart from the _LE par=
+t,
+we've had this historical tendency to just stick with Microsoft names when =
+they
+exist. Though Microsoft only define 10 and 16bits (P010/P016, Y210 and Y216=
+). In
+this case, the 12 has is derived from it.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e7e42bf79a26..1773254de7fb 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -287,6 +287,10 @@ CONFIG_VIRTIO_BLK=y
- CONFIG_BLK_DEV_NVME=m
- CONFIG_QCOM_COINCELL=m
- CONFIG_QCOM_FASTRPC=m
-+CONFIG_BATTERY_QCOM_BATTMGR=m
-+CONFIG_QCOM_PMIC_GLINK=m
-+CONFIG_TYPEC_UCSI=m
-+CONFIG_UCSI_PMIC_GLINK=m
- CONFIG_SRAM=y
- CONFIG_PCI_ENDPOINT_TEST=m
- CONFIG_EEPROM_AT24=m
+https://learn.microsoft.com/en-us/windows/win32/medfound/10-bit-and-16-bit-=
+yuv-video-formats
 
--- 
-2.34.1
+While P010 is very commonly seen, I don't know if Y210/Y212/Y216 is a great
+idea. It is a 16bit component width version of YUYV, which as we know exist=
+ in
+all sort of swizzling. So the Microsoft name will be hard to extend to othe=
+r
+component order. My argument of keeping it this way though is that it match=
+es
+the other copy of pixel formats definition that exist in Linux, which is
+drm_fourcc.h.
 
+Nicolas
