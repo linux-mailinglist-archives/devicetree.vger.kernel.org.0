@@ -2,111 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1356C691B12
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:16:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18CD4691B17
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:19:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbjBJJQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 04:16:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
+        id S231843AbjBJJTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 04:19:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231903AbjBJJOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:14:41 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E8E37736
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:14:23 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so5770915wmb.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 01:14:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ku9VL6FSKb9gFMPxdQiucBun4fHwkM9uag4osJcxFjQ=;
-        b=zpFhFXVLYIlooFUU8rmXcAkDC+adxJhCuHSkelNbjIJ2DmP8jlwg118JGvPgbkRCKw
-         BZMX2FB4Ds2EeVcox5073/bb4xQdDbRUbgXFT93qn2Tce5I+n1w5lvolsfHx9E6ejyvF
-         MA5Pgei1Z0mwQHdaZ+LSRIlQkZNw1HdSqARmrKGpbnG0VIu9HpQ6AprWV4WkEE3s9wxM
-         yAKVUnhHPq8cS0v8E5yORCAptQTmZWd6K3bkw/+WgZfqKNwqjPwuedVTq67nuRHV7GXH
-         wyODILu7O65DKUtpF0OfAtCptNBzyoZYKOZdxJaLMeoRpKNv5VGacNMvwq33GhNkup7Y
-         2hJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ku9VL6FSKb9gFMPxdQiucBun4fHwkM9uag4osJcxFjQ=;
-        b=IGSwPkSIOI9duwloBGcwaPLFWF/RjaY/d0BJUJioL3mYqlfPiQxHi1OgQZUmaY4waV
-         q906yDZcuIGsKMCfGb16PEdeuwCXM3z7OrI2lwaJAglPSLl+Va96cnvtHgel5DNr0ZFn
-         R4HbUPYO73Nbybe5pt00aXbtayyuyAf5Fve+tBRykR8+tkSc17SZ0krpgLN5c8RG4Tz5
-         0pNU5Gm2RxM0gynsPN4v7r6V5BQS609DnNq+Y8EeBMQgnLKflH4Cq5f3JGOFaPLtgRww
-         p4iyRseWK9cJh9PXjy5ekGMmdj4j8kPiajWzyvw32n19rq+megUMKWcFaqBR/MTPTc28
-         NZ3Q==
-X-Gm-Message-State: AO0yUKUW5OhKU9vOTqAml+v4L0a7AAUDkEqQmPk9kerZRsFcfhglDejl
-        1mxgYp/v+RBi+Xhr+DwHfmlQDg==
-X-Google-Smtp-Source: AK7set9cCPWlEwC4medSmZPNUYBTeGZ/QbBenDQeIUy/vE+DLny3N/6q1pDUgVbtRT7Pd2+x0zrW7A==
-X-Received: by 2002:a05:600c:319d:b0:3df:e1cc:94ff with SMTP id s29-20020a05600c319d00b003dfe1cc94ffmr12077511wmp.28.1676020462376;
-        Fri, 10 Feb 2023 01:14:22 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f24-20020a05600c491800b003dc0cb5e3f1sm4053386wmp.46.2023.02.10.01.14.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 01:14:22 -0800 (PST)
-Message-ID: <db065c0a-6c0e-ebf1-1867-6271b0cb5e8a@linaro.org>
-Date:   Fri, 10 Feb 2023 10:14:20 +0100
+        with ESMTP id S231588AbjBJJTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:19:49 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B3E5AB16;
+        Fri, 10 Feb 2023 01:19:48 -0800 (PST)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1E1D766020E1;
+        Fri, 10 Feb 2023 09:19:46 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676020786;
+        bh=bcTEB5behk+3CjFXvFCGBI3SS/+zk38IRBQan1mcZck=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IGKmteq2Wdd2d34t/OeHy23Ubr4WFmME7/qtFxYKJs6SAEpFqqylgDVbWhy+Dhiki
+         KbckeAdPuYkM3Rx5nOi8Pii3iuserGBrALwnu7KNR5pvlA0nu9UvZ4LouMqhimwHGN
+         B3TTqfXWuyBcmCfCFETGdLB8hXPAfsWpiRqRgQpXa/zBuMOMXcM2WPRTnaN317GA+m
+         BixWoFLIV1Ej8wSJmw51vGmISPxfedJmAO3vmMgBwEBkB6tcJpu5k7pDkPMvUOl6is
+         LBnpZAKZ7S4UEEDp2KpEaf1TLQ/2JTmgTajb+OtwJCoUJCBdU/iIECcaXcKcSI0WfK
+         I+YaqTAAS0r3w==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
+Subject: [PATCH v5 0/4] Add CS35L41 shared boost feature
+Date:   Fri, 10 Feb 2023 09:19:38 +0000
+Message-Id: <20230210091942.10866-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 4/4] ARM: dts: aspeed-g6: Add UDMA node
-Content-Language: en-US
-To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        jirislaby@kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-References: <20230210072643.2772-1-chiawei_wang@aspeedtech.com>
- <20230210072643.2772-5-chiawei_wang@aspeedtech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230210072643.2772-5-chiawei_wang@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2023 08:26, Chia-Wei Wang wrote:
-> Add the device tree node for UART DMA controller.
-> 
-> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> ---
->  arch/arm/boot/dts/aspeed-g6.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index cc2f8b785917..3f4e9da8f6c7 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -850,6 +850,13 @@ fsim1: fsi@1e79b100 {
->  				clocks = <&syscon ASPEED_CLK_GATE_FSICLK>;
->  				status = "disabled";
->  			};
-> +
-> +			udma: uart-dma@1e79e000 {
+Valve's Steam Deck uses CS35L41 in shared boost mode, where both speakers
+share the boost circuit.
+Add this support in the shared lib, but for now, shared boost is not
+supported in HDA systems as would require BIOS changes.
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Based on David Rhodes shared boost patches.
 
-> +				compatible = "aspeed,ast2600-udma";
+Also, fix boost config overwriting in IRQ found in the review and do a
+small refactor of the code.
 
-Please run scripts/checkpatch.pl and fix reported warnings.
+Changes from V4:
+ - Fix Document subject
 
+Changes from V3:
+ - Fix wrong code sent
+ - Fix ISO C90 mixed declarations and code 
 
+Changes from V2:
+ - Drop External boost without VSPK Documentation
+ - Move Shared boost to use values 2 and 3
+ - Revert back to reg_sequence but reading the value first and only update
+the necessary bits
+ - Fix bug found by Intel kernel Test Robot
 
-Best regards,
-Krzysztof
+Changes from V1:
+ - Fix Documentation patch subject
+ - New patch for External boost without VSPK Documentation
+ - New patch to fix boost IRQ overwriting issue
+ - New patch to refactor IRQ release error code
+ - reinit_completion on pcm_startup
+ - fix DRE switch overwriting
+ - return IRQ_HANDLED in PLL_LOCK case
+
+Lucas Tanure (4):
+  ASoC: cs35l41: Only disable internal boost
+  ASoC: cs35l41: Refactor error release code
+  ALSA: cs35l41: Add shared boost feature
+  ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
+
+ .../bindings/sound/cirrus,cs35l41.yaml        |  10 +-
+ include/sound/cs35l41.h                       |  13 +-
+ sound/pci/hda/cs35l41_hda.c                   |   6 +-
+ sound/soc/codecs/cs35l41-lib.c                |  73 +++++++++-
+ sound/soc/codecs/cs35l41.c                    | 125 +++++++++---------
+ sound/soc/codecs/cs35l41.h                    |   1 +
+ 6 files changed, 157 insertions(+), 71 deletions(-)
+
+-- 
+2.39.1
 
