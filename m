@@ -2,105 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2FCC6916C8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 03:44:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A33256916E1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 03:52:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbjBJCoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Feb 2023 21:44:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40240 "EHLO
+        id S230454AbjBJCwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Feb 2023 21:52:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbjBJCoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 21:44:38 -0500
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E86B6F8FD
-        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 18:44:37 -0800 (PST)
-Received: by mail-vs1-xe34.google.com with SMTP id l8so4234430vsm.11
-        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 18:44:37 -0800 (PST)
+        with ESMTP id S230462AbjBJCw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Feb 2023 21:52:27 -0500
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29AE160D4A;
+        Thu,  9 Feb 2023 18:51:59 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id cw4so2757877qvb.6;
+        Thu, 09 Feb 2023 18:51:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RxKcD5MHPeq8MW1BxCC2B2HCW247AyxiuibPeYpJLy0=;
-        b=WQkeb8HRZt6mt0Ws9HllUpsfUrgKa8s9at6qO+rVthEmiAc9amoTtOnzqJEmH1BFeZ
-         asqVFIfptZupwd2MwiZ2DDmlc/9w3dKQTrZnnsmQiigaSBMnimX0pciG3LuyWeI4fUjT
-         DCfgGNGZeXGPitNNKFNOaOJh6uI8dktnbgnGU=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/6+48hgnO2gTjvi3w2MqkzHMRFt3hzTXJXWQj1iCLhY=;
+        b=M5MjZ96hJzJ0033EP/SEBjkaHF62hsi7Mb5WqlmFoLlMLptfidBkuAyq1iVBDfz8/h
+         6kFa+NRPM2OMc5KzgmIu//+MWw+u1QUJXDoUw/ZJFoJnu5ssmMtQVqtPPcmBN0EAYo53
+         36R0sCF1GiYZDFu3AMVo0lnhy/3I+b2mvdB3bKQVj+VEMbSpZ2mUHvKr7/NfUCOQQWw0
+         59J+5lT3416478mCqSkYeQQey2+OscLa4+lT3FBgzG1nLmw9D3MpYl1vkXWlfsHh5D1p
+         1+aXIY0dTFHLscAXBsyt439p3Gj4J0/LMCUlnDaC9AAr45f3ncLjGKF1VYSzlpnjKzk1
+         1aWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RxKcD5MHPeq8MW1BxCC2B2HCW247AyxiuibPeYpJLy0=;
-        b=GeICnFaR7NDQQh0+RKNaDVg3He90m9WPMQRE6VVvY1WwFyB/w7ayH+SbSQUfReB4cE
-         IhZds1mHyp7uwo8CkSbtfOwKkp6nRFctW/j5c7Vv/k3FTTef2U2L4OtoWUy/dh/jvVZ2
-         RyHMAh5UcRGEWyU5OJiiFWHB7h4POtC3dEp0d+UrpDSINgNgRC7uYKQzqjDlnzllgw4Z
-         r8nr+Je5g+7hrbf60bom7mEtiaa6mf4Ty/6i9/Rp0Iv+zpTsoYMf9A3z+etTvvVkA/We
-         fC7xYnZ6cOm4N75dSzmQ0EWz8L1vaNK1wqSwTbXjAt6VPhNcPZ1m3MiVF+v5rusrzYuE
-         j8ZA==
-X-Gm-Message-State: AO0yUKXekqLytobvMyL+GvZ1uLbFnfzZ4I2qR5xPA2OmTJQ0e9LDpI/m
-        lYXZkk07VBxZd/FComuIOvfEbjMAOOSZjyu7UkZ4Pg==
-X-Google-Smtp-Source: AK7set8rmT5dBRiIMSgQxob4EVFEZikOUhOwE5/3kSmzkpF4EKHK+ockF47cKpiLEoE6PwJMZW4tFwy49H4pgkx46b8=
-X-Received: by 2002:a67:d202:0:b0:411:c830:e5b5 with SMTP id
- y2-20020a67d202000000b00411c830e5b5mr952691vsi.65.1675997076332; Thu, 09 Feb
- 2023 18:44:36 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/6+48hgnO2gTjvi3w2MqkzHMRFt3hzTXJXWQj1iCLhY=;
+        b=pcpeibwMFaKfR8ysjwupgNsgN3EwKl6CgmJQ7KO71JIoG7kmJt+G+e/THJCihVOXWV
+         hYM9VUbTzUuOFIx8Rjs6/EEYJJP/ieOrscqRTmVG2LAnEd5JbAQqJfAtS2nE8rsksG6L
+         keIeyJKZ0wTrLaYbmAJTcc7M+M+A1kr2uers+tj+7XPRa9VddKGyOeJWevq+mu42b3wa
+         g4f3GDY3pKBaN6ybge1NxBSIiJ3raiFY2QhiIkkmFLop+AM6U1QiaeeBZ8/htBgd5m6D
+         9nbTGQC7ET6qY/fzOBawHpOYP5uqwE5dkOTsDonVVn+hUv/X/aF/nlNr8nmAG1HY0Sac
+         HJgg==
+X-Gm-Message-State: AO0yUKUWN8ufSlEBq0/PRgzsHd6GvezUK1N8xc+7drh22e9nrKyfg3uC
+        3U/EJwVJLnw1aI0v5OqgAFP9kvBaeNs=
+X-Google-Smtp-Source: AK7set9P5/13cxfHVB4IddQLjmZXYrqEHgUPKJxNyGztfAuGl8T9d3qEx8G3mi6k3xrzdE+yrgjOPg==
+X-Received: by 2002:ad4:5b83:0:b0:56b:ff68:7ae1 with SMTP id 3-20020ad45b83000000b0056bff687ae1mr22608434qvp.26.1675997510706;
+        Thu, 09 Feb 2023 18:51:50 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id v129-20020a372f87000000b0070495934152sm2667265qkh.48.2023.02.09.18.51.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 18:51:50 -0800 (PST)
+From:   Trevor Woerner <twoerner@gmail.com>
+To:     linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: gpio: nxp,pcf8575: add gpio-line-names
+Date:   Thu,  9 Feb 2023 21:51:31 -0500
+Message-Id: <20230210025132.36605-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.36.0.rc2.17.g4027e30c53
+In-Reply-To: <59efb87b-5f97-a409-46ae-095ab03d01b9@linaro.org>
+References: 
 MIME-Version: 1.0
-References: <20230209160357.19307-1-matthias.bgg@kernel.org> <20230209160357.19307-4-matthias.bgg@kernel.org>
-In-Reply-To: <20230209160357.19307-4-matthias.bgg@kernel.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 10 Feb 2023 10:44:25 +0800
-Message-ID: <CAGXv+5FnXtR+KP6GZ2ut1cUwo0z-SBs1zTPWMSvm9dF-NNn--g@mail.gmail.com>
-Subject: Re: [PATCH v1 4/4] Revert "arm64: dts: mt8173: add mmsel clocks for
- 4K support"
-To:     matthias.bgg@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 10, 2023 at 12:05 AM <matthias.bgg@kernel.org> wrote:
->
-> From: Matthias Brugger <matthias.bgg@gmail.com>
->
-> This reverts commit fc6634ac0e5380aeb1063275a2e9a583d41b2306.
->
-> The mmsys is a clock provider but does not have any clocks connected to
-> it. Therefore assigned-clock properties should be applied to the users of mmsys.
+The devices described in this binding represent 8-bit and 16-bit i2c i/o
+expanders. Allow the user to specify names for up to 16 gpio lines.
 
-If there are multiple users that need this, then it should be moved to
-the clock provider node topckgen.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+changes since v2:
+- expand maxItems to 16 to accommodate that some of the io expanders
+  covered in this schema are 16-bit (e.g. PCA9675)
 
-> This fixes the DT schema check:
-> mediatek/mt8173-elm.dtb: syscon@14000000: 'assigned-clock-rates', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
->
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
-> ---
->
->  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index c47d7d900f283..b753547e250fe 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -988,8 +988,6 @@ mmsys: syscon@14000000 {
->                         compatible = "mediatek,mt8173-mmsys", "syscon";
->                         reg = <0 0x14000000 0 0x1000>;
->                         power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-> -                       assigned-clocks = <&topckgen CLK_TOP_MM_SEL>;
-> -                       assigned-clock-rates = <400000000>;
->                         #clock-cells = <1>;
->                         #reset-cells = <1>;
->                         mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-> --
-> 2.39.0
->
->
+changes since v1:
+- the original said [PATCH 1/2], there is no 2/2
+  (or at least there wasn't back then)
+---
+ Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+index f0ff66c4c74e..3718103e966a 100644
+--- a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
++++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+@@ -39,6 +39,10 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  gpio-line-names:
++    minItems: 1
++    maxItems: 16
++
+   gpio-controller: true
+ 
+   '#gpio-cells':
+-- 
+2.36.0.rc2.17.g4027e30c53
+
