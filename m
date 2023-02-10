@@ -2,137 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E19EC691E45
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:30:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C83691E50
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231898AbjBJLaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:30:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
+        id S231868AbjBJLbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:31:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232169AbjBJLaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:30:09 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4382F6CC6A
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:30:07 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id o36so3607421wms.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:30:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jlEJ/WfDgVsG5Jb5+gK1awECrjW76DF3jnb3j/ziMb0=;
-        b=cW0o0oQZSWAA3U2o7l1kIz3vFte0XTNZ/TMisF+941/AjmgwA+Y7FAPEKcbhFnjRWi
-         hb2u80wFItn3QQtrY2Q3exVol8MK6L2M43NGzl6lWkYuSqMAs9kwFwU8NKLp3KY2XmfI
-         Q65Xn2z0efUwBibWo/p5oAOLqbnBw0aUAWp4IO8HJ7aTujoo7d+osMPWzNi9xeiUM01B
-         r4HvujFSoh0yq1E51+uSvolsI5+j5tuy3xl94I/rpjd4QoDV+iCMelcbLYZsbuHF9QLf
-         doy5sDhcN6yJzKx5KReTj8ZhuyE5ATpFPqngNGYe+jP8xKUJ/JdZskTw07hpKAnqroi7
-         388w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jlEJ/WfDgVsG5Jb5+gK1awECrjW76DF3jnb3j/ziMb0=;
-        b=iTGlAJI2pBrj+AFEey3GgVERaRT98iXU15bkQbJ7LW48nPiLOFcb4zDKwEroET+RBU
-         5U7UVqRZmCTbN0Aq+DrBa0V9DchT1GD8X8T/k6XL8mULjev8Dh8C/zjHPjLab/p5uGSd
-         wT2y/mzdMc8oVi2ZXLTati759wp7q5KaLs8vruIBCTM5wG7Wepoxh1tqa9ASsdZ96tXX
-         2NWs4PDBEY/7ah7T2wLTJxoqJTZuTXXHHVFrbQfG3a5YLpUKUuCZLS8jS1MFLq+IQMMK
-         y8kepBHVNtH8eBUALLjy03c8ORaiBjcuEwvBucbyX91e6KGy7iJw9GwXJbWYTmd9WyOK
-         hp5g==
-X-Gm-Message-State: AO0yUKWEyUF2z+v/qplSyABsCAgjnSPHREi7I7CUUEtjix9m+yQW9ZXD
-        rxaqN14CkJaW3JkZI34BwIENZw==
-X-Google-Smtp-Source: AK7set8xtx+hZ40vxoTceinSRqg/H4ZPYcEgJV2IHxmtnqjkAb1898qYQiF9lMN+sNISWqnJM848TA==
-X-Received: by 2002:a05:600c:43d5:b0:3d9:e5d3:bf with SMTP id f21-20020a05600c43d500b003d9e5d300bfmr12841619wmn.32.1676028605783;
-        Fri, 10 Feb 2023 03:30:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f21-20020a05600c43d500b003dc522dd25esm4570298wmn.30.2023.02.10.03.30.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:30:05 -0800 (PST)
-Message-ID: <bee0e5be-6092-3656-72d2-ff9602563435@linaro.org>
-Date:   Fri, 10 Feb 2023 12:30:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v9 06/14] dt-bindings: qcom-qce: document optional clocks
- and clock-names properties
-Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        with ESMTP id S231897AbjBJLbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:31:43 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD9CF2915E
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:31:42 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pQRcp-00060J-3o; Fri, 10 Feb 2023 12:31:31 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pQRcm-003xHG-Vj; Fri, 10 Feb 2023 12:31:30 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pQRcn-002OQt-1t; Fri, 10 Feb 2023 12:31:29 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230208183755.2907771-1-vladimir.zapolskiy@linaro.org>
- <20230208183755.2907771-7-vladimir.zapolskiy@linaro.org>
- <b2d75c0a-a9f3-3d28-5e05-25fe3a18dcfb@linaro.org>
- <5e419feb-8219-61d5-8e4b-f96c5f382a64@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5e419feb-8219-61d5-8e4b-f96c5f382a64@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Danilo Krummrich <dakr@redhat.com>,
+        Liu Ying <victor.liu@nxp.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 0/2] drm/imx/lcdc: Implement DRM driver for imx25
+Date:   Fri, 10 Feb 2023 12:31:14 +0100
+Message-Id: <20230210113116.404773-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2394; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=Ez5XmZpZkVJKS/bmsGXsqscoKBsbRCxcShNhvoPQzu0=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBj5irlTqOv8W/RcSuOKpWDBAsjc2zeHIL5VeTwWGMW LuM7EQCJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY+Yq5QAKCRDB/BR4rcrsCWV1B/ 9Lz6RzBl/liixdm3dLaopbdbYwCZRyn6+o8+h4/cNn/otLUTLvUtwLqDkLVeZi/3a3HBVrQeG0sRZx qLF5TgqTUgaR6lF2EKKOHMwQQDPBwQ/T1B0HnEpTxLfRzqbwa/wyrazfQMq7O9AxhigLgjDYH0OOx0 ShiPrAMGrdw2SbpYIWEwU+MLt0J5RuuiUumNeoML7xC4Q0Jl77b133BU1Jhfuq7Rs/AcwQGtyoXec+ UWUClz92559clfd7KCP7eDtrH8OzqtZQZV55IWZOs/2egD74CiVMUTI/ZXZAJySwjEsOS4jMB08oCr pDhSTY2LpfCQWW2Pa6kG9Cu1Nlm/+V
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2023 12:17, Vladimir Zapolskiy wrote:
-> On 2/9/23 11:20, Krzysztof Kozlowski wrote:
->> On 08/02/2023 19:37, Vladimir Zapolskiy wrote:
->>> On newer Qualcomm SoCs the crypto engine clocks are enabled by default
->>> by security firmware. To drop clocks and clock-names from the list of
->>> required properties use 'qcom,sm8150-qce' compatible name.
->>>
->>> The change is based on Neil Armstrong's observation and an original change.
->>>
->>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
->>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->>> ---
->>>   .../devicetree/bindings/crypto/qcom-qce.yaml      | 15 +++++++++++++--
->>>   1 file changed, 13 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
->>> index f6f1759a2f6e..d0f6b830a5dd 100644
->>> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
->>> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
->>> @@ -79,11 +79,22 @@ properties:
->>>   required:
->>>     - compatible
->>>     - reg
->>> -  - clocks
->>> -  - clock-names
->>>     - dmas
->>>     - dma-names
->>>   
->>> +if:
->>
->> This should be in allOf, like I wrote in last discussion.
-> 
-> In the last discussion you shared two options, and I got an impression
-> that adding a new "non-clock-requiring" compatible is a better option,
-> in this series it is "qcom,sm8150-qce".
+Hello,
 
-It's unrelated topic. What compatibles you use in what setup is one
-thing. The syntax is second.
+Changes since v3:
 
-> 
-> So, do you wish to see an added allOf: on top of a single if: anyway?
+ - Don't use drm_of_find_panel_or_bridge, rely on panel-bridges instead (Sam)
+ - Add support for XRGB8888 (Sam)
+ - Make sure Kconfig + Makefile are added to the patch (*sigh*) (Philipp)
+ - Rebase on a newer tree (which involves among others changes for 8ab59da26bc0
+   ("drm/fb-helper: Move generic fbdev emulation into separate source file")
+   and 00b5497d642b ("drm/simple-kms: Remove
+   drm_gem_simple_display_pipe_prepare_fb()"). (Philipp)
+ - Whitespace cleanup (Philipp)
 
-Yes, because it will grow and then you have useless reindent.
+A big thanks to Philipp who explained the necessary changes to drop
+drm_of_find_panel_or_bridge and even implemented a part of it himself.
 
+Patch 1 depends on patch "dt-bindings: display: Convert fsl,imx-fb.txt
+to dt-schema" which currently sits in Rob's tree as
+93266da2409b1709474be00f1becbbdaddb2b706. Patch 2 bases on "drm/imx:
+move IPUv3 driver into separate subdirectory" which currentlich sits in
+drm-misc-next-2023-01-03 as 4b6cb2b67da883bc5095ee6d77f951f1cd7a1c24.
 
-Best regards,
-Krzysztof
+Unchanged since v3 is that the binding is using a different compatible. This is
+a bit ugly, but a drm driver needs a considerably different binding anyhow and
+this is the chance to pick a better name: The legacy binding uses "imx25-fb"
+(and similar for other SoCs), but the hardware unit is called LCDC and so I
+picked "imx25-lcdc" as new name. The idea is to deprecate imx25-fb (et al) and
+convert the imx25.dtsi to imx25-lcdc. (So I don't plan to have both variants in
+the dtsi file which Rob considered ugly.)
+
+Marian Cichy (1):
+  drm/imx/lcdc: Implement DRM driver for imx25
+
+Uwe Kleine-König (1):
+  dt-bindings: display: imx: Describe drm binding for fsl,imx-lcdc
+
+ .../bindings/display/imx/fsl,imx-lcdc.yaml    |  46 +-
+ drivers/gpu/drm/imx/Kconfig                   |   1 +
+ drivers/gpu/drm/imx/Makefile                  |   1 +
+ drivers/gpu/drm/imx/lcdc/Kconfig              |   7 +
+ drivers/gpu/drm/imx/lcdc/Makefile             |   1 +
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c           | 555 ++++++++++++++++++
+ 6 files changed, 610 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/imx/lcdc/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/lcdc/Makefile
+ create mode 100644 drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+
+base-commit: 2591939e881cf728b6ac45971eeec2f58051c101
+prerequisite-patch-id: c3ef3de02516b5c159e76b40d2b4348a5ce0fe51
+-- 
+2.39.0
 
