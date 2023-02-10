@@ -2,59 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA0B691E4E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B23691E51
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231488AbjBJLbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:31:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
+        id S231814AbjBJLbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:31:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231733AbjBJLbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:31:39 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6FD1A5E8
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:31:37 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pQRcp-00060H-0J; Fri, 10 Feb 2023 12:31:31 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pQRcm-003xHC-Mn; Fri, 10 Feb 2023 12:31:29 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pQRcn-002OQw-7n; Fri, 10 Feb 2023 12:31:29 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 1/2] dt-bindings: display: imx: Describe drm binding for fsl,imx-lcdc
-Date:   Fri, 10 Feb 2023 12:31:15 +0100
-Message-Id: <20230210113116.404773-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230210113116.404773-1-u.kleine-koenig@pengutronix.de>
-References: <20230210113116.404773-1-u.kleine-koenig@pengutronix.de>
+        with ESMTP id S231935AbjBJLbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:31:44 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099626ADD1
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:31:43 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id f23-20020a05600c491700b003dff4480a17so5289704wmp.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:31:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+fkGBGr95U+qrVIC9uAZjtOGVLAEHb6P+HpqT5os4ec=;
+        b=C2Z685sdL3QNJbkbChCFUGy/wgUn4zWw3tnLrbJYbDypS0y0Q5iJORk1/IFHWd2mSZ
+         4DPHq7DZHEjaL1m6gXsoZzuAnvkDFP+Gd2GjDavBFfePj41wU9WqMtRO6EqMyGtz/R+m
+         dIS/qLWbY8EbVNeBPo/yoxuJl1psj629D4iT+1uV0bg0bwvLeWCz1nl1Voms9nEg+2Zw
+         jGnYhk3GcxjX+R6jxy8W0lQCnpZzwsl8J+bxOZPyhi/2llo2AFk5JqS55/rwntHP3LdT
+         9NZMN/lu6k+xsCGHQAFAtk+toem+1cdeX1RzjjUeemkZHinvtBtfQl+eAxNhM6Dv0d8V
+         8njA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+fkGBGr95U+qrVIC9uAZjtOGVLAEHb6P+HpqT5os4ec=;
+        b=teJBzz+7MUN6968Ih2Y6D5M2iEVZqa21bsKREv42mCSGjC1Y5DJRa8t8Msi4vBQKom
+         K6ISlPzogFuVfhHUWHmF+x0rm+QeVNZ88RywvGLnNkGGfRQB7ZHxzJWwb2/dP0WhKMdl
+         9JOaMLwpvtYPz1VrC0ONjeZMJUikJAMdZbfxOCHQaN3nZJA0+V6qU1fG8ofSSURek8HP
+         1y4JPCer4oa1NNJuj6yUhpVUKtJyOzytiRaUaVEjb01XQ2vWTtd8tvK8IfRwhh1LRW3z
+         DY/PKKTL3ejFxT335ThDUW0LGKZTDXA3a06K8K4xVgwuYC43V5xNP2JMYfVGcUOkUtUS
+         z+RQ==
+X-Gm-Message-State: AO0yUKUnLrOTHcQSHFTR3qbuhMl79jNC8SzpISoMf1bVovXQWslaCZ12
+        YDZeRp/bAH91zhY1sJPwzSDcvQ==
+X-Google-Smtp-Source: AK7set8Ks+xOIu4NjxStV+AEAvbuyg368JTwQzaml5z21nUEgP5oAuUJDuSxL5cIEMWaihVm+0YOkQ==
+X-Received: by 2002:a05:600c:45cf:b0:3df:9858:c03c with SMTP id s15-20020a05600c45cf00b003df9858c03cmr9537555wmo.17.1676028701638;
+        Fri, 10 Feb 2023 03:31:41 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t14-20020a05600c198e00b003dff870ce0esm8611529wmq.2.2023.02.10.03.31.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 03:31:41 -0800 (PST)
+Message-ID: <cd94db40-32c1-6541-c1a7-bf937802e464@linaro.org>
+Date:   Fri, 10 Feb 2023 12:31:39 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/3] mips: dts: ralink: mt7621: add phandle to system
+ controller node for watchdog
+Content-Language: en-US
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230210065621.598120-1-sergio.paracuellos@gmail.com>
+ <20230210065621.598120-3-sergio.paracuellos@gmail.com>
+ <23d2f23f-b063-c417-e85d-40f09b509d04@linaro.org>
+ <CAMhs-H-rozEWNvRV0_CA1UeAZ9YJtg8PsHWjRnwBZp8ojqOcjQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMhs-H-rozEWNvRV0_CA1UeAZ9YJtg8PsHWjRnwBZp8ojqOcjQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2213; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=klOXu22ypsSRzarAj73cwNDvb8mVxPh3QEHVxFSKavY=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBj5irp+4jV656aWj/xVjb5KlZMRLW1wE8hiBkD9+Jr AwU0SHuJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY+Yq6QAKCRDB/BR4rcrsCUd6B/ 4lGL1KccrJCM+8AEl2ovFqZW8/01d4j0yFCWNyMqLXUSYkWDZAWP/I8yShP9ClJN0XpooBgJtRM+mC rTNUB9E4+m0pMt3Fgs0xf1Eax8Sdmhejd+QyemFWUquNR5GGWlmPZ3Kz4O4PzpiMibUCs8uNZh2PYK AplQWRpObtyfPebKzuRlk9TRnhZ3eH/ib8p7Yr0Z7inSmPl8NS6u+58ScqsRR89/gi5X5HkT7VARZr r0mYVlS8b37IqwzjNQJVrQsK2zSuTqcz9mZ0UqhutTxhfts6hZG9GEFj4bQgR1yTr6EHjpnuVRvLkk j/ribI++mFYY/g0n5jtn6Y0V2Lczad
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,95 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify the existing (fb-like) binding to support the drm-like binding in
-parallel.
+On 10/02/2023 12:29, Sergio Paracuellos wrote:
+> Hi Krzysztof,
+> 
+> On Fri, Feb 10, 2023 at 12:00 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 10/02/2023 07:56, Sergio Paracuellos wrote:
+>>> To allow to access system controller registers from watchdog driver code
+>>> add a phandle in the watchdog 'wdt' node. This avoid using arch dependent
+>>
+>> ??? This does not make sense.
+> 
+> What do you mean? The commit message itself? I need the phandle to
+> 'sysc' system controller node for accessing reset status registers
+> inside the watchdog driver code.
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- .../bindings/display/imx/fsl,imx-lcdc.yaml    | 46 ++++++++++++++++++-
- 1 file changed, 45 insertions(+), 1 deletion(-)
+The message makes sense. The message for the code does not make anymore.
+I meant, you want to access system controller registers from watchdog,
+so you add syscon to watchdog...
 
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-index 35a8fff036ca..c2a063bd5fb3 100644
---- a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-+++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-@@ -21,6 +21,9 @@ properties:
-               - fsl,imx25-fb
-               - fsl,imx27-fb
-           - const: fsl,imx21-fb
-+      - items:
-+          - const: fsl,imx25-lcdc
-+          - const: fsl,imx21-lcdc
- 
-   clocks:
-     maxItems: 3
-@@ -31,6 +34,9 @@ properties:
-       - const: ahb
-       - const: per
- 
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-   display:
-     $ref: /schemas/types.yaml#/definitions/phandle
- 
-@@ -59,17 +65,55 @@ properties:
-     description:
-       LCDC Sharp Configuration Register value.
- 
-+allOf:
-+  if:
-+    properties:
-+      compatible:
-+        contains:
-+          enum:
-+            - fsl,imx1-lcdc
-+            - fsl,imx21-lcdc
-+  then:
-+    properties:
-+      display: false
-+      fsl,dmacr: false
-+      fsl,lpccr: false
-+      fsl,lscr1: false
-+
-+    required:
-+      - port
-+
-+  else:
-+    properties:
-+      port: false
-+
-+    required:
-+      - display
-+
- required:
-   - compatible
-   - clocks
-   - clock-names
--  - display
-   - interrupts
-   - reg
- 
- additionalProperties: false
- 
- examples:
-+  - |
-+    lcdc@53fbc000 {
-+        compatible = "fsl,imx25-lcdc", "fsl,imx21-lcdc";
-+        reg = <0x53fbc000 0x4000>;
-+        interrupts = <39>;
-+        clocks = <&clks 103>, <&clks 66>, <&clks 49>;
-+        clock-names = "ipg", "ahb", "per";
-+
-+        port {
-+            parallel_out: endpoint {
-+              remote-endpoint = <&panel_in>;
-+            };
-+        };
-+    };
-   - |
-     imxfb: fb@10021000 {
-         compatible = "fsl,imx21-fb";
--- 
-2.39.0
+Best regards,
+Krzysztof
 
