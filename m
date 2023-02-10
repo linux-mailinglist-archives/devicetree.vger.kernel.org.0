@@ -2,138 +2,461 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F076D691D88
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:04:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 132AE691D83
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:04:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232290AbjBJLEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:04:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44860 "EHLO
+        id S232185AbjBJLEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:04:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231429AbjBJLEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:04:10 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F196D71647;
-        Fri, 10 Feb 2023 03:04:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=OiSEzv9rtDSTvo2Zi5fGTIDoz35QzbSPZrOm1laNUMM=; b=q31jFGPkY6EPYOhhEOFeBuqgBW
-        9DYtv8WXHGxMdfHJ/89KrDHm9dh9XGlQwu2RZR+kcob86Cka/SdhvlV23IZiQJwxArdcvGBNIn9bA
-        6YQ0s3K1bsHI04vVpdhl0vpALG0d4hNE5lhaNc+U6ZRbwUC3PEhLGhqyWY+XFq3SA8T7C++E8jiK4
-        vzufbQ1BC3MoOt4TSNpJ+IeGTpno75pw8TBo5MF0EBC6lzKQILQCGUBT6dnNA3RRk0bIlrajPTdKG
-        3VxSbk4OXtnWvxaFZvyhf5wayWduKUrImf8HixkA/QfMx6UX3UH08sIMjHSy2OECuJqcz0ZL9xt8X
-        BH16j7Xw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36512)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1pQRBu-0001MT-Sf; Fri, 10 Feb 2023 11:03:42 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1pQRBm-0005WD-Us; Fri, 10 Feb 2023 11:03:34 +0000
-Date:   Fri, 10 Feb 2023 11:03:34 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-        Clark Wang <xiaoning.wang@nxp.com>
-Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Wong Vee Khee <veekhee@apple.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Revanth Kumar Uppala <ruppala@nvidia.com>,
-        Tan Tee Min <tee.min.tan@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 3/6] net: stmmac: start phylink before setting
- up hardware
-Message-ID: <Y+YkhjyaL+hNGW+7@shell.armlinux.org.uk>
-References: <20230116103926.276869-1-clement.leger@bootlin.com>
- <20230116103926.276869-4-clement.leger@bootlin.com>
- <Y8UsvREsKOR2ejzT@shell.armlinux.org.uk>
- <20230207154135.6f0e59f8@fixe.home>
+        with ESMTP id S231429AbjBJLEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:04:05 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBA617168
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:04:03 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id hx15so14778228ejc.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:04:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=r2U3F1uwjHuiqAIBv6x42HMg+Ngi+9HEBlLmfRU10dY=;
+        b=sNU+vqWq+Ivn/7scG/wrYUESzYM2w8UZrlpU+1KA/KCciCbp8dN7Ys22Xb4UWF8fmw
+         /sBrqExdaeAb9IXWtMXZy+Kh1CxGIpb0m6XzAP7fxHTUo4/fdWHa3x+YJlf9maz7WvHQ
+         ifX9D9391L80rzk3rsgBh1ErSHfjliHkSYUqQRnwjXti+LxsvAtztBV1UwwsmzoaNSlk
+         lY4oLPThik7vcvaBufqk6A9mITfa0LyqCmMatkL10nB/zZAZcw1chwREOGTgzSWAZPZe
+         DsSQWNwtuX59xLvwsywjf4Km5b6xjb4OVc1kQafRf7DZRy0fIDanTz5Dj2G9HUNJb+KV
+         6Plw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r2U3F1uwjHuiqAIBv6x42HMg+Ngi+9HEBlLmfRU10dY=;
+        b=1p0ymZTT7msvpP4BJn0VvYlCWgE1ky7sDP+FRW8wc1J0LfYC3ETnhgdW9jORZxOkNm
+         nvOmgqlvI7LebDr5F82J6gmxFV94H0JDT0qrj08ihJOffvJ9Sak9wpery92QD0JrYTUO
+         FLjSvX4ZBQAW+XtvoTPbN5yVAyOp1p6kto8b+LmoY4hQNmd/HeYk2zXXOAqxI1Y3iZsa
+         ZPymydj++XzxxtJWXREdSnNQrEAueMvhDOlKfcctLV2YXis4N7WlzpD0/v6xVqU/4f0h
+         j+Qgpshmza8DDygur4I/UJp2TI/vZU8L+FiVnmR1xbdNwnEDUeK9xrL0dpZa9bZhgfS4
+         Fwtw==
+X-Gm-Message-State: AO0yUKVoa2b4cK6t7A+LdNk83IV/0Ss0iahbIqqJdvkd5sJag4vZLDiM
+        Uixf1yZ5bA5GlAEto/BsRBFQ/g==
+X-Google-Smtp-Source: AK7set+cf/2j9bzg5hcSYnMQxA4s688mptKE/8TYDB4LNSSKTNiil0acJUZs6xlyHtaKqW3VDA3iGg==
+X-Received: by 2002:a17:906:2851:b0:8a6:93a4:c892 with SMTP id s17-20020a170906285100b008a693a4c892mr15372625ejc.44.1676027041858;
+        Fri, 10 Feb 2023 03:04:01 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b008af2c131d4csm2222698ejc.5.2023.02.10.03.03.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 03:04:01 -0800 (PST)
+Message-ID: <addce6b1-1d3c-9094-b6e6-c060b0d0435a@linaro.org>
+Date:   Fri, 10 Feb 2023 12:03:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230207154135.6f0e59f8@fixe.home>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 3/6] arm64: dts: qcom: sm8350: move more nodes to
+ correct place
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230209133839.762631-1-dmitry.baryshkov@linaro.org>
+ <20230209133839.762631-4-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230209133839.762631-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 07, 2023 at 03:41:35PM +0100, Clément Léger wrote:
-> Le Mon, 16 Jan 2023 10:53:49 +0000,
-> "Russell King (Oracle)" <linux@armlinux.org.uk> a écrit :
-> 
-> > On Mon, Jan 16, 2023 at 11:39:23AM +0100, Clément Léger wrote:
-> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > > index f2247b8cf0a3..88c941003855 100644
-> > > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > > @@ -3818,6 +3818,12 @@ static int __stmmac_open(struct net_device *dev,
-> > >  		}
-> > >  	}
-> > >  
-> > > +	/* We need to setup the phy & PCS before accessing the stmmac registers
-> > > +	 * because in some cases (RZ/N1), if the stmmac IP is not clocked by the
-> > > +	 * PCS, hardware init will fail because it lacks a RGMII RX clock.
-> > > +	 */
-> > > +	phylink_start(priv->phylink);  
-> > 
-> > So what happens if you end up with the mac_link_up method being called
-> > at this point in the driver, before the hardware has been setup ?
-> > 
-> > If you use a fixed-link, that's a real possibility.
-> 
-> I actually have this setup. On the board, one GMAC is connected to a
-> DSA switch using a fixed-link and the other using the PCS such as added
-> by this series.
-> 
-> From what I see, indeed, the mac_link_up() function is called before
-> stmmac_hw_setup(). This does not seems to have any effect on my setup
-> (except making it working of course) but I agree this is clearly not
-> ideal.
-> 
-> What I could do is adding a function in the miic pcs driver that could
-> be called from my rzn1 stmmac probe function to actually configure the
-> PCS at probe time based on the detected "phy-mode". Does that seems
-> better to you ?
 
-I think Clark Wang is also working on addressing a very similar problem
-with stmmac. Please can you check out his work first, he's adding a new
-function to phylink to bring the PHY up early in the resume path.
 
-I would like you both to work together to address what seems to be the
-same issue.
+On 9.02.2023 14:38, Dmitry Baryshkov wrote:
+> Continue ordering DT nodes by their address. Move RNG, UFS, system NoC
+> and SLPI nodes to the proper position.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Konrad
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 314 +++++++++++++--------------
+>  1 file changed, 157 insertions(+), 157 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index b85bd8fd28c0..8bf38d350521 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -1421,6 +1421,13 @@ spi13: spi@a94000 {
+>  			};
+>  		};
+>  
+> +		rng: rng@10d3000 {
+> +			compatible = "qcom,prng-ee";
+> +			reg = <0 0x010d3000 0 0x1000>;
+> +			clocks = <&rpmhcc RPMH_HWKM_CLK>;
+> +			clock-names = "core";
+> +		};
+> +
+>  		config_noc: interconnect@1500000 {
+>  			compatible = "qcom,sm8350-config-noc";
+>  			reg = <0 0x01500000 0 0xa580>;
+> @@ -1641,18 +1648,76 @@ pcie1_phy: phy@1c0f000 {
+>  			status = "disabled";
+>  		};
+>  
+> -		lpass_ag_noc: interconnect@3c40000 {
+> -			compatible = "qcom,sm8350-lpass-ag-noc";
+> -			reg = <0 0x03c40000 0 0xf080>;
+> -			#interconnect-cells = <2>;
+> -			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		ufs_mem_hc: ufshc@1d84000 {
+> +			compatible = "qcom,sm8350-ufshc", "qcom,ufshc",
+> +				     "jedec,ufs-2.0";
+> +			reg = <0 0x01d84000 0 0x3000>;
+> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> +			phys = <&ufs_mem_phy_lanes>;
+> +			phy-names = "ufsphy";
+> +			lanes-per-direction = <2>;
+> +			#reset-cells = <1>;
+> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> +			reset-names = "rst";
+> +
+> +			power-domains = <&gcc UFS_PHY_GDSC>;
+> +
+> +			iommus = <&apps_smmu 0xe0 0x0>;
+> +
+> +			clock-names =
+> +				"core_clk",
+> +				"bus_aggr_clk",
+> +				"iface_clk",
+> +				"core_clk_unipro",
+> +				"ref_clk",
+> +				"tx_lane0_sync_clk",
+> +				"rx_lane0_sync_clk",
+> +				"rx_lane1_sync_clk";
+> +			clocks =
+> +				<&gcc GCC_UFS_PHY_AXI_CLK>,
+> +				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> +				<&gcc GCC_UFS_PHY_AHB_CLK>,
+> +				<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> +				<&rpmhcc RPMH_CXO_CLK>,
+> +				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> +				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> +				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+> +			freq-table-hz =
+> +				<75000000 300000000>,
+> +				<0 0>,
+> +				<0 0>,
+> +				<75000000 300000000>,
+> +				<0 0>,
+> +				<0 0>,
+> +				<0 0>,
+> +				<0 0>;
+> +			status = "disabled";
+>  		};
+>  
+> -		compute_noc: interconnect@a0c0000 {
+> -			compatible = "qcom,sm8350-compute-noc";
+> -			reg = <0 0x0a0c0000 0 0xa180>;
+> -			#interconnect-cells = <2>;
+> -			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		ufs_mem_phy: phy@1d87000 {
+> +			compatible = "qcom,sm8350-qmp-ufs-phy";
+> +			reg = <0 0x01d87000 0 0x1c4>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			clock-names = "ref",
+> +				      "ref_aux";
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> +
+> +			resets = <&ufs_mem_hc 0>;
+> +			reset-names = "ufsphy";
+> +			status = "disabled";
+> +
+> +			ufs_mem_phy_lanes: phy@1d87400 {
+> +				reg = <0 0x01d87400 0 0x188>,
+> +				      <0 0x01d87600 0 0x200>,
+> +				      <0 0x01d87c00 0 0x200>,
+> +				      <0 0x01d87800 0 0x188>,
+> +				      <0 0x01d87a00 0 0x200>;
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +			};
+>  		};
+>  
+>  		ipa: ipa@1e40000 {
+> @@ -1700,6 +1765,13 @@ tcsr_mutex: hwlock@1f40000 {
+>  			#hwlock-cells = <1>;
+>  		};
+>  
+> +		lpass_ag_noc: interconnect@3c40000 {
+> +			compatible = "qcom,sm8350-lpass-ag-noc";
+> +			reg = <0 0x03c40000 0 0xf080>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+>  		mpss: remoteproc@4080000 {
+>  			compatible = "qcom,sm8350-mpss-pas";
+>  			reg = <0x0 0x04080000 0x0 0x4040>;
+> @@ -1742,6 +1814,74 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+>  			};
+>  		};
+>  
+> +		slpi: remoteproc@5c00000 {
+> +			compatible = "qcom,sm8350-slpi-pas";
+> +			reg = <0 0x05c00000 0 0x4000>;
+> +
+> +			interrupts-extended = <&pdc 9 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&smp2p_slpi_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +					  "handover", "stop-ack";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "xo";
+> +
+> +			power-domains = <&rpmhpd SM8350_LCX>,
+> +					<&rpmhpd SM8350_LMX>;
+> +			power-domain-names = "lcx", "lmx";
+> +
+> +			memory-region = <&pil_slpi_mem>;
+> +
+> +			qcom,qmp = <&aoss_qmp>;
+> +
+> +			qcom,smem-states = <&smp2p_slpi_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			status = "disabled";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_SLPI
+> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							     IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_SLPI
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "slpi";
+> +				qcom,remote-pid = <3>;
+> +
+> +				fastrpc {
+> +					compatible = "qcom,fastrpc";
+> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
+> +					label = "sdsp";
+> +					qcom,non-secure-domain;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					compute-cb@1 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <1>;
+> +						iommus = <&apps_smmu 0x0541 0x0>;
+> +					};
+> +
+> +					compute-cb@2 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <2>;
+> +						iommus = <&apps_smmu 0x0542 0x0>;
+> +					};
+> +
+> +					compute-cb@3 {
+> +						compatible = "qcom,fastrpc-compute-cb";
+> +						reg = <3>;
+> +						iommus = <&apps_smmu 0x0543 0x0>;
+> +						/* note: shared-cb = <4> in downstream */
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>  		pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,sm8350-pdc", "qcom,pdc";
+>  			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
+> @@ -2012,153 +2152,6 @@ qup_i2c19_default: qup-i2c19-default-state {
+>  			};
+>  		};
+>  
+> -		rng: rng@10d3000 {
+> -			compatible = "qcom,prng-ee";
+> -			reg = <0 0x010d3000 0 0x1000>;
+> -			clocks = <&rpmhcc RPMH_HWKM_CLK>;
+> -			clock-names = "core";
+> -		};
+> -
+> -		ufs_mem_hc: ufshc@1d84000 {
+> -			compatible = "qcom,sm8350-ufshc", "qcom,ufshc",
+> -				     "jedec,ufs-2.0";
+> -			reg = <0 0x01d84000 0 0x3000>;
+> -			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> -			phys = <&ufs_mem_phy_lanes>;
+> -			phy-names = "ufsphy";
+> -			lanes-per-direction = <2>;
+> -			#reset-cells = <1>;
+> -			resets = <&gcc GCC_UFS_PHY_BCR>;
+> -			reset-names = "rst";
+> -
+> -			power-domains = <&gcc UFS_PHY_GDSC>;
+> -
+> -			iommus = <&apps_smmu 0xe0 0x0>;
+> -
+> -			clock-names =
+> -				"core_clk",
+> -				"bus_aggr_clk",
+> -				"iface_clk",
+> -				"core_clk_unipro",
+> -				"ref_clk",
+> -				"tx_lane0_sync_clk",
+> -				"rx_lane0_sync_clk",
+> -				"rx_lane1_sync_clk";
+> -			clocks =
+> -				<&gcc GCC_UFS_PHY_AXI_CLK>,
+> -				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> -				<&gcc GCC_UFS_PHY_AHB_CLK>,
+> -				<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> -				<&rpmhcc RPMH_CXO_CLK>,
+> -				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> -				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> -				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+> -			freq-table-hz =
+> -				<75000000 300000000>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<75000000 300000000>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<0 0>;
+> -			status = "disabled";
+> -		};
+> -
+> -		ufs_mem_phy: phy@1d87000 {
+> -			compatible = "qcom,sm8350-qmp-ufs-phy";
+> -			reg = <0 0x01d87000 0 0x1c4>;
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+> -			clock-names = "ref",
+> -				      "ref_aux";
+> -			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> -				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> -
+> -			resets = <&ufs_mem_hc 0>;
+> -			reset-names = "ufsphy";
+> -			status = "disabled";
+> -
+> -			ufs_mem_phy_lanes: phy@1d87400 {
+> -				reg = <0 0x01d87400 0 0x188>,
+> -				      <0 0x01d87600 0 0x200>,
+> -				      <0 0x01d87c00 0 0x200>,
+> -				      <0 0x01d87800 0 0x188>,
+> -				      <0 0x01d87a00 0 0x200>;
+> -				#clock-cells = <1>;
+> -				#phy-cells = <0>;
+> -			};
+> -		};
+> -
+> -		slpi: remoteproc@5c00000 {
+> -			compatible = "qcom,sm8350-slpi-pas";
+> -			reg = <0 0x05c00000 0 0x4000>;
+> -
+> -			interrupts-extended = <&pdc 9 IRQ_TYPE_LEVEL_HIGH>,
+> -					      <&smp2p_slpi_in 0 IRQ_TYPE_EDGE_RISING>,
+> -					      <&smp2p_slpi_in 1 IRQ_TYPE_EDGE_RISING>,
+> -					      <&smp2p_slpi_in 2 IRQ_TYPE_EDGE_RISING>,
+> -					      <&smp2p_slpi_in 3 IRQ_TYPE_EDGE_RISING>;
+> -			interrupt-names = "wdog", "fatal", "ready",
+> -					  "handover", "stop-ack";
+> -
+> -			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> -			clock-names = "xo";
+> -
+> -			power-domains = <&rpmhpd SM8350_LCX>,
+> -					<&rpmhpd SM8350_LMX>;
+> -			power-domain-names = "lcx", "lmx";
+> -
+> -			memory-region = <&pil_slpi_mem>;
+> -
+> -			qcom,qmp = <&aoss_qmp>;
+> -
+> -			qcom,smem-states = <&smp2p_slpi_out 0>;
+> -			qcom,smem-state-names = "stop";
+> -
+> -			status = "disabled";
+> -
+> -			glink-edge {
+> -				interrupts-extended = <&ipcc IPCC_CLIENT_SLPI
+> -							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> -							     IRQ_TYPE_EDGE_RISING>;
+> -				mboxes = <&ipcc IPCC_CLIENT_SLPI
+> -						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> -
+> -				label = "slpi";
+> -				qcom,remote-pid = <3>;
+> -
+> -				fastrpc {
+> -					compatible = "qcom,fastrpc";
+> -					qcom,glink-channels = "fastrpcglink-apps-dsp";
+> -					label = "sdsp";
+> -					qcom,non-secure-domain;
+> -					#address-cells = <1>;
+> -					#size-cells = <0>;
+> -
+> -					compute-cb@1 {
+> -						compatible = "qcom,fastrpc-compute-cb";
+> -						reg = <1>;
+> -						iommus = <&apps_smmu 0x0541 0x0>;
+> -					};
+> -
+> -					compute-cb@2 {
+> -						compatible = "qcom,fastrpc-compute-cb";
+> -						reg = <2>;
+> -						iommus = <&apps_smmu 0x0542 0x0>;
+> -					};
+> -
+> -					compute-cb@3 {
+> -						compatible = "qcom,fastrpc-compute-cb";
+> -						reg = <3>;
+> -						iommus = <&apps_smmu 0x0543 0x0>;
+> -						/* note: shared-cb = <4> in downstream */
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+>  		sdhc_2: mmc@8804000 {
+>  			compatible = "qcom,sm8350-sdhci", "qcom,sdhci-msm-v5";
+>  			reg = <0 0x08804000 0 0x1000>;
+> @@ -2307,6 +2300,13 @@ system-cache-controller@9200000 {
+>  			reg-names = "llcc_base", "llcc_broadcast_base";
+>  		};
+>  
+> +		compute_noc: interconnect@a0c0000 {
+> +			compatible = "qcom,sm8350-compute-noc";
+> +			reg = <0 0x0a0c0000 0 0xa180>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+>  		usb_1: usb@a6f8800 {
+>  			compatible = "qcom,sm8350-dwc3", "qcom,dwc3";
+>  			reg = <0 0x0a6f8800 0 0x400>;
