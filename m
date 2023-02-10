@@ -2,124 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DAA7692078
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:06:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8F9692087
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 15:10:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232425AbjBJOGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 09:06:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        id S232447AbjBJOJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 09:09:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232412AbjBJOGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:06:20 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5778661A
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:06:06 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id dr8so16054593ejc.12
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 06:06:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C84/0iEsdS/Ah8zV8cW8b6xnMEQGwqyDnz0IHNRwxD4=;
-        b=LptNiSGFmvY0/qCTeQhV/hLeFslQ9zJIhRnqPjjlxQYg914PSqWtNG/bvtgWErOR7U
-         /5gsUCFM9mwAIzbVKCagSISEpBuXHgmZuxsaHFACfBedDq75WoJdFYONhqGB+3WAsVOd
-         4T4wcEkNfzCo+yqctzAnbr+6M83hKe9qY9y2rdSGmSXvm35MwMCv716L/e8Zrwyu7cjg
-         Xl6qR9hVCpamGCaKZNo+D3Jt+tf0jzPcWATNl4tbDx+ijIEacKWgudUUX96/7KQ0vsyN
-         1wksJtWZH1N/jpidjXYgd2WcaBNJG+s1JYRCPCP7pJ5XUQ/gYxcoCAAYBNDW+iuB2MjJ
-         dRrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C84/0iEsdS/Ah8zV8cW8b6xnMEQGwqyDnz0IHNRwxD4=;
-        b=GIr+VNU1EOyKxMge8A9LktkETbHDso3KE5qK75YmOaIu3Z60AwTAbxAMtH15kDZWPr
-         NhnYgiuf/J6t9q8ZjcMSQhOZFtnFI+1YT7hXMFX7A8H95WsD+btLTjXD56R5fx7aVO2Z
-         yYET2lJcxF3F+ibXN0Sa9g7GLhA0I4RRP6Hu/xULfjnT7Kk8gLc6zMo5PPS8135MHVby
-         JeHGJ7M1gP+NJ9xXKPIspAoMQb1we5ZbDRY28t8KA45JVQdju4fH7TiF+08RezLrNxOH
-         l2XqLwkxBJKHnYfgTPJyZhRbtrP2k5oYPAqTlKxTI7cmav/F8rnk3d10qrpvfzIF9GxJ
-         yq8Q==
-X-Gm-Message-State: AO0yUKW2HCmMTDxRSe5ZWfIFPVFssE2o6tnQX/8KrYV9Xcdkxi7x2cQA
-        wA/Tu/CdBzB1lRH02ECWVuoC2aNuLBsDcUr7
-X-Google-Smtp-Source: AK7set9EKHy19EA9gCXPxfSM91T49eokdUAjpyCvDc6i2Cyg6vRFysSAuBD5wjrh6nM+JhwcSmL6Iw==
-X-Received: by 2002:a17:906:ecb0:b0:84d:4325:7f7a with SMTP id qh16-20020a170906ecb000b0084d43257f7amr15275528ejb.65.1676037965157;
-        Fri, 10 Feb 2023 06:06:05 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id i3-20020a170906698300b00878775876c5sm2413756ejr.73.2023.02.10.06.06.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 06:06:04 -0800 (PST)
-Message-ID: <16e6a11e-e6ba-966d-1011-1085527b84c7@linaro.org>
-Date:   Fri, 10 Feb 2023 15:06:02 +0100
+        with ESMTP id S232448AbjBJOJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 09:09:40 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C887405C;
+        Fri, 10 Feb 2023 06:09:32 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D125E66020E9;
+        Fri, 10 Feb 2023 14:09:30 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676038171;
+        bh=pFrTCC7DRf148QSpFOVkQrb6mUMqtPZiFny6QHbySyY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jHl0QRG/yGbw9Gzc6p6UkO4OcCuobFrTlhyYDOZzWJeQt8KPhwVDMQe5ZMvbHjdit
+         9qCVu4bwO3u6mPt+hWtHvKyr7CeeSDvCfV7mnQbLL3OZQW6UnMj3IsmCIdaBK6E2mh
+         1jFe0FOYU/lTlhZ+96OGQZtC9+3EizLpFwU8Nakp3MYHAvK94t7GsxME1YAO17b3AV
+         HLmk53qxhfo7VpkEbDVNmT4EYQAr8udfiJb31tprcoDltn9ysJa6KhJtwcOWurUZ6n
+         f8BEcB5QkfBbuaTQPhDN/bI8WYdyEA8QtQK8fh0d4f5gg9Q+o/c9xSvEUb+RC9skg8
+         DJXOSUPerRdZw==
+Message-ID: <db22c545-da11-9869-ef20-31d5a7a33318@collabora.com>
+Date:   Fri, 10 Feb 2023 15:09:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 4/4] arm64: defconfig: Enable DisplayPort on SC8280XP
- laptops
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v5 12/12] arm64: dts: mediatek: mt8195: Add SCP 2nd core
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230209011325.2603663-1-quic_bjorande@quicinc.com>
- <20230209011325.2603663-5-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230209011325.2603663-5-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230210085931.8941-1-tinghan.shen@mediatek.com>
+ <20230210085931.8941-13-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230210085931.8941-13-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9.02.2023 02:13, Bjorn Andersson wrote:
-> The QCOM_PMIC_GLINK implements the parts of a TCPM necessary for
-> negotiating DP altmode and the TYPEC_MUX_GPIO_SBU driver is used for
-> controlling connection and orientation switching of the SBU lanes in the
-> USB-C connector  Enable these to enable USB Type-C DisplayPort on
-> SC8280XP laptops.
+Il 10/02/23 09:59, Tinghan Shen ha scritto:
+> Rewrite the MT8195 SCP device node as a cluster and
+> add the SCP 2nd core in it.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Since the SCP device node is changed to multi-core structure,
+> enable SCP cluster to enable probing SCP core 0.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>   .../boot/dts/mediatek/mt8195-cherry.dtsi      |  4 +++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 30 ++++++++++++++-----
+>   2 files changed, 27 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> index 56749cfe7c33..4f9bc7581adb 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -933,6 +933,10 @@
+>   	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
+>   };
+>   
+> +&scp_cluster {
+> +	status = "okay";
+> +};
+> +
+>   &scp {
+>   	status = "okay";
+>   
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 8f1264d5290b..87e49f5fb7b3 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -826,14 +826,30 @@
+>   			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
+>   		};
+>   
+> -		scp: scp@10500000 {
+> -			compatible = "mediatek,mt8195-scp";
+> -			reg = <0 0x10500000 0 0x100000>,
+> -			      <0 0x10720000 0 0xe0000>,
+> -			      <0 0x10700000 0 0x8000>;
+> -			reg-names = "sram", "cfg", "l1tcm";
+> -			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		scp_cluster: scp@10500000 {
+> +			compatible = "mediatek,mt8195-scp-dual";
+> +			reg = <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
+> +			reg-names = "cfg", "l1tcm";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x10500000 0x100000>;
+>   			status = "disabled";
+> +
+> +			scp: scp@0 {
 
-Konrad
-> 
-> Changes since v1:
-> - None
-> 
->  arch/arm64/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 695c4e44d241..edafb5c4b9a1 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -972,6 +972,7 @@ CONFIG_TYPEC_TPS6598X=m
->  CONFIG_TYPEC_HD3SS3220=m
->  CONFIG_TYPEC_UCSI=m
->  CONFIG_UCSI_CCG=m
-> +CONFIG_TYPEC_MUX_GPIO_SBU=m
->  CONFIG_MMC=y
->  CONFIG_MMC_BLOCK_MINORS=32
->  CONFIG_MMC_ARMMMCI=y
-> @@ -1207,6 +1208,7 @@ CONFIG_QCOM_CPR=y
->  CONFIG_QCOM_GENI_SE=y
->  CONFIG_QCOM_LLCC=m
->  CONFIG_QCOM_OCMEM=m
-> +CONFIG_QCOM_PMIC_GLINK=m
->  CONFIG_QCOM_RMTFS_MEM=m
->  CONFIG_QCOM_RPMH=y
->  CONFIG_QCOM_RPMHPD=y
+Minor nit: Please change this to `scp_c0:`.
+Like that, we keep consistency and increase readability, as we're clearly then
+reading that one node is for core 0, the other is for core 1.
+
+This is fine even on devices using only a single SCP core, because in devicetree
+we are describing the hardware, not the software implemetation of it - and the
+MT8195 SoC does, by hardware, have two SCP cores anyway :-)
+
+After which,
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+
