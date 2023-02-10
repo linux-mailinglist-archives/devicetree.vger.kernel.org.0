@@ -2,128 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6347692012
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 14:48:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AF71692018
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 14:49:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232229AbjBJNsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 08:48:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36402 "EHLO
+        id S232296AbjBJNtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 08:49:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232242AbjBJNst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 08:48:49 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0061C34F69
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 05:48:47 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id u10so3858826wmj.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 05:48:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lgX1/zqimi/YLqc0ROTjcTpl2PIFnD1dAnCrk5r/m5U=;
-        b=pgpP3es6XyDBan70UlIhRinUQaDlKfIJoKHjs+Dblw9qmX20Y7du+QACZj+wX73XPv
-         +aOnS7z0uKcKvSPVJH8IGQxNpqNqfNCzZiM8nwUUGsPnUmhuKL8PnkrV12wZaNJNiKja
-         RpshlKvShYt2dnjI6y32FooWVcF41WOwwnHTIIw7oU0Bmql+fwnmMatS3sIUmXysWQkD
-         DTJRUaqHUn2vwFMgLPP9fW1uZ/c9j3LGF+qbpCGdQIM+4RtPqbXwpVCtM+dfP0lrgims
-         YuaFbck+0feUTfMLBghyGRWV8eiQEQZ5u+wD3vzRk7HhkKQy1kNjaPw+9gYS86auie0H
-         At8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lgX1/zqimi/YLqc0ROTjcTpl2PIFnD1dAnCrk5r/m5U=;
-        b=oq63yHcZOkGK+WAcG0sWHrCKSkqHzUdppyjgkQAmFSWYMg1BAywLfiEY93hh8/DXMY
-         jgVVaVHearfAhhkTp+9mseCtgEeryEAFkbuusKz+9yQUyrondNDpehq3QOGjmamuxWWc
-         1+RdV91OtHDbWTOSXeiqgohs/7Yw8CSbbvfZW9tsUPxRQiDAzT9BnCjJzNQzSqeak8Fa
-         6brkZl+OPD4uLTaQcGJeKjJTCrRFop6W5RBoGA62zlzHOIlvfWsJk+SWWWu3TePNwued
-         CJB5pJm7anM0I1b6EeQgSubgWT71+ByahoYZ3D6GuIe/yqhBiOcMfbj/XaGgREPbDHhA
-         BONQ==
-X-Gm-Message-State: AO0yUKUaGBiUVj+sFjdiQClOeYZkf+s7GoChAuedFekuXiHvZaugAy2C
-        DtpgDY7i5wMdAFSLqDcnNJB45A==
-X-Google-Smtp-Source: AK7set+wCpWmrcrA+BnOSJaSi1jOtj8FGpwUPGWJxV7mIKYA2FHgmLYCrTsknLK4f6wOi+tvOJEo+Q==
-X-Received: by 2002:a05:600c:450b:b0:3df:9858:c03b with SMTP id t11-20020a05600c450b00b003df9858c03bmr9896080wmo.16.1676036926504;
-        Fri, 10 Feb 2023 05:48:46 -0800 (PST)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id n16-20020a1c7210000000b003dc1d668866sm7948569wmc.10.2023.02.10.05.48.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 05:48:46 -0800 (PST)
-Message-ID: <3b215d83-9b8e-d881-44c4-ee1301bb9044@linaro.org>
-Date:   Fri, 10 Feb 2023 14:48:38 +0100
+        with ESMTP id S232237AbjBJNtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 08:49:21 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 549623644F;
+        Fri, 10 Feb 2023 05:49:20 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.97,287,1669042800"; 
+   d="scan'208";a="152409435"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 10 Feb 2023 22:49:19 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9981246C7F07;
+        Fri, 10 Feb 2023 22:49:19 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com
+Cc:     Sergey.Semin@baikalelectronics.ru, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v9 0/8] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Date:   Fri, 10 Feb 2023 22:49:09 +0900
+Message-Id: <20230210134917.2909314-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1 2/4] thermal: qoriq: add i.MX93 TMU support
-Content-Language: en-US
-To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-imx@nxp.com
-References: <20230105101748.6714-1-alice.guo@oss.nxp.com>
- <20230105101748.6714-3-alice.guo@oss.nxp.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230105101748.6714-3-alice.guo@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.3 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2023 11:17, Alice Guo (OSS) wrote:
-> From: Alice Guo <alice.guo@nxp.com>
-> 
-> The procedure to program the calibration table of i.MX93 TMU:
-> 1. disable monitoring mode
-> 2. configure TCMCFG
-> 3. write TTCFGR with TTCFGR[CAL_PT] = n
-> 4. write TSCFGR with the sensor value of the calibration point n
-> 5. write TTRCRn associated with the calibration point n
-> Need to repeat steps 3—5 for all calibration points from the calibration
-> table provided by the TMU device node.
-> 
-> When TRITSR[V] = 1 and TRITSR[TP5] = 1, need to add 0.5K to
-> TRITSR[TEMP].
-> 
-> IPBRR0s of lx2160ardb, lx2162aqds and i.MX93 have the same value
-> 0x01900201 so that use the compatible to determine whether the current
-> TMU belongs to i.MX93 or not.
-> 
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Ye Li <ye.li@nxp.com>
-> Acked-by: Jason Liu <jason.hui.liu@nxp.com>
-> ---
+Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+To support them, modify PCIe DesignWare common codes.
 
-[ ... ]
+Changes from v8:
+https://lore.kernel.org/all/20230131095543.1831875-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230210.
+ - Missing dt-bindings patches accidentally.
 
-> @@ -369,6 +416,7 @@ static SIMPLE_DEV_PM_OPS(qoriq_tmu_pm_ops,
->   static const struct of_device_id qoriq_tmu_match[] = {
->   	{ .compatible = "fsl,qoriq-tmu", },
->   	{ .compatible = "fsl,imx8mq-tmu", },
-> +	{ .compatible = "fsl,imx93-tmu", },
->   	{},
+Changes from v7:
+https://lore.kernel.org/all/20221121124400.1282768-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230131.
+ - Update Copyright year of new files.
+ - Add a new capability flag (DW_PCIE_CAP_EDMA_UNROLL) for finding eDMA on
+   R-Car S4-8.
+ - Remove some PCIe configurations like L1 substates from pcie-rcar-gen4-host.c.
+ - Change timing of reset_control for suitable this hardware initialization.
+ - Add gpio reset handling for host mode.
+ - Capitalize the first charactors on each printk message.
 
-Now that you have more than 2, I suggest the pass a ops structure to 
-.data, so you can call them directly instead of checking the TMU version 
-in the calibration, the initialization and get the temperature.
+Yoshihiro Shimoda (8):
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+  PCI: Add PCI_EXP_LNKCAP_MLW macros
+  PCI: designware-ep: Expose dw_pcie_ep_exit() to module
+  PCI: dwc: Add support for triggering legacy IRQs
+  PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+  PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
 
->   };
->   MODULE_DEVICE_TABLE(of, qoriq_tmu_match);
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        |  90 +++++++++
+ .../bindings/pci/rcar-gen4-pci-host.yaml      |  90 +++++++++
+ MAINTAINERS                                   |   1 +
+ drivers/pci/controller/dwc/Kconfig            |  18 ++
+ drivers/pci/controller/dwc/Makefile           |   4 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  70 ++++++-
+ .../pci/controller/dwc/pcie-designware-host.c |   3 +
+ drivers/pci/controller/dwc/pcie-designware.c  |  33 +++-
+ drivers/pci/controller/dwc/pcie-designware.h  |  19 +-
+ .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 185 ++++++++++++++++++
+ .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 165 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 166 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  63 ++++++
+ include/uapi/linux/pci_regs.h                 |   6 +
+ 14 files changed, 894 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.25.1
 
