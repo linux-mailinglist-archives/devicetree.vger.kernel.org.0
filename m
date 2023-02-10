@@ -2,105 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 802CC692647
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 20:27:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9165D692661
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 20:31:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232864AbjBJT1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 14:27:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33860 "EHLO
+        id S232701AbjBJTbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 14:31:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232057AbjBJT1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 14:27:49 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A6730E82
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 11:27:48 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id w5so7488405plg.8
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 11:27:48 -0800 (PST)
+        with ESMTP id S233147AbjBJTbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 14:31:03 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F5363109;
+        Fri, 10 Feb 2023 11:31:02 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id w11so9820900lfu.11;
+        Fri, 10 Feb 2023 11:31:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZwrUc84I/sw9tW3rFINcSrPClBVAQXnQCQkcXqCJwLw=;
-        b=hQAxFU0UWDL+c15mTPMopFsa+DtSgaC7lA9lDiZRF+/FBqEeZ1Sy6LFHOtrrmF7Sd2
-         v3IQ4IcAubIN0sr/1IcMzervGsBGnx/9uVGBupdYwT7CYjSfUyh2ey92RUSzoBbbgpYn
-         0yrTbvmX6Y5z5uGK5Fr3w7qB8YcpBQwxPf068+nJTDp3fMtnUOry570Pkrgu+Z0vJX0T
-         /oD0wDMz7A461CTNkbVBFXvkA3x1tdf1xcy/8c23ZzOgsoyCkwyAxKek0E8ib8LB8umD
-         JbVUcVsa0e4608OvA+Dgszfc0dcvb4K/Bn/gnpXg2T2gMtByW8tFjWx/0j/YrIp98Bph
-         Jh+w==
+        bh=5C6jWSG7hq9AtkVnw1BXnvg3J5xq2JBvsoPY4R7oHXU=;
+        b=gMD70Aegzbk2FJrljWXL8n4WR1uQDyrvje9tkioETRW4JCRv90x2oO94HOHIvu2Z06
+         o0MxG2ilUecybWXHL+d+Xmdmxyv0+QD9yQhz1v5xPMHA85aAlTx6+tfw068ixvNHRSoX
+         qOca5+cXa9PT1aSDbwEPLvzjt66wedkDcpBuRfdHAnkCGxmUAOWGqPdf5AdjaiSsOeO8
+         dTcPkkAMCjvcfkJoeGBkXHoIer2FQcsX8bMFHhHRRImaEAczYswqnA6QKDYom8ymjhjB
+         aIMZQn3gJ4fRvnYMxTKydVhHZC0yeQ3NJEauTuVmMnb+DfkAR/3avFCOIfQ9qWbWhHmR
+         IhIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZwrUc84I/sw9tW3rFINcSrPClBVAQXnQCQkcXqCJwLw=;
-        b=y8cI7brtjDacc7LcMH2TrRj6Zy/B1PRq3kVja77Rq1vv4A01ey1UkTvindWX1BANvk
-         ctf/s6YGPXqGMlW7Ldp7LyeTsa6T8Cbee846W/aeien+PpD0/LcnuGfb4NX/Zc0C7wdJ
-         /ExkbSwSXoKsvYj5CfHvfsuGtEidAmYDRrfu5x4UUyt5MSD+3dyRK7e/J60UsFu6UpI2
-         HzPjLTZDoigBy/Q+OAezNWpCFD4IbYMUP8esFhik9CY6lPlhVja15wOddW4KCHGrWPZ9
-         SgDdGDjKu/DvTQMluPSlCAzR6oC3w8JQfEntRmC1RdBaCbMnouEgmfqb4jGAnr9dXQR6
-         tgnQ==
-X-Gm-Message-State: AO0yUKUWgCUghwVRQW7qLUghvr0npIs/jwijKUNi+cCxKmUx8MpPFVuT
-        zT6gEx+fMgPOv6xCMxQmA6nCdcIpbBYv0xomZGlxOA==
-X-Google-Smtp-Source: AK7set8YqUGIKC41zQQA+imGuckADHerNWZeukO+5tCxdqLGYKK3iW3D9WDbQqKroQBsftoX1HY4I+fjcAkwH4jn0w0=
-X-Received: by 2002:a17:90a:f018:b0:230:9e2a:ebd8 with SMTP id
- bt24-20020a17090af01800b002309e2aebd8mr2796418pjb.48.1676057267896; Fri, 10
- Feb 2023 11:27:47 -0800 (PST)
+        bh=5C6jWSG7hq9AtkVnw1BXnvg3J5xq2JBvsoPY4R7oHXU=;
+        b=SJL/E5LXBL5zm1Ze0ULeU5acgUQDuFrZsvW8zehci/ho0Bk5NWe2F3uTu8xcTLmUAj
+         pC0Y5k/pSPgrGLbvvqQ9tTzqoxTX7Sd7UfuJjbhv7ee0NIBeThjM2Fvw99JO1pKV9xu4
+         IP7q6SIptK90pqgWFghXzMcmo0bwuC7jZqTIh9bkkpPuMzwp9la2wiQ1tWpNdXxqkYPh
+         O/IO0R5tehjLs1CpAZR+oqAuDnkZ+7BtQeytogTBkNFh706ZabXoJ9gLR2Cz9qwtHRys
+         Yj7BC2fym/rXTozN1G+mUiS+ZAATC/S2lbtUG2l2ZGD+Jt7wxjvfti8QLFDJcTDltwws
+         z8VQ==
+X-Gm-Message-State: AO0yUKUlg6dryrgg9al4MLU4CfjqoLm2fcQpVog+ifpckQtTO9zM+azC
+        ckfCE6IEeHc2Bm8mtbhBUKtO+CcQTOukLudfsYA=
+X-Google-Smtp-Source: AK7set/RRDSxCD8sl/9EyIJIc1+A4typ3xxXNp0BZ0jWrR//ggp3m+w5watXBqKJ/AgEOq7rY/x0crMIEI2RldJOeXA=
+X-Received: by 2002:ac2:54af:0:b0:4bb:35c9:dfb5 with SMTP id
+ w15-20020ac254af000000b004bb35c9dfb5mr2670374lfk.13.1676057460316; Fri, 10
+ Feb 2023 11:31:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20230207014207.1678715-1-saravanak@google.com> <20230210101333.h2e7hcl3ylsoh6fy@skbuf>
-In-Reply-To: <20230210101333.h2e7hcl3ylsoh6fy@skbuf>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 10 Feb 2023 11:27:11 -0800
-Message-ID: <CAGETcx_SQJ1q_f8r+zKATF-EEb0P-T_ot15AQ1x1Vc_3h=XfCw@mail.gmail.com>
-Subject: Re: [PATCH v3 00/12] fw_devlink improvements
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+References: <20230126074356.431306-1-francesco@dolcini.it> <Y+YC3Pka42SmtyvI@francesco-nb.int.toradex.com>
+ <CABBYNZLNFFUeZ1cb9xABhaymWnSiZjazwVT9N12qHyc7e0L6QQ@mail.gmail.com> <Y+aVQ38sJvuUd4HM@francesco-nb.int.toradex.com>
+In-Reply-To: <Y+aVQ38sJvuUd4HM@francesco-nb.int.toradex.com>
+From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date:   Fri, 10 Feb 2023 11:30:48 -0800
+Message-ID: <CABBYNZL7aD51jW=UxvcMBvfxbgFZ17H5nhfQ174JJNWDSdWe2A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] Bluetooth: hci_mrvl: Add serdev support for 88W8997
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Tedd Ho-Jeong An <hj.tedd.an@gmail.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -108,64 +82,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 10, 2023 at 2:13 AM Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+Hi Francesco,
+
+On Fri, Feb 10, 2023 at 11:04 AM Francesco Dolcini <francesco@dolcini.it> wrote:
 >
-> Hi Saravana,
+> On Fri, Feb 10, 2023 at 10:52:43AM -0800, Luiz Augusto von Dentz wrote:
+> > Hi Francesco,
+> >
+> > On Fri, Feb 10, 2023 at 12:40 AM Francesco Dolcini <francesco@dolcini.it> wrote:
+> > >
+> > > Hello all,
+> > >
+> > > On Thu, Jan 26, 2023 at 08:43:51AM +0100, Francesco Dolcini wrote:
+> > > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > >
+> > > > Add serdev support for the 88W8997 from NXP (previously Marvell). It includes
+> > > > support for changing the baud rate. The command to change the baud rate is
+> > > > taken from the user manual UM11483 Rev. 9 in section 7 (Bring-up of Bluetooth
+> > > > interfaces) from NXP.
+> > >
+> > > Just a gently ping on this series, patches 1,2 with DT binding changes
+> > > are reviewed/acked, patch 5 with the DTS change should just be on hold
+> > > till patches 1-4 are merged.
+> > >
+> > > No feedback on patches 4 (and 3), with the BT serdev driver code
+> > > changes, any plan on those?
+> >
+> > bots have detected errors on these changes
 >
-> On Mon, Feb 06, 2023 at 05:41:52PM -0800, Saravana Kannan wrote:
-> > Vladimir,
-> >
-> > Ccing you because DSA's and fw_devlink have known/existing problems
-> > (still in my TODOs to fix). But I want to make sure this series doesn't
-> > cause additional problems for DSA.
-> >
-> > All,
-> >
-> > This patch series improves fw_devlink in the following ways:
-> >
-> > 1. It no longer cares about a fwnode having a "compatible" property. It
-> >    figures this out more dynamically. The only expectation is that
-> >    fwnodes that are converted to devices actually get probed by a driver
-> >    for the dependencies to be enforced correctly.
-> >
-> > 2. Finer grained dependency tracking. fw_devlink will now create device
-> >    links from the consumer to the actual resource's device (if it has one,
-> >    Eg: gpio_device) instead of the parent supplier device. This improves
-> >    things like async suspend/resume ordering, potentially remove the need
-> >    for frameworks to create device links, more parallelized async probing,
-> >    and better sync_state() tracking.
-> >
-> > 3. Handle hardware/software quirks where a child firmware node gets
-> >    populated as a device before its parent firmware node AND actually
-> >    supplies a non-optional resource to the parent firmware node's
-> >    device.
-> >
-> > 4. Way more robust at cycle handling (see patch for the insane cases).
-> >
-> > 5. Stops depending on OF_POPULATED to figure out some corner cases.
-> >
-> > 6. Simplifies the work that needs to be done by the firmware specific
-> >    code.
-> >
-> > The v3 series has gone through my usual testing on my end and looks good
-> > to me.
+> From what I can understand from this point of view v2 is fine, the error
+> was in v1, if I'm wrong just let me know.
 >
-> Booted on an NXP LS1028A (arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts)
-> and a Turris MOX (arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts)
-> with no observed regressions.
+> Said that I'll do the change you asked regarding __hci_cmd_sync_status
+> and send a v3.
 
-Thanks for testing Vladimir!
+Great, for some reason your set is not being tested by our CI though,
+@Tedd Ho-Jeong An do you know why?
 
-> Is there something specific you would like
-> me to test?
-
-
-Not really, I just want to make sure the common DSA architectures
-don't hit any regression. In the hardware you tested, are there cases
-of PHYs where the supplier is the parent MDIO? I remember that being
-the only case where I needed special casing
-(FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD) in fw_devlink -- so it'll be
-good to make sure I didn't accidentally break anything there.
+> Thanks,
+> Francesco
+>
 
 
--Saravana
+-- 
+Luiz Augusto von Dentz
