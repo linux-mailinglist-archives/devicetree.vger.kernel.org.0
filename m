@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8080691E5F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:34:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F5A691E63
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:35:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbjBJLeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:34:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S232170AbjBJLe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:34:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231882AbjBJLeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:34:00 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6710272DC2
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:33:46 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id ba1so4768395wrb.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:33:46 -0800 (PST)
+        with ESMTP id S231928AbjBJLez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:34:55 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA8C71F1E
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:34:53 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id bk16so4751321wrb.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:34:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=L24ZYQXVUaFcxVZjnJ4h/yK6UJ8A4vFjYSvIAf+wKNo=;
-        b=FTcH6VwikNtTRT5l1ycXuunT71/9B1P0kYVP741ljPnx4rR3IjD58WeoSRura4RH+9
-         7KjIHJmAFk1ISxjrBtNxJ4P4rezuOXmNrW1gFWetK3KYTukBHozP4xxite+6eLgRIUj5
-         pdYkpBFq4Ahp1apaPJQryi84MQE4UeBSWPjaYDcIS5X4T6JqobAGeiQ/eEWm+Sx9GyTx
-         DDaOlt9XLfSfpiA+SDTsvo+Vk5RyF6AXqxKrKDrl+xu+v65MUBNR+H755joPc5U0388J
-         4Ddypl4z19Y2JK+nVHWsrBq6L3Ha3vUVNNX3mlOM0gyCZ93uEcEmeKc1CAwz0Qm+QddY
-         7hlQ==
+        bh=+iZefKHFfg3m84QtR47LQ0OruubfGuWPKR7O/25P2ag=;
+        b=L8DiLdQGcOdtxDAVw1hK3HGwFJfh11HumpMagveWXuYzR871EfMzWSgsR6PUUZrqJS
+         fvhLq7yUOoTszIXzr7SJNf7GEuqsfXNxIaVcW1+w4uelu70UVVrqoi28+Iii7WjEFsTN
+         SBJl5PXSXrAR/DJUGSaa1f9vdMBisXjoksq7LmmpIlAD3J3Szw1/yV+LGErPgt56g9jS
+         hXgiUq9nO6RdVM6PE2K228BcGpHmbx35Zzeguw5STJatqgIpaJ1uVGqv4zPHBHdWctup
+         KidLnLSdISx7rMVkqJZ5RaghY8h22mHC2+TNcIwNI99Uq0gUUI4AhIiQ9qEQT+gmu9u8
+         VaCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L24ZYQXVUaFcxVZjnJ4h/yK6UJ8A4vFjYSvIAf+wKNo=;
-        b=l9jdtTp9mCKpLNRqsf+qRlj3s6mY/63r49C84taZsPyuIQryI77PeGco67fjmkkOWI
-         r5H19GBIkYchjJBNOeeKC6T5yt+R/sGEnk3QXFGVt38tLV0/3IGu+EBJnGgVjeHJKB3Q
-         dRPB7FxJqpEKSrrhBKdsQzwzLfop3Eu/9jxXhYKdShHV0Lj86CAUTy7Wh/4oCmE54tHE
-         n1PStcJv6sfGpzcvHZc4RNjo9xDNrbTju8E/1DqS5Mcpb7XrhagfXEbRDpSTEBSr7eoH
-         +9qKu26VkMh4n/RRw2rhXESkuGVmMKZ+i0gv8NA5HmeJY/hyVftSD9hDCjU5/bGvFBkb
-         gTSA==
-X-Gm-Message-State: AO0yUKUDMXVkA4Awr6uLbEA6kS49RoBfl25o3u0O9ABBGQsQrBc+3EEu
-        Y0h0giJcqgI9Mx6NRmvMQIQDPA==
-X-Google-Smtp-Source: AK7set/HaqsvPluiOKrBX5uvMfObqaydOBTJS3Q4mwFA4S735gUUTGtca0BfR0u4UUvsxuOrqdinyA==
-X-Received: by 2002:a05:6000:1803:b0:2bf:afaf:9d71 with SMTP id m3-20020a056000180300b002bfafaf9d71mr13338512wrh.48.1676028824975;
-        Fri, 10 Feb 2023 03:33:44 -0800 (PST)
+        bh=+iZefKHFfg3m84QtR47LQ0OruubfGuWPKR7O/25P2ag=;
+        b=G2x08mu0LjSmykdUCfyPCPAixian74oKbs3wy5ojZi9WeYWoFc6+JNvnbVZJ3DdJSP
+         4ty/SfDjVHNYfeuNT3xLa6IRracuN/fMy54C6lpk8FSBNoiNeO1JUgNg4SLdjYEhJap5
+         tqAAIBzZ38/ttxFuoym6OiUIGU+84ZF9xDJspz84/op7/I9An8jCyc3cMKSiDM+DKHc7
+         5fLtmgJFxIwJMSMPSCBMtUZD7gnegtXE00k92ISPNkPVGCPUNeUjn3DkAEhFSDJ5G9Cj
+         H4K7n91td1vqfqOMPpcUhKr+dVjMl3lduKzeVPVOlXaJDBTCCSceMhKulUXjHktaycok
+         A4Zw==
+X-Gm-Message-State: AO0yUKUsbpH01gc52oBEeAsg1erIVCOyQUusyY2g2J6WSF6ZQGtiK7XQ
+        QWbaLRpSqxxule28CZnMlQgtfg==
+X-Google-Smtp-Source: AK7set9JHxoe6V/nF4xeMImn70xcIfjsLsAlIpM8+zqsq9NT/XLQVN6VnlUnHu3rNlm8M94DasQ9PA==
+X-Received: by 2002:a5d:6504:0:b0:2c5:4c7d:53b1 with SMTP id x4-20020a5d6504000000b002c54c7d53b1mr497455wru.16.1676028891962;
+        Fri, 10 Feb 2023 03:34:51 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n10-20020adffe0a000000b002c3ec35f360sm3321345wrr.56.2023.02.10.03.33.43
+        by smtp.gmail.com with ESMTPSA id q14-20020a5d574e000000b002bfb02153d1sm3446275wrw.45.2023.02.10.03.34.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:33:44 -0800 (PST)
-Message-ID: <dd77a886-5ab4-c6d3-bb84-5849c411aa7b@linaro.org>
-Date:   Fri, 10 Feb 2023 12:33:42 +0100
+        Fri, 10 Feb 2023 03:34:51 -0800 (PST)
+Message-ID: <f076ea5f-6535-f7fe-3c32-fe30a9972a43@linaro.org>
+Date:   Fri, 10 Feb 2023 12:34:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm845-oneplus: add
- tri-state-key
+Subject: Re: [PATCH v2 0/3] Add tri-state-key for oneplus6
 Content-Language: en-US
 To:     Gergo Koteles <soyer@irl.hu>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
@@ -69,9 +68,9 @@ To:     Gergo Koteles <soyer@irl.hu>,
 Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Caleb Connolly <caleb@connolly.tech>
-References: <20230209232556.91554-1-soyer@irl.hu>
+References: <20230209232510.91431-1-soyer@irl.hu>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230209232556.91554-1-soyer@irl.hu>
+In-Reply-To: <20230209232510.91431-1-soyer@irl.hu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,44 +84,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/02/2023 00:25, Gergo Koteles wrote:
-> The tri-state-key is a sound profile switch found on the OnePlus 6,
-> Android maps the states to "mute", "vibrate" and "ring". Expose them as
-> ABS_SND_PROFILE events.
-> The previous GPIO numbers were wrong. Update them to the correct
-> ones.
+> V1 -> V2: rebase to qcom/for-next
 > 
-> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+> Gergo Koteles (3):
+>   Input: gpio-keys - add support for linux,input-value dts property
+>   Input: add ABS_SND_PROFILE
+>   arm64: dts: qcom: sdm845-oneplus: add tri-state-key
 
-Where are other patches? I got only 3/3.
-
-> ---
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 39 ++++++++++++++++++-
->  1 file changed, 38 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 64638ea94db7..e45d4fdead82 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -52,6 +52,43 @@ key-vol-up {
->  		};
->  	};
->  
-> +	tri-state-key {
-> +		compatible = "gpio-keys";
-> +		label = "Tri-state key";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tri_state_key_default>;
-
-Missing blank line.
-
-> +		state-top {
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
+OK, here they are. Your mail threading is broken.
 
 Best regards,
 Krzysztof
