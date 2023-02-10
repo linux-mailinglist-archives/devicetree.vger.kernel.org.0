@@ -2,173 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C66969234F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 17:30:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5ADE692372
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 17:39:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232697AbjBJQax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 11:30:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
+        id S232507AbjBJQi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 11:38:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232192AbjBJQaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 11:30:52 -0500
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F029478D67
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 08:30:50 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id d8so3868962qvs.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 08:30:50 -0800 (PST)
+        with ESMTP id S232110AbjBJQi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 11:38:59 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE5375F43
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 08:38:57 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id j23so5672919wra.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 08:38:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=q+rDWbI3qt2mpHyVb9o2ZX8jZyfebWMiWm5kHC7DGWk=;
-        b=YU782TRTFsp2Q/0vJphqestm0jyZQjYDozRrMXkg5AoHF5aLEf62Xgxt5JVCg3U3Kw
-         nECcST1K4IVw/U7c8V9xeSlvBa3PqoUGXcmMpKZgfoF7yuL8KzdR5jiF86jLV9p9/ZCK
-         vO9hEXo+JwBlkNM7cq6vo5USP0Pa/xf22pOryOO3qomJ2MjECQLt5NToBBuzPsmbWaNO
-         w7msp3b5Lbec/JI/j6ZLlsJai6nz3511Ypu1bQGF/wifsR8voafkaMymhNZmVpo8vzfD
-         PhgLyQETN9/yA5KfD4YaE5ReHO8pwLfq0Db6hZRwURiup+Ydau5l1cHIkeLZTyFLrjXa
-         kA8Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xLYgLKmbZNDw4ZTbUshQjWmr9kZe7rczWa1zK2HXrmw=;
+        b=rbwe1An4wV8Ylfyuue6rCuH+8GSaGhqlZ2s8Y/naXgB/CguV0FqElMCGzAvWNuokDq
+         7cVFaIcxWjQZwDzkVLdrdu351ANLyKx7/qKCxyg4lpsLPIgHsqGQhSfLlAlMzMLtZHuo
+         pimsE0NZ+s06Gz07k7EnOTbm72Ts+N+g047MD6ia5oSW+S4yzWzH3gBVJogzzKiArz+7
+         Pya3wNtbPlZ8OIsjSU3HaTlMNwKv6YIo1AKtHcQij42o0RqH9Fo50trx+FuKLYDiaxAq
+         M8o6a3fhx9jOP8KgocWKQuw1pBSHH875lXdfBnI66baKZT6kVrxRxZ8cQ7FAYCUDULp4
+         O2MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=q+rDWbI3qt2mpHyVb9o2ZX8jZyfebWMiWm5kHC7DGWk=;
-        b=qF2CEBUdwKdqdyghEyF/4PcIBPwMF71GNw13DjS7QRLT0++sI+OQKaJAOi/Z11ctCR
-         5eHybSHK6RKIh1Ue5YFu1V3Qk2fq01GdKXBwrOaSF/A+qHIFy3hdDFPZdePWT0dc+TqE
-         q8RFR5hFlAtmL6VJeOMZk4s5h94L6s3IX1vj8pgDmFMETsYfJCEOkE0hd9tbuF5Kvn3Z
-         Cyc8xK9qrma7w5VkfiVERWsPvBs2Z3ZXq9ZgonLK9CORE7a+6p6Ua40waHj7d3h9aEgn
-         0cU5pU86spAzW4FDjoQ+VAWarXv41EvjzuuHfZQIhgPF/q9LdAaV47ccpcxCRLZX51aE
-         XXMw==
-X-Gm-Message-State: AO0yUKXQNNFBvq7YPygUCLsyL0DMGlE0m/zTttJcMnNq51xzNda0nriH
-        8MBwfKEg3fDLKVM9qXISO/3LFQ==
-X-Google-Smtp-Source: AK7set/DhDd6YIzQ3syBsIVk6+NbyfqhgCDnHYAUvcwKFoB4G6j666apC9J8ul3iLZPSkG6RRgfRzg==
-X-Received: by 2002:a05:6214:2aab:b0:56b:ef97:10e0 with SMTP id js11-20020a0562142aab00b0056bef9710e0mr24220373qvb.46.1676046650021;
-        Fri, 10 Feb 2023 08:30:50 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
-        by smtp.gmail.com with ESMTPSA id m66-20020a378a45000000b006f7ee901674sm3838280qkd.2.2023.02.10.08.30.48
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xLYgLKmbZNDw4ZTbUshQjWmr9kZe7rczWa1zK2HXrmw=;
+        b=MdsZY8FSWfiMrqQuCuGQ6lw4cDNkLLYg89M8zNgRXR18Cp/EgnPU7W/CnsIIoo6yLd
+         ch3WvIJcMc5G+kQD4JT4YINiM3Vei3FiPdDMZz8HUN/56rppO0AzQvmzWJz4xgGhHzld
+         /Ts5zz0LKRSRCS0XwkBqF054m2M+k2FW4G0PZC2XHl2BCTf4fL9jBHPAQeYt5Z4IhBdY
+         xnhczfEHDiU4+sTZvyAGJhLGU8Wl+Nu+fVVOEJUSuxRO/SsfLHhH53TmOybMT/ndu4T0
+         JuGO2FBWr4+PNMMY/gTfYAfOcFX5H3+si0T0YvfuxHIW0qjamxpOOEWhyunBl/ymbMBg
+         P8zQ==
+X-Gm-Message-State: AO0yUKXfKGl9JxpPCZxhhsO4alJ1xjWwas3qcv3OjARkcgTBmf2FIj3t
+        D8vfCqUeAtoYU7wp/qFdHEvmTw==
+X-Google-Smtp-Source: AK7set+5m3/VbYfTUW5W2vgZPXjPLi2ZHQEIqmrm3TlVrH6DGSVKfdph2Ir/Ff9BPaAGfWjqLppWiw==
+X-Received: by 2002:a5d:49c3:0:b0:2c4:7cc:b345 with SMTP id t3-20020a5d49c3000000b002c407ccb345mr6023609wrs.8.1676047136131;
+        Fri, 10 Feb 2023 08:38:56 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o16-20020a5d6850000000b002bfbda53b98sm4045792wrw.35.2023.02.10.08.38.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 08:30:49 -0800 (PST)
-Message-ID: <fb0cbea01cdb9dc526b458f234eec656300983fb.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 06/10] media: Add ABGR32_12 video format
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        mirela.rabulea@oss.nxp.com, hverkuil-cisco@xs4all.nl
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Fri, 10 Feb 2023 11:30:48 -0500
-In-Reply-To: <e09312997dbc544a69d687fba213c096bcdfc3e9.1675230665.git.ming.qian@nxp.com>
-References: <cover.1675230665.git.ming.qian@nxp.com>
-         <e09312997dbc544a69d687fba213c096bcdfc3e9.1675230665.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+        Fri, 10 Feb 2023 08:38:55 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: add QRD8550
+Date:   Fri, 10 Feb 2023 17:38:43 +0100
+Message-Id: <20230210163844.765074-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mercredi 01 f=C3=A9vrier 2023 =C3=A0 14:02 +0800, Ming Qian a =C3=A9crit=
-=C2=A0:
-> ABGR32_12 is a reversed RGB format with alpha channel last,
-> 12 bits per component like ABGR32,
-> expanded to 16bits.
-> Data in the 12 high bits, zeros in the 4 low bits,
-> arranged in little endian order.
+Add board compatible for QRD8550 - a mobile-like development board with
+SM8550.
 
-I would like to suggest ABGR64_12
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Nicolas
-
->=20
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> ---
->  Documentation/userspace-api/media/v4l/pixfmt-rgb.rst | 9 +++++++++
->  drivers/media/v4l2-core/v4l2-common.c                | 1 +
->  drivers/media/v4l2-core/v4l2-ioctl.c                 | 1 +
->  include/uapi/linux/videodev2.h                       | 1 +
->  4 files changed, 12 insertions(+)
->=20
-> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst b/Docum=
-entation/userspace-api/media/v4l/pixfmt-rgb.rst
-> index da29ba69c2d9..cb60ffe8f860 100644
-> --- a/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst
-> +++ b/Documentation/userspace-api/media/v4l/pixfmt-rgb.rst
-> @@ -793,6 +793,15 @@ arranged in little endian order.
->        - G\ :sub:`15-4`
->        - R\ :sub:`15-4`
->        -
-> +    * .. _V4L2-PIX-FMT-ABGR32-12:
-> +
-> +      - ``V4L2_PIX_FMT_ABGR32_12``
-> +      - 'B412'
-> +
-> +      - B\ :sub:`15-4`
-> +      - G\ :sub:`15-4`
-> +      - R\ :sub:`15-4`
-> +      - A\ :sub:`15-4`
-> =20
->  .. raw:: latex
-> =20
-> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-c=
-ore/v4l2-common.c
-> index 024190f82cf1..4b3302a07f83 100644
-> --- a/drivers/media/v4l2-core/v4l2-common.c
-> +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -253,6 +253,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 f=
-ormat)
->  		{ .format =3D V4L2_PIX_FMT_RGB555,  .pixel_enc =3D V4L2_PIXEL_ENC_RGB,=
- .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, .hdiv =3D =
-1, .vdiv =3D 1 },
->  		{ .format =3D V4L2_PIX_FMT_BGR666,  .pixel_enc =3D V4L2_PIXEL_ENC_RGB,=
- .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .hdiv =3D =
-1, .vdiv =3D 1 },
->  		{ .format =3D V4L2_PIX_FMT_BGR24_12, .pixel_enc =3D V4L2_PIXEL_ENC_RGB=
-, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .hdiv =3D=
- 1, .vdiv =3D 1 },
-> +		{ .format =3D V4L2_PIX_FMT_ABGR32_12, .pixel_enc =3D V4L2_PIXEL_ENC_RG=
-B, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 8, 0, 0, 0 }, .hdiv =
-=3D 1, .vdiv =3D 1 },
-> =20
->  		/* YUV packed formats */
->  		{ .format =3D V4L2_PIX_FMT_YUYV,    .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
- .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, .hdiv =3D =
-2, .vdiv =3D 1 },
-> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-co=
-re/v4l2-ioctl.c
-> index 329515786abb..0f772e19890b 100644
-> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> @@ -1299,6 +1299,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *f=
-mt)
->  	case V4L2_PIX_FMT_RGBA32:	descr =3D "32-bit RGBA 8-8-8-8"; break;
->  	case V4L2_PIX_FMT_RGBX32:	descr =3D "32-bit RGBX 8-8-8-8"; break;
->  	case V4L2_PIX_FMT_BGR24_12:	descr =3D "12-bit Depth BGR"; break;
-> +	case V4L2_PIX_FMT_ABGR32_12:	descr =3D "12-bit Depth BGRA"; break;
->  	case V4L2_PIX_FMT_GREY:		descr =3D "8-bit Greyscale"; break;
->  	case V4L2_PIX_FMT_Y4:		descr =3D "4-bit Greyscale"; break;
->  	case V4L2_PIX_FMT_Y6:		descr =3D "6-bit Greyscale"; break;
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev=
-2.h
-> index ab52a605e6c0..757ab14e7a6e 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -579,6 +579,7 @@ struct v4l2_pix_format {
-> =20
->  /* RGB formats (6 or 8 bytes per pixel) */
->  #define V4L2_PIX_FMT_BGR24_12    v4l2_fourcc('B', '3', '1', '2') /* 48  =
-BGR 12-bit per component */
-> +#define V4L2_PIX_FMT_ABGR32_12   v4l2_fourcc('B', '4', '1', '2') /* 64  =
-BGRA 12-bit per component */
-> =20
->  /* Grey formats */
->  #define V4L2_PIX_FMT_GREY    v4l2_fourcc('G', 'R', 'E', 'Y') /*  8  Grey=
-scale     */
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 8b90b8d7e858..b1c6f0ad8c36 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -903,6 +903,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,sm8550-mtp
++              - qcom,sm8550-qrd
+           - const: qcom,sm8550
+ 
+   # Board compatibles go above
+-- 
+2.34.1
 
