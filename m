@@ -2,199 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84600691CA0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E0F1691C92
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 11:18:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232000AbjBJKVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 05:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41356 "EHLO
+        id S231875AbjBJKSU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Feb 2023 05:18:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231996AbjBJKVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:21:30 -0500
-X-Greylist: delayed 435 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 10 Feb 2023 02:21:28 PST
-Received: from pv50p00im-ztdg10012101.me.com (pv50p00im-ztdg10012101.me.com [17.58.6.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC8D6E556
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 02:21:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1676024053; bh=rBbjYxRh64IfU3vXrqNjeu6KfF5z7Q6kjGhO7g7nJJo=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=d9/ivSueKskIiulVdK7blukoTm+YyY3ORb3E4oSP52sFTk+kkFI5VPBx6yeX1P0k4
-         3wGmo+yBDggouWMQ5vHRHhW3AzQk3mGrkdefKyqYipOs1mb8wX8jQUeLCBpvzSlwvh
-         S1RlwfspLTMyUu8sJk+fJvUKKGG1SAuI9T1sJ3fv+wx1vHAbpPedVURzsSshpDgmd2
-         y7Thx+GHcKmtTHi8HqSoLkuyefaRabXVBxPbfwhc1EqbEYbeFgvJt+fn7igTnWelBe
-         k7JSeeqD3E+Wb1AQuGJEx1zSPzRkV046pJyCgjdx1B2r2eQCHxACVOZbMoqRYX2ZDI
-         piim09cEMXCww==
-Received: from localhost (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-        by pv50p00im-ztdg10012101.me.com (Postfix) with ESMTPSA id 902307403A0;
-        Fri, 10 Feb 2023 10:14:11 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alain Volmat <avolmat@me.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: spi: conversion of spi-st-ssc into DT schema YAML
-Date:   Fri, 10 Feb 2023 11:14:01 +0100
-Message-Id: <20230210101403.14609-1-avolmat@me.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231345AbjBJKST (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 05:18:19 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1561F6CC63;
+        Fri, 10 Feb 2023 02:18:18 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 48C4A4B3;
+        Fri, 10 Feb 2023 02:19:00 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 487C03F8C6;
+        Fri, 10 Feb 2023 02:18:16 -0800 (PST)
+Date:   Fri, 10 Feb 2023 10:18:14 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Andreas Feldner <andreas@feldner-bv.de>,
+        Andreas Feldner <pelzi@flying-snail.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230210101814.2d36ae57@donnerap.cambridge.arm.com>
+In-Reply-To: <20230210100620.z6j7rvkiwyu7paij@houat>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+        <20230207011608.2ce24d17@slackpad.lan>
+        <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+        <20230209202952.673d5a60@slackpad.lan>
+        <20230210082936.qefzz4fsp3jpalvp@houat>
+        <20230210094425.474cfba5@donnerap.cambridge.arm.com>
+        <20230210100620.z6j7rvkiwyu7paij@houat>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 3h639xTX_ZTwEJj09vl8wvKfdJqAMtho
-X-Proofpoint-ORIG-GUID: 3h639xTX_ZTwEJj09vl8wvKfdJqAMtho
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.572,17.0.605.474.0000000_definitions?=
- =?UTF-8?Q?=3D2020-02-14=5F11:2020-02-14=5F02,2020-02-14=5F11,2020-01-23?=
- =?UTF-8?Q?=5F02_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxscore=0 mlxlogscore=999
- phishscore=0 malwarescore=0 clxscore=1011 adultscore=0 suspectscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2302100085
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-File st,ssc-spi.yaml replaces spi-st-ssc.txt for the
-ST Microelectronics SSC SPI driver.
+On Fri, 10 Feb 2023 11:06:20 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- .../devicetree/bindings/spi/spi-st-ssc.txt    | 40 ------------
- .../devicetree/bindings/spi/st,ssc-spi.yaml   | 61 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 62 insertions(+), 40 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/spi-st-ssc.txt
- create mode 100644 Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
+> On Fri, Feb 10, 2023 at 09:44:25AM +0000, Andre Przywara wrote:
+> > On Fri, 10 Feb 2023 09:29:36 +0100
+> > Maxime Ripard <maxime@cerno.tech> wrote:
+> > 
+> > Hi Maxime,
+> > 
+> > thanks for the reply!
+> >   
+> > > On Thu, Feb 09, 2023 at 08:29:52PM +0000, Andre Przywara wrote:  
+> > > > > >>   &pio {
+> > > > > >> +	/* 1ï¿½s debounce filter on both IRQ banks */    
+> > > > > > Is that supposed to be <micro> in UTF-8? It seems to have got lost in
+> > > > > > translation, or is that just me?    
+> > > > > O yes, the Greek character slipped into the comment.    
+> > > > > >> +	input-debounce = <1 1>;    
+> > > > > > As mentioned above, I am not so sure this is generic enough to put it
+> > > > > > here for PA. And what is the significance of "1 us", in particular? Is
+> > > > > > that just the smallest value?      
+> > > > > 
+> > > > > Yes indeed it's a bit more complicated than I feel it needs to be. The
+> > > > > configuration is taken as microseconds and translated into the best
+> > > > > matching clock and divider by the driver. However, 0 is not translated
+> > > > > to the lowest divider of the high speed clock as would be logical if
+> > > > > you ask for zero microseconds, but to "leave at default". The default
+> > > > > of the board is 0 in the register, translating to lowest divider on the
+> > > > > _low_ speed clock.    
+> > > > 
+> > > > I'd say the "if (!debounce) continue;" code is just to defend against
+> > > > the division by zero, which would be the next statement to execute.
+> > > > 
+> > > > We might want to change that to interpret 0 as "lowest possible", which
+> > > > would be 24MHz/1. Please feel free to send a patch in this regard, and
+> > > > CC: Maxime, to get some input on that idea.    
+> > > 
+> > > I never had any complaint on that part either, so the default looks sane
+> > > to me.
+> > > 
+> > > If some board needs a higher debouncing rate, then we should obviously
+> > > set it up in the device tree of that board, but changing it for every
+> > > user also introduces the risk of breaking other boards that actually
+> > > require a lower debouncing frequency.  
+> > 
+> > Yeah, we definitely should keep the default at 32KHz/1, as this is also
+> > the hardware reset value.
+> > 
+> > Not sure if you were actually arguing this, but the change I sketched
+> > above (interpreting 0 as 24MHz/1) is separate though, as the current
+> > default is "no DT property", and not 0. There is no input-debounce
+> > property user in the kernel tree at the moment, so we wouldn't break
+> > anyone. The only thing that would change is if a downstream user was
+> > relying on "0" being interpreted as "skip the setup", which isn't
+> > really documented and could be argued to be an implementation detail.
+> > 
+> > So I'd suggest to implement 0 as "lowest possible", and documenting that
+> > and the 32KHz/1 default if no property is given.  
+> 
+> Ah, my bad.
+> 
+> There's another thing to consider: there's already a generic per-pin
+> input-debounce property in pinctrl.
+> 
+> Since we can't control it per pin but per bank, we moved it to the
+> controller back then, but there's always been this (implicit)
+> expectation that it was behaving the same way.
+> 
+> And the generic, per-pin, input-debounce documentation says:
+> 
+> > Takes the debounce time in usec as argument or 0 to disable debouncing  
+> 
+> I agree that silently ignoring it is not great, but interpreting 0 as
+> the lowest possible is breaking that behaviour which, I believe, is a
+> worse outcome.
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-st-ssc.txt b/Documentation/devicetree/bindings/spi/spi-st-ssc.txt
-deleted file mode 100644
-index 1bdc4709e474..000000000000
---- a/Documentation/devicetree/bindings/spi/spi-st-ssc.txt
-+++ /dev/null
-@@ -1,40 +0,0 @@
--STMicroelectronics SSC (SPI) Controller
-----------------------------------------
--
--Required properties:
--- compatible	: "st,comms-ssc4-spi"
--- reg		: Offset and length of the device's register set
--- interrupts	: The interrupt specifier
--- clock-names	: Must contain "ssc"
--- clocks	: Must contain an entry for each name in clock-names
--		    See ../clk/*
--- pinctrl-names	: Uses "default", can use "sleep" if provided
--		    See ../pinctrl/pinctrl-bindings.txt
--
--Optional properties:
--- cs-gpios	: List of GPIO chip selects
--		    See ../spi/spi-bus.txt
--
--Child nodes represent devices on the SPI bus
--  See ../spi/spi-bus.txt
--
--Example:
--	spi@9840000 {
--		compatible	= "st,comms-ssc4-spi";
--		reg		= <0x9840000 0x110>;
--		interrupts	= <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
--		clocks		= <&clk_s_c0_flexgen CLK_EXT2F_A9>;
--		clock-names	= "ssc";
--		pinctrl-0	= <&pinctrl_spi0_default>;
--		pinctrl-names	= "default";
--		cs-gpios	= <&pio17 5 0>;
--		#address-cells	= <1>;
--		#size-cells	= <0>;
--
--		st95hf@0{
--			compatible		= "st,st95hf";
--			reg			= <0>;
--			spi-max-frequency	= <1000000>;
--			interrupts		= <2 IRQ_TYPE_EDGE_FALLING>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/spi/st,ssc-spi.yaml b/Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
-new file mode 100644
-index 000000000000..496118df3a1b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/st,ssc-spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics SSC SPI Controller
-+
-+description: |
-+  The STMicroelectronics SSC SPI controller can be found on STi platforms
-+  and it used to communicate with external devices using the
-+  Serial Peripheral Interface.
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+allOf:
-+  - $ref: "spi-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    const: st,comms-ssc4-spi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: ssc
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stih407-clks.h>
-+    spi@9840000 {
-+      compatible        = "st,comms-ssc4-spi";
-+      reg               = <0x9840000 0x110>;
-+      interrupts	= <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks		= <&clk_s_c0_flexgen CLK_EXT2F_A9>;
-+      clock-names	= "ssc";
-+      pinctrl-0         = <&pinctrl_spi0_default>;
-+      pinctrl-names	= "default";
-+      #address-cells	= <1>;
-+      #size-cells	= <0>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2e32eb8d44f5..0fc3e4c6c1e5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2926,6 +2926,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- W:	http://www.stlinux.com
- F:	Documentation/devicetree/bindings/i2c/st,sti-i2c.yaml
-+F:	Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
- F:	arch/arm/boot/dts/sti*
- F:	arch/arm/mach-sti/
- F:	drivers/ata/ahci_st.c
--- 
-2.34.1
+Is it really? If I understand the hardware manuals correctly, we cannot
+really turn that feature off, so isn't the lowest possible time period (24
+MHz/1 at the moment) the closest we can get to "turn it off"? So
+implementing this would bring us actually closer to the documented
+behaviour? Or did I get the meaning of this time period wrong?
+At least that's my understanding of how it fixed Andreas' problem: 1µs
+is still not "off", but much better than the 31µs of the default. The new
+0 would then be 0.041µs.
+
+Cheers,
+Andre
+
+> So I'm not sure what's the best course of action here. Rejecting the
+> configuration entirely would prevent the entire pinctrl driver from
+> probing which sounds really bad. Maybe we could just print an error that
+> we rejected it to make it more obvious?
+> 
+> Maxime
 
