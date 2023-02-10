@@ -2,185 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43BBB69255C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:29:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC861692561
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:34:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232575AbjBJS3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 13:29:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56072 "EHLO
+        id S232505AbjBJSeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 13:34:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232505AbjBJS3i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:29:38 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1456C7C7;
-        Fri, 10 Feb 2023 10:29:37 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id bd6so5168860oib.6;
-        Fri, 10 Feb 2023 10:29:37 -0800 (PST)
+        with ESMTP id S232600AbjBJSeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:34:08 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2706C7C7
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 10:34:06 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id j23so5973718wra.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 10:34:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=itUHF+gJAOR68gNrNXTOhv2YTwp1LN4BGzGEfAiI2PA=;
+        b=OaHJvANNeMAGzvf2uYI2xzLCi6qVzIoIMRJNUMUHlzvdQB4946tyfjwuc64G0AuREt
+         YuNu/sR7FoiaVytT1wVaU5lS9eCpEu+2qZzqFTXe8g0PKYQ8cn7vuhmv1w2DLp6+rjPA
+         VwOA/5nkkyxSNWkLJwLwBdi4zTMzi2yWNOmuPS3e0bp1oXuv0KGwifRBRdkJDANIcHba
+         R3SJAVIxCBohLDCUmxIZjPJ21/NShmd2frAAkS2VIIGuJGHBcjEwfjIq9x3inxKTiZ9g
+         VG+SmLQxhW1N+uckd3zByXCY+rK10AxGZ+y40dNt15bf8dXcveDzkzi962Xg7HQX+XtT
+         EisA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wGTEo37sO/PejdrEzawXo41Wh2Us1e4LKILpN2RdcKM=;
-        b=Axk5tU1qpwc47CWQIMIgBGDWaZNWxvUtp6LXq0DS4nIA6KVSjnLwI/2RiTAg+CIt/L
-         u/bumYgSnZHJXxkQQwKNZlHgVaT+LK/enCy2R+LmVixYuiHS+d47KFplHxySrLDTGDTs
-         /+lGGDVgWQilStS0QLTEb3D3ACOYX5WJ7l0A0OyuPe+fwY87ytEBw/2ADBWCRZRaNMwV
-         YQber8z02yz/f/WpR1lgIl8BGtJU8ZF/oNDSo8h+y8yuf55hLHcXrS9f6ooGvLo+Usis
-         YWDS19tn/HLHrGwtwvHJL/SHyEkeHEaHU05XkOA2wxRJWVZF79jzwHVlwyJzjOKxP2h0
-         8fww==
-X-Gm-Message-State: AO0yUKVhFcQYf8DkFG5GZZYaCtp9Dr9KiR/peBKww0nmUs/gFy+MG1HW
-        BmM7gtegFNz1X2dme0WHvA==
-X-Google-Smtp-Source: AK7set/47StQR2IteFFtY5K4A8e4jlFxeqFxgq613Kt0yzg/tmsRzIzQLGKF92qW8nmFbDRMVTy8Vw==
-X-Received: by 2002:a05:6808:616:b0:364:862d:29c5 with SMTP id y22-20020a056808061600b00364862d29c5mr7107671oih.26.1676053776722;
-        Fri, 10 Feb 2023 10:29:36 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q2-20020a0568080ec200b0037d6c3fc8aasm616760oiv.45.2023.02.10.10.29.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 10:29:36 -0800 (PST)
-Received: (nullmailer pid 2916782 invoked by uid 1000);
-        Fri, 10 Feb 2023 18:29:35 -0000
-Date:   Fri, 10 Feb 2023 12:29:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 2/4] dt-bindings: phy: Add starfive,jh7110-dphy-rx
-Message-ID: <20230210182935.GA2914589-robh@kernel.org>
-References: <20230210061713.6449-1-changhuang.liang@starfivetech.com>
- <20230210061713.6449-3-changhuang.liang@starfivetech.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=itUHF+gJAOR68gNrNXTOhv2YTwp1LN4BGzGEfAiI2PA=;
+        b=LJv73PS1jZI7vNlalm0Obiqq7qJ8GNXaAfHr7DqSdBXWAn1Wzskko2I8MFzP4H+6uf
+         /aVhYZghLuGCbEtr5Vzjvm/3fVa6p64XL6+v+oc7vw3XxXWyRlKCVeSUEJqBWRuCG4Vu
+         rwAb6rNiLpwCEWdak2m8BMm5i6k37xX3L4tdCUdVPO+TmAiZZ2j3FKsjnGpdxQJGOSjG
+         7trl9u1KhWiV6UF+WSW/EYJJ9E11s2uYV/lCdgtp9ULVTn2ZBGqFl3Zuq1j/t54QIopq
+         TusRCPz1A/rkI8PwAxbmDx83iGZGZbMyf/d+NkvGtc1JvZ0YkWO3CrDdRZHSytSgs2bm
+         Yr/w==
+X-Gm-Message-State: AO0yUKWvP1w9BQ+BEJBk+mHFuf5prKjAoy/Nb/h+B02VXs7iqO+wXbdF
+        vZ32+0Bux1DV3tp1Cm+M4hG9+Q==
+X-Google-Smtp-Source: AK7set+sfAI5v+pm+Ta+c+I585wZnYR7ZKSMkHtr+epDPjtPngGn8hHOvj4Pt1bfuGTly/qfkXFNSg==
+X-Received: by 2002:adf:f80c:0:b0:2c3:cdcd:f0b3 with SMTP id s12-20020adff80c000000b002c3cdcdf0b3mr13276955wrp.9.1676054045329;
+        Fri, 10 Feb 2023 10:34:05 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id i12-20020a5d438c000000b002c512f56859sm4135084wrq.70.2023.02.10.10.34.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 10:34:04 -0800 (PST)
+Message-ID: <8f557084-e185-6bf5-ab2b-4e1ebf4fc516@linaro.org>
+Date:   Fri, 10 Feb 2023 19:34:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230210061713.6449-3-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 06/11] thermal/drivers/st: remove syscfg based driver
+Content-Language: en-US
+To:     Alain Volmat <avolmat@me.com>, Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230209091659.1409-1-avolmat@me.com>
+ <20230209091659.1409-7-avolmat@me.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230209091659.1409-7-avolmat@me.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 09, 2023 at 10:17:11PM -0800, Changhuang Liang wrote:
-> Starfive SoC like the jh7110 use a MIPI D-PHY RX controller based on
-> a M31 IP. Add a binding for it.
+On 09/02/2023 10:16, Alain Volmat wrote:
+> The syscfg based thermal driver is only supporting STiH415
+> STiH416 and STiD127 platforms which are all no more supported.
+> We can thus safely remove this driver since the remaining STi
+> platform STiH407/STiH410 and STiH418 are all using the memmap
+> based thermal driver.
 > 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> Signed-off-by: Alain Volmat <avolmat@me.com>
 > ---
->  .../bindings/phy/starfive,jh7110-dphy-rx.yaml | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
-> new file mode 100644
-> index 000000000000..1c1e5c7cbee2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/starfive,jh7110-dphy-rx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Starfive SoC MIPI D-PHY Rx Controller
-> +
-> +maintainers:
-> +  - Jack Zhu <jack.zhu@starfivetech.com>
-> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
-> +
-> +description: |
 
-Don't need '|'
+Applied, thanks
 
-> +  The Starfive SOC has a MIPI CSI D-PHY based on M31 IP use to transfer
-> +  the CSI cameras data.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: "starfive,jh7110-dphy-rx"
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Drop quotes.
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-> +    maxItems: 3
-
-Just maxItems is enough.
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cfg
-> +      - const: ref
-> +      - const: tx
-> +
-> +  resets:
-> +    minItems: 2
-> +    maxItems: 2
-
-Need to define what each reset is.
-
-> +
-> +  starfive,aon-syscon:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-
-Drop quotes.
-
-> +    items:
-> +      items:
-> +        - description: phandle of AON SYSCON
-> +        - description: register offset
-> +    description: The register of dphy rx driver can be configured
-> +      by AON SYSCON in this property.
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - starfive,aon-syscon
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
-> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
-> +
-> +    dphy@19820000 {
-> +      compatible = "starfive,jh7110-dphy-rx";
-> +      reg = <0x19820000 0x10000>;
-> +      clocks = <&ispcrg JH7110_ISPCLK_M31DPHY_CFGCLK_IN>,
-> +               <&ispcrg JH7110_ISPCLK_M31DPHY_REFCLK_IN>,
-> +               <&ispcrg JH7110_ISPCLK_M31DPHY_TXCLKESC_LAN0>;
-> +      clock-names = "cfg", "ref", "tx";
-> +      resets = <&ispcrg JH7110_ISPRST_M31DPHY_HW>,
-> +               <&ispcrg JH7110_ISPRST_M31DPHY_B09_ALWAYS_ON>;
-> +      starfive,aon-syscon = <&aon_syscon 0x00>;
-> +      #phy-cells = <0>;
-> +    };
-> -- 
-> 2.25.1
-> 
