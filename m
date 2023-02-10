@@ -2,140 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA68B69225F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 16:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5961C692275
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 16:41:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbjBJPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 10:36:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36614 "EHLO
+        id S231985AbjBJPle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 10:41:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232809AbjBJPgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 10:36:36 -0500
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0894F77BB2
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:36:28 -0800 (PST)
-Received: by mail-qv1-xf2e.google.com with SMTP id j5so1545164qvi.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:36:28 -0800 (PST)
+        with ESMTP id S232345AbjBJPld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 10:41:33 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9BF55E44
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:41:31 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id c26so12138574ejz.10
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 07:41:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yns5dIgTI6JxWbAph1O5r62njQOhGCrBzKQvo54B6zU=;
-        b=qt0dTy3gVXkMeMMY1z1PZwzdNHzVX7V43gDb6L3hzCqa+olBH07sWy3wRrodzDIMG4
-         6hhWqr1Vobg7UcTDxPhcBKvvutcBaIlcdZt315xhTaQQG8r5n/M+uOuTOrVicwmwyKAU
-         064uvXHrbIh3mtaWOU4aybOMWgkXvkOzKL0b8uQUjc/v2XlzXgc0DQpTPFVMok0FMsQM
-         08vESDuFXllzb2iR8QrHNONx/wudIUxbhG5sODlHnj3/KUNblwg71nM5dxt/l0oVqdMr
-         /nlLhaPAjSj5IgprhRQcEHPcPMcz3AcuIRCJk9+PrV5mMO/ejuZ4Rbocq4ZekG0vV8P9
-         JnZQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A1Krkj0HlE9Ql2Nee9gMF+rHkVhX1QhowmXp2knlFDg=;
+        b=hp9Um3WQTsZC83hlfDAGYNtcbL+/NLkWpoGb8qtkv0tYuLR4iiTb2MIokqzcvCzXBq
+         8gZ0pc6vroLVDnr+8ca2MVt8riGEBRzuZ64GbzB2U9whlwZe7U+dnGBeLRO5v5Np3qXP
+         4J+pjrVVsj/mWHo+3yhH54t6JZQmsNFfoKNsdcHHikpwidgMek/OzHSIxLtA7nmfS5Rw
+         oGT/Vm332glf57IbR7uyQDDkBu3B9Sy+bz2FEWSddOaGttsdcfuHIHSi3ZNKoOzWC7Ma
+         8CHdtMOZ6g8IiehMMnciI4+Na7+R/pThZsq2mJTdRbx75TH5abiRzsrOsKbqMCZUa6bT
+         2nxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yns5dIgTI6JxWbAph1O5r62njQOhGCrBzKQvo54B6zU=;
-        b=3soJjxVsC+C36LXWI7Qoa6U+cpi89aNNxyfP4Z6/hwBMdq9dKEIldspXw3hLjQP6X2
-         Mxx1sUHojgVMkgk4Li6OS0538Pgwsesa9UYPgSO50xnvyjcqvVrFAR7YAPLKhUSQcKCM
-         mHWQ4HP0/NRUwyBvuHsCfvQZqyk5LJipaW/uJOO4P+f/OnppHMFjX9QgWrqiSqzrw/wG
-         gDWCSdtH5rlqEBoNOeSfH64/XRWtfGn7y3Jf+yN+eKumP3J+8rkcJ2eqwCMjQ37me4ci
-         RZxRZfO4VO2t3DDuJyIg9D/oF15cLUwXNdBb1mz52h46Vtvpff6uoQmp/7YopjwQ8QHt
-         yEWw==
-X-Gm-Message-State: AO0yUKW6qzuLnAehNOtcKwq4jAvqalafaWPep1mQXWLlNa2scKUKW35f
-        HHKvnh1IiVxP/yhlzLivGVC4Ow==
-X-Google-Smtp-Source: AK7set/9kH5iClIq96ImXMXxCRZP3o6rb/SFdyOqAvYoxsx641uTIbYLyp0hit6CJig0eeQHDNzzWg==
-X-Received: by 2002:a05:6214:1bc9:b0:537:7484:8d1c with SMTP id m9-20020a0562141bc900b0053774848d1cmr29006106qvc.30.1676043388060;
-        Fri, 10 Feb 2023 07:36:28 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
-        by smtp.gmail.com with ESMTPSA id r129-20020a37a887000000b006cec8001bf4sm3758407qke.26.2023.02.10.07.36.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 07:36:27 -0800 (PST)
-Message-ID: <e972c2ac1a7a6f0ce258c8056b82bdc87e4d8ceb.camel@ndufresne.ca>
-Subject: Re: [PATCH v2] media: mediatek: vcodec: Force capture queue format
- to MM21
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Fri, 10 Feb 2023 10:36:25 -0500
-In-Reply-To: <20230210055518.6017-1-yunfei.dong@mediatek.com>
-References: <20230210055518.6017-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A1Krkj0HlE9Ql2Nee9gMF+rHkVhX1QhowmXp2knlFDg=;
+        b=XvMflMcY/t7t8zONJcXqSYHulJbphH21xAFEuVElNWBqHH/DCERsy0dNjvK1tF3Gc0
+         SKag7qhKnQ4yjOuyePUramk/TgREQ4yTl8cQNJHMFuial7+GkYqYlPrSeU2u26hAGdyu
+         Iyc+MAnYEf4rtvaPy5h1OCwpZlmokL+qkl50Lmyp0vJfJ+WmdwlFHcMVYF45CJgcsbKg
+         giHQ5aeCBa/56/04t5RZKsWWYmucnKfZ10xGlfNE5PB0xej6RdMI4ESHlQZn2h+lb6NJ
+         1H7M/wo3F/IuJZgyFlQNWHAkMdqSF0qYT6eDlvzYf+fWfDDxJWgdRf/zXkM9DlVufAvD
+         r1SQ==
+X-Gm-Message-State: AO0yUKXkaWUlmPQ7NgXb+9mU80WB8LjD34K9H4wUdiS8swuCyOMSJUyY
+        DRoWBJVVZaRTGKz2E/ACqR/jTA==
+X-Google-Smtp-Source: AK7set+VF+YEIS/EikfHWnoUysi3pO4tkHw3TiDqGHn38RHcBhEwopxcU2G9etm2BwmzAMxSYuultw==
+X-Received: by 2002:a17:907:6e1f:b0:8aa:502c:44d3 with SMTP id sd31-20020a1709076e1f00b008aa502c44d3mr18760391ejc.41.1676043690024;
+        Fri, 10 Feb 2023 07:41:30 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id a11-20020a170906368b00b0088519b9206bsm2489176ejc.130.2023.02.10.07.41.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Feb 2023 07:41:29 -0800 (PST)
+Message-ID: <f548bb4f-9940-044f-95b2-e7c7bed276aa@linaro.org>
+Date:   Fri, 10 Feb 2023 17:41:28 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 04/11] soc: qcom: pmic_glink: register ucsi aux device
+Content-Language: en-GB
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230130-topic-sm8450-upstream-pmic-glink-v2-0-71fea256474f@linaro.org>
+ <20230130-topic-sm8450-upstream-pmic-glink-v2-4-71fea256474f@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v2-4-71fea256474f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le vendredi 10 f=C3=A9vrier 2023 =C3=A0 13:55 +0800, Yunfei Dong a =C3=A9cr=
-it=C2=A0:
-> In order to conver the format of capture queue from mediatek MM21 to
-> standard yuv420 with Libyuv, need to force capture queue format to
-> MM21 for Libyuv can't covert mediatek MT21 format at current period.
-
-Please rework this text, it is hard to understand.
-
->=20
-> Fixes: 7501edef6b1f ("media: mediatek: vcodec: Different codec using diff=
-erent capture format")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.org>
+On 10/02/2023 17:02, Neil Armstrong wrote:
+> Only register UCSI on know working devices, like on the SM8450
+> or Sm8550 which requires UCSI to get USB mode switch events.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> changed with v1:
-> - add Fixes tag.
-> ---
->  drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/dr=
-ivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> index 641f533c417f..4f5e9c20214f 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> @@ -41,7 +41,7 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_ctx =
-*ctx, int format_index)
->  	const struct mtk_video_fmt *fmt;
->  	struct mtk_q_data *q_data;
->  	int num_frame_count =3D 0, i;
-> -	bool ret =3D true;
-> +	bool ret =3D false;
-> =20
->  	for (i =3D 0; i < *dec_pdata->num_formats; i++) {
->  		if (dec_pdata->vdec_formats[i].type !=3D MTK_FMT_FRAME)
-> @@ -63,7 +63,7 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_ctx =
-*ctx, int format_index)
->  	case V4L2_PIX_FMT_H264_SLICE:
->  	case V4L2_PIX_FMT_VP9_FRAME:
->  		if (fmt->fourcc =3D=3D V4L2_PIX_FMT_MM21)
-> -			ret =3D false;
-> +			ret =3D true;
+>   drivers/soc/qcom/pmic_glink.c | 67 ++++++++++++++++++++++++++++++++++++-------
+>   1 file changed, 57 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
+> index bb3fb57abcc6..c7f091f4a8c1 100644
+> --- a/drivers/soc/qcom/pmic_glink.c
+> +++ b/drivers/soc/qcom/pmic_glink.c
+> @@ -4,6 +4,7 @@
+>    * Copyright (c) 2022, Linaro Ltd
+>    */
+>   #include <linux/auxiliary_bus.h>
+> +#include <linux/of_device.h>
+>   #include <linux/module.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/rpmsg.h>
+> @@ -11,12 +12,23 @@
+>   #include <linux/soc/qcom/pdr.h>
+>   #include <linux/soc/qcom/pmic_glink.h>
+>   
+> +enum {
+> +	PMIC_GLINK_CLIENT_BATT = 0,
+> +	PMIC_GLINK_CLIENT_ALTMODE,
+> +	PMIC_GLINK_CLIENT_UCSI,
+> +};
+> +
+> +#define PMIC_GLINK_CLIENT_DEFAULT	(BIT(PMIC_GLINK_CLIENT_BATT) |	\
+> +					 BIT(PMIC_GLINK_CLIENT_ALTMODE))
+> +
+>   struct pmic_glink {
+>   	struct device *dev;
+>   	struct pdr_handle *pdr;
+>   
+>   	struct rpmsg_endpoint *ept;
+>   
+> +	unsigned int client_mask;
+> +
+>   	struct auxiliary_device altmode_aux;
+>   	struct auxiliary_device ps_aux;
+>   	struct auxiliary_device ucsi_aux;
+> @@ -231,8 +243,19 @@ static struct rpmsg_driver pmic_glink_rpmsg_driver = {
+>   	},
+>   };
+>   
+> +/* Do not handle altmode for now on those platforms */
+> +static const unsigned int pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
+> +							  BIT(PMIC_GLINK_CLIENT_UCSI);
+> +
+> +static const struct of_device_id pmic_glink_of_client_mask[] = {
+> +	{ .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+> +	{ .compatible = "qcom,sm8550-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
+> +	{}
+> +};
+> +
 
-This makes the VP8 and the other cases identical, leaving anything that tou=
-ches
-MT21 as dead code. I'm not sure, cause I cannot test it, but it should in t=
-heory
-render MT8192 unusable, unless a new firmware has been submitted to linux-
-firmware with MM21 support ?
+Squash this into pmic_glink_of_match, please. Then you can use 
+of_device_get_match_data()
 
->  		break;
->  	default:
->  		ret =3D true;
+>   static int pmic_glink_probe(struct platform_device *pdev)
+>   {
+> +	const struct of_device_id *match;
+>   	struct pdr_service *service;
+>   	struct pmic_glink *pg;
+>   	int ret;
+> @@ -249,12 +272,27 @@ static int pmic_glink_probe(struct platform_device *pdev)
+>   	mutex_init(&pg->client_lock);
+>   	mutex_init(&pg->state_lock);
+>   
+> -	ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
+> -	if (ret)
+> -		return ret;
+> -	ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
+> -	if (ret)
+> -		goto out_release_altmode_aux;
+> +	match = of_match_device(pmic_glink_of_client_mask, &pdev->dev);
+> +	if (match)
+> +		pg->client_mask = *(const unsigned int *)match->data;
+> +	else
+> +		pg->client_mask = PMIC_GLINK_CLIENT_DEFAULT;
+> +
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
+> +		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
+> +		if (ret)
+> +			return ret;
+> +	}
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
+> +		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
+> +		if (ret)
+> +			goto out_release_ucsi_aux;
+> +	}
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
+> +		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
+> +		if (ret)
+> +			goto out_release_altmode_aux;
+> +	}
+>   
+>   	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
+>   	if (IS_ERR(pg->pdr)) {
+> @@ -278,9 +316,14 @@ static int pmic_glink_probe(struct platform_device *pdev)
+>   out_release_pdr_handle:
+>   	pdr_handle_release(pg->pdr);
+>   out_release_aux_devices:
+> -	pmic_glink_del_aux_device(pg, &pg->ps_aux);
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
+> +		pmic_glink_del_aux_device(pg, &pg->ps_aux);
+>   out_release_altmode_aux:
+> -	pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
+> +		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+> +out_release_ucsi_aux:
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
+> +		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+>   
+>   	return ret;
+>   }
+> @@ -291,8 +334,12 @@ static int pmic_glink_remove(struct platform_device *pdev)
+>   
+>   	pdr_handle_release(pg->pdr);
+>   
+> -	pmic_glink_del_aux_device(pg, &pg->ps_aux);
+> -	pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
+> +		pmic_glink_del_aux_device(pg, &pg->ps_aux);
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
+> +		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
+> +		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+>   
+>   	mutex_lock(&__pmic_glink_lock);
+>   	__pmic_glink = NULL;
+> 
+
+-- 
+With best wishes
+Dmitry
 
