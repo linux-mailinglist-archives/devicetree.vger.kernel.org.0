@@ -2,92 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E7D5691B93
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3408B691BC1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 10:44:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbjBJJha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 04:37:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37576 "EHLO
+        id S231642AbjBJJod convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Feb 2023 04:44:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231405AbjBJJh2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:37:28 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8904C3754C;
-        Fri, 10 Feb 2023 01:37:27 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id cz14so3942599oib.12;
-        Fri, 10 Feb 2023 01:37:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jhBKLc8M9hV3t5uIfo5QFAwuXf0QmrmGOwQu6l1qMrs=;
-        b=KHWJ46IEVS2ZdTQy8gh3CYozLmL/kVC+EMT9ZGlD8/f3jtIe/ZasihjMyJ877fk8D3
-         BEAZ1tcL4tdfnnWYKWU6ZTbBJhTRDJfkg2JWFK0yslqv6+ySscy0+OoTzjplIgqixLkw
-         gQiKnFIVUIBB10Drs7ap3/B0nz3CSuusfaZx1/qbGudJz22cSkt5hp7uAne+ITEExyAU
-         3+0Oj2aJUoyeQFCoYqT0bmrWSm41PTFpaGSy0NLZjqbpoR6KrsnZRf42EWnXkS2OCldG
-         GVcr0n2HG23Mq8VMsUIpFxAla3rr2egtMK/pETUaKNnyMrHOlr5961llVEMR4SoNMtfN
-         a5zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jhBKLc8M9hV3t5uIfo5QFAwuXf0QmrmGOwQu6l1qMrs=;
-        b=zrLnDPrMcFtpT15wOUmbNbwcEarCA8pMLq7qwicaGcPJD/HXg15I3+i3BgVXHfRTgr
-         gCrXW6whhMSo131zKAyXLQtT6Q0nJZn4cKjA+88xyWoycyFdU92OMCZwpYVuzdRJljyG
-         Mnu1Jjnf2saO891hhvVOdDGGgluC7GmQ2P9cJ3wvcEBzCUOjn/0vJ1adk50nfZNlYbUf
-         lbvkmw7RD6Cg9C1c4lFb4HLVpAK/mdVYaxW0GASzvg7xmlev7lVcdQDwJWzuMWamjPRj
-         /WieGILsHBe/KJNSo1BS/KUt1/94G3eiYDRTvairZK5yfCP2+Z+vXaVJ+1Ic0W6OwHV1
-         ChyA==
-X-Gm-Message-State: AO0yUKWvYxqV4LS/MaPEKtuYj7ZLgeaxzzshMWAalAXiijldfoV/J+8o
-        2zkISmkvRJQSzBAhUycV5IyXFExS+e3s9AMtyvk=
-X-Google-Smtp-Source: AK7set+DCQK83BpY1/Jft8PErcps7VMJup7n6mQ/Fa6LXEPnjKm7+vydoF5p4PZxB8VJMvaykJmEuPETQseKoCulf5g=
-X-Received: by 2002:aca:34c5:0:b0:378:7ba4:b869 with SMTP id
- b188-20020aca34c5000000b003787ba4b869mr951767oia.286.1676021846648; Fri, 10
- Feb 2023 01:37:26 -0800 (PST)
+        with ESMTP id S231379AbjBJJoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 04:44:32 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE3CD2DE4A;
+        Fri, 10 Feb 2023 01:44:30 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BD8552F4;
+        Fri, 10 Feb 2023 01:45:12 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B483E3F71E;
+        Fri, 10 Feb 2023 01:44:28 -0800 (PST)
+Date:   Fri, 10 Feb 2023 09:44:25 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Andreas Feldner <andreas@feldner-bv.de>,
+        Andreas Feldner <pelzi@flying-snail.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230210094425.474cfba5@donnerap.cambridge.arm.com>
+In-Reply-To: <20230210082936.qefzz4fsp3jpalvp@houat>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+        <20230207011608.2ce24d17@slackpad.lan>
+        <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+        <20230209202952.673d5a60@slackpad.lan>
+        <20230210082936.qefzz4fsp3jpalvp@houat>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
-In-Reply-To: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
-From:   Christian Gmeiner <christian.gmeiner@gmail.com>
-Date:   Fri, 10 Feb 2023 10:37:15 +0100
-Message-ID: <CAH9NwWefkrqmOCJ4zgvfsTfSQLKWqwcpWwnijFYFT4o_sr+EAg@mail.gmail.com>
-Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh@kernel.org,
-        frowand.list@gmail.com, helgaas@kernel.org,
-        clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
-        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
-        trix@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all
+On Fri, 10 Feb 2023 09:29:36 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-> This patch series introduces OF overlay support for PCI devices which
-> primarily addresses two use cases. First, it provides a data driven method
-> to describe hardware peripherals that are present in a PCI endpoint and
-> hence can be accessed by the PCI host. Second, it allows reuse of a OF
-> compatible driver -- often used in SoC platforms -- in a PCI host based
-> system.
->
+Hi Maxime,
 
-I have tested this patch series on a FPGA connected via PCIe. I would love
-to see this patch series hit mainline soon.
+thanks for the reply!
 
-Tested-by: Christian Gmeiner <christian.gmeiner@gmail.com>
+> On Thu, Feb 09, 2023 at 08:29:52PM +0000, Andre Przywara wrote:
+> > > >>   &pio {
+> > > >> +	/* 1ï¿½s debounce filter on both IRQ banks */  
+> > > > Is that supposed to be <micro> in UTF-8? It seems to have got lost in
+> > > > translation, or is that just me?  
+> > > O yes, the Greek character slipped into the comment.  
+> > > >> +	input-debounce = <1 1>;  
+> > > > As mentioned above, I am not so sure this is generic enough to put it
+> > > > here for PA. And what is the significance of "1 us", in particular? Is
+> > > > that just the smallest value?    
+> > > 
+> > > Yes indeed it's a bit more complicated than I feel it needs to be. The
+> > > configuration is taken as microseconds and translated into the best
+> > > matching clock and divider by the driver. However, 0 is not translated
+> > > to the lowest divider of the high speed clock as would be logical if
+> > > you ask for zero microseconds, but to "leave at default". The default
+> > > of the board is 0 in the register, translating to lowest divider on the
+> > > _low_ speed clock.  
+> > 
+> > I'd say the "if (!debounce) continue;" code is just to defend against
+> > the division by zero, which would be the next statement to execute.
+> > 
+> > We might want to change that to interpret 0 as "lowest possible", which
+> > would be 24MHz/1. Please feel free to send a patch in this regard, and
+> > CC: Maxime, to get some input on that idea.  
+> 
+> I never had any complaint on that part either, so the default looks sane
+> to me.
+> 
+> If some board needs a higher debouncing rate, then we should obviously
+> set it up in the device tree of that board, but changing it for every
+> user also introduces the risk of breaking other boards that actually
+> require a lower debouncing frequency.
 
--- 
-greets
---
-Christian Gmeiner, MSc
+Yeah, we definitely should keep the default at 32KHz/1, as this is also
+the hardware reset value.
 
-https://christian-gmeiner.info/privacypolicy
+Not sure if you were actually arguing this, but the change I sketched
+above (interpreting 0 as 24MHz/1) is separate though, as the current
+default is "no DT property", and not 0. There is no input-debounce
+property user in the kernel tree at the moment, so we wouldn't break
+anyone. The only thing that would change is if a downstream user was
+relying on "0" being interpreted as "skip the setup", which isn't
+really documented and could be argued to be an implementation detail.
+
+So I'd suggest to implement 0 as "lowest possible", and documenting that
+and the 32KHz/1 default if no property is given.
+
+> And any default is always going to be debated, there's one, it seems to
+> create little controversy, it seems to work in most case, I'd just stick
+> with it.
+
+Agreed.
+
+Cheers,
+Andre.
+
+> 
+> > > To me this is mindboggling.
+> > > 
+> > > If you want to keep IRQ bank A as it is today and switch off the
+> > > definitely unnecessary (and _potentially_ IRQ eating) debounce off
+> > > for bank G only, I'd suggest the following setting:
+> > > 
+> > >      input-debounce = <31 1>;  
+> > 
+> > It should be documented that the effective default is 31, I guess the
+> > binding is the right place.  
+> 
+> Yeah, if the documentation is lacking, we should definitely improve it.
+> 
+> Maxime
+
