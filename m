@@ -2,155 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D156924F6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8EE6924FD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 19:03:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232692AbjBJSAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 13:00:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60136 "EHLO
+        id S232520AbjBJSDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 13:03:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232163AbjBJSAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:00:47 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F0575F40
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 10:00:47 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pQXhH-0001UU-UW; Fri, 10 Feb 2023 19:00:31 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pQXh4-0042Xj-Hj; Fri, 10 Feb 2023 19:00:19 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pQXh5-002UH3-2e; Fri, 10 Feb 2023 19:00:19 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 1/2] dt-bindings: display: imx: Describe drm binding for fsl,imx-lcdc
-Date:   Fri, 10 Feb 2023 19:00:13 +0100
-Message-Id: <20230210180014.173379-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230210180014.173379-1-u.kleine-koenig@pengutronix.de>
-References: <20230210180014.173379-1-u.kleine-koenig@pengutronix.de>
+        with ESMTP id S232163AbjBJSDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 13:03:39 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E46885FE7F;
+        Fri, 10 Feb 2023 10:03:37 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31AI3JG7069959;
+        Fri, 10 Feb 2023 12:03:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1676052199;
+        bh=6OgJKNeu58dGw6Jp+CczWSAuYltsMXp4bPxaIKauZns=;
+        h=From:To:CC:Subject:Date;
+        b=AKmfEtCNUd6VFGj3ZEwkzV9tn1Cep1vQgouUEV//azmIdymUe6CuReokDbIyoIsJt
+         77rqi7EoRXFZSZdgbEObDzj9d2tRXYNVfSA4vew09/DjIM5L1+/Bp13IAbwIA4u6CR
+         ZcLk2JUB2Pu2SwjkuLcOaIzgtMZVq3VuexVJlAUg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31AI3JRo003852
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 10 Feb 2023 12:03:19 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 10
+ Feb 2023 12:03:18 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 10 Feb 2023 12:03:18 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31AI3HSM001322;
+        Fri, 10 Feb 2023 12:03:18 -0600
+From:   Devarsh Thakkar <devarsht@ti.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
+CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <devarsht@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Fix DDR size to full 4GB
+Date:   Fri, 10 Feb 2023 23:33:17 +0530
+Message-ID: <20230210180317.6157-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2253; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=x6IJvlqrCUPOPz13nY7dPLDP98HvQ2GGgbTsyPTap4Y=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBj5oYj+Xv8MLKDESfCUw7E/vHZ8fyh9K1np03wbKA6 jyHSOIOJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY+aGIwAKCRDB/BR4rcrsCf0ZCA CCbVUGTlDUOhFfUK60Il68YF+CuGMak1jmjcsVKDWjwciG1NDx6cZLQg72PCFLaeN5JKrRJ0ku+tn/ NwEEmW6bcdpyDGUFTjiZTu5Jc1RtPans23/nbQZmhyzQ5GHTHMWmwK1N23pI56ReGyAIRe4G/YfGzv 4tQM7eiZ8A/O9SkAo+eGy391GBVt3iSQu5LZ/pn+J452yl7RQM0JSX9SJ7ymQnwJIeABVVu0KluJ8w JKGdQMEEv2S8kr/KmrD+EyLe9ffKTav+5LrKq1VnG5ssD4zVwDnGv7xsj8BKv7PbCBJhTEAVoAMndX bF00n+XMTOR8YXGbpYNtERFi41EG1V
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify the existing (fb-like) binding to support the drm-like binding in
-parallel.
+All revisions of AM62A7-SK board have 4GB LPDDR4 Micron
+MT53E2G32D4DE-046 AUT:B memory. Commit 38c4a08c820c ("arm64: dts: ti:
+Add support for AM62A7-SK") enabled just 2GB due to a schematics error
+in early revision of the board. Fix it by enabling full 4GB available on
+the platform.
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Design docs: Link: https://www.ti.com/lit/zip/spruj16
+
+Fixes: 38c4a08c820c ("arm64: dts: ti: Add support for AM62A7-SK")
+
+Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
 ---
- .../bindings/display/imx/fsl,imx-lcdc.yaml    | 46 ++++++++++++++++++-
- 1 file changed, 45 insertions(+), 1 deletion(-)
+Logs:
+https://gist.github.com/devarsht/e85b6af89c01ddadb3a62f3e5f196af8
 
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-index 35a8fff036ca..c2b29622bceb 100644
---- a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-+++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-@@ -21,6 +21,9 @@ properties:
-               - fsl,imx25-fb
-               - fsl,imx27-fb
-           - const: fsl,imx21-fb
-+      - items:
-+          - const: fsl,imx25-lcdc
-+          - const: fsl,imx21-lcdc
+Changelog:
+V2: Update commit message with mention of schematics error
+---
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index 5c9012141ee2..f6a67f072dca 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -27,8 +27,9 @@
  
-   clocks:
-     maxItems: 3
-@@ -31,6 +34,9 @@ properties:
-       - const: ahb
-       - const: per
+ 	memory@80000000 {
+ 		device_type = "memory";
+-		/* 2G RAM */
+-		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
++		/* 4G RAM */
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+ 	};
  
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-   display:
-     $ref: /schemas/types.yaml#/definitions/phandle
- 
-@@ -59,17 +65,55 @@ properties:
-     description:
-       LCDC Sharp Configuration Register value.
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx1-lcdc
-+              - fsl,imx21-lcdc
-+    then:
-+      properties:
-+        display: false
-+        fsl,dmacr: false
-+        fsl,lpccr: false
-+        fsl,lscr1: false
-+
-+      required:
-+        - port
-+
-+    else:
-+      properties:
-+        port: false
-+
-+      required:
-+        - display
-+
- required:
-   - compatible
-   - clocks
-   - clock-names
--  - display
-   - interrupts
-   - reg
- 
- additionalProperties: false
- 
- examples:
-+  - |
-+    lcdc@53fbc000 {
-+        compatible = "fsl,imx25-lcdc", "fsl,imx21-lcdc";
-+        reg = <0x53fbc000 0x4000>;
-+        interrupts = <39>;
-+        clocks = <&clks 103>, <&clks 66>, <&clks 49>;
-+        clock-names = "ipg", "ahb", "per";
-+
-+        port {
-+            parallel_out: endpoint {
-+              remote-endpoint = <&panel_in>;
-+            };
-+        };
-+    };
-   - |
-     imxfb: fb@10021000 {
-         compatible = "fsl,imx21-fb";
+ 	reserved-memory {
 -- 
-2.39.0
+2.17.1
 
