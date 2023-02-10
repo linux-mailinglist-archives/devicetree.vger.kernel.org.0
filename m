@@ -2,569 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A36691DA3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E257691DA9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:10:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232321AbjBJLJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48518 "EHLO
+        id S232322AbjBJLKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:10:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232333AbjBJLJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:09:11 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C159271034
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:09:07 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id rp23so14848276ejb.7
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:09:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RCNLlZNbq0af8em4NGdiPJLnjWJLq3RloIQVA1vNkuU=;
-        b=XGFH2mPS9zSjWAMEJCNcR1G4jikKVaTlc/ALFCHB/t2yK5daA1syqkT73o4M4Yi7aa
-         EWp7V7TKW4DU9C4EafPZsjC2y1T4Yu2X7s277uLdAjsmKnWvElZEXgmeBp/Av9JePFE4
-         JHQvGJTwf6Lpehb2A5V1bH8eY0nZInEygCxwmPxgJMVv83GnO1RtPTZBV9Da55L5dckU
-         mpRfmWf00T14NT0eUU7S6FhmS6zRRNj9x/xRWf3jmhN04sWvlzv/djv3XQ/aCpY9PYGL
-         pDAUGm2C8YceB0QYe1j7VSx8jO5zCCE6rMgRAG1OcI1BEEz6N4oY9TuMb1b1+V/goruX
-         iFBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RCNLlZNbq0af8em4NGdiPJLnjWJLq3RloIQVA1vNkuU=;
-        b=TUiu8V6sYOgYfJi3bsl7Hp73Fu2lnjsNnwcOue//O9Wp+RpqFvlxvCMWUkliVU6YxE
-         uMVgIL49S56K5/hp1dKfru6zqqr1C4uttSntQi9bGHCMA1x0O4rRwlIv1J4T5DePBzEi
-         kgugFDFPkP2zQJOP0ARszZQ5bFe6ziXdg8+mHJ3TfTPA4mtCnnFIvQvpziZIzgjCiCM1
-         gdOTxsuuirX8X098cEmn9NYhGlint1c0sKZFXpY0Kpnno8KZAanO3NupEO0CwFr42V2x
-         o9Kg0UpBQChTB8MSNXDC1iqgA4pc1ctfDNSb+zzEDRYmm4kd8/Nh8pqwU3zJro/FQdLk
-         OSow==
-X-Gm-Message-State: AO0yUKXBtQqhur72PgF3QtOOlNwAQLr4ctgKsldXbx/0z400OmSjINK6
-        Z7/G2C8pV5LdJtBJpCZHXXHaKg==
-X-Google-Smtp-Source: AK7set+ENOFkTBIOQyxihdzqybS5kJnd7Jqms4otHG4vgA6p2gUTXZycXHM9ad0gQvDwpBPIbd+7DQ==
-X-Received: by 2002:a17:906:46d3:b0:88d:ba89:183f with SMTP id k19-20020a17090646d300b0088dba89183fmr9165774ejs.16.1676027346249;
-        Fri, 10 Feb 2023 03:09:06 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id fi9-20020a170906da0900b0084c6ec69a9dsm2210093ejb.124.2023.02.10.03.09.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:09:05 -0800 (PST)
-Message-ID: <a8bb4bf1-c4b6-ff02-d2e6-1407900bb006@linaro.org>
-Date:   Fri, 10 Feb 2023 12:09:03 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: sm8350: finish reordering nodes
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S232316AbjBJLKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:10:02 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D0F7100D;
+        Fri, 10 Feb 2023 03:10:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=AXxKWPiVWJU1ugGjgpin75Nz5rvbBLIVFJ34R7UAKY4=; b=WRGrmvm4i7DY8WBKznriUmhH27
+        HfSP+oNS0Q8XKdW3xMV7kb6qm5JR8qHzlHdfAr/9lB41CWLwO8HnMqM40mtotygauRM1XQ2/F0TVA
+        3vV5Txv0zXOEk0Ds4/M6RZoyHDyjPCrMKR7MJx6sQdueTeqW6qmBZS/jLPuwNQaflyMC8vBQjK+gZ
+        vcBHwoqcgEc5/pDOTlXMtPD7ZJeupFKiI7NPGbGv3XhCJbddfUeBReMofYDKeNG8HbckSFCm94Qph
+        C2Cu8ywsYkf58Y3iQP2I9rmBqqecVNQZS3ciesqhtbDZ1YaeWxOFvaCGrIPfEET16Zf3fyjqRH7sn
+        5xaoyalQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36516)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1pQRHk-0001No-OQ; Fri, 10 Feb 2023 11:09:44 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1pQRHg-0005XJ-T1; Fri, 10 Feb 2023 11:09:40 +0000
+Date:   Fri, 10 Feb 2023 11:09:40 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230209133839.762631-1-dmitry.baryshkov@linaro.org>
- <20230209133839.762631-5-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230209133839.762631-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Wong Vee Khee <veekhee@apple.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Revanth Kumar Uppala <ruppala@nvidia.com>,
+        Tan Tee Min <tee.min.tan@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v3 5/6] net: stmmac: add support for RZ/N1 GMAC
+Message-ID: <Y+Yl9AvJN5ClU3ZD@shell.armlinux.org.uk>
+References: <20230209151632.275883-1-clement.leger@bootlin.com>
+ <20230209151632.275883-6-clement.leger@bootlin.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230209151632.275883-6-clement.leger@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Feb 09, 2023 at 04:16:31PM +0100, Clément Léger wrote:
+> +struct rzn1_dwmac {
+> +	struct phylink_pcs *pcs;
+> +};
 
+Please see my comments on your previous patch series as to why I don't
+think you need this structure nor its associated memory allocations.
 
-On 9.02.2023 14:38, Dmitry Baryshkov wrote:
-> Finish reordering DT nodes by their address. Move PDC, tsens, AOSS,
-> SRAM, SPMI and TLMM nodes to the proper position.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-[...]
-
-> +				phys = <&mdss_dsi1_phy>;
-> +
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				status = "disabled";
-> +
-> +				dsi1_opp_table: opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					/* TODO: opp-187500000 should work with
-> +					 * &rpmhpd_opp_low_svs, but one some of
-> +					 * sm8350_hdk boards reboot using this
-> +					 * opp.
-> +					 */
-It's not a part of this patch, but an idea came into my
-head.. could you check with socid that your HDK has an
-8350v2.1?
-
-As for the patch itself.. I *think* I don't see anything
-wrong..
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
-
-> +					opp-187500000 {
-> +						opp-hz = /bits/ 64 <187500000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-300000000 {
-> +						opp-hz = /bits/ 64 <300000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-358000000 {
-> +						opp-hz = /bits/ 64 <358000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-> +					};
-> +				};
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						mdss_dsi1_in: endpoint {
-> +							remote-endpoint = <&dpu_intf2_out>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						mdss_dsi1_out: endpoint {
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			mdss_dsi1_phy: phy@ae96400 {
-> +				compatible = "qcom,sm8350-dsi-phy-5nm";
-> +				reg = <0 0x0ae96400 0 0x200>,
-> +				      <0 0x0ae96600 0 0x280>,
-> +				      <0 0x0ae96900 0 0x27c>;
-> +				reg-names = "dsi_phy",
-> +					    "dsi_phy_lane",
-> +					    "dsi_pll";
-> +
-> +				#clock-cells = <1>;
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&rpmhcc RPMH_CXO_CLK>;
-> +				clock-names = "iface", "ref";
-> +
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		dispcc: clock-controller@af00000 {
-> +			compatible = "qcom,sm8350-dispcc";
-> +			reg = <0 0x0af00000 0 0x10000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>,
-> +				 <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>,
-> +				 <0>,
-> +				 <0>;
-> +			clock-names = "bi_tcxo",
-> +				      "dsi0_phy_pll_out_byteclk",
-> +				      "dsi0_phy_pll_out_dsiclk",
-> +				      "dsi1_phy_pll_out_byteclk",
-> +				      "dsi1_phy_pll_out_dsiclk",
-> +				      "dp_phy_pll_link_clk",
-> +				      "dp_phy_pll_vco_div_clk";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +
-> +			power-domains = <&rpmhpd SM8350_MMCX>;
-> +		};
-> +
-> +		pdc: interrupt-controller@b220000 {
-> +			compatible = "qcom,sm8350-pdc", "qcom,pdc";
-> +			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
-> +			qcom,pdc-ranges = <0 480 40>, <40 140 14>, <54 263 1>,   <55 306 4>,
-> +					  <59 312 3>, <62 374 2>,  <64 434 2>,   <66 438 3>,
-> +					  <69 86 1>,  <70 520 54>, <124 609 31>, <155 63 1>,
-> +					  <156 716 12>;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&intc>;
-> +			interrupt-controller;
-> +		};
-> +
-> +		tsens0: thermal-sensor@c263000 {
-> +			compatible = "qcom,sm8350-tsens", "qcom,tsens-v2";
-> +			reg = <0 0x0c263000 0 0x1ff>, /* TM */
-> +			      <0 0x0c222000 0 0x8>; /* SROT */
-> +			#qcom,sensors = <15>;
-> +			interrupts-extended = <&pdc 26 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <&pdc 28 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow", "critical";
-> +			#thermal-sensor-cells = <1>;
-> +		};
-> +
-> +		tsens1: thermal-sensor@c265000 {
-> +			compatible = "qcom,sm8350-tsens", "qcom,tsens-v2";
-> +			reg = <0 0x0c265000 0 0x1ff>, /* TM */
-> +			      <0 0x0c223000 0 0x8>; /* SROT */
-> +			#qcom,sensors = <14>;
-> +			interrupts-extended = <&pdc 27 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <&pdc 29 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow", "critical";
-> +			#thermal-sensor-cells = <1>;
-> +		};
-> +
-> +		aoss_qmp: power-management@c300000 {
-> +			compatible = "qcom,sm8350-aoss-qmp", "qcom,aoss-qmp";
-> +			reg = <0 0x0c300000 0 0x400>;
-> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
-> +						     IRQ_TYPE_EDGE_RISING>;
-> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		sram@c3f0000 {
-> +			compatible = "qcom,rpmh-stats";
-> +			reg = <0 0x0c3f0000 0 0x400>;
-> +		};
-> +
-> +		spmi_bus: spmi@c440000 {
-> +			compatible = "qcom,spmi-pmic-arb";
-> +			reg = <0x0 0x0c440000 0x0 0x1100>,
-> +			      <0x0 0x0c600000 0x0 0x2000000>,
-> +			      <0x0 0x0e600000 0x0 0x100000>,
-> +			      <0x0 0x0e700000 0x0 0xa0000>,
-> +			      <0x0 0x0c40a000 0x0 0x26000>;
-> +			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
-> +			interrupt-names = "periph_irq";
-> +			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
-> +			qcom,ee = <0>;
-> +			qcom,channel = <0>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <4>;
-> +		};
-> +
-> +		tlmm: pinctrl@f100000 {
-> +			compatible = "qcom,sm8350-tlmm";
-> +			reg = <0 0x0f100000 0 0x300000>;
-> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			gpio-ranges = <&tlmm 0 0 204>;
-> +			wakeup-parent = <&pdc>;
-> +
-> +			sdc2_default_state: sdc2-default-state {
-> +				clk-pins {
-> +					pins = "sdc2_clk";
-> +					drive-strength = <16>;
-> +					bias-disable;
-> +				};
-> +
-> +				cmd-pins {
-> +					pins = "sdc2_cmd";
-> +					drive-strength = <16>;
-> +					bias-pull-up;
-> +				};
-> +
-> +				data-pins {
-> +					pins = "sdc2_data";
-> +					drive-strength = <16>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
-> +			sdc2_sleep_state: sdc2-sleep-state {
-> +				clk-pins {
-> +					pins = "sdc2_clk";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +				};
->  
-> -				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> -					 <&rpmhcc RPMH_CXO_CLK>;
-> -				clock-names = "iface", "ref";
-> +				cmd-pins {
-> +					pins = "sdc2_cmd";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
->  
-> -				status = "disabled";
-> +				data-pins {
-> +					pins = "sdc2_data";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
->  			};
->  
-> -			mdss_dsi1: dsi@ae96000 {
-> -				compatible = "qcom,sm8350-dsi-ctrl", "qcom,mdss-dsi-ctrl";
-> -				reg = <0 0x0ae96000 0 0x400>;
-> -				reg-names = "dsi_ctrl";
-> +			qup_uart3_default_state: qup-uart3-default-state {
-> +				rx-pins {
-> +					pins = "gpio18";
-> +					function = "qup3";
-> +				};
-> +				tx-pins {
-> +					pins = "gpio19";
-> +					function = "qup3";
-> +				};
-> +			};
->  
-> -				interrupt-parent = <&mdss>;
-> -				interrupts = <5>;
-> +			qup_uart6_default: qup-uart6-default-state {
-> +				pins = "gpio30", "gpio31";
-> +				function = "qup6";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  
-> -				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
-> -					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
-> -					 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
-> -					 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
-> -					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> -					 <&gcc GCC_DISP_HF_AXI_CLK>;
-> -				clock-names = "byte",
-> -					      "byte_intf",
-> -					      "pixel",
-> -					      "core",
-> -					      "iface",
-> -					      "bus";
-> +			qup_uart18_default: qup-uart18-default-state {
-> +				pins = "gpio58", "gpio59";
-> +				function = "qup18";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  
-> -				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
-> -						  <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
-> -				assigned-clock-parents = <&mdss_dsi1_phy 0>,
-> -							 <&mdss_dsi1_phy 1>;
-> +			qup_i2c0_default: qup-i2c0-default-state {
-> +				pins = "gpio4", "gpio5";
-> +				function = "qup0";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				operating-points-v2 = <&dsi1_opp_table>;
-> -				power-domains = <&rpmhpd SM8350_MMCX>;
-> +			qup_i2c1_default: qup-i2c1-default-state {
-> +				pins = "gpio8", "gpio9";
-> +				function = "qup1";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				phys = <&mdss_dsi1_phy>;
-> +			qup_i2c2_default: qup-i2c2-default-state {
-> +				pins = "gpio12", "gpio13";
-> +				function = "qup2";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> +			qup_i2c4_default: qup-i2c4-default-state {
-> +				pins = "gpio20", "gpio21";
-> +				function = "qup4";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				status = "disabled";
-> +			qup_i2c5_default: qup-i2c5-default-state {
-> +				pins = "gpio24", "gpio25";
-> +				function = "qup5";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				dsi1_opp_table: opp-table {
-> -					compatible = "operating-points-v2";
-> +			qup_i2c6_default: qup-i2c6-default-state {
-> +				pins = "gpio28", "gpio29";
-> +				function = "qup6";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -					/* TODO: opp-187500000 should work with
-> -					 * &rpmhpd_opp_low_svs, but one some of
-> -					 * sm8350_hdk boards reboot using this
-> -					 * opp.
-> -					 */
-> -					opp-187500000 {
-> -						opp-hz = /bits/ 64 <187500000>;
-> -						required-opps = <&rpmhpd_opp_svs>;
-> -					};
-> +			qup_i2c7_default: qup-i2c7-default-state {
-> +				pins = "gpio32", "gpio33";
-> +				function = "qup7";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  
-> -					opp-300000000 {
-> -						opp-hz = /bits/ 64 <300000000>;
-> -						required-opps = <&rpmhpd_opp_svs>;
-> -					};
-> +			qup_i2c8_default: qup-i2c8-default-state {
-> +				pins = "gpio36", "gpio37";
-> +				function = "qup8";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -					opp-358000000 {
-> -						opp-hz = /bits/ 64 <358000000>;
-> -						required-opps = <&rpmhpd_opp_svs_l1>;
-> -					};
-> -				};
-> +			qup_i2c9_default: qup-i2c9-default-state {
-> +				pins = "gpio40", "gpio41";
-> +				function = "qup9";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				ports {
-> -					#address-cells = <1>;
-> -					#size-cells = <0>;
-> +			qup_i2c10_default: qup-i2c10-default-state {
-> +				pins = "gpio44", "gpio45";
-> +				function = "qup10";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -					port@0 {
-> -						reg = <0>;
-> -						mdss_dsi1_in: endpoint {
-> -							remote-endpoint = <&dpu_intf2_out>;
-> -						};
-> -					};
-> +			qup_i2c11_default: qup-i2c11-default-state {
-> +				pins = "gpio48", "gpio49";
-> +				function = "qup11";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -					port@1 {
-> -						reg = <1>;
-> -						mdss_dsi1_out: endpoint {
-> -						};
-> -					};
-> -				};
-> +			qup_i2c12_default: qup-i2c12-default-state {
-> +				pins = "gpio52", "gpio53";
-> +				function = "qup12";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
->  			};
->  
-> -			mdss_dsi1_phy: phy@ae96400 {
-> -				compatible = "qcom,sm8350-dsi-phy-5nm";
-> -				reg = <0 0x0ae96400 0 0x200>,
-> -				      <0 0x0ae96600 0 0x280>,
-> -				      <0 0x0ae96900 0 0x27c>;
-> -				reg-names = "dsi_phy",
-> -					    "dsi_phy_lane",
-> -					    "dsi_pll";
-> +			qup_i2c13_default: qup-i2c13-default-state {
-> +				pins = "gpio0", "gpio1";
-> +				function = "qup13";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
->  
-> -				#clock-cells = <1>;
-> -				#phy-cells = <0>;
-> +			qup_i2c14_default: qup-i2c14-default-state {
-> +				pins = "gpio56", "gpio57";
-> +				function = "qup14";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  
-> -				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> -					 <&rpmhcc RPMH_CXO_CLK>;
-> -				clock-names = "iface", "ref";
-> +			qup_i2c15_default: qup-i2c15-default-state {
-> +				pins = "gpio60", "gpio61";
-> +				function = "qup15";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  
-> -				status = "disabled";
-> +			qup_i2c16_default: qup-i2c16-default-state {
-> +				pins = "gpio64", "gpio65";
-> +				function = "qup16";
-> +				drive-strength = <2>;
-> +				bias-disable;
->  			};
-> -		};
->  
-> -		dispcc: clock-controller@af00000 {
-> -			compatible = "qcom,sm8350-dispcc";
-> -			reg = <0 0x0af00000 0 0x10000>;
-> -			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> -				 <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>,
-> -				 <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>,
-> -				 <0>,
-> -				 <0>;
-> -			clock-names = "bi_tcxo",
-> -				      "dsi0_phy_pll_out_byteclk",
-> -				      "dsi0_phy_pll_out_dsiclk",
-> -				      "dsi1_phy_pll_out_byteclk",
-> -				      "dsi1_phy_pll_out_dsiclk",
-> -				      "dp_phy_pll_link_clk",
-> -				      "dp_phy_pll_vco_div_clk";
-> -			#clock-cells = <1>;
-> -			#reset-cells = <1>;
-> -			#power-domain-cells = <1>;
-> +			qup_i2c17_default: qup-i2c17-default-state {
-> +				pins = "gpio72", "gpio73";
-> +				function = "qup17";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  
-> -			power-domains = <&rpmhpd SM8350_MMCX>;
-> +			qup_i2c19_default: qup-i2c19-default-state {
-> +				pins = "gpio76", "gpio77";
-> +				function = "qup19";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
->  		};
->  
->  		apps_smmu: iommu@15000000 {
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
