@@ -2,117 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E29BA69187C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 07:27:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4768B6918A5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 07:45:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230443AbjBJG07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 01:26:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52016 "EHLO
+        id S230338AbjBJGpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 01:45:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbjBJG06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 01:26:58 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796D22ED6D;
-        Thu,  9 Feb 2023 22:26:54 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31A6QO7i115307;
-        Fri, 10 Feb 2023 00:26:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1676010384;
-        bh=lBItCq1W0OP+iyeXFijG9TIsfl3uxMuDtEmrUXvulLE=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=EKO2n5rexh5RBrgzzJSkMuo89iGiIb6VS1wv46Z1GwwsDmvyd3KtErN3wZptNMnAv
-         r44BB3rZ54zmwc2HfnncZcE5i82Y2scbCKgISQWDoOTW2zoqVf+gFaFHvg2+wcLyey
-         Yl9wOseV9syDl3P+zSU79wSkZjbqLOh9AzT2766c=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31A6QOPn067002
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 10 Feb 2023 00:26:24 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 10
- Feb 2023 00:26:24 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 10 Feb 2023 00:26:24 -0600
-Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31A6QI97110407;
-        Fri, 10 Feb 2023 00:26:19 -0600
-Message-ID: <ea447e7c-8e80-07cd-25c0-3fc2a651eb48@ti.com>
-Date:   Fri, 10 Feb 2023 11:56:18 +0530
+        with ESMTP id S230140AbjBJGpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 01:45:01 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B5B21ABD6
+        for <devicetree@vger.kernel.org>; Thu,  9 Feb 2023 22:45:00 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id o15so746910wrc.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Feb 2023 22:45:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QMd8zrjo8o2xkfWSu/tAGCytSiDkDCaLT/oxKSVCWik=;
+        b=VHi8pkvLswSSTqhgg6j25ca2gZJkWx0OMQ2WgDithqO21aSOgvkv5d/bwSb6pFNp9w
+         jJtt0JHOu36VK/XhOBV9Kll7/wC5C5Alw40AM8/zkFvZQeWLuQf3gxaxxvqZ95TF6i65
+         teRnURGdRwSsbF0srlRnmkQCXLb4xFXGRJXXYSmG1mFXJQwQUviIF/EHVAusmpfGojRe
+         ePfTTbFSwFgN1rIir0LGruU8Ho2fo8CA2voJkx8Cs0061zwrJVP6CQtpbuGRFM0imaUK
+         /5vxJdUDxc6Au2WUF4mPfbpX1EZjdh6ZTdqxBPB5u9DNhFLF15sno/T+WTktBu+AncbK
+         WnAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QMd8zrjo8o2xkfWSu/tAGCytSiDkDCaLT/oxKSVCWik=;
+        b=qGvCN2KRBKTQmrPMoroVfCcOXj1Z7acg8KymX/A0uKS4+2tdJmdVb8CzjIWIGVqGuf
+         RbfkPWQidyFM7MWLbcV3Jewx7MrwsvfT3S0yLpCxJCuUDd1t7+FVfRbgrZv63vmUteEe
+         SnrgLG+hxmyVtfn71HKIv16eMt49QMI850C7P/juIa9pQVRO0EoY/WNnbN/Z+2LU13pr
+         sAhyZyKpNiqa/Q/0f5Oph6WeQAQpx0BKbGmynmu1b2LoNedhf2RFX/gvBeEjFbUfrW8b
+         HNObm3DrdNh95UR7c4b+tvizOmk1zbCDBcXO0kXzY3Rb+6lyk4/wBoneJGrdBlY1P35W
+         mCog==
+X-Gm-Message-State: AO0yUKXKejTycTuyL/fM2NwCQ8Os6mpRbS4Hj5gGjBS7O61kyTLp10Kl
+        fvYo/8gya16sN8ac+uDFk2GSuw==
+X-Google-Smtp-Source: AK7set/ZLHNwvWdizk6P8QdKUHDk0+Dh3idhFbBpHn4LBD1uQR3gkwqJhQJ4PJKV0hvTZbL5Tu7VIg==
+X-Received: by 2002:a5d:46c8:0:b0:2c5:4a20:120f with SMTP id g8-20020a5d46c8000000b002c54a20120fmr863924wrs.43.1676011498492;
+        Thu, 09 Feb 2023 22:44:58 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id i3-20020adffc03000000b002c53d69a8easm2326411wrr.92.2023.02.09.22.44.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Feb 2023 22:44:58 -0800 (PST)
+Message-ID: <b41930f9-89d9-1b12-b024-05fb12700769@linaro.org>
+Date:   Fri, 10 Feb 2023 07:44:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [EXTERNAL] Re: [EXTERNAL] Re:
- [PATCH v4 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Roger Quadros <rogerq@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>,
-        <ssantosh@kernel.org>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230206060708.3574472-1-danishanwar@ti.com>
- <20230206060708.3574472-3-danishanwar@ti.com> <Y+ELeSQX+GWS5N2p@lunn.ch>
- <42503a0d-b434-bbcc-553d-a326af5b4918@ti.com>
- <e8158969-08d0-1edc-24be-8c300a71adbd@kernel.org>
- <4438fb71-7e20-6532-a858-b688bc64e826@ti.com> <Y+Ob8++GWciL127K@lunn.ch>
- <6713252d-6f86-c674-9229-c4512ebf1d72@ti.com> <Y+T7MAu0/s1bjYIt@lunn.ch>
+Subject: Re: [PATCH v14 0/6] Add LVTS Thermal Architecture
+To:     bchihi@baylibre.com, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230209105628.50294-1-bchihi@baylibre.com>
 Content-Language: en-US
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <Y+T7MAu0/s1bjYIt@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230209105628.50294-1-bchihi@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/02/2023 11:56, bchihi@baylibre.com wrote:
+> From: Balsam CHIHI <bchihi@baylibre.com>
+> 
+> The LVTS (Low Voltage Thermal Sensor) driver is capable of monitoring
+> multiple hot points. For that, it contains 7 thermal control blocks
+> dedicated to specific devices on the die. Each control block can handle
+> up to 4 sensors.
+> 
+> The thermal controller supports several interrupts. One for the cold
+> trip point, the hot trip point, the return to the normal trip point,
+> and a specific programmable trip point to monitor the temperature
+> dynamically.
+> 
+> The temperature measurement can be done in two ways, the immediate mode
+> where the temperature read is instantaneous and the filtered mode where
+> the controller uses, by configuration, an average of a set of values
+> removing the minimum and the maximum.
+> 
+> Finally, it is composed of 2 finite-state machines responsible for
+> the state of the temperature (cold, hot, hot 2 normal, hot hot),
+> the triggering of the interrupts, and the monitoring of the temperature.
+> 
+> As requested, the thermal driver has been reworked to reduce
+> the complexity of the code. At this time, the 4 little CPUs and
+> the 4 big CPUs are supported by the thermal driver.They are described
+> in a data structure and more devices can be added later.
+> The calibration routine has been simplified also.
+> 
+> The series provide the following changes:
+>   - Move the Mediatek drivers inside a dedicated folder as their number
+>     is increasing
+>   - Add the DT bindings for the controller
+>   - Add the efuse node for the mt8195
+>   - The LVTS driver
+>   - The thermal zones description in the DT
 
+Applied patch 1,2 and 4 for v6.3
 
-On 09/02/23 19:24, Andrew Lunn wrote:
->> Sure, I'll do that. In the list of all phy modes described in [1], I can only
->> see phy-mode "rgmii-txid", for which we can return -EINVAL. Is there any other
->> phy-mode that requires enabling/disabling TX internal delays? Please let me
->> know if any other phy-mode also needs this. I will add check for that as well.
-> 
-> There are 4 phy-modes for RGMII.
-> 
-> rgmii, rgmii-id, rmgii-rxid, rgmii-txid.
-> 
-> rgmii-id, rgmii-txid both require TX delays. If you do that in the MAC
-> you then need to pass rgmii-rxid and rgmii to the PHY respectively.
-> 
-> rmii and rgmii-rxid requires no TX delays, which your SoC cannot do,
-> so you need to return -EINVAl,
-> 
-> The interpretation of these properties is all really messy and
-> historically not very uniformly done. Which is why i recommend the MAC
-> does nothing, leaving it to the PHY. That generally works since the
-> PHYs have a pretty uniform implementation. But in your case, you don't
-> have that option. So i suggest you do what is described above. 
-> 
->     Andrew
+Patches 5 and 6 should go through the Mediatek tree.
 
-Sure Andrew, I will post new revision with the changes described above.
+Thanks!
+
+   -- Daniel
+
 
 -- 
-Thanks and Regards,
-Danish.
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
