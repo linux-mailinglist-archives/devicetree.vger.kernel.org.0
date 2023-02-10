@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B81B7691E25
-	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C94FB691E31
+	for <lists+devicetree@lfdr.de>; Fri, 10 Feb 2023 12:27:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231518AbjBJL0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 06:26:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37378 "EHLO
+        id S232253AbjBJL1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 06:27:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230130AbjBJL0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:26:06 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745666C7E8
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:26:05 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id m14so4718929wrg.13
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:26:05 -0800 (PST)
+        with ESMTP id S231684AbjBJL13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 06:27:29 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22EFB6CC70
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:27:28 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id y1so4765857wru.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 03:27:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WRHSFsNOEYBISqhGh46fkzy2/I3EFBvJZ7Wz7NvqRXQ=;
-        b=NeJo0PnwsECgbdy5WyE4eGvbwndSnXKWfe+n61S1v7tprEwDEGrNOgmeZnYwEgFJFF
-         Zj3Yh+xupgf4Vm+5obFefSe52BnG6FRtcCVDHJoyLqizDKgSFSUrpvEGEMJxa+t3gSmp
-         nTLAxBDQOYv+76exd4E/CozZsvxdShWJGBZRaZLS+Va1f6erT1CGTC+/OBjvKv089Tb5
-         R5eMQO/Yjg3jtUA8kJcNJg3mByR0R6yI6hCVDo/9vuTZ+hHtJf+exbhmok3XJtzXb8ic
-         IblGclnoEru1Oq20FmcYMBp4uXg2C6hwYjwjQ40QXMLE4WfaQApzE14/nX7wWBJP//V6
-         VqZg==
+        bh=ZBeW6vGzRrjA9nywMXcAm9Ow0z3tHqf1Yj50UWAMA9c=;
+        b=SJSUQsOvc+OMfF33YTWkIvbmxsjtMEE4iddA0UbBkRls2sK9HrgVuB/0Xo3INwPTru
+         gIpTwW/fzwY00A5gu6FuXhaS/KGDqqyYbp1MYcOOdUGH43y9B3XaliwVlZ7sChbGxu4G
+         DeNmquVOb+6sozqf09dFgy0S7WmP9M7nSl5raFeSqyOTtyyJj09C6ABjeC+MgdLpRuR0
+         vz8SWAuWTwt8vaaHGi7rHgxzh3b+ljS4kWEz0gzup1CW/AZZjdHK3BcORphhhYc6EGFT
+         EaH7CJy2yhY7cD7zqdG8V3ITY2lsGkcuiByPDiIoBEheYW/OAo69u0uHoGs1mYIcyVZB
+         2tMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WRHSFsNOEYBISqhGh46fkzy2/I3EFBvJZ7Wz7NvqRXQ=;
-        b=wgxq2LkpfJ5uqK6TraWU3G6tZysoCyAI945Flo+j2t5kL6rR0H9TJ3dXLkpQbzHlOa
-         OGBuLu39VpCCyc4/w0YoQsLDBfGGEP0lXhWh5nDgixqHKNXofznIFINa2j6TlbBOFa3U
-         LKIcl4drQ5AmS/iwtUL8c+n2rHkV+YxJ91WQ0ZtsMX5zYt8uA3txNhSvdyLKxCFkxlBu
-         uZAQ8gx4VOCecAmSG7n9Pn1J6WLgMo12aaLcs6lPishylm2bbREE0QniwoueGcoPyGGS
-         qLicUJyC24ZelrM5gqxo97AfyhnHVpgtXmp/qtN71qIS3QUzznsGdK34fTsRx6IY7Jlo
-         8U+w==
-X-Gm-Message-State: AO0yUKVM1EsW0WNGJp27Mk/hDc1b0qEgpEp46XFhWY70f2ut4+qZDLIP
-        br1kN5xT8OOtioxGbC2eqBaoeA==
-X-Google-Smtp-Source: AK7set8j79x7B9ONqDBzqjQdMb3p8qwjDAXiyqF80JMwAjyuLznTOPi4CX/fXoOm/BNc8+pxppwfPA==
-X-Received: by 2002:adf:eb41:0:b0:2c3:ff6c:82e with SMTP id u1-20020adfeb41000000b002c3ff6c082emr8658873wrn.22.1676028364005;
-        Fri, 10 Feb 2023 03:26:04 -0800 (PST)
+        bh=ZBeW6vGzRrjA9nywMXcAm9Ow0z3tHqf1Yj50UWAMA9c=;
+        b=Y+wrsENynKSHs+xTlVKYfq25PUktyUH8jxTmgZ2hEIir9V+o9/ZZajstOXpUney6yW
+         UeLEouF1C/hWr0ibjqcmutOsYpwz0mPS4HEMjjpG99F9I+u2CXZb6rDZw4l1904pF2Rh
+         4miL+zw2HXo1LpGebM7mc3pNBN+bInP5g6LED6tZ3AmFXUx1nh0/RGG1Jzh38dyb+1y6
+         C6uoJsuEE0NlRBaFrDrzJ9nLrePFlpUqD8NByVui7gmkSuyQtkTN6zdaaQLYQsisyXnU
+         JJ/eBME/TOP47oU518S62EHN9Y64iqPcYojV6FZkAnfXk5JABsCKpE6FKUbi1uvyo6b6
+         jVhA==
+X-Gm-Message-State: AO0yUKVV/ku84IenquP7NqgRBWDxaKa1A4BBjJImdM0ydCoERVHP0qrk
+        4xW37N3HlTTep5vvvKo6WRC6eg==
+X-Google-Smtp-Source: AK7set+5xVTJ10DC7GLZje5wREvBv4jB3Y+Xpz3Cu8v1f90os8wL/WNvvGzI09uXX9xC/QKvu+3ifQ==
+X-Received: by 2002:adf:e9cc:0:b0:2c5:3ccf:e99a with SMTP id l12-20020adfe9cc000000b002c53ccfe99amr4632285wrn.6.1676028446701;
+        Fri, 10 Feb 2023 03:27:26 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g12-20020a5d540c000000b002bff1de8d4bsm3429258wrv.49.2023.02.10.03.26.02
+        by smtp.gmail.com with ESMTPSA id i14-20020adff30e000000b00241fab5a296sm3423182wro.40.2023.02.10.03.27.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Feb 2023 03:26:03 -0800 (PST)
-Message-ID: <8c7584b2-60e0-27c8-a7c3-845cf5640d77@linaro.org>
-Date:   Fri, 10 Feb 2023 12:26:01 +0100
+        Fri, 10 Feb 2023 03:27:26 -0800 (PST)
+Message-ID: <a592580a-df1f-1ebd-5752-8c2dd1b770fb@linaro.org>
+Date:   Fri, 10 Feb 2023 12:27:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v5 3/8] arm64: dts: qcom: sc7280: Add LPASS PIL node
+Subject: Re: [PATCH 1/3] dt-bindings: watchdog: mt7621-wdt: add phandle to
+ access system controller registers
 Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        andersson@kernel.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        judyhsiao@chromium.org, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        quic_mohs@quicinc.com, quic_rjendra@quicinc.com,
-        quic_rohkumar@quicinc.com, robh+dt@kernel.org,
-        srinivas.kandagatla@linaro.org, vkoul@kernel.org
-References: <1675700201-12890-1-git-send-email-quic_srivasam@quicinc.com>
- <1675700201-12890-4-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n53uReg41RrHrBDaNt+BgaPem_JO-2Wwq8e_g0NeNCvgXg@mail.gmail.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230210065621.598120-1-sergio.paracuellos@gmail.com>
+ <20230210065621.598120-2-sergio.paracuellos@gmail.com>
+ <a0a141ef-b5ab-f84a-9a77-7b6d1f54ccc9@linaro.org>
+ <CAMhs-H-w3O_Yjo7CcGdXyw0bSeqefR32Oj4hhQWsVVWoThNLyA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAE-0n53uReg41RrHrBDaNt+BgaPem_JO-2Wwq8e_g0NeNCvgXg@mail.gmail.com>
+In-Reply-To: <CAMhs-H-w3O_Yjo7CcGdXyw0bSeqefR32Oj4hhQWsVVWoThNLyA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,60 +81,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 23:55, Stephen Boyd wrote:
->> +
->> +                       glink-edge {
->> +                               interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
->> +                                                      IPCC_MPROC_SIGNAL_GLINK_QMP
->> +                                                      IRQ_TYPE_EDGE_RISING>;
->> +
->> +                               mboxes = <&ipcc IPCC_CLIENT_LPASS
->> +                                        IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +                               label = "lpass";
->> +                               qcom,remote-pid = <2>;
->> +
->> +                               gpr {
+On 10/02/2023 12:22, Sergio Paracuellos wrote:
+> Hi Krzysztof,
 > 
-> This node name should be apr per the qcom,glink-edge.yaml binding?
-
-No, this is correct. I fixed the glink-edge binding last year.
-
+> On Fri, Feb 10, 2023 at 11:59 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 10/02/2023 07:56, Sergio Paracuellos wrote:
+>>> MT7621 SoC provides a system controller node for accessing to some registers.
+>>> Add a phandle to this node to avoid using MIPS related arch operations and
+>>
+>> I don't understand this part. You claim you add a phandle to this node,
+>> but your binding suggest you add here a phandle to other node.
 > 
->> +                                       compatible = "qcom,gpr";
->> +                                       qcom,glink-channels = "adsp_apps";
->> +                                       qcom,domain = <GPR_DOMAIN_ID_ADSP>;
->> +                                       qcom,intents = <512 20>;
->> +                                       #address-cells = <1>;
->> +                                       #size-cells = <0>;
->> +
->> +                                       q6apm: service@1 {
->> +                                               compatible = "qcom,q6apm";
->> +                                               reg = <GPR_APM_MODULE_IID>;
->> +                                               #sound-dai-cells = <0>;
->> +
->> +                                               q6apmdai: dais {
->> +                                                       compatible = "qcom,q6apm-dais";
->> +                                                       iommus = <&apps_smmu 0x1801 0x0>;
->> +                                               };
->> +
->> +                                               q6apmbedai: bedais {
->> +                                                       compatible = "qcom,q6apm-lpass-dais";
->> +                                                       #sound-dai-cells = <1>;
->> +                                               };
->> +                                       };
->> +
->> +                                       q6prm: service@2 {
->> +                                               compatible = "qcom,q6prm";
->> +                                               reg = <GPR_PRM_MODULE_IID>;
->> +
->> +                                               q6prmcc: clock-controller {
->> +                                                       compatible = "qcom,q6prm-lpass-clocks";
-> 
-> This is clk binding but not a clk driver? I'll look away now.
+> Probably my English is not the best here :-). Yes, you are right, I
+> just want to add a phandle to the 'sysc' node in the current node.
 
-It is a clock driver which was not put into clk. Maybe because it is
-tightly tied to entire QDSP platform.
+Then why do you need syscon compatible here?
 
 Best regards,
 Krzysztof
