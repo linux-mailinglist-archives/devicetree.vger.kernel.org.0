@@ -2,188 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2C466932F8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 19:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C96C369330E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 19:47:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjBKSJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 13:09:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58142 "EHLO
+        id S229624AbjBKSrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 13:47:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjBKSJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 13:09:01 -0500
-Received: from mx.flying-snail.de (mx.flying-snail.de [IPv6:2a06:1c40:3::42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC849199D1;
-        Sat, 11 Feb 2023 10:08:55 -0800 (PST)
-Received: from [2a02:908:1b0:8800:2ff:ffff:fe11:2236] (helo=mondbasis.internal.flying-snail.de)
-        by mx.flying-snail.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <pelzi@flying-snail.de>)
-        id 1pQuId-002kLh-MN; Sat, 11 Feb 2023 19:08:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=feldner-bv.de; s=s1; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=zqbmGy0Jv3vJGh6aAHHKeDDZRhY9sXO436cNNDadWT8=; b=Go1hEZsENvYi1EX69q3k7cU/r+
-        iInM6Er3NdykzgXG6J41flKQ88txUv5FVrah+mhS7+cKDDJSk01oINQQi2xMffl+wPVF2P7xWBMuC
-        7/Dad1S16kwSl9N9Tpas5D+wGSInWA6aa1WHgNJOf2kdfas3pYmtuVwngToUI6Fhi+AEMfr9cTnRv
-        aVdxc3d6Fj6nRHlvdmzW1pxWM+ZqbCzNAEbKXEbfNJA7BtIznxKOH7Zd9uDvJtVAncoh7QfiFEl6i
-        wRVwPQDiINnOwTaFLHN9ueqOR67Dl9kW5+BRHIHQWveWbYhCS8RIIL4zKhfnaJAaIBMT2y00KOqDO
-        6XCS38Ig==;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=flying-snail.de; s=s1; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
-        :From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=zqbmGy0Jv3vJGh6aAHHKeDDZRhY9sXO436cNNDadWT8=; b=aD8g22JUJdi6Gpfk9VpgXfG1i6
-        S+hfGkMqHFky338JQRi30NKu7BzAghc3z4O0STe83eVfRk7Hm29Ryc/TWYvU062noS+8khzp1qQzT
-        jv/f2Mi2ROfXdat0BoRlgw8+nhh7hFzEjPjb0GO/0pB3HIdnLLPZ6FTa1fpVfxSKOQHM3m8pfEuXd
-        N2rTh8HlWYqmHeOCNyc7u+SrIdG1fFtB5x0p5MlUMyDKznV9PvRcBzlEgIQIRZzxfp1pIYz+Z7ZFz
-        bZUA8YWYjb5ro+y7CVnzORWh39AOb6pJWkgLQ3EgIwYXFLYynOyqYgCq55NA1EzjPJFpmKpoDSjoT
-        5iQOpBYA==;
-Received: from [2a02:908:1b0:8800:d984:3cf8:3cb3:b087]
-        by mondbasis.internal.flying-snail.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <pelzi@flying-snail.de>)
-        id 1pQuIa-000f1N-PK; Sat, 11 Feb 2023 19:08:35 +0100
-Message-ID: <200d4457-9801-c862-0e86-850e3188f765@flying-snail.de>
-Date:   Sat, 11 Feb 2023 19:08:32 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.7.2
-Subject: [PATCH] pinctrl: sunxi: set minimal debounce on input-debounce 0
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
+        with ESMTP id S229457AbjBKSrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 13:47:07 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9637B10405
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 10:47:06 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id a2so8327611wrd.6
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 10:47:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KNBad6NsbeeE2FNcNuGKb8u8bOm8xtWArbSi+T9+PoY=;
+        b=nuiF2WwY/92TbEXExLUCBjho7sx8HcuyGc26XDvv+ZPg87LLyxEM2LpncPSQbe6GuP
+         9W1jbIwUFxjtMCVUKdZOvUyFILOdfHsLgYkSVUyPaAig/73zfNeouzs6pTl0t3zHhcp0
+         WcPtz2r1CuZsl2ezTPOORwf3wrjegVbJrMBlk5qTUG+E++6FFDYVq13tvCKAw1HuLGda
+         1K6wVokxA7u6oqlaWvpVuP43M4x8g2yDHMLTOnO4o7/RBy67r/VBml3IrODbtd6rRnuI
+         8wkRyYb61vPNZmVY1/9QkUaLKoWHKU+gUGRmnY1YgQTJS8C6a6SXBtc7cai8ERbC1VLO
+         bkVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KNBad6NsbeeE2FNcNuGKb8u8bOm8xtWArbSi+T9+PoY=;
+        b=Vc4gD2jIpQ3Dg4dWcDZBgJN0N4qfhmWDIrI8QrU8dFbPwOVrrHmmQG4fRTShrW2YJq
+         Lmc+GlD8PfQU+O75wl522FFLgjwPeD/3BaE+aJRmzKScI8VCoKB5JaPv0PYD5WsSWQIA
+         LulmCLUNYF/n5hXpZATVkSNxTOmGktvlxZ16I1q5l5qQrqhkEFuuq2/Wo2U0b5iPANSg
+         2n+MY/Dkf2XdRc4L3BizqeoP29baZ3cemeFgXZpY233tVZH7QoL2e152SMClkjirql0L
+         l6YdheGYWgU1jhQf4AgJJF1SGdbBfkLAn+l30Rlo87cJcakoq/hx+LHOMheOR1+D44mr
+         nVgQ==
+X-Gm-Message-State: AO0yUKWgL3E6YzU/froH+wQM02PaIehybBubahn+doDbi5MQveI+uNw3
+        znyS0MoiiFdJqxAAJX7Ev8DkDg==
+X-Google-Smtp-Source: AK7set9s7CRYhJPbImN7bcy2NZQuDzbh8phSbwqhfSA5Uez3aqqIQKRtoaDSNcfw0Q0sRUJX63f7vQ==
+X-Received: by 2002:a5d:67c8:0:b0:2bf:dfa3:2e78 with SMTP id n8-20020a5d67c8000000b002bfdfa32e78mr17201185wrw.64.1676141225101;
+        Sat, 11 Feb 2023 10:47:05 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id f18-20020adff992000000b002c5544b3a69sm5982wrr.89.2023.02.11.10.47.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Feb 2023 10:47:04 -0800 (PST)
+Date:   Sat, 11 Feb 2023 20:47:03 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
- <20230207011608.2ce24d17@slackpad.lan>
- <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
- <20230209202952.673d5a60@slackpad.lan>
- <20230210082936.qefzz4fsp3jpalvp@houat>
- <20230210094425.474cfba5@donnerap.cambridge.arm.com>
- <20230210100620.z6j7rvkiwyu7paij@houat>
- <20230210101814.2d36ae57@donnerap.cambridge.arm.com>
- <ba463d40-3d39-a621-b198-191fdbe239a1@feldner-bv.de>
- <20230211151358.3467b4f9@slackpad.lan>
-From:   Andreas Feldner <pelzi@flying-snail.de>
-In-Reply-To: <20230211151358.3467b4f9@slackpad.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] regulator: dt-bindings: qcom,rpmh: Correct PM8550 family
+ supplies
+Message-ID: <Y+fip91HJ8Fip49i@linaro.org>
+References: <20230210155930.549082-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230210155930.549082-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sunxi-h3-h5 based boards have no support for switching
-off IRQ debouncing filter. This would be the expected
-behaviour of value 0 for the general pinctl parameter
-input-debounce.
-The current driver implementation ignores value 0
-for input-debounce, leaving the chip's default. This
-default, however, is not minimal, but equivalent to
-value 31 (microseconds).
+On 23-02-10 16:59:30, Krzysztof Kozlowski wrote:
+> PM8550 is different than PM8550VE/VS, because the latter has much
+> smaller amount of supplies (l1-3 and s1-6) and regulators.  The PM8550
+> has on theh other hand one pin for vdd-l1-l4-l10 supplies.  Correct the
 
-This patch does not ignore value 0 but instead makes
-sure the corresponding IRQ debounce filter is set
-to the shortest time selectable, i. e. the fast
-oscillator with a divider of 1 == (2 ^ 0).
+Nit: ... on the other ...
 
-The current default behaviour is explicitly ensured
-by including input-debounce=<31 31> in the relevant
-part of the devicetree.
+> if:then: clause with their supplies.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Fixes: 7c926492d38a ("pinctrl: sunxi: Add support for interrupt debouncing")
+Otherwise, LGTM:
 
-Signed-off-by: Andreas Feldner <pelzi@flying-snail.de>
----
-  arch/arm/boot/dts/sunxi-h3-h5.dtsi    |  1 +
-  drivers/pinctrl/sunxi/pinctrl-sunxi.c | 40 +++++++++++++++------------
-  2 files changed, 24 insertions(+), 17 deletions(-)
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi 
-b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-index 686193bd6bd9..e9ed4948134d 100644
---- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-+++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-@@ -410,6 +410,7 @@ pio: pinctrl@1c20800 {
-              #gpio-cells = <3>;
-              interrupt-controller;
-              #interrupt-cells = <3>;
-+            input-debounce = <31 31>;
-
-              csi_pins: csi-pins {
-                  pins = "PE0", "PE2", "PE3", "PE4", "PE5",
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c 
-b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-index f35179eceb4e..6798c8f4067e 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-@@ -1444,29 +1444,35 @@ static int sunxi_pinctrl_setup_debounce(struct 
-sunxi_pinctrl *pctl,
-          if (ret)
-              return ret;
-
--        if (!debounce)
--            continue;
--
--        debounce_freq = DIV_ROUND_CLOSEST(USEC_PER_SEC, debounce);
--        losc_div = sunxi_pinctrl_get_debounce_div(losc,
--                              debounce_freq,
--                              &losc_diff);
--
--        hosc_div = sunxi_pinctrl_get_debounce_div(hosc,
--                              debounce_freq,
--                              &hosc_diff);
--
--        if (hosc_diff < losc_diff) {
--            div = hosc_div;
--            src = 1;
-+        if (debounce) {
-+            debounce_freq = DIV_ROUND_CLOSEST(USEC_PER_SEC, debounce);
-+            losc_div = sunxi_pinctrl_get_debounce_div(losc,
-+                                  debounce_freq,
-+                                  &losc_diff);
-+
-+            hosc_div = sunxi_pinctrl_get_debounce_div(hosc,
-+                                  debounce_freq,
-+                                  &hosc_diff);
-+
-+            if (hosc_diff < losc_diff) {
-+                div = hosc_div;
-+                src = 1;
-+            } else {
-+                div = losc_div;
-+                src = 0;
-+            }
-          } else {
--            div = losc_div;
--            src = 0;
-+            /* lowest time as best approximation to "off" */
-+            div = 0;
-+            src = 1;
-          }
-
-          writel(src | div << 4,
-                 pctl->membase +
-                 sunxi_irq_debounce_reg_from_bank(pctl->desc, i));
-+
-+        pr_info("Debounce filter for IRQ bank %d configured to %d us 
-(reg %x)\n",
-+            i, debounce, src | div << 4);
-      }
-
-      return 0;
--- 
-2.30.2
-
-
+> ---
+>  .../bindings/regulator/qcom,rpmh-regulator.yaml  | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> index 297a75069f60..fb9621b4b4cd 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> @@ -308,19 +308,29 @@ allOf:
+>          compatible:
+>            enum:
+>              - qcom,pm8550-rpmh-regulators
+> -            - qcom,pm8550ve-rpmh-regulators
+> -            - qcom,pm8550vs-rpmh-regulators
+>      then:
+>        properties:
+> +        vdd-l1-l4-l10-supply: true
+>          vdd-l2-l13-l14-supply: true
+>          vdd-l5-l16-supply: true
+>          vdd-l6-l7-supply: true
+>          vdd-l8-l9-supply: true
+>        patternProperties:
+> -        "^vdd-l([1-4]|1[0-7])-supply$": true
+> +        "^vdd-l(3|1[1-7])-supply$": true
+>          "^vdd-s[1-6]-supply$": true
+>          "^vdd-bob[1-2]-supply$": true
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - qcom,pm8550ve-rpmh-regulators
+> +            - qcom,pm8550vs-rpmh-regulators
+> +    then:
+> +      patternProperties:
+> +        "^vdd-l[1-3]-supply$": true
+> +        "^vdd-s[1-6]-supply$": true
+> +
+>    - if:
+>        properties:
+>          compatible:
+> -- 
+> 2.34.1
+> 
