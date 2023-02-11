@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 152C6693071
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 12:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27369693074
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 12:43:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230124AbjBKLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 06:42:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53260 "EHLO
+        id S230045AbjBKLn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 06:43:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230109AbjBKLm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 06:42:26 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8C630285
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:42:22 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id z13so5639120wmp.2
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:42:22 -0800 (PST)
+        with ESMTP id S229942AbjBKLnZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 06:43:25 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B98C730B27
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:43:23 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id z13so5640202wmp.2
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:43:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2x/LsCBmfGTIjbc1yOM0Xju00iFpGl/hJPZfcuAHtts=;
-        b=GrAEVvFqCHgBuS9TvZVol5Kj5DeduLYlY656wDpAATtS8l8tauhecDcWOf5Ey7I8Y4
-         rn16YhtrH60peTWay0sJtFWONIifKMhCl9TOMJcfoOspskDp5CkuaEP5eOnYDNZuHNU2
-         dJWP7H5bJeTuP8A4vexsEP3maU/gxOApM2Mwoi1DTXqWLev8nIvkOQYtyd3eJl32th6G
-         zVhegVSdNjuXz2jPw0sdu1tBI8Xy8WIPZtWwIhADkxVoPIg5mRtjWuBGH9Ij07w3F604
-         s3FHwtReRIf3FOAHLFBBko4EUHY5JW1/MFYnSor/1ZCh/4o4yVIzHpKX11RS5kfkj00P
-         Pfig==
+        bh=/DCKqOexRI3O4ht4IS85fL/oFtzuchagyfeetw+irug=;
+        b=WYaqol5YRHI3e0Vn3Z+9KAVjVdMHXfIg1M4GlmubP9ZgKKqhOagaxURnYhbYpYuYE0
+         DcL++cqnHMnMYUCjgKPWFW2SkFCLIBxVaWOpiJ+bLrJcnbpb2wtYmTHAdOdA8aJ/+6Au
+         ZcOkYrh0Gadi9V2R/zp4DOCtTBmgMJdyM8UdiPHL0VCdWJQ428DV0ajanB0wyF/kWidn
+         yS6XphvKFDqq5eif7lGeKqTzOMHUZiPrVGrRNdmF+iQuy89/jNXNCMjrg2e9RVN1Ag5N
+         pmNyEE/9DknCIKaeXBQGWu6DeR38EL6nsw/svb+Wb5vm3xf51figutCJEepS56bzebIf
+         HUQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2x/LsCBmfGTIjbc1yOM0Xju00iFpGl/hJPZfcuAHtts=;
-        b=3Fsps9Gsu7YVDOKKVrbYKRhaSO2d62FUksRrP1dEWjkj1D1nM6hvBN4HjeQKnSfysh
-         FkpEGDeVWTvw5Q83AHiYDZejBM5Kwx81/M7CFTI7vUQmXOFz0Gg5Tpd9OkzVUGZK4Db3
-         uI6ykD3bdJWkuPx8ArQ3dyrw+G50wc5bkmPOHrtjrjsQH5S+nFFjlCX1ZPLFbBvFZ4KO
-         flUVuc+z98Ec2liCLhKWVCcaOBzftFZ3Z4ojFK52959F8tMud+wb8A60zqU9216J6wh+
-         rghZgVzmR5HQInCLAdrPw8CVueJ8o1w4naQP2LMbHYSEalRrZoGL1Wi+dlTLw7CxP0pq
-         Dcyg==
-X-Gm-Message-State: AO0yUKUtFt9lB20j8WQza4p+bzVmDbEn5jHDQ/fgkFJ8neVxc+93QbPo
-        m39GFPAZSu8KIQRD4KEyFd6GmA==
-X-Google-Smtp-Source: AK7set/gI4wuceoQETSMpL/c/K84URPdsZxk4ck7FUVh3KRDpb2vrcitaud7hltK9fJRLuvHOYKDlw==
-X-Received: by 2002:a05:600c:43d2:b0:3df:eedf:df32 with SMTP id f18-20020a05600c43d200b003dfeedfdf32mr16642733wmn.17.1676115741393;
-        Sat, 11 Feb 2023 03:42:21 -0800 (PST)
+        bh=/DCKqOexRI3O4ht4IS85fL/oFtzuchagyfeetw+irug=;
+        b=m+/bQ3ybphDDECbqKTjH8xb30oneW/A6vuelMPZyhLRqrYRjuflSaFRqdRjwS4Xx0U
+         TyQcJscVuCp7q14V4eeBoiHliqvuxkfhJWIfF6t5cPkDu6Xj108p5AqOGsne+4SjUB5+
+         62a8CkOZtIdLum+ROlEkkUjfrJpEtDz/Le5X4OHx+yg/7GRrvuozIjybCsAofQYiwaHJ
+         ACbDiV2Wb8xnrtFymHd1gPQ2F8drhYzYI5UqYVhIkTOM+Tx7FsQv+vnvTxKbG0xg2529
+         tqlcnXIKsosLCNdXox59ea8UOjbhWE9kd3zMoh/151fEppYRqVc2vQyJPhRYydSKwQ/q
+         DDKA==
+X-Gm-Message-State: AO0yUKUdo+qSJAOEJlQRtUOWdAhdWOt0/l6wW+FAfYo1OswpeyT5+9+/
+        9Zwt0tOMXSpM442kVsihFcSKhA==
+X-Google-Smtp-Source: AK7set8gLZFxagvPf5Ty9wYtB3SAt073izJzB3ZgZyJJvf7DyyWks7C13vpcZzOH4awrHMb0Imok3Q==
+X-Received: by 2002:a05:600c:1613:b0:3dc:46e8:982 with SMTP id m19-20020a05600c161300b003dc46e80982mr14763815wmn.19.1676115802293;
+        Sat, 11 Feb 2023 03:43:22 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q28-20020a05600c331c00b003de2fc8214esm7468458wmp.20.2023.02.11.03.42.19
+        by smtp.gmail.com with ESMTPSA id m18-20020a7bcb92000000b003c6bbe910fdsm10954145wmi.9.2023.02.11.03.43.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Feb 2023 03:42:21 -0800 (PST)
-Message-ID: <65dc9dfc-8f0b-9c5d-8f02-2d23c4486efe@linaro.org>
-Date:   Sat, 11 Feb 2023 12:42:18 +0100
+        Sat, 11 Feb 2023 03:43:21 -0800 (PST)
+Message-ID: <01dd6540-bd64-5a1a-a530-76738181d595@linaro.org>
+Date:   Sat, 11 Feb 2023 12:43:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
- access system controller registers
+Subject: Re: [PATCH 1/5] dt-bindings: arm64: dts: mediatek: Add rev5-sku2 of
+ hayato
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
- <20230211073357.755893-2-sergio.paracuellos@gmail.com>
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20230211002626.454844-1-nfraprado@collabora.com>
+ <20230211002626.454844-2-nfraprado@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230211073357.755893-2-sergio.paracuellos@gmail.com>
+In-Reply-To: <20230211002626.454844-2-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -80,13 +88,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/02/2023 08:33, Sergio Paracuellos wrote:
-> MT7621 SoC provides a system controller node for accessing to some registers.
-> Add a phandle in this node to avoid using MIPS related arch operations and
-> includes in watchdog driver code.
+On 11/02/2023 01:26, Nícolas F. R. A. Prado wrote:
+> Add binding for newer version of Google Hayato: rev5-sku2.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> ---
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
