@@ -2,66 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB49693254
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D32B693260
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:22:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbjBKQLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 11:11:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
+        id S229527AbjBKQWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 11:22:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbjBKQLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:11:52 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8F28A66;
-        Sat, 11 Feb 2023 08:11:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=QIsGxB3foIcUzmrB1itBt2fP/mbnt75It4usqWhNhqE=; b=P7
-        vtKGwpGWflFG3N+B1RRIjxiM27gprx3GRBS7un6JwuWk8/FV4d9LEQ4CwLk+IFnSxLF22ydIkzt32
-        X9aBWQyuop1jYaVXEqsxufkvQT5F3P3eUtKeDSavDF2GGB9RX3+B35o5Hygx+fQ2daJPJiXTvnERk
-        aEASDZm9A+FlUko=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pQsTP-004iBC-Gy; Sat, 11 Feb 2023 17:11:35 +0100
-Date:   Sat, 11 Feb 2023 17:11:35 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229637AbjBKQWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:22:41 -0500
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71346C156;
+        Sat, 11 Feb 2023 08:22:40 -0800 (PST)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 18F731C0AB3; Sat, 11 Feb 2023 17:22:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1676132558;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=9MA2R+ukwKIZdrFyWQ9sTnRT2vNwccSFG0gi0U7XPxI=;
+        b=AOsavdwZV2EmOlJUcSrj4r+eIstCnlFpC/VQ6vuEtrcjXeWcHhv+3BAZGTqb1yi2lknd+W
+        EiN6hrFdWdgx3VCNBDJygHi7iLeN9jnjp/xEBc/EXs0LyPrNAn6PHUhpMfSX3nmBhiC35i
+        x1O9coyTodbBDDPZEi4pMrfpfTv/CHs=
+Date:   Sat, 11 Feb 2023 17:22:36 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 08/12] net: stmmac: Add glue layer for StarFive JH7100 SoC
-Message-ID: <Y+e+N/aiqCctIp6e@lunn.ch>
-References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/5] ARM: dts: qcom: msm8974-oneplus-bacon: Add
+ notification LED
+Message-ID: <Y+fAzHJ8IYc7J0Vv@duo.ucw.cz>
+References: <20230122-msm8974-bacon-features-v1-0-4049f565c24c@z3ntu.xyz>
+ <20230122-msm8974-bacon-features-v1-5-4049f565c24c@z3ntu.xyz>
+ <02e5bf79-3e2d-02c8-67e7-61bbff32ba29@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="bW9GpFOL43NjRAIR"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
+In-Reply-To: <02e5bf79-3e2d-02c8-67e7-61bbff32ba29@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,30 +56,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +
-> +#define JH7100_SYSMAIN_REGISTER28 0x70
-> +/* The value below is not a typo, just really bad naming by StarFive ¯\_(ツ)_/¯ */
-> +#define JH7100_SYSMAIN_REGISTER49 0xc8
 
-Seems like the comment should be one line earlier?
+--bW9GpFOL43NjRAIR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-There is value in basing the names on the datasheet, but you could
-append something meaningful on the end:
+Hi!
 
-#define JH7100_SYSMAIN_REGISTER49_DLYCHAIN 0xc8
+> > Unfortunately the driver currently supports neither multicolor API nor
+> > using the properties function & color, so we use label instead.
+> >=20
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> >  .../arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts | 28 ++++++++++++++=
+++++++++
+> >  1 file changed, 28 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts b/arch=
+/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
+> > index ffb486ceb6a6..a672c45d7070 100644
+> > --- a/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
+> > +++ b/arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts
+> > @@ -114,6 +114,34 @@ led@0 {
+> >  			default-brightness =3D <80>;
+> >  		};
+> >  	};
+> > +
+> > +	led-controller@68 {
+> > +		compatible =3D "si-en,sn3193";
+> > +		reg =3D <0x68>;
+> > +
+> > +		shutdown-gpios =3D <&tlmm 45 GPIO_ACTIVE_HIGH>;
+> > +
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <0>;
+> > +
+> > +		led@1 {
+> > +			reg =3D <1>;
+> > +			label =3D "red:status";
+>=20
+> These should be colors and functions.
 
-???
+Yep. Plus this is one LED, not three, so it should use the multicolor
+class.
 
-> +	if (!of_property_read_u32(np, "starfive,gtxclk-dlychain", &gtxclk_dlychain)) {
-> +		ret = regmap_write(sysmain, JH7100_SYSMAIN_REGISTER49, gtxclk_dlychain);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "error selecting gtxclk delay chain\n");
-> +	}
+And then we should have an entry in
+Documentation/leds/well-known-leds.txt so that we have same ABI on all
+the phones.
 
-You should probably document that if starfive,gtxclk-dlychain is not
-found in the DT blob, the value for the delay chain is undefined.  It
-would actually be better to define it, set it to 0 for example. That
-way, you know you don't have any dependency on the bootloader for
-example.
+Best regards,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
-	Andrew
+--bW9GpFOL43NjRAIR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY+fAzAAKCRAw5/Bqldv6
+8kP9AJ9bQSFFlPkmtgHnZ4ko2yKeOT7z0QCfY/T9jkp9mOxkiIa2zbuslhnk1Ag=
+=/jxy
+-----END PGP SIGNATURE-----
+
+--bW9GpFOL43NjRAIR--
