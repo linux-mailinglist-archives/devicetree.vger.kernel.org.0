@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 322FA6930CF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 13:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 452C56930D5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 13:27:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbjBKMO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 07:14:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
+        id S229461AbjBKM1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 07:27:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbjBKMO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 07:14:57 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B6C234C8
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 04:14:56 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id j23so7749618wra.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 04:14:56 -0800 (PST)
+        with ESMTP id S229447AbjBKM1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 07:27:04 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD33F20D36
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 04:27:02 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id m2so21846818ejb.8
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 04:27:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yx4QveUkxsZ076CSy140ixdXzrbrRAsprIFkOwOHph8=;
-        b=frRGdTqBZv/KsdKobxihqMiDzGE6yzyL6O4P/bithC+kcSrWbWHlVRvVaCcWtI47ie
-         PsYGjy56QaKtblrUA7PFmyb57yZvWPzJ/i03UJrBVa5OWkyRcpfA71u97ZAu4OfVSHaV
-         GNdnS8f80DPjyK5Tf6qb1K0KBuOlciDjx7u3VaqevispGEWgy3L5IvqF7jqT9+S6sdjl
-         2HlSJlqy0XgTo5SVNUHyANUzLH5D7woVFh6jD14llKkOk0wiMFHwlPWD9qnEjJX/eJSM
-         hRCthdwnTN0RnmKnDurb+ybb4lQfVVowQgOmrF1jD8dm03rDYcP/1axGjKa1Q5SUx2Px
-         ZtIg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UHheap62xUTlR5nYAk+Jh1vpzTppzTaMXhpOmRALAYI=;
+        b=JZMN+4hSY640k6Kja8OEBIuj0yWLh5OZ1zOwcmtNaNn0KoXB0JLEBY9/Kwc7/GqgiF
+         m1ajvu/oQv9m83TfWB2xAJ8XRJTq+b6iDh92VLLtaqcKXEgguqz5BlupzibNuRLjbcEZ
+         YosZ6bhGT2WfNj9cLqEZYVGDKk6FCjMzxWI8i7R9/l1Ca1x6IO0mHBtfBX3RsHJYsM8S
+         2c6Ila8w+ZbK+3pe/IWZq+aV7lSBHAtsUPDn0UyIMVgYYsrJxKo/ACJivXEmt6GFzTPE
+         +/a3l/WMkp5C33z0vtu06C6DtXfbAfgSxPEtrhA6DgE16cTUUhbxNMYbAKNdcmu6+Wh6
+         pbZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Yx4QveUkxsZ076CSy140ixdXzrbrRAsprIFkOwOHph8=;
-        b=vVDzpRFdHJLt1LztzCNtJh+AXcTNs8hSvnBZCXx9FjPPAknz0uTAtLm4h64ci3ay+Z
-         02Pg9ihyNh1ZXUstNcNNkpvJEEeF33LFv1aqpJ7bDXIJSd7aYOzCl12R6MX8jw8Kl2OX
-         VV5MJEAK9jjSHMmgkmexkgrlOesxKBvpCRhepfRDnhKtCOdkPNayGIoEQGUw7Nx5eTP4
-         R7Ow3nxYvaZFK7Y0Y0meiVuHZoVJS5ez2Lb0Qo+3BVRpFSYMby1mxHGFffkw7QN+rOsY
-         HQBJhRvjw7EVirLWMqbkhU41hIveiG1NyJQy5UF851uV6Ch2pJ5KE2c7SVhJH7veDZrm
-         pX6g==
-X-Gm-Message-State: AO0yUKUmsnBaf8INen4dm+35bNK+1ty4jtb+ahp3/MoF6Bz0RVyvzYo5
-        1mGWQ8vSPq6AZl1fwQ4IxCXSUw==
-X-Google-Smtp-Source: AK7set/Aj2QihFd7CLc49bJP+9LWC9eUVOuAma/o3Sf7yPxUcDQ0gUmtylPSPvsMTGJoLzFpyH2x+w==
-X-Received: by 2002:adf:cf0d:0:b0:2c5:4ccc:a770 with SMTP id o13-20020adfcf0d000000b002c54ccca770mr3055463wrj.7.1676117695014;
-        Sat, 11 Feb 2023 04:14:55 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h12-20020adff4cc000000b002be505ab59asm6041645wrp.97.2023.02.11.04.14.53
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UHheap62xUTlR5nYAk+Jh1vpzTppzTaMXhpOmRALAYI=;
+        b=HhjQGAiYlmn6rbg2KpchMaU90PZ9Kg2Rt5y8OuRmBoQbQjsZfEWVxB6gR6NchIk8OY
+         K48bHkurcD1EpH+Zjqf2d4SkpvX7JaLiOsSXJE85/aIuJ60/LxnelRjEJjxHQTRf7VyL
+         DsMs4mt6erxBwgPg0fPNlfHWCGEENi0bfa4JC9OOQs2arGLmFPj1XzPAsfKp0to6up3l
+         INbjyW7R/hTxGPtrcAWeVzn1MDsA31hGyEH8SDE6hO1dzL+wo3u/0Tu4Ejd+zeb4JaXp
+         GOgI8ELQO5myt5k+CJSeHAAwF3wDBUQ0+Jpbrm/o3TKn8I9XOPfVe1bb/3lj5FEj4/0J
+         7wUg==
+X-Gm-Message-State: AO0yUKWeW0f7MOD36pZvocOWaSgvcCZfXekDoZ4EJGop4T42qtma8ANO
+        BPHgJIh6LTf63b2h5c6M5LMGFA==
+X-Google-Smtp-Source: AK7set8ZFbIY5TBzWXOS1C1MfTjkBrsnU/cixmxrIKXASrqcqd0fgrjzx9nXG8WSbxwhzFSQIByu3Q==
+X-Received: by 2002:a17:907:6e17:b0:8af:2af5:1191 with SMTP id sd23-20020a1709076e1700b008af2af51191mr12961239ejc.18.1676118421369;
+        Sat, 11 Feb 2023 04:27:01 -0800 (PST)
+Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id mv9-20020a170907838900b0087bd2ebe474sm3767941ejc.208.2023.02.11.04.26.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Feb 2023 04:14:54 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Joe Perches <joe@perches.com>, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH] get_maintainer: add email addresses from dts files
-Date:   Sat, 11 Feb 2023 13:14:41 +0100
-Message-Id: <20230211121441.64359-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Sat, 11 Feb 2023 04:27:01 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 01/10] dt-bindings: display/msm: dsi-controller-main: Add SM6350
+Date:   Sat, 11 Feb 2023 13:26:47 +0100
+Message-Id: <20230211122656.1479141-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230211122656.1479141-1-konrad.dybcio@linaro.org>
+References: <20230211122656.1479141-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -72,56 +81,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DTS/DTSI files represent hardware description for Linux kernel,
-which is necessary to properly recognize and configure hardware by
-Linux.  DTS is usually created by people having the actual hardware and
-having interest in keeping it in good shape.  Such people can provide
-review (they might have board schematics) and testing.  Unfortunately
-they mostly do not appear in MAINTAINERS file.  Adding per-DTS entries
-to MAINTAINERS would quickly make it bloated (hundreds of new per-DTS
-entries).
+Add the DSI host found on SM6350.
 
-On the other hand there is no point in CC-ing every Copyright email
-appearing in files, because it might be outdated.  Add new in-file
-pattern for storing maintainers dedicated to specific boards:
-
-  Maintainer: John Smith <email>
-
-Suggested-by: Joe Perches <joe@perches.com>
-Suggested-by: Shawn Guo <shawnguo@kernel.org>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
+ .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 ++
+ 1 file changed, 2 insertions(+)
 
-This is rework of earlier approach:
-Link: https://lore.kernel.org/r/20210809080204.8381-1-shawnguo@kernel.org
----
- scripts/get_maintainer.pl | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/scripts/get_maintainer.pl b/scripts/get_maintainer.pl
-index ab123b498fd9..f02a2a80c3bc 100755
---- a/scripts/get_maintainer.pl
-+++ b/scripts/get_maintainer.pl
-@@ -445,6 +445,17 @@ sub maintainers_in_file {
- 	my @poss_addr = $text =~ m$[A-Za-zÀ-ÿ\"\' \,\.\+-]*\s*[\,]*\s*[\(\<\{]{0,1}[A-Za-z0-9_\.\+-]+\@[A-Za-z0-9\.-]+\.[A-Za-z0-9]+[\)\>\}]{0,1}$g;
- 	push(@file_emails, clean_file_emails(@poss_addr));
-     }
-+
-+    # Match "Maintainer: email" entries only in DTS sources
-+    if (-f $file && ($email_file_emails || $file =~ /\.dtsi?$/)) {
-+	open(my $f, '<', $file)
-+	    or die "$P: Can't open $file: $!\n";
-+	my $text = do { local($/) ; <$f> };
-+	close($f);
-+
-+	my @poss_addr = $text =~ m$Maintainer: [A-Za-zÀ-ÿ\"\' \,\.\+-]*\s*[\,]*\s*[\(\<\{]{0,1}[A-Za-z0-9_\.\+-]+\@[A-Za-z0-9\.-]+\.[A-Za-z0-9]+[\)\>\}]{0,1}$g;
-+	push(@file_emails, clean_file_emails(@poss_addr));
-+    }
- }
- 
- #
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index f195530ae964..2f946bb9fe24 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -26,6 +26,7 @@ properties:
+               - qcom,sdm660-dsi-ctrl
+               - qcom,sdm845-dsi-ctrl
+               - qcom,sm6115-dsi-ctrl
++              - qcom,sm6350-dsi-ctrl
+               - qcom,sm8150-dsi-ctrl
+               - qcom,sm8250-dsi-ctrl
+               - qcom,sm8350-dsi-ctrl
+@@ -286,6 +287,7 @@ allOf:
+           contains:
+             enum:
+               - qcom,msm8998-dsi-ctrl
++              - qcom,sm6350-dsi-ctrl
+     then:
+       properties:
+         clocks:
 -- 
-2.34.1
+2.39.1
 
