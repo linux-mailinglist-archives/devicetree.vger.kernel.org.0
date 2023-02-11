@@ -2,145 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD7E6932A5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 429356932C1
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 18:07:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbjBKQ6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 11:58:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53256 "EHLO
+        id S229543AbjBKRHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 12:07:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjBKQ6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:58:54 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6820A2714
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 08:58:53 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id o18so8176072wrj.3
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 08:58:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rf5ZAcy/GXCo36DmzV5DkIEBLmV1DDUmlNZupwkUTG0=;
-        b=MHBaV4QlVZlrYl3mRa4wx1I/csuyRLbF2R9X34S6GPAOCrc7n7kLYzAKzP24WA0/iQ
-         CebfeY/3+W8+prTXMUjC5ifDAEME8Xf1XXRoSVpCF0un8abt5Qxlh3NPIxZLC3/O/OhY
-         E8H3WDwMTIQsYaeT6vbTKwEFS55NjicI4P7AF/zZgbh4Z4Xb4eqktjVnV1gHaJpxh8qI
-         BRE15sE7Syj3kKgW7q6C5Rw+zycKRJR7SQrrvZieywFt0GPQQs5GogUBAoHdOtbeCEoW
-         u4ajr9gOoHWtzNBXRY2SnUbggKsu6KWbWXTfXZDSlzVwkptWbc0qz8DAfdfaT93hdwDA
-         XVtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rf5ZAcy/GXCo36DmzV5DkIEBLmV1DDUmlNZupwkUTG0=;
-        b=kpnMmX5L6fV9xnD9hhmO1LldyOTm8GkYBVLI2AqIVJwgfLuMVaPKTehhyPM4DwybvW
-         KFv2EFP+pGusABeXehlX0yok5o6SodrEL910I4y/L68a5q5Hrb0R2ox2UjRx7kIduu3D
-         mhZXfOoUA8qTx9+ea5m5EgCamVEF+jj1pH6u3krmRAxr+PmoedUde/vS2YJ1O6FVFSSC
-         sIvzSsEjZjhs0A0hP/JD1+H6oAtG5de71OILU5rllVUt1vYn2m19bEsTOkwQcFaE2p1M
-         K2xW2xsq4VH9ILJJ6Z7VWJwy0WdyLJN56AquXCIz/6L/E76w1r1FkOuNLgitdCR3Kbid
-         mdHQ==
-X-Gm-Message-State: AO0yUKXD4YZV0gB4T+fw+ku0VLSu8li7H5dL/xU2r5Do6foLNw+567Ii
-        Qb4kndKV/tOzGKnrW3FwzstRXQ==
-X-Google-Smtp-Source: AK7set+aBrBd5afw2oNBvePJeEYaB3Z2pQ13ePz8aBB0jd1BQ39pl2Qk8xtqPrdjgeFwDNJFRmV/Ag==
-X-Received: by 2002:a05:6000:551:b0:2c4:5d8:8250 with SMTP id b17-20020a056000055100b002c405d88250mr10752589wrf.23.1676134732004;
-        Sat, 11 Feb 2023 08:58:52 -0800 (PST)
-Received: from sleipner.berto.se (p54ac5802.dip0.t-ipconnect.de. [84.172.88.2])
-        by smtp.googlemail.com with ESMTPSA id y13-20020a5d614d000000b002c5526234d2sm887064wrt.8.2023.02.11.08.58.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Feb 2023 08:58:51 -0800 (PST)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 2/2] arm64: dts: renesas: draak: Add overlay for CVBS input
-Date:   Sat, 11 Feb 2023 17:57:15 +0100
-Message-Id: <20230211165715.4024992-3-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
+        with ESMTP id S229447AbjBKRHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 12:07:10 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B02B1114E;
+        Sat, 11 Feb 2023 09:07:09 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31BGwQTu025214;
+        Sat, 11 Feb 2023 11:06:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=aWsBvrmRXrrAQSl7t4LwL7zaKtBdqugkGyOWdPd24L4=;
+ b=laJPKcShb4/NmvGCHz2pH7g4t+A/y1MthPxztUWUkknhwshkJuvy+JrqRDsaL3LBEGPI
+ Mee2s/g2/qh+wLEdZSNC8apmqQ3Qs+vlGnRQMcenMXM1+oMXu6FO51QgrEs6WPBiSVzR
+ eJb2L0Xbkod7oC++RJOtGBdVWQKN+rVl9aCVcJFkQe+BJc0GV49BWSci8fzOEBDm/+xx
+ KAREmHUcPyAjUOkZhPeVIeyw6zh/6GMn23jXSOSYddyomvW+zvEDXVUmsby2q7mXPQat
+ ELsZTMwpGGk5JrVpUXAlDoNDdZJWoyWavVUywlLXZ36SoskVgRAfUtj+8/Y9uyoR2ft7 ig== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3np8atrb4y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 11 Feb 2023 11:06:40 -0600
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.21; Sat, 11 Feb
+ 2023 11:06:39 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.21 via Frontend Transport; Sat, 11 Feb 2023 11:06:39 -0600
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E022811AB;
+        Sat, 11 Feb 2023 17:06:38 +0000 (UTC)
+Date:   Sat, 11 Feb 2023 17:06:38 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lucas Tanure <lucas.tanure@collabora.com>
+CC:     David Rhodes <david.rhodes@cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>,
+        <linux-kernel@vger.kernel.org>, <kernel@collabora.com>
+Subject: Re: [PATCH v5 3/4] ALSA: cs35l41: Add shared boost feature
+Message-ID: <20230211170638.GG68926@ediswmail.ad.cirrus.com>
+References: <20230210091942.10866-1-lucas.tanure@collabora.com>
+ <20230210091942.10866-4-lucas.tanure@collabora.com>
+ <20230210134341.GF68926@ediswmail.ad.cirrus.com>
+ <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: uWKbibV57kTLk2ZW6T0h6bjtA0uYAsMn
+X-Proofpoint-ORIG-GUID: uWKbibV57kTLk2ZW6T0h6bjtA0uYAsMn
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+On Fri, Feb 10, 2023 at 02:39:56PM +0000, Lucas Tanure wrote:
+> On 10-02-2023 13:43, Charles Keepax wrote:
+> >On Fri, Feb 10, 2023 at 09:19:41AM +0000, Lucas Tanure wrote:
+> >>+	{CS35L41_MDSYNC_EN,        0x00001000},
+> >David's internal patch appears to set 0x3000 on the active side,
+> >not sure where that difference snuck in, or which is the correct
+> >value. Your settings appear to make logical sense to me though, TX
+> >on the active side, RX on the passive side.
+> And as the patch sets TX and RX in the same chip I changed to follow
+> the documentation.
 
-The Draak board has an ADV7180 CVBS decoder and an ADV7612 HDMI decoder,
-both connected to the same VIN input. DIP switches are used to select
-one of the two devices, with the HDMI decoder being the default. Add an
-overlay that selects the CVBS decoder.
+Yeah I mean I suspect this is sensible, unless there is some
+reason the controller side also needs to have RX enabled. Perhaps
+for feedback or something from the passive side, but I imagine
+this is just a typo in the original patch.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-[Niklas: Inverted it from HDMI to CVBS]
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../boot/dts/renesas/draak-cvbs-input.dtso    | 33 +++++++++++++++++++
- 2 files changed, 34 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso
+> >>+	/* BST_CTL_SEL = CLASSH */
+> >>+	{CS35L41_BSTCVRT_VCTRL2,    0x00000001},
+> >BST_CTL_SEL is in BSTCVRT_VCTRL1 (or BOOST_VOLTAGE_CFG, as it
+> >is called in the datasheet, yay us for using the same names).
+> >That does not mean this write is wrong, could just be the
+> >comment, but what this does write is a bit odd so I would like
+> >David to confirm this isn't some typo in his original patch.
+> I can't find BOOST_VOLTAGE_CFG on my datasheet, but BST_CTL_SEL is
+> at 0x00003804 ( BSTCVRT_VCTRL2 / VBST_CTL_2 ).
+> This write here is to select the boost control source, which for the
+> active should be "Class H tracking value".
+> So I still think this is correct.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 0699b51c1247..f5df37253184 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -87,5 +87,6 @@ dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l2-smarc.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
-+dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-cvbs-input.dtbo
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += salvator-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso b/arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso
-new file mode 100644
-index 000000000000..b833c58c2029
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 Ideas on Board Oy
-+ *
-+ * Device tree overlay for the Draak board, to enable CVBS input. This requires
-+ * setting DIP switches SW49, SW50, SW51 and SW52 to OFF, and SW53 and SW54 to
-+ * ON.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&adv7180_out {
-+	remote-endpoint = <&vin4_in>;
-+};
-+
-+&i2c0 {
-+	hdmi-decoder@4c {
-+		ports {
-+			port@2 {
-+				/delete-node/ endpoint;
-+			};
-+		};
-+	};
-+};
-+
-+&vin4_in {
-+	remote-endpoint = <&adv7180_out>;
-+};
-+
-+&vin4_pins {
-+	groups = "vin4_data8", "vin4_sync", "vin4_clk";
-+};
--- 
-2.39.1
+Yeah this one is a mistake on my part, I was reviewing some
+patches on another amp just before I think I have looked at the
+wrong datasheet here. You are correct those bits are infact
+BST_CTL_SEL. So ignore this one.
 
+> >>+		regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
+> >>+		regmap_read(regmap, CS35L41_GPIO_PAD_CONTROL, &pad_control);
+> >>+
+> >>+		pwr_ctrl3 &= ~CS35L41_SYNC_EN_MASK;
+> >>+		pwr_ctrl1 = enable << CS35L41_GLOBAL_EN_SHIFT;
+> >
+> >Are you sure this is what you want? In the case of powering up,
+> >the sequence would end up being:
+> >
+> >mdsync_down
+> >  -> sets GLOBAL_EN on
+> >mdsync_up
+> >  -> sets GLOBAL_EN off
+> >  -> sets GLOBAL_EN on
+> >
+> >Feels like mdsync_down should always turn global_enable off? But
+> >again I don't know for sure. But then I guess why is there the
+> >extra write to turn it off in mdsync_up?
+> 
+> For the disable case (DAPM turning everything off) SYNC and Global
+> enable are off and the code hits
+> 
+> if (!enable)
+> 	break;
+
+Yes, so the disable flow makes perfect sense here it is the
+enable flow that seemed odd.
+
+> But for for enable case (DAPM turning everything On) the code
+> continues enabling SYNC_EN, and turning off Global enable, as
+> requested by
+> "4.10.1 Multidevice Synchronization Enable" page 70.
+> But as it is a enable path Global should be enabled again.
+> 
+> I can't see any sign of
+> >GLOBAL_EN bouncing in David's internal patch.
+> 
+> Yes, but it is required by :
+> "4.10.1 Multidevice Synchronization Enable" page 70.
+
+Hmm... yes that does appear to suggest bouncing the global
+enable. Kinda weird, I can't help but wonder if the turning
+global enable off is actually needed, but I guess it does say
+that so probably safest. It is also rather unclear on who that
+sequence should be performed on it says:
+
+"When powering up a second (and each subsequent) CS35L41B onto a
+shared MDSYNC bus, the following protocol must
+be followed"
+
+But very unclear if that sequence should be followed on only the
+new device, the master device, or on all devices. I will try to
+find some time to chase some apps guys next week see if anyone
+has any ideas.
+
+Thanks,
+Charles
