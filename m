@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FE2C69306C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 12:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 152C6693071
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 12:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbjBKLmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 06:42:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52976 "EHLO
+        id S230124AbjBKLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 06:42:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjBKLmO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 06:42:14 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED64302B6
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:42:12 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id r2so7644665wrv.7
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:42:12 -0800 (PST)
+        with ESMTP id S230109AbjBKLm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 06:42:26 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8C630285
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:42:22 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id z13so5639120wmp.2
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 03:42:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ikcY8Pm/yTY/JbPUBqfUjPlO6R9EeoJh3TYttTT10XE=;
-        b=SXFy5RcvIzFQe1tsiULhSMLDWbeL4tdvhlCLh3stfIL2JuSSPqbTUVZXDim2EjigQE
-         uWvW2aUwq/tNgpfNz5NdzzMfs4y+S0bnN86VqbIqAPFlvwUTLa65KeW9eYn3v907QhC3
-         1oLgK4+yaNE9lsX8BHPMgJBsLbdRxA4NEo+tlo7TbpTnyazAV+mqjv9lE01C6y3ULkjX
-         fdt1CM4esJ9jSqd9MjBlxJ7iB6KHgQpyoZSFyehdGhggNXAtX3QYImIngzS8l1gbqc1x
-         tlmEbxlghk3YsxpTPEKiwTn8UnCHxmEPO7+QU7ytwjhrkX/d3GX4GZouHpoIujygeclb
-         OR+Q==
+        bh=2x/LsCBmfGTIjbc1yOM0Xju00iFpGl/hJPZfcuAHtts=;
+        b=GrAEVvFqCHgBuS9TvZVol5Kj5DeduLYlY656wDpAATtS8l8tauhecDcWOf5Ey7I8Y4
+         rn16YhtrH60peTWay0sJtFWONIifKMhCl9TOMJcfoOspskDp5CkuaEP5eOnYDNZuHNU2
+         dJWP7H5bJeTuP8A4vexsEP3maU/gxOApM2Mwoi1DTXqWLev8nIvkOQYtyd3eJl32th6G
+         zVhegVSdNjuXz2jPw0sdu1tBI8Xy8WIPZtWwIhADkxVoPIg5mRtjWuBGH9Ij07w3F604
+         s3FHwtReRIf3FOAHLFBBko4EUHY5JW1/MFYnSor/1ZCh/4o4yVIzHpKX11RS5kfkj00P
+         Pfig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ikcY8Pm/yTY/JbPUBqfUjPlO6R9EeoJh3TYttTT10XE=;
-        b=mIyzKGjSwnSmC+7wxEEjRll3hAzUReDEWTSQnN7uAwAQcRKJ0+aHY8mWgcSaYOHQb2
-         sNyy+UN+m+HDjlf/kGwr5sztDUdU8V7uOqXk5k95XTwgA5LAOtdnvkiFXIOgntNkvs+u
-         Fh1MnVWrcfJ3MzjgMd7hN3asMCf+T9jla/WoWWmoM9D95CJZofCTTwn8ysLtldh05GEN
-         znpyW1+wnOSX/VldE5b3kIUkboH4eSruWykOtQgNocvBW92QkGdZtYs/Vm1cqg4YyBub
-         pkBCHfmm8OpdKozOz5Shx1x074O2/6LtsHehi70m5wHcbReNOXjuicAeL92EHIibDxc0
-         nZ4A==
-X-Gm-Message-State: AO0yUKVjtWn21gMUWtEFfp3XoODK5Jgg9h1r97SP5ET0Z28zH36Up7tf
-        BkjX4MOhiqXGSnBB6CEy5sBctw==
-X-Google-Smtp-Source: AK7set8iZmjG9W+Y5cURJ9jueVn2aH2CjMKkFzSv6b4P4liPwwWHkouqoiCf8pcHXlew0lhDzTB9dA==
-X-Received: by 2002:adf:dc04:0:b0:2c3:ea92:3494 with SMTP id t4-20020adfdc04000000b002c3ea923494mr15496544wri.55.1676115730845;
-        Sat, 11 Feb 2023 03:42:10 -0800 (PST)
+        bh=2x/LsCBmfGTIjbc1yOM0Xju00iFpGl/hJPZfcuAHtts=;
+        b=3Fsps9Gsu7YVDOKKVrbYKRhaSO2d62FUksRrP1dEWjkj1D1nM6hvBN4HjeQKnSfysh
+         FkpEGDeVWTvw5Q83AHiYDZejBM5Kwx81/M7CFTI7vUQmXOFz0Gg5Tpd9OkzVUGZK4Db3
+         uI6ykD3bdJWkuPx8ArQ3dyrw+G50wc5bkmPOHrtjrjsQH5S+nFFjlCX1ZPLFbBvFZ4KO
+         flUVuc+z98Ec2liCLhKWVCcaOBzftFZ3Z4ojFK52959F8tMud+wb8A60zqU9216J6wh+
+         rghZgVzmR5HQInCLAdrPw8CVueJ8o1w4naQP2LMbHYSEalRrZoGL1Wi+dlTLw7CxP0pq
+         Dcyg==
+X-Gm-Message-State: AO0yUKUtFt9lB20j8WQza4p+bzVmDbEn5jHDQ/fgkFJ8neVxc+93QbPo
+        m39GFPAZSu8KIQRD4KEyFd6GmA==
+X-Google-Smtp-Source: AK7set/gI4wuceoQETSMpL/c/K84URPdsZxk4ck7FUVh3KRDpb2vrcitaud7hltK9fJRLuvHOYKDlw==
+X-Received: by 2002:a05:600c:43d2:b0:3df:eedf:df32 with SMTP id f18-20020a05600c43d200b003dfeedfdf32mr16642733wmn.17.1676115741393;
+        Sat, 11 Feb 2023 03:42:21 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y15-20020adfee0f000000b002c3efca57e1sm6064372wrn.110.2023.02.11.03.42.09
+        by smtp.gmail.com with ESMTPSA id q28-20020a05600c331c00b003de2fc8214esm7468458wmp.20.2023.02.11.03.42.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Feb 2023 03:42:10 -0800 (PST)
-Message-ID: <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
-Date:   Sat, 11 Feb 2023 12:42:08 +0100
+        Sat, 11 Feb 2023 03:42:21 -0800 (PST)
+Message-ID: <65dc9dfc-8f0b-9c5d-8f02-2d23c4486efe@linaro.org>
+Date:   Sat, 11 Feb 2023 12:42:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
@@ -58,23 +58,18 @@ Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
  access system controller registers
 Content-Language: en-US
 To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
+        linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
 References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
  <20230211073357.755893-2-sergio.paracuellos@gmail.com>
- <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
- <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
- <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com>
- <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
+In-Reply-To: <20230211073357.755893-2-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -85,41 +80,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/02/2023 12:01, Sergio Paracuellos wrote:
-> On Sat, Feb 11, 2023 at 11:47 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>
->> On 11.02.2023 13:41, Sergio Paracuellos wrote:
->>> On Sat, Feb 11, 2023 at 10:10 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>>
->>>> Is this mediatek,sysctl property required after your changes on the
->>>> watchdog code?
->>>
->>> I don't really understand the question :-) Yes, it is. Since we have
->>> introduced a new phandle in the watchdog node to be able to access the
->>> reset status register through the 'sysc' syscon node.
->>> We need the bindings to be aligned with the mt7621.dtsi file and we
->>> are getting the syscon regmap handler via
->>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Arınç.
->>
->> I believe you need to put mediatek,sysctl under "required:".
+On 11/02/2023 08:33, Sergio Paracuellos wrote:
+> MT7621 SoC provides a system controller node for accessing to some registers.
+> Add a phandle in this node to avoid using MIPS related arch operations and
+> includes in watchdog driver code.
 > 
-> Ah, I understood your question now :-). You meant 'required' property.
-> I need more coffee, I guess :-). I am not sure if you can add
-> properties as required after bindings are already mainlined for
-> compatibility issues. The problem with this SoC is that drivers become
-> mainlined before the device tree was so if things are properly fixed
-> now this kind of issues appear.  Let's see Krzysztof and Rob comments
-> for this.
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
 
-If your driver fails to probe without mediatek,sysctl, you already made
-it required (thus broke the ABI) regardless what dt-binding is saying.
-In such case you should update dt-binding to reflect reality.
-
-Now ABI break is different case. Usually you should not break it without
-valid reasons (e.g. it was never working before). Your commit msg
-suggests that you only improve the code, thus ABI break is not really
-justified. In such case - binding is correct, driver should be reworked
-to accept DTS without the new property.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
