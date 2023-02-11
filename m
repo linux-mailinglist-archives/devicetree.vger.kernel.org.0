@@ -2,73 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B15F6933A6
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 21:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B79FB6933CA
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 21:49:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjBKUZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 15:25:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51154 "EHLO
+        id S229665AbjBKUty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 15:49:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjBKUZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 15:25:44 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931DE125BE;
-        Sat, 11 Feb 2023 12:25:42 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id qb15so21341380ejc.1;
-        Sat, 11 Feb 2023 12:25:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lLacBBRlz93H3GiKKvSQD2qZJYcpqiTjyuyAIXkHfUk=;
-        b=HnvlPd2wCVKP1vEA5oBzN09Hm7YBjsJX5upx2hujewee0OEBtMeFDjUN0pNfY1qNzj
-         /6e+ChM9OpYSHEHTVo/d5JN4LCYMYeMvjzMpTmh5pZ+FbQjTSiarXOl3fsp3LN3r5lrU
-         uVDbJHNlzEbGRXVmnwYdZ+4BdMeKqhSrmF7yAiLEgDHQOfQsGAU1ESNHG4p1GZ/FBk8C
-         PYnUrj+WyW5jtbwdj9wyGMdBbTO10UXCDDg9EzsoEbicsFM6IuGG6OOIQre7nLz3vyNV
-         Rx/nB7kR/S5q71duUSyDIiXocP70Q2eDFgGyiBMVG3XXFeN6BUnMsH1/O0MgRKRhZ9v1
-         peQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lLacBBRlz93H3GiKKvSQD2qZJYcpqiTjyuyAIXkHfUk=;
-        b=fhCtsIjS0Fm7/2hQo9u6KS71nPy6U8935uc98VX26SOATUoPWtaJYh0OxxO0wD8lL8
-         LVYISUqJRGkttHkgi+AqCLxx4Ud1DbqEKN2uYj7cxhs1dYk246DIlHgWbyEt7oxNl/GI
-         hHNdGr6q3ll7MkaBp6SNzZxV6R/9wtKE0pMg44EIBXdTpHe+umlNyg1p/2BAKouUo8TA
-         j0HsUOLt+KqfN9ub7OK1N9VUxEH3P8O0k4Rns+xwqAJMfgeinZSsM3UjmarDcVnLhFqa
-         aB07YzhlLkkuNxp+6lBMo7JicLati4uD/cPHn0pEK0KVxCo4t0kgzIa1dK3dUGhE/BEI
-         Fffw==
-X-Gm-Message-State: AO0yUKWZItBUq8Ps+OmOAobMdtj3H5Pw68Msn+RxwKUyUxZNe+zBWm8i
-        89MgpIYA2tNEAHDYQRG/qyv5MS1NXw/lEVj4lUM=
-X-Google-Smtp-Source: AK7set+r8/isemvwKFykUdz65hr3VaRSbzbkw3mFuod0hK8/niYyuljq/yGDoa19MVZw3qAcXd7psXWFNbni52Mh3LI=
-X-Received: by 2002:a17:906:c44e:b0:8af:341c:1f82 with SMTP id
- ck14-20020a170906c44e00b008af341c1f82mr2622125ejb.4.1676147141118; Sat, 11
- Feb 2023 12:25:41 -0800 (PST)
-MIME-Version: 1.0
-References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
- <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
-In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-3-c4fe9049def9@linaro.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 11 Feb 2023 21:25:30 +0100
-Message-ID: <CAFBinCCACzEDaa2Z+h5JzXRjEcQ9QH0R+=_UXOKHe7zX02im=Q@mail.gmail.com>
-Subject: Re: [PATCH 3/6] dt-bindings: soc: amlogic: document System Control registers
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S229523AbjBKUty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 15:49:54 -0500
+Received: from mr85p00im-hyfv06021301.me.com (mr85p00im-hyfv06021301.me.com [17.58.23.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1316817CEE
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 12:49:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1676148592; bh=ipWlGnh3MW1Vz3Ivsi+SHRp2lRJTeFpeE+MicgoNRTM=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=JfMlIIyTeDQ/f5BHzmcDDlfJzGbSwZhs/uB76fCH2v+DBSNb4R+D9dptTKcAGyKNO
+         PA68sVIl/BE7XnypZ8J76uAcUtOfL2maHxE7QOJacelK/fIuoVVnW1c4QbLUuCes36
+         5+1TEdh/OVniKZonFu0q0OdHCjoBR5zmqh1mJLUocWkQgelrkx3K3sAjjUh0SrUY5M
+         btNLabDByExuZt3uZ2r/sQh/SL63PQLvHhBdq64YRXt/L5N+v4Kgvb9v4YYwKnUEAP
+         XkygDCgP0CzG0He2ipZ5LPikoJUqqz3gtNntvOtlMUftGRSgllFzdnCm0afWi6znmi
+         AKXMKmxRFaagw==
+Received: from localhost (mr38p00im-dlb-asmtp-mailmevip.me.com [17.57.152.18])
+        by mr85p00im-hyfv06021301.me.com (Postfix) with ESMTPSA id BA7E221510B9;
+        Sat, 11 Feb 2023 20:49:51 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     Alain Volmat <avolmat@me.com>, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: remoteproc: sti: convert st-rproc into dt-schema
+Date:   Sat, 11 Feb 2023 21:47:50 +0100
+Message-Id: <20230211204751.9149-1-avolmat@me.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: MDdap3thiMhZKujSL1PA1Ox-Q2HonM5A
+X-Proofpoint-ORIG-GUID: MDdap3thiMhZKujSL1PA1Ox-Q2HonM5A
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.572,17.11.62.513.0000000_definitions?=
+ =?UTF-8?Q?=3D2020-02-14=5F11:2020-02-14=5F02,2020-02-14=5F11,2021-12-02?=
+ =?UTF-8?Q?=5F01_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 suspectscore=0
+ mlxlogscore=999 malwarescore=0 phishscore=0 mlxscore=0 clxscore=1011
+ spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2302110195
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,46 +60,170 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+Convert the st-rproc.txt binding into dt-schema YAML st,sti-rproc.yaml
 
-On Thu, Feb 9, 2023 at 2:41 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> Document the System Control registers regions found on all Amlogic
-> SoC families and it's clock, power, pinctrl and phy subnodes.
-I understand clock (main clock controller) power (power domain
-controller) and PHY (HDMI and CVBS PHYs). Are you sure about pinctrl?
+Signed-off-by: Alain Volmat <avolmat@me.com>
+---
+ .../bindings/remoteproc/st,sti-rproc.yaml     | 101 ++++++++++++++++++
+ .../bindings/remoteproc/st-rproc.txt          |  41 -------
+ 2 files changed, 101 insertions(+), 41 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/st-rproc.txt
 
-[...]
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - amlogic,meson-gx-hhi-sysctrl
-> +          - amlogic,meson-gx-ao-sysctrl
-> +          - amlogic,meson-axg-hhi-sysctrl
-> +          - amlogic,meson-axg-ao-sysctrl
-If you have to re-send this then it would be great if you could add:
-          - amlogic,meson-hhi-sysctrl
-because we already have that in arch/arm/boot/dts/meson.dtsi for the
-32-bit SoCs.
+diff --git a/Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml
+new file mode 100644
+index 000000000000..b9d84dfbcb58
+--- /dev/null
++++ b/Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/remoteproc/st,sti-rproc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: STMicroelectronics STi remote processor controller
++
++description:
++  This binding provides support for adjunct processors found on ST SoCs.
++
++  Co-processors can be controlled from the bootloader or the primary OS. If
++  the bootloader starts a co-processor, the primary OS must detect its state
++  and act accordingly.
++
++maintainers:
++  - Patrice Chotard <patrice.chotard@foss.st.com>
++
++properties:
++  compatible:
++    enum:
++      - st,st231-rproc
++      - st,st40-rproc
++
++  memory-region:
++    description:
++      List of phandles to the reserved memory regions associated with the
++      remoteproc device. This is variable and describes the memories shared with
++      the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
++      vrings, ...).
++      (see ../reserved-memory/reserved-memory.txt)
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    maxItems: 1
++
++  st,syscfg:
++    description:
++      System configuration register which holds the boot vector for the co-processor
++    $ref: "/schemas/types.yaml#/definitions/phandle-array"
++    items:
++      - items:
++          - description: Phandle of syscon block
++          - description: Boot vector register offset
++
++  clocks:
++    maxItems: 1
++
++  clock-frequency:
++    description:
++      Frequency of the processing clock of the remote processor
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++
++  "#mbox-cells":
++    const: 1
++
++  mboxes:
++    maxItems: 4
++
++  mbox-names:
++    items:
++      - const: vq0_rx
++      - const: vq0_tx
++      - const: vq1_rx
++      - const: vq1_tx
++
++required:
++  - compatible
++  - memory-region
++  - resets
++  - reset-names
++  - st,syscfg
++  - clocks
++  - clock-frequency
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/stih407-clks.h>
++    #include <dt-bindings/reset/stih407-resets.h>
++    audio_reserved: rproc@42000000 {
++      compatible = "shared-dma-pool";
++        reg = <0x42000000 0x01000000>;
++        no-map;
++    };
++
++    st231-audio {
++      compatible = "st,st231-rproc";
++      memory-region = <&audio_reserved>;
++      resets = <&softreset STIH407_ST231_AUD_SOFTRESET>;
++      reset-names = "sw_reset";
++      clocks = <&clk_s_c0_flexgen CLK_ST231_AUD_0>;
++      clock-frequency = <600000000>;
++      st,syscfg	= <&syscfg_core 0x228>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/remoteproc/st-rproc.txt b/Documentation/devicetree/bindings/remoteproc/st-rproc.txt
+deleted file mode 100644
+index 1031bcd90a79..000000000000
+--- a/Documentation/devicetree/bindings/remoteproc/st-rproc.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-STMicroelectronics Co-Processor Bindings
+-----------------------------------------
+-
+-This binding provides support for adjunct processors found on ST SoCs.
+-
+-Co-processors can be controlled from the bootloader or the primary OS. If
+-the bootloader starts a co-processor, the primary OS must detect its state
+-and act accordingly.
+-
+-Required properties:
+-- compatible		Should be one of:
+-				"st,st231-rproc"
+-				"st,st40-rproc"
+-- memory-region		Reserved memory (See: ../reserved-memory/reserved-memory.txt)
+-- resets		Reset lines (See: ../reset/reset.txt)
+-- reset-names		Must be "sw_reset" and "pwr_reset"
+-- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
+-- clock-frequency	Clock frequency to set co-processor at if the bootloader
+-			hasn't already done so
+-- st,syscfg		System configuration register which holds the boot vector
+-			for the co-processor
+-				1st cell: Phandle to syscon block
+-				2nd cell: Boot vector register offset
+-
+-Example:
+-
+-	audio_reserved: rproc@42000000 {
+-		compatible = "shared-dma-pool";
+-		reg = <0x42000000 0x01000000>;
+-		no-map;
+-	};
+-
+-	st231-audio {
+-		compatible	= "st,st231-rproc";
+-		memory-region	= <&audio_reserved>;
+-		resets		= <&softreset STIH407_ST231_AUD_SOFTRESET>;
+-		reset-names	= "sw_reset";
+-		clocks		= <&clk_s_c0_flexgen CLK_ST231_AUD_0>;
+-		clock-frequency	= <600000000>;
+-		st,syscfg	= <&syscfg_core 0x228>;
+-	};
+-- 
+2.34.1
 
-[...]
-> +        power-controller {
-> +            compatible = "amlogic,meson-gxbb-pwrc";
-> +            #power-domain-cells = <1>;
-> +            amlogic,ao-sysctrl = <&sysctrl_AO>;
-For this node (and similar ones) I have a question to the device-tree
-maintainers:
-The power controller has a dedicated sub-range of registers. This also
-applies to the CVBS and HDMI PHYs.
-But the clock controller does not (it has its registers all over the
-place - unfortunately that's how the hardware is).
-I have been asked to add a "reg" property to child nodes with a
-sub-register space.
-Does this mean we need to add a reg property here as well (regardless
-of whether we're using it in the driver or not)? And what to do in
-case of the clock controller though?
-
-
-Best regards,
-Martin
