@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 429356932C1
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 18:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C466932F8
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 19:09:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjBKRHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 12:07:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59782 "EHLO
+        id S229473AbjBKSJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 13:09:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjBKRHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 12:07:10 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B02B1114E;
-        Sat, 11 Feb 2023 09:07:09 -0800 (PST)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31BGwQTu025214;
-        Sat, 11 Feb 2023 11:06:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=aWsBvrmRXrrAQSl7t4LwL7zaKtBdqugkGyOWdPd24L4=;
- b=laJPKcShb4/NmvGCHz2pH7g4t+A/y1MthPxztUWUkknhwshkJuvy+JrqRDsaL3LBEGPI
- Mee2s/g2/qh+wLEdZSNC8apmqQ3Qs+vlGnRQMcenMXM1+oMXu6FO51QgrEs6WPBiSVzR
- eJb2L0Xbkod7oC++RJOtGBdVWQKN+rVl9aCVcJFkQe+BJc0GV49BWSci8fzOEBDm/+xx
- KAREmHUcPyAjUOkZhPeVIeyw6zh/6GMn23jXSOSYddyomvW+zvEDXVUmsby2q7mXPQat
- ELsZTMwpGGk5JrVpUXAlDoNDdZJWoyWavVUywlLXZ36SoskVgRAfUtj+8/Y9uyoR2ft7 ig== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3np8atrb4y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 11 Feb 2023 11:06:40 -0600
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.21; Sat, 11 Feb
- 2023 11:06:39 -0600
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.21 via Frontend Transport; Sat, 11 Feb 2023 11:06:39 -0600
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E022811AB;
-        Sat, 11 Feb 2023 17:06:38 +0000 (UTC)
-Date:   Sat, 11 Feb 2023 17:06:38 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Lucas Tanure <lucas.tanure@collabora.com>
-CC:     David Rhodes <david.rhodes@cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <kernel@collabora.com>
-Subject: Re: [PATCH v5 3/4] ALSA: cs35l41: Add shared boost feature
-Message-ID: <20230211170638.GG68926@ediswmail.ad.cirrus.com>
-References: <20230210091942.10866-1-lucas.tanure@collabora.com>
- <20230210091942.10866-4-lucas.tanure@collabora.com>
- <20230210134341.GF68926@ediswmail.ad.cirrus.com>
- <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
+        with ESMTP id S229540AbjBKSJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 13:09:01 -0500
+Received: from mx.flying-snail.de (mx.flying-snail.de [IPv6:2a06:1c40:3::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC849199D1;
+        Sat, 11 Feb 2023 10:08:55 -0800 (PST)
+Received: from [2a02:908:1b0:8800:2ff:ffff:fe11:2236] (helo=mondbasis.internal.flying-snail.de)
+        by mx.flying-snail.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <pelzi@flying-snail.de>)
+        id 1pQuId-002kLh-MN; Sat, 11 Feb 2023 19:08:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=feldner-bv.de; s=s1; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=zqbmGy0Jv3vJGh6aAHHKeDDZRhY9sXO436cNNDadWT8=; b=Go1hEZsENvYi1EX69q3k7cU/r+
+        iInM6Er3NdykzgXG6J41flKQ88txUv5FVrah+mhS7+cKDDJSk01oINQQi2xMffl+wPVF2P7xWBMuC
+        7/Dad1S16kwSl9N9Tpas5D+wGSInWA6aa1WHgNJOf2kdfas3pYmtuVwngToUI6Fhi+AEMfr9cTnRv
+        aVdxc3d6Fj6nRHlvdmzW1pxWM+ZqbCzNAEbKXEbfNJA7BtIznxKOH7Zd9uDvJtVAncoh7QfiFEl6i
+        wRVwPQDiINnOwTaFLHN9ueqOR67Dl9kW5+BRHIHQWveWbYhCS8RIIL4zKhfnaJAaIBMT2y00KOqDO
+        6XCS38Ig==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=flying-snail.de; s=s1; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
+        :From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=zqbmGy0Jv3vJGh6aAHHKeDDZRhY9sXO436cNNDadWT8=; b=aD8g22JUJdi6Gpfk9VpgXfG1i6
+        S+hfGkMqHFky338JQRi30NKu7BzAghc3z4O0STe83eVfRk7Hm29Ryc/TWYvU062noS+8khzp1qQzT
+        jv/f2Mi2ROfXdat0BoRlgw8+nhh7hFzEjPjb0GO/0pB3HIdnLLPZ6FTa1fpVfxSKOQHM3m8pfEuXd
+        N2rTh8HlWYqmHeOCNyc7u+SrIdG1fFtB5x0p5MlUMyDKznV9PvRcBzlEgIQIRZzxfp1pIYz+Z7ZFz
+        bZUA8YWYjb5ro+y7CVnzORWh39AOb6pJWkgLQ3EgIwYXFLYynOyqYgCq55NA1EzjPJFpmKpoDSjoT
+        5iQOpBYA==;
+Received: from [2a02:908:1b0:8800:d984:3cf8:3cb3:b087]
+        by mondbasis.internal.flying-snail.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <pelzi@flying-snail.de>)
+        id 1pQuIa-000f1N-PK; Sat, 11 Feb 2023 19:08:35 +0100
+Message-ID: <200d4457-9801-c862-0e86-850e3188f765@flying-snail.de>
+Date:   Sat, 11 Feb 2023 19:08:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: uWKbibV57kTLk2ZW6T0h6bjtA0uYAsMn
-X-Proofpoint-ORIG-GUID: uWKbibV57kTLk2ZW6T0h6bjtA0uYAsMn
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.7.2
+Subject: [PATCH] pinctrl: sunxi: set minimal debounce on input-debounce 0
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+ <20230207011608.2ce24d17@slackpad.lan>
+ <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+ <20230209202952.673d5a60@slackpad.lan>
+ <20230210082936.qefzz4fsp3jpalvp@houat>
+ <20230210094425.474cfba5@donnerap.cambridge.arm.com>
+ <20230210100620.z6j7rvkiwyu7paij@houat>
+ <20230210101814.2d36ae57@donnerap.cambridge.arm.com>
+ <ba463d40-3d39-a621-b198-191fdbe239a1@feldner-bv.de>
+ <20230211151358.3467b4f9@slackpad.lan>
+From:   Andreas Feldner <pelzi@flying-snail.de>
+In-Reply-To: <20230211151358.3467b4f9@slackpad.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,94 +84,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 10, 2023 at 02:39:56PM +0000, Lucas Tanure wrote:
-> On 10-02-2023 13:43, Charles Keepax wrote:
-> >On Fri, Feb 10, 2023 at 09:19:41AM +0000, Lucas Tanure wrote:
-> >>+	{CS35L41_MDSYNC_EN,        0x00001000},
-> >David's internal patch appears to set 0x3000 on the active side,
-> >not sure where that difference snuck in, or which is the correct
-> >value. Your settings appear to make logical sense to me though, TX
-> >on the active side, RX on the passive side.
-> And as the patch sets TX and RX in the same chip I changed to follow
-> the documentation.
+sunxi-h3-h5 based boards have no support for switching
+off IRQ debouncing filter. This would be the expected
+behaviour of value 0 for the general pinctl parameter
+input-debounce.
+The current driver implementation ignores value 0
+for input-debounce, leaving the chip's default. This
+default, however, is not minimal, but equivalent to
+value 31 (microseconds).
 
-Yeah I mean I suspect this is sensible, unless there is some
-reason the controller side also needs to have RX enabled. Perhaps
-for feedback or something from the passive side, but I imagine
-this is just a typo in the original patch.
+This patch does not ignore value 0 but instead makes
+sure the corresponding IRQ debounce filter is set
+to the shortest time selectable, i. e. the fast
+oscillator with a divider of 1 == (2 ^ 0).
 
-> >>+	/* BST_CTL_SEL = CLASSH */
-> >>+	{CS35L41_BSTCVRT_VCTRL2,    0x00000001},
-> >BST_CTL_SEL is in BSTCVRT_VCTRL1 (or BOOST_VOLTAGE_CFG, as it
-> >is called in the datasheet, yay us for using the same names).
-> >That does not mean this write is wrong, could just be the
-> >comment, but what this does write is a bit odd so I would like
-> >David to confirm this isn't some typo in his original patch.
-> I can't find BOOST_VOLTAGE_CFG on my datasheet, but BST_CTL_SEL is
-> at 0x00003804 ( BSTCVRT_VCTRL2 / VBST_CTL_2 ).
-> This write here is to select the boost control source, which for the
-> active should be "Class H tracking value".
-> So I still think this is correct.
+The current default behaviour is explicitly ensured
+by including input-debounce=<31 31> in the relevant
+part of the devicetree.
 
-Yeah this one is a mistake on my part, I was reviewing some
-patches on another amp just before I think I have looked at the
-wrong datasheet here. You are correct those bits are infact
-BST_CTL_SEL. So ignore this one.
+Fixes: 7c926492d38a ("pinctrl: sunxi: Add support for interrupt debouncing")
 
-> >>+		regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
-> >>+		regmap_read(regmap, CS35L41_GPIO_PAD_CONTROL, &pad_control);
-> >>+
-> >>+		pwr_ctrl3 &= ~CS35L41_SYNC_EN_MASK;
-> >>+		pwr_ctrl1 = enable << CS35L41_GLOBAL_EN_SHIFT;
-> >
-> >Are you sure this is what you want? In the case of powering up,
-> >the sequence would end up being:
-> >
-> >mdsync_down
-> >  -> sets GLOBAL_EN on
-> >mdsync_up
-> >  -> sets GLOBAL_EN off
-> >  -> sets GLOBAL_EN on
-> >
-> >Feels like mdsync_down should always turn global_enable off? But
-> >again I don't know for sure. But then I guess why is there the
-> >extra write to turn it off in mdsync_up?
-> 
-> For the disable case (DAPM turning everything off) SYNC and Global
-> enable are off and the code hits
-> 
-> if (!enable)
-> 	break;
+Signed-off-by: Andreas Feldner <pelzi@flying-snail.de>
+---
+  arch/arm/boot/dts/sunxi-h3-h5.dtsi    |  1 +
+  drivers/pinctrl/sunxi/pinctrl-sunxi.c | 40 +++++++++++++++------------
+  2 files changed, 24 insertions(+), 17 deletions(-)
 
-Yes, so the disable flow makes perfect sense here it is the
-enable flow that seemed odd.
+diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi 
+b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+index 686193bd6bd9..e9ed4948134d 100644
+--- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
++++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+@@ -410,6 +410,7 @@ pio: pinctrl@1c20800 {
+              #gpio-cells = <3>;
+              interrupt-controller;
+              #interrupt-cells = <3>;
++            input-debounce = <31 31>;
 
-> But for for enable case (DAPM turning everything On) the code
-> continues enabling SYNC_EN, and turning off Global enable, as
-> requested by
-> "4.10.1 Multidevice Synchronization Enable" page 70.
-> But as it is a enable path Global should be enabled again.
-> 
-> I can't see any sign of
-> >GLOBAL_EN bouncing in David's internal patch.
-> 
-> Yes, but it is required by :
-> "4.10.1 Multidevice Synchronization Enable" page 70.
+              csi_pins: csi-pins {
+                  pins = "PE0", "PE2", "PE3", "PE4", "PE5",
+diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c 
+b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+index f35179eceb4e..6798c8f4067e 100644
+--- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
++++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+@@ -1444,29 +1444,35 @@ static int sunxi_pinctrl_setup_debounce(struct 
+sunxi_pinctrl *pctl,
+          if (ret)
+              return ret;
 
-Hmm... yes that does appear to suggest bouncing the global
-enable. Kinda weird, I can't help but wonder if the turning
-global enable off is actually needed, but I guess it does say
-that so probably safest. It is also rather unclear on who that
-sequence should be performed on it says:
+-        if (!debounce)
+-            continue;
+-
+-        debounce_freq = DIV_ROUND_CLOSEST(USEC_PER_SEC, debounce);
+-        losc_div = sunxi_pinctrl_get_debounce_div(losc,
+-                              debounce_freq,
+-                              &losc_diff);
+-
+-        hosc_div = sunxi_pinctrl_get_debounce_div(hosc,
+-                              debounce_freq,
+-                              &hosc_diff);
+-
+-        if (hosc_diff < losc_diff) {
+-            div = hosc_div;
+-            src = 1;
++        if (debounce) {
++            debounce_freq = DIV_ROUND_CLOSEST(USEC_PER_SEC, debounce);
++            losc_div = sunxi_pinctrl_get_debounce_div(losc,
++                                  debounce_freq,
++                                  &losc_diff);
++
++            hosc_div = sunxi_pinctrl_get_debounce_div(hosc,
++                                  debounce_freq,
++                                  &hosc_diff);
++
++            if (hosc_diff < losc_diff) {
++                div = hosc_div;
++                src = 1;
++            } else {
++                div = losc_div;
++                src = 0;
++            }
+          } else {
+-            div = losc_div;
+-            src = 0;
++            /* lowest time as best approximation to "off" */
++            div = 0;
++            src = 1;
+          }
 
-"When powering up a second (and each subsequent) CS35L41B onto a
-shared MDSYNC bus, the following protocol must
-be followed"
+          writel(src | div << 4,
+                 pctl->membase +
+                 sunxi_irq_debounce_reg_from_bank(pctl->desc, i));
++
++        pr_info("Debounce filter for IRQ bank %d configured to %d us 
+(reg %x)\n",
++            i, debounce, src | div << 4);
+      }
 
-But very unclear if that sequence should be followed on only the
-new device, the master device, or on all devices. I will try to
-find some time to chase some apps guys next week see if anyone
-has any ideas.
+      return 0;
+-- 
+2.30.2
 
-Thanks,
-Charles
+
