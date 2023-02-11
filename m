@@ -2,166 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F2569314D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 14:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5820F693152
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 14:47:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbjBKNqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 08:46:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51402 "EHLO
+        id S229553AbjBKNrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 08:47:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbjBKNqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 08:46:16 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6F12684C;
-        Sat, 11 Feb 2023 05:46:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676123175; x=1707659175;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=QVWnlp6HxiMITi+4G7GRDcMltvoFp3zphx53HM0P+90=;
-  b=iZkFMN43fykNwdNRdOH4U20rv54ownuEOSYTYk4KKl7UKaCTW60RXr9t
-   TAUCKe8dw7CcbfFwL23CBOzVq9aABhOxRScl0laHvQcRc09otBmRYBise
-   GE8N4mT3bllRGzJ6s8YRYJ7GBCvcNlH1Vy5+ure6C3hFXuQzoGLY5cAa9
-   NooDLxcuvBvGOm/sZBFpqUy8FJoMrB0R5+ygt4DY23Lb9QDJnsdWge88W
-   +k/V4c1AENQxZVcRDxXMaOcpMFaIvov5Lp02W5/b+ezFtV1FyXTLBnOB1
-   davzQs7yGDax5xGphnuJci6auhcZwTjg61p32+cpRtBNOfhWsuS1H4rMI
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="331915552"
-X-IronPort-AV: E=Sophos;i="5.97,289,1669104000"; 
-   d="scan'208";a="331915552"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2023 05:46:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="811117476"
-X-IronPort-AV: E=Sophos;i="5.97,289,1669104000"; 
-   d="scan'208";a="811117476"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 11 Feb 2023 05:46:10 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pQqCg-0006Y3-0f;
-        Sat, 11 Feb 2023 13:46:10 +0000
-Date:   Sat, 11 Feb 2023 21:45:25 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        with ESMTP id S229485AbjBKNrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 08:47:40 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFEB279A9
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 05:47:37 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id o18so7867526wrj.3
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 05:47:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hsGQ0gdbtX4/5NNKjqT00xb2Pj6HxWh2Joiq7xE1GTg=;
+        b=kAy91UoI6Ps1U+hiHxlVGyoABPV5pXKbvqap4stZ6fdIMyIuLf+BW8SJNkfa9QsOGb
+         nUxzfmf36bv/owKTt8YUZc9B4DQpv6qLYPaaP/q915lHhTWYlxJWNCuuk61dvzN4MGBm
+         C0SvKWeSshh8e5HPkB2Vwtz4fMfvX24Or28TpkLm5VBPXqbsGN7Z5/JtOmPCy0ahQyIR
+         zGEBycdfKFkinpF8uPanorpWAuUqTEgyS6p4pBeDpyRT+OcLxYakpQPtQ45gu+F3Fdlu
+         LL0VwEtU8DSXHjdgpoHBGA5WZlz5Mw7Pd9+HVSFKkGFXw1xP61IB1KjDsVB17rFaIH8Q
+         lKmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hsGQ0gdbtX4/5NNKjqT00xb2Pj6HxWh2Joiq7xE1GTg=;
+        b=XIvX7bZqvH+SE9QqFS9Bt/r9u/9YENBF4IfR5gzZyF+21WFOA79vWU4M+jn8P0Yt2F
+         o05qdk2KZM9Xk0j6/W97u2RNnANKEDxtWf9LWXwKisvFkR2t75tOg788j0g7IxPm80D1
+         vrmaFLo1fKZRBvXXdYV0EzTZEw7xlj6Iu4ZXdD3TjhQjyBlbQnzzhnVwrezOIjoa035U
+         4aSmf7LpSUIDSDtSEEfC+DUaMim9aIICMiKnGnOtaCG25TBDRmgWlidJkcZAv00rK0Xt
+         DcZ7C8iOW2ckxuXm/DbBieG75BgGyX0qe/XmUMj93RJZyCNT0dkJHr3MtQLA5DU7SKsv
+         EWdw==
+X-Gm-Message-State: AO0yUKUoSsc6qjZaE2qoqlq3Z0Gbp/XOLosQQYlZ8B9vf0nu1hVhmhoh
+        DvRzw7VhDETo+B5rYSHHReDodg==
+X-Google-Smtp-Source: AK7set883aIRz5Kw1LUd1XUpdItdJfyN4f58Ttlh78ES2wS7DTA+MkxILK7GlP55376IH+/Kn1KtVA==
+X-Received: by 2002:adf:e691:0:b0:2c5:509b:dc4a with SMTP id r17-20020adfe691000000b002c5509bdc4amr1015127wrm.50.1676123256177;
+        Sat, 11 Feb 2023 05:47:36 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y9-20020adfee09000000b002c550eb062fsm1118055wrn.14.2023.02.11.05.47.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Feb 2023 05:47:35 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        u-boot@lists.denx.de,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/6] nvmem: core: add nvmem_dev_size() helper
-Message-ID: <202302112138.XOdXy4yF-lkp@intel.com>
-References: <20230110105425.13188-1-zajec5@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] media: dt-bindings: i2c: samsung,s5k6a3: convert to dtschema
+Date:   Sat, 11 Feb 2023 14:47:29 +0100
+Message-Id: <20230211134731.85957-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230110105425.13188-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rafał,
+Convert the Samsung S5K6A3(YX) raw image sensor bindings to DT schema.
 
-I love your patch! Perhaps something to improve:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/media/i2c/samsung,s5k6a3.yaml    | 98 +++++++++++++++++++
+ .../bindings/media/samsung-s5k6a3.txt         | 33 -------
+ 2 files changed, 98 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5k6a3.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5k6a3.txt
 
-[auto build test WARNING on next-20230110]
-[also build test WARNING on v6.2-rc7]
-[cannot apply to robh/for-next shawnguo/for-next mtd/mtd/next mtd/mtd/fixes linus/master v6.2-rc3 v6.2-rc2 v6.2-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Rafa-Mi-ecki/nvmem-core-allow-read_post_process-callbacks-to-adjust-data-length/20230110-185915
-patch link:    https://lore.kernel.org/r/20230110105425.13188-1-zajec5%40gmail.com
-patch subject: [PATCH 1/6] nvmem: core: add nvmem_dev_size() helper
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230211/202302112138.XOdXy4yF-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/4d5cc61f8d02a82344468f172a852ffc56cf0d5c
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Rafa-Mi-ecki/nvmem-core-allow-read_post_process-callbacks-to-adjust-data-length/20230110-185915
-        git checkout 4d5cc61f8d02a82344468f172a852ffc56cf0d5c
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/nvmem/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302112138.XOdXy4yF-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/nvmem/core.c:16:
->> include/linux/nvmem-consumer.h:81:1: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
-      81 | const size_t nvmem_dev_size(struct nvmem_device *nvmem);
-         | ^~~~~
->> drivers/nvmem/core.c:2070:1: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
-    2070 | const size_t nvmem_dev_size(struct nvmem_device *nvmem)
-         | ^~~~~
---
-   In file included from drivers/nvmem/brcm_nvram.c:10:
->> include/linux/nvmem-consumer.h:81:1: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
-      81 | const size_t nvmem_dev_size(struct nvmem_device *nvmem);
-         | ^~~~~
-
-
-vim +81 include/linux/nvmem-consumer.h
-
-    49	
-    50	/* Cell based interface */
-    51	struct nvmem_cell *nvmem_cell_get(struct device *dev, const char *id);
-    52	struct nvmem_cell *devm_nvmem_cell_get(struct device *dev, const char *id);
-    53	void nvmem_cell_put(struct nvmem_cell *cell);
-    54	void devm_nvmem_cell_put(struct device *dev, struct nvmem_cell *cell);
-    55	void *nvmem_cell_read(struct nvmem_cell *cell, size_t *len);
-    56	int nvmem_cell_write(struct nvmem_cell *cell, void *buf, size_t len);
-    57	int nvmem_cell_read_u8(struct device *dev, const char *cell_id, u8 *val);
-    58	int nvmem_cell_read_u16(struct device *dev, const char *cell_id, u16 *val);
-    59	int nvmem_cell_read_u32(struct device *dev, const char *cell_id, u32 *val);
-    60	int nvmem_cell_read_u64(struct device *dev, const char *cell_id, u64 *val);
-    61	int nvmem_cell_read_variable_le_u32(struct device *dev, const char *cell_id,
-    62					    u32 *val);
-    63	int nvmem_cell_read_variable_le_u64(struct device *dev, const char *cell_id,
-    64					    u64 *val);
-    65	
-    66	/* direct nvmem device read/write interface */
-    67	struct nvmem_device *nvmem_device_get(struct device *dev, const char *name);
-    68	struct nvmem_device *devm_nvmem_device_get(struct device *dev,
-    69						   const char *name);
-    70	void nvmem_device_put(struct nvmem_device *nvmem);
-    71	void devm_nvmem_device_put(struct device *dev, struct nvmem_device *nvmem);
-    72	int nvmem_device_read(struct nvmem_device *nvmem, unsigned int offset,
-    73			      size_t bytes, void *buf);
-    74	int nvmem_device_write(struct nvmem_device *nvmem, unsigned int offset,
-    75			       size_t bytes, void *buf);
-    76	ssize_t nvmem_device_cell_read(struct nvmem_device *nvmem,
-    77				   struct nvmem_cell_info *info, void *buf);
-    78	int nvmem_device_cell_write(struct nvmem_device *nvmem,
-    79				    struct nvmem_cell_info *info, void *buf);
-    80	
-  > 81	const size_t nvmem_dev_size(struct nvmem_device *nvmem);
-    82	const char *nvmem_dev_name(struct nvmem_device *nvmem);
-    83	
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/samsung,s5k6a3.yaml b/Documentation/devicetree/bindings/media/i2c/samsung,s5k6a3.yaml
+new file mode 100644
+index 000000000000..7e83a94124b5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/samsung,s5k6a3.yaml
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/samsung,s5k6a3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung S5K6A3(YX) raw image sensor
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  S5K6A3(YX) is a raw image sensor with MIPI CSI-2 and CCP2 image data
++  interfaces and CCI (I2C compatible) control bus.
++
++properties:
++  compatible:
++    const: samsung,s5k6a3
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: extclk
++
++  clock-frequency:
++    default: 24000000
++    description: extclk clock frequency
++
++  gpios:
++    maxItems: 1
++    description: GPIO connected to the RESET pin
++
++  afvdd-supply:
++    description: AF (actuator) voltage supply
++
++  svdda-supply:
++    description: Core voltage supply
++
++  svddio-supply:
++    description: I/O voltage supply
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            items:
++              - const: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - gpios
++  - afvdd-supply
++  - svdda-supply
++  - svddio-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sensor@10 {
++            compatible = "samsung,s5k6a3";
++            reg = <0x10>;
++            clock-frequency = <24000000>;
++            clocks = <&camera 1>;
++            clock-names = "extclk";
++            gpios = <&gpm1 6 GPIO_ACTIVE_LOW>;
++            afvdd-supply = <&ldo19_reg>;
++            svdda-supply = <&cam_io_reg>;
++            svddio-supply = <&ldo19_reg>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&csis1_ep>;
++                    data-lanes = <1>;
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/media/samsung-s5k6a3.txt b/Documentation/devicetree/bindings/media/samsung-s5k6a3.txt
+deleted file mode 100644
+index cce01e82f3e3..000000000000
+--- a/Documentation/devicetree/bindings/media/samsung-s5k6a3.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-Samsung S5K6A3(YX) raw image sensor
+----------------------------------
+-
+-S5K6A3(YX) is a raw image sensor with MIPI CSI-2 and CCP2 image data interfaces
+-and CCI (I2C compatible) control bus.
+-
+-Required properties:
+-
+-- compatible	: "samsung,s5k6a3";
+-- reg		: I2C slave address of the sensor;
+-- svdda-supply	: core voltage supply;
+-- svddio-supply	: I/O voltage supply;
+-- afvdd-supply	: AF (actuator) voltage supply;
+-- gpios		: specifier of a GPIO connected to the RESET pin;
+-- clocks	: should contain list of phandle and clock specifier pairs
+-		  according to common clock bindings for the clocks described
+-		  in the clock-names property;
+-- clock-names	: should contain "extclk" entry for the sensor's EXTCLK clock;
+-
+-Optional properties:
+-
+-- clock-frequency : the frequency at which the "extclk" clock should be
+-		    configured to operate, in Hz; if this property is not
+-		    specified default 24 MHz value will be used.
+-
+-The common video interfaces bindings (see video-interfaces.txt) should be
+-used to specify link to the image data receiver. The S5K6A3(YX) device
+-node should contain one 'port' child node with an 'endpoint' subnode.
+-
+-Following properties are valid for the endpoint node:
+-
+-- data-lanes : (optional) specifies MIPI CSI-2 data lanes as covered in
+-  video-interfaces.txt.  The sensor supports only one data lane.
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.34.1
+
