@@ -2,136 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94473692D7E
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 04:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 045B4692DA4
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 04:18:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjBKDHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Feb 2023 22:07:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56468 "EHLO
+        id S229468AbjBKDSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Feb 2023 22:18:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjBKDG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 22:06:59 -0500
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E320D301BC;
-        Fri, 10 Feb 2023 19:06:56 -0800 (PST)
-Received: by mail-qv1-xf33.google.com with SMTP id j9so4905989qvt.0;
-        Fri, 10 Feb 2023 19:06:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2TDBKZBTZbMMfOeZNMhoUJ0z+JUybx5iBV75f0j4k6w=;
-        b=my9udRAu7tl5AKlQTTKUpXKYFYyDxf6i0zL73CHjD+FBgCWUT6iPzXaoexuVd0VYbk
-         VzwqR3Ko6LQ3ubMKUATiCwN1VpxV5+h43QvYLcSixtmItSaSgbof31a6tKpU8LjFs/Qu
-         iQHNzwIO6JmNtHz+46Ydvy5IIwM5/jXMWO2jQfI6nOmrniRA25FApW+oczAUrY33WowX
-         x2/FygFMPx5eBGGdgbA130uZ+6M8sf2CFfaD0Rp3hz3EPdG33IMDKXCtCAc+9btWPQlN
-         SIEMVWSzMyGrT8UCbp8B2h3w/pvJxro9itX1jKCMvBIHLM0AXXsHILyIYsK/Zt0n02J4
-         lHCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2TDBKZBTZbMMfOeZNMhoUJ0z+JUybx5iBV75f0j4k6w=;
-        b=wDyCWVOXCC3LoWHFhoP7IQGsppV8JfOrKv1TRsBd18WWmwHmCnS7CnZTcuOBvg+8op
-         9rPgg0m/JU5hPaxqo3T/m45CvBAyJ9XOkESM/Itv8wfjRyqC13Tf4rr161aNTdeSZ8wf
-         Qhs2jT9lr9AnDEElfdaTluQh8kqnJV5WbOLCpluEOMbH8TJx99edy2kz3nHHezvEUh2+
-         a+uqmHdG6J6DIUdd9b+hwj0UFPzkuYCLWSAQTidZNGcUDqbkXWTu2bAM2GyAtAFE0Ev2
-         oMWI0BJexprDJiI2ZheDReJv7cOe9w0FhIvxsllwdj3OY/V1InqNLre6+p0iRam3+E78
-         PiXQ==
-X-Gm-Message-State: AO0yUKV2cZa1zSJVnaa1W4G6EjEI73rbNUtjtp8fwPXgVESD6yglT9J3
-        jcbGTo3WW8XPIac9Mq2DlBuc2qvu/Ck=
-X-Google-Smtp-Source: AK7set+kgKbpFVSNtNOPmhbT8NjZxv0/pYhecNq9UhpKCadjuBsXvflUav52R3KCeDP3s9dkQohzww==
-X-Received: by 2002:a05:6214:29e2:b0:56c:22d7:3906 with SMTP id jv2-20020a05621429e200b0056c22d73906mr18322447qvb.25.1676084815727;
-        Fri, 10 Feb 2023 19:06:55 -0800 (PST)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id t73-20020a37464c000000b007186c9e167esm4789186qka.52.2023.02.10.19.06.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 19:06:54 -0800 (PST)
-From:   Trevor Woerner <twoerner@gmail.com>
-To:     linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: gpio.txt: expand gpio-line-names recommendations
-Date:   Fri, 10 Feb 2023 22:06:45 -0500
-Message-Id: <20230211030646.24549-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.36.0.rc2.17.g4027e30c53
+        with ESMTP id S229476AbjBKDSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Feb 2023 22:18:35 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89C83C3D;
+        Fri, 10 Feb 2023 19:18:34 -0800 (PST)
+Received: from localhost (unknown [86.120.32.152])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E20ED6602112;
+        Sat, 11 Feb 2023 03:18:32 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676085513;
+        bh=LNDJxjgOHZY/eKro/BYac5WDP/pGehw2tg2CONtqn2Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HQoyAHzUSYcBTbkOlPiVQHjFJZH8Q1anOFaBK7aWcCdwa+BPuqeNEz8nRgYuf5eLk
+         UIXUYdhWbw2EaE2ndJCMAi7y6MYmhmtBhlq/Qhd9AUZP2SgDVG0wEg82H6PnoiIZ/g
+         P4/fn/t4P+5HGfszaushNeBZj9U4zxx5Vdt2llPbvTZn9uW5sP9JBlqowgqksLP+jG
+         M8vfRqUFzpvwlxEzfVMjp0Fdx4qRzavPAKFKvnlsI9kP8LebVASZD/H3Lv/Fh7Kv9C
+         93aOUEQTb1tt0At6R3yXB3CWh7/+5ThDcz9bA/nMujXCyNnz8+Akd2CYdRUgjUGXLS
+         Aue/+FZSRQboQ==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: [PATCH 00/12] Enable networking support for StarFive JH7100 SoC
+Date:   Sat, 11 Feb 2023 05:18:09 +0200
+Message-Id: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Provide more guidance to differentiate between recommendations for names of
-lines which are hard-wired to on-board devices, versus recommendations for
-names of lines which are connected to general-purpose pin headers.
+This patch series adds ethernet support for the StarFive JH7100 SoC and 
+makes it available for the StarFive VisionFive V1 and BeagleV Starlight 
+boards, although I could only validate on the former SBC.
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- .../devicetree/bindings/gpio/gpio.txt         | 41 +++++++++++++------
- 1 file changed, 29 insertions(+), 12 deletions(-)
+The work is heavily based on the reference implementation [1] and requires 
+the non-coherent DMA support provided by Emil via the Sifive Composable 
+Cache controller.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Documentation/devicetree/bindings/gpio/gpio.txt
-index 5663e71b751f..d82c32217fff 100644
---- a/Documentation/devicetree/bindings/gpio/gpio.txt
-+++ b/Documentation/devicetree/bindings/gpio/gpio.txt
-@@ -154,18 +154,35 @@ of the GPIOs that can't be used.
- 
- Optionally, a GPIO controller may have a "gpio-line-names" property. This is
- an array of strings defining the names of the GPIO lines going out of the
--GPIO controller. This name should be the most meaningful producer name
--for the system, such as a rail name indicating the usage. Package names
--such as pin name are discouraged: such lines have opaque names (since they
--are by definition generic purpose) and such names are usually not very
--helpful. For example "MMC-CD", "Red LED Vdd" and "ethernet reset" are
--reasonable line names as they describe what the line is used for. "GPIO0"
--is not a good name to give to a GPIO line. Placeholders are discouraged:
--rather use the "" (blank string) if the use of the GPIO line is undefined
--in your design. The names are assigned starting from line offset 0 from
--left to right from the passed array. An incomplete array (where the number
--of passed named are less than ngpios) will still be used up until the last
--provided valid line index.
-+GPIO controller.
-+
-+For lines which are routed to on-board devices, this name should be
-+the most meaningful producer name for the system, such as a rail name
-+indicating the usage. Package names, such as a pin name, are discouraged:
-+such lines have opaque names (since they are by definition general-purpose)
-+and such names are usually not very helpful. For example "MMC-CD", "Red LED
-+Vdd" and "ethernet reset" are reasonable line names as they describe what
-+the line is used for. "GPIO0" is not a good name to give to a GPIO line
-+that is hard-wired to a specific device.
-+
-+However, in the case of lines that are routed to a general purpose header
-+(e.g. the Raspberry Pi 40-pin header), and therefore are not hard-wired to
-+specific devices, using a pin number or the names on the header is fine
-+provided these are real (preferably unique) names. Using an SoC's pad name
-+or package name, or names made up from kernel-internal software constructs,
-+are strongly discouraged. For example "pin8 [gpio14/uart0_txd]" is fine
-+if the board's documentation labels pin 8 as such. However "PortB_24" (an
-+example of a name from an SoC's reference manual) would not be desirable.
-+
-+In either case placeholders are discouraged: rather use the "" (blank
-+string) if the use of the GPIO line is undefined in your design. Ideally,
-+try to add comments to the dts file describing the naming the convention
-+you have chosen, and specifying from where the names are derived.
-+
-+The names are assigned starting from line offset 0, from left to right,
-+from the passed array. An incomplete array (where the number of passed
-+names is less than ngpios) will be used up until the last provided valid
-+line index.
- 
- Example:
- 
+Also note there is an overlap in "[PATCH 08/12] net: stmmac: Add glue layer 
+for StarFive JH7100 SoC" with the Yanhong Wang's upstreaming attempt [2]:
+"[PATCH v4 5/7] net: stmmac: Add glue layer for StarFive JH7110 SoCs". 
+
+Since I cannot test the JH7110 SoC, I dropped the support for it from Emil's
+variant of the stmmac glue layer. Hence, we might need a bit of coordination
+in order to get this properly merged.
+
+[1] https://github.com/starfive-tech/linux/commits/visionfive
+[2] https://lore.kernel.org/linux-riscv/20230118061701.30047-6-yanhong.wang@starfivetech.com/
+
+Cristian Ciocaltea (7):
+  dt-bindings: riscv: sifive-ccache: Add compatible for StarFive JH7100
+    SoC
+  dt-bindings: riscv: sifive-ccache: Add 'uncached-offset' property
+  dt-bindings: net: Add StarFive JH7100 SoC
+  riscv: dts: starfive: Add dma-noncoherent for JH7100 SoC
+  riscv: dts: starfive: jh7100: Add ccache DT node
+  riscv: dts: starfive: jh7100: Add sysmain and gmac DT nodes
+  riscv: dts: starfive: jh7100-common: Setup pinmux and enable gmac
+
+Emil Renner Berthing (5):
+  soc: sifive: ccache: Add StarFive JH7100 support
+  soc: sifive: ccache: Add non-coherent DMA handling
+  riscv: Implement non-coherent DMA support via SiFive cache flushing
+  dt-bindings: mfd: syscon: Add StarFive JH7100 sysmain compatible
+  net: stmmac: Add glue layer for StarFive JH7100 SoC
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+ .../devicetree/bindings/net/snps,dwmac.yaml   |  15 +-
+ .../bindings/net/starfive,jh7100-dwmac.yaml   | 106 ++++++++++++
+ .../bindings/riscv/sifive,ccache0.yaml        |  33 +++-
+ MAINTAINERS                                   |   6 +
+ arch/riscv/Kconfig                            |   6 +-
+ .../boot/dts/starfive/jh7100-common.dtsi      |  78 +++++++++
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  55 +++++++
+ arch/riscv/mm/dma-noncoherent.c               |  37 ++++-
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 155 ++++++++++++++++++
+ drivers/soc/sifive/Kconfig                    |   1 +
+ drivers/soc/sifive/sifive_ccache.c            |  71 +++++++-
+ include/soc/sifive/sifive_ccache.h            |  21 +++
+ 15 files changed, 587 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/starfive,jh7100-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+
 -- 
-2.36.0.rc2.17.g4027e30c53
+2.39.1
 
