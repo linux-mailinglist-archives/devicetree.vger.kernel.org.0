@@ -2,91 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A99646930CB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 13:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 322FA6930CF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 13:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjBKMJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 07:09:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44222 "EHLO
+        id S229990AbjBKMO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 07:14:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbjBKMJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 07:09:55 -0500
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FBE311DD;
-        Sat, 11 Feb 2023 04:09:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676117394; x=1707653394;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QE7eOEqTXLp4txBBddlSQ1rdNz7Wb/g83/gskQvR5KE=;
-  b=HOwd5Dg4eAv5fm7YcEHAKH98QHrs/V3kp58GnK+XwZfE6S3+LpPvs0D4
-   /qvdyWFrizelhjeO7yD6b23oFIq9U6a6AJbwgQbJ4/19bqu3s0JnRMxAE
-   qW5lrUKOJPo8Gv9RBWTC+j+VhMcf5G4rXBZnXvK8Bhuwuu+EnZOchK/j1
-   O16j/drQ1JuSHzCH4at83lLLY676r+RMvJE3GDuzCGECYdA96Cmr3fo1h
-   WlatQsv2I9mDRCYNoeaJWQDJy3jNP37OnfYjNUa+kiQN07rmnl/XfGvNt
-   DC7lUmPmavt6t0gplU8Ag/h2YzvXBGn4/L73ygnC+HFnIvBhPzBztjFza
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="310968228"
-X-IronPort-AV: E=Sophos;i="5.97,289,1669104000"; 
-   d="scan'208";a="310968228"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2023 04:09:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10617"; a="731988335"
-X-IronPort-AV: E=Sophos;i="5.97,289,1669104000"; 
-   d="scan'208";a="731988335"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga008.fm.intel.com with ESMTP; 11 Feb 2023 04:09:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pQohJ-005TUm-0g;
-        Sat, 11 Feb 2023 14:09:41 +0200
-Date:   Sat, 11 Feb 2023 14:09:40 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v5 3/3] HID: cp2112: Fwnode Support
-Message-ID: <Y+eFhKw5KcPUNyXy@smile.fi.intel.com>
-References: <20230210223638.12796-1-kaehndan@gmail.com>
- <20230210223638.12796-4-kaehndan@gmail.com>
+        with ESMTP id S229853AbjBKMO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 07:14:57 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B6C234C8
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 04:14:56 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id j23so7749618wra.0
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 04:14:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yx4QveUkxsZ076CSy140ixdXzrbrRAsprIFkOwOHph8=;
+        b=frRGdTqBZv/KsdKobxihqMiDzGE6yzyL6O4P/bithC+kcSrWbWHlVRvVaCcWtI47ie
+         PsYGjy56QaKtblrUA7PFmyb57yZvWPzJ/i03UJrBVa5OWkyRcpfA71u97ZAu4OfVSHaV
+         GNdnS8f80DPjyK5Tf6qb1K0KBuOlciDjx7u3VaqevispGEWgy3L5IvqF7jqT9+S6sdjl
+         2HlSJlqy0XgTo5SVNUHyANUzLH5D7woVFh6jD14llKkOk0wiMFHwlPWD9qnEjJX/eJSM
+         hRCthdwnTN0RnmKnDurb+ybb4lQfVVowQgOmrF1jD8dm03rDYcP/1axGjKa1Q5SUx2Px
+         ZtIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yx4QveUkxsZ076CSy140ixdXzrbrRAsprIFkOwOHph8=;
+        b=vVDzpRFdHJLt1LztzCNtJh+AXcTNs8hSvnBZCXx9FjPPAknz0uTAtLm4h64ci3ay+Z
+         02Pg9ihyNh1ZXUstNcNNkpvJEEeF33LFv1aqpJ7bDXIJSd7aYOzCl12R6MX8jw8Kl2OX
+         VV5MJEAK9jjSHMmgkmexkgrlOesxKBvpCRhepfRDnhKtCOdkPNayGIoEQGUw7Nx5eTP4
+         R7Ow3nxYvaZFK7Y0Y0meiVuHZoVJS5ez2Lb0Qo+3BVRpFSYMby1mxHGFffkw7QN+rOsY
+         HQBJhRvjw7EVirLWMqbkhU41hIveiG1NyJQy5UF851uV6Ch2pJ5KE2c7SVhJH7veDZrm
+         pX6g==
+X-Gm-Message-State: AO0yUKUmsnBaf8INen4dm+35bNK+1ty4jtb+ahp3/MoF6Bz0RVyvzYo5
+        1mGWQ8vSPq6AZl1fwQ4IxCXSUw==
+X-Google-Smtp-Source: AK7set/Aj2QihFd7CLc49bJP+9LWC9eUVOuAma/o3Sf7yPxUcDQ0gUmtylPSPvsMTGJoLzFpyH2x+w==
+X-Received: by 2002:adf:cf0d:0:b0:2c5:4ccc:a770 with SMTP id o13-20020adfcf0d000000b002c54ccca770mr3055463wrj.7.1676117695014;
+        Sat, 11 Feb 2023 04:14:55 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h12-20020adff4cc000000b002be505ab59asm6041645wrp.97.2023.02.11.04.14.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Feb 2023 04:14:54 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Joe Perches <joe@perches.com>, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] get_maintainer: add email addresses from dts files
+Date:   Sat, 11 Feb 2023 13:14:41 +0100
+Message-Id: <20230211121441.64359-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230210223638.12796-4-kaehndan@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 10, 2023 at 04:36:38PM -0600, Danny Kaehn wrote:
-> Bind i2c and gpio interfaces to subnodes with names
-> "i2c" and "gpio" if they exist, respectively. This
-> allows the gpio and i2c controllers to be described
-> in firmware as usual. Additionally, support configuring the
-> i2c bus speed from the clock-frequency device property.
+The DTS/DTSI files represent hardware description for Linux kernel,
+which is necessary to properly recognize and configure hardware by
+Linux.  DTS is usually created by people having the actual hardware and
+having interest in keeping it in good shape.  Such people can provide
+review (they might have board schematics) and testing.  Unfortunately
+they mostly do not appear in MAINTAINERS file.  Adding per-DTS entries
+to MAINTAINERS would quickly make it bloated (hundreds of new per-DTS
+entries).
 
-Entire series (code-wise, w/o DT bindings, not an expert there) looks good to
-me, but one thing to address.
+On the other hand there is no point in CC-ing every Copyright email
+appearing in files, because it might be outdated.  Add new in-file
+pattern for storing maintainers dedicated to specific boards:
 
-...
+  Maintainer: John Smith <email>
 
-> +	dev->gc.fwnode			= device_get_named_child_node(&hdev->dev, "gpio");
+Suggested-by: Joe Perches <joe@perches.com>
+Suggested-by: Shawn Guo <shawnguo@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Using like this bumps a reference count IIRC, so one need to drop it after use.
-But please double check this.
+---
 
+This is rework of earlier approach:
+Link: https://lore.kernel.org/r/20210809080204.8381-1-shawnguo@kernel.org
+---
+ scripts/get_maintainer.pl | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/scripts/get_maintainer.pl b/scripts/get_maintainer.pl
+index ab123b498fd9..f02a2a80c3bc 100755
+--- a/scripts/get_maintainer.pl
++++ b/scripts/get_maintainer.pl
+@@ -445,6 +445,17 @@ sub maintainers_in_file {
+ 	my @poss_addr = $text =~ m$[A-Za-zÀ-ÿ\"\' \,\.\+-]*\s*[\,]*\s*[\(\<\{]{0,1}[A-Za-z0-9_\.\+-]+\@[A-Za-z0-9\.-]+\.[A-Za-z0-9]+[\)\>\}]{0,1}$g;
+ 	push(@file_emails, clean_file_emails(@poss_addr));
+     }
++
++    # Match "Maintainer: email" entries only in DTS sources
++    if (-f $file && ($email_file_emails || $file =~ /\.dtsi?$/)) {
++	open(my $f, '<', $file)
++	    or die "$P: Can't open $file: $!\n";
++	my $text = do { local($/) ; <$f> };
++	close($f);
++
++	my @poss_addr = $text =~ m$Maintainer: [A-Za-zÀ-ÿ\"\' \,\.\+-]*\s*[\,]*\s*[\(\<\{]{0,1}[A-Za-z0-9_\.\+-]+\@[A-Za-z0-9\.-]+\.[A-Za-z0-9]+[\)\>\}]{0,1}$g;
++	push(@file_emails, clean_file_emails(@poss_addr));
++    }
+ }
+ 
+ #
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
