@@ -2,81 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17035692FB5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 10:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45715692FC0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 10:20:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjBKJMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 04:12:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54226 "EHLO
+        id S229475AbjBKJUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 04:20:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbjBKJMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 04:12:48 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974C01A965;
-        Sat, 11 Feb 2023 01:12:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676106742; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=jk65BL09iN2GERWdHs65LJxMPXaD6suwK5ozfbQ+5Mh14WSNIBUvuvNwJ4AlUDg1P07uJDSSpivmuKODyWvjiaw0fWgeSLzdQgvfeXXHL+PzQuUyrpvM8XjF0uIuD4bfQEwTLhK7t+3dECeDP+aXcq7fgB1ZKSDKLuIAypea6Ek=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1676106742; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=MkQdwA/QXaiKt+bHFwNe8YCFs401QF7zQKhmxVVcQFI=; 
-        b=eLApP6LEYUfim8eTURf50CeZbAiBapY7BLILBiAjEK/mFi+yqCFrmrJEnxJkHaNgLFtumEkNQj1L+vbZbntJ92cDsl2bUvB1Yne178KX6a1pWQvt6DVoqBbe8Qf7k8kHJUVj3mvflJfNvWFdqeRcwX4MVKwssDF/Z2ORu5gpp/s=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676106742;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=MkQdwA/QXaiKt+bHFwNe8YCFs401QF7zQKhmxVVcQFI=;
-        b=OzjlQTbiQFNNl2ttvUlIv+kDDXEg7aF1OVRLCLb6FErUnURy2PAUTiQe/vgY5wzK
-        IQ/EkVOoyNXXnv7h8qFixFCw5JdjRDTqyy1TcpL2+4seub6teCoCQrogPqfthDTKTkd
-        zz2ET9ioblirlExYj4xlDx9SskCRqBiHfONcRPu4=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1676106739991550.5857652221796; Sat, 11 Feb 2023 01:12:19 -0800 (PST)
-Message-ID: <96fb94a0-4910-d7b9-9ae6-e97a058b0fe0@arinc9.com>
-Date:   Sat, 11 Feb 2023 12:12:16 +0300
+        with ESMTP id S229460AbjBKJUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 04:20:07 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54D42E839
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 01:20:04 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id m2so21275866ejb.8
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 01:20:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Ay7GopDhxpUWXvFU/Desi3ncPwaICJKEa+mMLgmlAI=;
+        b=O7wHkho8aDQgo94UfFVY9X+XG/U+2SPSmWJ435T0PJxK0wOCnONbmuwo8viMsiCcuO
+         buC/rLfDgF+j3xQ2VEwC1njKqtZTtDbzXNbVE3KUkhlgYxpdXWNLq62thnYyW0bTgI3V
+         KJRwLI6WpGbUbgf2gxyHIO5uEXXwlSuiYb23U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6Ay7GopDhxpUWXvFU/Desi3ncPwaICJKEa+mMLgmlAI=;
+        b=0AhpKX8JvdlDaiC+sC7w5SPkIfbxFQdXsDeFMabVv8aEIBVQibAjn/7Od6CDtR+rjS
+         +mM8Zk/2UNXOEGpjpGSEHTis08lHDyPYnMGRaNHzO4LsYlVwN2gQwcwPuULo4apYC8X2
+         LHuS62bEATiixBSYIOEOUTkFOCUzb9jN6nQcW91TTKBM3pkqO6odYuogvixlhGbfKemU
+         hJg4j2kE2ERgquHgfsRDJypTVTcQgriJN5UbCAD0KwAMYdTjofLCdQjo+2TOhmgq+Qby
+         0sC5QkYFHnlc+BqH7JwzdqHuZLA6v1e0gAyyUb4ugB/DehPHtAIpZmTKbZNL2dKbILDV
+         T2sQ==
+X-Gm-Message-State: AO0yUKU1NUmYFE4jZ6lteuHpw5m41ZhPHS+pM6gYUy8i0CscxnmDtiRa
+        nwu8jJ0F9zcLL7FlMfjnXczdbDdbyQyQVLSbHopeMw==
+X-Google-Smtp-Source: AK7set+jZ705IMIDjL87PKlafwfn4leLVjN6W0uPB/ZG04XFihgIOINn7gMrXMHNl3mnPgeREDPQ8Or/gVMTa8GMDfY=
+X-Received: by 2002:a17:906:69d1:b0:886:4fe9:1d51 with SMTP id
+ g17-20020a17090669d100b008864fe91d51mr2131922ejs.12.1676107203273; Sat, 11
+ Feb 2023 01:20:03 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 3/5] mips: dts: ralink: mt7621: rename watchdog node
- from 'wdt' into 'watchdog'
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
- <20230211073357.755893-4-sergio.paracuellos@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230211073357.755893-4-sergio.paracuellos@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+ <1fc8686b0b66c3b3ff80c044ecf1add6.sboyd@kernel.org> <CAOf5uwkMRSc7q1xUv4D=hc4w0HL=+x1_J60yyru_hGSuf5m0bA@mail.gmail.com>
+ <83a3c8d0abf217369f045df0217b1f64.sboyd@kernel.org>
+In-Reply-To: <83a3c8d0abf217369f045df0217b1f64.sboyd@kernel.org>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Sat, 11 Feb 2023 10:19:52 +0100
+Message-ID: <CAOf5uwk_ZtmuzUv9GNxOo0zmMnYVskBKfzm+9n3XO2U7j7C0Sw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 00/11] clk: imx8mn: setup clocks from the device tree
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
+        tommaso.merciai@amarulasolutions.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
+        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.02.2023 10:33, Sergio Paracuellos wrote:
-> Watchdog nodes must use 'watchdog' for node name. When a 'make dtbs_check'
-> is performed the following warning appears:
-> 
-> wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0-9a-f])?$'
-> 
-> Fix this warning up properly renaming the node into 'watchdog'.
-> 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Hi
 
-Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+On Fri, Feb 10, 2023 at 11:49 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Michael Nazzareno Trimarchi (2023-01-26 02:49:54)
+> > Hi
+> >
+> > On Wed, Jan 25, 2023 at 10:11 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Quoting Dario Binacchi (2023-01-01 09:57:29)
+> > > > The idea for this series was born back from Dublin (ELCE 2022) after
+> > > > having attended the talk entitled "Updating and Modernizing Clock
+> > > > Drivers" held by Chen-Yu Tsai and the availability of a board with
+> > > > imx8mn SOC.
+> > >
+> > > Interesting. I didn't see any mention of putting clks into DT in that
+> > > presentation.
+> > >
+> > > >
+> > > > This series aims to setup all imx8mn's clocks from the device tree and
+> > > > remove the legacy setup code with hardwired parameters.
+> > >
+> > > Please, no! We don't want one node per clk style of bindings.
+> >
+> > I think the idea behind is:
+> > - create a way from silicon vendor to export their clock mapping with
+> > automatic exportation
+>
+> I suspect silicon vendors automatically generate their clk drivers
+> today.
+>
 
-Thanks.
-Arınç
+Was easy to think that creating tools for dts generation was easy to
+have because
+they don't depend on the internal linux kernel and they are formally
+described. Export
+clk drivers considering kernel internal change I don't think that can work.
+
+> > - reduce the copy and paste code across the drivers
+> > - avoid code duplication
+>
+> Code duplication should be avoided. Surely the clk_ops is shared? Data
+> duplication is the real problem here. The status quo has been to have
+
+The idea to have in dts was to have much less code by the end to handle
+different SoC vendors but as you pointed me seems that you are more
+concerned about data duplication.
+
+> data descriptions of clks in drivers so that drivers can turn them on.
+> If we're trying to avoid bloat then we only enable the drivers that we
+> care about, or make them modular so they don't waste kernel memory.
+>
+
+I'm not an expert of the dtc compiler but, is that possible that some
+optimization
+can happen there in the feature?
+
+> If you have ideas on how to avoid duplication there then by all means
+> implement them. Don't move the data duplication problem to devicetree
+> though.
+>
+
+We will sit together again ;) after your comments here
+
+> I've been wondering if we can tag drivers that are compiled into the
+> kernel as freeable if they aren't ever going to probe because they're
+> for some SoC that isn't present. That would allow us to shed various
+> builtin clk drivers on systems instead of forcing us to make everything
+> a module.
+
+This is general on the driver level but sounds like a good idea.
+
+Michael
+
+>
+> >
+> > Is the binding a way to solve this problem?
+>
+> Don't think so.
+>
+> > If you don't want one node
+> > per clk style bindings, did you still think that the way
+> > to go is totally wrong?
+>
+> Yes.
+
+
+
+-- 
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
+
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
