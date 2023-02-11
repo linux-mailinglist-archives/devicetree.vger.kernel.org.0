@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EADE2693192
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 15:42:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03715693196
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 15:42:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbjBKOmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 09:42:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42384 "EHLO
+        id S229721AbjBKOmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 09:42:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbjBKOmC (ORCPT
+        with ESMTP id S229738AbjBKOmC (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 09:42:02 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947282BF08
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 06:42:00 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id j23so7979460wra.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 06:42:00 -0800 (PST)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72B282D173
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 06:42:01 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id co8so4183573wrb.1
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 06:42:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wYihlRBSgUX0V4izOF22/pryLG+o0TZa15GZ5+G7yjY=;
-        b=I104glg/qrsF6mrPbvNkPeYcv2gdzhv1THfazCHjDEYwAQAyClZLUeASwVb6MbqAW6
-         fq3OIYbjUTUIeca+lbBYTxHWzKkqAWmKTvB/Mi+ppUlubYf0ILAi114yIlmFTZnuDIV+
-         w4iRgqTxDZhSWNI78xjx+evx10IxztbPNiKC9yhKhP9znFEphFZCYWQHzRjhXy8LjnE2
-         OBqo+4hWz2IvSB1et2owXA6sR2lraEx6blVOJDUW/LpRnEY4ULXydrnHS5dJ131FaHN3
-         4asLxfJfpWKDatj2OwwXkLnbPaE2W3Qwzu20a8a6nxL9OXekHd9GRfewzKmLXnZH2UGU
-         ykGA==
+        bh=em11TH6tXpCp0BGHc8xOy3fFHB+Z1zlo2jzAWB92LFk=;
+        b=z7REsh3QtJvacSHuyrczIDyjP0xNSTYYwf0nTu7uHL9PsjfTDYFaz0aPXsBGaGcP+n
+         VFCrF17pTgzuqYMtpqBRY2brkX1bzj4aG/Ys1YOib1z+hY+mwjziXnADVkHT5IwbneyJ
+         fLyWiiatpvn9f31iFo27vVCLWM7wagH4owAFbhM3/rSPlCAFTugapxDN6xG89OM7fwKp
+         vkiXTBPjh4imTV4VYHqN86zjOdLXcjcFY8Xa60JD4LTZqs/0HySs6y1kyI/K3XvqFSw3
+         esNQdip95LW5V+S4WWNl2B+HpBN1WC58ts/24LH7QMYo7oRJBC2VrBx02rN8+CPUSIRl
+         Udnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wYihlRBSgUX0V4izOF22/pryLG+o0TZa15GZ5+G7yjY=;
-        b=MqnY01UDf/5URrIA7gDbTyUo4kGx1gOLVHjwZr/dBpMuZyCG4RQ1gWEGgIscKguujl
-         kXTAb5crF3XCiCPRjIyXp+6ySib+2UmvdyWr49lEYbMmylKk0Uj3rbtM58vwgRQvmhof
-         gFQXvONnW1yFR9voZYn+jJwZTRu1JFYurnTmNOSt8EJwI3BSr+77A5OCOVFICexGfFUm
-         Q/E6q2ndTVqnYUEwIXamRb8lzWzp9PLgmaa32FDQqqgSpGXsVXswM2NvZPejK9QcnuVd
-         OQ2JCdvxSHPxeCPggnVb3OhQUisCRifnprQ6ipbyI4fybW/GV/A557GAHARKfIFWK2Jc
-         Vzlw==
-X-Gm-Message-State: AO0yUKWiDHIyPt/9mIrxUu7K7OGhhg0iXZj+MZ25enyTv4diBSex0cjR
-        A/kkWFXkLCU7vCSDMDVPo/dBaQ==
-X-Google-Smtp-Source: AK7set+hO89Qa3igpInUnE9Gxm2vfbYaY0WhtNNvyGgC5p7fN7zMMfZybj406guDDU7gMd//2XQwGw==
-X-Received: by 2002:a5d:4e10:0:b0:2bf:e5cc:91c1 with SMTP id p16-20020a5d4e10000000b002bfe5cc91c1mr15985399wrt.52.1676126518986;
-        Sat, 11 Feb 2023 06:41:58 -0800 (PST)
+        bh=em11TH6tXpCp0BGHc8xOy3fFHB+Z1zlo2jzAWB92LFk=;
+        b=WUXAED8syVWx5PLlVMePddylpJg5nCbgSGWap/D8070F2cjBLQlFpFwaxAuTmbY+pp
+         ric1vgndqjC0R6m2KyWtPRaW08rabHacbBz5d5Wv0nQd3YjZW935DaTB0h1MGrDKAa4a
+         kw2HEBSaLb4BI3Vc/Ykznkg3QW17iqr62HAVSUWJhfx0Ch/hfl0d7pjUfbL7316IpD92
+         LrOgGwJAVvYkhthN4cZXg46Bc2uNLnRxlR5dsF/rP+lI1f89mwjOqA9ZIiaR7wqqDRaX
+         wDZ2CU9ut9PSAbQgvDLR50DTVKFVcRTo5GCpJSaD8UApA2BxbJGTiNRIAtYRGClmoJUh
+         5TXA==
+X-Gm-Message-State: AO0yUKVMGgJSsk6rA6/hcSuxS5CHJbv9uDNHd4ECu6AOJc9ni8AWMQpl
+        SEAEYxt7nbpfVrJZak6LlKLayQ==
+X-Google-Smtp-Source: AK7set/MFSU0qQmNB0oo7vA8rboqtvuSKRFQ5suQtyBeTKDPUbAans0l5I4UiKocpZzfEGj7EOGeuQ==
+X-Received: by 2002:adf:fcd2:0:b0:2c5:48cd:2f04 with SMTP id f18-20020adffcd2000000b002c548cd2f04mr4527971wrs.6.1676126519885;
+        Sat, 11 Feb 2023 06:41:59 -0800 (PST)
 Received: from sleipner.berto.se (p54ac5802.dip0.t-ipconnect.de. [84.172.88.2])
-        by smtp.googlemail.com with ESMTPSA id i8-20020a5d4388000000b002c5493a17efsm4202510wrq.25.2023.02.11.06.41.58
+        by smtp.googlemail.com with ESMTPSA id i8-20020a5d4388000000b002c5493a17efsm4202510wrq.25.2023.02.11.06.41.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Feb 2023 06:41:58 -0800 (PST)
+        Sat, 11 Feb 2023 06:41:59 -0800 (PST)
 From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
 To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
@@ -56,9 +56,9 @@ To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
 Cc:     linux-renesas-soc@vger.kernel.org,
         =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 2/3] media: dt-bindings: media: renesas,csi2: Add binding for V4H
-Date:   Sat, 11 Feb 2023 15:41:46 +0100
-Message-Id: <20230211144147.3812388-3-niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 3/3] media: dt-bindings: media: renesas,vin: Add binding for V4H
+Date:   Sat, 11 Feb 2023 15:41:47 +0100
+Message-Id: <20230211144147.3812388-4-niklas.soderlund+renesas@ragnatech.se>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230211144147.3812388-1-niklas.soderlund+renesas@ragnatech.se>
 References: <20230211144147.3812388-1-niklas.soderlund+renesas@ragnatech.se>
@@ -74,22 +74,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the CSI-2 module in the Renesas V4H (r8a779g0) SoC.
+Document support for the VIN module in the Renesas V4H (r8a779g0) SoC.
 
 Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 ---
- Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+ Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-index b520d6c5c102..977ab188d654 100644
---- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-@@ -31,6 +31,7 @@ properties:
-           - renesas,r8a77980-csi2 # R-Car V3H
-           - renesas,r8a77990-csi2 # R-Car E3
-           - renesas,r8a779a0-csi2 # R-Car V3U
-+          - renesas,r8a779g0-csi2 # R-Car V4H
+diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+index c0442e79cbb4..dbd6745ab7d2 100644
+--- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+@@ -53,6 +53,7 @@ properties:
+               - renesas,vin-r8a77990 # R-Car E3
+               - renesas,vin-r8a77995 # R-Car D3
+               - renesas,vin-r8a779a0 # R-Car V3U
++              - renesas,vin-r8a779g0 # R-Car V4U
  
    reg:
      maxItems: 1
