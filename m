@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CAC76932A3
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC8B6932A7
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbjBKQ6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 11:58:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
+        id S229505AbjBKQ6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 11:58:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjBKQ6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:58:53 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D28F4
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 08:58:51 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id bk16so8137642wrb.11
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 08:58:51 -0800 (PST)
+        with ESMTP id S229576AbjBKQ6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:58:54 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DC526BF
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 08:58:52 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id co8so4406680wrb.1
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 08:58:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SEf/kTpN43eH+vrUE9v/AB9AZsGg8S2Tb6TMHkcmHsA=;
-        b=Q7W1rdC2D/JhzgvtkyUhuI0LKOiuzUzUmoBhUHN7E9eXOCqtMDDisQt0h+pSaZ3Svv
-         q9Qj6OTDM7ejlYtR9pqc5bwA2VCqk2RGRtXjyJXEbLH2v/KrbFB9jiUs9l5lQd2B0XIk
-         9bgHTRDyWqEOY58wBYGjERZ1coIAjY+TL73uE2URrz9AqquWf+NxHQm9XYREsDA3J2nr
-         kQZP8c7OgOBeN6U1C6B41Rf3uw+z3/xpO88xuRMLb61oJVsBPeIFoWDZrGo1OGI7zVTe
-         A8/jiARK7a7B6cSeSQ64CLKMfIMpvg5enRvkRnu3uBBw1zu6BvRqOixeOZEZ9kPA0Gwo
-         g0ZQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gKHa2WXs3N1837KLyPrWv8Z3wmI3snRyJspZOs7w6zo=;
+        b=X11T3XAsvpVim8jfkl7QVbyPlbYU1robyzaiuk2tR1QNQr0e9VB0gN/YLzemY9CHpn
+         jdC1VMEC6xBezfXczDMYJARlZFsHWfXYIgQBD7zeQfx0+Ih/JuKenLAv13zJ0nT+FqtO
+         6WVyAnuplj9NsLdx8u91HOhASJrF4x9S2/I0aRfTe4J0Ps7pLBQ6CB+j0PE8Lj2H9TAW
+         FZEfjhuhhJKf1wUKss9dPnZyAK+7Gq6wT3kq/EYxgm/+7JdWdFLcdQcFFvt7ggjpbGQA
+         j8Gw76deBmSs1sZgiEqhZm9ljE3Ps8tb6/VKKZ6xc0B21V99lLXtOMyi5GXlI+UvAFqM
+         62ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SEf/kTpN43eH+vrUE9v/AB9AZsGg8S2Tb6TMHkcmHsA=;
-        b=uWUqR5REJZbdPTtBAj2vfM2y73q9Wcc/kzDpgPH43r7lNuUI8YHoHNOmYzbD1Rp6MF
-         KaG05J/1OVMXD1Thxi/rSHwQnfG84L+vzniQn0JNAzLIKWNlAE++tic3y4N14TvD1qPD
-         mrvAChNO8ryhgmPej1TnLuMhN6CWyESD9NBW4UtC1lf0lDlmbMrWpz8BpirbAF9gjxLn
-         X7Fy4uNpdeLsiDSRqnP7LNKYfMsxz2uMfjunoZzylze9OXvbAEoodpGe6M5m8mlyPTyt
-         xU+yRHqmj9zsAPhz07FxYq0IOU9PCJn3zGi92MUOo0quwY8yYXYrZldB/IcJ+9VxZ6o/
-         Gp/w==
-X-Gm-Message-State: AO0yUKXJWi2h4YvVTWtNaHOuKApf+AfQ9hIyNLfgQ28r/oWHjyeVzGfW
-        QMSBajDc37Dnh9SJJCpIJaK81Q==
-X-Google-Smtp-Source: AK7set+9A4mwA4sx4s5dGSOLkObjuF692+RawXhL6sTC9BnSdfurORhINDZOdpW/6aTzphipqwHnCQ==
-X-Received: by 2002:adf:fe8c:0:b0:2c5:4d68:5511 with SMTP id l12-20020adffe8c000000b002c54d685511mr2919341wrr.48.1676134730393;
-        Sat, 11 Feb 2023 08:58:50 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gKHa2WXs3N1837KLyPrWv8Z3wmI3snRyJspZOs7w6zo=;
+        b=qXWv0+67XxoE3dodHync6KbIPge4AGlSk0HZFMVGYWbGJB0Ze0PaNP+e67SS5BiVmn
+         oV+tJhMY8jiF5SKX/LTlNgX0oe9g8xoMUE1tt4VpvZdBKwKdLgxg+HezkHtsha9Azai0
+         dQO7XH8KPq4XrRopBGy6Vmle5QtVnaOixAl/AnCFS8/kS2UC7XkcYnvlU9ZSCy/DtJ5B
+         GkLQqRbEuyuOtn3JQ2QTj8P8J168AzCZcPHLXmZ2AEEQ43fwtgXegmhzDzYLXNLdF1ZM
+         u1fSEi/Y1bW9dTymj2612A+Zam3o0xUzuD+Xzi3aejBQSdIEOjHT7zRMVRd9G4qOe8r7
+         OnCw==
+X-Gm-Message-State: AO0yUKXE7Uop1wlBf0u21DTQmvkqFDhxPQuHnnHV85q3H4NIeez+KRQZ
+        eyZrw3aCt+wQr9rRH8rRIR4zNw==
+X-Google-Smtp-Source: AK7set/X/r/WgS5SA9zfJCgLU0EBExTO0k6yjqVuwnp0Ihc3WbhsouErp+2PAboLKux3bSKIi3ik0g==
+X-Received: by 2002:a05:6000:1144:b0:242:1809:7e17 with SMTP id d4-20020a056000114400b0024218097e17mr16188284wrx.6.1676134731196;
+        Sat, 11 Feb 2023 08:58:51 -0800 (PST)
 Received: from sleipner.berto.se (p54ac5802.dip0.t-ipconnect.de. [84.172.88.2])
-        by smtp.googlemail.com with ESMTPSA id y13-20020a5d614d000000b002c5526234d2sm887064wrt.8.2023.02.11.08.58.49
+        by smtp.googlemail.com with ESMTPSA id y13-20020a5d614d000000b002c5526234d2sm887064wrt.8.2023.02.11.08.58.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Feb 2023 08:58:49 -0800 (PST)
+        Sat, 11 Feb 2023 08:58:50 -0800 (PST)
 From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -56,10 +57,12 @@ To:     Geert Uytterhoeven <geert+renesas@glider.be>,
 Cc:     linux-renesas-soc@vger.kernel.org,
         =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 0/2] arm64: dts: renesas: draak: Make HDMI default video source
-Date:   Sat, 11 Feb 2023 17:57:13 +0100
-Message-Id: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 1/2] arm64: dts: renesas: draak: Make HDMI the default video input
+Date:   Sat, 11 Feb 2023 17:57:14 +0100
+Message-Id: <20230211165715.4024992-2-niklas.soderlund+renesas@ragnatech.se>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
+References: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -72,26 +75,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Most Gen3 R-Car devices have HDMI as the default video input source,
+align Draak with them and make HDMI the default. While at it move the
+bus properties to the VIN node where they can be consumed correctly by
+the driver.
 
-This series makes aligns the Draak board with other Gen3 boards by 
-making the HDMI video source the default video input.
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+ arch/arm64/boot/dts/renesas/draak.dtsi | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-Patch 1/2 changes the default, while patch 2/2 provides and overlay to 
-easily be able to select the CVBS video source.
-
-Laurent Pinchart (1):
-  arm64: dts: renesas: draak: Add overlay for CVBS input
-
-Niklas Söderlund (1):
-  arm64: dts: renesas: draak: Make HDMI the default video input
-
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../boot/dts/renesas/draak-cvbs-input.dtso    | 33 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/draak.dtsi        | 24 +++++++-------
- 3 files changed, 46 insertions(+), 12 deletions(-)
- create mode 100644 arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso
-
+diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts/renesas/draak.dtsi
+index ef3bb835d5c0..e248866c7871 100644
+--- a/arch/arm64/boot/dts/renesas/draak.dtsi
++++ b/arch/arm64/boot/dts/renesas/draak.dtsi
+@@ -356,11 +356,10 @@ port@3 {
+ 				 * CVBS and HDMI inputs through SW[49-53]
+ 				 * switches.
+ 				 *
+-				 * CVBS is the default selection, link it to
+-				 * VIN4 here.
++				 * HDMI is the default selection, leave CVBS
++				 * not connected here.
+ 				 */
+ 				adv7180_out: endpoint {
+-					remote-endpoint = <&vin4_in>;
+ 				};
+ 			};
+ 		};
+@@ -423,13 +422,11 @@ port@2 {
+ 				 * CVBS and HDMI inputs through SW[49-53]
+ 				 * switches.
+ 				 *
+-				 * CVBS is the default selection, leave HDMI
+-				 * not connected here.
++				 * HDMI is the default selection, link it to
++				 * VIN4 here.
+ 				 */
+ 				adv7612_out: endpoint {
+-					pclk-sample = <0>;
+-					hsync-active = <0>;
+-					vsync-active = <0>;
++					remote-endpoint = <&vin4_in>;
+ 				};
+ 			};
+ 		};
+@@ -580,8 +577,8 @@ usb0_pins: usb0 {
+ 		function = "usb0";
+ 	};
+ 
+-	vin4_pins_cvbs: vin4 {
+-		groups = "vin4_data8", "vin4_sync", "vin4_clk";
++	vin4_pins: vin4 {
++		groups = "vin4_data24", "vin4_sync", "vin4_clk";
+ 		function = "vin4";
+ 	};
+ };
+@@ -729,7 +726,7 @@ &usb2_phy0 {
+ };
+ 
+ &vin4 {
+-	pinctrl-0 = <&vin4_pins_cvbs>;
++	pinctrl-0 = <&vin4_pins>;
+ 	pinctrl-names = "default";
+ 
+ 	status = "okay";
+@@ -737,7 +734,10 @@ &vin4 {
+ 	ports {
+ 		port {
+ 			vin4_in: endpoint {
+-				remote-endpoint = <&adv7180_out>;
++				pclk-sample = <0>;
++				hsync-active = <0>;
++				vsync-active = <0>;
++				remote-endpoint = <&adv7612_out>;
+ 			};
+ 		};
+ 	};
 -- 
 2.39.1
 
