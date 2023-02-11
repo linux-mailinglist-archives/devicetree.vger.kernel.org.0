@@ -2,124 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4544693160
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 14:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4533F69318D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 15:42:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbjBKNtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 08:49:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54836 "EHLO
+        id S229484AbjBKOmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 09:42:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjBKNtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 08:49:19 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E2128236
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 05:49:18 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id n13so5745876wmr.4
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 05:49:18 -0800 (PST)
+        with ESMTP id S229522AbjBKOmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 09:42:00 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75262594D
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 06:41:58 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id m14so7908700wrg.13
+        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 06:41:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MnfzBiktksQsGYvw/qPfvChM1tKpn2xHHEtb2ZxpH3A=;
-        b=x1gnL8NKsVz5ZGzWVr/mJF13Vjl3h7Rwmz5oYj5ywVWD4HAFKr2BzYSEfIWbMG4vYz
-         CDYQMgrEGV9FIr4E1OuD6rk7BNROlyjz3Yc16SY6quecz1i5BjrXGplAjrsbFHtjb/8q
-         Wq+sQ249kCvAB0xQM8YfCLwhBA1ipOlztN+gTAsfijIi8AAi29NAWuicCvd8JiM3sIpf
-         D+eGJWOqYtkD0kRRUrgJJgJwFBfv4kM7rcRsZZQm1thFBThFmLxogORlpI21uVq5+bfa
-         Flm6UQ5HaUFTKVkC6HMljqP+javiJ+chQWbdOJ2nG/qpkYEPW3WpwJWak1fcSlIGW0DA
-         iJ2A==
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=co8qjcyAfva4C9Kz6MryDMkFI1R96ChagGxAD7VsPjQ=;
+        b=OKHMUVunF8ln2sKHa4rQhtaKqKBJHvwNFrvl0A5Yy/roJimXRWI14hiiwF+UanEU4r
+         YSkg8Tb8t9JM29tj5akgEeWgYfH8mh+dOjIz4hw6C9mqAIB0iUO94lb9R4PQp+RhYxgo
+         4a3HlfrSvZ76PjfKggXiwNj7DTYSpypqlScYGuYAXKTyZ73BlcJU7EXvG+klIfsNspTa
+         CIf0L/3CtLu9/m2GZRjGjblQVo8niuq0FDejD87ZHIOfi8RZk7kNM1EdJLtKi89k7yI7
+         qx8Lgaq0RH4HGiv/5jad99UwjegFMeE61LMpFNUWtiaXhRxzI2aq9/NyplX+wK46ObCs
+         le0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MnfzBiktksQsGYvw/qPfvChM1tKpn2xHHEtb2ZxpH3A=;
-        b=LL1w+8wJ1ijQ+iZ3Wr8TENj44zStNGUkluxrBGNoFaNuOW9q3U2ueO/YTFbiLRMlVd
-         AkP/mJTc4ztEdEkc5ykXUp8pKvFrNHuR6z5TXWV+JT0JrzLvsW/1p0MKdmfooYlmpZ/1
-         +weJwY7VqKQchr4fALxJPsWCweIzn0CS2FwlxM8NFVWZ1bwRBbWMUNhCw03XVR8ZBH5p
-         NchrSC4reknMgHGXgWD7nWClFbWlF5s7tB16XnWLLAXhCWs+U9yrzHoXsmIBche8R36F
-         nmRS2fnxnkgn1qLactEuyIV5bgdc9QqQfNz9CF3FMRlDzEpcAxvzG92xuKadKudyn8xn
-         M0Cg==
-X-Gm-Message-State: AO0yUKWIijSl2YX0w6MYDAwSopcXS/hhk64dw2P6U6n2C4+zfDtD7bdN
-        aoU5K+DtyNFBIcjyOeAVfW8x3A==
-X-Google-Smtp-Source: AK7set/LsuYodEEOcidXf0D4o0B3LrUM3jAixoxUL02Fyge8P3l4XD+91MwFH+ek7E8+PWPC0x1n3g==
-X-Received: by 2002:a05:600c:4d97:b0:3e0:c75:7071 with SMTP id v23-20020a05600c4d9700b003e00c757071mr15266644wmp.5.1676123357077;
-        Sat, 11 Feb 2023 05:49:17 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:e13f:18ce:8394:3c66? ([2a01:e0a:982:cbb0:e13f:18ce:8394:3c66])
-        by smtp.gmail.com with ESMTPSA id t15-20020a5d534f000000b002c55306f6edsm135154wrv.54.2023.02.11.05.49.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Feb 2023 05:49:16 -0800 (PST)
-Message-ID: <f727dd7d-08a8-acdf-316c-d571e36a4b1e@linaro.org>
-Date:   Sat, 11 Feb 2023 14:49:12 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=co8qjcyAfva4C9Kz6MryDMkFI1R96ChagGxAD7VsPjQ=;
+        b=pCWD7gffRWuIwQtpBy+f/RcvOCsQYZGBVIAWznGtssAzVsApjnrhrKDJ499+bEPUXw
+         nSwEvy5knAixEuHpFVVKA5W0NUIcxdEKgF2UZVHpDQUMz8mZGkUSkrkH6W7BeQ1v0Ryx
+         05yfU9zMftu4EhcmIerA68c3O5+I0kDsEDhS2A1msK1lPe/Fnj58H4oIHJSOXv8VCadU
+         8sWlcCVppV6meapKanSF3lgMn7Y9KthBBKcfXn+hA+lrRZ5Ody8Ymqb4CTOwa7TYJDZ4
+         rEEibCJvKl97E8h3YHZFSpOtp4AkmMTfENoYI2MfZTGx9w/YW9cHsxBIiNsWyqwDtEXH
+         EYjw==
+X-Gm-Message-State: AO0yUKUCCoQ+foAvkE+B/gt9K9xbJSOhCVzctRn3YGmg6GJOQP/MMEvM
+        +w2eap7awH5enZkI7hnPwLWObA==
+X-Google-Smtp-Source: AK7set/FUzwC2XGcGhDSg88v9Z+HB3UQICNa08kuXU1WqTHFTDcjL0TOB/QR0R7aBBnWaVqqI9GI7w==
+X-Received: by 2002:a5d:595f:0:b0:2c3:d8f0:547a with SMTP id e31-20020a5d595f000000b002c3d8f0547amr15888824wri.1.1676126517538;
+        Sat, 11 Feb 2023 06:41:57 -0800 (PST)
+Received: from sleipner.berto.se (p54ac5802.dip0.t-ipconnect.de. [84.172.88.2])
+        by smtp.googlemail.com with ESMTPSA id i8-20020a5d4388000000b002c5493a17efsm4202510wrq.25.2023.02.11.06.41.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Feb 2023 06:41:57 -0800 (PST)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/3] media: dt-bindings: media: Add bindings for video capture on R-Car V4H
+Date:   Sat, 11 Feb 2023 15:41:44 +0100
+Message-Id: <20230211144147.3812388-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: phy: amlogic,g12a-usb3-pcie-phy: add missing
- optional phy-supply property
-Content-Language: fr, en-GB
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh@kernel.org>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230207-b4-amlogic-amlogic-g12a-usb3-pcie-phy-fix-v1-1-3e437b759549@linaro.org>
- <Y+Z5xOlAeqO6JyIj@matsya>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <Y+Z5xOlAeqO6JyIj@matsya>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 10/02/2023 à 18:07, Vinod Koul a écrit :
-> On 07-02-23, 16:03, Neil Armstrong wrote:
->> Add missing optional phy-supply property used to power up PHY regulators.
->>
->> Fixes: 87a55485f2fc ("dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml")
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml          | 5 +++++
-> 
-> I dont have this file in my tree, what was this based on?
+Hello,
 
-It has been renamed in a previous patch by Heiner: https://lore.kernel.org/all/8d960029-e94d-224b-911f-03e5deb47ebc@gmail.com/
+This small series and bindings for all modules involved in video capture 
+on Renesas R-Car V4H.
 
-Neil
+Niklas Söderlund (3):
+  media: dt-bindings: media: renesas,isp: Add binding for V4H
+  media: dt-bindings: media: renesas,csi2: Add binding for V4H
+  media: dt-bindings: media: renesas,vin: Add binding for V4H
 
-> 
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
->> index 129d26e99776..3314711292d6 100644
->> --- a/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
->> @@ -35,6 +35,11 @@ properties:
->>     "#phy-cells":
->>       const: 1
->>   
->> +  phy-supply:
->> +    description:
->> +      Phandle to a regulator that provides power to the PHY. This
->> +      regulator will be managed during the PHY power on/off sequence.
->> +
->>   required:
->>     - compatible
->>     - reg
->>
->> ---
->> base-commit: 49a8133221c71b935f36a7c340c0271c2a9ee2db
->> change-id: 20230207-b4-amlogic-amlogic-g12a-usb3-pcie-phy-fix-b5daf54fb7d6
->>
->> Best regards,
->> -- 
->> Neil Armstrong <neil.armstrong@linaro.org>
-> 
+ Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+ Documentation/devicetree/bindings/media/renesas,isp.yaml  | 1 +
+ Documentation/devicetree/bindings/media/renesas,vin.yaml  | 1 +
+ 3 files changed, 3 insertions(+)
+
+-- 
+2.39.1
 
