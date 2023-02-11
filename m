@@ -2,147 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5BA6933EE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 22:08:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9247C693407
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 22:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjBKVIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 16:08:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35612 "EHLO
+        id S229570AbjBKVgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 16:36:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjBKVIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 16:08:21 -0500
-Received: from mr85p00im-hyfv06021301.me.com (mr85p00im-hyfv06021301.me.com [17.58.23.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 053EF13DD3
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 13:08:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1676149695; bh=ANaeM9xES9AEOXol9pUlamK7auhn8OeqFAnfHrbeVsI=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=TJ7il2f/6xF5raV0WQOtkYjo47Mtb0baiRJYK58awae8y9HGUTxLM3Nt1EZBkoBKd
-         hGB5bRQJ+Hm6+Z3RbMhBO221DAhXc8iSwUonx4EAne7Rlj7cDtj8ouOcwz/2CdkLKh
-         toGJEF9xHlT7dkbovkOrAUdqlipllGIZ2mt7TngOU8U8EEkdEh7X15pnXG2chsRiPU
-         KBz6dE8vZ98XRqVuBWbMrbxt9tIKbh9Lmqyvgk1YVbMgnKcaPibs4hIVo6ILk0oej0
-         7EyqEb2ngujdWTvLwBvxzg8b4X9+6NqJvRTojM3wd6nhB5jXEHFj/tsi+N+ClSudJx
-         4g5QkznoKi52A==
-Received: from localhost (mr38p00im-dlb-asmtp-mailmevip.me.com [17.57.152.18])
-        by mr85p00im-hyfv06021301.me.com (Postfix) with ESMTPSA id 168472150ED2;
-        Sat, 11 Feb 2023 21:08:14 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229664AbjBKVgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 16:36:52 -0500
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2040.outbound.protection.outlook.com [40.107.105.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B875A35B8;
+        Sat, 11 Feb 2023 13:36:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iqCYFIeXiY2CGWQ4HmSamyGy7xOyJOky+knoYKCtq4FHCGlMVxVLoB0BwCVJdsVGSVaygZX7UGs0suGfZTuElI6PyRYvvPffn547LYcyOP5xCBcgd7rSzhNscn0dX9bq7ofMW2yUdnCxsNnlPdhJbb4/f2fdp83eSr5pZ4TEt/FB/LbT3cgsvv82meaNRhKKFYj5cjf3ZzUcK+G8OSYYcszovVzTTY5OT6en9jEbAl1ivG8pM1JsNiby+3rHfMq44sHiMfB9K+NMGejYRkI/77gCsWrxGuWm+Wz8vM7ZeBESAHMDFAfGvpt2cTA75xnrAO0FS3zf/8xMuYbyW2hskg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vL+RDuWKeNabbIK4GwvJ6VAYfPahYEJxVoWkYh+CYq0=;
+ b=j2Ld4OHVeg/0wXkPHdgkDintxoPV0nC3wDc/N00NtSOaJeSqwOpqgw5Lf3YfWzCTz12EwM0dQ3XSMarUJlBZrWpYgzeauzQpbwcRXMpBoujgT3EoSMMKCOE7tMAxOnMsPqGeaEq/ayuqnecSgjP9WSEKk/XgQ0Jz1Sa9sdjtxL4jIVlfegbUHp1fl/SPj08wLTXQKkI3tlGLNVOm/eNCFj1KtGh1JdjwO4a3ZbX6JnEPp63QLV8I8vhf6kHqUR7yHlArBYzeUZ9s0siakMAysTyCn6RGh/H1nrUBH1apyoV0MeL8MQ1wtuCWpswHffI7JDr3ROHqYjjSyFNA5+whqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vL+RDuWKeNabbIK4GwvJ6VAYfPahYEJxVoWkYh+CYq0=;
+ b=dEJlcqvlZ1qfbuwK9usJhegi44d9wgqccgV4FEPpQwHFFfYY6xDPy1IeQTZpWpvlxaBcrlkVnMDMU1ZQYospBV2E7cvqFUH8JFo7KCAQO1UVZvNTcojfkV2TONdvOfHzSyQhGL13ObOHyFzeyrIR+H8ZRl9bcLSGjbm7x6j79xs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by AS4PR04MB9507.eurprd04.prod.outlook.com (2603:10a6:20b:4ca::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.22; Sat, 11 Feb
+ 2023 21:36:48 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::3cfb:3ae7:1686:a68b]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::3cfb:3ae7:1686:a68b%4]) with mapi id 15.20.6086.022; Sat, 11 Feb 2023
+ 21:36:48 +0000
+Date:   Sat, 11 Feb 2023 23:36:43 +0200
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Alain Volmat <avolmat@me.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: arm: sti: add sti boards and remove stih415/stih416
-Date:   Sat, 11 Feb 2023 22:04:59 +0100
-Message-Id: <20230211210500.9919-2-avolmat@me.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230211210500.9919-1-avolmat@me.com>
-References: <20230211210500.9919-1-avolmat@me.com>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: Advice on MFD-style probing of DSA switch SoCs
+Message-ID: <20230211213643.talp76wceyc7mypp@skbuf>
+References: <20221222134844.lbzyx5hz7z5n763n@skbuf>
+ <4263dc33-0344-16b6-df22-1db9718721b1@linaro.org>
+ <20221223134459.6bmiidn4mp6mnggx@skbuf>
+ <CAGETcx8De_qm9hVtK5CznfWke9nmOfV8OcvAW6kmwyeb7APr=g@mail.gmail.com>
+ <20230211012755.wh4unmkzibdyo4ln@skbuf>
+ <Y+e5TzNRckDADd5d@lunn.ch>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y+e5TzNRckDADd5d@lunn.ch>
+X-ClientProxiedBy: BE1P281CA0055.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:23::12) To VI1PR04MB5136.eurprd04.prod.outlook.com
+ (2603:10a6:803:55::19)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: qJVLtNsSOAhLxVFksJgP53dWBzrYWedI
-X-Proofpoint-GUID: qJVLtNsSOAhLxVFksJgP53dWBzrYWedI
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.572,17.11.62.513.0000000_definitions?=
- =?UTF-8?Q?=3D2020-02-14=5F11:2020-02-14=5F02,2020-02-14=5F11,2021-12-02?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 mlxscore=0 adultscore=0
- malwarescore=0 mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1015
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2302110198
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5136:EE_|AS4PR04MB9507:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f32f789-901b-4720-c452-08db0c781424
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AZUBX5vYiiaMvKbTcYO9acgrc95fTAXWWfbwmfxga02uYTm8YbicDPJ2U0v0dDH0TkF16lUr5XO1nf6UqY9EnODw/49XsUohHNZjrpoqOYyg3y7E38VXB4VebvOpHcL6NA6uBGWK69UHHu6gtBrH587CKpmtnsoEPyxt6qU9ZLNgXiLzuAMFNzdCRYnpTR7plwGLJ/5io4Ng3c8TpcKazIHF3rSixgiBJ4cvV2Ru4FRNMpacm6bunJVRRzSZVWM85NOPCHYhdVENRPmgNvd4hiLKFCGqfBcDLSz23K8BblTaBpdHvSRxU7efCDpM5f6swTeRJd4djJJjjf1sE+N+W/M1Ai8h1nrgT4WP75xx5G4R30I5+Q1W0ybNjaumWhmCqNGXx7Qn682rrFm4hWnBMdqWZ6V/bdk0BNINm2oFS96OKvpaJwGHOq7WZYoeJo18skE40hk+tlixy7km5VfilRbrPA3u+fxebWi8tdwqrfX/sV2+JCb+b01SbMFgJJadE7qe2OkUV4aMwr9ZS5oOvntMV+bud/NqYD0UhAgpY6G9hUlunhjslhhi6GAlwe9TcmPkYg4XVLy1n/BgcScOIrvUzrncOK5QTGFTLHC5DUqEHHnbDMZNP7ee4IqLTfgOczPy3y7qaNprTD2HaAK8uA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(6029001)(7916004)(4636009)(136003)(366004)(346002)(39860400002)(376002)(396003)(451199018)(4326008)(8676002)(6916009)(66946007)(66476007)(66556008)(83380400001)(316002)(54906003)(41300700001)(1076003)(6506007)(6666004)(9686003)(6512007)(186003)(26005)(44832011)(8936002)(7416002)(5660300002)(86362001)(478600001)(33716001)(38100700002)(2906002)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MF8IICk+w5UCp7xYAGV/pWYMN+ZAD+Px0AjlxOEFYNdk5IAiXQvepO4VoWvT?=
+ =?us-ascii?Q?MKTVvcBhGVEVUy4beUcY6ADvPqwQIqFP4M4vJm13r7M5f5fx9IMuOsFDkfxZ?=
+ =?us-ascii?Q?Ewi4zfe+NmN9QpXpL4rPDpXgHS3Jh9WtdX7Kd/BrKOa+UFYXIFveFdQxsrfe?=
+ =?us-ascii?Q?W3n7kmXSNaxF4fKnGWVA9H1UUPeHGhlo2fpJqvoh2A4VXWfHYE/3V2DrLzbJ?=
+ =?us-ascii?Q?GJv9/7LEe57Lvb4Ntiw2ffdcEBLnjVXJeAcJHYxIXnDPG8gFPc9hj9jdBPt5?=
+ =?us-ascii?Q?20FbNsW3kTzIw41+gZSOkILW8t7tbp3tuWt1s4xtWJfeC74eTPIlSThNyjK5?=
+ =?us-ascii?Q?DGkfdRry4apz1oygHz8hA0vK7Be7o50P6ORjRYvKTlels+oZD5gq7zNGSJa9?=
+ =?us-ascii?Q?i+pmu6dOhJwESNtohdC/b4gWDGnTOumSyxw56iPZtwzAoY1rSyb9NMWyqbQC?=
+ =?us-ascii?Q?rzF2POZ6jlGTZShUVbh7YeAK9u9CRpee+YBkEukXjJiqXJhuJjV34aRT1SjQ?=
+ =?us-ascii?Q?jNrTn3VIdndzn7z69QYeslw3OjEzpJVZHdu6Qcgig1eb4k7aSQseWnLdvlTu?=
+ =?us-ascii?Q?/PH7KoA1WsldRSXDeovkZ9Lroy/hdjDMTa8AuvzJ9w/PjploJjlD+Elx/8sQ?=
+ =?us-ascii?Q?BLoQP1bzZ5O1kGDkZpti41cXEq+Xup1oH11LL51zoBLVb5bhCU3qyavjGlZG?=
+ =?us-ascii?Q?rvLnmu3JxkQ0Bo5uSsnfMLfoHxDZKCRMdMRgW9eIlec4vOfTnCTwwW1CVsip?=
+ =?us-ascii?Q?zT9KntNIppZIUABWvb/2SX9mIJkyL+tBTvrnV9p7EZEBQf1/cDxOXDqe9MkY?=
+ =?us-ascii?Q?401fKl9kzmOt4IggHVd0gTeJ/Yf2I/utC5obdtUx3erw4rzhkOheKPlh12o5?=
+ =?us-ascii?Q?8r1uHevCZlc8tZwAsTt8ZwfaMc04DfC97SMY7UbyjK2kJZw+cIfsXzcX3OLB?=
+ =?us-ascii?Q?glBLkNdIGMhTijW1idOvdl2nGAZEnVefZY2N7Zwt33TdZm7zFMD9ZbOA16Aj?=
+ =?us-ascii?Q?Ebhc9kh5DOU2Q3thgyXoR21QBusWfAbYo60y01kDoiY6DgViSIQVd6jfHUdb?=
+ =?us-ascii?Q?EYgZjoJmvqueLNsVlpsLCg8lQ46QrTI9x+hypcoUBBjjYsG/j2sFFbI5M08u?=
+ =?us-ascii?Q?PcaZTnHJ3b4ZwzFOzOFp+MQCR4KSjT+mI5Dync5lqmA5ekmNNl0LPSmLGf09?=
+ =?us-ascii?Q?qTAW+zQoX1hezs6trUrA3zf8j+yAgmbjCB2bNDjam74EPYV5bzBqTpZ1IgZg?=
+ =?us-ascii?Q?9RHAFkTrhbIH0F4C7KYbnkyQV1C9y4pkEiW7ShZ217Elo4dGcAqDso/FNJYy?=
+ =?us-ascii?Q?EY9axK7m6+0eL6spy4yEz3+LZYC7vAsK4+DLjz1wPb06o+OfsC0AEemZ7Ph2?=
+ =?us-ascii?Q?dvTYTXghO2e/ZdLaJzxLo4mNqCoE/+wC1enMP1g2dptdraBI4yeh7tQv1XL+?=
+ =?us-ascii?Q?NoLvQa9Zqg0pVFVq5RDxFRGfzCM8AV5wDZtaezvKPIb6AVJ4kDBfQQFslvWq?=
+ =?us-ascii?Q?9WB1Ml2PQryQXkPpAZjD3mqRjlN3LjstT+TotEXxMxHU1coSPBIs/9wmFWXo?=
+ =?us-ascii?Q?VDPkXF6UygkCNQ5EvdLmDHnOfTnEq980OZdgPRMpU6APU+iqqJCB3wfOlYpV?=
+ =?us-ascii?Q?jA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f32f789-901b-4720-c452-08db0c781424
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2023 21:36:47.9275
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JF+PtB0/idv3ik21lSx6Pj6I8FJpxQF+vR/XCzOzm4FTbJvOJ7ZEfpiWMcosnfHx2FPaU6ozDrXA2aHk0AQ46w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9507
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for STi platform boards and remove stih415/stih416 items.
-This commit also moves the sti.yaml binding file within the arm/sti/
-folder instead of arm/
+On Sat, Feb 11, 2023 at 04:50:39PM +0100, Andrew Lunn wrote:
+> I'm not sure that is true. The switches probe method should register
+> with the driver core any resources a switch provides. So switch #1
+> MDIO bus driver is registered during its probe, allowing the probe of
+> switch #2 to happen. When switch #2 probes, it should register its
+> clock with the common clock framework, etc.
+> 
+> However, the linking of resources together, the PTP clock in your
+> example, should happen in the switches setup() call, which only
+> happens once all the switches in the cluster have probed, so all the
+> needed resources should be available.
+> 
+> Because we have these two phases, i think the above setup would work.
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- .../devicetree/bindings/arm/sti.yaml          | 26 ---------------
- .../devicetree/bindings/arm/sti/sti.yaml      | 33 +++++++++++++++++++
- 2 files changed, 33 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/sti.yaml
- create mode 100644 Documentation/devicetree/bindings/arm/sti/sti.yaml
+I was thinking it wouldn't work because the PTP timer sub-driver would
+first have to request the clock input from the CCF, before registering
+its own clock output with the CCF. So the driver writer would be forced
+to request a clock from the CCF in the probe() phase, if it wanted to
+also register as a clock provider in the probe() phase.
 
-diff --git a/Documentation/devicetree/bindings/arm/sti.yaml b/Documentation/devicetree/bindings/arm/sti.yaml
-deleted file mode 100644
-index 3ca054c64377..000000000000
---- a/Documentation/devicetree/bindings/arm/sti.yaml
-+++ /dev/null
-@@ -1,26 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/arm/sti.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: ST STi Platforms
--
--maintainers:
--  - Patrice Chotard <patrice.chotard@foss.st.com>
--
--properties:
--  $nodename:
--    const: '/'
--  compatible:
--    items:
--      - enum:
--          - st,stih415
--          - st,stih416
--          - st,stih407
--          - st,stih410
--          - st,stih418
--
--additionalProperties: true
--
--...
-diff --git a/Documentation/devicetree/bindings/arm/sti/sti.yaml b/Documentation/devicetree/bindings/arm/sti/sti.yaml
-new file mode 100644
-index 000000000000..aefa1919207c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/sti/sti.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/sti/sti.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST STi Platforms
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: st,stih407-b2120
-+          - const: st,stih407
-+      - items:
-+          - enum:
-+              - st,stih410-b2120
-+              - st,stih410-b2260
-+          - const: st,stih410
-+      - items:
-+          - enum:
-+              - st,stih418-b2199
-+              - st,stih418-b2264
-+          - const: st,stih418
-+
-+additionalProperties: true
-+
-+...
--- 
-2.34.1
+I.o.w., switch #1 would get an -EPROBE_DEFER waiting for the clock from
+switch #2, before it would get to call dsa_register_switch().
 
+TLDR: the rule "provide all you have in stage 1, request all you need
+in stage 2" would only work if you don't need anything to register your
+providers.
