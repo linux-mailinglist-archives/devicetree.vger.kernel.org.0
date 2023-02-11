@@ -2,117 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B12E693240
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB49693254
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 17:11:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbjBKQE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 11:04:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50626 "EHLO
+        id S229631AbjBKQLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 11:11:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbjBKQE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:04:57 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD1C62B0B6;
-        Sat, 11 Feb 2023 08:04:34 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pQsMY-0004LV-1h;
-        Sat, 11 Feb 2023 17:04:31 +0100
-Date:   Sat, 11 Feb 2023 16:02:55 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229630AbjBKQLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 11:11:52 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8F28A66;
+        Sat, 11 Feb 2023 08:11:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=QIsGxB3foIcUzmrB1itBt2fP/mbnt75It4usqWhNhqE=; b=P7
+        vtKGwpGWflFG3N+B1RRIjxiM27gprx3GRBS7un6JwuWk8/FV4d9LEQ4CwLk+IFnSxLF22ydIkzt32
+        X9aBWQyuop1jYaVXEqsxufkvQT5F3P3eUtKeDSavDF2GGB9RX3+B35o5Hygx+fQ2daJPJiXTvnERk
+        aEASDZm9A+FlUko=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pQsTP-004iBC-Gy; Sat, 11 Feb 2023 17:11:35 +0100
+Date:   Sat, 11 Feb 2023 17:11:35 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
         "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     Jianhui Zhao <zhaojh329@gmail.com>,
-        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>
-Subject: [PATCH v5 04/12] dt-bindings: arm: mediatek: sgmiisys: add MT7981 SoC
-Message-ID: <7273678366079b93ee19c4c6f6ea9bc13cd8dcfb.1676128246.git.daniel@makrotopia.org>
-References: <cover.1676128246.git.daniel@makrotopia.org>
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 08/12] net: stmmac: Add glue layer for StarFive JH7100 SoC
+Message-ID: <Y+e+N/aiqCctIp6e@lunn.ch>
+References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
+ <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1676128246.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mediatek,pnswap boolean property as well as an example for the
-MediaTek MT7981 SoC making use of that new property.
+> +
+> +#define JH7100_SYSMAIN_REGISTER28 0x70
+> +/* The value below is not a typo, just really bad naming by StarFive ¯\_(ツ)_/¯ */
+> +#define JH7100_SYSMAIN_REGISTER49 0xc8
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../arm/mediatek/mediatek,sgmiisys.yaml       | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Seems like the comment should be one line earlier?
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.yaml
-index 99ceb08ad7c0..97d4ab70e541 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.yaml
-@@ -23,6 +23,8 @@ properties:
-           - enum:
-               - mediatek,mt7622-sgmiisys
-               - mediatek,mt7629-sgmiisys
-+              - mediatek,mt7981-sgmiisys_0
-+              - mediatek,mt7981-sgmiisys_1
-               - mediatek,mt7986-sgmiisys_0
-               - mediatek,mt7986-sgmiisys_1
-           - const: syscon
-@@ -33,6 +35,10 @@ properties:
-   '#clock-cells':
-     const: 1
- 
-+  mediatek,pnswap:
-+    description: Invert polarity of the SGMII data lanes
-+    type: boolean
-+
- required:
-   - compatible
-   - reg
-@@ -51,3 +57,19 @@ examples:
-         #clock-cells = <1>;
-       };
-     };
-+  - |
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+      sgmiisys0: syscon@10060000 {
-+        compatible = "mediatek,mt7981-sgmiisys_0", "syscon";
-+        reg = <0 0x10060000 0 0x1000>;
-+        mediatek,pnswap;
-+        #clock-cells = <1>;
-+      };
-+      sgmiisys1: syscon@10070000 {
-+        compatible = "mediatek,mt7981-sgmiisys_1", "syscon";
-+        reg = <0 0x10070000 0 0x1000>;
-+        #clock-cells = <1>;
-+      };
-+    };
--- 
-2.39.1
+There is value in basing the names on the datasheet, but you could
+append something meaningful on the end:
 
+#define JH7100_SYSMAIN_REGISTER49_DLYCHAIN 0xc8
+
+???
+
+> +	if (!of_property_read_u32(np, "starfive,gtxclk-dlychain", &gtxclk_dlychain)) {
+> +		ret = regmap_write(sysmain, JH7100_SYSMAIN_REGISTER49, gtxclk_dlychain);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "error selecting gtxclk delay chain\n");
+> +	}
+
+You should probably document that if starfive,gtxclk-dlychain is not
+found in the DT blob, the value for the delay chain is undefined.  It
+would actually be better to define it, set it to 0 for example. That
+way, you know you don't have any dependency on the bootloader for
+example.
+
+	Andrew
