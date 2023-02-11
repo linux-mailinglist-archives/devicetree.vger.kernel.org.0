@@ -2,113 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6392692EDC
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 07:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E8D4692EFB
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 08:16:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjBKGkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 01:40:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45996 "EHLO
+        id S229534AbjBKHQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 02:16:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjBKGj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 01:39:57 -0500
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC8212F1E
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 22:39:56 -0800 (PST)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-16aaa20f516so9465450fac.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Feb 2023 22:39:56 -0800 (PST)
+        with ESMTP id S229468AbjBKHQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 02:16:41 -0500
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4D13D0BF;
+        Fri, 10 Feb 2023 23:16:38 -0800 (PST)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-15f97c478a8so9406843fac.13;
+        Fri, 10 Feb 2023 23:16:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hTv8boWiXl3Q8qm/+aQVqDvix+KsA9tTjnV3RAm1YEo=;
-        b=P+Oe5a1pah+Zr4CuFWfmfhGPerI7RTROI4usQQ2as0MnIS9p+f6YgVRk3NgRFqS9Xh
-         eWf8bjcqxRlb2VDSvKosj6dA3lU6PrnwDQQJLvWOFv7Xg5S//x42J65AWr8Hu5iEFj0c
-         L4JKGZrSXTKj5Llrg56gIgyr++/EEdJ0awwxN1IbcMglmp303lVfpjUhRb9s3GIBqOCQ
-         hk6wOO0mPvIx+e2tZuAdLkvGOhPS3CTdyluXRAhS/0Gv8LkG4BDl8C5/0vXWMUsTqETg
-         l1mb1a/etj+ePFvFMkIKnuesZWjDSZr/cVBT10IO90OGuv7MkxIE8KksHv8H3lPBPRVI
-         OWJQ==
+        bh=58HBYmuEbwT6P5YGu4V8yOdkWgdYqUn/I6lFr6XEbsY=;
+        b=SQroH5KE1FCEFJ51Oh3r6W/UAf6YnZ8whUjag4IHbgEMlpVBW7rFfNDsmr4CZWTAJN
+         ACTOf883lDJOd4fJk6kYepPUv8/PHEZRb1LJDirXHwHfqsphDCxE/AriVMav/h462s/a
+         aURwTTXkeIFXjN9w3TbdV0Ulp9UR2jEeePwiELWDyobH7il4TGjTKK3jHIspoxzr0F/8
+         ht6G6TE/ianzGua5l+SAiis+eIRsuHwbcah2h0pjbB1qo3hJIcSRmu2ihcaSNT6khinW
+         WCDHdRz6xY49nLAJbMA6JAc+Oz0yrotFGAn3eIy2l2Mz5SkJAwRftSZl6dTBGFlPIm8v
+         yA2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hTv8boWiXl3Q8qm/+aQVqDvix+KsA9tTjnV3RAm1YEo=;
-        b=SUoMoV93EDL1XaNrSe7N4zEfxj/De21sg+krI2Wmdz62ie6Mxilrc3M/ZQqjX52qLE
-         kbqLSV9rWe4JzMQegI5LUZgJa6mwgJAfJ86rGseqoS7q96oXpIVQmoJqnUCBW5zUvcHn
-         6r6LmYlcS7IdmGWtsqCR2Z8s+gXrqT3qnb9CzlUpw79iQ7MYU75crua16pc1LeQWGuON
-         kTZ0FX1sr067HHLTemMvwScgS3XuxxH50bSd+D+Q6/17eN61n5iBfi1LzeOTDBuhuxz2
-         4PXThwMsPjJ6ZjiLuYQXensX8Juu8X0S+aVArQEo4Z457HMm98TxMS1RL8CsUVKlBaT4
-         1yMg==
-X-Gm-Message-State: AO0yUKWlbYUcNmdw6x7sWIWPXhY2/3vGfiHe4Wk8hhoy0otzQB1WlmVp
-        6K8V807d978CVDow/81BMiybZw==
-X-Google-Smtp-Source: AK7set9uzrsntw631tV4DP3rQ7Jj6aGuIrMBBqtNYlcwRR5cuwwLS0QTP9SXjkJTUM56WsqM07CgcQ==
-X-Received: by 2002:a05:6870:8a21:b0:16a:a457:655d with SMTP id p33-20020a0568708a2100b0016aa457655dmr6828806oaq.5.1676097595431;
-        Fri, 10 Feb 2023 22:39:55 -0800 (PST)
-Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id ed52-20020a056870b7b400b0016b7fe3be05sm1734264oab.39.2023.02.10.22.39.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Feb 2023 22:39:55 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     David Virag <virag.david003@gmail.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
-Date:   Sat, 11 Feb 2023 00:40:06 -0600
-Message-Id: <20230211064006.14981-7-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230211064006.14981-1-semen.protsenko@linaro.org>
-References: <20230211064006.14981-1-semen.protsenko@linaro.org>
+        bh=58HBYmuEbwT6P5YGu4V8yOdkWgdYqUn/I6lFr6XEbsY=;
+        b=bzLb65gnFvus4uQZwnpbEgFklJX2T2ey5h7Zp3tva8i/mztbA05N+l6bWrPvAt8CfW
+         xTyqFTQ1Sa1VDffMHtU6hBc3eGOULo/sl/HqWU8FqBf65J/W2KfkrZiz4BZgeok0wbFk
+         Z5XaU1X0r+cgTDyDnqK+vO4Otkfda0dk0eBwzBepDSIzPsN6VTsApJw+WH6u5LlQdwYe
+         qULPWS8V5UC87rXKKac1Gel8nq1axvSU0DHmXUblca6DLXBrwMkffcnBL+CdkuBTsfQe
+         yGVV8y0nK6ePZlSJLM+8M9xkS5u6PD1ZjkN6bfF/JQOEGvEz13fS82Q5ofZUByI/UtFl
+         6xuw==
+X-Gm-Message-State: AO0yUKX0v1SaaBjtFqHxmSAL9WjcwBPW3xop1VnlzGcdIW5YswDY0oXj
+        7LjTC/PhUbKWCNpLsIja4GEt5Wil161fbZEagyA=
+X-Google-Smtp-Source: AK7set+lXDlU78iVkFXkGoy8FMRUpawSgAhVaxC/em3HXsapY0SZ2hBQvwYxndhqDquz9J65CjwThXkXXw7rkgiWxTw=
+X-Received: by 2002:a05:6870:9615:b0:169:fabf:b222 with SMTP id
+ d21-20020a056870961500b00169fabfb222mr2460667oaq.83.1676099797383; Fri, 10
+ Feb 2023 23:16:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230210173841.705783-1-sergio.paracuellos@gmail.com>
+ <20230210173841.705783-3-sergio.paracuellos@gmail.com> <3ca26ba2-80f5-32a2-0357-d91c87efd1c0@arinc9.com>
+In-Reply-To: <3ca26ba2-80f5-32a2-0357-d91c87efd1c0@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sat, 11 Feb 2023 08:16:26 +0100
+Message-ID: <CAMhs-H9eQo-F9G62yyMbRyjmnaTYsJjnYA0puuFb71jCcnq7LA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] mips: dts: ralink: mt7621: add phandle to system
+ controller node for watchdog
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing G3D clock domain to Exynos850 SoC device tree.
+Hi Ar=C4=B1n=C3=A7,
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos850.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Fri, Feb 10, 2023 at 6:47 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
+9.com> wrote:
+>
+> Could you also change the node name to watchdog@100? make dtbs_check
+> points it out:
+>
+> wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0-9a-f])?=
+$'
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index a38fe5129937..d67e98120313 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -245,6 +245,15 @@ cmu_peri: clock-controller@10030000 {
- 				      "dout_peri_uart", "dout_peri_ip";
- 		};
- 
-+		cmu_g3d: clock-controller@11400000 {
-+			compatible = "samsung,exynos850-cmu-g3d";
-+			reg = <0x11400000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&oscclk>, <&cmu_top CLK_DOUT_G3D_SWITCH>;
-+			clock-names = "oscclk", "dout_g3d_switch";
-+		};
-+
- 		cmu_apm: clock-controller@11800000 {
- 			compatible = "samsung,exynos850-cmu-apm";
- 			reg = <0x11800000 0x8000>;
--- 
-2.39.1
+Sure, let me add a small patch fixing this warning in the series.
 
+>
+> Thanks.
+> Ar=C4=B1n=C3=A7
+
+Best regards,
+    Sergio Paracuellos
+
+>
+> On 10.02.2023 20:38, Sergio Paracuellos wrote:
+> > To allow to access system controller registers from watchdog driver cod=
+e
+> > add a phandle in the watchdog 'wdt' node. This avoid using arch depende=
+nt
+> > operations in driver code.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >   arch/mips/boot/dts/ralink/mt7621.dtsi | 1 +
+> >   1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts=
+/ralink/mt7621.dtsi
+> > index 5ca40fd21..764916eaf 100644
+> > --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+> > +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+> > @@ -73,6 +73,7 @@ sysc: syscon@0 {
+> >               wdt: wdt@100 {
+> >                       compatible =3D "mediatek,mt7621-wdt";
+> >                       reg =3D <0x100 0x100>;
+> > +                     mediatek,sysctl =3D <&sysc>;
+> >               };
+> >
+> >               gpio: gpio@600 {
