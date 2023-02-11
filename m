@@ -2,158 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DFDC692FCE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 10:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF47C693010
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 11:41:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbjBKJwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 04:52:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39936 "EHLO
+        id S229472AbjBKKlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 05:41:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjBKJwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 04:52:35 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342E01CADC;
-        Sat, 11 Feb 2023 01:52:33 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31B9o25r001143;
-        Sat, 11 Feb 2023 09:52:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=UCfOFNP2YCsOcROG51tOllRT0Dd3aRaEdI+beQKVZS4=;
- b=QPHCBTEvfCynbtL6N1nMAvuWvMSxhrkm2JQIzizSoBwioMTY8yVGlVuKbicySlDdHdl4
- 9bUUQDSFg2QX2s6DcGdOosZu5GnfBo03m95wX99rKMI8zHyoQSZ0D6d6COIny+9p2w2n
- hQDbWWEX6NOfsBdntdcYbOiSu+TalNX3gLBz9lfQ0LvCVvXxonSJap7JBzSAVnH9IlWH
- y1GTsxsg/TatDUVTlKH4JhZ9Dz/EqXsSqLkPflbn2FT9pciW4/VEbceujRXixS5i13HU
- xgq4N/g1JdY/3O5T7ZBgIhyFOI1CuoenoURHlYlCmdZPXqWKpsgIcPzmYxlhjv5IEzfk UQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3np389rfp5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 11 Feb 2023 09:52:11 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31B9qAx3015736
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 11 Feb 2023 09:52:10 GMT
-Received: from [10.110.21.35] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Sat, 11 Feb
- 2023 01:52:09 -0800
-Message-ID: <60e42db4-1bbc-beea-d87d-6f93871b70c7@quicinc.com>
-Date:   Sat, 11 Feb 2023 01:52:09 -0800
+        with ESMTP id S229473AbjBKKlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 05:41:50 -0500
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2D992130;
+        Sat, 11 Feb 2023 02:41:46 -0800 (PST)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-16dcb07b805so3255255fac.0;
+        Sat, 11 Feb 2023 02:41:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4w3ENwturTSVxpGAb53NQkes3ra0RwonBTVMe/uFWC4=;
+        b=BdKfBodZZEAhg9xZniosTKvGuwpsi4IPN9ItHqMSqnRq2G54b93yerAyj/TFV2jNPO
+         h7rru1P6SSkGFFVoPonCp6Zu+HiPdYgGiZIye6RWBLT82l0uvq9WFzWccfA6jeZu3z0C
+         TGiywwNYjgKqFoOR3nTFch32+qPtwOmt5UQ150u8CYdwcrdsGFWTbIJ0CdoYKO42Au4q
+         Rx44iZiU3l0Jbzk2B/BOv2xMVkThN5zdOQRQ4SD+AhlhcjBvwV/m+FCrE/IVrNSNEvOu
+         j9GZatFeCAhQ4kQ5GVM+rzAhhb/VMAlPEFt4aXHRVp5hw5pwqXX62sQ3BhnFug1/IwsV
+         RjTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4w3ENwturTSVxpGAb53NQkes3ra0RwonBTVMe/uFWC4=;
+        b=mwRzBALMTJcHLAC5C3EC9FII8N+PlPdYyth0DBjc/nJXwRol9zsEraRVN/TYGr59Of
+         oPZzyZbRyaWEjXWVBp9H3mEkn/roS0//pbu5Xi40z+kw2HQhpfsRperSpziRSGLy2b2H
+         WPvWt+eKAdcEGTEMH5QvUz+zNQGKR8B+4BdolvZk0EUsE7xn6ciXd27dZ5s/lZv9RhfU
+         AfTUPW5Lvt3N2ehXgDno6ViPs1zy+VM+/j3VG8/zdX8M8zt361BKKQPoNcHKc8ObV9jt
+         1hHz71X7OIoR96TKEYZEyCPef0qOJmHvRHPkp9cxUW0vweRQHFcog20iSU1ck2wqH5pv
+         wGUQ==
+X-Gm-Message-State: AO0yUKUv+d5x7NSZLc3dnOlIFkOwN2uU2yYAPS8oqPO4upRy1xNEzOFz
+        DnM6GSUOPqa8nMJ+3Xg20rP5LnjmGZtTCDJr9Xg=
+X-Google-Smtp-Source: AK7set++hY0o5rtqajrPlrbeemsE+KMliKbNdYr3ndx3MXPYLiebW82GBenachb/3/jgK+3D7bTp6He6QvMyWLz7rR4=
+X-Received: by 2002:a05:6870:63a2:b0:16a:a8b5:16fe with SMTP id
+ t34-20020a05687063a200b0016aa8b516femr1978267oap.144.1676112106286; Sat, 11
+ Feb 2023 02:41:46 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [RFC PATCH v2 20/22] sound: usb: Prevent starting of audio stream
- if in use
-Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <agross@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
- <20230126031424.14582-21-quic_wcheng@quicinc.com>
- <557f8f76-38f5-5e07-905e-774e03120bd2@linux.intel.com>
- <b26c9e4c-5a9c-a2ff-19a7-78419c6b81df@quicinc.com>
- <b532bf7b-e1fb-3a9d-1b88-02f3159be47d@linux.intel.com>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <b532bf7b-e1fb-3a9d-1b88-02f3159be47d@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 3k8nJOYHa5s5VYu4opmTp6Izyv68DjaR
-X-Proofpoint-GUID: 3k8nJOYHa5s5VYu4opmTp6Izyv68DjaR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-11_05,2023-02-09_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- bulkscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 impostorscore=0
- adultscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=915 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302110089
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
+ <20230211073357.755893-2-sergio.paracuellos@gmail.com> <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
+In-Reply-To: <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sat, 11 Feb 2023 11:41:35 +0100
+Message-ID: <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
+ access system controller registers
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
+On Sat, Feb 11, 2023 at 10:10 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
+c9.com> wrote:
+>
+> Is this mediatek,sysctl property required after your changes on the
+> watchdog code?
 
-On 2/7/2023 5:29 AM, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 2/6/23 19:15, Wesley Cheng wrote:
->> Hi Pierre,
->>
->> On 1/26/2023 8:12 AM, Pierre-Louis Bossart wrote:
->>>
->>>
->>> On 1/25/23 21:14, Wesley Cheng wrote:
->>>> With USB audio offloading, an audio session is started from the ASoC
->>>> platform sound card and PCM devices.  Likewise, the USB SND path is
->>>> still
->>>> readily available for use, in case the non-offload path is desired.  In
->>>> order to prevent the two entities from attempting to use the USB bus,
->>>> introduce a flag that determines when either paths are in use.
->>>>
->>>> If a PCM device is already in use, the check will return an error to
->>>> userspace notifying that the stream is currently busy.  This ensures
->>>> that
->>>> only one path is using the USB substream.
->>>
->>> It's good to maintain mutual exclusion, but it's still very hard for an
->>> application to figure out which card can be used when.
->>>
->>> Returning -EBUSY is not super helpful. There should be something like a
->>> notification or connection status so that routing decisions can be made
->>> without trial-and-error.
->>>
->>
->> The USB offload driver does have access to the USB substream that is
->> being utilized/offloaded.  Maybe in addition to this check, we can also
->> set the PCM runtime state as well (for that particular substream)?  That
->> way userspace can fetch information about if the stream is busy or not.
-> 
-> You're missing the point. When a card is exposed but the PCM devices may
-> or may not be usable (consuming data with no sound rendered or returning
-> an error), it's much better to provide a clear connection status to
-> userspace.
-> 
-> Let me give you an example. Intel drivers can expose 3 HDMI/DP PCM
-> devices. Userspace has no idea which one to use, so there's a jack
-> control that tells userspace whether there is a receiver connected so
-> that the audio server can use the relevant PCM device.
-> 
-> Audio routing based on trial and error is really problematic, errors can
-> happen but they should be exceptional (e.g. xruns), not a means of
-> driver-userspace communication on the device status.
+I don't really understand the question :-) Yes, it is. Since we have
+introduced a new phandle in the watchdog node to be able to access the
+reset status register through the 'sysc' syscon node.
+We need the bindings to be aligned with the mt7621.dtsi file and we
+are getting the syscon regmap handler via
+'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Ar=C4=B1n=
+=C3=A7.
 
-Thanks for clarifying.  The example helped me understand a bit more on 
-how the potential use of the SND control interface.  Since we're dealing 
-with multiple sound cards here (platform sound card (offload) and USB 
-SND card (legacy)), what do you think about creating a SND control on 
-both the USB backend (platform card) and the USB SND card listing the 
-PCM device status?
-
-That way at least userspace can have the information about which PCM dev 
-(USB substream) is available (and not offloaded, or vice versa).  So the 
-USB SND control will contain the PCM devices (exposed by the card) and 
-if any are offloaded (if so mark them as unavailable).  Likewise, for 
-the USB backend, if the legacy path is being used, mark them as 
-unavailable for offloading.
-
-Thanks
-Wesley Cheng
+Thanks,
+    Sergio Paracuellos
+>
+> Ar=C4=B1n=C3=A7
+>
+> On 11.02.2023 10:33, Sergio Paracuellos wrote:
+> > MT7621 SoC provides a system controller node for accessing to some regi=
+sters.
+> > Add a phandle in this node to avoid using MIPS related arch operations =
+and
+> > includes in watchdog driver code.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >   .../devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml  | 7 ++++++=
++
+> >   1 file changed, 7 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621=
+-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.=
+yaml
+> > index b2b17fdf4..a668d0c2f 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.ya=
+ml
+> > +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.ya=
+ml
+> > @@ -19,6 +19,12 @@ properties:
+> >     reg:
+> >       maxItems: 1
+> >
+> > +  mediatek,sysctl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle to system controller 'sysc' syscon node which
+> > +      controls system registers
+> > +
+> >   required:
+> >     - compatible
+> >     - reg
+> > @@ -30,4 +36,5 @@ examples:
+> >       watchdog@100 {
+> >         compatible =3D "mediatek,mt7621-wdt";
+> >         reg =3D <0x100 0x100>;
+> > +      mediatek,sysctl =3D <&sysc>;
+> >       };
