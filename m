@@ -2,557 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7ED069331C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 19:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC60A693357
+	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 20:45:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjBKSzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 13:55:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42056 "EHLO
+        id S229561AbjBKTpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 14:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjBKSzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 13:55:04 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23716193EF
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 10:55:02 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id h16so8308941wrz.12
-        for <devicetree@vger.kernel.org>; Sat, 11 Feb 2023 10:55:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ij1y01yn3C78vrRH+kSZSIyMqD+0JyDpVdQ+2wk3B9c=;
-        b=Zokr1RIWMk5TqBTt1WOuAh5RVLmb2SYoKN1OfGrBT2DpvKT0R1RRrOnziwT8Q3MhGK
-         IdFguK0gtCvnpRi5eYmKjjNN6taFrQXqAg/1S7cZBo5EKtyCtN80BgprVx1fOMNwQVFo
-         gV9VJrjhlsfzcZ3UD5h8Oxf6XMODQnxCva20cBKUDihVdPmn5DIIAh/j+rPPctdKl+A9
-         /A1i7Q3Vp04MPb4gnVfuZvsF/KaZQpqHYlLUO6ewoSOCRpM4PgXJgxKrszRDlNIG6IkY
-         9ZsyX6vlwuroabFgRjv32pPeqAaQmdTnLGOAaiCKl58FO+A6lY3eIfU1TNYyDuQlRk/3
-         RMSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ij1y01yn3C78vrRH+kSZSIyMqD+0JyDpVdQ+2wk3B9c=;
-        b=hGs986x5hRzpXLdifHoH9AKj8n/X5y77vxrLNTMLfl24/Vjk0OqU0cgPcPd3zOt57k
-         ao2vTAh3UXL88Y/HBz9aI7yxrslDw4TO9QrkWMwlEDKplYClb1XLR5nII0qznUfcqmWP
-         7r60JgPMWmhhD3Q/2EsPrODv8/Z4UAZsU33cWcZ24vUTqSsN9Or/6T6BlqHK8jEpiStq
-         BXjP9fVTehfHmfw8Tkugbmlyl0hTpcUmwoapIp1mZ17Ttke6CbG2h3yqA2CIBVbbvISC
-         oxhrgDA078beVaSeEqY83jk2oNPqXJ9g6s+CuzZExCnB90K5cwpdb4ElINruvX9CoaY3
-         938A==
-X-Gm-Message-State: AO0yUKUZqM3OreDkO7AEokScBVNQl/PRUULFiepZLnzxoXH8u2r6GlS8
-        J14rqYsBk2qQYN9ZAgDiHiIQsw==
-X-Google-Smtp-Source: AK7set/H8VB5OT+If7vVAokqpNc4ciMCqSuPNxv+Fl5zFVgPpLeRWgsiqmatVGrAmjPVcYcIa0oPSw==
-X-Received: by 2002:a5d:56cd:0:b0:2c5:4c5c:fd08 with SMTP id m13-20020a5d56cd000000b002c54c5cfd08mr4170911wrw.37.1676141700629;
-        Sat, 11 Feb 2023 10:55:00 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id y1-20020a5d6201000000b002c3ea5ebc73sm6532053wru.101.2023.02.11.10.54.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Feb 2023 10:55:00 -0800 (PST)
-Date:   Sat, 11 Feb 2023 20:54:58 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229547AbjBKTpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 14:45:46 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D911815A;
+        Sat, 11 Feb 2023 11:45:43 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 39901320027A;
+        Sat, 11 Feb 2023 14:45:35 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Sat, 11 Feb 2023 14:45:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1676144734; x=
+        1676231134; bh=nAfDCv4pIOfY0PAcpVEd13mZpp4d1bY5NKYeBEKLtY8=; b=c
+        M3tKyMDQ6T3ypKhzSasgMSKqpIXx9FcpW9Kud0162tNpjIXgm5T2eLa20U003lWT
+        MN0pF3oiuxGL/jbunG1Cr11ge19vzhoZqvBbAVbragCml7pBXps2k+LvCyiwMkk4
+        gw9IwLzbL/FEL1PQRmjPlGyAWVC0UDxx+Q+6xZtNP6U7GTns/px6QWt0b+kzLNqm
+        jacZTUiYYHMSxoOeF99ulbKdNaAUBxr70gtbcC+Jv0hhcoZonXXw50qIryEx7N1S
+        BG5tfRqtLzEByL41MK7K75F8liU5MQMAUo56q2bR1i5Y9DqXNyyPu1mXfD4O6ef3
+        w1+JR0cBH0hZtm4Mw8bUg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1676144734; x=
+        1676231134; bh=nAfDCv4pIOfY0PAcpVEd13mZpp4d1bY5NKYeBEKLtY8=; b=B
+        LX0pZotXAdKf4FiqFxIQOUJAxJRxU/RLP16YYXfXfNfCQJu67be2Ml/HGIkaNUQb
+        xaPo11AARF7o0XsyYt3Gv8TqMSBOKdWfYr+R87fIUgVUDx+l/14XV2pTqHxW/c1d
+        a5FWjPsfJkLaCDAgq/SYD+ol38sdfV8t+J6fpvqRkCf0I+Xj91NZg/6LXuFuYkpe
+        utVNrN0uQ0CnE794nQja1s1VJGYfR5ej1jevFr8Tc1Yk9GYTfdXFuVoNOYuw4g7U
+        r9tqpMjMmjqPdmuRItNFX4a+nrPX/w3VfqNA3o8FC60W9WPmBYduPM2bb91aP7by
+        8i1VdE1W4Pt70EDEk+UIw==
+X-ME-Sender: <xms:XfDnY8JpE8jQYpszHur2BxTjOEZ23TYtXS-Xi3wCkKK-oZO_0uxrhQ>
+    <xme:XfDnY8JvFqQG6kgmq-3Ke5dNdvf5s3fDjXHiQlzBFAGgJ6cbEbE4PbXdzDnR1q_xM
+    p82YDytmwma9EaA6g>
+X-ME-Received: <xmr:XfDnY8s5LkCvq_tG-HphoJ8pukrQ61m-aFagX_S5BE37tzJtVBjgX-GpQLqdrpq0qUPDAkNJiHFrqE7R7J2TI1vSQhTmW3Uat0rnebD-7NfpGGqiBVCwRXrl4A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudehjedguddvkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefkffggfgfvvehfhffujggtgfesthekredttdefjeenucfhrhhomhepufgr
+    mhhuvghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqne
+    cuggftrfgrthhtvghrnhepgeeikeeufedvvdeuteeivdeiffdtgfdtfeejgfetfeefgeff
+    gfdvffehjedvueeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
+    hfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:XfDnY5ZponFTd60fXxnbkAhgpmcvRAbKVDMky_lNytSsbB9V7-VmmA>
+    <xmx:XfDnYzZ9j_NJBwakM8SOHBMYvP4NuL6OQeZWK8FOO3N-M2sLKq89zQ>
+    <xmx:XfDnY1BwRWG2M0NqtOEh7z8ppmNoh-nheablZa5nEW6vmiAGy43lRA>
+    <xmx:XvDnYwTJR4OQl25ZjNQIqr1PToOxkVsYZBglZXF0kpZfZs5lA06AiQ>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 11 Feb 2023 14:45:32 -0500 (EST)
+Message-ID: <76a1cabd-f173-f86a-423a-ba5be7c1efd0@sholland.org>
+Date:   Sat, 11 Feb 2023 13:45:37 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Andreas Feldner <pelzi@flying-snail.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550-qrd: add QRD8550
-Message-ID: <Y+fkgvBIuYi+IXVV@linaro.org>
-References: <20230210163844.765074-1-krzysztof.kozlowski@linaro.org>
- <20230210163844.765074-2-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230210163844.765074-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Andreas Feldner <andreas@feldner-bv.de>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+ <20230207011608.2ce24d17@slackpad.lan>
+ <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+ <20230209202952.673d5a60@slackpad.lan>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+In-Reply-To: <20230209202952.673d5a60@slackpad.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-02-10 17:38:44, Krzysztof Kozlowski wrote:
-> Add a minimal DTS for the new QRD8550 board - a mobile-like development
-> board with SM8550.  Serial, UFS and USB should be working.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Andre,
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+On 2/9/23 14:29, Andre Przywara wrote:
+> On Wed, 8 Feb 2023 13:50:04 +0100
+> Andreas Feldner <andreas@feldner-bv.de> wrote:
+> 
+> Hi Andreas,
+> 
+> CC:ing Maxime, who wrote the debouncing code back then.
+> 
+>> Am 07.02.23 um 02:16 schrieb Andre Przywara:
+>>> On Mon, 6 Feb 2023 20:51:50 +0100
+>>> Andreas Feldner <pelzi@flying-snail.de> wrote:
+>>>
+>>> Hi Andreas,
+>>>
+>>> thanks for taking care about this board and sending patches!  
+>> Thank YOU for maintaining it!
+>>>> The SoC features debounce logic for external interrupts. Per default,
+>>>> this is based on a 32kHz oscillator, in effect filtering away multiple
+>>>> interrupts separated by less than roughly 100ï¿½s.
+>>>>
+>>>> This patch sets different defaults for this filter for this board:
+>>>> PG is connected to non-mechanical components, without any risk for
+>>>> showing bounces. PA is mostly exposed to GPIO pins, however the
+>>>> existence of a debounce filter is undesirable as well if electronic
+>>>> components are connected.  
+>>> So how do you know if that's the case? It seems to be quite normal to
+>>> just connect mechanical switches to GPIO pins.
+>>>
+>>> If you are trying to fix a particular issue you encountered, please
+>>> describe that here, and say how (or at least that) the patch fixes it.
+>>>
+>>> And I would suggest to treat port G and port A differently. If you
+>>> need a lower debounce threshold for port A, you can apply a DT overlay
+>>> in U-Boot, just for your board.  
+>>
+>> Fair enough. You run into problems when you connect (electronic)
+>> devices to bank A (typically by the 40pin CON2 connector), where
+>> the driver requires fast IRQs to work. In my case this has been a
+>> DHT22 sensor, and the default debounce breaking the dht11.ko
+>> driver.
+> 
+> Sure, what I meant is that this is a property of your particular
+> setup (because you attach something to the *headers*) , so it shouldn't
+> be in the generic DT, but just in your copy. Which ideally means using
+> a DT overlay.
+> 
+>> Now, what kind of problem is this - I'm no way sure:
+>>
+>> a) is it an unlucky default, because whoever connects a mechanical
+>> switch will know about the problem of bouncing and be taking
+>> care to deal with it (whereas at least I was complete unsuspecting
+>> when connecting an electronic device that a debounce function
+>> might be in place), or
+> 
+> The Linux default is basically the reset default: just leave the
+> register at 0x0. It seems like you cannot really turn that off at all
+> in hardware, and the reset setting is indeed 32KHz/1. So far there
+> haven't been any complaints, though I don't know if people just
+> don't use it in anger, or cannot be bothered to send a report to the
+> list.
+> 
+>> b) is it a bug in the devicetree for (at least) the BananaPi M2 Zero,
+>> because the IRQ bank G is hard wired to electronic devices that
+>> should not be fenced by a debouncing function, or
+> 
+> Well, we could try to turn that "off" as much as possible, but on the
+> other hand the debounce only affects *GPIO* *interrupts*, so not sure
+> that gives us anything. The PortG pins are used for the SDIO Wifi, BT
+> UART, and the wakeup pins for the Wifi chip. Only the wakeup pins would
+> be affected, and I doubt that we wake up that often that it matters. If
+> you've made other observations, please let me know.
+> 
+> Certainly no board with an in-tree DT sets the debounce property, which
+> means everyone uses 32KHz/1, and also did so before the functionality
+> was introduced.
 
-> 
-> ---
-> 
-> UFS should be working the same as on MTP8550, but both fail on next and
-> patches from lists are needed (same as on MTP8550).
+One side note relevant to wakeup pins: if the debounce clock source is
+set to HOSC, and the 24 MHz oscillator is disabled, then IRQs for those
+pins will never fire.
 
-I believe it should be working fine on next-20230210, since both the
-HC and the PHY drivers updates have been merged.
+Currently, Crust does not check the debounce configuration when deciding
+if it can turn off the 24 MHz crystal during system suspend (or fake-off
+on boards without PMICs), so any wakeup-capable GPIOs need to use LOSC
+as their debounce clock.
 
-> ---
->  arch/arm64/boot/dts/qcom/Makefile       |   1 +
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 439 ++++++++++++++++++++++++
->  2 files changed, 440 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 359e428e49b3..29d5bb0403de 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -197,3 +197,4 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-qrd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx223.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx224.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-qrd.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> new file mode 100644
-> index 000000000000..d5a645ee2a61
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -0,0 +1,439 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "sm8550.dtsi"
-> +#include "pm8010.dtsi"
-> +#include "pm8550.dtsi"
-> +#include "pm8550b.dtsi"
-> +#include "pm8550ve.dtsi"
-> +#include "pm8550vs.dtsi"
-> +#include "pmk8550.dtsi"
-> +#include "pmr735d.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. SM8550 QRD";
-> +	compatible = "qcom,sm8550-qrd", "qcom,sm8550";
-> +
-> +	aliases {
-> +		serial0 = &uart7;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible = "qcom,pm8550-rpmh-regulators";
-> +		qcom,pmic-id = "b";
-> +
-> +		vdd-bob1-supply = <&vph_pwr>;
-> +		vdd-bob2-supply = <&vph_pwr>;
-> +		vdd-l1-l4-l10-supply = <&vreg_s6g_1p86>;
-> +		vdd-l2-l13-l14-supply = <&vreg_bob1>;
-> +		vdd-l3-supply = <&vreg_s4g_1p25>;
-> +		vdd-l5-l16-supply = <&vreg_bob1>;
-> +		vdd-l6-l7-supply = <&vreg_bob1>;
-> +		vdd-l8-l9-supply = <&vreg_bob1>;
-> +		vdd-l11-supply = <&vreg_s4g_1p25>;
-> +		vdd-l12-supply = <&vreg_s6g_1p86>;
-> +		vdd-l15-supply = <&vreg_s6g_1p86>;
-> +		vdd-l17-supply = <&vreg_bob2>;
-> +
-> +		vreg_bob1: bob1 {
-> +			regulator-name = "vreg_bob1";
-> +			regulator-min-microvolt = <3296000>;
-> +			regulator-max-microvolt = <3960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_bob2: bob2 {
-> +			regulator-name = "vreg_bob2";
-> +			regulator-min-microvolt = <2720000>;
-> +			regulator-max-microvolt = <3960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1b_1p8: ldo1 {
-> +			regulator-name = "vreg_l1b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2b_3p0: ldo2 {
-> +			regulator-name = "vreg_l2b_3p0";
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5b_3p1: ldo5 {
-> +			regulator-name = "vreg_l5b_3p1";
-> +			regulator-min-microvolt = <3104000>;
-> +			regulator-max-microvolt = <3104000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6b_1p8: ldo6 {
-> +			regulator-name = "vreg_l6b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7b_1p8: ldo7 {
-> +			regulator-name = "vreg_l7b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8b_1p8: ldo8 {
-> +			regulator-name = "vreg_l8b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9b_2p9: ldo9 {
-> +			regulator-name = "vreg_l9b_2p9";
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11b_1p2: ldo11 {
-> +			regulator-name = "vreg_l11b_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1504000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12b_1p8: ldo12 {
-> +			regulator-name = "vreg_l12b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13b_3p0: ldo13 {
-> +			regulator-name = "vreg_l13b_3p0";
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l14b_3p2: ldo14 {
-> +			regulator-name = "vreg_l14b_3p2";
-> +			regulator-min-microvolt = <3200000>;
-> +			regulator-max-microvolt = <3200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l15b_1p8: ldo15 {
-> +			regulator-name = "vreg_l15b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l16b_2p8: ldo16 {
-> +			regulator-name = "vreg_l16b_2p8";
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l17b_2p5: ldo17 {
-> +			regulator-name = "vreg_l17b_2p5";
-> +			regulator-min-microvolt = <2504000>;
-> +			regulator-max-microvolt = <2504000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vdd-l1-supply = <&vreg_s4g_1p25>;
-> +		vdd-l2-supply = <&vreg_s4e_0p95>;
-> +		vdd-l3-supply = <&vreg_s4e_0p95>;
-> +
-> +		vreg_l3c_0p9: ldo3 {
-> +			regulator-name = "vreg_l3c_0p9";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-2 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +		qcom,pmic-id = "d";
-> +
-> +		vdd-l1-supply = <&vreg_s4e_0p95>;
-> +		vdd-l2-supply = <&vreg_s4e_0p95>;
-> +		vdd-l3-supply = <&vreg_s4e_0p95>;
-> +
-> +		vreg_l1d_0p88: ldo1 {
-> +			regulator-name = "vreg_l1d_0p88";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <920000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		/* ldo2 supplies SM8550 VDD_LPI_MX */
-> +	};
-> +
-> +	regulators-3 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +		qcom,pmic-id = "e";
-> +
-> +		vdd-l1-supply = <&vreg_s4e_0p95>;
-> +		vdd-l2-supply = <&vreg_s4e_0p95>;
-> +		vdd-l3-supply = <&vreg_s4g_1p25>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +
-> +		vreg_s4e_0p95: smps4 {
-> +			regulator-name = "vreg_s4e_0p95";
-> +			regulator-min-microvolt = <904000>;
-> +			regulator-max-microvolt = <984000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s5e_1p08: smps5 {
-> +			regulator-name = "vreg_s5e_1p08";
-> +			regulator-min-microvolt = <1080000>;
-> +			regulator-max-microvolt = <1120000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1e_0p88: ldo1 {
-> +			regulator-name = "vreg_l1e_0p88";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <880000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2e_0p9: ldo2 {
-> +			regulator-name = "vreg_l2e_0p9";
-> +			regulator-min-microvolt = <904000>;
-> +			regulator-max-microvolt = <970000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3e_1p2: ldo3 {
-> +			regulator-name = "vreg_l3e_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-4 {
-> +		compatible = "qcom,pm8550ve-rpmh-regulators";
-> +		qcom,pmic-id = "f";
-> +
-> +		vdd-l1-supply = <&vreg_s4e_0p95>;
-> +		vdd-l2-supply = <&vreg_s4e_0p95>;
-> +		vdd-l3-supply = <&vreg_s4e_0p95>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +
-> +		vreg_s4f_0p5: smps4 {
-> +			regulator-name = "vreg_s4f_0p5";
-> +			regulator-min-microvolt = <500000>;
-> +			regulator-max-microvolt = <700000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1f_0p9: ldo1 {
-> +			regulator-name = "vreg_l1f_0p9";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2f_0p88: ldo2 {
-> +			regulator-name = "vreg_l2f_0p88";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3f_0p88: ldo3 {
-> +			regulator-name = "vreg_l3f_0p88";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-5 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +		qcom,pmic-id = "g";
-> +
-> +		vdd-l1-supply = <&vreg_s4g_1p25>;
-> +		vdd-l2-supply = <&vreg_s4g_1p25>;
-> +		vdd-l3-supply = <&vreg_s4g_1p25>;
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +
-> +		vreg_s1g_1p25: smps1 {
-> +			regulator-name = "vreg_s1g_1p25";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1300000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s2g_0p85: smps2 {
-> +			regulator-name = "vreg_s2g_0p85";
-> +			regulator-min-microvolt = <800000>;
-> +			regulator-max-microvolt = <1000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s3g_0p8: smps3 {
-> +			regulator-name = "vreg_s3g_0p8";
-> +			regulator-min-microvolt = <300000>;
-> +			regulator-max-microvolt = <1004000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s4g_1p25: smps4 {
-> +			regulator-name = "vreg_s4g_1p25";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1352000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s5g_0p85: smps5 {
-> +			regulator-name = "vreg_s5g_0p85";
-> +			regulator-min-microvolt = <500000>;
-> +			regulator-max-microvolt = <1004000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s6g_1p86: smps6 {
-> +			regulator-name = "vreg_s6g_1p86";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1g_1p2: ldo1 {
-> +			regulator-name = "vreg_l1g_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3g_1p2: ldo3 {
-> +			regulator-name = "vreg_l3g_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +};
-> +
-> +&qupv3_id_0 {
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/sm8550/adsp.mbn",
-> +			"qcom/sm8550/adsp_dtb.mbn";
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/sm8550/cdsp.mbn",
-> +			"qcom/sm8550/cdsp_dtb.mbn";
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_mpss {
-> +	firmware-name = "qcom/sm8550/modem.mbn",
-> +			"qcom/sm8550/modem_dtb.mbn";
-> +	status = "okay";
-> +};
-> +
-> +&sleep_clk {
-> +	clock-frequency = <32000>;
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <32 8>;
-> +};
-> +
-> +&uart7 {
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-> +	vcc-supply = <&vreg_l17b_2p5>;
-> +	vcc-max-microamp = <1300000>;
-> +	vccq-supply = <&vreg_l1g_1p2>;
-> +	vccq-max-microamp = <1200000>;
-> +	vccq2-supply = <&vreg_l3g_1p2>;
-> +	vccq2-max-microamp = <100>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l1d_0p88>;
-> +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_1_hsphy {
-> +	vdd-supply = <&vreg_l1e_0p88>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_dp_qmpphy {
-> +	vdda-phy-supply = <&vreg_l3e_1p2>;
-> +	vdda-pll-supply = <&vreg_l3f_0p88>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&xo_board {
-> +	clock-frequency = <76800000>;
-> +};
-> -- 
-> 2.34.1
-> 
+Do you have any thoughts about if/how we should handle this
+automatically? Should Linux (or Crust) override the debounce
+configuration when entering suspend? I imagine no wakeup source will
+require a particularly short debounce time.
+
+Regards,
+Samuel
+
