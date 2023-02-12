@@ -2,83 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 668FF69377E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 14:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABFB86937F1
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 16:27:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbjBLNNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 08:13:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52416 "EHLO
+        id S229656AbjBLP1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 10:27:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjBLNNb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 08:13:31 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B55A5CC11;
-        Sun, 12 Feb 2023 05:13:26 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id dr8so25888402ejc.12;
-        Sun, 12 Feb 2023 05:13:26 -0800 (PST)
+        with ESMTP id S229520AbjBLP1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 10:27:32 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4CD872A5;
+        Sun, 12 Feb 2023 07:27:31 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id e12-20020a0568301e4c00b0068bc93e7e34so3055436otj.4;
+        Sun, 12 Feb 2023 07:27:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XA8l1UNyv+RC0xjr49Zj35slp6HWpLIolNcfko1OuWM=;
-        b=paikrkY2n7o92kwyNvsr8KemY9Cr7a4ASfa41yKpvLy6Il/K3Eq7MiuLjoM0LVnsfU
-         EwR2vCpQT6esW9Au5BrEt8+lYNQ5mQ/TJ5Zraz1dnfQsgyMeYkPg/MaHkLZN2SAEBawY
-         6K9pNot+nLI27j1BshO1zYcoEINAoqEtlMNtoLKMGdzNecqpSHAUOz529i1zDDDjqiZn
-         Pinj9ujSlMaT0zmd2IZs8IWHZlh7I5E70nIwygKU2V+ucFnqP++2KLMjxdnTOgA5qmxo
-         6l+O2Uza0miWwBTFpAGoBx+F30kU+atcIES0NbX19SBSER1oRVvXfXuJ4xitTfcrxfTH
-         Q3gw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=NX5etp7sNgQW31W+eS3Z/fP5ehJy19HrlSlAqRah7P8=;
+        b=TtkAj4YRsTE3UnTPmJN8IdU5AEtV4HK2NkFkA6YYbn2vtmOJn2KgBRgYMASyll6S7c
+         LR6eXAlIALnXBqula2hZI/kT7EeP1lAlPWC4CwetoELWcrweqI3WuWwW4TbcAoLFM567
+         pQLA0VsPzTBTkLA1Ur1vw3MkWZUK7h51jF6bEprmq7n+hAb2lmKkA0vxloH+dZSR+F3n
+         cgyFpM1gDkWniZxHxOH7l6AZAkQM6FYm8Togl5OEr5NOeXxzE8vqahOtPYSOwpJ/Vq6N
+         BooDnoihKKejL5d21ex6ryanbMOC3RjbvqpUn1eonen6a1UYMICeztkDPloAy83HtMyF
+         4Dbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XA8l1UNyv+RC0xjr49Zj35slp6HWpLIolNcfko1OuWM=;
-        b=16RXLkaLxr2sDVOJxKa8aCBjp4FVSImL0wc7oVJuJE5HxRKMzafaxE30/pcu2uzpLH
-         1zCrCYp+ooneSgsYPW7PmSbxn8L8sWX9/WDFWWbbT8ERI+gzP9Lj7O4KsX+5ya86mxhk
-         NUP97qfRj8RnPgPom20xRUlrGigwAVmoCPX3kGDeCsV/BkiIL/GEZVNQzrMPEzMDemPQ
-         dqoAgy+QL0dMlNzJZlOOXuVd3twTpJf1wc7659RTVdH0P/jpmfIdNR05gjpgB4RyNYd0
-         Zqrk1nHP2ZpE1xOwtFUpIcQOxkQEWe4Sy4NS3n0ccQ45EsF/4oSt8riNY6lbRIzaNOAg
-         6XTw==
-X-Gm-Message-State: AO0yUKVLeKpU1NRRgxz245kZoZs6ELbv3sJZN1mGIVsE3darUS3/DYAs
-        bErQzr6nTHM8t63rcHxyNS4=
-X-Google-Smtp-Source: AK7set9A8ddWDXir4M7hpFzx+8WBWCaIhqs/npzdiCbwJqwSlCWj1tejYJyI1eiuNBMtPBW859lv6w==
-X-Received: by 2002:a17:907:720b:b0:8b0:26b6:3f2b with SMTP id dr11-20020a170907720b00b008b026b63f2bmr6375987ejc.53.1676207605166;
-        Sun, 12 Feb 2023 05:13:25 -0800 (PST)
-Received: from arinc9-PC.lan ([37.120.152.236])
-        by smtp.gmail.com with ESMTPSA id m10-20020a170906580a00b0086f4b8f9e42sm5257880ejq.65.2023.02.12.05.13.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Feb 2023 05:13:24 -0800 (PST)
-From:   arinc9.unal@gmail.com
-X-Google-Original-From: arinc.unal@arinc9.com
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
-Subject: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: improve binding description
-Date:   Sun, 12 Feb 2023 16:12:58 +0300
-Message-Id: <20230212131258.47551-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.37.2
+        bh=NX5etp7sNgQW31W+eS3Z/fP5ehJy19HrlSlAqRah7P8=;
+        b=Vlv3j5pgKCv8BIvpg+xZvwSzVngLaYIgINr4YH3I/ZobhLgsSriLMLuAUrtBkKUWqK
+         1fK+5bikWIXfDF/A0SyLw9o2nu/IZQHwGkWZHcRK3TGm3g2hpN/r4B+ARx/LNO1t9JlK
+         jK453v+eXObsLFDbiqpaC5gMn/MwrjLeCYKlHyX/3TMVo8FANHHvpUb59UjAdMmXwGk7
+         aZ0UPFNUSA2OU0ec6SsgnR1YnLVt2W/QRy/r05i7sX3qDqSa1hKEwKUZq/4pCstYJ+Vv
+         F+x9agxb3r1FRjmnk5vrlFQjOLOF6ywS5S5kLIHHfkWKGp7M2g3Hwv4aa3K9tzrYmadc
+         6mvA==
+X-Gm-Message-State: AO0yUKUKki6ygL76mbYE7mhHiQ1RZ7biAYNJHz1LlwWZB8LHmTQ2OJ3o
+        va9io6K81zV8I61dPNvKTes=
+X-Google-Smtp-Source: AK7set9IpjmklLbVpbBSq6Mef69hw8Oe9HBpaZJYrzGrqv7C4aVPYZj6CQo4rq3xKN1KdYvPDkW2VQ==
+X-Received: by 2002:a9d:7d01:0:b0:68b:ce98:1f9f with SMTP id v1-20020a9d7d01000000b0068bce981f9fmr12218060otn.34.1676215651177;
+        Sun, 12 Feb 2023 07:27:31 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9-20020a056830044900b0068be372babfsm4385983otc.47.2023.02.12.07.27.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Feb 2023 07:27:30 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <afe68663-8ade-ae5a-00a1-083b2f263cb0@roeck-us.net>
+Date:   Sun, 12 Feb 2023 07:27:28 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
+ access system controller registers
+Content-Language: en-US
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
+ <20230211073357.755893-2-sergio.paracuellos@gmail.com>
+ <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
+ <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
+ <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com>
+ <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
+ <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
+ <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,106 +90,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
+On 2/12/23 00:13, Sergio Paracuellos wrote:
+> On Sat, Feb 11, 2023 at 12:42 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 11/02/2023 12:01, Sergio Paracuellos wrote:
+>>> On Sat, Feb 11, 2023 at 11:47 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
+>>>>
+>>>> On 11.02.2023 13:41, Sergio Paracuellos wrote:
+>>>>> On Sat, Feb 11, 2023 at 10:10 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
+>>>>>>
+>>>>>> Is this mediatek,sysctl property required after your changes on the
+>>>>>> watchdog code?
+>>>>>
+>>>>> I don't really understand the question :-) Yes, it is. Since we have
+>>>>> introduced a new phandle in the watchdog node to be able to access the
+>>>>> reset status register through the 'sysc' syscon node.
+>>>>> We need the bindings to be aligned with the mt7621.dtsi file and we
+>>>>> are getting the syscon regmap handler via
+>>>>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Arınç.
+>>>>
+>>>> I believe you need to put mediatek,sysctl under "required:".
+>>>
+>>> Ah, I understood your question now :-). You meant 'required' property.
+>>> I need more coffee, I guess :-). I am not sure if you can add
+>>> properties as required after bindings are already mainlined for
+>>> compatibility issues. The problem with this SoC is that drivers become
+>>> mainlined before the device tree was so if things are properly fixed
+>>> now this kind of issues appear.  Let's see Krzysztof and Rob comments
+>>> for this.
+>>
+>> If your driver fails to probe without mediatek,sysctl, you already made
+>> it required (thus broke the ABI) regardless what dt-binding is saying.
+>> In such case you should update dt-binding to reflect reality.
+>>
+>> Now ABI break is different case. Usually you should not break it without
+>> valid reasons (e.g. it was never working before). Your commit msg
+>> suggests that you only improve the code, thus ABI break is not really
+>> justified. In such case - binding is correct, driver should be reworked
+>> to accept DTS without the new property.
+> 
+> Thanks for clarification, Krzysztof. Ok, so if this is the case I need
+> to add this property required (as Arinc was properly pointing out in
+> previous mail) since without it the driver is going to fail on probe
+> (PATCH 5 of the series). I understand the "it was never working
+> before" argument reason for ABI breaks. What happens if the old driver
+> code was not ideal and totally dependent on architecture specific
+> operations when this could be totally avoided and properly make arch
+> independent agnostic drivers? This driver was added in 2016 [0]. There
+> was not a device tree file in the kernel for this SoC mainlined until
+> 2022 [1]. I also personally migrated this watchdog binding in 2022
+> from text to YAML and maintained it without changes [2]. When this was
+> mainlined not all drivers were properly reviewed and the current code
+> was just maintained as it is. Most users of this SoC are in the
+> openWRT community where the dtsi of the mainline is not used yet and
+> they maintain their own mt7621.dtsi files. Also, when a new version of
+> the openWRT selected kernel is added they also modify and align with
+> its mt7621.dtsi file without maintaining previous dtb's. If "make the
+> driver arch independent to be able to be compile tested" and this kind
+> of arguments are not valid at all I need to know because I have
+> started to review driver code for this SoC and other drivers also have
+> the same arch dependency that ideally should be avoided in the same
+> way. This at the end means to break the ABI again in the future for
+> those drivers / bindings. So I can just let them be as it is and not
+> provide any change at all and continue without being compile tested
+> and other beneficial features to detect future driver breakage.
+> 
 
-Fix inaccurate information about PHY muxing, and merge standalone and
-multi-chip module MT7530 configuration methods.
+Problem is that there are (presumably) shipped systems out there with
+the old devicetree file. The watchdog driver would no longer instantiate
+on those systems.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- .../bindings/net/dsa/mediatek,mt7530.yaml     | 52 ++++++++-----------
- 1 file changed, 21 insertions(+), 31 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-index 08667bff74a5..449ee0735012 100644
---- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-@@ -24,56 +24,46 @@ description: |
- 
-   There is only the standalone version of MT7531.
- 
--  Port 5 on MT7530 has got various ways of configuration.
--
--  For standalone MT7530:
-+  Port 5 on MT7530 has got various ways of configuration:
- 
-     - Port 5 can be used as a CPU port.
- 
--    - PHY 0 or 4 of the switch can be muxed to connect to the gmac of the SoC
--      which port 5 is wired to. Usually used for connecting the wan port
--      directly to the CPU to achieve 2 Gbps routing in total.
-+    - PHY 0 or 4 of the switch can be muxed to gmac5 of the switch. Therefore,
-+      the gmac of the SoC which is wired to port 5 can connect to the PHY.
-+      This is usually used for connecting the wan port directly to the CPU to
-+      achieve 2 Gbps routing in total.
- 
--      The driver looks up the reg on the ethernet-phy node which the phy-handle
--      property refers to on the gmac node to mux the specified phy.
-+      The driver looks up the reg on the ethernet-phy node, which the phy-handle
-+      property on the gmac node refers to, to mux the specified phy.
- 
-       The driver requires the gmac of the SoC to have "mediatek,eth-mac" as the
--      compatible string and the reg must be 1. So, for now, only gmac1 of an
-+      compatible string and the reg must be 1. So, for now, only gmac1 of a
-       MediaTek SoC can benefit this. Banana Pi BPI-R2 suits this.
--      Check out example 5 for a similar configuration.
--
--    - Port 5 can be wired to an external phy. Port 5 becomes a DSA slave.
--      Check out example 7 for a similar configuration.
--
--  For multi-chip module MT7530:
--
--    - Port 5 can be used as a CPU port.
--
--    - PHY 0 or 4 of the switch can be muxed to connect to gmac1 of the SoC.
--      Usually used for connecting the wan port directly to the CPU to achieve 2
--      Gbps routing in total.
--
--      The driver looks up the reg on the ethernet-phy node which the phy-handle
--      property refers to on the gmac node to mux the specified phy.
- 
-       For the MT7621 SoCs, rgmii2 group must be claimed with rgmii2 function.
-+
-       Check out example 5.
- 
--    - In case of an external phy wired to gmac1 of the SoC, port 5 must not be
--      enabled.
-+    - For the multi-chip module MT7530, in case of an external phy wired to
-+      gmac1 of the SoC, port 5 must not be enabled.
- 
-       In case of muxing PHY 0 or 4, the external phy must not be enabled.
- 
-       For the MT7621 SoCs, rgmii2 group must be claimed with rgmii2 function.
-+
-       Check out example 6.
- 
--    - Port 5 can be muxed to an external phy. Port 5 becomes a DSA slave.
--      The external phy must be wired TX to TX to gmac1 of the SoC for this to
--      work. Ubiquiti EdgeRouter X SFP is wired this way.
-+    - Port 5 can be wired to an external phy. Port 5 becomes a DSA slave.
-+
-+      For the multi-chip module MT7530, the external phy must be wired TX to TX
-+      to gmac1 of the SoC for this to work. Ubiquiti EdgeRouter X SFP is wired
-+      this way.
- 
--      Muxing PHY 0 or 4 won't work when the external phy is connected TX to TX.
-+      For the multi-chip module MT7530, muxing PHY 0 or 4 won't work when the
-+      external phy is connected TX to TX.
- 
-       For the MT7621 SoCs, rgmii2 group must be claimed with gpio function.
-+
-       Check out example 7.
- 
- properties:
-@@ -601,7 +591,7 @@ examples:
-                         label = "lan4";
-                     };
- 
--                    /* Commented out, phy4 is muxed to gmac1.
-+                    /* Commented out, phy4 is connected to gmac1.
-                     port@4 {
-                         reg = <4>;
-                         label = "wan";
--- 
-2.37.2
+Guenter
 
