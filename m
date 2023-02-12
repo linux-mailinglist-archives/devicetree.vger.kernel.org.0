@@ -2,164 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFB86937F1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 16:27:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4883E6937F9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 16:39:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjBLP1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 10:27:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33844 "EHLO
+        id S229558AbjBLPjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 10:39:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjBLP1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 10:27:32 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4CD872A5;
-        Sun, 12 Feb 2023 07:27:31 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id e12-20020a0568301e4c00b0068bc93e7e34so3055436otj.4;
-        Sun, 12 Feb 2023 07:27:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=NX5etp7sNgQW31W+eS3Z/fP5ehJy19HrlSlAqRah7P8=;
-        b=TtkAj4YRsTE3UnTPmJN8IdU5AEtV4HK2NkFkA6YYbn2vtmOJn2KgBRgYMASyll6S7c
-         LR6eXAlIALnXBqula2hZI/kT7EeP1lAlPWC4CwetoELWcrweqI3WuWwW4TbcAoLFM567
-         pQLA0VsPzTBTkLA1Ur1vw3MkWZUK7h51jF6bEprmq7n+hAb2lmKkA0vxloH+dZSR+F3n
-         cgyFpM1gDkWniZxHxOH7l6AZAkQM6FYm8Togl5OEr5NOeXxzE8vqahOtPYSOwpJ/Vq6N
-         BooDnoihKKejL5d21ex6ryanbMOC3RjbvqpUn1eonen6a1UYMICeztkDPloAy83HtMyF
-         4Dbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NX5etp7sNgQW31W+eS3Z/fP5ehJy19HrlSlAqRah7P8=;
-        b=Vlv3j5pgKCv8BIvpg+xZvwSzVngLaYIgINr4YH3I/ZobhLgsSriLMLuAUrtBkKUWqK
-         1fK+5bikWIXfDF/A0SyLw9o2nu/IZQHwGkWZHcRK3TGm3g2hpN/r4B+ARx/LNO1t9JlK
-         jK453v+eXObsLFDbiqpaC5gMn/MwrjLeCYKlHyX/3TMVo8FANHHvpUb59UjAdMmXwGk7
-         aZ0UPFNUSA2OU0ec6SsgnR1YnLVt2W/QRy/r05i7sX3qDqSa1hKEwKUZq/4pCstYJ+Vv
-         F+x9agxb3r1FRjmnk5vrlFQjOLOF6ywS5S5kLIHHfkWKGp7M2g3Hwv4aa3K9tzrYmadc
-         6mvA==
-X-Gm-Message-State: AO0yUKUKki6ygL76mbYE7mhHiQ1RZ7biAYNJHz1LlwWZB8LHmTQ2OJ3o
-        va9io6K81zV8I61dPNvKTes=
-X-Google-Smtp-Source: AK7set9IpjmklLbVpbBSq6Mef69hw8Oe9HBpaZJYrzGrqv7C4aVPYZj6CQo4rq3xKN1KdYvPDkW2VQ==
-X-Received: by 2002:a9d:7d01:0:b0:68b:ce98:1f9f with SMTP id v1-20020a9d7d01000000b0068bce981f9fmr12218060otn.34.1676215651177;
-        Sun, 12 Feb 2023 07:27:31 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9-20020a056830044900b0068be372babfsm4385983otc.47.2023.02.12.07.27.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Feb 2023 07:27:30 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <afe68663-8ade-ae5a-00a1-083b2f263cb0@roeck-us.net>
-Date:   Sun, 12 Feb 2023 07:27:28 -0800
+        with ESMTP id S229457AbjBLPjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 10:39:48 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BA7CA38;
+        Sun, 12 Feb 2023 07:39:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=6O+UuieJiqrqN8b+Jb4GL1MHOB3Fu+wejYkm3MKiKZs=; b=zVqRPIHa7Fd8aBKSeDGdpJrwuU
+        nnpM2/LLxyc0jo150A976XoGkGIxo/Uf0HLi4TmqXPAIgnmkxe9ElLSPRjfuwbTF0dJPRAv7Ypvm4
+        hktdh6pFGaDcHi1g6EYBPP0IV1BSyvZ74CW4F2SYfyEC2Iz/PlMxUecV2fM9AZype0fo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pRERq-004lM2-VO; Sun, 12 Feb 2023 16:39:26 +0100
+Date:   Sun, 12 Feb 2023 16:39:26 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Janne Grunau <j@jannau.net>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mailing List <devicetree-spec@vger.kernel.org>,
+        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
+        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Ley Foon Tan <lftan@altera.com>,
+        Chee Nouk Phoon <cnphoon@altera.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add network-class schema for
+ mac-address properties
+Message-ID: <Y+kILknqMmR6+GXO@lunn.ch>
+References: <20230203-dt-bindings-network-class-v2-0-499686795073@jannau.net>
+ <20230203-dt-bindings-network-class-v2-1-499686795073@jannau.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
- access system controller registers
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, tsbogend@alpha.franken.de,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
- <20230211073357.755893-2-sergio.paracuellos@gmail.com>
- <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
- <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
- <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com>
- <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
- <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
- <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230203-dt-bindings-network-class-v2-1-499686795073@jannau.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/12/23 00:13, Sergio Paracuellos wrote:
-> On Sat, Feb 11, 2023 at 12:42 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 11/02/2023 12:01, Sergio Paracuellos wrote:
->>> On Sat, Feb 11, 2023 at 11:47 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>>
->>>> On 11.02.2023 13:41, Sergio Paracuellos wrote:
->>>>> On Sat, Feb 11, 2023 at 10:10 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>>>>
->>>>>> Is this mediatek,sysctl property required after your changes on the
->>>>>> watchdog code?
->>>>>
->>>>> I don't really understand the question :-) Yes, it is. Since we have
->>>>> introduced a new phandle in the watchdog node to be able to access the
->>>>> reset status register through the 'sysc' syscon node.
->>>>> We need the bindings to be aligned with the mt7621.dtsi file and we
->>>>> are getting the syscon regmap handler via
->>>>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Arınç.
->>>>
->>>> I believe you need to put mediatek,sysctl under "required:".
->>>
->>> Ah, I understood your question now :-). You meant 'required' property.
->>> I need more coffee, I guess :-). I am not sure if you can add
->>> properties as required after bindings are already mainlined for
->>> compatibility issues. The problem with this SoC is that drivers become
->>> mainlined before the device tree was so if things are properly fixed
->>> now this kind of issues appear.  Let's see Krzysztof and Rob comments
->>> for this.
->>
->> If your driver fails to probe without mediatek,sysctl, you already made
->> it required (thus broke the ABI) regardless what dt-binding is saying.
->> In such case you should update dt-binding to reflect reality.
->>
->> Now ABI break is different case. Usually you should not break it without
->> valid reasons (e.g. it was never working before). Your commit msg
->> suggests that you only improve the code, thus ABI break is not really
->> justified. In such case - binding is correct, driver should be reworked
->> to accept DTS without the new property.
-> 
-> Thanks for clarification, Krzysztof. Ok, so if this is the case I need
-> to add this property required (as Arinc was properly pointing out in
-> previous mail) since without it the driver is going to fail on probe
-> (PATCH 5 of the series). I understand the "it was never working
-> before" argument reason for ABI breaks. What happens if the old driver
-> code was not ideal and totally dependent on architecture specific
-> operations when this could be totally avoided and properly make arch
-> independent agnostic drivers? This driver was added in 2016 [0]. There
-> was not a device tree file in the kernel for this SoC mainlined until
-> 2022 [1]. I also personally migrated this watchdog binding in 2022
-> from text to YAML and maintained it without changes [2]. When this was
-> mainlined not all drivers were properly reviewed and the current code
-> was just maintained as it is. Most users of this SoC are in the
-> openWRT community where the dtsi of the mainline is not used yet and
-> they maintain their own mt7621.dtsi files. Also, when a new version of
-> the openWRT selected kernel is added they also modify and align with
-> its mt7621.dtsi file without maintaining previous dtb's. If "make the
-> driver arch independent to be able to be compile tested" and this kind
-> of arguments are not valid at all I need to know because I have
-> started to review driver code for this SoC and other drivers also have
-> the same arch dependency that ideally should be avoided in the same
-> way. This at the end means to break the ABI again in the future for
-> those drivers / bindings. So I can just let them be as it is and not
-> provide any change at all and continue without being compile tested
-> and other beneficial features to detect future driver breakage.
-> 
+> +  max-frame-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Maximum transfer unit (IEEE defined MTU).
 
-Problem is that there are (presumably) shipped systems out there with
-the old devicetree file. The watchdog driver would no longer instantiate
-on those systems.
+Do you have a reference you can include here to a clause in an IEEE
+802 document? We need this unambiguously defined otherwise more DT
+blobs are going to use the wrong value.
 
-Guenter
-
+      Andrew
