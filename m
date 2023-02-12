@@ -2,73 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D15693831
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 16:49:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25BB169383B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 16:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbjBLPtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 10:49:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
+        id S229738AbjBLPvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 10:51:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbjBLPtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 10:49:21 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40CDBEC5C;
-        Sun, 12 Feb 2023 07:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=4ENNKNgGMla2jgQ0hM3x3OTfeS7knIzg4lDu/hDJhGs=; b=pjaD8GgURVm2ZZeYXWXhmoy2N3
-        PgbU+sjLUnirG2jKrbaQFSH451K0vx3vO8oAv1m4CJ1Sf4usvEi3CZcfPVXZuPIzW+7yLIMIcp2pe
-        4/LfgR4XxkEcRUNhQwycLFHmE+QhcDQd3cako+wKpxYOGk79VKWGm3AcuJOxoD3gld6I=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pREbJ-004lSF-1A; Sun, 12 Feb 2023 16:49:13 +0100
-Date:   Sun, 12 Feb 2023 16:49:13 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Janne Grunau <j@jannau.net>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mailing List <devicetree-spec@vger.kernel.org>,
-        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
-        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Ley Foon Tan <lftan@altera.com>,
-        Chee Nouk Phoon <cnphoon@altera.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: wireless: bcm4329-fmac: Use
- network-class.yaml schema
-Message-ID: <Y+kKeTBw/Vmap0MH@lunn.ch>
-References: <20230203-dt-bindings-network-class-v2-0-499686795073@jannau.net>
- <20230203-dt-bindings-network-class-v2-2-499686795073@jannau.net>
+        with ESMTP id S229737AbjBLPvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 10:51:18 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF33EC7E
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 07:51:17 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso9654849wms.0
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 07:51:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=depQKzst3+MJxJVV7OWIsiQvvnYmRLKn2JF0wQ+kH/4=;
+        b=qtNux9N6w2LqJiPD83XiWXnyeeF8f3mGCFgxTlELTgluOfDoeUSFEp3CFWhLBrBPDc
+         h0yn54rmAh+eBIeRhKaTthywmCpTdNqoAGSCI2F+/AsaDR34JsThiPb31Da5uuFKBDA3
+         wjhmzh3RhMtrVKx86szqKtkF4O9QIlwLEtt/hTLpUXhL6BR2KWV8OLTsa13KDJr2oHmL
+         tTUoZCGtBX/FQeZO5Gb459VJSQjs3s57GIp2UVwnoYE6i+YUh9HQsSfda5KFRhK83mJT
+         Ng6obVVTzHWLo8MPb1+SZfkzttcqm2/4XClkqf8FCxNjbXIUWeIF0d7MJUKZcZr3GMbk
+         gM8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=depQKzst3+MJxJVV7OWIsiQvvnYmRLKn2JF0wQ+kH/4=;
+        b=GcJyikE0rqJPrK6iI45fKJ6EN/gwLHJ4tNTgPCMsLG7O0nwThQFNSfWD+iymjZz5Mz
+         3u90ExMK1TnHE3ID5FxWpwNB7wBFrUyjGp/X/iBRN6Y5iezKqrAJFTMEAxO6SOvnG6JR
+         6pfv5L6UpKZmDT7rPXk7LQ+/bdvU1g8dq0KcHq9PeJ0eBoDmrx8XoblR7xawaUEmlS6l
+         I06XX1xypNb0FVqqp8xSkOT0RxluIlzeF0y1RXEo9rFV0RjbBXgzra8adg5XnWra/uYi
+         bONlyXVPfxJb3ZA/19ibnticrQ0kjSxwXxtbboDdDtaGDeP1C+FI1QgXeb9yg0v8hl9r
+         zT9w==
+X-Gm-Message-State: AO0yUKW+JfN2wiY+Ojbx6ob3fXSC8mZ5zWSyJtUvndCkag5FWkHJgyDn
+        51coOVgenU4JhKQnwyBoRdG1O7PIg8ieVBAa
+X-Google-Smtp-Source: AK7set86nf562K051uxw7Z5vAZ0oyhgJUCpL2KjCAR+YWTzD5lVhg+njfOSb76saoddca+ZqY/r4jQ==
+X-Received: by 2002:a05:600c:4da5:b0:3df:de28:f819 with SMTP id v37-20020a05600c4da500b003dfde28f819mr17248559wmp.15.1676217076063;
+        Sun, 12 Feb 2023 07:51:16 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id c10-20020a05600c170a00b003df241f52e8sm10616623wmn.42.2023.02.12.07.51.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Feb 2023 07:51:15 -0800 (PST)
+Message-ID: <0d1f5d23-7a91-eee9-c7fe-044db8869735@linaro.org>
+Date:   Sun, 12 Feb 2023 16:51:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230203-dt-bindings-network-class-v2-2-499686795073@jannau.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] get_maintainer: add email addresses from dts files
+To:     Joe Perches <joe@perches.com>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+References: <20230211121441.64359-1-krzysztof.kozlowski@linaro.org>
+ <6b9347bc16febf724ca33fe99597eb163b4254ff.camel@perches.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6b9347bc16febf724ca33fe99597eb163b4254ff.camel@perches.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 12, 2023 at 01:16:30PM +0100, Janne Grunau wrote:
-> The network-class schema specifies local-mac-address as used in the
-> bcm4329-fmac device nodes of Apple silicon devices
-> (arch/arm64/boot/dts/apple).
-> Fixes `make dtbs_check` for those devices.
+On 11/02/2023 17:27, Joe Perches wrote:
+> On Sat, 2023-02-11 at 13:14 +0100, Krzysztof Kozlowski wrote:
+>> The DTS/DTSI files represent hardware description for Linux kernel,
+>> which is necessary to properly recognize and configure hardware by
+>> Linux.  DTS is usually created by people having the actual hardware and
+>> having interest in keeping it in good shape.  Such people can provide
+>> review (they might have board schematics) and testing.  Unfortunately
+>> they mostly do not appear in MAINTAINERS file.  Adding per-DTS entries
+>> to MAINTAINERS would quickly make it bloated (hundreds of new per-DTS
+>> entries).
+>>
+>> On the other hand there is no point in CC-ing every Copyright email
+>> appearing in files, because it might be outdated.  Add new in-file
+>> pattern for storing maintainers dedicated to specific boards:
+>>
+>>   Maintainer: John Smith <email>
+>>
+>> Suggested-by: Joe Perches <joe@perches.com>
+>> Suggested-by: Shawn Guo <shawnguo@kernel.org>
+>> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> This is rework of earlier approach:
+>> Link: https://lore.kernel.org/r/20210809080204.8381-1-shawnguo@kernel.org
+> 
+> Why the rework?  I think the older one is much simpler.
+> 
+> I believe I forwarded the older one to Andrew Morton awhile back.
+> I'll check to see what happened to it.
 
-Maybe a more hierarchical approach would be better? Add a
-wireless-controller.yaml which includes ieee80211.yaml and
-network-class.yaml? It would then follow the structure of Ethernet
-controllers, bluetooth controllers, and can controllers.
+It was never merged, thus I assumed some changes are needed, e.g. to
+ignore emails in copyrights.
 
-	Andrew
+Best regards,
+Krzysztof
+
