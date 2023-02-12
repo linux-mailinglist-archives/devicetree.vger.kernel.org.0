@@ -2,105 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0F06938D4
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 17:49:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68BD16938D9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 17:51:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbjBLQtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 11:49:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52972 "EHLO
+        id S229780AbjBLQvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 11:51:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjBLQta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 11:49:30 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CA728A49
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:49:28 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id m14so9950439wrg.13
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:49:28 -0800 (PST)
+        with ESMTP id S229457AbjBLQvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 11:51:07 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 355108A49;
+        Sun, 12 Feb 2023 08:51:06 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id rp23so26579600ejb.7;
+        Sun, 12 Feb 2023 08:51:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZnS4iLImKmiTIdzXmWB3mlY5ELz3gODOBAHtDoLlpJM=;
-        b=jDoFaQ/F6/s6UHGEjotvBiIuxeO/FLAf+VEfFotdqX6oSJct1NBvqSsubU9ngKBO3A
-         g9AtMPkwZF587GXmQqeo9QJeB1qhkurZk5QYRpkNy+unjo5AKlaIf4nDQnxKt17iFaH+
-         J/MW+VAdlUOfSzMhevvYsRfhe+gx4NiU2kdhFYD0gCcIzqesQPOunBJRFFIBM27h4nnm
-         AF1N1WxB4W+d+5eLbfoGqVMpvyn4a/HJZtNOFmHxt4ccp3Zvtfisnvi2igopaPUNicot
-         yR0vvxpI1NnFvjRbs8cXvliFnxlvV3QzqcuqOAhtSz02dtp8ScwLl2sUgP4izdg8g7wN
-         PsNQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LGNTzKThLFC+ICzqVFt9Ik75F3U4hNDrBu6zDf2ISVg=;
+        b=drLnqeLTpoSXKGe3WC6T0PCKD64Mlcf32TEyMOROS9x3KmCDynx32ACRFeWSwWPNqe
+         /AksMPeyU1M2y/iZ9BC6yJy+vFG9T+iCyzr6CXfZBhlpTZaDaw6XYpHZiUXCfapWjOQ8
+         dB9quCF598ekszB3j5N80rcqnBePcxLQEBR00EpXv3c8jWblX42qDzS4u+l50Ru4p3GH
+         ZwvrTuZAII0nLq1wyd5W77SfZr/yvjocAJOnyOP9tK/a/sjbVSDmjP8JJmqoQ3aAPjpN
+         q3Lyp+7QX4fCtLUEdNZCCeKgw1qgoY+gZDe8oGhsbSDkiI8+zReGw5nG15gTCtojNjdS
+         Ulmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZnS4iLImKmiTIdzXmWB3mlY5ELz3gODOBAHtDoLlpJM=;
-        b=aQskM1p3sW7/W4aA8xXNqpuEDt48TYFqZ9ByqmJLLJzMwvwVLks7Pkceow0kqR39YR
-         6rZUOgetjPIZ1ao0GFZTH1EvlAOHXY+4FdFoxke8Holm43e0Tiw+Rn30VZ07kpuaMvNs
-         SyeenlTQkKSnaGWF/QaMmPPqCfh4RCwNW0BlApC+jkYDNKCjW/cEH2d0R/kRzMwjrLAi
-         xzKiqO2mxsn5sHLMVg6OVERvs/VQHv/LosBfEfEOMIBxQ/3WEWn+cpNaIgPArZ8JOLS4
-         /21Y4xA/0yO918IuIZLhbE3P5yJnpnvIilkSFbd0oIjy79WAWHMpn+w0BI0uxmMKZTc7
-         GSAA==
-X-Gm-Message-State: AO0yUKW5SfXnm8Fq1maG68a6JmvlCideOxrExGadOMqibH9I3+sufeRS
-        oiqqFxadzBQlSsAjNUi1yMnxYw==
-X-Google-Smtp-Source: AK7set88aCei6vnBNOV2QXqcVkJ5r8KDylRaGG8E5BpKpWgRkqU4cc6De4SZ7KiEtbrezvcOIDepmQ==
-X-Received: by 2002:a5d:5003:0:b0:2c5:5312:e81b with SMTP id e3-20020a5d5003000000b002c55312e81bmr2317627wrt.28.1676220567199;
-        Sun, 12 Feb 2023 08:49:27 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n18-20020a5d4012000000b002b57bae7174sm8730955wrp.5.2023.02.12.08.49.26
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LGNTzKThLFC+ICzqVFt9Ik75F3U4hNDrBu6zDf2ISVg=;
+        b=fWUctBBBHMV4s8hUmqP3jtA+95IutbyS/r65XDOHypqzV2qMc4K2NvDJ4+o3HBpxEo
+         9R91e9vqgbi4I257f/dBckkm6fadKuLLY/Zvh2dTzWqyOy3TabPUbC88IAWDC5a9tJEH
+         gtHepTAGpVXfTva2f352Kf76AZ+geJCiVfTFQSTimXSV1guUz8H0O39PzxRKdk6OJJ4Y
+         QDqftHPC8XXiIz0gPQOhwMIQp/NHf+f15cl/kMoXeO8o2iQy/vL5UuojvcEX69Z8Fe+S
+         jAzc5HMbO7Kz24/+O19URrInxFdIHcd01o/OWOS2ZEH0IyZmmMXp29lLtuMyB2LvXPSh
+         k5HA==
+X-Gm-Message-State: AO0yUKVTfnKnjKQ8bhjG7rElR6K7H5rOuwpMdvwhUKY+evwKgVw1k87B
+        0eKoFfLRV6uD/PyidL28kxEHSNTEZ0Q=
+X-Google-Smtp-Source: AK7set8rJ7aNoHxwHiQIZDi/NL64TSR8L4pfjrQAbsLtdkCgLc8kkYkwMg+orpzAWrEb0tAnMrj1mQ==
+X-Received: by 2002:a17:906:d92:b0:88a:a09d:e673 with SMTP id m18-20020a1709060d9200b0088aa09de673mr20328585eji.31.1676220664607;
+        Sun, 12 Feb 2023 08:51:04 -0800 (PST)
+Received: from ?IPV6:2a01:c23:bdd2:4300:1932:303f:b63a:5a0e? (dynamic-2a01-0c23-bdd2-4300-1932-303f-b63a-5a0e.c23.pool.telefonica.de. [2a01:c23:bdd2:4300:1932:303f:b63a:5a0e])
+        by smtp.googlemail.com with ESMTPSA id k20-20020a1709061c1400b00871390a3b74sm5588297ejg.177.2023.02.12.08.51.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Feb 2023 08:49:26 -0800 (PST)
-Message-ID: <2b6bc14b-20df-b61e-6464-61ebb11f24f0@linaro.org>
-Date:   Sun, 12 Feb 2023 16:49:25 +0000
+        Sun, 12 Feb 2023 08:51:03 -0800 (PST)
+Message-ID: <a91e3a8e-7ef1-70bb-f6be-01a9a90c0e05@gmail.com>
+Date:   Sun, 12 Feb 2023 17:51:02 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v5 2/5] arm64: dts: qcom: Add msm8939 SoC
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH] dt-bindings: media: meson-ir: Convert Amlogic Meson IR
+ controller binding
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-media@vger.kernel.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, benl@squareup.com,
-        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
-        dmitry.baryshkov@linaro.org, Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>
-References: <20230206012336.2130341-1-bryan.odonoghue@linaro.org>
- <20230206012336.2130341-3-bryan.odonoghue@linaro.org>
- <Y+T5cF4d667RhrJp@gerhold.net>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <Y+T5cF4d667RhrJp@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 13:47, Stephan Gerhold wrote:
->> +			frame@b021000 {
->> +				reg = <0x0b021000 0x1000>,
->> +				      <0x0b022000 0x1000>;
->> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->> +					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
->> +				frame-number = <0>;
->> +			};
-> These timer interrupts are still wrong like mentioned in v3:
-> https://lore.kernel.org/linux-arm-msm/Y8fC%2FGCHfENQmBNC@gerhold.net/
-> 
+Convert Amlogic Meson IR controller binding to yaml.
 
-Hmm.
-
-This is a copy/paste error from 8916 which I guess we never see in our 
-production system, since we use LPM to get to do idle
-
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
-bod
+ .../devicetree/bindings/media/meson-ir.txt    | 20 ---------
+ .../devicetree/bindings/media/meson-ir.yaml   | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/meson-ir.txt
+ create mode 100644 Documentation/devicetree/bindings/media/meson-ir.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
+deleted file mode 100644
+index efd9d29a8..000000000
+--- a/Documentation/devicetree/bindings/media/meson-ir.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* Amlogic Meson IR remote control receiver
+-
+-Required properties:
+- - compatible	: depending on the platform this should be one of:
+-		  - "amlogic,meson6-ir"
+-		  - "amlogic,meson8b-ir"
+-		  - "amlogic,meson-gxbb-ir"
+- - reg		: physical base address and length of the device registers
+- - interrupts	: a single specifier for the interrupt from the device
+-
+-Optional properties:
+- - linux,rc-map-name:	see rc.txt file in the same directory.
+-
+-Example:
+-
+-	ir-receiver@c8100480 {
+-		compatible= "amlogic,meson6-ir";
+-		reg = <0xc8100480 0x20>;
+-		interrupts = <0 15 1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/media/meson-ir.yaml b/Documentation/devicetree/bindings/media/meson-ir.yaml
+new file mode 100644
+index 000000000..8d3c7acfa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/meson-ir.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/meson-ir.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Meson IR remote control receiver
++
++maintainers:
++  - Heiner Kallweit <hkallweit1@gmail.com>
++
++allOf:
++  - $ref: rc.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - amlogic,meson6-ir
++          - amlogic,meson8b-ir
++          - amlogic,meson-gxbb-ir
++      - items:
++          - const: amlogic,meson-gx-ir
++          - const: amlogic,meson-gxbb-ir
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    ir-receiver@c8100480 {
++      compatible= "amlogic,meson6-ir";
++      reg = <0xc8100480 0x20>;
++      interrupts = <0 15 1>;
++    };
+-- 
+2.39.1
+
+
