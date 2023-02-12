@@ -2,155 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F149693415
-	for <lists+devicetree@lfdr.de>; Sat, 11 Feb 2023 22:46:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C28F69358B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 02:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjBKVq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 16:46:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48188 "EHLO
+        id S229477AbjBLB6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Feb 2023 20:58:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjBKVq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 16:46:26 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C62F196BC;
-        Sat, 11 Feb 2023 13:46:25 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC4CC6CF;
-        Sat, 11 Feb 2023 22:46:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1676151983;
-        bh=Frqc/jloOE2B8ZOlenDaykqeDLjVteoRjD7sSILoOkI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hKMkNe5S3nwi4k2DzzgokvS8qg6FHSgQd8pKR0HtUesPazXEKjkcrBtzGZ/H0dhJ1
-         8GH9MvafQyud76XWpGPOcENWsgiOZHPSTqmgsHXq1vnjftU04nqwmZ+b/aMKUgqDOk
-         pQ6bI1hoAoLriapeyDzUGIYNVWCT7Kz/ulNBH0Kg=
-Date:   Sat, 11 Feb 2023 23:46:21 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: draak: Make HDMI the default
- video input
-Message-ID: <Y+gMrZX59YaDeSV/@pendragon.ideasonboard.com>
-References: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
- <20230211165715.4024992-2-niklas.soderlund+renesas@ragnatech.se>
+        with ESMTP id S229585AbjBLB6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 20:58:50 -0500
+Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC01E15CAC;
+        Sat, 11 Feb 2023 17:58:46 -0800 (PST)
+Date:   Sun, 12 Feb 2023 01:58:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1676167124; x=1676426324;
+        bh=+Dqy/SLq6BVO3zqJNfQOnEGQobIgzLztHrmlEA53WfM=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=efcIyWs10UZZAn/KOimOH28tdACJw6QJJ9sQTM/UxzBu17BqOy4YpS34Y8UZdC93h
+         afs4+MrHsJsH4SEhYfef0D6X91dWnBp+aIyTbvPXbDbmpxt9QCt+TNZoTWsAXnaLCR
+         GR0j8GgdtPa3WDtLvyjA5Zzw8kX3dmnMSx+1l5ME=
+To:     Pavel Machek <pavel@ucw.cz>, Gergo Koteles <soyer@irl.hu>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm845-oneplus: add tri-state-key
+Message-ID: <d1959211-bf33-f4fd-01a8-91dcd247aa70@connolly.tech>
+In-Reply-To: <Y+fE7gIMD4BDCffy@duo.ucw.cz>
+References: <20230209232556.91554-1-soyer@irl.hu> <Y+fE7gIMD4BDCffy@duo.ucw.cz>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230211165715.4024992-2-niklas.soderlund+renesas@ragnatech.se>
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
 
-Thank you for the patch.
 
-On Sat, Feb 11, 2023 at 05:57:14PM +0100, Niklas Söderlund wrote:
-> Most Gen3 R-Car devices have HDMI as the default video input source,
-> align Draak with them and make HDMI the default. While at it move the
-> bus properties to the VIN node where they can be consumed correctly by
-> the driver.
+On 11/02/2023 16:40, Pavel Machek wrote:
+> Hi!
+>
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> @@ -52,6 +52,43 @@ key-vol-up {
+>>  =09=09};
+>>  =09};
+>>
+>> +=09tri-state-key {
+>> +=09=09compatible =3D "gpio-keys";
+>> +=09=09label =3D "Tri-state key";
+>> +=09=09pinctrl-names =3D "default";
+>> +=09=09pinctrl-0 =3D <&tri_state_key_default>;
+>> +=09=09state-top {
+>> +=09=09=09label =3D "Tri-state key top";
+>
+> "top/middle" is not too useful. Do we need the label at all? If so,
+> should it say "loud/vibrations only/mute"?
 
-I'm fine with the idea, but I'm wondering if this matches the default
-DIP switches configuration that boards are shipped with. This being
-said, when I check the switches on my board to test HDMI input a few
-days ago, I realized they were set to a hybrid configuration, so maybe
-we should just roll our eyes and merge this :-)
+"mute", "vibrate" and "ring" sound good to me.
 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
->  arch/arm64/boot/dts/renesas/draak.dtsi | 24 ++++++++++++------------
->  1 file changed, 12 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts/renesas/draak.dtsi
-> index ef3bb835d5c0..e248866c7871 100644
-> --- a/arch/arm64/boot/dts/renesas/draak.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/draak.dtsi
-> @@ -356,11 +356,10 @@ port@3 {
->  				 * CVBS and HDMI inputs through SW[49-53]
->  				 * switches.
->  				 *
-> -				 * CVBS is the default selection, link it to
-> -				 * VIN4 here.
-> +				 * HDMI is the default selection, leave CVBS
-> +				 * not connected here.
->  				 */
->  				adv7180_out: endpoint {
-> -					remote-endpoint = <&vin4_in>;
->  				};
+Although it would be nice if users can easily map the physical key
+position to the action when viewing the input device or remapping the
+key in userspace.
 
-Endpoints are required to have a remote-endpoint property, so you should
-drop the endpoint completely. This will require a change in patch 2/2 as
-you'll have to create the endpoint there.
+Do you have any ideas or recommendations on how to do this?
+>
+> BR,
+> =09=09=09=09=09=09=09=09Pavel
 
->  			};
->  		};
-> @@ -423,13 +422,11 @@ port@2 {
->  				 * CVBS and HDMI inputs through SW[49-53]
->  				 * switches.
->  				 *
-> -				 * CVBS is the default selection, leave HDMI
-> -				 * not connected here.
-> +				 * HDMI is the default selection, link it to
-> +				 * VIN4 here.
->  				 */
->  				adv7612_out: endpoint {
-> -					pclk-sample = <0>;
-> -					hsync-active = <0>;
-> -					vsync-active = <0>;
+--
+Kind Regards,
+Caleb
 
-This will cause the bus type to change from parallel to BT656. Is that
-desired ? If not, I'd set the bus-type property explicitly. Actually,
-I'd set it explicitly in any case.
-
-This change is worth being split to a separate patch.
-
-> +					remote-endpoint = <&vin4_in>;
->  				};
->  			};
->  		};
-> @@ -580,8 +577,8 @@ usb0_pins: usb0 {
->  		function = "usb0";
->  	};
->  
-> -	vin4_pins_cvbs: vin4 {
-> -		groups = "vin4_data8", "vin4_sync", "vin4_clk";
-> +	vin4_pins: vin4 {
-> +		groups = "vin4_data24", "vin4_sync", "vin4_clk";
->  		function = "vin4";
->  	};
->  };
-> @@ -729,7 +726,7 @@ &usb2_phy0 {
->  };
->  
->  &vin4 {
-> -	pinctrl-0 = <&vin4_pins_cvbs>;
-> +	pinctrl-0 = <&vin4_pins>;
->  	pinctrl-names = "default";
->  
->  	status = "okay";
-> @@ -737,7 +734,10 @@ &vin4 {
->  	ports {
->  		port {
->  			vin4_in: endpoint {
-> -				remote-endpoint = <&adv7180_out>;
-> +				pclk-sample = <0>;
-> +				hsync-active = <0>;
-> +				vsync-active = <0>;
-> +				remote-endpoint = <&adv7612_out>;
->  			};
->  		};
->  	};
-
--- 
-Regards,
-
-Laurent Pinchart
