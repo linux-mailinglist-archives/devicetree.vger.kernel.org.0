@@ -2,110 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 493206935F7
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 05:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 036CA69366F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 09:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbjBLEHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Feb 2023 23:07:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56618 "EHLO
+        id S229518AbjBLINu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 03:13:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjBLEHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Feb 2023 23:07:50 -0500
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2080.outbound.protection.outlook.com [40.107.15.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6417B166D7;
-        Sat, 11 Feb 2023 20:07:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b2BGQmkzCs0Q2bSybKTDkR5a9JaPAIalIDx4/70pfwgblu7B1hc4UydnNjXxQo9SdlUaee8zRc95dS8MEdZJUdz83gI9gLyIy/pBI5ZFhHsvvihHSjJGuQspZQb9u/BRLLZ6EG7mAgE23B/8MXrCNCWtyWao3/ODB3OyubOES4jXWe72U/oEjJFsNaiSY92f0kHSvC8WqcU592pZ0er2+cjH8vBB/64nYCfihj6uGuWGMpsHcdnuP0vvFaiBE9MpZpjcXo4hi0q/2cKPl/B78yw51LZcCSHqJooBoy3PbK9UUt5RSRuBwFd3gjP29TbwcZNp2Z3+7uM5/onH3tgmog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vGO1zSxZ9NgzNArzpe1C73I3mD6yNaz/wIg2gW9T/hs=;
- b=n3hvlWQO043UE95t5CxwD2teHq32nSjHEKBKUHnNC1t3E+RvQUm69wyl1V+bvZdCHfn/zC2Nl4lJyzmuUXsgebGWpSfIffFEC6GJSsTpgE1egaaKIsqQRKDKxZfSSzIGXRYwV1vvQEa2iGeVBCTEQXtT1cFTn57xUe75BWMs+t54YXnneiUj/a6Kdr34aVbx3aAWFznUwZItUTwpx/yMuxYfiElBwgJbCbJkDjfUJ3lMV91kFhcSVSUJ+v5srpJ2DiCzgDg4B29oOgOq3Mr/RaMnu5R4ryDB9hHRZcH0Ooa2AmpSjm7pIR+P3mRxjizBRneucPcPS2nYZmSafzMIAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vGO1zSxZ9NgzNArzpe1C73I3mD6yNaz/wIg2gW9T/hs=;
- b=DzfAXoNGZEgcCodgbdVvdikEMkgNYIUg+lfcH1FzmuZv0fDcWWRwqeTtTeFR6NeqT/2OnitjxOqe9o97kGLqgMeAKZ4Juxh/eyhrOOScK2KqHdgWAbIprHZE14L014kEuOV1ns7Uj/V8XdVyKYPLEFHOMBYAW4VZLZiyumnPe5I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AM0PR04MB7105.eurprd04.prod.outlook.com (2603:10a6:208:19b::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23; Sun, 12 Feb
- 2023 04:07:43 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc%9]) with mapi id 15.20.6086.022; Sun, 12 Feb 2023
- 04:07:43 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com
-Subject: [PATCH 2/2] drm/panel: panel-simple: Add BOE EV121WXM-N10-1850 panel support
-Date:   Sun, 12 Feb 2023 12:08:43 +0800
-Message-Id: <20230212040843.231934-3-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230212040843.231934-1-victor.liu@nxp.com>
-References: <20230212040843.231934-1-victor.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGBP274CA0024.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::36)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+        with ESMTP id S229449AbjBLINu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 03:13:50 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2663BE38B;
+        Sun, 12 Feb 2023 00:13:47 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id bh15so7956723oib.4;
+        Sun, 12 Feb 2023 00:13:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nvROq1Ysin4iKmF7L5qnmUmZE+huLZ31SHq6Mu5DVtg=;
+        b=IaRYWpQ6frsgDcsD6edPNdjfb3TkXXkD203hGwxUJrrP8YSzYq8RnvIfgXQzF9iON5
+         BLsNdc96tgMCGfADIwaqmZ95eJF85v/VnGTDQIFMvkrHDoJo81Q3sfcSRzlMBwe6Fyu+
+         P6991khDl4+CUo5euTWmh4W6XHehUs104R6KRrFuwUkzAIOJM5cy9YwwQmyQucJ6blQC
+         9VAksPKdR7Nt7OlYtFRwMoFSawY0Rwj/H9rjznMcZBdmlU5orWtgIpzIFFw6Rwaogyjf
+         x2rmyiSGZVesaeFwNUO11MYWzZWBduvP558YTbi6TJ021im6zcCxfWXaY760cX6hetEP
+         oFnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nvROq1Ysin4iKmF7L5qnmUmZE+huLZ31SHq6Mu5DVtg=;
+        b=7EOf4MNyeHDcy7igUG5/v+s2h8APq82xa2mc+EKHelfSDx3oq+vuE6HOSTeoE6iQTi
+         cM4uk99pAGKI+cl/OlaokzdM6xCX0KTbNiClkGvPtV3GbjUqjUfBSWxr8cRePX9JzES0
+         tUX31tf24D4PXa6n8M403ViP4aid2CT89B/6OOTvCSuDvPtlrERFX6CbwMQ/Ipiqxv83
+         cLx6Z2xuOMPFb1ETtV9PFFvUdDF3ZOocui48AwvVQVDBCUkpVgmYpfYa6s3ixV7BI2YP
+         TFdOsgnoV+rQ7tKzCITXXPhutO+2ZcloyZCu3wpX10aiMXrxvhSuQpP1HVdNr8lSiH9g
+         4dgA==
+X-Gm-Message-State: AO0yUKVzAWpYfSVF362HD0Gu8pPxB6e9+exk49Mvd2/uw92eLVAaxMxo
+        OXt8njNISuZxNoyURiekhfeXx7v42Ob7jjL9ISk=
+X-Google-Smtp-Source: AK7set8TnzNOFqImJjPpCHh5tW2QRdderphK8943iNYTmjtSAMNRrq5sZirKjtzelCQLw2PZ/6HszLn+vhUv4VID4Bs=
+X-Received: by 2002:a05:6808:60d:b0:37b:7c36:4df8 with SMTP id
+ y13-20020a056808060d00b0037b7c364df8mr1570866oih.144.1676189626284; Sun, 12
+ Feb 2023 00:13:46 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM0PR04MB7105:EE_
-X-MS-Office365-Filtering-Correlation-Id: 533c8b57-d869-4c9e-4bf3-08db0caeb0b5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2VQh9VdAMbf4HKJrE+gme4Oq0sEOliDBHjQew8d8uu5+bjv12bbfQS/t+QQ0+wIn3W5k4V850W8LIk9e3eR2q+PPWOkcM4C0HaCCgBD1ErWx3PEIaZBntHJNvQDIppNUOsF6COb8+7sbUnOaOPK5ZaVR1ZUSTE8o/2QGcgSvXQyFSoJpKsoLVHs7kwZSBMgEEScnyZWvHZgvsOvfQHxogOWKzHD9DG9Kg8p1Ofon452DVa5KSVm1wQBrLwY+kTxdmjaxusIAAoRmopLOq1dWOluMkjtODSyIprUNpkSPW5JCKVFxTpfgWdN/MIML0aQi52Zm+0QM3YFb7NT+NE8l/lNSxLbdtbmOLB/H0l+8k8m8e1AFslTNLhWa3tGEgqde2ddT3mM84BbZXMMF1vRlcQSG6Ojx5aDnnX0ofDqzktHHnXoWudKHTYFZshmMZikTH3lbPp5whyf8N5ADREYfQaVzmC5jD2ugWRMoUU4LsM5z60LzbppQzJ8CNkXJpvKOTHyp9GgrqlFgFyxjw0QCp7RdOhkJDIkZFiZ7ZqyC24lUgoN1UVckH0pLhFJ03rN8tmJwNoFu7zfXio4k+GnT/lBXT7wYM8lKJLB9negG1TCyqxJ1OBDrWr2aVaOrOeRYo21z46HpE0jSSFMNlOcaUJIHRr2vm3hU3dypdn1BtnSA1w4+bf+0hoe1FuFiGNrKL5Gp2d+UAxJdY+CUNykF2p9G8UbQDvrt5H2WazSTtAQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(346002)(136003)(39860400002)(376002)(396003)(451199018)(86362001)(316002)(2616005)(6506007)(6512007)(26005)(186003)(1076003)(478600001)(83380400001)(966005)(52116002)(6486002)(2906002)(8936002)(38350700002)(38100700002)(36756003)(41300700001)(5660300002)(66476007)(66556008)(8676002)(4326008)(66946007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HISK8nZSCSKviNo0brDxl/MI3igu2t0inSOneaAa7XPt6LnlKpxbvmrfSrHI?=
- =?us-ascii?Q?k46JiiI0yZu2KGLjfbJfXExUslkKINOaJuvmMDMEnT8/IEGdSNbjwFiYUlCE?=
- =?us-ascii?Q?nseCMKU/Tu/j9AFm9q00LHiVduN6rR1MensRwHfw5pkuOr8ExqttBAHViThj?=
- =?us-ascii?Q?tjY9emw2nP3y9FWd87/k/8JSIzxCDA+Rf2ZcJpFjqYDYVFaCTiyQx/jlTkj9?=
- =?us-ascii?Q?ZdxZIzddFoX0wXpF5eBkFmyD16ovfo1+rIsvFtYsxXiTLJWCItRWP/lfC+v2?=
- =?us-ascii?Q?goGIV4vAvBpiosoKbNb43ybFwnnl04BZrZmEogeDtkE1eYIHqK9/CphCChAu?=
- =?us-ascii?Q?0qwTSRBBUuzVxWzVS3NFGcXiP+XSPcEKzqDxTNsMvSZxyEhcolsRJDGYlQxH?=
- =?us-ascii?Q?x1no+60n/INPbs8SPgPPWcj74a/+n46WhTfn9Z9FaII0ZCwsJ7jJVcOgMxDy?=
- =?us-ascii?Q?5H6x8XTBsNGNjQC0S3cXuEDHJHJRYPCcOkIbN1uJTG13oFiE9cmMIXTx1/mf?=
- =?us-ascii?Q?T/oa1Tz32oEuQ/0dbmdJCNkLbtaQBYHFlsSUzAU4Zyixwqp59qG38A/u9WxD?=
- =?us-ascii?Q?PFjxL7lwN7rb2Sy4KznUB0hydICznQie3PJ/CiEPGttoLBblXny93IWx6OAh?=
- =?us-ascii?Q?MJJRzkylmH70lyK0Ld/FQwfkBXy+qrBLBa4RK6HgqmYtWucuPtNY71+wjEgb?=
- =?us-ascii?Q?nqcbjijVXSgdcCkI2KDjr6vDLx01Mh6kRUfSKM4VAhic7Z+avbRSM0ncnqyF?=
- =?us-ascii?Q?Bejd+7BsdhOuPh8ti28kKwyCReYBx9xf75O2g0LYSUUPaQB1HykX/vIdmXfO?=
- =?us-ascii?Q?y0RgGjQVxTe4fDcm5KPn6YngJW/8ckAlDT90lweMrkIsESM1Zm7YSIqEWfOp?=
- =?us-ascii?Q?4++FVzcAib9Zh4y/4H7Ho90izAoCvnZcBVV03uSKM43Y86yHuGiiwWpWb9YB?=
- =?us-ascii?Q?D0lIQWnnE6RWTXluh49IwukxhTFYc64/4jr+aNrIp4T2bRP7pUmzQegLKhYD?=
- =?us-ascii?Q?mrkoZfm1toYvokFC3ib8pkznKt7ukUpepagYbMezErgUcbjeTEuHLUVJzk+1?=
- =?us-ascii?Q?0xHYvX7CsQBjloGUOkTbXPFGGibXcBPot25MOtUl2V/NFkGNBa+js32vT3f8?=
- =?us-ascii?Q?txfQnKeU85nLzAeAsV5ITQ4s4ZgWDA8bW70ZccXIBp2VPeSYUEIHNgGB+Ukl?=
- =?us-ascii?Q?6N2DUoR4VtxI5Ae7da8ENM3XvO6+LOc1i2GehldcDCCFdkjL+U8sFDtzquZ1?=
- =?us-ascii?Q?oyF8j6lZQBWjDNIbvzyNyadlPgHcUl5RyTnLqK/lD/CMBDcJ1s0HfjgNgNZU?=
- =?us-ascii?Q?rP7Pn17AI7AnBH2qM5imVKjSzCMT2tXmqwvHYsk7diowOL+pbFJO/KCXtOEc?=
- =?us-ascii?Q?3tAfRK692N0jYHSf0g9DzTQ3q16LrmwWz/+/kmLNAK7vqd6WTZCRebsXV2/e?=
- =?us-ascii?Q?f3tV7rphe+LQNIgmkOJuG3fC2ch0S5vy0wF3H+dxXlRLED56GiriZHqT0+mN?=
- =?us-ascii?Q?xtMgZcC+5H9z+HrFmMpCRw7YBo3K7U4p4fqenuExqt3zHs0OtE5uDPWTnZcl?=
- =?us-ascii?Q?L9dRf9z16Y1Ott6HSXpQ34EhWXUPAUa7VRArsJ5c?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 533c8b57-d869-4c9e-4bf3-08db0caeb0b5
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 04:07:43.4539
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gA1aNz7wggt/nRdyp4i0mNR8PRND8N4qGba91e3l1uxTRg9dE+1KUNWJPwIlVWprqBqA6lZ1QbddROEgbeW2yg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7105
+References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
+ <20230211073357.755893-2-sergio.paracuellos@gmail.com> <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
+ <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
+ <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com> <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
+ <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
+In-Reply-To: <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sun, 12 Feb 2023 09:13:35 +0100
+Message-ID: <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
+ access system controller registers
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -113,68 +78,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add BOE EV121WXM-N10-1850 12.1" WXGA (1280x800) TFT LCD panel support.
-The panel has a LVDS display interface.
+On Sat, Feb 11, 2023 at 12:42 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/02/2023 12:01, Sergio Paracuellos wrote:
+> > On Sat, Feb 11, 2023 at 11:47 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@=
+arinc9.com> wrote:
+> >>
+> >> On 11.02.2023 13:41, Sergio Paracuellos wrote:
+> >>> On Sat, Feb 11, 2023 at 10:10 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.una=
+l@arinc9.com> wrote:
+> >>>>
+> >>>> Is this mediatek,sysctl property required after your changes on the
+> >>>> watchdog code?
+> >>>
+> >>> I don't really understand the question :-) Yes, it is. Since we have
+> >>> introduced a new phandle in the watchdog node to be able to access th=
+e
+> >>> reset status register through the 'sysc' syscon node.
+> >>> We need the bindings to be aligned with the mt7621.dtsi file and we
+> >>> are getting the syscon regmap handler via
+> >>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Ar=C4=
+=B1n=C3=A7.
+> >>
+> >> I believe you need to put mediatek,sysctl under "required:".
+> >
+> > Ah, I understood your question now :-). You meant 'required' property.
+> > I need more coffee, I guess :-). I am not sure if you can add
+> > properties as required after bindings are already mainlined for
+> > compatibility issues. The problem with this SoC is that drivers become
+> > mainlined before the device tree was so if things are properly fixed
+> > now this kind of issues appear.  Let's see Krzysztof and Rob comments
+> > for this.
+>
+> If your driver fails to probe without mediatek,sysctl, you already made
+> it required (thus broke the ABI) regardless what dt-binding is saying.
+> In such case you should update dt-binding to reflect reality.
+>
+> Now ABI break is different case. Usually you should not break it without
+> valid reasons (e.g. it was never working before). Your commit msg
+> suggests that you only improve the code, thus ABI break is not really
+> justified. In such case - binding is correct, driver should be reworked
+> to accept DTS without the new property.
 
-The panel's product specification can be found at:
-http://www.onetech.com.tw/files/EV121WXM-N10-1850ProductSpecification_20180801.pdf
+Thanks for clarification, Krzysztof. Ok, so if this is the case I need
+to add this property required (as Arinc was properly pointing out in
+previous mail) since without it the driver is going to fail on probe
+(PATCH 5 of the series). I understand the "it was never working
+before" argument reason for ABI breaks. What happens if the old driver
+code was not ideal and totally dependent on architecture specific
+operations when this could be totally avoided and properly make arch
+independent agnostic drivers? This driver was added in 2016 [0]. There
+was not a device tree file in the kernel for this SoC mainlined until
+2022 [1]. I also personally migrated this watchdog binding in 2022
+from text to YAML and maintained it without changes [2]. When this was
+mainlined not all drivers were properly reviewed and the current code
+was just maintained as it is. Most users of this SoC are in the
+openWRT community where the dtsi of the mainline is not used yet and
+they maintain their own mt7621.dtsi files. Also, when a new version of
+the openWRT selected kernel is added they also modify and align with
+its mt7621.dtsi file without maintaining previous dtb's. If "make the
+driver arch independent to be able to be compile tested" and this kind
+of arguments are not valid at all I need to know because I have
+started to review driver code for this SoC and other drivers also have
+the same arch dependency that ideally should be avoided in the same
+way. This at the end means to break the ABI again in the future for
+those drivers / bindings. So I can just let them be as it is and not
+provide any change at all and continue without being compile tested
+and other beneficial features to detect future driver breakage.
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 33 ++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Thanks in advance for clarification.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 8a3b685c2fcc..ac7aea7c186d 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1211,6 +1211,36 @@ static const struct panel_desc bananapi_s070wv20_ct16 = {
- 	},
- };
- 
-+static const struct drm_display_mode boe_ev121wxm_n10_1850_mode = {
-+	.clock = 71000,
-+	.hdisplay = 1280,
-+	.hsync_start = 1280 + 48,
-+	.hsync_end = 1280 + 48 + 32,
-+	.htotal = 1280 + 48 + 32 + 80,
-+	.vdisplay = 800,
-+	.vsync_start = 800 + 3,
-+	.vsync_end = 800 + 3 + 6,
-+	.vtotal = 800 + 3 + 6 + 14,
-+};
-+
-+static const struct panel_desc boe_ev121wxm_n10_1850 = {
-+	.modes = &boe_ev121wxm_n10_1850_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 261,
-+		.height = 163,
-+	},
-+	.delay = {
-+		.prepare = 9,
-+		.enable = 300,
-+		.unprepare = 300,
-+		.disable = 560,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode boe_hv070wsa_mode = {
- 	.clock = 42105,
- 	.hdisplay = 1024,
-@@ -3984,6 +4014,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "bananapi,s070wv20-ct16",
- 		.data = &bananapi_s070wv20_ct16,
-+	}, {
-+		.compatible = "boe,ev121wxm-n10-1850",
-+		.data = &boe_ev121wxm_n10_1850,
- 	}, {
- 		.compatible = "boe,hv070wsa-100",
- 		.data = &boe_hv070wsa
--- 
-2.37.1
+Best regards,
+    Sergio Paracuellos
 
+[0]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
+mit/drivers/watchdog/mt7621_wdt.c?id=3Dab3f09fe16d158cb4f84e558c61ec5d6d601=
+f2e0
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
+mit/arch/mips/boot/dts/ralink/mt7621.dtsi?id=3D7a6ee0bbab2551d7189ce0f5e625=
+fef4d612ebea
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
+mit/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml?id=
+=3D9023e05b7a5809593a7ea09896eee0bbb6ae1685
+
+>
+> Best regards,
+> Krzysztof
+>
