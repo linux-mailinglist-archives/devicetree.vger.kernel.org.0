@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FB76938DD
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 17:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6C6D6938FF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 18:12:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbjBLQ46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 11:56:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54280 "EHLO
+        id S229715AbjBLRMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 12:12:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjBLQ45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 11:56:57 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB52CEFA3
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:56:54 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso9682684wmp.3
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:56:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Eru5lWHw1YT6wGcDm/Y1zHrSXGWrUQ4j4UJ9DI8DhY=;
-        b=YhD7GXsOXf/ZWNNEyO00bn8lrwtUXD0yCHYuK9vhLDg4CcjCbF4hZB4J2MkSDNdkFT
-         lli22RfskaAd0tjyVvv/eCE/A0kVfJJv6nhqQqc26MXOljkyZbNqrHjnfqdNWEySaiMM
-         OhU0YNoHpJ86obFkfdDoN6pHWjPLyOcsbbjMOnE+RRAqkKFOyrWe+qd6P273rOyiMjVY
-         ygM3aeImD6ysrIa/nNzpMvWJksRW5mw3YxbvfzdLOiR81/rW6Zupyi19qEBOiB8cFNb1
-         igrIb3RaWYveg9152PB91GfpoICjpEGpVp0/nS7Ao04ik1JjAr7q3nfNTtdUd70J5DJG
-         Gymw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Eru5lWHw1YT6wGcDm/Y1zHrSXGWrUQ4j4UJ9DI8DhY=;
-        b=PUyZXeR5jaQhgRq5w27vPjR3I4lk7mUORwoX2g9wKKanIFQCOgE4roOYaV+DyLh5Nl
-         IUS6cMvu5rpi5uEv0LKHd8noCL70iZJU9YRK+j8YQJxLokTX/a1JT7lO8bQ7QcXy78Zs
-         bpWSBXD7a+Y472aFkqZKaE6lED8VtgyQXYLJCOwnVZVmCglcFbXqLT/gDWZiIWCeymYF
-         31/YrgVlHqL174J7QxXul2BhTm8mgN//ezFrtgld+2Y+HAlwFgonzN3l1IiFAehI4Uj/
-         fec6VDL/cegotoY2V7TBbIT0Q/RkScOBxAbKF5uIQf6SqnRf+O1ZTdFJc2fqEIDTsQk7
-         C+aw==
-X-Gm-Message-State: AO0yUKVg8ksRiG6TmxFdOgkCtCA1r7KJsBNOUC0hdrRL6AQo++goAUR/
-        Z8Ggs8npG5wVgHo/ihDrJyYd263yg7pLMGEE
-X-Google-Smtp-Source: AK7set9zT0F9F59wplZJome4tcnMKXDw3AXx1E5Rklu8HGmYaTSV/UpCGVDTm5PYo0A91G/GlbNlkw==
-X-Received: by 2002:a05:600c:9a2:b0:3dc:576c:ab07 with SMTP id w34-20020a05600c09a200b003dc576cab07mr16942584wmp.14.1676221013326;
-        Sun, 12 Feb 2023 08:56:53 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p24-20020a05600c1d9800b003dd1bd0b915sm14369327wms.22.2023.02.12.08.56.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Feb 2023 08:56:52 -0800 (PST)
-Message-ID: <7adf2cf5-dcd0-748b-9aaf-7e5abc45d2ae@linaro.org>
-Date:   Sun, 12 Feb 2023 17:56:51 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add BOE
- EV121WXM-N10-1850 panel
-Content-Language: en-US
-To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com
-References: <20230212040843.231934-1-victor.liu@nxp.com>
- <20230212040843.231934-2-victor.liu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230212040843.231934-2-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S229556AbjBLRMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 12:12:51 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1FC10A8C;
+        Sun, 12 Feb 2023 09:12:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BC41E60D37;
+        Sun, 12 Feb 2023 17:12:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20C8EC433EF;
+        Sun, 12 Feb 2023 17:12:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676221964;
+        bh=NTFE8J83H4FQBIZXz1OKZ2YEeYUzOcnc1ScSc0IIJpI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=X8MuKKbhdQtEIi5I9wvmXUyY2tTt00zVSyUNWONWEfmqAeq5hX8COvdNhN3UGnCk2
+         ZkR77y4M1f3uwlpgRYqeM7RyCYJXbOK5qCsM96ek2bn04EfIJqSxSZqXuEwyWZmkGX
+         LgGvhGva1bDUyKd9JE9qaTd5c36akw/C8IvDjtAc+Y2Hu/V+JizMsnu00EfN1qSZje
+         rOuuIxljRTKHWYvlBK8UO5Nw8UWk9CyUBaNnztNr4rz8w1A0K7ZIQwMmCPXIdUH05S
+         sCO7AHqEmw2YJjwxi3NuHfemzuI8/9i66BWRoDOkPd0o8hWZbnxk809DcBmrNQekxT
+         3IAeaFu0YW52A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pRFu5-009lI8-Mf;
+        Sun, 12 Feb 2023 17:12:41 +0000
+Date:   Sun, 12 Feb 2023 17:12:40 +0000
+Message-ID: <87ilg6lsdz.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Janne Grunau <j@jannau.net>
+Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Thomas Gleixner <tglx@linutronix.de>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/17] dt-bindings: interrupt-controller: apple,aic2: Add apple,t8112-aic compatible
+In-Reply-To: <20230202-asahi-t8112-dt-v1-5-cb5442d1c229@jannau.net>
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+        <20230202-asahi-t8112-dt-v1-5-cb5442d1c229@jannau.net>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: j@jannau.net, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, kettenis@openbsd.org, tglx@linutronix.de, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,18 +71,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/02/2023 05:08, Liu Ying wrote:
-> Add BOE EV121WXM-N10-1850 12.1" WXGA (1280x800) TFT LCD panel
-> compatible string.  The panel has a LVDS display interface.
+On Sun, 12 Feb 2023 15:41:15 +0000,
+Janne Grunau <j@jannau.net> wrote:
 > 
-> The panel's product specification can be found at:
-> http://www.onetech.com.tw/files/EV121WXM-N10-1850ProductSpecification_20180801.pdf
+> The Apple M2 SoC uses AICv2 and is compatible with the existing driver.
+> Add its per-SoC compatible.
+> Since multi-die versions of the M2 are not expected decrease
+> '#interrupt-cells' to 3 for apple,t8112-aic. This is seamlessly handled
+> inside the driver.
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Janne Grunau <j@jannau.net>
 
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	M.
 
-Best regards,
-Krzysztof
-
+-- 
+Without deviation from the norm, progress is not possible.
