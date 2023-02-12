@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D24A569384E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 17:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12498693860
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 17:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjBLQIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 11:08:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
+        id S229532AbjBLQOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 11:14:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjBLQIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 11:08:41 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC9011667
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:08:39 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id co8so6174951wrb.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:08:39 -0800 (PST)
+        with ESMTP id S229864AbjBLQOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 11:14:55 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A979711E8B
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:14:53 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so9663742wma.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 08:14:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yo4+QqlKq3rBI4dUhZnosf5TfI2MY6+eR5qfzKyTIIs=;
-        b=rpoNjAyj9Kh3k/VP0r39ILsWg2J9vtY6VvPCv+w3UtbqUk3Ud6jUd7dcTk/fZLApEq
-         5qyBI+DHcDXqAu+tg4bSbAEvUB4iXtr1Wr0vo2pOZNoSJUeHlnfwJhHu5/to+Vmr2p0z
-         5TevgnlV240nqhxH8sAeVDdmYWXNOtuq4IqOFBu3VN1ytJeUbu/Y0BaDGWuN8lNa1cJe
-         6ng9m138DB9hdeQbsHTa0uL7fIneeqZwPIV5ZMY0BTzi5+d4gMvLB8Vo00KcbHyXSKQV
-         ctV6cy+Dj/i4FVLt0/uY0S7iS7RRtQRH55eyqSvfz9CBBBEOOcqiq1GA8+tGnbzdeNbH
-         HvNQ==
+        bh=MF7/vbJs0MIasH4Urg58rp48T2rF3hjYXHHT6Ln6xtQ=;
+        b=efgPoAyvsUx1cIKnzwm/LdjiDGwm/n1mEoJu7i1Oiokqc+Ur2TTo154uQNt6rxcHOW
+         QcRPITcuX0oDApdp4/UX6gBv2rwuIo82hPMLKvloTB/FogolfYxedlu8W+L9bg+4xJhO
+         RuxJdaKSD0Ii2883U5tSlsIqFTNaUqLwivhH/YKeEQG/8mvWO71HGBtZjSbOwz0w+RjS
+         8Yg51cuyIT8+fA1boMwV3SFd77ls4pWK93VxjboD03c9u/6tku1qTozQ6WuDk0irW4rj
+         /teCEEMQCxdH8mywej05YsbwlMwzkOw7w4bCR2P/YDV+HIS1sUH/EB9JWevcgTWkd9mW
+         /pRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yo4+QqlKq3rBI4dUhZnosf5TfI2MY6+eR5qfzKyTIIs=;
-        b=1qbf+thCmjWNte2wsaLJ4KUVCh27i6rVdEhWXwQbcM1LJJYjwz+EYnICGfNb+JdSma
-         UrKSFR7MuxGfmJ2qxxIiChdmtZXeEWpSm8yAZBwgryDVR6IDo84gyBzqlPwR3zIrHJSy
-         4GMtWTAub0coLRahoHKtrjqAqjNzoS6ji/foyUYXolO/fKrpRXxYUf1CT8WKj0aCvoeN
-         8TqTIe3WfceNwdgGwVpDRIyMQzl3MrXTgaTNbX8cYvUU1XtMSlncKS+FtpRaRgPtgqPr
-         romRDdCUY5bT6F/JPBBFG8sM3jte8lKYViAxSp3wA8wFv40xR57WTrfzNvkZT0WP67J7
-         B0YA==
-X-Gm-Message-State: AO0yUKUhJC25fwNjgDpaTvMAJgEFRO+kXRpPi2lZDwLB2Cw8tiJ1GpVL
-        zvrWjTzSb8l9Bt6BIJkj31ZFDg==
-X-Google-Smtp-Source: AK7set886yHqG45Fh73Vx3xVdDFCgDAyg3YNr3tM3Guk/xGG0lZjX32UoYXVnrFWQ2x2AvCyuqjYtw==
-X-Received: by 2002:adf:e585:0:b0:2c5:4c6f:27c6 with SMTP id l5-20020adfe585000000b002c54c6f27c6mr5290432wrm.5.1676218118329;
-        Sun, 12 Feb 2023 08:08:38 -0800 (PST)
+        bh=MF7/vbJs0MIasH4Urg58rp48T2rF3hjYXHHT6Ln6xtQ=;
+        b=vz9oA0hyvi9zIk7IT05JckMBQW9eXyAYFfLSSPO3LGJ/pMZwQF7rqnn64WQV/T2d3f
+         GNsK79wVLeLgdGyctsZlwbzetwWm0M2Xfg6AF1lrA2mNTSYrImQDP8FLwBgWtU5K3b81
+         P+kDCEQRyjTNtbePx/HxgRLU7t/cnfNKptYNjxzQwvqQzpkZr8ZHNRIPaqtRVPjKVw35
+         bTnJTQMp71S41fyCjgJZZ/TlAGpe8VpoD9QwyGPDnwtjpJxW/lTPVEaNY+R4vxeVw9DO
+         seTJSapHbMhQRjLKyf7bmndhYeRKYvLFwQbJcaP144x9Np4uGhP4wKokjlcwQJBACNdR
+         ex+Q==
+X-Gm-Message-State: AO0yUKXca6YIsN4QSTzTJU7FpDc5MaVGXFObugNjXW36swvt1OsCuG13
+        t885HZ1LfBvH5fnw4LzXixrfAA==
+X-Google-Smtp-Source: AK7set82gpA3fZoua53Cnxd03waql62CWCqDMUJBLUpUtt88FI+piYIUYuM7vRs9wt4H3r4tPV+vFg==
+X-Received: by 2002:a05:600c:4b1b:b0:3dc:53da:328b with SMTP id i27-20020a05600c4b1b00b003dc53da328bmr20546758wmp.14.1676218492273;
+        Sun, 12 Feb 2023 08:14:52 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l3-20020a05600012c300b002c54911f50bsm6415366wrx.84.2023.02.12.08.08.36
+        by smtp.gmail.com with ESMTPSA id j40-20020a05600c1c2800b003dc4480df80sm16229620wms.34.2023.02.12.08.14.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Feb 2023 08:08:38 -0800 (PST)
-Message-ID: <c44dbd68-337a-56fb-64f7-bb39abc4f97f@linaro.org>
-Date:   Sun, 12 Feb 2023 17:08:35 +0100
+        Sun, 12 Feb 2023 08:14:51 -0800 (PST)
+Message-ID: <e0bf4347-ec24-a4e2-0851-d5cdf850cc28@linaro.org>
+Date:   Sun, 12 Feb 2023 17:14:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: remoteproc: sti: convert st-rproc into
- dt-schema
+Subject: Re: [PATCH v2 1/8] dt-bindings: gpio: rockchip,gpio-bank: add
+ compatible string per SoC
 Content-Language: en-US
-To:     Alain Volmat <avolmat@me.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230211204751.9149-1-avolmat@me.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Johan Jonker <jbx6244@gmail.com>, robh+dt@kernel.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kever.yang@rock-chips.com, sjg@chromium.org,
+        philipp.tomsich@vrull.eu, john@metanate.com,
+        quentin.schulz@theobroma-systems.com
+References: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com>
+ <CACRpkdbmXri1vtRShm7a3N0sRA7Qg_ni5FpAtiEv+72a6g9Wng@mail.gmail.com>
+ <CAMRc=MeKdb=xmidwXQiNxtJpb1xii1D-43m1z6cNtF1VxFwogg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230211204751.9149-1-avolmat@me.com>
+In-Reply-To: <CAMRc=MeKdb=xmidwXQiNxtJpb1xii1D-43m1z6cNtF1VxFwogg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,151 +84,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/02/2023 21:47, Alain Volmat wrote:
-> Convert the st-rproc.txt binding into dt-schema YAML st,sti-rproc.yaml
+On 10/02/2023 21:03, Bartosz Golaszewski wrote:
+> On Wed, Feb 8, 2023 at 12:08 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>>
+>> On Sat, Jan 21, 2023 at 12:06 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>>> Currently all Rockchip gpio nodes have the same compatible.
+>>> Compatible strings should be SoC related.
+>>>
+>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>>
+>> Bartosz can you merge this one patch and keep the rest back
+>> so we get a more defined DT binding baseline?
+>>
+>> Yours,
+>> Linus Walleij
 > 
-> Signed-off-by: Alain Volmat <avolmat@me.com>
-> ---
->  .../bindings/remoteproc/st,sti-rproc.yaml     | 101 ++++++++++++++++++
->  .../bindings/remoteproc/st-rproc.txt          |  41 -------
->  2 files changed, 101 insertions(+), 41 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/remoteproc/st-rproc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml
-> new file mode 100644
-> index 000000000000..b9d84dfbcb58
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/st,sti-rproc.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/remoteproc/st,sti-rproc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> Krzysztof, you left your ack but seem to also have pointed out an
+> issue - do you want me to fix it up somehow before applying? Drop the
+> oneOf and turn it back into an enum?
 
-Drop quotes from both.
 
-> +
-> +title: STMicroelectronics STi remote processor controller
-> +
-> +description:
-> +  This binding provides support for adjunct processors found on ST SoCs.
-
-Drop entire sentence and describe hardware, not binding. This is
-binding, so no need to say it is binding.
-
-> +
-> +  Co-processors can be controlled from the bootloader or the primary OS. If
-> +  the bootloader starts a co-processor, the primary OS must detect its state
-> +  and act accordingly.
-> +
-> +maintainers:
-> +  - Patrice Chotard <patrice.chotard@foss.st.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,st231-rproc
-> +      - st,st40-rproc
-> +
-> +  memory-region:
-> +    description:
-> +      List of phandles to the reserved memory regions associated with the
-> +      remoteproc device. This is variable and describes the memories shared with
-> +      the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
-> +      vrings, ...).
-
-maxItems
-
-> +      (see ../reserved-memory/reserved-memory.txt)
-
-Drop last line.
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    maxItems: 1
-
-You need to list items.
-
-> +
-> +  st,syscfg:
-> +    description:
-> +      System configuration register which holds the boot vector for the co-processor
-> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-
-Drop quotes.
-
-> +    items:
-> +      - items:
-> +          - description: Phandle of syscon block
-> +          - description: Boot vector register offset
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    description:
-> +      Frequency of the processing clock of the remote processor
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop ref, not needed, it comes from dtschema.
-
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +
-> +  mboxes:
-> +    maxItems: 4
-> +
-> +  mbox-names:
-> +    items:
-> +      - const: vq0_rx
-> +      - const: vq0_tx
-> +      - const: vq1_rx
-> +      - const: vq1_tx
-> +
-> +required:
-> +  - compatible
-> +  - memory-region
-> +  - resets
-> +  - reset-names
-> +  - st,syscfg
-> +  - clocks
-> +  - clock-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/stih407-clks.h>
-> +    #include <dt-bindings/reset/stih407-resets.h>
-> +    audio_reserved: rproc@42000000 {
-> +      compatible = "shared-dma-pool";
-> +        reg = <0x42000000 0x01000000>;
-> +        no-map;
-> +    };
-> +
-> +    st231-audio {
-
-Generic node names, so maybe "remoteproc"
-
-> +      compatible = "st,st231-rproc";
-> +      memory-region = <&audio_reserved>;
-> +      resets = <&softreset STIH407_ST231_AUD_SOFTRESET>;
-> +      reset-names = "sw_reset";
-> +      clocks = <&clk_s_c0_flexgen CLK_ST231_AUD_0>;
-> +      clock-frequency = <600000000>;
-> +      st,syscfg	= <&syscfg_core 0x228>;
-
-Correct indentation issue.
-
-> +    };
-
+Sure, you can apply with my comment fixed but then just please check
+with `make dt_binding_check DT_SCHEMA_FILES="xxx.yaml"`, that
+indentation is not mixed up.
 
 Best regards,
 Krzysztof
