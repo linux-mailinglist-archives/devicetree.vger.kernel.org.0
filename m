@@ -2,167 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 036CA69366F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 09:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D747E6936B6
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 10:28:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbjBLINu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 03:13:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55822 "EHLO
+        id S229528AbjBLJ2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 04:28:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjBLINu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 03:13:50 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2663BE38B;
-        Sun, 12 Feb 2023 00:13:47 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id bh15so7956723oib.4;
-        Sun, 12 Feb 2023 00:13:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nvROq1Ysin4iKmF7L5qnmUmZE+huLZ31SHq6Mu5DVtg=;
-        b=IaRYWpQ6frsgDcsD6edPNdjfb3TkXXkD203hGwxUJrrP8YSzYq8RnvIfgXQzF9iON5
-         BLsNdc96tgMCGfADIwaqmZ95eJF85v/VnGTDQIFMvkrHDoJo81Q3sfcSRzlMBwe6Fyu+
-         P6991khDl4+CUo5euTWmh4W6XHehUs104R6KRrFuwUkzAIOJM5cy9YwwQmyQucJ6blQC
-         9VAksPKdR7Nt7OlYtFRwMoFSawY0Rwj/H9rjznMcZBdmlU5orWtgIpzIFFw6Rwaogyjf
-         x2rmyiSGZVesaeFwNUO11MYWzZWBduvP558YTbi6TJ021im6zcCxfWXaY760cX6hetEP
-         oFnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nvROq1Ysin4iKmF7L5qnmUmZE+huLZ31SHq6Mu5DVtg=;
-        b=7EOf4MNyeHDcy7igUG5/v+s2h8APq82xa2mc+EKHelfSDx3oq+vuE6HOSTeoE6iQTi
-         cM4uk99pAGKI+cl/OlaokzdM6xCX0KTbNiClkGvPtV3GbjUqjUfBSWxr8cRePX9JzES0
-         tUX31tf24D4PXa6n8M403ViP4aid2CT89B/6OOTvCSuDvPtlrERFX6CbwMQ/Ipiqxv83
-         cLx6Z2xuOMPFb1ETtV9PFFvUdDF3ZOocui48AwvVQVDBCUkpVgmYpfYa6s3ixV7BI2YP
-         TFdOsgnoV+rQ7tKzCITXXPhutO+2ZcloyZCu3wpX10aiMXrxvhSuQpP1HVdNr8lSiH9g
-         4dgA==
-X-Gm-Message-State: AO0yUKVzAWpYfSVF362HD0Gu8pPxB6e9+exk49Mvd2/uw92eLVAaxMxo
-        OXt8njNISuZxNoyURiekhfeXx7v42Ob7jjL9ISk=
-X-Google-Smtp-Source: AK7set8TnzNOFqImJjPpCHh5tW2QRdderphK8943iNYTmjtSAMNRrq5sZirKjtzelCQLw2PZ/6HszLn+vhUv4VID4Bs=
-X-Received: by 2002:a05:6808:60d:b0:37b:7c36:4df8 with SMTP id
- y13-20020a056808060d00b0037b7c364df8mr1570866oih.144.1676189626284; Sun, 12
- Feb 2023 00:13:46 -0800 (PST)
+        with ESMTP id S229503AbjBLJ2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 04:28:46 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E3110A8E;
+        Sun, 12 Feb 2023 01:28:44 -0800 (PST)
+Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id ADB976600014;
+        Sun, 12 Feb 2023 09:28:42 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676194122;
+        bh=UPHSay6GRJctXqWjosSC9IO7+yLvYxLbQJrN+e7kbGc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nW4RNGEafAD9F6Y2qJQXNM3Zxaqs7CSgWW3b+6C7EiSFia5bkAxhRDhdVvV42KVGz
+         v1Al/nmU8xLnpTj3ArCmyHoMSAg0vNdJuYVw/atEwoXeXbPkvfHH/CUdmwG4t+4WqF
+         fvvg5Z9Id1vD2NvY9SMlL7OqvMEZfV5KMpIH4Zi4om5fQ5WjLMiGLxPZpCC6bDwgdZ
+         b4fvL9D1CPEcrt4wqRF51rgbeNqGIbWuuaHhwIzes4NwOFi4x7dco6ehuCu0XmwW9B
+         Dp0dHKVsGgzBn+YTqSqtwoAmWLCwtlCSsyFIcXj8fl6wAb3trgXG/6nSebYaM+pVJM
+         qFJE6+thJhUQA==
+Message-ID: <1e3ef067-9b39-dc19-5fbc-75436c67f206@collabora.com>
+Date:   Sun, 12 Feb 2023 09:28:39 +0000
 MIME-Version: 1.0
-References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
- <20230211073357.755893-2-sergio.paracuellos@gmail.com> <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
- <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
- <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com> <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
- <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
-In-Reply-To: <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sun, 12 Feb 2023 09:13:35 +0100
-Message-ID: <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
- access system controller registers
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v5 3/4] ALSA: cs35l41: Add shared boost feature
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     David Rhodes <david.rhodes@cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20230210091942.10866-1-lucas.tanure@collabora.com>
+ <20230210091942.10866-4-lucas.tanure@collabora.com>
+ <20230210134341.GF68926@ediswmail.ad.cirrus.com>
+ <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
+ <20230211170638.GG68926@ediswmail.ad.cirrus.com>
+Content-Language: en-US
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+In-Reply-To: <20230211170638.GG68926@ediswmail.ad.cirrus.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 11, 2023 at 12:42 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 11/02/2023 12:01, Sergio Paracuellos wrote:
-> > On Sat, Feb 11, 2023 at 11:47 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@=
-arinc9.com> wrote:
-> >>
-> >> On 11.02.2023 13:41, Sergio Paracuellos wrote:
-> >>> On Sat, Feb 11, 2023 at 10:10 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.una=
-l@arinc9.com> wrote:
-> >>>>
-> >>>> Is this mediatek,sysctl property required after your changes on the
-> >>>> watchdog code?
-> >>>
-> >>> I don't really understand the question :-) Yes, it is. Since we have
-> >>> introduced a new phandle in the watchdog node to be able to access th=
-e
-> >>> reset status register through the 'sysc' syscon node.
-> >>> We need the bindings to be aligned with the mt7621.dtsi file and we
-> >>> are getting the syscon regmap handler via
-> >>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Ar=C4=
-=B1n=C3=A7.
-> >>
-> >> I believe you need to put mediatek,sysctl under "required:".
-> >
-> > Ah, I understood your question now :-). You meant 'required' property.
-> > I need more coffee, I guess :-). I am not sure if you can add
-> > properties as required after bindings are already mainlined for
-> > compatibility issues. The problem with this SoC is that drivers become
-> > mainlined before the device tree was so if things are properly fixed
-> > now this kind of issues appear.  Let's see Krzysztof and Rob comments
-> > for this.
->
-> If your driver fails to probe without mediatek,sysctl, you already made
-> it required (thus broke the ABI) regardless what dt-binding is saying.
-> In such case you should update dt-binding to reflect reality.
->
-> Now ABI break is different case. Usually you should not break it without
-> valid reasons (e.g. it was never working before). Your commit msg
-> suggests that you only improve the code, thus ABI break is not really
-> justified. In such case - binding is correct, driver should be reworked
-> to accept DTS without the new property.
+On 11-02-2023 17:06, Charles Keepax wrote:
+> On Fri, Feb 10, 2023 at 02:39:56PM +0000, Lucas Tanure wrote:
+>> On 10-02-2023 13:43, Charles Keepax wrote:
+>>> On Fri, Feb 10, 2023 at 09:19:41AM +0000, Lucas Tanure wrote:
+>>>> +	{CS35L41_MDSYNC_EN,        0x00001000},
+>>> David's internal patch appears to set 0x3000 on the active side,
+>>> not sure where that difference snuck in, or which is the correct
+>>> value. Your settings appear to make logical sense to me though, TX
+>>> on the active side, RX on the passive side.
+>> And as the patch sets TX and RX in the same chip I changed to follow
+>> the documentation.
+> 
+> Yeah I mean I suspect this is sensible, unless there is some
+> reason the controller side also needs to have RX enabled. Perhaps
+> for feedback or something from the passive side, but I imagine
+> this is just a typo in the original patch.
 
-Thanks for clarification, Krzysztof. Ok, so if this is the case I need
-to add this property required (as Arinc was properly pointing out in
-previous mail) since without it the driver is going to fail on probe
-(PATCH 5 of the series). I understand the "it was never working
-before" argument reason for ABI breaks. What happens if the old driver
-code was not ideal and totally dependent on architecture specific
-operations when this could be totally avoided and properly make arch
-independent agnostic drivers? This driver was added in 2016 [0]. There
-was not a device tree file in the kernel for this SoC mainlined until
-2022 [1]. I also personally migrated this watchdog binding in 2022
-from text to YAML and maintained it without changes [2]. When this was
-mainlined not all drivers were properly reviewed and the current code
-was just maintained as it is. Most users of this SoC are in the
-openWRT community where the dtsi of the mainline is not used yet and
-they maintain their own mt7621.dtsi files. Also, when a new version of
-the openWRT selected kernel is added they also modify and align with
-its mt7621.dtsi file without maintaining previous dtb's. If "make the
-driver arch independent to be able to be compile tested" and this kind
-of arguments are not valid at all I need to know because I have
-started to review driver code for this SoC and other drivers also have
-the same arch dependency that ideally should be avoided in the same
-way. This at the end means to break the ABI again in the future for
-those drivers / bindings. So I can just let them be as it is and not
-provide any change at all and continue without being compile tested
-and other beneficial features to detect future driver breakage.
+Ok, but the other side doesn't have both RX and TX enabled.
+If the active side needed RX to receive information for the other side, 
+the passive one would need TX enabled too.
+So if a feedback is necessary, both channels on both sides would be 
+enabled, not one channel in one side and both on the other.
 
-Thanks in advance for clarification.
 
-Best regards,
-    Sergio Paracuellos
+> 
+>>>> +	/* BST_CTL_SEL = CLASSH */
+>>>> +	{CS35L41_BSTCVRT_VCTRL2,    0x00000001},
+>>> BST_CTL_SEL is in BSTCVRT_VCTRL1 (or BOOST_VOLTAGE_CFG, as it
+>>> is called in the datasheet, yay us for using the same names).
+>>> That does not mean this write is wrong, could just be the
+>>> comment, but what this does write is a bit odd so I would like
+>>> David to confirm this isn't some typo in his original patch.
+>> I can't find BOOST_VOLTAGE_CFG on my datasheet, but BST_CTL_SEL is
+>> at 0x00003804 ( BSTCVRT_VCTRL2 / VBST_CTL_2 ).
+>> This write here is to select the boost control source, which for the
+>> active should be "Class H tracking value".
+>> So I still think this is correct.
+> 
+> Yeah this one is a mistake on my part, I was reviewing some
+> patches on another amp just before I think I have looked at the
+> wrong datasheet here. You are correct those bits are infact
+> BST_CTL_SEL. So ignore this one.
+> 
+>>>> +		regmap_read(regmap, CS35L41_PWR_CTRL3, &pwr_ctrl3);
+>>>> +		regmap_read(regmap, CS35L41_GPIO_PAD_CONTROL, &pad_control);
+>>>> +
+>>>> +		pwr_ctrl3 &= ~CS35L41_SYNC_EN_MASK;
+>>>> +		pwr_ctrl1 = enable << CS35L41_GLOBAL_EN_SHIFT;
+>>>
+>>> Are you sure this is what you want? In the case of powering up,
+>>> the sequence would end up being:
+>>>
+>>> mdsync_down
+>>>   -> sets GLOBAL_EN on
+>>> mdsync_up
+>>>   -> sets GLOBAL_EN off
+>>>   -> sets GLOBAL_EN on
+>>>
+>>> Feels like mdsync_down should always turn global_enable off? But
+>>> again I don't know for sure. But then I guess why is there the
+>>> extra write to turn it off in mdsync_up?
+>>
+>> For the disable case (DAPM turning everything off) SYNC and Global
+>> enable are off and the code hits
+>>
+>> if (!enable)
+>> 	break;
+> 
+> Yes, so the disable flow makes perfect sense here it is the
+> enable flow that seemed odd.
+> 
+>> But for for enable case (DAPM turning everything On) the code
+>> continues enabling SYNC_EN, and turning off Global enable, as
+>> requested by
+>> "4.10.1 Multidevice Synchronization Enable" page 70.
+>> But as it is a enable path Global should be enabled again.
+>>
+>> I can't see any sign of
+>>> GLOBAL_EN bouncing in David's internal patch.
+>>
+>> Yes, but it is required by :
+>> "4.10.1 Multidevice Synchronization Enable" page 70.
+> 
+> Hmm... yes that does appear to suggest bouncing the global
+> enable. Kinda weird, I can't help but wonder if the turning
+> global enable off is actually needed, but I guess it does say
+> that so probably safest. It is also rather unclear on who that
+> sequence should be performed on it says:
+> 
+> "When powering up a second (and each subsequent) CS35L41B onto a
+> shared MDSYNC bus, the following protocol must
+> be followed"
+> 
+> But very unclear if that sequence should be followed on only the
+> new device, the master device, or on all devices. I will try to
+> find some time to chase some apps guys next week see if anyone
+> has any ideas.
+I had long talks with apps guys on this when I was at Cirrus.
+And my understanding is:
+A new CS35L41 can misunderstand the information on MDSYNC bus if a 
+communication is already in place, between another pair of CS35L41, so 
+to avoid that, any CS35L41 being turn on in a already active MDSYNC bus, 
+must execute those steps.
 
-[0]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
-mit/drivers/watchdog/mt7621_wdt.c?id=3Dab3f09fe16d158cb4f84e558c61ec5d6d601=
-f2e0
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
-mit/arch/mips/boot/dts/ralink/mt7621.dtsi?id=3D7a6ee0bbab2551d7189ce0f5e625=
-fef4d612ebea
-[2]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
-mit/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml?id=
-=3D9023e05b7a5809593a7ea09896eee0bbb6ae1685
+We could move the active amp up in DAPM graph so its enabled before all 
+passive ones, but we would still need to execute that for all passive 
+amps. So there is not much point in that.
 
->
-> Best regards,
-> Krzysztof
->
+Here I can see that if I enable SYNC_EN during probe without clocks the 
+device becomes unresponsive, at least with the current code.
+So following the datasheet and enabling SYNC_EN only after clocks seems 
+to resolve Steam decks issue.
+
+Questions I never got an answer from APPS guys:
+
+- Can we enable SYNC_EN during probe if we know there is no playback
+happening, no clocks and Global enable off? Steam decks seem to answer 
+no here. If yes, why having pm_runtime features makes the device become 
+unresponsive?
+
+- Can we leave SYNC_EN enabled during Global enable off and no clocks?
+
+- If SYNC_EN is enabled and we only set Global enable on after the PLL 
+lock happened, do we still need to execute those steps? I mean, if the 
+driver only deals with Global enable and leaves shared boost configured 
+since boost, will MDSYNC bus work?
+
+Thanks
+Lucas
+
+> 
+> Thanks,
+> Charles
+
