@@ -2,149 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D38693A12
-	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 21:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 425D9693A1D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Feb 2023 22:02:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjBLU6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 15:58:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49950 "EHLO
+        id S229680AbjBLVCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Feb 2023 16:02:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjBLU6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 15:58:07 -0500
-Received: from st43p00im-zteg10062001.me.com (st43p00im-zteg10062001.me.com [17.58.63.166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE99EB43
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 12:58:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1676235084; bh=iXPcVESiYpddzMqQnxfdfMRMU7vmmNrIn9723DUGq8A=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=Vy9WVgzunfB0tOLJBAwzisUOV4YPs4KQY90BgTdURkPntZywp56SDdR8WCFEMfwTU
-         +Pcj1Mmt+TLA9iWf+KFnRfwH1wCqsZlAMChukn44G3Lq+3dRYZjuFyAhFLMV1D+XQp
-         C1bLqRRr3n1ST0OvWSF5NdVMraGGZ8dvRTBV58vItQSnDnZbGNLiMh7H1AMXxpN8j7
-         oT1x4R/GWHXkPIpGcunu1Eh3Lxau39I5cH5CIw5D2PWTiMQOR2sAtGOEE6gTrZ+rqR
-         lFFEhrd6CsfUYasGz9qNIeml8+IxfFuiIiTbnwTZCXI3urR9gjX8ltR3LKhZFPu767
-         KVYOxSRkcb0tw==
-Received: from localhost (st43p00im-dlb-asmtp-mailmevip.me.com [17.42.251.41])
-        by st43p00im-zteg10062001.me.com (Postfix) with ESMTPSA id 0514A8006C7;
-        Sun, 12 Feb 2023 20:51:23 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229679AbjBLVCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 16:02:46 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C51F75E;
+        Sun, 12 Feb 2023 13:02:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C1FBEB80D2F;
+        Sun, 12 Feb 2023 21:02:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6892C433D2;
+        Sun, 12 Feb 2023 21:02:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676235762;
+        bh=usYk7tvBKwSordnriT3ugmrMWJteA6rsGLzPjt/RMiY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WbOyv/q/Cx7dAjwnKoNofXQ2CVEkSxJefCMS60026aP8dLIbOJ0SvPpNQ2oYnKQJf
+         pK0G2A7IhOtPQT4RrvO1dHL0x2xqgnSY3OdE3W5cGpG+JgCeNsFiYzgKUaTEPjeVeL
+         4atEDSw5838xoctRnXUieJSifztfusn5WqmNTIfJ99FG0pWbX2IpZB0pPo6AQg/GtH
+         GtKjhzWn5CewR4hUF10800EgJHCoy9M1Fz2Az7DVPjh934IxQkuzQt2YGekuzX6zjM
+         nXxYHKXOwiLlgJl220KoHfaiHyGpkjRTBIREXb/Xb72q+I/DWcQWv1Onn2ZoQ9Qvhd
+         isI5EeGKPuIgA==
+Date:   Sun, 12 Feb 2023 22:02:34 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Alain Volmat <avolmat@me.com>, devicetree@vger.kernel.org,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: uniphier: Add resets property
+Message-ID: <Y+lT6koqmmcFKwJi@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: arm: sti: add sti boards and remove stih415/stih416
-Date:   Sun, 12 Feb 2023 21:51:07 +0100
-Message-Id: <20230212205107.8073-3-avolmat@me.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230212205107.8073-1-avolmat@me.com>
-References: <20230212205107.8073-1-avolmat@me.com>
+References: <20230209014340.17979-1-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: dPMAEenNzL_QBXhyqmDAMoAzQ-2KAPFY
-X-Proofpoint-ORIG-GUID: dPMAEenNzL_QBXhyqmDAMoAzQ-2KAPFY
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.816,17.0.605.474.0000000_definitions?=
- =?UTF-8?Q?=3D2022-01-17=5F04:2022-01-14=5F01,2022-01-17=5F04,2020-01-23?=
- =?UTF-8?Q?=5F02_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=975 malwarescore=0
- adultscore=0 spamscore=0 mlxscore=0 suspectscore=0 clxscore=1015
- bulkscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2302120192
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cjIa4s1PpX9tiHRV"
+Content-Disposition: inline
+In-Reply-To: <20230209014340.17979-1-hayashi.kunihiko@socionext.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for STi platform boards and remove stih415/stih416 items.
-This commit also moves the sti.yaml binding file into soc/sti folder
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
-v2: update licensing
-    move file into soc/sti folder
+--cjIa4s1PpX9tiHRV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../devicetree/bindings/arm/sti.yaml          | 26 ---------------
- .../devicetree/bindings/soc/sti/sti.yaml      | 33 +++++++++++++++++++
- 2 files changed, 33 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/sti.yaml
- create mode 100644 Documentation/devicetree/bindings/soc/sti/sti.yaml
+On Thu, Feb 09, 2023 at 10:43:40AM +0900, Kunihiko Hayashi wrote:
+> UniPhier I2C controller allows reset control support.
+> Add resets property to the controller as optional.
+>=20
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 
-diff --git a/Documentation/devicetree/bindings/arm/sti.yaml b/Documentation/devicetree/bindings/arm/sti.yaml
-deleted file mode 100644
-index 3ca054c64377..000000000000
---- a/Documentation/devicetree/bindings/arm/sti.yaml
-+++ /dev/null
-@@ -1,26 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/arm/sti.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: ST STi Platforms
--
--maintainers:
--  - Patrice Chotard <patrice.chotard@foss.st.com>
--
--properties:
--  $nodename:
--    const: '/'
--  compatible:
--    items:
--      - enum:
--          - st,stih415
--          - st,stih416
--          - st,stih407
--          - st,stih410
--          - st,stih418
--
--additionalProperties: true
--
--...
-diff --git a/Documentation/devicetree/bindings/soc/sti/sti.yaml b/Documentation/devicetree/bindings/soc/sti/sti.yaml
-new file mode 100644
-index 000000000000..f32770867142
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/sti/sti.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/sti/sti.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST STi Platforms
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: st,stih407-b2120
-+          - const: st,stih407
-+      - items:
-+          - enum:
-+              - st,stih410-b2120
-+              - st,stih410-b2260
-+          - const: st,stih410
-+      - items:
-+          - enum:
-+              - st,stih418-b2199
-+              - st,stih418-b2264
-+          - const: st,stih418
-+
-+additionalProperties: true
-+
-+...
--- 
-2.34.1
+Applied to for-next, thanks!
 
+
+--cjIa4s1PpX9tiHRV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPpU+YACgkQFA3kzBSg
+Kbb7HBAAskT9SQbvdblAJJsbIro4PwN1u1hKfLPxLvCryepDYd07qx6YpHu3lr7E
+5PGHh+8pdQ7sRAqL10lTYVe2CfNp/3nsenM1/8nDCXB3HVnh+lf87Rjnjqx9kHYI
+55qFR7nacqK3xT/oVra8gq4oOVKSp1HJ972+GLqxQY3nuEuxres+AQjgnZhb8VP7
+ecSPNDON0XvXxnmdAFbpNJD0Fe/cEBdqW5Fyr8zGagvcHW/RxqgKDkgJYhwh3pS+
+RoHopSvadYiNTaKbrKbqCxdv5I3v17iuyaGZmOBfyc2n8rzBjFzOcH+ieZlPoLz3
+iyOM/6a89ZrSO1lBbSuczvD8hIovs2J8+ardJ9JwkZyaiFXM/F7gIsT+CJuVNaqS
+8UqiaOOe4SoHyvvqUuFT5Dkbl+24mw/kNt5sOTgHnB+hLf4AL1hxz+qPAMOriiDa
+g/Hfha2sU1n8yWPX1HV5hp0tKb5A/6aqF9/GSasYn7tszhIMmFdgvN43lGuMh60Y
+fHj6IK7TToeD1ApeH3yDrOO0bHzesQK88YXkiB+SBJkmKztSwAR+NmOdqeNHwgLC
+WOUUvjY79LH/BXopi+VjmnQCI/f/kgjhHeHxFU3FEP+FbfU8TlIr5oCbYf01kGw0
+mLbARqyk8IHoolktilqUhJvnz1r4Ue9QHp2CSC8TQpieaYMCdl0=
+=YxVO
+-----END PGP SIGNATURE-----
+
+--cjIa4s1PpX9tiHRV--
