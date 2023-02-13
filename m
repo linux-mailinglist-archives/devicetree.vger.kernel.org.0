@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFC74694747
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 14:43:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8179069474B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 14:44:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbjBMNnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 08:43:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47882 "EHLO
+        id S229869AbjBMNoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 08:44:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjBMNni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 08:43:38 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC2B193D4
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 05:43:35 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id by3so10959022wrb.10
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 05:43:35 -0800 (PST)
+        with ESMTP id S229773AbjBMNoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 08:44:13 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB768A7E
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 05:44:12 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id by3so10961155wrb.10
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 05:44:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aopjYrYB6lNxYdmLh60CeH28kAqTJY8+y17BTONkm+0=;
-        b=G96Ql8WhMUdl8LmADGnm1ExabL/RlLv9ySNC8GNvvQyzlezQ7Kr70m2MVZmkBz5Fgv
-         g03THpQcqCU09HDy5ojOEYHaULpDiPriTblIcr2deFupSKYrMctqD/FMbxDPkifVyJeV
-         c5uutP5Pbz8ofHKlnnZ8MCP45vi1QP4q92WrHxAvHcIdWruhZLsWyfsy4TrSYHcFrylk
-         5toCIK1+XMiJH+a/kkANBi/p3wv0UZQlueLiLB9pEpGPRjzgF1rd3XS3C1EcYKuQIdEz
-         Vs9LfLMu8nPfCs7J0T9d/jjjdk/X/U1koixz1t4d112MsYXnbghp/cl28AVVb2BFCcLC
-         zdyQ==
+        bh=8YndzVf3v6/PsLB4xK8l0Uo2uF+AS5qRQ1VgyuaYEtU=;
+        b=ytH2NJkcPta5r4EPLRm4775bH0r5ADtnJOIFsbPl09/9KNCMgIaz0PZV0BfJeqrnlU
+         quS+NGLbT99F2JIBYG6vbpD5/cKVtpifXUqqS6600N+5wH2H9WhF/teI/24Zaf+X8QEN
+         1+d7xqvzZ2KsizaauuzRc6Vo7o4hmEjWJcvVM7uvFnTF9lc9mz/nmdDKPJDiKPXpDSZu
+         JTVTTi4EJWM1HaPisNF4f4NwI+nv4CUWrfPs3S0TUqz8qUCRcmAoaJgba3NdZyv77XEu
+         ede5e4NixFfzGxYTtC6a63WsB2CZDBQhBdoDz3zzOr/XTMYKKSHT4raPwz6A6MLgQAF2
+         k0Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aopjYrYB6lNxYdmLh60CeH28kAqTJY8+y17BTONkm+0=;
-        b=FpaHesPdmcRhkkfVNnCFpEoxaKf7bJXzOAce93RsJeGNHPVg8aVk5B8RfVUOE42go1
-         Mv/ttciKGa9Z3on/NA4Yl1s33Vda4ohP+peqX2Ykl0VpoPCH5Noh9MsCd3nOStPV0QaF
-         mE2FO145cZFnB2M2IiewCUPYRjq028MUnbLEFkoICU/E9Esnfpu5pSBM/IRSR1qiENUD
-         FLRao8g3LBK6PU6BjcxFilLBvxMMSupMLsPYFu0z48NnlSLfmfYzPdMNpgb5fMtt7J8v
-         1ScJ3EIlaH3aZPawlvsnZTCB5NjKNGiaSjAg10PXff5IHjXAMGAuBjAH9aB6Qmo4LNJ9
-         QW+A==
-X-Gm-Message-State: AO0yUKXT2LP0X0c2xjGZZng0DARrlTYcLAmpouH7MYyqfahFL8DFR+yA
-        06TkGeVBVLONJ7rIwn/W6WNgsw==
-X-Google-Smtp-Source: AK7set/x8KbCQcviVr1136A2VxVn4Q9/9dCl7s8Z2qc2gwfD6HGMpAYHATlJvtf9ep+5w/6w8o1ogg==
-X-Received: by 2002:a5d:608b:0:b0:2c5:6036:2567 with SMTP id w11-20020a5d608b000000b002c560362567mr700741wrt.11.1676295813865;
-        Mon, 13 Feb 2023 05:43:33 -0800 (PST)
+        bh=8YndzVf3v6/PsLB4xK8l0Uo2uF+AS5qRQ1VgyuaYEtU=;
+        b=nLHaJqwWuMfugqAyuudrkm0wkED1M/aLj2nx6TzTFnQZJXnzEq5fFkHTQs23F9FjPz
+         94FtbjjpalcEQMQEJMuos8WnRkNgCanslhF41Etq0JNANHOjTQzPhnD23wPeZiAby53L
+         e1F55vAukjtGABjCicnoQqCB+qHmuMi5VIukME9wsRC2bZbgZJX3W9mgztUKt7QORa5y
+         3x6Md1bO1bEGgYVB9r3EnBh9GGjhbfaHHtpdHwAzROyCEHNHErJAD6AF+hkM9A3MG1k9
+         ZCOEkFWLltnq/IbQWt1pIaAgV1to3/VIdY7cMagFvu+n1NtqQTdZ7GEIgirIavgsFRfz
+         zZJA==
+X-Gm-Message-State: AO0yUKWzI2emTS7Ob/ju//oATFZ6/20J497GvaO7UTG4NIbyusTj9DGI
+        UiWoZ/ZI3xmvdkM7HfdA5zpeIA==
+X-Google-Smtp-Source: AK7set/17SJjnCRcpQIPGHx+EFyoU4FpCGw43e1kOiXX79UznQPjL3PPfrqHr+skXbFC8GK1Qch8Mg==
+X-Received: by 2002:a05:6000:1808:b0:2c5:5929:4bcf with SMTP id m8-20020a056000180800b002c559294bcfmr2854910wrh.28.1676295850679;
+        Mon, 13 Feb 2023 05:44:10 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t9-20020adfeb89000000b002be0b1e556esm10469056wrn.59.2023.02.13.05.43.32
+        by smtp.gmail.com with ESMTPSA id v17-20020a5d43d1000000b002c54bf0e9f7sm7801758wrr.117.2023.02.13.05.44.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 05:43:33 -0800 (PST)
-Message-ID: <bc0adda7-9636-b1f5-3fe4-67ba6a3ddc9b@linaro.org>
-Date:   Mon, 13 Feb 2023 14:43:31 +0100
+        Mon, 13 Feb 2023 05:44:10 -0800 (PST)
+Message-ID: <eb0fa8ee-9c14-c8a4-2d3e-6180f5d875b6@linaro.org>
+Date:   Mon, 13 Feb 2023 14:44:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v3 4/5] dt-bindings: clock: ast2600: remove IC36 & I3C7
- clock definitions
+Subject: Re: [PATCH v3 5/5] dt-bindings: clock: ast2600: Add reset config for
+ I3C
 Content-Language: en-US
 To:     Jeremy Kerr <jk@codeconstruct.com.au>,
         linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
@@ -67,14 +67,15 @@ Cc:     devicetree@vger.kernel.org,
         Dylan Hung <dylan_hung@aspeedtech.com>,
         Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
 References: <cover.1676294433.git.jk@codeconstruct.com.au>
- <1b9bb33e75c0a84880035954d500a6e608668b99.1676294433.git.jk@codeconstruct.com.au>
+ <3aad8dc671a65e65f0cced648847c504514f5b0e.1676294433.git.jk@codeconstruct.com.au>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1b9bb33e75c0a84880035954d500a6e608668b99.1676294433.git.jk@codeconstruct.com.au>
+In-Reply-To: <3aad8dc671a65e65f0cced648847c504514f5b0e.1676294433.git.jk@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,19 +83,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/02/2023 14:24, Jeremy Kerr wrote:
-> The current ast2600 clock definitions include entries for i3c6 and i3c7
-> devices, which don't exist: there are no clock control lines documented
-> for these, and only i3c devices 0 through 5 are present.
-> 
-> So, remove the definitions for I3C6 and I3C7. Although this is a
-> potential ABI-breaking change, there are no in-tree users of these, and
-> any references would be broken anyway, as the hardware doesn't exist.
-> 
-> This is a partial cherry-pick and rework of ed44b8cdfdb and 1a35eb926d7
-> from Aspeed's own tree, originally by Dylan Hung
-> <dylan_hung@aspeedtech.com>.
+> Add reset line definitions for the AST2600 I3C block's reset inputs.
 > 
 > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> 
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
