@@ -2,80 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4276944ED
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3115A6944F7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:00:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbjBML5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:57:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
+        id S229872AbjBMMAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 07:00:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjBML5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:57:44 -0500
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EA71353E;
-        Mon, 13 Feb 2023 03:57:43 -0800 (PST)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id A0A4926F77E; Mon, 13 Feb 2023 12:57:41 +0100 (CET)
-Date:   Mon, 13 Feb 2023 12:57:41 +0100
-From:   Janne Grunau <j@jannau.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        with ESMTP id S229754AbjBMMAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:00:07 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C3F18A9C;
+        Mon, 13 Feb 2023 04:00:04 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31DBxtui124222;
+        Mon, 13 Feb 2023 05:59:55 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1676289595;
+        bh=R4rTrEgdp3H52NSenfg8n8fI6UiYoEKyF15EQe3mI6c=;
+        h=From:To:CC:Subject:Date;
+        b=NJtduee+6PoexX/Brw7GfNAhnu721isDdjE4IKTn5QibPhBkwRGDsnPoTPRW1y+x3
+         p6edrjd9/2w1Rv4xUTiNeofd2pGltLFRjGSUdC9yGi7a+YaauGFAzmE94ih5kInBoN
+         P2e4FIUZlNQg7ordIGLJRI5PnQ2pa3YxrVx3Wzfs=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31DBxt1j037591
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Feb 2023 05:59:55 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
+ Feb 2023 05:59:55 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 13 Feb 2023 05:59:55 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31DBxsCj015516;
+        Mon, 13 Feb 2023 05:59:54 -0600
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/17] dt-bindings: arm: apple: apple,pmgr: Add
- t8112-pmgr compatible
-Message-ID: <20230213115741.GA17933@jannau.net>
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-2-cb5442d1c229@jannau.net>
- <5ebf96d9-689a-f915-29b8-31af891fc63f@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Tomi Valkeinen <tomba@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Linux Clock List <linux-clk@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH v2 0/2] Introduce support for AM62 DSS VP0 Divider Clock
+Date:   Mon, 13 Feb 2023 17:29:52 +0530
+Message-ID: <20230213115954.553-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ebf96d9-689a-f915-29b8-31af891fc63f@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-13 12:10:36 +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2023 16:41, Janne Grunau wrote:
-> > The block on Apple M2 SoCs is compatible with the existing driver so
-> > just add its per-SoC compatible.
-> > 
-> > Signed-off-by: Janne Grunau <j@jannau.net>
-> > 
-> > ---
-> > This trivial dt-bindings update should be merged through the asahi-soc
-> > tree to ensure validation of the Apple M2 (t8112) devicetrees in this
-> > series.
-> 
-> No, the bindings go via subsystem. Just because you want to validate
-> something is not really a reason - you can validate on next. Don't
-> create special rules for Asahi... or rather - why Asahi is special than
-> everyone else?
+Introduce clock divider driver and bindings for AM62 DSS (VP0).
 
-We did that 2 or 3 times in the past without commnts that it is not 
-desired so I wasn't aware that this would be special handling.
+The OLDI transmitters in AM62 SoC, require a serial clock, which is 7
+times the pixel clock required by the Video Port 0 (VP0) of the DSS.
 
-Merging binding and devicetree updates together looks to me like the 
-most sensible option since dtbs validation is the only testable 
-dependecy of dt binding updates.
-Keeping them together ensures the dtbs validate without delaying 
-devicetree changes by one kernel release after the dt-bindings change 
-was merged.
-I suppose it works out most of the time if the merge request is sent 
-only if it validates in next. That still depends on the merge order in 
-the merge window but -rc1 should be fine.
+The clock architecture is such that the relevant PLL is connected to the
+DSS VP0 through a clock divider (by-7). The DSS requests the pixel clock
+to the clock divider, which forwards the request to parent PLL. The PLL,
+in turn, is supposed to generate a 7x pixel-clock (serial clock) to feed
+the OLDI transmitters directly, and the DSS through the said divider.
+This ensures that both the OLDI TXes and DSS get their required clocks.
 
-I'll consider devicetree validation as eventually valid from now on and 
-not care too much about it.
+Change Log:
+v2:
+  - Create separate devicetree binding and driver for the clock.
+    The previous version of the series added the compatible inside the
+    fixed-factor clock driver, and explicitly set the flag
+    CLK_SET_RATE_PARENT to have the set clock rate request propagate to
+    the parent PLL. The driver is referenced from the fixed-factor clock
+    driver and modified specifically to support AM62 DSS requirements.
 
-Janne
+Links:
+V1: https://lore.kernel.org/all/20221226095745.19757-1-a-bhatia1@ti.com/
+
+Aradhya Bhatia (2):
+  dt-bindings: clock: Add binding documentation for TI AM62 DSS Clock
+  clk: keystone: Add support AM62 DSS clock divider
+
+ .../clock/ti,am62-dss-vp0-div-clk.yaml        |  44 +++++
+ drivers/clk/keystone/Kconfig                  |   9 +
+ drivers/clk/keystone/Makefile                 |   1 +
+ drivers/clk/keystone/clk-am62-dss.c           | 164 ++++++++++++++++++
+ 4 files changed, 218 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/ti,am62-dss-vp0-div-clk.yaml
+ create mode 100644 drivers/clk/keystone/clk-am62-dss.c
+
+-- 
+2.39.1
+
