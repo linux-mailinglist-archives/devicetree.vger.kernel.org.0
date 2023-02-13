@@ -2,57 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F416694C30
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 17:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C129B694C42
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 17:18:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbjBMQQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 11:16:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33074 "EHLO
+        id S229622AbjBMQSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 11:18:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjBMQQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 11:16:01 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37D75196BF
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 08:15:58 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pRbUb-0002fq-Ro; Mon, 13 Feb 2023 17:15:49 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pRbUa-0007N9-T7; Mon, 13 Feb 2023 17:15:48 +0100
-Date:   Mon, 13 Feb 2023 17:15:48 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Frieder Schrempf <frieder@fris.de>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S229599AbjBMQSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 11:18:45 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1DF72B1;
+        Mon, 13 Feb 2023 08:18:43 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 84C4EB81601;
+        Mon, 13 Feb 2023 16:18:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9130C433D2;
+        Mon, 13 Feb 2023 16:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676305121;
+        bh=jTHm/4ykwEJ9eDqHDCB2uHcKXEGZgh285sd6r6Jztq4=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=X58wAKg88Hma4ARlnmkcyNvFHTWSaJTuMAh8/AY0nzXznGtDhS20ws2Q/1Mqn0KxY
+         ANgnl6UZ5Z1FXP6PNu6244hRGRb2zkwI9ezlxu2DIhB3jAypgBzboPO9kl6lQLKYNQ
+         BHB2hG9omkOk6YDSmbsYqAiI6bZOzGidm/s3Y6fhbx3rj5DnNG0MnYrbaSl8BOhk+G
+         tHPwLG3nqxecULze/Zw4QzGF0hx5i5pNOBpfVusj6v4KkrDhIMKGCr5CGdVXwR+QUw
+         RA5KzNqrnnv+X0Zd4TRPaeRS0MY/CJK7xH3ErkadJ/LdnhtW9KXwBm0whDnO5n1x/V
+         RNCLJOBnfacTw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 6/6] arm64: dts: imx8mm-kontron: Add support for reading
- SD_VSEL signal
-Message-ID: <20230213161548.ucaqpza65byyqvfo@pengutronix.de>
-References: <20230213155833.1644366-1-frieder@fris.de>
- <20230213155833.1644366-7-frieder@fris.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230211134755.86061-1-krzysztof.kozlowski@linaro.org>
+References: <20230211134755.86061-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: maxim,max98095: Convert to dtschema
+Message-Id: <167630511939.2770751.18419134199965979310.b4-ty@kernel.org>
+Date:   Mon, 13 Feb 2023 16:18:39 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230213155833.1644366-7-frieder@fris.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,133 +56,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
+On Sat, 11 Feb 2023 14:47:55 +0100, Krzysztof Kozlowski wrote:
+> Convert the Maxim Integrated MAX98095 audio codec bindings to DT schema.
+> Add missing sound-dai-cells during conversion.
+> 
+> 
 
-thanks for the patch.
+Applied to
 
-On 23-02-13, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> This fixes the LDO5 regulator handling of the pca9450 driver by
-> taking the status of the SD_VSEL into account to determine which
-> configuration register is used for the voltage setting.
-> 
-> Even without this change there is no functional issue, as the code
-> for switching the voltage in sdhci.c currently switches both, the
-> VSELECT/SD_VSEL signal and the regulator voltage at the same time
-> and doesn't run into an invalid corner case.
-> 
-> We should still make sure, that we always use the correct register
-> when controlling the regulator. At least in U-Boot this fixes an
-> actual bug where the wrong IO voltage is used.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts | 6 +++---
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts       | 6 +++---
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi   | 1 +
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-sl.dtsi      | 1 +
->  4 files changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-> index 8b16bd68576c..bdcd9cd843c7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-> @@ -344,7 +344,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
->  			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
->  			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
->  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
-> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
->  		>;
->  	};
->  
-> @@ -357,7 +357,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
->  			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
->  			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
->  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
-> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
->  		>;
->  	};
->  
-> @@ -370,7 +370,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
->  			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
->  			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
->  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
-> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
->  		>;
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> index a079322a3793..ba2a4491cf31 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
-> @@ -321,7 +321,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
->  			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
->  			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
->  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
-> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
->  		>;
->  	};
->  
-> @@ -334,7 +334,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
->  			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
->  			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
->  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
-> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
->  		>;
->  	};
->  
-> @@ -347,7 +347,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
->  			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
->  			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
->  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
-> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
+   broonie/sound.git for-next
 
-The VSELECT pin should be driven by the (u)sdhc core...
+Thanks!
 
->  		>;
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
-> index 5172883717d1..90daaf54e704 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
-> @@ -196,6 +196,7 @@ reg_nvcc_sd: LDO5 {
->  				regulator-name = "NVCC_SD (LDO5)";
->  				regulator-min-microvolt = <1800000>;
->  				regulator-max-microvolt = <3300000>;
-> +				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+[1/1] ASoC: dt-bindings: maxim,max98095: Convert to dtschema
+      commit: 46f5c98e158449a1ddbf9b22e046810184c92d43
 
-and by using the sd-vsel-gpios property the IOMUXC_GPIO1_IO04 have to be
-muxed as GPIO, which is not the case. So I think that u-boot have a bug
-within the (u)sdhc core.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Regards,
-  Marco
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
->  			};
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-sl.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-sl.dtsi
-> index 1f8326613ee9..7468a8aa771d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-sl.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-sl.dtsi
-> @@ -195,6 +195,7 @@ reg_nvcc_sd: LDO5 {
->  				regulator-name = "NVCC_SD (LDO5)";
->  				regulator-min-microvolt = <1800000>;
->  				regulator-max-microvolt = <3300000>;
-> +				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
->  			};
->  		};
->  	};
-> -- 
-> 2.39.1
-> 
-> 
-> 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
