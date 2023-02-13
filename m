@@ -2,171 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAEBF693EE5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:23:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF5A693EED
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbjBMHXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 02:23:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34632 "EHLO
+        id S229719AbjBMH2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 02:28:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbjBMHXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:23:22 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE760B756
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:23:20 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id r9-20020a17090a2e8900b00233ba727724so5031658pjd.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:23:20 -0800 (PST)
+        with ESMTP id S229532AbjBMH23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:28:29 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73594D50B;
+        Sun, 12 Feb 2023 23:28:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=28rplcL4D/qDPmWP5rk6Z+mEUTNmDCqkcOMS7T2tEO8=;
-        b=yggaRBvwQEynN+qw8PEhbFMx25K9uho58IDv63QptVNsQxcLpTwzn9vf14Y/oF8VW9
-         9oLGvt6aH3k+OH2rWpQLqqc2z5W7Ste/PUTj7m9XFQ0CinC1ZQzJIAQH7jOfBWeMHc+X
-         /egFqJLireBHpqH2ENmfZp+Ivu2mglivq7pDHJ42pcnOInRdFUeAYMIBQmXz43yFktjC
-         yytLVAXL1pHd0iSga8zq51EXUSsQ+XrLrAU1j4Jzxh6WIf98J+bzJSqdfR6Biv5H0odu
-         TkJLNvf0scuaNRkIhDpvn4sUD3HtAhpk0KEAupj+LmcbUf11MGwyGljbvZaGIw7KZFEC
-         fDtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=28rplcL4D/qDPmWP5rk6Z+mEUTNmDCqkcOMS7T2tEO8=;
-        b=dHx8GiPSTb/8aSVkO/knnB8EScOx0tDQgAmpM1hk//tTBX1Xd+EDPQBPIuT0NgUyeZ
-         DxbZ7VDm9QjAzZRdaK8vNffGO2S9ghjpXz8nEu/FOBosf/3pgNDoIQ7Ssoqpjt0gCxWR
-         yuz2ce6zKY4Mikl4nacyUOnIjlzOlXAU79OZkbEGBilS8Ff05df8Xce7/a9f2ejOSz9N
-         ajjlVC7jM23MfRf1gzKKXikhIUEuLWvnNvi3b5P9L6V8LTQHGlYzC5PQ0y+jRQ4XQnEa
-         KehISJQSuvhdixFVjjGoUxkED9yOqGr8lvpjch4F+ICtB28EyC0wm5BympA6FTHN8vwD
-         IiPw==
-X-Gm-Message-State: AO0yUKXl3tmdFhO0qhtw+h0JxtT/Csck9W9eGJx2cAnDnQe6sYSexAy3
-        C5A0/YgYaaP0haQoRtSh2dDa
-X-Google-Smtp-Source: AK7set9MfNTrMMkgBAI61iSDCPJH69eVWMRxjJs/L6IPDCjCYbfxzdtAOVWwWqDZe3fAi56VXOcLaA==
-X-Received: by 2002:a05:6a20:3c92:b0:c0:be63:75e5 with SMTP id b18-20020a056a203c9200b000c0be6375e5mr27450255pzj.33.1676273000175;
-        Sun, 12 Feb 2023 23:23:20 -0800 (PST)
-Received: from thinkpad ([117.217.182.252])
-        by smtp.gmail.com with ESMTPSA id y21-20020a634b15000000b004eca54eab50sm5763991pga.28.2023.02.12.23.23.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Feb 2023 23:23:19 -0800 (PST)
-Date:   Mon, 13 Feb 2023 12:53:11 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com,
-        festevam@gmail.com, lee@kernel.org
-Subject: Re: [PATCH v5] dt-bindings: leds: Document commonly used LED triggers
-Message-ID: <20230213072311.GC4375@thinkpad>
-References: <20230213070827.5085-1-manivannan.sadhasivam@linaro.org>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1676273308; x=1707809308;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=wYCmXhgdhhTmQsJ7X2QgB0MWujfFM9VvV9u0zJ/Ba2w=;
+  b=Qt3hQIzXySn98l3KD9rNbj4RJWUA8dpAiGlcLoKOagmEgpHOiTl9IJvu
+   1KWVdxPxXHrPMdivbsETkdmFl8IX74GO8NtuuwmnzEcmSj1oaWoBpKK6B
+   sRgCN14LWLE7mqHI4W80ou8MaP79y+8+RV1uVMm7BzPYaiVubPKNW5CFV
+   Dy5916ySsziPvp5+WsijZVRPYph63lLEMc64a29Oa4k21ZIJlpIk9Ht2R
+   ZoAg6l8tCVGVgrev3/yY/sksoRoMF2seiZwqQdKqJQEoDTJZDG4NcVl4A
+   X8szzEt+Fn3DB6y4edJV6TSKabHEO2e2O4QZrUPxymr1uQtddDAWCPYvS
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,293,1669071600"; 
+   d="scan'208";a="29031053"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Feb 2023 08:28:25 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 13 Feb 2023 08:28:25 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 13 Feb 2023 08:28:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1676273305; x=1707809305;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=wYCmXhgdhhTmQsJ7X2QgB0MWujfFM9VvV9u0zJ/Ba2w=;
+  b=CrWBKWAG5Wj/abp/2mR1xWLJkOdlmroNr91KVPX0n2FOqhcl2XgIX30j
+   F4rCkbRgxBWbEza2VnPmmUg4qTFyv/0KqP/RiDd05xbxe/N6c7wpums1t
+   wmaZyFeuqZ22pLTiErJV60LXBdWyM3yKk8cVRxVETzDiPOPceOXO16xXc
+   HHEqHYIvBqflefg+ADY7YQT0yHUAZQd+Jy/gHHKX3vE9t4nwf6OTFyxCA
+   2cUvSPUrOniH2DfqW+kw6GvUAgeGcsqTJUfKPLMuNtngPFjF5SnEB30Mr
+   5TDa1zx/W4PIYGl9CLMawXNlCcLYYDtaxJiuXvKDszOKFwL+UFx9uh54L
+   g==;
+X-IronPort-AV: E=Sophos;i="5.97,293,1669071600"; 
+   d="scan'208";a="29031052"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Feb 2023 08:28:24 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AA435280056;
+        Mon, 13 Feb 2023 08:28:24 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>, linux-renesas-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] clk: rs9: Check for vendor/device ID
+Date:   Mon, 13 Feb 2023 08:28:22 +0100
+Message-ID: <5909960.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230110100003.370917-1-alexander.stein@ew.tq-group.com>
+References: <20230110100003.370917-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230213070827.5085-1-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 12:38:27PM +0530, Manivannan Sadhasivam wrote:
-> Document the commonly used LED triggers by the SoCs. Not all triggers
-> are documented as some of them are very application specific. Most of the
-> triggers documented here are currently used in devicetrees of many SoCs.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi Stephen,
+
+want me to resend adding all Reviewed-By?
+
+Best regards,
+Alexander
+
+Am Dienstag, 10. Januar 2023, 11:00:00 CET schrieb Alexander Stein:
+> This is in preparation to support additional devices which have different
+> IDs as well as a slightly different register layout.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
-> 
-> Changes in v5:
-> 
-> * Rebased on top of v6.2-rc1
-
-Noticed that Lee is now maintaining LED subsystem after sending v5.
-So rebased the patch on top of lee/for-leds-next branch and sent v6.
-
-Thanks,
-Mani
-
-> 
-> Changes in v4:
-> 
-> * Removed the sorting of triggers
-> * Removed the "items" as they were not needed
-> * Reworded the description
-> * Dropped Zhen Lei's tested-by tag as the patch has changed
-> * Added kbd-capslock trigger
-> 
-> Changes in v3:
-> 
-> * Rebased on top of v6.1-rc1
-> * Added WLAN Rx trigger
-> * Added tested tag from Zhen Lei
-> 
 > Changes in v2:
-> 
-> * Added more triggers, fixed the regex
-> * Sorted triggers in ascending order
-> 
->  .../devicetree/bindings/leds/common.yaml      | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index f5c57a580078..d01a52e9e982 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -98,9 +98,44 @@ properties:
->              # LED alters the brightness for the specified duration with one software
->              # timer (requires "led-pattern" property)
->            - pattern
-> +            # LED indicates mic mute state
-> +          - audio-micmute
-> +            # LED indicates audio mute state
-> +          - audio-mute
-> +            # LED indicates bluetooth power state
-> +          - bluetooth-power
-> +            # LED indicates activity of all CPUs
-> +          - cpu
-> +            # LED indicates disk read activity
-> +          - disk-read
-> +            # LED indicates disk write activity
-> +          - disk-write
-> +            # LED indicates camera flash state
-> +          - flash
-> +            # LED indicated keyboard capslock
-> +          - kbd-capslock
-> +            # LED indicates MTD memory activity
-> +          - mtd
-> +            # LED indicates NAND memory activity (deprecated),
-> +            # in new implementations use "mtd"
-> +          - nand-disk
-> +            # No trigger assigned to the LED. This is the default mode
-> +            # if trigger is absent
-> +          - none
-> +            # LED indicates camera torch state
-> +          - torch
-> +            # LED indicates USB gadget activity
-> +          - usb-gadget
-> +            # LED indicates USB host activity
-> +          - usb-host
->          # LED is triggered by SD/MMC activity
->        - pattern: "^mmc[0-9]+$"
-> +        # LED is triggered by CPU activity
->        - pattern: "^cpu[0-9]*$"
-> +        # LED indicates power status of [N]th Bluetooth HCI device
-> +      - pattern: "^hci[0-9]{1,2}-power$"
-> +        # LED indicates [N]th WLAN Tx/Rx activity
-> +      - pattern: "^phy[0-9]{1,2}(tx|rx)$"
->  
->    led-pattern:
->      description: |
-> -- 
-> 2.25.1
-> 
+> * Use dev_err_probe to include return statement in one line
+>=20
+>  drivers/clk/clk-renesas-pcie.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>=20
+> diff --git a/drivers/clk/clk-renesas-pcie.c b/drivers/clk/clk-renesas-pci=
+e.c
+> index e6247141d0c05..bba09a88c2ccc 100644
+> --- a/drivers/clk/clk-renesas-pcie.c
+> +++ b/drivers/clk/clk-renesas-pcie.c
+> @@ -45,6 +45,13 @@
+>  #define RS9_REG_DID				0x6
+>  #define RS9_REG_BCP				0x7
+>=20
+> +#define RS9_REG_VID_IDT				0x01
+> +
+> +#define RS9_REG_DID_TYPE_FGV			(0x0 <<=20
+RS9_REG_DID_TYPE_SHIFT)
+> +#define RS9_REG_DID_TYPE_DBV			(0x1 <<=20
+RS9_REG_DID_TYPE_SHIFT)
+> +#define RS9_REG_DID_TYPE_DMV			(0x2 <<=20
+RS9_REG_DID_TYPE_SHIFT)
+> +#define RS9_REG_DID_TYPE_SHIFT			0x6
+> +
+>  /* Supported Renesas 9-series models. */
+>  enum rs9_model {
+>  	RENESAS_9FGV0241,
+> @@ -54,6 +61,7 @@ enum rs9_model {
+>  struct rs9_chip_info {
+>  	const enum rs9_model	model;
+>  	unsigned int		num_clks;
+> +	u8			did;
+>  };
+>=20
+>  struct rs9_driver_data {
+> @@ -270,6 +278,7 @@ static int rs9_probe(struct i2c_client *client)
+>  {
+>  	unsigned char name[5] =3D "DIF0";
+>  	struct rs9_driver_data *rs9;
+> +	unsigned int vid, did;
+>  	struct clk_hw *hw;
+>  	int i, ret;
+>=20
+> @@ -306,6 +315,20 @@ static int rs9_probe(struct i2c_client *client)
+>  	if (ret < 0)
+>  		return ret;
+>=20
+> +	ret =3D regmap_read(rs9->regmap, RS9_REG_VID, &vid);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D regmap_read(rs9->regmap, RS9_REG_DID, &did);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (vid !=3D RS9_REG_VID_IDT || did !=3D rs9->chip_info->did)
+> +		return dev_err_probe(&client->dev, -ENODEV,
+> +				     "Incorrect VID/DID: %#02x, %#02x.=20
+Expected %#02x, %#02x\n",
+> +				     vid, did, RS9_REG_VID_IDT,
+> +				     rs9->chip_info->did);
+> +
+>  	/* Register clock */
+>  	for (i =3D 0; i < rs9->chip_info->num_clks; i++) {
+>  		snprintf(name, 5, "DIF%d", i);
+> @@ -349,6 +372,7 @@ static int __maybe_unused rs9_resume(struct device *d=
+ev)
+> static const struct rs9_chip_info renesas_9fgv0241_info =3D {
+>  	.model		=3D RENESAS_9FGV0241,
+>  	.num_clks	=3D 2,
+> +	.did		=3D RS9_REG_DID_TYPE_FGV | 0x02,
+>  };
+>=20
+>  static const struct i2c_device_id rs9_id[] =3D {
 
--- 
-மணிவண்ணன் சதாசிவம்
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
