@@ -2,104 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC79693E3F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 07:27:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 796C6693EB4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjBMG1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 01:27:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
+        id S229631AbjBMHIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 02:08:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjBMG1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 01:27:03 -0500
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E09B476;
-        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
-Received: by mail-pj1-x1041.google.com with SMTP id r9-20020a17090a2e8900b00233ba727724so4941036pjd.1;
-        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
+        with ESMTP id S229556AbjBMHIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:08:41 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9673EC7D
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:08:40 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id m2so12565179plg.4
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:08:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5ZtF2KqwWRhAKLuTZEMSSTu2+eVtRmd9Zd1nxNogWI=;
-        b=ljzjL29mBMyAM3qrAdg8Bl0nAlOaIyy3rfXCgoA7S6PLtniN+7gW3TsXNSD8A5E92C
-         GgWfsabQmZMAC6rAbN/MTa6iClJ/4a/2U+88wesTVK9wRoTwu1CtsDKwYfyZheBZY2pU
-         m18RL1alkG1zrzPpf3JXQVlxv4djGO2vQgk8SpR9fb7UmSJBjPbu5mK7xkKslG4i90TD
-         9btIkTBJv6eXBRjMphTTrzP8zoUl3CvmcIuI8ChwWaq/qKT1DUhnUqi43bQmCO4nWjLK
-         pGjy0m4RdXShnNjBBqWDjVcPPMz+Gw+dIwSKH5O2taMMIogNLBMWdA9n48zLhEMBtqLQ
-         xeHw==
+        bh=rWV82DuffbkA0r5SzgnRHGJAxs9Uwsl2YwXW0fT+d6A=;
+        b=lc0mtwktj97AGn6slIN6qa4ekwhfOSJOQz1xrvCLNdqmifyDg6ccIbdrSRMHZJ2N4y
+         GgNyvvpP/MLpR9aHTuWsM5kVFRQ41KVWZDIrB+T7N4lNAX0q2tZC+3WIcopUPmnbKNQS
+         //5zkBpFNA8sBxa9f2MbH1vHtqMiqhl+LJXvwwFqdzAV2HwX4paawmnw9iFCAofl+A2C
+         zzR1G3NyCojdvCIPGnRaIX1MnI/rRza6a0GU5wvVDYm5PMuefjD6ykp2/MsDq/yp7KkI
+         E/OpjFkTTi7miqWnDbV132A7mzZ/iQNgp3pOBXKDTIuXNOtSdDqg+7uykmJUqPNg3E7z
+         El/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=e5ZtF2KqwWRhAKLuTZEMSSTu2+eVtRmd9Zd1nxNogWI=;
-        b=6HMmmNRnJEU6VkAlXxxjdxcE5+xOr9kARoRDZB0K+Qnv9UHGO0ij+jV+wI/DBItdRh
-         utIRd2yrwMJYNh3pX4PPUzNMsP7IuxUfuy+6qLpH4Z15ldw3xGHHC4FuDpdSz9qJqD7w
-         Frr/izGjYqU5liKIQ2aCPkhQ3BDpr274RhNXO0/ObkNZhWQiRU7fjoVjWOhrvOSGnZfo
-         Fv6w0m1cGlAGLi70dMb1RUOVNX6jj2ZimjsPH51xiU9Ao1DQFyJ8yJqZgA8nEu7B/QuS
-         5o5kR1SBtgPoEAFwZnPlKgUWMy7lFeuEnHUZMLnlpNPnMVtFikn5kuKLiJAq8RCUf4R0
-         qP6Q==
-X-Gm-Message-State: AO0yUKXIgpP7wTlWbHItd17waTGlohz+ffZbHRyeY371kZPJc/5nZRLP
-        ODbycaDyK5u6/ErAphtKYXx3Kdq/A7B0ng==
-X-Google-Smtp-Source: AK7set/EgU3fIuA4nWHFdGB8/cgKYXFkQWSE//uU+pD1VoQqOnX6Htxy2o+EkwbE7Lk1Uvr5oFuP7g==
-X-Received: by 2002:a17:902:ecc2:b0:19a:968d:2713 with SMTP id a2-20020a170902ecc200b0019a968d2713mr4842072plh.48.1676269622404;
-        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
-Received: from localhost.localdomain ([103.135.103.93])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170902c15100b0019a70a85e8fsm5407466plj.220.2023.02.12.22.26.59
+        bh=rWV82DuffbkA0r5SzgnRHGJAxs9Uwsl2YwXW0fT+d6A=;
+        b=VTSxFYzych1iVxx2izdI9YPtM1Jca66XB7BaQLGzU09LcEV4b6mMIuAnTEbpwCQTpZ
+         ZaBkGfpOKT4cFUnkbpsOr4cFUMysZu/UBCmY7qxzWeL4xHBmoDQ8IrBUEyFS+aNVfrE+
+         mPKK7wEGS1BvYhjY6AZXC5rHcZi2/DWn6qJ81uXM+qIm0pvPXpHYsTv6GxgS1yQHR/Q3
+         KWod54sxfVSV3XmKuL/w6OBHbz3ZciynZrYTo6OA14WbEVKnoYHLRabGZH5YquxyiBBX
+         sxi2zB4nyTH4BOhb/4t5ay8nOg8pjLtikip20fciD49vOVgqwWlQZri7A4wntTtGcnSh
+         CETw==
+X-Gm-Message-State: AO0yUKXbphOAt607vtLkzvNg2ebxmy3wgJu/Iw8l6qGdjVOSe7GKv/ym
+        gT0z3zvaulDo9ex3/VlDQrqv
+X-Google-Smtp-Source: AK7set9xE1GSDfppqMxOGUxzD8jTRdTKOx+EBwnuawNQ/I0UUpOwkbs79SdmOQPsW6ClvlF6K7Rz2g==
+X-Received: by 2002:a17:90b:4c4d:b0:22c:9217:68b6 with SMTP id np13-20020a17090b4c4d00b0022c921768b6mr25368845pjb.14.1676272120356;
+        Sun, 12 Feb 2023 23:08:40 -0800 (PST)
+Received: from localhost.localdomain ([117.217.182.252])
+        by smtp.gmail.com with ESMTPSA id w63-20020a17090a6bc500b00230e41e98desm2956183pjj.32.2023.02.12.23.08.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
-From:   Genjian <zhanggenjian123@gmail.com>
-X-Google-Original-From: Genjian <zhanggenjian@kylinos.cn>
-To:     paulburton@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, tsbogend@alpha.franken.de
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Genjian Zhang <zhanggenjian@kylinos.cn>,
-        k2ci <kernel-bot@kylinos.cn>
-Subject: [PATCH] MIPS: dts: Boston: Fix dtc 'pci_device_reg' warning
-Date:   Mon, 13 Feb 2023 14:24:51 +0800
-Message-Id: <20230213062451.1688755-1-zhanggenjian@kylinos.cn>
+        Sun, 12 Feb 2023 23:08:39 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com,
+        festevam@gmail.com, lee@kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v5] dt-bindings: leds: Document commonly used LED triggers
+Date:   Mon, 13 Feb 2023 12:38:27 +0530
+Message-Id: <20230213070827.5085-1-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Genjian Zhang <zhanggenjian@kylinos.cn>
+Document the commonly used LED triggers by the SoCs. Not all triggers
+are documented as some of them are very application specific. Most of the
+triggers documented here are currently used in devicetrees of many SoCs.
 
-dtbs_check currently complains that:
-arch/mips/boot/dts/img/boston.dts:128.19-178.5: Warning (pci_device_reg):
-/pci@14000000/pci2_root@0,0,0: PCI unit address format error,
-expected "0,0"
-The unit-address format should be '<device>,<function>'.
-Fix the unit-address accordingly.
-
-Reported-by: k2ci <kernel-bot@kylinos.cn>
-Signed-off-by: Genjian Zhang <zhanggenjian@kylinos.cn>
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/mips/boot/dts/img/boston.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/mips/boot/dts/img/boston.dts b/arch/mips/boot/dts/img/boston.dts
-index 84328afa3a55..72f7605d2e31 100644
---- a/arch/mips/boot/dts/img/boston.dts
-+++ b/arch/mips/boot/dts/img/boston.dts
-@@ -125,7 +125,7 @@ pci2_intc: interrupt-controller {
- 			#interrupt-cells = <1>;
- 		};
+Changes in v5:
+
+* Rebased on top of v6.2-rc1
+
+Changes in v4:
+
+* Removed the sorting of triggers
+* Removed the "items" as they were not needed
+* Reworded the description
+* Dropped Zhen Lei's tested-by tag as the patch has changed
+* Added kbd-capslock trigger
+
+Changes in v3:
+
+* Rebased on top of v6.1-rc1
+* Added WLAN Rx trigger
+* Added tested tag from Zhen Lei
+
+Changes in v2:
+
+* Added more triggers, fixed the regex
+* Sorted triggers in ascending order
+
+ .../devicetree/bindings/leds/common.yaml      | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index f5c57a580078..d01a52e9e982 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -98,9 +98,44 @@ properties:
+             # LED alters the brightness for the specified duration with one software
+             # timer (requires "led-pattern" property)
+           - pattern
++            # LED indicates mic mute state
++          - audio-micmute
++            # LED indicates audio mute state
++          - audio-mute
++            # LED indicates bluetooth power state
++          - bluetooth-power
++            # LED indicates activity of all CPUs
++          - cpu
++            # LED indicates disk read activity
++          - disk-read
++            # LED indicates disk write activity
++          - disk-write
++            # LED indicates camera flash state
++          - flash
++            # LED indicated keyboard capslock
++          - kbd-capslock
++            # LED indicates MTD memory activity
++          - mtd
++            # LED indicates NAND memory activity (deprecated),
++            # in new implementations use "mtd"
++          - nand-disk
++            # No trigger assigned to the LED. This is the default mode
++            # if trigger is absent
++          - none
++            # LED indicates camera torch state
++          - torch
++            # LED indicates USB gadget activity
++          - usb-gadget
++            # LED indicates USB host activity
++          - usb-host
+         # LED is triggered by SD/MMC activity
+       - pattern: "^mmc[0-9]+$"
++        # LED is triggered by CPU activity
+       - pattern: "^cpu[0-9]*$"
++        # LED indicates power status of [N]th Bluetooth HCI device
++      - pattern: "^hci[0-9]{1,2}-power$"
++        # LED indicates [N]th WLAN Tx/Rx activity
++      - pattern: "^phy[0-9]{1,2}(tx|rx)$"
  
--		pci2_root@0,0,0 {
-+		pci2_root@0,0 {
- 			compatible = "pci10ee,7021";
- 			reg = <0x00000000 0 0 0 0>;
- 
+   led-pattern:
+     description: |
 -- 
 2.25.1
 
