@@ -2,73 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E8869404A
+	by mail.lfdr.de (Postfix) with ESMTP id CE81769404B
 	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbjBMJCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 04:02:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
+        id S229720AbjBMJCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 04:02:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjBMJCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:02:31 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C9D630C8;
-        Mon, 13 Feb 2023 01:02:30 -0800 (PST)
-Received: from [172.16.71.140] (unknown [49.255.141.98])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9AD4720034;
-        Mon, 13 Feb 2023 17:02:28 +0800 (AWST)
+        with ESMTP id S230141AbjBMJCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:02:35 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C90CF13DEB
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:02:32 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id m10so2421616wrn.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:02:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1676278948;
-        bh=MRZUwSFMI2QcJCDR1qI3+EewYtKghEAcl8omlYVCeSc=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References;
-        b=d7gAv7cQg+Y77IUqlVU/KxyPOtpOa8z0rkZ/1fwDUcFVUrHOLArXwOPgtdvl7vNd0
-         iSdBGO7hmpGchESmxSqCMRgBC3Mir42hluKa7fxEwLCq48Q9GOVm+TVYt3rWi2qrw3
-         OltCUqN+9JFV63ZRm7FFqyLkyiqAkS79Op0jDk1ZfzGAAfjZF7r+ZO+RFe1qwShTBl
-         BPRsCu/1x/rqcmOAy/jQS7Z7Kj3QHGZh1gu3L8FnEljGjfFdITM2JYkk9X09YEhRKs
-         OAjTiKy3t9LPetttVW+qw3gnfaoYloRFPT4s6hKelb1jxPu9TyS5xooS7Tov+Izaa4
-         bBmUoIs08moAA==
-Message-ID: <40269fdbc75a149a37e8a44f62cb3a6102f61d8a.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 3/3] dts: ast2600: Add reset config for I3C
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Date:   Mon, 13 Feb 2023 17:02:28 +0800
-In-Reply-To: <4eed8885-a149-43b1-f6f6-f9b7fbb2f3b4@linaro.org>
-References: <cover.1676267865.git.jk@codeconstruct.com.au>
-         <f426c3a22d64d076b007a0fc75dc95a389a9387f.1676267865.git.jk@codeconstruct.com.au>
-         <4eed8885-a149-43b1-f6f6-f9b7fbb2f3b4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3-1 
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AK8Y6Fm5XKwk7gPcZzE5f1og+LrHiF4ktNQUsy8l3vE=;
+        b=fqEgCtrWa3hdVfARyzC6f1kDypnxSvn1mbj/H6dz+4XyD5ueEaTZK7Q25R871Ziyf3
+         w9gCzTaCI3g9mV6nIvKeBGZiSr/92TjknD5CrWrGgM1fGKZnjiU/pYBJqpzHOjclTJ5U
+         Vj+kiHJ34fCWCZUIYa8GPXXVl/LshNpDwKaSDkhVAlukB45ZtKefOtVNl6YQT+YMaBlo
+         GHbtrq8MWeG7Cr18XaW/gtcbdZV8gqM3GfU7NBpodpbTlCRBt96doMt25I15BToS1BW2
+         NyCf+UYZnWuKkAGUMR24IYbKK8Wv9Z6hiKcdbfV15RfLTnYandfUKc8qFCGysmhQ+I+g
+         RjPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AK8Y6Fm5XKwk7gPcZzE5f1og+LrHiF4ktNQUsy8l3vE=;
+        b=k0m+ecplCBU/o+QGw4AI+UEHfnE6GwgwkOLjmYzBCBFnOaStCrWA1Wd0UD5I6jjs1Q
+         fJ/ts73c0pAn84euEt5wzROrlTV/+wGVf5hHjQ3pHqHqbvfalvuTDoe5TQ228Fwv71p4
+         nvTlj3/PCb5BQd+COBs1fUHd5WuYro0zjrge0U4gG3zp+uzUFhrHVIisexw7bFbNdrnX
+         Mqar/XLsYAMu5ToYk1v4rF/bNk5Pi/pei8xh6iUoTAG8pSKz1rmdQ6JpcmpQ7Li50Scg
+         a9H3PPRcYtiEBPotDdEkgNGm1w0PbcHZA6JCxx8kMSxpJtxIuXMq1NsQImJKJSMh5HHp
+         ySEw==
+X-Gm-Message-State: AO0yUKWDCTB2u024rd+62NStdn/6H6uje0iG8ZcwZQ6SrbJ2yVj64wFq
+        rhzNR7mkp5/9uHeWki/0p3kNc95GTaLw1uwbk+Q=
+X-Google-Smtp-Source: AK7set9VRpSFPmL3b5CtlTUVK/Lj35F0ylV+/NTbNkwaF+rNoMmrCOKieLBW5bt2W4zDB7U8dqZ8Lw==
+X-Received: by 2002:adf:b64c:0:b0:2c3:be89:7c2b with SMTP id i12-20020adfb64c000000b002c3be897c2bmr12449633wre.14.1676278951403;
+        Mon, 13 Feb 2023 01:02:31 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:6e1e:131f:8bc1:aad8? ([2a01:e0a:982:cbb0:6e1e:131f:8bc1:aad8])
+        by smtp.gmail.com with ESMTPSA id c8-20020adffb08000000b002c406b357cfsm9969937wrr.86.2023.02.13.01.02.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 01:02:30 -0800 (PST)
+Message-ID: <a0e11df2-576c-da61-a583-81528cb77d20@linaro.org>
+Date:   Mon, 13 Feb 2023 10:02:31 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] dt-bindings: media: meson-ir: Convert Amlogic Meson IR
+ controller binding
+Content-Language: en-US
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-media@vger.kernel.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <a91e3a8e-7ef1-70bb-f6be-01a9a90c0e05@gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <a91e3a8e-7ef1-70bb-f6be-01a9a90c0e05@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Heiner,
 
-> 2. This is not DTS. There is nothing from DTS here.
+On 12/02/2023 17:51, Heiner Kallweit wrote:
+> Convert Amlogic Meson IR controller binding to yaml.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>   .../devicetree/bindings/media/meson-ir.txt    | 20 ---------
+>   .../devicetree/bindings/media/meson-ir.yaml   | 45 +++++++++++++++++++
+>   2 files changed, 45 insertions(+), 20 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/media/meson-ir.txt
+>   create mode 100644 Documentation/devicetree/bindings/media/meson-ir.yaml
 
-[and from, your reply on patch 2/3:]
+I've already posted a patch for ir which is reviewed and ready to be merged :
+https://lore.kernel.org/all/20221117-b4-amlogic-bindings-convert-v3-4-e28dd31e3bed@linaro.org/
 
-> Why do you use subject prefix in patch 1 different than in patch 2?
+The only remaining bindings that remains to convert/document are:
+  ['amlogic,axg-audio-clkc']
+  ['amlogic,g12a-audio-clkc']
+  ['amlogic,sm1-audio-clkc']
+  ['amlogic,g12a-tohdmitx']
+  ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+  ['everest,es7154']
+  ['everest,es7241']
+  ['ti,tas5707']
+  ['linux,spdif-dir']
+  ['gpio-fan']
+  ['pwm-fan']
 
-Ack, will change to "clk:"; there is quite a mix of "dt-bindings:" and
-"clk:" on the changes within this dir. I'll unify across the series.
+Neil
 
-Cheers,
+> 
+> diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
+> deleted file mode 100644
+> index efd9d29a8..000000000
+> --- a/Documentation/devicetree/bindings/media/meson-ir.txt
+> +++ /dev/null
+> @@ -1,20 +0,0 @@
+> -* Amlogic Meson IR remote control receiver
+> -
+> -Required properties:
+> - - compatible	: depending on the platform this should be one of:
+> -		  - "amlogic,meson6-ir"
+> -		  - "amlogic,meson8b-ir"
+> -		  - "amlogic,meson-gxbb-ir"
+> - - reg		: physical base address and length of the device registers
+> - - interrupts	: a single specifier for the interrupt from the device
+> -
+> -Optional properties:
+> - - linux,rc-map-name:	see rc.txt file in the same directory.
+> -
+> -Example:
+> -
+> -	ir-receiver@c8100480 {
+> -		compatible= "amlogic,meson6-ir";
+> -		reg = <0xc8100480 0x20>;
+> -		interrupts = <0 15 1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/meson-ir.yaml b/Documentation/devicetree/bindings/media/meson-ir.yaml
+> new file mode 100644
+> index 000000000..8d3c7acfa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/meson-ir.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/meson-ir.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson IR remote control receiver
+> +
+> +maintainers:
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
+> +
+> +allOf:
+> +  - $ref: rc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - amlogic,meson6-ir
+> +          - amlogic,meson8b-ir
+> +          - amlogic,meson-gxbb-ir
+> +      - items:
+> +          - const: amlogic,meson-gx-ir
+> +          - const: amlogic,meson-gxbb-ir
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    ir-receiver@c8100480 {
+> +      compatible= "amlogic,meson6-ir";
+> +      reg = <0xc8100480 0x20>;
+> +      interrupts = <0 15 1>;
+> +    };
 
-
-Jeremy
