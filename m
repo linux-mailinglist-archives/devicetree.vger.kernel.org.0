@@ -2,217 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1F766943CA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:04:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB6A86943CF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:06:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbjBMLEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:04:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42764 "EHLO
+        id S229984AbjBMLGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:06:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbjBMLEh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:04:37 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B5D40EE;
-        Mon, 13 Feb 2023 03:04:32 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id be8so13117607plb.7;
-        Mon, 13 Feb 2023 03:04:32 -0800 (PST)
+        with ESMTP id S229947AbjBMLGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:06:01 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0927FB466
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:05:59 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id r2so11733065wrv.7
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:05:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CzN50lIcZGBFDntOn8igk3Ln2b075PMIFDDX4eI/7dE=;
-        b=i/1ycPfwnxtLqbPd8axwK16ZKstxlhG+1vFVRwfiJ6PauMp67fftQ/tOzg4kBCvclP
-         6R4Jz9DtaAWmuaJwIQVX4Kv3ZkmXbsSbawWPfcJiNl5mbNSJzdyr4G9VkqZfAx32Qu/d
-         H+9Jyt7W686kidgYp4/rZmDwAoAz+aCFTLkVI8Nr7IqOhoyqGvBShu8Q2EeuWDbA7xio
-         R+fppiaMvGLrgJLbZlmKb2PE2w1Wkzu09MY9kQCZY84ZIkq1k/4w2f6dOS2FaBke56b8
-         Yf5OQgwAhpWuwxjc0/D4UB7Vxhsrl7TEJORROhEN6NMo4KTR7FMvaqcx8RT88TelKKvV
-         36Dw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hbDZOcLqh+VMgiuNCtX047PoGc8j7PM/gvuvb2t7vYk=;
+        b=NyH8KyN30mjlmh1sTDa5TBxcOc1l8XauQzNC+tfoxmtNnYrouddF5xggUHW9/4s5Ns
+         a8LLjJvNEdfsESCKHoZn6A871Tr30QBAg2VBBOF66NP+Wk7CVmJIkZ7P/sSY9ac/X9r0
+         bFiYUrge2ABnWjcOuxiJxvTBnDSDex/b3zC2qf1dcDX8kXYUa0ERdExTSaFnb6FIcwer
+         ByrqrGw2Ku5onRUHufKyjl8XqcKBxVXrVZ5EvRCnfWvY/Sq+JM3cQ3EP8VnQ+m5rvjp5
+         DagiPN27ZXaqtNilerFTgZ2f/q/U5ma6sGgFCCpTF4mTkLxTSx/gG+cgY9Nst5f4CmIJ
+         54mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CzN50lIcZGBFDntOn8igk3Ln2b075PMIFDDX4eI/7dE=;
-        b=OpG6vgWRkCCES4pDF8USdb8HrnropBgFqUwLc7YDKUbKNz5pCHS2LSxw93Pha0P+w6
-         V1V2HVcPxKu8QeCFznFvlRBF8wiLYQdlRfWbJO9xPC5Lkbxr4WTcE7qpfdBaYQSbmd9i
-         3eQ630LVUxR+EcfQt5cBkmjCOedkXUxhVxJpy1S/0jtLOI+MW2rd2es7+PAfE1HeZhND
-         Hagr/eLeTJFfVY+XO3COhIVnJ4obQaoGJ8e5C4Mqu6d1kprePcodx0crW8bxIvmkNLLb
-         E9+DJTgAEcn+iJhJLwe7auTbM7DtcgPoz8ELBhQmb+25fcZWlkgUYM7r8STQp0aWxDD+
-         5wyw==
-X-Gm-Message-State: AO0yUKULccGu9/Mfgshchp26JrFgVDc0Ni4SnEAkXEaSdpWWolsIZ+FW
-        g4P8hjhd2wEPkgSA+tdKu3I=
-X-Google-Smtp-Source: AK7set+RKDadqVzvT05fEYtx/HyoM0eOT/3UqvoygsGwDBL51skMUuDazlf8uNCR+PyFlReSF3bKvw==
-X-Received: by 2002:a17:90b:1e46:b0:230:7aeb:2936 with SMTP id pi6-20020a17090b1e4600b002307aeb2936mr25721092pjb.20.1676286272423;
-        Mon, 13 Feb 2023 03:04:32 -0800 (PST)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id p9-20020a17090a2d8900b00233bab35b57sm4459375pjd.29.2023.02.13.03.04.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Feb 2023 03:04:32 -0800 (PST)
-Date:   Mon, 13 Feb 2023 19:04:25 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hbDZOcLqh+VMgiuNCtX047PoGc8j7PM/gvuvb2t7vYk=;
+        b=YJhR/97K7HzY5Fr+gsyZsZJzrYdLtL8YUWKVpqV8gdWhoYGNS3/mEHzILKq8JqAGLj
+         GQS2tY8E101cMPMgN9vvERPH6OKC6j6MgOF+H0yCcWZZWwRmwVJYlZYuFt1+phXdYRa8
+         6nXg/HUH+klvsMt2Rgw9atgN3XVPehUOAgYUVZ3EkM/anTn0CJGDxLm2lZ66oUEQyu7G
+         KZuXxQKfCRkWArPNtWIFGlH46qZc0/12/MMHmyHH0Lux4axAdSiyknoWmn9fAII0/Irq
+         n9e/+WkSP4h0ojj/yKo36CJcrb7Gm7ZGjR4Klw0EaPyehDEDGkoCFUFn/R8yn18jTcaj
+         9xdw==
+X-Gm-Message-State: AO0yUKU8kKw8WR+wi2jALqXUY2Bv5FzSy8CAFIOfaIFzCnTZpLQdRZzi
+        ajLIZRVYkD3ofg4mRNQfJ2vvUQ==
+X-Google-Smtp-Source: AK7set8LSk55cs2FZOOdiV621x9kPTKaVcA9dPhuENnAS1ySB7YnwYlPsfzbHocOD+xXf3fHyRTbQQ==
+X-Received: by 2002:a05:6000:543:b0:2c5:58b9:d76e with SMTP id b3-20020a056000054300b002c558b9d76emr2175086wrf.40.1676286357524;
+        Mon, 13 Feb 2023 03:05:57 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n19-20020a05600c3b9300b003daf7721bb3sm17959752wms.12.2023.02.13.03.05.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 03:05:57 -0800 (PST)
+Message-ID: <3dfe44a1-2a80-7344-e6a5-31ea59438dec@linaro.org>
+Date:   Mon, 13 Feb 2023 12:05:54 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 5/6] dt-bindings: soc: amlogic: convert
+ amlogic,gxbb-aoclkc.txt to dt-schema
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Novatek NT36523
- bindings
-Message-ID: <Y+oZOXyE8/a+vreS@Gentoo>
-References: <20230210161925.32343-1-lujianhua000@gmail.com>
- <6cffa875-d8cc-a4fe-e18d-2e24c28a49d8@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6cffa875-d8cc-a4fe-e18d-2e24c28a49d8@linaro.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
+ <20230209-b4-amlogic-bindings-convert-take2-v1-5-c4fe9049def9@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-5-c4fe9049def9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 11:45:23AM +0100, Krzysztof Kozlowski wrote:
-> On 10/02/2023 17:19, Jianhua Lu wrote:
-> > Novatek NT36523 is a display driver IC that can drive DSI panel. It
-> > is also present in the csot and boe video mode panels. It is found
-> > in Xiaomi Mi Pad 5 series.
-> > 
-> > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> > ---
-> >  .../display/panel/novatek,nt36523.yaml        | 101 ++++++++++++++++++
-> >  1 file changed, 101 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> > new file mode 100644
-> > index 000000000000..a7098d0ce7e1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> > @@ -0,0 +1,101 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/novatek,nt36523.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Novatek NT36523 based DSI display Panels
-> > +
-> > +maintainers:
-> > +  - Jianhua Lu <lujianhua000@gmail.com>
-> > +
-> > +description: |
-> > +  The nt36523 IC from Novatek is a generic DSI Panel IC used to drive dsi
-> > +  panels.
-> > +  Right now, only support cost and boe LCD display panels with the
+On 09/02/2023 14:41, Neil Armstrong wrote:
+> Convert the Amlogic Always-On Clock Controller bindings to dt-schema.
+
+Subject prefix: clock, not soc
+
 > 
-> boe? both?
-Boe Technology Group Co., Ltd
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  64 -----------
+>  .../bindings/clock/amlogic,gxbb-aoclkc.yaml        | 120 +++++++++++++++++++++
+>  2 files changed, 120 insertions(+), 64 deletions(-)
 > 
-> > +  resolution of 1600x2560. It is a video mode DSI panel.
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+> deleted file mode 100644
+> index c41f0be5d438..000000000000
+> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+> +++ /dev/null
+> @@ -1,64 +0,0 @@
+> -* Amlogic GXBB AO Clock and Reset Unit
+> -
+> -The Amlogic GXBB AO clock controller generates and supplies clock to various
+> -controllers within the Always-On part of the SoC.
+> -
+> -Required Properties:
+> -
+> -- compatible: value should be different for each SoC family as :
+> -	- GXBB (S905) : "amlogic,meson-gxbb-aoclkc"
+> -	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
+> -	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
+> -	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
+> -	- G12A (S905X2, S905D2, S905Y2) : "amlogic,meson-g12a-aoclkc"
+> -	followed by the common "amlogic,meson-gx-aoclkc"
+> -- clocks: list of clock phandle, one for each entry clock-names.
+> -- clock-names: should contain the following:
+> -  * "xtal"     : the platform xtal
+> -  * "mpeg-clk" : the main clock controller mother clock (aka clk81)
+> -  * "ext-32k-0"  : external 32kHz reference #0 if any (optional)
+> -  * "ext-32k-1"  : external 32kHz reference #1 if any (optional - gx only)
+> -  * "ext-32k-2"  : external 32kHz reference #2 if any (optional - gx only)
+> -
+> -- #clock-cells: should be 1.
+> -
+> -Each clock is assigned an identifier and client nodes can use this identifier
+> -to specify the clock which they consume. All available clocks are defined as
+> -preprocessor macros in the dt-bindings/clock/gxbb-aoclkc.h header and can be
+> -used in device tree sources.
+> -
+> -- #reset-cells: should be 1.
+> -
+> -Each reset is assigned an identifier and client nodes can use this identifier
+> -to specify the reset which they consume. All available resets are defined as
+> -preprocessor macros in the dt-bindings/reset/gxbb-aoclkc.h header and can be
+> -used in device tree sources.
+> -
+> -Parent node should have the following properties :
+> -- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
+> -- reg: base address and size of the AO system control register space.
+> -
+> -Example: AO Clock controller node:
+> -
+> -ao_sysctrl: sys-ctrl@0 {
+> -	compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
+> -	reg =  <0x0 0x0 0x0 0x100>;
+> -
+> -	clkc_AO: clock-controller {
+> -		compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
+> -		#clock-cells = <1>;
+> -		#reset-cells = <1>;
+> -		clocks = <&xtal>, <&clkc CLKID_CLK81>;
+> -		clock-names = "xtal", "mpeg-clk";
+> -	};
+> -
+> -Example: UART controller node that consumes the clock and reset generated
+> -  by the clock controller:
+> -
+> -	uart_AO: serial@4c0 {
+> -		compatible = "amlogic,meson-uart";
+> -		reg = <0x4c0 0x14>;
+> -		interrupts = <0 90 1>;
+> -		clocks = <&clkc_AO CLKID_AO_UART1>;
+> -		resets = <&clkc_AO RESET_AO_UART1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
+> new file mode 100644
+> index 000000000000..3ac432a112ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
+> @@ -0,0 +1,120 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,gxbb-aoclkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Always-On Clock Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - amlogic,meson-gxbb-aoclkc
+> +              - amlogic,meson-gxl-aoclkc
+> +              - amlogic,meson-gxm-aoclkc
+> +              - amlogic,meson-axg-aoclkc
+> +          - const: amlogic,meson-gx-aoclkc
+> +      - items:
+
+Drop this "items"
+
+> +          - enum:
+> +              - amlogic,meson-axg-aoclkc
+
+This does not look correct. Either this is standalone compatible or
+followed with a fallback.
+
+> +              - amlogic,meson-g12a-aoclkc
+> +
+> +  clocks:
+> +    minItems: 2
+
+maxItems instead... or you wanted to define constraints? Then you need
+min and maxItems.
+
+
+> +
+> +  clock-names:
+> +    minItems: 2
+
+ditto
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - amlogic,meson-gxbb-clkc
+
+This won't work. Test it... It's not even documented.
+
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 5
+> +
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: xtal 
+> +            - const: mpeg-clk
+> +            - const: ext-32k-0
+> +            - const: ext-32k-1
+> +            - const: ext-32k-2
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - amlogic,meson-g12a-aoclkc
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 3
+> +
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: xtal 
+> +            - const: mpeg-clk
+> +            - const: ext-32k-0
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - amlogic,meson-gxl-clkc
+
+Another set of undocumented compatibles. There is no way this binding is
+doing what it is supposed to do.
+
+
+> +            - amlogic,meson-gxm-clkc
+> +            - amlogic,meson-axg-clkc
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 2
+> +
+> +        clock-names:
+> +          items:
+> +            - const: xtal 
+> +            - const: mpeg-clk
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sysctrl: system-controller@0 {
+> +        compatible = "amlogic,meson-gx-ao-sysctrl", "simple-mfd", "syscon";
+> +        reg = <0 0x100>;
+
+Drop parent node.
+
+> + 
+> +        clkc: clock-controller {
+> +            compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
+> +            #clock-cells = <1>;
+> +            #reset-cells = <1>;
+> +            clocks = <&xtal>, <&clk81>;
+> +            clock-names = "xtal", "mpeg-clk";
+> +        };
+> +    };
 > 
-> The binding or hardware supports only 1600x2560? The how it can be
-> "right now"? It's defined, isn't it?
-Yes
-> 
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - xiaomi,elish-csot-nt36523
-> > +          - xiaomi,elish-boe-nt36523
-> > +      - const: novatek,nt36523
-> > +    description: This indicates the panel manufacturer of the panel that is
-> > +      in turn using the NT36523 panel driver. This compatible string
-> > +      determines how the NT36523 panel driver is configured for the indicated
-> > +      panel. The novatek,nt36523 compatible shall always be provided as a fallback.
-> 
-> Drop description. First it is free form text of binding, so unnecessary.
-> Second, does not really bring any new information.
-Acked
-> 
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description: phandle of gpio for reset line - This should be 8mA, gpio
-> > +      can be configured using mux, pinctrl, pinctrl-names (active high)
-> 
-> Simplify description - 90% of it is redundant and only drive strength of
-> 8 mA is important.
-Acked
-> 
-> > +
-> > +  vddio-supply:
-> > +    description: regulator that supplies the I/O voltage
-> > +
-> > +  vddpos-supply:
-> > +    description: positive boost supply regulator
-> > +
-> > +  vddneg-supply:
-> > +    description: negative boost supply regulator
-> > +
-> > +  reg: true
-> > +  ports: true
-> > +  backlight: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vddio-supply
-> > +  - vddpos-supply
-> > +  - vddneg-supply
-> > +  - reset-gpios
-> > +  - ports
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |+
-> 
-> Drop +
-Acked
-> 
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    dsi0 {
-> 
-> dsi {
-Acked
-> 
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        panel@0 {
-> > +            compatible = "xiaomi,elish-csot-nt36523", "novatek,nt36523";
-> > +            reg = <0>;
-> > +            vddio-supply = <&vreg_l14a_1p88>;
-> > +            vddpos-supply = <&lcd_vddpos_5p5>;
-> > +            vddneg-supply = <&lcd_vddneg_5p5>;
-> > +
-> > +            backlight = <&backlight>;
-> > +            reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
-> > +
-> > +            ports {
-> > +              #address-cells = <1>;
-> > +              #size-cells = <0>;
-> > +
-> > +              port@0 {
-> > +                reg = <0>;
-> 
-> Mixed up indentation.
-Acked
-> 
-> Best regards,
-> Krzysztof
-> 
+
+Best regards,
+Krzysztof
+
