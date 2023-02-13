@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C609694CB7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 17:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8111694CCE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 17:31:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229815AbjBMQ2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 11:28:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51406 "EHLO
+        id S229884AbjBMQbA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 13 Feb 2023 11:31:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbjBMQ2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 11:28:50 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1081DBD5;
-        Mon, 13 Feb 2023 08:28:48 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DBFZtS015910;
-        Mon, 13 Feb 2023 16:28:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=lochDCNGGCA+Uc6G/pwPR4IjuBc3gnuYy0jlNST6U8M=;
- b=Hx068NXVI+khQzsOlnt1cnT678e5Q64rayueSptSHk4t5HCM2FeA0Kunl/98OQ3aBhdg
- v3TV4kVIxL9+vOv2ttxdtvbpD54r5FB0eAZoT5vrRMpMEEOAVtzgKpLCfUuck8IWzEle
- rLdz1jIH+l4/Nf0Pz1FZbl5ZwruWm8PPGk1XEjzgRc5ONncDsSTje4xxtZgSQ/pM7QYy
- h7E4WKh8wNDLw564ZtSkcekNr6yHsg5XyQaXPYDtRZU+LVcOP7f5H82EEHpqDKZu34Dt
- qkiDulYwWjwDcRHZrDitUxUusIO62JO5CimQVJqjMv+7gf2QeEwIMV5pvndBUFhmF30B 9g== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3np2m8vsgw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Feb 2023 16:28:29 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31DGSSnA030296
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Feb 2023 16:28:28 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 13 Feb 2023 08:28:28 -0800
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 4/4] arm64: defconfig: Enable DisplayPort on SC8280XP laptops
-Date:   Mon, 13 Feb 2023 08:28:21 -0800
-Message-ID: <20230213162821.1253831-5-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230213162821.1253831-1-quic_bjorande@quicinc.com>
-References: <20230213162821.1253831-1-quic_bjorande@quicinc.com>
+        with ESMTP id S229815AbjBMQbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 11:31:00 -0500
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97041CA3E;
+        Mon, 13 Feb 2023 08:30:58 -0800 (PST)
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+          by outpost.zedat.fu-berlin.de (Exim 4.95)
+          with esmtps (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@zedat.fu-berlin.de>)
+          id 1pRbiw-0043kT-S2; Mon, 13 Feb 2023 17:30:38 +0100
+Received: from p5b13aa49.dip0.t-ipconnect.de ([91.19.170.73] helo=[192.168.178.81])
+          by inpost2.zedat.fu-berlin.de (Exim 4.95)
+          with esmtpsa (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@physik.fu-berlin.de>)
+          id 1pRbiw-0046cc-HY; Mon, 13 Feb 2023 17:30:38 +0100
+Message-ID: <dbda1f6e1c280c13d963ad6e7f68a853a7741199.camel@physik.fu-berlin.de>
+Subject: Re: remove arch/sh
+From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+To:     Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+Date:   Mon, 13 Feb 2023 17:30:36 +0100
+In-Reply-To: <20230206100856.603a0f8f@canb.auug.org.au>
+References: <20230113062339.1909087-1-hch@lst.de>
+         <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
+         <20230116071306.GA15848@lst.de>
+         <40dc1bc1-d9cd-d9be-188e-5167ebae235c@physik.fu-berlin.de>
+         <20230203071423.GA24833@lst.de>
+         <afd056a95d21944db1dc0c9708f692dd1f7bb757.camel@physik.fu-berlin.de>
+         <20230203083037.GA30738@lst.de> <20230206100856.603a0f8f@canb.auug.org.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.4 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WpK1u3-ajZC0v77T80qBEP8Buu9QORPL
-X-Proofpoint-ORIG-GUID: WpK1u3-ajZC0v77T80qBEP8Buu9QORPL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-13_10,2023-02-13_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- mlxlogscore=849 suspectscore=0 mlxscore=0 impostorscore=0 bulkscore=0
- adultscore=0 priorityscore=1501 clxscore=1015 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302130149
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-Originating-IP: 91.19.170.73
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,41 +72,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QCOM_PMIC_GLINK implements the parts of a TCPM necessary for
-negotiating DP altmode and the TYPEC_MUX_GPIO_SBU driver is used for
-controlling connection and orientation switching of the SBU lanes in the
-USB-C connector  Enable these to enable USB Type-C DisplayPort on
-SC8280XP laptops.
+Hi Steve!
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
+On Mon, 2023-02-06 at 10:08 +1100, Stephen Rothwell wrote:
+> Hi,
+> 
+> On Fri, 3 Feb 2023 09:30:37 +0100 Christoph Hellwig <hch@lst.de> wrote:
+> > 
+> > On Fri, Feb 03, 2023 at 09:24:46AM +0100, John Paul Adrian Glaubitz wrote:
+> > > Since this is my very first time stepping up as a kernel maintainer, I was hoping
+> > > to get some pointers on what to do to make this happen.
+> > > 
+> > > So far, we have set up a new kernel tree and I have set up a local development and
+> > > test environment for SH kernels using my SH7785LCR board as the target platform.
+> > > 
+> > > Do I just need to send a patch asking to change the corresponding entry in the
+> > > MAINTAINERS file?  
+> > 
+> > I'm not sure a there is a document, but:
+> > 
+> >  - add the MAINTAINERS change to your tree
+> >  - ask Stephen to get your tree included in linux-next
+> 
+> And by "Stephen", Christoph means me.  When you are ready, please send
+> me a request to include your tree/branch in linux-next (usually the
+> branch is called something like "for-next" or just "next") telling me
+> the git URL, and the contacts I should send email to if there are
+> conflicts/build issues with the branch.  I will then fetch the branch
+> every time I create a new linux-next release (most work days), so all
+> you need to do is update that branch each time you are ready to publish
+> more commits.
 
-Changes since v2:
-- None
+I'm in the MAINTAINERS now in Linus' tree. I have requested a kernel.org
+account now and will hopefully have my trees set up later this week.
 
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+I'll let you know about the URLs as soon as possible.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e7e42bf79a26..df49fb15523d 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -972,6 +972,7 @@ CONFIG_TYPEC_TPS6598X=m
- CONFIG_TYPEC_HD3SS3220=m
- CONFIG_TYPEC_UCSI=m
- CONFIG_UCSI_CCG=m
-+CONFIG_TYPEC_MUX_GPIO_SBU=m
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=32
- CONFIG_MMC_ARMMMCI=y
-@@ -1208,6 +1209,7 @@ CONFIG_QCOM_CPR=y
- CONFIG_QCOM_GENI_SE=y
- CONFIG_QCOM_LLCC=m
- CONFIG_QCOM_OCMEM=m
-+CONFIG_QCOM_PMIC_GLINK=m
- CONFIG_QCOM_RMTFS_MEM=m
- CONFIG_QCOM_RPMH=y
- CONFIG_QCOM_RPMHPD=y
+Adrian
+
 -- 
-2.25.1
-
+ .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
