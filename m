@@ -2,150 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0848F6942C1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 11:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B63EF6942C9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 11:26:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbjBMKWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 05:22:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
+        id S230306AbjBMK0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 05:26:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231152AbjBMKWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 05:22:53 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9EE2739;
-        Mon, 13 Feb 2023 02:22:51 -0800 (PST)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31D8cDgK018599;
-        Mon, 13 Feb 2023 04:22:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=WmTxnrtas4FxyKYUXIiNzvVIg6UVb3xuByCPXTtKw/A=;
- b=QmKUCHgI48UwX0gnY7AxjGfWcIY+YVZjxECRnfjtV1keSNy6eHFEl//fIpIVK9TZfLDw
- 4P0okHxiiM53hvW7WQjqISnHMZkO8T1HSq1Cx4wlNGuFqcJbAjcslKRcerp8ZJydKSBu
- ubNv40SqK+6oYP2CQManTYb+gZ90p5KLojBdp5GuRUCKFt6iUCwlb57SbsK9y9BLibS9
- TZqAmc8zNdzHuejRM3kreh+F9TZ3t1DvMGjITEQadAlGMZITLrVnPiZ0LOjGTsV+JCG9
- BW8w98TEmYHtWvCbDI0ZY4AawS6eCLFfn7P9/I9yWuXX1vhpm9E0n5TUhk7UOsylkCSH /g== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3np8att3yh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Feb 2023 04:22:23 -0600
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.21; Mon, 13 Feb
- 2023 04:22:21 -0600
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.21 via Frontend Transport; Mon, 13 Feb 2023 04:22:21 -0600
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id BC4C011AA;
-        Mon, 13 Feb 2023 10:22:21 +0000 (UTC)
-Date:   Mon, 13 Feb 2023 10:22:21 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Lucas Tanure <lucas.tanure@collabora.com>
-CC:     David Rhodes <david.rhodes@cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <kernel@collabora.com>
-Subject: Re: [PATCH v5 3/4] ALSA: cs35l41: Add shared boost feature
-Message-ID: <20230213102221.GH68926@ediswmail.ad.cirrus.com>
-References: <20230210091942.10866-1-lucas.tanure@collabora.com>
- <20230210091942.10866-4-lucas.tanure@collabora.com>
- <20230210134341.GF68926@ediswmail.ad.cirrus.com>
- <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
- <20230211170638.GG68926@ediswmail.ad.cirrus.com>
- <1e3ef067-9b39-dc19-5fbc-75436c67f206@collabora.com>
+        with ESMTP id S229967AbjBMK0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 05:26:53 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A720C6A7F
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:26:50 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id s13-20020a05600c45cd00b003ddca7a2bcbso3238496wmo.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:26:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u9XkQcR/ukcuNhbIYv8e/TtemQqGk36qfemF2Jz6RB0=;
+        b=brmbQKVHdRY0TzmN0JVgb5QvPm3gsUqqHKWL9I1NOg/HJQvbNpNKr305fji1pLsOxK
+         1rzNBncXnFoT4GgkPmh5Itr1CpkGnlQ3pNQFN0FAnL4waKDhNYv9lp+BbYo+7ydgpAI3
+         8OfeRvuRTluqGQW/EkXPvjXzn9KBV1lRhkMwZjQGqsyH8HRGRR774rXI0cVwoAYE42xJ
+         mgXLX3r8KVY/XS8jY0Nyb2QVcVK8BehaDxN7UM2f1vNX+zhFuTq40AyIv5JImURNA/4L
+         0Z6s3J0iawU0EdWC9FCdgQpeoymvIEE2PYppCpwV5zPmNxi64HxbtFU1Guis41fBFruR
+         ckZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u9XkQcR/ukcuNhbIYv8e/TtemQqGk36qfemF2Jz6RB0=;
+        b=tgGCNPqqjbHIoI4rvm7sQE3AKKmx3GHGtpI7vIzSkRemBtNRifeoCNJs1X5/+Fa0Do
+         z3Hyr8cXGgf8Ptc26PiStNDNEyMw1WiGSTBR0xFObfl+1mwVdE9CQAYYY/RZFmdwTRFo
+         qIlQbR79Ws2Z9lPpehGonIdL+yZvtsXqqm7efL96I/15sZQV7FmwBtwPse1u7Fu0mc5w
+         JbwUF4JtMKz2kmQZEfzkat1GOKQHno7qo2kSPKkqMNaddJXz5UtVm4vKNyQcTRSxjet0
+         QGs/Y9VTxndu95BJY1aIm/CWcOQKWoqhIa9wrT95lAvPmu37nDEF23AwFdHF0l1lvE23
+         BfxQ==
+X-Gm-Message-State: AO0yUKXT31rt7z5AqN3tybTSR9fm+L2Nt/hW2lq5clz9nrgLmEEyj4TA
+        pI8QwUGTvQnW95vfIrS8QvBcmg==
+X-Google-Smtp-Source: AK7set8+AinicK1vj4dn9W6I9bHT/HGzlVv+F1mSLKjeAex6majHYYwbTi1CSahSak1amq4tbZ4hRA==
+X-Received: by 2002:a05:600c:13ca:b0:3dc:5937:35a2 with SMTP id e10-20020a05600c13ca00b003dc593735a2mr20543204wmg.9.1676284009266;
+        Mon, 13 Feb 2023 02:26:49 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id a1-20020adff7c1000000b002c54a2037d1sm8020782wrq.75.2023.02.13.02.26.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 02:26:48 -0800 (PST)
+Message-ID: <5480ed6a-fd9d-2d98-5f3a-ec1db920b047@linaro.org>
+Date:   Mon, 13 Feb 2023 11:26:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1e3ef067-9b39-dc19-5fbc-75436c67f206@collabora.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: dlH4lLI6ybbsohT-AgI4bUsSjcs2XAVH
-X-Proofpoint-ORIG-GUID: dlH4lLI6ybbsohT-AgI4bUsSjcs2XAVH
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v6 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: specify
+ supported opp tables
+Content-Language: en-US
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230208153913.24436-1-ansuelsmth@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230208153913.24436-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 12, 2023 at 09:28:39AM +0000, Lucas Tanure wrote:
-> On 11-02-2023 17:06, Charles Keepax wrote:
-> >On Fri, Feb 10, 2023 at 02:39:56PM +0000, Lucas Tanure wrote:
-> >>On 10-02-2023 13:43, Charles Keepax wrote:
-> >>>On Fri, Feb 10, 2023 at 09:19:41AM +0000, Lucas Tanure wrote:
-> Ok, but the other side doesn't have both RX and TX enabled.
-> If the active side needed RX to receive information for the other
-> side, the passive one would need TX enabled too.
-> So if a feedback is necessary, both channels on both sides would be
-> enabled, not one channel in one side and both on the other.
-
-A very good point :-)
-
-> >"When powering up a second (and each subsequent) CS35L41B onto a
-> >shared MDSYNC bus, the following protocol must
-> >be followed"
-> >
-> >But very unclear if that sequence should be followed on only the
-> >new device, the master device, or on all devices. I will try to
-> >find some time to chase some apps guys next week see if anyone
-> >has any ideas.
-> I had long talks with apps guys on this when I was at Cirrus.
-> And my understanding is:
-> A new CS35L41 can misunderstand the information on MDSYNC bus if a
-> communication is already in place, between another pair of CS35L41,
-> so to avoid that, any CS35L41 being turn on in a already active
-> MDSYNC bus, must execute those steps.
-
-Ok so that implies we are ok, since that suggests we are
-saying that only the new amp to the bus needs to execute the
-sequence, not the amps already on the bus.
-
-> We could move the active amp up in DAPM graph so its enabled before
-> all passive ones, but we would still need to execute that for all
-> passive amps. So there is not much point in that.
-
-Agree, fine as is.
-
+On 08/02/2023 16:39, Christian Marangi wrote:
+> Add additional info on what opp tables the defined devices in this schema
+> supports (operating-points-v2-kryo-cpu and operating-points-v2-qcom-level)
+> and reference them.
 > 
-> Here I can see that if I enable SYNC_EN during probe without clocks
-> the device becomes unresponsive, at least with the current code.
-> So following the datasheet and enabling SYNC_EN only after clocks
-> seems to resolve Steam decks issue.
-> 
-> Questions I never got an answer from APPS guys:
-> 
-> - Can we enable SYNC_EN during probe if we know there is no playback
-> happening, no clocks and Global enable off? Steam decks seem to
-> answer no here. If yes, why having pm_runtime features makes the
-> device become unresponsive?
-> 
-> - Can we leave SYNC_EN enabled during Global enable off and no clocks?
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
 
-These two I think are not too much of a concern, turning sync on as
-part of powering up the amps doesn't seem to be a big concern,
-its not a lot of writes.
 
-> - If SYNC_EN is enabled and we only set Global enable on after the
-> PLL lock happened, do we still need to execute those steps? I mean,
-> if the driver only deals with Global enable and leaves shared boost
-> configured since boost, will MDSYNC bus work?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Yeah I think here it is also probably safer to just do it anyway.
+Best regards,
+Krzysztof
 
-I would still like David to do a quick review, unfortunately he
-is off at the moment but should be back Monday next week. But
-from my side I think this is probably all good:
-
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-
-Thanks,
-Charles
