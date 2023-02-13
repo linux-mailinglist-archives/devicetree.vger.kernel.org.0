@@ -2,275 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B89369478F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:01:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7098969479D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjBMOBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 09:01:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59114 "EHLO
+        id S229728AbjBMOE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 09:04:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjBMOBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:01:16 -0500
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F13518A9A;
-        Mon, 13 Feb 2023 06:01:15 -0800 (PST)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id B91A926F77F; Mon, 13 Feb 2023 15:01:13 +0100 (CET)
-Date:   Mon, 13 Feb 2023 15:01:13 +0100
-From:   Janne Grunau <j@jannau.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        with ESMTP id S229581AbjBMOE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:04:57 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54221DBF4
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 06:04:55 -0800 (PST)
+Received: from rico.lan (unknown [159.196.93.152])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DE37120034;
+        Mon, 13 Feb 2023 22:04:50 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1676297093;
+        bh=Rqlv2sqC3TCOsNxDajqKf5TrX0e0ldaMazRHcAdox5Y=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=DIRZZdqGngeJpL61e8FmNJDXUh91fn2h6RfyVA7ijmQpB0hxt9dliRXy1EEqMiAIr
+         QJkUxMMLbSVSCNX1pJAtXYEfiwPttzlLm9Ln8IZZxRRNFBJp9xDQY00bC4IvjGLdmM
+         0xuWehqRc6RE4z3Zfcx/GmqzItE07VMqI2TkOXckldrPjQvKP1Rpv1d4WyTNEoeUOf
+         jrwsJ1NJgQpza5gM3+4XaDrzbSY63fsp20aaRtXVdaom4s+N7v0eV3qiu4qXAkbVsa
+         NriW9m15mybE2ZMva6kvmuQZJAgQWPg1q+/WzTRdfg/UVuYXYh1kE6zsdIvtM5s0uI
+         jHi4M2mUSZQ9g==
+Message-ID: <2528217bf1d43b834587cc0e399d7e86695bd390.camel@codeconstruct.com.au>
+Subject: Re: [RFC PATCH] dt-bindings: Add AST2600 i3c controller binding
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     linux-aspeed@lists.ozlabs.org, linux-i3c@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 17/17] arm64: dts: apple: t8112: Initial t8112 (M2)
- device trees
-Message-ID: <20230213140113.GE17933@jannau.net>
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-17-cb5442d1c229@jannau.net>
- <1ea2107a-bb86-8c22-0bbc-82c453ab08ce@linaro.org>
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Date:   Mon, 13 Feb 2023 22:04:50 +0800
+In-Reply-To: <71aeb3da-13a1-1c79-9fe6-f5c23d398394@linaro.org>
+References: <5c047dd91390b9ee4cd8bca3ff107db37a7be4ac.1676273912.git.jk@codeconstruct.com.au>
+         <7c6741e1-ae41-ba20-b859-736214c680e8@linaro.org>
+         <91e9e815bed8c2eff19dbe6b3ed36d10c6edcbfd.camel@codeconstruct.com.au>
+         <929a30fc-35f3-ab21-3a16-936ed69d5505@linaro.org>
+         <80fa21969d9e0e7a123bd525199dbb40e79d47e3.camel@codeconstruct.com.au>
+         <71aeb3da-13a1-1c79-9fe6-f5c23d398394@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1ea2107a-bb86-8c22-0bbc-82c453ab08ce@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-13 12:22:11 +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2023 16:41, Janne Grunau wrote:
-> > From: Hector Martin <marcan@marcan.st>
-> > 
-> > This adds device trees for the following devices:
-> >  - Macbook Air (M2, 2022)
-> >  - Macbook Pro 13" (M2, 2022)
-> >  - Mac mini (M2, 2023)
-> > 
-> > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > Co-developed-by: Janne Grunau <j@jannau.net>
-> > Signed-off-by: Janne Grunau <j@jannau.net>
-> > ---
-> >  arch/arm64/boot/dts/apple/Makefile        |    3 +
-> >  arch/arm64/boot/dts/apple/t8112-j413.dts  |   71 ++
-> >  arch/arm64/boot/dts/apple/t8112-j473.dts  |   60 ++
-> >  arch/arm64/boot/dts/apple/t8112-j493.dts  |   60 ++
-> >  arch/arm64/boot/dts/apple/t8112-jxxx.dtsi |   81 ++
-> >  arch/arm64/boot/dts/apple/t8112-pmgr.dtsi | 1141 +++++++++++++++++++++++++++++
-> >  arch/arm64/boot/dts/apple/t8112.dtsi      |  904 +++++++++++++++++++++++
-> >  7 files changed, 2320 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/apple/Makefile b/arch/arm64/boot/dts/apple/Makefile
-> > index 5a7506ff5ea3..aec5e29cdfb7 100644
-> > --- a/arch/arm64/boot/dts/apple/Makefile
-> > +++ b/arch/arm64/boot/dts/apple/Makefile
-> > @@ -10,3 +10,6 @@ dtb-$(CONFIG_ARCH_APPLE) += t6000-j316s.dtb
-> >  dtb-$(CONFIG_ARCH_APPLE) += t6001-j316c.dtb
-> >  dtb-$(CONFIG_ARCH_APPLE) += t6001-j375c.dtb
-> >  dtb-$(CONFIG_ARCH_APPLE) += t6002-j375d.dtb
-> > +dtb-$(CONFIG_ARCH_APPLE) += t8112-j413.dtb
-> > +dtb-$(CONFIG_ARCH_APPLE) += t8112-j473.dtb
-> > +dtb-$(CONFIG_ARCH_APPLE) += t8112-j493.dtb
-> > diff --git a/arch/arm64/boot/dts/apple/t8112-j413.dts b/arch/arm64/boot/dts/apple/t8112-j413.dts
-> > new file mode 100644
-> > index 000000000000..0e5b5add92cf
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/apple/t8112-j413.dts
-> > @@ -0,0 +1,71 @@
-> > +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> > +/*
-> > + * Apple MacBook Air (M2, 2022)
-> > + *
-> > + * target-type: J413
-> > + *
-> > + * Copyright The Asahi Linux Contributors
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "t8112.dtsi"
-> > +#include "t8112-jxxx.dtsi"
-> > +
-> > +/ {
-> > +	compatible = "apple,j413", "apple,t8112", "apple,arm-platform";
-> > +	model = "Apple MacBook Air (13-inch, M2, 2022)";
-> > +
-> > +	aliases {
-> > +		bluetooth0 = &bluetooth0;
-> > +		wifi0 = &wifi0;
-> > +	};
-> > +};
-> > +
-> > +/*
-> > + * Force the bus number assignments so that we can declare some of the
-> > + * on-board devices and properties that are populated by the bootloader
-> > + * (such as MAC addresses).
-> > + */
-> > +&port00 {
-> > +	bus-range = <1 1>;
-> > +	wifi0: wifi@0,0 {
-> > +		compatible = "pci14e4,4433";
-> > +		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> > +		/* To be filled by the loader */
-> > +		local-mac-address = [00 10 18 00 00 10];
-> > +		apple,antenna-sku = "XX";
-> > +		brcm,board-type = "apple,hokkaido";
-> > +	};
-> > +
-> > +	bluetooth0: bluetooth@0,1 {
-> > +		compatible = "pci14e4,5f71";
-> > +		reg = <0x10100 0x0 0x0 0x0 0x0>;
-> > +		/* To be filled by the loader */
-> > +		local-bd-address = [00 00 00 00 00 00];
-> > +		brcm,board-type = "apple,hokkaido";
-> > +	};
-> > +};
-> > +
-> > +/*
-> > + * Remove unused PCIe ports
-> > + */
-> > +
-> > +/delete-node/ &port01;
-> 
-> You should not delete devices just because they are unused. Externally
-> visible buses should be just disabled in DTSI and you enable them when
-> needed. Not the opposite way.
-> 
-> What's more, you must node delete nodes just because they are "not
-> used". This not anymore proper description of hardware.
+Hi Krzysztof,
 
-I agree, this is copied from the M1 and M1 Pro/Max/Ultra devictrees.  
-I'll fix it there as well.
+> > Yes, that's essentially what I'm looking for with this change -
+> > particularly with the pullup config, which (as you say) could
+> > arguably
+> > be a pinctrl config instead.
+>=20
+> Depends, there was just a short sentence. If this is external
+> resistor
+> on the board, why this device needs such property (and none of other
+> devices need...)? If this is internal pull up of I3C (and there is no
+> other pin configuration possible, no other pins), it looks reasonable
+> to me to have it here. But I am all guessing it...
 
-> 
-> > +/delete-node/ &port02;
-> > +/delete-node/ &port03;
-> > +
-> > +&i2c0 {
-> > +	/* MagSafe port */
-> > +	hpm5: usb-pd@3a {
-> > +		compatible = "apple,cd321x";
-> > +		reg = <0x3a>;
-> > +		interrupt-parent = <&pinctrl_ap>;
-> > +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
-> > +		interrupt-names = "irq";
-> > +	};
-> > +};
-> > +
-> > +&i2c4 {
-> > +	status = "okay";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/apple/t8112-j473.dts b/arch/arm64/boot/dts/apple/t8112-j473.dts
-> > new file mode 100644
-> > index 000000000000..55950d0a73c5
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/apple/t8112-j473.dts
-> > @@ -0,0 +1,60 @@
-> > +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> > +/*
-> > + * Apple Mac mini (M2, 2023)
-> > + *
-> > + * target-type: J473
-> > + *
-> > + * Copyright The Asahi Linux Contributors
-> > + */
-> > +
-> > +/dts-v1/;
-> 
-> (....)
-> 
-> 
-> > +
-> > +	ps_debug_switch: power-controller@b8 {
-> > +		compatible = "apple,t8112-pmgr-pwrstate", "apple,pmgr-pwrstate";
-> > +		reg = <0xb8 4>;
-> > +		#power-domain-cells = <0>;
-> > +		#reset-cells = <0>;
-> > +		label = "debug_switch";
-> > +		apple,always-on; /* Core AON device */
-> > +	};
-> > +};
-> > +
-> > diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-> > new file mode 100644
-> > index 000000000000..974443913f6a
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-> > @@ -0,0 +1,904 @@
-> > +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> > +/*
-> > + * Apple T8112 "M2" SoC
-> > + *
-> > + * Other names: H14G
-> > + *
-> > + * Copyright The Asahi Linux Contributors
-> > + */
-> 
-> 
-> (...)
-> 
-> > +
-> > +		aic: interrupt-controller@23b0c0000 {
-> > +			compatible = "apple,t8112-aic", "apple,aic2";
-> > +			#interrupt-cells = <3>;
-> > +			interrupt-controller;
-> > +			reg = <0x2 0x3b0c0000 0x0 0x8000>,
-> > +				<0x2 0x3b0c8000 0x0 0x4>;
-> > +			reg-names = "core", "event";
-> > +			power-domains = <&ps_aic>;
-> > +
-> > +			affinities {
-> > +				e-core-pmu-affinity {
-> > +					apple,fiq-index = <AIC_CPU_PMU_E>;
-> > +					cpus = <&cpu_e0 &cpu_e1 &cpu_e2 &cpu_e3>;
-> > +				};
-> > +
-> > +				p-core-pmu-affinity {
-> > +					apple,fiq-index = <AIC_CPU_PMU_P>;
-> > +					cpus = <&cpu_p0 &cpu_p1 &cpu_p2 &cpu_p3>;
-> > +				};
-> > +			};
-> > +		};
-> > +
-> > +		pmgr: power-management@23b700000 {
-> > +			compatible = "apple,t8112-pmgr", "apple,pmgr", "syscon", "simple-mfd";
-> 
-> Why this is simple-mfd?
+It's the second case: there is a configurable pullup resistor in each of
+the i3c controllers (or, more accurately: in the ast2600's glue
+between the SoC and the I3C IP block).
 
-I suppose because the syscon device is not limited to power domain 
-controls. The dt-bindings in arm/apple/apple,pmgr.yaml specify those 
-compatibles. See the original discussion in:
+The pullup configuration is controlled by the SoC "global" i3c
+registers; a block shared by all of the SoC's i3c controllers. So, any
+driver implementation would need to set up that global register
+configuration on i3c controller init.
 
-https://lore.kernel.org/linux-devicetree/57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st/  
+So, I can see two options for the binding (and consequently the driver
+implementation):
 
-> 
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +			reg = <0x2 0x3b700000 0 0x14000>;
-> > +		};
-> 
-> 
-> > +
-> > +		pmgr_mini: power-management@23d280000 {
-> > +			compatible = "apple,t8112-pmgr", "apple,pmgr", "syscon", "simple-mfd";
-> 
-> Why this is simple-mfd?
+ 1) the sda-pullup-ohms property on the controller binding, which a
+ driver implementation could set directly through the global register
+ set
 
-see above
- 
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +			reg = <0x2 0x3d280000 0 0x4000>;
-> > +		};
->
+ 2) define a pin controller on the global register block, allowing other
+ (standard) DT pinctrl definitions to control the pullup calue. This
+ would need a new driver implementation for the pin controller, but that
+ shouldn't be too complex to implement.
 
-thanks
+For the binding proposed here, I've chosen (1). We can handle all of the
+other (non-pullup-related) global register configuration by treating the
+globals as a simple generic syscon device.
 
-Janne 
+I'm happy to try (2) instead, if that's the better approach. However,
+that may be over-engineering the binding spec (and consequently, the
+necessary driver implementation) for just setting a register value.
+
+From your second point:
+
+> (and there is no other pin configuration possible, no other pins)
+
+This is a fairly small and isolated component of the global ast2600 pin
+configuration; the pullup value is set separately from the
+already-implemented SoC-wide pinctrl. Merging the pullup values into
+that wouldn't really fit the hardware interface mode though; this is a
+separate IP block linked to the i3c controllers.
+
+Let me know if you have any preferences on the approach to a biding
+structure.
+
+And Andrew: let me know if your experience with the ast2600 SoC's
+pinctrl would suggest either option.
+
+Cheers,
+
+
+Jeremy
