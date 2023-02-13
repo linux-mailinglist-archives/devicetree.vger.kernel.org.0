@@ -2,150 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D383C694411
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:12:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3025769441B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbjBMLMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:12:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52056 "EHLO
+        id S230254AbjBMLNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:13:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbjBMLMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:12:53 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA47193D5;
-        Mon, 13 Feb 2023 03:12:22 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DAJCj8022820;
-        Mon, 13 Feb 2023 11:11:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=bGXOI4SdGQN5cVzXB4ivGpckq0FRCIM7i3AruIy65tQ=;
- b=STxB21T0NVAu8EZ4oU0Bhu2pK/+qXVOjRU785OrAdPByPGGn2iuhvs+W7WJIEJ5uNZSL
- 7BkGbjtL3dohzuujhf7D1+pkPXql6jrx6yqH4fwA9Ev+M10u1SVX5SxRnTQpPiHPpsFw
- NgQ3/cX/uZvCIg1JG4MrJDS/QSsuTdDQvFwX413lSXYxGfJbeQwlLxEDeLc2izaZUWkf
- jsHvJ0l7QRME8lMDR23MIQQtwUypQg5YUWTOoGWi7uZ5O4XbYCXJgNiiPjG93Nvy88ot
- fOj7kXZaWfsDz09PpfavVjvXujtUCVO+Is+h2skExq9zIAk2vFzBhSMBPmajjLZTWhw9 bw== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3np46vkqhn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Feb 2023 11:11:54 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 31DBBnd6018456;
-        Mon, 13 Feb 2023 11:11:49 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3np43k9ktc-1;
-        Mon, 13 Feb 2023 11:11:49 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 31DBBnRS018426;
-        Mon, 13 Feb 2023 11:11:49 GMT
-Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 31DBBnwB018418;
-        Mon, 13 Feb 2023 11:11:49 +0000
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 90A6C4C0A; Mon, 13 Feb 2023 03:11:48 -0800 (PST)
-From:   Kalyan Thota <quic_kalyant@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com, marijn.suijten@somainline.org
-Subject: [PATCH v4 4/4] drm/msm/dpu: manage DPU resources if CTM is requested
-Date:   Mon, 13 Feb 2023 03:11:44 -0800
-Message-Id: <1676286704-818-5-git-send-email-quic_kalyant@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
-References: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: C2BDSiDV4BDEwB5wI3bIk8aZC4w-tsev
-X-Proofpoint-GUID: C2BDSiDV4BDEwB5wI3bIk8aZC4w-tsev
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-13_06,2023-02-13_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=899
- bulkscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
- priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302130101
+        with ESMTP id S230480AbjBMLNF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:13:05 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E42418B35
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:12:35 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id m10so2853198wrn.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:12:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vRFquoyZ7W+fz0JtXsoCdIgSKHksw0Z4uRyOB2Z5ZWY=;
+        b=Y+hdciEcs6qDtQF8GyfyWrMrEk7YYEUKYjJrN52A324yNunTTuHtFHuiAlw1JEYZFH
+         5BzC19DsnBa+BxmH9IuQiKlfi+dk1xdovTrRJBOqTc1AxiwZfjRe2RjPKamHYh7RPo1a
+         R0yK6HfYG71Mm1iQCR0CjC9AtQCbp5c9ydmXbOrGskCXD0VIWyTDF8+g7Nb4NVRR8J7n
+         q6HPuy/pcNyY2yIlwEGKJGnEC170GhhAfM2xYyMT236cDkJj1SmYXSehFkZPmZZqAm7z
+         rHjfRx+PzmXpAkiA+zSjejy6hfRJZzd5yIOHrNwoZT94m5WpVHYtXiW9EhCrt+DQggVX
+         mALQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vRFquoyZ7W+fz0JtXsoCdIgSKHksw0Z4uRyOB2Z5ZWY=;
+        b=MTRUBLoK5y0hnfGRSv8Y2fpSoiusBlWmzqlXWs2Pi05/q6Bi+bNUFoD5nJ/feGVoGn
+         niulz92rfbY/8cjfCIkVcqsZoREvL/PTFe2s2k2RTZRLHJQd3oCgKX9JI7mgf/azbYak
+         Hsp2Y5cUIViuff6jhXPazPwQyZM1bTKUwJG3Zj8RBsZrmPM7gAGmmrSYUCEuy25RX8Yj
+         oORjeDN1CdJanpHCkGYHT5rzpyi3nJq40OQeG6KdQyMFC7dNuwfeO6NiEePS8ImVnYj2
+         PEHxi8SJxZGaymHjT4Bw9S2wuKwHD7rbR7xIdd8hcSYURl5ZYhrL7ojxT44syRnHirWQ
+         1jww==
+X-Gm-Message-State: AO0yUKXNV1lSDLWKNw4Xfb6IIL3TBgn1UWAw/HCJ93rJGzwOXTwMCPEi
+        K6Ted5VSoJSzcCcszZHR1lAWxw==
+X-Google-Smtp-Source: AK7set8hVfd+4Hs9+OuZUArQfQii4ry4u07feXt68G8la8Entcc73g7K9OFX7kHRirThVpuPhJxKVg==
+X-Received: by 2002:a5d:5005:0:b0:2c5:584b:4f65 with SMTP id e5-20020a5d5005000000b002c5584b4f65mr2426902wrt.32.1676286748229;
+        Mon, 13 Feb 2023 03:12:28 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id x10-20020a5d54ca000000b002bfb5ebf8cfsm9987973wrv.21.2023.02.13.03.12.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 03:12:27 -0800 (PST)
+Message-ID: <2f5a63ba-f4de-da89-7621-3fe1d79cdc94@linaro.org>
+Date:   Mon, 13 Feb 2023 12:12:25 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 05/17] dt-bindings: interrupt-controller: apple,aic2: Add
+ apple,t8112-aic compatible
+Content-Language: en-US
+To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-5-cb5442d1c229@jannau.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230202-asahi-t8112-dt-v1-5-cb5442d1c229@jannau.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow modeset to be triggered during CTM enable/disable.
-In the modeset callbacks, DPU resources required for the
-CTM feature are managed appropriately.
+On 12/02/2023 16:41, Janne Grunau wrote:
+> The Apple M2 SoC uses AICv2 and is compatible with the existing driver.
+> Add its per-SoC compatible.
+> Since multi-die versions of the M2 are not expected decrease
+> '#interrupt-cells' to 3 for apple,t8112-aic. This is seamlessly handled
+> inside the driver.
+> 
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> 
+> ---
+> This trivial dt-bindings update should be merged through the asahi-soc
+> tree to ensure validation of the Apple M2 (t8112) devicetrees in this
+> series.
+> ---
+>  .../bindings/interrupt-controller/apple,aic2.yaml  | 23 +++++++++++++++++++---
+>  1 file changed, 20 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+> index 06948c0e36a5..120e23ff668c 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+> @@ -31,19 +31,22 @@ description: |
+>  properties:
+>    compatible:
+>      items:
+> -      - const: apple,t6000-aic
+> +      - enum:
+> +          - apple,t8112-aic
+> +          - apple,t6000-aic
+>        - const: apple,aic2
+>  
+>    interrupt-controller: true
+>  
+>    '#interrupt-cells':
+> -    const: 4
+> +    minimum: 3
+> +    maximum: 4
+>      description: |
+>        The 1st cell contains the interrupt type:
+>          - 0: Hardware IRQ
+>          - 1: FIQ
+>  
+> -      The 2nd cell contains the die ID.
+> +      The 2nd cell contains the die ID (optional).
+>  
+>        The next cell contains the interrupt number.
+>          - HW IRQs: interrupt number
+> @@ -98,6 +101,20 @@ properties:
+>            - apple,fiq-index
+>            - cpus
+>  
+> +if:
 
-Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
----
- drivers/gpu/drm/msm/msm_atomic.c | 18 ++++++++++++++++++
- drivers/gpu/drm/msm/msm_drv.c    |  2 +-
- drivers/gpu/drm/msm/msm_drv.h    |  1 +
- 3 files changed, 20 insertions(+), 1 deletion(-)
+Put it under allOf. After "required:", just like example-schema asks for.
 
-diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-index 1686fbb..e3e607c 100644
---- a/drivers/gpu/drm/msm/msm_atomic.c
-+++ b/drivers/gpu/drm/msm/msm_atomic.c
-@@ -179,6 +179,24 @@ static unsigned get_crtc_mask(struct drm_atomic_state *state)
- 	return mask;
- }
- 
-+int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
-+{
-+	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
-+	struct drm_crtc *crtc;
-+	int i;
-+
-+	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state,
-+				      new_crtc_state, i) {
-+		if ((old_crtc_state->ctm && !new_crtc_state->ctm) ||
-+		    (!old_crtc_state->ctm && new_crtc_state->ctm)) {
-+			new_crtc_state->mode_changed = true;
-+			state->allow_modeset = true;
-+		}
-+	}
-+
-+	return drm_atomic_helper_check(dev, state);
-+}
-+
- void msm_atomic_commit_tail(struct drm_atomic_state *state)
- {
- 	struct drm_device *dev = state->dev;
-diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-index 0759e2d..3221284 100644
---- a/drivers/gpu/drm/msm/msm_drv.c
-+++ b/drivers/gpu/drm/msm/msm_drv.c
-@@ -52,7 +52,7 @@
- static const struct drm_mode_config_funcs mode_config_funcs = {
- 	.fb_create = msm_framebuffer_create,
- 	.output_poll_changed = drm_fb_helper_output_poll_changed,
--	.atomic_check = drm_atomic_helper_check,
-+	.atomic_check = msm_atomic_check,
- 	.atomic_commit = drm_atomic_helper_commit,
- };
- 
-diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-index ea80846..7d0243a 100644
---- a/drivers/gpu/drm/msm/msm_drv.h
-+++ b/drivers/gpu/drm/msm/msm_drv.h
-@@ -209,6 +209,7 @@ int msm_atomic_init_pending_timer(struct msm_pending_timer *timer,
- 		struct msm_kms *kms, int crtc_idx);
- void msm_atomic_destroy_pending_timer(struct msm_pending_timer *timer);
- void msm_atomic_commit_tail(struct drm_atomic_state *state);
-+int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
- struct drm_atomic_state *msm_atomic_state_alloc(struct drm_device *dev);
- void msm_atomic_state_clear(struct drm_atomic_state *state);
- void msm_atomic_state_free(struct drm_atomic_state *state);
--- 
-2.7.4
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: apple,t8112-aic
+> +then:
+> +  properties:
+> +    '#interrupt-cells':
+> +      maximum: 3
+
+Shouldn't this be:
+const: 3
+
+> +else:
+> +  properties:
+> +    '#interrupt-cells':
+> +      minimum: 4
+
+const: 4
+
+
+Best regards,
+Krzysztof
 
