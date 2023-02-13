@@ -2,82 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 994EC695359
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FC0069535F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230495AbjBMVsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 16:48:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39338 "EHLO
+        id S229783AbjBMVtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 16:49:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbjBMVsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:48:07 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80321EB6D;
-        Mon, 13 Feb 2023 13:48:06 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id z1so14989413plg.6;
-        Mon, 13 Feb 2023 13:48:06 -0800 (PST)
+        with ESMTP id S229489AbjBMVtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:49:40 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706D1CC19
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:49:39 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id a10so14825196edu.9
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:49:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dI9DvMLbtzBAWFtPw6yhIul4CbP/+FfHPb/9cZPQWfE=;
-        b=flX3Igx11SdyUAKm0NUHvNhiDp/k2Ibx0g4uaENDaEug8KA0E7rJd9f68hOcmbmmzL
-         9Ua7UB1irXGv9JdnvCfGubkyd8awMwyVnAGBFlF2CgEShHk5DQPfdq+EoAnY5QzYcDhW
-         a/mqCcMifPzjC12IQN/wybsF6tm+ElB9iZ2vc9Rx4bfFsg9Oo2yDaDm41Wlaucv0gDyI
-         jGx4ZLKZJ+aDtPGNH9I974bq/MY+8ckkq+amU8a7Q4e7EthKQ1Xck17eup9ZexhypN9B
-         TEvK6r0Z57hHMYw0mf1QASA0fweyiDSZt/D7kKO3GoNeZWenQsKtqMZ23aFUHHNIUSTt
-         9QFw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HgFJ7WP5/aQ3NluuT93tSKXCSYsdZX4LGCi7cSWevq8=;
+        b=xmd72FGQOLvdnEriWfOGMMya7fd9XHpHh1fJDUIaKxAACBQk/GqDJrvUOlEZV7QdBe
+         xM3UUh/Nqa5rm/jgcI6PIrZUK0AC3qILfm6mp76DBZ0buGPu1nQioAOJRdGQfxEnlwFR
+         VhAV/8/r39OXG8UEBv4HOck0NMjMYBLktb6s7v+u0eyQ58p38zMV5jVya36QFk4PktOB
+         Oel0paMAUXdfmU7B+qUcoGkyEG69LFxpEXYAHs0qWUtVe8NWXAPZWyB2eKpRh/rPTeF4
+         e03BCwoJ/gwuFa/WcMq3pcLksN5w9h1kkoocGw7FmhXP7rmyzFcZ4e3NA46o7am5WUAd
+         eReQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dI9DvMLbtzBAWFtPw6yhIul4CbP/+FfHPb/9cZPQWfE=;
-        b=LYEgFMOJvMP91HkYMZIYIhW94oWTeTC29aQIu7s/k5Qs5nMxNcoVZB0epQgaCkjbVz
-         wdfd5pGjjnFXp138Jq6S1FFokK20xpr9JNqGKSiNvxOWaPMY/0CpNDg1QP5XZPOrrS/V
-         uE6vr2lTw8QVQjMmRWgusLKUXB591IY2bQ7lmPTZ08eRKMhpOituke7WxZyG/j//8bHi
-         klsyQMkc0u51SY2/4qXyVN5sPkH9I9UjrMadgAb2jvHuSyfWODHLrE5DF3iQff7ih78X
-         E0jJgOsP0SYK8d6QWqBngVO7vlMXUo/XlFjjxWggHQldWSJ72CUJCjTTAVu+2KteD2gb
-         qP8Q==
-X-Gm-Message-State: AO0yUKV2B7D5D6B9ADO3j//HaoAx81n8mPQezagNWYZV/IOz0208+Nn6
-        GqR0ixs8PCua3cgR3P43+ST5ZxLXlVgxsYj9ZlE=
-X-Google-Smtp-Source: AK7set/jGsgXJH0z+uu/JC4wFRBssRg6vpaea0uJu1GR6Bop5ldqt914lPObeM5jXLw/hC3mg3EpCopLC4Ud5upZZmU=
-X-Received: by 2002:a17:90a:684a:b0:233:a8ae:d198 with SMTP id
- e10-20020a17090a684a00b00233a8aed198mr2751698pjm.99.1676324885969; Mon, 13
- Feb 2023 13:48:05 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HgFJ7WP5/aQ3NluuT93tSKXCSYsdZX4LGCi7cSWevq8=;
+        b=LDVClfje/mOKzZ2CLOu+J1cyg2d+Te5a+gvAlggDVSFeEoh9/Dh0ggzc0WUceviQsC
+         03jINWC7IiA+e7dDjX94k0BSXhITc+icFGAvL8PkrrTa2sV6IZYHZ5heszLxJMlQ7MD2
+         5qIzPN9cPFjComK7Sa/yTByhtlhp+lhJ+DlPUFsBOpbyulNWc7/QgGesNJylqaEHYbd1
+         rkwQS+Q9alroVclAbWFfD80DymRX/U2rXglmagzvNcF6wN5T1nBVcxu7h377g3go23/x
+         wiU71QXAS1zIDPQpmPmSoIRuXuNCbp1sHEX9DCTX8O0DnXx21/uvuFGPIueU5lQ73SoT
+         E5ig==
+X-Gm-Message-State: AO0yUKVOgNaI353V5waNTy+RAb8trHSKgRZlszBVqblpaAMs/93jPzwu
+        4k0WQLAee6IoCBRQs7l+SuUyMg==
+X-Google-Smtp-Source: AK7set8d4SLsjD+XttY8D3PsH66Er6RGiL4rUP4KCx34brMmzTgCNpL16KvuvhhFV2zNv6DJapCg3w==
+X-Received: by 2002:a50:9e23:0:b0:4a2:6573:5c35 with SMTP id z32-20020a509e23000000b004a265735c35mr158012ede.21.1676324978032;
+        Mon, 13 Feb 2023 13:49:38 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id r30-20020a50aade000000b004acbe846b8fsm3270242edc.34.2023.02.13.13.49.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 13:49:37 -0800 (PST)
+Message-ID: <d34d8851-fd73-9b87-9340-df25b64e96bb@linaro.org>
+Date:   Mon, 13 Feb 2023 22:49:35 +0100
 MIME-Version: 1.0
-References: <20230213213104.78443-1-ahalaney@redhat.com> <20230213213104.78443-2-ahalaney@redhat.com>
-In-Reply-To: <20230213213104.78443-2-ahalaney@redhat.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 13 Feb 2023 18:47:55 -0300
-Message-ID: <CAOMZO5C3mXXu7G=HDV1kytPMf2QFVuf2WGeP-YQHxFtaoggUXQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8dxl-evk: Fix eqos phy reset gpio
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     devicetree@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Add missing property for
+ OnePlus 3T
+Content-Language: en-US
+To:     "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-imx@nxp.com, alexandre.torgue@foss.st.com,
-        peppe.cavallaro@st.com, joabreu@synopsys.com, mripard@kernel.org,
-        shenwei.wang@nxp.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        kernel-dev@igalia.com, kernel@gpiccoli.net,
+        Harry Austen <hpausten@protonmail.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>
+References: <20230213201651.1902323-1-gpiccoli@igalia.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230213201651.1902323-1-gpiccoli@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 6:31 PM Andrew Halaney <ahalaney@redhat.com> wrote:
->
-> The property is named snps,reset-gpio. Update the name accordingly so
-> the corresponding phy is reset.
->
-> Fixes: 8dd495d12374 ("arm64: dts: freescale: add support for i.MX8DXL EVK board")
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+
+On 13.02.2023 21:16, Guilherme G. Piccoli wrote:
+> Commit 5a134c940cd3 ("arm64: dts: qcom: msm8996: add support for oneplus3(t)")
+> added support for OnePlus 3T device, but missed the "qcom,msm-id"
+> property - without that, skales-dtbtool fails to build the device tree
+> image. Let's hereby add it, mimic'ing OnePlus 3.
+> 
+> Fixes: 5a134c940cd3 ("arm64: dts: qcom: msm8996: add support for oneplus3(t)")
+> Cc: Harry Austen <hpausten@protonmail.com>
+> Cc: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
+> index 34f837dd0c12..5dc8f0adab30 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
+> @@ -14,6 +14,7 @@ / {
+>  	qcom,board-id = <8 0 15811 26>,
+>  			<8 0 15811 27>,
+>  			<8 0 15811 28>;
+> +	qcom,msm-id = <246 0x30001>;
+Hm, this doesn't sound right.. Internet says 3T has 8996Pro..
+Could you check:
+
+/sys/bus/soc/devices/soc0/soc_id  # reg[0]
+/sys/bus/soc/devices/soc0/revision # reg[1] after some shifting
+
+Also, please include include/dt-bindings/arm/qcom,ids.h and use
+the preprocessor constant from there instead of a magic number in
+the first part of the reg value.
+
+Konrad
+>  };
+>  
+>  &adsp_pil {
