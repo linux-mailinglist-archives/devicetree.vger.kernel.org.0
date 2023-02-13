@@ -2,102 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D79E6694835
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F130694838
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbjBMOhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 09:37:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56560 "EHLO
+        id S229709AbjBMOif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 09:38:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbjBMOhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:37:05 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D241C30C
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 06:36:38 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id k3so4830265wrv.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 06:36:38 -0800 (PST)
+        with ESMTP id S230267AbjBMOi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:38:29 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F1F1C592
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 06:38:23 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id n10so5464092ejc.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 06:38:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZyRvUUDOLHj8CYuZ0RJLhyzA8xLiouj5htg3dqZA0GE=;
-        b=ka7GXad0pjWurOwIo2sN18R12XuPJ/VUcP5ORRRg0SFOshLAoez6fykUgh6kY/fAQR
-         oYbDbhsSiUP1G/D+Z4KoDG7qzCFQxHF8t3ZrwNe4KgoGAj0uvr1IU3wp0SKAF81ORVNz
-         lFy/0JmgGEfmVC8jM1ankVh7dt/iKRJGLsrzoZCkvcDCmFOKrDqngYx25+Q+/3G2PstZ
-         JeA3efksQdm5Wclt/M8JJ9y/717T41Md2FxTTH5jJZzodTsFuIn3XUY9XzykQfyFmzsG
-         VQrCVBjxxUW+KbiFf4MxraHqe9AT9AIjysvJMb3u686KBY228Z7w7aywfRxZB1F6qFqb
-         puoA==
+        bh=oUlXZt5oQBO5ZjSgXSiLtzBvwbC0c48+aoeBfUKza8k=;
+        b=uSjmmIZRhpr3H/PWz2qzwBO0ZzRl8xH9kPFNtCdf77h6AL5t1xjPSE+ZqVB8YFw3/h
+         SaSUfdwwzzPF9AEH6Oh0Sf7NsTdeSFZnzWiEQVugAnxRsqCNbRqVA+v2r1/WFZ8FVKxD
+         LIw/ngaiXUEx2nzMNlWFghMJY5FPzOEsdwRtt5TJUCMmpXDFE2GhR1LEfOVBmEQrF7k/
+         IHBaBH3fSzkyxxS9MD0Br4ZtqcHSs8zNOBE3vGBgh0u+QIuua5fAI9urJMmSwdnzX/0x
+         WVsRMLy14HUXpyhcm+Fki3In6mCurLM3tpdzuaV7he8fd1PQ5fn/6HUTZo7MgVysJm9Q
+         OpWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZyRvUUDOLHj8CYuZ0RJLhyzA8xLiouj5htg3dqZA0GE=;
-        b=HUhmdbUNa3xmIwPwvTDrPvWln1uxBuId4sD3/6G0Iwl4/RLVbEFLiYfdfC7udMHoQc
-         B67fUf3gwUAcALHP/FAFyrZZg6DDc9V9DcjWiOxTbAMSkg7BFckC/5HLIIM07Am3MHBI
-         Hb6mQyNjzWWqO+V2fl0728giNuh3FUjFuOIW/X/ELmN9aBB8z7XYYWG0m4QDa2InCaiS
-         aJkPKFaQhlC7DbhJ3ymwz3VHlfU8eZ+nAqqdbh87ejbvctEN4lQw966+Fxlbt3iwnodz
-         cYB5hvyPrSTAiN7Rx6sTKotJfyG82bq9VjjtWEFZYz4fZUoKHOLcbcMoDngXhB/11yDA
-         0EUQ==
-X-Gm-Message-State: AO0yUKUjwFGhyZ6d/HqA2gsZolkHPQwKj1bN6Nrx8ynxn2PAwOxecX8o
-        US9NR9dCw8mWC5aWFfZIeqff1w==
-X-Google-Smtp-Source: AK7set89smbO8qcTdScCI68QdZHh75ELtlhJvOjDZ/gP2sg6ky2NHbQDhknK14ZmHRVJk74gI8I5Fw==
-X-Received: by 2002:a5d:4007:0:b0:2c5:5ebc:d681 with SMTP id n7-20020a5d4007000000b002c55ebcd681mr1584143wrp.16.1676298996138;
-        Mon, 13 Feb 2023 06:36:36 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j40-20020a05600c1c2800b003dc4480df80sm19312274wms.34.2023.02.13.06.36.34
+        bh=oUlXZt5oQBO5ZjSgXSiLtzBvwbC0c48+aoeBfUKza8k=;
+        b=iUPyl4HHUuffEd+OQJzoVk2ZCKEuDS/F4KZKGiCjU9uLbCYTyWGwN6exGNRYGfnKwM
+         GtdJWbydb0tKqbpgFB8PmF+jODih525PUhXGDWcL1dEeU3SoBtglMYQ7tFARluh5n0Ia
+         K25/lpvBj5CDse59KaaBhvLWkCzqP3JRLRVrx8+pf2tW0nA7GZ9ijqCvp2DMB8lhs6Az
+         i4U/Ep+XskQ0/EaxJOSp/xwajtbsogvkhbfezhRTSWR3EY5Y8yMliD+7AqCZg8BjsDAh
+         CjSgES526HY+jY8smijGWjVtZEWSoeDhLMyYlwgDu2Xk4v4FrUKMcD9/JE4UTJOmWCJm
+         mzCQ==
+X-Gm-Message-State: AO0yUKU+IDUfikKvjIXhJbdzK0LnEFD+ziiXKe8UmTunX4a1DhtqOEQc
+        hYkCfaqA0VS25oVxqj3PKMf9Eg==
+X-Google-Smtp-Source: AK7set91nYaB1XNNNxb+llEG/j3BYKk/kVjm4FMLyh+w/aFGEsk4rvwfhWkei8OKAbdKr/+VRc503g==
+X-Received: by 2002:a17:906:eb14:b0:87b:d409:f087 with SMTP id mb20-20020a170906eb1400b0087bd409f087mr25101635ejb.21.1676299101809;
+        Mon, 13 Feb 2023 06:38:21 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id n5-20020a17090673c500b0088aadc18b69sm6885347ejl.101.2023.02.13.06.38.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 06:36:35 -0800 (PST)
-Message-ID: <16804864-dce2-d68c-ce81-b6fdeb20a527@linaro.org>
-Date:   Mon, 13 Feb 2023 15:36:33 +0100
+        Mon, 13 Feb 2023 06:38:21 -0800 (PST)
+Message-ID: <632e5aa9-6b0a-032f-27db-3cbda6c66d7f@linaro.org>
+Date:   Mon, 13 Feb 2023 15:38:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 17/17] arm64: dts: apple: t8112: Initial t8112 (M2) device
- trees
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm7225-fairphone-fp4: move status
+ property down
 Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-17-cb5442d1c229@jannau.net>
- <1ea2107a-bb86-8c22-0bbc-82c453ab08ce@linaro.org>
- <20230213140113.GE17933@jannau.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213140113.GE17933@jannau.net>
+References: <20230213-fp4-more-i2c-v1-0-5be09dbb5ce6@fairphone.com>
+ <20230213-fp4-more-i2c-v1-1-5be09dbb5ce6@fairphone.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230213-fp4-more-i2c-v1-1-5be09dbb5ce6@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 15:01, Janne Grunau wrote:
->>> +
->>> +		pmgr: power-management@23b700000 {
->>> +			compatible = "apple,t8112-pmgr", "apple,pmgr", "syscon", "simple-mfd";
->>
->> Why this is simple-mfd?
+
+
+On 13.02.2023 14:26, Luca Weiss wrote:
+> Currently the dts contains a mix of status-as-first-property (old qcom
+> style) and status-as-last-property (new style).
 > 
-> I suppose because the syscon device is not limited to power domain 
-> controls. The dt-bindings in arm/apple/apple,pmgr.yaml specify those 
-> compatibles. See the original discussion in:
+> Move all status properties down to the bottom once and for all so that
+> the style is consistent between different nodes.
 > 
-> https://lore.kernel.org/linux-devicetree/57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st/  
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-This did not answer my concerns. There are no children here.
-
-Best regards,
-Krzysztof
-
+Konrad
+>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 34 +++++++++++------------
+>  1 file changed, 17 insertions(+), 17 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> index f7602e93121a..86114dd2c0c4 100644
+> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> @@ -110,8 +110,8 @@ active-config0 {
+>  };
+>  
+>  &adsp {
+> -	status = "okay";
+>  	firmware-name = "qcom/sm7225/fairphone4/adsp.mdt";
+> +	status = "okay";
+>  };
+>  
+>  &apps_rsc {
+> @@ -355,13 +355,13 @@ &cci1_i2c0 {
+>  };
+>  
+>  &cdsp {
+> -	status = "okay";
+>  	firmware-name = "qcom/sm7225/fairphone4/cdsp.mdt";
+> +	status = "okay";
+>  };
+>  
+>  &i2c10 {
+> -	status = "okay";
+>  	clock-frequency = <400000>;
+> +	status = "okay";
+>  
+>  	haptics@5a {
+>  		compatible = "awinic,aw8695";
+> @@ -396,8 +396,8 @@ &ipa {
+>  };
+>  
+>  &mpss {
+> -	status = "okay";
+>  	firmware-name = "qcom/sm7225/fairphone4/modem.mdt";
+> +	status = "okay";
+>  };
+>  
+>  &pm6150l_flash {
+> @@ -423,11 +423,11 @@ led-1 {
+>  };
+>  
+>  &pm6150l_wled {
+> -	status = "okay";
+> -
+>  	qcom,switching-freq = <800>;
+>  	qcom,current-limit-microamp = <20000>;
+>  	qcom,num-strings = <2>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &pm6350_gpios {
+> @@ -441,8 +441,8 @@ gpio_keys_pin: gpio-keys-state {
+>  };
+>  
+>  &pm6350_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm7250b_adc {
+> @@ -535,21 +535,21 @@ &uart9 {
+>  };
+>  
+>  &ufs_mem_hc {
+> -	status = "okay";
+> -
+>  	reset-gpios = <&tlmm 156 GPIO_ACTIVE_LOW>;
+>  
+>  	vcc-supply = <&vreg_l7e>;
+>  	vcc-max-microamp = <800000>;
+>  	vccq2-supply = <&vreg_l12a>;
+>  	vccq2-max-microamp = <800000>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &ufs_mem_phy {
+> -	status = "okay";
+> -
+>  	vdda-phy-supply = <&vreg_l18a>;
+>  	vdda-pll-supply = <&vreg_l22a>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb_1 {
+> @@ -562,26 +562,26 @@ &usb_1_dwc3 {
+>  };
+>  
+>  &usb_1_hsphy {
+> -	status = "okay";
+> -
+>  	vdd-supply = <&vreg_l18a>;
+>  	vdda-pll-supply = <&vreg_l2a>;
+>  	vdda-phy-dpdm-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb_1_qmpphy {
+> -	status = "okay";
+> -
+>  	vdda-phy-supply = <&vreg_l22a>;
+>  	vdda-pll-supply = <&vreg_l16a>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &wifi {
+> -	status = "okay";
+> -
+>  	vdd-0.8-cx-mx-supply = <&vreg_l4a>;
+>  	vdd-1.8-xo-supply = <&vreg_l7a>;
+>  	vdd-1.3-rfa-supply = <&vreg_l2e>;
+>  	vdd-3.3-ch0-supply = <&vreg_l10e>;
+>  	vdd-3.3-ch1-supply = <&vreg_l11e>;
+> +
+> +	status = "okay";
+>  };
+> 
