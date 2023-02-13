@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B04694059
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:06:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AF2A694060
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:08:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230164AbjBMJG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 04:06:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36646 "EHLO
+        id S229985AbjBMJIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 04:08:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjBMJG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:06:57 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF36EB40
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:06:56 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id a2so11346638wrd.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:06:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eLWu10DQx+qn08ahKIWeZviWaNMMEUUkvNpohUv3kkA=;
-        b=fX9PXVrAm5lqsZ7DDeuDuYuB065HN7eGeSdRbshfKC7d/HHm/s483w1tiG9a48rQ4Z
-         ODaUNB47FYUWxpXWfMQSk3P+/Mtc4aK0dH0EBdIsIW12iLpXA9QW4xix0ADMg2BhD/kZ
-         pBhahbHWD1OwrFnZGDUccaweZpcUNtgF40iNJG5C4evgy0gXm6o6TfbRO9uwlToLuTzq
-         7K7iZ0TBYHiIxIGWV4tURG2KrR/wkQPm1bPKIy6NHeFIc8G6ORNys9Wcbye/GXhyA7Zy
-         vZrgJWwKIwEEhdm0c2qKUfRuQV2lDOpMpnFEAKyno7rkXuu4Z4RsFa5XagVbB1Ez9lOa
-         +rRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eLWu10DQx+qn08ahKIWeZviWaNMMEUUkvNpohUv3kkA=;
-        b=c5DbQr5ot3nrRaHXq07vKTmShjm3YbOfnZRONFiZPOtMF7WIi0db/OkdQ+GNtbV/zN
-         wpl0VR/s6uJpE/baAx9ucfgmz2tbUbykyC9fUs13fVJI99OWG63tnKyzQ3YTL9U2MT+/
-         3VSv5ZtauN4wWXv/drqP/7Wkk2nY03WQnqIxGZRETb/w2gMTJM0iNYy7+aKbj0FZwhEy
-         A6CdDaU3UlydVbt1R8QabThdUsRTe1CrxRXxWMEJy5hExzSjkoJ5Ju1yt7sqrdema2sF
-         cZkoLsY784flU4XRAHYKbbygV3dLWali283o0ej2pNZ5pW2jZwO6yRXoGGj1l+Nh0c4P
-         b3Eg==
-X-Gm-Message-State: AO0yUKV0j+NJBaB0gAVbkuXmLbLiPHaZQ3gApImPgO9gxXUQBiOtGzvd
-        x7IokjtJ8qwSzwOW3Y6wCxFhSw==
-X-Google-Smtp-Source: AK7set9nP2WVVnV8sFiOPZH8sacqNGYYKvDF4e5RyL2+QyiRPUw6Dj+hv0u6ye4Q/mBptzv7B1Cf1g==
-X-Received: by 2002:a5d:6707:0:b0:2c3:d69a:1da7 with SMTP id o7-20020a5d6707000000b002c3d69a1da7mr18863722wru.0.1676279215317;
-        Mon, 13 Feb 2023 01:06:55 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o5-20020a1c7505000000b003dc48a2f997sm16207034wmc.17.2023.02.13.01.06.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 01:06:54 -0800 (PST)
-Message-ID: <2a3f5c20-3bfb-c1b8-f9df-d1908022509d@linaro.org>
-Date:   Mon, 13 Feb 2023 10:06:53 +0100
+        with ESMTP id S229472AbjBMJIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:08:54 -0500
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1A1013D64;
+        Mon, 13 Feb 2023 01:08:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1676279329;
+        bh=qdU/D2icOVYlplHPyGGi5hbnN1YkuKAfnCgDgcnmqvc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cJqMhMh106QjPnPFfBBHblUACC7baU7Wt39kApm+Fc2aBDAxpEsG27ZTEgyYpbgds
+         K2EhFcdPiiM/6rCyxjZ7hvWVg7iawxxydq3cXrlnZEygezv+4BTttiCzPTeDxxYCwP
+         DQic4DdyTPUczFCD1nNrP/6LqGnXVry6gyst490g=
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id EC3DFA01E0;
+        Mon, 13 Feb 2023 10:08:48 +0100 (CET)
+Message-ID: <d1655d90-3939-3029-8473-aa6dc1bfede2@ysoft.com>
+Date:   Mon, 13 Feb 2023 10:08:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/3] dts: ast2600: Add reset config for I3C
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_6/6=5d_MAINTAINERS=3a_Add_Michal_Vok=c3=a1?=
+ =?UTF-8?Q?=c4=8d_as_yapp4_boards_maintainer?=
 Content-Language: en-US
-To:     Jeremy Kerr <jk@codeconstruct.com.au>,
-        linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-References: <cover.1676267865.git.jk@codeconstruct.com.au>
- <f426c3a22d64d076b007a0fc75dc95a389a9387f.1676267865.git.jk@codeconstruct.com.au>
- <4eed8885-a149-43b1-f6f6-f9b7fbb2f3b4@linaro.org>
- <40269fdbc75a149a37e8a44f62cb3a6102f61d8a.camel@codeconstruct.com.au>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <40269fdbc75a149a37e8a44f62cb3a6102f61d8a.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230210154855.3086900-1-michal.vokac@ysoft.com>
+ <20230210154855.3086900-7-michal.vokac@ysoft.com>
+ <63e954f4-4e93-9211-9fb3-750976d8c4b6@linaro.org>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+In-Reply-To: <63e954f4-4e93-9211-9fb3-750976d8c4b6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 10:02, Jeremy Kerr wrote:
-> Hi Krzysztof,
+On 11. 02. 23 12:46, Krzysztof Kozlowski wrote:
+> On 10/02/2023 16:48, Michal Vokáč wrote:
+>> Number of the boards is continually growing and we expect more to come.
+>> Add myself as a maintainer of the yapp4 (ysoft appliance v4) platform to
+>> state that we do take care about all of these.
+>>
+>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+>> ---
+>>   MAINTAINERS | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index fb1471cb5ed3..4d4d9ffc700c 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -23005,6 +23005,12 @@ S:	Maintained
+>>   F:	Documentation/input/devices/yealink.rst
+>>   F:	drivers/input/misc/yealink.*
+>>   
+>> +YSOFT IOTA BOARD SUPPORT
+>> +M:	Michal Vokáč <michal.vokac@ysoft.com>
+>> +L:	devicetree@vger.kernel.org
+>> +S:	Supported
+>> +F:	arch/arm/boot/dts/imx6*-yapp4*
 > 
->> 2. This is not DTS. There is nothing from DTS here.
-> 
-> [and from, your reply on patch 2/3:]
-> 
->> Why do you use subject prefix in patch 1 different than in patch 2?
-> 
-> Ack, will change to "clk:"; there is quite a mix of "dt-bindings:" and
-> "clk:" on the changes within this dir. I'll unify across the series.
-> 
+> I don't think we add per-board maintainers. Otherwise, I have 50 more
+> entries to add...
 
-There was clk already, wasn't it? What do you want to change? I asked
-why do you call it in the same patchset aspeed and as2600?
+I have got drawn into it by the checkpatch.pl script saying:
 
-Best regards,
-Krzysztof
+WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
 
+So I went through the MAINTAINERS file and its git log with .dts related
+changes. I found some individual board entries and quite recent changes
+adding new ones. Hence I decided this could be right.
+
+Never mind, I agree there is definitely not a maintainer entry for every
+board supported by the kernel and this patch can be omitted.
+
+Thank you and best regards,
+Michal
