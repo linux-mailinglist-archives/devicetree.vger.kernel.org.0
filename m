@@ -2,158 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85793693EFE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0FA693F03
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbjBMHm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 02:42:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39114 "EHLO
+        id S229861AbjBMHni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 02:43:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbjBMHm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:42:29 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD6BE3B4
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:42:24 -0800 (PST)
-Received: by codeconstruct.com.au (Postfix, from userid 10000)
-        id F2D1B200E3; Mon, 13 Feb 2023 15:42:22 +0800 (AWST)
+        with ESMTP id S229503AbjBMHnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:43:37 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58EB4E3B4
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:43:36 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id m14so11099066wrg.13
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:43:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1676274142;
-        bh=Gac3PppOPjYLz3RFgIIfbWPmQu5Mk+Pg0GDUNnRwP4E=;
-        h=From:To:Cc:Subject:Date;
-        b=c2yd1IFcixnbYvx10pSFloY8TVzM4S4/w12Ewfdg1qBxrRnf3V4gTP0rx+kEcbyy1
-         3f47Zts8DxFOuG89imjJctCO3MmQk1qRCim38z/HUyhg7Ck96ZaxIBtwGgHbSOxkNA
-         Tqk0A9WHlHfk7G9OXBKwWOZ4QJ7puRvXS/QqO+NNiM2q8gv5ak0Po8/eoRTyfVAvtt
-         a97NxRpI7rpnaNJPm9KOwaI1rUN+Soq9XXBA89R5dAxnMRbmbgQnc0mIApozMQttaw
-         6Rnpn6GoDuvjcIeRFMAQbqgIsbw3w1P6gCjmUoKgbmkfDyNfp93Dx+lfK7WZZVhxX1
-         1aVibyQQcqylQ==
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     devicetree@vger.kernel.org
-Cc:     linux-aspeed@lists.ozlabs.org, linux-i3c@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Subject: [RFC PATCH] dt-bindings: Add AST2600 i3c controller binding
-Date:   Mon, 13 Feb 2023 15:41:52 +0800
-Message-Id: <5c047dd91390b9ee4cd8bca3ff107db37a7be4ac.1676273912.git.jk@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.1
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WncHzNCIjcRzD7asQuwseiFiSKek+vLGFO0rnFKEEi8=;
+        b=uN6XDCOjm5ZdbOyb5vsUqiOZNqidqI+E4JlgDjPqBPOQ0qUYBP/hQMWox752A64/0d
+         TKji/Mx9+JjdM4BGEpitRNfyLugnWh+rAP+3KrAYRaUL0Xn1CGDEOvqbsGPC6Q7YuLs6
+         XLllIAk35qsRSQsWQmRT8CvRrExqRirdCHcMasPkWch08MRId9Dn9ApCse3Bw5MxwT++
+         peeBrKyEzjl4/qyJw3QGQVe6traTHkLa/5PaFyUEYGYi5lMT9tkW+sQl3ldUFmVUYTxU
+         0tTxpBnzZuqxQfzXt1DcwzTo0Z8U5TJCLtG5jk6MeARg/QpMB8YrHkku+YZHa3shV7wm
+         Y/Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WncHzNCIjcRzD7asQuwseiFiSKek+vLGFO0rnFKEEi8=;
+        b=Kq5eC/ugqYzsv0UGj+TRrrj5cl5vxkbz4UrKm5b4UeZlFKFQvraAWEnem0xfK+MWP1
+         SAL1Bd61QVeaV9JWpxfbvdafzEgIrtvljd6K+GTClHpE367aEZShgDCxhWsqTuUw5z7Q
+         rRAYKdR8aXnT98xqSyvSJFQq4t6jxKVzhWKRGbjS7b7O0OTrZbgkEfZrzSPReGAqq7k1
+         MZ2JRXsnKB7G3UAWeqXbmDBW4p0FYDa8EPTjMzmTEEXTTR2R9TVS/cXWR1Fv5xDWWHOI
+         JAaiOZolx3RpXJkm0j8dSTija6ntoQVXmxMLviTfd5vxwxGq2+Qsr01G0FBWGsQM3ibo
+         q/Jw==
+X-Gm-Message-State: AO0yUKWTHpPLDwBYIGRZU7D2bkmfc7NvZsWTWDYO+PrHEoqLbGxD2qbT
+        GtvaCOvIhQrlejFiU3MvUflilw==
+X-Google-Smtp-Source: AK7set9gM3U6nf6XubMsmOVtYAlQ4bJVEMUUhTbjkzZQuQBRvr4ASHMO65QFkbNJ2sG+BF21KyhkTQ==
+X-Received: by 2002:a5d:6307:0:b0:2c3:e993:9d81 with SMTP id i7-20020a5d6307000000b002c3e9939d81mr22074934wru.66.1676274214913;
+        Sun, 12 Feb 2023 23:43:34 -0800 (PST)
+Received: from [192.168.30.216] ([81.0.6.76])
+        by smtp.gmail.com with ESMTPSA id o16-20020a5d6850000000b002bfbda53b98sm9812603wrw.35.2023.02.12.23.43.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Feb 2023 23:43:34 -0800 (PST)
+Message-ID: <3318261e-ce1c-3a6b-f206-898bda86d0d7@linaro.org>
+Date:   Mon, 13 Feb 2023 08:43:33 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.7.2
+Subject: Re: [PATCH] MIPS: dts: Boston: Fix dtc 'pci_device_reg' warning
+Content-Language: en-US
+To:     Genjian <zhanggenjian123@gmail.com>, paulburton@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tsbogend@alpha.franken.de
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Genjian Zhang <zhanggenjian@kylinos.cn>,
+        k2ci <kernel-bot@kylinos.cn>
+References: <20230213062451.1688755-1-zhanggenjian@kylinos.cn>
+From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
+In-Reply-To: <20230213062451.1688755-1-zhanggenjian@kylinos.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds a devicetree binding for the ast2600 i3c controller
-hardware. This is heavily based on the designware i3c hardware, plus a
-reset facility and two platform-specific properties:
+On 13/2/23 07:24, Genjian wrote:
+> From: Genjian Zhang <zhanggenjian@kylinos.cn>
+> 
+> dtbs_check currently complains that:
+> arch/mips/boot/dts/img/boston.dts:128.19-178.5: Warning (pci_device_reg):
+> /pci@14000000/pci2_root@0,0,0: PCI unit address format error,
+> expected "0,0"
+> The unit-address format should be '<device>,<function>'.
+> Fix the unit-address accordingly.
+> 
+> Reported-by: k2ci <kernel-bot@kylinos.cn>
+> Signed-off-by: Genjian Zhang <zhanggenjian@kylinos.cn>
+> ---
+>   arch/mips/boot/dts/img/boston.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 
- - sda-pullup-ohms: to specify the value of the configurable pullup
-   resistors on the SDA line
+Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
 
- - global-regs: to reference the (ast2600-specific) i3c global register
-   block, and the device index to use within it.
-
-Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
----
-RFC: the example in this depends on some not-yet-accepted patches for
-the clock and reset linkages:
-
-  https://lore.kernel.org/linux-devicetree/cover.1676267865.git.jk@codeconstruct.com.au/T/
-
-I'm also keen to get some review on the pullup configuration too.
-
----
- .../bindings/i3c/aspeed,ast2600-i3c.yaml      | 75 +++++++++++++++++++
- 1 file changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
-
-diff --git a/Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml b/Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
-new file mode 100644
-index 000000000000..ef28a8b77c94
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i3c/aspeed,ast2600-i3c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ASPEED AST2600 i3c controller
-+
-+maintainers:
-+  - Jeremy Kerr <jk@codeconstruct.com.au>
-+
-+allOf:
-+  - $ref: i3c.yaml#
-+
-+properties:
-+  compatible:
-+    const: aspeed,ast2600-i3c
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  sda-pullup-ohms:
-+    enum: [545, 750, 2000]
-+    default: 2000
-+    description: |
-+      Value of SDA pullup resistor in Ohms
-+
-+  global-regs:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: |
-+      A (phandle, controller index) reference to the i3c global register set
-+      used for this device.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+  - global-regs
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/ast2600-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i3c-master@2000 {
-+        #address-cells = <3>;
-+        #size-cells = <0>;
-+        compatible = "aspeed,ast2600-i3c";
-+        reg = <0x2000 0x1000>;
-+        clocks = <&syscon ASPEED_CLK_GATE_I3C0CLK>;
-+        resets = <&syscon ASPEED_RESET_I3C0>;
-+        global-regs = <&i3c_global 0>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_i3c1_default>;
-+        interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+    i3c_global: i3c-global@0 {
-+        compatible = "aspeed,ast2600-i3c-global", "simple-mfd", "syscon";
-+        resets = <&syscon ASPEED_RESET_I3C_DMA>;
-+        reg = <0x0 0x1000>;
-+    };
-+...
--- 
-2.39.1
 
