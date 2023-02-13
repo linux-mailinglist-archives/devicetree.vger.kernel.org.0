@@ -2,96 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F7D2694DB2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 18:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EB78694DB8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 18:09:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbjBMRHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 12:07:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57902 "EHLO
+        id S230168AbjBMRJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 12:09:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjBMRHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 12:07:46 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 337391E9F6
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 09:07:41 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id k3so5349188wrv.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 09:07:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2InQIExYmP5Jgqnc5AiUW3/d2IV4ctPWBKAcygB36v4=;
-        b=D21IBKd5duKNwSZD2lHnVwMweGSumv4jTyAqy03/XwI8B796iqCUO8aE1pFXpyk6Aa
-         qJXtcld4Li+Z8PzdSbHDoYR28unCTtepqvBlN9UlvIsQYFQQ5/QkhvsC9S9qIdwcJm2I
-         lF6vLSFEbHmIOXFlg7FtYJUZwXq1wMgDs3hU2uvAU20qBQC1NFyG9uwoDmX8lndaM7WS
-         3wmSDXdctqtwL/rupvBCfI6uphuzDTCcK6aP234JVsfOu2AI6BDslLDXIlzFomJgh+Ra
-         RrU32Jm4vUV0Mt3vMYRpvc68T+eBqtFIpTwNoOXqRAJrkPnqiVMXmfPvTmmQTBaMfYcQ
-         +bqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2InQIExYmP5Jgqnc5AiUW3/d2IV4ctPWBKAcygB36v4=;
-        b=15qKMoPjRfJ/9jmlniJeM0rz7xDz7So4qWzpzSYAVcQQrM/SuL2XRSo8SpW0qcbJvI
-         vtWgxd0x540bDT+T7UDAJUSflKXHwqCHLcljJH2lAQsDTXGK/mpu9gB9vW99YuE1VEBB
-         83/eoUgvChvZ/Yl/gumd5KTxjXBMTA065cArjaYq9/nfPh6nqiY8GCYXmqxMNq6u8WaT
-         gAmddKE69oMl4WZ6bl2JqyEz7L7TsOnd4CuAiXtj9guruRfBdB6tbWAuxBx0Hn+UpTVr
-         8/lX/ISEuewrcZggB4LJgV0d0FEU4NeZkaZRinaUvd+p8JwQynL4dq2d8OTzpkCy/LBh
-         fnYw==
-X-Gm-Message-State: AO0yUKX0aFQyQg1tBvpwKc3vcU4V43an0plJS26Sjybp5PEUNhHGcPPO
-        YN61EOA+NoGpwDIf6hKrBX2M0Q==
-X-Google-Smtp-Source: AK7set8f8iVV15Q5bQ7Ofj85okM/P5EZ0M3GD/i8DQmT3Fhlf9NzOVveTl8eioF4PukoueqHH8l2DA==
-X-Received: by 2002:a05:6000:1369:b0:2c5:4c32:92c5 with SMTP id q9-20020a056000136900b002c54c3292c5mr8649659wrz.25.1676308059660;
-        Mon, 13 Feb 2023 09:07:39 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i14-20020adff30e000000b00241fab5a296sm11030147wro.40.2023.02.13.09.07.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 09:07:39 -0800 (PST)
-Message-ID: <9c53ccd6-ea38-82bf-2284-d606fb2293f2@linaro.org>
-Date:   Mon, 13 Feb 2023 18:07:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: sitronix,st7701: Add
- Elida KD50T048A Panel
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>, heiko@sntech.de,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230232AbjBMRJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 12:09:08 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B576F1719;
+        Mon, 13 Feb 2023 09:09:06 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7F393E0002;
+        Mon, 13 Feb 2023 17:09:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1676308145;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=9CXoqr/LwmnludUMAPV/RwqG8TgU+YKzhwwGreym1Tk=;
+        b=QkoNLQ4sr1PJ46Fa1ikTVkkGih9U2wAFHwRXSFoSM+Z7MNo0XyzdmsUcqTw3TOwR3Kx7aG
+        HHsyUYCV7WtTdtYJMGviMcSostic1NxgUtO6hTt87fw6F8HqdemB0Yn1UI0cHfbHJ5k3on
+        7WfGpAHlotX2i5n6PlcgTcomgKsWC+DkLqEzka1DlcA1pbDjFb0L90cw209V7kYqm/BI+O
+        PFIHHHs2WcK8+PXzRn56Zs/UK2p68zKdExOUhpcUcaXGENQ/BXEUB8yzfcNG6D8nyuOGt1
+        GTq5qhKLanOJmQESc0IJAJcyHuSMj2Jhd10cDtnBxsWjf/oVVvkQtUP+RDE0tw==
+Date:   Mon, 13 Feb 2023 18:09:03 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rockchip@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230213153816.213526-1-maccraft123mc@gmail.com>
- <20230213153816.213526-2-maccraft123mc@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213153816.213526-2-maccraft123mc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: nxp,pcf8563: add
+ quartz-load-femtofarads for pcf85263 and pcf85363
+Message-ID: <Y+pur70KB7wWRCCi@mail.local>
+References: <20230213095018.2255225-1-javier.carrasco@wolfvision.net>
+ <12dc51e4-622e-4a26-8bde-2795d77ce36e.e0c24246-04d4-485f-8d5f-1cc8fbefd095.f8cc75cd-465e-4339-8415-7d994963b841@emailsignatures365.codetwo.com>
+ <20230213095018.2255225-3-javier.carrasco@wolfvision.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230213095018.2255225-3-javier.carrasco@wolfvision.net>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 16:38, Maya Matuszczyk wrote:
-> Add compatible for 854x480 Elida KD50T048A panel, found in Odroid Go Super
-> and Odroid Go Ultra
+Hello,
+
+Krzysztof's confusion is because you are changing the binding for
+nxp,pcf8563 while adding support for the nxp,pcf85263/nxp,pcf85363
+
+On 13/02/2023 10:50:18+0100, Javier Carrasco wrote:
+> These RTCs are handled by the pcf85363 device driver, which now supports
+> the quartz-load-femtofarads property.
 > 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+>  .../devicetree/bindings/rtc/nxp,pcf8563.yaml  | 20 ++++++++++++++++---
+>  1 file changed, 17 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+> index a98b72752349..aac7f7565ba7 100644
+> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+> @@ -9,9 +9,6 @@ title: Philips PCF8563/Epson RTC8564 Real Time Clock
+>  maintainers:
+>    - Alexandre Belloni <alexandre.belloni@bootlin.com>
+>  
+> -allOf:
+> -  - $ref: rtc.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -37,6 +34,23 @@ properties:
+>    start-year: true
+>    wakeup-source: true
+>  
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - nxp,pcf85263
+> +              - nxp,pcf85363
+> +    then:
+> +      properties:
+> +        quartz-load-femtofarads:
+> +          description:
+> +            The capacitive load of the quartz(x-tal).
+> +          enum: [6000, 7000, 12500]
+> +          default: 7000
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.37.2
+> 
+> 
+> Javier Carrasco 
+> Research and Development
+> 
+> Wolfvision GmbH 
+> Oberes Ried 14 | 6833 Klaus | Austria 
+> Tel: +43 5523 52250 <tel:+43552352250> | Mail: javier.carrasco@wolfvision.net <mailto:javier.carrasco@wolfvision.net>
+> 
+> Website: wolfvision.com <www.wolfvision.com> 
+> Firmenbuch / Commercial Register: FN283521v Feldkirch/Austria
+> 
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
