@@ -2,81 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28FEE693DFF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 07:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC79693E3F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 07:27:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbjBMGCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 01:02:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51714 "EHLO
+        id S229505AbjBMG1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 01:27:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjBMGCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 01:02:36 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6981EFA7;
-        Sun, 12 Feb 2023 22:02:34 -0800 (PST)
-Received: by codeconstruct.com.au (Postfix, from userid 10000)
-        id 42284202DA; Mon, 13 Feb 2023 14:02:33 +0800 (AWST)
+        with ESMTP id S229477AbjBMG1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 01:27:03 -0500
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E09B476;
+        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
+Received: by mail-pj1-x1041.google.com with SMTP id r9-20020a17090a2e8900b00233ba727724so4941036pjd.1;
+        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1676268153;
-        bh=eLUPAGT631b5vX2q9I73MK63Lf+Bgpoyf5/+0x8s3ik=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=FgUuQAGLoAEGwzQboFMDhqrlXaR04dkNKLyIkOj5LNE4I8PKx4HY2D4oVf/QBdprh
-         G/68qdLRdSn2cS1HwumYHALIgdoGlCJ8jq3TPRRmctEhdie6JaGqZrclrs+ybknMUB
-         Ovp/OTuZu/W010kW+Qu+C1x/qS0r5ATViVOUuvokBiD7YWEuH2kyE6Q20eQfbiOKyC
-         CeavgQJq0HjItnGYCt7clFRIpZUhgboKl/Zb9CKdavLDBR5WP1phtja66TxkI7jMAj
-         9RhV3WfIh+MUy6J6wLdYJ3jZZIHB1Jn9M37wzWzvo9UBEjNSRkuI3RKV/6P1BfxPaU
-         FtDy8/Wc0lOMw==
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Subject: [PATCH v2 3/3] dts: ast2600: Add reset config for I3C
-Date:   Mon, 13 Feb 2023 14:02:08 +0800
-Message-Id: <f426c3a22d64d076b007a0fc75dc95a389a9387f.1676267865.git.jk@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <cover.1676267865.git.jk@codeconstruct.com.au>
-References: <cover.1676267865.git.jk@codeconstruct.com.au>
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e5ZtF2KqwWRhAKLuTZEMSSTu2+eVtRmd9Zd1nxNogWI=;
+        b=ljzjL29mBMyAM3qrAdg8Bl0nAlOaIyy3rfXCgoA7S6PLtniN+7gW3TsXNSD8A5E92C
+         GgWfsabQmZMAC6rAbN/MTa6iClJ/4a/2U+88wesTVK9wRoTwu1CtsDKwYfyZheBZY2pU
+         m18RL1alkG1zrzPpf3JXQVlxv4djGO2vQgk8SpR9fb7UmSJBjPbu5mK7xkKslG4i90TD
+         9btIkTBJv6eXBRjMphTTrzP8zoUl3CvmcIuI8ChwWaq/qKT1DUhnUqi43bQmCO4nWjLK
+         pGjy0m4RdXShnNjBBqWDjVcPPMz+Gw+dIwSKH5O2taMMIogNLBMWdA9n48zLhEMBtqLQ
+         xeHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e5ZtF2KqwWRhAKLuTZEMSSTu2+eVtRmd9Zd1nxNogWI=;
+        b=6HMmmNRnJEU6VkAlXxxjdxcE5+xOr9kARoRDZB0K+Qnv9UHGO0ij+jV+wI/DBItdRh
+         utIRd2yrwMJYNh3pX4PPUzNMsP7IuxUfuy+6qLpH4Z15ldw3xGHHC4FuDpdSz9qJqD7w
+         Frr/izGjYqU5liKIQ2aCPkhQ3BDpr274RhNXO0/ObkNZhWQiRU7fjoVjWOhrvOSGnZfo
+         Fv6w0m1cGlAGLi70dMb1RUOVNX6jj2ZimjsPH51xiU9Ao1DQFyJ8yJqZgA8nEu7B/QuS
+         5o5kR1SBtgPoEAFwZnPlKgUWMy7lFeuEnHUZMLnlpNPnMVtFikn5kuKLiJAq8RCUf4R0
+         qP6Q==
+X-Gm-Message-State: AO0yUKXIgpP7wTlWbHItd17waTGlohz+ffZbHRyeY371kZPJc/5nZRLP
+        ODbycaDyK5u6/ErAphtKYXx3Kdq/A7B0ng==
+X-Google-Smtp-Source: AK7set/EgU3fIuA4nWHFdGB8/cgKYXFkQWSE//uU+pD1VoQqOnX6Htxy2o+EkwbE7Lk1Uvr5oFuP7g==
+X-Received: by 2002:a17:902:ecc2:b0:19a:968d:2713 with SMTP id a2-20020a170902ecc200b0019a968d2713mr4842072plh.48.1676269622404;
+        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
+Received: from localhost.localdomain ([103.135.103.93])
+        by smtp.gmail.com with ESMTPSA id 17-20020a170902c15100b0019a70a85e8fsm5407466plj.220.2023.02.12.22.26.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Feb 2023 22:27:02 -0800 (PST)
+From:   Genjian <zhanggenjian123@gmail.com>
+X-Google-Original-From: Genjian <zhanggenjian@kylinos.cn>
+To:     paulburton@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tsbogend@alpha.franken.de
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Genjian Zhang <zhanggenjian@kylinos.cn>,
+        k2ci <kernel-bot@kylinos.cn>
+Subject: [PATCH] MIPS: dts: Boston: Fix dtc 'pci_device_reg' warning
+Date:   Mon, 13 Feb 2023 14:24:51 +0800
+Message-Id: <20230213062451.1688755-1-zhanggenjian@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the reset line definitions for the AST2600 I3C block's
-reset inputs.
+From: Genjian Zhang <zhanggenjian@kylinos.cn>
 
-Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+dtbs_check currently complains that:
+arch/mips/boot/dts/img/boston.dts:128.19-178.5: Warning (pci_device_reg):
+/pci@14000000/pci2_root@0,0,0: PCI unit address format error,
+expected "0,0"
+The unit-address format should be '<device>,<function>'.
+Fix the unit-address accordingly.
+
+Reported-by: k2ci <kernel-bot@kylinos.cn>
+Signed-off-by: Genjian Zhang <zhanggenjian@kylinos.cn>
 ---
- include/dt-bindings/clock/ast2600-clock.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/mips/boot/dts/img/boston.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
-index 600549d7bee8..16b7389bbb9c 100644
---- a/include/dt-bindings/clock/ast2600-clock.h
-+++ b/include/dt-bindings/clock/ast2600-clock.h
-@@ -90,6 +90,12 @@
- /* Only list resets here that are not part of a gate */
- #define ASPEED_RESET_ADC		55
- #define ASPEED_RESET_JTAG_MASTER2	54
-+#define ASPEED_RESET_I3C5		45
-+#define ASPEED_RESET_I3C4		44
-+#define ASPEED_RESET_I3C3		43
-+#define ASPEED_RESET_I3C2		42
-+#define ASPEED_RESET_I3C1		41
-+#define ASPEED_RESET_I3C0		40
- #define ASPEED_RESET_I3C_DMA		39
- #define ASPEED_RESET_PWM		37
- #define ASPEED_RESET_PECI		36
+diff --git a/arch/mips/boot/dts/img/boston.dts b/arch/mips/boot/dts/img/boston.dts
+index 84328afa3a55..72f7605d2e31 100644
+--- a/arch/mips/boot/dts/img/boston.dts
++++ b/arch/mips/boot/dts/img/boston.dts
+@@ -125,7 +125,7 @@ pci2_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+ 		};
+ 
+-		pci2_root@0,0,0 {
++		pci2_root@0,0 {
+ 			compatible = "pci10ee,7021";
+ 			reg = <0x00000000 0 0 0 0>;
+ 
 -- 
-2.39.1
+2.25.1
 
