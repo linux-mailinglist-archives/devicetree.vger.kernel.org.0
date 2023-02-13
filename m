@@ -2,541 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 298A4693FD6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 492DB693F90
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:26:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjBMInm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 03:43:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49322 "EHLO
+        id S229764AbjBMI0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 03:26:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbjBMInl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:43:41 -0500
-X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 13 Feb 2023 00:43:38 PST
-Received: from 8.mo576.mail-out.ovh.net (8.mo576.mail-out.ovh.net [46.105.56.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B071BCC19
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:43:38 -0800 (PST)
-Received: from director4.ghost.mail-out.ovh.net (unknown [10.108.1.170])
-        by mo576.mail-out.ovh.net (Postfix) with ESMTP id 0E7492407F
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 08:25:55 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-mwxg6 (unknown [10.110.171.145])
-        by director4.ghost.mail-out.ovh.net (Postfix) with ESMTPS id F15051FE68;
-        Mon, 13 Feb 2023 08:25:54 +0000 (UTC)
-Received: from armadeus.com ([37.59.142.105])
-        by ghost-submission-6684bf9d7b-mwxg6 with ESMTPSA
-        id LGdONxL06WOQ4TwAajzWtg
-        (envelope-from <sebastien.szymanski@armadeus.com>); Mon, 13 Feb 2023 08:25:54 +0000
-Authentication-Results: garm.ovh; auth=pass (GARM-105G0061590fb33-c5ab-4591-86a0-cc3a2d57ae45,
-                    E09B7956A821E9598FCC7E510BF6D42AC2B746FB) smtp.auth=sebastien.szymanski@armadeus.com
-X-OVh-ClientIp: 92.148.253.243
-Message-ID: <58919223-cd4e-9a54-52ab-90f86552d4e2@armadeus.com>
-Date:   Mon, 13 Feb 2023 09:22:34 +0100
+        with ESMTP id S229819AbjBMI0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:26:36 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A1C9125B9
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:26:35 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id co8so7482115wrb.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:26:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=btO60ISoDCCCjTcPpziOha13/oZmmCzb4CppffdGSyY=;
+        b=gr4M0c/pg7b5rnZdTelGKeUp1CUT7jgyAu7Gnr/6ZPg00dOs/xv89xcBxRJ+qCq5ks
+         ESzOjB+5nadbC9CZT/jWVI8ssqVtXW5zlk9AUEbtPdgj1m1fIO1yQ+g8NcX6Fz1ugrdm
+         S4L5YsEIBxuwsQ6OLGnRt6oCIEzywdM6kHsB+of/uxp+kTxzP5bevO5VW7kytQ5c94Dy
+         TSva52bcWqWhzHdhKwkVLBwWowdYS8kd1StX1Cht7UehP2RaqPOOuQwictCc9WYU8Td3
+         LoorLJL+Q7ciGIEK4Fk7OUPIMCXgyQjkOBJMQpD2M6jhmu5UScGPAdk1bOI4dZ6ijYh9
+         CekA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=btO60ISoDCCCjTcPpziOha13/oZmmCzb4CppffdGSyY=;
+        b=UGH5/lEf0hmEAP1QUkZOogoyklEmHLVxNlqfvo6MLIWM2WgcaF1VIBXRo6zpqV66+6
+         28jovs+mLRj/NKhneXyoFADDbSnPB28qZJ7Gdnt3Q3rz9WXkn0lQ/aX1mpOwRvSH45eC
+         H2vnp9Gn8ncdEBWIc0GRdFWglBdLMRyzzT2tdN4KI92XAf9uiSUiKmqfq/EfFg8XEgNq
+         pTAiGxHlesgYBlN+pXI3GzJr8PdWfWKlnSC8n4Ov4JxzxkHfgZwipmbWekwt/imDDwhq
+         Ju0wsXFcRM90cgz9mAjNrSywzn+odTC2Bdp148jxNqtgypWA/9DROK+QY/4VsqIO8i8C
+         i/wg==
+X-Gm-Message-State: AO0yUKUpoHUumsCMD+VdorjoEjAs21Uerr+kiujZNbfu/CGMifcjaY63
+        PmLZ0PKwm1Pq6giBeqk+BHYZsw==
+X-Google-Smtp-Source: AK7set8oFpGy0A60H1v9tSrwcMLpV6gVgI9davXRbD298V+rJ6N2lRPxcI4WwJ00q/18K0ETDrA4zQ==
+X-Received: by 2002:a05:6000:1d2:b0:2bf:b661:87d9 with SMTP id t18-20020a05600001d200b002bfb66187d9mr19450135wrx.50.1676276793536;
+        Mon, 13 Feb 2023 00:26:33 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id d13-20020adfe88d000000b002c54f4d0f71sm5057137wrm.38.2023.02.13.00.26.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 00:26:33 -0800 (PST)
+Message-ID: <e09d6807-a548-0218-5ff0-274668f1eb94@linaro.org>
+Date:   Mon, 13 Feb 2023 09:26:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/4] dt-bindings: aspeed: Add UART controller
+To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+References: <20230210072643.2772-1-chiawei_wang@aspeedtech.com>
+ <20230210072643.2772-2-chiawei_wang@aspeedtech.com>
+ <2d0d1866-95f9-942d-57e0-06a5ed17d35d@linaro.org>
+ <KL1PR0601MB3781A9E9E209F2E94CE2F08D91DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
 Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230201203338.9525-1-stefan.wahren@i2se.com>
- <20230201203338.9525-2-stefan.wahren@i2se.com>
-From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Subject: Re: [PATCH 1/9] ARM: dts: imx28-apf28: Convert to use label
- references
-In-Reply-To: <20230201203338.9525-2-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 17587400974104914712
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudeitddguddukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfvvehfhffujggtgfesthekredttdefjeenucfhrhhomhepuforsggrshhtihgvnhcuufiihihmrghnshhkihcuoehsvggsrghsthhivghnrdhsiiihmhgrnhhskhhisegrrhhmrgguvghushdrtghomheqnecuggftrfgrthhtvghrnhepkeeukeejleehhefhvefgtefhjeegffeigeekueegiedugeejveeuvdekleeugeffnecukfhppeduvdejrddtrddtrddupdefjedrheelrddugedvrddutdehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheejiedpmhhouggvpehsmhhtphhouhht
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <KL1PR0601MB3781A9E9E209F2E94CE2F08D91DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Stefan,
-
-On 2/1/23 21:33, Stefan Wahren wrote:
-> These Armadeus board files still use node name and unit address
-> to reference parts from the imx28.dtsi . This causes a lot of
-> redundancy. So use label references in order to make it easier
-> to maintain.
+On 13/02/2023 02:57, ChiaWei Wang wrote:
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Friday, February 10, 2023 5:13 PM
+>>
+>> On 10/02/2023 08:26, Chia-Wei Wang wrote:
+>>> Add dt-bindings for Aspeed UART controller.
+>>
+>> Describe the hardware. What's the difference against existing Aspeed UART
+>> used everywhere?
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Cc: <support@armadeus.com>
-> ---
->   arch/arm/boot/dts/imx28-apf28.dts    |  96 ++++-----
->   arch/arm/boot/dts/imx28-apf28dev.dts | 312 +++++++++++++--------------
->   2 files changed, 196 insertions(+), 212 deletions(-)
+> The description will be revised to explain more for UART and Virtual UART controllers.
 > 
-> diff --git a/arch/arm/boot/dts/imx28-apf28.dts b/arch/arm/boot/dts/imx28-apf28.dts
-> index 14a92fe59770..98672932e41b 100644
-> --- a/arch/arm/boot/dts/imx28-apf28.dts
-> +++ b/arch/arm/boot/dts/imx28-apf28.dts
-> @@ -14,67 +14,59 @@ memory@40000000 {
->   		device_type = "memory";
->   		reg = <0x40000000 0x08000000>;
->   	};
-> +};
->   
-> -	apb@80000000 {
-> -		apbh@80000000 {
-> -			nand-controller@8000c000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
-> -				status = "okay";
-> -
-> -				partition@0 {
-> -					label = "u-boot";
-> -					reg = <0x0 0x300000>;
-> -				};
-> +&duart {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&duart_pins_a>;
-> +	status = "okay";
-> +};
->   
-> -				partition@300000 {
-> -					label = "env";
-> -					reg = <0x300000 0x80000>;
-> -				};
-> +&gpmi {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
-> +	status = "okay";
->   
-> -				partition@380000 {
-> -					label = "env2";
-> -					reg = <0x380000 0x80000>;
-> -				};
-> +	partition@0 {
-> +		label = "u-boot";
-> +		reg = <0x0 0x300000>;
-> +	};
->   
-> -				partition@400000 {
-> -					label = "dtb";
-> -					reg = <0x400000 0x80000>;
-> -				};
-> +	partition@300000 {
-> +		label = "env";
-> +		reg = <0x300000 0x80000>;
-> +	};
->   
-> -				partition@480000 {
-> -					label = "splash";
-> -					reg = <0x480000 0x80000>;
-> -				};
-> +	partition@380000 {
-> +		label = "env2";
-> +		reg = <0x380000 0x80000>;
-> +	};
->   
-> -				partition@500000 {
-> -					label = "kernel";
-> -					reg = <0x500000 0x800000>;
-> -				};
-> +	partition@400000 {
-> +		label = "dtb";
-> +		reg = <0x400000 0x80000>;
-> +	};
->   
-> -				partition@d00000 {
-> -					label = "rootfs";
-> -					reg = <0xd00000 0xf300000>;
-> -				};
-> -			};
-> -		};
-> +	partition@480000 {
-> +		label = "splash";
-> +		reg = <0x480000 0x80000>;
-> +	};
->   
-> -		apbx@80040000 {
-> -			duart: serial@80074000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&duart_pins_a>;
-> -				status = "okay";
-> -			};
-> -		};
-> +	partition@500000 {
-> +		label = "kernel";
-> +		reg = <0x500000 0x800000>;
->   	};
->   
-> -	ahb@80080000 {
-> -		mac0: ethernet@800f0000 {
-> -			phy-mode = "rmii";
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&mac0_pins_a>;
-> -			phy-reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
-> -			status = "okay";
-> -		};
-> +	partition@d00000 {
-> +		label = "rootfs";
-> +		reg = <0xd00000 0xf300000>;
->   	};
->   };
-> +
-> +&mac0 {
-> +	phy-mode = "rmii";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mac0_pins_a>;
-> +	phy-reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm/boot/dts/imx28-apf28dev.dts b/arch/arm/boot/dts/imx28-apf28dev.dts
-> index 1b253b47006c..47e2397193ad 100644
-> --- a/arch/arm/boot/dts/imx28-apf28dev.dts
-> +++ b/arch/arm/boot/dts/imx28-apf28dev.dts
-> @@ -10,166 +10,6 @@ / {
->   	model = "Armadeus Systems APF28Dev docking/development board";
->   	compatible = "armadeus,imx28-apf28dev", "armadeus,imx28-apf28", "fsl,imx28";
->   
-> -	apb@80000000 {
-> -		apbh@80000000 {
-> -			ssp0: spi@80010000 {
-> -				compatible = "fsl,imx28-mmc";
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&mmc0_4bit_pins_a
-> -					&mmc0_cd_cfg &mmc0_sck_cfg>;
-> -				bus-width = <4>;
-> -				status = "okay";
-> -			};
-> -
-> -			ssp2: spi@80014000 {
-> -				compatible = "fsl,imx28-spi";
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&spi2_pins_a>;
-> -				status = "okay";
-> -			};
-> -
-> -			pinctrl@80018000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&hog_pins_apf28dev>;
-> -
-> -				hog_pins_apf28dev: hog@0 {
-> -					reg = <0>;
-> -					fsl,pinmux-ids = <
-> -						MX28_PAD_LCD_D16__GPIO_1_16
-> -						MX28_PAD_LCD_D17__GPIO_1_17
-> -						MX28_PAD_LCD_D18__GPIO_1_18
-> -						MX28_PAD_LCD_D19__GPIO_1_19
-> -						MX28_PAD_LCD_D20__GPIO_1_20
-> -						MX28_PAD_LCD_D21__GPIO_1_21
-> -						MX28_PAD_LCD_D22__GPIO_1_22
-> -						MX28_PAD_GPMI_CE1N__GPIO_0_17
-> -					>;
-> -					fsl,drive-strength = <MXS_DRIVE_4mA>;
-> -					fsl,voltage = <MXS_VOLTAGE_HIGH>;
-> -					fsl,pull-up = <MXS_PULL_DISABLE>;
-> -				};
-> -
-> -				lcdif_pins_apf28dev: lcdif-apf28dev@0 {
-> -					reg = <0>;
-> -					fsl,pinmux-ids = <
-> -						MX28_PAD_LCD_RD_E__LCD_VSYNC
-> -						MX28_PAD_LCD_WR_RWN__LCD_HSYNC
-> -						MX28_PAD_LCD_RS__LCD_DOTCLK
-> -						MX28_PAD_LCD_CS__LCD_ENABLE
-> -					>;
-> -					fsl,drive-strength = <MXS_DRIVE_4mA>;
-> -					fsl,voltage = <MXS_VOLTAGE_HIGH>;
-> -					fsl,pull-up = <MXS_PULL_DISABLE>;
-> -				};
-> -
-> -				usb0_otg_apf28dev: otg-apf28dev@0 {
-> -					reg = <0>;
-> -					fsl,pinmux-ids = <
-> -						MX28_PAD_LCD_D23__GPIO_1_23
-> -					>;
-> -					fsl,drive-strength = <MXS_DRIVE_4mA>;
-> -					fsl,voltage = <MXS_VOLTAGE_HIGH>;
-> -					fsl,pull-up = <MXS_PULL_DISABLE>;
-> -				};
-> -			};
-> -
-> -			lcdif@80030000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&lcdif_16bit_pins_a
-> -						&lcdif_pins_apf28dev>;
-> -				display = <&display0>;
-> -				status = "okay";
-> -
-> -				display0: display0 {
-> -					bits-per-pixel = <16>;
-> -					bus-width = <16>;
-> -
-> -					display-timings {
-> -						native-mode = <&timing0>;
-> -						timing0: timing0 {
-> -							clock-frequency = <33000033>;
-> -							hactive = <800>;
-> -							vactive = <480>;
-> -							hback-porch = <96>;
-> -							hfront-porch = <96>;
-> -							vback-porch = <20>;
-> -							vfront-porch = <21>;
-> -							hsync-len = <64>;
-> -							vsync-len = <4>;
-> -							hsync-active = <1>;
-> -							vsync-active = <1>;
-> -							de-active = <1>;
-> -							pixelclk-active = <0>;
-> -						};
-> -					};
-> -				};
-> -			};
-> -
-> -			can0: can@80032000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&can0_pins_a>;
-> -				xceiver-supply = <&reg_can0_vcc>;
-> -				status = "okay";
-> -			};
-> -		};
-> -
-> -		apbx@80040000 {
-> -			lradc@80050000 {
-> -				fsl,lradc-touchscreen-wires = <4>;
-> -				status = "okay";
-> -			};
-> -
-> -			i2c0: i2c@80058000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&i2c0_pins_a>;
-> -				status = "okay";
-> -			};
-> -
-> -			pwm: pwm@80064000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&pwm3_pins_a &pwm4_pins_a>;
-> -				status = "okay";
-> -			};
-> -
-> -			auart0: serial@8006a000 {
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&auart0_pins_a>;
-> -				uart-has-rtscts;
-> -				status = "okay";
-> -			};
-> -
-> -			usbphy0: usbphy@8007c000 {
-> -				status = "okay";
-> -			};
-> -
-> -			usbphy1: usbphy@8007e000 {
-> -				status = "okay";
-> -			};
-> -		};
-> -	};
-> -
-> -	ahb@80080000 {
-> -		usb0: usb@80080000 {
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&usb0_otg_apf28dev
-> -					&usb0_id_pins_b>;
-> -			vbus-supply = <&reg_usb0_vbus>;
-> -			status = "okay";
-> -		};
-> -
-> -		usb1: usb@80090000 {
-> -			status = "okay";
-> -		};
-> -
-> -		mac1: ethernet@800f4000 {
-> -			phy-mode = "rmii";
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&mac1_pins_a>;
-> -			phy-reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
-> -			status = "okay";
-> -		};
-> -	};
-> -
->   	regulators {
->   		compatible = "simple-bus";
->   		#address-cells = <1>;
-> @@ -223,3 +63,155 @@ user-button {
->   		};
->   	};
->   };
-> +
-> +&auart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&auart0_pins_a>;
-> +	uart-has-rtscts;
-> +	status = "okay";
-> +};
-> +
-> +&can0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&can0_pins_a>;
-> +	xceiver-supply = <&reg_can0_vcc>;
-> +	status = "okay";
-> +};
-> +
-> +&lcdif {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&lcdif_16bit_pins_a
-> +			&lcdif_pins_apf28dev>;
-> +	display = <&display0>;
-> +	status = "okay";
-> +
-> +	display0: display0 {
-> +		bits-per-pixel = <16>;
-> +		bus-width = <16>;
-> +
-> +		display-timings {
-> +			native-mode = <&timing0>;
-> +			timing0: timing0 {
-> +				clock-frequency = <33000033>;
-> +				hactive = <800>;
-> +				vactive = <480>;
-> +				hback-porch = <96>;
-> +				hfront-porch = <96>;
-> +				vback-porch = <20>;
-> +				vfront-porch = <21>;
-> +				hsync-len = <64>;
-> +				vsync-len = <4>;
-> +				hsync-active = <1>;
-> +				vsync-active = <1>;
-> +				de-active = <1>;
-> +				pixelclk-active = <0>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&lradc {
-> +	fsl,lradc-touchscreen-wires = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_pins_a>;
-> +	status = "okay";
-> +};
+>>
+>>>
+>>> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+>>> ---
+>>>  .../bindings/serial/aspeed,uart.yaml          | 81
+>> +++++++++++++++++++
+>>>  1 file changed, 81 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/serial/aspeed,uart.yaml
+>>
+>> Filename: aspeed,ast2600-uart.yaml
+>> (unless you are adding here more compatibles, but your const suggests that it's
+>> not going to happen)
+>>
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/serial/aspeed,uart.yaml
+>>> b/Documentation/devicetree/bindings/serial/aspeed,uart.yaml
+>>> new file mode 100644
+>>> index 000000000000..10c457d6a72e
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/serial/aspeed,uart.yaml
+>>> @@ -0,0 +1,81 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/serial/aspeed,uart.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Aspeed Universal Asynchronous Receiver/Transmitter
+>>
+>> This title matches other Aspeed UARTs, so aren't you duplicating bindings?
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: serial.yaml#
+>>> +
+>>> +description: |
+>>> +  The Aspeed UART is based on the basic 8250 UART and compatible
+>>> +  with 16550A, with support for DMA
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: aspeed,ast2600-uart
+>>> +
+>>> +  reg:
+>>> +    description: The base address of the UART register bank
+>>
+>> Drop description
+> 
+> Will revise as suggested.
+> 
+>>
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    description: The clock the baudrate is derived from
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    description: The IRQ number of the device
+>>
+>> Drop description
+> 
+> Will revise as suggested.
+> 
+>>
+>>> +    maxItems: 1
+>>> +
+>>> +  dma-mode:
+>>> +    type: boolean
+>>> +    description: Enable DMA
+>>
+>> Drop property. DMA is enabled on presence of dmas.
+>>
+>>> +
+>>> +  dma-channel:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: The channel number to be used in the DMA engine
+>>
+>> That's not a correct DMA property. dmas and dma-names git grep dma --
+>> Documentation/devicetree/bindings/
+>>
+>>
+>>> +
+>>> +  virtual:
+>>> +    type: boolean
+>>> +    description: Indicate virtual UART
+>>
+>> Virtual means not existing in real world? We do not describe in DTS
+>> non-existing devices. Drop entire property.
+> 
+> The virtual property indicates it is a Virtual UART device.
 
-This i2c0 node should be before the lcdif node to have the nodes in 
-alphabetical order.
+vuart already has its bindings, so you do not need this in such case.
 
-Regards,
+> VUART of Aspeed SoC is actually a FIFO exposed in the 16550A UART interface.
+> The one head of the FIFO is exposed to Host via eSPI/LPC and the other one is for BMC.
+> There is no physical serial link between Host and BMC. And thus named as Virtual UART.
 
-> +
-> +&mac1 {
-> +	phy-mode = "rmii";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mac1_pins_a>;
-> +	phy-reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&hog_pins_apf28dev>;
-> +
-> +	hog_pins_apf28dev: hog@0 {
-> +		reg = <0>;
-> +		fsl,pinmux-ids = <
-> +			MX28_PAD_LCD_D16__GPIO_1_16
-> +			MX28_PAD_LCD_D17__GPIO_1_17
-> +			MX28_PAD_LCD_D18__GPIO_1_18
-> +			MX28_PAD_LCD_D19__GPIO_1_19
-> +			MX28_PAD_LCD_D20__GPIO_1_20
-> +			MX28_PAD_LCD_D21__GPIO_1_21
-> +			MX28_PAD_LCD_D22__GPIO_1_22
-> +			MX28_PAD_GPMI_CE1N__GPIO_0_17
-> +		>;
-> +		fsl,drive-strength = <MXS_DRIVE_4mA>;
-> +		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-> +		fsl,pull-up = <MXS_PULL_DISABLE>;
-> +	};
-> +
-> +	lcdif_pins_apf28dev: lcdif-apf28dev@0 {
-> +		reg = <0>;
-> +		fsl,pinmux-ids = <
-> +			MX28_PAD_LCD_RD_E__LCD_VSYNC
-> +			MX28_PAD_LCD_WR_RWN__LCD_HSYNC
-> +			MX28_PAD_LCD_RS__LCD_DOTCLK
-> +			MX28_PAD_LCD_CS__LCD_ENABLE
-> +		>;
-> +		fsl,drive-strength = <MXS_DRIVE_4mA>;
-> +		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-> +		fsl,pull-up = <MXS_PULL_DISABLE>;
-> +	};
-> +
-> +	usb0_otg_apf28dev: otg-apf28dev@0 {
-> +		reg = <0>;
-> +		fsl,pinmux-ids = <
-> +			MX28_PAD_LCD_D23__GPIO_1_23
-> +		>;
-> +		fsl,drive-strength = <MXS_DRIVE_4mA>;
-> +		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-> +		fsl,pull-up = <MXS_PULL_DISABLE>;
-> +	};
-> +};
+I don't understand what is the virtual in terms of hardware. How you
+route your serial lines does not change the type of the device. You need
+to describe the hardware in Devicetree, not some concepts for system.
 
-The pinctrl node is usually placed at the end of the file.
+> 
+>>
+>>> +
+>>> +  sirq:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: The serial IRQ number on LPC bus interface
+>>
+>> Drop entire property.
+> 
+> Mandatory for Virtual UART
 
-Thank you !
+It's not a explanation why this is a property suitable for Devicetree.
+IRQ numbers are given via interrupts field.
 
-Regards,
+> 
+>>
+>>> +
+>>> +  sirq-polarity:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: The serial IRQ polarity on LPC bus interface
+>>
+>> Drop entire property.
+> 
+> Mandatory for Virtual UART
+> 
 
-> +
-> +&pwm {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pwm3_pins_a &pwm4_pins_a>;
-> +	status = "okay";
-> +};
-> +
-> +&ssp0 {
-> +	compatible = "fsl,imx28-mmc";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc0_4bit_pins_a
-> +		&mmc0_cd_cfg &mmc0_sck_cfg>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&ssp2 {
-> +	compatible = "fsl,imx28-spi";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi2_pins_a>;
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb0_otg_apf28dev
-> +			&usb0_id_pins_b>;
-> +	vbus-supply = <&reg_usb0_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbphy0 {
-> +	status = "okay";
-> +};
-> +
-> +&usbphy1 {
-> +	status = "okay";
-> +};
+Same here, this is a flag for interrupts field.
 
--- 
-Sébastien Szymanski, Armadeus Systems
-Software engineer
+
+Best regards,
+Krzysztof
 
