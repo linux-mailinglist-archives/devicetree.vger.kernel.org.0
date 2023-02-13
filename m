@@ -2,158 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06D27694D95
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 18:03:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7D2694DB2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 18:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbjBMRDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 12:03:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
+        id S229831AbjBMRHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 12:07:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjBMRDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 12:03:48 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BA91BC8;
-        Mon, 13 Feb 2023 09:03:45 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 0FDFB1BF204;
-        Mon, 13 Feb 2023 17:03:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1676307823;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=g20IozxcPu/cLozwZlBnvYiVCX7Gf7LJ+VUCodqo4Qo=;
-        b=Svr+D2e3zApWrdKfaG63ay91RuLQvKIF31fC8jNcY8zj2Rtc6dqCxxxMUGwJ/0jTrusqr/
-        899+WlhhOzbG6TvkKEnOFkEDupKUb2ZBRcrLBkMShFFAgqgCk6WJ0jAO3/5bB6vsh2AF76
-        +vGpyY1PTCwJNcGriksZ/3ZQ9rXPhhCXtF72jkKtJ6SxXOXIehjrZ3OC0i4QroZD5hiQ9u
-        SZg50wozvBI4EVHzcksBmhlCW3CJ5F6n5c5jBqNCaz54zhKOe188RFlEUtgHU1RCDxUC+w
-        WtzBPj5twGvpXKX25p3xUJdGR1viMXsWgFHZhk2JDmxzCUcz2Z7d5a3IvKAkMQ==
-Date:   Mon, 13 Feb 2023 18:03:42 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH 1/2] rtc: pcf85363: add support for the
- quartz-load-femtofarads property
-Message-ID: <Y+ptbuZWXrVigvKz@mail.local>
-References: <20230213095018.2255225-1-javier.carrasco@wolfvision.net>
- <12dc51e4-622e-4a26-8bde-2795d77ce36e.e0c24246-04d4-485f-8d5f-1cc8fbefd095.f44d6731-6fc0-4ea1-bc6d-c08581fb532e@emailsignatures365.codetwo.com>
- <20230213095018.2255225-2-javier.carrasco@wolfvision.net>
+        with ESMTP id S229556AbjBMRHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 12:07:46 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 337391E9F6
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 09:07:41 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id k3so5349188wrv.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 09:07:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2InQIExYmP5Jgqnc5AiUW3/d2IV4ctPWBKAcygB36v4=;
+        b=D21IBKd5duKNwSZD2lHnVwMweGSumv4jTyAqy03/XwI8B796iqCUO8aE1pFXpyk6Aa
+         qJXtcld4Li+Z8PzdSbHDoYR28unCTtepqvBlN9UlvIsQYFQQ5/QkhvsC9S9qIdwcJm2I
+         lF6vLSFEbHmIOXFlg7FtYJUZwXq1wMgDs3hU2uvAU20qBQC1NFyG9uwoDmX8lndaM7WS
+         3wmSDXdctqtwL/rupvBCfI6uphuzDTCcK6aP234JVsfOu2AI6BDslLDXIlzFomJgh+Ra
+         RrU32Jm4vUV0Mt3vMYRpvc68T+eBqtFIpTwNoOXqRAJrkPnqiVMXmfPvTmmQTBaMfYcQ
+         +bqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2InQIExYmP5Jgqnc5AiUW3/d2IV4ctPWBKAcygB36v4=;
+        b=15qKMoPjRfJ/9jmlniJeM0rz7xDz7So4qWzpzSYAVcQQrM/SuL2XRSo8SpW0qcbJvI
+         vtWgxd0x540bDT+T7UDAJUSflKXHwqCHLcljJH2lAQsDTXGK/mpu9gB9vW99YuE1VEBB
+         83/eoUgvChvZ/Yl/gumd5KTxjXBMTA065cArjaYq9/nfPh6nqiY8GCYXmqxMNq6u8WaT
+         gAmddKE69oMl4WZ6bl2JqyEz7L7TsOnd4CuAiXtj9guruRfBdB6tbWAuxBx0Hn+UpTVr
+         8/lX/ISEuewrcZggB4LJgV0d0FEU4NeZkaZRinaUvd+p8JwQynL4dq2d8OTzpkCy/LBh
+         fnYw==
+X-Gm-Message-State: AO0yUKX0aFQyQg1tBvpwKc3vcU4V43an0plJS26Sjybp5PEUNhHGcPPO
+        YN61EOA+NoGpwDIf6hKrBX2M0Q==
+X-Google-Smtp-Source: AK7set8f8iVV15Q5bQ7Ofj85okM/P5EZ0M3GD/i8DQmT3Fhlf9NzOVveTl8eioF4PukoueqHH8l2DA==
+X-Received: by 2002:a05:6000:1369:b0:2c5:4c32:92c5 with SMTP id q9-20020a056000136900b002c54c3292c5mr8649659wrz.25.1676308059660;
+        Mon, 13 Feb 2023 09:07:39 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id i14-20020adff30e000000b00241fab5a296sm11030147wro.40.2023.02.13.09.07.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 09:07:39 -0800 (PST)
+Message-ID: <9c53ccd6-ea38-82bf-2284-d606fb2293f2@linaro.org>
+Date:   Mon, 13 Feb 2023 18:07:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230213095018.2255225-2-javier.carrasco@wolfvision.net>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: sitronix,st7701: Add
+ Elida KD50T048A Panel
+To:     Maya Matuszczyk <maccraft123mc@gmail.com>, heiko@sntech.de,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-rockchip@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230213153816.213526-1-maccraft123mc@gmail.com>
+ <20230213153816.213526-2-maccraft123mc@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230213153816.213526-2-maccraft123mc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 10:50:17+0100, Javier Carrasco wrote:
-> The quartz oscillator load capacitance of the PCF85263 and PCF85363 can
-> be adjusted to 6 pF, 7 pF (default) and 12.5 pF with the CL[1:0] bits in
-> the oscillator control register (address 25h).
+On 13/02/2023 16:38, Maya Matuszczyk wrote:
+> Add compatible for 854x480 Elida KD50T048A panel, found in Odroid Go Super
+> and Odroid Go Ultra
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> ---
->  drivers/rtc/rtc-pcf85363.c | 37 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 36 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/rtc/rtc-pcf85363.c b/drivers/rtc/rtc-pcf85363.c
-> index c05b722f0060..941f9264cf0a 100644
-> --- a/drivers/rtc/rtc-pcf85363.c
-> +++ b/drivers/rtc/rtc-pcf85363.c
-> @@ -101,6 +101,10 @@
->  #define PIN_IO_INTA_OUT	2
->  #define PIN_IO_INTA_HIZ	3
->  
-> +#define OSC_CAP_SEL	GENMASK(1, 0)
-> +#define OSC_CAP_6000	0x01
-> +#define OSC_CAP_12500	0x02
-> +
->  #define STOP_EN_STOP	BIT(0)
->  
->  #define RESET_CPR	0xa4
-> @@ -117,6 +121,32 @@ struct pcf85x63_config {
->  	unsigned int num_nvram;
->  };
->  
-> +static int pcf85363_load_capacitance(struct pcf85363 *pcf85363, struct device_node *node)
-> +{
-> +	u32 load = 7000;
-> +	u8 value = 0;
-> +
-> +	of_property_read_u32(node, "quartz-load-femtofarads", &load);
-> +
-> +	switch (load) {
-> +	default:
-> +		dev_warn(&pcf85363->rtc->dev, "Unknown quartz-load-femtofarads value: %d. Assuming 7000",
-> +			 load);
-> +		fallthrough;
-> +	case 7000:
-> +		break;
-> +	case 6000:
-> +		value |= OSC_CAP_6000;
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 
-Why are you using the |= operator?
 
-> +		break;
-> +	case 12500:
-> +		value |= OSC_CAP_12500;
-> +		break;
-> +	}
-> +
-> +	return regmap_update_bits(pcf85363->regmap, CTRL_OSCILLATOR,
-> +				  OSC_CAP_SEL, value);
-> +}
-> +
->  static int pcf85363_rtc_read_time(struct device *dev, struct rtc_time *tm)
->  {
->  	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
-> @@ -372,7 +402,7 @@ static int pcf85363_probe(struct i2c_client *client)
->  			.reg_write = pcf85363_nvram_write,
->  		},
->  	};
-> -	int ret, i;
-> +	int ret, i, err;
->  
->  	if (data)
->  		config = data;
-> @@ -394,6 +424,11 @@ static int pcf85363_probe(struct i2c_client *client)
->  	if (IS_ERR(pcf85363->rtc))
->  		return PTR_ERR(pcf85363->rtc);
->  
-> +	err = pcf85363_load_capacitance(pcf85363, client->dev.of_node);
-> +	if (err < 0)
-> +		dev_warn(&client->dev, "failed to set xtal load capacitance: %d",
-> +			 err);
-> +
->  	pcf85363->rtc->ops = &rtc_ops;
->  	pcf85363->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
->  	pcf85363->rtc->range_max = RTC_TIMESTAMP_END_2099;
-> -- 
-> 2.37.2
-> 
-> 
-> Javier Carrasco 
-> Research and Development
-> 
-> Wolfvision GmbH 
-> Oberes Ried 14 | 6833 Klaus | Austria 
-> Tel: +43 5523 52250 <tel:+43552352250> | Mail: javier.carrasco@wolfvision.net <mailto:javier.carrasco@wolfvision.net>
-> 
-> Website: wolfvision.com <www.wolfvision.com> 
-> Firmenbuch / Commercial Register: FN283521v Feldkirch/Austria
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+Krzysztof
+
