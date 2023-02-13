@@ -2,191 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45C0A695168
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 21:09:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC31695174
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 21:12:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjBMUJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 15:09:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45944 "EHLO
+        id S230160AbjBMUMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 15:12:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjBMUJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 15:09:52 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03FDEBDD8;
-        Mon, 13 Feb 2023 12:09:49 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-16df32f2ffdso5844299fac.1;
-        Mon, 13 Feb 2023 12:09:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=keWRQ4szvOwPFbZbF1Ui5qQNlX/UlTv/StqQt6kumgc=;
-        b=L7SJFj+XMJNn/dhU+K5jOdhTtaTD4Zqa5+dt2TNaW+9BAEoS02cHGCe6Z1a+9/eS4e
-         2cFBjQHTciYMh/DCEvOR43dfZkF82yArRzU/Jdrk7boHSBp4tWte9ayMsAHXKpJr0C3q
-         YDONSYVeUYr9enGbTqYd6WzJL/pK+lOtgL5QyPTxGjN208iL29ahOpM7KdoDAWU/ODmO
-         0ix4USoYm+PXu2fhh3yLDI41Cx7Ng0xEutD/Vu0994wpBA/fz8XOr2XBZdxzeG7YGmB5
-         WeGQk7OLh0KWo8G8OYs+Q0y8OOAq1RLxUGre4cZjjh/152vGRIxAiAqFIodNp5UZXWDC
-         2Unw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=keWRQ4szvOwPFbZbF1Ui5qQNlX/UlTv/StqQt6kumgc=;
-        b=trVzfOhsAyaVPxlYScsjDDZYV20uAOG/rhF414bauA8F7mtGHxTtqPsi2juwz6zUW7
-         WHedtEYxQWpK+6IrR2NXBC4genNpjAojcsWK3P1Fpf9JVlknjoRRbl5MYHW5VwJsiEEo
-         8/H62cQf7GlttiSmtpbGgVnJrj5jkGmFWO/+YWCpyUV3SGpsLD+Ga3M3zRxORaS4fS5y
-         jnXrvuKLNXsEOb2++520BcH8W6jKJwXArWMw2/yONODMxfI1WcUgf4dsVQyhV9QPRYyq
-         yQwkDmenm4yH/PugE4i49Il1ibkvP1btaFD5BCB8juxtua1hx96PDf20lIFIkOo6eWQA
-         +2Aw==
-X-Gm-Message-State: AO0yUKXNYTsMjnTG0xAOtSI11ATdt0fDwu3hYOZiOpAXH2dEGOxEa6rj
-        2WJzNsG2+o5gyBCF+8oQhLquCw2bSzc=
-X-Google-Smtp-Source: AK7set9Mkd4MrrpIilX+EQg1ctVfwNedOE7PkvTp63BLzESlU6CBw8dnjY3xAW6QmVdVuoawQOEd7g==
-X-Received: by 2002:a05:6870:568c:b0:16d:eab9:3d58 with SMTP id p12-20020a056870568c00b0016deab93d58mr4427545oao.2.1676318988298;
-        Mon, 13 Feb 2023 12:09:48 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v14-20020a056870954e00b0016de5bcd020sm2452100oal.45.2023.02.13.12.09.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 12:09:47 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <68131735-005b-890f-4052-12f598e2bce6@roeck-us.net>
-Date:   Mon, 13 Feb 2023 12:09:45 -0800
+        with ESMTP id S229992AbjBMUMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 15:12:30 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453D421283;
+        Mon, 13 Feb 2023 12:12:27 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DInCVL015554;
+        Mon, 13 Feb 2023 20:12:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=1tRrHjWpyfCk+2YRqqlygRJTHxcsyAOt0LyPmmlRyWI=;
+ b=eCVbx1lrYyJzrG/m98d4pIiPNcUHuQLG3zEAmnG6GKusM80hAT6Xg+AKe6e6kG5zG05G
+ vrWlG7RzM5O1cUvTsQGk5FFrjfQ2xrxOCUdpd8mHnfx1ua2EaN6QcYYEAI/tk4DHXjCo
+ CJs41FJuhuz3UwV0FglGdFHGFzFm2kM3oWQuRSgUbCrDNKyWUD9xylZltwkEqHWyLXeD
+ Q9mvXyke6vR7HbrRgYnIRNstPMATmcnh8W5BSk16odTyzPP4WBgYVbJedT5ZMhbVn/G5
+ 7K/ZF5h9HfIolVa46/zvH8FnryBCuqMgGYfAonduiecIV9qAivOpYI+nlLmGzWcqYqmG Bg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nqtsur543-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 20:12:04 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31DKC2JW018133
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 20:12:02 GMT
+Received: from [10.110.116.218] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 13 Feb
+ 2023 12:12:01 -0800
+Message-ID: <2f16d312-381e-8d34-894c-5bd02a645d68@quicinc.com>
+Date:   Mon, 13 Feb 2023 12:12:01 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
- access system controller registers
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RFC PATCH v2 20/22] sound: usb: Prevent starting of audio stream
+ if in use
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, tsbogend@alpha.franken.de,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
- <20230211073357.755893-2-sergio.paracuellos@gmail.com>
- <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
- <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
- <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com>
- <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
- <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
- <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
- <afe68663-8ade-ae5a-00a1-083b2f263cb0@roeck-us.net>
- <CAMhs-H9BkQNwNyYQQgSig9vkW-_+i0+x8CLogXNgkRyi9Un6xw@mail.gmail.com>
- <20230213193613.GA371102@roeck-us.net>
- <CAMhs-H9UW=zkLs+cPkzXUj=TEytH75Y0dX_7NP1E2s-JeoANzA@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <CAMhs-H9UW=zkLs+cPkzXUj=TEytH75Y0dX_7NP1E2s-JeoANzA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <agross@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>
+References: <20230126031424.14582-1-quic_wcheng@quicinc.com>
+ <20230126031424.14582-21-quic_wcheng@quicinc.com>
+ <557f8f76-38f5-5e07-905e-774e03120bd2@linux.intel.com>
+ <b26c9e4c-5a9c-a2ff-19a7-78419c6b81df@quicinc.com>
+ <b532bf7b-e1fb-3a9d-1b88-02f3159be47d@linux.intel.com>
+ <60e42db4-1bbc-beea-d87d-6f93871b70c7@quicinc.com>
+ <2c398ffb-6dd8-d43a-f99c-2033519a36be@linux.intel.com>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <2c398ffb-6dd8-d43a-f99c-2033519a36be@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ud9Y2Oz8GfpjSBVCDF8tTMy3n4L85z5x
+X-Proofpoint-ORIG-GUID: ud9Y2Oz8GfpjSBVCDF8tTMy3n4L85z5x
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-13_12,2023-02-13_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 malwarescore=0 mlxlogscore=999 phishscore=0
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 adultscore=0 impostorscore=0
+ suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2302130177
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/13/23 11:57, Sergio Paracuellos wrote:
-> On Mon, Feb 13, 2023 at 8:36 PM Guenter Roeck <linux@roeck-us.net> wrote:
+Hi Pierre,
+
+On 2/13/2023 7:22 AM, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 2/11/23 03:52, Wesley Cheng wrote:
+>> Hi Pierre,
 >>
->> On Mon, Feb 13, 2023 at 09:59:35AM +0100, Sergio Paracuellos wrote:
->>> On Sun, Feb 12, 2023 at 4:27 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>> On 2/7/2023 5:29 AM, Pierre-Louis Bossart wrote:
+>>>
+>>>
+>>> On 2/6/23 19:15, Wesley Cheng wrote:
+>>>> Hi Pierre,
 >>>>
->>>> On 2/12/23 00:13, Sergio Paracuellos wrote:
->>>>> On Sat, Feb 11, 2023 at 12:42 PM Krzysztof Kozlowski
->>>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>>>
->>>>>> On 11/02/2023 12:01, Sergio Paracuellos wrote:
->>>>>>> On Sat, Feb 11, 2023 at 11:47 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>>>>>>
->>>>>>>> On 11.02.2023 13:41, Sergio Paracuellos wrote:
->>>>>>>>> On Sat, Feb 11, 2023 at 10:10 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>>>>>>>>
->>>>>>>>>> Is this mediatek,sysctl property required after your changes on the
->>>>>>>>>> watchdog code?
->>>>>>>>>
->>>>>>>>> I don't really understand the question :-) Yes, it is. Since we have
->>>>>>>>> introduced a new phandle in the watchdog node to be able to access the
->>>>>>>>> reset status register through the 'sysc' syscon node.
->>>>>>>>> We need the bindings to be aligned with the mt7621.dtsi file and we
->>>>>>>>> are getting the syscon regmap handler via
->>>>>>>>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Arınç.
->>>>>>>>
->>>>>>>> I believe you need to put mediatek,sysctl under "required:".
->>>>>>>
->>>>>>> Ah, I understood your question now :-). You meant 'required' property.
->>>>>>> I need more coffee, I guess :-). I am not sure if you can add
->>>>>>> properties as required after bindings are already mainlined for
->>>>>>> compatibility issues. The problem with this SoC is that drivers become
->>>>>>> mainlined before the device tree was so if things are properly fixed
->>>>>>> now this kind of issues appear.  Let's see Krzysztof and Rob comments
->>>>>>> for this.
->>>>>>
->>>>>> If your driver fails to probe without mediatek,sysctl, you already made
->>>>>> it required (thus broke the ABI) regardless what dt-binding is saying.
->>>>>> In such case you should update dt-binding to reflect reality.
->>>>>>
->>>>>> Now ABI break is different case. Usually you should not break it without
->>>>>> valid reasons (e.g. it was never working before). Your commit msg
->>>>>> suggests that you only improve the code, thus ABI break is not really
->>>>>> justified. In such case - binding is correct, driver should be reworked
->>>>>> to accept DTS without the new property.
+>>>> On 1/26/2023 8:12 AM, Pierre-Louis Bossart wrote:
 >>>>>
->>>>> Thanks for clarification, Krzysztof. Ok, so if this is the case I need
->>>>> to add this property required (as Arinc was properly pointing out in
->>>>> previous mail) since without it the driver is going to fail on probe
->>>>> (PATCH 5 of the series). I understand the "it was never working
->>>>> before" argument reason for ABI breaks. What happens if the old driver
->>>>> code was not ideal and totally dependent on architecture specific
->>>>> operations when this could be totally avoided and properly make arch
->>>>> independent agnostic drivers? This driver was added in 2016 [0]. There
->>>>> was not a device tree file in the kernel for this SoC mainlined until
->>>>> 2022 [1]. I also personally migrated this watchdog binding in 2022
->>>>> from text to YAML and maintained it without changes [2]. When this was
->>>>> mainlined not all drivers were properly reviewed and the current code
->>>>> was just maintained as it is. Most users of this SoC are in the
->>>>> openWRT community where the dtsi of the mainline is not used yet and
->>>>> they maintain their own mt7621.dtsi files. Also, when a new version of
->>>>> the openWRT selected kernel is added they also modify and align with
->>>>> its mt7621.dtsi file without maintaining previous dtb's. If "make the
->>>>> driver arch independent to be able to be compile tested" and this kind
->>>>> of arguments are not valid at all I need to know because I have
->>>>> started to review driver code for this SoC and other drivers also have
->>>>> the same arch dependency that ideally should be avoided in the same
->>>>> way. This at the end means to break the ABI again in the future for
->>>>> those drivers / bindings. So I can just let them be as it is and not
->>>>> provide any change at all and continue without being compile tested
->>>>> and other beneficial features to detect future driver breakage.
+>>>>>
+>>>>> On 1/25/23 21:14, Wesley Cheng wrote:
+>>>>>> With USB audio offloading, an audio session is started from the ASoC
+>>>>>> platform sound card and PCM devices.  Likewise, the USB SND path is
+>>>>>> still
+>>>>>> readily available for use, in case the non-offload path is
+>>>>>> desired.  In
+>>>>>> order to prevent the two entities from attempting to use the USB bus,
+>>>>>> introduce a flag that determines when either paths are in use.
+>>>>>>
+>>>>>> If a PCM device is already in use, the check will return an error to
+>>>>>> userspace notifying that the stream is currently busy.  This ensures
+>>>>>> that
+>>>>>> only one path is using the USB substream.
+>>>>>
+>>>>> It's good to maintain mutual exclusion, but it's still very hard for an
+>>>>> application to figure out which card can be used when.
+>>>>>
+>>>>> Returning -EBUSY is not super helpful. There should be something like a
+>>>>> notification or connection status so that routing decisions can be made
+>>>>> without trial-and-error.
 >>>>>
 >>>>
->>>> Problem is that there are (presumably) shipped systems out there with
->>>> the old devicetree file. The watchdog driver would no longer instantiate
->>>> on those systems.
+>>>> The USB offload driver does have access to the USB substream that is
+>>>> being utilized/offloaded.  Maybe in addition to this check, we can also
+>>>> set the PCM runtime state as well (for that particular substream)?  That
+>>>> way userspace can fetch information about if the stream is busy or not.
 >>>
->>> Ok, I will maintain only the PATCH that changes the driver to not use
->>> globals and send v5.
+>>> You're missing the point. When a card is exposed but the PCM devices may
+>>> or may not be usable (consuming data with no sound rendered or returning
+>>> an error), it's much better to provide a clear connection status to
+>>> userspace.
 >>>
+>>> Let me give you an example. Intel drivers can expose 3 HDMI/DP PCM
+>>> devices. Userspace has no idea which one to use, so there's a jack
+>>> control that tells userspace whether there is a receiver connected so
+>>> that the audio server can use the relevant PCM device.
+>>>
+>>> Audio routing based on trial and error is really problematic, errors can
+>>> happen but they should be exceptional (e.g. xruns), not a means of
+>>> driver-userspace communication on the device status.
 >>
->> Other options might be to search for the "syscon" node name or to search
->> for the "mediatek,mt7621-sysc" compatible.
+>> Thanks for clarifying.  The example helped me understand a bit more on
+>> how the potential use of the SND control interface.  Since we're dealing
+>> with multiple sound cards here (platform sound card (offload) and USB
+>> SND card (legacy)), what do you think about creating a SND control on
+>> both the USB backend (platform card) and the USB SND card listing the
+>> PCM device status?
+>>
+>> That way at least userspace can have the information about which PCM dev
+>> (USB substream) is available (and not offloaded, or vice versa).  So the
+>> USB SND control will contain the PCM devices (exposed by the card) and
+>> if any are offloaded (if so mark them as unavailable).  Likewise, for
+>> the USB backend, if the legacy path is being used, mark them as
+>> unavailable for offloading.
 > 
-> Thanks for the hint. I didn't know about
-> 'syscon_regmap_lookup_by_compatible()'. I will use this to avoid DTB
-> ABI breakage and allow the driver to be selected for COMPILE_TEST..
-> 
+> We definitively need a control to indicate that a PCM offload device is
+> available or not.
+> There's still a very large open with the notion of having separate cards
+> for the same audio device. Not only would it duplicate the control parts
+> for e.g. volume control, but it would introduce the need to tag devices
+> across two cards are being the same physical device.
 
-I didn't know about that one either. I thought about of_find_compatible_node()
-or of_find_node_by_name(). syscon_regmap_lookup_by_compatible() is widely used,
-though, so it seems to be a much better option.
+The volume control would still be done through the card that is exposed 
+by the USB SND card (even for the offload path)[no vol control option 
+for the USB device on the platform card].
 
-Thanks,
-Guenter
+In the last discussion, you did mention that maybe we can tag the 
+offload path as the "power saving" option for a particular USB stream. 
+Although I'm not sure how intricate the logic is, but if userspace marks 
+to use the power saving path, then would it already know which card and 
+PCM devices are involved?
 
+Although, that part is missing, ie to select the card and pcm device 
+that we want to offload.  It may be possible to do this with another 
+control on the USB ASoC backend driver.  I believe the audio DSP can 
+support device selection.
+
+> I still think the least-bad option is to have a single card and an
+> optional PCM device for offload.
+
+This is most likely the end goal, but as mentioned previously, its going 
+to be a large effort to slowly decouple some of the PCM related 
+operations from USB SND.  IMO, that would most likely be another 
+significant patch series in itself.
+
+Thanks
+Wesley Cheng
