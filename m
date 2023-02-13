@@ -2,99 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 640926945B1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9107B694561
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:10:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbjBMMVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 07:21:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36682 "EHLO
+        id S230120AbjBMMKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 07:10:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjBMMVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:21:40 -0500
-Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F01C6A71;
-        Mon, 13 Feb 2023 04:21:39 -0800 (PST)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 16CA3BA18C5;
-        Mon, 13 Feb 2023 13:09:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1676290174;
-        bh=n9Il5foGHa2UtXhGQ9/RSMLE0lilxSavGW560kN+Rys=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=tImg4YRkQxMjezY4h3ntoiROxMm/ji6SmVnmL1BV0s+sFT4iaI8epRT6am2kGlsi/
-         KJwa4s4tmErcovXCukd2U663dX798RRA9z6PwMefLnVnvGLN1k4fiiqXw0k59iVodi
-         yWOjGhsHWfMQMuyF1wFthZSSQMvRRwTPIc219zu6fQKQ7T8YMkEHjtt1/4SnfM6QEV
-         AZNlyzI93cAZ6yvn7cWjp+OzC9d9aYllhRFkyBG/vbt4OczRxnLo9T9+FOEQ0YEbDy
-         AuuOMXIMk14zAYLUv6Bx7eUFMK8Bvjcrr1rFVZvpsJLKCq4TtCuvbKTQN11g09xdRO
-         YQ+Yg23AmIojA==
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231374AbjBMMKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:10:30 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B7E1A97A
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:10:19 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id dr8so31209550ejc.12
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sLkh67ooWyVObn1J2I1Qu7dXdNbX+Cd0UoL9axKT34o=;
+        b=p8WGCP9v5yIWbqJlLQRmMt4chiH79pIdn/7AB+4u36M/TTmmzVK1ZVLXeajFDjlSHT
+         cOO6it7vveZEhpkGjAAqnz+csbNPwy1aG25sAbzN4xBu1iIBCSLIb+fADM842f8D4gU1
+         vQ4YjvIWiUj59NG7bCE+aUwx3nanN3FFInJXJjsDakUUBBnZAw+6/B6KYznfiPE7vDgR
+         x/+Qq/jef9admT0KChEbH1aLvyLMslwfGF3JUJ/gV2UvFeChYwTlEswgOF0tTQtk4ig4
+         SmoFfdXxu1QehBVPm4G9hbjnzNCyjRlo/EIr6YaxVp4mWcB6aW2elIkYazjylBN6HoKN
+         8Xrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sLkh67ooWyVObn1J2I1Qu7dXdNbX+Cd0UoL9axKT34o=;
+        b=3rFgEb23ow69xf1QzmjOqBMEP2AJbeCw4dtDcDsix/IQ7lG4q4osaUZDtVUWw+p+NI
+         vGPCDHGhQsBlvqPrL0m0FSMf+xPDKptkpDlYhzAsaa9/Qk8VDbj4vGJYi9eTeHp163Jx
+         Mot13nhtw0PrRG315DtbqZAyndB2ZoEU/0/tuPMi48MQUSUumSkTTgI7ggKZPC6o6E1J
+         IBXwoGHnDcMW9kwdXpOhny5JxXZDGDSp23dlebIpZ3IIuTYODb3o3omLop2DBEv38LBF
+         98Q0Dr9iMMcEyPcI4gQwjMb1nA8p/PqzsNo7J5yvJLLUUNKuEHNigxH9CEGVvzdkjUO2
+         Qc3g==
+X-Gm-Message-State: AO0yUKV83Y3uc+L7eGw5Lae+egMbJhBbK+Vf7lJlCrvtPfV1qwnDZJop
+        zvRLgsfs7YIEHI1ynnRvH/qUGQ==
+X-Google-Smtp-Source: AK7set81z61FZiKoN0s7dy9ixfbbUA4wWNKA2rBI/8l8V7YwRzxhtMm5RnVtHF6TGfXBlSD4ZM0jEA==
+X-Received: by 2002:a17:906:1908:b0:878:5f8e:26c0 with SMTP id a8-20020a170906190800b008785f8e26c0mr17900635eje.7.1676290217679;
+        Mon, 13 Feb 2023 04:10:17 -0800 (PST)
+Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id dt19-20020a170906b79300b0088ed7de4821sm6651586ejb.158.2023.02.13.04.10.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Feb 2023 04:10:17 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v3 5/5] arm64: dts: imx8mp-verdin: add 88W8997 serdev to uart4
-Date:   Mon, 13 Feb 2023 13:09:26 +0100
-Message-Id: <20230213120926.8166-6-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230213120926.8166-1-francesco@dolcini.it>
-References: <20230213120926.8166-1-francesco@dolcini.it>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/9] dt-bindings: display/msm: dsi-controller-main: Fix deprecated QCM2290 compatible
+Date:   Mon, 13 Feb 2023 13:10:04 +0100
+Message-Id: <20230213121012.1768296-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230213121012.1768296-1-konrad.dybcio@linaro.org>
+References: <20230213121012.1768296-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+The qcom, prefix was missed previously. Fix it.
 
-Use the serdev feature to load the driver for the 88W8997 bluetooth
-driver.
-
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-v3: no changes
-v2: no changes
----
- arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
-index 36289c175e6e..ef94f9a57e20 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
-@@ -65,6 +65,11 @@ &uart4 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_bt_uart>;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "mrvl,88w8997";
-+		max-speed = <921600>;
-+	};
- };
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index e75a3efe4dac..2494817c1bd6 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -33,7 +33,7 @@ properties:
+           - const: qcom,mdss-dsi-ctrl
+       - items:
+           - enum:
+-              - dsi-ctrl-6g-qcm2290
++              - qcom,dsi-ctrl-6g-qcm2290
+           - const: qcom,mdss-dsi-ctrl
+         deprecated: true
  
- /* On-module Wi-Fi */
 -- 
-2.25.1
+2.39.1
 
