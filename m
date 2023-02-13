@@ -2,123 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7098969479D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7C86947B3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:07:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbjBMOE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 09:04:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33910 "EHLO
+        id S229707AbjBMOHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 09:07:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjBMOE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:04:57 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54221DBF4
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 06:04:55 -0800 (PST)
-Received: from rico.lan (unknown [159.196.93.152])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DE37120034;
-        Mon, 13 Feb 2023 22:04:50 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1676297093;
-        bh=Rqlv2sqC3TCOsNxDajqKf5TrX0e0ldaMazRHcAdox5Y=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References;
-        b=DIRZZdqGngeJpL61e8FmNJDXUh91fn2h6RfyVA7ijmQpB0hxt9dliRXy1EEqMiAIr
-         QJkUxMMLbSVSCNX1pJAtXYEfiwPttzlLm9Ln8IZZxRRNFBJp9xDQY00bC4IvjGLdmM
-         0xuWehqRc6RE4z3Zfcx/GmqzItE07VMqI2TkOXckldrPjQvKP1Rpv1d4WyTNEoeUOf
-         jrwsJ1NJgQpza5gM3+4XaDrzbSY63fsp20aaRtXVdaom4s+N7v0eV3qiu4qXAkbVsa
-         NriW9m15mybE2ZMva6kvmuQZJAgQWPg1q+/WzTRdfg/UVuYXYh1kE6zsdIvtM5s0uI
-         jHi4M2mUSZQ9g==
-Message-ID: <2528217bf1d43b834587cc0e399d7e86695bd390.camel@codeconstruct.com.au>
-Subject: Re: [RFC PATCH] dt-bindings: Add AST2600 i3c controller binding
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-aspeed@lists.ozlabs.org, linux-i3c@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Date:   Mon, 13 Feb 2023 22:04:50 +0800
-In-Reply-To: <71aeb3da-13a1-1c79-9fe6-f5c23d398394@linaro.org>
-References: <5c047dd91390b9ee4cd8bca3ff107db37a7be4ac.1676273912.git.jk@codeconstruct.com.au>
-         <7c6741e1-ae41-ba20-b859-736214c680e8@linaro.org>
-         <91e9e815bed8c2eff19dbe6b3ed36d10c6edcbfd.camel@codeconstruct.com.au>
-         <929a30fc-35f3-ab21-3a16-936ed69d5505@linaro.org>
-         <80fa21969d9e0e7a123bd525199dbb40e79d47e3.camel@codeconstruct.com.au>
-         <71aeb3da-13a1-1c79-9fe6-f5c23d398394@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3-1 
+        with ESMTP id S229760AbjBMOHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:07:33 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C716A1A641;
+        Mon, 13 Feb 2023 06:07:31 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31DE6x7J041095;
+        Mon, 13 Feb 2023 08:06:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1676297219;
+        bh=8Y0OYbS4fdAewdB9+FGdvfWhIU9qJDnWJuRH7rldSd0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=rsdc/e69SeX/g/KJvpqK/NtEmWdVY9KM6ZF0FOjPUSaa39VG32Ht740UbGX1UCdgQ
+         ZQUP7v/BMPdqWCREehECZfTNNh+QAv9aIt3HzsWOcVi5QtHSv6PtV3ucI6bPhDSX6h
+         gg5Qau+LBLMFOvIJ/vDiBFOrCvDTCBgoTxg/g15s=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31DE6xv9005112
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Feb 2023 08:06:59 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
+ Feb 2023 08:06:59 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 13 Feb 2023 08:06:59 -0600
+Received: from [10.250.233.148] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31DE6tdU061344;
+        Mon, 13 Feb 2023 08:06:56 -0600
+Message-ID: <6ca5d863-8382-0b13-97f8-a69c3271e3ac@ti.com>
+Date:   Mon, 13 Feb 2023 19:36:55 +0530
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: K3 AM62x SoC dts/dtsi include hierarchy and naming scheme
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Nishanth Menon <nm@ti.com>
+CC:     Dave Gerlach <d-gerlach@ti.com>, Tero Kristo <kristo@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <francesco.dolcini@toradex.com>
+References: <Y+KcJdvgDw9EqFCz@francesco-nb.int.toradex.com>
+ <20230209153352.5tgkqe3xbby7pmju@polio>
+ <Y+aHh7B73mkAjR7Q@francesco-nb.int.toradex.com>
+From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <Y+aHh7B73mkAjR7Q@francesco-nb.int.toradex.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-> > Yes, that's essentially what I'm looking for with this change -
-> > particularly with the pullup config, which (as you say) could
-> > arguably
-> > be a pinctrl config instead.
->=20
-> Depends, there was just a short sentence. If this is external
-> resistor
-> on the board, why this device needs such property (and none of other
-> devices need...)? If this is internal pull up of I3C (and there is no
-> other pin configuration possible, no other pins), it looks reasonable
-> to me to have it here. But I am all guessing it...
-
-It's the second case: there is a configurable pullup resistor in each of
-the i3c controllers (or, more accurately: in the ast2600's glue
-between the SoC and the I3C IP block).
-
-The pullup configuration is controlled by the SoC "global" i3c
-registers; a block shared by all of the SoC's i3c controllers. So, any
-driver implementation would need to set up that global register
-configuration on i3c controller init.
-
-So, I can see two options for the binding (and consequently the driver
-implementation):
-
- 1) the sda-pullup-ohms property on the controller binding, which a
- driver implementation could set directly through the global register
- set
-
- 2) define a pin controller on the global register block, allowing other
- (standard) DT pinctrl definitions to control the pullup calue. This
- would need a new driver implementation for the pin controller, but that
- shouldn't be too complex to implement.
-
-For the binding proposed here, I've chosen (1). We can handle all of the
-other (non-pullup-related) global register configuration by treating the
-globals as a simple generic syscon device.
-
-I'm happy to try (2) instead, if that's the better approach. However,
-that may be over-engineering the binding spec (and consequently, the
-necessary driver implementation) for just setting a register value.
-
-From your second point:
-
-> (and there is no other pin configuration possible, no other pins)
-
-This is a fairly small and isolated component of the global ast2600 pin
-configuration; the pullup value is set separately from the
-already-implemented SoC-wide pinctrl. Merging the pullup values into
-that wouldn't really fit the hardware interface mode though; this is a
-separate IP block linked to the i3c controllers.
-
-Let me know if you have any preferences on the approach to a biding
-structure.
-
-And Andrew: let me know if your experience with the ast2600 SoC's
-pinctrl would suggest either option.
-
-Cheers,
 
 
-Jeremy
+On 2/10/2023 11:35 PM, Francesco Dolcini wrote:
+[...]
+
+>>>
+>>
+>> Typically, our strategy has been to introduce the superset device,
+>> primarily because the device variants are quite a few, and without
+>> actual users, it makes no sense to introduce a dtsi in kernel
+>> in-anticipation of a potential board. Now that said, also keep in mind
+>> the part number definitions do change depending on the market demands
+>> over time (qualification requirements etc..), The initial device tree
+>> was based on the definition we had at the time, as usual, over time,
+>> definitions are changing :(.
+> 	
+> ... and from my point of view this is normal and fine. All good :-)
+> 
+>> Considering the potential combinatorial explosion if we are trying
+>> to constantly catching up with variations of chip configurations as
+>> market definitions change over time, we need to be a bit pragmatic in
+>> the various dtsi files we introduce. With that in mind, If we have
+>> just one board using the part variant, we should reduce the churn in
+>> the tree by keeping the processor variation isolated to the board
+>> (See arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi as an
+>> example), on the other hand, the AM6251 (Single A53 variant) promises
+>> to be a variant that will probably get used in multiple boards, I'd
+>> suggest introducing a dtsi that is reused across the boards.
+> 
+> Our current plan is to have multiple SKUs that will differentiate by the
+> specific SoC SKU, not sure if this was clear to you, as an example we
+> will have.
+> 
+> for board in variant1 variant2 variant3
+>   k3-am6251-${board}.dts
+>   k3-am6252-${board}.dts
+>   k3-am6254-${board}.dts
+>   k3-am6231-${board}.dts
+>   k3-am6232-${board}.dts
+>   k3-am6234-${board}.dts
+> 
+> that are just the same apart the AM62x SKU.
+> Do you expect something like that (18 .dts files, in this example) ?
+> 
+> To me this is absolutely fine, I just want to be sure this is what you
+> expect.
+
+I am not sure if we need 18 files, IMO having dts for superset SoC per
+board variant for each SoC variant is sufficient:
+
+for board in variant1 variant2 variant3
+   k3-am625-${board}.dts (assume k3-am6254-${board}.dts)
+   k3-am623-${board}.dts (assume k3-am6234-${board}.dts)
+
+And then fixup num CPUs from U-Boot as per SoC detection as long as
+board remains **exactly same** as super set.
+
+This will limit .dts files to 6. Also limits bootloader's role to just
+disabling CPU cores instead of fiddling around with too many non
+transparent DT fixups.
+
+Nishanth: feel free to chime in if you have different opinion.
+
+
+> 
+> For example we do have these dts boards file here
+> 
+> arch/arm64/boot/dts/freescale/imx8mm-verdin-*.dts
+> 
+> and the FDT is patched in U-Boot in
+> https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/mach-imx/imx8m/soc.c#L1245
+> 
+> with the this approach we have 4 dts files instead of the 16 if we would
+> use the exact SOC SKU variant [0].
+> 
+> Francesco
+> 
+> [0] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx-8m-mini-nano
+> 
+
+
+Regards
+Vignesh
