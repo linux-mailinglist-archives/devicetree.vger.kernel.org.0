@@ -2,107 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B35C694EFA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 19:12:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23400694F90
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 19:41:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231249AbjBMSMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 13:12:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
+        id S229619AbjBMSlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 13:41:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbjBMSMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 13:12:54 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599881EFE7;
-        Mon, 13 Feb 2023 10:12:28 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id A0EEF8564B;
-        Mon, 13 Feb 2023 19:12:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1676311944;
-        bh=/yPHjrWLL3NXz1sw5YGJZHaZLQK8RuSfKRlUWsWgS+I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=vE8SkwKaVrMo5eOQY11TLrkpTuau7g2zVErD5wrAbqzb7JtSBtswTy0eF6/JBoky+
-         vLTUzSycoNzbrVx1dXplSf1Sa5b9Gt4hi7T/sc7DhQx3hTz7KPr/Os9kttUedw620V
-         zDIgHA2Orvm2QPtg8ulYnUaWXw6vOa8/9Os+ITfFXCDk5HDzzcPWyH7zvsxW07keRP
-         QEg5rhMCAU6DyMjnb7O1S8dzyb9+NlqBfBli1qSEzCKnDH9ZGMqChE8pmmqWN4oTll
-         0i3I+adj+81OCnnbhMAw+mX9GnUGx0YQyvkdrgvu/qlCwcOQ798jiPeplZgcubpyKD
-         yQp0E69vWBaww==
-Message-ID: <eef49a1c-4dc3-7517-c760-ecc20704f943@denx.de>
-Date:   Mon, 13 Feb 2023 19:12:23 +0100
+        with ESMTP id S229614AbjBMSlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 13:41:04 -0500
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86B1F1;
+        Mon, 13 Feb 2023 10:41:03 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id u21so14273878edv.3;
+        Mon, 13 Feb 2023 10:41:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CDtFU2Jc95gLjieOysLnzEfFJTUgaL6A5DtFJMyaKWg=;
+        b=xKOSdwHMWp6I/hRgP0t4YbcDhYfBNPaY8S0ONY6S67h2cAdvBwbhBjrBIjWukXeXyw
+         tnf/MdTg1dIHfRlfUykhKwrDpur2iBm24nPL2ywZeOJO5aIf/a1plReU0e1zA4Jejs6v
+         3FlaD6pD4vAyityca3+5lmAIgTjRjVq9oGHfqmjLLCknS9/gOlIe/1Q1HKgxDOPWeG0h
+         MW5xzYALM0KFFEGixPMJuXe9DaPgaLseUGRvOT39nnq4DbVyTQwSbSf5H15qPKgmKP5n
+         9kKx3YlHvq+nX4QkApFoh6i+Qhg33pQm9ATQPsXVbkw7PMfSi+TQKkDABJARsa3i8cmf
+         mIDA==
+X-Gm-Message-State: AO0yUKXdXlqTe4wMmE3aG9iGutjhXYfgqzoUaV9jAeLvQebR2bE0Vt88
+        tntJRL5B4XPl+j1hbKoGkkRXm9BsHV5J/IrfVmg=
+X-Google-Smtp-Source: AK7set9c7MrFAu9f5jlejY00/6IQgCiFdmwotU5SX7kkOfHGG0KHlQp9HH4RhJUJiR5WCISRbhRFTSlDhAMhz5lGcPE=
+X-Received: by 2002:a50:baab:0:b0:4ac:cdd9:1c97 with SMTP id
+ x40-20020a50baab000000b004accdd91c97mr1386918ede.6.1676313662522; Mon, 13 Feb
+ 2023 10:41:02 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 6/6] arm64: dts: imx8mm-kontron: Add support for reading
- SD_VSEL signal
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        Frieder Schrempf <frieder@fris.de>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>
-References: <20230213155833.1644366-1-frieder@fris.de>
- <20230213155833.1644366-7-frieder@fris.de>
- <20230213161548.ucaqpza65byyqvfo@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230213161548.ucaqpza65byyqvfo@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <1676021646-2619-1-git-send-email-ssengar@linux.microsoft.com> <1676021646-2619-3-git-send-email-ssengar@linux.microsoft.com>
+In-Reply-To: <1676021646-2619-3-git-send-email-ssengar@linux.microsoft.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Mon, 13 Feb 2023 19:40:51 +0100
+Message-ID: <CAJZ5v0ivddzCoYFd4TauH3G83KxCWQK1NZSvn25oWt_iy0LOfQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/5] ACPI: bus: Add stub acpi_sleep_state_supported()
+ in non-ACPI cases
+To:     Saurabh Sengar <ssengar@linux.microsoft.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        dphadke@linux.microsoft.com, lenb@kernel.org, rafael@kernel.org,
+        linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/13/23 17:15, Marco Felsch wrote:
+On Fri, Feb 10, 2023 at 10:34 AM Saurabh Sengar
+<ssengar@linux.microsoft.com> wrote:
+>
+> acpi_sleep_state_supported() is defined only when CONFIG_ACPI=y. The
+> function is in acpi_bus.h, and acpi_bus.h can only be used in
+> CONFIG_ACPI=y cases. Add the stub function to linux/acpi.h to make
+> compilation successful for !CONFIG_ACPI cases.
+>
+> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
 
-[...]
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 
->> @@ -347,7 +347,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
->>   			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
->>   			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
->>   			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
->> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
->> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
-> 
-> The VSELECT pin should be driven by the (u)sdhc core...
-> 
->>   		>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
->> index 5172883717d1..90daaf54e704 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
->> @@ -196,6 +196,7 @@ reg_nvcc_sd: LDO5 {
->>   				regulator-name = "NVCC_SD (LDO5)";
->>   				regulator-min-microvolt = <1800000>;
->>   				regulator-max-microvolt = <3300000>;
->> +				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-> 
-> and by using the sd-vsel-gpios property the IOMUXC_GPIO1_IO04 have to be
-> muxed as GPIO, which is not the case. So I think that u-boot have a bug
-> within the (u)sdhc core.
+and please feel free to toute this patch whichever way is convenient.
 
-The trick here is that the VSELECT is operated by the usdhc block as a 
-function pin, but the PMIC driver can read the current state of the 
-VSELECT pin by reading out the GPIO block SR register. Since the IOMUX 
-SION bit is set on the VSELECT pin, the state of the pin is reflected in 
-the GPIO block SR register even if the pin is muxed as function pin.
+Thanks!
+
+> ---
+>  include/linux/acpi.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/include/linux/acpi.h b/include/linux/acpi.h
+> index efff750f326d..d331f76b0c19 100644
+> --- a/include/linux/acpi.h
+> +++ b/include/linux/acpi.h
+> @@ -1075,6 +1075,11 @@ static inline u32 acpi_osc_ctx_get_cxl_control(struct acpi_osc_context *context)
+>         return 0;
+>  }
+>
+> +static inline bool acpi_sleep_state_supported(u8 sleep_state)
+> +{
+> +       return false;
+> +}
+> +
+>  #endif /* !CONFIG_ACPI */
+>
+>  #ifdef CONFIG_ACPI_HOTPLUG_IOAPIC
+> --
+> 2.34.1
+>
