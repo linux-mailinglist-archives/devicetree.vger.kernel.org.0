@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB252693DD5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 06:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D02693DFC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 07:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbjBMFZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 00:25:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38894 "EHLO
+        id S229573AbjBMGCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 01:02:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjBMFZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 00:25:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22311EB5D;
-        Sun, 12 Feb 2023 21:25:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 765BD60E00;
-        Mon, 13 Feb 2023 05:25:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED875C433EF;
-        Mon, 13 Feb 2023 05:25:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676265921;
-        bh=cFtS3xkef6a7VyPTMfHmHcvFjxTQdrZtBj252qcLTOs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E2bgsVEwfTYI71iLSgTbzcGt5voQ7gS1lZ7HPzjJ4iUs/jttcHrV6aRulgDwePMYd
-         tXoBmPrhnJxBi77okA0wtGLsYmkmTgW54N4Nqa68TO+LTysndugCzuJK81WIGEql3D
-         Fmtu+FscBV4wUaO4NbkdJJ7VDPHf3jw7EUiVORsqMxCj4fsLFUjSr1U61yiRRHMNpA
-         amwhXf/16jjdWrAXBfIay9Rzhb5dP/QJ0NSzg0Lt28DHPGEuQZ4NRe5nkFLQ+8AEJw
-         o/vh4rHBeql+Zm4zTHXrl5bAyXn5iWIgwXOJqoORQmAYAfUL2KUZx+qAL7xdVpgtV9
-         9FxLyauLRi7Eg==
-Date:   Mon, 13 Feb 2023 10:55:17 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Janne Grunau <j@jannau.net>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229472AbjBMGCg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 01:02:36 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A422EF93;
+        Sun, 12 Feb 2023 22:02:33 -0800 (PST)
+Received: by codeconstruct.com.au (Postfix, from userid 10000)
+        id CA752200E3; Mon, 13 Feb 2023 14:02:31 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1676268151;
+        bh=SOWZZPJGDZPZMw6VKanvUlJnXziSzitX11n08pf7ETU=;
+        h=From:To:Cc:Subject:Date;
+        b=WIPpnDakZLa8iCkeyf1vdmoJdKgUIaYQ4zYD14hyUbevi9/HAkrzbHCcVldhWMf6g
+         UYxgC0TW97byyRIOWVN6Mgy816YYaH3kOJZJjREWWn9BmlRL63vmxjD0WqFZux6vTA
+         8VxMyGmNcz8jOy0vtMaYaEHJKtC8w8ZvJPjiY9CWrO/d8ZXaah+LvsO6byWvmED2Ju
+         fWX2f4tTAND/Ap3nCnSt6HN7hc3gmxr3WhXOLmvjObHpFw8RWqqAg7d93UypdA7eEi
+         JQnV4GdcSd81JfmM2aEjBg6qkEnELi1cVpzdlPvCzA63yz+QASoyE3rjjNbdAxJToT
+         SlWAJMdbOxHcg==
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?utf-8?B?77+9ZXI=?= <povik+lin@cutebit.org>,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH 15/17] dt-bindings: dma: apple,admac: Add t8112-admac
- compatible
-Message-ID: <Y+nJvR4itBN6x+jd@matsya>
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-15-cb5442d1c229@jannau.net>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Subject: [PATCH v2 0/3] Add definitions for AST2600 i3c clocks and resets
+Date:   Mon, 13 Feb 2023 14:02:05 +0800
+Message-Id: <cover.1676267865.git.jk@codeconstruct.com.au>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230202-asahi-t8112-dt-v1-15-cb5442d1c229@jannau.net>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-02-23, 16:41, Janne Grunau wrote:
-> The block found on Apple's M2 SoC is compatible with the existing driver
-> so add its per-SoC compatible.
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> 
-> ---
-> This trivial dt-bindings update should be merged through the asahi-soc
-> tree to ensure validation of the Apple M2 (t8112) devicetrees in this
-> series.
+This series adds some base configuration for the i3c controllers on
+ast2600 hardware. We'll use the reset and clock definitions in the
+proposed dt binding example, hence sending these first.
 
-Acked-by: Vinod Koul <vkoul@kernel.org>
+v2:
+ * based on feedback from Joel Stanley: avoid adding RESERVED clock
+   definitions, allowing empty entries in aspeed_g6_gates instead.
+
+
+Jeremy Kerr (3):
+  clk: ast2600: allow empty entries in aspeed_g6_gates
+  clk: aspeed: Add full configs for i3c clocks
+  dts: ast2600: Add reset config for I3C
+
+ drivers/clk/clk-ast2600.c                 | 41 ++++++++++++++++++-----
+ include/dt-bindings/clock/ast2600-clock.h |  9 +++--
+ 2 files changed, 40 insertions(+), 10 deletions(-)
 
 -- 
-~Vinod
+2.39.1
+
