@@ -2,160 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 833BB693BE4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 02:50:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F26693BED
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 02:53:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbjBMBuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Feb 2023 20:50:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
+        id S229457AbjBMBxp convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 12 Feb 2023 20:53:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjBMBuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 20:50:18 -0500
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2130.outbound.protection.outlook.com [40.107.117.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E958AEC7D;
-        Sun, 12 Feb 2023 17:50:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EFXx4689GtPCIyzikF1xWs22+ur6hVjhoQPE2acFY7oT8FACs54mZKuX32aPLSdWYXANpJFMeQpVq3fV1DOmc5FeoiyAOFoP07zbk7fJEi+8wjmve21cndnE5T+vxpZA70XTc81RlnWxTtwMfqzmJtiVd2Rey2WLSCnXteYKTGAJNTU8vyyZdoOjedYJf2y88/0c9ijLbRITHp9di53FD9riG9WGdbfPVdjgYt2gqMXTeTodiP82mlb37ACyBps9hCcJInqu4EI903LC0F/MOS9Z6tAKmHO8JUsbURkFYX090CKZ6liIX5hE5c7w2YZFny9zDvptm31uOVfRql4pZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kf9TidOXrwLkxagS8jEALLRpTfZ1t9JmUcceDSpiOo0=;
- b=Rit1klMa1LtD8FVPtm9nJewB9CjV3l0BLfEIf73+xqwH8GpjIUOnu87LkARAfrhk9D0vp9cxmylFAfOQe80ztNBPjocotkFcbS26CD+KgWUJ6isMnupr+Nt8njBypKR55EhtMWeNgGS6880uNwYe/TaRShT4Bi0yMpqaFri9KSWebbj+EE9Nw2k667ow/uYSTthYdu2etBBwe7qhqoLKqdl09hK7J7KVDFoVKRzJrFQMtstglfB7L4YQgVeE70N0PqMGtazottdG136qpn0Dx1x8yAQArYJBymjOkdUwWTS4xin+aopHiC2ueaUDZ2THGSCTCSQCH09s7hLwyPNJmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kf9TidOXrwLkxagS8jEALLRpTfZ1t9JmUcceDSpiOo0=;
- b=SrswwsZQ6EI4D0M0WaZPtTWEQR3yFjgRszK8Kh8L8+IDW7W4XX0mZ0buTefqC9Fcbcj5oBeQQWId9Dnq9wh4zMNVb5XnILCy9TKxD0RaoOLKTfsZBrNE3FDKm57rS0q9Po4FHt9gBop26MC6DbKpo63VvX5w8ypucRzMnMRy/qOpBPDltQn9At59eL06OV2mHzolJsKB2E7nyHrpCuivek1r3WxvQ7PYj9/cqSgaRBl8ceHnAFwobos2xwwml+kWFQ8K3icvTWuazROmwRJKfsmn8wYkywA4GThmtd8kileTGg+kIX3vfJUVbBcqdzXkuB5+JTM+AssJh59nSM3VZg==
-Received: from KL1PR0601MB3781.apcprd06.prod.outlook.com
- (2603:1096:820:11::14) by TYZPR06MB3966.apcprd06.prod.outlook.com
- (2603:1096:400:22::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.9; Mon, 13 Feb
- 2023 01:50:08 +0000
-Received: from KL1PR0601MB3781.apcprd06.prod.outlook.com
- ([fe80::2cd0:fdbf:62e0:8eaa]) by KL1PR0601MB3781.apcprd06.prod.outlook.com
- ([fe80::2cd0:fdbf:62e0:8eaa%4]) with mapi id 15.20.6111.010; Mon, 13 Feb 2023
- 01:50:07 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-Subject: RE: [PATCH 2/4] soc: aspeed: Add UART DMA support
-Thread-Topic: [PATCH 2/4] soc: aspeed: Add UART DMA support
-Thread-Index: AQHZPSFy9nwScVAibE2otHpf/g9KRK7H5aCAgAQ6ERA=
-Date:   Mon, 13 Feb 2023 01:50:07 +0000
-Message-ID: <KL1PR0601MB37818F70A166356FED0FEC9C91DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
-References: <20230210072643.2772-1-chiawei_wang@aspeedtech.com>
- <20230210072643.2772-3-chiawei_wang@aspeedtech.com>
- <c1e096fa-5941-cdd8-2cdc-ecf04661a389@linaro.org>
-In-Reply-To: <c1e096fa-5941-cdd8-2cdc-ecf04661a389@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: KL1PR0601MB3781:EE_|TYZPR06MB3966:EE_
-x-ms-office365-filtering-correlation-id: dbdbebd4-38cc-4232-78e6-08db0d64a29a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: f0buEf2pv40e8giZ7hdGp/EnA7nPol2e/d9ibrzrGc6h2hbFGh147NMm2VIUxLI9WkIdn+VJ9wdwpEyVADEOIHztGHJGvy8IFSnDhT44m4O1ZifCHmrplSWGvzdOliMlA7hvjmGFMxBOxYc9XlC9FnslmIIbj3GUlgjG1Psxo8SPTk5SWMoRMx2XzUTm8CP+84DaKE4w6hShgTfjHx2kgJxkhS6GMhG88xym46elWxIsskNU2XvQjZTjl3UVROYd/Lior9+NRcqRVqKEdx+V1svznUaElOG3rGtGg8q1o4xsWh9yZm8wIHnx6JLRHNXnUvfUb5SU0rLOcrges95vYYB2noZDW83ti4L4QWA/eg5bH+/OK5sH56cTMm7enZiOZ5YitEqLdq3XZfSseuHgk1Orey3TW3LLSbGBKHKTH1sypP9Q0kg/6cAFoYWb2NI7TcSgNkZKTsXGayhGendboQeqj8WZQQU58WzqZJNM3dQ1hrFs0uhAeYfuZrYFp7myJdTkHffPMUhJpb3o7fh/BPXqE0shQrBvbw7QlnvciyNr1BEMebgxiLOaquLw0UoIU5YvBCAXsAeIMa06V3hB2IkT2zF07f68/dyp3uIFkX89wXN86zk3n44aYTOBtQtI0/cuWBQEXYDW/5eTAY6kwGo4vEiX2rJ7eFv/aocuQ35v/3mWqSErjHI8EWS5O0Revs9mNnlN6QRhoxFe119fpS7d2Y5/yqwJgJCB1wbyWdQ=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR0601MB3781.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(136003)(346002)(366004)(396003)(376002)(39830400003)(451199018)(53546011)(478600001)(71200400001)(7696005)(86362001)(26005)(6506007)(9686003)(186003)(38100700002)(83380400001)(33656002)(55016003)(122000001)(316002)(38070700005)(110136005)(64756008)(66446008)(5660300002)(7416002)(41300700001)(4744005)(52536014)(66556008)(8936002)(8676002)(76116006)(66946007)(66476007)(2906002)(921005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cXhzSmZIcFZmc0hNam1mTGlMV0tDZ0VJblcvclpGZTMxUzhRdk9sbVc0L0lV?=
- =?utf-8?B?OWs4VlRsMExwOG1rVWhmdmx1RmZyNVp1SGxlbXprbkZxYThKNm44SmEvWEVV?=
- =?utf-8?B?TUlIdURUNEVPNDBxUjFYTUhqT0NIdkdHOWNJTFY1K2NsZ0wySk1WT25KcGFv?=
- =?utf-8?B?NWM3K00wUXB1RDVDTHdhTHZUQmNRekpyMEwzZFFDd0lLQjhMc0hHNDJoSE1n?=
- =?utf-8?B?V0N0RkpIQzdVMnpqRGl1Z2hNNTBpWDhYdlA2NDRYenVSOUNpNTd0cTZPL0VC?=
- =?utf-8?B?ZCtwbHJ6WTEyUFUzVHJ4TU92UTJPbVVPTHVBSE95TVd5K2htOG9pRjdSdWFq?=
- =?utf-8?B?djl0VnRRRTFBbW5OcHIrZ2RNUzBueVB4TUhFdTAvU0w3QVJYT2tqUlIyWVBo?=
- =?utf-8?B?cUViUGsxSytKS1F4LzlWcnRsVksycDM2V0lWbUs5ZGlLcE9QK21RYU11NjlF?=
- =?utf-8?B?Sk5ZeXVnMWRodkd1Y2dlT3FGN2xScG1XNTFCa3N1MllUeDNqbnJMTzNSMmF3?=
- =?utf-8?B?M202MUR3dFVTUFJZc1FqS05IT0tNWVlwUmZyUXNOTHVacmViU1JmRGxkcVNv?=
- =?utf-8?B?QXp5bHhYUUNDRkxmNU0xVCtpOFNSUVZaQXd5YlkwM0ZSbFRHbGlJRllTYnZF?=
- =?utf-8?B?SjdWQnQrU2F3YnhSWUZ0dVlMRWR4WGtpRDhlQXdGTmdheEwxVUwxMjM0TUIx?=
- =?utf-8?B?Q3NYRDZiZmJ5dW1TOTdPaUtxQ2ZkNGpqWE5QSnFyMTFSUXJxTDN2NWlYYXh5?=
- =?utf-8?B?aFYyYkFsYlBEYWVVcW1qME1RVWU2WWk1NnFJcko1bmw2R1BHYXhNeEJVWEVO?=
- =?utf-8?B?a09RaGNyeFBTak5oVGN3WTYyZkROTittYWt3NmVwZ05UWExEVVo4N1hDc2lG?=
- =?utf-8?B?aHQ4TkhFOTU0TTN4dVE0SVY4RDVOeEs1S3JXcnhzb0taMUtOR0Vyb0N3dWxw?=
- =?utf-8?B?ZEhsSmpYdmVyRTVIY1VSMTRQUDkzY2E2NmExTFRCeEtjV09yaUdGREN5bXo0?=
- =?utf-8?B?QnNwbDFsc2ZjQjhjaWRBeWVyb1UyNVp3TFJBR0RNbVgwcVAySTI1ZW94dng4?=
- =?utf-8?B?RDMxN2VaY1Q0NHRqdjNlWUgzUXJsTlhjcG1GejRYeWpjMmhNZmNGU3g4dCtp?=
- =?utf-8?B?VFFMZEZzOXFOYzFZcVNLaHgvTkZkcGVTOFRLT1diRXczS1Jja0d2Nko2bWZD?=
- =?utf-8?B?cjAxblg3M0luZzhiMVhuTEZFMDRyaGFycDhiSU8ycjVSWm8xeldab3A5SXZW?=
- =?utf-8?B?QnZqVzNudVJDNFdjYzlVVndXNitsZ2dodDdCS0ZHTzNzQ2tqWndOeW5XTlJo?=
- =?utf-8?B?cVR2YVFFTEpWbG94RFBrczlQcXUrUVY5K29FRXRwS2xuR3ZWYVE4TkdYN2hC?=
- =?utf-8?B?b241V250cTJuTC9rZndZS1ZNSEtzWmpaY2QrWG5Ib2ljemh0RGJJaUtGNmwz?=
- =?utf-8?B?ZW5ZM3c2OWhIamg5ZGhtaGN6cFNsWm1TYnVHczM4cEsyVkhGYnFzS3VnRk9s?=
- =?utf-8?B?WXRCM1JwQlBtNEdIWkNUaElLbnh4SGh5MEtTRk91NVYxUkZENlQ0c2ZsYVF6?=
- =?utf-8?B?YUhKS296aFptN3JqWmJVd3RLM2ZlV0ltZGlMTUwxdm85ait2WXEybjY2Sm56?=
- =?utf-8?B?WVlsUW1SMURYTUU1MnV3eGVQcXYxWVJSazNTM1kySmVlUGtkdXVuNTJ4YjJm?=
- =?utf-8?B?YXlKUGhZQStNQUpVbHB1NlJHdXdwVjVUaXlrMW8waFRlaVMxMm9Jb1JtY05o?=
- =?utf-8?B?Z3hseCtmZW9nVHV4bU5wNkdxano5SlY2UkM3TUhLaUhWeU5XUUZDdWtMcmZJ?=
- =?utf-8?B?aE5ocGlPbXV1VjdCRlBIY3o3aGM4bS8xOWRhelFWeTRBS0N4Y0RXUW4wRS9Y?=
- =?utf-8?B?ZVJSby9qbVlDS3kwV3oweG84cEY1UktwRVRCdEFBbjBYeDFNUW5vUFNCTnBQ?=
- =?utf-8?B?bk05QzltdmxYTEJjZUpwUkRPVUMvWkVvZjlyemRwNURudjlVYVVxb1pwZDZt?=
- =?utf-8?B?OFpmb0xOU2VHalJ2Y0gvYXoxNHNxRWdmdzNlVkxLNFFEYzJQTXhJTUwyTVRZ?=
- =?utf-8?B?SFpoN3pFMmFjczdVR2lwSVVVTFZlSlFpOTFUWWhRZDVYQlo3ZktaYmFURWFL?=
- =?utf-8?B?a3g4YUxmRytxcTVRYkZZNko5NWtTY3V4WDZvdXk1S2tqSGxpN2U2cUYzY0Y4?=
- =?utf-8?B?TkE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229436AbjBMBxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Feb 2023 20:53:45 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 89D12EF93;
+        Sun, 12 Feb 2023 17:53:43 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B97EB4B3;
+        Sun, 12 Feb 2023 17:54:25 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 65B3D3F881;
+        Sun, 12 Feb 2023 17:53:40 -0800 (PST)
+Date:   Mon, 13 Feb 2023 01:51:31 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Andreas Feldner <pelzi@flying-snail.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Andreas Feldner <andreas@feldner-bv.de>
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230213015131.6da11658@slackpad.lan>
+In-Reply-To: <76a1cabd-f173-f86a-423a-ba5be7c1efd0@sholland.org>
+References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
+        <20230207011608.2ce24d17@slackpad.lan>
+        <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+        <20230209202952.673d5a60@slackpad.lan>
+        <76a1cabd-f173-f86a-423a-ba5be7c1efd0@sholland.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR0601MB3781.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbdbebd4-38cc-4232-78e6-08db0d64a29a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2023 01:50:07.8667
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z5WhKJCJksLzVqMBQZ/z06m1E/XOLHxbhfxuz5ote2ihsJ9Vyglgw6JpGFotjf++s7lalRm0FohpYSrYoe0CWiFtcs6LCXXcaJGD/yRZiBY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB3966
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5v
-cmc+DQo+IFNlbnQ6IEZyaWRheSwgRmVicnVhcnkgMTAsIDIwMjMgNToxNCBQTQ0KPiANCj4gT24g
-MTAvMDIvMjAyMyAwODoyNiwgQ2hpYS1XZWkgV2FuZyB3cm90ZToNCj4gPiBUaGlzIGRyaXZlciBw
-cm92aWRlcyBETUEgc3VwcG9ydCBmb3IgQVNUMjZ4eCBVQVJUIGFuZCBWVUFSVCBkZXZpY2VzLg0K
-PiA+IEl0IGlzIHVzZWZ1bCB0byBvZmZsb2FkIENQVSBvdmVyaGVhZCB3aGlsZSB1c2luZyBVQVJU
-L1ZVQVJUIGZvciBiaW5hcnkNCj4gPiBmaWxlIHRyYW5zZmVyLg0KPiA+DQo+ID4gU2lnbmVkLW9m
-Zi1ieTogQ2hpYS1XZWkgV2FuZyA8Y2hpYXdlaV93YW5nQGFzcGVlZHRlY2guY29tPg0KPiA+IC0t
-LQ0KPiA+ICBkcml2ZXJzL3NvYy9hc3BlZWQvS2NvbmZpZyAgICAgICAgICAgICB8ICAgOSArDQo+
-ID4gIGRyaXZlcnMvc29jL2FzcGVlZC9NYWtlZmlsZSAgICAgICAgICAgIHwgICAxICsNCj4gPiAg
-ZHJpdmVycy9zb2MvYXNwZWVkL2FzcGVlZC11ZG1hLmMgICAgICAgfCA0NDcNCj4gKysrKysrKysr
-KysrKysrKysrKysrKysrKw0KPiA+ICBpbmNsdWRlL2xpbnV4L3NvYy9hc3BlZWQvYXNwZWVkLXVk
-bWEuaCB8ICAzNCArKw0KPiANCj4gTkFLLg0KPiANCj4gRE1BIGRyaXZlcnMgZG8gbm90IGdvIHRv
-IHNvYywgYnV0IHRvIGRtYSBzdWJzeXN0ZW0uDQoNClRoZSBVRE1BIGlzIGRlZGljYXRlZCBvbmx5
-IHRvIFVBUlQgdXNlIGFuZCBpcyBub3QgZnVsbHkgZml0IHRvIHRoZSBETUFFbmdpbmUgc3Vic3lz
-dGVtLg0KRm9yIGV4YW1wbGUsIHRoZSBzdXNwZW5kL3Jlc3VtZSBvcGVyYXRpb25zIG9mIGNvbW1v
-biBETUEgZW5naW5lIGFyZSBub3Qgc3VwcG9ydGVkLg0KQWZ0ZXIgb2JzZXJ2aW5nIGNlcnRhaW4g
-ZXhpc3RpbmcgRE1BIGltcGxlbWVudGF0aW9uIGluIG90aGVyIHNvYyBmb2xkZXJzLCB3ZSBwdXQg
-VURNQSBpbiB0aGUgc29jL2FzcGVlZCBhcyB3ZWxsLg0KSWYgaXQgaXMgbm90IGFwcHJvcHJpYXRl
-LCBzaG91bGQgd2UgaW50ZWdyYXRlIFVETUEgaW50byB0aGUgVUFSVCBkcml2ZXIgb3IgdHJ5IHRv
-IG1ha2UgVURNQSBETUFFbmdpbmUgYmFzZWQ/DQoNClJlZ2FyZHMsDQpDaGlhd2VpDQo=
+On Sat, 11 Feb 2023 13:45:37 -0600
+Samuel Holland <samuel@sholland.org> wrote:
+
+Hi Samuel,
+
+> On 2/9/23 14:29, Andre Przywara wrote:
+> > On Wed, 8 Feb 2023 13:50:04 +0100
+> > Andreas Feldner <andreas@feldner-bv.de> wrote:
+> > 
+> > Hi Andreas,
+> > 
+> > CC:ing Maxime, who wrote the debouncing code back then.
+> >   
+> >> Am 07.02.23 um 02:16 schrieb Andre Przywara:  
+> >>> On Mon, 6 Feb 2023 20:51:50 +0100
+> >>> Andreas Feldner <pelzi@flying-snail.de> wrote:
+> >>>
+> >>> Hi Andreas,
+> >>>
+> >>> thanks for taking care about this board and sending patches!    
+> >> Thank YOU for maintaining it!  
+> >>>> The SoC features debounce logic for external interrupts. Per default,
+> >>>> this is based on a 32kHz oscillator, in effect filtering away multiple
+> >>>> interrupts separated by less than roughly 100ï¿½s.
+> >>>>
+> >>>> This patch sets different defaults for this filter for this board:
+> >>>> PG is connected to non-mechanical components, without any risk for
+> >>>> showing bounces. PA is mostly exposed to GPIO pins, however the
+> >>>> existence of a debounce filter is undesirable as well if electronic
+> >>>> components are connected.    
+> >>> So how do you know if that's the case? It seems to be quite normal to
+> >>> just connect mechanical switches to GPIO pins.
+> >>>
+> >>> If you are trying to fix a particular issue you encountered, please
+> >>> describe that here, and say how (or at least that) the patch fixes it.
+> >>>
+> >>> And I would suggest to treat port G and port A differently. If you
+> >>> need a lower debounce threshold for port A, you can apply a DT overlay
+> >>> in U-Boot, just for your board.    
+> >>
+> >> Fair enough. You run into problems when you connect (electronic)
+> >> devices to bank A (typically by the 40pin CON2 connector), where
+> >> the driver requires fast IRQs to work. In my case this has been a
+> >> DHT22 sensor, and the default debounce breaking the dht11.ko
+> >> driver.  
+> > 
+> > Sure, what I meant is that this is a property of your particular
+> > setup (because you attach something to the *headers*) , so it shouldn't
+> > be in the generic DT, but just in your copy. Which ideally means using
+> > a DT overlay.
+> >   
+> >> Now, what kind of problem is this - I'm no way sure:
+> >>
+> >> a) is it an unlucky default, because whoever connects a mechanical
+> >> switch will know about the problem of bouncing and be taking
+> >> care to deal with it (whereas at least I was complete unsuspecting
+> >> when connecting an electronic device that a debounce function
+> >> might be in place), or  
+> > 
+> > The Linux default is basically the reset default: just leave the
+> > register at 0x0. It seems like you cannot really turn that off at all
+> > in hardware, and the reset setting is indeed 32KHz/1. So far there
+> > haven't been any complaints, though I don't know if people just
+> > don't use it in anger, or cannot be bothered to send a report to the
+> > list.
+> >   
+> >> b) is it a bug in the devicetree for (at least) the BananaPi M2 Zero,
+> >> because the IRQ bank G is hard wired to electronic devices that
+> >> should not be fenced by a debouncing function, or  
+> > 
+> > Well, we could try to turn that "off" as much as possible, but on the
+> > other hand the debounce only affects *GPIO* *interrupts*, so not sure
+> > that gives us anything. The PortG pins are used for the SDIO Wifi, BT
+> > UART, and the wakeup pins for the Wifi chip. Only the wakeup pins would
+> > be affected, and I doubt that we wake up that often that it matters. If
+> > you've made other observations, please let me know.
+> > 
+> > Certainly no board with an in-tree DT sets the debounce property, which
+> > means everyone uses 32KHz/1, and also did so before the functionality
+> > was introduced.  
+> 
+> One side note relevant to wakeup pins: if the debounce clock source is
+> set to HOSC, and the 24 MHz oscillator is disabled, then IRQs for those
+> pins will never fire.
+
+That's a good point.
+
+> Currently, Crust does not check the debounce configuration when deciding
+> if it can turn off the 24 MHz crystal during system suspend (or fake-off
+> on boards without PMICs), so any wakeup-capable GPIOs need to use LOSC
+> as their debounce clock.
+> 
+> Do you have any thoughts about if/how we should handle this
+> automatically? Should Linux (or Crust) override the debounce
+> configuration when entering suspend?
+
+My feeling is since it's Crust's decision to disable the 24MHz
+oscillator, it should make sure that's a workable configuration. So it
+would be Crust's responsibility to avoid using 24 MHz as the debounce
+clock, I'd say. There could be an argument about Linux re-initialising
+the GPIO during resume, but that wouldn't help you anyway.
+
+> I imagine no wakeup source will
+> require a particularly short debounce time.
+
+Since it all seems to work fine with the current 32KHz/1 setup, I
+wouldn't expect any issues due to too short pulses being eaten by the
+debouncing logic. And a too short debounce period shouldn't matter for
+wakeup either, since it's the first edge that counts.
+
+Cheers,
+Andre
