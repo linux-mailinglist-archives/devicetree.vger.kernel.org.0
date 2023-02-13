@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D39E6694B76
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 16:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C8C694B78
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 16:44:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbjBMPnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 10:43:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57150 "EHLO
+        id S229944AbjBMPoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 10:44:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbjBMPnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 10:43:17 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D0718B1E
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 07:43:15 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id k3so5067629wrv.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 07:43:15 -0800 (PST)
+        with ESMTP id S229554AbjBMPoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 10:44:02 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1DF193E9
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 07:44:01 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id by3so11385654wrb.10
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 07:44:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=grZOW/8aqAxwWW1v+gy6Pklv/5DczNl6MJ8KfdGTD48=;
-        b=Mn0epFcPhTHPvPIiTCKz49cfIAIM+YjqM9xB6cayrF/pkYdfjOIHLc/xGZGhBMVE2X
-         1FVAmEk7CYrsaIzgV01uHkXgmnVZceRHE9SYeB0Otpxsd37gxUa2ZAeBAVHESnp9iNwI
-         qeawgugiKeIuqjajD0obzmYzQ13jcEzo9gc59pN65kx+0euEYDnM8XmT3mTzQxegoptM
-         QUQZ+mwp46/thb1S44mhedYlAkOVuOwnqAGAkdyTps8DgUFH92F7Jz8OLBUnKwJ84ty3
-         IYrCywkjd5TuUfWpeTOAYYrOpBeSNtVsRAmyFiU1bu+zSJ8vCa5DYc1X6SbXSL/16+O9
-         sp5Q==
+        bh=2n1P+oxHN3aWLMoTlDV1sEh1xrBUj1nJ88KGxvBB7eo=;
+        b=GQxiPXdmDktffRQCnppmyv0xFEog6TPxrD2bymnw/uSvXzcoEYBoRfFoJQEgRdPwGW
+         /5x93+HS/fjxAeUe7aG1GCWt3OTViEd2o8qTxeBw11eXInsf/nAF5YEa3S0bQEtJ8oXy
+         pLF7Op8HU3AU19EtCPFGXhg7GTTzAlIzSyhFbLBYZHc7mfphPdNAgKOhjUFMpl2Mnqp4
+         bcAyneP743z3I6CdGGE/GTMGk7EPr6seWsk27jC/gSLBultzTr2IYeKSAVdmzN2L6kn1
+         ikj+nFHYXsuuG6QBT3R13WZ9yZ57KvKH4mTZtrBNW1nctKu01Lg9lSivCkn97K8fX0TQ
+         VleA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=grZOW/8aqAxwWW1v+gy6Pklv/5DczNl6MJ8KfdGTD48=;
-        b=OfflNlv7su4gmhwEMwZHejjV8G3CSP4QUYPzZ2oCz/zmU0W63wjHVoSfyMpkHBkZ/B
-         8bOIrXTXOS5kw8Srg3sTEBdPQLSDNAP30vh0rGcDDnvbFjCuM/kGhMKTcSPBX2adJGa5
-         oEingFSHl9s6EhLkZtM2NDaUN1lO4YMrw3JXbw3LP6OZ9aLnuSbDgLyhsN6dRFbcvjIG
-         3f193vwQCptIKBi0sHDaZDkdLBLLwAzUeW+PqWt7g5GLXnyznMiEcZyymE0DAgm9WRwM
-         xu+VV5bHrbToqzI0Nyi+NGfkEpCrCRrPqQN9Ny2FFlmSneEUuSw83LLcXRaf60CJZV8U
-         fbbg==
-X-Gm-Message-State: AO0yUKV3dd/DuzvlSCLmdvgRW/x4nGOyeYaH0nUPuuqc93GhC9TyhyQS
-        sdf9FvyEkAj/fwwyKj3ykmLlYw==
-X-Google-Smtp-Source: AK7set/fv3IfkRhQdb43GUNWPWUP+KWdabW3q7k8WpoMLDKXd9GZktRrSRP+huAK9bzTxI9M3fP0XQ==
-X-Received: by 2002:adf:ec83:0:b0:2c5:56f6:52ce with SMTP id z3-20020adfec83000000b002c556f652cemr4737026wrn.26.1676302993959;
-        Mon, 13 Feb 2023 07:43:13 -0800 (PST)
+        bh=2n1P+oxHN3aWLMoTlDV1sEh1xrBUj1nJ88KGxvBB7eo=;
+        b=et+wKrCLuP4sC2FK+jIjR/z5irZer2Xi9jMqgdQdy+R/PTmOx8k16m9RNFnT05XMdV
+         BbtZo1gQcTomdTKbVnQK+SPpA2IdRiUOCW0/Hvf8EIxemtMyaWwPcGZ/v/KhoMSOMcRR
+         cK4EnKwLpHhqVGV+cH8scehqsWOtsNiMuWmLhZ001u+FJ7LntzClF2I7apyAbxow/DvU
+         /MdfWLNEkvduNDCr1UMACaR9MywvMS36f9stM8h/3kZQnXSXC/OkH0iBjFqz2P0MRn+n
+         5EKjeagcPXjQ6kswFSj2SC1vM9mKC0pGCN/M4J6AjShZ0njXWLrmGue3yYa622xn0lHJ
+         1Ugw==
+X-Gm-Message-State: AO0yUKVyqZtUDKm0Bw8awa2DfRMf2BkKd3C5Xzw/KE0gmseflrOGDb78
+        uN8q6z9WjZGkxuY19NggpjVvGg==
+X-Google-Smtp-Source: AK7set+KF3h1+YGzYPh0y156dCFx+9jGfO3uVnyyofEcfGGK9uX+dB6tZ571mwgmhxAYwQ1kdZTrwg==
+X-Received: by 2002:adf:f14f:0:b0:2c5:561e:808e with SMTP id y15-20020adff14f000000b002c5561e808emr3415217wro.12.1676303039995;
+        Mon, 13 Feb 2023 07:43:59 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a4-20020adfeec4000000b002bfc0558ecdsm10735081wrp.113.2023.02.13.07.43.12
+        by smtp.gmail.com with ESMTPSA id a1-20020adff7c1000000b002c54a2037d1sm8657866wrq.75.2023.02.13.07.43.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 07:43:13 -0800 (PST)
-Message-ID: <ea8b3ed4-2a94-5378-8c93-4bff1f58c70b@linaro.org>
-Date:   Mon, 13 Feb 2023 16:43:11 +0100
+        Mon, 13 Feb 2023 07:43:59 -0800 (PST)
+Message-ID: <2b67050c-7429-8528-de24-2d923e3c9671@linaro.org>
+Date:   Mon, 13 Feb 2023 16:43:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: rockchip-dw-mshc: Add RK3588
- compatible string
+Subject: Re: [PATCH 17/17] arm64: dts: apple: t8112: Initial t8112 (M2) device
+ trees
 Content-Language: en-US
-To:     Lucas Tanure <lucas.tanure@collabora.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+To:     Janne Grunau <j@jannau.net>
+Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>
-Cc:     linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230213152740.359055-1-lucas.tanure@collabora.com>
+        Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-17-cb5442d1c229@jannau.net>
+ <1ea2107a-bb86-8c22-0bbc-82c453ab08ce@linaro.org>
+ <20230213140113.GE17933@jannau.net>
+ <16804864-dce2-d68c-ce81-b6fdeb20a527@linaro.org>
+ <20230213150823.GF17933@jannau.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213152740.359055-1-lucas.tanure@collabora.com>
+In-Reply-To: <20230213150823.GF17933@jannau.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,17 +85,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 16:27, Lucas Tanure wrote:
-> Add RK3588 compatible string for SD interface.
+On 13/02/2023 16:08, Janne Grunau wrote:
+> On 2023-02-13 15:36:33 +0100, Krzysztof Kozlowski wrote:
+>> On 13/02/2023 15:01, Janne Grunau wrote:
+>>>>> +
+>>>>> +		pmgr: power-management@23b700000 {
+>>>>> +			compatible = "apple,t8112-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+>>>>
+>>>> Why this is simple-mfd?
+>>>
+>>> I suppose because the syscon device is not limited to power domain 
+>>> controls. The dt-bindings in arm/apple/apple,pmgr.yaml specify those 
+>>> compatibles. See the original discussion in:
+>>>
+>>> https://lore.kernel.org/linux-devicetree/57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st/  
+>>
+>> This did not answer my concerns. There are no children here.
 > 
-> Co-developed-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-> ---
->  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+> The child nodes are in t8112-pmgr.dtsi
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Ahhh, so this is overridden? Then it's fine.
 
 Best regards,
 Krzysztof
