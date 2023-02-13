@@ -2,138 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD182695279
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 21:59:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F3F695293
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbjBMU7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 15:59:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49582 "EHLO
+        id S229709AbjBMVCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 16:02:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbjBMU7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 15:59:32 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5718D2056F;
-        Mon, 13 Feb 2023 12:59:31 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E8A7285232;
-        Mon, 13 Feb 2023 21:59:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1676321969;
-        bh=vhmjBfKJllb1DaeaYosk4z9xVm2EbQAiMrbMD8erdZU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mz4a6xO+w7Pb2kWwOHddX8HWj3zie/VaPszErG058fPUWD4d7gXv5SQCVuyundDma
-         fEdvnHUaaq/jYCxnDvkuRIP/uJ9OBie5lVmr/RLC9WBDN4+cSroZbj6s/sNRFJu38F
-         SCF3EDH4ibLdWvZgkYqHiSMxPMAJx+gl04Dk3/yPxmJSDhZLZoJUboUnS175kHVCBh
-         QVI0VKajK3S58Buu5wCl3t+fUAYYs0cowytKR73kxG48BWq6SQCaVEUkVzqwlbaspe
-         RFw3CGRvLx0a7XbkgTZyD/lQ/GWY1nBTQj+RtQ4Lp1P2wgiay0lGYB26gWSh+RGHV3
-         xcMrIPr6ExaRA==
-Message-ID: <b900238d-b06a-a9d7-6892-6a726603b63b@denx.de>
-Date:   Mon, 13 Feb 2023 21:59:27 +0100
+        with ESMTP id S229769AbjBMVCR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:02:17 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2DE293CD;
+        Mon, 13 Feb 2023 13:02:12 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id e17so6028412plg.12;
+        Mon, 13 Feb 2023 13:02:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1676322132;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=V1LTWYGtfUGQ65Y2ytMG5lRuorQHvhOWBPmJnIlpctg=;
+        b=qMCjDPbpkSWkqDdonV6kp8npHrzrxqG/7DCylxhUND7QfEabEgNgYs14sCodwBVosV
+         JQP+E6Ei8iEBHwQsycfo9zDtAz670O5qy6oKujnv37coa/fxE6n5NstOwIM54cAFRDrC
+         JR5VjdML2Qxlgg9A/5FuPDd4FjgqD8im0lmzw+N/kvmFr2/9d8GT5NrNTcFY4jDmpZMX
+         rXZq865wi3/8T5PwPX8tl689GRHLGM1W+CTgliuSVF6PhJBhUUctlRJ/TV4HgCu53W/P
+         budwHGfein2xdtMqcYBIF8UJPE4VqTIDkOZQEo+kdBw6LpK+AdB9eqIohojJ5aKQrrN9
+         hjUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1676322132;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=V1LTWYGtfUGQ65Y2ytMG5lRuorQHvhOWBPmJnIlpctg=;
+        b=T3xbQANfB5e6rD9h+g6EaNDuhWVTFhfnFiJRyw6yiez5QSAmUk4HAYuiXRiB2b51+l
+         t5RHq+645218T4HDSy+oE3MXQgMe+MNYr4LU4qTtspFAzmDvPNn2uNSMO6nGeU8ZLYlw
+         PYdjl0724dNOxLH8dGTDOYRha8n+GyVjf8zCMjewKcK0x3IqxZwjYrxg/+Oq6F88dnEQ
+         Mh6Wxl+RN4Iqb/T3SLKveOewmV8PII/cqKQ8nQrWRGq9cgH+Fm8Zjy2UWfkI6EKYe1hE
+         Rmf9EeiaN/G9tPpMZ+oPnLZT79FYptM2z2SIRmCd+E1xP7IBYkq29BBYrSrtPEUoAwTJ
+         Ws1A==
+X-Gm-Message-State: AO0yUKUhgrk6sUcVDOOI9sz86XvsLJYzc7o65jp/nwEcF19bmETp0KS+
+        iz4kcv/7YTBeMWPT/5YHjyrxl1D9NdtPGKH300EOWLf1
+X-Google-Smtp-Source: AK7set/z/xVSawK9QH24PE2E8cXWfzh0yEFCUhqWC/AbZS2DIrs3vKTBeK6J5TkYG8ijlE3WfNDwN63r1vBt8gTjT40=
+X-Received: by 2002:a17:902:9a90:b0:199:527d:42c2 with SMTP id
+ w16-20020a1709029a9000b00199527d42c2mr71999plp.18.1676322132381; Mon, 13 Feb
+ 2023 13:02:12 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
+References: <20230213155833.1644366-1-frieder@fris.de> <20230213155833.1644366-7-frieder@fris.de>
+ <20230213161548.ucaqpza65byyqvfo@pengutronix.de> <0a1b1338-1d0a-d794-0c1d-9611713eb6fd@kontron.de>
+In-Reply-To: <0a1b1338-1d0a-d794-0c1d-9611713eb6fd@kontron.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 13 Feb 2023 18:02:01 -0300
+Message-ID: <CAOMZO5Dw-239nG=+qaPbS-Q4kVHCmE9A2SLxiLkJj-dUkdJDrQ@mail.gmail.com>
 Subject: Re: [PATCH 6/6] arm64: dts: imx8mm-kontron: Add support for reading
  SD_VSEL signal
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
         Oleksij Rempel <linux@rempel-privat.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>
-References: <20230213155833.1644366-1-frieder@fris.de>
- <20230213155833.1644366-7-frieder@fris.de>
- <20230213161548.ucaqpza65byyqvfo@pengutronix.de>
- <eef49a1c-4dc3-7517-c760-ecc20704f943@denx.de>
- <20230213195617.xndagbarc3k5kegr@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230213195617.xndagbarc3k5kegr@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Heiko Thiery <heiko.thiery@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/13/23 20:56, Marco Felsch wrote:
-> Hi Marek, Frieder,
+Hi Frieder,
 
-Hi,
+On Mon, Feb 13, 2023 at 1:19 PM Frieder Schrempf
+<frieder.schrempf@kontron.de> wrote:
 
-> On 23-02-13, Marek Vasut wrote:
->> On 2/13/23 17:15, Marco Felsch wrote:
->>
->> [...]
->>
->>>> @@ -347,7 +347,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
->>>>    			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
->>>>    			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
->>>>    			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
->>>> -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
->>>> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
->>>
->>> The VSELECT pin should be driven by the (u)sdhc core...
->>>
->>>>    		>;
->>>>    	};
->>>>    };
->>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
->>>> index 5172883717d1..90daaf54e704 100644
->>>> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
->>>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
->>>> @@ -196,6 +196,7 @@ reg_nvcc_sd: LDO5 {
->>>>    				regulator-name = "NVCC_SD (LDO5)";
->>>>    				regulator-min-microvolt = <1800000>;
->>>>    				regulator-max-microvolt = <3300000>;
->>>> +				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
->>>
->>> and by using the sd-vsel-gpios property the IOMUXC_GPIO1_IO04 have to be
->>> muxed as GPIO, which is not the case. So I think that u-boot have a bug
->>> within the (u)sdhc core.
->>
->> The trick here is that the VSELECT is operated by the usdhc block as a
->> function pin, but the PMIC driver can read the current state of the VSELECT
->> pin by reading out the GPIO block SR register. Since the IOMUX SION bit is
->> set on the VSELECT pin, the state of the pin is reflected in the GPIO block
->> SR register even if the pin is muxed as function pin.
->>
-> 
-> Thanks for this explanation :) Why does the regulator driver need to
-> know the current state of this pin?
+> No, we don't mux the signal as GPIO. We still use the VSLECT mux option,
+> but enable the SION bit, so we can read back the current state of the
+> VSELECT signal via the GPIO.
 
-Because that regulator has an input pin which selects between two states 
-of that regulator, L and H, and whatever L or H is depends on what is 
-configured into the regulator via I2C. To correctly report the state of 
-the regulator, you have to know the state of that input (selector) pin.
-
-> Since the voltage switching requires
-> some cmd's before the actual voltage level switch. So this must be
-> handled within the core.
-> 
-> Also after checking the driver, adding the sd-vsel-gpios will request
-> the specified gpio as output-high.
-
-The GPIO would have to be requested as input, obviously.
-
-> Out of curiosity, what's the bug you
-> triggering within U-Boot?
-
-AFAICT the readback of the initial state of the regulator (see paragraph 
-above), which affects Linux all the same.
+Please include this explanation in the commit log.
