@@ -2,300 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE72F695385
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B35E26953D3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 23:23:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjBMV65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 16:58:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47640 "EHLO
+        id S229683AbjBMWXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 17:23:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbjBMV64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:58:56 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321075B89;
-        Mon, 13 Feb 2023 13:58:55 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DKJPcB026967;
-        Mon, 13 Feb 2023 21:58:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=Mjk0/1iKPD0KOdoFhc789rALdju1bfj/uDkzDhz83Wc=;
- b=moptY7fZSKgUX5/Md/kBgvnhJkHHinAA9y0IQF/MnbXofxuk+CzM8Wwk6OBxxuje1xKM
- z4+1nsZtj7DjQFwNbp3C/avtzrSU35/5VLCMLy49JgVR3R2nn7Zs5PSULHfef7jJ+2Rh
- BcgsvXqsTdPLSCYJV2oSNDT6ikpIse6c8tj8JCCS0dvQhTeTcRTNNWZQdLF+WD/1YTTJ
- r53gQqYFI1Z97vblY6PYjRhOtWu8NEUA/abhcptqcCptA25M8N6l0T7zuLNkh7p3r5Vi
- dvjU6f4LgOvnLsqPf+ZbShuKJNhkLiCC6931cq0ZdM+BkU3M5Kyed4xugyFhrdKW+aAA aw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3np389w40q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Feb 2023 21:58:47 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31DLwlSb013322
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Feb 2023 21:58:47 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 13 Feb 2023 13:58:46 -0800
-Date:   Mon, 13 Feb 2023 13:58:45 -0800
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230231AbjBMWXJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 17:23:09 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2046.outbound.protection.outlook.com [40.107.22.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B084EEC46;
+        Mon, 13 Feb 2023 14:22:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dLEv8spsmEW93KfY/BVd7UyhV7GNS20+1xX2ATj+vYZL92ZUZXup0dMyaPtw7Ihrl4AkQmKYI2bOGY97wblVyaU70KgZCuXd2Wu0aPvtZfhzX8ICt3bn1DxsOW+bEiGL8fsEDQOrHnShi3yQ3C/aocLLf0LibFhgjfBQeUWm/CebWsBGBHtUSLiioYPWXNTLP9ku6S4Umf8FM3P12MoFympogwo1qYCcy4RBeM9b5wDtJ7bL0SWk0C4vZhtRZYWC9s8WzHPGzwYHWG2lypBZ+4IYjI5ucuunbS58dh4noD25oJjyGpY8+nmj7JBJkEpuj6JWwphMd39n66kcdy2mtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7U+byJApSlMPRL17wKlqp0R9J9bkddcFeEKZ1Fs+9+0=;
+ b=Pj6KZZB/UvINrssiAckkJHyBCMyazGAmH8MrPe7ONpnDFAraLqp8xLyPh+D8DUwxYw2xc3tJEmj01ZOvOLLHXK/PwH6Jkb9JzM9bejs13ZG+ZDgX+ie5gxxmZ/aCChwZcsnS3D61OBH2MXFG2WoZZPiy06kRuNpz2DNvQi2A8l371Mr6BH8Nk6NiSAsHfFsdcDKefiU7XX9zpgpLusTbiH1FJg7qjYlBbxR7oOvb1J37kkD7TN4Nn87jgko4NEaeb4c5fPZn3c+9ukiUGOxdGlAqLlF5TNJ6nRQRPTdQ/r2gV0tf/6IDQgionEqN4T3c3jNoHfzPjmmPPR+U6Mkb0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7U+byJApSlMPRL17wKlqp0R9J9bkddcFeEKZ1Fs+9+0=;
+ b=NkVdEIZlTG3t+p01o2yaliMDVh6rtN1trfp3wUPm28i7gvvdyrv5+NsSso5iBl2QtsR5MKfxTXJG1+x0fqjBsYG5CYtRlqxgTrTmU520sd6/zzVuspnge8iwqYkJSasHAoxlJMzZt2gvAc9hEM9gFs1wAlnQ7Ine+oWiezGCNW4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from HE1PR0401MB2331.eurprd04.prod.outlook.com (2603:10a6:3:24::22)
+ by AS8PR04MB8756.eurprd04.prod.outlook.com (2603:10a6:20b:42f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Mon, 13 Feb
+ 2023 22:22:53 +0000
+Received: from HE1PR0401MB2331.eurprd04.prod.outlook.com
+ ([fe80::ca48:3816:f0b6:3fcd]) by HE1PR0401MB2331.eurprd04.prod.outlook.com
+ ([fe80::ca48:3816:f0b6:3fcd%6]) with mapi id 15.20.6086.023; Mon, 13 Feb 2023
+ 22:22:53 +0000
+From:   Frank Li <Frank.Li@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: sc8280xp-crd: Introduce
- pmic_glink
-Message-ID: <20230213215845.GA1332049@hu-bjorande-lv.qualcomm.com>
-References: <20230213162821.1253831-1-quic_bjorande@quicinc.com>
- <20230213162821.1253831-3-quic_bjorande@quicinc.com>
- <4a3964c8-8824-cb4e-9262-58b6a1cedc7c@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
+        / MXC ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
+Cc:     imx@lists.linux.dev
+Subject: [PATCH 1/2] arm64: dts: imx8qxp: add cadence usb3 support
+Date:   Mon, 13 Feb 2023 17:22:27 -0500
+Message-Id: <20230213222229.686072-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0076.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::21) To HE1PR0401MB2331.eurprd04.prod.outlook.com
+ (2603:10a6:3:24::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4a3964c8-8824-cb4e-9262-58b6a1cedc7c@linaro.org>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tXxnFlNSE6coH12dz_A6Yk0EFsD7QW5I
-X-Proofpoint-GUID: tXxnFlNSE6coH12dz_A6Yk0EFsD7QW5I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-13_12,2023-02-13_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- bulkscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 impostorscore=0
- adultscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302130190
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HE1PR0401MB2331:EE_|AS8PR04MB8756:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9cc2fdb-2c4f-44d5-f546-08db0e10d8b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: //31MCLyhpPflAVPvD/QOnWKrOgE9GeqeRQUoN66gzsB0vyhpVkUJW7PvDr5PqWh3w9cxSiazLxkeppy3AVfWS/eFakHRiZchCtoMb01303kb2JDM/26aswTBU8JFdvl2B1C5g1fTGzA4h0sr0UDMbThDH96l6+sgkQ14vCdPBReooETEtGS/sJvd9izbRpJRPxfIw9gaKkrJwfcwCKe/va/69OsORfBhEMUe/0gTjjkt06zMo5vJAiQ6A8aO9o2t/sHNvqxoCPMQtxqu0F/lVj6vRm0ZKhQUJBAkhx9IrMekMDhqB1OlULFRS9Q85tRxnZsUrYw46hApUJUG6ikE2YIsea9O7XzRvRzVyBpDa75hJuB2rIRfrjDkl/XFgYDVvpsh0dY43DYUdzfHn9ezRVMBrNhFm7NHRSXalfvkUkc0AvVr2fsxc0LkvFl6SrvVTVg6emLlJkBd8vv1IgGTdKyF7/j1P2LMbOJhfBUlT4ovwYc1CDUWQoe88Fa0Ey08gm/vGn04Ec5EA7eW+RI0DWeYtibieJp9W9TM9+ircFbq2rg/ML6prY6mSNcm3px+/ca80HKs2aRjWZzldbK3m3OHcCMHV88VlEXjmKUtrjA8dMzn+MApq/fMOiWgFpGZ2ChQdVOHmMvvDmBS82ApCVSsCRN+81bTQ58pj8rtMcIKGX5IELYxojQg9Dn+f0zHL3vyKgywd7WCCuS4jRy0FDQTXGW7+GuvUMLLGbAUFq06Uc6XRUiyOTM9bGxRnnS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0401MB2331.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(366004)(136003)(376002)(39860400002)(396003)(451199018)(38100700002)(86362001)(921005)(38350700002)(36756003)(4326008)(66476007)(41300700001)(66556008)(8676002)(110136005)(316002)(66946007)(7416002)(8936002)(2906002)(2616005)(5660300002)(83380400001)(6486002)(478600001)(6506007)(52116002)(186003)(26005)(6666004)(1076003)(6512007)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Gz2/OAmIGrFfOtpSgu20QDBoBa56rDGqOb1FURS/sEhyTAa3YH0LJDbvswdU?=
+ =?us-ascii?Q?7Mc1TYifGO07VadpuQSl48i31X2Tx59v/MDw1cwdINqYXQhZ9Yj9I2QuBZ38?=
+ =?us-ascii?Q?TVrWp5fZ09rOVODP/Pev5S60rMCFtO1zl0DJBBqYGeo+Zqs65/PwjzgEWpNP?=
+ =?us-ascii?Q?qLdPl3M1iXtnoITq2cT68LJHsy3tRy56NqX2xNCZy8Sp9EJU+To+14X7TmxI?=
+ =?us-ascii?Q?sWk10ljoCECd2bAxlgNHQf+Odsdfv2SrBSxmBXOHp9cki8g9K8OSfZ/EmN+3?=
+ =?us-ascii?Q?/9gZ62FsbIYLQmbXv7o7FnrSCq2vY2gw/pSlfuCrNEIBenbyUUaPWLqhCiZL?=
+ =?us-ascii?Q?D8Y6P935AaXjrjI4JWMr+qWDGlWXMBEfiZoJL8dNvGeZ1bUyIMjqCaquZjUb?=
+ =?us-ascii?Q?SLkTVjAOlmCSbzerjGkxfODKCua586s1ogXiFLn3bcc7fG6gdZki+ykC065F?=
+ =?us-ascii?Q?10gQeYppRcmgZcxWV5hUyuOPWtldn1pa+cIecMcBMglE0Irg5lUzXSgW2gu1?=
+ =?us-ascii?Q?MxUbdkF/3SZy4/1irQgsgZpr75l5BOzembSXvAUgI0nliRdRijBEdd/Mxm8N?=
+ =?us-ascii?Q?wWRCTi+b5KV4bMKxYqsLaDuKspjsJd+IYRxxvEqFOmJPQmJrPZC0NNbDol87?=
+ =?us-ascii?Q?sCjF9oVGhb+axehyhCKtIjYm3L3xFPZb8tjN92HXGOtadPYo1ZiszCvQ6y6g?=
+ =?us-ascii?Q?IqqApbuo3nHNHxeK0yxWar9EX1ffferyyxgivzlEX7BUJRrXkaG1/FZ5bVqN?=
+ =?us-ascii?Q?emHAH6KmXBs6XfIbLF5hYgDbvS4Y+q7kqGabCW3XkpU18wFfR7ZHjIxAnU96?=
+ =?us-ascii?Q?LUiQQ4yDevnwE3BNtE6O2E9od8DHV9TUdkIbDJ2QRxuTRVcoV7aKlddXZfk9?=
+ =?us-ascii?Q?GQ+ceA3KGGegGSvDpR9g4Pv4P6O1AjXGGZLA1OAED+hjAVOCk7JPe+06jvZ0?=
+ =?us-ascii?Q?yPiGHXwuCsw3YtL00T0X++DBGRLlpikq2wkQetpDExWA/it74wVstUxXljQ5?=
+ =?us-ascii?Q?brAFPZHXiayaOGI09eHrnmyQC02obyD7l9Sh/Iu6psnww48BZORq0hGR7D95?=
+ =?us-ascii?Q?gzQ5GuBA/vw7D/Zcp9UUQ6fC5CykQXGpjb9zwpozxFt9K1u+szQ8cRYocsis?=
+ =?us-ascii?Q?WzyI0G2JbHXSyBzxwzn7+VnHKBWETXM7+hJw/LNXLutVW/1xex/mQ5qLWiH7?=
+ =?us-ascii?Q?Hnc7mvtCnuJR1tTU8Lbbg8WoIYwbvrn8WF0Yv1JesnXIzhhLzs5AjCKBvS6p?=
+ =?us-ascii?Q?Rqk6Dgwzoln+UvJO56XXnJEXN2+xMByotdOgR8suoSMT8BHV1T8sRp+OGqM1?=
+ =?us-ascii?Q?Yy8TL9ylNBLBQFBaSLlJ5UdW9mKgT5nloW9BW+BpToPiZr/f6Bq+GxV/CszY?=
+ =?us-ascii?Q?oqZ2lSjOM711yQr1J9dWFefITytb3Hwv0bIZOSKr4akU2W1cxdDRpg/YOAt7?=
+ =?us-ascii?Q?rRPHe+804+TBPk1uX7+qrx2FOm4jQ/LebMilO75Lx9/EaQFsYBFzn3G1V2H3?=
+ =?us-ascii?Q?tpa0tdBQfT+LRE1TXC6UpyR8iqzX2QCiD/3D8cIX4vrHT62gR1vQCF6bWoKV?=
+ =?us-ascii?Q?tHzzSmlfdK69dtgOkfxp543qQ4Gl2Qm7fjec7mgR?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9cc2fdb-2c4f-44d5-f546-08db0e10d8b7
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0401MB2331.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2023 22:22:52.9226
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: R7Dk/rs1Be/Ip3ksmc26VGKjEdKdC+coC9XkXRMVcfpY4FynJ7LQQMh4x3L7kBieYKhB1TmYsXosP93anXZHNw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8756
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 09:44:14PM +0100, Konrad Dybcio wrote:
-> 
-> 
-> On 13.02.2023 17:28, Bjorn Andersson wrote:
-> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> > The SC8280XP CRD control over battery management and its two USB Type-C
-> > port using pmic_glink and two GPIO-based SBU muxes.
-> > 
-> > Enable the two DisplayPort instances, GPIO SBU mux instance and
-> > pmic_glink with the two connectors on the CRD.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > ---
-> > 
-> [...]
-> 
-> > +&mdss0_dp0 {
-> > +	data-lanes = <0 1>;
-> > +	status = "okay";
-> > +
-> > +	ports {
-> > +		port@1 {
-> > +			reg = <1>;
-> > +
-> > +			mdss0_dp0_out: endpoint {
-> > +				remote-endpoint = <&pmic_glink_con0_ss>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&mdss0_dp1 {
-> > +	data-lanes = <0 1>;
-> > +	status = "okay";
-> > +
-> > +	ports {
-> > +		port@1 {
-> > +			reg = <1>;
-> This way you're redefining this node.. I suppose going with
-> something like:
-> 
-> 8280:
-> mdss0_dp1 {
-> 	compatible
-> 	blahblah
-> 
-> 	ports {
-> 		[..]
-> 
-> 		port@1 {
-> 		reg = <1>;
-> 
-> 			mdss0_dp1_out : endpoint {
-> 			};
-> 		};
-> 	}
-> }
-> 
-> crd:
-> &mdss0_dp1_out {
-> 	//btw data-lanes should be there and not in mdss_dp, I think
-> 	remote-endpoint = <&pmic_glink_...>
-> }
-> 
-> would be better, and that's what we're already doing for DSI..
-> 
+There are cadence usb3.0 controller in 8qxp and 8qm.
+Add usb3 node at common connect subsystem.
 
-To summarize our private discussion about this; by aiming for not
-repeating the structure from the dtsi we avoid a class of bugs caused by
-typos between the two files. As such I agree that this is a good thing,
-and have adjusted the structure accordingly in v4.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../boot/dts/freescale/imx8-ss-conn.dtsi      | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
 
-> I think I missed all this during the 8[34]50 review too..
-> 
-> With that addressed, for both crd and x13s (as the patch is essentially
-> identical)
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+index 4852760adeee..94692cee25a0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+@@ -138,6 +138,56 @@ fec2: ethernet@5b050000 {
+ 		status = "disabled";
+ 	};
+ 
++	usbotg3: usb@5b110000 {
++		compatible = "fsl,imx8qm-usb3";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++		reg = <0x5b110000 0x10000>;
++		clocks = <&usb3_lpcg IMX_LPCG_CLK_1>,
++			 <&usb3_lpcg IMX_LPCG_CLK_0>,
++			 <&usb3_lpcg IMX_LPCG_CLK_7>,
++			 <&usb3_lpcg IMX_LPCG_CLK_4>,
++			 <&usb3_lpcg IMX_LPCG_CLK_5>;
++		clock-names = "usb3_lpm_clk", "usb3_bus_clk", "usb3_aclk",
++			"usb3_ipg_clk", "usb3_core_pclk";
++		assigned-clocks = <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_PER>,
++			<&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MISC>,
++			<&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MST_BUS>;
++		assigned-clock-rates = <125000000>, <12000000>, <250000000>;
++		power-domains = <&pd IMX_SC_R_USB_2>;
++		status = "disabled";
++
++		usbotg3_cdns3: usb@5b120000 {
++			compatible = "cdns,usb3";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			interrupt-parent = <&gic>;
++			interrupts = <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "host", "peripheral", "otg", "wakeup";
++			reg = <0x5b130000 0x10000>,     /* memory area for HOST registers */
++			      <0x5b140000 0x10000>,   /* memory area for DEVICE registers */
++			      <0x5b120000 0x10000>;   /* memory area for OTG/DRD registers */
++			reg-names = "xhci", "dev", "otg";
++			phys = <&usb3_phy>;
++			phy-names = "cdns3,usb3-phy";
++			status = "disabled";
++		};
++	};
++
++	usb3_phy: usb-phy@5b160000 {
++		compatible = "nxp,salvo-phy";
++		reg = <0x5b160000 0x40000>;
++		clocks = <&usb3_lpcg IMX_LPCG_CLK_6>;
++		clock-names = "salvo_phy_clk";
++		power-domains = <&pd IMX_SC_R_USB_2_PHY>;
++		#phy-cells = <0>;
++		status = "disabled";
++	};
++
+ 	/* LPCG clocks */
+ 	sdhc0_lpcg: clock-controller@5b200000 {
+ 		compatible = "fsl,imx8qxp-lpcg";
+@@ -234,4 +284,26 @@ usb2_lpcg: clock-controller@5b270000 {
+ 		clock-output-names = "usboh3_ahb_clk", "usboh3_phy_ipg_clk";
+ 		power-domains = <&pd IMX_SC_R_USB_0_PHY>;
+ 	};
++
++	usb3_lpcg: clock-controller@5b280000 {
++		compatible = "fsl,imx8qxp-lpcg";
++		reg = <0x5b280000 0x10000>;
++		#clock-cells = <1>;
++		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
++				<IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
++				<IMX_LPCG_CLK_6>, <IMX_LPCG_CLK_7>;
++		clocks = <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_PER>,
++			 <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MISC>,
++			 <&conn_ipg_clk>,
++			 <&conn_ipg_clk>,
++			 <&conn_ipg_clk>,
++			 <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MST_BUS>;
++		clock-output-names = "usb3_app_clk",
++				     "usb3_lpm_clk",
++				     "usb3_ipg_clk",
++				     "usb3_core_pclk",
++				     "usb3_phy_clk",
++				     "usb3_aclk";
++		power-domains = <&pd IMX_SC_R_USB_2_PHY>;
++	};
+ };
+-- 
+2.34.1
 
-Thanks,
-Bjorn
-
-> Konrad
-> 
-> > +
-> > +			mdss0_dp1_out: endpoint {
-> > +				remote-endpoint = <&pmic_glink_con1_ss>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> >  &mdss0_dp3 {
-> >  	compatible = "qcom,sc8280xp-edp";
-> >  	/delete-property/ #sound-dai-cells;
-> > @@ -480,7 +628,6 @@ &usb_0 {
-> >  };
-> >  
-> >  &usb_0_dwc3 {
-> > -	/* TODO: Define USB-C connector properly */
-> >  	dr_mode = "host";
-> >  };
-> >  
-> > @@ -499,12 +646,15 @@ &usb_0_qmpphy {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&usb_0_role_switch {
-> > +	remote-endpoint = <&pmic_glink_con0_hs>;
-> > +};
-> > +
-> >  &usb_1 {
-> >  	status = "okay";
-> >  };
-> >  
-> >  &usb_1_dwc3 {
-> > -	/* TODO: Define USB-C connector properly */
-> >  	dr_mode = "host";
-> >  };
-> >  
-> > @@ -523,6 +673,10 @@ &usb_1_qmpphy {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&usb_1_role_switch {
-> > +	remote-endpoint = <&pmic_glink_con1_hs>;
-> > +};
-> > +
-> >  &xo_board_clk {
-> >  	clock-frequency = <38400000>;
-> >  };
-> > @@ -709,4 +863,54 @@ reset-n-pins {
-> >  			drive-strength = <16>;
-> >  		};
-> >  	};
-> > +
-> > +	usb0_sbu_default: usb0-sbu-state {
-> > +		oe-n-pins {
-> > +			pins = "gpio101";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strengh = <16>;
-> > +			output-high;
-> > +		};
-> > +
-> > +		sel-pins {
-> > +			pins = "gpio164";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strength = <16>;
-> > +		};
-> > +
-> > +		mode-pins {
-> > +			pins = "gpio167";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strength = <16>;
-> > +			output-high;
-> > +		};
-> > +	};
-> > +
-> > +	usb1_sbu_default: usb1-sbu-state {
-> > +		oe-n-pins {
-> > +			pins = "gpio48";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strengh = <16>;
-> > +			output-high;
-> > +		};
-> > +
-> > +		sel-pins {
-> > +			pins = "gpio47";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strength = <16>;
-> > +		};
-> > +
-> > +		mode-pins {
-> > +			pins = "gpio50";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strength = <16>;
-> > +			output-high;
-> > +		};
-> > +	};
-> >  };
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > index 92d5b5e21e50..7897d33f1416 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > @@ -3040,6 +3040,11 @@ usb_0_dwc3: usb@a600000 {
-> >  				iommus = <&apps_smmu 0x820 0x0>;
-> >  				phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
-> >  				phy-names = "usb2-phy", "usb3-phy";
-> > +
-> > +				port {
-> > +					usb_0_role_switch: endpoint {
-> > +					};
-> > +				};
-> >  			};
-> >  		};
-> >  
-> > @@ -3095,6 +3100,11 @@ usb_1_dwc3: usb@a800000 {
-> >  				iommus = <&apps_smmu 0x860 0x0>;
-> >  				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
-> >  				phy-names = "usb2-phy", "usb3-phy";
-> > +
-> > +				port {
-> > +					usb_1_role_switch: endpoint {
-> > +					};
-> > +				};
-> >  			};
-> >  		};
-> >  
