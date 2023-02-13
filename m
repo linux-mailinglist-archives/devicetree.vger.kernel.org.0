@@ -2,156 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 796C6693EB4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37B72693EBC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 08:09:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbjBMHIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 02:08:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
+        id S229678AbjBMHJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 02:09:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjBMHIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:08:41 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9673EC7D
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:08:40 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id m2so12565179plg.4
-        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:08:40 -0800 (PST)
+        with ESMTP id S229719AbjBMHJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 02:09:22 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7102DEF80
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:09:20 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id mg23so4467258pjb.0
+        for <devicetree@vger.kernel.org>; Sun, 12 Feb 2023 23:09:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rWV82DuffbkA0r5SzgnRHGJAxs9Uwsl2YwXW0fT+d6A=;
-        b=lc0mtwktj97AGn6slIN6qa4ekwhfOSJOQz1xrvCLNdqmifyDg6ccIbdrSRMHZJ2N4y
-         GgNyvvpP/MLpR9aHTuWsM5kVFRQ41KVWZDIrB+T7N4lNAX0q2tZC+3WIcopUPmnbKNQS
-         //5zkBpFNA8sBxa9f2MbH1vHtqMiqhl+LJXvwwFqdzAV2HwX4paawmnw9iFCAofl+A2C
-         zzR1G3NyCojdvCIPGnRaIX1MnI/rRza6a0GU5wvVDYm5PMuefjD6ykp2/MsDq/yp7KkI
-         E/OpjFkTTi7miqWnDbV132A7mzZ/iQNgp3pOBXKDTIuXNOtSdDqg+7uykmJUqPNg3E7z
-         El/A==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xExRi+o63q1HwNgTHv0H7sxvgx9mQNthcMnnTAqoOF4=;
+        b=YqvFgU6GDf43Kg75RKS1jkmZO3qJ3rhfbmIWNv1T4J8sHSZflfavHfH0bC0dr6Ev5F
+         DRq338PPGtf3DVc6v5JUSagwmi/H/fPAMRs8knyBdH233Htc6JVx6ibmRhMHTQ92dSit
+         DwJKv9JzIthPS/lyJIndGp4vjrvgZXktBhaUE0K+Kynj/lrmbU5/J3Yb3Q6Jm7QMSRyw
+         Eq5YPOTYAlhlHPpVSaf8VByeXbwTGy05/GvDnsXrouI6Ju5Q2HQBUVlLtKDhU5T8auh/
+         oqB09RpLtmaFGMC5eMOEqSjIiqXyV5oYIOYqxJiX+61mL93uAoLmGKpDADXyR74EL8hK
+         QWqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rWV82DuffbkA0r5SzgnRHGJAxs9Uwsl2YwXW0fT+d6A=;
-        b=VTSxFYzych1iVxx2izdI9YPtM1Jca66XB7BaQLGzU09LcEV4b6mMIuAnTEbpwCQTpZ
-         ZaBkGfpOKT4cFUnkbpsOr4cFUMysZu/UBCmY7qxzWeL4xHBmoDQ8IrBUEyFS+aNVfrE+
-         mPKK7wEGS1BvYhjY6AZXC5rHcZi2/DWn6qJ81uXM+qIm0pvPXpHYsTv6GxgS1yQHR/Q3
-         KWod54sxfVSV3XmKuL/w6OBHbz3ZciynZrYTo6OA14WbEVKnoYHLRabGZH5YquxyiBBX
-         sxi2zB4nyTH4BOhb/4t5ay8nOg8pjLtikip20fciD49vOVgqwWlQZri7A4wntTtGcnSh
-         CETw==
-X-Gm-Message-State: AO0yUKXbphOAt607vtLkzvNg2ebxmy3wgJu/Iw8l6qGdjVOSe7GKv/ym
-        gT0z3zvaulDo9ex3/VlDQrqv
-X-Google-Smtp-Source: AK7set9xE1GSDfppqMxOGUxzD8jTRdTKOx+EBwnuawNQ/I0UUpOwkbs79SdmOQPsW6ClvlF6K7Rz2g==
-X-Received: by 2002:a17:90b:4c4d:b0:22c:9217:68b6 with SMTP id np13-20020a17090b4c4d00b0022c921768b6mr25368845pjb.14.1676272120356;
-        Sun, 12 Feb 2023 23:08:40 -0800 (PST)
-Received: from localhost.localdomain ([117.217.182.252])
-        by smtp.gmail.com with ESMTPSA id w63-20020a17090a6bc500b00230e41e98desm2956183pjj.32.2023.02.12.23.08.36
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xExRi+o63q1HwNgTHv0H7sxvgx9mQNthcMnnTAqoOF4=;
+        b=Up3TyfXZS/qrsA5y1KkO9Zh4NuTOz8/SCz85YvamsdVSDQHAspnPyH07YmPupJN3pA
+         P8NAaEZVEOLE/JFWpzddxU/eDWbCr48yBkpx8Tlth6VO9WL/qtdw78IZBZ6WrnuAJsi+
+         zESLAbQs2p49nah7JLU/My7pQB4PfKEwlLR2TToqWO+7oZxi/PbTAwpq1li0Dp3hx6/q
+         kf6TKGyVHDbOXiVE1SAHpfvD4QRe0DngWY8iHReyMjqExvOvwADfsEQfSnd8n/tmvU+W
+         nVImXlJCeLdmFqSgBysANwRfYfNkr2ckfzoU9ZNtZL4Ds4cV0TVtNthocjLF3xhtvXpa
+         yL/A==
+X-Gm-Message-State: AO0yUKVvwRIoItHGUWf5q6wJHCD9U9Jb12P54uF8kUs7YNNnSSACj+JE
+        fS0kgGj9g/wt6KxjK/w53mrR
+X-Google-Smtp-Source: AK7set9XD4sEyJsfcbaSF/yMbmIHsvuckwa03D91G4ufNS3jYa4kTO7bLbBTdl0e6/t15uvVRFl2qw==
+X-Received: by 2002:a05:6a20:158b:b0:bf:9198:b683 with SMTP id h11-20020a056a20158b00b000bf9198b683mr30384528pzj.36.1676272159963;
+        Sun, 12 Feb 2023 23:09:19 -0800 (PST)
+Received: from thinkpad ([117.217.182.252])
+        by smtp.gmail.com with ESMTPSA id b187-20020a6334c4000000b004fba03ee681sm1538664pga.13.2023.02.12.23.09.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Feb 2023 23:08:39 -0800 (PST)
+        Sun, 12 Feb 2023 23:09:19 -0800 (PST)
+Date:   Mon, 13 Feb 2023 12:39:12 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com,
-        festevam@gmail.com, lee@kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v5] dt-bindings: leds: Document commonly used LED triggers
-Date:   Mon, 13 Feb 2023 12:38:27 +0530
-Message-Id: <20230213070827.5085-1-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        thunder.leizhen@huawei.com, festevam@gmail.com
+Subject: Re: [PATCH v4] dt-bindings: leds: Document commonly used LED triggers
+Message-ID: <20230213070912.GB4375@thinkpad>
+References: <20221129174906.97749-1-manivannan.sadhasivam@linaro.org>
+ <41ade5cb-98c1-e859-be4d-68eb05d0ea44@linaro.org>
+ <Y+KcndmBBQw16hfM@google.com>
+ <639db6ae-c7de-eec2-de4f-516aba471d47@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <639db6ae-c7de-eec2-de4f-516aba471d47@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the commonly used LED triggers by the SoCs. Not all triggers
-are documented as some of them are very application specific. Most of the
-triggers documented here are currently used in devicetrees of many SoCs.
+On Tue, Feb 07, 2023 at 09:39:15PM +0100, Krzysztof Kozlowski wrote:
+> On 07/02/2023 19:46, Lee Jones wrote:
+> > On Tue, 07 Feb 2023, Krzysztof Kozlowski wrote:
+> > 
+> >> On 29/11/2022 18:49, Manivannan Sadhasivam wrote:
+> >>> Document the commonly used LED triggers by the SoCs. Not all triggers
+> >>> are documented as some of them are very application specific. Most of the
+> >>> triggers documented here are currently used in devicetrees of many SoCs.
+> >>>
+> >>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >>> ---
+> >>>
+> >>> Changes in v4:
+> >>>
+> >>> * Removed the sorting of triggers
+> >>> * Removed the "items" as they were not needed
+> >>> * Reworded the description
+> >>> * Dropped Zhen Lei's tested-by tag as the patch has changed
+> >>> * Added kbd-capslock trigger
+> >>
+> >> Any plans for this patch?
+> > 
+> > Who are you asking?
+> > 
+> > This patch is not in my inbox.
+> 
+> Mani and Pavel. I Cc-ed you just for completeness.
+> 
+> I would expect Mani to rebase and resend it.
+> 
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
+Sorry for the delay, sent now!
 
-Changes in v5:
+Thanks,
+Mani
 
-* Rebased on top of v6.2-rc1
+> Best regards,
+> Krzysztof
+> 
 
-Changes in v4:
-
-* Removed the sorting of triggers
-* Removed the "items" as they were not needed
-* Reworded the description
-* Dropped Zhen Lei's tested-by tag as the patch has changed
-* Added kbd-capslock trigger
-
-Changes in v3:
-
-* Rebased on top of v6.1-rc1
-* Added WLAN Rx trigger
-* Added tested tag from Zhen Lei
-
-Changes in v2:
-
-* Added more triggers, fixed the regex
-* Sorted triggers in ascending order
-
- .../devicetree/bindings/leds/common.yaml      | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index f5c57a580078..d01a52e9e982 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -98,9 +98,44 @@ properties:
-             # LED alters the brightness for the specified duration with one software
-             # timer (requires "led-pattern" property)
-           - pattern
-+            # LED indicates mic mute state
-+          - audio-micmute
-+            # LED indicates audio mute state
-+          - audio-mute
-+            # LED indicates bluetooth power state
-+          - bluetooth-power
-+            # LED indicates activity of all CPUs
-+          - cpu
-+            # LED indicates disk read activity
-+          - disk-read
-+            # LED indicates disk write activity
-+          - disk-write
-+            # LED indicates camera flash state
-+          - flash
-+            # LED indicated keyboard capslock
-+          - kbd-capslock
-+            # LED indicates MTD memory activity
-+          - mtd
-+            # LED indicates NAND memory activity (deprecated),
-+            # in new implementations use "mtd"
-+          - nand-disk
-+            # No trigger assigned to the LED. This is the default mode
-+            # if trigger is absent
-+          - none
-+            # LED indicates camera torch state
-+          - torch
-+            # LED indicates USB gadget activity
-+          - usb-gadget
-+            # LED indicates USB host activity
-+          - usb-host
-         # LED is triggered by SD/MMC activity
-       - pattern: "^mmc[0-9]+$"
-+        # LED is triggered by CPU activity
-       - pattern: "^cpu[0-9]*$"
-+        # LED indicates power status of [N]th Bluetooth HCI device
-+      - pattern: "^hci[0-9]{1,2}-power$"
-+        # LED indicates [N]th WLAN Tx/Rx activity
-+      - pattern: "^phy[0-9]{1,2}(tx|rx)$"
- 
-   led-pattern:
-     description: |
 -- 
-2.25.1
-
+மணிவண்ணன் சதாசிவம்
