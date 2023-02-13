@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6536950A9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 20:27:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 860876950C1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 20:36:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbjBMT1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 14:27:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
+        id S229647AbjBMTgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 14:36:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbjBMT1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 14:27:40 -0500
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDFB81F928;
-        Mon, 13 Feb 2023 11:27:36 -0800 (PST)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-16df32f2ffdso5713647fac.1;
-        Mon, 13 Feb 2023 11:27:36 -0800 (PST)
+        with ESMTP id S229556AbjBMTgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 14:36:18 -0500
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1E01BF;
+        Mon, 13 Feb 2023 11:36:17 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id p24-20020a056830131800b0068d4b30536aso4070242otq.9;
+        Mon, 13 Feb 2023 11:36:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r2ceehgerFV9SfGBwzTIWGsss+dmB5tdGQVMlGbXudw=;
-        b=cV4D+K4JyoRwUljc9aPZwKBCndG9WUvQ7bsUYKyVWdAWMFy4OBAw5LCrqqMCAI+C5I
-         9GmWp7nfOCnJdmqUGiQXHkLqL3r8HMgj1CH6lJhmz+8gsY6dgIac2Uf3NZg9OWx9LkNC
-         4ptmhRRE7R6DV06xJi++2n/O2gYAJw9ZgIzG7Vej9rmEvzQpYtFsPrIQMSySsleF3x70
-         RPw7zC5Uqle5Tm/4bPXD009Nydpg6uiHaFVmOClqbHqftnyzlIVca7YsZ1hQr0qOqAvc
-         FXX1BwOFqHUT605ERAMVQerUctjJOnpXxaIDVFIDJ5RFuue/xlPIzTqgFCzPNGuOMcD5
-         +ckg==
+        bh=HlUwM5/8oymp4K70XoDUwsO3GnP9r5Zf4hM5G2ZAGRg=;
+        b=DL6ogzN03jXRR0WMlULu8x/lTz7LjCnuBbYjic0VsnSoQd5bo1gPorLCGB7x8mXUXw
+         JwqI899c0IJTD5yh9QGdpsNH/OvBy2R4Kqncl0GEZZPQAL4KjjiyZGSSu/dztN8+6Adn
+         lpci6Twq9QTtTgzqx81Se9K4pRcC5KWuFOf/PDQa+YvCa1KZN11ogPJLN0uTe1m7M7nQ
+         GNYgjrRhGdHsTPqVxL1tkv0EsgZnGVbdGSfMK12I2iQdRSTOMS5Wbr8bHGPv4yEqtaPA
+         ObAaHh4bSsompE6oUoBk+D1e/C25KSM692XG1BMbZtE5bKDBmWg8AIVUPy6P/kSYJ0ja
+         bg+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r2ceehgerFV9SfGBwzTIWGsss+dmB5tdGQVMlGbXudw=;
-        b=6ayHoXSjPMA/gLumCG8849VQHXUM3HbUE4VdcM/y9KIcGAC3XFVAaSu6BRoJQqxXDX
-         F90dVkfN8Nsd4CXdfA5tr1onvcWO96LjTmSprrgo6TwXzdOnmj9Pfwid5AUhniQ01RTr
-         Nc9WY57cyndMiurYYpaix2ps7JL9/XWjFHW6fm/HKa+sMFQ8r3RwuVDHo5gUI5MshT2x
-         yjzxNa/A2K0GB6pVVDIKtt4ULj4scy7DAtSORlPyAuv/BCi/PN2NM597+CUmzffMrTyF
-         ffEQfXt1Faap1ZuL1yklqQLHMxEWiSqsr0DyEdxcxqpvq2IY1a90SO6B3zU/NMlSJXed
-         a6uw==
-X-Gm-Message-State: AO0yUKX+UzUjqdvtEJqpsgUHCSYLFo2MPfKww/EeklUuhaBQvYl3B/BM
-        0tJ5DH8t+Bb98QaPrE5TpvU=
-X-Google-Smtp-Source: AK7set/cqPZwoarckC1KcuA5nV/M5SikiMg2p/biu76icQm5F4iRFSawf5McHZ3zA5dgObit8BBuNg==
-X-Received: by 2002:a05:6870:9e8e:b0:16e:800:9e05 with SMTP id pu14-20020a0568709e8e00b0016e08009e05mr2613127oab.12.1676316455976;
-        Mon, 13 Feb 2023 11:27:35 -0800 (PST)
-Received: from ?IPV6:2600:1700:2442:6db0:30ed:279e:4793:cabe? ([2600:1700:2442:6db0:30ed:279e:4793:cabe])
-        by smtp.gmail.com with ESMTPSA id o2-20020a4a4402000000b0051f97e8a1d5sm1551038ooa.35.2023.02.13.11.27.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 11:27:35 -0800 (PST)
-Message-ID: <fbede15d-bee0-6795-b7cf-81b6335b23b4@gmail.com>
-Date:   Mon, 13 Feb 2023 13:27:34 -0600
+        bh=HlUwM5/8oymp4K70XoDUwsO3GnP9r5Zf4hM5G2ZAGRg=;
+        b=uUYkn7TqUDAA6lcur2dSye44k4m8cWGri7sNfV8YsiUS5mG+JfDs4JWXZmfuz/AROy
+         4shzjMpH6Dks7mMo6TAUXpKn+Cc55EwcJa/7VnWcNbkkibOJpo8Y2m09tE8Z3FtIUgmf
+         U8rd4JVT42Mu1dhh+LY88Kt7JAj3t8HkL99eynZ3rtb+D4saiZ/VEWaWOMq4iujtDxHi
+         q/zS/8m+tIxwdIWQy+0OXxMsFa6OtbnFe7RhnhVOY2H6XvIqfJnRjo0XZm1t+l/KoN7S
+         0qImrLBSfsPUJ6EuDSdu0I7eS329aljpElJtoYRSDB5n7S61QMV7rg2e/GkOw4PTt80J
+         ezMw==
+X-Gm-Message-State: AO0yUKUl9Eg2s6/WDq/kutee69+qSgh6suXZ7cvFTsEv8CuJ1F4YPNyU
+        dMLBsmwTJq01xwqhJk3lBNq4G23DCbI=
+X-Google-Smtp-Source: AK7set/xCcQ7tGUsLetlO9bx2krIG6QOtusRt6j8kS7mB55rPNflD2uXhfYgMKEaA+2X90axcSdDJA==
+X-Received: by 2002:a9d:7095:0:b0:68b:d0cc:d1c2 with SMTP id l21-20020a9d7095000000b0068bd0ccd1c2mr14820687otj.19.1676316976292;
+        Mon, 13 Feb 2023 11:36:16 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id w10-20020a9d638a000000b0068d3f341dd9sm5580101otk.62.2023.02.13.11.36.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Feb 2023 11:36:15 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 13 Feb 2023 11:36:13 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: watchdog: mt7621-wdt: add phandle to
+ access system controller registers
+Message-ID: <20230213193613.GA371102@roeck-us.net>
+References: <20230211073357.755893-1-sergio.paracuellos@gmail.com>
+ <20230211073357.755893-2-sergio.paracuellos@gmail.com>
+ <190b3135-82f3-4dfa-55ee-e048c5510e3c@arinc9.com>
+ <CAMhs-H8tehOWvYKmFtW_LHNb62h5mnzVGN_bfGOtLgNE9qUxqw@mail.gmail.com>
+ <d14f0065-e8d3-50ed-7ea4-ba57dbd18d51@arinc9.com>
+ <CAMhs-H_1dtdAmeNW9arK9JxhdWaQJwcMU1Pk7TOW1f5MREzzug@mail.gmail.com>
+ <76353597-0170-e0d9-9f5d-f208a03e44e8@linaro.org>
+ <CAMhs-H-JGZMR6mB=USywAh4aRS9ZFOVebwLv8=N2f3uvWpcXDA@mail.gmail.com>
+ <afe68663-8ade-ae5a-00a1-083b2f263cb0@roeck-us.net>
+ <CAMhs-H9BkQNwNyYQQgSig9vkW-_+i0+x8CLogXNgkRyi9Un6xw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 5/7] of: do not use "%pOF" printk format on node with
- refcount of zero
-Content-Language: en-US
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230213185702.395776-1-frowand.list@gmail.com>
- <20230213185702.395776-6-frowand.list@gmail.com>
- <346e0239-0996-d10b-55b5-687cdb3ee755@gmail.com>
-In-Reply-To: <346e0239-0996-d10b-55b5-687cdb3ee755@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMhs-H9BkQNwNyYQQgSig9vkW-_+i0+x8CLogXNgkRyi9Un6xw@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,532 +89,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/13/23 13:23, Frank Rowand wrote:
-> On 2/13/23 12:57, Frank Rowand wrote:
->> of_node_release() can not use the "%pOF" printk format to report
->> the node name of a node when the node reference count is zero.
->> This is because the formatter device_node_string() calls
->> fwnode_full_name_string() which indirectly calls of_node_get().
->> Calling of_node_get() on the node with a zero reference count
->> results in a WARNING and stack trace.
->>
->> When the reference count has been decremented to zero, this function
->> is in the subsequent call path which frees memory related to the node.
->>
->> This commit resolves the unittest EXPECT errors that were created in
->> the previous commmit.
->>
->> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
->> ---
+On Mon, Feb 13, 2023 at 09:59:35AM +0100, Sergio Paracuellos wrote:
+> On Sun, Feb 12, 2023 at 4:27 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> >
+> > On 2/12/23 00:13, Sergio Paracuellos wrote:
+> > > On Sat, Feb 11, 2023 at 12:42 PM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 11/02/2023 12:01, Sergio Paracuellos wrote:
+> > >>> On Sat, Feb 11, 2023 at 11:47 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
+> > >>>>
+> > >>>> On 11.02.2023 13:41, Sergio Paracuellos wrote:
+> > >>>>> On Sat, Feb 11, 2023 at 10:10 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
+> > >>>>>>
+> > >>>>>> Is this mediatek,sysctl property required after your changes on the
+> > >>>>>> watchdog code?
+> > >>>>>
+> > >>>>> I don't really understand the question :-) Yes, it is. Since we have
+> > >>>>> introduced a new phandle in the watchdog node to be able to access the
+> > >>>>> reset status register through the 'sysc' syscon node.
+> > >>>>> We need the bindings to be aligned with the mt7621.dtsi file and we
+> > >>>>> are getting the syscon regmap handler via
+> > >>>>> 'syscon_regmap_lookup_by_phandle()'. See PATCH 5 of the series, Arınç.
+> > >>>>
+> > >>>> I believe you need to put mediatek,sysctl under "required:".
+> > >>>
+> > >>> Ah, I understood your question now :-). You meant 'required' property.
+> > >>> I need more coffee, I guess :-). I am not sure if you can add
+> > >>> properties as required after bindings are already mainlined for
+> > >>> compatibility issues. The problem with this SoC is that drivers become
+> > >>> mainlined before the device tree was so if things are properly fixed
+> > >>> now this kind of issues appear.  Let's see Krzysztof and Rob comments
+> > >>> for this.
+> > >>
+> > >> If your driver fails to probe without mediatek,sysctl, you already made
+> > >> it required (thus broke the ABI) regardless what dt-binding is saying.
+> > >> In such case you should update dt-binding to reflect reality.
+> > >>
+> > >> Now ABI break is different case. Usually you should not break it without
+> > >> valid reasons (e.g. it was never working before). Your commit msg
+> > >> suggests that you only improve the code, thus ABI break is not really
+> > >> justified. In such case - binding is correct, driver should be reworked
+> > >> to accept DTS without the new property.
+> > >
+> > > Thanks for clarification, Krzysztof. Ok, so if this is the case I need
+> > > to add this property required (as Arinc was properly pointing out in
+> > > previous mail) since without it the driver is going to fail on probe
+> > > (PATCH 5 of the series). I understand the "it was never working
+> > > before" argument reason for ABI breaks. What happens if the old driver
+> > > code was not ideal and totally dependent on architecture specific
+> > > operations when this could be totally avoided and properly make arch
+> > > independent agnostic drivers? This driver was added in 2016 [0]. There
+> > > was not a device tree file in the kernel for this SoC mainlined until
+> > > 2022 [1]. I also personally migrated this watchdog binding in 2022
+> > > from text to YAML and maintained it without changes [2]. When this was
+> > > mainlined not all drivers were properly reviewed and the current code
+> > > was just maintained as it is. Most users of this SoC are in the
+> > > openWRT community where the dtsi of the mainline is not used yet and
+> > > they maintain their own mt7621.dtsi files. Also, when a new version of
+> > > the openWRT selected kernel is added they also modify and align with
+> > > its mt7621.dtsi file without maintaining previous dtb's. If "make the
+> > > driver arch independent to be able to be compile tested" and this kind
+> > > of arguments are not valid at all I need to know because I have
+> > > started to review driver code for this SoC and other drivers also have
+> > > the same arch dependency that ideally should be avoided in the same
+> > > way. This at the end means to break the ABI again in the future for
+> > > those drivers / bindings. So I can just let them be as it is and not
+> > > provide any change at all and continue without being compile tested
+> > > and other beneficial features to detect future driver breakage.
+> > >
+> >
+> > Problem is that there are (presumably) shipped systems out there with
+> > the old devicetree file. The watchdog driver would no longer instantiate
+> > on those systems.
 > 
-> < snip >
+> Ok, I will maintain only the PATCH that changes the driver to not use
+> globals and send v5.
 > 
-> After applying this commit, the output of unittests, as processed by
-> scripts/dtc/of_unittest_expect, including the new lifecycle tests is:
 
-< snip >
+Other options might be to search for the "syscon" node name or to search
+for the "mediatek,mt7621-sysc" compatible.
 
-And the more verbose, ugly, full console output before processing by
-scripts/dtc/of_unittest_expect is:
+Guenter
 
-
-
-<< pre-test console output deleted >>
-
-### dt-test ### start of unittest - you will see error messages
-l16: Bringing 0uV into 2700000-2700000uV
-### dt-test ### EXPECT \ : Duplicate name in testcase-data, renamed to "duplicate-name#1"
-Duplicate name in testcase-data, renamed to "duplicate-name#1"
-l17: Bringing 0uV into 2700000-2700000uV
-### dt-test ### EXPECT / : Duplicate name in testcase-data, renamed to "duplicate-name#1"
-l18: Bringing 0uV into 2850000-2850000uV
-### dt-test ### pass of_unittest_check_tree_linkage():270
-l19: Bringing 0uV into 3300000-3300000uV
-### dt-test ### pass of_unittest_check_tree_linkage():271
-sdhci_msm f98a4900.mmc: Got CD GPIO
-### dt-test ### pass of_unittest_check_phandles():379
-l20: Bringing 0uV into 2950000-2950000uV
-### dt-test ### pass of_unittest_find_node_by_name():80
-sdhci_msm f98a4900.mmc: Got CD GPIO
-### dt-test ### pass of_unittest_find_node_by_name():87
-l21: Bringing 0uV into 2950000-2950000uV
-### dt-test ### pass of_unittest_find_node_by_name():91
-l22: Bringing 0uV into 3000000-3000000uV
-sdhci_msm f98a4900.mmc: Got CD GPIO
-l23: Bringing 0uV into 3000000-3000000uV
-### dt-test ### pass of_unittest_find_node_by_name():98
-l24: Bringing 0uV into 3075000-3075000uV
-### dt-test ### pass of_unittest_find_node_by_name():105
-### dt-test ### pass of_unittest_find_node_by_name():109
-### dt-test ### pass of_unittest_find_node_by_name():115
-### dt-test ### pass of_unittest_find_node_by_name():119
-### dt-test ### pass of_unittest_find_node_by_name():123
-### dt-test ### pass of_unittest_find_node_by_name():127
-mmc0: SDHCI controller on f9824900.mmc [f9824900.mmc] using ADMA
-### dt-test ### pass of_unittest_find_node_by_name():132
-### dt-test ### pass of_unittest_find_node_by_name():137
-### dt-test ### pass of_unittest_find_node_by_name():142
-### dt-test ### pass of_unittest_find_node_by_name():147
-### dt-test ### pass of_unittest_find_node_by_name():153
-mmc1: SDHCI controller on f98a4900.mmc [f98a4900.mmc] using ADMA
-### dt-test ### pass of_unittest_find_node_by_name():158
-### dt-test ### pass of_unittest_find_node_by_name():163
-### dt-test ### pass of_unittest_find_node_by_name():168
-### dt-test ### pass of_unittest_dynamic():194
-### dt-test ### pass of_unittest_dynamic():201
-### dt-test ### pass of_unittest_dynamic():207
-mmc0: new HS200 MMC card at address 0001
-### dt-test ### pass of_unittest_dynamic():215
-### dt-test ### pass of_unittest_dynamic():219
-mmcblk0: mmc0:0001 SEM16G 14.7 GiB 
-### dt-test ### pass of_unittest_dynamic():227
-mmc1: new ultra high speed DDR50 SDHC card at address aaaa
-### dt-test ### pass of_unittest_dynamic():229
-### dt-test ### pass of_unittest_parse_phandle_with_args():402
-mmcblk1: mmc1:aaaa SU16G 14.8 GiB 
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
- mmcblk0: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
- mmcblk1: p1
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
-### dt-test ### pass of_unittest_parse_phandle_with_args():456
-### dt-test ### pass of_unittest_parse_phandle_with_args():464
-### dt-test ### pass of_unittest_parse_phandle_with_args():467
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-a: could not get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
-OF: /testcase-data/phandle-tests/consumer-a: could not get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
-mmcblk0boot0: mmc0:0001 SEM16G 4.00 MiB 
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-a: could not get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
-### dt-test ### pass of_unittest_parse_phandle_with_args():481
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-a: could not get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
-mmcblk0boot1: mmc0:0001 SEM16G 4.00 MiB 
-OF: /testcase-data/phandle-tests/consumer-a: could not get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
-mmcblk0rpmb: mmc0:0001 SEM16G 4.00 MiB, chardev (241:0)
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-a: could not get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
-### dt-test ### pass of_unittest_parse_phandle_with_args():492
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-a: could not find phandle
-OF: /testcase-data/phandle-tests/consumer-a: could not find phandle 12345678
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-a: could not find phandle
-### dt-test ### pass of_unittest_parse_phandle_with_args():506
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-a: could not find phandle
-OF: /testcase-data/phandle-tests/consumer-a: could not find phandle 12345678
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-a: could not find phandle
-### dt-test ### pass of_unittest_parse_phandle_with_args():517
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-### dt-test ### pass of_unittest_parse_phandle_with_args():531
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-### dt-test ### pass of_unittest_parse_phandle_with_args():542
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():582
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():640
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():648
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-b: could not get #phandle-missing-cells for /testcase-data/phandle-tests/provider1
-OF: /testcase-data/phandle-tests/consumer-b: could not get #phandle-missing-cells for /testcase-data/phandle-tests/provider1
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-b: could not get #phandle-missing-cells for /testcase-data/phandle-tests/provider1
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():661
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-b: could not find phandle
-OF: /testcase-data/phandle-tests/consumer-b: could not find phandle 12345678
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-b: could not find phandle
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():674
-### dt-test ### EXPECT \ : OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1
-OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1
-### dt-test ### EXPECT / : OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1
-### dt-test ### pass of_unittest_parse_phandle_with_args_map():687
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():294
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_printf_one():304
-### dt-test ### pass of_unittest_property_string():703
-### dt-test ### pass of_unittest_property_string():705
-### dt-test ### pass of_unittest_property_string():707
-### dt-test ### pass of_unittest_property_string():709
-### dt-test ### pass of_unittest_property_string():711
-### dt-test ### pass of_unittest_property_string():713
-### dt-test ### pass of_unittest_property_string():715
-### dt-test ### pass of_unittest_property_string():719
-### dt-test ### pass of_unittest_property_string():721
-### dt-test ### pass of_unittest_property_string():723
-### dt-test ### pass of_unittest_property_string():725
-### dt-test ### pass of_unittest_property_string():729
-### dt-test ### pass of_unittest_property_string():732
-### dt-test ### pass of_unittest_property_string():734
-### dt-test ### pass of_unittest_property_string():736
-### dt-test ### pass of_unittest_property_string():738
-### dt-test ### pass of_unittest_property_string():741
-### dt-test ### pass of_unittest_property_string():744
-### dt-test ### pass of_unittest_property_string():746
-### dt-test ### pass of_unittest_property_string():749
-### dt-test ### pass of_unittest_property_string():754
-### dt-test ### pass of_unittest_property_string():756
-### dt-test ### pass of_unittest_property_string():758
-### dt-test ### pass of_unittest_property_string():761
-### dt-test ### pass of_unittest_property_string():765
-### dt-test ### pass of_unittest_property_string():768
-### dt-test ### pass of_unittest_property_copy():783
-### dt-test ### pass of_unittest_property_copy():789
-### dt-test ### pass of_unittest_changeset():809
-### dt-test ### pass of_unittest_changeset():812
-### dt-test ### pass of_unittest_changeset():815
-### dt-test ### pass of_unittest_changeset():819
-### dt-test ### pass of_unittest_changeset():822
-### dt-test ### pass of_unittest_changeset():825
-### dt-test ### pass of_unittest_changeset():828
-### dt-test ### pass of_unittest_changeset():831
-### dt-test ### pass of_unittest_changeset():834
-### dt-test ### pass of_unittest_changeset():842
-### dt-test ### pass of_unittest_changeset():846
-### dt-test ### pass of_unittest_changeset():847
-### dt-test ### pass of_unittest_changeset():849
-### dt-test ### pass of_unittest_changeset():850
-### dt-test ### pass of_unittest_changeset():852
-### dt-test ### pass of_unittest_changeset():853
-### dt-test ### pass of_unittest_changeset():855
-### dt-test ### pass of_unittest_changeset():857
-### dt-test ### pass of_unittest_changeset():858
-### dt-test ### pass of_unittest_changeset():859
-### dt-test ### pass of_unittest_changeset():861
-### dt-test ### pass of_unittest_changeset():866
-### dt-test ### pass of_unittest_changeset():870
-### dt-test ### pass of_unittest_parse_interrupts():1036
-### dt-test ### pass of_unittest_parse_interrupts():1036
-### dt-test ### pass of_unittest_parse_interrupts():1036
-### dt-test ### pass of_unittest_parse_interrupts():1036
-### dt-test ### pass of_unittest_parse_interrupts():1082
-### dt-test ### pass of_unittest_parse_interrupts():1082
-### dt-test ### pass of_unittest_parse_interrupts():1082
-### dt-test ### pass of_unittest_parse_interrupts():1082
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_parse_interrupts_extended():1162
-### dt-test ### pass of_unittest_dma_get_max_cpu_address():895
-### dt-test ### pass of_unittest_dma_ranges_one():916
-### dt-test ### pass of_unittest_dma_ranges_one():934
-### dt-test ### pass of_unittest_dma_ranges_one():937
-### dt-test ### pass of_unittest_dma_ranges_one():916
-### dt-test ### pass of_unittest_dma_ranges_one():934
-### dt-test ### pass of_unittest_dma_ranges_one():937
-### dt-test ### pass of_unittest_pci_dma_ranges():985
-### dt-test ### pass of_unittest_pci_dma_ranges():988
-### dt-test ### pass of_unittest_pci_dma_ranges():991
-### dt-test ### pass of_unittest_pci_dma_ranges():995
-### dt-test ### pass of_unittest_pci_dma_ranges():998
-### dt-test ### pass of_unittest_pci_dma_ranges():1001
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_match_node():1230
-### dt-test ### pass of_unittest_platform_populate():1254
-### dt-test ### pass of_unittest_platform_populate():1258
-### dt-test ### pass of_unittest_platform_populate():1264
-### dt-test ### EXPECT \ : platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found
-platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found
-### dt-test ### EXPECT / : platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found
-### dt-test ### pass of_unittest_platform_populate():1274
-### dt-test ### pass of_unittest_platform_populate():1279
-### dt-test ### pass of_unittest_platform_populate():1285
-### dt-test ### pass of_unittest_platform_populate():1305
-### dt-test ### pass of_unittest_platform_populate():1305
-### dt-test ### pass of_unittest_platform_populate():1315
-### dt-test ### pass of_unittest_platform_populate():1315
-### dt-test ### pass of_unittest_overlay():2968
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest0/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest0/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest0/status
-### dt-test ### pass of_unittest_overlay_0():2099
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest1/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest1/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest1/status
-### dt-test ### pass of_unittest_overlay_1():2119
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest2/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest2/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest2/status
-### dt-test ### pass of_unittest_overlay_2():2139
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest3/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest3/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest3/status
-### dt-test ### pass of_unittest_overlay_3():2159
-### dt-test ### pass of_unittest_overlay_4():2169
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest5/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest5/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest5/status
-### dt-test ### pass of_unittest_overlay_5():2189
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest6/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest6/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest6/status
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest7/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest7/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest7/status
-### dt-test ### pass of_unittest_overlay_6():2290
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest8/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest8/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest8/status
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest8/property-foo
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest8/property-foo
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/test-unittest8/property-foo
-### dt-test ### EXPECT \ : OF: overlay: node_overlaps_later_cs: #6 overlaps with #7 @/testcase-data/overlay-node/test-bus/test-unittest8
-### dt-test ### EXPECT \ : OF: overlay: overlay #6 is not topmost
-OF: overlay: node_overlaps_later_cs: #6 overlaps with #7 @/testcase-data/overlay-node/test-bus/test-unittest8
-OF: overlay: overlay #6 is not topmost
-### dt-test ### EXPECT / : OF: overlay: overlay #6 is not topmost
-### dt-test ### EXPECT / : OF: overlay: node_overlaps_later_cs: #6 overlaps with #7 @/testcase-data/overlay-node/test-bus/test-unittest8
-### dt-test ### pass of_unittest_overlay_8():2383
-### dt-test ### pass of_unittest_overlay_10():2395
-### dt-test ### pass of_unittest_overlay_10():2401
-### dt-test ### pass of_unittest_overlay_10():2407
-### dt-test ### pass of_unittest_overlay_11():2419
-### dt-test ### pass of_unittest_overlay_i2c_init():2640
-### dt-test ### pass of_unittest_overlay_i2c_init():2646
-### dt-test ### EXPECT \ : i2c i2c-1: Added multiplexed i2c bus 2
-i2c i2c-1: Added multiplexed i2c bus 2
-### dt-test ### EXPECT / : i2c i2c-1: Added multiplexed i2c bus 2
-### dt-test ### pass of_unittest_overlay_i2c_init():2660
-### dt-test ### pass of_unittest_overlay():2984
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/i2c-test-bus/test-unittest12/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/i2c-test-bus/test-unittest12/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/i2c-test-bus/test-unittest12/status
-### dt-test ### pass of_unittest_overlay_i2c_12():2693
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/i2c-test-bus/test-unittest13/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/i2c-test-bus/test-unittest13/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data/overlay-node/test-bus/i2c-test-bus/test-unittest13/status
-### dt-test ### pass of_unittest_overlay_i2c_13():2713
-### dt-test ### EXPECT \ : i2c i2c-1: Added multiplexed i2c bus 3
-i2c i2c-1: Added multiplexed i2c bus 3
-### dt-test ### EXPECT / : i2c i2c-1: Added multiplexed i2c bus 3
-### dt-test ### pass of_unittest_overlay_i2c_15():2737
-### dt-test ### pass of_unittest_overlay_gpio():1698
-### dt-test ### pass of_unittest_overlay_gpio():1701
-### dt-test ### pass of_unittest_overlay_gpio():1704
-### dt-test ### EXPECT \ : gpio-<<int>> (line-B-input): hogged as input
-### dt-test ### EXPECT \ : gpio-<<int>> (line-A-input): hogged as input
-gpio-708 (line-B-input): hogged as input
-### dt-test ### pass unittest_gpio_probe():1621
-gpio-712 (line-A-input): hogged as input
-### dt-test ### pass unittest_gpio_probe():1621
-### dt-test ### pass of_unittest_overlay_gpio():1719
-### dt-test ### EXPECT / : gpio-<<int>> (line-A-input): hogged as input
-### dt-test ### EXPECT / : gpio-<<int>> (line-B-input): hogged as input
-### dt-test ### pass of_unittest_overlay_gpio():1727
-### dt-test ### pass of_unittest_overlay_gpio():1730
-### dt-test ### EXPECT \ : gpio-<<int>> (line-D-input): hogged as input
-gpio-720 (line-D-input): hogged as input
-### dt-test ### pass unittest_gpio_probe():1621
-### dt-test ### pass of_unittest_overlay_gpio():1756
-### dt-test ### EXPECT / : gpio-<<int>> (line-D-input): hogged as input
-### dt-test ### pass of_unittest_overlay_gpio():1762
-### dt-test ### pass of_unittest_overlay_gpio():1765
-### dt-test ### pass unittest_gpio_probe():1621
-### dt-test ### pass of_unittest_overlay_gpio():1783
-### dt-test ### pass of_unittest_overlay_gpio():1786
-### dt-test ### EXPECT \ : gpio-<<int>> (line-C-input): hogged as input
-gpio-724 (line-C-input): hogged as input
-### dt-test ### pass of_unittest_overlay_gpio():1803
-### dt-test ### EXPECT / : gpio-<<int>> (line-C-input): hogged as input
-### dt-test ### pass of_unittest_overlay_gpio():1809
-### dt-test ### pass of_unittest_overlay_notify():2825
-### dt-test ### EXPECT \ : OF: overlay: overlay changeset pre-apply notifier error -16, target: /testcase-data/overlay-node/test-bus
-OF: overlay: overlay changeset pre-apply notifier error -16, target: /testcase-data/overlay-node/test-bus
-### dt-test ### pass of_unittest_overlay_notify():2846
-### dt-test ### EXPECT / : OF: overlay: overlay changeset pre-apply notifier error -16, target: /testcase-data/overlay-node/test-bus
-### dt-test ### pass of_unittest_overlay_notify():2851
-### dt-test ### EXPECT \ : OF: overlay: overlay changeset post-apply notifier error -17, target: /testcase-data/overlay-node/test-bus
-OF: overlay: overlay changeset post-apply notifier error -17, target: /testcase-data/overlay-node/test-bus
-### dt-test ### pass of_unittest_overlay_notify():2857
-### dt-test ### EXPECT / : OF: overlay: overlay changeset post-apply notifier error -17, target: /testcase-data/overlay-node/test-bus
-### dt-test ### pass of_unittest_overlay_notify():2862
-### dt-test ### pass of_unittest_overlay_notify():2866
-### dt-test ### pass of_unittest_overlay_notify():2872
-### dt-test ### pass of_unittest_overlay_notify():2875
-### dt-test ### EXPECT \ : OF: overlay: overlay changeset pre-remove notifier error -18, target: /testcase-data/overlay-node/test-bus
-OF: overlay: overlay changeset pre-remove notifier error -18, target: /testcase-data/overlay-node/test-bus
-### dt-test ### EXPECT / : OF: overlay: overlay changeset pre-remove notifier error -18, target: /testcase-data/overlay-node/test-bus
-### dt-test ### pass of_unittest_overlay_notify():2886
-### dt-test ### pass of_unittest_overlay_notify():2894
-### dt-test ### pass of_unittest_overlay_notify():2898
-### dt-test ### pass of_unittest_overlay_notify():2901
-### dt-test ### EXPECT \ : OF: overlay: overlay changeset post-remove notifier error -19, target: /testcase-data/overlay-node/test-bus
-OF: overlay: overlay changeset post-remove notifier error -19, target: /testcase-data/overlay-node/test-bus
-### dt-test ### EXPECT / : OF: overlay: overlay changeset post-remove notifier error -19, target: /testcase-data/overlay-node/test-bus
-### dt-test ### pass of_unittest_overlay_notify():2908
-### dt-test ### pass of_unittest_overlay_notify():2915
-### dt-test ### pass of_unittest_overlay_notify():2920
-### dt-test ### pass of_unittest_overlay_notify():2932
-### dt-test ### pass of_unittest_lifecycle():3031
-### dt-test ### EXPECT \ : OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node
-### dt-test ### pass of_unittest_lifecycle():3056
-OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node
-### dt-test ### EXPECT / : OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node
-### dt-test ### EXPECT \ : ------------[ cut here ]------------
-### dt-test ### EXPECT \ : WARNING: <<all>>
-### dt-test ### EXPECT \ : refcount_t: underflow; use-after-free.
-### dt-test ### EXPECT \ : ---[ end trace <<int>> ]---
-### dt-test ### pass of_unittest_lifecycle():3076
-------------[ cut here ]------------
-WARNING: CPU: 1 PID: 1 at lib/refcount.c:28 of_unittest+0x25d0/0x2eb8
-refcount_t: underflow; use-after-free.
-Modules linked in:
-CPU: 1 PID: 1 Comm: swapper/0 Tainted: G                 N 6.2.0-rc1-00008-g0ad108551489 #23
-Hardware name: Generic DT based system
- unwind_backtrace from show_stack+0x10/0x14
- show_stack from dump_stack_lvl+0x40/0x4c
- dump_stack_lvl from __warn+0x7c/0x15c
- __warn from warn_slowpath_fmt+0x98/0xcc
- warn_slowpath_fmt from of_unittest+0x25d0/0x2eb8
- of_unittest from do_one_initcall+0x4c/0x268
- do_one_initcall from kernel_init_freeable+0x1b4/0x214
- kernel_init_freeable from kernel_init+0x18/0x130
- kernel_init from ret_from_fork+0x14/0x2c
-Exception stack(0xf0821fb0 to 0xf0821ff8)
-1fa0:                                     00000000 00000000 00000000 00000000
-1fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-1fe0: 00000000 00000000 00000000 00000000 00000013 00000000
----[ end trace 0000000000000000 ]---
-### dt-test ### EXPECT / : ---[ end trace <<int>> ]---
-### dt-test ### EXPECT / : refcount_t: underflow; use-after-free.
-### dt-test ### EXPECT / : WARNING: <<all>>
-### dt-test ### EXPECT / : ------------[ cut here ]------------
-### dt-test ### EXPECT_NOT \ : ------------[ cut here ]------------
-### dt-test ### EXPECT_NOT \ : WARNING: <<all>>
-### dt-test ### EXPECT_NOT \ : refcount_t: underflow; use-after-free.
-### dt-test ### EXPECT_NOT \ : ---[ end trace <<int>> ]---
-### dt-test ### pass of_unittest_lifecycle():3093
-### dt-test ### EXPECT_NOT / : ---[ end trace <<int>> ]---
-### dt-test ### EXPECT_NOT / : refcount_t: underflow; use-after-free.
-### dt-test ### EXPECT_NOT / : WARNING: <<all>>
-### dt-test ### EXPECT_NOT / : ------------[ cut here ]------------
-### dt-test ### pass of_unittest_lifecycle():3119
-### dt-test ### pass of_unittest_lifecycle():3120
-### dt-test ### pass of_unittest_check_tree_linkage():270
-### dt-test ### pass of_unittest_check_tree_linkage():271
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/substation@100/status
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/status
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/ride@100/track@30/incline-up
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/ride@100/track@40/incline-up
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/status
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/color
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/rate
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/hvac_2
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200_left
-### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200_right
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/substation@100/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/ride@100/track@30/incline-up
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/ride@100/track@40/incline-up
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/status
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/color
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/rate
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/hvac_2
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200_left
-OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200_right
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200_right
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200_left
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/ride_200
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /__symbols__/hvac_2
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/rate
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/color
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/lights@40000/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/ride@100/track@40/incline-up
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/ride@100/track@30/incline-up
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/fairway-1/status
-### dt-test ### EXPECT / : OF: overlay: WARNING: memory leak will occur if overlay removed, property: /testcase-data-2/substation@100/status
-### dt-test ### pass of_unittest_overlay_high_level():3552
-### dt-test ### EXPECT \ : OF: overlay: ERROR: multiple fragments add and/or delete node /testcase-data-2/substation@100/motor-1/controller
-### dt-test ### EXPECT \ : OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/controller/name
-OF: overlay: ERROR: multiple fragments add and/or delete node /testcase-data-2/substation@100/motor-1/controller
-OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/controller/name
-### dt-test ### pass of_unittest_overlay_high_level():3559
-### dt-test ### EXPECT / : OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/controller/name
-### dt-test ### EXPECT / : OF: overlay: ERROR: multiple fragments add and/or delete node /testcase-data-2/substation@100/motor-1/controller
-### dt-test ### EXPECT \ : OF: overlay: ERROR: multiple fragments add and/or delete node /testcase-data-2/substation@100/motor-1/electric
-### dt-test ### EXPECT \ : OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/electric/rpm_avail
-### dt-test ### EXPECT \ : OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/electric/name
-OF: overlay: ERROR: multiple fragments add and/or delete node /testcase-data-2/substation@100/motor-1/electric
-OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/electric/rpm_avail
-OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/electric/name
-### dt-test ### pass of_unittest_overlay_high_level():3574
-### dt-test ### EXPECT / : OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/electric/name
-### dt-test ### EXPECT / : OF: overlay: ERROR: multiple fragments add, update, and/or delete property /testcase-data-2/substation@100/motor-1/electric/rpm_avail
-### dt-test ### EXPECT / : OF: overlay: ERROR: multiple fragments add and/or delete node /testcase-data-2/substation@100/motor-1/electric
-### dt-test ### pass of_unittest_overlay_high_level():3584
-### dt-test ### pass of_unittest_overlay_high_level():3587
-### dt-test ### end of unittest - 276 passed, 0 failed
-
-
-<< post-test console output deleted >>
-
-/ # cat /proc/version
-Linux version 6.2.0-rc1-00008-g0ad108551489 (frowand@xps8900) (arm-linux-gnueabi-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #23 SMP PREEMPT Mon Feb 13 12:52:35 CST 2023
-
+> >
+> > Guenter
+> >
+> 
+> Thanks,
+>     Sergio Paracuellos
