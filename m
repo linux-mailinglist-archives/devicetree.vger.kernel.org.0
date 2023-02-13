@@ -2,68 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 769DE693FFF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:54:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D25B969401B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:56:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbjBMIyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 03:54:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
+        id S229850AbjBMI4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 03:56:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjBMIyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:54:44 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03AF8A73;
-        Mon, 13 Feb 2023 00:54:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676278483; x=1707814483;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version:content-id;
-  bh=3Qrvb86xqpAxI2HTmIA1ize0Wpi8KHhQvVKxmBu4qVo=;
-  b=io6afZ4/oY7AgSNp7JbUJUYxfvvhZvvntKd8iawL9mUDgLksE5RaLVuY
-   JpJYTKrs6LPEromjF7vyVIM1QjGqJ8oxCABYOJaJkARe7P0gGEp4ojaSF
-   s6UsFyoBM15Ety1Vz7sbaTspuoVO8cUq/7OrkIfiPuEH+TzKHKWAtsedx
-   p0cgunexwNjYza3OQWGCjNndAzeGp+MgVUNdVPse5TCcyllUVxKlFW9WN
-   Vul00mw0M0AuO/Iyj4IFTplzvmYY1rnJ2DXx+TrYHUpmuy2sElePKcaUn
-   WPx+BGcWsyHfuV9BUuga8X4X8xbFADY2PU+mVVVf4pNgPNKYXEAopfYOC
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10619"; a="332152145"
-X-IronPort-AV: E=Sophos;i="5.97,293,1669104000"; 
-   d="scan'208";a="332152145"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2023 00:54:43 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10619"; a="618579861"
-X-IronPort-AV: E=Sophos;i="5.97,293,1669104000"; 
-   d="scan'208";a="618579861"
-Received: from hdevries-mobl.ger.corp.intel.com ([10.249.36.140])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2023 00:54:39 -0800
-Date:   Mon, 13 Feb 2023 10:54:36 +0200 (EET)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>
-cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-Subject: RE: [PATCH 3/4] serial: 8250: Add Aspeed UART driver
-In-Reply-To: <KL1PR0601MB378160E42842A0A55947BF7191DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
-Message-ID: <bc8a6d9c-48ec-e394-78d8-c53bc267af1c@linux.intel.com>
-References: <20230210072643.2772-1-chiawei_wang@aspeedtech.com> <20230210072643.2772-4-chiawei_wang@aspeedtech.com> <2d389fc9-0d5-42a1-b6d7-695c70dcf0fe@linux.intel.com> <KL1PR0601MB378160E42842A0A55947BF7191DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
+        with ESMTP id S230182AbjBMI4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:56:12 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D7E813DF5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:55:45 -0800 (PST)
+Received: from [172.16.71.140] (unknown [49.255.141.98])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5A8B220034;
+        Mon, 13 Feb 2023 16:55:39 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1676278542;
+        bh=805Rlyhp1RvwvPx1kSRwx0ocdJBODymtJNL4keLIhvU=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=LPbOy8m+vOz21u/ZqcRYCITsCWtw7iYAuiL1myx3Wgio46FlBaOzOqWy47RTb3GPx
+         SIQxGux4Opl63nFvFOYNzVH+tjuxRKFqRc5+1Qld3UdD5SWHhSD+U90wGY3Gp0Ls1R
+         F95K2xOkfa74/izkYFVPCm5nZaCoV759ul8K6l28QptgU5trN1n4lQSNFCtMB6BfMJ
+         QVpeD1FwhvyykqveK7ztd9i5cwbY5DlXIC2L2jviHP1CXH1D5hFOXW0rrW3z8trKms
+         BdIkPxEnOU9rqrSn+0aqEVB+e+6EzTu+XLzz9tQ/Nw+/Nz49KoWE7gJYRMGlLmOvrM
+         /VoTtQsTYZZRQ==
+Message-ID: <91e9e815bed8c2eff19dbe6b3ed36d10c6edcbfd.camel@codeconstruct.com.au>
+Subject: Re: [RFC PATCH] dt-bindings: Add AST2600 i3c controller binding
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     linux-aspeed@lists.ozlabs.org, linux-i3c@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Date:   Mon, 13 Feb 2023 16:55:38 +0800
+In-Reply-To: <7c6741e1-ae41-ba20-b859-736214c680e8@linaro.org>
+References: <5c047dd91390b9ee4cd8bca3ff107db37a7be4ac.1676273912.git.jk@codeconstruct.com.au>
+         <7c6741e1-ae41-ba20-b859-736214c680e8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3-1 
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-257282810-1676278189=:1712"
-Content-ID: <7f777bc7-635e-5cdb-3621-16f888c6153c@linux.intel.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,64 +55,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi Krzysztof,
 
---8323329-257282810-1676278189=:1712
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
-Content-ID: <655a3651-c08d-25b1-4a44-7f6d39894cb8@linux.intel.com>
+> 1. Do not use "This commit/patch".
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/sub=
+mitting-patches.rst#L95
 
-On Mon, 13 Feb 2023, ChiaWei Wang wrote:
+OK.
 
-> > From: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> > Sent: Friday, February 10, 2023 9:52 PM
-> > 
-> > On Fri, 10 Feb 2023, Chia-Wei Wang wrote:
-> > 
-> > > Add the driver for Aspeed UART/VUART devices, which are 16550A
-> > > compatible. It is an wrapper to cover the generic 16550A operation
-> > > while exetending DMA feature for the devices.
-> > >
-> > > Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> > > ---
-> > >  drivers/tty/serial/8250/8250_aspeed.c | 502
-> > ++++++++++++++++++++++++++
-> > >  drivers/tty/serial/8250/Kconfig       |   8 +
-> > >  drivers/tty/serial/8250/Makefile      |   1 +
-> > 
-> > Hi,
-> > 
-> > Before I look any further into this, could you please explain why this is made to
-> > be entirely separate from what we have in
-> >   drivers/tty/serial/8250/8250_aspeed_vuart.c
-> > ?
-> > 
-> > I quickly went through some functions and they've significant parts in common
-> > with no variations at all in many functions and you're defines are 1:1 too
-> > (except for the DMA buf sizes). It would seem much better to add the missing
-> > functionality into 8250_aspeed_vuart.c rather than creating something from
-> > scratch with large overlap with existing code.
-> > 
-> > If you intend to keep it as a separate one, you should have a rather good
-> > justification for it.
-> 
-> Yes, the main difference is the UART DMA support.
-> However, due to the UDMA design is not quite fit to the DMAEngine, the implementation is kind of hacking.
-> We thought leaving the original VUART driver unimpacted would be better.
-> The UDMA covers both UART and VUART DMA support, and so do the new 8250_aspeed.c.
+> 2. Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the
+> directory your patch is touching).
 
-To me it seems rather weak reasoning.
+So "dt-bindings: i3c:" instead of just "d-bindings:" here.
 
-If you want to go to this path, then you need to anyway share the common 
-code between those two drivers rather than duplicating it. It's likely 
-more work for you than just putting it all into the existing driver and
-having just a mostly separated setup() for 2600 case.
+> 3. Subject: drop second/last, redundant "binding". The "dt-bindings"
+> prefix is already stating that these are bindings.
 
-The DMA functions should probably also depend on SERIAL_8250_DMA anyway 
-and the driver should fallback to non-DMA if SERIAL_8250_DMA is not set 
-which is yet another reason to use the existing code.
+OK.
 
--- 
- i.
---8323329-257282810-1676278189=:1712--
+> 4. Where is the driver? Where is the DTS? Why do we want unused
+> binding in the kernel?
+
+The driver is coming next, but I wanted to sort out the structure of the
+binding before committing to how the driver consumes the DT data - hence
+the RFC.
+
+Cheers,
+
+
+Jeremy
