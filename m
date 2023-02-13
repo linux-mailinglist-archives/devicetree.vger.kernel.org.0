@@ -2,111 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2337D69415B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:36:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E30D269418A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:41:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbjBMJgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 04:36:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42896 "EHLO
+        id S230159AbjBMJlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 04:41:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjBMJg1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:36:27 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F3D516308
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:35:21 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so10796906wma.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:35:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gmgucw7ArcE1rVHBJg9HjFw2E1lAyLd9N9iv88RjGQE=;
-        b=ClAtuvBeysiK4DiEo6LMV3dTn1HCCdUhBXbF5Ye+aVaPFpxD9yHzuKfl1cOzH1Dbu+
-         DeUNqql54iNavpEAhMFhIQEUhW785AX9d3ge/8WbagLLx4/zs6eSWZFYOGjLPErFQCoJ
-         AQNJIOlNEqi+KerCvb/Hz15ePbUcm4ZpUpwB/QIkheyJ0uYQBfoaYdObvaXQM5Zmsu7B
-         H6ur1q3icdwV2C2qt9qtlQL5zAsXwFjnfWkRt/Gv99w7POcqPZMeLU7F59zHUivodIfs
-         +uBaMZUyd0EmdS7DEC6YC2735WGR+iRt6AhhdqOWpHXTFfu0eab4f97qwOArJyMDJYHl
-         ekvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gmgucw7ArcE1rVHBJg9HjFw2E1lAyLd9N9iv88RjGQE=;
-        b=6/Elo2Xj6IhZEfElcCQhUUf6A39qGcRLEQrLz7Sv/R9Mk65I4XvLpjjF8GiPApM3Vj
-         myAxXS8cOiUpmgNu0dAONNpnEVfMRB9MN+GPykMAu3SaILpwnf3Rw8spMt74O/MfFepZ
-         MpABlmuBI6APiwUjwzZJSQzeo/GvZtEHtJ/eDOYJU75RMDi7wLl9ycekU2NnH9QTbzRj
-         9E+TfYIZsaBNvc7c2wqrsbTR3wz1oIm4nHlkUqHERwWIlkZsFy8MiokuMe6y15c6hJZU
-         00dRQisIgnCTMsAo49hlJrt/l6yu4b3Vo5D2aDuKDvynYQQcBiLq0eZd3orTrQPObe8Y
-         mEBw==
-X-Gm-Message-State: AO0yUKUDbvGq+fKTqDzSZIb4a4u/w+LCwGCVIww/E8rFBo+tVHy7Oyrw
-        hpif126OlkVIz9qE6GC1zu8TGQ==
-X-Google-Smtp-Source: AK7set8t1hWdwz4+lb2JgagXmy8pG7Dx7iXEOWfMIit4rR4uri5IsmUt3xVOuYZuZ7mMxX4PXm7AsQ==
-X-Received: by 2002:a05:600c:3b92:b0:3df:eedf:df1c with SMTP id n18-20020a05600c3b9200b003dfeedfdf1cmr22437691wms.38.1676280919784;
-        Mon, 13 Feb 2023 01:35:19 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w19-20020a05600c475300b003e11f280b8bsm11265977wmo.44.2023.02.13.01.35.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 01:35:19 -0800 (PST)
-Message-ID: <71aeb3da-13a1-1c79-9fe6-f5c23d398394@linaro.org>
-Date:   Mon, 13 Feb 2023 10:35:17 +0100
+        with ESMTP id S229940AbjBMJlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:41:51 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14F23AA5;
+        Mon, 13 Feb 2023 01:41:21 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 75D0B24E154;
+        Mon, 13 Feb 2023 17:41:04 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Feb
+ 2023 17:41:04 +0800
+Received: from [192.168.125.110] (183.27.97.168) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Feb
+ 2023 17:41:03 +0800
+Message-ID: <e1d2646e-b5de-298e-bb91-19ad12fd31af@starfivetech.com>
+Date:   Mon, 13 Feb 2023 17:41:02 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH] dt-bindings: Add AST2600 i3c controller binding
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
 Content-Language: en-US
-To:     Jeremy Kerr <jk@codeconstruct.com.au>, devicetree@vger.kernel.org
-Cc:     linux-aspeed@lists.ozlabs.org, linux-i3c@lists.infradead.org,
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-References: <5c047dd91390b9ee4cd8bca3ff107db37a7be4ac.1676273912.git.jk@codeconstruct.com.au>
- <7c6741e1-ae41-ba20-b859-736214c680e8@linaro.org>
- <91e9e815bed8c2eff19dbe6b3ed36d10c6edcbfd.camel@codeconstruct.com.au>
- <929a30fc-35f3-ab21-3a16-936ed69d5505@linaro.org>
- <80fa21969d9e0e7a123bd525199dbb40e79d47e3.camel@codeconstruct.com.au>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <80fa21969d9e0e7a123bd525199dbb40e79d47e3.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud>
+ <c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com>
+ <Y9og8Q2UnJ452KH/@wendy>
+ <df6755ed-a358-ea01-d89e-f3c004b9c297@starfivetech.com>
+ <Y9wR7Up+iObw5qoE@spud> <Y+TU98PLIvtkD8/R@wendy>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y+TU98PLIvtkD8/R@wendy>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.97.168]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 10:21, Jeremy Kerr wrote:
-> Hi Krzysztof,
+On Thu, 9 Feb 2023 11:11:51 +0000, Conor Dooley wrote:
+> On Thu, Feb 02, 2023 at 07:41:33PM +0000, Conor Dooley wrote:
+>> On Fri, Feb 03, 2023 at 02:56:41AM +0800, Hal Feng wrote:
+>> > On Wed, 1 Feb 2023 08:21:05 +0000, Conor Dooley wrote:
+>> > > On Wed, Feb 01, 2023 at 03:21:48PM +0800, Hal Feng wrote:
+>> > >> On Wed, 28 Dec 2022 22:48:43 +0000, Conor Dooley wrote:
+>> > >> > On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
 > 
->> You should clearly communicate that driver is coming...
+>> FWIW, the deadline for getting material in for v6.3 has already passed,
+>> so you can send the next version of this series without waiting for
+>> clarification on the compatibles & ISA string. We should have plenty of
+>> time to get those fixed up before the series gets applied.
 > 
-> OK.
+> Also, as it looks like the pinctrl driver is going to land in time for
+> v6.3, that leaves just this series and the clock driver required for
+> base support.
 > 
->> Anyway binding comes with the driver, otherwise how can we check that
->> you actually implemented it?
+> In the original submission, you sent the clock driver and dt in the same
+> series & I think it might make the process a bit faster if you sent them
+> both together for the next version again.
 > 
-> I'll include this with the driver once we're past the RFC reviews.
+> That way, both the drivers and dts can go together as their have an
+> inter dependence.
 > 
->> Please send patches, not RFC. RFC means you are uncertain this is even
->> correct and you ask for generic discussion.
-> 
-> Yes, that's essentially what I'm looking for with this change -
-> particularly with the pullup config, which (as you say) could arguably
-> be a pinctrl config instead.
+> That's my opinion anyway, will make trying to sequence things between
+> trees easier.
 
-Depends, there was just a short sentence. If this is external resistor
-on the board, why this device needs such property (and none of other
-devices need...)? If this is internal pull up of I3C (and there is no
-other pin configuration possible, no other pins), it looks reasonable to
-me to have it here. But I am all guessing it...
-
+Good idea. But how can I write the change log if we do so? Will it make
+the history confused? Thanks.
 
 Best regards,
-Krzysztof
-
+Hal
