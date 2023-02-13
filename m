@@ -2,104 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1432694021
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87BF6694005
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:55:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230014AbjBMI5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 03:57:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58476 "EHLO
+        id S230177AbjBMIzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 03:55:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbjBMI5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:57:10 -0500
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861A413D6A
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:56:40 -0800 (PST)
-Received: by mail-qv1-f42.google.com with SMTP id l7so3007481qvw.7
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:56:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sM0WJjLf09bIi4cOcTK2bHZSg+aTB9RBwAec2ehjcEA=;
-        b=L8ORBDn85Ypyj9Ig9Z/BuO0ix3Mb0jqZ6EUEVdauaRRLVq2GykaDbxZK0T8rJkcyyo
-         Ga/WQGjh15Cdv/yp3uh5lIagRcGhinH/gUzulN5Rv8D7RJfI+4tqw5YzG4HfXXTQZR3a
-         hQor1LQ/SPL4pEGCBdshg8pFYQ87mMISX9oNjNkmSLP56qFZWZmUjRejXnWNbXZd1yHV
-         tMJONK0jPH5nmaSTaXAZUjDDr2URgTyhwBRodREYoq4SHi8TRWKhLt8Xnk3NmJkmCMww
-         97GHp+SjGSlAVqqc2OKiJJeAJsvE6nR7udPdhFHopYeldBPO0ZWnzCYBYXgFKpPJt5jw
-         R5gw==
-X-Gm-Message-State: AO0yUKVMLaamyC/gHrawtO5KBPsXY2tOeCwfKZ01jMW+/69onHIaAEYh
-        oz9Hs8Wu1mQ79aJEHm0swGQKh2dvEUWqSg==
-X-Google-Smtp-Source: AK7set+X03TwKJHG1RxOMQjHaeHvoFci61iYPWUT0EXBsDdoU/LXMq1P+yeQRFT1hcrtZsfGWGQGTQ==
-X-Received: by 2002:a05:6214:2a4e:b0:56b:f6c3:11ee with SMTP id jf14-20020a0562142a4e00b0056bf6c311eemr45561715qvb.2.1676278578014;
-        Mon, 13 Feb 2023 00:56:18 -0800 (PST)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id v66-20020a37dc45000000b006fba0a389a4sm9426967qki.88.2023.02.13.00.56.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 00:56:17 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id 139so12086789ybe.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:56:17 -0800 (PST)
-X-Received: by 2002:a25:9e86:0:b0:8c2:240e:bd05 with SMTP id
- p6-20020a259e86000000b008c2240ebd05mr1013174ybq.359.1676278577138; Mon, 13
- Feb 2023 00:56:17 -0800 (PST)
+        with ESMTP id S230138AbjBMIzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:55:15 -0500
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2048.outbound.protection.outlook.com [40.107.241.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81BBC13DFA;
+        Mon, 13 Feb 2023 00:55:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RalFhc2LssZ3kb+u4s62QIHaOXTdLHPDRYnd2kuA7RjuYnkxYOFUyO14GN+DLx2w+tqRoH25DZCO3cBWcDhvHFkihs5ArqFH6uSeZOmz8K+zqnxwcg0rYUSzDf3wucBZS5p78IUz1YCEUybhtcb5C8G0Tuy65Gv7ywlcUKg+vfa56tDN5Oxq5AcMcQcAu88a4boUfocQSTzjPW0cXphw+l1Y4bk1TTW+Fafm8s9FCK95U9KG1q5T6mNos4+V3Tt0i9lWCdBwLS7dfwNBKT4pSksxn5DBPN049LuS3gcnJIZI/B2QkygE5yoaXWbfpk2r1Nbh3zcCVOGr1zN7oDXMOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QJMm3IOd1DDNx9oNhC8B5KvhlUiTeQv8H4vh3lJzxAY=;
+ b=hokUwqrEhMd+05jw7nF9v8Ws8903JwmbNC0Ym3EpOoJPtmEfsO0wcEwgEvOX861JFQVHBfWyIF/V5btTqbZRpcBl/UK7yj/BOgIyYFj1+klMbQNgvMap9VojGWDTUgRb82yTAagdOsKwjSbmWFhl2eapkI5MxtbDtIUYYHH7rkYy855CT72L9vIJMXxu6TWghKeoyvbCVsiQn4zzgcS2uxJQrk74PN85e/bSgJZOfbnAeATy5o65wq7SSMEvDeiXJpXblMBRIq7KoTOouiRM5DMWgVT+SIXHDrExWlZdzgI/OL/GGyjxKe9PJZvUS+1ySb0ltjP+6hpCuuNYQyyrsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QJMm3IOd1DDNx9oNhC8B5KvhlUiTeQv8H4vh3lJzxAY=;
+ b=B/ok7L7eWPIRQPJ98ToElotqhRWL7AvnJGo4AO1V677wFnFu0NkefYzTo3o6oph2nrznqVrRmycCzpg8nRdrE/zSi1KDfVeO02eHTeJrua+5sd8A8slvyu+sl+FiuRmLC+kp2QOmyDWKxx1parDrxoRHpGLvgOLh72ez+4i2aZ8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by GV1PR04MB9135.eurprd04.prod.outlook.com (2603:10a6:150:26::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Mon, 13 Feb
+ 2023 08:55:06 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5725:92ec:f43e:f5fc%9]) with mapi id 15.20.6086.023; Mon, 13 Feb 2023
+ 08:55:06 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     marex@denx.de, stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        krzysztof.kozlowski@linaro.org, LW@KARO-electronics.de,
+        alexander.stein@ew.tq-group.com
+Subject: [PATCH v3 0/6] drm: lcdif: Add i.MX93 LCDIF support
+Date:   Mon, 13 Feb 2023 16:56:06 +0800
+Message-Id: <20230213085612.1026538-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0009.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::18) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com> <87r0uu8g8x.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87r0uu8g8x.wl-kuninori.morimoto.gx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 13 Feb 2023 09:56:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU2_5SO53qs1KVcv7p5O1QP-DWpxVpUhmpFT3MQFKVO5A@mail.gmail.com>
-Message-ID: <CAMuHMdU2_5SO53qs1KVcv7p5O1QP-DWpxVpUhmpFT3MQFKVO5A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: renesas,rsnd.yaml: drop
- "dmas/dma-names" from "rcar_sound,ssi"
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|GV1PR04MB9135:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec7c285b-248e-4faa-e76d-08db0da000e4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0g3pMP7ZLkoZidsGlSi0rAMYcqTGcUYLGyXDANIVprbl3NH2078MO3y4q3LpJiVq5g2sRb7udwHjCbTJlR9W3SkCVmUcDuisg6CS/e6GVtTuM4NopG/lVDEt9olLwLGUTBvfwXB1srlJHtRtP3pXLxaiOchu2ITqJE8Aw31jGPyVzwl/5aGPmryKHW1sh3o0HrpE6eXdGhPZW4LOfWChZ/DfgG00g/yHW58N2jfyUoSNWVHeKgJp/1UNAzRRCAZw3AHp+dRA+gEZ/0FqFxZE5b+0ymf9KqHbn8saOBJQazY9lRiFerjZ2hfC4xLDoTkxlBJqkvkZVQS0NUtsMShLV/zUMlJzrsknbxkBEsKsRT049mYPNYMeqR9inQxQVJFl0OYTcZK0BV6UhMPIuxaKENX0yjf4nwEgHXGBSfYlkYjK093B8TPgi+bRehvy3WHTnAb/Kkajz81o2B3VHBdSmQeUwjIeJhptjgWgIkjtzQG6auoBOROlcSs5VrF/QMnm9y2cxzIMB7fWwuSSkBUhlSiPIvbqw8xDFcDPMhkV3tblryFJ5bPiQ1HI9hICZBRoYK1hc406vQBK5e8nLrLZ2hzirwm397qqqkY9GvNYBmFAA3llimxYtCGnIXzav+/6BJ44tVHoXDdAkwuNcCZukIcJzKSh/aP0/F7/vbYRY8pTifAJWOpw7cUl/wH2pkdb82WPNVU22oXGEPOkSzqgpA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(376002)(346002)(396003)(39860400002)(136003)(451199018)(26005)(186003)(86362001)(83380400001)(36756003)(52116002)(6486002)(316002)(6512007)(1076003)(6506007)(2906002)(38100700002)(5660300002)(38350700002)(478600001)(2616005)(8936002)(8676002)(7416002)(66556008)(66946007)(66476007)(4326008)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?C0wp2T5nOEkyXDYXPqkt9AFp51GB/KcJ2KCLkKowJinRMy4n908saPRin1cr?=
+ =?us-ascii?Q?AxcuQwoyH52z7O4/9ujlVfUa7UhFfhdpbwiItQgUfOQHT0ulCn7RF/1ns5ad?=
+ =?us-ascii?Q?uPkeqjTeCvEoANeRKoHh/HOKwedtJadI15jmitvgumutZJMlnQdat7aJRgtQ?=
+ =?us-ascii?Q?Kak9jbvZbXQ9RHul/cMkwqioBesEHrmYLw5XRNZJ/paPFylJWGVse/ljgsqP?=
+ =?us-ascii?Q?8dL+xiWYF17PG6HujEDMb7F/l0bts0TjwgB1UAoJ1644XuZDcJhn6J5Hgc0a?=
+ =?us-ascii?Q?FuQ3bzjeUBlfnkRo/WH1d25YZNIL9c5SpSUzhWnnbcN40Xi2Vu7LTJtW9/Z6?=
+ =?us-ascii?Q?tKVrrZUHntq12l8lobLfvzv8oqc/MZ7Wt7faVqwarTuKoyufLLieRGzBlcsR?=
+ =?us-ascii?Q?Tt4c5V1LV1li8VN7W7TL3W3/Z95jpvhevCJDH3f+woHyZJcadWl7e7dFdWW2?=
+ =?us-ascii?Q?Zf94KX70R+v5GNhJzU921IMwbjq+icANz06UClpEPLm34WaHFyno3lSPOEo2?=
+ =?us-ascii?Q?ySiiYIKyBh3uTipqzxK8LAQ2PbFF8RqC5jxE0f3Bys8Xq6l/RgLM+QZuuHGc?=
+ =?us-ascii?Q?9jzqU+jcltIOCYLhFGMQHZPvjIC6w0BfFhdJx0WYdCtAGX4HKrDdlHQPriUb?=
+ =?us-ascii?Q?pGYBZ1WWJN74JeALFFGapDKrR2eW9kUsJN1f54SG/XGU2YNXO4s7fwudp38q?=
+ =?us-ascii?Q?xCKmvGSIqTS/OBHaV7EAjIZL32m7CO/wafVwnoGT1aJqBw60A2cbgzsqEXnO?=
+ =?us-ascii?Q?38I5Ww2dnSGyRRGS9RbQ7zTxYv0ZWfLvfP1QLWbLq3gVLIpmlbJPxo98Z9iY?=
+ =?us-ascii?Q?Vc+5TPU/EjCHP1PTIvHwLrSIviJueRw6MMlcer4stowytoB+wUXbp5sa+EJ7?=
+ =?us-ascii?Q?NwvtqpzSMwag/xAUoH93DhNMb7UhgYIWjv2jO1V0dxNRYQITz+3N0/e218YX?=
+ =?us-ascii?Q?TwWaCgCMya0Jdy+ORIw0d8zF9mSebR1EAe99DmwpmfgXVSXIXltcqNbb//4d?=
+ =?us-ascii?Q?UIl0XD2w2PeXeQOGCmBexEA1jmRut6r9NVas7txwzkPkW0CeB9WaQ3so6UzL?=
+ =?us-ascii?Q?TpGbGRdZYn+PAgWwaM/l4IimR5d93iUS7G0C4YbhU2jTCj327Fd3OWjZlzyR?=
+ =?us-ascii?Q?6JcWtcs8Exsv9f9/q0Ih2J5uWBi2JuP7c8onU/0a8HiqkbkPuzAAnUGr6OBW?=
+ =?us-ascii?Q?exmwVsAGDyiUI974pirgOj5uRq3QC1G2FLz9nxk1WtBPO7x24GSDAxxsOgkx?=
+ =?us-ascii?Q?KmJgIheCr9AONcfa/67yj+9ECmhBfufV0rpv6QQ8TBBMbwLoVCnLKFE/TyN+?=
+ =?us-ascii?Q?unmGc7bsGbwzlvBg3K8UC5ndumuKNIwkIZlwotvfBZFuccW1LYo9pu/ZkTZk?=
+ =?us-ascii?Q?WsI98f38aCHuKRWQdLenI7aH39t/OdDA/5xF5fZh1QZlvsym66EnjHMT8E70?=
+ =?us-ascii?Q?ytYXl7c9hWdJkeA0ziJWezcyuBAlRXDHRM/k8PSh5SlM2QXvInH/w4J9Js/a?=
+ =?us-ascii?Q?68ktHVE+6St5dhTFsq67Trs47v5qt6ylWA8PVzWJPUIfkGZYwzbiR6pyRXlD?=
+ =?us-ascii?Q?K/8mWh5865r5A9uIgSQasZyxrlAYl7uNBnF13FZC?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec7c285b-248e-4faa-e76d-08db0da000e4
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2023 08:55:06.6642
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T5yeg+CCOZI3Ggq8w+tiV9NHVHHH0EH9c5AN/jLNgoR+ugVmeKYGg/ySgfCMC69gIIxd+VZ9I4Jh3UOMJWODKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9135
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+Hi,
 
-Thanks for your patch!
+This patch set aims to add i.MX93 LCDIF display controller support
+in the existing LCDIF DRM driver.  The LCDIF embedded in i.MX93 SoC
+is essentially the same to those embedded in i.MX8mp SoC.  Through
+internal bridges, i.MX93 LCDIF may drive a MIPI DSI display or a LVDS
+display or a parallel display.
 
-On Mon, Feb 13, 2023 at 3:13 AM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->
-> SSI is supporting both "PIO mode" and "DMA mode", thus "dmas/dma-names"
-> are not mandatory property. Drop these from rcar_sound,ssi's required:.
+Patch 1/6 adds device tree binding support for i.MX93 LCDIF in the
+existing fsl,lcdif.yaml.
 
-BTW, do SSIU and DVC support PIO mode?
+Patch 2/6 drops lcdif->bridge NULL pointer check as a cleanup patch.
 
-> This is prepare for Gen4 support. See more details on Link
+Patch 3/6~5/6 prepare for adding i.MX93 LCDIF support step by step.
 
-"This is preparation" or "This prepares"?
+Patch 6/6 adds i.MX93 LCDIF compatible string as the last step of
+adding i.MX93 LCDIF support.
 
-> Link: https://lore.kernel.org/all/87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87r0v1t02h.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87y1p7bpma.wl-kuninori.morimoto.gx@renesas.com/#r
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+v2->v3:
+* Fix a trivial typo in patch 6/6's commit message.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+v1->v2:
+* Add Krzysztof's A-b and Marek's R-b tags on patch 1/6.
+* Split patch 2/2 in v1 into patch 2/6~6/6 in v2. (Marek, Alexander)
+* Drop '!remote ||' from lcdif_attach_bridge(). (Lothar)
+* Add comment on the 'base' member of lcdif_crtc_state structure to
+  note it should always be the first member. (Lothar)
+* Drop unneeded 'bridges' member from lcdif_drm_private structure.
+* Drop a comment about bridge input bus format from lcdif_crtc_atomic_check().
 
-Gr{oetje,eeting}s,
+Liu Ying (6):
+  dt-bindings: lcdif: Add i.MX93 LCDIF support
+  drm: lcdif: Drop unnecessary NULL pointer check on lcdif->bridge
+  drm: lcdif: Determine bus format and flags in ->atomic_check()
+  drm: lcdif: Check consistent bus format and flags across first bridges
+  drm: lcdif: Add multiple encoders and first bridges support
+  drm: lcdif: Add i.MX93 LCDIF compatible string
 
-                        Geert
+ .../bindings/display/fsl,lcdif.yaml           |   7 +-
+ drivers/gpu/drm/mxsfb/lcdif_drv.c             |  71 +++++-
+ drivers/gpu/drm/mxsfb/lcdif_drv.h             |   5 +-
+ drivers/gpu/drm/mxsfb/lcdif_kms.c             | 202 ++++++++++++------
+ 4 files changed, 207 insertions(+), 78 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.37.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
