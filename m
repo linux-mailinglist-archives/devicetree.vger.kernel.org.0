@@ -2,130 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA74D6945DC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:34:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C79096945E0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:34:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjBMMd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 07:33:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45610 "EHLO
+        id S230367AbjBMMeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 07:34:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbjBMMd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:33:57 -0500
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05351A24C;
-        Mon, 13 Feb 2023 04:33:48 -0800 (PST)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 7763A26F77E; Mon, 13 Feb 2023 13:33:46 +0100 (CET)
-Date:   Mon, 13 Feb 2023 13:33:46 +0100
-From:   Janne Grunau <j@jannau.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229758AbjBMMeZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:34:25 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAEB14EB0;
+        Mon, 13 Feb 2023 04:34:20 -0800 (PST)
+Received: from rico.lan (unknown [159.196.93.152])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 276EB20034;
+        Mon, 13 Feb 2023 20:34:15 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1676291657;
+        bh=AbnhUf2jT5hj7p6JuOOwz4CzqTHAGtxv9hk5Xq/6WcY=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=P8VDGGOKUiSD67DyMS7WJOrKGYv7fbslE37MxTCXoA3mP9AbvXTkkzWpIG0yMzi3Z
+         Ud2V4L7/dIl52TaAoNr8aK4BOCLf9LV3MMb3qnW+UfvOjOHKfl7xk73RtrHuy9pdrY
+         peP0UHqjNmXZpiAVxodOtScW9D3c7bvx02AZJmQK6ogccIHvOcLkuENcy/LZ8slEJ+
+         Lkwdu30c+XMRQ8C6pojEKfbdWFXKZsLv33/IbfQtJC66KWAwrTU2jhZib2f0GZNQML
+         1d0rXke/b2Ghys8ftaIxr7hSCQIS1M1/vZ/RlM0e/xSrjBE8+V5pShompsXpqdX8ic
+         ivfasQXyH6g0w==
+Message-ID: <d58b6170427c9d1414118a0376e98d40f2579b20.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 2/3] clk: aspeed: Add full configs for i3c clocks
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/17] dt-bindings: interrupt-controller: apple,aic2: Add
- apple,t8112-aic compatible
-Message-ID: <20230213123346.GB17933@jannau.net>
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-5-cb5442d1c229@jannau.net>
- <2f5a63ba-f4de-da89-7621-3fe1d79cdc94@linaro.org>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Date:   Mon, 13 Feb 2023 20:34:14 +0800
+In-Reply-To: <45ce9e62-2620-b959-985d-ae00b071e350@linaro.org>
+References: <cover.1676267865.git.jk@codeconstruct.com.au>
+         <5ee4ade6820a9db8dc9c20bb39fd8a4c4cd7c2a6.1676267865.git.jk@codeconstruct.com.au>
+         <45ce9e62-2620-b959-985d-ae00b071e350@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2f5a63ba-f4de-da89-7621-3fe1d79cdc94@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-13 12:12:25 +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2023 16:41, Janne Grunau wrote:
-> > The Apple M2 SoC uses AICv2 and is compatible with the existing driver.
-> > Add its per-SoC compatible.
-> > Since multi-die versions of the M2 are not expected decrease
-> > '#interrupt-cells' to 3 for apple,t8112-aic. This is seamlessly handled
-> > inside the driver.
-> > 
-> > Signed-off-by: Janne Grunau <j@jannau.net>
-> > 
-> > ---
-> > This trivial dt-bindings update should be merged through the asahi-soc
-> > tree to ensure validation of the Apple M2 (t8112) devicetrees in this
-> > series.
-> > ---
-> >  .../bindings/interrupt-controller/apple,aic2.yaml  | 23 +++++++++++++++++++---
-> >  1 file changed, 20 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
-> > index 06948c0e36a5..120e23ff668c 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
-> > @@ -31,19 +31,22 @@ description: |
-> >  properties:
-> >    compatible:
-> >      items:
-> > -      - const: apple,t6000-aic
-> > +      - enum:
-> > +          - apple,t8112-aic
-> > +          - apple,t6000-aic
-> >        - const: apple,aic2
-> >  
-> >    interrupt-controller: true
-> >  
-> >    '#interrupt-cells':
-> > -    const: 4
-> > +    minimum: 3
-> > +    maximum: 4
-> >      description: |
-> >        The 1st cell contains the interrupt type:
-> >          - 0: Hardware IRQ
-> >          - 1: FIQ
-> >  
-> > -      The 2nd cell contains the die ID.
-> > +      The 2nd cell contains the die ID (optional).
-> >  
-> >        The next cell contains the interrupt number.
-> >          - HW IRQs: interrupt number
-> > @@ -98,6 +101,20 @@ properties:
-> >            - apple,fiq-index
-> >            - cpus
-> >  
-> > +if:
-> 
-> Put it under allOf. After "required:", just like example-schema asks for.
+SGkgS3J6eXN6dG9mLAoKPiBCaW5kaW5ncyBhcmUgYWx3YXlzIHNlcGFyYXRlIHBhdGNoZXMuCgpP
+SywgSSdsbCBzcGxpdCB0aGVzZSB1cCBpbnRvIHRoZSBkdC1iaW5kaW5ncyBhbmQgdGhlIGNsayBj
+aGFuZ2VzLgoKPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2FzdDI2
+MDAtY2xvY2suaCBiL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svYXN0MjYwMC1jbG9jay5oCj4g
+PiBpbmRleCBkOGIwZGIyZjdhN2QuLjYwMDU0OWQ3YmVlOCAxMDA2NDQKPiA+IC0tLSBhL2luY2x1
+ZGUvZHQtYmluZGluZ3MvY2xvY2svYXN0MjYwMC1jbG9jay5oCj4gPiArKysgYi9pbmNsdWRlL2R0
+LWJpbmRpbmdzL2Nsb2NrL2FzdDI2MDAtY2xvY2suaAo+ID4gQEAgLTU3LDggKzU3LDYgQEAKPiA+
+IMKgI2RlZmluZSBBU1BFRURfQ0xLX0dBVEVfSTNDM0NMS8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgNDAKPiA+IMKgI2RlZmluZSBBU1BFRURfQ0xLX0dBVEVfSTNDNENMS8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgNDEKPiA+IMKgI2RlZmluZSBBU1BFRURfQ0xLX0dBVEVf
+STNDNUNMS8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgNDIKPiA+IC0jZGVmaW5lIEFT
+UEVFRF9DTEtfR0FURV9JM0M2Q0xLwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA0Mwo+
+ID4gLSNkZWZpbmUgQVNQRUVEX0NMS19HQVRFX0kzQzdDTEvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoDQ0Cj4gCj4gVGhpcyBpcyBhbiBBQkkgYnJlYWsgYW5kIGNvbW1pdCBtc2cgZG9l
+cyBub3QgcmVhbGx5IGp1c3RpZnkgaXQuCgpJJ2xsIGFkZCBtb3JlIHJhdGlvbmFsZSB0aGVyZS4K
+CkNoZWVycywKCgpKZXJlbXkKCg==
 
-moved
-
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: apple,t8112-aic
-> > +then:
-> > +  properties:
-> > +    '#interrupt-cells':
-> > +      maximum: 3
-> 
-> Shouldn't this be:
-> const: 3
-
-same effect but more explicit, bot changed
-
-> > +else:
-> > +  properties:
-> > +    '#interrupt-cells':
-> > +      minimum: 4
-> 
-> const: 4
-
-thanks
-
-Janne
