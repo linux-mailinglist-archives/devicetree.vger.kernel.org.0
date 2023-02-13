@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E842695232
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 21:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEBC0695239
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 21:50:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbjBMUuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 15:50:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42826 "EHLO
+        id S229468AbjBMUuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 15:50:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjBMUuB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 15:50:01 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F6B1F5C7
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 12:50:00 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id sb24so11032315ejb.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 12:50:00 -0800 (PST)
+        with ESMTP id S229704AbjBMUuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 15:50:04 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8171F901
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 12:50:02 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id lf10so3128086ejc.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 12:50:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=B9e4S6OWedBx8L422WXZzIY6pxRaBgRtincFc9juEdA=;
-        b=opyp3Yca3V7VCj/PJsd8/v+xJ7fQYRGUIgB96ZT5voZjCrxnt411MeugF8TLCZZz4S
-         mLJaB6DAvTgT5Gr9LDkpSm3BYEJkrYDikisYI/RzqoICaT3zwHm6gEmDRSsRGLxSm13O
-         4rblPoMOMge+q5h5ykKNSkljrdwVjeMxMNuapURXMnvLp3jJtAf5xK63fPlB2KhVhSK5
-         2CefGEsGzv08CcijvGkZ/aFJ4WP5LthlWkU2ik9+xAE/bqj40ISp8czbNNkf8FBNaWms
-         yw/uJg50dH5lmmrJhAqwVOWLsFfS1JXPN7Jv815nZbLwrABnLcQGOyuyfQHMifLSDUsA
-         +V+w==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=imnGfa1cPwcrAF1LbWbmEFRL7Cg9qGkZV/LdJAwktJE=;
+        b=lY7kjkDDVPHYQJm2Cg3M+TbXaZTBvmZyCRyvU1aMuvl7cg6zcGWrBJwgATRMB3bhnq
+         MbHNF7S0L2ZehFpkPYVZPc8F2x685CECLmPaq1sz1o41HFCyV2uxcitOcCPKUyu/gi9+
+         K2IG9dGcuIC2535IDzys6DYswvi4z/YuoMj/bvqpESvkIH0j9Lfw6QRgikUbyvroiqQK
+         vQ8uTsRu/j3hmez1CRGEdj5rk2ctQWDkdKMtJoZhav5daLJHouq50HDgC/JrL+QQgwVR
+         4XztIoCD1Pl43/4tBeRg943lpPga6x+b13w+Gl2Za2SYle8cN9/VKkE/hvm/XsSsvEfx
+         oW1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B9e4S6OWedBx8L422WXZzIY6pxRaBgRtincFc9juEdA=;
-        b=cbW3XYNz6wIEaBh/2iJYKmoDMZB68IPg0+Z1T9e/npm/LTArNDpC2vO6fGVwhfXQY0
-         gxDuFMzXaEBWI6Po/d+oSaTmjSaqaJjIgFyI+T88IJuiSKxsxb0GMjkVWW9/wI5lZuvN
-         9cWw2j/+dsWgnpFJDQhFA+I+QeTAHMx6bFkkDgBJ57yq0sa5iktTi1RgbPfx2kMQtd8R
-         JYC27COsp5PUOAUwfwK40pgiRuOKsVObWIO7hUOKSA6IGUtLII3MwKkQY8HtNftjAnQU
-         yXyvlZsyXjPGaiX3wlymZ1skRaef0NIEOQ3qVzUFQyMKbnfBohGPDdUVa9MLGE8TovNH
-         aEIA==
-X-Gm-Message-State: AO0yUKW1U/u8hPb72Ud7euHUiWMP60ooNVrlTNUrL2FZCnlKJ213+OiK
-        unbLuQeDsUaOAPS0kpp5FXBkYQ==
-X-Google-Smtp-Source: AK7set8I9mPWZqAW6PO/bSEyNhmEpy6iSrh4BJ9XjINXWT6EWKK8dFk64FglXqsNwtUa0cPbDzT8qA==
-X-Received: by 2002:a17:906:cb85:b0:8aa:11dc:ac6 with SMTP id mf5-20020a170906cb8500b008aa11dc0ac6mr195931ejb.57.1676321399462;
-        Mon, 13 Feb 2023 12:49:59 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=imnGfa1cPwcrAF1LbWbmEFRL7Cg9qGkZV/LdJAwktJE=;
+        b=D0c0POwGiq7QaKfSBvGh3VVvkkMvwJ6ENv/hByfStPd33aLotjRWfadisW973bFoDn
+         LDNOMBGyCnirgf0oOf8DyChff4lKhfPAT6joxF9xUcfus2srDrxKCEugcAHUd9YT3KvM
+         jetU21lMpdXcx9+61jwdDAX6uMPAKHDuVMwLXbt0DaNbqhHxB7Unmhx0q3If4V5IRyuw
+         xLuirnI3otpjJDNLNaPtWKV7VmG2djLhsWULDcLQmvtQZb9pN5mcWsw635y9dO8C18WN
+         7WvV7CnHYEwA5OhNn6KWz7BNTHr6yOWeVl6r/rmfh3zDwY/PeqyVhN5HWfGsup2Ujctr
+         C5SA==
+X-Gm-Message-State: AO0yUKVgrk+c23LWj35GZstzcfiLtpf22HnvRvMl6AZyahR7DycU8xgL
+        AOisznfjoyXNe0u/We3n98f6Zg==
+X-Google-Smtp-Source: AK7set8KBNhrN8JbTva/q58cO1gxouyl6/xAqySwNEO49npwGgw8l5Nye2w3PT7Zija18IS9KC0qOQ==
+X-Received: by 2002:a17:906:53d4:b0:878:5d46:9ed2 with SMTP id p20-20020a17090653d400b008785d469ed2mr251326ejo.39.1676321401102;
+        Mon, 13 Feb 2023 12:50:01 -0800 (PST)
 Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id f21-20020a170906739500b008a94f69a1e7sm7303123ejl.163.2023.02.13.12.49.58
+        by smtp.gmail.com with ESMTPSA id f21-20020a170906739500b008a94f69a1e7sm7303123ejl.163.2023.02.13.12.49.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Feb 2023 12:49:59 -0800 (PST)
+        Mon, 13 Feb 2023 12:50:00 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -58,47 +59,47 @@ Cc:     marijn.suijten@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: power: supply: pm8941-coincell: Add PM8998 compatible
-Date:   Mon, 13 Feb 2023 21:49:48 +0100
-Message-Id: <20230213204950.2100538-1-konrad.dybcio@linaro.org>
+Subject: [PATCH 2/3] dt-bindings: power: supply: pm8941-coincell: Don't require charging properties
+Date:   Mon, 13 Feb 2023 21:49:49 +0100
+Message-Id: <20230213204950.2100538-2-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230213204950.2100538-1-konrad.dybcio@linaro.org>
+References: <20230213204950.2100538-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a specific compatible for the coincell charger present on PM8998.
+It's fine for these properties to be absent, as the driver doesn't fail
+without them and functions with settings inherited from the reset/previous
+stage bootloader state.
 
+Fixes: 6c463222a21d ("dt-bindings: power: supply: pm8941-coincell: Convert to DT schema format")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../bindings/power/supply/qcom,pm8941-coincell.yaml       | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml  | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml
-index 0450f4dd4e51..b7b58aed3f3c 100644
+index b7b58aed3f3c..d62e3af55560 100644
 --- a/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml
 +++ b/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml
-@@ -16,7 +16,13 @@ maintainers:
+@@ -43,8 +43,6 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - qcom,rset-ohms
+-  - qcom,vset-millivolts
  
- properties:
-   compatible:
--    const: qcom,pm8941-coincell
-+    oneOf:
-+      - items:
-+          - enum:
-+              - qcom,pm8998-coincell
-+          - const: qcom,pm8941-coincell
-+
-+      - const: qcom,pm8941-coincell
+ additionalProperties: false
  
-   reg:
-     maxItems: 1
 -- 
 2.39.1
 
