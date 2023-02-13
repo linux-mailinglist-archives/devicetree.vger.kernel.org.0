@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81903693FD8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:44:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5FC6693FE1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjBMIod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 03:44:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49838 "EHLO
+        id S229867AbjBMIpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 03:45:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbjBMIod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:44:33 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D551010C6
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:44:31 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id a2so11280989wrd.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:44:31 -0800 (PST)
+        with ESMTP id S230108AbjBMIo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:44:57 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB81A5C0
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:44:56 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id o15so7975917wrc.9
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 00:44:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2YIdYTMgNx2IaCEVJN4jlOnxMUO1xnqAx+6A+uNEAcc=;
-        b=YjkXFCRg5TcrOcgL2Fs38nat5ry747T37B6iJUrC6jMA1Z+o0w6Nilc0BCchSy4rN2
-         OF3RVtd55sYCgNDu9/l75A+Fj7VAZIwaCBhNWg2dfQm6qzPypxx9OLmcB+dT1SzcZBVA
-         XlaFfpmelcHXtUV4OAZXJQvkdHWdsKy33ocb1SW1b4dvXZFxrzfSBdNLH4DqjV9uw7cq
-         rY98ChhHgQNg7i8EcT+4Ibe+9F9ro2YqaruhAzSKWov11JxiroCTZn/Q75k4J6DtNzJP
-         W17HkjQkVAi/J+Jit4UeI4blF5i2x9EZiZPsjlRJc8ATWjk8hVKV5s4DO+fMUYkII+i0
-         2v0w==
+        bh=MVhmnyzlvjU6w08QExRu/9m1+Smxo1ZuK+3+ewxQH6w=;
+        b=ce9PhkrM8KBdrxGPKkF//JQ72Jf3C86E9bAfdsACY7vkJPlsRQ7U5FLlsbvloeyoDs
+         nJdUN7Fwq8SkViocpgckP3Qi00lfpMF1EB+EbRHs4XecO9AqYXfFTIBN5Poex9cLWq9N
+         YeQqkri0L9RDT4kXruqMYP/3LByQcYhIx/f8cLzEmCdCeimDovmkdWr5CnWu5tWvFMPH
+         4VRItkQhIjgImPfC0P5BlVi2qbXz3JzQe3UwmGW3WXoAA3VhaeBaLm3Ajb0eUGeYfPI6
+         5iCw9T1/W/A+6oCvvUmARMyb6/bFisL9czYsHdrxEe2lJKQNX/3vtgbK8OvkdIhXwknK
+         YeYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2YIdYTMgNx2IaCEVJN4jlOnxMUO1xnqAx+6A+uNEAcc=;
-        b=K67Rpqk1LRlvx/gd1O3/ibQUwZpwptf/o/11nG3Hbtd+KSpKBFfikpzH/tT/yY/5sL
-         L6C2a9QPBNdUVoOe62aEXbuTUUlEMe/ug8L+SJBdCK4o0wvEKVH9ukIt0jUt+J/60zPD
-         TlL3xRlvJlsIq1+WA6QS6BLJvRpS6Kj1P/nsXT4JdkkzmvZuVPE9jHLpWHvVf01aWuig
-         WDdkE7H90/qMjAnS9QGffytPx2/UqiCoXc9FIFFZgDRXFNqj8A7pprUeRcmgtKsFzyXa
-         REQOq1N/MfhXFaIWvk2bAaRBcaGHbN8bdMdTQbh6PXTAypr1Ii2yJEZ4tuzXJl112avT
-         k/fg==
-X-Gm-Message-State: AO0yUKWi8cQwBQWCk4kUbXDOuSgNVVhStw/RrSiCrNX855e8DYta1IKH
-        mWts933+c30SLDLZoL6YkLrHng==
-X-Google-Smtp-Source: AK7set8yVwUTFGFiHkPZPEALwlo9zuu100bG//XEmpcVm+58X/ACQl/dWsW+UshyzwW2OQ5yTF00fA==
-X-Received: by 2002:a05:6000:1003:b0:2c4:745:13b8 with SMTP id a3-20020a056000100300b002c4074513b8mr12526791wrx.42.1676277870529;
-        Mon, 13 Feb 2023 00:44:30 -0800 (PST)
+        bh=MVhmnyzlvjU6w08QExRu/9m1+Smxo1ZuK+3+ewxQH6w=;
+        b=i0c6nJJFEDYp8nhgB5S9w76a8iMrZ8lPqqCD4UjhLSvgtuAslHsxsWEqUb6X/5q3Ki
+         wMq0qgP72576Oa3ENs8X2k4MG3vC4S9KUMyBJIYAshuKeAW4eT30Q9HSyDpu+/vnTFqd
+         B83RjW/GVXqbIpwP/noztUWFFqzrE7FEGEN8aYDTTX1M7SCtkbJSsOVjzZjo8Y+rEKdx
+         hZiQs39dP+rm/2/8UyLHrQAawpALeWijR7rQDxKQGRd5p5wf1AkqqwQLRLlwD2XMlcbu
+         Z2zzmDo3s64dEWs2DcXGS9l80NLXQtK5dZz4kgadlJKSAcl3CcWgBLcKm33aGg4NE+HQ
+         8wUA==
+X-Gm-Message-State: AO0yUKWeCZUWcDkaqxfWPBjX/NEAjjHvN7Y2sBkm1DaKdS2wH/UmNNpn
+        939EwqcEgYyxBPOi74DhaxeyMw==
+X-Google-Smtp-Source: AK7set9Bf8sZZnVH9yHy5eoKdsD65/9rHk/Bl88GUtYBCSU8RhhUWNl+dZb0GhT13B9JLrxh69Xo1Q==
+X-Received: by 2002:adf:fcd2:0:b0:2c5:48cd:2f04 with SMTP id f18-20020adffcd2000000b002c548cd2f04mr8157187wrs.6.1676277895424;
+        Mon, 13 Feb 2023 00:44:55 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o7-20020a056000010700b002c559def236sm1353565wrx.57.2023.02.13.00.44.29
+        by smtp.gmail.com with ESMTPSA id a28-20020a5d457c000000b002bdda9856b5sm10079519wrc.50.2023.02.13.00.44.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 00:44:30 -0800 (PST)
-Message-ID: <4eed8885-a149-43b1-f6f6-f9b7fbb2f3b4@linaro.org>
-Date:   Mon, 13 Feb 2023 09:44:28 +0100
+        Mon, 13 Feb 2023 00:44:55 -0800 (PST)
+Message-ID: <d0919faa-63ef-0957-afb4-543a05864fc9@linaro.org>
+Date:   Mon, 13 Feb 2023 09:44:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/3] dts: ast2600: Add reset config for I3C
+Subject: Re: [PATCH v2 2/3] clk: aspeed: Add full configs for i3c clocks
 Content-Language: en-US
 To:     Jeremy Kerr <jk@codeconstruct.com.au>,
         linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
@@ -66,15 +66,14 @@ Cc:     devicetree@vger.kernel.org,
         Dylan Hung <dylan_hung@aspeedtech.com>,
         Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
 References: <cover.1676267865.git.jk@codeconstruct.com.au>
- <f426c3a22d64d076b007a0fc75dc95a389a9387f.1676267865.git.jk@codeconstruct.com.au>
+ <5ee4ade6820a9db8dc9c20bb39fd8a4c4cd7c2a6.1676267865.git.jk@codeconstruct.com.au>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f426c3a22d64d076b007a0fc75dc95a389a9387f.1676267865.git.jk@codeconstruct.com.au>
+In-Reply-To: <5ee4ade6820a9db8dc9c20bb39fd8a4c4cd7c2a6.1676267865.git.jk@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,17 +81,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/02/2023 07:02, Jeremy Kerr wrote:
-> This change adds the reset line definitions for the AST2600 I3C block's
-> reset inputs.
+> The current ast2600 i3c clock definitions are top-level (rather than
+> based on their actual hw sources: either HCLK or APLL), and include a
+> couple of definitions for (non-existent) i3c6 and i3c7.
 
-1. Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-2. This is not DTS. There is nothing from DTS here.
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
+Why do you use subject prefix in patch 1 different than in patch 2?
 
 Best regards,
 Krzysztof
