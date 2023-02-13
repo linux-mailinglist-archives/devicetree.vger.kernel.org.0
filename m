@@ -2,119 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC0069535F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52029695377
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbjBMVtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 16:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
+        id S230232AbjBMV4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 16:56:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjBMVtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:49:40 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706D1CC19
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:49:39 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id a10so14825196edu.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:49:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HgFJ7WP5/aQ3NluuT93tSKXCSYsdZX4LGCi7cSWevq8=;
-        b=xmd72FGQOLvdnEriWfOGMMya7fd9XHpHh1fJDUIaKxAACBQk/GqDJrvUOlEZV7QdBe
-         xM3UUh/Nqa5rm/jgcI6PIrZUK0AC3qILfm6mp76DBZ0buGPu1nQioAOJRdGQfxEnlwFR
-         VhAV/8/r39OXG8UEBv4HOck0NMjMYBLktb6s7v+u0eyQ58p38zMV5jVya36QFk4PktOB
-         Oel0paMAUXdfmU7B+qUcoGkyEG69LFxpEXYAHs0qWUtVe8NWXAPZWyB2eKpRh/rPTeF4
-         e03BCwoJ/gwuFa/WcMq3pcLksN5w9h1kkoocGw7FmhXP7rmyzFcZ4e3NA46o7am5WUAd
-         eReQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HgFJ7WP5/aQ3NluuT93tSKXCSYsdZX4LGCi7cSWevq8=;
-        b=LDVClfje/mOKzZ2CLOu+J1cyg2d+Te5a+gvAlggDVSFeEoh9/Dh0ggzc0WUceviQsC
-         03jINWC7IiA+e7dDjX94k0BSXhITc+icFGAvL8PkrrTa2sV6IZYHZ5heszLxJMlQ7MD2
-         5qIzPN9cPFjComK7Sa/yTByhtlhp+lhJ+DlPUFsBOpbyulNWc7/QgGesNJylqaEHYbd1
-         rkwQS+Q9alroVclAbWFfD80DymRX/U2rXglmagzvNcF6wN5T1nBVcxu7h377g3go23/x
-         wiU71QXAS1zIDPQpmPmSoIRuXuNCbp1sHEX9DCTX8O0DnXx21/uvuFGPIueU5lQ73SoT
-         E5ig==
-X-Gm-Message-State: AO0yUKVOgNaI353V5waNTy+RAb8trHSKgRZlszBVqblpaAMs/93jPzwu
-        4k0WQLAee6IoCBRQs7l+SuUyMg==
-X-Google-Smtp-Source: AK7set8d4SLsjD+XttY8D3PsH66Er6RGiL4rUP4KCx34brMmzTgCNpL16KvuvhhFV2zNv6DJapCg3w==
-X-Received: by 2002:a50:9e23:0:b0:4a2:6573:5c35 with SMTP id z32-20020a509e23000000b004a265735c35mr158012ede.21.1676324978032;
-        Mon, 13 Feb 2023 13:49:38 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id r30-20020a50aade000000b004acbe846b8fsm3270242edc.34.2023.02.13.13.49.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 13:49:37 -0800 (PST)
-Message-ID: <d34d8851-fd73-9b87-9340-df25b64e96bb@linaro.org>
-Date:   Mon, 13 Feb 2023 22:49:35 +0100
+        with ESMTP id S230493AbjBMV4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:56:40 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DEDB13D47;
+        Mon, 13 Feb 2023 13:56:39 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DKKK1k021245;
+        Mon, 13 Feb 2023 21:56:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=1d9Z7CMTqAWcpWGEO13jJID68YgM2T15rUVTC/xGtAc=;
+ b=dj1i95v/l7BrcyHc+5GhA04GrukM9Pix4guIXcnHYn829m2azjfj7Y1bWgLHURrZs5Rc
+ KoSdHYVFEaF+zmp6VsL1JCx8LS+poQbGTQot0sbaFigfrE9+ajRZX7Jfq+sL6sKS1LY/
+ HSpYe339dKqT0pKv2wLM+b+OAzMs/qHIpL6sK4ws3PWCS4t7MZcxRg4iIiKbHNfrWSf0
+ 5s0fItUvv5gUhXa1Ee/za+tP0ewxmKCk75cWfppjsSmBq2BgpjMl3FasE3pUqihRjEXD
+ OD3apq4mM04sSDbs5EGXuM3rhhjXla6YGu2xbtFHsxXrmwKrvRYqcxIpWq7xofA2Hm/4 jA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3npmvrkyrn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 21:56:26 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31DLuPW2022452
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 21:56:25 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 13 Feb 2023 13:56:25 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v4 0/4] arm64: dts: qcom: sc8280xp: Enable external display
+Date:   Mon, 13 Feb 2023 13:56:15 -0800
+Message-ID: <20230213215619.1362566-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Add missing property for
- OnePlus 3T
-Content-Language: en-US
-To:     "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kernel-dev@igalia.com, kernel@gpiccoli.net,
-        Harry Austen <hpausten@protonmail.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-References: <20230213201651.1902323-1-gpiccoli@igalia.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230213201651.1902323-1-gpiccoli@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _yuFjEL3FgZIVlpQn2W5bX80HqW12SaV
+X-Proofpoint-GUID: _yuFjEL3FgZIVlpQn2W5bX80HqW12SaV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-13_12,2023-02-13_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 mlxscore=0 impostorscore=0 mlxlogscore=726 suspectscore=0
+ adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302130190
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This introduces support for external display on the SC8280XP laptops.
 
+Support for swapping orientation and changing the mode of the SuperSpeed
+lanes is being implemented in the QMP driver, so at this point in time
+this is not supported.
 
-On 13.02.2023 21:16, Guilherme G. Piccoli wrote:
-> Commit 5a134c940cd3 ("arm64: dts: qcom: msm8996: add support for oneplus3(t)")
-> added support for OnePlus 3T device, but missed the "qcom,msm-id"
-> property - without that, skales-dtbtool fails to build the device tree
-> image. Let's hereby add it, mimic'ing OnePlus 3.
-> 
-> Fixes: 5a134c940cd3 ("arm64: dts: qcom: msm8996: add support for oneplus3(t)")
-> Cc: Harry Austen <hpausten@protonmail.com>
-> Cc: Yassine Oudjana <y.oudjana@protonmail.com>
-> Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
-> index 34f837dd0c12..5dc8f0adab30 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
-> @@ -14,6 +14,7 @@ / {
->  	qcom,board-id = <8 0 15811 26>,
->  			<8 0 15811 27>,
->  			<8 0 15811 28>;
-> +	qcom,msm-id = <246 0x30001>;
-Hm, this doesn't sound right.. Internet says 3T has 8996Pro..
-Could you check:
+Bjorn Andersson (4):
+  arm64: dts: qcom: sc8280xp: Add USB-C-related DP blocks
+  arm64: dts: qcom: sc8280xp-crd: Introduce pmic_glink
+  arm64: dts: qcom: sc8280xp-x13s: Enable external display
+  arm64: defconfig: Enable DisplayPort on SC8280XP laptops
 
-/sys/bus/soc/devices/soc0/soc_id  # reg[0]
-/sys/bus/soc/devices/soc0/revision # reg[1] after some shifting
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 196 +++++++++++++++++-
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 180 +++++++++++++++-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 189 ++++++++++++++++-
+ arch/arm64/configs/defconfig                  |   2 +
+ 4 files changed, 559 insertions(+), 8 deletions(-)
 
-Also, please include include/dt-bindings/arm/qcom,ids.h and use
-the preprocessor constant from there instead of a magic number in
-the first part of the reg value.
+-- 
+2.25.1
 
-Konrad
->  };
->  
->  &adsp_pil {
