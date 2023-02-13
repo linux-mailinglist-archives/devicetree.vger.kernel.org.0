@@ -2,156 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7C86947B3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:07:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1334C6947B7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 15:09:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbjBMOHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 09:07:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
+        id S229884AbjBMOJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 09:09:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbjBMOHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:07:33 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C716A1A641;
-        Mon, 13 Feb 2023 06:07:31 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31DE6x7J041095;
-        Mon, 13 Feb 2023 08:06:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1676297219;
-        bh=8Y0OYbS4fdAewdB9+FGdvfWhIU9qJDnWJuRH7rldSd0=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=rsdc/e69SeX/g/KJvpqK/NtEmWdVY9KM6ZF0FOjPUSaa39VG32Ht740UbGX1UCdgQ
-         ZQUP7v/BMPdqWCREehECZfTNNh+QAv9aIt3HzsWOcVi5QtHSv6PtV3ucI6bPhDSX6h
-         gg5Qau+LBLMFOvIJ/vDiBFOrCvDTCBgoTxg/g15s=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31DE6xv9005112
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Feb 2023 08:06:59 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
- Feb 2023 08:06:59 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 13 Feb 2023 08:06:59 -0600
-Received: from [10.250.233.148] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31DE6tdU061344;
-        Mon, 13 Feb 2023 08:06:56 -0600
-Message-ID: <6ca5d863-8382-0b13-97f8-a69c3271e3ac@ti.com>
-Date:   Mon, 13 Feb 2023 19:36:55 +0530
+        with ESMTP id S229505AbjBMOJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 09:09:49 -0500
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85F1113FF;
+        Mon, 13 Feb 2023 06:09:46 -0800 (PST)
+Received: by mail-qv1-f44.google.com with SMTP id mg2so1174114qvb.9;
+        Mon, 13 Feb 2023 06:09:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eIx7iOv4awyIg6e6bYoyKtpDPdQ/N84+GemJuTUJibc=;
+        b=Vt+K47R7JfdQuvkbTaVwgh5nSFm76N4o54+zvp4tUxgWgpx0NwsKSBru+Af7BXFFMp
+         0wddQvR20anbsJ2PxqemRvF5zn9et1vNE1gG2P9ToRFWviCwee9hkqn0RdCA/JMleqe3
+         eFLYW4UKCcXZCdGzxvT1ornnWoGl9xKPqcIJjfgKjLos5gxXEEOb5Esdp3sE0lb4qf8m
+         zrYojidFAWsk/LnA9vA1jO4FI0BT8d5vOkGVsPEYl2XmUq5l4K8uRooYkNwqKGse2CrA
+         NmBEdQzUoIJeEuX87JNnfb1lD8dlDbUr6sQmedDwc5HmUg3yx6AkM9UkJa6uUtwuV+TB
+         zjlw==
+X-Gm-Message-State: AO0yUKVxnFVL9CLlOlJHGRQE/f5CnbjM1x9SLuxv+VGSKObYpCVGos5P
+        X1ZEEobCgrNo4vJQniCXIK6PtEvmGU1Cig==
+X-Google-Smtp-Source: AK7set9Zf5tiC2qkf70M3ILdt98GK0lAgJehVgRDjcwlzH/FPXT5N6tcUDiUKBGg2FBT3CbelmKmQQ==
+X-Received: by 2002:a05:6214:27cb:b0:56e:a7d1:4d65 with SMTP id ge11-20020a05621427cb00b0056ea7d14d65mr9401737qvb.52.1676297385852;
+        Mon, 13 Feb 2023 06:09:45 -0800 (PST)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id y206-20020a3764d7000000b0071c2a68d6f2sm9787015qkb.20.2023.02.13.06.09.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 06:09:45 -0800 (PST)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-52f1b1d08c2so39429087b3.5;
+        Mon, 13 Feb 2023 06:09:45 -0800 (PST)
+X-Received: by 2002:a0d:e004:0:b0:52a:7505:84bc with SMTP id
+ j4-20020a0de004000000b0052a750584bcmr2454168ywe.383.1676297385046; Mon, 13
+ Feb 2023 06:09:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: K3 AM62x SoC dts/dtsi include hierarchy and naming scheme
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>,
-        Nishanth Menon <nm@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>, Tero Kristo <kristo@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+References: <20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230131223529.11905-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230131223529.11905-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 13 Feb 2023 15:09:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUszsaQDOT-eZz8+BvFGsFuBbhif+-gHDEZa_oMZUG7ng@mail.gmail.com>
+Message-ID: <CAMuHMdUszsaQDOT-eZz8+BvFGsFuBbhif+-gHDEZa_oMZUG7ng@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: r9a07g044: Use SoC specific
+ macro for CPG and RESET
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <francesco.dolcini@toradex.com>
-References: <Y+KcJdvgDw9EqFCz@francesco-nb.int.toradex.com>
- <20230209153352.5tgkqe3xbby7pmju@polio>
- <Y+aHh7B73mkAjR7Q@francesco-nb.int.toradex.com>
-From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
-In-Reply-To: <Y+aHh7B73mkAjR7Q@francesco-nb.int.toradex.com>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
+On Tue, Jan 31, 2023 at 11:42 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Use a SoC specific macro for CPG and RESET so that we can re-use the
+> RZ/G2L SoC DTSI for RZ/V2L SoC by just updating the SoC specific macro.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> * No change
 
-On 2/10/2023 11:35 PM, Francesco Dolcini wrote:
-[...]
+Thanks for your patch!
 
->>>
->>
->> Typically, our strategy has been to introduce the superset device,
->> primarily because the device variants are quite a few, and without
->> actual users, it makes no sense to introduce a dtsi in kernel
->> in-anticipation of a potential board. Now that said, also keep in mind
->> the part number definitions do change depending on the market demands
->> over time (qualification requirements etc..), The initial device tree
->> was based on the definition we had at the time, as usual, over time,
->> definitions are changing :(.
-> 	
-> ... and from my point of view this is normal and fine. All good :-)
-> 
->> Considering the potential combinatorial explosion if we are trying
->> to constantly catching up with variations of chip configurations as
->> market definitions change over time, we need to be a bit pragmatic in
->> the various dtsi files we introduce. With that in mind, If we have
->> just one board using the part variant, we should reduce the churn in
->> the tree by keeping the processor variation isolated to the board
->> (See arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi as an
->> example), on the other hand, the AM6251 (Single A53 variant) promises
->> to be a variant that will probably get used in multiple boards, I'd
->> suggest introducing a dtsi that is reused across the boards.
-> 
-> Our current plan is to have multiple SKUs that will differentiate by the
-> specific SoC SKU, not sure if this was clear to you, as an example we
-> will have.
-> 
-> for board in variant1 variant2 variant3
->   k3-am6251-${board}.dts
->   k3-am6252-${board}.dts
->   k3-am6254-${board}.dts
->   k3-am6231-${board}.dts
->   k3-am6232-${board}.dts
->   k3-am6234-${board}.dts
-> 
-> that are just the same apart the AM62x SKU.
-> Do you expect something like that (18 .dts files, in this example) ?
-> 
-> To me this is absolutely fine, I just want to be sure this is what you
-> expect.
+> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> @@ -1,12 +1,16 @@
+>  // SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  /*
+> - * Device Tree Source for the RZ/G2L and RZ/G2LC common SoC parts
+> + * Device Tree Source for the RZ/G2L, RZ/G2LC and RZ/V2L common SoC parts
+>   *
+>   * Copyright (C) 2021 Renesas Electronics Corp.
+>   */
+>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +#ifndef SOC_CPG_PREFIX
+>  #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +#define SOC_CPG_PREFIX(X)      R9A07G044_ ## X
 
-I am not sure if we need 18 files, IMO having dts for superset SoC per
-board variant for each SoC variant is sufficient:
+As we're setting a precedent, this might as well be just SOC_PREFIX(X).
+Some SoCs have multiple sets of definitions.
+I can make that change myself while/if applying.
 
-for board in variant1 variant2 variant3
-   k3-am625-${board}.dts (assume k3-am6254-${board}.dts)
-   k3-am623-${board}.dts (assume k3-am6234-${board}.dts)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-And then fixup num CPUs from U-Boot as per SoC detection as long as
-board remains **exactly same** as super set.
+> +#endif
 
-This will limit .dts files to 6. Also limits bootloader's role to just
-disabling CPU cores instead of fiddling around with too many non
-transparent DT fixups.
+Gr{oetje,eeting}s,
 
-Nishanth: feel free to chime in if you have different opinion.
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> For example we do have these dts boards file here
-> 
-> arch/arm64/boot/dts/freescale/imx8mm-verdin-*.dts
-> 
-> and the FDT is patched in U-Boot in
-> https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/mach-imx/imx8m/soc.c#L1245
-> 
-> with the this approach we have 4 dts files instead of the 16 if we would
-> use the exact SOC SKU variant [0].
-> 
-> Francesco
-> 
-> [0] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx-8m-mini-nano
-> 
-
-
-Regards
-Vignesh
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
