@@ -2,134 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B87CC6940AF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:18:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 638E56940BD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:20:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230293AbjBMJSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 04:18:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S229879AbjBMJUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 04:20:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbjBMJSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:18:30 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1156014EA5
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:18:22 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id bk16so11360368wrb.11
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:18:21 -0800 (PST)
+        with ESMTP id S229744AbjBMJUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:20:09 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C2DBC169
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:20:08 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id o18so11407276wrj.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:20:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rw3yM/szOw/a3KA8gGCW3Q7ogoGf9YnFkxpevgNujAk=;
-        b=Ppz2HA3/vAmCK9kHhgM2Wfr+rBkRq2dSP+5stc7+CY/ydgB3SSE7QBARDCd+evDO03
-         ksAioEDaIzxoXLOaDo07GV8orEKvNb+wf7Pzo4tNXkLUEeupEhE0Zh7kFevihfwgzMws
-         FwIFr8aNpjPxLIeBxHYZOYZtJGX+j9JdLhDFCrhst+Jl+jCMDrm51oGqOzwTNXzBobck
-         DIXCCvpGKqbxSx2iY9mFaq34WkpBKbgiHaRsU2rq1eaFW8yFQOnV8MVDEP/kcRRGh6w0
-         gcpnrlcGikhA/oIbIBZlb9c6I4DWfDW5XsUKBiWAlxvUhR3xE9d5tqfa7rnFkG61sO2Q
-         45aQ==
+        bh=bNLG0F4sytAFJuPLCGJpmTMcMTuRJI0BMdm+O22mIWk=;
+        b=h65cQMGeWFtfyp2uBNLZIv4aNJ8crvS/MegClRzuhEPjPg+BDdR7aqGJ9/8XON1Bbu
+         2XZckirgzIKPNipgdUySyNJHJrZukrIayPooX+QCE92pl9aI7oQ7xxgpdLjhBnpDDAPx
+         ZhZyBa5ldmmym80vqoKngS1doGl41+7ZaRSDZNOjybDPD4DsJsWs3Z+64em6pAzfT/Iu
+         xCCuMtGP0ejC69sEtvzbxgq3YINw3hLGcc2NKAVJf7649m1FuUeyHhG+EzSEIGZu4wDd
+         rWYQWhSxHz6TCKYelQvbL1+SZVCWz5+AjihuLGHlsfu4ryj01UUEvu3Emw3dWnybevup
+         XjdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rw3yM/szOw/a3KA8gGCW3Q7ogoGf9YnFkxpevgNujAk=;
-        b=VvX3EOvtWFVs44nbyTeLkhuZU6a4tkjBLQZDdw0lCEazqczaQv81FSubsINDuyL5Nv
-         mR6LxvnOCGbJIgBcwpCinUW0fHj2pO70YiPILqASJo9sNeTTMY7KwP2b40iXAcjC1acR
-         M4gZE6PeW3UHuKI61ameBr+dyvJO+PyKzK5FndrGzWT/trq4U7FFyk4On+PMh/vvJseN
-         qFqXzXeKC14J5AwBZ6nX+pUNnnKheaPx/5OrSjL6Nnjjm4DwBnY19FMrJ1steGa9fmYw
-         aUeEac/FObms0+JkCketQPRiT6WB+g2wy2HKa7gaYnwV2yyiAdPFaGpEUgisfx+PGDsq
-         0luw==
-X-Gm-Message-State: AO0yUKWnBemrVQAZg/HKdoZned7lLHDortLtpxv9Q4MJ77H4UXU51DxG
-        ytOIAaaFFOvva3uzbdw4WWmoVQ==
-X-Google-Smtp-Source: AK7set+mbms7Sfrm5IC13dc1FsrrrbuPKWPMHnaga0s9yOvgGWUErFhVJYZOKqvucdSFplL2f/xVwQ==
-X-Received: by 2002:adf:db4f:0:b0:2c5:4f41:d1c1 with SMTP id f15-20020adfdb4f000000b002c54f41d1c1mr5376057wrj.38.1676279900601;
-        Mon, 13 Feb 2023 01:18:20 -0800 (PST)
+        bh=bNLG0F4sytAFJuPLCGJpmTMcMTuRJI0BMdm+O22mIWk=;
+        b=fVUfHYSS0I/k30E5b+rF/yq3KVn1zBWad6L9W9j8/XrWUafAifKNifmIzuz/v7CrWJ
+         SuVTL6xCdje9pVYzWCw8VlyDpRcvYxe8ge681sdYqyiZbJm7pNTth8GAuSpksvBm0p45
+         kuyLfE1kUc/8NeD+QpOGchoeuRZY6EuPFCm1mLQs7V+uhAukCWSoa73Rk1tR1kP2sSn7
+         rKxnVsJCAN8XmTK7BmhtDJHFrMkBMPCDvu+zCPOnYI09Nd0d4pb4Y7UNrCBDTVwbP1R+
+         k9PM/7U4ZjnQ3uip8r4HOEPEIq/5F39OGjkt1WZjU+YPD79hEc2fWu0tuup2bsFW68PP
+         FWZg==
+X-Gm-Message-State: AO0yUKXp1ahT0g+Qkewnw1MyVTYvoXJS7bqLBQpQJZ51wb6bvDECoVwT
+        Xk2bsYvaiGokR4ijGZSYfiuFJA==
+X-Google-Smtp-Source: AK7set9P9Rf/AgDFodMfFUkknlWiakKXK72hhfRuVm1tf2m8kXJEnbrxw1VZm/dlh2YKzny9lQPCuw==
+X-Received: by 2002:a5d:4682:0:b0:2c5:588f:c5c4 with SMTP id u2-20020a5d4682000000b002c5588fc5c4mr2650463wrq.37.1676280006817;
+        Mon, 13 Feb 2023 01:20:06 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j40-20020a05600c1c2800b003dc4480df80sm18305710wms.34.2023.02.13.01.18.19
+        by smtp.gmail.com with ESMTPSA id m18-20020a5d6252000000b002c3dc4131f5sm10133668wrv.18.2023.02.13.01.20.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 01:18:20 -0800 (PST)
-Message-ID: <c08a0b99-a024-62b3-da2f-d2952e9ae130@linaro.org>
-Date:   Mon, 13 Feb 2023 10:18:18 +0100
+        Mon, 13 Feb 2023 01:20:06 -0800 (PST)
+Message-ID: <17e7a0f4-38b2-cfc7-3058-1fea7bb28b81@linaro.org>
+Date:   Mon, 13 Feb 2023 10:20:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_6/6=5d_MAINTAINERS=3a_Add_Michal_Vok=c3=a1?=
- =?UTF-8?Q?=c4=8d_as_yapp4_boards_maintainer?=
+Subject: Re: [PATCH 01/12] dt-bindings: riscv: sifive-ccache: Add compatible
+ for StarFive JH7100 SoC
 Content-Language: en-US
-To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230210154855.3086900-1-michal.vokac@ysoft.com>
- <20230210154855.3086900-7-michal.vokac@ysoft.com>
- <63e954f4-4e93-9211-9fb3-750976d8c4b6@linaro.org>
- <d1655d90-3939-3029-8473-aa6dc1bfede2@ysoft.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
+ <20230211031821.976408-2-cristian.ciocaltea@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d1655d90-3939-3029-8473-aa6dc1bfede2@ysoft.com>
+In-Reply-To: <20230211031821.976408-2-cristian.ciocaltea@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 10:08, Michal Vokáč wrote:
-> On 11. 02. 23 12:46, Krzysztof Kozlowski wrote:
->> On 10/02/2023 16:48, Michal Vokáč wrote:
->>> Number of the boards is continually growing and we expect more to come.
->>> Add myself as a maintainer of the yapp4 (ysoft appliance v4) platform to
->>> state that we do take care about all of these.
->>>
->>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
->>> ---
->>>   MAINTAINERS | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index fb1471cb5ed3..4d4d9ffc700c 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -23005,6 +23005,12 @@ S:	Maintained
->>>   F:	Documentation/input/devices/yealink.rst
->>>   F:	drivers/input/misc/yealink.*
->>>   
->>> +YSOFT IOTA BOARD SUPPORT
->>> +M:	Michal Vokáč <michal.vokac@ysoft.com>
->>> +L:	devicetree@vger.kernel.org
->>> +S:	Supported
->>> +F:	arch/arm/boot/dts/imx6*-yapp4*
->>
->> I don't think we add per-board maintainers. Otherwise, I have 50 more
->> entries to add...
+On 11/02/2023 04:18, Cristian Ciocaltea wrote:
+> Document the compatible for the SiFive Composable Cache Controller found
+> on the StarFive JH7100 SoC.
 > 
-> I have got drawn into it by the checkpatch.pl script saying:
-> 
-> WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
-> 
-> So I went through the MAINTAINERS file and its git log with .dts related
-> changes. I found some individual board entries and quite recent changes
-> adding new ones. Hence I decided this could be right.
+> This also requires extending the 'reg' property to handle distinct
+> ranges, as specified via 'reg-names'.
 
-They are not right, but solution to that took some time:
-https://lore.kernel.org/all/829b122da52482707b783dc3d93d3ff0179cb0ca.camel@perches.com/
 
-> 
-> Never mind, I agree there is definitely not a maintainer entry for every
-> board supported by the kernel and this patch can be omitted.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
