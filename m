@@ -2,95 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD11694409
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:12:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4424694420
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:13:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbjBMLMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:12:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48772 "EHLO
+        id S231153AbjBMLNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:13:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230099AbjBMLMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:12:01 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE3518B11
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:11:39 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id hn2-20020a05600ca38200b003dc5cb96d46so10980388wmb.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:11:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TqQ+Ufbrf2k8hrdzQxSTas6D4N5ZYvZOx0pZJyKbuXs=;
-        b=GMvuAV7CLQxe96ZF98vrl+9AZeLQ+vX0LH+oYQNjD1GqvpKQjIbip/8BWkothWNKSp
-         3Yc6go/wYd69fSFW8xIgD+0pGefchO04OqfkueK/3RkGUkooe+ED5cLT5aPGnaN8vopZ
-         qRSxcNQx45e8ZdUMsAHWbwOCqqDp4gCdXnp7cy9il7xXvsT9Jz6uXRm9qvArUiKY/4eb
-         LmAXbiolgLgijR6Z52K6jcABNMJ5r8SE5r+z3DHRfK1T+84d7tYdX7uUPprDqBMJ+U8S
-         3HNbzih6fYDhHQz6EDojnb9jFN+SE2D1wVUF41EsOsawDhEwAVBl8T3msAV7Qp4IWKdw
-         O86g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TqQ+Ufbrf2k8hrdzQxSTas6D4N5ZYvZOx0pZJyKbuXs=;
-        b=HuV/cu4HvRbkQ1bID09eTxPy8VWvE7mw8aYKi82i+UHsIeVk0j79dAZ/BGHBaESMTb
-         iZkjK0ivjQ6pSguo7htJXQHb4k+8GdY92R41rJ3K/o6Cl8dCUeLpINk+xJNscWpN2C3s
-         KCnfXVGtjLwF35f7Ck7LoAuWvl1K8d5snf2r0rvd2aitZCl5yx7ixD7Qnvuk9WBOnKEu
-         s0REfI+0DLGrXWDp8cRWKaKf4tCXCd4Dpczbu+HeJHfC5u6a1o16UsHWGZfMKv/waoxy
-         /baVHgSFzoYYGqVX++iS3NY/fq3EPs0zcNurEPYBAO6CdZc8TurLc1U7RU44bgcRHdp5
-         gt1w==
-X-Gm-Message-State: AO0yUKWDCctfWTOeyZvQWrOaQ3/ZeVVpuqWLW8pr2N/4HATEQ7MYi4Sk
-        ujbR/QvgFZciwE1WdtW3GQryN7bm051+IrGn
-X-Google-Smtp-Source: AK7set+mjIQ9U9FwzoCkysttHpwwVlWfAcIb6Y3YcixTf6gnCs1ThPx8ely0+6ZyQaFh/CFSlLiVPw==
-X-Received: by 2002:a05:600c:3b06:b0:3df:f85a:46fe with SMTP id m6-20020a05600c3b0600b003dff85a46femr22888217wms.40.1676286693823;
-        Mon, 13 Feb 2023 03:11:33 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o19-20020a05600c379300b003b47b80cec3sm16466893wmr.42.2023.02.13.03.11.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 03:11:33 -0800 (PST)
-Message-ID: <8c5747c6-0eb4-7314-b343-6d88a38b137b@linaro.org>
-Date:   Mon, 13 Feb 2023 12:11:31 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 04/17] dt-bindings: arm: cpus: Add apple,avalanche &
- blizzard compatibles
-Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-4-cb5442d1c229@jannau.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202-asahi-t8112-dt-v1-4-cb5442d1c229@jannau.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230507AbjBMLNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:13:10 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A178318B05;
+        Mon, 13 Feb 2023 03:12:43 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DAmwTe008650;
+        Mon, 13 Feb 2023 11:11:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=FI9pWqx/wksFLp55LbWyExjYvgbCxbDA+SayAaq4sV8=;
+ b=GiF9YuZ+9MV0plhHsi3M0zDfdXvZ2OclTTqPYKM2k8/zDkyKpCpNo9RNqz5S2iinRWuu
+ e6Kl8AcPInNRDejV12sIJ9gnOm2tfejHBk+iDuNxxPA/VjJfrZLZ4zA+RrquQANZk9VQ
+ lxeKBb8afiYjqn5hrCzJlmGD+M0FaxhBI6iuHvW0i0iGJSmhUhy0cubIHRDE7xgDc+mU
+ cKEAcOgPSQi3WsqxRDiIiFu1G+QReJDnSavAzWI+MIhFyLWl4wetCMTJfb7Mtklgpxsa
+ hebnGkmvFs5aMQ7aUdfY+hMVXMPdjnzZFzPIKVENzwai1MIuPQ66DdZMkpqFNfVyuhdj BQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3np3deuyqa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 11:11:53 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 31DBBnCt018455;
+        Mon, 13 Feb 2023 11:11:49 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3np43k9kt9-1;
+        Mon, 13 Feb 2023 11:11:49 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 31DBBn4i018425;
+        Mon, 13 Feb 2023 11:11:49 GMT
+Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 31DBBngq018422;
+        Mon, 13 Feb 2023 11:11:49 +0000
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id ECDE24C09; Mon, 13 Feb 2023 03:11:47 -0800 (PST)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com, marijn.suijten@somainline.org
+Subject: [PATCH v4 0/4] Reserve DSPPs based on user request
+Date:   Mon, 13 Feb 2023 03:11:40 -0800
+Message-Id: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: p5a0VV9ziUkaOJRyL_g5Wa4Wg0XUj5KT
+X-Proofpoint-ORIG-GUID: p5a0VV9ziUkaOJRyL_g5Wa4Wg0XUj5KT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-13_06,2023-02-13_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ clxscore=1015 adultscore=0 mlxlogscore=791 malwarescore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302130101
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/02/2023 16:41, Janne Grunau wrote:
-> These are the CPU cores in the Apple silicon M2 SoC.
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> 
-> ---
+This series will enable color features on sc7280 target which has 
+primary panel as eDP
 
+The series removes DSPP allocation based on encoder type and allows 
+the DSPP reservation based on user request via CTM.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The series will release/reserve the dpu resources whenever there is 
+a CTM enable/disable change so that DSPPs are allocated appropriately.
 
-Best regards,
-Krzysztof
+Kalyan Thota (4):
+  drm/msm/dpu: clear DSPP reservations in rm release
+  drm/msm/dpu: add DSPPs into reservation upon a CTM request
+  drm/msm/dpu: avoid unnecessary check in DPU reservations
+  drm/msm/dpu: manage DPU resources if CTM is requested
+
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 38 ++++++++++++-----------------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c      |  2 ++
+ drivers/gpu/drm/msm/msm_atomic.c            | 18 ++++++++++++++
+ drivers/gpu/drm/msm/msm_drv.c               |  2 +-
+ drivers/gpu/drm/msm/msm_drv.h               |  1 +
+ 5 files changed, 38 insertions(+), 23 deletions(-)
+
+-- 
+2.7.4
 
