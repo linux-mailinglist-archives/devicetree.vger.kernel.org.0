@@ -2,130 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3244D695346
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 994EC695359
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:48:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbjBMVlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 16:41:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34070 "EHLO
+        id S230495AbjBMVsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 16:48:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbjBMVlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:41:24 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A26383F0
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:41:13 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id c1so11040351edt.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:41:13 -0800 (PST)
+        with ESMTP id S229647AbjBMVsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:48:07 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80321EB6D;
+        Mon, 13 Feb 2023 13:48:06 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id z1so14989413plg.6;
+        Mon, 13 Feb 2023 13:48:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SXb2wBOT0LurWdGsoyTt17ekBKNUZrsqRtveFQNt4nQ=;
-        b=z1v7IJ/L49vgAuqUVJCPTCh16RYIOgtH3JfOPSjlP7iw0RmPuutgOY/F6FqTkuEEG5
-         Q9z0i7bJk3fbSz/QN+5noH1x8n9yQyRip8muvcDr810PHPV7+4+KjBinZZ38nD6piQ9K
-         1utxwIiBdPSJrS7wFbD+h/+N3QvZbjP62ixkdYcFKEOnyEGMl95tpBUa3RKRa7KIpKB7
-         12Dg4jEBDJLHvX8aIqFO5n4VQDZzuTbbxCXUIhX91hrm0LBRUMM7kQ06ddjkwKwJXhry
-         sH9s68W1MKnA/6bIeBJ8U/Hne71xCtKVrvVvFszbeNXWG70UGgYznCOA2mNyWNu9ja4R
-         nDig==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dI9DvMLbtzBAWFtPw6yhIul4CbP/+FfHPb/9cZPQWfE=;
+        b=flX3Igx11SdyUAKm0NUHvNhiDp/k2Ibx0g4uaENDaEug8KA0E7rJd9f68hOcmbmmzL
+         9Ua7UB1irXGv9JdnvCfGubkyd8awMwyVnAGBFlF2CgEShHk5DQPfdq+EoAnY5QzYcDhW
+         a/mqCcMifPzjC12IQN/wybsF6tm+ElB9iZ2vc9Rx4bfFsg9Oo2yDaDm41Wlaucv0gDyI
+         jGx4ZLKZJ+aDtPGNH9I974bq/MY+8ckkq+amU8a7Q4e7EthKQ1Xck17eup9ZexhypN9B
+         TEvK6r0Z57hHMYw0mf1QASA0fweyiDSZt/D7kKO3GoNeZWenQsKtqMZ23aFUHHNIUSTt
+         9QFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SXb2wBOT0LurWdGsoyTt17ekBKNUZrsqRtveFQNt4nQ=;
-        b=tWPjsi6JnQ/UiUe+w8z++xwgDPwRF9bYZzIi7o/EpDY9YzXo5TUe4LJau339fekKgs
-         4Udx9kckv6lkpWS94neFnYLCXVJJmAgY8CuG0K6d6j2kGaQnjxon2yj2mA6+cEIRdQyW
-         HIbgvLMATDVtBs1Aqw7NRsQU56/TkRZyEH0woypibOj4Kmdrf38IjtfDpQwdc1ELN/gx
-         sB0m++JWAAYj2+aKDWJJEO7yfafXeHQfhW7320Se8z+vn2X0RcSV4z+UuSqOapYn6/B9
-         CYGpN95wrxBaZesZL/jxA2JwtfW/txDomNLsROj5cr559bNumXiFYKehIBK2b2oAXv2V
-         oREQ==
-X-Gm-Message-State: AO0yUKW4eVRiHPNY+peJR65vTGX9tvtIFcVqWcx5DKOsppbO2Kkmr6lQ
-        0Vk78oVu5FB13R2zCdYq9kjLcZaKDQShaisU
-X-Google-Smtp-Source: AK7set9aQzXbOVQSMzQenYRV6W4FxrtJ/vxZGkwXVcVSbKAUnD68l0E6Z8ccUd7qwBPKUVhGbIhExg==
-X-Received: by 2002:a50:d617:0:b0:4ac:c29d:5c4a with SMTP id x23-20020a50d617000000b004acc29d5c4amr137942edi.29.1676324472163;
-        Mon, 13 Feb 2023 13:41:12 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id m2-20020a509302000000b004aad8d2158dsm7157131eda.66.2023.02.13.13.41.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 13:41:11 -0800 (PST)
-Message-ID: <83637cc7-21ae-7778-37b3-4522cc0a06c9@linaro.org>
-Date:   Mon, 13 Feb 2023 22:41:10 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dI9DvMLbtzBAWFtPw6yhIul4CbP/+FfHPb/9cZPQWfE=;
+        b=LYEgFMOJvMP91HkYMZIYIhW94oWTeTC29aQIu7s/k5Qs5nMxNcoVZB0epQgaCkjbVz
+         wdfd5pGjjnFXp138Jq6S1FFokK20xpr9JNqGKSiNvxOWaPMY/0CpNDg1QP5XZPOrrS/V
+         uE6vr2lTw8QVQjMmRWgusLKUXB591IY2bQ7lmPTZ08eRKMhpOituke7WxZyG/j//8bHi
+         klsyQMkc0u51SY2/4qXyVN5sPkH9I9UjrMadgAb2jvHuSyfWODHLrE5DF3iQff7ih78X
+         E0jJgOsP0SYK8d6QWqBngVO7vlMXUo/XlFjjxWggHQldWSJ72CUJCjTTAVu+2KteD2gb
+         qP8Q==
+X-Gm-Message-State: AO0yUKV2B7D5D6B9ADO3j//HaoAx81n8mPQezagNWYZV/IOz0208+Nn6
+        GqR0ixs8PCua3cgR3P43+ST5ZxLXlVgxsYj9ZlE=
+X-Google-Smtp-Source: AK7set/jGsgXJH0z+uu/JC4wFRBssRg6vpaea0uJu1GR6Bop5ldqt914lPObeM5jXLw/hC3mg3EpCopLC4Ud5upZZmU=
+X-Received: by 2002:a17:90a:684a:b0:233:a8ae:d198 with SMTP id
+ e10-20020a17090a684a00b00233a8aed198mr2751698pjm.99.1676324885969; Mon, 13
+ Feb 2023 13:48:05 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] dt-bindings: power: supply: pm8941-coincell: Don't
- require charging properties
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230213204950.2100538-1-konrad.dybcio@linaro.org>
- <20230213204950.2100538-2-konrad.dybcio@linaro.org>
- <20230213212733.rhvuzrshfrvzgo4a@mercury.elektranox.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230213212733.rhvuzrshfrvzgo4a@mercury.elektranox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230213213104.78443-1-ahalaney@redhat.com> <20230213213104.78443-2-ahalaney@redhat.com>
+In-Reply-To: <20230213213104.78443-2-ahalaney@redhat.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 13 Feb 2023 18:47:55 -0300
+Message-ID: <CAOMZO5C3mXXu7G=HDV1kytPMf2QFVuf2WGeP-YQHxFtaoggUXQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8dxl-evk: Fix eqos phy reset gpio
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     devicetree@vger.kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-imx@nxp.com, alexandre.torgue@foss.st.com,
+        peppe.cavallaro@st.com, joabreu@synopsys.com, mripard@kernel.org,
+        shenwei.wang@nxp.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 13, 2023 at 6:31 PM Andrew Halaney <ahalaney@redhat.com> wrote:
+>
+> The property is named snps,reset-gpio. Update the name accordingly so
+> the corresponding phy is reset.
+>
+> Fixes: 8dd495d12374 ("arm64: dts: freescale: add support for i.MX8DXL EVK board")
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 
-
-On 13.02.2023 22:27, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Mon, Feb 13, 2023 at 09:49:49PM +0100, Konrad Dybcio wrote:
->> It's fine for these properties to be absent, as the driver doesn't fail
->> without them and functions with settings inherited from the reset/previous
->> stage bootloader state.
->>
->> Fixes: 6c463222a21d ("dt-bindings: power: supply: pm8941-coincell: Convert to DT schema format")
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
-> 
-> Please update the description of these properties to describe the
-> default behaviour.
-Not sure if there's any default behavior other than "go with
-whatever was there previously, no matter how it got there".
-
-Is it okay if I just add:
-
-"If unspecified, inherit the bootloader configuration"
-
-?
-
-Konrad
-> 
-> -- Sebastian
-> 
->>  .../devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml  | 2 --
->>  1 file changed, 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml
->> index b7b58aed3f3c..d62e3af55560 100644
->> --- a/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml
->> +++ b/Documentation/devicetree/bindings/power/supply/qcom,pm8941-coincell.yaml
->> @@ -43,8 +43,6 @@ properties:
->>  required:
->>    - compatible
->>    - reg
->> -  - qcom,rset-ohms
->> -  - qcom,vset-millivolts
->>  
->>  additionalProperties: false
->>  
->> -- 
->> 2.39.1
->>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
