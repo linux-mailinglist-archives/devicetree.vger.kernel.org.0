@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 901E56943D8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:06:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5501B6943DD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:08:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbjBMLGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:06:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44888 "EHLO
+        id S230019AbjBMLIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:08:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbjBMLGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:06:48 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB3FD18176
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:06:38 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id m14so11719532wrg.13
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:06:38 -0800 (PST)
+        with ESMTP id S229950AbjBMLIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:08:34 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21797D529
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:08:31 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id bg5-20020a05600c3c8500b003e00c739ce4so8696088wmb.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:08:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=E1kDvgegzp8HWEVBLAzdwEfk/Chnh0ftRbXNmWsD8bo=;
-        b=jOJiSmkmlAxMHR9ru/D7S60yONeX2jqwTsk0E8f9Y0JLDobSdLnNTVoz5yM4pzYvtH
-         VSJS7AiseXZJGTo1RKr2M6VDP0/4QEFXCahPPyQJY/pLaURrO3RKCTxRfxXIGEWxPoVd
-         7Yeo0HFE/uJ4Q0xMpXGl5nGaYQNBlewpkscThoMr2muEjUIYHnd6H1/adHNSPbOdU8ia
-         u5Lv/uAAB0+NfGIRVOlxPxfbHCBmuZlo6xreNhVWT1GJgSaMYpl3dBr4gSZAbI0d0tkM
-         FrnTDJ7xxal3f8GpHjv3qhl0DOtVg/fnGyyCg9u0Ng41JELx8N8VBC5DqYveIyEvIbZA
-         TOYQ==
+        bh=Ci7SGpz5xwcVvCeC2hns6KTay+j1oi3+2QU9QteusJ8=;
+        b=tEnyfhSwXOZZy8qLrmPSapSq6NAsSpelq2RSYh2KsdRQ0jDUnBssqht3mhcl5zE2Ek
+         JLbGWbsH6NBGpsaaUFpEep0Jsab6adVER3B2HXFXAKGvOPuPNRX2XdKVAMywNuZ8brxc
+         lZuvwsDYFCejfGzANCNvp4M/Go6UAb/JkCQAdM9sZ3I8Q0WnjXLsMlo076LVDNIk6lNR
+         WjpxSjhDCN772I+GDjsS9aqw0pSGAcoMOJ7A6dc4kdAGxMYyWxFl/t/uWzpArXs49u4S
+         B2WKQXwmNms2PUZAZW1yie3LmVJzBqxIuMAAEqLKVbE2/ygyYAF736HvRg0VPOWgOpBN
+         vuuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E1kDvgegzp8HWEVBLAzdwEfk/Chnh0ftRbXNmWsD8bo=;
-        b=GeUr/88rXMB4S5rfjUqegm15q0+nNWH2vtflOhRUScQb0PPsAuYPSRpQ5bRQAG/TG7
-         PjcIJ6RReCMZP8hHOzkD0KEFsiMfZGrDqhvwC55+rdFy3+H+8E+YmIBcQiXB/iDp57ZN
-         ZNT3GhDIJPedDC0YyFhh21HrAcimXM9Sm/nMlB6kILVPjfhICm3QCNPUSZ/+GIKmsTzB
-         jHQXzjuzPumz45vrlN5syqsddS+UgIdw6bseVNeYgg3GmqLA2SGGHmYrhIxjJH2gSXwo
-         1rpcyCxClI+Lg77QogjWbdHiDTIJbkZ92T6OJxBhfqSRTpsIZhRFUYgZ2nXbAyPR30DQ
-         4b2A==
-X-Gm-Message-State: AO0yUKVi7umtn6Gv2a5quHAX0tz7plZHAHuJZ6Il6jbeKfMYIPbks3Fo
-        5GuSWY7IiAfLjwEO+jpUCH0Hkw==
-X-Google-Smtp-Source: AK7set/w9dCD3bxFSNonkfKDpD4T2DRe0uU35pPoh3abEZ0xxxlBew9+lTJCPWJGeRsvZUh6Kx49DQ==
-X-Received: by 2002:a5d:5545:0:b0:2c5:3cfa:f7dc with SMTP id g5-20020a5d5545000000b002c53cfaf7dcmr10443422wrw.7.1676286397447;
-        Mon, 13 Feb 2023 03:06:37 -0800 (PST)
+        bh=Ci7SGpz5xwcVvCeC2hns6KTay+j1oi3+2QU9QteusJ8=;
+        b=2by/UYHI/hP1tgptTmKwJbW6E6jwqY3FvZq5tgxd0zZ0NHJ5aVt5xWULol28uLcHct
+         tJbGPo9DC1lWyqWb2FQ3e2/Dl06ToC5pN6Uu2gYlOuXTf4q1GCLYd6lpP9+cfA6JogBK
+         jRkNyoMfIM5ZxcpVeYmDZbEawCP4tDF0pAyThWZaBS6+ngvyizC4TD/f7sERgF51i0oh
+         +WrQ/sVFnSX329Rf5iEK2lOWDsw8yA+avt8JZz288Js5VPhCxyI7+BarEd5ratHDO5L+
+         2+E4ZXJj+TTrZ5s3qi+vDRCzrubuvo4CNEM03GvKgikzAbiwzBY9s6uSQQGkNzJKvNQ1
+         OoUw==
+X-Gm-Message-State: AO0yUKV9TR78IkTdgIxC10Qncl4QrMi/2qH3jih2yleT4Jxj6e4jJup7
+        uXzm4a9H+5K9BenQqHkg8InXfg==
+X-Google-Smtp-Source: AK7set8zGnBL7fWkj1f+KORxV7qKneEFzwp0gQJb+tFbe8XnmCznu6V3D422grwPOLw/8N1rXOh77Q==
+X-Received: by 2002:a05:600c:4485:b0:3e0:185:e93a with SMTP id e5-20020a05600c448500b003e00185e93amr18997485wmo.25.1676286509649;
+        Mon, 13 Feb 2023 03:08:29 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z17-20020a5d6551000000b002c54c8e70b1sm7211342wrv.9.2023.02.13.03.06.35
+        by smtp.gmail.com with ESMTPSA id q14-20020a05600c46ce00b003db12112fcfsm14925223wmo.4.2023.02.13.03.08.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 03:06:37 -0800 (PST)
-Message-ID: <5d6ca298-19c2-3fcf-b025-dd72fa0784eb@linaro.org>
-Date:   Mon, 13 Feb 2023 12:06:34 +0100
+        Mon, 13 Feb 2023 03:08:29 -0800 (PST)
+Message-ID: <ad5dd369-842f-7301-e57d-d0445f0a5268@linaro.org>
+Date:   Mon, 13 Feb 2023 12:08:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 6/6] dt-bindings: soc: amlogic: update sysctrl
- clock-controller subnode type
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Novatek NT36523
+ bindings
 Content-Language: en-US
-To:     neil.armstrong@linaro.org, Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
- <20230209-b4-amlogic-bindings-convert-take2-v1-6-c4fe9049def9@linaro.org>
- <f18230c9-7c9b-9e59-993f-24d40b74ba9d@linaro.org>
- <039e9f93-5b97-bb5e-e3c0-b8bf2c52a2a3@linaro.org>
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230210161925.32343-1-lujianhua000@gmail.com>
+ <6cffa875-d8cc-a4fe-e18d-2e24c28a49d8@linaro.org> <Y+oZOXyE8/a+vreS@Gentoo>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <039e9f93-5b97-bb5e-e3c0-b8bf2c52a2a3@linaro.org>
+In-Reply-To: <Y+oZOXyE8/a+vreS@Gentoo>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,39 +83,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 12:03, Neil Armstrong wrote:
-> Hi,
-> 
-> On 13/02/2023 12:00, Krzysztof Kozlowski wrote:
->> On 09/02/2023 14:41, Neil Armstrong wrote:
->>> Since the clock controllers are now documented define the right ref
->>> for the clock-controller subnodes and fill up the example node.
+On 13/02/2023 12:04, Jianhua Lu wrote:
+> On Mon, Feb 13, 2023 at 11:45:23AM +0100, Krzysztof Kozlowski wrote:
+>> On 10/02/2023 17:19, Jianhua Lu wrote:
+>>> Novatek NT36523 is a display driver IC that can drive DSI panel. It
+>>> is also present in the csot and boe video mode panels. It is found
+>>> in Xiaomi Mi Pad 5 series.
 >>>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 >>> ---
->>>   .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml         | 15 ++++++++++++++-
->>>   1 file changed, 14 insertions(+), 1 deletion(-)
+>>>  .../display/panel/novatek,nt36523.yaml        | 101 ++++++++++++++++++
+>>>  1 file changed, 101 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
 >>>
->>> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
->>> index 672eabd90c09..57eae355f1b9 100644
->>> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
->>> @@ -43,6 +43,10 @@ allOf:
->>>               - amlogic,meson-gx-hhi-sysctrl
->>>               - amlogic,meson-axg-hhi-sysctrl
->>>       then:
->>> +      properties:
->>> +        clock-controller:
->>> +          $ref: /schemas/clock/amlogic,gxbb-clkc.yaml#
+>>> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+>>> new file mode 100644
+>>> index 000000000000..a7098d0ce7e1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+>>> @@ -0,0 +1,101 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/panel/novatek,nt36523.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Novatek NT36523 based DSI display Panels
+>>> +
+>>> +maintainers:
+>>> +  - Jianhua Lu <lujianhua000@gmail.com>
+>>> +
+>>> +description: |
+>>> +  The nt36523 IC from Novatek is a generic DSI Panel IC used to drive dsi
+>>> +  panels.
+>>> +  Right now, only support cost and boe LCD display panels with the
 >>
->> You just added this binding. I don't understand the split.
-> 
-> It's a chicken and egg problem, the clock controller bindings (patches 4 & 6)
-> I've added the system-controller top node in the DT example, but this
-> example won't be valid until I add the system-controller bindings.
+>> boe? both?
+> Boe Technology Group Co., Ltd
 
-Just drop the parent node or even entire example.
+Then what is "cost"? If both are names, then they start with capital
+letters or how the company officially spells itself.
 
+>>
+>>> +  resolution of 1600x2560. It is a video mode DSI panel.
+>>
+>> The binding or hardware supports only 1600x2560? The how it can be
+>> "right now"? It's defined, isn't it?
+> Yes
+
+What yes? How it can be "right now"? It implies it will change, so how
+hardware can change?
 
 
 Best regards,
