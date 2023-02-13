@@ -2,95 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 946D06942E2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 11:32:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D636942FC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 11:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbjBMKch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 05:32:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
+        id S229863AbjBMKgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 05:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjBMKcg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 05:32:36 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A929ED0
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:32:35 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id a10so12154442edu.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:32:35 -0800 (PST)
+        with ESMTP id S229747AbjBMKgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 05:36:01 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74613DBF6
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:35:35 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id s13-20020a05600c45cd00b003ddca7a2bcbso3262186wmo.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:35:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mind.be; s=google;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9X23+s7hHlbhB82N6CQ/+F/G2nzZwrS8GJLQ4tLSpRU=;
-        b=KkAyOXt0lEnqX6VodSdKJGUKaxxBnGfRxf9K4nXdSnaP6+XrLi32zkyMoP4ktbnEXt
-         a7doKUyPyShS25W847vHIs8Cdv3EdoHCrnQfwqQhem8p5kYuLajeei7tkApELtf8+VZA
-         dzIaSXsBlJVWfjapc39CKj//4XOMEpedArEUsMP+d92kuS1ROqh4RIqI1dY9a5Zgc3AY
-         YGWHPs+o+yrgTWkG0lUVVCprBA0zj4RTPTEGIsCnbfIbMuMIdHqUtqXHRynh86GClreo
-         v0TlPDAXMH+B3JmnLX+kOufxBqvYWHwTo+cYfVg3tmXGgcKGYbuZOeyB6xPuVwD35YLz
-         3ocg==
+        bh=Jh20yxcHSdZBwxQBlSNdL3Noxa3Z+zLPdupxE6lrD6U=;
+        b=CUfm3MndktzDwU8/VCdj7qlSPfNHuQ3D7NQypUHhEF7GTYFmvPX0UXUKdknJQKuNdD
+         tCNY8pu8EBWtarQqUgfRVw3jIXsbVxlVC8eP1ex4E++WcSH8YlR1PHEOXqY31Xd8T960
+         McebotN++hi259Bdaol8/eVWwz4abxWi9vtwQHRtUqvcRbzLs14AC67tqW39Ild2w48g
+         hKsg9MnvACL42o73BQnMtB8U0YG3y1R38FUOZZIuWpljf9k+FDY6V99Levx9S3xtIptO
+         XEd96vQo4vAb7Ysiox9GTJshPey+/89kuMLCkI8ZjsprvnJRcg+ENsmDj7Y+BUBIwyDn
+         /rpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9X23+s7hHlbhB82N6CQ/+F/G2nzZwrS8GJLQ4tLSpRU=;
-        b=Jale1/SELZpe9w77hw/xsK8aKl45dn4FeiqDZv6LCcHY/OiPID5JBqulEjDg4GN83q
-         vELTQ5Log3BmVqMUHNhLCE9T+1X/L8GeAevM1KV4URF5wa7BZk74Hexz7ApU91MnObk1
-         5rSSSKu6oJ3zYeqbSHt9TufAAInjajck4/21vUoLrTBw3UINsDwR+8+YvgKX3FIoT5wa
-         zqSPDJxKwbfx3IzDiEuLjkppdArVTUV2PTVZ389JtKYttAwhLLnk6qWK1jxUI2XJaQ/3
-         RitaTk3phzy2i86UTXiaS/xWayEqpxIIXfChcYIre09QrTvATbj6XfJgtClQ/RYKkveN
-         R9tg==
-X-Gm-Message-State: AO0yUKV4K4LYHwFeY2g1f7EFESUyVEsENfoMe32yrZhKcqrChkKh65VP
-        AcIW7f6araQ0UbtGh8Jc8evs9A==
-X-Google-Smtp-Source: AK7set+B/KZYeFOYcsW0ZdOOknS317xRGbPEC0PbC9tBM+EhTJSs80E57htlVX4975TSOu7YDmXcYw==
-X-Received: by 2002:a50:a44d:0:b0:4aa:b7ac:e0d2 with SMTP id v13-20020a50a44d000000b004aab7ace0d2mr22568904edb.19.1676284354401;
-        Mon, 13 Feb 2023 02:32:34 -0800 (PST)
-Received: from [192.168.2.9] (78-22-137-109.access.telenet.be. [78.22.137.109])
-        by smtp.gmail.com with ESMTPSA id q8-20020a50aa88000000b004acc77efd4asm1214559edc.37.2023.02.13.02.32.33
+        bh=Jh20yxcHSdZBwxQBlSNdL3Noxa3Z+zLPdupxE6lrD6U=;
+        b=kWyREL4YlZTobLHFb4Qy8ChxsT0aOGNA32r/o7kADDrD1PFgqrDa3XhTUIR/cs/GEQ
+         oFPBmgmZspFgdxcmbG72o6RhVvoKTRXPfNamn5UN1rKEvyJqMdMWcHT2eyRvZw5vVaKI
+         HEWhmTeHC5qwV/Yw3b/hhanrY0jXfizUxtuYT2qlWG1O4uokjND3kXYvWlLFUS2Xpo8A
+         vKprCfB8jYxjutkXCc4W17V9Tc3O/AaMYdzc/kcPn/CC8DBaJ1suzSL1F86ej9E54/RJ
+         I/ZsqfZfKEXvTGCwPUGP02IpIEhHRzasQMMgJfzUZUFboQvmhczNAL/K44rcU93XGExQ
+         0I1w==
+X-Gm-Message-State: AO0yUKXdGF5mZGx8KZKIuvb1KuONRgVwWDQ0t9OkYuMZ+XMkj1se6qMW
+        +1mWuSDlsuw9/DTmV2w5dmUOJQ==
+X-Google-Smtp-Source: AK7set+T5ukrGnvjSBHhY4SRF72EJKLS6yvjcr+Z4yOI0RZPgIRlt1um996gE0ZyhghzjxXgNfG2Yw==
+X-Received: by 2002:a05:600c:1607:b0:3df:f85a:472f with SMTP id m7-20020a05600c160700b003dff85a472fmr21045399wmn.13.1676284532532;
+        Mon, 13 Feb 2023 02:35:32 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z9-20020a05600c114900b003e1df9bc86csm6905640wmz.3.2023.02.13.02.35.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 02:32:34 -0800 (PST)
-Message-ID: <4fc0f90a-36b1-bc48-6842-fb64c3d1b7c5@mind.be>
-Date:   Mon, 13 Feb 2023 11:32:33 +0100
+        Mon, 13 Feb 2023 02:35:32 -0800 (PST)
+Message-ID: <c5df077e-7ce1-0b59-bff0-847301c96d56@linaro.org>
+Date:   Mon, 13 Feb 2023 11:35:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v5 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] dt-bindings: i2c: conversion of i2c-st into DT schema
+ YAML
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Alain Volmat <avolmat@me.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230213102027.29961-1-maarten.zanders@mind.be>
- <20230213102027.29961-2-maarten.zanders@mind.be>
- <1a8268a1-e656-10b2-8ca5-495867e521e7@linaro.org>
-From:   Maarten Zanders <maarten.zanders@mind.be>
-In-Reply-To: <1a8268a1-e656-10b2-8ca5-495867e521e7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230210101218.14529-1-avolmat@me.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230210101218.14529-1-avolmat@me.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/02/2023 11:12, Alain Volmat wrote:
+> File st,i2c.yaml replaces i2c-st.txt for the i2c-st driver.
 
-On 2/13/23 11:22, Krzysztof Kozlowski wrote:
->
-> While technically it is almost equal to BSD-2, any particular reason for
-> using different second license than the binding and generic
-> recommendation (checkpatch)?
->
->
-No, no specific reason. I'm happy to adapt.
+Subject: dt-bindings: i2c: st,sti-i2c: convert to DT schema
+(same reasoning as for SPI patch and maybe others)
 
-Br,
-Maarten
+> 
+> Signed-off-by: Alain Volmat <avolmat@me.com>
+> ---
+>  .../devicetree/bindings/i2c/i2c-st.txt        | 41 -----------
+>  .../devicetree/bindings/i2c/st,sti-i2c.yaml   | 72 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 73 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-st.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/st,sti-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-st.txt b/Documentation/devicetree/bindings/i2c/i2c-st.txt
+> deleted file mode 100644
+> index 4c26fda3844a..000000000000
+> --- a/Documentation/devicetree/bindings/i2c/i2c-st.txt
+> +++ /dev/null
+> @@ -1,41 +0,0 @@
+> -ST SSC binding, for I2C mode operation
+> -
+> -Required properties :
+> -- compatible : Must be "st,comms-ssc-i2c" or "st,comms-ssc4-i2c"
+> -- reg : Offset and length of the register set for the device
+> -- interrupts : the interrupt specifier
+> -- clock-names: Must contain "ssc".
+> -- clocks: Must contain an entry for each name in clock-names. See the common
+> -  clock bindings.
+> -- A pinctrl state named "default" must be defined to set pins in mode of
+> -  operation for I2C transfer.
+> -
+> -Optional properties :
+> -- clock-frequency : Desired I2C bus clock frequency in Hz. If not specified,
+> -  the default 100 kHz frequency will be used. As only Normal and Fast modes
+> -  are supported, possible values are 100000 and 400000.
+> -- st,i2c-min-scl-pulse-width-us : The minimum valid SCL pulse width that is
+> -  allowed through the deglitch circuit. In units of us.
+> -- st,i2c-min-sda-pulse-width-us : The minimum valid SDA pulse width that is
+> -  allowed through the deglitch circuit. In units of us.
+> -- A pinctrl state named "idle" could be defined to set pins in idle state
+> -  when I2C instance is not performing a transfer.
+> -- A pinctrl state named "sleep" could be defined to set pins in sleep state
+> -  when driver enters in suspend.
+> -
+> -
+> -
+> -Example :
+> -
+> -i2c0: i2c@fed40000 {
+> -	compatible	= "st,comms-ssc4-i2c";
+> -	reg		= <0xfed40000 0x110>;
+> -	interrupts	=  <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
+> -	clocks		= <&clk_s_a0_ls CLK_ICN_REG>;
+> -	clock-names	= "ssc";
+> -	clock-frequency = <400000>;
+> -	pinctrl-names	= "default";
+> -	pinctrl-0	= <&pinctrl_i2c0_default>;
+> -	st,i2c-min-scl-pulse-width-us = <0>;
+> -	st,i2c-min-sda-pulse-width-us = <5>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/i2c/st,sti-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,sti-i2c.yaml
+> new file mode 100644
+> index 000000000000..dd6ff18b9ed7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/st,sti-i2c.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/st,sti-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C controller embedded in STMicroelectronics STi platform
+> +
+> +maintainers:
+> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,comms-ssc-i2c
+> +      - st,comms-ssc4-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    enum: [ 100000, 400000 ]
 
+default: 100000
+
+> +
+> +  st,i2c-min-scl-pulse-width-us:
+> +    description:
+> +      The minimum valid SCL pulse width that is allowed through the
+> +      deglitch circuit. In units of us.
+> +    maxItems: 1
+
+maxItems should not be needed.
+
+> +
+> +  st,i2c-min-sda-pulse-width-us:
+> +    description:
+> +      The minimum valid SDA pulse width that is allowed through the
+> +      deglitch circuit. In units of us.
+> +    maxItems: 1
+
+Ditto
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stih407-clks.h>
+> +    i2c@fed40000 {
+> +        compatible	= "st,comms-ssc4-i2c";
+
+Drop unnecessary spaces before =
+
+
+Best regards,
+Krzysztof
 
