@@ -2,100 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB236946DC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 14:24:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D15276946EE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 14:25:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjBMNXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 08:23:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
+        id S230074AbjBMNYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 08:24:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbjBMNXS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 08:23:18 -0500
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232576EBA;
-        Mon, 13 Feb 2023 05:23:17 -0800 (PST)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 946FD26F77F; Mon, 13 Feb 2023 14:23:15 +0100 (CET)
-Date:   Mon, 13 Feb 2023 14:23:15 +0100
-From:   Janne Grunau <j@jannau.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229854AbjBMNYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 08:24:39 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC625FF4;
+        Mon, 13 Feb 2023 05:24:37 -0800 (PST)
+Received: by codeconstruct.com.au (Postfix, from userid 10000)
+        id CF17C200E3; Mon, 13 Feb 2023 21:24:35 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1676294675;
+        bh=xWVo/cioNLips5Na/dw9hBc7pbRVy2N8LT3wjXnTbLY=;
+        h=From:To:Cc:Subject:Date;
+        b=DLyAgzZrUNhDLoWUzhUmVo0X8GxWUH+wrRKqT/mW1MQgBw4R4YMJsAdaFh1nyuuJu
+         OLOwv466GEoyxkzNrBm5/bv6ddOh7kCcN3miqpRhjl1zseuEIu9O3HL+Un2dJQkDqj
+         biIzuw3b2KIZoDSSAA5Xl4bsiwYx2Fr7shBBqssqm7SVMLwQFMT6QGOP0zaRwShTrX
+         4/Fd9WdB7RJSs8b2NbmvkT0CK8gg1B2CoOLvzEiRKDYf4qfe7D/ioUe546vjM6m8G7
+         apD61JindsZulZ8NInDLxtmUprZJNg0lSA+aPgrpH2baZJ53cw8pE9EV29/9OEb5fY
+         N1ky0iYqEkUEw==
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH 07/17] dt-bindings: iommu: apple,sart: Add
- apple,t8112-sart compatible string
-Message-ID: <20230213132315.GC17933@jannau.net>
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-7-cb5442d1c229@jannau.net>
- <6e18ab3a-512e-ffe2-1c88-9b57bd1d3960@linaro.org>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Subject: [PATCH v3 0/5] Add definitions for AST2600 i3c clocks and resets
+Date:   Mon, 13 Feb 2023 21:24:16 +0800
+Message-Id: <cover.1676294433.git.jk@codeconstruct.com.au>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6e18ab3a-512e-ffe2-1c88-9b57bd1d3960@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-13 12:13:55 +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2023 16:41, Janne Grunau wrote:
-> > "apple,t8112-sart" as found on the Apple M2 SoC appears to be SART3 as
-> > well. To allow for later discovered incompatibilities use
-> > '"apple,t8112-sart", "apple,t6000-sart"' as compatible string.
-> > 
-> > Signed-off-by: Janne Grunau <j@jannau.net>
-> > 
-> > ---
-> > This trivial dt-bindings update should be merged through the asahi-soc
-> > tree to ensure validation of the Apple M2 (t8112) devicetrees in this
-> > series.
-> 
-> Same comment as in other cases.
+This series adds some base configuration for the i3c controllers on
+ast2600 hardware. We'll use the reset and clock definitions in the
+proposed dt binding example, hence sending these first.
 
-dropped from all commits and cover letter.
+v3:
+ - split dt-bindings from clk changes
+ - unify subject prefixes
+v2:
+ - based on feedback from Joel Stanley: avoid adding RESERVED clock
+   definitions, allowing empty entries in aspeed_g6_gates instead.
 
-> > ---
-> >  Documentation/devicetree/bindings/iommu/apple,sart.yaml | 11 ++++++++---
-> >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iommu/apple,sart.yaml b/Documentation/devicetree/bindings/iommu/apple,sart.yaml
-> > index 1524fa3094ef..07d2d68a87df 100644
-> > --- a/Documentation/devicetree/bindings/iommu/apple,sart.yaml
-> > +++ b/Documentation/devicetree/bindings/iommu/apple,sart.yaml
-> > @@ -28,9 +28,14 @@ description:
-> >  
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > -      - apple,t6000-sart
-> > -      - apple,t8103-sart
-> > +    oneOf:
-> > +      - items:
-> > +          - const: apple,t8112-sart
-> > +          - const: apple,t6000-sart
-> > +      - items:
-> 
-> Drop items.
+Jeremy Kerr (5):
+  clk: ast2600: allow empty entries in aspeed_g6_gates
+  dt-bindings: clock: ast2600: Add top-level I3C clock
+  clk: ast2600: Add full configs for I3C clocks
+  dt-bindings: clock: ast2600: remove IC36 & I3C7 clock definitions
+  dt-bindings: clock: ast2600: Add reset config for I3C
 
-done
+ drivers/clk/clk-ast2600.c                 | 41 ++++++++++++++++++-----
+ include/dt-bindings/clock/ast2600-clock.h |  9 +++--
+ 2 files changed, 40 insertions(+), 10 deletions(-)
 
-> > +          enum:
-> > +            - apple,t6000-sart
-> > +            - apple,t8103-sart
-> >  
-> >    reg:
-> >      maxItems: 1
-> > 
-
-thanks
+-- 
+2.39.1
 
