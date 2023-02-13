@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26BD469411B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44EF6694123
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 10:30:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbjBMJ3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 04:29:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55188 "EHLO
+        id S229922AbjBMJaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 04:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229917AbjBMJ2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:28:55 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA23119696
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:26:59 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id bu23so11390847wrb.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:26:59 -0800 (PST)
+        with ESMTP id S230393AbjBMJ3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 04:29:37 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A25199EC
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:27:41 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso8461033wms.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 01:27:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WSLZ3ZKzsvIefT199tYWo7cJEGZZJgm6+X6WVzrQDEk=;
-        b=SLdab1UEWactdNcB1w+n5yvxgRExwZc1qv84xdAEmwynljSRSQ3Ci8uC20Xp/xeoD2
-         VcW8RjLygpG/Vic1xrzk4LDrIIMHbU5ZCL2mTNqqQxqHyySDCkzOMi6skSPVhjxbFAJ6
-         3DPVNXzwHenU7oA4LlRJtv8bRQvl2NnK49jTekMoOgvOxDyXD4JjwZz3VEia5N2TbEHd
-         alyvyJ9GKaXrYxDN1TK7s/oRyizZXJMwt7yhcCe6Cfn+JSZOtuP/y5FcqHjwfutiChlk
-         oSzGGpQtdmV40tjToqhFWJKA9xVuUvfPEujfkAglf75PmL72M99ijvPCErk58Kr6zLUz
-         Hm5g==
+        bh=nYh18SRYWwEYT43tGPEGOedVgwnc/ZspcfJBm/Zqmek=;
+        b=AKjeUMptruiqhGqwkQ5nHL5+lyE+zu52lmYtfXa5oRKvpSgDnmquHytkHfyWkATZK6
+         P+ofaXVgQqlyfPI1iNH3JNSFSwMayGi/2EsRFdVRCNrsGLdBNCKHT9KOCF0sjFVZ7rVX
+         zLBnj9KXTsvSqan5Dk9kjiXkerhXvVyW0dXjQVsHR5+S1Vfz0F7cSqG2TmfPVTxm+gpz
+         vLs6RHE4dd25pDc52obVhfsPvypjEMQnXMv9VYbiWOdrzjifhTtottn/Uam/oYlBSk3a
+         tCUrgfUDq4uSXv1+pZjndkwyBtyYm9nNy5+7bGVrFg4qhm1zV83ydSkVP2RGecBR8Ug6
+         5+qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WSLZ3ZKzsvIefT199tYWo7cJEGZZJgm6+X6WVzrQDEk=;
-        b=HnCkakXXmTHkvVQXoXa8T8avHnJElaLpjWAMx9jM1v19+tYBqA4fkVXsuZ4C6Eoces
-         VI1HN4XlQ5QcKrJKIieEQYKD2D1kLxmhR3gl7eZgbtJgzXW/Qi/AtvogTWkjGv7d/JYy
-         DDLC08xq8kTkWLH0PJmWzXWzE29iZ1BMiYN7yyjy6qVH1CJm8aZ6dhH9BMMN2Cdqj4FT
-         tPglFhoG0KvjMx0S12zV9fbcIIPNZ1wxbrcLrmDFbL1/THcgMUBJqlJxxZ42mMiSH6cP
-         wUxAb1rrL6xfouzTX9D290MTlxNMX+mwxSVH2vOKsaacElJspjTJUj6Jzv43c4v0U+p0
-         tKIg==
-X-Gm-Message-State: AO0yUKUc7+A9dlAjHOXi4tNdL6FmmvfWx34OBJHOw+KnEVYuPt1MZSlb
-        A0FUBu9jYng7vi1bXUOpRZ/pWA==
-X-Google-Smtp-Source: AK7set/7w+SNxBNKti9FoZehdW/4irYGNDTCvC0R2xc487VgVY69FMUVdWPnhCVD0GvgBt0CK5LIuA==
-X-Received: by 2002:a5d:6707:0:b0:2c3:d4b0:6d8 with SMTP id o7-20020a5d6707000000b002c3d4b006d8mr21318493wru.23.1676280369540;
-        Mon, 13 Feb 2023 01:26:09 -0800 (PST)
+        bh=nYh18SRYWwEYT43tGPEGOedVgwnc/ZspcfJBm/Zqmek=;
+        b=3pF+lxPSVBv4R73SZJcq1WdEKNg5TWZ2MgS2ltM2fAcfNkBaocanvagpLUEI+lHhTy
+         mV/eE0FR6YoaqaO9TPewK9WjMmfFhrSFCWluTXYPF6kumGux63ieAaxkE6L2EXFWeQtK
+         8uPncBVDb9V5dSuUWr5Vvi4goFDNMzBfxIvxUIt9MFpqMMVvAdMeHjpL14wYDA+d6YcJ
+         joDkJpSNvqGx+EKMTMvBm6gQbVk8gYtNU1yeSywMG5Jf0Bh8jX8WpoecT/Fq+wCcc/tD
+         2zazyuvBjSsw8bsOBItjKGZsUBZjD13ZV8Cam05Zfxh+aHmmgym8nCmtlUF4Y4h30QzQ
+         Z8AA==
+X-Gm-Message-State: AO0yUKUnAwrEjKCR+R8fkdKeLvHWPB8cEODy9Uxf5udc4+pQdSEDMmGX
+        1xeFCbJf54BodenFp1H1Q6xWTQ==
+X-Google-Smtp-Source: AK7set9WbqP7fVCp5aNzouWbxo5iZbnRURawxE90BjtXUD6SO1P7jgEKPf81opQ2QS1yr8C6vyNxIQ==
+X-Received: by 2002:a05:600c:4a8a:b0:3dc:54e9:dfd7 with SMTP id b10-20020a05600c4a8a00b003dc54e9dfd7mr18140208wmp.25.1676280413915;
+        Mon, 13 Feb 2023 01:26:53 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r2-20020adff702000000b002bddac15b3dsm9806893wrp.33.2023.02.13.01.26.06
+        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b003daf6e3bc2fsm23780634wms.1.2023.02.13.01.26.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 01:26:09 -0800 (PST)
-Message-ID: <dbf26e3f-6a4f-cd15-c7d3-b0c1c482b83b@linaro.org>
-Date:   Mon, 13 Feb 2023 10:26:05 +0100
+        Mon, 13 Feb 2023 01:26:53 -0800 (PST)
+Message-ID: <34d5e299-3b4b-d176-0010-a9af1220f2e3@linaro.org>
+Date:   Mon, 13 Feb 2023 10:26:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 08/12] net: stmmac: Add glue layer for StarFive JH7100 SoC
+Subject: Re: [PATCH 11/12] riscv: dts: starfive: jh7100: Add sysmain and gmac
+ DT nodes
 Content-Language: en-US
 To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
         Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -80,15 +81,14 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, kernel@collabora.com
 References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
+ <20230211031821.976408-12-cristian.ciocaltea@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230211031821.976408-12-cristian.ciocaltea@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,48 +96,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/02/2023 04:18, Cristian Ciocaltea wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
-> 
-> This adds a glue layer for the Synopsys DesignWare MAC IP core on the
+> Provide the sysmain and gmac DT nodes supporting the DWMAC found on the
 > StarFive JH7100 SoC.
 > 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> [drop references to JH7110, update JH7100 compatible string]
 > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  MAINTAINERS                                   |   1 +
->  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
->  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 155 ++++++++++++++++++
->  4 files changed, 169 insertions(+)
->  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>  arch/riscv/boot/dts/starfive/jh7100.dtsi | 38 ++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d48468b81b94..defedaff6041 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19820,6 +19820,7 @@ STARFIVE DWMAC GLUE LAYER
->  M:	Emil Renner Berthing <kernel@esmil.dk>
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/net/starfive,jh7100-dwmac.yaml
-> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> index 88f91bc5753b..0918af7b6eb0 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> @@ -164,6 +164,44 @@ rstgen: reset-controller@11840000 {
+>  			#reset-cells = <1>;
+>  		};
 >  
->  STARFIVE JH7100 CLOCK DRIVERS
->  M:	Emil Renner Berthing <kernel@esmil.dk>
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index f77511fe4e87..2c81aa594291 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -165,6 +165,18 @@ config DWMAC_SOCFPGA
->  	  for the stmmac device driver. This driver is used for
->  	  arria5 and cyclone5 FPGA SoCs.
->  
-> +config DWMAC_STARFIVE
-> +	tristate "StarFive DWMAC support"
+> +		sysmain: syscon@11850000 {
+> +			compatible = "starfive,jh7100-sysmain", "syscon";
+> +			reg = <0x0 0x11850000 0x0 0x10000>;
+> +		};
+> +
+> +		gmac: ethernet@10020000 {
 
-Bring only one driver.
-
-https://lore.kernel.org/all/20230118061701.30047-6-yanhong.wang@starfivetech.com/
+Aren't the nodes ordered by address?
 
 Best regards,
 Krzysztof
