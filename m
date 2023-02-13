@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4F769459B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46CBB6945BA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbjBMMQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 07:16:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58934 "EHLO
+        id S230392AbjBMMYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 07:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjBMMPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:15:50 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A321A48C
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:15:45 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id f47-20020a05600c492f00b003dc584a7b7eso11113144wmp.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:15:45 -0800 (PST)
+        with ESMTP id S229700AbjBMMYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:24:30 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C848F193D4
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:24:24 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id o36so8587885wms.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:24:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7nGDQUNd9dBhdPcaBB5lS2xMBZ0fK4Ssa5kfOoMGbws=;
-        b=cIhaMCB4BlTai2KXgrCobcWsnPdz+t1msylr+Bi5g1qV9f5CT+aIUjFII8rpwW+nQN
-         s4+9JDu40Rc29nuqwPlxdcoyMPerRfwAgzeW154mxfoACZw1XjqsDNHEN9ZhwNeRJCRr
-         Mx709FYcp+F7NQYu40sRhmfObWT8j6gKJ8sVBdhVBy3fAFHgRfiJv4Kr9UrzUnx7PzDR
-         Mg59T7dFDSJwPL7HBhroJMsaINYF0nwTCueDOu5M4vo9DOzfdY4TVbSZP7dH88YWkC8b
-         Gn+q9E1A20+LmFXBsq+SS2SxlOsaP94aVgORrmpf2s/BRd8wcNZnDqHvldaKhT7FEqSX
-         Zvnw==
+        bh=akDdfWgAom4+Qw6oyiFy0XwcGM2sFwhM88l4NhMh8Yk=;
+        b=p5YYZG3Z9ppDNThNZy/tz6Yuou5EdPxXopV4/5yFaI40miPBZ9IX5TD0nTKMATIHd7
+         Euz8gCYfGkWXLDX13F77p5qks7C0y/cpQmvYJuV7BvbvcjZUvPDrfifFb2T0K0Hciixc
+         LpPcTl7JwCGHS/R22K1yqzriCwyuXX/vT+8OG5nEjtvsfpyQHegk84g0GJzP0Th1MdTF
+         OZLIKfbiIoe5GB3jMpBuBuV6qcgH96a7mr+oWGnEqMHTIg+R7yx56JN+m+UbTRe5aLdj
+         WIGkRNRsIfDkns0GN7e1dSi421tRQB3krkrT/CNq1K2wJfe+FJYEidc/qXp78CY2aaTG
+         GgNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7nGDQUNd9dBhdPcaBB5lS2xMBZ0fK4Ssa5kfOoMGbws=;
-        b=pP7pUBoCuZ0Gm1CAuaLkyGOEAnQmjfI56yd8cjK0LFMHLJS893PQ4ffM6Jp1yy6prD
-         L9hnUSLDPTcF4cFQ7RdmfQ4+UWxxPr1WOg1RNqH/UFMjmG/cIEIxe/Ytj335QKd8Pzqc
-         6t7b+dwqWHNgsltHrl1Kj2iBUvIGyoIEvJ5ngiIlz47ZdmDIwaJAE6c4O0oLSmaB0sJJ
-         tmVyH2iO4mD8P7G9tzoBxOM1HGLsV4ItWO3VSUeN2L7xddvPB6E9yJSizMBYhVe4r67W
-         1rO+4k2fr6H94EO2+ciNTeAbX+AaLjxOS3dsZrdqVU9ZBrVx+5y/O6wXR034nO8aGdV5
-         wfLw==
-X-Gm-Message-State: AO0yUKUGOlu42NeF0Vq0ly0URXJ/tQZqJsDaoac2UkSe8TWS1Wi8vhDn
-        HaNZzflYmJ8jZnWo8MFMd3KYWA==
-X-Google-Smtp-Source: AK7set9Unb3/mM6Jb8DIEP8nwSjvIRhez2tP5/wP/NsuECBWeVdd7MKxEHBBQDa3Cwub5BNcRvXK9Q==
-X-Received: by 2002:a05:600c:43ca:b0:3d9:a145:4d1a with SMTP id f10-20020a05600c43ca00b003d9a1454d1amr18736425wmn.34.1676290543641;
-        Mon, 13 Feb 2023 04:15:43 -0800 (PST)
+        bh=akDdfWgAom4+Qw6oyiFy0XwcGM2sFwhM88l4NhMh8Yk=;
+        b=Uux8if5umvaH2eoia5wzmP5t0ShFoT/gm1JZeWTwgjNA7bc+xXdKeW7UPqTP3PA9Zt
+         skPOH7IgeGHVgq6EoIswzRG6hFImt/IwSUEsIHhCupVfmNMsXCzm5mDXJn+7EQmUggv6
+         J1AUx6gp2Miwj+gKq3sLYrkj8FzoS7dXh3UkEhvEbdiQEIPJDXuNgQj1vUG2hoSE1RjV
+         +WvkcNo/cHtmF6CI6iyibcQbghwLoTfdqvFol8E5qA415S24qCbWEdBjVrlq/EPvKZqn
+         AxiQzOpF0bCvriTyssAnZDqqD4wqghHaJ2trXU128G45N1iDpVdwVLkzy38a7Ur8Ku8t
+         dNcg==
+X-Gm-Message-State: AO0yUKUx9bxxh2gtCcEWwiFxx5DE7vgZxyjqAs+MAKHxKivW9qImUCIJ
+        hSC+TZq3tNAlWzSAdOYlfy6aRA==
+X-Google-Smtp-Source: AK7set8CA6HBWgQFi1iHVyKXED3E3GqaxxXZI6kp4jnxJeL/OCD+KZp0i7N94qkf4k+kxjVAMAq4Sg==
+X-Received: by 2002:a05:600c:a295:b0:3da:1e35:dfec with SMTP id hu21-20020a05600ca29500b003da1e35dfecmr18942967wmb.4.1676291063435;
+        Mon, 13 Feb 2023 04:24:23 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a3-20020a05600c224300b003db01178b62sm16891996wmm.40.2023.02.13.04.15.42
+        by smtp.gmail.com with ESMTPSA id n19-20020a05600c3b9300b003daf7721bb3sm18199812wms.12.2023.02.13.04.24.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 04:15:43 -0800 (PST)
-Message-ID: <0f5545ee-0d3f-96fc-99b4-9c757532a71d@linaro.org>
-Date:   Mon, 13 Feb 2023 13:15:41 +0100
+        Mon, 13 Feb 2023 04:24:23 -0800 (PST)
+Message-ID: <5739cfb2-ec6a-410f-9d2f-6e9bfc115cdd@linaro.org>
+Date:   Mon, 13 Feb 2023 13:24:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 02/17] dt-bindings: arm: apple: apple,pmgr: Add t8112-pmgr
- compatible
+Subject: Re: [PATCH 1/2] rtc: pcf85363: add support for the
+ quartz-load-femtofarads property
 Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-2-cb5442d1c229@jannau.net>
- <5ebf96d9-689a-f915-29b8-31af891fc63f@linaro.org>
- <20230213115741.GA17933@jannau.net>
+        Michael Riesch <michael.riesch@wolfvision.net>
+References: <20230213095018.2255225-1-javier.carrasco@wolfvision.net>
+ <12dc51e4-622e-4a26-8bde-2795d77ce36e.e0c24246-04d4-485f-8d5f-1cc8fbefd095.f44d6731-6fc0-4ea1-bc6d-c08581fb532e@emailsignatures365.codetwo.com>
+ <20230213095018.2255225-2-javier.carrasco@wolfvision.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213115741.GA17933@jannau.net>
+In-Reply-To: <20230213095018.2255225-2-javier.carrasco@wolfvision.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,39 +82,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 12:57, Janne Grunau wrote:
-> On 2023-02-13 12:10:36 +0100, Krzysztof Kozlowski wrote:
->> On 12/02/2023 16:41, Janne Grunau wrote:
->>> The block on Apple M2 SoCs is compatible with the existing driver so
->>> just add its per-SoC compatible.
->>>
->>> Signed-off-by: Janne Grunau <j@jannau.net>
->>>
->>> ---
->>> This trivial dt-bindings update should be merged through the asahi-soc
->>> tree to ensure validation of the Apple M2 (t8112) devicetrees in this
->>> series.
->>
->> No, the bindings go via subsystem. Just because you want to validate
->> something is not really a reason - you can validate on next. Don't
->> create special rules for Asahi... or rather - why Asahi is special than
->> everyone else?
+On 13/02/2023 10:50, Javier Carrasco wrote:
+> The quartz oscillator load capacitance of the PCF85263 and PCF85363 can
+> be adjusted to 6 pF, 7 pF (default) and 12.5 pF with the CL[1:0] bits in
+> the oscillator control register (address 25h).
 > 
-> We did that 2 or 3 times in the past without commnts that it is not 
-> desired so I wasn't aware that this would be special handling.
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+>  drivers/rtc/rtc-pcf85363.c | 37 ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 1 deletion(-)
 > 
-> Merging binding and devicetree updates together looks to me like the 
-> most sensible option since dtbs validation is the only testable 
-> dependecy of dt binding updates.
-> Keeping them together ensures the dtbs validate without delaying 
-> devicetree changes by one kernel release after the dt-bindings change 
-> was merged.
-> I suppose it works out most of the time if the merge request is sent 
-> only if it validates in next. That still depends on the merge order in 
-> the merge window but -rc1 should be fine.
+> diff --git a/drivers/rtc/rtc-pcf85363.c b/drivers/rtc/rtc-pcf85363.c
+> index c05b722f0060..941f9264cf0a 100644
+> --- a/drivers/rtc/rtc-pcf85363.c
+> +++ b/drivers/rtc/rtc-pcf85363.c
+> @@ -101,6 +101,10 @@
+>  #define PIN_IO_INTA_OUT	2
+>  #define PIN_IO_INTA_HIZ	3
+>  
+> +#define OSC_CAP_SEL	GENMASK(1, 0)
+> +#define OSC_CAP_6000	0x01
+> +#define OSC_CAP_12500	0x02
+> +
+>  #define STOP_EN_STOP	BIT(0)
+>  
+>  #define RESET_CPR	0xa4
+> @@ -117,6 +121,32 @@ struct pcf85x63_config {
+>  	unsigned int num_nvram;
+>  };
+>  
+> +static int pcf85363_load_capacitance(struct pcf85363 *pcf85363, struct device_node *node)
+> +{
+> +	u32 load = 7000;
+> +	u8 value = 0;
+> +
+> +	of_property_read_u32(node, "quartz-load-femtofarads", &load);
+> +
+> +	switch (load) {
+> +	default:
+> +		dev_warn(&pcf85363->rtc->dev, "Unknown quartz-load-femtofarads value: %d. Assuming 7000",
+> +			 load);
+> +		fallthrough;
+> +	case 7000:
+> +		break;
+> +	case 6000:
+> +		value |= OSC_CAP_6000;
+> +		break;
+> +	case 12500:
+> +		value |= OSC_CAP_12500;
+> +		break;
+> +	}
+> +
+> +	return regmap_update_bits(pcf85363->regmap, CTRL_OSCILLATOR,
+> +				  OSC_CAP_SEL, value);
+> +}
+> +
+>  static int pcf85363_rtc_read_time(struct device *dev, struct rtc_time *tm)
+>  {
+>  	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> @@ -372,7 +402,7 @@ static int pcf85363_probe(struct i2c_client *client)
+>  			.reg_write = pcf85363_nvram_write,
+>  		},
+>  	};
+> -	int ret, i;
+> +	int ret, i, err;
+>  
+>  	if (data)
+>  		config = data;
+> @@ -394,6 +424,11 @@ static int pcf85363_probe(struct i2c_client *client)
+>  	if (IS_ERR(pcf85363->rtc))
+>  		return PTR_ERR(pcf85363->rtc);
+>  
+> +	err = pcf85363_load_capacitance(pcf85363, client->dev.of_node);
 
-BTW, your approach causes also bisectability with checkpatch on the
-drivers or the delay of drivers... Therefore not much solved here.
+Aren't you updating it for all variants? But the property is marked as
+not valid for them.
 
 Best regards,
 Krzysztof
