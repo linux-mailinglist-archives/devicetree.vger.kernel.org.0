@@ -2,133 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7238C6954A4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 00:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7F906954F4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 00:48:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbjBMXVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 18:21:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
+        id S231195AbjBMXs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 18:48:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjBMXVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 18:21:49 -0500
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2111.outbound.protection.outlook.com [40.107.117.111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C368113C5
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 15:21:48 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cq4GShH3+HcnX2GX5Nw7o12N5e/7+APjVIg50bGBtto/vEZ7CV2FdMjvl+iOeDQ6VDHHOUj4iK/5Cxrbs1FWt40Bt295T06PRLTiPtOKqmfmkXxM+FH9LkYLkbdLfRPh0ST1krgW1NDKw2iZN2A/j/fbSdl7/mIZ4sGNIHvx8UT8ra2pstBQ132kzOCxvgiHA92WxSKL8aVwgQcRio/Fh+YLduyTmJnU+J7hfmyIM6tMfgKY9yE0V+7GW+SoUQ/7lzeaYfXVLbZoEqv1rJSw6eqDwE5gbod7/RmtFpXSg+SxB4dWE5CwGbGVqct1+YPkg2rxdjXHzkKIOR2IZiGy2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PSsyjpHuBTfnC27ekEHdH/OnR608UDO5p3ddZ6HUniw=;
- b=hm5Petqp6/0XPe+xs2W0IRETFOE4/cNKgdEDa7LaBBj6E3l/dnlF0H022Zz1pvbCkofnUD17Y3/ULcTm6/oN3b99ULc8UsO1nu5NfA84SXggnog/IyuHlqjwaLnv3xb1whqwiRKwzdu805C8NoCgqpqEDgiFrNQrh5q+fheAcNZJyVBAmt5ZuTG+aGg8uP58xzSAe2ZyAfYjNaL25v4xcc+N0vYVTb9SOXrQZDzgrPYrhIcgoRfVf71Rc4C+S3aEfsP7yuu2mJbq6megdgmAPLwSq4vNi77JPePjg4Hvekv2HfUskc1GZFSb/zj+VVwNO2hgoQBh6mjiOEue3AOraA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PSsyjpHuBTfnC27ekEHdH/OnR608UDO5p3ddZ6HUniw=;
- b=hQYJbPj8k+AoYt0Go1+Jo3s+bVD5VI0r3fGbbjQUEG/iCs1EizefNIDIGsxhM43lh+unI3af5YoirTP7vonqzrVdZUEYE3MuoIx2QMratkhNaXW+hToxiiYPj7giV2dyx6DsXwqj2QuXkk8D1QRKvhMEO7arSTzLP1QpFugEXKA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by TYAPR01MB5977.jpnprd01.prod.outlook.com (2603:1096:402:30::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Mon, 13 Feb
- 2023 23:21:44 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4b75:8d8e:d89a:7860%2]) with mapi id 15.20.6086.024; Mon, 13 Feb 2023
- 23:21:43 +0000
-Message-ID: <87ilg52ltp.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: renesas,rsnd.yaml: drop "dmas/dma-names" from "rcar_sound,ssi"
-In-Reply-To: <CAMuHMdU2_5SO53qs1KVcv7p5O1QP-DWpxVpUhmpFT3MQFKVO5A@mail.gmail.com>
-References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>
-        <87r0uu8g8x.wl-kuninori.morimoto.gx@renesas.com>
-        <CAMuHMdU2_5SO53qs1KVcv7p5O1QP-DWpxVpUhmpFT3MQFKVO5A@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Mon, 13 Feb 2023 23:21:43 +0000
-X-ClientProxiedBy: TYBP286CA0017.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:404:ce::29) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        with ESMTP id S229976AbjBMXsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 18:48:51 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B97D1632D
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 15:48:50 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id g9so9060087pfo.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 15:48:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1676332130;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vMGp5jpDI56FIhgoLwzO01KLRWgFG/thqIKmC+ewf1A=;
+        b=DQ2gARKC+AcuFhGsEEWyLEtJbIYjQZu6fz02qaq7o5HGZcUvs8MWTuMw+UuTQ+6yNb
+         hcQdZ/vASB85DaAIGTri0H8dujwMo11jgf9DiRPXQU7R1VlNjfxjWjtpJnaK3MESazVB
+         lOr5q1vP/QM99/k6v0ymhVidxHQmIx8Pj16CthPTIVT++Lmj/nZ/mGgU/cJbUUzrV8Hu
+         b5JRStjxOK1deZvALcUwB3eXNG1Q7FG/FrF544MkQR3+hCDbdWxj6Wwim2ScwuVcvHvv
+         zKk1S8zEROYZb9eHNctBYjhxrvOUGzfSVx7vpFbsCiI5YQWM/wS4d2vXBkN4qtvavb7a
+         tkDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1676332130;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vMGp5jpDI56FIhgoLwzO01KLRWgFG/thqIKmC+ewf1A=;
+        b=Nai+5p+TwPKkx9mJGr2Sg476MWx0/JtlCRxIj9ArHQQDNJ805M8HeakubVQpoV283/
+         0Mtz9plUK3dv7Zk/McLkaSNcLKoMnW9G7glVtW0fzl3kh3dk9QNglVqW6hQAzzB2vh9m
+         MaHom2RaqMvsfj4THXZkd/LWN5yT55QZgPQSkZdtCHnl2a0n5K9VFFkbzrMR54uhBiCi
+         BS7B0P61YtlLdRikwSJqwaoxZfYx9ywXr+a/ydrGV3nQu2oSHXQzIFqHJ6mWmu60kTdi
+         EXm5b0XkvIWI3w3y5R15CXeSyHdURy9Vp3jD0SAiIQXSngQEA056pdoqYIqSmuA2X0sn
+         PgAA==
+X-Gm-Message-State: AO0yUKVT+Njw5mO3SrwxL6lzzD5hQG0TP0XQbxyLfV8HRSLkP5g4Nki9
+        9e916rtQwStT/W9n599xOiClojbcINX/1WetiKf9/Q==
+X-Google-Smtp-Source: AK7set8V9hjhzOSK7rhKHPbJn3smFBOI2QVV6lFBTEca2/3/LxJDzhigIc+QP4F9IXGKHjuBKsz5axhh1mR/l91nt2I=
+X-Received: by 2002:a62:1784:0:b0:5a8:bdd1:6c53 with SMTP id
+ 126-20020a621784000000b005a8bdd16c53mr59229pfx.9.1676332129756; Mon, 13 Feb
+ 2023 15:48:49 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYAPR01MB5977:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67f20b2d-417a-4ebc-667c-08db0e1911b0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B/p2TfHtzuAQ6OeTMlSdGS9dGqUFL9+Z+xffEn/F9yhEQVmX0gH4z1u9J7Xr/SBjePIa8gc3GNGw2ngh0E8jWbl3UDF5p0JlyYwcKpywKaEGggxnKcJ5imVhyD6MAMoir4DHhwiph7AaQyKD9gJOvMw6KisfPOuLOVHyBqEMF8iRNUm0LabMw5gzYVBWLVneqigfBMg+j2vdfSeRdHh2abC/JDvT2XmkGID7A2DAI1qr8kaD2muR2HktY4nDYvpjYaKjjfOSrayc/w6adoZlwRp/o//YM6K1Zka2Cc7kXg4G48/dft8UERKplakgWn2pxpQtAHaUwAJoMSD3wJxkOrj69ypXMuw9F+NAraw/wJfyrWmzobgqtN3WkpC+qCyfGJfWwk+V3rlnXAyw4pUObLan268FYQAMykO3xEKFgq1qyqLOsXUI0gikCbC7J+92pIcgsMnZveRogDZYXQDeGdi+hHTOxUN6+K40GxD18NGSWil/fIVnlgj5CjvGz2xH7ENA7pRDC29uP2jp/yeA2hwV2rNLIwHO1dJVeEMyak5FfFRayXtvZPIokKeb+L/EkBZrgnU97KQZYJ3xOYMFSqpML3rEHAsdJdXMrgFn6mZRYLtysz/KmxG5unXUD0N9Buyk2wem9sZd5rIz7qprkDI4uylBflw7Z+kAN6dPIssTSpaeugo5NzhTd4I73A3ISqomdYJPxzuiMDxXHTWzXQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(366004)(136003)(396003)(376002)(39860400002)(451199018)(41300700001)(5660300002)(36756003)(38350700002)(2616005)(6486002)(38100700002)(8936002)(26005)(186003)(4744005)(2906002)(6512007)(6506007)(86362001)(316002)(6916009)(4326008)(54906003)(66556008)(478600001)(8676002)(66476007)(66946007)(52116002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VH7mmAQ+iiomF2TyjZeogISGJEX+A7P9oOC0Bls1m+Qwsqb478UuRp3msx3Y?=
- =?us-ascii?Q?p8Jej0/iUj+bBGg2dnCzuzMHUEosmMuMx6NM5bqS00W5Va8BoAD8ObmQ0FIz?=
- =?us-ascii?Q?TZeGJwlKVIPEDjJrCJCc0LlTn2twTPzaHxOiFgFzW93oc+h95GvSmRseVqDh?=
- =?us-ascii?Q?+xmtzRMDV8oCbKffuTAs+yvTePj5XO4SpaqLf3l0jJW3pvibX1KAsKwa3F9R?=
- =?us-ascii?Q?vXxc9HVVH/mf+nXhpzi3wfADdqvoaIi4AFyvMw5Jn7LOWlTgUCsbcae6vy+v?=
- =?us-ascii?Q?11HSZrJ5D/j8XJdQExDZv7etvmLOIjUJTzesMt5xTGYVUBVL+s3r8adPfaLf?=
- =?us-ascii?Q?CTlTxgJcndKagA0YArAorm0Q5EQLvzxqoK4+cM8J7EZKBffH/h2Tk07Tv1O6?=
- =?us-ascii?Q?8Y+UEV4RBJ9FOG6ANO/9vsgNC0HF2AcumuNgWjajPMWfTlmBoydiO0TErq8L?=
- =?us-ascii?Q?pfyxaHxtEE5SLR/b8UHCxUfV9ssbn+Vsrl6ymkRdA6q8CT6PLIbNi/2njycR?=
- =?us-ascii?Q?EIawP4DEgEa2TXZWdzRJeDivCwc+rdFUYEF1QBOPpRDs2t1dlH1EvRgKT2I7?=
- =?us-ascii?Q?fQcSdiY3EZ4f8cVMxXF7HHN89SZ81AjAkJkFqSntdlfErhD3h4r1DB+DwDxU?=
- =?us-ascii?Q?WFvCJrbJryDOylOLFQS0O8lKDzWQ9NQ4Hyhh+dF54EzpA8KcouDQG/lKb4so?=
- =?us-ascii?Q?uyc78vm2S2RmiPPOWMWMu1IprHru+5TB5NOa9Ua/9tmceTdCKxmoQMsQoW1/?=
- =?us-ascii?Q?mTf7tcc/Fvi9aKoF68AnGO4d8s7wIBHW2mymQW1Y3Jjb2411CaqFhwrsn+Uk?=
- =?us-ascii?Q?W3IHCQAW4MpP/PQvFh7/vFOpnRfrnKDDs+G/4p6WG5uwDAGKR1QtfZ0eHpv/?=
- =?us-ascii?Q?Ct6GRWTDULhnktLgqTHOxesCjGWFuHo+B7RXrd8M2jWg0stzLcrAJfTPOy9R?=
- =?us-ascii?Q?LIaIaLeIqHfcvj7B/J1sKAgECossYzYXWoeA1f780g5dxMmD1Sa3LLVJDQfu?=
- =?us-ascii?Q?iLaGh7Vydi+/soPKLtOgdGWPL9DS5X4McI3aJJ/m7kJ88G3t4rfd7w81wHC+?=
- =?us-ascii?Q?hqQcVSLw5g0QZFIiOebFG0VtQjdX3H8Nn0GdFdE0BVoHP7of9LO7nlhDXOj/?=
- =?us-ascii?Q?nMRwXwLT3oq427bTRMbGW2WYfvETK+7ugWy+5ckOrMFW1ubhSK0foPtT4Csf?=
- =?us-ascii?Q?ZM5uKLYR+n8rOU64bJkjBh5qPKB8K2dhA/X8zMMj4cj/w/oF4LUSLANNO9ji?=
- =?us-ascii?Q?79nQ7rntiQzo1Mx/P/nQrLaFkIxf8YiWWEhbiD0EZi9ICXBH3PTVluTNIhbF?=
- =?us-ascii?Q?S0uvvn03MKt6QX5GhUcWaM594vTPB07de48AGQEjhva3lRlhvOCgbUjfQqoZ?=
- =?us-ascii?Q?v5OUjcvMgKONDBfKJI8HbEcEbUvzXTZw5heyhVT8tPPAZaGAdmYZjHPgQ0P9?=
- =?us-ascii?Q?Y1sJUhwYu/2iVM20kR2/JBrJJ6fKlEyDJ1Q++GWdKPUEpSjGaWkiC1wd/vt0?=
- =?us-ascii?Q?DvUCikXTUwU20b2JfIJaP5+1IvMosC+h3v5ypuMtnZhi0W1LD2+trfSNZ3Jp?=
- =?us-ascii?Q?N6xiPCK35INAnOVO7quHmLL/ZSlV+p7M/kHMj3F4U7D+YM6O26sWnATlEaB2?=
- =?us-ascii?Q?fCwGqUsONseFFgrbuDslPCc=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67f20b2d-417a-4ebc-667c-08db0e1911b0
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2023 23:21:43.8988
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hgZWeLvQDDykZr02mw0qwBe7TuXWRWLy9zGDZA4D2vwOhnzfy0ELl/j37LiKk5ewFPSHOXwuEgJjg6J746BikYgKSCHuIawoJEb++/45HxMBt122nbik3AUtZQz6ggsH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5977
+References: <20230129130059.1322858-1-j.neuschaefer@gmx.net>
+In-Reply-To: <20230129130059.1322858-1-j.neuschaefer@gmx.net>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 14 Feb 2023 00:48:13 +0100
+Message-ID: <CAPDyKFqUEPXbRWy7kStGi5vEuM=3=N6VS+o9HTHVTPatYRaYUQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: Improve grammar and fix
+ a typo
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 29 Jan 2023 at 14:01, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.n=
+et> wrote:
+>
+> This makes the text read a little better.
+>
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
 
-Hi Geert
+Applied for next, thanks!
 
-> > SSI is supporting both "PIO mode" and "DMA mode", thus "dmas/dma-names"
-> > are not mandatory property. Drop these from rcar_sound,ssi's required:.
-> 
-> BTW, do SSIU and DVC support PIO mode?
+Kind regards
+Uffe
 
-Only SSI has PIO mode, others need DMA
 
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/D=
+ocumentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index dc6256f04b423..1c79b68753da0 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -98,7 +98,7 @@ properties:
+>        Specify the number of delay cells for override mode.
+>        This is used to set the clock delay for DLL(Delay Line) on overrid=
+e mode
+>        to select a proper data sampling window in case the clock quality =
+is not good
+> -      due to signal path is too long on the board. Please refer to eSDHC=
+/uSDHC
+> +      because the signal path is too long on the board. Please refer to =
+eSDHC/uSDHC
+>        chapter, DLL (Delay Line) section in RM for details.
+>      default: 0
+>
+> @@ -127,7 +127,7 @@ properties:
+>        Specify the increasing delay cell steps in tuning procedure.
+>        The uSDHC use one delay cell as default increasing step to do tuni=
+ng process.
+>        This property allows user to change the tuning step to more than o=
+ne delay
+> -      cells which is useful for some special boards or cards when the de=
+fault
+> +      cell which is useful for some special boards or cards when the def=
+ault
+>        tuning step can't find the proper delay window within limited tuni=
+ng retries.
+>      default: 0
+>
+> --
+> 2.39.0
+>
