@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A1536949A1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 16:00:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9AA66949DD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 16:02:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231270AbjBMPAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 10:00:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57936 "EHLO
+        id S231314AbjBMPCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 10:02:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231299AbjBMPAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 10:00:15 -0500
+        with ESMTP id S231328AbjBMPCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 10:02:46 -0500
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE291CAF2;
-        Mon, 13 Feb 2023 07:00:02 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C781DBA7;
+        Mon, 13 Feb 2023 07:02:21 -0800 (PST)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1349F66020A2;
-        Mon, 13 Feb 2023 14:59:29 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id EE97266020A2;
+        Mon, 13 Feb 2023 15:01:58 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676300369;
-        bh=MVAAR+POGKgxUb9d/9L16cYTpx1kxwtwfwvhi78kve4=;
+        s=mail; t=1676300520;
+        bh=+w0aem4WAGne/rGW4BjKK8/fKzHBZe5eP0S7UQQNzX8=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=WfDy+2PvvZncwh76LKqnlhWbyBXLB8Aj0DGQn8/I2T7JJbv4hydXkytVzZIRjS0s0
-         5wMGlHlF7scmNvxTGni8GoKxk8u8NXxZz4UEKaHKt3bqOfHXJrT9zJrrodkTMBf+YN
-         U2t4bQpwEuyzSvP4GbrFQ21vtJaKzTRcUX6Z5K4X0vJOltNLO6k5wO8oZZ6o0PgGCi
-         z29jfvXwDpgHtVBHIQqc3TJ9HBEXfz6HC73LP9Tpw3l/jWhKD+xi4ZKQ+J7hHP3lrE
-         NIcohd1cRtBVuWmzz1+40KhpsA5i/eauFOCE3nEIpUf/cg64D4GJb+yiZD6pXczTz4
-         wN+bs3fJbGoTA==
-Message-ID: <32a41b0f-48e2-a87b-9736-1e10fe8859d9@collabora.com>
-Date:   Mon, 13 Feb 2023 15:59:26 +0100
+        b=hbLORnwlQTtd/bxhJhZNFax8lKY9gQXhKl+/fIWw5wGgB9bCvbkZENT8IZgbywbz0
+         7U3d9t3GKBzKpM39j5p6Hm4wbuoKIuDN+na16zhF6nlmD9ETiGQimhWElYGOdda9/S
+         kLfgf4RfamxXTSh6FiFGex559lD1CmyQaEJ/SlmrCAv4DtiAB0jRTDltIV2229JT8L
+         nfomkJ5nFAe+OMY3b0nzvVJSMSzIWKcONbxmkMLzbrN0Ct+JBxwF0n4DX3WL9a4jAj
+         KUTlc4+Rbu7VFn74LiR7ilY9TNcLLuo2biUnXzGTz34wnZXYjfqZTUVp6/DvbLFSh4
+         Zfv60OCSYye/w==
+Message-ID: <6bf297ce-43f0-d8e6-a99c-0b92afe43dd7@collabora.com>
+Date:   Mon, 13 Feb 2023 16:01:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
-Subject: Re: [PATCH v6 09/12] remoteproc: mediatek: Setup MT8195 SCP core 1
- SRAM offset
+Subject: Re: [PATCH v7 3/3] phy: mediatek: add support for phy-mtk-hdmi-mt8195
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230213033758.16681-1-tinghan.shen@mediatek.com>
- <20230213033758.16681-10-tinghan.shen@mediatek.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        mac.shen@mediatek.com, stuart.lee@mediatek.com
+References: <20220919-v7-0-b5b58c5ccc07@baylibre.com>
+ <20220919-v7-3-b5b58c5ccc07@baylibre.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230213033758.16681-10-tinghan.shen@mediatek.com>
+In-Reply-To: <20220919-v7-3-b5b58c5ccc07@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -65,20 +71,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 13/02/23 04:37, Tinghan Shen ha scritto:
-> Because MT8195 SCP core 0 and core 1 both boot from head of SRAM and
-> have the same viewpoint of SRAM, SCP has a "core 1 SRAM offset"
-> configuration to control the access destination of SCP core 1 to boot
-> core 1 from different SRAM location.
+Il 13/02/23 12:33, Guillaume Ranquet ha scritto:
+> Add support for the mediatek hdmi phy on MT8195 SoC
 > 
-> The "core 1 SRAM offset" configuration is composed by a range
-> and an offset. It works like a simple memory mapped mechanism.
-> When SCP core 1 accesses a SRAM address located in the range,
-> the SCP bus adds the configured offset to the address to
-> shift the physical destination address on SCP SRAM. This shifting is
-> transparent to the software running on SCP core 1.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
