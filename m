@@ -2,140 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F282693FF9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 769DE693FFF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 09:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbjBMIuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 03:50:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
+        id S230129AbjBMIyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 03:54:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjBMIuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:50:20 -0500
-Received: from mx.flying-snail.de (mx.flying-snail.de [IPv6:2a06:1c40:3::42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE054ED2;
-        Mon, 13 Feb 2023 00:50:17 -0800 (PST)
-Received: from [2a02:908:1b0:8800:2ff:ffff:fe11:2236] (helo=mondbasis.internal.flying-snail.de)
-        by mx.flying-snail.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <pelzi@flying-snail.de>)
-        id 1pRUX9-0034f1-BO; Mon, 13 Feb 2023 09:49:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=feldner-bv.de; s=s1; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=D6MuNRohfsBhCYGBsum0yLL3ZqtP1FjupA4uVal3vSo=; b=BaHLhjdQ/Pn9o4EISJcsyCAmt1
-        JDusPDyS3XPbRXGeadZxVNSYeSgBkf4WCDL2al9iNo3RbLHt9/59cxJqbb2AURre5ojdizLfcQFBW
-        lYvFtMcTDEi86TZLktafjEWdGAWv+4Yof8RDrhH0L4Sm/FVhJqrhVsGRFpIeqnVIubW5jHFf5OJrh
-        elMoBCqokzOD1wjFltbbCm5NFT2JzCc8M908UlslMlY3qca5AngLIzu8oIHzwoibLpv2dnh+rvBM+
-        eWLlw/l4AlcmxTrvRUdtbWZMD1BQ0sLI2lLSRutr+wy/GWJUknsv6s1pa6Ab7G+3pIEaWwUBMeVP4
-        w385Y6uw==;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=flying-snail.de; s=s1; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
-        :From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=D6MuNRohfsBhCYGBsum0yLL3ZqtP1FjupA4uVal3vSo=; b=nPUG585Mxn2ezJObymPA4CjNxg
-        78yCxzVwRv7+6EcbWF5R8W5OapMbmhEvYY248ANyfbt+EkBLF/Llkym536pxNlRoR/m8LGZnoyCLG
-        2+Krp6Td1o0u/vLOv/TC++SRUV9tisNhQMGsfpmqIZxGGUc9IDMrqizrRAwaeQzp/usKG3MN3cMKb
-        gYcSyOQAkgRz5o+F/ZXyjMJpAXqAW2GonhO/M76zY3XNYL/9XUvQuVEPNW6HcrJxUTMowjOhjdxC0
-        /X0+1LBKCqmhexFecIK7gNPLFUYQ1d8FFiuvoLWUxgPZ8n58p+2ZVpDFyMCAdBM5mZBNYjUPnNqb7
-        HIFd0m3A==;
-Received: from [2a02:908:1b0:8800:5057:a51f:9eb5:f4ee]
-        by mondbasis.internal.flying-snail.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <pelzi@flying-snail.de>)
-        id 1pRUX5-000pl1-QK; Mon, 13 Feb 2023 09:49:57 +0100
-Message-ID: <c3dda403-6963-040a-3827-443edf0a377a@flying-snail.de>
-Date:   Mon, 13 Feb 2023 09:49:55 +0100
+        with ESMTP id S229468AbjBMIyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 03:54:44 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03AF8A73;
+        Mon, 13 Feb 2023 00:54:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676278483; x=1707814483;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version:content-id;
+  bh=3Qrvb86xqpAxI2HTmIA1ize0Wpi8KHhQvVKxmBu4qVo=;
+  b=io6afZ4/oY7AgSNp7JbUJUYxfvvhZvvntKd8iawL9mUDgLksE5RaLVuY
+   JpJYTKrs6LPEromjF7vyVIM1QjGqJ8oxCABYOJaJkARe7P0gGEp4ojaSF
+   s6UsFyoBM15Ety1Vz7sbaTspuoVO8cUq/7OrkIfiPuEH+TzKHKWAtsedx
+   p0cgunexwNjYza3OQWGCjNndAzeGp+MgVUNdVPse5TCcyllUVxKlFW9WN
+   Vul00mw0M0AuO/Iyj4IFTplzvmYY1rnJ2DXx+TrYHUpmuy2sElePKcaUn
+   WPx+BGcWsyHfuV9BUuga8X4X8xbFADY2PU+mVVVf4pNgPNKYXEAopfYOC
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10619"; a="332152145"
+X-IronPort-AV: E=Sophos;i="5.97,293,1669104000"; 
+   d="scan'208";a="332152145"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2023 00:54:43 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10619"; a="618579861"
+X-IronPort-AV: E=Sophos;i="5.97,293,1669104000"; 
+   d="scan'208";a="618579861"
+Received: from hdevries-mobl.ger.corp.intel.com ([10.249.36.140])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2023 00:54:39 -0800
+Date:   Mon, 13 Feb 2023 10:54:36 +0200 (EET)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>
+cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+Subject: RE: [PATCH 3/4] serial: 8250: Add Aspeed UART driver
+In-Reply-To: <KL1PR0601MB378160E42842A0A55947BF7191DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
+Message-ID: <bc8a6d9c-48ec-e394-78d8-c53bc267af1c@linux.intel.com>
+References: <20230210072643.2772-1-chiawei_wang@aspeedtech.com> <20230210072643.2772-4-chiawei_wang@aspeedtech.com> <2d389fc9-0d5-42a1-b6d7-695c70dcf0fe@linux.intel.com> <KL1PR0601MB378160E42842A0A55947BF7191DD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.7.2
-Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
- default
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Andreas Feldner <pelzi@flying-snail.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <Y+FaVorMl37F5Dve@debian-qemu.internal.flying-snail.de>
- <20230207011608.2ce24d17@slackpad.lan>
- <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
- <20230209202952.673d5a60@slackpad.lan>
- <20230210082936.qefzz4fsp3jpalvp@houat>
- <20230210094425.474cfba5@donnerap.cambridge.arm.com>
- <20230210100620.z6j7rvkiwyu7paij@houat>
- <20230210101814.2d36ae57@donnerap.cambridge.arm.com>
- <20230213084329.ulckaigwd7dof37u@houat>
-From:   pelzi@flying-snail.de
-In-Reply-To: <20230213084329.ulckaigwd7dof37u@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/mixed; BOUNDARY="8323329-257282810-1676278189=:1712"
+Content-ID: <7f777bc7-635e-5cdb-3621-16f888c6153c@linux.intel.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 13.02.23 um 09:43 schrieb Maxime Ripard:
-> On Fri, Feb 10, 2023 at 10:18:14AM +0000, Andre Przywara wrote:
->>>> Not sure if you were actually arguing this, but the change I sketched
->>>> above (interpreting 0 as 24MHz/1) is separate though, as the current
->>>> default is "no DT property", and not 0. There is no input-debounce
->>>> property user in the kernel tree at the moment, so we wouldn't break
->>>> anyone. The only thing that would change is if a downstream user was
->>>> relying on "0" being interpreted as "skip the setup", which isn't
->>>> really documented and could be argued to be an implementation detail.
->>>>
->>>> So I'd suggest to implement 0 as "lowest possible", and documenting that
->>>> and the 32KHz/1 default if no property is given.
->>> Ah, my bad.
->>>
->>> There's another thing to consider: there's already a generic per-pin
->>> input-debounce property in pinctrl.
->>>
->>> Since we can't control it per pin but per bank, we moved it to the
->>> controller back then, but there's always been this (implicit)
->>> expectation that it was behaving the same way.
->>>
->>> And the generic, per-pin, input-debounce documentation says:
->>>
->>>> Takes the debounce time in usec as argument or 0 to disable debouncing
->>> I agree that silently ignoring it is not great, but interpreting 0 as
->>> the lowest possible is breaking that behaviour which, I believe, is a
->>> worse outcome.
->> Is it really? If I understand the hardware manuals correctly, we cannot
->> really turn that feature off, so isn't the lowest possible time period (24
->> MHz/1 at the moment) the closest we can get to "turn it off"? So
->> implementing this would bring us actually closer to the documented
->> behaviour? Or did I get the meaning of this time period wrong?
->> At least that's my understanding of how it fixed Andreas' problem: 1µs
->> is still not "off", but much better than the 31µs of the default. The new
->> 0 would then be 0.041µs.
-> My point was that the property we share the name (and should share the
-> semantics with) documents 0 as disabled. We would have a behavior that
-> doesn't disable it. It's inconsistent.
->
-> The reason doesn't really matter, we would share the same name but have
-> a completely different behavior, this is super confusing to me.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-I got the point. As far as I can tell from the datasheet, it is not possible
-to actually switch off input-debounce. But as a debounce filter is actually
-a low-pass filter, setting the cut-off frequency as high as possible,
-appears to be the equivalent to switching it off.
-To me it does not appear inconsistent, as any hardware will have an
-implicit cut-off frequency given by its physical capabilites.
+--8323329-257282810-1676278189=:1712
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <655a3651-c08d-25b1-4a44-7f6d39894cb8@linux.intel.com>
 
-Cheers,
+On Mon, 13 Feb 2023, ChiaWei Wang wrote:
 
-Andreas.
+> > From: Ilpo J�rvinen <ilpo.jarvinen@linux.intel.com>
+> > Sent: Friday, February 10, 2023 9:52 PM
+> > 
+> > On Fri, 10 Feb 2023, Chia-Wei Wang wrote:
+> > 
+> > > Add the driver for Aspeed UART/VUART devices, which are 16550A
+> > > compatible. It is an wrapper to cover the generic 16550A operation
+> > > while exetending DMA feature for the devices.
+> > >
+> > > Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> > > ---
+> > >  drivers/tty/serial/8250/8250_aspeed.c | 502
+> > ++++++++++++++++++++++++++
+> > >  drivers/tty/serial/8250/Kconfig       |   8 +
+> > >  drivers/tty/serial/8250/Makefile      |   1 +
+> > 
+> > Hi,
+> > 
+> > Before I look any further into this, could you please explain why this is made to
+> > be entirely separate from what we have in
+> >   drivers/tty/serial/8250/8250_aspeed_vuart.c
+> > ?
+> > 
+> > I quickly went through some functions and they've significant parts in common
+> > with no variations at all in many functions and you're defines are 1:1 too
+> > (except for the DMA buf sizes). It would seem much better to add the missing
+> > functionality into 8250_aspeed_vuart.c rather than creating something from
+> > scratch with large overlap with existing code.
+> > 
+> > If you intend to keep it as a separate one, you should have a rather good
+> > justification for it.
+> 
+> Yes, the main difference is the UART DMA support.
+> However, due to the UDMA design is not quite fit to the DMAEngine, the implementation is kind of hacking.
+> We thought leaving the original VUART driver unimpacted would be better.
+> The UDMA covers both UART and VUART DMA support, and so do the new 8250_aspeed.c.
 
+To me it seems rather weak reasoning.
 
+If you want to go to this path, then you need to anyway share the common 
+code between those two drivers rather than duplicating it. It's likely 
+more work for you than just putting it all into the existing driver and
+having just a mostly separated setup() for 2600 case.
+
+The DMA functions should probably also depend on SERIAL_8250_DMA anyway 
+and the driver should fallback to non-DMA if SERIAL_8250_DMA is not set 
+which is yet another reason to use the existing code.
+
+-- 
+ i.
+--8323329-257282810-1676278189=:1712--
