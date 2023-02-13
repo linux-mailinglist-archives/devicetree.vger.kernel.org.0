@@ -2,140 +2,297 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 022BA69444B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:20:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BD0E694451
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:22:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230479AbjBMLUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:20:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33308 "EHLO
+        id S231167AbjBMLWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:22:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjBMLUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:20:35 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55362C160;
-        Mon, 13 Feb 2023 03:20:34 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id r9-20020a17090a2e8900b00233ba727724so5426193pjd.1;
-        Mon, 13 Feb 2023 03:20:34 -0800 (PST)
+        with ESMTP id S229649AbjBMLWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:22:16 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69847DBDD
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:22:15 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id a2so11796922wrd.6
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:22:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yhUwkGMbfcta0BgiSZrgFVKdvG85/JtJXXzQxSbA5YQ=;
-        b=B6fPkWSEu9uiErCCsKFH4Qb+CG8wznVqNXHcGOl+/oxHKNpZxDDNCC8ApRe23IPnjQ
-         YMiBYq8TMAIekQvSZ0iSkLAYRKr7uyTWQ62H0oUBB4+n9qzlDYR8JZFp+s9s69UTOiy/
-         GZA4Y+9rDimUIXiDbwSybiOMt5Pg77f6mwfObFAzGvN5QZ8MJmGKr3WU7oyGrxGI3V1l
-         evuq8IkzHWirRrvEqMefvSxk99GF5D7lncdSBEZY5SNokXebCfSzMomc4MX9NUIrtSOA
-         f22sApfftWaxt8ODCbSbWRslv4Dyd9ibnkXkvr5hFEL/mXDEXR4KJcFazUxy50m5o65v
-         3ioA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TGot4AgaaxOdpZoK7zokKt9GKtHGINSnsvFNFyCvKxY=;
+        b=ek9RhYbXwGWaeObsrLGY3kHgRRkqrYahtV5ljY0nwx+qpNMKDIP91GUkHfK5EwU2J2
+         qMyI4zJpFf8vrO/vbi05ZSIXrGSbpwsgZXA8Q64Gd3e+bVSv/3NRkzjOF0mVpgodgnLM
+         DfLszSQTWSkRbbbszR9ubmRmYx0LKKREoBTKoCCdzngYaZXOnYPGu93hPd5EBTo824q5
+         OAsql/BPmUqO204OEmNlQmrOdFq/KQByKtr/26H99zkyT9uUjoMmUZ68JK/KwDR5Pv0C
+         puYgnG2Y0gHDTzrktrKuuvb5vFjHEGaxq1i/cmqJ81c60z5poC4KGCqFPNtvB6BHvphZ
+         2Gsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yhUwkGMbfcta0BgiSZrgFVKdvG85/JtJXXzQxSbA5YQ=;
-        b=WJM5Qq4HzizyCtKGsyVzrdlG6/iCQaBO7NcJPv5ajwUb9Gv5tO9CBNUVaEYGP0tMEW
-         bWxRUmQLoCvnxx3+X+KZ/2Zpy63vqa7LngU0nEkjJuZ7p3I2INfezG0T0B9/MGF28JWv
-         ZaqPckx8T1eGWSVQkMQCY8BbvbNZnHQAUGmsqXTFSMEdeLy4LHjObf1bD9Y3ttCbpV4L
-         dBy4PE9RU4G8OKAL06gPiX7Tn5u76dBeO4DfS+d0x9Dv+YHKDH8ZlfeMO34zd9+rGIbN
-         BO/taGYLRB3Vmq4E3se8yhNZm60ofgUCv7kSfOvILfsaFLQZMLtXnKO2BQ6W1K8vzTMz
-         K1xg==
-X-Gm-Message-State: AO0yUKUkXSLwSB7gEAeY7twWxiZuG9ESixmRh9fdr55cX9pyQR9Jwjsu
-        OL9IrSG/Lxilo82ruAiFZCs=
-X-Google-Smtp-Source: AK7set+uAhLU/ISmNgXiCtRLzy+Ssc5QgA2lwcvZbThMYhB+3YMWL1TTaVsO0Mt6Wu/EUPH1xlvPQg==
-X-Received: by 2002:a17:90a:195a:b0:231:284:ea4d with SMTP id 26-20020a17090a195a00b002310284ea4dmr21468329pjh.22.1676287233846;
-        Mon, 13 Feb 2023 03:20:33 -0800 (PST)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id m11-20020a17090a3f8b00b002312586b5b1sm7702406pjc.57.2023.02.13.03.20.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Feb 2023 03:20:33 -0800 (PST)
-Date:   Mon, 13 Feb 2023 19:20:26 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TGot4AgaaxOdpZoK7zokKt9GKtHGINSnsvFNFyCvKxY=;
+        b=NmL7MSO7j0kU7qDc6LwMbB7czC+E1+XldJsdzBWhCr4eNrdD8y/iS8y1LhSYJg4982
+         WwUxYX/QipFFFfWKNQtjS+Iy3kSsEncfwEug+mvhz03nOtdCzPpEUklHLOkCl2gKA1kF
+         GYKtXaeXuqMcipRJtftOASUsQI7Kx4TBx/jCflqhgBsjItNgD00h+pWwVVaCJZX3ui+/
+         earqwkIDW6NaeksDAP4Q3P7QRgetaqmoRguB2YmBWuLxy0r5N44BRnb2M3F3t4VuAu9S
+         o6dGbgmnTiNMxG8A7+AFZxTZaEBgUUebNAYnc8NbMyoMqwp/Vwoiyar4jt8pQ0YxS2bH
+         XCBg==
+X-Gm-Message-State: AO0yUKWWZSObcamrnkDExb5Qb/rwsXfd8pAN2hL/7U+upK3m6NzEQLq/
+        C1ZVyjeQLHq7fVCSXLj4efUwMg==
+X-Google-Smtp-Source: AK7set8QdqLpifM+cbX8d6wkcudWoURrmRDj41rTiScdwAy7OWLCoFD6/dAhSpiHK8ZVhnQRQKux2g==
+X-Received: by 2002:a5d:4607:0:b0:2c5:5391:8ab1 with SMTP id t7-20020a5d4607000000b002c553918ab1mr3554368wrq.53.1676287333965;
+        Mon, 13 Feb 2023 03:22:13 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id i6-20020adfe486000000b002c5560a228bsm3341768wrm.95.2023.02.13.03.22.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 03:22:13 -0800 (PST)
+Message-ID: <1ea2107a-bb86-8c22-0bbc-82c453ab08ce@linaro.org>
+Date:   Mon, 13 Feb 2023 12:22:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 17/17] arm64: dts: apple: t8112: Initial t8112 (M2) device
+ trees
+Content-Language: en-US
+To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Novatek NT36523
- bindings
-Message-ID: <Y+oc+kEDoiMsebWF@Gentoo>
-References: <20230210161925.32343-1-lujianhua000@gmail.com>
- <6cffa875-d8cc-a4fe-e18d-2e24c28a49d8@linaro.org>
- <Y+oZOXyE8/a+vreS@Gentoo>
- <ad5dd369-842f-7301-e57d-d0445f0a5268@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad5dd369-842f-7301-e57d-d0445f0a5268@linaro.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Mark Kettenis <kettenis@openbsd.org>
+Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-17-cb5442d1c229@jannau.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230202-asahi-t8112-dt-v1-17-cb5442d1c229@jannau.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 12:08:27PM +0100, Krzysztof Kozlowski wrote:
-> On 13/02/2023 12:04, Jianhua Lu wrote:
-> > On Mon, Feb 13, 2023 at 11:45:23AM +0100, Krzysztof Kozlowski wrote:
-> >> On 10/02/2023 17:19, Jianhua Lu wrote:
-> >>> Novatek NT36523 is a display driver IC that can drive DSI panel. It
-> >>> is also present in the csot and boe video mode panels. It is found
-> >>> in Xiaomi Mi Pad 5 series.
-> >>>
-> >>> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> >>> ---
-> >>>  .../display/panel/novatek,nt36523.yaml        | 101 ++++++++++++++++++
-> >>>  1 file changed, 101 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..a7098d0ce7e1
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-> >>> @@ -0,0 +1,101 @@
-> >>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/display/panel/novatek,nt36523.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Novatek NT36523 based DSI display Panels
-> >>> +
-> >>> +maintainers:
-> >>> +  - Jianhua Lu <lujianhua000@gmail.com>
-> >>> +
-> >>> +description: |
-> >>> +  The nt36523 IC from Novatek is a generic DSI Panel IC used to drive dsi
-> >>> +  panels.
-> >>> +  Right now, only support cost and boe LCD display panels with the
-> >>
-> >> boe? both?
-> > Boe Technology Group Co., Ltd
+On 12/02/2023 16:41, Janne Grunau wrote:
+> From: Hector Martin <marcan@marcan.st>
 > 
-> Then what is "cost"? If both are names, then they start with capital
-> letters or how the company officially spells itself.
-both are company name, I will search offical name for it.
+> This adds device trees for the following devices:
+>  - Macbook Air (M2, 2022)
+>  - Macbook Pro 13" (M2, 2022)
+>  - Mac mini (M2, 2023)
 > 
-> >>
-> >>> +  resolution of 1600x2560. It is a video mode DSI panel.
-> >>
-> >> The binding or hardware supports only 1600x2560? The how it can be
-> >> "right now"? It's defined, isn't it?
-> > Yes
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Co-developed-by: Janne Grunau <j@jannau.net>
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
+>  arch/arm64/boot/dts/apple/Makefile        |    3 +
+>  arch/arm64/boot/dts/apple/t8112-j413.dts  |   71 ++
+>  arch/arm64/boot/dts/apple/t8112-j473.dts  |   60 ++
+>  arch/arm64/boot/dts/apple/t8112-j493.dts  |   60 ++
+>  arch/arm64/boot/dts/apple/t8112-jxxx.dtsi |   81 ++
+>  arch/arm64/boot/dts/apple/t8112-pmgr.dtsi | 1141 +++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/apple/t8112.dtsi      |  904 +++++++++++++++++++++++
+>  7 files changed, 2320 insertions(+)
 > 
-> What yes? How it can be "right now"? It implies it will change, so how
-> hardware can change?
-sorry, my wrong. This binding only support 1600x2560.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/arch/arm64/boot/dts/apple/Makefile b/arch/arm64/boot/dts/apple/Makefile
+> index 5a7506ff5ea3..aec5e29cdfb7 100644
+> --- a/arch/arm64/boot/dts/apple/Makefile
+> +++ b/arch/arm64/boot/dts/apple/Makefile
+> @@ -10,3 +10,6 @@ dtb-$(CONFIG_ARCH_APPLE) += t6000-j316s.dtb
+>  dtb-$(CONFIG_ARCH_APPLE) += t6001-j316c.dtb
+>  dtb-$(CONFIG_ARCH_APPLE) += t6001-j375c.dtb
+>  dtb-$(CONFIG_ARCH_APPLE) += t6002-j375d.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8112-j413.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8112-j473.dtb
+> +dtb-$(CONFIG_ARCH_APPLE) += t8112-j493.dtb
+> diff --git a/arch/arm64/boot/dts/apple/t8112-j413.dts b/arch/arm64/boot/dts/apple/t8112-j413.dts
+> new file mode 100644
+> index 000000000000..0e5b5add92cf
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t8112-j413.dts
+> @@ -0,0 +1,71 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple MacBook Air (M2, 2022)
+> + *
+> + * target-type: J413
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "t8112.dtsi"
+> +#include "t8112-jxxx.dtsi"
+> +
+> +/ {
+> +	compatible = "apple,j413", "apple,t8112", "apple,arm-platform";
+> +	model = "Apple MacBook Air (13-inch, M2, 2022)";
+> +
+> +	aliases {
+> +		bluetooth0 = &bluetooth0;
+> +		wifi0 = &wifi0;
+> +	};
+> +};
+> +
+> +/*
+> + * Force the bus number assignments so that we can declare some of the
+> + * on-board devices and properties that are populated by the bootloader
+> + * (such as MAC addresses).
+> + */
+> +&port00 {
+> +	bus-range = <1 1>;
+> +	wifi0: wifi@0,0 {
+> +		compatible = "pci14e4,4433";
+> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +		/* To be filled by the loader */
+> +		local-mac-address = [00 10 18 00 00 10];
+> +		apple,antenna-sku = "XX";
+> +		brcm,board-type = "apple,hokkaido";
+> +	};
+> +
+> +	bluetooth0: bluetooth@0,1 {
+> +		compatible = "pci14e4,5f71";
+> +		reg = <0x10100 0x0 0x0 0x0 0x0>;
+> +		/* To be filled by the loader */
+> +		local-bd-address = [00 00 00 00 00 00];
+> +		brcm,board-type = "apple,hokkaido";
+> +	};
+> +};
+> +
+> +/*
+> + * Remove unused PCIe ports
+> + */
+> +
+> +/delete-node/ &port01;
+
+You should not delete devices just because they are unused. Externally
+visible buses should be just disabled in DTSI and you enable them when
+needed. Not the opposite way.
+
+What's more, you must node delete nodes just because they are "not
+used". This not anymore proper description of hardware.
+
+> +/delete-node/ &port02;
+> +/delete-node/ &port03;
+> +
+> +&i2c0 {
+> +	/* MagSafe port */
+> +	hpm5: usb-pd@3a {
+> +		compatible = "apple,cd321x";
+> +		reg = <0x3a>;
+> +		interrupt-parent = <&pinctrl_ap>;
+> +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-names = "irq";
+> +	};
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/apple/t8112-j473.dts b/arch/arm64/boot/dts/apple/t8112-j473.dts
+> new file mode 100644
+> index 000000000000..55950d0a73c5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t8112-j473.dts
+> @@ -0,0 +1,60 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple Mac mini (M2, 2023)
+> + *
+> + * target-type: J473
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + */
+> +
+> +/dts-v1/;
+
+(....)
+
+
+> +
+> +	ps_debug_switch: power-controller@b8 {
+> +		compatible = "apple,t8112-pmgr-pwrstate", "apple,pmgr-pwrstate";
+> +		reg = <0xb8 4>;
+> +		#power-domain-cells = <0>;
+> +		#reset-cells = <0>;
+> +		label = "debug_switch";
+> +		apple,always-on; /* Core AON device */
+> +	};
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
+> new file mode 100644
+> index 000000000000..974443913f6a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t8112.dtsi
+> @@ -0,0 +1,904 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple T8112 "M2" SoC
+> + *
+> + * Other names: H14G
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + */
+
+
+(...)
+
+> +
+> +		aic: interrupt-controller@23b0c0000 {
+> +			compatible = "apple,t8112-aic", "apple,aic2";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			reg = <0x2 0x3b0c0000 0x0 0x8000>,
+> +				<0x2 0x3b0c8000 0x0 0x4>;
+> +			reg-names = "core", "event";
+> +			power-domains = <&ps_aic>;
+> +
+> +			affinities {
+> +				e-core-pmu-affinity {
+> +					apple,fiq-index = <AIC_CPU_PMU_E>;
+> +					cpus = <&cpu_e0 &cpu_e1 &cpu_e2 &cpu_e3>;
+> +				};
+> +
+> +				p-core-pmu-affinity {
+> +					apple,fiq-index = <AIC_CPU_PMU_P>;
+> +					cpus = <&cpu_p0 &cpu_p1 &cpu_p2 &cpu_p3>;
+> +				};
+> +			};
+> +		};
+> +
+> +		pmgr: power-management@23b700000 {
+> +			compatible = "apple,t8112-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+
+Why this is simple-mfd?
+
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x2 0x3b700000 0 0x14000>;
+> +		};
+
+
+> +
+> +		pmgr_mini: power-management@23d280000 {
+> +			compatible = "apple,t8112-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+
+Why this is simple-mfd?
+
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x2 0x3d280000 0 0x4000>;
+> +		};
+
+
+
+Best regards,
+Krzysztof
+
