@@ -2,102 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FAB8695297
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:03:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D622E6952BD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 22:11:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbjBMVDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 16:03:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55272 "EHLO
+        id S229916AbjBMVLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 16:11:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjBMVDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:03:38 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9561C328
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:03:36 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id qb15so33002196ejc.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 13:03:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iji4WhAMH0Xmn8u5RXywgde50zqMluNVEZrLkL99lQI=;
-        b=JWIN7BjsMXeTBrob8om/pfjSkeFrv+OedJ5dsaZOpjKajckRr4pYijEPUOh070ZigC
-         KInhWm1zvQwCGNpCMrTjDMPtDtECn6wqMX5871O8oGpM2MH0PGAXPbZi1RNRu3swc9cx
-         8I9SWsSiKn7Ti8EqELbAh851FFr32n4WO2mmni8krG8q6IEZ81gHfvrfQHiw38w2anUy
-         dtuBqtlfO9uttQfMgx2NGQwSbi/206bSWijTfqUcBvFuINiw7hEcXUFnpryMz518HrFo
-         iP6BMq+kymDiN/qfp37dQ9SLTUJk5hK8w9qwAVkrah9UlluxY9F3datvervED7NKKqou
-         OPpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Iji4WhAMH0Xmn8u5RXywgde50zqMluNVEZrLkL99lQI=;
-        b=lWa7ScyHp1E+C3u3bP9NV7iBEdpPOX/RIyDV+J11moLbPTFtbIN/8V0SD0kObB+DSc
-         F/+XBKfMUfPTQMqjQUApOfGGnBNN0RsFUwD4vp83UlBJxad/3ruK7zaI1KnALj3aNOWf
-         2YIwLYcpN9NBsP/KuIXcKrg9wyVpt6Kd8gBxewb4yDTsdkL/dt8jyfrvIHCTrs2ymruo
-         jrIl1hZsduwgYn5d0DcnjPNSpjsd1oQe4u+S7Ae22bxvAe70Wl3NjbX5FWVkDHbncEot
-         buWOexvR1fbL03u7qCVJn+vncx5oK6EITs2G/vKigOZOwEnbanT9fJ3bY40IoTFJ5C4H
-         aD5A==
-X-Gm-Message-State: AO0yUKWjUMih+lhkdioklhfNdEJtJBaxlHQI6DH9yBt6uxZSvMiTqsZK
-        AaWnIyIz/Xcf+byCm3UfNlpPsg==
-X-Google-Smtp-Source: AK7set+bxnF/WKv8MHWQwYSGBhSYvo1XxGDGWMal/mZfydY/KsKfbm821kTrLrJcoqpSqj3N57ZDQQ==
-X-Received: by 2002:a17:907:3f91:b0:8aa:9841:5e29 with SMTP id hr17-20020a1709073f9100b008aa98415e29mr326126ejc.77.1676322214542;
-        Mon, 13 Feb 2023 13:03:34 -0800 (PST)
-Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b008af2c131d4csm7282148ejc.5.2023.02.13.13.03.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Feb 2023 13:03:34 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229810AbjBMVLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 16:11:22 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178421CADB;
+        Mon, 13 Feb 2023 13:11:21 -0800 (PST)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CC14766015B7;
+        Mon, 13 Feb 2023 21:11:19 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676322679;
+        bh=RkEUPNhLOk8pBPmypH99mFbmtIcOi4Up8+lGHvGYceg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jDEEi1naQMhZ5lgMROZ7RwY3XoF75H5JPNghguTcBUniawtsDhATUf9ktVaxZZrOm
+         8nlsZit6LTQQXRpyZfccLwBjgbTz+bscQVIgTDtHAZ7SL+YCbmohQKIFtGLpmeTF5i
+         c8bdXsmtC+maNj66fpWUoiU3F2aq0KaKvHzjlvodnM9rVmM2FNbx/FL0knsDunRwgk
+         CVhntBGTAQ2f/gkTnsGIVc+RQ/I38mXpPNy0Gyt/mKQZ5Vj+T7S2OB50wqfhe3E8Lu
+         MATyrddq84VqzylIEDU4HSfCGdupnlGnS2EmLBnmQfdWZ5EBjk7uhGsIn4UBSFadVf
+         pPC8FPqdS0xhQ==
+Received: by mercury (Postfix, from userid 1000)
+        id EE08110603FE; Mon, 13 Feb 2023 22:11:16 +0100 (CET)
+Date:   Mon, 13 Feb 2023 22:11:16 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8998: Fix stm-stimulus-base reg name
-Date:   Mon, 13 Feb 2023 22:03:31 +0100
-Message-Id: <20230213210331.2106877-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.1
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
+Subject: Re: [PATCH v2 2/3] power: supply: Add Lenovo Yoga C630 EC driver
+Message-ID: <20230213211116.jeecwu3m5edkqxy2@mercury.elektranox.org>
+References: <20230205152809.2233436-1-dmitry.baryshkov@linaro.org>
+ <20230205152809.2233436-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uccsrmrntziybdlz"
+Content-Disposition: inline
+In-Reply-To: <20230205152809.2233436-3-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The name stm-data-base comes from ancient (msm-3.10 or older)
-downstream kernels. Upstream uses stm-stimulus-base instead. Fix it.
 
-Fixes: 783abfa2249a ("arm64: dts: qcom: msm8998: Add Coresight support")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-Not tested on hw.
+--uccsrmrntziybdlz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 76b65732d8d8..9f94351f7460 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -2547,7 +2547,7 @@ stm: stm@6002000 {
- 			compatible = "arm,coresight-stm", "arm,primecell";
- 			reg = <0x06002000 0x1000>,
- 			      <0x16280000 0x180000>;
--			reg-names = "stm-base", "stm-data-base";
-+			reg-names = "stm-base", "stm-stimulus-base";
- 			status = "disabled";
- 
- 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
--- 
-2.39.1
+On Sun, Feb 05, 2023 at 05:28:08PM +0200, Dmitry Baryshkov wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>=20
+> The Qualcomm Snapdragon-based Lenovo Yoga C630 has some sort of EC
+> providing AC-adapter and battery status, as well as USB Type-C altmode
+> notifications for Displayport operation.
+>=20
+> The Yoga C630 ships with Windows, where these operations primarily are
+> implemented in ACPI, but due to various issues with the hardware
+> representation therein it's not possible to run Linux on this
+> information. As such this is a best-effort re-implementation of these
+> operations, based on the register map expressed in ACPI and a fair
+> amount of trial and error.
+>=20
+> Tested-by: Steev Klimaszewski <steev@kali.org>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
+[...]
+
+> +static bool yoga_c630_ec_is_charged(struct yoga_c630_ec *ec)
+> +{
+> +	if (ec->bat_status !=3D 0)
+> +		return false;
+> +
+> +	if (ec->full_charge_capacity =3D=3D ec->capacity_now)
+> +		return true;
+> +
+> +	if (ec->design_capacity =3D=3D ec->capacity_now)
+> +		return true;
+
+For other platforms I've seen the current capacity sometimes
+reaching higher values than the full charge capacity, so it's better
+to use <=3D here.
+
+> +	return false;
+> +}
+
+[...]
+
+> +static int yoga_c630_ec_query_usb_event(struct yoga_c630_ec *ec)
+> +{
+> +	struct device *dev =3D &ec->client->dev;
+> +	int event;
+> +
+> +	mutex_lock(&ec->lock);
+> +	event =3D yoga_c630_ec_read8(ec, LENOVO_EC_QUERY_USB_EVENT);
+> +	mutex_unlock(&ec->lock);
+> +	if (event < 0) {
+> +		dev_err(dev, "unable to query USB event\n");
+> +		return event;
+> +	}
+> +
+> +	/* FIXME: handle the returned event to set the Type-C properties */
+
+I guess this is more of a TODO than a FIXME? :)
+
+> +
+> +	return 0;
+> +}
+
+-- Sebastian
+
+--uccsrmrntziybdlz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPqp2sACgkQ2O7X88g7
++ppzeg//bShc3n3PY56ImQh0MpNymWBp1nCUcY6I6iQIRmNE00ezHD79aAz4NfOF
+pUQ8j5aTksulobZ7JOE9DlNHvmYa3ges+ueMujDnEclae4lBo9YcLQoYORBKanS7
+yQrqxVoL//rWLa8ObYDUYnpAc8rrF0NTwdSazWhqHif3sXcgWFGpfyQwcPnEK2yn
+Oj2YQ5FSA3GZao3ip3fkHke2Grk9nouyS3kWUqU/1muU6YoHb4QAAk9h3kfS/Z/n
+5ZaSx3hPPybcixmHglFAebPAmPtKiAjnSkW+TFCCrWYDLY/ea2+lKSNWZX1lNYVf
+9ye+tewmY0laYYPBEP4DPKys9208lWe22yKkXiXnBtd8Vpuvzo2W5lxH4ZaAMEE+
+om0Gp9pgDsJ7u7LSYuKGq7X/z/HJyi3PcInJeM090+oATyBBZK/zXOA+ZrkLQMmL
+YHh/T+j9/E7I7vq+D8pthjGEqtLPq52KOyWc2GLxJiUGXVn489SsmXwUlMjhCj60
+zO+sGwGJsu9rLr39YTq6D2DDBpp41ypm1cYXyC4v9vfgdINsrO3XlhieMPASufrs
+LJY7WRu4Ijz1Hjr7f0alC+l2LmuRxR9M1t1SpPhBzmc26GpOtHBgtghdCKoMJxgw
+wTywvfvwCuQSwh32H7Bob4qB6EWojIfmgYgI0mqf6DKIYqfFAMs=
+=0Txj
+-----END PGP SIGNATURE-----
+
+--uccsrmrntziybdlz--
