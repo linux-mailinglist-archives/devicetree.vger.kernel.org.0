@@ -2,123 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A02A2695015
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 19:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB44F69503C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 20:02:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbjBMS6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 13:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
+        id S231243AbjBMTCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 14:02:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbjBMS5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 13:57:53 -0500
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C970E76A9;
-        Mon, 13 Feb 2023 10:57:49 -0800 (PST)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-15fe106c7c7so16264809fac.8;
-        Mon, 13 Feb 2023 10:57:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZhoQvg3BMaFTkvvFqgv6WpxCoYJyC9DRYUszslZVGiQ=;
-        b=FXWPwOo/Ee+i5OIz6j2njqn0ZzUk6+WwUfHqMu0bXnatgSmwQmHnG+Iqvs4fG8bE2l
-         qn3stmEtWIHTu7T53g0gyk86US2YfreUbGwa6bH6cqO4zTtCFZMf1THvRYLwSNe0sGI0
-         CF1t/wP24ReLd6zmr/VQsWnppeI1WgQ5A9ZCh7+M+ZkaeMk3A7eWDK0+w8kPFYi1rxfW
-         G5GVxZnhOrqahcj6G3zNy329jhG3W2RQqqlyVGLSwymtjNRBuAfpyE7/9tAUlPoOFi3s
-         WLDmHZCWop11hftaciL9juMEqbn0z7lf8dtpDQdmQJpjSc9S0fOF03rya70VD/iK6M70
-         2yPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZhoQvg3BMaFTkvvFqgv6WpxCoYJyC9DRYUszslZVGiQ=;
-        b=CZcFdh5JkOC3GZgEFLJlE20W00bKIbVf3E+SxIQvfPoLzZofZjwBgG+gyGPvl+Nm62
-         Wl6UynFs3Bq2nEf6b8gRwzFm3tOPYO7l7ZbyGRgH0n4ga6Qlgw1qegCqX7x8wYOmyEeP
-         k6Oooi9XgsB3VMUnzP0OF1pkDLDgjtEHjRaXlHVo7A2nVZvgnNjUJCoVkM0R5zwW72wB
-         l22cAocXvacTmsTJRKILuPXDgdtrRgcaep/U+rLs7L3hmyChIBjXOgDeWNbl9uE/uVXx
-         OmuGPva6lnrwR5FwmedlBPoCjhF1qLFnRwmR0GO1o4HtOOlHkk2IwWHlJfJRRZK756mk
-         kTNg==
-X-Gm-Message-State: AO0yUKVxeM47QUOMsSootrUMgYacor/shmOu4/FBj6XKnhHxHsTXhwKt
-        0m+ut4R92biqJK9jpHSx2n0=
-X-Google-Smtp-Source: AK7set+1cl1yGPyo8AOt32fCulUchZRPgSXW1CwXhWaBm9Rb86rE1dMKAg/PhygRr/6/KzL0rwE1vQ==
-X-Received: by 2002:a05:6870:d69d:b0:16a:c8ed:f405 with SMTP id z29-20020a056870d69d00b0016ac8edf405mr8255809oap.52.1676314669212;
-        Mon, 13 Feb 2023 10:57:49 -0800 (PST)
-Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:5829:dabf:a50e:e9f2])
-        by smtp.gmail.com with ESMTPSA id ef15-20020a0568701a8f00b0016df97ab05bsm1654958oab.31.2023.02.13.10.57.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Feb 2023 10:57:48 -0800 (PST)
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] of: dynamic: add lifecycle docbook info to node creation functions
-Date:   Mon, 13 Feb 2023 12:57:02 -0600
-Message-Id: <20230213185702.395776-8-frowand.list@gmail.com>
+        with ESMTP id S230287AbjBMTCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 14:02:33 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5706823114;
+        Mon, 13 Feb 2023 11:01:47 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31DFM7XC027382;
+        Mon, 13 Feb 2023 19:01:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=dQYWhXzT07LYVq0/if5nn8gaE/tTE5zoUmYBBa/F2V4=;
+ b=bZrMZjbwO6ZGmnbkAlmDKmbStCKu8hDdrEpFYAGiT6xn759oEXJWnzMNByj0L05Cj0ug
+ TyOksWz3o25Yf7DwmCPOnlN6HBH6VRUzATRpjdFbhzlYgpUVrIbagcMg8pybeb19T8hT
+ DdyEm2ZuruBLYs0qyjMPjV9lYCW3oeSh3w1nPw81kXrh/n026VQTxVKfyjZyvWrpCT3D
+ hGZL0cFwM6ISWZI0/ALcsMBASsbybTWItCYYixO5nwFSRpQwW6s/4oc4ekKRybQmMNMo
+ C5sXAfknBBmm/kdHuJkP9/2tnx7YyhJMU7oCvdvEzxi+KelZPB7IMrVX3oxxDT6y8+s0 AQ== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3npmvrknqu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 19:01:42 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31DJ1e9r008124
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Feb 2023 19:01:40 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 13 Feb 2023 11:01:40 -0800
+From:   Melody Olvera <quic_molvera@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] arm64: dts: qcom: Add mpss support to QDU1000/QRU1000 SoCs
+Date:   Mon, 13 Feb 2023 11:01:19 -0800
+Message-ID: <20230213190122.178501-1-quic_molvera@quicinc.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230213185702.395776-1-frowand.list@gmail.com>
-References: <20230213185702.395776-1-frowand.list@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: OrZd8jJjKyJEBOCoiLJ2_Hf0m_yVVhre
+X-Proofpoint-GUID: OrZd8jJjKyJEBOCoiLJ2_Hf0m_yVVhre
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-13_12,2023-02-13_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 mlxscore=0 impostorscore=0 mlxlogscore=451 suspectscore=0
+ adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302130167
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The existing docbook comments for the functions related to creating
-a devicetree node do not explain the reference count of a newly
-created node, how decrementing the reference count to zero will
-free the associated memory, and the caller's responsibility to
-call of_node_put() on the node.  Explain what happens when the
-reference count is decremented to zero.
+This adds support for the mpss found in the QDU1000 and QRU1000 SoCs.
+It needs an RMB register space to be specified to enable a handshake
+with the mpss to late attach the device. The firmware file paths are
+also added in the IDP board DTs.
 
-Signed-off-by: Frank Rowand <frowand.list@gmail.com>
----
- drivers/of/dynamic.c |  3 ++-
- include/linux/of.h   | 11 +++++++++++
- 2 files changed, 13 insertions(+), 1 deletion(-)
+This patch set depends on the bindings from [1].
 
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 657a65006056..12aa99018969 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -443,7 +443,8 @@ struct property *__of_prop_dup(const struct property *prop, gfp_t allocflags)
-  * another node.  The node data are dynamically allocated and all the node
-  * flags have the OF_DYNAMIC & OF_DETACHED bits set.
-  *
-- * Return: The newly allocated node or NULL on out of memory error.
-+ * Return: The newly allocated node or NULL on out of memory error.  Use
-+ * of_node_put() on it when done to free the memory allocated for it.
-  */
- struct device_node *__of_node_dup(const struct device_node *np,
- 				  const char *full_name)
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 8b9f94386dc3..e20a08c8a8c8 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -100,6 +100,17 @@ struct of_reconfig_data {
- 	struct property		*old_prop;
- };
- 
-+/**
-+ * of_node_init - initialize a devicetree node
-+ * @node: Pointer to device node that has been created by kzalloc()
-+ * @phandle_name: Name of property holding a phandle value
-+ *
-+ * On return the device_node refcount is set to one.  Use of_node_put()
-+ * on @node when done to free the memory allocated for it.  If the node
-+ * is NOT a dynamic node the memory will not be freed. The decision of
-+ * whether to free the memory will be done by node->release(), which is
-+ * of_node_release().
-+ */
- /* initialize a node */
- extern struct kobj_type of_node_ktype;
- extern const struct fwnode_operations of_fwnode_ops;
+[1] https://lore.kernel.org/all/20230213185218.166520-1-quic_molvera@quicinc.com/
+
+Melody Olvera (3):
+  arm64: dts: qcom: qdu1000: Add IPCC, MPSS, AOSS nodes
+  arm64: dts: qcom: qdu1000-idp: Enable mpss
+  arm64: dts: qcom: qru1000-idp: Enable mpss
+
+ arch/arm64/boot/dts/qcom/qdu1000-idp.dts |   6 ++
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 105 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qru1000-idp.dts |   6 ++
+ 3 files changed, 117 insertions(+)
+
+
+base-commit: 09e41676e35ab06e4bce8870ea3bf1f191c3cb90
+prerequisite-patch-id: ddc43db334e06b6938219e12964a5e943641126d
+prerequisite-patch-id: dfbe05633d84289f35047a32502984b00112d4fd
+prerequisite-patch-id: 6a55ae4bd86e2565d8362579ce5f09a14e93e422
+prerequisite-patch-id: 7c8c18aef7f693eb0749ee9f296bfb59ca202eb7
+prerequisite-patch-id: 8d4a7aa9e2af4659f7f820058e90ed985410deed
+prerequisite-patch-id: 3a012cc3a5b28208ecf23b2a1b5a0310d15aa4ac
+prerequisite-patch-id: ad32654fa37f8c5fb00162d093b577f81a511bd0
+prerequisite-patch-id: d699495a3b22bb97c9d114024a82a9fadcc40082
+prerequisite-patch-id: 819b2fb10cd0322fe815ac9ab3ffbaac7c51ad71
 -- 
-Frank Rowand <frowand.list@gmail.com>
+2.25.1
 
