@@ -2,229 +2,373 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 307A9694626
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:45:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB06469463F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 13:47:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231182AbjBMMp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 07:45:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59052 "EHLO
+        id S229967AbjBMMrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 07:47:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjBMMpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:45:51 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5E7B81969D;
-        Mon, 13 Feb 2023 04:45:46 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Dx3tr5MOpjxhYAAA--.459S3;
-        Mon, 13 Feb 2023 20:45:45 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxB732MOpj9EYyAA--.28122S3;
-        Mon, 13 Feb 2023 20:45:42 +0800 (CST)
-Subject: Re: [PATCH v12 1/2] thermal: loongson-2: add thermal management
- support
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S231130AbjBMMrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 07:47:45 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D2119694
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:47:43 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id bu23so12067370wrb.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 04:47:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eLcFHEy4OAQ/LfPqJOYEZwVyv3uhgcnS0r7pBqHMjn4=;
+        b=kIVvxJJLExyr30QkBpe6ke48ysBtCQfmTzZImzK8g8CAqPha7OggKxgppcE8uk10rs
+         ro6PiimmQ1dfQlgLR+IVWal9UySbJLFC1jReTPX0m0goSFEOTvD4hgbU9tdUgVXDhGFN
+         SPi2Ng3xuDZrE/ierPav8/KyVvJ3xoIThP66eAiWKTa9yLVZtling22BJsnWgS5SQkzf
+         JGHWRWWAfqScbXGWj03qNohaM8xDnh6Excd+trmxBDe5GfbRAS+QEC4NgPF34pmob3rM
+         267TNZTQ6XJbUxGr5FMYtmcyd4wzV8766sTWYSefUXPk3z3GCwJR/lKS/rAM9kq48IiS
+         A1iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eLcFHEy4OAQ/LfPqJOYEZwVyv3uhgcnS0r7pBqHMjn4=;
+        b=07mTwUKeCCSN+/s0UGcDwhlxO7fBe4Tb39or64G0Uf6NkpQCol7LTm0OgtMz9Ohq+W
+         9p27t/v0IlvLjniqVtTFHGcYjvsYJvpcOPxCovARhovaXXuMdDbRMoyQeKz5v3hXFs+r
+         kMC9rljJzDxI2DfH3Y1KC64u+aikHFhkvLTSGzOjmXOUIA0v+2JKd0E6H0NV4ol2CJgU
+         hliO/JmZEA26GFl8H3K9QV2W1ZPviPHEQ4WhCdlbhy8ls9wMbu4qGVeqI1CFa5ysfODy
+         zSPxGE0P4GdVDHrRlbMOmjLSHpu5h+I3FBzVosNLpptEZo3HMqmng6vw7MXJhgVKVNnS
+         Y8NA==
+X-Gm-Message-State: AO0yUKUZjYceijC3xq6LTb7G3Oja3rw2sU/vclC0W7xg01jWS3PgnWQv
+        Ivtkgayj8ZZJqzqYfDCZPnpAOA==
+X-Google-Smtp-Source: AK7set/aQUal0zYqJ5uAzBmBkGz32U5mbohd3AC2v9m2jIBFo9prWb+fNeR0h3axJDHohOmUbMDxiQ==
+X-Received: by 2002:a5d:4ed0:0:b0:2c5:55a1:4b2 with SMTP id s16-20020a5d4ed0000000b002c555a104b2mr3227592wrv.49.1676292462131;
+        Mon, 13 Feb 2023 04:47:42 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id a12-20020a5d508c000000b002c55ec7f661sm1119502wrt.5.2023.02.13.04.47.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Feb 2023 04:47:41 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, lvjianmin@loongson.cn,
-        wanghongliang@loongson.cn, zhuyinbo@loongson.cn
-References: <20221114024709.7975-1-zhuyinbo@loongson.cn>
- <20230206135921.GA15176@linaro.org>
- <64d9782c-cafd-cdc3-3602-719c386d98cc@loongson.cn>
- <20230208104919.GA120053@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <5abe22ee-77d4-4349-1d88-43e4324177f0@loongson.cn>
-Date:   Mon, 13 Feb 2023 20:45:42 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] media: dt-bindings: samsung,s5c73m3: convert to dtschema
+Date:   Mon, 13 Feb 2023 13:47:39 +0100
+Message-Id: <20230213124739.34579-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <20230208104919.GA120053@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID: AQAAf8BxB732MOpj9EYyAA--.28122S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxAw17tw1Dur1xZFy8uw4xtFb_yoWrKFWfpr
-        W8Ga1UtFZ8tr18W3W0gw18Zr9Iyry3t343Wws3GFyrArZ8tryagFyFqFWF9Fs7CrW0kFWj
-        vF15twsruFn8X3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        b3kFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l
-        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-        vE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20x
-        vY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2Iq
-        xVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r
-        1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY
-        6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67
-        AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x
-        07jjpBfUUUUU=
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the Samsung S5C73M3 8Mp camera ISP bindings to DT schema.
 
-在 2023/2/8 下午6:49, Daniel Lezcano 写道:
-> On Wed, Feb 08, 2023 at 11:13:33AM +0800, zhuyinbo wrote:
->
-> [ ... ]
->
->>>> +struct loongson2_thermal_data {
->>>> +	struct thermal_zone_device *tzd;
->>> 'tzd' won't be needed after taking into account the comments
->> The 'tzd' element is needed,  because the thermal_zone_device_update need
->> pass a data->tzd element.
->>
->> static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
->> {
->>          struct loongson2_thermal_data *data = dev;
->>
->>          thermal_zone_device_update(data->tzd,
->>                                     THERMAL_EVENT_UNSPECIFIED);
->>          enable_irq(data->irq);
->>
->>          return IRQ_HANDLED;
->> }
-> After taking into account all the comments, enabled_irq() won't be
-> called, so 'data' won't be needed. 'tzd' will be passed to
-> devm_request_threaded_irq() instead of 'data'.
->
-> As loongson2_thermal_irq_thread() is the only place where 'tzd' is
-> needed and 'tzd' being local to the call site of
-> thermal_zone_device_register() and devm_request_threaded_irq(), there
-> is no need to store the pointer in the 'data' structure.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/media/samsung,s5c73m3.yaml       | 165 ++++++++++++++++++
+ .../bindings/media/samsung-s5c73m3.txt        |  97 ----------
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 166 insertions(+), 97 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
 
-okay, I got it. I will remove tzd element in data struct.
-
->
->>>> +	int irq;
->>> 'irq' won't be needed after taking into account the comments
->> I will drop it.
->>>> +	int id;
->>>> +	void __iomem *regs;
->>>> +	struct platform_device *pdev;
->>> 'pdev' is not needed
->> I will drop it.
->>>> +	u16 ctrl_low_val;
->>>> +	u16 ctrl_hi_val;
->>> Those fields won't be needed after taking into account the comments
->> I will drop it.
->>>> +};
->>>> +
->>>> +static int loongson2_thermal_set(struct loongson2_thermal_data *data,
->>>> +					int low, int high, bool enable)
->>>> +{
->>>> +	u64 reg_ctrl = 0;
->>>> +	int reg_off = data->id * 2;
->>>> +
->>>> +	if (low > high)
->>>> +		return -EINVAL;
->>>> +
->>>> +	low = max(low, -100);
->>>> +	high = min(high, 155);
-> Documentation says -40, 125
-My previous calculation is to consider that the range of 8bit 
-representation is 0 to 255,
-and node (cpu) temp=Thens0_ out -100, So the temperature range is 0-100 
-~ 255-100, and this
-range includes -40~125.  In fact, the range described in the manual is - 
-40~125, I will
-adop it.
->
->>>> +	low += 100;
->>>> +	high += 100;
->>> Why are those values added to the low and high ? Did you mean low += 0x100 ?
->>>
->>> Mind to describe a bit the register layout?
->> node(cpu) temp = Thens0_out -100,
->>
->> low and high is record node temp, so low and high need add '100' as
->> Thens0_out.
-> If I refer to the documentation it is a raw value converted from
-> centigrade. The function has degree.
->
-> So it should be:
->
-> temp_deci = temp_milli / 10
->
-> raw = temp_to_raw(temp_deci);
->
-> -> temp_to_raw to be determined from temp = (raw * 731) / 0x4000 - 273
->
-> [ ... ]
-I have review the 3a5000 datasheet,  what you said is right about 
-3a5000, but in 2k1000 datasheet,
-
-the calculation of temperature is follows:
-
-Temperature = Thens0_out - 100
-  
-get_temp return value is (Temperature * 1000) and set_trips is (value /1000) in 2k1000.
-I don't find a caculate about "temp_deci = temp_milli / 10" . Are you talking about "
-temp_deci = temp_milli / 1000" in set_trips?
-
->
->>>> +static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
->>>> +{
->>>> +	u32 reg_val;
->>>> +	struct loongson2_thermal_data *data = tz->devdata;
->>>> +
->>>> +	reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
->>>> +	*temp = ((reg_val & 0xff) - 100) * 1000;
->>> Why '-100' ?
->>>
->>> Is the unit returned 'degrees' ?
->> node(cpu) temp = Thens0_out -100,
->>
->> Here we need to get a node temp.
-> If I refer to the Loongson-3A5000 manual and assuming it is the right
-> one, the documentation says:
->
-> Temperature = Thens0_out * 731 / 0x4000 - 273
->
-> The unit is centigrade.
->
-> [ ... ]
-
-Yes, 3a5000 is what you said, but 2k1000 is calculated as follows:
-
-Temperature = Thens0_out - 100
->
->>>> +	writeb(0xff, data->regs + LOONGSON2_TSENSOR_STATUS);
->>>> +
->>>> +	loongson2_thermal_set(data, 0, 0, false);
->>> It would be nicer to use a reset line if it is available
->> sorry, I don't get your meaning. Please describe more details about 'reset
->> line'.
-> After a reset, the thermal controller should be in default state and the interrupt
-> flag cleared.
->
-> One example:
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/nvidia/tegra210.dtsi#n1560
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/drivers/thermal/tegra/soctherm.c#n2169
->
-> Then search in the driver for:
->       reset_control_assert(reset);
->       reset_control_deassert(reset);
->
->
-> [ ... ]
->
-> Thanks
->
->    -- Daniel
-thanks your explicate!   but our platform doesn't support it.
->
+diff --git a/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml b/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
+new file mode 100644
+index 000000000000..1b75390fdaac
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
+@@ -0,0 +1,165 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/samsung,s5c73m3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung S5C73M3 8Mp camera ISP
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++  - Sylwester Nawrocki <s.nawrocki@samsung.com>
++
++description:
++  The S5C73M3 camera ISP supports MIPI CSI-2 and parallel (ITU-R BT.656)
++  video data busses. The I2C bus is the main control bus and additionally the
++  SPI bus is used, mostly for transferring the firmware to and from the
++  device. Two slave device nodes corresponding to these control bus
++  interfaces are required and should be placed under respective bus
++  controller nodes.
++
++properties:
++  compatible:
++    const: samsung,s5c73m3
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: cis_extclk
++
++  clock-frequency:
++    default: 24000000
++    description: cis_extclk clock frequency.
++
++  standby-gpios:
++    maxItems: 1
++    description: STANDBY pin.
++
++  vdda-supply:
++    description: Analog power supply (1.2V).
++
++  vdd-af-supply:
++    description: lens power supply (2.8V).
++
++  vddio-cis-supply:
++    description: CIS I/O power supply (1.2V to 1.8V).
++
++  vddio-host-supply:
++    description: Host I/O power supply (1.8V to 2.8V).
++
++  vdd-int-supply:
++    description: Digital power supply (1.2V).
++
++  vdd-reg-supply:
++    description: Regulator input power supply (2.8V).
++
++  xshutdown-gpios:
++    maxItems: 1
++    description: XSHUTDOWN pin.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            items:
++              - const: 1
++              - const: 2
++              - const: 3
++              - const: 4
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      required:
++        - spi-max-frequency
++    then:
++      properties:
++        # The SPI node is simplified firmware-transfer interface only
++        clocks: false
++        clock-names: false
++        standby-gpios: false
++        vdda-supply: false
++        vdd-af-supply: false
++        vddio-cis-supply: false
++        vddio-host-supply: false
++        vdd-int-supply: false
++        vdd-reg-supply: false
++        xshutdown-gpios: false
++        port: false
++    else:
++      required:
++        - clocks
++        - clock-names
++        - standby-gpios
++        - vdda-supply
++        - vdd-af-supply
++        - vddio-cis-supply
++        - vddio-host-supply
++        - vdd-int-supply
++        - vdd-reg-supply
++        - xshutdown-gpios
++        - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        image-sensor@3c {
++            compatible = "samsung,s5c73m3";
++            reg = <0x3c>;
++            clock-frequency = <24000000>;
++            clocks = <&camera 0>;
++            clock-names = "cis_extclk";
++            standby-gpios = <&gpm0 6 GPIO_ACTIVE_LOW>;
++            vdda-supply = <&cam_vdda_reg>;
++            vdd-af-supply = <&cam_af_reg>;
++            vddio-cis-supply = <&ldo9_reg>;
++            vddio-host-supply = <&ldo18_reg>;
++            vdd-int-supply = <&buck9_reg>;
++            vdd-reg-supply = <&cam_io_reg>;
++            xshutdown-gpios = <&gpf1 3 GPIO_ACTIVE_LOW>; /* ISP_RESET */
++
++            port {
++                s5c73m3_ep: endpoint {
++                    remote-endpoint = <&csis0_ep>;
++                    data-lanes = <1 2 3 4>;
++                };
++            };
++        };
++    };
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        image-sensor@0 {
++            compatible = "samsung,s5c73m3";
++            reg = <0>;
++            spi-max-frequency = <50000000>;
++            controller-data {
++                samsung,spi-feedback-delay = <2>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt b/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
+deleted file mode 100644
+index f0ea9adad442..000000000000
+--- a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
++++ /dev/null
+@@ -1,97 +0,0 @@
+-Samsung S5C73M3 8Mp camera ISP
+-------------------------------
+-
+-The S5C73M3 camera ISP supports MIPI CSI-2 and parallel (ITU-R BT.656) video
+-data busses. The I2C bus is the main control bus and additionally the SPI bus
+-is used, mostly for transferring the firmware to and from the device. Two
+-slave device nodes corresponding to these control bus interfaces are required
+-and should be placed under respective bus controller nodes.
+-
+-I2C slave device node
+----------------------
+-
+-Required properties:
+-
+-- compatible	    : "samsung,s5c73m3";
+-- reg		    : I2C slave address of the sensor;
+-- vdd-int-supply    : digital power supply (1.2V);
+-- vdda-supply	    : analog power supply (1.2V);
+-- vdd-reg-supply    : regulator input power supply (2.8V);
+-- vddio-host-supply : host I/O power supply (1.8V to 2.8V);
+-- vddio-cis-supply  : CIS I/O power supply (1.2V to 1.8V);
+-- vdd-af-supply     : lens power supply (2.8V);
+-- xshutdown-gpios   : specifier of GPIO connected to the XSHUTDOWN pin;
+-- standby-gpios     : specifier of GPIO connected to the STANDBY pin;
+-- clocks	    : should contain list of phandle and clock specifier pairs
+-		      according to common clock bindings for the clocks described
+-		      in the clock-names property;
+-- clock-names	    : should contain "cis_extclk" entry for the CIS_EXTCLK clock;
+-
+-Optional properties:
+-
+-- clock-frequency   : the frequency at which the "cis_extclk" clock should be
+-		      configured to operate, in Hz; if this property is not
+-		      specified default 24 MHz value will be used.
+-
+-The common video interfaces bindings (see video-interfaces.txt) should be used
+-to specify link from the S5C73M3 to an external image data receiver. The S5C73M3
+-device node should contain one 'port' child node with an 'endpoint' subnode for
+-this purpose. The data link from a raw image sensor to the S5C73M3 can be
+-similarly specified, but it is optional since the S5C73M3 ISP and a raw image
+-sensor are usually inseparable and form a hybrid module.
+-
+-Following properties are valid for the endpoint node(s):
+-
+-endpoint subnode
+-----------------
+-
+-- data-lanes : (optional) specifies MIPI CSI-2 data lanes as covered in
+-  video-interfaces.txt. This sensor doesn't support data lane remapping
+-  and physical lane indexes in subsequent elements of the array should
+-  be only consecutive ascending values.
+-
+-SPI device node
+----------------
+-
+-Required properties:
+-
+-- compatible	    : "samsung,s5c73m3";
+-
+-For more details see description of the SPI busses bindings
+-(../spi/spi-bus.txt) and bindings of a specific bus controller.
+-
+-Example:
+-
+-i2c@138a000000 {
+-	...
+-	s5c73m3@3c {
+-		compatible = "samsung,s5c73m3";
+-		reg = <0x3c>;
+-		vdd-int-supply = <&buck9_reg>;
+-		vdda-supply = <&ldo17_reg>;
+-		vdd-reg-supply = <&cam_io_reg>;
+-		vddio-host-supply = <&ldo18_reg>;
+-		vddio-cis-supply = <&ldo9_reg>;
+-		vdd-af-supply = <&cam_af_reg>;
+-		clock-frequency = <24000000>;
+-		clocks = <&clk 0>;
+-		clock-names = "cis_extclk";
+-		xshutdown-gpios = <&gpf1 3 1>;
+-		standby-gpios = <&gpm0 1 1>;
+-		port {
+-			s5c73m3_ep: endpoint {
+-				remote-endpoint = <&csis0_ep>;
+-				data-lanes = <1 2 3 4>;
+-			};
+-		};
+-	};
+-};
+-
+-spi@1392000 {
+-	...
+-	s5c73m3_spi: s5c73m3@0 {
+-		compatible = "samsung,s5c73m3";
+-		reg = <0>;
+-		...
+-	};
+-};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d9b9a95d2ce2..4cbe823f3545 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18449,6 +18449,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
+ M:	Andrzej Hajda <andrzej.hajda@intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Supported
++F:	Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
+ F:	drivers/media/i2c/s5c73m3/*
+ 
+ SAMSUNG S5K5BAF CAMERA DRIVER
+-- 
+2.34.1
 
