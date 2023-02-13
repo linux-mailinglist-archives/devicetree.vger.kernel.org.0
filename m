@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E54A56943E0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5ACD6943F7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjBMLJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:09:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47432 "EHLO
+        id S230404AbjBMLLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:11:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbjBMLJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:09:31 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7057CD529
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:09:30 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so8709874wms.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:09:30 -0800 (PST)
+        with ESMTP id S230314AbjBMLKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:10:45 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4B717145
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:10:40 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id k3so4129092wrv.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:10:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=stm1hwTJBHKahRz6wNIWz7+qCvwXwKwxg5RRqSpWqIE=;
-        b=mSMZkDKR+xQhi7r+4iEqCUCIhQMUUMRigRPviyBEnC69YKz0szmuo4DRIKlgVPBFiF
-         g4cboWR5RzCpQgHgoYrSsVKvqhiKAn35V87F/3vUwad8fK4k3eifyfmNy3WCn/YwimlF
-         rdqhAcEMuwcX0kuCraRv60Hr4IoQ3OXLogNkWtZfWIb3QQXI6M8FnFlRZxgRhREsaQzD
-         ZHELmAdJ4fcoBzCXd42TY2WBGwCg/k84AbBN5c/NocwYmLBG0Kjt12j4s6vbarDmpH8R
-         42WuJdGA1kRYIwEQe6KPRn2VU2m6A1wjodcE/YQzoIeQmBeAzQrMwvJONEuZ027W3SZO
-         kz0w==
+        bh=cVEzDErkGs8aTILHLiSdJ8j9F2zNeVhSjqm2e8q+c6c=;
+        b=fOYM2usrBNeVrTpdV7XsolDXYksfRKfcgcAD6euLWKbzLI6xFCQ8rS8lY6ipp3s+gz
+         Hq5kN2CcxY9XFVg7KrdU2QJtpVceIwiMhnellWBuQ4n5PxJyyEGgBCoRSNVFxWAGf/LX
+         LwMZ4wNrVTQ+oT3B9MJHiNAK3YI4bwshI3DV1zRueCEzoey/lkqNyWX2qV+DvNWtpJro
+         dU4MMYmmvRnTKqIK/UbuSV8vycSqmZSkWLjWrJxldr+t1B3cIwuCW1VKEgQhD4+PUwbq
+         5k0zvcyzBRrbNgtkmOOJi/JXZ5Ba7QRG/8S2FHjCuaZuO7lYKAOB3pqypIMJaOiqBH95
+         mRrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=stm1hwTJBHKahRz6wNIWz7+qCvwXwKwxg5RRqSpWqIE=;
-        b=JxG9fuuhIJBzY6kZxIJPdaJiwVz38Z5UMvBHyPZJ56HdPMVx3RilE/V9gcmMn4tvju
-         6Ojs01D2v/DOax09Va0guLpTLJycahkwKmu2iikaRAH0h5huu8zxmg9cVyo2wsIfjf8M
-         T+b3kqIVJG/ExeGUxUvGCHQn47uzRyja3akZmDQXwqPVGvt4aUbEdpk1A+IOP94ZizLv
-         kHlgvVXzSJjDfOmbP0Fn0iSgRFtKj0OdpPv+MQ4UY+5WVGExZXIQvEk8W+AMkxWd01eI
-         7tjiyY7VNsSUvJ//sqBlpJWy/8w9INxCaf7bgxVu685L3NYwDlwivLpspII8KfxPe0B5
-         q71g==
-X-Gm-Message-State: AO0yUKVi+F7d6yk6mGhKENMWgP5ehBnRdJc8/aevcRhFXfS7MsWTytiD
-        p36B7r8kpAfv276awxsHpR2P8g==
-X-Google-Smtp-Source: AK7set/VcUTG0I5c6PpisQw5S6O+/8/FQNy9v5Q8D0yqR2nQXQ1uQn10DUmGu8yJRWzRaiTGKEGuqg==
-X-Received: by 2002:a05:600c:1609:b0:3dc:53a2:2690 with SMTP id m9-20020a05600c160900b003dc53a22690mr18363598wmn.7.1676286569101;
-        Mon, 13 Feb 2023 03:09:29 -0800 (PST)
+        bh=cVEzDErkGs8aTILHLiSdJ8j9F2zNeVhSjqm2e8q+c6c=;
+        b=ujdSKL0oZjIaKGxi8yanURgcWZsmga1LezESlz0ZXmiulIzSIF1EDo47oKmFw6C5Gr
+         iPK9udowxyqu2oQetJAxp/WfbKJFwe/ArOQwOg1GNL1uIP+1FxuzHVrjFsp21/W2gAZE
+         t7UIwmMtnTIsq9+qKygO9mu7/MypHAO0opgemgJXpob4O3plB6kR2J9nVTk33rtNoPev
+         WHSr8brTn3xNw+fEXDpvyy1woRFv+5y9PVP7Jwt0Rzvexv9N5WVgij9nRbe3ylleTBmx
+         v30nCAreJXR48iCkjR8PzQTsAS87WO0n89MpzFeZkBUEoaHDAYN1idOa03WBFb0pyKWb
+         uGnQ==
+X-Gm-Message-State: AO0yUKUCYtXz2Q5ZaQrMGDC0ULrGdRYEf9b9BBzKZsedlrv+HZ9Lt7s/
+        sU4Y7CnROrQHNBafDR+f7m9ctg==
+X-Google-Smtp-Source: AK7set+KKnE9xKeA2tucSimKaN7ngFjHASHAM/b0TR7GKIu5p6g2HG3YCSQ8j1of2dPbBBX7L1u1Kw==
+X-Received: by 2002:a5d:4e4b:0:b0:2c3:e6b8:8cec with SMTP id r11-20020a5d4e4b000000b002c3e6b88cecmr19722503wrt.49.1676286638754;
+        Mon, 13 Feb 2023 03:10:38 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c3b8200b003dfe659f9b1sm25207857wms.3.2023.02.13.03.09.27
+        by smtp.gmail.com with ESMTPSA id y13-20020a5d614d000000b002c5526234d2sm4663826wrt.8.2023.02.13.03.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 03:09:28 -0800 (PST)
-Message-ID: <3287867a-456c-ddc3-adbf-90001950c926@linaro.org>
-Date:   Mon, 13 Feb 2023 12:09:26 +0100
+        Mon, 13 Feb 2023 03:10:38 -0800 (PST)
+Message-ID: <5ebf96d9-689a-f915-29b8-31af891fc63f@linaro.org>
+Date:   Mon, 13 Feb 2023 12:10:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 01/17] dt-bindings: power: apple,pmgr-pwrstate: Add t8112
+Subject: Re: [PATCH 02/17] dt-bindings: arm: apple: apple,pmgr: Add t8112-pmgr
  compatible
 Content-Language: en-US
 To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
@@ -66,14 +66,15 @@ To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
 Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-1-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-2-cb5442d1c229@jannau.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202-asahi-t8112-dt-v1-1-cb5442d1c229@jannau.net>
+In-Reply-To: <20230202-asahi-t8112-dt-v1-2-cb5442d1c229@jannau.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,31 +82,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/02/2023 16:41, Janne Grunau wrote:
-> From: Hector Martin <marcan@marcan.st>
+> The block on Apple M2 SoCs is compatible with the existing driver so
+> just add its per-SoC compatible.
 > 
-> Add the apple,t8112-pmgr-pwrstate compatible for the Apple M2 SoC.
+> Signed-off-by: Janne Grunau <j@jannau.net>
 > 
-> This goes after t8103. The sort order logic here is having SoC numeric
-> code families in release order, and SoCs within each family in release
-> order:
-> 
-> - t8xxx (Apple HxxP/G series, "phone"/"tablet" chips)
->   - t8103 (Apple H13G/M1)
->   - t8112 (Apple H14G/M2)
-> - t6xxx (Apple HxxJ series, "desktop" chips)
->   - t6000 (Apple H13J(S)/M1 Pro)
->   - t6001 (Apple H13J(C)/M1 Max)
->   - t6002 (Apple H13J(D)/M1 Ultra)
-> 
-> Note that t600[0-2] share the t6000 compatible where the hardware is
-> 100% compatible, which is usually the case in this highly related set
-> of SoCs.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> 
+> ---
+> This trivial dt-bindings update should be merged through the asahi-soc
+> tree to ensure validation of the Apple M2 (t8112) devicetrees in this
+> series.
 
-Missing SoB.
+No, the bindings go via subsystem. Just because you want to validate
+something is not really a reason - you can validate on next. Don't
+create special rules for Asahi... or rather - why Asahi is special than
+everyone else?
 
+> ---
+>  Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
