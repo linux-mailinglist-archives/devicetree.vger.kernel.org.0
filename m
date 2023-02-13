@@ -2,137 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5501B6943DD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E54A56943E0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 12:09:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbjBMLIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 06:08:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46936 "EHLO
+        id S229978AbjBMLJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 06:09:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbjBMLIe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:08:34 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21797D529
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:08:31 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id bg5-20020a05600c3c8500b003e00c739ce4so8696088wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:08:31 -0800 (PST)
+        with ESMTP id S229688AbjBMLJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 06:09:31 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7057CD529
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:09:30 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id j29-20020a05600c1c1d00b003dc52fed235so8709874wms.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 03:09:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ci7SGpz5xwcVvCeC2hns6KTay+j1oi3+2QU9QteusJ8=;
-        b=tEnyfhSwXOZZy8qLrmPSapSq6NAsSpelq2RSYh2KsdRQ0jDUnBssqht3mhcl5zE2Ek
-         JLbGWbsH6NBGpsaaUFpEep0Jsab6adVER3B2HXFXAKGvOPuPNRX2XdKVAMywNuZ8brxc
-         lZuvwsDYFCejfGzANCNvp4M/Go6UAb/JkCQAdM9sZ3I8Q0WnjXLsMlo076LVDNIk6lNR
-         WjpxSjhDCN772I+GDjsS9aqw0pSGAcoMOJ7A6dc4kdAGxMYyWxFl/t/uWzpArXs49u4S
-         B2WKQXwmNms2PUZAZW1yie3LmVJzBqxIuMAAEqLKVbE2/ygyYAF736HvRg0VPOWgOpBN
-         vuuQ==
+        bh=stm1hwTJBHKahRz6wNIWz7+qCvwXwKwxg5RRqSpWqIE=;
+        b=mSMZkDKR+xQhi7r+4iEqCUCIhQMUUMRigRPviyBEnC69YKz0szmuo4DRIKlgVPBFiF
+         g4cboWR5RzCpQgHgoYrSsVKvqhiKAn35V87F/3vUwad8fK4k3eifyfmNy3WCn/YwimlF
+         rdqhAcEMuwcX0kuCraRv60Hr4IoQ3OXLogNkWtZfWIb3QQXI6M8FnFlRZxgRhREsaQzD
+         ZHELmAdJ4fcoBzCXd42TY2WBGwCg/k84AbBN5c/NocwYmLBG0Kjt12j4s6vbarDmpH8R
+         42WuJdGA1kRYIwEQe6KPRn2VU2m6A1wjodcE/YQzoIeQmBeAzQrMwvJONEuZ027W3SZO
+         kz0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ci7SGpz5xwcVvCeC2hns6KTay+j1oi3+2QU9QteusJ8=;
-        b=2by/UYHI/hP1tgptTmKwJbW6E6jwqY3FvZq5tgxd0zZ0NHJ5aVt5xWULol28uLcHct
-         tJbGPo9DC1lWyqWb2FQ3e2/Dl06ToC5pN6Uu2gYlOuXTf4q1GCLYd6lpP9+cfA6JogBK
-         jRkNyoMfIM5ZxcpVeYmDZbEawCP4tDF0pAyThWZaBS6+ngvyizC4TD/f7sERgF51i0oh
-         +WrQ/sVFnSX329Rf5iEK2lOWDsw8yA+avt8JZz288Js5VPhCxyI7+BarEd5ratHDO5L+
-         2+E4ZXJj+TTrZ5s3qi+vDRCzrubuvo4CNEM03GvKgikzAbiwzBY9s6uSQQGkNzJKvNQ1
-         OoUw==
-X-Gm-Message-State: AO0yUKV9TR78IkTdgIxC10Qncl4QrMi/2qH3jih2yleT4Jxj6e4jJup7
-        uXzm4a9H+5K9BenQqHkg8InXfg==
-X-Google-Smtp-Source: AK7set8zGnBL7fWkj1f+KORxV7qKneEFzwp0gQJb+tFbe8XnmCznu6V3D422grwPOLw/8N1rXOh77Q==
-X-Received: by 2002:a05:600c:4485:b0:3e0:185:e93a with SMTP id e5-20020a05600c448500b003e00185e93amr18997485wmo.25.1676286509649;
-        Mon, 13 Feb 2023 03:08:29 -0800 (PST)
+        bh=stm1hwTJBHKahRz6wNIWz7+qCvwXwKwxg5RRqSpWqIE=;
+        b=JxG9fuuhIJBzY6kZxIJPdaJiwVz38Z5UMvBHyPZJ56HdPMVx3RilE/V9gcmMn4tvju
+         6Ojs01D2v/DOax09Va0guLpTLJycahkwKmu2iikaRAH0h5huu8zxmg9cVyo2wsIfjf8M
+         T+b3kqIVJG/ExeGUxUvGCHQn47uzRyja3akZmDQXwqPVGvt4aUbEdpk1A+IOP94ZizLv
+         kHlgvVXzSJjDfOmbP0Fn0iSgRFtKj0OdpPv+MQ4UY+5WVGExZXIQvEk8W+AMkxWd01eI
+         7tjiyY7VNsSUvJ//sqBlpJWy/8w9INxCaf7bgxVu685L3NYwDlwivLpspII8KfxPe0B5
+         q71g==
+X-Gm-Message-State: AO0yUKVi+F7d6yk6mGhKENMWgP5ehBnRdJc8/aevcRhFXfS7MsWTytiD
+        p36B7r8kpAfv276awxsHpR2P8g==
+X-Google-Smtp-Source: AK7set/VcUTG0I5c6PpisQw5S6O+/8/FQNy9v5Q8D0yqR2nQXQ1uQn10DUmGu8yJRWzRaiTGKEGuqg==
+X-Received: by 2002:a05:600c:1609:b0:3dc:53a2:2690 with SMTP id m9-20020a05600c160900b003dc53a22690mr18363598wmn.7.1676286569101;
+        Mon, 13 Feb 2023 03:09:29 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q14-20020a05600c46ce00b003db12112fcfsm14925223wmo.4.2023.02.13.03.08.28
+        by smtp.gmail.com with ESMTPSA id n2-20020a05600c3b8200b003dfe659f9b1sm25207857wms.3.2023.02.13.03.09.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 03:08:29 -0800 (PST)
-Message-ID: <ad5dd369-842f-7301-e57d-d0445f0a5268@linaro.org>
-Date:   Mon, 13 Feb 2023 12:08:27 +0100
+        Mon, 13 Feb 2023 03:09:28 -0800 (PST)
+Message-ID: <3287867a-456c-ddc3-adbf-90001950c926@linaro.org>
+Date:   Mon, 13 Feb 2023 12:09:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Novatek NT36523
- bindings
+Subject: Re: [PATCH 01/17] dt-bindings: power: apple,pmgr-pwrstate: Add t8112
+ compatible
 Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230210161925.32343-1-lujianhua000@gmail.com>
- <6cffa875-d8cc-a4fe-e18d-2e24c28a49d8@linaro.org> <Y+oZOXyE8/a+vreS@Gentoo>
+        Mark Kettenis <kettenis@openbsd.org>
+Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-1-cb5442d1c229@jannau.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y+oZOXyE8/a+vreS@Gentoo>
+In-Reply-To: <20230202-asahi-t8112-dt-v1-1-cb5442d1c229@jannau.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 12:04, Jianhua Lu wrote:
-> On Mon, Feb 13, 2023 at 11:45:23AM +0100, Krzysztof Kozlowski wrote:
->> On 10/02/2023 17:19, Jianhua Lu wrote:
->>> Novatek NT36523 is a display driver IC that can drive DSI panel. It
->>> is also present in the csot and boe video mode panels. It is found
->>> in Xiaomi Mi Pad 5 series.
->>>
->>> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
->>> ---
->>>  .../display/panel/novatek,nt36523.yaml        | 101 ++++++++++++++++++
->>>  1 file changed, 101 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
->>> new file mode 100644
->>> index 000000000000..a7098d0ce7e1
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
->>> @@ -0,0 +1,101 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/display/panel/novatek,nt36523.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Novatek NT36523 based DSI display Panels
->>> +
->>> +maintainers:
->>> +  - Jianhua Lu <lujianhua000@gmail.com>
->>> +
->>> +description: |
->>> +  The nt36523 IC from Novatek is a generic DSI Panel IC used to drive dsi
->>> +  panels.
->>> +  Right now, only support cost and boe LCD display panels with the
->>
->> boe? both?
-> Boe Technology Group Co., Ltd
+On 12/02/2023 16:41, Janne Grunau wrote:
+> From: Hector Martin <marcan@marcan.st>
+> 
+> Add the apple,t8112-pmgr-pwrstate compatible for the Apple M2 SoC.
+> 
+> This goes after t8103. The sort order logic here is having SoC numeric
+> code families in release order, and SoCs within each family in release
+> order:
+> 
+> - t8xxx (Apple HxxP/G series, "phone"/"tablet" chips)
+>   - t8103 (Apple H13G/M1)
+>   - t8112 (Apple H14G/M2)
+> - t6xxx (Apple HxxJ series, "desktop" chips)
+>   - t6000 (Apple H13J(S)/M1 Pro)
+>   - t6001 (Apple H13J(C)/M1 Max)
+>   - t6002 (Apple H13J(D)/M1 Ultra)
+> 
+> Note that t600[0-2] share the t6000 compatible where the hardware is
+> 100% compatible, which is usually the case in this highly related set
+> of SoCs.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> 
 
-Then what is "cost"? If both are names, then they start with capital
-letters or how the company officially spells itself.
-
->>
->>> +  resolution of 1600x2560. It is a video mode DSI panel.
->>
->> The binding or hardware supports only 1600x2560? The how it can be
->> "right now"? It's defined, isn't it?
-> Yes
-
-What yes? How it can be "right now"? It implies it will change, so how
-hardware can change?
+Missing SoB.
 
 
 Best regards,
