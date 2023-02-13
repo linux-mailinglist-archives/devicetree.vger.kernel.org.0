@@ -2,110 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3406942D2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 11:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4036942DE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Feb 2023 11:31:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230301AbjBMK1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 05:27:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34804 "EHLO
+        id S230309AbjBMKbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 05:31:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231335AbjBMK1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 05:27:10 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4CD13527
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:27:07 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id o36so8357108wms.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:27:07 -0800 (PST)
+        with ESMTP id S230198AbjBMKbV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 05:31:21 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD31DBE9
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:31:20 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id y1so11633811wru.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 02:31:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Aj2Wj0j0p+0jN/Sd+98R01gUFlTgQHfDWnlZMgHgkcE=;
-        b=Wo3bV+cZZ05yYZ0f95sJyhFYnLDCCd9XzFsJRJVouWNXEqSA6v1HiiF0WSlo6KJThM
-         12/qjoZsG84VIfFmTQxD4raWAH/k13Mc9B5fcKJJDKs1rOE7lDAErLnESAqzOHOp9S96
-         uuOW+MXhYrbt0xHR6uqgITJ3UlqnbU2vD79WhfPlIzSkqL1704HLoiM8x1LBWHbGS5YC
-         Fyx89TDBrgJ7L8c4RgI3jEEUKdO34ZM+hqCZlvHK0Cl9psp4lxdyxIrC/59rqIqwQJw2
-         5OUs/+KyxCzRc6xkJ8FPK1pxo4BW9n0Yykph/ghUwB0n+ObmITn/Z3qJMWkXymgOkoAx
-         ZOhg==
+        bh=pSJxkHq1/+KN60z3aJ0f+o2Ykzd3sm8k0tBtf9FSMJE=;
+        b=CKd+sBizFSNQ1+ZIn8g6A0LAK470iKiLyeyeQpcnR6bzhPWIgu4B4zYI6bwjso9iMF
+         59mLEggSJYwJu/3t4b+5j6AZOZi/rh4PLHhDtgoJHJuFNFxE8dkQadBrt2q0bXyjVxeQ
+         79GpyYWKP+lhozeZyc7wv9WrBdJQb98YyWBo1SH7gO1FxqxACC/cTStZBZWt9IemEqdi
+         O/wLNSqinUtHEOTsoQoRjZ2s7uP1Wm52008X0Zf/80QR77a4p+p7WGVeeKyEP6sLLJS4
+         y0K2Ax41Ml4Qj/VUaLt+rGOqzg5JzYi1SwixeiIE6+znKZrMoQKhsqTAbLO7GbVWC+Em
+         rIoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Aj2Wj0j0p+0jN/Sd+98R01gUFlTgQHfDWnlZMgHgkcE=;
-        b=jfQxjcH5e4wU/zR1cHM8TwC7dX09LAC78VVEeavhp5KYz/l60+mB0wHgEeVQsuWYth
-         ETprrLk+3nlrQQ6QjWd+ldYcX/plD6dwzLnyK0wI0pZJSPs4DUj371/2f+6t8JRRz9na
-         lWZQbsCWWbeLIVWuysDIfezZD7pvDURc6FRBFiekcV3+3oNvCOPR52x3ocwTClG0zTXd
-         SKpiOX+0bOz6EfX3M7XqDdFXAVPV6WgZPXTdff9xYQEvNPkg8/n+dDSoVjBYXyU68X+i
-         ZckXCVKKV4SMg/O6sg8KFiX0ggcKkhTn45v8cF5jRhq7UeM2EicV3vn1qfYdIVDSNihz
-         8b0g==
-X-Gm-Message-State: AO0yUKWDELu4lhuuo1pZLC/POkp/35o+G0+lpa3nOWQaSYMM9tg72m5L
-        HVyQBllcBQr9u+R7fSS3Uee4zw==
-X-Google-Smtp-Source: AK7set+vhslzhSgf6yXlaDZ9sUaYyztU+0/ztHVTUdV+nGDyWPReO5kY6mXNcQoh+7S5T5gzw3f85g==
-X-Received: by 2002:a05:600c:43c4:b0:3dc:5302:ad9 with SMTP id f4-20020a05600c43c400b003dc53020ad9mr22861616wmn.27.1676284026324;
-        Mon, 13 Feb 2023 02:27:06 -0800 (PST)
+        bh=pSJxkHq1/+KN60z3aJ0f+o2Ykzd3sm8k0tBtf9FSMJE=;
+        b=Jn3JOnnZrt8PgvwcOedZ9Dqh1KLXhJ9oyzh7VNMEp9Qs2izuAc+Pow4Ejd9dvIGoqU
+         qcd/fdEJTQg3Jb5hXsRsCjeFLdeWeEm1RQfSY5JHaKcqepLEbgf5IGs0qnOh+/QTv9F3
+         tWIrS8x5TAkZtf47cvr04ohUgaLqfEI+hzxnK82MAXBp42leRXORlKO0COwhW2cAsRTb
+         U/T+q9+vD+DoY0MptGC12lbL1HD1Sg6BCRJouSsU6bRkgW8SqE0NRda3iW0cax9cFz+N
+         XKk37WwgqBREvAaBrNcI54bENnh6gTJ0fMcqRt+ivLVALH+JZxmIXK2jZUzpEGbD12iB
+         Ilrg==
+X-Gm-Message-State: AO0yUKVmYXOcDUx8mvFuoH2TMrP6plrTFTdGhkYPP4oBXaxkvpz50uFa
+        YJjF4ZKIgud032a9f9wEddJNcA==
+X-Google-Smtp-Source: AK7set9j8KS4QQXEBoxZeDdEun+TnHWrN4d/TE+6xf2nqPRJUfN3Q/ADAMTx/jhK15FJvkzIt1BY5w==
+X-Received: by 2002:a05:6000:1d2:b0:2bf:b661:87d9 with SMTP id t18-20020a05600001d200b002bfb66187d9mr19719073wrx.50.1676284278636;
+        Mon, 13 Feb 2023 02:31:18 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id az10-20020a05600c600a00b003dc3f07c876sm17088598wmb.46.2023.02.13.02.27.04
+        by smtp.gmail.com with ESMTPSA id p3-20020adff203000000b002c3f6d7d5fesm10261929wro.44.2023.02.13.02.31.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 02:27:05 -0800 (PST)
-Message-ID: <a1c01c36-9519-dba8-7a4b-59b650566781@linaro.org>
-Date:   Mon, 13 Feb 2023 11:27:04 +0100
+        Mon, 13 Feb 2023 02:31:18 -0800 (PST)
+Message-ID: <7bc0971f-86c4-2fb7-2b47-6bee93c02921@linaro.org>
+Date:   Mon, 13 Feb 2023 11:31:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v6 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: specify
- supported opp tables
+Subject: Re: [PATCH] dt-bindings: spi: conversion of spi-st-ssc into DT schema
+ YAML
 Content-Language: en-US
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
+To:     Alain Volmat <avolmat@me.com>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230208153913.24436-1-ansuelsmth@gmail.com>
- <20230213050430.n3wszmi5kslvhdtl@vireshk-i7>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230210101403.14609-1-avolmat@me.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213050430.n3wszmi5kslvhdtl@vireshk-i7>
+In-Reply-To: <20230210101403.14609-1-avolmat@me.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 06:04, Viresh Kumar wrote:
-> On 08-02-23, 16:39, Christian Marangi wrote:
->> Add additional info on what opp tables the defined devices in this schema
->> supports (operating-points-v2-kryo-cpu and operating-points-v2-qcom-level)
->> and reference them.
->>
->> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->> ---
->> Changes v6:
->> - No change
->> Changes v5:
->> - Swap patch 1 and patch 2 to fix dt_check_warning on single
->>   patch bisecting 
->> Changes v4:
->> - Add patch split from patch 1
-> 
-> Rob / Krzysztof,
-> 
-> I am looking to apply this patchset for next release if it is ready, are you
-> comfortable giving your Acks for the entire series yet ?
+On 10/02/2023 11:14, Alain Volmat wrote:
+> File st,ssc-spi.yaml replaces spi-st-ssc.txt for the
+> ST Microelectronics SSC SPI driver.
 
-Look ok for me.
+subject: spi: dt-bindings: spi-st-ssc: convert to DT schema
+
+YAML is redundant, "conversion" of too long
+
+> 
+> Signed-off-by: Alain Volmat <avolmat@me.com>
+> ---
+>  .../devicetree/bindings/spi/spi-st-ssc.txt    | 40 ------------
+>  .../devicetree/bindings/spi/st,ssc-spi.yaml   | 61 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 62 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-st-ssc.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-st-ssc.txt b/Documentation/devicetree/bindings/spi/spi-st-ssc.txt
+> deleted file mode 100644
+> index 1bdc4709e474..000000000000
+> --- a/Documentation/devicetree/bindings/spi/spi-st-ssc.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -STMicroelectronics SSC (SPI) Controller
+> ----------------------------------------
+> -
+> -Required properties:
+> -- compatible	: "st,comms-ssc4-spi"
+> -- reg		: Offset and length of the device's register set
+> -- interrupts	: The interrupt specifier
+> -- clock-names	: Must contain "ssc"
+> -- clocks	: Must contain an entry for each name in clock-names
+> -		    See ../clk/*
+> -- pinctrl-names	: Uses "default", can use "sleep" if provided
+> -		    See ../pinctrl/pinctrl-bindings.txt
+> -
+> -Optional properties:
+> -- cs-gpios	: List of GPIO chip selects
+> -		    See ../spi/spi-bus.txt
+> -
+> -Child nodes represent devices on the SPI bus
+> -  See ../spi/spi-bus.txt
+> -
+> -Example:
+> -	spi@9840000 {
+> -		compatible	= "st,comms-ssc4-spi";
+> -		reg		= <0x9840000 0x110>;
+> -		interrupts	= <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks		= <&clk_s_c0_flexgen CLK_EXT2F_A9>;
+> -		clock-names	= "ssc";
+> -		pinctrl-0	= <&pinctrl_spi0_default>;
+> -		pinctrl-names	= "default";
+> -		cs-gpios	= <&pio17 5 0>;
+> -		#address-cells	= <1>;
+> -		#size-cells	= <0>;
+> -
+> -		st95hf@0{
+> -			compatible		= "st,st95hf";
+> -			reg			= <0>;
+> -			spi-max-frequency	= <1000000>;
+> -			interrupts		= <2 IRQ_TYPE_EDGE_FALLING>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/spi/st,ssc-spi.yaml b/Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
+> new file mode 100644
+> index 000000000000..496118df3a1b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/st,ssc-spi.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/st,ssc-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics SSC SPI Controller
+> +
+> +description: |
+> +  The STMicroelectronics SSC SPI controller can be found on STi platforms
+> +  and it used to communicate with external devices using the
+> +  Serial Peripheral Interface.
+> +
+> +maintainers:
+> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
+
+Drop quotes.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: st,comms-ssc4-spi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: ssc
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stih407-clks.h>
+> +    spi@9840000 {
+> +      compatible        = "st,comms-ssc4-spi";
+> +      reg               = <0x9840000 0x110>;
+> +      interrupts	= <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+> +      clocks		= <&clk_s_c0_flexgen CLK_EXT2F_A9>;
+> +      clock-names	= "ssc";
+> +      pinctrl-0         = <&pinctrl_spi0_default>;
+> +      pinctrl-names	= "default";
+> +      #address-cells	= <1>;
+> +      #size-cells	= <0>;
+
+Messed coding style. Only one space before =.
+
 
 Best regards,
 Krzysztof
