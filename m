@@ -2,120 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A37695FCB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:52:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0606695FCC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:53:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbjBNJw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 04:52:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59772 "EHLO
+        id S230370AbjBNJxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 04:53:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231579AbjBNJwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:52:42 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4CFA7ECB;
-        Tue, 14 Feb 2023 01:52:40 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3FFFC3D7;
-        Tue, 14 Feb 2023 10:52:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1676368358;
-        bh=pojofoT94i1r3Cg5jPpj87wxoW+/jiXXYsr3K3tIEyI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FspyDc2KsZOduE2YUELew6+1GO9mfD/vm6qF1T2PYax+T4JJMTpvskHbhVFUxB243
-         VwykcDUe8cFwnm2gOf3Ty0sQd8Zlh8/qZJOW+RAfar9CqpLPD3yUfhdH4FCHC7NeCi
-         Y/K29xt/+hggHKfZDePAhOWEspNnjKzr4zS8W8C8=
-Date:   Tue, 14 Feb 2023 11:52:37 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: draak: Add overlay for CVBS
- input
-Message-ID: <Y+tZ5ZdTvcJSKaw/@pendragon.ideasonboard.com>
-References: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se>
- <20230211165715.4024992-3-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUALJ7QGtHmb5fkrPotw-8vj6biM5_M-sc6eV3dK0tqZA@mail.gmail.com>
+        with ESMTP id S231599AbjBNJxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:53:05 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCECC168
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:53:02 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id r2so14987407wrv.7
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:53:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5h6snxNwqi3yc/6b2X5fU8N8RXpsnnQV8JgbEOCMqVA=;
+        b=Zg+0MnvymGjqP4gxpMQwD9Q3XTn8SalhzG734eNYM7yp3GKshukmBnNbEp7k+/i2kN
+         XKOUlwohSxAf71gjs85dRbNziqx6ara61Gwr9DIb6Saw4j7Ael0VGx8urVl0KRrT3QW1
+         t1TPtdjZ7FIxJw/4t5+T01YofORhJSkOBF+N5mv0XWS2A6C8b+abhByZC6LSYPeVWRbx
+         PSGfsrmsjBgYpv8FRHa03vvPirJQy8ro7ZN/I/gVJPUtJHor5vyFSSuCQRXfur7j3IlV
+         OUp3j9p9HUuiDohBkjQgXXswEeBZcIQppcr7h9Ix0Z4rC9kaSguxckzyoQdf6J6T20pn
+         e7fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5h6snxNwqi3yc/6b2X5fU8N8RXpsnnQV8JgbEOCMqVA=;
+        b=DIRpRVdK/ZKw3cPeRzZpGFljigUIv+34BIcmAWIcgLhLbuF2eHNIk66Bh9NAuH/nu7
+         UAluWwiZAEm/JMua1X/83dwtxgOe87Asj0ZcJEsf5rQU3k1hwpp+2jvcnzcg/Y56vn+V
+         uAPJe0kezRZfoXTLGmlj5PVTl9NSr7UetznqXLqt1KtLNvs+ffgg2cnuirQb2Mihh/uG
+         QF4gISp5TYyQhm0ArjhdOUZ3sQh0ik6tAg5T2jixoZWq1JIyUxCQIrDJqqcQwBB9i9o+
+         4dSaTZ9m56Xf3HHCWgkooY44r7HRFZpEgzqELCAqMJWrP+KjNWdRRqZHtxdo8T9/YXhE
+         zm0w==
+X-Gm-Message-State: AO0yUKUmZeSC37pmwpwbIGA7XKz9B7IxKgITAKT31ja+2X1nPWrwMJxF
+        TAKcLeRmFLvZ3faEhR4HYh9+zA==
+X-Google-Smtp-Source: AK7set8EIkVs9H4ls60SXwzuLE+qdjwduzm8OuB7RL+BMEcLayw78GCkgI0ZA1TUtTydLwSVuXpI9Q==
+X-Received: by 2002:a5d:6b8e:0:b0:2c4:873:16b4 with SMTP id n14-20020a5d6b8e000000b002c4087316b4mr1511933wrx.16.1676368380676;
+        Tue, 14 Feb 2023 01:53:00 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id w11-20020adff9cb000000b002c54e9f6bc2sm8137222wrr.77.2023.02.14.01.52.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Feb 2023 01:53:00 -0800 (PST)
+Message-ID: <df464409-9a93-c057-5f66-923a9e24696a@linaro.org>
+Date:   Tue, 14 Feb 2023 10:52:58 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUALJ7QGtHmb5fkrPotw-8vj6biM5_M-sc6eV3dK0tqZA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson
+ EIOINTC
+Content-Language: en-US
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1676289084.git.zhoubinbin@loongson.cn>
+ <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 13/02/2023 13:15, Binbin Zhou wrote:
+> Add Loongson Extended I/O Interrupt controller binding with DT schema
+> format using json-schema.
+> 
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../loongson,eiointc.yaml                     | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+> new file mode 100644
+> index 000000000000..88580297f955
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/interrupt-controller/loongson,eiointc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-On Tue, Feb 14, 2023 at 10:46:48AM +0100, Geert Uytterhoeven wrote:
-> On Sat, Feb 11, 2023 at 5:58 PM Niklas Söderlund wrote:
-> > From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> >
-> > The Draak board has an ADV7180 CVBS decoder and an ADV7612 HDMI decoder,
-> > both connected to the same VIN input. DIP switches are used to select
-> > one of the two devices, with the HDMI decoder being the default. Add an
-> > overlay that selects the CVBS decoder.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > [Niklas: Inverted it from HDMI to CVBS]
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> Thanks for your patch!
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso
-> > @@ -0,0 +1,33 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2023 Ideas on Board Oy
-> > + *
-> > + * Device tree overlay for the Draak board, to enable CVBS input. This requires
-> > + * setting DIP switches SW49, SW50, SW51 and SW52 to OFF, and SW53 and SW54 to
-> > + * ON.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +/plugin/;
-> > +
-> > +&adv7180_out {
-> > +       remote-endpoint = <&vin4_in>;
-> > +};
-> 
-> [...]
-> 
-> > +&vin4_in {
-> > +       remote-endpoint = <&adv7180_out>;
-> > +};
-> 
-> Unfortunately dtc doesn't like references to nodes it cannot find the
-> names of:
-> 
->     arch/arm64/boot/dts/renesas/draak-cvbs-input.dtbo: Warning
-> (graph_port): /fragment@0: graph port node name should be 'port'
->     arch/arm64/boot/dts/renesas/draak-cvbs-input.dtbo: Warning
-> (graph_port): /fragment@2: graph port node name should be 'port'
->     arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso:13.14-15.3:
-> Warning (graph_endpoint): /fragment@0/__overlay__: graph endpoint node
-> name should be 'endpoint'
->     arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso:27.10-29.3:
-> Warning (graph_endpoint): /fragment@2/__overlay__: graph endpoint node
-> name should be 'endpoint'
-> 
-> Do you think it would be worthwhile to add more hierarchy (like in
-> arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dtso), to get
-> rid of the dtc warnings?
+Drop quotes from bopth.
 
-We could, but I think this is an issue that will need to somehow be
-fixed in dtc. There are lots of warnings when compiling overlays, they
-can only be validated when applied to a base DT.
+> +
+> +title: Loongson Extended I/O Interrupt Controller
+> +
+> +maintainers:
+> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +
+> +description: |
+> +  This interrupt controller is found on the Loongson-3 family chips and
+> +  Loongson-2K0500 chip and is used to distribute interrupts directly to
+> +  individual cores without forwarding them through the HT's interrupt line.
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - loongson,eiointc-1.0
 
--- 
-Regards,
+Why not using SoC based compatible? It is preferred.
 
-Laurent Pinchart
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 3
+
+You need to describe the items.
+
+> +
+> +  interrupt-controller: true
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt source of the CPU interrupts.
+
+You need to describe the items.
+
+> +
+> +  interrupt-names:
+> +    description:
+> +      List of names for the parent interrupts.
+
+Drop description.
+
+> +    items:
+> +      - const: int0
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+> +  'loongson,eio-num-vecs':
+
+Drop quotes.
+
+> +    description:
+> +      The number of devices supported by the extended I/O interrupt vector.
+
+Why this cannot be inferred from the compatible? Different boards with
+the same SoC support different devices?
+
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+
+Drop quotes.
+
+> +    minimum: 1
+> +    maximum: 256
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - 'loongson,eio-num-vecs'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    eiointc: interrupt-controller@1fe11600 {
+> +      compatible = "loongson,eiointc-1.0";
+> +      reg = <0x1fe11600 0x8
+> +             0x1fe11700 0x8
+> +             0x1fe11800 0x8>;
+
+That's not correct syntax. <>, <>, <>
+
+> +
+> +      interrupt-controller;
+> +      #interrupt-cells = <1>;
+> +
+> +      interrupt-parent = <&cpuintc>;
+> +      interrupts = <3>;
+> +      interrupt-names = "int0";
+> +
+> +      loongson,eio-num-vecs = <128>;
+> +
+
+Drop stray blank line.
+
+> +    };
+> +
+> +...
+
+Best regards,
+Krzysztof
+
