@@ -2,99 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E5FD696DB7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 20:20:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F373696DCF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 20:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231777AbjBNTUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 14:20:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35494 "EHLO
+        id S230028AbjBNTZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 14:25:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231815AbjBNTUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 14:20:02 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67ACE30DD;
-        Tue, 14 Feb 2023 11:20:01 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id bj22so13839448oib.11;
-        Tue, 14 Feb 2023 11:20:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TijPrW01SusPeqgU93zj+PaZJEliWbkmIJHGZ7Gw5cU=;
-        b=lV0/EQYKJKaSFtlfCnc8DxzhypYFolmCVsfXkxlrwSbsbo7vWciGRBI24ExOpYdbV0
-         CZltz2uF/oZphFH37Ztv46Abz16S6oA6vI9JJHhg+H5XzKDkqNV8tpP5WlPys0/4TRKJ
-         AhLH5jNH0T7ImgmQ8BuYaKRU0mXSL8qVLk5FWtQvVz+X5TZViFL7+P8B42ePyyppDfbx
-         mP7ZXrSz7OeD6G/7dvAL4pRw5M71ZYvPa1Xj6Xhs+g3OASjl2uq+9bJVHfyxD+KHSEds
-         ENsQjlq8TsNnugyz1Vqzz6LehPhqzS54eWt1lm3dSSgBCLGbSH0cwvGp2SllpX+Otv2i
-         tSFA==
-X-Gm-Message-State: AO0yUKULm1bsDwGkl21KiKc6LaWxhGSe0oPTFmq2vuv5L/da3tYzJ6gi
-        NbBD7HmMvmJQ20T1ppxjCA==
-X-Google-Smtp-Source: AK7set8fynAn+e3iL12R+/VtBADDsvcxd4FgY3dUEG466kszj/Jl1DLq6tDpbjBnNxuG9Os1CQSfPQ==
-X-Received: by 2002:a05:6808:4285:b0:378:7234:bc46 with SMTP id dq5-20020a056808428500b003787234bc46mr1690381oib.44.1676402400689;
-        Tue, 14 Feb 2023 11:20:00 -0800 (PST)
-Received: from robh_at_kernel.org (c-67-162-147-231.hsd1.co.comcast.net. [67.162.147.231])
-        by smtp.gmail.com with ESMTPSA id b13-20020aca220d000000b0037d743b5cb7sm4318528oic.17.2023.02.14.11.19.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 11:20:00 -0800 (PST)
-Received: (nullmailer pid 29522 invoked by uid 1000);
-        Tue, 14 Feb 2023 19:19:59 -0000
-Date:   Tue, 14 Feb 2023 13:19:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Janne Grunau <j@jannau.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@svenpeter.dev>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Subject: Re: [RFC PATCH] dt-bindings: dma: apple,sio: Add schema
-Message-ID: <20230214191959.GA27025-robh@kernel.org>
-References: <20230214141053.92731-1-povik+lin@cutebit.org>
- <167638945429.3790.16067227881981242831.robh@kernel.org>
+        with ESMTP id S229510AbjBNTZZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 14:25:25 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A5101C5B3;
+        Tue, 14 Feb 2023 11:25:24 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 26D8361892;
+        Tue, 14 Feb 2023 19:25:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44639C433EF;
+        Tue, 14 Feb 2023 19:25:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676402723;
+        bh=9ZMjMBNpDQvO06G0fs755Z9hNiyQHDgs1Wcu4/Kltm4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=Lu0EoP318VYWy6qiw++sYu5HjCu9taQ+GqikLuC/IzStwjMZ6hdWwBaCCsftLYUl9
+         u/Pd9PekILl087C/+9vCbce6oC4ldegiinVP8hNmbKJ4n7kVT3CicnHqACMbDzcTah
+         CmZc16UvhEh92jkDyK7xvyavRnOt6ebaLTv3JanXuHSpwp1rdpr3f31TKBO0Gtjehv
+         iI5XOMlgKWpc/SAItxNXkLFh1hPQiER5KNKeHnbFn2etKf2t6i9Uk2jr6DIzkYZuNS
+         W+MBe/SfxxQUP9sBnAdD6hi+fxlED2ZNDa798WrBlVAzdr01/Lo1/pB00EpnCcxiN4
+         sRS0uxInXXZAg==
+Date:   Tue, 14 Feb 2023 13:25:21 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: (subset) [PATCH 1/4] dt-bindings: PCI: qcom: add MSM8998
+ specific compatible
+Message-ID: <20230214192521.GA3049353@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <167638945429.3790.16067227881981242831.robh@kernel.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <3e02f098-c3b6-1a0b-68b4-d5e2b8cb6045@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 14, 2023 at 10:12:34AM -0600, Rob Herring wrote:
-> 
-> On Tue, 14 Feb 2023 15:10:53 +0100, Martin Povišer wrote:
-> > Describe the SIO coprocessor which serves as pretend DMA controller on
-> > recent Apple platforms.
+On Tue, Feb 14, 2023 at 10:29:17AM +0100, Krzysztof Kozlowski wrote:
+> On 30/12/2022 12:08, Lorenzo Pieralisi wrote:
+> > On Tue, 15 Nov 2022 13:53:07 +0100, Krzysztof Kozlowski wrote:
+> >> Add new compatible for MSM8998 (compatible with MSM8996) to allow
+> >> further customizing if needed and to accurately describe the hardware.
 > > 
-> > Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
-> > ---
+> > Applied to pci/dt, thanks!
 > > 
-> > Since the schema mentions a loader preparing the binding appropriately,
-> > here's a PR with the relevant (WIP) loader code, if anyone wants to look:
-> > https://github.com/AsahiLinux/m1n1/pull/286
-> > 
-> >  .../devicetree/bindings/dma/apple,sio.yaml    | 129 ++++++++++++++++++
-> >  1 file changed, 129 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dma/apple,sio.yaml
-> > 
+> > [1/4] dt-bindings: PCI: qcom: add MSM8998 specific compatible
+> >       https://git.kernel.org/lpieralisi/pci/c/c427f45c1e99
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Hi Lorenzo and Bjorn,
 > 
-> yamllint warnings/errors:
+> This commit was applied with a change:
+> [bhelgaas: sort msm8996 before msm8998]
 > 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/dma/apple,sio.example.dts:24.35-27.11: Warning (node_name_vs_property_name): /example-0/interrupt-controller: node name and property name conflict
+> This is a list ("items"), thus the order is important. Reversing order
+> broke it.
 
-This is a quirk with how the examples are constructed. In any case, just 
-drop the 'interrupt-controller' node. No need to show providers in an 
-example.
+Sorry, I blew it.  It should be fixed now.
 
-Rob
+Bjorn
