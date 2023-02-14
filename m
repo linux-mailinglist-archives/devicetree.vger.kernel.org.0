@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6522696E0D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 20:42:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E5B696E3E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 21:02:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232224AbjBNTmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 14:42:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48118 "EHLO
+        id S230162AbjBNUCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 15:02:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231481AbjBNTmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 14:42:52 -0500
-Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B807E30D9
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 11:42:50 -0800 (PST)
-Received: by mail-ua1-x929.google.com with SMTP id bx25so1659721uab.9
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 11:42:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=eventmediamaster-com.20210112.gappssmtp.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q0DkxdLdI4RMUIu0YupmzzIhqZo27tHphGhsHEj0Po8=;
-        b=pnVFoanBFVTmBvoqm6++wCS5ORlWrsjWIqJdrYYqy6v+E8W3WpZ1ZUeSaa6upRoBui
-         8LN7On18RFPvuPSdHcRAp6XvRT6a3e9JEvvypMMtMEiMKt7wu3yZuTAxP8zOpOSAwRB6
-         9NbB6DpD0tyMSvZB05q3f7klv5+c3P3L2LJU5w1Soc6W/YSZaRL9R90BKmD2EjWOYyu6
-         OTMW8MSqrqq0fxCJuLZ0KJSF80leOmJCyoPTWI973rGZZUZcqjcYSmcdT4YE7ihVjuhM
-         7n0/78eVFmabfDaIw893PFgOZEfWApVviIh9qKga+//Km78ObWiVAls/Sowbs5IVspMR
-         Ka8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0DkxdLdI4RMUIu0YupmzzIhqZo27tHphGhsHEj0Po8=;
-        b=XBWUKCNRNG0GHSFhvPWQqp2+1+vRutzCp/w5RUyTGjZGxNA7VQvzPH6W5/FRtGC0uG
-         xa/MwX++IEb8bVMMOVKFdX2U/NeSjAPbK8FzVD+VzhrBbEmdJ4QYJ8KkiLPTpmVT39m6
-         emmP8uLtMYPpEk/cf7u+I1OrGAEWIMXdy186dBHNImzpDyGU7Wjqi9KM6ShdJC0GwaUs
-         xajxPnibPi1cC8biM2sbOvR7ndsxrjOMxsACdSZB+t9gKVp4SeN5hq4lppsoGHpQMmC+
-         de41VXvoAatvAr1A1rbgCU+tmTgWMQt/lZRpYfWlSb50L/q+gX9psfgTOk3VAOzPRo7x
-         VKqQ==
-X-Gm-Message-State: AO0yUKVldTMd2rClTcDo4gIpMPeaj5NobPp8jZvf6W1k/MCzFjIlOk/7
-        ul7ppW3q9x+xbcd7r1bwtt+16m1QAndlwfdI4tVaPA==
-X-Google-Smtp-Source: AK7set89pGLVQBSHqQkzCu9kJMtkzBKjaDx6DBfxYZ2VLFtXdv3pE3tYwPjWaLTmyD0uTp5sYCvpB+TJ2eQcI7ELJRo=
-X-Received: by 2002:ab0:7e5a:0:b0:68a:6709:7953 with SMTP id
- e26-20020ab07e5a000000b0068a67097953mr478320uax.69.1676403769844; Tue, 14 Feb
- 2023 11:42:49 -0800 (PST)
-MIME-Version: 1.0
-From:   Susan Miller <susan@eventmediamaster.com>
-Date:   Tue, 14 Feb 2023 13:42:37 -0600
-Message-ID: <CABFg0EbjAr75Kv2yqr3FbRQJmSV8SBYkb5TT+mPqKOiQamMnaw@mail.gmail.com>
-Subject: RE: ISC West- Security Industry Association- 2023
-To:     Susan Miller <susan@eventmediamaster.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,FILL_THIS_FORM,FILL_THIS_FORM_LONG,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+        with ESMTP id S231347AbjBNUCk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 15:02:40 -0500
+X-Greylist: delayed 20261 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 14 Feb 2023 12:02:37 PST
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC262DE73;
+        Tue, 14 Feb 2023 12:02:37 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1676404954; bh=Shdv6/ZcQzIt7yhST3CHJufWnCYjpSB75fBRBOSxd+0=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=iWYGC7YUqubuGS2vAtT84GYtuxST7LYKjC3Az57RqBIi1+tqmEmdQx0eaWmdnTz+2
+         plOGtN3pscV8wqiw1KthB2s5389jaArJzD4cxbYpT9s/GAnin82Dxfdi2vooLNhWIw
+         mM1HyaZJo3ycDOoArRMPTIzut8X2CV0p5qtq+OAo=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [RFC PATCH] dt-bindings: dma: apple,sio: Add schema
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <20230214192544.GB27025-robh@kernel.org>
+Date:   Tue, 14 Feb 2023 21:02:33 +0100
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, asahi@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <9938921C-29ED-4253-9F9D-4BA7432448F3@cutebit.org>
+References: <20230214141053.92731-1-povik+lin@cutebit.org>
+ <20230214192544.GB27025-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Thanks for the review!
 
-I hope you're doing great and staying healthy!
+> On 14. 2. 2023, at 20:25, Rob Herring <robh@kernel.org> wrote:
+>=20
+> On Tue, Feb 14, 2023 at 03:10:53PM +0100, Martin Povi=C5=A1er wrote:
+>> Describe the SIO coprocessor which serves as pretend DMA controller =
+on
+>> recent Apple platforms.
+>>=20
+>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+>> ---
+>>=20
+>> Since the schema mentions a loader preparing the binding =
+appropriately,
+>> here's a PR with the relevant (WIP) loader code, if anyone wants to =
+look:
+>> https://github.com/AsahiLinux/m1n1/pull/286
+>>=20
+>> .../devicetree/bindings/dma/apple,sio.yaml    | 129 =
+++++++++++++++++++
+>> 1 file changed, 129 insertions(+)
+>> create mode 100644 =
+Documentation/devicetree/bindings/dma/apple,sio.yaml
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/dma/apple,sio.yaml =
+b/Documentation/devicetree/bindings/dma/apple,sio.yaml
+>> new file mode 100644
+>> index 000000000000..a76cc8265e76
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/dma/apple,sio.yaml
 
-Would you be interested in acquiring ISC West- Security Industry
-Association Attendees Data List 2023?
+(...)
 
-List contains: Company Name, Contact Name, First Name, Middle Name,
-Last Name, Title, Address, Street, City, Zip code, State, Country,
-Telephone, Email address and more,
+>> +  memory-region:
+>> +    description:
+>> +      A number of references to reserved memory regions among which =
+are the DATA/TEXT
+>> +      sections of coprocessor executable firmware and also auxiliary =
+firmware data
+>> +      describing the available DMA-enabled peripherals
+>=20
+> Can you define some range of number of entries.
 
-No of Contacts: - 35,767
-Cost: $ 1,726
+I think I can provide a reliable lower bound (at least one segment with
+DATA/TEXT and one segment with auxiliary data), and a conservative upper =
+bound
+(separate DATA/TEXT and no more than 6 segments of auxiliary data if =
+each kind
+of data has a segment of its own). I will work it in into the next =
+version.
 
-Interested? Email me back; I would love to provide more information on the list.
+Martin
 
-Kind Regards,
-Susan Miller
-Marketing Coordinator
