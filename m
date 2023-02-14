@@ -2,54 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9994696EB9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 21:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58287696EE5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 22:11:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbjBNUzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 15:55:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52046 "EHLO
+        id S232109AbjBNVLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 16:11:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbjBNUzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 15:55:04 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719342BEE1;
-        Tue, 14 Feb 2023 12:55:03 -0800 (PST)
+        with ESMTP id S229454AbjBNVLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 16:11:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9242C64F;
+        Tue, 14 Feb 2023 13:10:59 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D6B0618D8;
-        Tue, 14 Feb 2023 20:55:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72CFAC433D2;
-        Tue, 14 Feb 2023 20:55:01 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5353DB81F45;
+        Tue, 14 Feb 2023 21:10:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32572C433EF;
+        Tue, 14 Feb 2023 21:10:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676408102;
-        bh=ostKEzzplobdT7O8KhCmQvHPK9uAmCw1r6JJ+q8gb74=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YG+RdaiL++HdQuIoQaz45hlPDQAbwZ887M+7Qco/qQSHCfxBTCDlcCn2G4AX0JmdN
-         Q12x7tnX/j18YihpZRft+xEJPFo6DZQ81UlB7vVdDdoQMXeZGV/VLKj22HRF9oDf1J
-         auwTpKDeJMQXjwb0u68ltFiBWuEU5k5KExWLP4ww9XPeC5SxxjutUJnHGoMZm2pjUl
-         gDf/PAWJdZ+WO8ZzExjw4E/CUATHuQ12fPJLxpTYIQ/N5ZWgDCzTPY14UIpRfTCrft
-         JHwiwBqpTIuOREcHFGPUWMkHG0CkM2oqroDBvAoxSUNAkKH949kTl6VkT86bnXdCdi
-         BHoMRu67GsXxQ==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Wilken Gottwalt <wilken.gottwalt@posteo.net>,
-        Bastian Germann <bage@debian.org>
-Cc:     linux-remoteproc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        s=k20201202; t=1676409057;
+        bh=HD1ISLM5lR2mxdGtaRP5sSSF6X+8UXQiKbNdusbp/DU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=HB4xruaRmvHLzor2o8vsVzmCxN4VoU+S/gYg2g6rpOpOCGKEjUbuey8Ze9MA08rEX
+         +D1pdSSiuhARUgl6Qu26gt5rvtjoC6Ha3PDW8NzPKMUzUgBwY7/VpV76pSbT+eFxZz
+         2Fxmq0Z1R08gmn5v9zmimtMwAaQG0QIvRdg1bEDysuL5ZXLF+6une6p0nqutKvPPnF
+         sl2f1NFQ0YLNLQ1yJ+SMPeEyzqrSFkIElGu4DqkVQ8KjOU/9SJzZ9Omh6GHTFSPTNJ
+         PmODppzxpK1krUPPlFNAJGfYtxf4KJUmg7c8A6f6o97voXNbaXaq78WhXruGRgHGhr
+         Sa4tuEHXR/wvw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Ohad Ben-Cohen <ohad@wizery.com>,
-        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH 0/3] Enable hwlock on Allwinner A64
-Date:   Tue, 14 Feb 2023 12:57:06 -0800
-Message-Id: <167640821432.1045974.5362172074959635497.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230213231931.6546-1-bage@debian.org>
-References: <20230213231931.6546-1-bage@debian.org>
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Alain Volmat <avolmat@me.com>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20230213192349.17101-1-avolmat@me.com>
+References: <20230213192349.17101-1-avolmat@me.com>
+Subject: Re: [PATCH v2] dt-bindings: spi: spi-st-ssc: convert to DT schema
+Message-Id: <167640905417.3115947.11894015148325637579.b4-ty@kernel.org>
+Date:   Tue, 14 Feb 2023 21:10:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -59,23 +56,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 00:19:27 +0100, Bastian Germann wrote:
-> The allwinner,sun6i-a31-hwspinlock compatible driver can be used with
-> the Allwinner A64 chip. Add the wiring required to enable it.
+On Mon, 13 Feb 2023 20:23:48 +0100, Alain Volmat wrote:
+> Convert spi-st-ssc.txt into st,ssc-spi.yaml for the
+> ST Microelectronics SSC SPI driver.
 > 
-> The device tree schema needs some work to verify everything that is
-> needed by the sun6i hwlock driver.
 > 
-> The hwlock device was verified to be available with this series applied
-> on a Pinebook.
-> 
-> [...]
 
-Applied, thanks!
+Applied to
 
-[1/3] dt-bindings: hwlock: sun6i: Add missing #hwlock-cells
-      commit: 25d10262ed8aae71cd2f0b3c0a90d06a6b79fba2
+   broonie/spi.git for-next
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Thanks!
+
+[1/1] dt-bindings: spi: spi-st-ssc: convert to DT schema
+      commit: 7ec844a2c7535e4c4991e7e453baca85e156f7c1
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
