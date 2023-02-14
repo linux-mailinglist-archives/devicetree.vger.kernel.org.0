@@ -2,170 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 125CC695DAC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1710695E47
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:09:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232166AbjBNIyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:54:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58006 "EHLO
+        id S231790AbjBNJJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 04:09:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231610AbjBNIye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:54:34 -0500
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C0310C6;
-        Tue, 14 Feb 2023 00:54:28 -0800 (PST)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-16cc1e43244so13940035fac.12;
-        Tue, 14 Feb 2023 00:54:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pueULkZNsSYV2BuLPBKbMoOTC9E/T55I4iigXjiEFCc=;
-        b=Dq0Ig+QdokN2aqfT/MTds+TZni0bgVptdHol0RV83nyTG3c5ZBNfu1VhE4IDikEtJj
-         oqDcjbVRvgOTjpTJKJjbanHMIoSbc0ltcmGgg4aCG7CD2Srgxx5/n7meASvcP94j52Tp
-         suU278yJkNjv1g0nZeSWrQMpkVTdb+Lp5EKBIe4pI95LljPLVR9c6idfDz9qJsglzkxg
-         sxgbF6XOtggOtVFTHMtmKuBg/yO+8ycRDo31uX3GyTdgUm0IVZlC5W/rLqqo/ayLIRSK
-         0ZAJsM65lr0RXoZn2y4mcNLBVt1bqGRfjCTCs3OnM9rvyXUhMU3U53MwH/07IhnxrnGD
-         4Vlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pueULkZNsSYV2BuLPBKbMoOTC9E/T55I4iigXjiEFCc=;
-        b=XuUY2CIrAQqbk231J9S0unuG/e297hmCz74crOT03NpVmrt+Sttcxa31Ef9WuNJEAL
-         14u6OZmaDTdgycoExdUfjKZO2cQsCB4DHv4Dn6EtaafkKQeiUzX7TvjOyP0Mk+gvJA5C
-         f9RXM8R7w8IV8QelHcLbZVCMRw3ekZen0j3uyIEJE82xz9HZ/Nq/qjJSioNVXjjkjlLo
-         dc8eckyVeWM3O2CAhTU8mJNWe85KwccXAqaD3f2d6PiWeU7CLbvuYeXRVc+G9YZe8+IE
-         Y/CFgwfcNhui37iCcqLvTdMhPwLWmKQ34F3k3TlMcRw7a+AOzMUO2GvJpWzQIF1Hv/+J
-         a86g==
-X-Gm-Message-State: AO0yUKVUbLolJApBmoy9zulLbhCQUeu8sEsupZywqZ93ZdiR22xG8X5C
-        9fVaFjbEodqU1nvSGkZMGi31tpVfurdlnw2cbB0=
-X-Google-Smtp-Source: AK7set9mg8lqW/k3T969DcfFf8YbX9+B5yjVtMmLh3QRRopkI1n5Lo2OmuVe6LxlyoH7fI2QEOClB+KFGxH1zS2XrGg=
-X-Received: by 2002:a05:6870:73ca:b0:16e:21e0:1f44 with SMTP id
- a10-20020a05687073ca00b0016e21e01f44mr118272oan.144.1676364867692; Tue, 14
- Feb 2023 00:54:27 -0800 (PST)
+        with ESMTP id S232237AbjBNJIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:08:45 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B234C1E1D2;
+        Tue, 14 Feb 2023 01:07:42 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0F042660216A;
+        Tue, 14 Feb 2023 09:07:16 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676365637;
+        bh=exml4rk8nqwZKBNU5UVCpjJdwJUrGJx/1QP9f2Pscz0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ElAUuXnIEuGj+oHHRkeho+XGKOxgC9yqdGkGy2tGbAIG8xbFjE5dtadhKMCD5dC9M
+         Keux8qe+dMHe1Fwr0osNgSZRdqXq/kHIWLcaJY6f0tDyMIjNgKUD3ErAqK1wxT/LRg
+         oZqwTfxDUmEHc6YgYxZ83s/pXKx1HMwpB62BRrIZI0oe1zxp57SEX/EiFhB93vEnDP
+         RpvvOd5cr16Qf9cTyedRrskLH07xQSH/IUVNjgGKWp8xCUu3evk0z+02OCyrR4qw+5
+         Pr1OPcRjUHi6XDiEG9lhaO2iljeLK3i9gGLpHiUg2sagLDoJ/0IN9PpVauJ2DH70Bt
+         0q9+dUmbALnMw==
+Message-ID: <ab778f16-3cda-6c06-c5a5-6a4b4d1b3974@collabora.com>
+Date:   Tue, 14 Feb 2023 10:07:13 +0100
 MIME-Version: 1.0
-References: <20230213200519.889503-1-sergio.paracuellos@gmail.com>
- <20230213200519.889503-4-sergio.paracuellos@gmail.com> <f105c7a8-8821-1e7b-af46-13a46971db63@linaro.org>
-In-Reply-To: <f105c7a8-8821-1e7b-af46-13a46971db63@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 14 Feb 2023 09:54:16 +0100
-Message-ID: <CAMhs-H_Cd9F+UWWe+dAA89r_huX_srtsgjh1qus93nGehQN1AQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] watchdog: mt7621-wdt: avoid ralink architecture
- dependent code
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v3 04/11] iommu/mediatek: Get regionid from larb/port id
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, nfraprado@collabora.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com
+References: <20230214031114.926-1-yong.wu@mediatek.com>
+ <20230214031114.926-5-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230214031114.926-5-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 14, 2023 at 9:31 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/02/2023 21:05, Sergio Paracuellos wrote:
-> > MT7621 SoC has a system controller node. Watchdog need to access to reset
-> > status register. Ralink architecture and related driver are old and from
-> > the beggining they are using some architecture dependent operations for
-> > accessing this shared registers through 'asm/mach-ralink/ralink_regs.h'
-> > header file. However this is not ideal from a driver perspective which can
-> > just access to the system controller registers in an arch independent way
-> > using regmap syscon APIs. Update Kconfig accordingly to select new added
-> > dependencies and allow driver to be compile tested.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  drivers/watchdog/Kconfig      |  4 +++-
-> >  drivers/watchdog/mt7621_wdt.c | 18 +++++++++++++-----
-> >  2 files changed, 16 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> > index b64bc49c7..cf752ad64 100644
-> > --- a/drivers/watchdog/Kconfig
-> > +++ b/drivers/watchdog/Kconfig
-> > @@ -1865,7 +1865,9 @@ config GXP_WATCHDOG
-> >  config MT7621_WDT
-> >       tristate "Mediatek SoC watchdog"
-> >       select WATCHDOG_CORE
-> > -     depends on SOC_MT7620 || SOC_MT7621
-> > +     select REGMAP_MMIO
-> > +     select MFD_SYSCON
-> > +     depends on SOC_MT7620 || SOC_MT7621 || COMPILE_TEST
-> >       help
-> >         Hardware driver for the Mediatek/Ralink MT7621/8 SoC Watchdog Timer.
-> >
-> > diff --git a/drivers/watchdog/mt7621_wdt.c b/drivers/watchdog/mt7621_wdt.c
-> > index 40fb2c9ba..22e979bdd 100644
-> > --- a/drivers/watchdog/mt7621_wdt.c
-> > +++ b/drivers/watchdog/mt7621_wdt.c
-> > @@ -15,8 +15,8 @@
-> >  #include <linux/moduleparam.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/mod_devicetable.h>
-> > -
-> > -#include <asm/mach-ralink/ralink_regs.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/regmap.h>
-> >
-> >  #define SYSC_RSTSTAT                 0x38
-> >  #define WDT_RST_CAUSE                        BIT(1)
-> > @@ -34,6 +34,7 @@
-> >  struct mt7621_wdt_data {
-> >       void __iomem *base;
-> >       struct reset_control *rst;
-> > +     struct regmap *sysc;
-> >       struct watchdog_device wdt;
-> >  };
-> >
-> > @@ -104,9 +105,12 @@ static int mt7621_wdt_stop(struct watchdog_device *w)
-> >       return 0;
-> >  }
-> >
-> > -static int mt7621_wdt_bootcause(void)
-> > +static int mt7621_wdt_bootcause(struct mt7621_wdt_data *d)
-> >  {
-> > -     if (rt_sysc_r32(SYSC_RSTSTAT) & WDT_RST_CAUSE)
-> > +     u32 val;
-> > +
-> > +     regmap_read(d->sysc, SYSC_RSTSTAT, &val);
-> > +     if (val & WDT_RST_CAUSE)
-> >               return WDIOF_CARDRESET;
-> >
-> >       return 0;
-> > @@ -143,6 +147,10 @@ static int mt7621_wdt_probe(struct platform_device *pdev)
-> >       if (!drvdata)
-> >               return -ENOMEM;
-> >
-> > +     drvdata->sysc = syscon_regmap_lookup_by_compatible("mediatek,mt7621-sysc");
-> > +     if (IS_ERR(drvdata->sysc))
-> > +             return PTR_ERR(drvdata->sysc);
->
-> This should be the backup/error path for original code using syscon
-> property. Looking up by compatible is really not portable/re-usable.
+Il 14/02/23 04:11, Yong Wu ha scritto:
+> After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
+> controllers"), the dma-ranges is not allowed for dts leaf node.
+> but we still would like to separate to different masters
+> into different iova regions.
+> 
+> Thus we have to separate it by the HW larbid and portid. For example,
+> larb1/2 are in region2 and larb3 is in region3. The problem is that
+> some ports inside a larb are in region4 while some ports inside this
+> larb are in region5. Therefore I define a "iova_region_larb_msk" to help
+> record the information for each a port. Take a example for a larb:
+>   [1] = ~0: means all ports in this larb are in region1;
+>   [2] = BIT(3) | BIT(4): means port3/4 in this larb are region2;
+>   [3] = ~(BIT(3) | BIT(4)): means all the other ports except port3/4
+>                             in this larb are region3.
+> 
+> This method also avoids the users forget/abuse the iova regions.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>   drivers/iommu/mtk_iommu.c | 47 ++++++++++++++++++++++-----------------
+>   1 file changed, 27 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index ab53edcb221f..7e2cb3b8cac8 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -8,7 +8,6 @@
+>   #include <linux/clk.h>
+>   #include <linux/component.h>
+>   #include <linux/device.h>
+> -#include <linux/dma-direct.h>
+>   #include <linux/err.h>
+>   #include <linux/interrupt.h>
+>   #include <linux/io.h>
+> @@ -212,6 +211,11 @@ struct mtk_iommu_plat_data {
+>   	struct {
+>   		unsigned int	iova_region_nr;
+>   		const struct mtk_iommu_iova_region	*iova_region;
+> +		/*
+> +		 * Indicate the correspondence between larbs/ports and regions.
+> +		 * The index is same with iova_region.
 
-I can change the code in the way you are pointing out here but...
-Why is it not re-usable? Compatible is not supposed to be changed
-since in other cases the DTB ABI will be broken. I am totally lost
-about what is an ABI breakage, then.
+* The index is the same as iova_region and larb port numbers are
+* described as bit positions.
+* For example, storing BIT(0) at index 2 means "port 0 is in region 2".
 
-Thanks in advance for clarification.
+That's most probably the best short explanation that we can give, so that nobody
+goes crazy with understanding this one.
 
-Best regards,
-    Sergio Paracuellos
+After fixing that comment, you totally deserve my
 
->
-> Best regards,
-> Krzysztof
->
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Cheers!
+
+
