@@ -2,209 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 790B569696E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:26:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21000696984
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:32:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbjBNQ0N convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Feb 2023 11:26:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42866 "EHLO
+        id S229930AbjBNQcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 11:32:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbjBNQ0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:26:12 -0500
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09041CF43;
-        Tue, 14 Feb 2023 08:25:46 -0800 (PST)
-Received: by mail-qv1-f45.google.com with SMTP id nd22so8205617qvb.1;
-        Tue, 14 Feb 2023 08:25:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HjQ0CpBgeW3VIFOUjvZsQvtKtZR2pIvObv825jLtQY0=;
-        b=lN0z/Qf1RCvUzxlQFpx0+DOhslR+UZZqV3IO7aP6c4H5YCs5BaxcvD9X9UH/ZbYm4F
-         4scw91dKJOeCzkwRi2CL6yERHQm3i8MUDzsiw2EajWraksaa3eVur7VxxmM1EWkjSMcA
-         v+GBrnMOajBk88WBwC2wCZgFNsv2UJJ5r/zDnrbdu5B+zKiizdEZz17CAxLRneye5f+f
-         FU+F7H+mQLsdQHPRtmB8wS9k8NWPbCGNU6OPff+R9+Mey0MLpOH8miV6iAZkbATDgoCz
-         Vmd7pWtIOFCX7qRBY/a4HzA2raZgFI1k/WRC1z3liA5Ds5mNySvG4oPhI0P6VjsvEJeL
-         iW2Q==
-X-Gm-Message-State: AO0yUKU5cwnwli8j1xikx1fKyrS2bUh/3FyOib/94gJxZkADGRzKJauj
-        KVlW5PrtiHtQyw39x91ErOcYPHIOcPZFOGyd
-X-Google-Smtp-Source: AK7set/fxB011dHVaFsoTZdaiVdF//J9WTRdVGTfxRXQ6LMGD1B+sZ6sZB5bqRUXmVKCXC/P5A8DkA==
-X-Received: by 2002:a05:6214:21ea:b0:56e:a6bb:47ae with SMTP id p10-20020a05621421ea00b0056ea6bb47aemr4878289qvj.12.1676391927049;
-        Tue, 14 Feb 2023 08:25:27 -0800 (PST)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id x133-20020a37638b000000b006e07228ed53sm12227587qkb.18.2023.02.14.08.25.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 08:25:26 -0800 (PST)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-52f1b1d08c2so88946317b3.5;
-        Tue, 14 Feb 2023 08:25:26 -0800 (PST)
-X-Received: by 2002:a05:690c:ea2:b0:4fc:962d:7dc1 with SMTP id
- cr2-20020a05690c0ea200b004fc962d7dc1mr262523ywb.301.1676391925902; Tue, 14
- Feb 2023 08:25:25 -0800 (PST)
+        with ESMTP id S229642AbjBNQcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:32:04 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45685267;
+        Tue, 14 Feb 2023 08:32:03 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31EDYEBV018675;
+        Tue, 14 Feb 2023 16:31:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=a8nZi9u0n1eIFJcXzdA48iqS00QsanwQRwBvLTEtuWg=;
+ b=EniuooVaW40Bscngyik7w6im3HElYj9tuJhe/zH/F7Y1uvtIUCLy/66t8fY2ha2X0j7T
+ 73lB63riviDW80jQKQMeMhNRxK3gWwHTazTCLU0Z3WCDdSsUQDzmmBV5L3QkSEGtPZrE
+ 39YOl8RDIay4hYeJxpJuhJZ8hNbQagnuRaH2iNf6aqCyCqRsSfEeBFe0dQWij/3jUvdo
+ LgBEUz/glkhllZC1rfpj1SW14fJvxkFSp9HhQITOgyVTRGl3wHARxuEitnWg90MBeBph
+ vVy8+CSkSe6TMaSZqF9v1MtTCPtEJqFsI0g3b4X9VWTWd4+GalolYTXhBUCqSynVJaib ag== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nqyygt33m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 14 Feb 2023 16:31:39 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31EGVcII010403
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 14 Feb 2023 16:31:38 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 14 Feb 2023 08:31:29 -0800
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+Subject: [PATCH V8 0/7] Add minimal boot support for IPQ9574
+Date:   Tue, 14 Feb 2023 22:01:09 +0530
+Message-ID: <20230214163116.9924-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20230209133507.150571-1-clement.leger@bootlin.com> <20230209133507.150571-3-clement.leger@bootlin.com>
-In-Reply-To: <20230209133507.150571-3-clement.leger@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Feb 2023 17:25:14 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
-Message-ID: <CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb
- board device-tree
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: mHQVGoCqSHY32sMG7HE0Hq2P19aLNOzm
+X-Proofpoint-GUID: mHQVGoCqSHY32sMG7HE0Hq2P19aLNOzm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-14_11,2023-02-14_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ impostorscore=0 malwarescore=0 adultscore=0 mlxlogscore=705 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302140140
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+The IPQ9574 is Qualcomm's 802.11ax SoC for Routers,
+Gateways and Access Points
 
-CC Gareth
+This series adds minimal board boot support for ipq9574-al02-c7 board
 
-On Thu, Feb 9, 2023 at 2:32 PM Clément Léger <clement.leger@bootlin.com> wrote:
-> The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since this
-> configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-eb.
-> It adds support for the 2 additional switch ports (port C and D) that are
-> available on that board.
->
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+V7 can be found at:
+https://lore.kernel.org/linux-arm-kernel/20230206103337.21000-1-quic_devipriy@quicinc.com/
 
-Thanks for your patch!
+Change logs are added to the respective patches
 
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-eb.dts
-> @@ -0,0 +1,94 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the RZN1D-EB Board
-> + *
-> + * Copyright (C) 2023 Schneider-Electric
-> + *
-> + */
-> +
-> +#include "r9a06g032-rzn1d400-db.dts"
-> +
-> +/ {
-> +       model = "RZN1D-EB Board";
-> +       compatible = "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
-> +                    "renesas,r9a06g032";
-> +};
-> +
-> +&mii_conv2 {
-> +       renesas,miic-input = <MIIC_SWITCH_PORTD>;
-> +       status = "okay";
-> +};
-> +
-> +&mii_conv3 {
-> +       renesas,miic-input = <MIIC_SWITCH_PORTC>;
-> +       status = "okay";
-> +};
-> +
-> +&pinctrl{
-> +       pins_eth1: pins-eth1 {
-> +               pinmux = <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(14, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(15, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(16, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(17, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(18, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(19, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(20, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(21, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(22, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(23, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>;
-> +               drive-strength = <6>;
-> +               bias-disable;
-> +       };
-> +
-> +       pins_eth2: pins-eth2 {
-> +               pinmux = <RZN1_PINMUX(24, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(25, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(26, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(27, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(28, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(29, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(30, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(31, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(32, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(33, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(34, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-> +                        <RZN1_PINMUX(35, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>;
-> +               drive-strength = <6>;
-> +               bias-disable;
-> +       };
-> +};
-> +
-> +&switch {
-> +       pinctrl-names = "default";
+Devi Priya (7):
+  dt-bindings: clock: Add ipq9574 clock and reset definitions
+  clk: qcom: Add Global Clock Controller driver for IPQ9574
+  dt-bindings: pinctrl: qcom: Add support for IPQ9574
+  pinctrl: qcom: Add IPQ9574 pinctrl driver
+  dt-bindings: arm: qcom: Add ipq9574 compatible
+  arm64: dts: qcom: Add ipq9574 SoC and AL02 board support
+  arm64: defconfig: Enable IPQ9574 SoC base configs
 
-No need to specify pinctrl-names, as it is inherited from
-r9a06g032-rzn1d400-db.dts.
-
-> +       pinctrl-0 = <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pins_eth4>,
-> +                   <&pins_mdio1>;
-> +
-> +       mdio {
-> +               /* CN15 and CN16 switches must be configured in MDIO2 mode */
-> +               switch0phy1: ethernet-phy@1 {
-> +                       reg = <1>;
-> +                       marvell,reg-init = <3 16 0 0x1010>;
-
-marvell,reg-init is not documented in any DT bindings document?
-
-> +               };
-> +
-> +               switch0phy10: ethernet-phy@10 {
-> +                       reg = <10>;
-> +                       marvell,reg-init = <3 16 0 0x1010>;
-> +               };
-> +       };
-> +};
-> +
-> +&switch_port2 {
-> +       label = "lan2";
-> +       phy-mode = "rgmii-id";
-> +       phy-handle = <&switch0phy10>;
-> +       status = "okay";
-> +};
-> +
-> +&switch_port3 {
-> +       label = "lan3";
-> +       phy-mode = "rgmii-id";
-> +       phy-handle = <&switch0phy1>;
-> +       status = "okay";
-> +};
-
-The rest LGTM (as far as I can understand ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../devicetree/bindings/arm/qcom.yaml         |    7 +
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |   61 +
+ .../bindings/pinctrl/qcom,ipq9574-tlmm.yaml   |  130 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts  |   84 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  270 ++
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-ipq9574.c                | 4248 +++++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                  |   11 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq9574.c        |  828 ++++
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h  |  213 +
+ include/dt-bindings/reset/qcom,ipq9574-gcc.h  |  164 +
+ 15 files changed, 6029 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq9574-tlmm.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq9574.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq9574.c
+ create mode 100644 include/dt-bindings/clock/qcom,ipq9574-gcc.h
+ create mode 100644 include/dt-bindings/reset/qcom,ipq9574-gcc.h
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+base-commit: 3ebb0ac55efaf1d0fb1b106f852c114e5021f7eb
+-- 
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
