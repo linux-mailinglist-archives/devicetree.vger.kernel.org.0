@@ -2,99 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E80695C9F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CDC0695CAE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbjBNIPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:15:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51090 "EHLO
+        id S231479AbjBNIPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:15:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231989AbjBNIOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:14:46 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F1521A2B
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:14:45 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id hg24-20020a05600c539800b003e1f5f2a29cso599434wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:14:44 -0800 (PST)
+        with ESMTP id S229723AbjBNIPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:15:52 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F119E133
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:15:50 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id j23so14777980wra.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:15:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aI2uDJmlrj2FAxpoONeR47ofLkA/PV3rqzJUm7/U26E=;
-        b=YLNQ0jeiw6LdVVTZCSFrrZCcXl7uGgqgz4n4GMoI9tDYRtH3I7ihDaP9rmqXFGXFCM
-         y772i0B0SQk8NbxO4jnMoXTKf2nOonGxH3tUii2Lc0EvJpUp3fzhO5xD4OT8DVtBwIjP
-         a9NYOIr5ZAzBLj8Lf541lFmjjw3dwL9BA7ywyVVMW71JpXVa3oswg2uMkI8USPKM3seF
-         ETWGWVNSXmDIVscf1rWsOXCqQXZDv4+PZ92S+5ohDELknEUivh65UV3oMLT7lHyloPLa
-         ccbp6cmnGgQe6ArGJ7iRW2S+bzZPYIRME4sDeQ/d3nGUryE+e7AP5nnNlQD90I3bpeK+
-         AE3A==
+        bh=6ZbmrQPhObKWSihJbHyou6Fu5Yzy6RDtZH5Vv76MpbQ=;
+        b=yjABTc31/aA2Z0i7h3SUyePsyazr0R3Lr0ELN3COYoBRtw1w2gH1IGsRzC3y+DtC+B
+         dOg3XJHICFo1PfH8YlB2qwgdFP1Iv6R0nijutLn+6nCmzMl1xVwlDDs76jFP8kSgwbSh
+         RneznyAUeUZYmH55LlUcfNlmriRRs4moZV2GQsy2ZjWuW9FAxSTcdIw1X699Kfdco4Pn
+         Lln+wx8/qMy/nZUczaNYVufSlOXCh0UYzpAetAycmE3tFvHs4Ba8iOX/wb1M9a5a3Ren
+         CkUUWeuYUPu4GszUx/wI1kbNSCl3ehfPmkGHr3CbuhQduchRfee9FTHw74+NSnmw5+N0
+         FC1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aI2uDJmlrj2FAxpoONeR47ofLkA/PV3rqzJUm7/U26E=;
-        b=OhgAxQw0Z4R5ItBnMIboKdWE7S4PLLVyhtxJk/SmuRyQPaLJt86Ua2sSqPd8pz44xv
-         P48tihLMBiNhBqqxStVsZR8wwA86RXczKaD+6NVZjIsPv350Wut6VTkABoaTYdufwDSw
-         G6DPDby0R/OD+8K39GXRJeHykoDGdfcklsSkBVLJ0ZT0iXuLJcdCs/h6PSNL/c3XYUW6
-         VmOL5/gRpKjbFtNK8Oc/6y7IfFXEseCTTR8/0JLeo0qrOzzmuvHWZ2sentSgpyLYWwo7
-         MCapRJAg5XkHVHaD7nov5RChlLQ7+52KDbPilyb4fKjbvUIABeuWDC54txQBvuvjKrta
-         wevQ==
-X-Gm-Message-State: AO0yUKV2G6jPflJQuvOj+//+kwpBUpWVB1VWuRsoI3BpBcITE5Mr1Tre
-        +H2EDjhV50CTsmWqJR38TYVdDw==
-X-Google-Smtp-Source: AK7set9MrlNet8v7SENBgYBlDkF9xPm2qhgh5VFy9STLxHqofqua/v/M0vua3J4lRGjXQvWaJVu4ow==
-X-Received: by 2002:a05:600c:994:b0:3dc:5937:35a2 with SMTP id w20-20020a05600c099400b003dc593735a2mr1864019wmp.9.1676362483629;
-        Tue, 14 Feb 2023 00:14:43 -0800 (PST)
+        bh=6ZbmrQPhObKWSihJbHyou6Fu5Yzy6RDtZH5Vv76MpbQ=;
+        b=kxIQaOMQYVoYF4KxA57OOntabaf/Tq6TgRvY4dFudYgC/Fn6uwnBnOjwcBatwgKpcA
+         GD+5dWTls6cnaxRuWODu9JmB5zglIUezNXh1ZXlwv1IOo4Qa1x4vX1c5LPCAhE9u1DFV
+         YzO3nnO1Y2YtRa+FOVJuIPdInfi+ncr+fs1GYcYx0UljekAPeiBDh9Ke5imtFRoT59y5
+         WxHSDkK9a08B63UrPCZNDW07pjJ/77Fgem/j4Ft8Fcj0xsFCkWwlm0I1zTOLelL9S0Pf
+         btSi+/gYB1zRe/GncewSaG2AACr81NvF92oiF/ATec4R6HbPuvLFlbJdYNt42otB7GAV
+         WLqg==
+X-Gm-Message-State: AO0yUKUUvKUmPwAq49+ad0vUXFF0jD9+Me+BQuwzMRp/dqDegh+BY73x
+        oM1SOuY81qtStF91nBwUJg3hJA==
+X-Google-Smtp-Source: AK7set/IrgsUEGkUPcOIngeLJp97Ex2JJu3bjKGVWSfRtQmQFtrcA1Pni+F5WG8SiswWyF/jyA00Gw==
+X-Received: by 2002:adf:ea0f:0:b0:2c5:54a7:363c with SMTP id q15-20020adfea0f000000b002c554a7363cmr1395804wrm.23.1676362549365;
+        Tue, 14 Feb 2023 00:15:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p5-20020a1c5445000000b003dc492e4430sm16145215wmi.28.2023.02.14.00.14.39
+        by smtp.gmail.com with ESMTPSA id l2-20020a5d6742000000b002c55cdb1de5sm3325345wrw.116.2023.02.14.00.15.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 00:14:43 -0800 (PST)
-Message-ID: <75d37ae7-3632-a195-b12b-44e8a940be4a@linaro.org>
-Date:   Tue, 14 Feb 2023 09:14:37 +0100
+        Tue, 14 Feb 2023 00:15:48 -0800 (PST)
+Message-ID: <88f3db62-ffd1-a810-215b-4af5a7127f80@linaro.org>
+Date:   Tue, 14 Feb 2023 09:15:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [Patch][next] dt-bindings: power: supply: Revise Richtek RT9467
- compatible name
+Subject: Re: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: Allow RRADC as adc@
+ subnode
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        cy_huang@richtek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        peterwu.pub@gmail.com
-References: <dc8873c3125f7aa6f84dc7b33a44bf00907e0814.1675853673.git.chiaen_wu@richtek.com>
- <20230213205321.xrhvrdqy5ksiagbv@mercury.elektranox.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230213201337.2089970-1-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213205321.xrhvrdqy5ksiagbv@mercury.elektranox.org>
+In-Reply-To: <20230213201337.2089970-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 21:53, Sebastian Reichel wrote:
-> Hi,
+On 13/02/2023 21:13, Konrad Dybcio wrote:
+> This was omitted when adding the RRADC bindings.
 > 
-> On Wed, Feb 08, 2023 at 11:14:24AM +0800, ChiaEn Wu wrote:
->> Revise RT9467 compatible name from "richtek,rt9467-charger" to
->> "richtek,rt9467"
->>
->> Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467 battery charger")
->> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
->> ---
-> 
-> Is there a new version of this fixing the issues pointed out by Krzysztof?
-> Also I think the filename and $id should be changed to richtek,rt9467.yaml
-> in addition to the compatible change.
+> Fixes: 7ea58c951ab3 ("dt-bindings: iio: adc: document qcom-spmi-rradc")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Yes, indeed.
+Caleb was working on this but he never came back with a v3:
+https://lore.kernel.org/all/20221017185105.2279129-1-caleb.connolly@linaro.org/
+
+thus:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
