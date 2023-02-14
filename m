@@ -2,85 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B3D969554F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 01:20:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 806756955AA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 02:00:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjBNAUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 19:20:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
+        id S230039AbjBNBAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 20:00:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjBNAUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 19:20:16 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 15EF41968E;
-        Mon, 13 Feb 2023 16:20:15 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F6081AED;
-        Mon, 13 Feb 2023 16:20:57 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D849C3F663;
-        Mon, 13 Feb 2023 16:20:12 -0800 (PST)
-Date:   Tue, 14 Feb 2023 00:18:05 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Bastian Germann <bage@debian.org>
-Cc:     Wilken Gottwalt <wilken.gottwalt@posteo.net>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229758AbjBNBAe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 20:00:34 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D5B14488
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 17:00:32 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id b1so9156438pft.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 17:00:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhxllVnbI2AwFWPN2tKYS/gPDBTeZyTnINmF5vnAF9s=;
+        b=jiksO25M1xbJMh+TgDf925qz1OI33yVXPFpT+lYue4N/aK/2EjPChZIbJ4iopZfMH9
+         qL3CQlp3Q9OGs9elRk+awGd4bmSX4oldimJ+cw6T7pzAirT+A7PkIorWfcbglVMNxmcY
+         x/zEMdVvjkjXDnoH1Sfjv0OboADk5n9MAOyyI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jhxllVnbI2AwFWPN2tKYS/gPDBTeZyTnINmF5vnAF9s=;
+        b=u0+v2iJgbXF/lSzHUf4FmqKnHDQOxYHQ1yzeKyE0Gw/hX+O2hNBZNLw5NIBdTH+G/q
+         HVdQ++1tBwi6vIlqQfbLvl6mZTPM/iwp4BpHsB0ualnbaANDnCDqkAyzefcNXNzAze+U
+         Se6zWDFT3ieHXW4Z9BG71+v+BTjHHngtqv8sluobQ8dv3vHBb56qpST7VxolbngDs303
+         phpYX8rzXzWCx1GOhfQJ+SJNYKk/lk0Xph/T97iqd1sLDF6fiwozkUW8C7tuIPXJ+gGK
+         Dx3QSrXUxRZxj7ZChyEYjajNszR9hU41FGn14baaZkG1JHOvIlQ7GsfwmD6WGLzEI1jl
+         GPOw==
+X-Gm-Message-State: AO0yUKW9EmVkX1NVIK2CVAQCzjq25yUzzXB+WKCnu7JmpU6ke8zzKQGd
+        nJ5ZW6LHCtQZjmE5+QH03oD/1Q==
+X-Google-Smtp-Source: AK7set8iW4DJ4L1yxyeqR9ZgfBeGOdNmdI6N6GwghbcLJ89R3Z2O7NX985VWqNSUx6RrQj83e5E4xg==
+X-Received: by 2002:a62:17d2:0:b0:5a8:49c8:8533 with SMTP id 201-20020a6217d2000000b005a849c88533mr397121pfx.8.1676336432029;
+        Mon, 13 Feb 2023 17:00:32 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:af55:a232:a032:95ff])
+        by smtp.gmail.com with ESMTPSA id e22-20020aa78256000000b00592626fe48csm8482914pfn.122.2023.02.13.17.00.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Feb 2023 17:00:31 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     amstan@chromium.org, swboyd@chromium.org, mka@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] Enable hwlock on Allwinner A64
-Message-ID: <20230214001805.6ead683d@slackpad.lan>
-In-Reply-To: <20230213231931.6546-1-bage@debian.org>
-References: <20230213231931.6546-1-bage@debian.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        Rob Clark <robdclark@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sc7180: Fix trogdor qspi pull direction
+Date:   Mon, 13 Feb 2023 16:57:51 -0800
+Message-Id: <20230213165743.1.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
+X-Mailer: git-send-email 2.39.1.581.gbfd45094c4-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 00:19:27 +0100
-Bastian Germann <bage@debian.org> wrote:
+Though it shouldn't matter very much, we've decided that it's slightly
+better to park the qspi lines for trogdor with an internal pulldown
+instead of an internal pullup. There was a footnote that Cr50 (which
+connects to these lines too) may have pulldowns configured on one of
+the data lines and we don't want to have fighting pulls. This also
+means that if the pulls somehow get left powered in S3 (which I'm
+uncertain about) that they won't be pulling up lines on an unpowered
+SPI part.
 
-Hi Bastian,
+Originally the pullup was picked because SPI transfers are active low
+and thus the high state is somewhat more "idle", but that really isn't
+that important because the chip select won't be asserted when the bus
+is idle. The chip select has a nice external pullup on it that's
+powered by the same power rail as the SPI flash.
 
-> The allwinner,sun6i-a31-hwspinlock compatible driver can be used with
-> the Allwinner A64 chip. Add the wiring required to enable it.
-> 
-> The device tree schema needs some work to verify everything that is
-> needed by the sun6i hwlock driver.
-> 
-> The hwlock device was verified to be available with this series applied
-> on a Pinebook.
+This shouldn't have any functionality impact w/ reading/writing the
+SPI since the lines are always push-pull when SPI transfers are
+actually taking place.
 
-The changes look fine, but are there any actual users of this device?
-The missing binding bits you fixed demonstrate that a driver/binding
-without actual users can create problems.
-So are there Linux/Crust patches out there that use this device?
+Fixes: 7ec3e67307f8 ("arm64: dts: qcom: sc7180-trogdor: add initial trogdor and lazor dt")
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
 
-Cheers,
-Andre
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> Bastian Germann (3):
->   dt-bindings: hwlock: sun6i: Add missing #hwlock-cells
->   dt-bindings: hwlock: sun6i: Add missing names
->   arm64: dts: allwinner: a64: Add hwspinlock node
-> 
->  .../hwlock/allwinner,sun6i-a31-hwspinlock.yaml     | 14 ++++++++++++++
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi      | 10 ++++++++++
->  2 files changed, 24 insertions(+)
-> 
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 423630c4d02c..de40abcd18db 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -1054,7 +1054,7 @@ &qspi_clk {
+ 
+ &qspi_data01 {
+ 	/* High-Z when no transfers; nice to park the lines */
+-	bias-pull-up;
++	bias-pull-down;
+ };
+ 
+ &qup_i2c2_default {
+-- 
+2.39.1.581.gbfd45094c4-goog
 
