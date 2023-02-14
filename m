@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DBA769634E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3A6696356
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:19:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbjBNMS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 07:18:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43372 "EHLO
+        id S232078AbjBNMTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 07:19:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbjBNMS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:18:56 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 518B52658F
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:18:55 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id bd35so5009243pfb.6
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:18:55 -0800 (PST)
+        with ESMTP id S231745AbjBNMTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:19:14 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE1B279BB
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:19:07 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id z14-20020a17090abd8e00b00233bb9d6bdcso10079566pjr.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:19:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mJF25grJEGbcmrR3blVtuGbf0zHzSa1eHqZOGdnJEao=;
-        b=RvLdMEI0M9Y/FEc1QfjNc3t2QPnlRQp4LhYoK6aCFKM27Pgab6Wxr0vnSagxdIgnrx
-         /8uFtlua7yNH+Juz/Ws8B61SAjU88QMZdyixJOFwkDf79eI8dbiQdiPmlu5G086QdqiK
-         JKrpUHaFPxklQzGoOcswbTAF4kk7OjRXuXVV/cvp75gvzS+YnSibBAYYI1AEpyw4yxCZ
-         v8eDSBhPnt89EHS2R57f2hQAG9hY34J8mjQsyjfmuIDrWGdFybV6gcwdtdGPD4dFGxMB
-         H2RU3AdR28cmCqIj13B/7e7jwtrUdaA2eiPquNnGONYaEujF+/R+FLFAOwg3FPFIjvAk
-         HaWw==
+        bh=uSyTPuLuU1wBaDbWkcoFTMyZUSCsuecKMj0PYuIA5S0=;
+        b=UtyFQDh00wwW4KU//WECOJIVyRndF4FW071LndcUwBkhKWW6ETfQGjngKJyH/WLIkO
+         HHY3PJL0xDode7S+nxPASS+y+MuAATdqfpNv3VkNNgV/Sxh1gby588iCkO3BJtXnQVsK
+         i5Uhg2bvAHkaa5LLYw0up2TgGRQuKydeyZh/ZG9219bxWZOP4Q1FZqJVwlQyktQIV8tB
+         hAhV5gu5YkCULjmdugBAyYSyFgjkikIdt85pin/NgfVYeMxxx9ofi9SUCZW9WPXNJup1
+         +JeV5ksPQWUKAVej86tjPkY+ahVFKtvScCSpLdzmhMF+FJ9t+XfO/Reg2vsSxkQWq8lb
+         hrlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mJF25grJEGbcmrR3blVtuGbf0zHzSa1eHqZOGdnJEao=;
-        b=jgWUTaqDStzLEyUyPCrUvy+UcCt3/yTvojH4gxvN7sgK+aTw5nEWXIAZCBW/+gBqpp
-         H6pMYfbh+BtC0NN10QYciS8vyLNE/Y/k4biz6eA6iAO22CoIZueG+GsROzvUI0fANCMh
-         w5CCKrbcCoLw4YYNCLyS91UVZ8p2pSmr0/zfAbmEJLUlegDJayaX4mm52xmxVqlrIoEF
-         vDpS8e0xd3/ESDLvbvuq8fwV69X4ueBOLMmQT9p0ItVJuCGmz12JRnorhJtKHKF9SyCw
-         dYt30USaqZ+QLNrj+Aej/AP1xFoUJPNXCcij7V97vns059EbCxy6ehZQ8KTGcjrvauCG
-         9NUQ==
-X-Gm-Message-State: AO0yUKWDOgaQoNbEg3UfjIM1shKGKe1s4pDPhU+Wy8YUizhLtBhUNXdc
-        waoYv8yw/Fxx4/FEHU//ZvMWts2fQDRl1ZuUJXB1rA==
-X-Google-Smtp-Source: AK7set9r6FA2oxfaL/Gdvw6T8lOPC0lfz9vEUH09Doy2PfK7K4PKN/y5UpizMnUOEyCW+zd+Iarf90OGN7ZCkpc06+s=
-X-Received: by 2002:aa7:9e84:0:b0:5a8:925b:f68e with SMTP id
- p4-20020aa79e84000000b005a8925bf68emr369542pfq.28.1676377134742; Tue, 14 Feb
- 2023 04:18:54 -0800 (PST)
+        bh=uSyTPuLuU1wBaDbWkcoFTMyZUSCsuecKMj0PYuIA5S0=;
+        b=liqUDOM+K79czv5iCeLT3TO988EgEwCrwTt1Kw6BvGO5vKzRilFzqYG7g2ADmIiy0V
+         IQXEwyCPvr390PKaWKt9WiOFrxUNZTAPxx3lIfb4qSJ0GgHVmmaXKeVVLvy4WK82V/u/
+         VsnNERha6RCQkjq2nA+tfDKyk67AvDCET22Q4G5SpSw2SWHq8xOH5s3n/dLXhg4IZLQ9
+         02Q3x45fcbv/GNQY89ZFwwhhfYRlPqk33CwfWCi0kVrZoGEtlqp2AndEjID015UkDRmZ
+         9IUWyCrQy0YvxXzMhfMEIl57LwTxb2xtSnn623B5YNe5lITGFsjaqNy3eODPZrozEGmt
+         jSEQ==
+X-Gm-Message-State: AO0yUKV/4b3vs+OxpYRsAuJamKGKteWR40UGf5Pnnrc10OhqdWZ/1IaN
+        3xO6tqTpTHSPYq70c8CCKyQUd+En5I3KL1rpsahzBg==
+X-Google-Smtp-Source: AK7set/rppMKL8PmLlE6ZEPS+7aWqreZKZYPF7wXZqHbPA1PNgDb/YZ4rvKhpOEHETPhdtpvcTko9h+d92SGx9X/SuA=
+X-Received: by 2002:a17:90a:c710:b0:233:ce0b:5f78 with SMTP id
+ o16-20020a17090ac71000b00233ce0b5f78mr2138910pjt.32.1676377147435; Tue, 14
+ Feb 2023 04:19:07 -0800 (PST)
 MIME-Version: 1.0
-References: <20230203081913.81968-1-william.qiu@starfivetech.com>
-In-Reply-To: <20230203081913.81968-1-william.qiu@starfivetech.com>
+References: <20230213045233.32470-1-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20230213045233.32470-1-hayashi.kunihiko@socionext.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 14 Feb 2023 13:18:17 +0100
-Message-ID: <CAPDyKFqei-GjKpBUQnDZUbYnSyn-JS5f_EnTLOuA1U4PdYTyVA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] StarFive's SDIO/eMMC driver support
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 14 Feb 2023 13:18:31 +0100
+Message-ID: <CAPDyKFo7LizvRzjbohy9XcL=Nyscj9Dp-VNvUnx94fF409uzZg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: Add resets property to cadence SDHCI binding
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-kernel@vger.kernel.org
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -69,47 +69,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Feb 2023 at 09:19, William Qiu <william.qiu@starfivetech.com> wrote:
+On Mon, 13 Feb 2023 at 05:52, Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
 >
-> Hi,
+> Cadence SDHCI controller allows reset control support on UniPhier SoC.
+> Add resets property to cadence SDHCI binding.
 >
-> This patchset adds initial rudimentary support for the StarFive
-> designware mobile storage host controller driver. And this driver will
-> be used in StarFive's VisionFive 2 board. The main purpose of adding
-> this driver is to accommodate the ultra-high speed mode of eMMC.
->
-> The last patch should be applied after the patchset [1]:
-> [1] https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
->
-> Changes since v2:
-> - Wraped commit message according to Linux coding style.
-> - Rephrased the description of the patches.
-> - Changed the description of syscon regsiter.
-> - Dropped redundant properties.
->
-> The patch series is based on v6.1.
->
-> William Qiu (3):
->   dt-bindings: mmc: Add StarFive MMC module
->   mmc: starfive: Add sdio/emmc driver support
->   riscv: dts: starfive: Add mmc node
->
->  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  77 ++++++++
->  MAINTAINERS                                   |   6 +
->  .../jh7110-starfive-visionfive-2.dtsi         |  23 +++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  37 ++++
->  drivers/mmc/host/Kconfig                      |  10 +
->  drivers/mmc/host/Makefile                     |   1 +
->  drivers/mmc/host/dw_mmc-starfive.c            | 185 ++++++++++++++++++
->  7 files changed, 339 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
->  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
->
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Patch 1 and patch 2 applied for next, thanks!
-
-Note that I fixed some checkpatch errors/warnings. Next time, please
-run ./scripts/checkpatch.pl before you submit your patches.
+Applied for next, thanks!
 
 Kind regards
 Uffe
+
+
+> ---
+>  Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> Changes since v1:
+> - Add Acked-by: line
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> index d3dce4d6c168..adacd0535c14 100644
+> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> @@ -29,6 +29,9 @@ properties:
+>    clocks:
+>      maxItems: 1
+>
+> +  resets:
+> +    maxItems: 1
+> +
+>    # PHY DLL input delays:
+>    # They are used to delay the data valid window, and align the window to
+>    # sampling clock. The delay starts from 5ns (for delay parameter equal to 0)
+> --
+> 2.25.1
+>
