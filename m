@@ -2,228 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 364E069654B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 14:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1FF669656A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 14:53:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233115AbjBNNqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 08:46:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46868 "EHLO
+        id S232691AbjBNNxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 08:53:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233113AbjBNNqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 08:46:39 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5122C298CB;
-        Tue, 14 Feb 2023 05:45:48 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31E9TIcc018659;
-        Tue, 14 Feb 2023 13:44:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Vp2fHwymSvhY5DxtYIGyE7DyxmKylLyMV1jfDjXcPmg=;
- b=lOVHvWKes/MjMu7DRv/jMVoDWeugIlnKBQ0vI5IIKVSJ5Pjd61DDA2IwBWuJ8DEhjDM5
- xEECB2K7O5mWv5w/gaXZysLwFLvksUhipEWR9iLIFpQK9SQN0Yf63BrHE+3ql5lYvEGk
- e692FwSzOelH7BZNzpGwl5SYmqdA+QYg/4xSjgfEQaBpsGJAD10CDYru05/dR6F6YVwD
- nFMVbr82rdKkSjgn0NwRnOVutLQP2yzOlDKGMvNPUgan3/FsrObtlWyAzOowoTNZNqAh
- OruFFo9QHKL5QNIuijpxsdqhQUUqXkZEokK0xFgdL41lbpD6zo2BSNnUid8OVW636HIe nA== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nqtsut9w1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Feb 2023 13:44:14 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31EDiDvU023407
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Feb 2023 13:44:13 GMT
-Received: from [10.216.50.155] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 14 Feb
- 2023 05:44:09 -0800
-Message-ID: <89cff864-2103-1dc1-b8c2-ad1ef1fbdf1e@quicinc.com>
-Date:   Tue, 14 Feb 2023 19:14:05 +0530
+        with ESMTP id S232838AbjBNNxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 08:53:09 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A90B29142
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 05:52:33 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id l201so17222395ybf.10
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 05:52:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lzIiOvzBUqeTJdiphF7KaW7tTYu27tfVhqaHToVdTpk=;
+        b=IMyME/lQw562KUelTO1QV2l1e6vvEdd/l3uk2izNF6AjlvmRd2NmROmM8GKnqLRaGd
+         IyZcKJMmd6SWuZvYj0Czwq034g9C+T5rV03JwKUMS+Gyxf1q7yM3M5kjnHS+ksbBYW91
+         OModUu5OuMiaIAJFZFoIBZf87mEe1BwPMQ3hPz7aL3+2aJASq+bhkZWP0j8CYLrB8x9G
+         nYMepy3d7VlvLwgKG3BxgsrrwgVYtCWCGqdPkcUoR5BWw6fAbBN1brP4cZcwDU6czLxh
+         5fIUuB8b+2rqbW8ZWNB3jl/q4qt2lBlH/lA/OvgcUljudUJLic15zTeOthFJfOUdZScY
+         855w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lzIiOvzBUqeTJdiphF7KaW7tTYu27tfVhqaHToVdTpk=;
+        b=2iYDaVnEDLe/f1dH2RAl0kz6f6snMwZPEJ1z30PIEBnARNc+mbxdpzlfS6a3xiwZtd
+         w/UeRD9yO1afSH/7hfonnh64sku6UCbioM/bH5Is7HbuVu+AJfJeYl2exQD3PVkwpkkc
+         QBnH7G10xIbG9xzMgl5CkF9gIZYO3pltzMxyR0Sji+/6BIuVDyGXAUXB0UPB59RjB/ho
+         aZD+SaY6OyPIJN1CNz6eI1CtIgvs+89AP9V8i404t6/yfmMO/7TxGxelEJUfdI+IK+O6
+         EeqWKzUKTf2VRoo1+gYClPHH0nOx0g3lzXzgQ9jMgLLvBTxsD9M9EuLJPx44nnSI7gRG
+         5/zA==
+X-Gm-Message-State: AO0yUKUTsvaf80CI1by2IcfnICMCyIP6CTsDBZfb0gAsUb2l+UJPN0H9
+        0vskCtXjPemat7Z7ccrJGhGACXnjGcsH9DyQaIw=
+X-Google-Smtp-Source: AK7set/q83STRUpXrtCE1FpMX1jDvR+yfwe7MzUcWy2Z+f9YJcrmbf9H8P2Jm5iCVQ6353pxljFk51gfwuxztcrXN1c=
+X-Received: by 2002:a5b:60e:0:b0:80b:5988:2042 with SMTP id
+ d14-20020a5b060e000000b0080b59882042mr273736ybq.54.1676382698557; Tue, 14 Feb
+ 2023 05:51:38 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v5 2/2] pstore/ram: Rework logic for detecting ramoops
-Content-Language: en-US
-To:     <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <corbet@lwn.net>
-References: <1675330081-15029-1-git-send-email-quic_mojha@quicinc.com>
- <1675330081-15029-2-git-send-email-quic_mojha@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <1675330081-15029-2-git-send-email-quic_mojha@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: MBUL8prDP-pLNpOt_30UC69_FAQYiHuf
-X-Proofpoint-ORIG-GUID: MBUL8prDP-pLNpOt_30UC69_FAQYiHuf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-14_07,2023-02-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 malwarescore=0 mlxlogscore=999 phishscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 adultscore=0 impostorscore=0
- suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2302140118
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:7011:7cd:b0:32d:ece2:8d5a with HTTP; Tue, 14 Feb 2023
+ 05:51:37 -0800 (PST)
+Reply-To: barristeranson754@gmail.com
+From:   Barrister Anson <abrahammusa5561@gmail.com>
+Date:   Tue, 14 Feb 2023 05:51:37 -0800
+Message-ID: <CAOSWSEPuO+ni_MgZ3eBJbWfBOKyg6OYFEcXue_ygzZJ0xaaqTQ@mail.gmail.com>
+Subject: TERE, KALLIS
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=4.8 required=5.0 tests=BAYES_40,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,UNDISC_FREEM
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kees/Rob,
+Kallis s=C3=B5ber
 
-Since, we are not agreeing to put dynamics ramoops region support in 
-device tree.
+Tervitused teile ja hooaja kompliment. Minu nimi on vandeadvokaat
+Anson Brudenell, advokaat ja jurist, kes asub =C3=9Chendkuningriigis
+Londonis. Olen teie riigist p=C3=A4rit insener Francise isiklik advokaat,
+kes t=C3=B6=C3=B6tas =C3=9Chendkuningriigis Cheshire'i ehitusettev=C3=B5tte=
+s
+v=C3=A4lismaalasena. Otsustasin teiega =C3=BChendust v=C3=B5tta seoses oma
+varalahkunud kliendi surmaga, kuna teil on sama perekonnanimi, mis
+minu varalahkunud kliendil.
 
-In Qualcomm SoC, during reset the pstore static region did not get 
-preserved across boots and we have our own mechanism to collect regions
-if physical address and size is somehow passed to boot-firmware by 
-writing to some shared memory. So, we wanted to reuse the region
-supported by pstore(dmesg/console/ etc.) for that we wanted to this
-flexibility to put this region dynamically anywhere in the ram.
+16. septembril 2009 sattusid mu klient, tema naine ja nende ainus
+t=C3=BCtar Inglismaal Kaguosas Canterbury Roadil surmaga l=C3=B5ppenud
+mootors=C3=B5iduki=C3=B5nnetusse, kui nad saabusid Inglismaa loodeosas Salf=
+ordis
+asuvast l=C3=B5bustuspargist. K=C3=B5ik s=C3=B5idukis viibinud kaotasid kah=
+juks elu.
+Sellest ajast alates olen teinud mitmesuguseid p=C3=A4ringuid, et leida
+tema kaugeid sugulasi, kuid see pole =C3=B5nnestunud.
 
-This patch will help achieve the same . Can you suggest if this gets
-allowed.
+P=C3=B6=C3=B6rdun teiega, et aidata mul kodumaale tuua raha, mille v=C3=A4=
+=C3=A4rtus on 9
+500 000 naela, mille mu varalahkunud klient j=C3=A4ttis Londoni panka, enne
+kui pank, kuhu see tohutu summa deponeeriti, need konfiskeerib v=C3=B5i
+kasutuks tunnistab. Maksepank Londonis on v=C3=A4ljastanud mulle teatise,
+et pean j=C3=A4rgmise kahek=C3=BCmne =C3=BChe ametliku t=C3=B6=C3=B6p=C3=A4=
+eva jooksul esitama oma
+kliendi l=C3=A4hisugulased v=C3=B5i arestima oma kliendi pangakonto.
 
--Mukesh
+Kuna mul ei ole =C3=B5nnestunud enam kui 9 aasta jooksul l=C3=A4hedasi leid=
+a,
+k=C3=BCsin teie n=C3=B5usolekut esitleda teid surnu l=C3=A4hisugulasena, ku=
+na teil on
+minu varalahkunud kliendiga sarnane nimi, nii et sellelt kontolt
+saadavat tulu v=C3=B5idakse teile v=C3=A4lja makstud ja me investeerime v=
+=C3=B5i
+jagame raha =C3=BChiselt. Kui olete selle ettepaneku vastu v=C3=B5tnud, ann=
+an
+teile rohkem teavet v=C3=B5i =C3=BCksikasju. Pange t=C3=A4hele, et see tehi=
+ng on
+konfidentsiaalne ja seda tuleb hoida saladuses, kuni raha on teie
+pangakontole edukalt =C3=BCle kantud, et mitte seada ohtu ega saboteerida
+tehingu =C3=B5nnestumist.
 
-On 2/2/2023 2:58 PM, Mukesh Ojha wrote:
-> The reserved memory region for ramoops is assumed to be at a fixed
-> and known location when read from the devicetree. This is not desirable
-> in an environment where it is preferred the region to be dynamically
-> allocated at runtime, as opposed to being fixed at compile time.
-> 
-> Also, some of the platforms might be still expecting dedicated
-> memory region for ramoops node where the region is known beforehand
-> and platform_get_resource() is used in that case.
-> 
-> So, add logic to detect the start and size of the ramoops memory
-> region by looking up reserved memory region with of_reserved_mem_lookup()
-> api when platform_get_resource() fails also update the ramoops
-> documentation.
-> 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com> > ---
-> Changes in v5:
->   - Removed the CC list from the commit text.
-> 
-> Changes in v4:
->   - Updated the minor change in documentation.
-> 
-> Changes in v3:
->   - Merged 2/3 and 3/3 into one.
->     https://lore.kernel.org/lkml/1673611126-13803-2-git-send-email-quic_mojha@quicinc.com/
->     https://lore.kernel.org/lkml/1673611126-13803-3-git-send-email-quic_mojha@quicinc.com/
-> 
-> Changes in v2:
->   - Addressed the comments made by kees and Guilherme in v1.
-> 
-> 
->   Documentation/admin-guide/ramoops.rst | 25 ++++++++++++++++++++++---
->   fs/pstore/ram.c                       | 18 +++++++++++++-----
->   2 files changed, 35 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/admin-guide/ramoops.rst b/Documentation/admin-guide/ramoops.rst
-> index e9f8514..3586d15 100644
-> --- a/Documentation/admin-guide/ramoops.rst
-> +++ b/Documentation/admin-guide/ramoops.rst
-> @@ -16,8 +16,9 @@ survive after a restart.
->   Ramoops concepts
->   ----------------
->   
-> -Ramoops uses a predefined memory area to store the dump. The start and size
-> -and type of the memory area are set using three variables:
-> +Ramoops uses both predefined and dynamically memory area to store the dump.
-> +The start and size and type of the memory area are set using three
-> +variables:
->   
->     * ``mem_address`` for the start
->     * ``mem_size`` for the size. The memory size will be rounded down to a
-> @@ -70,7 +71,8 @@ Setting the ramoops parameters can be done in several different manners:
->   
->    B. Use Device Tree bindings, as described in
->    ``Documentation/devicetree/bindings/reserved-memory/ramoops.yaml``.
-> - For example::
-> +
-> + Example of statically reserved ramoops region::
->   
->   	reserved-memory {
->   		#address-cells = <2>;
-> @@ -85,6 +87,23 @@ Setting the ramoops parameters can be done in several different manners:
->   		};
->   	};
->   
-> + Example of dynamically reserved ramoops region::
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		ramoops_region: ramoops {
-> +			compatible = "ramoops";
-> +			alloc-ranges = <0x00000000 0xffffffff>;
-> +			size = <0 0x100000>;
-> +			record-size = <0x4000>;
-> +			console-size = <0x4000>;
-> +		};
-> +	};
-> +
-> +
->    C. Use a platform device and set the platform data. The parameters can then
->    be set through that platform data. An example of doing that is:
->   
-> diff --git a/fs/pstore/ram.c b/fs/pstore/ram.c
-> index ade66db..17c9f46 100644
-> --- a/fs/pstore/ram.c
-> +++ b/fs/pstore/ram.c
-> @@ -20,6 +20,7 @@
->   #include <linux/compiler.h>
->   #include <linux/of.h>
->   #include <linux/of_address.h>
-> +#include <linux/of_reserved_mem.h>
->   
->   #include "internal.h"
->   #include "ram_internal.h"
-> @@ -643,6 +644,7 @@ static int ramoops_parse_dt(struct platform_device *pdev,
->   {
->   	struct device_node *of_node = pdev->dev.of_node;
->   	struct device_node *parent_node;
-> +	struct reserved_mem *rmem;
->   	struct resource *res;
->   	u32 value;
->   	int ret;
-> @@ -651,13 +653,19 @@ static int ramoops_parse_dt(struct platform_device *pdev,
->   
->   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->   	if (!res) {
-> -		dev_err(&pdev->dev,
-> -			"failed to locate DT /reserved-memory resource\n");
-> -		return -EINVAL;
-> +		rmem = of_reserved_mem_lookup(of_node);
-> +		if (!rmem) {
-> +			dev_err(&pdev->dev,
-> +				"failed to locate DT /reserved-memory resource\n");
-> +			return -EINVAL;
-> +		}
-> +		pdata->mem_size = rmem->size;
-> +		pdata->mem_address = rmem->base;
-> +	} else {
-> +		pdata->mem_size = resource_size(res);
-> +		pdata->mem_address = res->start;
->   	}
->   
-> -	pdata->mem_size = resource_size(res);
-> -	pdata->mem_address = res->start;
->   	/*
->   	 * Setting "unbuffered" is deprecated and will be ignored if
->   	 * "mem_type" is also specified.
+Ootan teie kiiret vastust, mis n=C3=A4itab teie t=C3=A4ielikku huvi selle
+suurep=C3=A4rase =C3=A4ritehingu vastu.
+
+Kontakte-posti aadress: (barristeranson754@gmail.com)
+
+
+Lugupidamisega
+
+Advokaat Anson Brudenell
+Advokaat ja advokaat
+London, =C3=9Chendkuningriik
