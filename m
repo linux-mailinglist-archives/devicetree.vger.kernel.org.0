@@ -2,188 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDCF6966D4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:28:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C38F769672F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:43:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232601AbjBNO2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 09:28:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
+        id S233430AbjBNOnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 09:43:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232456AbjBNO2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:28:44 -0500
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7247059F2
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:28:26 -0800 (PST)
-Received: by mail-il1-x12e.google.com with SMTP id b9so6151025ila.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:28:26 -0800 (PST)
+        with ESMTP id S232822AbjBNOnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:43:17 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 681C116326
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:43:15 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id k16so9114005ejv.10
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:43:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OC7OLIEjLzwlnn+8IHiaJZmpnrxZO4YxhVGP3rMedHI=;
-        b=qYxzyY2kErVbwyTWu/K6QEyKHIO3/dlMlcNYDO4AlI6KhfZGzNipBtlwSRLdCzl/RB
-         XiP6NsG2rpVCazElWSwD3tOamJXBZSNquGZg7bf45dCQ0L0BM3PcLysgdzp2akmV/Ct/
-         jCPQ6Rmjsu+S5tqklRwmcQzmPLuBlwhdA/ZLe+N2smKioUC7ptl9wJT3X1r4rZC5z83M
-         RNwAK42FLRr3vc1aNFgQeZb2WqOL7upnBWD5dsozoSVFk37toN3ayqFLq+MOaMDYgzfy
-         3HPexZxyuQrWptf+geTqtb1HHCS51X2FwbJ3xxfaYdnBEm0g91jFp2crX5pzb683NVEs
-         nUbQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xrQFXlyYQ6BXMoPDycsGZ57c4QKFYnwrzSnOP2uhY5c=;
+        b=AlAbePd1Q3NeUZeR2Fa4w5Tmj4lwGN2RYVp1sWM1JcuteH4S4aia6L6QcVA/zPZHsT
+         HUS3yNyPJXYnbv+NeFtGYj16tN1gj/RjA2mrgoEWM+Tvba+fpl+r2SXDxgxa4ufDV1Nm
+         k1KyX2CkLJDqPsXtDFta117qhcdJFmoKDznYQcMbE4usvHZ2F8PQZDDwq936sE1AiivT
+         UEFYHNyFpMNOoPgBHr74B09zYdfZo44MCPmcBli6jekwlidoc0Q3TOGlnHx/p5bwtuSU
+         uMBUhIVhvLKF7A+ozHGqjnoBEywHcWk+8x5UVpFajK6ClMtYyraSEugTIkoiiIX+gkVa
+         bzrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OC7OLIEjLzwlnn+8IHiaJZmpnrxZO4YxhVGP3rMedHI=;
-        b=Bm0mpgRufd4PNINIztboiUV9Zz30dor31MFU8k7JeJ1KH3r8kPGoXBDYSnr16eknRR
-         QJDFRn/hpIjWIRKQzF0TWb0Q34pmnO+RFWUbO8F0Kqsv5bjWKi+Hx7OH84MM+4XrPevC
-         qL6icxlKseGq0MP0I62kxABwT22ar2xnt9l5pQs+/ZEpJ3aLnQcykfXfDfte+I1yM3kw
-         k0TumSeN4gN4lvIeqObxL1QerqCvDWrXl806s3JWu1xwLBVI4LjCynt4jza3cvIvPFVJ
-         TUdg528mJ71s9Xt/Ii4ND8IG9x0FdORmUCH0GZsJmX0j1YT9b3z8PKyydLcmVbfhiOHm
-         7fDw==
-X-Gm-Message-State: AO0yUKVwPN3cFUtqLvSde0IBAJLFZyBDmn0Y5yJBltBg8VzS1y6d4baC
-        S9gZ6Vf1xqthGa44x50tF1OqFg==
-X-Google-Smtp-Source: AK7set++Rn0Fp5zH216z7M0t4anw+bCYk5cH+cbnFchQuoKPGQZKwWBPd9XzqxYZBAA0DXp2h8O+pg==
-X-Received: by 2002:a05:6e02:1a22:b0:315:29ff:da85 with SMTP id g2-20020a056e021a2200b0031529ffda85mr2455232ile.6.1676384905752;
-        Tue, 14 Feb 2023 06:28:25 -0800 (PST)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id t3-20020a92c903000000b0031535804125sm2524047ilp.88.2023.02.14.06.28.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 06:28:25 -0800 (PST)
-Message-ID: <a139f921-0f82-4d4b-6407-e0ad6807bb55@linaro.org>
-Date:   Tue, 14 Feb 2023 08:28:24 -0600
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xrQFXlyYQ6BXMoPDycsGZ57c4QKFYnwrzSnOP2uhY5c=;
+        b=JzjofHe2G9s5vp9MGsp8lc8EQF++6zeOAEX+h1M4DkdgSdMVhDnxw1lSDiaCklLbjt
+         TZdam1N3RDKCSol+x+5NUqdkEThX3XxrvU5lVx+myJBaVnEtIDzYB1dY8PgzsEDMLAjS
+         tv8ocOizuGenPi2YY0bzCAEcsHVSG2SEBnOGwAeIHRTDrv+RveoGX9SrWVQZHfpqaxM/
+         JgImiWpsmKbFn55YxHkwzu+1o/OtVYCS90VFTLiacQJ2E4UwDiRL5kpD4P3YY+C9MK7g
+         R1huwCwApt9Jl6miOt8qG0GNAReqvsOrYdXcvljvGDHqpkzaImEkRDrA+DyFaMvH+nD7
+         E22Q==
+X-Gm-Message-State: AO0yUKUbF/wYYHukyYB7Lpb1Vz2t3Fzz7hRQwqX6M7q/2HRiXKxPP+gN
+        8sQvBmYPV7IUO2qvBg+EHUQmelJBW8z/oSSPXY33Ow==
+X-Google-Smtp-Source: AK7set/eRZRwT84Ah6k0jwJ445lJrD4natFzZ1kVHXpD+dAT/lHnlzbyOxVzjwyjHZ518E8n33MZrsg1UFD9/40unP0=
+X-Received: by 2002:a17:906:14cf:b0:8aa:841e:ae71 with SMTP id
+ y15-20020a17090614cf00b008aa841eae71mr1387871ejc.13.1676385793939; Tue, 14
+ Feb 2023 06:43:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8450: Add IMEM and PIL info
- region
-Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1675443891-31709-1-git-send-email-quic_mojha@quicinc.com>
- <1675443891-31709-2-git-send-email-quic_mojha@quicinc.com>
- <cc30f686-dec7-db85-cf0d-c6c685a623ce@linaro.org>
- <d1dc0c9b-eab2-0287-d0a2-ead44ecee5ce@quicinc.com>
- <20230206210455.xgrvtvknkor4nllx@ripper>
- <aac2b313-e4af-dc93-f177-0d0be9620e1b@quicinc.com>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <aac2b313-e4af-dc93-f177-0d0be9620e1b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230209105628.50294-1-bchihi@baylibre.com> <20230209105628.50294-6-bchihi@baylibre.com>
+In-Reply-To: <20230209105628.50294-6-bchihi@baylibre.com>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Tue, 14 Feb 2023 15:42:38 +0100
+Message-ID: <CAGuA+oqD8qDVw=50dC=Qdi8f1-4YqtN7wKtV-msx3=a_Jb24aA@mail.gmail.com>
+Subject: Re: [PATCH v14 5/6] arm64: dts: mediatek: mt8195: Add thermal zones
+ and thermal nodes
+To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/23 6:34 AM, Mukesh Ojha wrote:
-> +@alex,
-> 
-> Please comment.
-> 
-> -Mukesh
-> 
-> On 2/7/2023 2:34 AM, Bjorn Andersson wrote:
->> On Mon, Feb 06, 2023 at 08:06:13PM +0530, Mukesh Ojha wrote:
->>>
->>>
->>> On 2/4/2023 3:07 AM, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 3.02.2023 18:04, Mukesh Ojha wrote:
->>>>> Add a simple-mfd representing IMEM on SM8450 and define the PIL
->>>>> relocation info region, so that post mortem tools will be able
->>>>> to locate the loaded remoteprocs.
->>>>>
->>>>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
->>>>> ---
->>>>   From XBL:
->>>>
->>>> 0x14680000, 0x0002A000, "IMEM Base"
->>>>
->>>> Is there anything in that wider address range that would interest
->>>> us? I recall Alex once dug into that when diving into IPA, but
->>>> I can not recall the conclusion..
+Hi Matthias, Angelo,
 
-So you're saying a boot loader defines "IMEM Base" as
-a range of memory, size 0x2a000.
+Would you please confirm if this patch can be applied?
+and, if it is the case, to which tree it will be applied?
 
->>> Spec-wise, yes IPA do own these 0x146A8000 - 0x146AA000 .
->>> But, not sure what they use it for.
-
-And a subset of that range (at offset 0x28000, size 0x2000) is
-set aside for use by IPA.  IPA *does* use this memory area as
-"fast" memory to hold certain frequently-accessed tables.
-Details of that are under the modem's control, and I don't
-have knowledge of that.
-
-The IPA driver currently maps it's portion of this memory,
-but does *not* reflect that use in DT.  (This is something
-that will be corrected at some point, possibly soon.)
-
-
->> The DT should not reflect the organization structure. Let's see if Alex
->> have any input on this.
-
-As I understand it there's an "imem" node in DT defined, but
-it just defines the range of memory, and is something referred
-to by other drivers (or other nodes in a DTS file).  This seems
-reasonable, and it kind of matches the view I've seen in
-documents.  IPA does *not* follow that pattern, and should.
-
-I don't really have any strong input either way.  I can help
-define the "problem" but I don't claim to know the correct
-way to represent this.
-
-It's a contiguous block of special memory.  By convention
-(design) its range divided up, with portions intended to be
-used for different purposes, by different hardware.  IPA is
-one of the users.
-
-					-Alex
-
-
->>
->> Thanks,
->> Bjorn
->>
->>> -Mukesh
->>>>
->>>> Konrad
->>>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 15 +++++++++++++++
->>>>>    1 file changed, 15 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi 
->>>>> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> index 5704750..474ea1b 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> @@ -3536,6 +3536,21 @@
->>>>>                };
->>>>>            };
->>>>> +        sram@146aa000 {
->>>>> +            compatible = "qcom,sm8450-imem", "syscon", "simple-mfd";
->>>>> +            reg = <0 0x146aa000 0 0x1000>;
->>>>> +
->>>>> +            #address-cells = <1>;
->>>>> +            #size-cells = <1>;
->>>>> +
->>>>> +            ranges = <0 0 0x146aa000 0x1000>;
->>>>> +
->>>>> +            pil-reloc@94c {
->>>>> +                compatible = "qcom,pil-reloc-info";
->>>>> +                reg = <0x94c 0xc8>;
->>>>> +            };
->>>>> +        };
->>>>> +
->>>>>            apps_rsc: rsc@17a00000 {
->>>>>                label = "apps_rsc";
->>>>>                compatible = "qcom,rpmh-rsc";
-
+Best regards,
+Balsam
