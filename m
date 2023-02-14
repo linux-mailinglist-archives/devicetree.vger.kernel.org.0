@@ -2,215 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DD45695715
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 04:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49431695720
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 04:11:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbjBNDHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 22:07:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41394 "EHLO
+        id S229484AbjBNDL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 22:11:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbjBNDHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 22:07:46 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AA254686;
-        Mon, 13 Feb 2023 19:07:31 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id EF3A624E235;
-        Tue, 14 Feb 2023 11:07:29 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
- 2023 11:07:29 +0800
-Received: from [192.168.1.100] (183.27.97.168) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
- 2023 11:07:29 +0800
-Message-ID: <f33f3ce0-ca0f-b24e-eab6-4fb9a6ae6d4a@starfivetech.com>
-Date:   Tue, 14 Feb 2023 11:07:27 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v1 2/4] dt-bindings: phy: Add starfive,jh7110-dphy-rx
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229436AbjBNDL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 22:11:28 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3ABF55B4;
+        Mon, 13 Feb 2023 19:11:25 -0800 (PST)
+X-UUID: 420a6ed0ac1511eda06fc9ecc4dadd91-20230214
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=YdE/8JDLam1Ggqc23gYHbBVRsRHj1cRNA1Ws28kzmfo=;
+        b=kcAvFXiifs3Jv8h7H4Sb/9Ol9YRRotMl2sFr3THVU4thFiDoB4YXxEfsjHhE0vVTUt1eb6mVcJHY6qXI541PqlEGRYEGdXPJdn6UQqLjdqOwN70rKLJkRqDsAmzKiD6BsM3MvfWjNpq3oiu1fk4ddSZYio/1ut2Bf3jCsnRpyyo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.19,REQID:ba9f39e8-cffe-44a8-8c66-0345e602e74a,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:70
+X-CID-INFO: VERSION:1.1.19,REQID:ba9f39e8-cffe-44a8-8c66-0345e602e74a,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:70
+X-CID-META: VersionHash:885ddb2,CLOUDID:ada2cc8e-8530-4eff-9f77-222cf6e2895b,B
+        ulkID:230214111123CPD6PJ37,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-UUID: 420a6ed0ac1511eda06fc9ecc4dadd91-20230214
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 353635466; Tue, 14 Feb 2023 11:11:22 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 14 Feb 2023 11:11:21 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Tue, 14 Feb 2023 11:11:20 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230210061713.6449-1-changhuang.liang@starfivetech.com>
- <20230210061713.6449-3-changhuang.liang@starfivetech.com>
- <3fc07187-f5a0-86d1-a0fd-ba18a2baf555@linaro.org>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <3fc07187-f5a0-86d1-a0fd-ba18a2baf555@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.168]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Hans Verkuil <hverkuil@xs4all.nl>, <nfraprado@collabora.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
+        <jianjiao.zeng@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        <chengci.xu@mediatek.com>, <youlin.pei@mediatek.com>,
+        <anan.sun@mediatek.com>
+Subject: [PATCH v3 00/11] Adjust the dma-ranges for MTK IOMMU
+Date:   Tue, 14 Feb 2023 11:11:03 +0800
+Message-ID: <20230214031114.926-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
+controllers"), the dma-ranges is not allowed for dts leaf node.
+but we still would like to separate the different masters into
+different iova regions. Thus we adjust the internal flow, separate
+the 16GB iova range by the master HW larbid/portid and add the
+dma-ranges property in the parent "soc" node. This also could avoid
+the users forget/abuse the iova regions.
+
+The commit f1ad5338a4d5 did affect the mt8195 venc, But it is not
+a fatal issue, it could also work well at 0-4GB iova. thus I don't
+add "Fixes:" tag.
+
+In this series, I add functions for mt8192/mt8195/mt8186, mt8188 will
+be in its special patchset. and the previous mt8173/mt8183...support
+0-4GB only, no need this function.
+
+Change note:
+v3: Add a new patch only for comment more in the code.
+
+v2: https://lore.kernel.org/linux-mediatek/20230208053643.28249-1-yong.wu@mediatek.com/
+   a) Base on next-20230206 since mt8195 jpeg node is applied which affect
+      this patch.
+   b) Reword the commit message [1/10][2/10] to explain effect.
+
+v1: https://lore.kernel.org/linux-mediatek/20230113060133.9394-1-yong.wu@mediatek.com/
+   Base on v6.2-rc3.
+
+Yong Wu (11):
+  dt-bindings: media: mediatek,vcodec: Remove dma-ranges property
+  dt-bindings: media: mediatek,jpeg: Remove dma-ranges property
+  iommu/mediatek: Improve comment for the current region/bank
+  iommu/mediatek: Get regionid from larb/port id
+  iommu/mediatek: mt8195: Add iova_region_larb_msk
+  iommu/mediatek: mt8186: Add iova_region_larb_msk
+  iommu/mediatek: mt8192: Add iova_region_larb_msk
+  iommu/mediatek: Add a gap for the iova regions
+  arm64: dts: mt8195: Add dma-ranges for the parent "soc" node
+  arm64: dts: mt8195: Remove the unnecessary dma-ranges
+  arm64: dts: mt8186: Add dma-ranges for the parent "soc" node
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   7 -
+ .../media/mediatek,mt8195-jpegenc.yaml        |   7 -
+ .../media/mediatek,vcodec-decoder.yaml        |   5 -
+ .../media/mediatek,vcodec-encoder.yaml        |   5 -
+ .../media/mediatek,vcodec-subdev-decoder.yaml |   7 -
+ .../bindings/media/mediatek-jpeg-encoder.yaml |   5 -
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |   1 +
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |   4 +-
+ drivers/iommu/mtk_iommu.c                     | 137 ++++++++++++++----
+ 9 files changed, 108 insertions(+), 70 deletions(-)
+
+-- 
+2.18.0
 
 
-On 2023/2/13 17:30, Krzysztof Kozlowski wrote:
-> On 10/02/2023 07:17, Changhuang Liang wrote:
->> Starfive SoC like the jh7110 use a MIPI D-PHY RX controller based on
->> a M31 IP. Add a binding for it.
->>
->> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->> ---
->>  .../bindings/phy/starfive,jh7110-dphy-rx.yaml | 78 +++++++++++++++++++
->>  1 file changed, 78 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
->> new file mode 100644
->> index 000000000000..1c1e5c7cbee2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
->> @@ -0,0 +1,78 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/starfive,jh7110-dphy-rx.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Starfive SoC MIPI D-PHY Rx Controller
->> +
->> +maintainers:
->> +  - Jack Zhu <jack.zhu@starfivetech.com>
->> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
->> +
->> +description: |
->> +  The Starfive SOC has a MIPI CSI D-PHY based on M31 IP use to transfer
->> +  the CSI cameras data.
->> +
->> +properties:
->> +  compatible:
->> +    items:
-> 
-> Drop items
-> 
-
-OK, will fix it
-
->> +      - const: "starfive,jh7110-dphy-rx"
-> 
-> Drop quotes
-> 
-
-OK, will drop quotes
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    minItems: 3
-> 
-> Drop minItems
-> 
-
-OK, will drop minItems
-
->> +    maxItems: 3
->> +
->> +  clock-names:
->> +    items:
->> +      - const: cfg
->> +      - const: ref
->> +      - const: tx
->> +
->> +  resets:
->> +    minItems: 2
-> 
-> Ditto
-> 
-
-here i will change to define each reset is.
-Refer to the Rob Herring's comment.
-
->> +    maxItems: 2
->> +
->> +  starfive,aon-syscon:
->> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> 
-> Drop quotes
-> 
-
-OK, will drop quotes
-
->> +    items:
->> +      items:
->> +        - description: phandle of AON SYSCON
->> +        - description: register offset
->> +    description: The register of dphy rx driver can be configured
->> +      by AON SYSCON in this property.
-> 
-> Can be? So does not have to? But you made it a required property....
-> 
-
-Maybe I described it wrong.
-I will change to:
-	description: The power of dphy rx can be configured by AON SYSCON
-	  in this property.
-It is like AON SYSCON is the power switch of the dphy rx, it is necessary to
-configure the AON SYSCON register, so I made it a required property.
-
->> +
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - starfive,aon-syscon
->> +  - "#phy-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
->> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
->> +
->> +    dphy@19820000 {
-> 
-> just phy@......
-> 
-
-OK, will fix it.
-
->> +      compatible = "starfive,jh7110-dphy-rx";
->> +      reg = <0x19820000 0x10000>;
->> +      clocks = <&ispcrg JH7110_ISPCLK_M31DPHY_CFGCLK_IN>,
->> +               <&ispcrg JH7110_ISPCLK_M31DPHY_REFCLK_IN>,
->> +               <&ispcrg JH7110_ISPCLK_M31DPHY_TXCLKESC_LAN0>;
->> +      clock-names = "cfg", "ref", "tx";
->> +      resets = <&ispcrg JH7110_ISPRST_M31DPHY_HW>,
->> +               <&ispcrg JH7110_ISPRST_M31DPHY_B09_ALWAYS_ON>;
->> +      starfive,aon-syscon = <&aon_syscon 0x00>;
->> +      #phy-cells = <0>;
->> +    };
-> 
-> Best regards,
-> Krzysztof
-> 
