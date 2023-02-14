@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BBC1695F82
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B8E5695F85
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231409AbjBNJn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 04:43:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
+        id S231672AbjBNJoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 04:44:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbjBNJn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:43:26 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B3016AED
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:43:25 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id l21-20020a05600c1d1500b003dfe462b7e4so831801wms.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:43:25 -0800 (PST)
+        with ESMTP id S229514AbjBNJoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:44:18 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7D6C674
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:44:16 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id co8so11221694wrb.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:44:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gBLOrVXRYr24P+ivdahQYvWuegwyHZsgAi8AV6/NNYY=;
-        b=WQKgHZoIu7Wx2nsNis6PCDwi30kjLm2hY2OaHfySUi9/aRulvAk+DlUOn4F+8+GZHp
-         +qZ7w52VaHG/rFeDkIhney5cS9TXra3vIxi1RWkGNQk7pA5TlgmkQ3oP2NE1tDs7tGaj
-         jWYqGcseJBIKUeElV5KTfrKvSwDf8Nf3rpO6ffDrOAeQIFNCg7y3XjIIPB+P0ORyegMW
-         pJznC0LgBxYKH/Y4R7uuGIBd73tU1Wk7GjMO6DmU1ug6/ObDGNtTCq6NevKbKYaUx5E6
-         tL1v2y/A8ChhRtscj0OvYdvEcDni5qzXntqqltXsxVJBLqmAUPntrFmRWG63yjIKG617
-         bSfA==
+        bh=1V6X7LS4W1rOsDectubi4KTeJ0veVK4x1Eb4mq8We4o=;
+        b=NTGB1A8hi0FI4d0n7r1u647W9aZjL6itDmVIUW6Qef/Ns1oCssg5+T4pgN8GuHwygL
+         LfX5rXVF6PFKzetgUtNSE4/bPKphcZNhNKjBIyaHuwSjYlcESXyVbMAqaV9g8LELU0AY
+         W8qgSlxQ1N8mw09qsWLJT+MB9dOxyc+mAxPhIqeanAvZmS+EB8PfpLpuxEZIPeGczM7A
+         CQl8XppAmLLKLCwBznID10RjyS6VPpE4qRu1Gq6G41V3rlhchMIOapYbUmhI6SZ8t2g4
+         ILlb4U+xDvkPk/bCrfwbDmAadV9uIOXEqG7QPbzVPu5D4k8M1YmPkRMnj19Lu8wU6BgS
+         rhmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gBLOrVXRYr24P+ivdahQYvWuegwyHZsgAi8AV6/NNYY=;
-        b=gBy9T8Y7IADfi1lP/Non5SKmHaPexFmzCFGUarOalA5fsvnUW+FsfmvBve/c/rpJVC
-         LPlgjsKO3JhFW7EGPrjj/D+Y/t1DlkT2spsE9SQ6zPqY2+1TVy/y/LMi4Wr68vVgfEpr
-         NGSFf9/4r0Gjf7qpFo3UfmT+zqQBXuVvs20Y7jK5snHe/jfpW7UJv8aDOLhmrA2IYWeh
-         7AbJGf6gejYVa3NrZ4E+SVcRtUvZO/HDbPzQgvZT+f6UuA9WMJwR6LAYkUa8FwOLWUdR
-         q6TI2/yt9CIpR9cfHeeTw19/D4Lq7MhSb28O6UZprZ5ltJkGY/n7sXI/MptAl7Nof11S
-         oyng==
-X-Gm-Message-State: AO0yUKXUQ31EHxLCz62JggsKQTLKBpAKGIMi4jNiFC+PKokhndab4OLW
-        EcjTxhpVhhVO392mZy9XnzwNWQ==
-X-Google-Smtp-Source: AK7set+qeG/u+dE5FxqVJZ53VaHO4WsaLQUtCNnSdl37SMQiWc914K1XbQ3YhXlFNYdM7inR02ifcA==
-X-Received: by 2002:a05:600c:3511:b0:3df:9858:c03a with SMTP id h17-20020a05600c351100b003df9858c03amr8956767wmq.15.1676367804155;
-        Tue, 14 Feb 2023 01:43:24 -0800 (PST)
+        bh=1V6X7LS4W1rOsDectubi4KTeJ0veVK4x1Eb4mq8We4o=;
+        b=wGLSCUJQirnAvqqclKM1UNs2Vl6+5P6tw2fv9hI5bMnZhyDHFalDhKSfXVkgaPvClL
+         acAKYlAxg2dJaS8fShxipztp+0VqaROjXTUbuWlC9zu37PLsU3gKFjRHAexKhuBq/IpM
+         Cs4Lt3xOjRVhxM1Z3GDM1FJO5EB/ElBfC9YVIjLIHY08KMD733vHYEBsX/cXNurymrLS
+         3eWJKaNwulxGY5/F/m2tsfnv2YZ5ik+Jpk1Pg+NS5rsm+U3YUYPMi4DiyyCmF66pzi1f
+         ZrhdgWYObkn+5d8FMzv7J+x9+iWTVMk7JObUEHH1z/5wZoPsy0547+D8BCGZ/v7rP4gR
+         IdVg==
+X-Gm-Message-State: AO0yUKW1BxvkeM6R+PzlesiHcOPE8IOxan7dJ/GVIJYkXtU2f/3tC3GN
+        1xn08cAqKsdc6RU4U30fjOTNXw==
+X-Google-Smtp-Source: AK7set+MeaNJDHWeQ3lmWJpTPfV0TrfI0EEoITSixsaaKVn0LPBKNUaNqT/3OtyQiTgAXMzeQBqd/g==
+X-Received: by 2002:adf:f712:0:b0:2c5:50aa:f89d with SMTP id r18-20020adff712000000b002c550aaf89dmr1335007wrp.42.1676367855108;
+        Tue, 14 Feb 2023 01:44:15 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p14-20020a1c544e000000b003db06493ee7sm20740755wmi.47.2023.02.14.01.43.22
+        by smtp.gmail.com with ESMTPSA id q13-20020adff94d000000b002be099f78c0sm12399605wrr.69.2023.02.14.01.44.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 01:43:23 -0800 (PST)
-Message-ID: <2090ab39-c82a-70d8-9322-60d9d834d360@linaro.org>
-Date:   Tue, 14 Feb 2023 10:43:22 +0100
+        Tue, 14 Feb 2023 01:44:14 -0800 (PST)
+Message-ID: <5c67ecd2-075a-5b0b-feb9-57570f539ee1@linaro.org>
+Date:   Tue, 14 Feb 2023 10:44:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 16/17] dt-bindings: arm: apple: Add t8112 j413/j473/j493
- compatibles
+Subject: Re: [PATCH V3 2/5] arm64: dts: qcom: Add support for Crashdump
+ collection on IPQ9574
 Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>
-Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-16-cb5442d1c229@jannau.net>
+To:     POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230208053332.16537-1-quic_poovendh@quicinc.com>
+ <20230208053332.16537-3-quic_poovendh@quicinc.com>
+ <dbc93125-afd5-9ed9-7b45-0d79f728b4a5@linaro.org>
+ <1a9ad881-7753-935a-ce7d-a2a79d34f16c@quicinc.com>
+ <e569e7e8-4d7f-1e69-5a4b-ee4c4f83d7ce@linaro.org>
+ <86bb95e4-2e07-19a5-7b4f-15f25067d513@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202-asahi-t8112-dt-v1-16-cb5442d1c229@jannau.net>
+In-Reply-To: <86bb95e4-2e07-19a5-7b4f-15f25067d513@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,22 +91,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/02/2023 16:41, Janne Grunau wrote:
->    - MacBook Pro (14-inch, M1 Pro, 2021)
-> @@ -70,6 +76,15 @@ properties:
->            - const: apple,t8103
->            - const: apple,arm-platform
->  
-> +      - description: Apple M2 SoC based platforms
-> +        items:
-> +          - enum:
-> +              - apple,j413 # MacBook Air (M2, 2022)
-> +              - apple,j473 # Mac mini (M2, 2023)
-> +              - apple,j493 # MacBook Pro (13-inch, M2, 2022)
-> +          - const: apple,t8112
-> +          - const: apple,arm-platform
+On 14/02/2023 10:35, POOVENDHAN SELVARAJ wrote:
+>>>> compatible = "arm,cortex-a73-pmu";
+>>>> interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>  >>> @@ -95,11 +102,17 @@
+>>>> #address-cells = <2>;
+>>>> #size-cells = <2>;
+>>>> ranges;
+> *>>> -*
+>  >> I don't think anything improved here - still unrelated change.
+>  >>
+> 
+> Are you referring to the deleted line here?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, the line removal does not seem related nor justified.
 
 Best regards,
 Krzysztof
