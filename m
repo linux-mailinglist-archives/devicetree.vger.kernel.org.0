@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC4C2696010
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:00:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70E2C696013
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbjBNKAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 05:00:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37108 "EHLO
+        id S232592AbjBNKAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 05:00:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232588AbjBNJ7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:59:35 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 739D32310C
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:59:00 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id bu23so14996873wrb.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:59:00 -0800 (PST)
+        with ESMTP id S232599AbjBNJ7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:59:39 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97372AD14
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:59:09 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id a10so16489000edu.9
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:59:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YigLVN232d2vsfHIJ26LQHhC5RhgoKV67mcKgoE/0Tg=;
-        b=Lgr+NZlmPJrB0+lMM0N6BMTZMMdFS1M0LlvQbZTmoCCJ+XDWFlO11xG2TfAbxMRfsr
-         xhoexczwRzeLZTFYbH4E1x7lxCxZZaU1vksAyPZzNH8Mn1OK2bMdGKp1dfXWPd85LXCw
-         mNMlyCsliv0YykzbR8m7THYVA3oPJRPVo4HUp540kYZCz0ZUo/HOSh8KXaFqm78k1wBV
-         R8BCl0M2UWauDKPbDUSfk4R8fLZ0IrquTqfWTgbBG1mTK9aAi/wxKDtADwZfFq3o3Ajw
-         aj3TH0Fbm9Eoc0kTgAmUToQ64QgVCGoHBmhwSau1tfYM6WYTGrFJ4vgb3lkMQNOS5Qv6
-         XhTg==
+        bh=XRnS86X+zXrgWXdq79dBoDyQPlgKpKr03dox5OndJl8=;
+        b=g6R/l+qWCtsLJSx7GyZ++uXbU5QcU8+NP0I3tFPOAQRpwUjjfCN0AQREJLods693DN
+         S/M93wkIXza3Clte4cA5Nr6V52Wmy0/oucp2qk+IRLqKWcpXf+fDL/s8xe/xk9GqF1dT
+         DBlAKWdyaLkbo5bjbrBOclSCLb1r5EF8PxsJlHilRWLTZEonvKhTHuW7nVe4vBos56zv
+         4zljWbj4s7VJMPlG2675niqnqGmNnL+f9ep791e3Uqv6OJYPmru8n1RkrasaN8G+pGN5
+         wTNMYs3sPzk84gadaUdVIXxU0TXwy2D7BRPh5bXoICqrsXsbBgu0VyRBPduNiCxG/IQ7
+         MTWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YigLVN232d2vsfHIJ26LQHhC5RhgoKV67mcKgoE/0Tg=;
-        b=bkZMNGr+6/jSMMfk9JO2dPVyq1d6nJP4IbspbHGiKhs7yXKYAxkXYb+yYIPu9K+OEt
-         wQzp4dXq0qmf38e2uob9RETYsqTqmf2mviaWbyGXI+kZSIbak9wTZZfzJU5tOmrfQ/7B
-         3GWIlkPkv+1Q5JPad6u1j/RX+eOHEo0CvL9Ob7J0lTLGq52aNtiOCpnJY2zt4qy6mTWy
-         i3SQDUpNx26iEbv9i4vTzw3g1GfZRLzZggjv6Ns+mfblspna+FBhV1tzFFtL6mv+EIko
-         YM1ODAxn48zU0GzBq2ADDT9KIJJDn2AH42EjHUP7MztwhN0MSyFqFKGgILdhNZ28E3pn
-         cz4g==
-X-Gm-Message-State: AO0yUKUfPYbTnCeQDZxFeh+sWZVOYPwia4RYTTRNBNOMvOSafxA6OACF
-        GTSD7fY1mccL/D3/4jd1vT8CRg==
-X-Google-Smtp-Source: AK7set/siP0mTRrExraFbFYMqjIdU9FDVpbw8X8TUHwWT+RaseP1odGp2QbV1Q7w7d7Vfc4ReqTENg==
-X-Received: by 2002:a5d:5704:0:b0:2bf:b68a:e122 with SMTP id a4-20020a5d5704000000b002bfb68ae122mr1542895wrv.33.1676368739088;
-        Tue, 14 Feb 2023 01:58:59 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r3-20020a5d6943000000b002c551ae8cc1sm7505795wrw.67.2023.02.14.01.58.57
+        bh=XRnS86X+zXrgWXdq79dBoDyQPlgKpKr03dox5OndJl8=;
+        b=Op4xyFbqQdiVJ/F3wr61c1rWKRTpEcUgKMtGYp0W46q8VK12z3WIxIZPcanjNMABGS
+         JIXq0SQRf30MfXft+7vaiyZnPuZNo0kLHCO+2Mr2BFNzlMpbxLSAVKWbfsLJoayULDSO
+         eiSp7dC53Rr9tfxZRxORGoRB5Gzzo89xpuPsXm5xBSY7QUfqNdC+Lr47yzr20vYdKbFU
+         C86QjakxMO7ab4y1FCiBg0XpC+MFKFry5j9VEhbtRCg+OJDwN87seebbQB2t1DBBK0pU
+         w/EE2/qz4ZbqQeaOMBnq4RBSOu7zzu4E9uokGvMMreWP2x7QjkjdfWeXFKMGRfYc6WE0
+         9c4w==
+X-Gm-Message-State: AO0yUKWYx84SEmHi/1JWFmiXtOShSbo1q5K/Krcy4XgPbKOEnNpS69hU
+        i2dfu08TdTLyz66W4N5hKVp/Vg==
+X-Google-Smtp-Source: AK7set8Eo8g6Yz5nWwsWokvXAfZMvQdXyfsPLiw6N67oTe+UFkOARgO6A+a/yM/0fyBVZkQKzXg4JQ==
+X-Received: by 2002:a50:871a:0:b0:4ac:b4f2:ce44 with SMTP id i26-20020a50871a000000b004acb4f2ce44mr1801284edb.38.1676368748229;
+        Tue, 14 Feb 2023 01:59:08 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id w8-20020a50c448000000b0049668426aa6sm7787452edf.24.2023.02.14.01.59.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 01:58:58 -0800 (PST)
-Message-ID: <765c9ce0-65e3-8681-7343-c57ba70da9df@linaro.org>
-Date:   Tue, 14 Feb 2023 10:58:56 +0100
+        Tue, 14 Feb 2023 01:59:07 -0800 (PST)
+Message-ID: <8c7c4b63-28c7-d700-4b1d-96f6eb9462f7@linaro.org>
+Date:   Tue, 14 Feb 2023 11:59:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 3/4] media: dt-bindings: samsung,exynos4212-is: convert to
- dtschema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org
-References: <20230212190222.44977-1-krzysztof.kozlowski@linaro.org>
- <20230212190222.44977-3-krzysztof.kozlowski@linaro.org>
- <167630051330.6283.15554895477756313707.robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <167630051330.6283.15554895477756313707.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qdu1000-idp: Enable mpss
+Content-Language: en-GB
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230213190122.178501-1-quic_molvera@quicinc.com>
+ <20230213190122.178501-3-quic_molvera@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230213190122.178501-3-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -83,35 +80,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 16:09, Rob Herring wrote:
+On 13/02/2023 21:01, Melody Olvera wrote:
+> Add MPSS firmware paths for the QDU1000 IDP platform.
 > 
-> On Sun, 12 Feb 2023 20:02:21 +0100, Krzysztof Kozlowski wrote:
->> Convert the Samsung Exynos4212/4412 SoC Imaging Subsystem (FIMC-IS)
->> bindings to DT schema.  Changes during conversion - adjust to existing
->> DTS and Linux driver: add iommus and power-domains.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/media/exynos4-fimc-is.txt        |  50 ----
->>  .../media/samsung,exynos4212-fimc-is.yaml     | 221 ++++++++++++++++++
->>  MAINTAINERS                                   |   1 +
->>  3 files changed, 222 insertions(+), 50 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/media/exynos4-fimc-is.txt
->>  create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.yaml
->>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 6 ++++++
+>   1 file changed, 6 insertions(+)
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.example.dtb: /example-0/fimc-is@12000000/i2c-isp@12140000/image-sensor@10: failed to match any schema with compatible: ['samsung,s5k6a3']
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> index 9e9fd4b8023e..2b89814c67d6 100644
+> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> @@ -448,6 +448,12 @@ &qupv3_id_0 {
+>   	status = "okay";
+>   };
+>   
+> +&remoteproc_mpss {
+> +	firmware-name = "modem.mdt",
+> +			"modem_dtb.mdt";
 
-Eh, I missed the fact that this depends on my other (earlier) patch for
-samsung,s5k6a3. I will resend all of them in one patchset.
+Please follow the other platforms for the firmware names: 
+"qcom/<SoC>/<name>.mbn if the device in not fused for the particular set 
+of keys and "qcom/<SoC>/<vendor>/<device>/<name>.mbn" if the device is 
+fused.
 
-Best regards,
-Krzysztof
+> +	status = "okay";
+> +};
+> +
+>   &uart7 {
+>   	status = "okay";
+>   };
+
+-- 
+With best wishes
+Dmitry
 
