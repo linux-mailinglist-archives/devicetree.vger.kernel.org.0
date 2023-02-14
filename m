@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D58C9696946
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:23:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 233FA69694C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:23:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbjBNQXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 11:23:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
+        id S231891AbjBNQXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 11:23:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjBNQXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:23:40 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 962491CF43
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:23:30 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id ml19so41594579ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:23:30 -0800 (PST)
+        with ESMTP id S231883AbjBNQXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:23:45 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD8328D2E
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:23:31 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id gn39so3123397ejc.8
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:23:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura.hr; s=sartura;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=z7BAF31xNZhLQjiozp7oE7XGB+UsYThUKP2mrciqqAE=;
-        b=jBpCd0t58I+/nL2g//cPlO59Tn0LUn3rVgsOf17FKKlsdvflvv8NoYVcELZqfqW5Xh
-         0zqfyNpgAcmofClBwQjBv75eWgYjn7HcTctrRBo9nAoivWC80/CrCSyUY9eDDbfwBbUF
-         9crqKXu77XOGQgGZ+ghEv4oRRcnHbSV+6HSjm+G7folh116WMsBpctxmF+YY5r2CnJkh
-         Uu4JT9Oq6Hp2c51PCfZq8rGIBT8m2VOR19F2NV/ErldA7s3hMZGzaDnOMgwIWycwgItV
-         tzKiXNJ7Dq5md+KHEoHfneHWHqCHAGp8MDgmuX0UMEwIjstXR7Mmftd4srwXWgGakJje
-         9nPg==
+        bh=KWIjHrmZ+GcxrVYKcQs3CE7ngJu8LR3XWPQYlEPfpOQ=;
+        b=bI4hWJG3Q+VuAjT1QxZUerpnbyaPU/zn8vRg/T9FYK0gZGBlA7kNfvu6erBnZwZmNc
+         l2tmENYV0Wo0X9Lyd236dUIpAKhwaOSvfeN1Rldc1nR0v42Yx9Cs9WQ36j6/zPTkrQx7
+         HgYtLK75EOxP7w0VszpRZ1rda7RFJHQzDW+inoN2JIIOA+Ex9eco8hLcywhdxlhUA+WD
+         ZLXkIRTo3R2nXFvI6rqfkA395lKDCjkd5DKM/ALKUJQP/qs6lAcr+doM537dAv8SSm1D
+         G+vP6c1wL3D8+WCKjxSOK1f+KjWU3BUH1+6GeJlDzUcqwIdOBFEjXelwKKI67H1zE2c9
+         e9Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=z7BAF31xNZhLQjiozp7oE7XGB+UsYThUKP2mrciqqAE=;
-        b=YqLdeyNd7wxgUx4TKg1K3wT7svfsJITsKxrB7PtjMZ0WeD92RGiOMhe0ckkX3IISWu
-         OcC3wbPCopqzOZR3uydX23Om7yQMS8jc3COigTU7JfxHuyqzv7SVZoOGtrWiCZI/scAn
-         UXmRr+ET+pJ5i3ZWSE4F3bzqLWKHOgqX3T/JJeV5lAurI5YyA0+hsH9Zqrd2MIf2A+y+
-         oafwWdsb2ShP9vSNMYLqXdXVAZVeA60qFozXsRsEkYtwHW9ppOCwifF8g16f8AHWU0KB
-         9kf5NyBwsNLOnG+bTa/Am46lbU1Wm6SY0jBH4q+wrtJNa/5HBwo+ysVf/cYyZMIJxD+I
-         tx3g==
-X-Gm-Message-State: AO0yUKUZEeDrEeh4OnMQm55sk8lfVBQkNQxAYI9ZV5HYdcJPBZUjmecR
-        IuyNP4H8x4DDOBbuac72xy3spQ==
-X-Google-Smtp-Source: AK7set+p5CptRx4PeNMcgVHk94WrFWuJ5ZY5d6pQjfSMzvUc2b5otL61FplrUzLaGupgFSX2EmJawg==
-X-Received: by 2002:a17:906:190f:b0:877:6713:7e99 with SMTP id a15-20020a170906190f00b0087767137e99mr3116626eje.58.1676391809030;
-        Tue, 14 Feb 2023 08:23:29 -0800 (PST)
+        bh=KWIjHrmZ+GcxrVYKcQs3CE7ngJu8LR3XWPQYlEPfpOQ=;
+        b=6/vt+L0Bqm5cf8OQ/KqnsP8J9YhPF1hfsgppRLU+7A3JYYMnBOA6nXFr3U4oQydKm+
+         pi2DvB5QKjtDvOAKOVS1jN/7dUqMdxkCmb21twhazmkKRGhswz3URO4FgNbH5RinrgGI
+         eyXxeL/siLsSI5B7BS6pdrLCOzGaFCMWSoVpW+vW4JB+p44qD1HATygHJeP002nacRU3
+         33Md+t1hTzZW5z1aA6T4w1OWaTP1ua4vpenUA4ScWuKLTX7WPRZGgS2zoEjcjogvSuVD
+         dqWjq6PkDFHuVBi7xEp+zpMsN9/Izxgx+aeACbCFTmTKVDOemmXWNfwmQ08s+M1q0P45
+         I3lg==
+X-Gm-Message-State: AO0yUKXWoBuKB0ke2AzhvezHKhzs/PQrZcTTGe9qfIvZ39V/y43psJ4o
+        2oCBY7tahZ2Z2KbAXpJPv+AyEg==
+X-Google-Smtp-Source: AK7set9BtFcqAcq5ajOac4T/k51Q+E/d85kqF0LHSGKpmkt8/CMhQvDMeTOHsdPywwvmB2dNiQrI9Q==
+X-Received: by 2002:a17:906:abc6:b0:87b:da74:d272 with SMTP id kq6-20020a170906abc600b0087bda74d272mr3252617ejb.45.1676391810354;
+        Tue, 14 Feb 2023 08:23:30 -0800 (PST)
 Received: from fedora.. (cpezg-94-253-130-165-cbl.xnet.hr. [94.253.130.165])
-        by smtp.googlemail.com with ESMTPSA id bp8-20020a170907918800b008806a3c22c5sm1318027ejb.25.2023.02.14.08.23.27
+        by smtp.googlemail.com with ESMTPSA id bp8-20020a170907918800b008806a3c22c5sm1318027ejb.25.2023.02.14.08.23.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 08:23:28 -0800 (PST)
+        Tue, 14 Feb 2023 08:23:29 -0800 (PST)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
         mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
@@ -56,9 +56,9 @@ To:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 2/7] clk: qcom: gcc-ipq4019: convert XO and sleep clk to parent_data
-Date:   Tue, 14 Feb 2023 17:23:20 +0100
-Message-Id: <20230214162325.312057-2-robert.marko@sartura.hr>
+Subject: [PATCH 3/7] ARM: dts: qcom: ipq4019: pass XO and sleep clocks to GCC
+Date:   Tue, 14 Feb 2023 17:23:21 +0100
+Message-Id: <20230214162325.312057-3-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214162325.312057-1-robert.marko@sartura.hr>
 References: <20230214162325.312057-1-robert.marko@sartura.hr>
@@ -66,205 +66,34 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Start off IPQ4019 GCC conversion by converting XO and sleep clks to
-parent data in order to directly pass them.
+Directly pass XO and sleep clocks to GCC via phandles.
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
- drivers/clk/qcom/gcc-ipq4019.c | 75 ++++++++++++++++++++--------------
- 1 file changed, 45 insertions(+), 30 deletions(-)
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/clk/qcom/gcc-ipq4019.c b/drivers/clk/qcom/gcc-ipq4019.c
-index 362c732536cd3..a50887d3626f7 100644
---- a/drivers/clk/qcom/gcc-ipq4019.c
-+++ b/drivers/clk/qcom/gcc-ipq4019.c
-@@ -657,8 +657,9 @@ static struct clk_branch gcc_dcd_xo_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_dcd_xo_clk",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -954,8 +955,9 @@ static struct clk_branch gcc_usb2_sleep_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_usb2_sleep_clk",
--			.parent_names = (const char *[]){
--				"gcc_sleep_clk_src",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "sleep_clk",
-+				.name = "gcc_sleep_clk_src",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -1021,8 +1023,9 @@ static struct clk_branch gcc_usb3_sleep_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_usb3_sleep_clk",
--			.parent_names = (const char *[]){
--				"gcc_sleep_clk_src",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "sleep_clk",
-+				.name = "gcc_sleep_clk_src",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -1110,8 +1113,9 @@ static struct clk_branch gcc_wcss2g_ref_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_wcss2g_ref_clk",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -1127,8 +1131,9 @@ static struct clk_branch gcc_wcss2g_rtc_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_wcss2g_rtc_clk",
--			.parent_names = (const char *[]){
--				"gcc_sleep_clk_src",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "sleep_clk",
-+				.name = "gcc_sleep_clk_src",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -1179,8 +1184,9 @@ static struct clk_branch gcc_wcss5g_ref_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_wcss5g_ref_clk",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -1196,8 +1202,9 @@ static struct clk_branch gcc_wcss5g_rtc_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "gcc_wcss5g_rtc_clk",
--			.parent_names = (const char *[]){
--				"gcc_sleep_clk_src",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "sleep_clk",
-+				.name = "gcc_sleep_clk_src",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_branch2_ops,
-@@ -1360,8 +1367,9 @@ static struct clk_fepll gcc_apss_cpu_plldiv_clk = {
- 		.enable_mask = BIT(0),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "ddrpllapss",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_regmap_cpu_div_ops,
-@@ -1412,8 +1420,9 @@ static struct clk_fepll gcc_apss_sdcc_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "ddrpllsdcc",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
-@@ -1427,8 +1436,9 @@ static struct clk_fepll gcc_fepll125_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "fepll125",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
-@@ -1442,8 +1452,9 @@ static struct clk_fepll gcc_fepll125dly_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "fepll125dly",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
-@@ -1457,8 +1468,9 @@ static struct clk_fepll gcc_fepll200_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "fepll200",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
-@@ -1472,8 +1484,9 @@ static struct clk_fepll gcc_fepll500_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "fepll500",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
-@@ -1497,8 +1510,9 @@ static struct clk_fepll gcc_fepllwcss2g_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "fepllwcss2g",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
-@@ -1515,8 +1529,9 @@ static struct clk_fepll gcc_fepllwcss5g_clk = {
- 	.cdiv.clkr = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "fepllwcss5g",
--			.parent_names = (const char *[]){
--				"xo",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "xo",
-+				.name = "xo",
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_fepll_div_ops,
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index a7a43f7bc2b2a..7d3a812e2b13a 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -191,6 +191,8 @@ gcc: clock-controller@1800000 {
+ 			#power-domain-cells = <1>;
+ 			#reset-cells = <1>;
+ 			reg = <0x1800000 0x60000>;
++			clocks = <&xo>, <&sleep_clk>;
++			clock-names = "xo", "sleep_clk";
+ 		};
+ 
+ 		prng: rng@22000 {
 -- 
 2.39.1
 
