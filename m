@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0648669635D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7DFC696363
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:20:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjBNMTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 07:19:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44726 "EHLO
+        id S232310AbjBNMUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 07:20:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231814AbjBNMTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:19:39 -0500
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FFC2659C
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:19:15 -0800 (PST)
-Received: by mail-pf1-x432.google.com with SMTP id z3so3829816pfw.7
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:19:15 -0800 (PST)
+        with ESMTP id S232373AbjBNMTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:19:53 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3154727D4A
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:19:20 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id bx22so14911315pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:19:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VitTC1VuJJTYQdu/YxVhewyoRuLfVR95SI/0DF3Rtkk=;
-        b=zSMZ0SAQRHkrq2J59pKTUyRm/EgW7A96+q56OMg53CqV3DKUCQ2nM3YFYiMUKNDg/G
-         a7cpwNCer1XRfIyJaxmIoRTahJxemkW8/e01lZSNkFQV2GaVuVb7N4fLQB+9EqJ+w6sx
-         BiCqjflfoFNsTEM6tWqPKH08sHvXNSXsG/okCOA3UqLEPiuOz02PV8vV9wWn031UD1wA
-         xlDynBpHDfnlDtJa+fYX2nYUjJ/mZJ4gKkLMyhLvJVOeg4lDrw9c+bEpVPMXEUhkCnpG
-         5i9TmK8v1b/Iukd+OYCzdwLr0J+C2S+NDflvEALPWV2k/06+4Gf5g8rHJNA9tsUQOdwk
-         rvqA==
+        bh=+ovmXEYXrq2+vyqNrmh/+q0b8mG/0E3L5r82zzYP6cY=;
+        b=y8YgAGJfycz1eajRJ3OxTa4gkUBalpbYdEOoYAYdodFrxH7XPByIgLUcaGSp4OzY0D
+         ABUGzaPq4R89DzXn/eU14LySsYBbuRK3Zjj2HhRz0kKZrU2lnVWAsBYyCUbd9DSQ0zqt
+         WZyqJbY8WTiHMuBnuFfANGR3knj0390epLD8ZZF2hc+S+QGQNzROGsnvnjojcpHKXEsO
+         RpUIZz5CD7EWOJADMlJvCTHedS46Nha9+LCMNADtUfJtgl4L1q23xdYqKfPM2+Z2YS4u
+         k6UxDfXpK0+wJDJiHaTIHQ8XLr6jJv3lHC+zOSZUPFUOChfdSN2sWbzLdJs8XGcRmfye
+         TyiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VitTC1VuJJTYQdu/YxVhewyoRuLfVR95SI/0DF3Rtkk=;
-        b=EaMd5qrmF1xg47KwNIJSMfUDOw811riVMMhk2xMlhk37n4ZOXAfcK8cc1+ITUR7nF3
-         oGFOqC7pKb8MyuZkCj0XyIYS5xMb34f6253KqMrOTHJl0P4zW+PnzyJ7ltzBRmM3dujF
-         weg5Oelzc6ihlzSSxe1nrzzZvntS4dqz8jH2PPZ06k0kTEfGZdGaqixOw/tyvpsGx1zg
-         zFM92Sd0r5cMAmYyQvUkQ73Yp9HsUh4M4Wa8MeBzQZOYg2jBH0PVTSIwXshJhQIFBlp1
-         8CX57X0SztoLUvGgQXOUJ1qwgWZivtPncdRriLp+nWO43Jf+u8hG6TjR6fsOy2HD/2Tb
-         QvRA==
-X-Gm-Message-State: AO0yUKWAnEsVIWXiMdTEOtScDj34G86iUknBPPy92dhGhx3cKknOQ3Iy
-        KHXViAcIP7tZZpqG2KEC4pEBsTQPtY4JTBI0dk2hig==
-X-Google-Smtp-Source: AK7set8JIgqTFRd+MPjZCDMEsWGRo7JvDEgDNe76d7sr74vRhR4GnDIpaRE1zD+ANtND83e7m5npa+uI9v2YUR+e89o=
-X-Received: by 2002:a63:7b5a:0:b0:4fb:949d:72 with SMTP id k26-20020a637b5a000000b004fb949d0072mr312698pgn.8.1676377155136;
- Tue, 14 Feb 2023 04:19:15 -0800 (PST)
+        bh=+ovmXEYXrq2+vyqNrmh/+q0b8mG/0E3L5r82zzYP6cY=;
+        b=w9OHHeauF8XP+I60jljRsptcRd46wE+OxJ+88zcEPMqsVBDDf8E9ownEPC7KoMs3RG
+         eSRXY/E/C0QG+tG/GjVOkLyTwu4vYtAMnFBWDiUS16wyWKgJwzvPk70GGSpH5TLJbs0l
+         Xny7OyX92fg9+UmyBQnCkF0SbuvYb6MG3bRavE9SOOIA6TbZ4or3t+T131Nki7Mbg7+3
+         hPh+bv8fQGd1DUjTiRRI6a8WEHeQBfFlSwY4U84BUCxNCz81UywjRyslYsR0NZ/DpTjR
+         T4u1tG+0pjrSt5/uvTW6MV0EKF3YQamlNKZ2YZDefjvDgUzYQ8Ycqb5xSZaXVl9fVt2O
+         r5jg==
+X-Gm-Message-State: AO0yUKXmu3W8R12PqXhGLtOnZP1l0GjpMG1eWEu8N7ysuFHGr7yN38f7
+        /pLtrVacdv9v97h5k6JIF1D3MHp8T7ZxIeLsAjClrw==
+X-Google-Smtp-Source: AK7set9iaXemtEt75X9jSSXzKMgJee9mLgR7Giz8FYkln7bdKK9+0dWJXw2hqvNJePGa2aMmUpJ8pMP9IrEdaGyyvv4=
+X-Received: by 2002:a17:90b:602:b0:233:d176:4e5d with SMTP id
+ gb2-20020a17090b060200b00233d1764e5dmr2278579pjb.121.1676377159630; Tue, 14
+ Feb 2023 04:19:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20230213152740.359055-1-lucas.tanure@collabora.com>
-In-Reply-To: <20230213152740.359055-1-lucas.tanure@collabora.com>
+References: <20230213205529.2104120-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230213205529.2104120-1-konrad.dybcio@linaro.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 14 Feb 2023 13:18:38 +0100
-Message-ID: <CAPDyKFoQ5Eucevs7H4c8CfH_2yFF5Xp0sCPq7QOY066GB6_nig@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: rockchip-dw-mshc: Add RK3588
- compatible string
-To:     Lucas Tanure <lucas.tanure@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 14 Feb 2023 13:18:42 +0100
+Message-ID: <CAPDyKFoT47Dx8gZgRHF=pYYHqFp89vNoi6YK58e9G32-SyYw=g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: sdhci-msm: Allow 1 icc path
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Feb 2023 at 16:27, Lucas Tanure <lucas.tanure@collabora.com> wrote:
+On Mon, 13 Feb 2023 at 21:55, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> Add RK3588 compatible string for SD interface.
+> Some SoCs (like msm8998) only have a SDHC<->DDR path. Allow this case.
 >
-> Co-developed-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Applied for next, thanks!
 
@@ -85,21 +84,27 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> index 67d7223f74da..211cd0b0bc5f 100644
-> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> @@ -39,6 +39,7 @@ properties:
->                - rockchip,rk3368-dw-mshc
->                - rockchip,rk3399-dw-mshc
->                - rockchip,rk3568-dw-mshc
-> +              - rockchip,rk3588-dw-mshc
->                - rockchip,rv1108-dw-mshc
->                - rockchip,rv1126-dw-mshc
->            - const: rockchip,rk3288-dw-mshc
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 01f77a77987c..64df6919abaf 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -127,11 +127,13 @@ properties:
+>        phandle to apps_smmu node with sid mask.
+>
+>    interconnects:
+> +    minItems: 1
+>      items:
+>        - description: data path, sdhc to ddr
+>        - description: config path, cpu to sdhc
+>
+>    interconnect-names:
+> +    minItems: 1
+>      items:
+>        - const: sdhc-ddr
+>        - const: cpu-sdhc
 > --
 > 2.39.1
 >
