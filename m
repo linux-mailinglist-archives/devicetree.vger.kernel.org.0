@@ -2,184 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2000D696E9B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 21:37:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AAC4696EA2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 21:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjBNUhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 15:37:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43748 "EHLO
+        id S230107AbjBNUkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 15:40:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjBNUhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 15:37:22 -0500
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33352B2B1;
-        Tue, 14 Feb 2023 12:37:18 -0800 (PST)
-From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1676407035; bh=7NTTF1kLzfeo6YgWmyC0TGDDQBoMcJiRgRJtMLKbBkE=;
-        h=From:To:Cc:Subject:Date;
-        b=euK5lAe8FtR7ZhlIURVk+pBH97EIWaBejgibr164EAO+8lKl/3nmf6QSJSe+l8woN
-         yuRJPuFkaJucdG5aDZLjGW7XbaIlOjxMuQk2zISFTbMkHyin5tf6A7AK5oxXBEyYZQ
-         e9nnlECOQwcYZCnu2HS1nMvwZZ1Ba41iw1nSXNr8=
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229515AbjBNUko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 15:40:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6006B8A47;
+        Tue, 14 Feb 2023 12:40:43 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0722D618C1;
+        Tue, 14 Feb 2023 20:40:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81A53C433EF;
+        Tue, 14 Feb 2023 20:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676407242;
+        bh=lrMHbP8q0keqDRMjaD+3mRme+hAn8zfTo/aQ3vWmmtc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K/u+uC3yXfTg2vn7K6SjTSKS0TShbZeExViWDXYRuKdIdJt4lWLgsUzFtTB9+oBix
+         OYnxLELivlgY8ZusvjtadeoIEYDKgolLDGsf88AmCk/pu6B/3sov1k+yqIVp3Wzd+H
+         7ZeqyGufHpAH2yxyRFGDtxnBBfzUHyqeGQSl/9on8JO1jHFd8sBCzkz3b0vOEmeuDz
+         rBUYbuc48nEhILbcRULwjH3sOLcDmzxq/Q/QC+3EYgEPBTEjO8WYvl2gUcv3Tx3DMs
+         YoMc9fb6Rk8PcH10uGGA4vTj4U2dKCTKV5MXgAbGr7SYx+XWlKVZPMM1UjF/NOEStN
+         J1yvMSBThs9bA==
+Date:   Tue, 14 Feb 2023 20:40:35 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-Subject: [RFC PATCH v2] dt-bindings: dma: apple,sio: Add schema
-Date:   Tue, 14 Feb 2023 21:36:37 +0100
-Message-Id: <20230214203637.43630-1-povik+lin@cutebit.org>
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 01/12] dt-bindings: riscv: sifive-ccache: Add compatible
+ for StarFive JH7100 SoC
+Message-ID: <Y+vxw28NWPfaW7ql@spud>
+References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
+ <20230211031821.976408-2-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="c503JmGKmuhITlWZ"
+Content-Disposition: inline
+In-Reply-To: <20230211031821.976408-2-cristian.ciocaltea@collabora.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the SIO coprocessor which serves as pretend DMA controller on
-recent Apple platforms.
 
-Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
----
-Since v1:
- - formatting fixes requested by Rob
- - dropped provider nodes from example
- - added 'memory-region' items range
- - tweaked 'apple,sio-firmware-params' description
+--c503JmGKmuhITlWZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Since the schema mentions a loader preparing the binding appropriately,
-here's a PR with the relevant (WIP) loader code, if anyone wants to look:
-https://github.com/AsahiLinux/m1n1/pull/286
+Hey all,
 
+On Sat, Feb 11, 2023 at 05:18:10AM +0200, Cristian Ciocaltea wrote:
+> Document the compatible for the SiFive Composable Cache Controller found
+> on the StarFive JH7100 SoC.
+>=20
+> This also requires extending the 'reg' property to handle distinct
+> ranges, as specified via 'reg-names'.
+>=20
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  .../bindings/riscv/sifive,ccache0.yaml        | 28 ++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml =
+b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
+> index 31d20efaa6d3..2b864b2f12c9 100644
+> --- a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
+> @@ -25,6 +25,7 @@ select:
+>            - sifive,ccache0
+>            - sifive,fu540-c000-ccache
+>            - sifive,fu740-c000-ccache
+> +          - starfive,jh7100-ccache
+> =20
+>    required:
+>      - compatible
+> @@ -37,6 +38,7 @@ properties:
+>                - sifive,ccache0
+>                - sifive,fu540-c000-ccache
+>                - sifive,fu740-c000-ccache
+> +              - starfive,jh7100-ccache
+>            - const: cache
+>        - items:
+>            - const: starfive,jh7110-ccache
+> @@ -70,7 +72,13 @@ properties:
+>        - description: DirFail interrupt
+> =20
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: control
+> +      - const: sideband
 
- .../devicetree/bindings/dma/apple,sio.yaml    | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/apple,sio.yaml
+So why is this called "sideband"?
+In the docs for the JH7100 it is called LIM & it's called LIM in our
+docs for the PolarFire SoC (at the same address btw) and we run the HSS
+out of it! LIM being "loosely integrated memory", which by the limit
+hits on Google may be a SiFive-ism?
 
-diff --git a/Documentation/devicetree/bindings/dma/apple,sio.yaml b/Documentation/devicetree/bindings/dma/apple,sio.yaml
-new file mode 100644
-index 000000000000..0e3780ad9dd7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/apple,sio.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/apple,sio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Apple SIO Coprocessor
-+
-+description:
-+  SIO is a coprocessor on Apple M1 and later chips (and maybe also on earlier
-+  chips). Its role is to offload SPI, UART and DisplayPort audio transfers,
-+  being a pretend DMA controller.
-+
-+maintainers:
-+  - Martin Povišer <povik+lin@cutebit.org>
-+
-+allOf:
-+  - $ref: dma-controller.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - apple,t6000-sio
-+          - apple,t8103-sio
-+      - const: apple,sio
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#dma-cells':
-+    const: 1
-+    description:
-+      DMA clients specify a single cell that corresponds to the RTKit endpoint
-+      number used for arranging the transfers in question
-+
-+  dma-channels:
-+    maximum: 128
-+
-+  mboxes:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  memory-region:
-+    minItems: 2
-+    maxItems: 8
-+    description:
-+      A number of references to reserved memory regions among which are the DATA/TEXT
-+      sections of coprocessor executable firmware and also auxiliary firmware data
-+      describing the available DMA-enabled peripherals
-+
-+  apple,sio-firmware-params:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Parameters in the form of opaque key/value pairs that are to be sent to the SIO
-+      coprocesssor once it boots. These parameters can point into the reserved memory
-+      regions (in device address space).
-+
-+      Note that unlike Apple's firmware, we treat the parameters, and the data they
-+      refer to, as opaque. Apple embed short data blobs into their SIO devicetree node
-+      that describe the DMA-enabled peripherals (presumably with defined semantics).
-+      Their driver processes those blobs and sets up data structure in mapped device
-+      memory, then references this memory in the parameters sent to the SIO. At the
-+      level of description we are opting for in this binding, we assume the job of
-+      constructing those data structures has been done in advance, leaving behind an
-+      opaque list of key/value parameter pairs to be sent by a prospective driver.
-+
-+      This approach is chosen for two reasons:
-+
-+       - It means we don't need to try to understand the semantics of Apple's blobs
-+         as long as we know the transformation we need to do from Apple's devicetree
-+         data to SIO data (which can be shoved away into a loader). It also means the
-+         semantics of Apple's blobs (or of something to replace them) need not be part
-+         of the binding and be kept up with Apple's firmware changes in the future.
-+
-+       - It leaves less work for the driver attaching on this binding. Instead the work
-+         is done upfront in the loader which can be better suited for keeping up with
-+         Apple's firmware changes.
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#dma-cells'
-+  - dma-channels
-+  - mboxes
-+  - iommus
-+  - power-domains
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sio: dma-controller@36400000 {
-+      compatible = "apple,t8103-sio", "apple,sio";
-+      reg = <0x36400000 0x8000>;
-+      dma-channels = <128>;
-+      #dma-cells = <1>;
-+      mboxes = <&sio_mbox>;
-+      iommus = <&sio_dart 0>;
-+      power-domains = <&ps_sio_cpu>;
-+      memory-region = <&sio_text>, <&sio_data>,
-+                      <&sio_auxdata1>, <&sio_auxdata2>; /* Filled by loader */
-+      apple,sio-firmware-params = <0xb 0x10>, <0xc 0x1b80>, <0xf 0x14>,
-+                                  <0x10 0x1e000>, <0x30d 0x34>, <0x30e 0x4000>,
-+                                  <0x1a 0x38>, <0x1b 0x50>; /* Filled by loader */
-+    };
--- 
-2.33.0
+I'm not really sure if adding it as a "reg" section is the right thing
+to do as it's not "just" a register bank.
+Perhaps Rob/Krzysztof have a take on that one?
 
+> =20
+>    next-level-cache: true
+> =20
+> @@ -89,6 +97,7 @@ allOf:
+>            contains:
+>              enum:
+>                - sifive,fu740-c000-ccache
+> +              - starfive,jh7100-ccache
+>                - starfive,jh7110-ccache
+>                - microchip,mpfs-ccache
+> =20
+> @@ -106,12 +115,29 @@ allOf:
+>              Must contain entries for DirError, DataError and DataFail si=
+gnals.
+>            maxItems: 3
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7100-ccache
+> +
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
+> +
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              enum:
+>                - sifive,fu740-c000-ccache
+> +              - starfive,jh7100-ccache
+>                - starfive,jh7110-ccache
+> =20
+>      then:
+> --=20
+> 2.39.1
+>=20
+
+--c503JmGKmuhITlWZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+vxwgAKCRB4tDGHoIJi
+0oxaAQCGMYKDUNPRgSzkFdb5w580ar4q22vbuohV/qlN+nqmZAD9Ec7wuDk6FVks
+xfGCasNhDtktyM9Twv343D+jik817wY=
+=2zVT
+-----END PGP SIGNATURE-----
+
+--c503JmGKmuhITlWZ--
