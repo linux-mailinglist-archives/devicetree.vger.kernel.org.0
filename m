@@ -2,127 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0DC6967B6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 16:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5F86967CD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 16:18:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233038AbjBNPNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 10:13:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35798 "EHLO
+        id S233083AbjBNPSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 10:18:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjBNPNF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 10:13:05 -0500
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2431018147;
-        Tue, 14 Feb 2023 07:13:05 -0800 (PST)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1442977d77dso19381010fac.6;
-        Tue, 14 Feb 2023 07:13:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zQOQuIF4OrW9D2zr50BWcnhTroIr9Ceg7lObbpZeMhk=;
-        b=nGKPVX/3PIKqUdMy0UtHsv0IvveUo9mKvNhzILdDImr99pX0GueMuw3agyDoRtAbxv
-         iO0AXKqg7M929DIo3x9ormySTA47gM36yZmlPmfvHnyfjR01Vfpa6EgFNatP4C6FG8sn
-         tOK6rQf86Wp6+Oner0iiyRn1pB6Fp5Lu2hFqejhvINDRadpHCuDKF4JyTCZ6ZhLaeXQa
-         qmLKrnHX4Tv2xOdZLQTE/JBIcpZVHiE23dRo8hl1crn9t0K0041qtyK78bNCv8QahcXh
-         A/e843qsdLmpQCqmuwd9nWxHleV4CjrRlO/w2aQ+avgKbLs8oZydqJWKmWpQ/V0YHFTi
-         PRzA==
+        with ESMTP id S229622AbjBNPSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 10:18:15 -0500
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FCE10AA0;
+        Tue, 14 Feb 2023 07:18:14 -0800 (PST)
+Received: by mail-qt1-f173.google.com with SMTP id cr22so17749697qtb.10;
+        Tue, 14 Feb 2023 07:18:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zQOQuIF4OrW9D2zr50BWcnhTroIr9Ceg7lObbpZeMhk=;
-        b=WaYVQci9fT64UFi1+aHjMPjqgIwjfmvL4cBQoI0YyN/9vjdz4BB2lIB2G0WBFHVGdX
-         34kyFA12AWVmGmQrOLPt50Avc6q+cohb4Aa2CBYNXC7GXm5sNeAz/oovwfAll25TFrUd
-         xUtuphJvDRhJi5W+XP0J373DsjIdfKEcwvhbg6eTgGqemdB9Bo5J9xk6uctoxYrtm5HS
-         hBmqVr/n5cLDWSXulOLmkRSTKs1L+8KG3mGJF4TeBPZq7ZnvpuI3LyYbyx8NWbUDuk0Q
-         HptEDkE53PyC9tryH2vkPMTrWOugJvq+k3eevFYZLamkj9MxUzXxgE9j2AyOHV4GOsws
-         X3GA==
-X-Gm-Message-State: AO0yUKVwNrEVOkIysjnYbi8KytQN0T+1dl76kSTfFRkpXl+L4FbdtUVc
-        gsdnZQHFqzYc0qZG5htkGNRfJ6lolPuLHAthb2w=
-X-Google-Smtp-Source: AK7set/IB4IyAoSaBvVlK9Dzn0peBaqsU6p/h5b5dqivZuU5Ch3pvzoxiAdMqIaq2aZJ3HU/gmdBkyy/t8tjpH9RXmg=
-X-Received: by 2002:a05:6870:9615:b0:169:fabf:b222 with SMTP id
- d21-20020a056870961500b00169fabfb222mr3942918oaq.83.1676387584439; Tue, 14
- Feb 2023 07:13:04 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aWC6Sy2p6wAUAcllYtYBbRCVNVFRqQgltjwaQNMyoqU=;
+        b=okVX34AZULlUnNS/KOixTdHIqSQXm2ZXt81Ma9OEbBALtSSTFs5HRP0C47QKZbElxD
+         qwEGhT28r0yXVE7StmFX/3U4j5IS4cdCT43Xlq5smjdGO7qd7nhyUDqC9upFY9xm+93/
+         6dSWZW7qK8P9gfhzSLo6w/nWGZSnD6Rz7zDr0k+Cf4Qiv5n9/7PkVypWIylUChgVTH6V
+         4uvsaNGgpr+Xo+UFN2TZ3teQzgTp/MCL7x5gU56G5wB6tn6/CSBj+3V2SO9+gSCEhNZR
+         REjJrr6BTkn7r7mh6DkB7y7pCYSOaqCi1KQoogErXjxhJFyMTUqSJSd2faD7WyMMUDmU
+         hzsw==
+X-Gm-Message-State: AO0yUKVgDdqbB73gyNac0a1mPWQhxJ9YvdKZ7ny/Tra2aDPPqvmwxWLL
+        mdVjfJyDvS0pDflQYk+JWy7L8gnWG0pH3uYi
+X-Google-Smtp-Source: AK7set9t/VHTZlkLnCB5duo7nSN9SKbaJ4XNTohbhr1iCdX33x+UEqT6DazkzrQ6YoPbfOJaUwfBeQ==
+X-Received: by 2002:a05:622a:513:b0:3bc:dd23:cbb2 with SMTP id l19-20020a05622a051300b003bcdd23cbb2mr4061922qtx.33.1676387893251;
+        Tue, 14 Feb 2023 07:18:13 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id f30-20020ac8015e000000b003b9bd163403sm11440162qtg.4.2023.02.14.07.18.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Feb 2023 07:18:13 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id l201so17557154ybf.10;
+        Tue, 14 Feb 2023 07:18:12 -0800 (PST)
+X-Received: by 2002:a25:f30f:0:b0:8c2:240e:bd05 with SMTP id
+ c15-20020a25f30f000000b008c2240ebd05mr349652ybs.359.1676387892494; Tue, 14
+ Feb 2023 07:18:12 -0800 (PST)
 MIME-Version: 1.0
-References: <20230214103936.1061078-1-sergio.paracuellos@gmail.com>
- <20230214103936.1061078-3-sergio.paracuellos@gmail.com> <20230214151101.GB742354@roeck-us.net>
-In-Reply-To: <20230214151101.GB742354@roeck-us.net>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 14 Feb 2023 16:12:52 +0100
-Message-ID: <CAMhs-H915iSR7TpuXdcg8NKLV8Scv9cwW36SZaXNK839kA4ybg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/5] mips: dts: ralink: mt7621: rename watchdog node
- from 'wdt' into 'watchdog'
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, arinc.unal@arinc9.com,
-        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <philmd@linaro.org>
+References: <20230121145853.4792-1-biju.das.jz@bp.renesas.com> <20230121145853.4792-11-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230121145853.4792-11-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 14 Feb 2023 16:18:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVSe+3wq6H+3YFWsYX8sEy0mzaBH5-pfVeGYt4snta8Kw@mail.gmail.com>
+Message-ID: <CAMuHMdVSe+3wq6H+3YFWsYX8sEy0mzaBH5-pfVeGYt4snta8Kw@mail.gmail.com>
+Subject: Re: [PATCH v3 10/12] arm64: dts: renesas: r9a09g011: Add USB3 DRD,
+ device and host nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 14, 2023 at 4:11 PM Guenter Roeck <linux@roeck-us.net> wrote:
+On Sat, Jan 21, 2023 at 4:01 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> This patch add usb3 host and peripheral device node as child of usb3 drd
+> node to RZ/V2M SoC dtsi. The host/device needs to issue reset release on
+> DRD module before accessing host/device registers.
 >
-> On Tue, Feb 14, 2023 at 11:39:33AM +0100, Sergio Paracuellos wrote:
-> > Watchdog nodes must use 'watchdog' for node name. When a 'make dtbs_che=
-ck'
-> > is performed the following warning appears:
-> >
-> > wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0-9a-f]=
-)?$'
-> >
-> > Fix this warning up properly renaming the node into 'watchdog'.
-> >
-> > Reviewed-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> > Reviewed-by: Philippe Mathieu-Daud=C3=A9 <philmd@linaro.org>
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
->
-> Note that we can not apply this and the next patch of the series
-> through the watchdog tree since it crosses a maintainer boundary.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2->v3:
+>  * No change
 
-I was expecting Thomas to get these two arch/mips patches or get an
-Acked-by from him in order for you to apply them.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.4.
 
-Thanks,
-    Sergio Paracuellos
+Gr{oetje,eeting}s,
 
->
-> Guenter
->
-> > ---
-> >  arch/mips/boot/dts/ralink/mt7621.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts=
-/ralink/mt7621.dtsi
-> > index 5ca40fd21662..ac818fd721ae 100644
-> > --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> > +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> > @@ -70,7 +70,7 @@ sysc: syscon@0 {
-> >                                            "250m", "270m";
-> >               };
-> >
-> > -             wdt: wdt@100 {
-> > +             wdt: watchdog@100 {
-> >                       compatible =3D "mediatek,mt7621-wdt";
-> >                       reg =3D <0x100 0x100>;
-> >               };
-> > --
-> > 2.25.1
-> >
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
