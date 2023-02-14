@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D45696160
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B695C69618D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:58:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232824AbjBNKrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 05:47:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54326 "EHLO
+        id S232011AbjBNK6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 05:58:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232691AbjBNKr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:47:27 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D1E26858
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:47:04 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id f23-20020a05600c491700b003dff4480a17so715786wmp.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:47:04 -0800 (PST)
+        with ESMTP id S231716AbjBNK6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:58:15 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED922D43
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:58:14 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id o15so11872388wrc.9
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:58:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gRtfH3cTciqqpmtap5y0tTTb3f6l4rz/TOKfQGaPBOI=;
-        b=Fd6KsWetHyj27LAx7SBYAxUB8cV0XhaebZbaKubDdWIq1K2BHBVUHCwxJiBcn463/H
-         PNsnouToUjloSXczi8+t/PhUD1kGfyvMkpcPF0sh41FudW03eqiy8/nbxSURxwt92H3I
-         k5lDde6jcVpsN+WKfDRaM0Vhsciebsbo6N4Fsc2RYsCzo4MY1GVv0CCqhOOkHY97JZK9
-         R3zydVAp/PhukA7au4LD13P19Z4eDQ7CC0omRbvrTgcPUkGV7b17CUek8MY/+2A3HqZp
-         oWFIlPb0UTpPej0piBpq1CUPvHlI1nq0dcsyoq3gw/uprSQwk27BVNxsPmzTnrfwkv49
-         baaw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gx40Fv/hr96gRU+c/9uu5X2ZcDhXizr9d7Ess0reKt0=;
+        b=koNK4VCvQvRc2CjyayjNk6lDJ+hKgxHPWE3G8ao18g5rTt5qjABVk0RAAtOTNbm4D4
+         X+pvM4v3S4flbb63FkXX90tgE7VP3qq6IqO5/aI8Bdr5IrHj4aCImbkI/wE3pD3JCUV1
+         B6LKtlYlnFEXVtB0d8XMq7gvMt/MSnP1EYib2H/lV8wIL7XxumfqhXz9AneJvCdI2Zq1
+         +MjLTMMKAaK0gxdWLgEP/YiuC0g4sEss7phI+UsxNoNQMiPabyerKWfX/lMpPZgx5p1O
+         rEZz1WWtNNZo4YtTuCLYx3hZtGn8pmfqcT9U8IoYB5Mse2wfHrSEzd6Bpx2UDGKtJFGR
+         oj+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gRtfH3cTciqqpmtap5y0tTTb3f6l4rz/TOKfQGaPBOI=;
-        b=Wlxl32Z8O/iboTstQ1f6LAUMQGOXepMFEWlQWmEJYixG4X9dvFsqhKOrCui5s3tP57
-         cUFCAgl/ItWs7HYY9Aj7se5lJxm/iMIuS0J349CEbVSZgZYmPBj2EXnZyCNHA7GL5zrh
-         hcLsUlpB79THVoNoMzlVQgFeLc7J6JDe+wEcEeWmPke7h5wMTQJgQDNiAZRj8zROB3aL
-         Tu3YxnmerbXRg+GTOhQ4gsBSsQsXE7qfiK4tpAH/6YA6E/boaYcwSlS+ZJjAC5vrHlwH
-         VfFiWJRAE5YJUEAwhKwJd4OfD+YDNMrXZVOEFPlqQAJSQgB9OhWmLqwpcRnb3uBZba+U
-         RC4w==
-X-Gm-Message-State: AO0yUKWqrJe1SnfUXhxZS01FMSLHdy46m6hKo3fxZjmWkNLglTNmR+N1
-        qNzb9d67N2qo/fnYNzzzcIlRqScPnfApp4JD
-X-Google-Smtp-Source: AK7set9GFkMXNPFLC4MLlFBUpcMtH438Rv01TFTzVVUZFFFUaPGN01xARZZvMYtIcX+loV0ppglsBA==
-X-Received: by 2002:a05:600c:4b28:b0:3df:ee44:e45a with SMTP id i40-20020a05600c4b2800b003dfee44e45amr1659201wmp.15.1676371621706;
-        Tue, 14 Feb 2023 02:47:01 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b003e1f319b87bsm2623719wmq.24.2023.02.14.02.47.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 02:47:01 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gx40Fv/hr96gRU+c/9uu5X2ZcDhXizr9d7Ess0reKt0=;
+        b=NFyCIusrruvFDr4B95GoTZzlxGfMrHhsF0ngwFHW4v9AvCP84GGtCaVZoARPWQoBjG
+         V9ImxKk0zHTEwTPMmP9BapyeokS5/Mlko0Q7wlJJCym+62Osg/6N31BIZEIkPh+tL3sa
+         Dm0fr65k5A0Wwf5kpzxFV6PhYyiXPgxvx2kLQDMB8F6kbvaAdCoRTvPtbMozu7NdJREJ
+         d4oretEN/B+uEiolAua3UxDXElJh83DTRD8sN0KmBfORFQb1n6irbej/eXfTi1K2RTfa
+         5iTrk5Gn82YuQO6Ly1wb6INa2zkq3OzItJJ7cC1i1M3gDxcZjMRbXz0gP3ZELnUPmtve
+         pTsw==
+X-Gm-Message-State: AO0yUKVTBLHtWtGIvCmXdtpnQUzylq8UwPBhRTwIePZSJtgFcYXiVQMz
+        bhvhpc8tDt58pif/q5vi2D05Jfk3YhXRRlUE
+X-Google-Smtp-Source: AK7set/wETknM6nyMS91eRgNnkHhD4f9C7g93FAnMO+buvH0MuMDeL1A34df/ZNdhAy2Ajz7xf2A7Q==
+X-Received: by 2002:adf:dd45:0:b0:2c3:db98:3e87 with SMTP id u5-20020adfdd45000000b002c3db983e87mr1784868wrm.20.1676372292992;
+        Tue, 14 Feb 2023 02:58:12 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id bg1-20020a05600c3c8100b003e118684d56sm18172368wmb.45.2023.02.14.02.58.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Feb 2023 02:58:12 -0800 (PST)
+Message-ID: <46d5b6af-23e1-4178-83bc-b4a435b1426e@linaro.org>
+Date:   Tue, 14 Feb 2023 11:58:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] dt-bindings: sound: ep93xx: Add I2S and AC'97
+ descriptions
+Content-Language: en-US
+To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     Hartley Sweeten <hsweeten@visionengravers.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 7/7] media: dt-bindings: samsung,s5c73m3: convert to dtschema
-Date:   Tue, 14 Feb 2023 11:45:08 +0100
-Message-Id: <20230214104508.51955-8-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230214104508.51955-1-krzysztof.kozlowski@linaro.org>
-References: <20230214104508.51955-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+References: <20230212232137.299005-1-alexander.sverdlin@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230212232137.299005-1-alexander.sverdlin@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,303 +79,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung S5C73M3 8Mp camera ISP bindings to DT schema.
+On 13/02/2023 00:21, Alexander Sverdlin wrote:
+> Add device tree bindings for Cirrus Logic EP93xx internal SoCs' I2S and
+> AC'97 controllers.
+> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> ---
+>  .../bindings/sound/cirrus,ep9301-ac97.yaml    | 47 ++++++++++++++
+>  .../bindings/sound/cirrus,ep9301-i2s.yaml     | 63 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/cirrus,ep9301-ac97.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-ac97.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-ac97.yaml
+> new file mode 100644
+> index 000000000000..bfa5d392f525
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-ac97.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/cirrus,ep9301-ac97.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus EP93xx AC'97 Controller
+> +
+> +description: |
+> +  The AC’97 Controller includes a 5-pin serial interface to an external audio
+> +  codec.
+> +
+> +maintainers:
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/media/samsung,s5c73m3.yaml       | 165 ++++++++++++++++++
- .../bindings/media/samsung-s5c73m3.txt        |  97 ----------
- MAINTAINERS                                   |   1 +
- 3 files changed, 166 insertions(+), 97 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
+missing ref to dai-common.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml b/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
-new file mode 100644
-index 000000000000..1b75390fdaac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
-@@ -0,0 +1,165 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/samsung,s5c73m3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S5C73M3 8Mp camera ISP
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-+
-+description:
-+  The S5C73M3 camera ISP supports MIPI CSI-2 and parallel (ITU-R BT.656)
-+  video data busses. The I2C bus is the main control bus and additionally the
-+  SPI bus is used, mostly for transferring the firmware to and from the
-+  device. Two slave device nodes corresponding to these control bus
-+  interfaces are required and should be placed under respective bus
-+  controller nodes.
-+
-+properties:
-+  compatible:
-+    const: samsung,s5c73m3
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: cis_extclk
-+
-+  clock-frequency:
-+    default: 24000000
-+    description: cis_extclk clock frequency.
-+
-+  standby-gpios:
-+    maxItems: 1
-+    description: STANDBY pin.
-+
-+  vdda-supply:
-+    description: Analog power supply (1.2V).
-+
-+  vdd-af-supply:
-+    description: lens power supply (2.8V).
-+
-+  vddio-cis-supply:
-+    description: CIS I/O power supply (1.2V to 1.8V).
-+
-+  vddio-host-supply:
-+    description: Host I/O power supply (1.8V to 2.8V).
-+
-+  vdd-int-supply:
-+    description: Digital power supply (1.2V).
-+
-+  vdd-reg-supply:
-+    description: Regulator input power supply (2.8V).
-+
-+  xshutdown-gpios:
-+    maxItems: 1
-+    description: XSHUTDOWN pin.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            items:
-+              - const: 1
-+              - const: 2
-+              - const: 3
-+              - const: 4
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      required:
-+        - spi-max-frequency
-+    then:
-+      properties:
-+        # The SPI node is simplified firmware-transfer interface only
-+        clocks: false
-+        clock-names: false
-+        standby-gpios: false
-+        vdda-supply: false
-+        vdd-af-supply: false
-+        vddio-cis-supply: false
-+        vddio-host-supply: false
-+        vdd-int-supply: false
-+        vdd-reg-supply: false
-+        xshutdown-gpios: false
-+        port: false
-+    else:
-+      required:
-+        - clocks
-+        - clock-names
-+        - standby-gpios
-+        - vdda-supply
-+        - vdd-af-supply
-+        - vddio-cis-supply
-+        - vddio-host-supply
-+        - vdd-int-supply
-+        - vdd-reg-supply
-+        - xshutdown-gpios
-+        - port
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        image-sensor@3c {
-+            compatible = "samsung,s5c73m3";
-+            reg = <0x3c>;
-+            clock-frequency = <24000000>;
-+            clocks = <&camera 0>;
-+            clock-names = "cis_extclk";
-+            standby-gpios = <&gpm0 6 GPIO_ACTIVE_LOW>;
-+            vdda-supply = <&cam_vdda_reg>;
-+            vdd-af-supply = <&cam_af_reg>;
-+            vddio-cis-supply = <&ldo9_reg>;
-+            vddio-host-supply = <&ldo18_reg>;
-+            vdd-int-supply = <&buck9_reg>;
-+            vdd-reg-supply = <&cam_io_reg>;
-+            xshutdown-gpios = <&gpf1 3 GPIO_ACTIVE_LOW>; /* ISP_RESET */
-+
-+            port {
-+                s5c73m3_ep: endpoint {
-+                    remote-endpoint = <&csis0_ep>;
-+                    data-lanes = <1 2 3 4>;
-+                };
-+            };
-+        };
-+    };
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        image-sensor@0 {
-+            compatible = "samsung,s5c73m3";
-+            reg = <0>;
-+            spi-max-frequency = <50000000>;
-+            controller-data {
-+                samsung,spi-feedback-delay = <2>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt b/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-deleted file mode 100644
-index f0ea9adad442..000000000000
---- a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-+++ /dev/null
-@@ -1,97 +0,0 @@
--Samsung S5C73M3 8Mp camera ISP
--------------------------------
--
--The S5C73M3 camera ISP supports MIPI CSI-2 and parallel (ITU-R BT.656) video
--data busses. The I2C bus is the main control bus and additionally the SPI bus
--is used, mostly for transferring the firmware to and from the device. Two
--slave device nodes corresponding to these control bus interfaces are required
--and should be placed under respective bus controller nodes.
--
--I2C slave device node
-----------------------
--
--Required properties:
--
--- compatible	    : "samsung,s5c73m3";
--- reg		    : I2C slave address of the sensor;
--- vdd-int-supply    : digital power supply (1.2V);
--- vdda-supply	    : analog power supply (1.2V);
--- vdd-reg-supply    : regulator input power supply (2.8V);
--- vddio-host-supply : host I/O power supply (1.8V to 2.8V);
--- vddio-cis-supply  : CIS I/O power supply (1.2V to 1.8V);
--- vdd-af-supply     : lens power supply (2.8V);
--- xshutdown-gpios   : specifier of GPIO connected to the XSHUTDOWN pin;
--- standby-gpios     : specifier of GPIO connected to the STANDBY pin;
--- clocks	    : should contain list of phandle and clock specifier pairs
--		      according to common clock bindings for the clocks described
--		      in the clock-names property;
--- clock-names	    : should contain "cis_extclk" entry for the CIS_EXTCLK clock;
--
--Optional properties:
--
--- clock-frequency   : the frequency at which the "cis_extclk" clock should be
--		      configured to operate, in Hz; if this property is not
--		      specified default 24 MHz value will be used.
--
--The common video interfaces bindings (see video-interfaces.txt) should be used
--to specify link from the S5C73M3 to an external image data receiver. The S5C73M3
--device node should contain one 'port' child node with an 'endpoint' subnode for
--this purpose. The data link from a raw image sensor to the S5C73M3 can be
--similarly specified, but it is optional since the S5C73M3 ISP and a raw image
--sensor are usually inseparable and form a hybrid module.
--
--Following properties are valid for the endpoint node(s):
--
--endpoint subnode
------------------
--
--- data-lanes : (optional) specifies MIPI CSI-2 data lanes as covered in
--  video-interfaces.txt. This sensor doesn't support data lane remapping
--  and physical lane indexes in subsequent elements of the array should
--  be only consecutive ascending values.
--
--SPI device node
-----------------
--
--Required properties:
--
--- compatible	    : "samsung,s5c73m3";
--
--For more details see description of the SPI busses bindings
--(../spi/spi-bus.txt) and bindings of a specific bus controller.
--
--Example:
--
--i2c@138a000000 {
--	...
--	s5c73m3@3c {
--		compatible = "samsung,s5c73m3";
--		reg = <0x3c>;
--		vdd-int-supply = <&buck9_reg>;
--		vdda-supply = <&ldo17_reg>;
--		vdd-reg-supply = <&cam_io_reg>;
--		vddio-host-supply = <&ldo18_reg>;
--		vddio-cis-supply = <&ldo9_reg>;
--		vdd-af-supply = <&cam_af_reg>;
--		clock-frequency = <24000000>;
--		clocks = <&clk 0>;
--		clock-names = "cis_extclk";
--		xshutdown-gpios = <&gpf1 3 1>;
--		standby-gpios = <&gpm0 1 1>;
--		port {
--			s5c73m3_ep: endpoint {
--				remote-endpoint = <&csis0_ep>;
--				data-lanes = <1 2 3 4>;
--			};
--		};
--	};
--};
--
--spi@1392000 {
--	...
--	s5c73m3_spi: s5c73m3@0 {
--		compatible = "samsung,s5c73m3";
--		reg = <0>;
--		...
--	};
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 87140ebb9a40..9bb777760964 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18441,6 +18441,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
- M:	Andrzej Hajda <andrzej.hajda@intel.com>
- L:	linux-media@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
- F:	drivers/media/i2c/s5c73m3/*
- 
- SAMSUNG S5K5BAF CAMERA DRIVER
--- 
-2.34.1
+> +properties:
+> +  compatible:
+> +    const: cirrus,ep9301-ac97
+> +
+(...)
+
+> diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+> new file mode 100644
+> index 000000000000..b47d28dc8389
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/cirrus,ep9301-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus EP93xx I2S Controller
+> +
+> +description: |
+> +  The I2S controller is used to stream serial audio data between the external
+> +  I2S CODECs’, ADCs/DACs, and the ARM Core. The controller supports I2S, Left-
+> +  and Right-Justified DSP formats.
+> +
+> +maintainers:
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +
+
+ref to dai-common
+
+> +properties:
+> +  compatible:
+> +    const: cirrus,ep9301-i2s
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+
+maxItems instead
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+> +      - const: sclk
+> +      - const: lrclk
+
+
+The clk suffixes are quite redundant. Don't these inputs have some
+meaningful name?
+
+> +
+> +required:
+> +  - compatible
+> +  - '#sound-dai-cells'
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2s: i2s@80820000 {
+> +        compatible = "cirrus,ep9301-i2s";
+> +        #sound-dai-cells = <0>;
+> +        reg = <0x80820000 0x100>;
+> +        interrupt-parent = <&vic1>;
+> +        interrupts = <28>;
+> +        clocks = <&syscon 29
+> +                  &syscon 30
+> +                  &syscon 31>;
+
+That's one phandle, but you want three, so <>, <>, <>.
+
+
+Best regards,
+Krzysztof
 
