@@ -2,196 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90A31696EB0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 21:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9994696EB9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 21:55:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbjBNUuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 15:50:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50362 "EHLO
+        id S229609AbjBNUzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 15:55:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjBNUuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 15:50:08 -0500
-Received: from mr85p00im-hyfv06011401.me.com (mr85p00im-hyfv06011401.me.com [17.58.23.191])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4AD2B604
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 12:50:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1676407806; bh=lu3iz8boaJE5hBM4PrvJdMVuK1QqN72tUsmqt9Hu/rY=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=H3cr8FVBF3lJbW3/8sQ88eAyp+QmM3qSZ4VkCu3WCFMy0g3wSyoVFR2FvzwftLFza
-         fcQfAZfy1NZjBXTHHlDr2j6P9xPAaLZ00Vni9skpON+fgFTEEbCyD5SKahenyq5E3K
-         yFEW4ZrQCmq7gA/xh0eFwtweOAJsHJHX3lHglKVSvzfu5GuVAuqQOAAZqHa9E8ViUT
-         Ill/cZ7GL2U1gNHVPIYod7XDRmEEV7XAkL+cedlB012tIOD/ezYDd063JUi8U2parF
-         ELyQbwORxh1uqmyZ1I1W6XzaArQt3aBijlnArCu34mFZXh6MleMPWgvruApPDh/MZ3
-         IgHcpq0w3NS7g==
-Received: from localhost (mr38p00im-dlb-asmtp-mailmevip.me.com [17.57.152.18])
-        by mr85p00im-hyfv06011401.me.com (Postfix) with ESMTPSA id E038C357D231;
-        Tue, 14 Feb 2023 20:50:05 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229741AbjBNUzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 15:55:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719342BEE1;
+        Tue, 14 Feb 2023 12:55:03 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D6B0618D8;
+        Tue, 14 Feb 2023 20:55:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72CFAC433D2;
+        Tue, 14 Feb 2023 20:55:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676408102;
+        bh=ostKEzzplobdT7O8KhCmQvHPK9uAmCw1r6JJ+q8gb74=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=YG+RdaiL++HdQuIoQaz45hlPDQAbwZ887M+7Qco/qQSHCfxBTCDlcCn2G4AX0JmdN
+         Q12x7tnX/j18YihpZRft+xEJPFo6DZQ81UlB7vVdDdoQMXeZGV/VLKj22HRF9oDf1J
+         auwTpKDeJMQXjwb0u68ltFiBWuEU5k5KExWLP4ww9XPeC5SxxjutUJnHGoMZm2pjUl
+         gDf/PAWJdZ+WO8ZzExjw4E/CUATHuQ12fPJLxpTYIQ/N5ZWgDCzTPY14UIpRfTCrft
+         JHwiwBqpTIuOREcHFGPUWMkHG0CkM2oqroDBvAoxSUNAkKH949kTl6VkT86bnXdCdi
+         BHoMRu67GsXxQ==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Wilken Gottwalt <wilken.gottwalt@posteo.net>,
+        Bastian Germann <bage@debian.org>
+Cc:     linux-remoteproc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Alain Volmat <avolmat@me.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: mailbox: sti-mailbox: convert to DT schema
-Date:   Tue, 14 Feb 2023 21:49:44 +0100
-Message-Id: <20230214204945.4215-1-avolmat@me.com>
-X-Mailer: git-send-email 2.34.1
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Ohad Ben-Cohen <ohad@wizery.com>,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH 0/3] Enable hwlock on Allwinner A64
+Date:   Tue, 14 Feb 2023 12:57:06 -0800
+Message-Id: <167640821432.1045974.5362172074959635497.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230213231931.6546-1-bage@debian.org>
+References: <20230213231931.6546-1-bage@debian.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: -_KukQB_Mf3ClW8_I2YgINTJ_jkX0ZaC
-X-Proofpoint-ORIG-GUID: -_KukQB_Mf3ClW8_I2YgINTJ_jkX0ZaC
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.572,17.0.605.474.0000000_definitions?=
- =?UTF-8?Q?=3D2020-02-14=5F11:2020-02-14=5F02,2020-02-14=5F11,2020-01-23?=
- =?UTF-8?Q?=5F02_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 adultscore=0 clxscore=1015
- malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0 mlxlogscore=999
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2302140180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the sti-mailbox.txt file into st,sti-mailbox.yaml
+On Tue, 14 Feb 2023 00:19:27 +0100, Bastian Germann wrote:
+> The allwinner,sun6i-a31-hwspinlock compatible driver can be used with
+> the Allwinner A64 chip. Add the wiring required to enable it.
+> 
+> The device tree schema needs some work to verify everything that is
+> needed by the sun6i hwlock driver.
+> 
+> The hwlock device was verified to be available with this series applied
+> on a Pinebook.
+> 
+> [...]
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
-v3: remove quotes around $ref
-v2: update commit log
-    remove quotes around urls
-    add mbox-name $ref
-    remove mbox-name from required properties since not mandatory in the driver
-    fix IRQ type in example
+Applied, thanks!
 
- .../bindings/mailbox/st,sti-mailbox.yaml      | 53 +++++++++++++++++++
- .../bindings/mailbox/sti-mailbox.txt          | 51 ------------------
- 2 files changed, 53 insertions(+), 51 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mailbox/st,sti-mailbox.yaml
- delete mode 100644 Documentation/devicetree/bindings/mailbox/sti-mailbox.txt
+[1/3] dt-bindings: hwlock: sun6i: Add missing #hwlock-cells
+      commit: 25d10262ed8aae71cd2f0b3c0a90d06a6b79fba2
 
-diff --git a/Documentation/devicetree/bindings/mailbox/st,sti-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/st,sti-mailbox.yaml
-new file mode 100644
-index 000000000000..a023c28dff49
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/st,sti-mailbox.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/st,sti-mailbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics Mailbox Driver for STi platform
-+
-+description:
-+  Each ST Mailbox IP currently consists of 4 instances of 32 channels.
-+  Messages are passed between Application and Remote processors using
-+  shared memory.
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+properties:
-+  compatible:
-+    const: st,stih407-mailbox
-+
-+  reg:
-+    maxItems: 1
-+
-+  mbox-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: name of the mailbox IP
-+
-+  interrupts:
-+    description: the irq line for the RX mailbox
-+    maxItems: 1
-+
-+  "#mbox-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#mbox-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mailbox0: mailbox@8f00000  {
-+        compatible = "st,stih407-mailbox";
-+        reg = <0x8f00000 0x1000>;
-+        interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
-+        #mbox-cells = <2>;
-+        mbox-name = "a9";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/mailbox/sti-mailbox.txt b/Documentation/devicetree/bindings/mailbox/sti-mailbox.txt
-deleted file mode 100644
-index 351f612673fc..000000000000
---- a/Documentation/devicetree/bindings/mailbox/sti-mailbox.txt
-+++ /dev/null
-@@ -1,51 +0,0 @@
--ST Microelectronics Mailbox Driver
--
--Each ST Mailbox IP currently consists of 4 instances of 32 channels.  Messages
--are passed between Application and Remote processors using shared memory.
--
--Controller
------------
--
--Required properties:
--- compatible		: Should be "st,stih407-mailbox"
--- reg			: Offset and length of the device's register set
--- mbox-name		: Name of the mailbox
--- #mbox-cells:		: Must be 2
--			  <&phandle instance channel direction>
--			    phandle   : Label name of controller
--			    instance  : Instance number
--			    channel   : Channel number
--
--Optional properties
--- interrupts		: Contains the IRQ line for a Rx mailbox
--
--Example:
--
--mailbox0: mailbox@0  {
--	compatible	= "st,stih407-mailbox";
--	reg		= <0x08f00000 0x1000>;
--	interrupts	= <GIC_SPI 1 IRQ_TYPE_NONE>;
--	#mbox-cells	= <2>;
--	mbox-name	= "a9";
--};
--
--Client
--------
--
--Required properties:
--- compatible		: Many (See the client docs)
--- reg			: Shared (between Application and Remote) memory address
--- mboxes		: Standard property to specify a Mailbox (See ./mailbox.txt)
--			  Cells must match 'mbox-cells' (See Controller docs above)
--
--Optional properties
--- mbox-names		: Name given to channels seen in the 'mboxes' property.
--
--Example:
--
--mailbox_test {
--	compatible	= "mailbox-test";
--	reg		= <0x[shared_memory_address], [shared_memory_size]>;
--	mboxes		= <&mailbox2 0 1>, <&mailbox0 2 1>;
--	mbox-names	= "tx",	"rx";
--};
+Best regards,
 -- 
-2.34.1
-
+Bjorn Andersson <andersson@kernel.org>
