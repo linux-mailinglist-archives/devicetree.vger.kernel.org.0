@@ -2,105 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B59FB6960A8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:25:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 814C86960AA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:26:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbjBNKZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 05:25:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60108 "EHLO
+        id S232035AbjBNK0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 05:26:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232206AbjBNKZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:25:40 -0500
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE4623643;
-        Tue, 14 Feb 2023 02:25:39 -0800 (PST)
-Received: by mail-qv1-f45.google.com with SMTP id t8so402545qvr.5;
-        Tue, 14 Feb 2023 02:25:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gjJ9MvwYAGnuo/aKwD0dp7qQ9csWfaUS/BKK0n8Vq2I=;
-        b=hAj2jJFnMB05V2VRv7x0CRlWR+fwTxTe+lpx08Z/QAhaOzrWmiKauDIo8Ofqh7//7+
-         B9HxTjiHsPHGfz+AfZL81MWwkRTaYZ2NTPzdp2nP/nhxGGI2jRlu8wX2vwF/94lRMOCZ
-         HbMrRYbyN86drDtdVJoOOnNdExUf9wxvbiuUpwlzob8tufDTtiohhrTMDS+hA2S3uYRq
-         PKobbLU4RIBvHRyRFUo3nhSRskrTrj/1zDPepfsl9O9YlWUw6NVg7WBlkSusR0UbLRcf
-         cF2qt6BzdpYb5/yJVmF7Z8yxn/BHR6T1kvrlr8YuJqhw7r/dd7UCyXsZM+iEMLrEgkDz
-         Ne6w==
-X-Gm-Message-State: AO0yUKXcqL57C98S0OUKCgKrPmJ+lyk0sVqH2La6UjLH84f5tOniIe4x
-        jlj06BqoIO/9IzRJdtuaXX6GSGdbkSIQrlcG
-X-Google-Smtp-Source: AK7set/SmcJYQ26sAWeUVyj4ZPt1BkMHfDODRav9wEvvrwgikSaVMRltgcPzY4rD7+tbEdY+wfKSew==
-X-Received: by 2002:a05:6214:2b06:b0:56a:b623:9b09 with SMTP id jx6-20020a0562142b0600b0056ab6239b09mr4130665qvb.14.1676370338724;
-        Tue, 14 Feb 2023 02:25:38 -0800 (PST)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id t3-20020a379103000000b0070617deb4b7sm11484044qkd.134.2023.02.14.02.25.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 02:25:38 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id b1so6533258ybn.2;
-        Tue, 14 Feb 2023 02:25:38 -0800 (PST)
-X-Received: by 2002:a5b:691:0:b0:86e:1225:b335 with SMTP id
- j17-20020a5b0691000000b0086e1225b335mr270933ybq.455.1676370338088; Tue, 14
- Feb 2023 02:25:38 -0800 (PST)
+        with ESMTP id S231849AbjBNK0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:26:00 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A0B23643;
+        Tue, 14 Feb 2023 02:25:59 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 50A7C6600013;
+        Tue, 14 Feb 2023 10:25:57 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676370357;
+        bh=mfv0qhnO8fr6EAdEvEBRF7gUJfNIE7MQAQr8S57P2A8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cwsqP0Fsp92yfDqP4G+i6amfGYoUrxFRYZObLUBOmcT4VJ7CpeGSd1hDVoC5LDiP2
+         SdIYujjKTUzl7HdQkZ3g6dpOH5I1OfI1Mfvxybg1aIwrJgktV+7BgGflyXFSV/bdtu
+         mN3vvJpUSyaeYXjItSTh/+I+AbIjREn/gTyVLDuRqc7SgJR2CZzqX3wzONhhocbret
+         ftbdbPyuC/sbz55vPKPUtq9jth7IXOVcmyOrUk0yGTJOQplUQL9ecSc+/CExoiWLdT
+         2Ufow5R7EeONmDcomLSmYdHS8mdFqBLEIYrSRZUXFjjnnvMY0nXepaL+aQMsxSC1k3
+         n/sFFInxX1cFg==
+Message-ID: <09401672-3d4b-ef49-83e2-75abdcfb84bb@collabora.com>
+Date:   Tue, 14 Feb 2023 11:25:54 +0100
 MIME-Version: 1.0
-References: <20230209125656.191905-1-biju.das.jz@bp.renesas.com> <20230209125656.191905-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230209125656.191905-5-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Feb 2023 11:25:26 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWd8Fi1T15KU3PzThuGRFCoS=5Ge-gs8SXzGJMNmhz_EQ@mail.gmail.com>
-Message-ID: <CAMuHMdWd8Fi1T15KU3PzThuGRFCoS=5Ge-gs8SXzGJMNmhz_EQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: rzv2m evk: Enable pwm
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 3/5] arm64: dts: mediatek: Add dtsi files to use rt5682s
+ on mt8192
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20230211002626.454844-1-nfraprado@collabora.com>
+ <20230211002626.454844-4-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230211002626.454844-4-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Il 11/02/23 01:26, Nícolas F. R. A. Prado ha scritto:
+> Add a dtsi file for the rt5682s audio codec and another to wire it to be
+> used by mt8192's sound card.
+> 
+> These dtsi files will be used by Spherion rev4 and Hayato rev5-sku2,
+> which make use of the rt5682s codec instead of the rt5682 used in
+> previous revisions.
+> 
 
-On Thu, Feb 9, 2023 at 1:57 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable pwm{8..14} on RZ/V2M EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v3->v4:
->  * No change
+I think we're getting too many -audio-x devicetrees here... it's getting somehow
+strange: imagine if we had 4 xxxx-audio-xxxx.dtsi for all of the supported
+machines in dts/mediatek... that'd be at least *40* more files and would grow at
+a quite fast pace. Too much IMO.
 
-Not entirely correct...
+Check how I've done it in mt8195-cherry.dtsi, mt8195-cherry-tomato-r{1,2,3}.dts:
+I didn't even have to add any mt8195-cherry-audio-xxxx.dtsi.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+I understand your reasons for doing that - reducing duplication - but, in my
+opinion, duplicating just 3 lines for 4 times is the way to go...
+If those 4 files were used in *most MediaTek devicetrees* instead of one single
+project, I'd agree with you though :-)
 
-> +&pwm14 {
-> +       pinctrl-0 = <&pwm14_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
->  };
->
->  &pwc {
+If you can come up with anything better than what I propose... I'd be even happier!
 
-Rebased on top of the addition of "pwc", and now breaking sort order...
-I can handle that, though (once the bindings are accepted).
+Cheers,
+Angelo
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
