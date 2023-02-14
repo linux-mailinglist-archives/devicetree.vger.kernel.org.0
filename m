@@ -2,144 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9498695EB1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:15:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73751695EEB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:25:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232420AbjBNJPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 04:15:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51900 "EHLO
+        id S232042AbjBNJZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 04:25:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232525AbjBNJPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:15:00 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB9D2529C;
-        Tue, 14 Feb 2023 01:12:33 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id ECE67660216A;
-        Tue, 14 Feb 2023 09:12:23 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676365945;
-        bh=wNNWVklVHmzhbEv++PA7rXDFmZVhNIaqUY/+tOe7Ue8=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=Gbbf8ZbE1iIjzKzDVrDk2n1facFjipcen8TIWGSNZGugZ48XED+XWVie8M1hGvovd
-         5/EQPh+XNWB/ZNPs5QjlqWdZ8E4egNt7H428Zdek3yW9R4s22hmJt98rqVS8kTIueu
-         zHhf0tR5ZxD1SgumVgLHr1/xWF6r+Ha9cG+rTa+yoFCVb53Ne+vz53OhMXo7EjKP5B
-         0CH5cAm2yNbChER6cgjx6ScMyj5mp6pkkvbjpFwhT/OK0vA27dR/5zFOQIK0ingXTa
-         EYlGekKZ0Lciw9u4e+DFYqVteE8bFiOSz2VEIxrKpL88+rsBbKDpKveYPH3CY4TrWk
-         JtO63m5DxqRnQ==
-Message-ID: <c3513a9d-a98f-11de-ba6e-251b0e7f0993@collabora.com>
-Date:   Tue, 14 Feb 2023 10:12:21 +0100
+        with ESMTP id S231793AbjBNJZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:25:01 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F7C23120
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:24:58 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id j23so14959775wra.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:24:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u8KakO0m99ack6WtkcRo8QC9fAx9EZec2nxXq+nRpV8=;
+        b=XnkRv8qcJgXS8YBUYXFr3msPkyWSuAK7Xwx3teh9Q0AMx2x3w1TmzQ4QaN2BFQUsm2
+         dAkbt2lgSE8azsW+GIYDqBUszigYr4JXpwL9t55zGb6hko0SNNNZ0CU591nyIEh3hrkX
+         3sIMsRJkpU3r2i3rHqHbG4Ba9RLNQwldJxMnJ4zTPU5zV2FKlhLmnBdlOFyfBU0pZkRU
+         jY+tqaUlCNUw5VjcJTmsD0Q23FEDvYpHCnCEyD6Dt3vKHMFJi5gyj1vxWFtHYC2wfCTA
+         aaE3jNFLfHlnXZNOUbMo7pb+raS6UQBsEaAd91iI0L+vQCAayILyCKYkXNnfejlshzTz
+         iN7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u8KakO0m99ack6WtkcRo8QC9fAx9EZec2nxXq+nRpV8=;
+        b=rhezUDR+WjDSj3bQElUwQ/MAEoE3FWf+nqCrz8sr/GvW98TvVgfdjDho8t/kvOx8yk
+         Tq+VJ53hfvW6d7PsX9UHv3iLJLTkqAJ1xsJDwNqALu4DxQNm+msArwNpstPT9RFsmB0D
+         4BWvyOJuJ6FDSoYm1Bvxvewn75tOP3JegHYoYg9YxES+YysUA368ZM262cfX+9+mHTqF
+         xs28nAK3jvHDDzBsfEdAmYy5W7P11FNIog6BjXVB/KXUjTJpU8Zp7Axl5i2KwWMqNNoN
+         +xw07MwS6Ytmtu0vMRPKp/XkGMqlBgYlikFXvPDEZEa1jBCDu+2a2N1SRkqfeLsSG5eP
+         6SNA==
+X-Gm-Message-State: AO0yUKUaMf8YucLOf/ZcjWskOUdtL7QJHzUl2PAXQtXyvsJgqcWZEHHh
+        PYI1/xi8S+M2gQkYLjcqc4SDNg==
+X-Google-Smtp-Source: AK7set/D6I/qxlSfxlRbpbzUy5a6qP8a6fLo8xCBJzYuz2JnEbfY9w2P98SqeCbjjCL59H93Va0T8w==
+X-Received: by 2002:a5d:6352:0:b0:2c5:5308:859c with SMTP id b18-20020a5d6352000000b002c55308859cmr1628694wrw.18.1676366697533;
+        Tue, 14 Feb 2023 01:24:57 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y16-20020adff6d0000000b002c55521903bsm5679255wrp.51.2023.02.14.01.24.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Feb 2023 01:24:57 -0800 (PST)
+Message-ID: <0a815e82-0c4b-cc94-7143-6fbbc2d62347@linaro.org>
+Date:   Tue, 14 Feb 2023 10:24:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v3 04/11] iommu/mediatek: Get regionid from larb/port id
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2] dt-bindings: PCI: qcom: Fix msm8998-specific
+ compatible
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, nfraprado@collabora.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
-        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com
-References: <20230214031114.926-1-yong.wu@mediatek.com>
- <20230214031114.926-5-yong.wu@mediatek.com>
- <ab778f16-3cda-6c06-c5a5-6a4b4d1b3974@collabora.com>
-In-Reply-To: <ab778f16-3cda-6c06-c5a5-6a4b4d1b3974@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230214091202.2187321-1-konrad.dybcio@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230214091202.2187321-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/02/23 10:07, AngeloGioacchino Del Regno ha scritto:
-> Il 14/02/23 04:11, Yong Wu ha scritto:
->> After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
->> controllers"), the dma-ranges is not allowed for dts leaf node.
->> but we still would like to separate to different masters
->> into different iova regions.
->>
->> Thus we have to separate it by the HW larbid and portid. For example,
->> larb1/2 are in region2 and larb3 is in region3. The problem is that
->> some ports inside a larb are in region4 while some ports inside this
->> larb are in region5. Therefore I define a "iova_region_larb_msk" to help
->> record the information for each a port. Take a example for a larb:
->>   [1] = ~0: means all ports in this larb are in region1;
->>   [2] = BIT(3) | BIT(4): means port3/4 in this larb are region2;
->>   [3] = ~(BIT(3) | BIT(4)): means all the other ports except port3/4
->>                             in this larb are region3.
->>
->> This method also avoids the users forget/abuse the iova regions.
->>
->> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->> ---
->>   drivers/iommu/mtk_iommu.c | 47 ++++++++++++++++++++++-----------------
->>   1 file changed, 27 insertions(+), 20 deletions(-)
->>
->> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
->> index ab53edcb221f..7e2cb3b8cac8 100644
->> --- a/drivers/iommu/mtk_iommu.c
->> +++ b/drivers/iommu/mtk_iommu.c
->> @@ -8,7 +8,6 @@
->>   #include <linux/clk.h>
->>   #include <linux/component.h>
->>   #include <linux/device.h>
->> -#include <linux/dma-direct.h>
->>   #include <linux/err.h>
->>   #include <linux/interrupt.h>
->>   #include <linux/io.h>
->> @@ -212,6 +211,11 @@ struct mtk_iommu_plat_data {
->>       struct {
->>           unsigned int    iova_region_nr;
->>           const struct mtk_iommu_iova_region    *iova_region;
->> +        /*
->> +         * Indicate the correspondence between larbs/ports and regions.
->> +         * The index is same with iova_region.
+On 14/02/2023 10:12, Konrad Dybcio wrote:
+> In the commit mentioned in the fixes tag, everything went well except
+> the fallback and the specific compatible got swapped and the 8998 DTSI
+> began failing the dtbs check. Fix it.
 > 
-> * The index is the same as iova_region and larb port numbers are
-> * described as bit positions.
-> * For example, storing BIT(0) at index 2 means "port 0 is in region 2".
-> 
+> Fixes: f86fe08ef00f ("dt-bindings: PCI: qcom: Add MSM8998 specific compatible")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-Sorry, I'm reiterating because the proposed comment is wrong.
+[bhelgaas: sort msm8996 before msm8998]
+yes... I love amends by maintainers.
 
-/*
-  * Indicates the correspondance between larbs, ports and regions.
-  *
-  * The index is the same as iova_region and larb port numbers are
-  * described as bit positions.
-  * For example, storing BIT(0) at index 2,1 means "larb 1, port0 is in region 2".
-  *              [2] = { [1] = BIT(0) }
-  */
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-
-> That's most probably the best short explanation that we can give, so that nobody
-> goes crazy with understanding this one.
-> 
-> After fixing that comment, you totally deserve my
-> 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Cheers!
-> 
-> 
+Best regards,
+Krzysztof
 
