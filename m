@@ -2,106 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D71A36961A8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 12:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C69EC6961BF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 12:04:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232435AbjBNLBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 06:01:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40150 "EHLO
+        id S232430AbjBNLEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 06:04:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232738AbjBNLBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 06:01:42 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3D624C94
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 03:01:37 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id ml19so39216150ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 03:01:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LhcKoN5ST7xXXL4advBn9C/NLBwyPeRYvlSSmMsZVTc=;
-        b=Ec1aAWyfr5zWmwwLyROj7VgyT5uAT/F121zLh/UypO4SjLMz1qnhCaEfZcTxRaYIjG
-         7bW2G1R4M7R5QB/bLSqspAsBZPFTFLOyLCDGiZzpVTbe3sMeMbSOrKcrizVqYkrTf5GN
-         GZZQQ9sgwtsUxD3DdEdeCOB2ajV7mTibD7hs+R0eJF7BlIiq+nXu7KtJvMeSbjAEX9Vd
-         TfBsGdyhAy4GtzqKztS2K+RzAnOSqAp8ZETVNwBGnVdz6sgEHv3TTQTS+H8fE3pSjx4G
-         6lNhWUrtpXyryIWY+/cNBgrIzcck18xTtArwgp7Ixfcdz4X7V3KWCGTRf20RgLNyVsMn
-         xXcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LhcKoN5ST7xXXL4advBn9C/NLBwyPeRYvlSSmMsZVTc=;
-        b=l0SxCVgWtOJFJxsmAP4MLqHUHsMCP/g6G8Iu/kzX5QpuwExHQ0m52bUG+Jur6aL5La
-         Foyz0zz43hpXWpFDlA0sb68hpXWJ1lHPRYcU6hrTn2HpL2JyPmBlBgBh0U1U1QJ4vWjI
-         flPcTYSPyusmedVLx8NYOCrBm8G9yqMQ7GgCFWY9/jFMTi+B4h73fIbisDgk124p82z8
-         dtX6I1TXTBM6oX9oUPfuBsVUyM9549gjvGvQBJ15n1vY0TqYJEn6BNdmXBAhdlBiqdVA
-         FdlH2zPedO3CPRifAVVru/f4Y1PLR7/OKD7N43aFrtJY8alTI6NoIq7P+takCdY3LvsY
-         lzVw==
-X-Gm-Message-State: AO0yUKVelWWk1PpnkS4girxzrJpnTfR24UHdAMRcQQ/XA5hIgBxzzAbr
-        BX3SbrizHGdAPLijX7/MiSrTEM5jrX5pEOFlPAQ=
-X-Google-Smtp-Source: AK7set95TCpJ1aPe+yuVK1lRMxdTbn+xO25lkd43tCJDJnxUuu3PgC0uFoLRfzSWRLDb9RbTO0ZD8Q==
-X-Received: by 2002:a17:906:1354:b0:888:a72f:1599 with SMTP id x20-20020a170906135400b00888a72f1599mr2791543ejb.11.1676372496015;
-        Tue, 14 Feb 2023 03:01:36 -0800 (PST)
-Received: from [172.16.220.87] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id i21-20020a170906115500b008711cab8875sm7959596eja.216.2023.02.14.03.01.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 03:01:35 -0800 (PST)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-Date:   Tue, 14 Feb 2023 12:01:33 +0100
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sm6350: add power domain to camcc
+        with ESMTP id S231721AbjBNLEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 06:04:05 -0500
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC0E25945;
+        Tue, 14 Feb 2023 03:04:02 -0800 (PST)
+Received: from robin.home.jannau.net (p579ad32f.dip0.t-ipconnect.de [87.154.211.47])
+        by soltyk.jannau.net (Postfix) with ESMTPSA id C7D4426F78D;
+        Tue, 14 Feb 2023 12:04:00 +0100 (CET)
+From:   Janne Grunau <j@jannau.net>
+Subject: [PATCH v2 00/16] Device trees for Apple M2 (t8112) based devices
+Date:   Tue, 14 Feb 2023 12:03:13 +0100
+Message-Id: <20230202-asahi-t8112-dt-v2-0-22926a283d92@jannau.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230213-sm6350-camcc-runtime_pm-v3-2-d35e0d833cc4@fairphone.com>
-References: <20230213-sm6350-camcc-runtime_pm-v3-0-d35e0d833cc4@fairphone.com>
-In-Reply-To: <20230213-sm6350-camcc-runtime_pm-v3-0-d35e0d833cc4@fairphone.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+X-B4-Tracking: v=1; b=H4sIAHJq62MC/3WOMQ7CMAxFr1JlxshJCwQm7oE6pI5LwpCiJFSgK
+ ncn7cDGYulZfv5/EYmj5yQuzSIizz75KVRQu0aQM+HO4G1loVC1WAeYZJyHrKVUYDMcR9IaSZM
+ 9taJKg0kMQzSB3KohItj6ljhH5p+2Xj4jj/69Rd/6ys6nPMXP1mSW6/Zv6CwBgYZD1ykrSanz9
+ WFCMK994Cz6UsoXPggRbtcAAAA=
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Kettenis <kettenis@openbsd.org>
+Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Vinod Koul <vkoul@kernel.org>
 X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4456; i=j@jannau.net;
+ h=from:subject:message-id; bh=JvQSRkni/I9wvoKlv6yl/fsdgld1mwqtTj6v+TfDSSM=;
+ b=owGbwMvMwCG2UNrmdq9+ahrjabUkhuTXWfOWxcavS26rmn90Us2zCE7/X9XXcs9sKF2wXMDs/
+ b+/Bn6vO0pZGMQ4GGTFFFmStF92MKyuUYypfRAGM4eVCWQIAxenAExkwi5GhgnsE300CzKOlPl3
+ tzOZZ5jXnwz+vYft6IYVksmGKVcW/Wf4wxcQND9Brvcai5J9g3TeqkktTxOURKVPnZqibT7Xgzu
+ OAQA=
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the CX power domain to the camcc node so the power domain gets
-marked as in-use when camcc is used.
+This series contains dt-bindings updates and device trees for Apple
+silicon devices based on the M2 SoC (t8112).
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Device tree validation depends on the dart-t8110 bindings queued in
+the iommu tree for 6.3 [1], PMU updates [2] and support for
+"local-mac-address" for brcm,bcm4329-fmac based devices [3]. The latter
+fixes validation errors for the existing M1 and M1 Pro/Max/Ultra device
+trees.
+
+The device trees are tested with the downstream Asahi Linux kernel and
+on top of v6.2-rc5. The hardware is of limited use with the upstream
+kernel. The notebooks miss keyboard/trackpad drivers and usb support.
+The Mac mini does not yet have a boot framebuffer and lacks usb support
+as well.
+
+1: https://lore.kernel.org/linux-iommu/20230113105029.26654-1-marcan@marcan.st/
+2: https://lore.kernel.org/linux-devicetree/20230214-apple_m2_pmu-v1-1-9c9213ab9b63@jannau.net/
+3: https://lore.kernel.org/linux-devicetree/20230203-dt-bindings-network-class-v2-2-499686795073@jannau.net/
+
+The dt-binding changes in this series are documentation only. All
+drivers are compatible with the HW on the M2 SoC and are probed based
+on generic compatibles. The t8112 specific compatibles are added to
+address t8112 specific quirks in the case they become required.
+
+Signed-off-by: Janne Grunau <j@jannau.net>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v2:
+- collect acked/reviewed-by: tags
+- disable unused PCIe ports instead of deleting them
+- fixes based on review feedback for "apple,aic2" and "apple,sart" 
+- dropped "arm-pmu: Add PMU compatible strings for Apple M2 cores"
+  (submitted separately)
+- Link to v1: https://lore.kernel.org/r/20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 1e1d366c92c1..62d6dcd8d1fe 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1507,6 +1507,8 @@ camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sm6350-camcc";
- 			reg = <0 0x0ad00000 0 0x16000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			power-domains = <&rpmhpd SM6350_CX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
+---
+Hector Martin (2):
+      dt-bindings: power: apple,pmgr-pwrstate: Add t8112 compatible
+      arm64: dts: apple: t8112: Initial t8112 (M2) device trees
 
+Janne Grunau (14):
+      dt-bindings: arm: apple: apple,pmgr: Add t8112-pmgr compatible
+      dt-bindings: watchdog: apple,wdt: Add t8112-wdt compatible
+      dt-bindings: arm: cpus: Add apple,avalanche & blizzard compatibles
+      dt-bindings: interrupt-controller: apple,aic2: Add apple,t8112-aic compatible
+      dt-bindings: iommu: apple,sart: Add apple,t8112-sart compatible string
+      dt-bindings: mailbox: apple,mailbox: Add t8112 compatibles
+      dt-bindings: nvme: apple: Add apple,t8112-nvme-ans2 compatible string
+      dt-bindings: pci: apple,pcie: Add t8112 support
+      dt-bindings: pinctrl: apple,pinctrl: Add apple,t8112-pinctrl compatible
+      dt-bindings: i2c: apple,i2c: Add apple,t8112-i2c compatible
+      dt-bindings: clock: apple,nco: Add t8112-nco compatible
+      dt-bindings: sound: apple,mca: Add t8112-mca compatible
+      dt-bindings: dma: apple,admac: Add t8112-admac compatible
+      dt-bindings: arm: apple: Add t8112 j413/j473/j493 compatibles
+
+ Documentation/devicetree/bindings/arm/apple.yaml   |   15 +
+ .../devicetree/bindings/arm/apple/apple,pmgr.yaml  |    1 +
+ Documentation/devicetree/bindings/arm/cpus.yaml    |    2 +
+ .../devicetree/bindings/clock/apple,nco.yaml       |    1 +
+ .../devicetree/bindings/dma/apple,admac.yaml       |    1 +
+ .../devicetree/bindings/i2c/apple,i2c.yaml         |    1 +
+ .../bindings/interrupt-controller/apple,aic2.yaml  |   23 +-
+ .../devicetree/bindings/iommu/apple,sart.yaml      |   10 +-
+ .../devicetree/bindings/mailbox/apple,mailbox.yaml |    2 +
+ .../devicetree/bindings/nvme/apple,nvme-ans.yaml   |    5 +-
+ .../devicetree/bindings/pci/apple,pcie.yaml        |    1 +
+ .../devicetree/bindings/pinctrl/apple,pinctrl.yaml |    1 +
+ .../bindings/power/apple,pmgr-pwrstate.yaml        |    1 +
+ .../devicetree/bindings/sound/apple,mca.yaml       |    1 +
+ .../devicetree/bindings/watchdog/apple,wdt.yaml    |    1 +
+ arch/arm64/boot/dts/apple/Makefile                 |    3 +
+ arch/arm64/boot/dts/apple/t8112-j413.dts           |   63 ++
+ arch/arm64/boot/dts/apple/t8112-j473.dts           |   54 +
+ arch/arm64/boot/dts/apple/t8112-j493.dts           |   52 +
+ arch/arm64/boot/dts/apple/t8112-jxxx.dtsi          |   81 ++
+ arch/arm64/boot/dts/apple/t8112-pmgr.dtsi          | 1141 ++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi               |  912 ++++++++++++++++
+ 22 files changed, 2365 insertions(+), 7 deletions(-)
+---
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+change-id: 20230202-asahi-t8112-dt-6fc880c8cd73
+
+Best regards,
 -- 
-2.39.1
+Janne Grunau <j@jannau.net>
 
