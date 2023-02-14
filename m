@@ -2,144 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD443695ADE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 08:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EAA6695AE5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 08:49:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjBNHsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 02:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47026 "EHLO
+        id S229592AbjBNHt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 02:49:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbjBNHsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 02:48:03 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE2BA1C313
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:48:01 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id n33so4334779wms.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:48:01 -0800 (PST)
+        with ESMTP id S229570AbjBNHt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 02:49:28 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 724551C313
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:49:27 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id j23so14719531wra.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:49:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v9LBYoecALcKMnLalAfr6maJR0nbtDLWWltXeqYNnRQ=;
-        b=IlhY5d8bfT2GtFTzvc9TZ3Dmy0aKn8gG9uG2DaaOWibrPk5vh9mNu2/xizO1wOcXE5
-         YmDDkJsmZkeRX5UW31SJ5RbvTJoN5MJlOUYJAltfbqM72+QX2WY0Zfba95PktLhsPqmY
-         qfqqKVgaAE3iiBnIMKJyHhvHrwk+B7OrG/tFmytrou9l/kRutdW/cSeen0YogA0M6P6O
-         iThPvG9Grq3ewRJ/IX3Za1sApz50CtPSCt9q4pYzVOkot7GL3voQKjvU77/L3ECpVSM/
-         mYOVh6jErMyXNn4qsrrdHjYi82CSvur4MmjP3bRx6jN1iJmTQ0DaLYyu7UrnraxsdPnv
-         gzCA==
+        bh=5BZXiTCaWioPvbzbBAn0oxPR1rxdWEb2vlLnjqL27XI=;
+        b=z7VCsH7jRGtqAalXsHjnqDbnJOwUgIqohKEWtJYdaBpvEM8ZcOz18wY4L9+9f0BJ2c
+         5W8msteK1ebdaW3JZF9n4zQS2XEAZI6/oaEfzgkTNjgp7q/cbQFU4xcEL1UkCFxNW/mJ
+         08beHsOZ+M2W+4l5WgvjEhtFgc+tpy3keeQCRDZd0BKtAv1tb8WWUIajjjzblZD5W0g1
+         DFcLfVhdhcILkd191aO8VMnkTK1WG+qromM1jOYmCp2ZypIBWdVxkoJYsCuAeNwoSHCW
+         oFR3gEXws74PSwnlakA/rnYrzB+xrVkyRXlv1zjEhSn2NjnA6HrQmvmJy8gOMYtTFBUT
+         gcug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v9LBYoecALcKMnLalAfr6maJR0nbtDLWWltXeqYNnRQ=;
-        b=ktS8tfJwhiwtlBD20v220eZsnkxc+b9B6vInFHugmCvib7xjJDitl2CXwSRJ1GmmKJ
-         mlkLGXvLCUSv7NzASw6343YQoy9G6y9WViuPu7PfldDAcGd1azDAGZPSjlgA2t2pmQ4U
-         Ir4/9BJw5bsn3pL1t7baI5ykguDi9xBbLoAKYLYsnhWTDjboX2rqY88xA56tt8yjUMlO
-         a25oC//EQ/aYKGSG7XMgWEYTApThvhrQLRQpOevT5JpOT6N/r2uHhiy3t4gZh51fDMbH
-         H63xGKzK+6HRj/ZI6yxMjbLc1c694KjtX9OFIdMZrqo1YgBUGvAfJ6q2BrgCbaCmvbJh
-         NZMA==
-X-Gm-Message-State: AO0yUKWHYIZG0Q1BjfYComNylJ+LN4SkF37xLrXqQek0dWNg+FaCT/kd
-        uIGQM2TCsx1mM/G3toiOyiWezQ==
-X-Google-Smtp-Source: AK7set/WcU9lIqJ4Po60aUXsXakm5IcLvtMq6WakgTIVlgI22GmN5OrN1R/DMwYP88rmSbfZrjIjwQ==
-X-Received: by 2002:a1c:f012:0:b0:3d9:f769:2115 with SMTP id a18-20020a1cf012000000b003d9f7692115mr1094919wmb.26.1676360880577;
-        Mon, 13 Feb 2023 23:48:00 -0800 (PST)
+        bh=5BZXiTCaWioPvbzbBAn0oxPR1rxdWEb2vlLnjqL27XI=;
+        b=O+i1O1GvzMRodKL9bk0SMtO0PTjVE6HjqU/GCsBt+kDJMYI47sU1LU9RCHM+nVW4/+
+         PKL+DjrqYvQjAR+aM2xRJno0W9+j5HRowOJSVhKOucjV265b4Q36Yvov6tJhHYIc9HGp
+         Qk/Ih7xQA0h7VEnCVWkFcSePiqj0P5FywuiwSvhviy0MoaqMOI9v4hbNWMcFMZgAIkXh
+         e4EAZ2gOHdeIWg3WddG6oFTD5H9fRvGBMZ+2ZWdwupqgLsmYGoH4AKly89j48as2y5zB
+         fiTdOpCzdmzR2AwQreVtTAe9+dVjk6lNYDkHL8d6Sf/TvZW0xzMTnewVX5K+7oRs4Hn4
+         tuHQ==
+X-Gm-Message-State: AO0yUKVg1tB2x6XLv1VuMIFZ7zrLs8J3Qdg3QVpWDkRovf6LgdSAryJM
+        RT/jF6Ndr7Cg9agP3BnJnbFKgw==
+X-Google-Smtp-Source: AK7set+/dHZHc/900rumb6+GH5YIHrWHNb+LKx6xsaclyywsxaqdMh//Qe83ReJXXScxKeONvq95dA==
+X-Received: by 2002:adf:e40f:0:b0:2c5:4c1f:3c9 with SMTP id g15-20020adfe40f000000b002c54c1f03c9mr1102927wrm.49.1676360965977;
+        Mon, 13 Feb 2023 23:49:25 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i16-20020a05600c4b1000b003dc4fd6e624sm15658892wmp.19.2023.02.13.23.47.57
+        by smtp.gmail.com with ESMTPSA id v2-20020a5d6102000000b002be5bdbe40csm12330171wrt.27.2023.02.13.23.49.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 23:48:00 -0800 (PST)
-Message-ID: <e569e7e8-4d7f-1e69-5a4b-ee4c4f83d7ce@linaro.org>
-Date:   Tue, 14 Feb 2023 08:47:57 +0100
+        Mon, 13 Feb 2023 23:49:25 -0800 (PST)
+Message-ID: <80d16935-dad6-8087-c1b2-1d5b1c3f738e@linaro.org>
+Date:   Tue, 14 Feb 2023 08:49:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V3 2/5] arm64: dts: qcom: Add support for Crashdump
- collection on IPQ9574
+Subject: Re: [PATCH v1 2/4] dt-bindings: phy: Add starfive,jh7110-dphy-rx
 Content-Language: en-US
-To:     POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
-        nfraprado@collabora.com, broonie@kernel.org,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_devipriy@quicinc.com
-References: <20230208053332.16537-1-quic_poovendh@quicinc.com>
- <20230208053332.16537-3-quic_poovendh@quicinc.com>
- <dbc93125-afd5-9ed9-7b45-0d79f728b4a5@linaro.org>
- <1a9ad881-7753-935a-ce7d-a2a79d34f16c@quicinc.com>
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Jack Zhu <jack.zhu@starfivetech.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230210061713.6449-1-changhuang.liang@starfivetech.com>
+ <20230210061713.6449-3-changhuang.liang@starfivetech.com>
+ <3fc07187-f5a0-86d1-a0fd-ba18a2baf555@linaro.org>
+ <f33f3ce0-ca0f-b24e-eab6-4fb9a6ae6d4a@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1a9ad881-7753-935a-ce7d-a2a79d34f16c@quicinc.com>
+In-Reply-To: <f33f3ce0-ca0f-b24e-eab6-4fb9a6ae6d4a@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 05:11, POOVENDHAN SELVARAJ wrote:
+On 14/02/2023 04:07, Changhuang Liang wrote:
 > 
-> On 2/8/2023 1:29 PM, Krzysztof Kozlowski wrote:
->> On 08/02/2023 06:33, Poovendhan Selvaraj wrote:
->>> Enable Crashdump collection in ipq9574
->>>
->>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->>> ---
->>>   Changes in V3:
->>> 	- No changes
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 26 +++++++++++++++++++++++++-
->>>   1 file changed, 25 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> index 2b86ba17bb32..9c4523f50a57 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> @@ -81,6 +81,13 @@
->>>   		reg = <0x0 0x40000000 0x0 0x0>;
->>>   	};
->>>   
->>> +	firmware {
->>> +		scm {
->>> +			compatible = "qcom,scm-ipq9574", "qcom,scm";
->>> +			qcom,dload-mode = <&tcsr_boot_misc 0>;
->>> +		};
->>> +	};
->>> +
->>>   	pmu {
->>>   		compatible = "arm,cortex-a73-pmu";
->>>   		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->>> @@ -95,11 +102,17 @@
->>>   		#address-cells = <2>;
->>>   		#size-cells = <2>;
->>>   		ranges;
->>> -
->> I don't think anything improved here - still unrelated change.
->>
->>
->> Best regards,
->> Krzysztof
+> OK, will drop quotes
 > 
-> Okay sure...next series will add required smem and download mode nodes 
-> in different patches.
+>>> +    items:
+>>> +      items:
+>>> +        - description: phandle of AON SYSCON
+>>> +        - description: register offset
+>>> +    description: The register of dphy rx driver can be configured
+>>> +      by AON SYSCON in this property.
+>>
+>> Can be? So does not have to? But you made it a required property....
+>>
+> 
+> Maybe I described it wrong.
+> I will change to:
+> 	description: The power of dphy rx can be configured by AON SYSCON
+> 	  in this property.
+> It is like AON SYSCON is the power switch of the dphy rx, it is necessary to
+> configure the AON SYSCON register, so I made it a required property.
 
-I commented the diff - specific hunk - which is unrelated.
+Then do not use "can be". Can is optional: I can jump but I don't have
+to. :)
 
 Best regards,
 Krzysztof
