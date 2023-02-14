@@ -2,83 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAFFD69613E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30491696147
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:47:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231771AbjBNKpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 05:45:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51812 "EHLO
+        id S232664AbjBNKrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 05:47:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbjBNKpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:45:45 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CD126866;
-        Tue, 14 Feb 2023 02:45:21 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id AE5BC3FB17;
-        Tue, 14 Feb 2023 10:44:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1676371452; bh=+3HwTc9ECCiYjn5bB7Ckhk2en8do+vQ2etYA80kGnc0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=K123Gas5KDqjqIqfg5w1nZuAe/HmooRGNhtmN8V/U+mQYp8NICfNSfZ0s0Wh4bpQ8
-         XW33aBK0RMCM9mhtYWCCD/NqGFafdWaSeV+NrqtLoMZnP6ypdvxuTWM5K/g67emTMg
-         /HiDf6IU+IvfWgGRSAuHUnvxbH/H4XRDcWmuVSnhsz9I56y2k7S2MAKts28IGHdH6Y
-         /d8TWEkVVStdNAJSz+7ioXnkRKUltev84u6rYzNFi8CEdEjzwrcdiUMvXyJncTAS7R
-         oRcaUyhC1/tkbX3nxGv8qOpSiQ5NqROohjBsbi/kLp6syLJt9ZTBeYdH4vWlYAbgPT
-         WfCQg3aapQDzA==
-Message-ID: <6009e594-ec2e-cf02-842c-91e993d66d36@marcan.st>
-Date:   Tue, 14 Feb 2023 19:44:07 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 0/2] Apple M2 PMU support
-Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>, Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        with ESMTP id S232531AbjBNKrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:47:17 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F189025E33
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:46:53 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id l37-20020a05600c1d2500b003dfe46a9801so11245735wms.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:46:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nl8VzIg0XTBtuUGCbgymYwhmqQdV9/S2Londk08mfDc=;
+        b=e4OnI8eRgdDV5nWzruUH+D85OEMv8id+GLyjj+enskPa21a+fZaDXRg0dRBEJcY7vp
+         tt75Mvl4GhZq9jBUx/VCfrS7GXlZ/ZT+RVOBDeW8xWfpZuOPzjhNM5qToPBdduxhwXDs
+         cnILBfofxI/putHCd7utWgel5cvJBN+4zBctVxRrXqUFW9xxaVLCxawhbFphaiM2s8UT
+         u/SV1AZwzjPB2LobLgVJpxBReU/cZEN34hLtDoJOD1RslNI5Ou5fRUZ4x+YTJai3KYTN
+         BdSd3PJCStDML0fe6YWWN1ors7nJ/Ol8CjWEg2ttS7STaIOhRu8Fy/p2kN7AG+c4WNUA
+         n9xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nl8VzIg0XTBtuUGCbgymYwhmqQdV9/S2Londk08mfDc=;
+        b=lIR3Rzss3922XfZF9Z4WnQiLagW0UypN4Dz2VJwvyFGuUSYwdOIcQ9YkpjD6e2BLVH
+         fadcFTJp71EJrpPTvzLWp7+20AjcCDz/+MIVTSTJMtP85aky2jnb6c86gLU5oP1vd9JO
+         DDc7mbMIZDZkPK1Hcg8yLetsv084FpwvedCLSGnXIQFTCrgmCKzY5CIRQDNq1X3bdzLD
+         rQL80+rV30KbBqoVUQJNs29sQtgnSgdAXXZWD+Lj3S+Ue6iUnybE9FMt4KTqg6IHl1aI
+         CuF1fkMFQM0VHaGTQqMc1x0Mm71TEFaz9XOb5CCHBDrM+tOb5tcW+KCbRPX6d+YcU3sz
+         P/eQ==
+X-Gm-Message-State: AO0yUKUu4aYXDJwbGJN7+ioO1dRYF9ngCaLaR38hUpMx55RLwGAefm3k
+        qTWjls0lq4QoyH+I05inZ27VAw==
+X-Google-Smtp-Source: AK7set8IWpV4gIam5FjkNJq193Kp8r7oGbJn7a6xJJYQ3amCGBylgRDvL4zzPX7AUA4xCzfoKuAwhg==
+X-Received: by 2002:a05:600c:a297:b0:3dc:5a9f:1c7a with SMTP id hu23-20020a05600ca29700b003dc5a9f1c7amr1660447wmb.30.1676371610511;
+        Tue, 14 Feb 2023 02:46:50 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b003e1f319b87bsm2623719wmq.24.2023.02.14.02.46.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Feb 2023 02:46:50 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230214-apple_m2_pmu-v1-0-9c9213ab9b63@jannau.net>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20230214-apple_m2_pmu-v1-0-9c9213ab9b63@jannau.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/7] media: dt-bindings: Convert Samsung SoC Camera to DT schema
+Date:   Tue, 14 Feb 2023 11:45:01 +0100
+Message-Id: <20230214104508.51955-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 19.38, Janne Grunau wrote:
-> This small series adds support for the PMU in Apple M2 cores. The PMU
-> itself appears to work in the same way as om M1. We still want to add
-> CPU type specific compatible strings so that we can distinguish counters
-> in the case they count (slightly) different things on different CPU
-> uarchs.
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
-> Janne Grunau (2):
->       dt-bindings: arm-pmu: Add PMU compatible strings for Apple M2 cores
->       drivers/perf: apple_m1: Add Apple M2 support
-> 
->  Documentation/devicetree/bindings/arm/pmu.yaml |  2 ++
->  drivers/perf/apple_m1_cpu_pmu.c                | 14 ++++++++++++++
->  2 files changed, 16 insertions(+)
-> ---
-> base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-> change-id: 20230214-apple_m2_pmu-175b75c74d4e
+Hi,
 
-For the series,
+Changes since v1
+================
+1. Collect few independent patches into one patchset.
 
-Reviewed-by: Hector Martin <marcan@marcan.st>
+The patchset depends on:
+https://lore.kernel.org/all/20230207205834.673163-1-krzysztof.kozlowski@linaro.org/
 
-- Hector
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (7):
+  media: dt-bindings: i2c: samsung,s5k6a3: convert to dtschema
+  media: dt-bindings: i2c: samsung,s5k5baf: convert to dtschema
+  media: dt-bindings: samsung,exynos4210-csis: convert to dtschema
+  media: dt-bindings: samsung,exynos4212-fimc-lite: convert to dtschema
+  media: dt-bindings: samsung,exynos4212-is: convert to dtschema
+  media: dt-bindings: samsung,fimc: convert to dtschema
+  media: dt-bindings: samsung,s5c73m3: convert to dtschema
+
+ .../bindings/media/exynos-fimc-lite.txt       |  16 -
+ .../bindings/media/exynos4-fimc-is.txt        |  50 ----
+ .../bindings/media/i2c/samsung,s5k5baf.yaml   | 101 +++++++
+ .../bindings/media/i2c/samsung,s5k6a3.yaml    |  98 ++++++
+ .../media/samsung,exynos4210-csis.yaml        | 170 +++++++++++
+ .../media/samsung,exynos4210-fimc.yaml        | 152 ++++++++++
+ .../media/samsung,exynos4212-fimc-is.yaml     | 221 ++++++++++++++
+ .../media/samsung,exynos4212-fimc-lite.yaml   |  63 ++++
+ .../bindings/media/samsung,fimc.yaml          | 279 ++++++++++++++++++
+ .../bindings/media/samsung,s5c73m3.yaml       | 165 +++++++++++
+ .../bindings/media/samsung-fimc.txt           | 210 -------------
+ .../bindings/media/samsung-mipi-csis.txt      |  81 -----
+ .../bindings/media/samsung-s5c73m3.txt        |  97 ------
+ .../bindings/media/samsung-s5k5baf.txt        |  58 ----
+ .../bindings/media/samsung-s5k6a3.txt         |  33 ---
+ MAINTAINERS                                   |   6 +
+ 16 files changed, 1255 insertions(+), 545 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/exynos-fimc-lite.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/exynos4-fimc-is.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5k5baf.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5k6a3.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4210-fimc.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-is.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-lite.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,fimc.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-fimc.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-mipi-csis.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5k5baf.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5k6a3.txt
+
+-- 
+2.34.1
+
