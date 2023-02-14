@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D36BF695B7B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 08:57:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A6B695BAA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:00:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbjBNH5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 02:57:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57350 "EHLO
+        id S229930AbjBNIAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:00:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231287AbjBNH5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 02:57:25 -0500
+        with ESMTP id S230503AbjBNH7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 02:59:32 -0500
 Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C8EA206A7
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:57:24 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id o15so11382276wrc.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:57:24 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2D021A10
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:59:23 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id k3so7068477wrv.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:59:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r08Y9PyPMDpyrszLAyVhH3DCk6hbIyWyHI7hIZi6JC8=;
-        b=k3iYbHKTZy22RV65FMmoOUYsQvB7jUKc+RFnRdCrNJ0hD0dQCFxxJhvlwXIKnUZ30F
-         XoolrOnceiRllR+QctKu3DReXUoJvOlt5lfDnq+t0nnP9r7nkX9KURQqzGWL3UnLDsY+
-         b2D4KrkP/hInJrLC2awtrYyPA9qwKauEo0vmwGoBkxvn1od2gGsZ3oUyjXZPXFejjioT
-         ci5kbA8EZvUnGed1DQ5mmOaNgTVgCrrfuViZVSksZwxS6nH5NAI5nUxNNiXWGU11mSul
-         kqK8dQnDKRH2RUtqGz5y2n4Sk+aWE5EsNkO6pjKOmWKtPCQmrWH7Sb98aFC7Ai18vdaM
-         xCkw==
+        bh=/JB9QIrDQG4CfUwnJnmJHURss8n6y5r0NU4FF1ybcOY=;
+        b=qAqxgSODzxDyTtcq/4YzRq+cGiwOq537sThYsXbWUrr5I5oLLGPfz4qdc80jwI47/n
+         gQP6Bm5uNsOcBxgWjtvFBotw6uphu74pfr63/o2XibHhrdxbxZFpZ4mzPLQ/z/gyeZ7d
+         2m4NLSl1vE6Dea1RQnILnVM/71nYhLyQ/JkQP0rhqhxhMkS72pFADqFLyd3kGes7tEg/
+         Vb1/NtOebPktNHxCvT9ncSlx/4RcJIMsbsEfWT74GiiSmejvt4OAb76vsjeNz0jbnTwO
+         XtJZHz+t4YlkaWX6+ZRG1RF4kiKwZEFLwtNas416NVqVDPVKU7Fsr3NpizAAVgGn7aiw
+         JH3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r08Y9PyPMDpyrszLAyVhH3DCk6hbIyWyHI7hIZi6JC8=;
-        b=hgz+Q/mDOGslJQollh6FeWFzHc6QCHtWS3g0bJq6VKRV5nbJhyL+VLfKH40HxJ5Ruu
-         qxUKleWxszazb/piwSqH9kCMV+xlO2+C1qQFuedJyCuJ/VdF5ovzOwwo39ZnhVv5sg02
-         hpccv48FuyZxg5ZEXWUTu3CsElZxl0FG/Y+tdf8HF3sYn2hWTp1NMBAj3Oqh0rHY+ZWj
-         Z8PAjnXaDcLaob5skF4CDnkuFQo6vgeEOUwV75JFfQzuk3x2p3wrHQzEK+6RpLNqhqNK
-         Ira7WHyfvk9v02ttiyGTjHn9/+ppFeLah4d4auo/z7iksY8VUOJ1GtwFwHsHxcNkOVPA
-         0aZA==
-X-Gm-Message-State: AO0yUKVG2DqAhS6oU5JIymFRK5zk4CrxodLOLPE3FL2wtUX7CogX5cCl
-        My0rfaeny9htayS3si9c5IiNqQ==
-X-Google-Smtp-Source: AK7set9SSOrmFJOMfw/vnUHn1Oe8daTUi3aLoP0X/GtU2m7SEk8hV08UuG8m4jKf4JHzbAA86+NQug==
-X-Received: by 2002:a05:6000:124b:b0:2bf:942b:ddc with SMTP id j11-20020a056000124b00b002bf942b0ddcmr1244093wrx.55.1676361443203;
-        Mon, 13 Feb 2023 23:57:23 -0800 (PST)
+        bh=/JB9QIrDQG4CfUwnJnmJHURss8n6y5r0NU4FF1ybcOY=;
+        b=SwmR1kcXh9Eznkh1laP3joQDKd3fW0NX2R8O+gpTSWZmNUyxB0kwvHpHVsm21gbHkB
+         TP6po5orRt6ZGZgRQ+M6b+JKIIWyDNKpRE2nFDt5XSWKU5Q+vw2te6l9xVGkVWH5+q+a
+         1d0cin1qS4Z162XQQejrEkv0DkmNp7KReS09xFUj6NLArWMOu/rZTzDRbHbxBk0fVj3I
+         4YpSPylf053O0YUVUpEv+TztNA3jqxmLwf/lrzgeg0Og14BAVWWe16hsuGVyaPoyN2/e
+         HLaz0qniV/rbe7y3CSvHCJ0OlHK3BFHuDRpDA9r9JPGJa8R+Py18sCnri/CQ2Aabk99w
+         8VEg==
+X-Gm-Message-State: AO0yUKVh8ZlAeFv+oS3d6Mlp+BadM4pDUeNhhMejMr1B8K704SscTh3U
+        68hH6pDbWF3TwXxeWaY8cfnhgw==
+X-Google-Smtp-Source: AK7set+98H5eySUi1t645pCzonFEeQEPFX4XngrbFuT3irGY+a2DKk2pDb3xXXSGM8p4h3E3VbzrSw==
+X-Received: by 2002:adf:f744:0:b0:2c5:5521:a79d with SMTP id z4-20020adff744000000b002c55521a79dmr2105691wrp.67.1676361562026;
+        Mon, 13 Feb 2023 23:59:22 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v17-20020a5d43d1000000b002c54bf0e9f7sm9538094wrr.117.2023.02.13.23.57.21
+        by smtp.gmail.com with ESMTPSA id d12-20020adfe84c000000b002c3f03d8851sm552777wrn.16.2023.02.13.23.59.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 23:57:22 -0800 (PST)
-Message-ID: <ea71351a-c87f-13f2-e1e8-1d7c5a3838cd@linaro.org>
-Date:   Tue, 14 Feb 2023 08:57:21 +0100
+        Mon, 13 Feb 2023 23:59:21 -0800 (PST)
+Message-ID: <95318688-fee7-25e3-6614-16d03aea5ce5@linaro.org>
+Date:   Tue, 14 Feb 2023 08:59:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/3] dt-bindings: power: supply: pm8941-coincell: Add
- PM8998 compatible
+Subject: Re: [PATCH] dt-bindings: PCI: qcom: Fix msm8998-specific compatible
 Content-Language: en-US
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     marijn.suijten@somainline.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230213204950.2100538-1-konrad.dybcio@linaro.org>
+References: <20230213211408.2110702-1-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213204950.2100538-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230213211408.2110702-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,14 +82,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 21:49, Konrad Dybcio wrote:
-> Add a specific compatible for the coincell charger present on PM8998.
+On 13/02/2023 22:14, Konrad Dybcio wrote:
+> In the commit mentioned in the fixes tag, everything went well except
+> the fallback and the specific compatible got swapped and the 8998 DTSI
+> began failing the dtbs check. Fix it.
 > 
+> Fixes: 7d1780d023ca ("dt-bindings: PCI: qcom: Unify MSM8996 and MSM8998 clock order")
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I don't see compatibles being touched at all in this commit. This is not
+correct commit to fix.
 
 Best regards,
 Krzysztof
