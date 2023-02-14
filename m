@@ -2,72 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77283696C88
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 19:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64268696C8E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 19:14:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233310AbjBNSMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 13:12:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45008 "EHLO
+        id S233400AbjBNSOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 13:14:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233245AbjBNSMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 13:12:46 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF30A8;
-        Tue, 14 Feb 2023 10:12:42 -0800 (PST)
-Received: from [192.168.1.90] (unknown [86.120.32.152])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 59EC86602174;
-        Tue, 14 Feb 2023 18:12:39 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676398360;
-        bh=0/EG0sklC8qUexXu0LYmfC2BO1OVBbV9Fcsg9x+88a4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=m0/HxerAwjPWxchWbVHrWiidbzPuqSL30laX0/Fa8a6CXl8+IjtWG74Eml/d7BIJk
-         dYi0I+FNt4t4GqhEcuAfI1Rqlb98CMZ+u2D179uTxp/UMogSEHpenrfYk2WwvYp5wS
-         V0DX/gTadp9vSNI0LWsr6pcFZR4JNCli1X1Da6QuYboYAEcSyxGtsWV/xSgjCa2yEp
-         Psph/A9m256McoWjzZ+sfoTNCnXcUyJ1wE/A+fqcC3YDNOQWdIuE+LlM0MikAV3Ocr
-         bspbDLgNKxznYOi4F0o5HMbPJkTXGdCtBVwhddBy0kbHHv3lhIUh3dnh3U3Syzr6bE
-         pvhOS/697MvLw==
-Message-ID: <fcfc3ede-6799-4dc2-d390-148370dfc5c8@collabora.com>
-Date:   Tue, 14 Feb 2023 20:12:36 +0200
+        with ESMTP id S232930AbjBNSOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 13:14:35 -0500
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB903A93;
+        Tue, 14 Feb 2023 10:14:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=7UiTt2U5U+keNr7GSs36T48tk7MVL1FoJS8R8CnMXGM=; b=C00pkt563Z3KjI9vz41S1iMCTD
+        N4RfsdniXaJeA88YxA2Ww5QMTGddIyPlHXEdYSiQ+LfOXLEQMpQZcy2eV0Id+f0WtPCUiY9qn8FQz
+        U8us3U9MiV4b4sljhHsfvy2RWR3kEuFOv9mxg6P/L/XPgloVhYhItjrjSkJ61y0lwxdHUYb277jyi
+        szUNEprxBeeQ3/n44i1XSnytn2XV3ZZIOtDiU5P9X1tOhRcm4FuVidJ+XWJ7XBnwFrvOo23/YvZsn
+        vUkYSmU2a40597F9G0XYmlaHDKBg9hBtsXuVWV70KN6jqKUBWghCRkhPsNAsvrvvTMlEEhkzCb1MA
+        ticvzzig==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pRzp2-000BdF-7q; Tue, 14 Feb 2023 19:14:32 +0100
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pRzp1-000KQi-N8; Tue, 14 Feb 2023 19:14:31 +0100
+Message-ID: <b065e2bb-1f11-067a-b085-45d47626927e@metafoo.de>
+Date:   Tue, 14 Feb 2023 10:14:28 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 08/12] net: stmmac: Add glue layer for StarFive JH7100 SoC
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 1/3] ASoC: soc-generic-dmaengine-pcm: add option to start
+ DMA after DAI
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
- <dbf26e3f-6a4f-cd15-c7d3-b0c1c482b83b@linaro.org>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <dbf26e3f-6a4f-cd15-c7d3-b0c1c482b83b@linaro.org>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230214161435.1088246-1-claudiu.beznea@microchip.com>
+ <20230214161435.1088246-2-claudiu.beznea@microchip.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+In-Reply-To: <20230214161435.1088246-2-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.7/26812/Tue Feb 14 09:53:27 2023)
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -77,59 +66,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/13/23 11:26, Krzysztof Kozlowski wrote:
-> On 11/02/2023 04:18, Cristian Ciocaltea wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->>
->> This adds a glue layer for the Synopsys DesignWare MAC IP core on the
->> StarFive JH7100 SoC.
->>
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> [drop references to JH7110, update JH7100 compatible string]
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>   MAINTAINERS                                   |   1 +
->>   drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
->>   drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->>   .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 155 ++++++++++++++++++
->>   4 files changed, 169 insertions(+)
->>   create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index d48468b81b94..defedaff6041 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19820,6 +19820,7 @@ STARFIVE DWMAC GLUE LAYER
->>   M:	Emil Renner Berthing <kernel@esmil.dk>
->>   S:	Maintained
->>   F:	Documentation/devicetree/bindings/net/starfive,jh7100-dwmac.yaml
->> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
->>   
->>   STARFIVE JH7100 CLOCK DRIVERS
->>   M:	Emil Renner Berthing <kernel@esmil.dk>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
->> index f77511fe4e87..2c81aa594291 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
->> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
->> @@ -165,6 +165,18 @@ config DWMAC_SOCFPGA
->>   	  for the stmmac device driver. This driver is used for
->>   	  arria5 and cyclone5 FPGA SoCs.
->>   
->> +config DWMAC_STARFIVE
->> +	tristate "StarFive DWMAC support"
-> 
-> Bring only one driver.
-> 
-> https://lore.kernel.org/all/20230118061701.30047-6-yanhong.wang@starfivetech.com/
+On 2/14/23 08:14, Claudiu Beznea wrote:
+> diff --git a/sound/soc/soc-generic-dmaengine-pcm.c b/sound/soc/soc-generic-dmaengine-pcm.c
+> index 3b99f619e37e..264e87af6b58 100644
+> --- a/sound/soc/soc-generic-dmaengine-pcm.c
+> +++ b/sound/soc/soc-generic-dmaengine-pcm.c
+> @@ -318,7 +318,7 @@ static int dmaengine_copy_user(struct snd_soc_component *component,
+>   	return 0;
+>   }
+>   
+> -static const struct snd_soc_component_driver dmaengine_pcm_component = {
+> +static struct snd_soc_component_driver dmaengine_pcm_component = {
+>   	.name		= SND_DMAENGINE_PCM_DRV_NAME,
+>   	.probe_order	= SND_SOC_COMP_ORDER_LATE,
+>   	.open		= dmaengine_pcm_open,
+> @@ -329,7 +329,7 @@ static const struct snd_soc_component_driver dmaengine_pcm_component = {
+>   	.pcm_construct	= dmaengine_pcm_new,
+>   };
+>   
+> -static const struct snd_soc_component_driver dmaengine_pcm_component_process = {
+> +static struct snd_soc_component_driver dmaengine_pcm_component_process = {
+>   	.name		= SND_DMAENGINE_PCM_DRV_NAME,
+>   	.probe_order	= SND_SOC_COMP_ORDER_LATE,
+>   	.open		= dmaengine_pcm_open,
+> @@ -425,7 +425,7 @@ static const struct snd_dmaengine_pcm_config snd_dmaengine_pcm_default_config =
+>   int snd_dmaengine_pcm_register(struct device *dev,
+>   	const struct snd_dmaengine_pcm_config *config, unsigned int flags)
+>   {
+> -	const struct snd_soc_component_driver *driver;
+> +	struct snd_soc_component_driver *driver;
+>   	struct dmaengine_pcm *pcm;
+>   	int ret;
+>   
+> @@ -450,6 +450,8 @@ int snd_dmaengine_pcm_register(struct device *dev,
+>   	else
+>   		driver = &dmaengine_pcm_component;
+>   
+> +	driver->start_dma_last = config->start_dma_last;
 
-Already mentioned in the cover letter that we have this overlap (will be 
-merged into a single driver).
+This will break if you have multiple sound cards in the system. 
+dmaengine_pcm_component must stay const.
 
-Thanks,
-Cristian
-
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
