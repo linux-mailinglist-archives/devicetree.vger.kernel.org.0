@@ -2,246 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 210F7695CEE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E1D695CF3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbjBNI2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:28:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35672 "EHLO
+        id S231567AbjBNIbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:31:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbjBNI2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:28:40 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD431AD08
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:28:38 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id he5so2589352wmb.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:28:38 -0800 (PST)
+        with ESMTP id S229534AbjBNIbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:31:19 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3854976E
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:31:17 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id r18so10401601wmq.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:31:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=J4OTbvAyDNRuQNPpEdEO/ch9kURlca8zCvaPs3Ht8yY=;
-        b=regc07LLlR85Obo2IjGB3+meMxxtgoUllAqj+sEICOZyRttPY0h7P89DTb2Sweosi5
-         hKUTEv35w3u+OQ4OLRDbfNAJtR5pq76Mj8wmlaoRxZmtFLmXcmk3jTmFNWZjcMKTL62m
-         c2dPGkg1oED/zjQUWvN1WDgP6GDl2G+l++PisckTBEoL/pXAPyDIm+6Omka4ujh14EBg
-         skJFgD89pOURxOP/Ry2aehXmlCkxus4NW8bmDEr5uiabfqXv3UgDhYJriHCYNvgE09lr
-         e43H1Sd5EoWkHRBCfs1n6C2IlpFj53Z91wuoztI8tgo6OYOlUaH178/FKwpK6krh3uKg
-         kVzA==
+        bh=os/Pu/ytp1Ibc8eJhaBf3RWMghtAOmFyabVWn60UWeE=;
+        b=mn9sMGtSZU0HO8NAKb8Ow2EVR7hrQRUVGDYjifb+WyJ8p1TOaUueYUorNDlzasrt5e
+         nIDDL4dOXkOIZgmbqyBHm1Digb4sY7DnRLcDCtqztcySZFNIjagFUwn75DrJc2OyBgHI
+         XW0EJr41sz7biU98YQ7A3OBwRAMDuTx9ZZLVgKgSa+Bn3+lOlcXF7Po4mAmzcd6jteBW
+         alKTLBugea5aSphDOlMFSH2+ZJc6aBfJUAJ4S56OEokpoyvVe+2Fv3LRMAZEw44HOhj1
+         Jsg8O9qD1skBMkWypOCJTNjtRL9CxJDHLDkprEruV97iDBU50l2pGrqOAaFgAMbQFvC9
+         3YBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J4OTbvAyDNRuQNPpEdEO/ch9kURlca8zCvaPs3Ht8yY=;
-        b=heaSCChHNCVVpAkNd2+Z/iEH3nqYqy7GsJjropI58w3twsH6MfCChUA2TLDBrG5UgA
-         P+cGx83uCRN5rgJYHnJjjLZMjP6v5p+BJWxKTY2aoXO9a4HIJLD3oEvkM7YjW4S7qUlR
-         TVV1Y60m9D7tcV8nFU1NXNpqua/LGP9dt0zT7fHytwZ4RKFtufEHgE+TLzt7VJnp+Qoe
-         ZD8npzYjcC+pCsEX1pkuKIgIV/seuHU7opO7CCPRYpZMwRtbDRdHSci2K+ji9375WD03
-         IuUGebyNuO7n4WHy6WmC22t7lxOv17X/ITOgZU6Fu0Igo9vv+H0fj2SdJeX6iL/VrMXT
-         37XA==
-X-Gm-Message-State: AO0yUKXpYQpvTb4EuAO7z5ek7dtQrqh9Sz5dbke4PNy4DC5JhLvi+tXN
-        J0UM5KdWQpDieKGsfrJEvjvvBw==
-X-Google-Smtp-Source: AK7set/+0Q9mSK4x5OCo4ro65AiB0eTqg69bnbvds4LDkrWCfEonZr+/Syx4ot9MC8pY52xE99sgMA==
-X-Received: by 2002:a05:600c:3acd:b0:3d3:4f99:bb32 with SMTP id d13-20020a05600c3acd00b003d34f99bb32mr1209415wms.36.1676363317183;
-        Tue, 14 Feb 2023 00:28:37 -0800 (PST)
+        bh=os/Pu/ytp1Ibc8eJhaBf3RWMghtAOmFyabVWn60UWeE=;
+        b=U+G1uM8OmrpCVZHbKb5r+RkShTA+MsyjjwSezZMeK/Xd1ZV+Cm+ZSUUSCWfyg58CnS
+         FD/iZcvnGRDsIMsQEjij+xMr90NQQWIZSkholfGLlYg8CdUYybmm92tgrkPpiFUKxJo1
+         bsxdzRc3Rt8dhWnGG+F+XD2yPx5ermZV5LHft969+hNqnz8tIvzGMeG+LNkxO0vEqGyU
+         UcprggSggUoi/70mmBBdcM3vw/cPZCunN+gtji89xhL4SQ0s3rb/vdRj8c5mz6LF7JCH
+         JhNH5zWcIykmrTmLWx9vLHUngEK3suzUo7HNjpZZYR0dgk/D5aJabt9sq1nx7C5XuJhg
+         aZvQ==
+X-Gm-Message-State: AO0yUKX1P2FoM1X08pG2S/mAfT39L3XRRSd6Fz3nuLydKmModzeKJKOO
+        SoDQlnTXrW17rb+DtWwsmsiXtQ==
+X-Google-Smtp-Source: AK7set/1tDyZOmr9NeHyiA+DvIFIP6+HQ+LlDLNyXkj/u+3DXu9qyEFqG5yjJimmW874DmxSBGzAbg==
+X-Received: by 2002:a05:600c:1695:b0:3dc:561a:79e7 with SMTP id k21-20020a05600c169500b003dc561a79e7mr1294842wmn.2.1676363476339;
+        Tue, 14 Feb 2023 00:31:16 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bg30-20020a05600c3c9e00b003db012d49b7sm2232707wmb.2.2023.02.14.00.28.35
+        by smtp.gmail.com with ESMTPSA id m23-20020a7bca57000000b003de8a1b06c0sm19380466wml.7.2023.02.14.00.31.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 00:28:36 -0800 (PST)
-Message-ID: <aba45ae9-8558-50c1-e5ad-dd910dacdbb3@linaro.org>
-Date:   Tue, 14 Feb 2023 09:28:34 +0100
+        Tue, 14 Feb 2023 00:31:15 -0800 (PST)
+Message-ID: <f105c7a8-8821-1e7b-af46-13a46971db63@linaro.org>
+Date:   Tue, 14 Feb 2023 09:31:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 5/9] dt-bindings: remoteproc: mpss: Document
- QDU1000/QRU1000 mpss devices
+Subject: Re: [PATCH v6 3/3] watchdog: mt7621-wdt: avoid ralink architecture
+ dependent code
 Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20230213185218.166520-1-quic_molvera@quicinc.com>
- <20230213185218.166520-6-quic_molvera@quicinc.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230213200519.889503-1-sergio.paracuellos@gmail.com>
+ <20230213200519.889503-4-sergio.paracuellos@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213185218.166520-6-quic_molvera@quicinc.com>
+In-Reply-To: <20230213200519.889503-4-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 19:52, Melody Olvera wrote:
-> This documents the compatible for the component used to boot the
-> MPSS on the QDU1000 and QRU1000 SoCs.
+On 13/02/2023 21:05, Sergio Paracuellos wrote:
+> MT7621 SoC has a system controller node. Watchdog need to access to reset
+> status register. Ralink architecture and related driver are old and from
+> the beggining they are using some architecture dependent operations for
+> accessing this shared registers through 'asm/mach-ralink/ralink_regs.h'
+> header file. However this is not ideal from a driver perspective which can
+> just access to the system controller registers in an arch independent way
+> using regmap syscon APIs. Update Kconfig accordingly to select new added
+> dependencies and allow driver to be compile tested.
 > 
-> The QDU1000 and QRU1000 mpss boot process now requires the specification
-> of an RMB register space to complete the handshake needed to start or
-> attach the mpss.
-> 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
->  .../bindings/remoteproc/qcom,qdu1000-pas.yaml | 127 ++++++++++++++++++
->  1 file changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml
+>  drivers/watchdog/Kconfig      |  4 +++-
+>  drivers/watchdog/mt7621_wdt.c | 18 +++++++++++++-----
+>  2 files changed, 16 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml
-> new file mode 100644
-> index 000000000000..eb6ade984778
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,qdu1000-pas.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index b64bc49c7..cf752ad64 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -1865,7 +1865,9 @@ config GXP_WATCHDOG
+>  config MT7621_WDT
+>  	tristate "Mediatek SoC watchdog"
+>  	select WATCHDOG_CORE
+> -	depends on SOC_MT7620 || SOC_MT7621
+> +	select REGMAP_MMIO
+> +	select MFD_SYSCON
+> +	depends on SOC_MT7620 || SOC_MT7621 || COMPILE_TEST
+>  	help
+>  	  Hardware driver for the Mediatek/Ralink MT7621/8 SoC Watchdog Timer.
+>  
+> diff --git a/drivers/watchdog/mt7621_wdt.c b/drivers/watchdog/mt7621_wdt.c
+> index 40fb2c9ba..22e979bdd 100644
+> --- a/drivers/watchdog/mt7621_wdt.c
+> +++ b/drivers/watchdog/mt7621_wdt.c
+> @@ -15,8 +15,8 @@
+>  #include <linux/moduleparam.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/mod_devicetable.h>
+> -
+> -#include <asm/mach-ralink/ralink_regs.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+>  
+>  #define SYSC_RSTSTAT			0x38
+>  #define WDT_RST_CAUSE			BIT(1)
+> @@ -34,6 +34,7 @@
+>  struct mt7621_wdt_data {
+>  	void __iomem *base;
+>  	struct reset_control *rst;
+> +	struct regmap *sysc;
+>  	struct watchdog_device wdt;
+>  };
+>  
+> @@ -104,9 +105,12 @@ static int mt7621_wdt_stop(struct watchdog_device *w)
+>  	return 0;
+>  }
+>  
+> -static int mt7621_wdt_bootcause(void)
+> +static int mt7621_wdt_bootcause(struct mt7621_wdt_data *d)
+>  {
+> -	if (rt_sysc_r32(SYSC_RSTSTAT) & WDT_RST_CAUSE)
+> +	u32 val;
 > +
-> +title: Qualcomm QDU1000 Peripheral Authentication Service
-> +
-> +maintainers:
-> +  - Melody Olvera <quic_molvera@quicinc.com>
-> +
-> +description:
-> +  Qualcomm QDU1000 SoC Peripheral Authentication Service loads and boots firmware
-> +  on the Qualcomm DSP Hexagon cores.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qdu1000-mpss-pas
+> +	regmap_read(d->sysc, SYSC_RSTSTAT, &val);
+> +	if (val & WDT_RST_CAUSE)
+>  		return WDIOF_CARDRESET;
+>  
+>  	return 0;
+> @@ -143,6 +147,10 @@ static int mt7621_wdt_probe(struct platform_device *pdev)
+>  	if (!drvdata)
+>  		return -ENOMEM;
+>  
+> +	drvdata->sysc = syscon_regmap_lookup_by_compatible("mediatek,mt7621-sysc");
+> +	if (IS_ERR(drvdata->sysc))
+> +		return PTR_ERR(drvdata->sysc);
 
-What about other remote processors? The subject prefix suggests it is
-only for mpss, but filename is different.
-
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    items:
-> +      - description: XO clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xo
-> +
-> +  qcom,qmp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference to the AOSS side-channel message RAM.
-> +
-> +  smd-edge: false
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    items:
-> +      - description: Firmware name of the Hexagon core
-> +      - description: Firmware name of the Hexagon Devicetree
-> +
-> +  memory-region:
-> +    items:
-> +      - description: Memory region for main Firmware authentication
-> +      - description: Memory region for Devicetree Firmware authentication
-> +      - description: DSM Memory region
-> +
-> +  interrupts:
-> +    minItems: 6
-> +
-> +  interrupt-names:
-> +    minItems: 6
-> +
-> +  interconnects:
-> +    minItems: 1
-
-You can drop the property. It's coming from qcom,pas-common.yaml
-
-> +
-> +  power-domains:
-> +    items:
-> +      - description: CX power domain
-> +      - description: MSS power domain
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: cx
-> +      - const: mss
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
-> +
-> +    remoteproc@4080000 {
-> +        compatible = "qcom,qdu1000-mpss-pas";
-> +        reg = <0x4080000 0x4040>,
-> +              <0x4180000 0x1000>;
-> +
-> +        clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +        clock-names = "xo";
-> +
-> +        interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>
-> +                              <&smp2p_modem_in 7 IRQ_TYPE_EDGE_RISING>;
-> +        interrupt-names = "wdog", "fatal", "ready", "handover",
-> +                          "stop-ack", "shutdown-ack";
-> +
-> +        memory-region = <&mpss_mem>, <&dtb_mpss_mem>, <&mpss_dsm_mem>;
-> +
-> +        firmware-name = "modem.mdt",
-> +                        "modem_dtb.mdt";
-> +
-> +        power-domains = <&rpmhpd QDU1000_CX>,
-> +                        <&rpmhpd QDU1000_MSS>;
-> +        power-domain-names = "cx", "mss";
-> +
-> +        interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
-> +
-> +        qcom,qmp = <&aoss_qmp>;
-> +
-> +        qcom,smem-states = <&smp2p_adsp_out 0>;
-> +        qcom,smem-state-names = "stop";
-> +
-> +        glink-edge {
-> +            interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
-> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
-> +                                         IRQ_TYPE_EDGE_RISING>;
-> +            mboxes = <&ipcc IPCC_CLIENT_MPSS IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +            label = "modem";
-> +            qcom,remote-pid = <2>;
-> +
-
-Drop blank line
-
-> +        };
-> +    };
+This should be the backup/error path for original code using syscon
+property. Looking up by compatible is really not portable/re-usable.
 
 Best regards,
 Krzysztof
