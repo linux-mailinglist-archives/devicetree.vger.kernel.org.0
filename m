@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E7176968DB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:12:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A68006968DF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:12:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231549AbjBNQMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 11:12:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
+        id S231695AbjBNQMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 11:12:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbjBNQMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:12:19 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D775588
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:12:18 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id qb15so39283003ejc.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:12:18 -0800 (PST)
+        with ESMTP id S230182AbjBNQMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:12:20 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98F56A68
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:12:19 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id mc25so3989418ejb.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:12:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura.hr; s=sartura;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CoFprvw0esXR9T/oy/C18QmLGugMs18DWBdKBHAG2rw=;
-        b=OKirlgqq4D0Ms98OLQSfnSp3h7CG8JOy27e3g1babPH7aNuSpbH3ZYG5MncS5IVsCS
-         Im9Im8r9QnbGMqbIvEKctFWzT8BSTJHGrPZRkTtIX2TkJdP1GG9KUdkGRrdEy3XaN1Wq
-         mocpiFRc3N3OGGMhIpxebl8cTqZ7ehzHqC1k9Kpyja20mFJP/iIJkxnoXHU1P+jtDYfr
-         A8N2o7yYGKNgA/jjSDrKYg5/C7tl7xZYu4o3f0hJ1mYJ2crwH0VpGOU02vc4Kqi9hZEK
-         l4KNZvt7PCbWBxo2WIeLGKR/A7lM4Nh1PExhQNpSR+MMqHNcbgZC147P8w8cqE340Fa4
-         aYyA==
+        bh=QSSJt+kS57U0b/aHhy8b1Fqf1a7DeUwwB+89+sI4SVk=;
+        b=QsrTeUZSVGH9EShX9wKA+T7kbQ2HkC8lwKIvipZSOz4e26YMdLsxl4MsiIAxumiPLD
+         CMXc5emgp1c9PzkGQzf7sOE2Rh5HghYo85DWydqaJ2QqyJ61E3o4Q0tGUCp0ZRvWvUpx
+         7v3WFu3uWWZcQk72Yc0/86/Fto9lEKREjx/Igmz9pGKUU7OBxgohzb9cx2p29LkmPzj7
+         u0d5Z7JSGRyfoJsrXDvG5H87GQWA4LFimX+Adt91LDU/7h1vhSviS62WapmTDCApWu5+
+         m4BQdrlsfHEyhvSfKy63Vv8euEdz/16iM2EIEoacMcmJSibGQk+U2ytmP59kw/ix2jzi
+         oCAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CoFprvw0esXR9T/oy/C18QmLGugMs18DWBdKBHAG2rw=;
-        b=1Bjv6Blt/rX6v1fxKonKnhDQnXaKEfcJD/UQ6uBFMITXSLrA0yT3oolWtyb7NnAgbL
-         1f1DlxOHWJGp0XFXzo3aeTq3DMjgEfPCh6Oz4pmDsxevV89uJzgt7eh7tC+dsWJFwE0m
-         nMbhERrEjiEqcYoM82t5iO/YwESQZhkyCkFDfR2oLvEwWr/jYnQFKwMurO3N+ZoDmJ8D
-         PLwOrr4zx7G23GB5twfjXQwsbw/enR8d7oJRXwUVm73SoMVETaoTMctD6nnM2RQysKYg
-         XALJF86S3BM3xNiwm8FS3BolULFYDyi1XHsHmw5ZDYDTOA49M1ZxCC0QSMb3dek0P8lg
-         mg/Q==
-X-Gm-Message-State: AO0yUKVhmNMhTQ7LRvlR+wuOZtFANjIvRyZh8exfqiTxNTmaxYXYvPWl
-        76OJl6MEbK/sQe1/TJrtRvHwxw==
-X-Google-Smtp-Source: AK7set+l7/awNleC5TDYRG+ZuD7rI0xqYlFbVW4627GHaP9mscFk71BN21zczWA9Um1U0Gb/CT36CA==
-X-Received: by 2002:a17:906:f8c3:b0:8a4:e2aa:6cd9 with SMTP id lh3-20020a170906f8c300b008a4e2aa6cd9mr3582528ejb.19.1676391137232;
-        Tue, 14 Feb 2023 08:12:17 -0800 (PST)
+        bh=QSSJt+kS57U0b/aHhy8b1Fqf1a7DeUwwB+89+sI4SVk=;
+        b=YLOMdcuOEQBOXT2+VFvJw4kcmm18tFqfuiAbsOwy//fcnCgZBAtvy9YkcJw0wbVPDR
+         hAjZ8k/MO1sQwQ+4vAYS/e/Q7TqVg9sAlsxT+N2wt9tjIdE517TfT/lsPeRgCzRql9f6
+         AV1u5LeaMFPopiZM2j526T08r6+D+5GjuO+bKPW4LvG9cqnfAW9keeB9Rp7vwtkn9CzG
+         lfetZy/k/bhh1Uxs99GgtzTK/uaCvuXiSG0j7gDnmylUzCaf+ZbhiCgVzX0wCYQLYNHZ
+         nl60UvG67U6BJanN+q0TzpjX7e+gRpbpbW1jbgZl/fTS3peFvrlyEFjh/nWWr3tSKLTM
+         iRuQ==
+X-Gm-Message-State: AO0yUKVLm4aypAaGRnaZyUrq89n17sL8+NvudWCbnG5xuSpJ5BUZeE6l
+        YUhh/vhi27ncgb2u91HLba3Ucw==
+X-Google-Smtp-Source: AK7set8CvtgB6lgS8atTtIoeVZSiaBuTr5BsZWys+evJgwp5Xl7FFGgfJIXV6FssOtro9RbVbZ8duQ==
+X-Received: by 2002:a17:906:52d5:b0:886:7eae:26c4 with SMTP id w21-20020a17090652d500b008867eae26c4mr2897375ejn.5.1676391138332;
+        Tue, 14 Feb 2023 08:12:18 -0800 (PST)
 Received: from fedora.. (cpezg-94-253-130-165-cbl.xnet.hr. [94.253.130.165])
-        by smtp.googlemail.com with ESMTPSA id de56-20020a1709069bf800b00878530f5324sm8564376ejc.90.2023.02.14.08.12.16
+        by smtp.googlemail.com with ESMTPSA id de56-20020a1709069bf800b00878530f5324sm8564376ejc.90.2023.02.14.08.12.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 08:12:16 -0800 (PST)
+        Tue, 14 Feb 2023 08:12:17 -0800 (PST)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 2/4] ARM: dts: qcom: ipq4018-ap120c-ac: align GPIO hog with DT schema
-Date:   Tue, 14 Feb 2023 17:12:09 +0100
-Message-Id: <20230214161211.306462-2-robert.marko@sartura.hr>
+Subject: [PATCH 3/4] ARM: dts: qcom: ipq4018-ap120c-ac: align SPI-NAND with DT schema
+Date:   Tue, 14 Feb 2023 17:12:10 +0100
+Message-Id: <20230214161211.306462-3-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214161211.306462-1-robert.marko@sartura.hr>
 References: <20230214161211.306462-1-robert.marko@sartura.hr>
@@ -73,7 +73,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align USB power GPIO hog node to DT schema.
+SPI-NAND node name should be flash@1 and not nand@1 according to schema.
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
@@ -81,18 +81,18 @@ Signed-off-by: Robert Marko <robert.marko@sartura.hr>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
-index 38efd45433da5..cd2a32d0d5548 100644
+index cd2a32d0d5548..bb0c888b048ec 100644
 --- a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
 +++ b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
-@@ -76,7 +76,7 @@ mux_cs {
+@@ -186,7 +186,7 @@ partition@190000 {
  		};
  	};
  
--	usb-power {
-+	usb-power-hog {
- 		line-name = "USB-power";
- 		gpios = <1 GPIO_ACTIVE_HIGH>;
- 		gpio-hog;
+-	nand@1 {
++	flash@1 {
+ 		compatible = "spi-nand";
+ 		reg = <1>;
+ 		spi-max-frequency = <40000000>;
 -- 
 2.39.1
 
