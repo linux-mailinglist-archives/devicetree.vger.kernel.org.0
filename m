@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B27869673A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:44:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BC8696789
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 16:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233405AbjBNOot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 09:44:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41172 "EHLO
+        id S231702AbjBNPCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 10:02:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232231AbjBNOos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:44:48 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DAC1D936;
-        Tue, 14 Feb 2023 06:44:41 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E976E40009;
-        Tue, 14 Feb 2023 14:44:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1676385880;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=spc8MwHpcjXgH4ztj2eiUqqTcn2TdRR+RZKvGct5U4M=;
-        b=mLlalOBeJtNca5NZp/JfEJYC3gTbI74xNgXIKae64Y0pqN0RthdmJRJy92EjgKWDF2gIac
-        0EIOt2l9hAGg9qptE6DnUPSV64dZQ/L7+C2zJtMxiBk5FGFkA0pEUPd7tIuGXrN3TpcI9P
-        RFaLVQa4/j4nhJAG2TRkr9alGESGvYb1bYBZNCyRgSyr4QzFv9Z9zjvpmuRwfM2QcCyDpu
-        jdVQrefBvkt5NYZb6pTRrxSNLOxY5HWul5OZAFOzlEg0OIZ7NnK7W2MMoEfeMNiRnFBzdX
-        tM/P2+9u2Cicj58KMvIslKfbEp0mR85LNh6SQqvEPrjPKeKkgxuhoU/BXW6Jsg==
-Date:   Tue, 14 Feb 2023 15:44:33 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S230379AbjBNPCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 10:02:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF2A25964;
+        Tue, 14 Feb 2023 07:02:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0FC75B81DE8;
+        Tue, 14 Feb 2023 15:02:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D784EC433EF;
+        Tue, 14 Feb 2023 15:02:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676386926;
+        bh=b4qXj49NhLH+VmXo0IEZTy5nxQfaEwAeDK2n+P1ywmc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EjbzqFnN4aFc6EWXGWB6K1KNNMkCWsFg6UQAksXetf8alFsuLg9B2NxdBhl7zCRS/
+         +gvKhyWOdAcno5Cpl0xcE0ik4HwMh+sSTf9Id5/xc0nl4cuCfc+T0+MTe0gkimr79M
+         2SluDBB4Nin2BdCdt8dGaMygm1gEfnd8YUDfJDu6x7Z4oV5/Wb/fGAIEdFF6swYD+x
+         Spir2LsPdDAVfoPJk3d0pdMwBiPifBiWz2QhOYoxYl51OMzMF8UamYED1XxL9O/yIL
+         mU+Cwn1ZqY0ybO4xi+6z9jMdKNp3niKQ7TZPePXMogTgv/neYzIdoL01U6tIfu1sdS
+         lJZlDUnn4NR3A==
+Date:   Tue, 14 Feb 2023 15:02:02 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document CPOL/CPHA
- support
-Message-ID: <20230214154433.6a421c51@xps-13>
-In-Reply-To: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
-References: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: sound: ep93xx: Add I2S and AC'97
+ descriptions
+Message-ID: <Y+uiaqvdIL4IpRlC@sirena.org.uk>
+References: <20230212232137.299005-1-alexander.sverdlin@gmail.com>
+ <46d5b6af-23e1-4178-83bc-b4a435b1426e@linaro.org>
+ <109868b9492aecaca0a7170cba9fb51e62de7116.camel@gmail.com>
+ <c4f5f733-ce22-2dfa-30f7-cde309eadaf9@linaro.org>
+ <ba51ecefb814115e977d90062ca5fe99859cb327.camel@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="V0fp7JQwCfap5FMO"
+Content-Disposition: inline
+In-Reply-To: <ba51ecefb814115e977d90062ca5fe99859cb327.camel@gmail.com>
+X-Cookie: Serving suggestion.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert, Krzysztof, Rob,
 
-geert+renesas@glider.be wrote on Tue, 14 Feb 2023 15:26:43 +0100:
+--V0fp7JQwCfap5FMO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> SPI EEPROMs typically support both SPI Mode 0 (CPOL=3DCPHA=3D0) and Mode 3
-> (CPOL=3DCPHA=3D1).  However, using the latter is currently flagged as an
-> error by "make dtbs_check", e.g.:
->=20
->     arch/arm/boot/dts/r8a7791-koelsch.dtb: flash@0: Unevaluated propertie=
-s are not allowed ('spi-cpha', 'spi-cpol' were unexpected)
-> 	    From schema: Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->=20
-> Fix this by documenting support for CPOL=3DCPHA=3D1.
->=20
-> Fixes: 233363aba72ac638 ("spi/panel: dt-bindings: drop CPHA and CPOL from=
- common properties")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/D=
-ocumentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index f86255ce13af0871..bb62ac4585822982 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -76,6 +76,13 @@ properties:
->        If "broken-flash-reset" is present then having this property does =
-not
->        make any difference.
-> =20
-> +  spi-cpol: true
-> +  spi-cpha: true
+On Tue, Feb 14, 2023 at 03:26:14PM +0100, Alexander Sverdlin wrote:
+> On Tue, 2023-02-14 at 15:11 +0100, Krzysztof Kozlowski wrote:
 
-I see that spi-cpol and spi-cpha are described in spi-controller.yaml
-which references spi-peripheral-props.yaml, but jedec,spi-nor.yaml
-only references spi-peripheral-props.yaml leading to spi-cpol and
-spi-cpha not being recognized as valid properties.
+> > OK, but then I like the example - if datasheet would use name
+> > "clk_clk_this_is_clk" would you still find it meaningful?
 
-Wouldn't it be cleaner to to have these two properties defined in
-spi-peripheral-props.yaml instead?
+> > Every clock input in clocks is a clock. There is usually no need to say
+> > that a clock is a clock...
 
-> +
-> +dependencies:
-> +  spi-cpol: [ spi-cpha ]
-> +  spi-cpha: [ spi-cpol ]
-> +
->  unevaluatedProperties: false
-> =20
->  examples:
+> I see you point, but this is legacy code (sound/soc/cirrus/ep93xx-i2s.c)
+> which took these names back in platform data times... I also see that
+> rather majority of *i2s*.yaml use something "*clk", so maybe it could
+> be accepted for legacy code?
 
+Even ignoring the whole legacy thing these are industry standard
+names for the clocks - they are pretty much universally named and
+referred to with the clk suffix.  I can't see what removing it
+would accomplish other than reducing clarity.
 
-Thanks,
-Miqu=C3=A8l
+--V0fp7JQwCfap5FMO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPromkACgkQJNaLcl1U
+h9DNdAf+PfDbEGrwAar/U6K2LSnAK3ainnO5AXgzSEuk3ZaWIdkd41jazqjW1RwD
+mBX9lNnquoCvsBYlvcfod9Ccs0+GzPbFDgDkxe+EuJ9HqSucvvy4Z+rtvQ1ID14b
+7TKCESoXoiIBe6V2hcBYk4bG4979bG72yNChMj59BeudkHCSYpz51D+5YfHxRR/W
+BrQVo8Ek09ACp3x8dScwvhKdr3uKWLekbT5rjLRVM1YmuMiHxc1cJwneBnTwNadS
+5NNFNJV3nT5ljqIIyOAmPW3REJzV1mc17XfDeFvHk12GnQzQB45j7KIEnns/oNbT
+Q8pVKJsSeGBT/7ptDNUajI7hZ6SMbg==
+=ZBYi
+-----END PGP SIGNATURE-----
+
+--V0fp7JQwCfap5FMO--
