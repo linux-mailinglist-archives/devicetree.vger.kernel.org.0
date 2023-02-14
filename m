@@ -2,135 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B09CE69665F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7AE69665D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:17:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbjBNORn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 09:17:43 -0500
+        id S233094AbjBNORh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 09:17:37 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232691AbjBNORi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:17:38 -0500
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 765A0298C7;
-        Tue, 14 Feb 2023 06:17:14 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id q13so17512637qtx.2;
-        Tue, 14 Feb 2023 06:17:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=txOq0wK14R9XBDOLfNIXE8XNcrkhv0L/Yt0VKlFt/UI=;
-        b=6OV+BFFv41CLUJv5gqwuC8qmXbuTUBWG+dyqEZnimFnZ4YNCZ6NyFJdNrwfSI1SIzQ
-         +6LgNED30FlNCXYstbE9Nbv87hMn2XjnwHok/OBCaiMJpts2Z36yDke087gFXLlVkuJY
-         TvoO2M0Su1tFkILYrbLFyl4lx8iRl6BnQbFjZQKmty4i2uXJ7BCQfIVYfIJIt+IR69sl
-         MBQbaBM1Le1AXGYGGN2WcUL/GEe8Y6oumxUvC72TX/+oVptX7e0s/GyOzs2+UBucW/xA
-         +PxVTSffIGV+YWM6QfkgsiBZUFQyBjBRcABEuIgYbyYBLvuEisWJEItDvTSXRLcyAobQ
-         PfTw==
-X-Gm-Message-State: AO0yUKUrjaK7prUBMl40vJ1Wf2WZhvOncaNx0UQC211O6UHgAr/F8We1
-        osG/IxrrLGGNc48erODMZ8ca5PAqby2d1OLh
-X-Google-Smtp-Source: AK7set+pxq0D+YoEb+29+sMoAedG0vvgUHsYqGPUJ1Lu7S5meKoDplMTxYo6NKPjXmSbcIpD9e5poA==
-X-Received: by 2002:a05:622a:1648:b0:3b8:6bf8:9584 with SMTP id y8-20020a05622a164800b003b86bf89584mr2857014qtj.35.1676384173039;
-        Tue, 14 Feb 2023 06:16:13 -0800 (PST)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id l12-20020ac8724c000000b003b8238114d9sm11143353qtp.12.2023.02.14.06.16.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 06:16:12 -0800 (PST)
-Received: by mail-yb1-f179.google.com with SMTP id s203so13201798ybc.11;
-        Tue, 14 Feb 2023 06:16:12 -0800 (PST)
-X-Received: by 2002:a05:6902:14d:b0:921:783:f2f5 with SMTP id
- p13-20020a056902014d00b009210783f2f5mr213282ybh.574.1676384172257; Tue, 14
- Feb 2023 06:16:12 -0800 (PST)
+        with ESMTP id S232801AbjBNORg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:17:36 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B4629E09;
+        Tue, 14 Feb 2023 06:17:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676384233; x=1707920233;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=zXTf3MmymcGTYiS/8pw46Ic62YElU9b0FxEiZvXIB58=;
+  b=el8DD9mi6F7KmDJC+KMY5RvnMSPbDTBKp6RkK902MoYb/xVeZAiRo6mp
+   EoZVIARPeb6aJP2y4usa4TBXiABME/vJpEHChFAWXPgmpeb8Nuz8Kr92M
+   giV+8rSjWBhGUAsarwU4Ps7cpDx6t8wSsU28WqbbjxZy81fpSdZtr5Jte
+   /v/PqCHOl0FREVMV+GOJqJmSPRaWBc9ZdwpXLqJi8Sgmk2jFDFj7riG9D
+   01AvXm0MPggLTPOWLW61NTdy3HyTuo523pz6Meq24hPbjDExO8/0oQE0A
+   MT1jXyzubpjh6dOgpwG+zK/xEzlCf9IPrVmyO7EtKR86X4ZftEJjxlV8B
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="328879391"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; 
+   d="scan'208";a="328879391"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2023 06:16:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="671231034"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; 
+   d="scan'208";a="671231034"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.55])
+  by fmsmga007.fm.intel.com with SMTP; 14 Feb 2023 06:16:41 -0800
+Received: by stinkbox (sSMTP sendmail emulation); Tue, 14 Feb 2023 16:16:41 +0200
+Date:   Tue, 14 Feb 2023 16:16:41 +0200
+From:   Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Liu Ying <victor.liu@nxp.com>, marex@denx.de,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        linux-imx@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        kernel@pengutronix.de, LW@karo-electronics.de
+Subject: Re: [PATCH v3 3/6] drm: lcdif: Determine bus format and flags in
+ ->atomic_check()
+Message-ID: <Y+uXyfZLyZ7Bm4j8@intel.com>
+References: <20230213085612.1026538-1-victor.liu@nxp.com>
+ <20230213085612.1026538-4-victor.liu@nxp.com>
+ <1755644.VLH7GnMWUR@steina-w>
 MIME-Version: 1.0
-References: <20230209164016.645399-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230209164016.645399-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Feb 2023 15:16:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWMuNrSY=79wCbgpQU_QGzJkk3mPHm35a0c+dMaSqH0XQ@mail.gmail.com>
-Message-ID: <CAMuHMdWMuNrSY=79wCbgpQU_QGzJkk3mPHm35a0c+dMaSqH0XQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2ul-smarc-som: Enable serial NOR flash
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1755644.VLH7GnMWUR@steina-w>
+X-Patchwork-Hint: comment
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Tue, Feb 14, 2023 at 03:12:55PM +0100, Alexander Stein wrote:
+> Hi Liu,
+> 
+> thanks for the update.
+> 
+> Am Montag, 13. Februar 2023, 09:56:09 CET schrieb Liu Ying:
+> > Instead of determining LCDIF output bus format and bus flags in
+> > ->atomic_enable(), do that in ->atomic_check().  This is a
+> > preparation for the upcoming patch to check consistent bus format
+> > and bus flags across all first downstream bridges in ->atomic_check().
+> > New lcdif_crtc_state structure is introduced to cache bus format
+> > and bus flags states in ->atomic_check() so that they can be read
+> > in ->atomic_enable().
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v2->v3:
+> > * No change.
+> > 
+> > v1->v2:
+> > * Split from patch 2/2 in v1. (Marek, Alexander)
+> > * Add comment on the 'base' member of lcdif_crtc_state structure to
+> >   note it should always be the first member. (Lothar)
+> > 
+> >  drivers/gpu/drm/mxsfb/lcdif_kms.c | 138 ++++++++++++++++++++++--------
+> >  1 file changed, 100 insertions(+), 38 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mxsfb/lcdif_kms.c
+> > b/drivers/gpu/drm/mxsfb/lcdif_kms.c index e54200a9fcb9..294cecdf5439 100644
+> > --- a/drivers/gpu/drm/mxsfb/lcdif_kms.c
+> > +++ b/drivers/gpu/drm/mxsfb/lcdif_kms.c
+> > @@ -30,6 +30,18 @@
+> >  #include "lcdif_drv.h"
+> >  #include "lcdif_regs.h"
+> > 
+> > +struct lcdif_crtc_state {
+> > +	struct drm_crtc_state	base;	/* always be the first 
+> member */
+> 
+> Is it strictly necessary that base is the first member? to_lcdif_crtc_state() 
+> should be able to handle any position within the struct. I mean it's sensible 
+> to put it in first place. But the comment somehow bugs me.
 
-On Thu, Feb 9, 2023 at 5:40 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable Renesas at25ql128a flash connected to QSPI0. Also disable
-> the node from rzfive-smarc-som as it is untested.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-> @@ -179,6 +179,18 @@ eth1_pins: eth1 {
->                          <RZG2L_PORT_PINMUX(18, 5, 1)>; /* IRQ7 */
->         };
->
-> +       qspi0_pins: qspi0 {
-> +               qspi0-data {
-> +                       pins = "QSPI0_IO0", "QSPI0_IO1", "QSPI0_IO2", "QSPI0_IO3";
-> +                       power-source = <1800>;
-> +               };
-> +
-> +               qspi0-ctrl {
-> +                       pins = "QSPI0_SPCLK", "QSPI0_SSL";
-> +                       power-source = <1800>;
-> +               };
-
-I guess there is no need for the subnodes, as all pins use the
-same power-source value?
-
-> +       };
-> +
->         sdhi0_emmc_pins: sd0emmc {
->                 sd0_emmc_data {
->                         pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-> @@ -230,6 +242,38 @@ sd0_mux_uhs {
->         };
->  };
->
-> +&sbc {
-> +       pinctrl-0 = <&qspi0_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
-> +
-> +       flash@0 {
-> +               compatible = "jedec,spi-nor";
-> +               reg = <0>;
-> +               spi-max-frequency = <50000000>;
-> +               spi-tx-bus-width = <1>;
-
-Why not <4>? According to the datasheet, AT25QL128A supports
-quad read and write.
-
-> +               spi-rx-bus-width = <4>;
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+NULL pointers is where these things go bad if it't not at
+offset 0. Unless you're willing to always handle those
+explicitly.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Ville Syrjälä
+Intel
