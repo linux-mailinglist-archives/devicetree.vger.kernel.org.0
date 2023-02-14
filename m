@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 367C9696151
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26ADF696154
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 11:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232715AbjBNKr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 05:47:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54056 "EHLO
+        id S232739AbjBNKr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 05:47:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232693AbjBNKrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:47:22 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A21D265B2
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:46:58 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id co8so11402207wrb.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:46:58 -0800 (PST)
+        with ESMTP id S232723AbjBNKrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 05:47:23 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55CBD22005
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:46:59 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id z13so10661483wmp.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 02:46:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GCo2DziRHqvL6Z7ah+Rl26+iD4J12UJugALebr5QXhQ=;
-        b=YW0B2QmBi6IF1xn8LAx1zAOaBvC9pLzkgQGAS4oz3HP6Hih+8sT9wE4G/NliKSQgvQ
-         CTuRDpI7F+tORRl38bDSCXjf3CmNJrS/sEy+prU7H04qHjINiFV8l/x+KdwEUF1dJaMa
-         mLF7+t85klx4X8CnVQa38+uzbRN9yxNJyganRvponHGi+1AacuHoGfJFgHe0fL6IqpIo
-         pWj7kEB5mY79gveIraJeeu3d1h5nZQzvAht4AU+CL8zoBTyDZHZCdpErUEgRKLZxsaPY
-         c0K3IULZVv+0tTCYZOxfg07cruOKupt/B/UOP1zdyOu6PuVKpyMuPIjBgvglp1rRzYTR
-         KAGg==
+        bh=pnqWFP3S/mYpdJd7jNi0qKprTXE1O3AHQErMdEIJxhE=;
+        b=avOC9QTWD8RCAuWqkP5IuS9rGHaXHiQsbVXP9Nef+4+UVowge+lzXCJm4RFY/LF7f1
+         78u03dnYKdLJbu7mVEg6/P/DwPnILj6uo3hCyEZbKEU8g3WmVRSXwyEYixe3dymoG2TL
+         w8Dw8pOWk/bDpmYRrpq8yJt6SqeZW0eFDEWdIKX+ZFKvYSuuxNQAwVnLQhI4AiOteJzD
+         GxhKWw8PW0Agm1zxGBv0ZywL7ez2nJISExqhw5wGjBzriy7+5z5bSV2bZI6G1mLkOXQQ
+         WM6eBdCTGIoe7OJxXgUVq4JWUK8EzmX2cweo7N+g7N3S9i25je+46ygOyN5mtofJSutg
+         OFqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GCo2DziRHqvL6Z7ah+Rl26+iD4J12UJugALebr5QXhQ=;
-        b=ur1pD10dq+pxDbB+UAC0biYmu7R7SuKWGVZCwjuh9RG+vMwUGuv3wPciN7oXNz/qrm
-         qNObXUvFPqq7NgYE8SM3lUH+e/AnHTrakr40ymR1ASCD9ip/zSCrpmLr6PWugjk1EYWq
-         pAHree4fjT/wXL6KBcDoTTNInAnnk0Qryf//LG9L8fTnUJPTWYBRS7i9EXPXAgrYhQ7J
-         CodmBaZicn/XVQmaOC2UvruGrLiX1WMo4zpeclGFPZ4613n1pwUJymCBM2IMFZsu0uNI
-         FCLxegWm8xzbwdSOPZHcmv8FCxXlWXX9kR8Sckz4Zy8amsvEQZsikAApDBq69kQM2K9H
-         ThUQ==
-X-Gm-Message-State: AO0yUKVptOBsDNkp+/3/udXzfje/SnowYpqASFG3fj21zCw/yYqLArAF
-        bg76y4//yX67gpEPBh71qid12g==
-X-Google-Smtp-Source: AK7set/wyO4Bakvoyo6rJ+ZaDF8LsJzrWzYOpRlXYnsksFiY2pR0nSYWwD71U/NIT9r4DqoTUDN01g==
-X-Received: by 2002:a5d:6b8e:0:b0:2c4:873:16b4 with SMTP id n14-20020a5d6b8e000000b002c4087316b4mr1666642wrx.16.1676371615335;
-        Tue, 14 Feb 2023 02:46:55 -0800 (PST)
+        bh=pnqWFP3S/mYpdJd7jNi0qKprTXE1O3AHQErMdEIJxhE=;
+        b=e78YZ0rGCa/4CAIaEDIfpS/+w7Zvl21C90s+T0LG7i57a3Tion5KthhqvyzA1BMts/
+         jLRP5Ro6B/O60XGqtCe3Tyi1WMgWLH7EVy6wyeNuu6dHDZZlD/5ca+NqcZuEXzO11AzA
+         PsQ1dX+ceaymxQhTjSftMZuwt9Oyva7H1JW3PwtP6f1SW+mkZEaRYalC2BQqX9lvEhxY
+         7Nu3cwmTsGlgNsAjFl/vm/wXVJ3+6/wf9WHgA8HiAa05G5R/Bvwa4PJ1CaYk8/rITKZF
+         SDFaM9gyuejttK05BPsEVDszcPqvr83gWbggmF1XZfPiVmhLP8t8sgnwVxG22Vd3wVQK
+         eZSg==
+X-Gm-Message-State: AO0yUKUMQlKo7D+V7Qj0GG9bhaRToJGjzeDDe5dNMKE+sSGidJugAAlR
+        FLeQCl3sV0RgxSkw2oCFzSzFjg==
+X-Google-Smtp-Source: AK7set9BkT2oW7eg6yytmGLcVa/22qTmI97q+YMv7gYEupY6JIWy48JUWnCsx94FGxn/cd5aOsPD9g==
+X-Received: by 2002:a05:600c:3412:b0:3dd:b0b3:811b with SMTP id y18-20020a05600c341200b003ddb0b3811bmr1565945wmp.31.1676371616865;
+        Tue, 14 Feb 2023 02:46:56 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b003e1f319b87bsm2623719wmq.24.2023.02.14.02.46.53
+        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b003e1f319b87bsm2623719wmq.24.2023.02.14.02.46.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 02:46:55 -0800 (PST)
+        Tue, 14 Feb 2023 02:46:56 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/7] media: dt-bindings: samsung,exynos4210-csis: convert to dtschema
-Date:   Tue, 14 Feb 2023 11:45:04 +0100
-Message-Id: <20230214104508.51955-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 4/7] media: dt-bindings: samsung,exynos4212-fimc-lite: convert to dtschema
+Date:   Tue, 14 Feb 2023 11:45:05 +0100
+Message-Id: <20230214104508.51955-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230214104508.51955-1-krzysztof.kozlowski@linaro.org>
 References: <20230214104508.51955-1-krzysztof.kozlowski@linaro.org>
@@ -78,153 +78,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung S5P/Exynos SoC series MIPI CSI-2 receiver (MIPI
-CSIS) bindings to DT schema.  Changes during conversion - adjust to
-existing DTS and Linux driver:
-1. Add phys and power-domains.
-2. Move samsung,csis-wclk property to the endpoint node.
+Convert the Samsung Exynos SoC series camera host interface (FIMC-LITE)
+bindings to DT schema.  Changes during conversion - adjust to existing
+DTS and Linux driver: add iommus and power-domains.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../media/samsung,exynos4210-csis.yaml        | 170 ++++++++++++++++++
- .../bindings/media/samsung-mipi-csis.txt      |  81 ---------
- MAINTAINERS                                   |   1 +
- 3 files changed, 171 insertions(+), 81 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/samsung-mipi-csis.txt
+ .../bindings/media/exynos-fimc-lite.txt       | 16 -----
+ .../media/samsung,exynos4212-fimc-lite.yaml   | 63 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 64 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/exynos-fimc-lite.txt
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-lite.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml b/Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
+diff --git a/Documentation/devicetree/bindings/media/exynos-fimc-lite.txt b/Documentation/devicetree/bindings/media/exynos-fimc-lite.txt
+deleted file mode 100644
+index 0bf6fb7fbeab..000000000000
+--- a/Documentation/devicetree/bindings/media/exynos-fimc-lite.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Exynos4x12/Exynos5 SoC series camera host interface (FIMC-LITE)
+-
+-Required properties:
+-
+-- compatible	: should be one of:
+-		  "samsung,exynos4212-fimc-lite" for Exynos4212/4412 SoCs,
+-		  "samsung,exynos5250-fimc-lite" for Exynos5250 compatible
+-		   devices;
+-- reg		: physical base address and size of the device memory mapped
+-		  registers;
+-- interrupts	: should contain FIMC-LITE interrupt;
+-- clocks	: FIMC LITE gate clock should be specified in this property.
+-- clock-names	: should contain "flite" entry.
+-
+-Each FIMC device should have an alias in the aliases node, in the form of
+-fimc-lite<n>, where <n> is an integer specifying the IP block instance.
+diff --git a/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-lite.yaml b/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-lite.yaml
 new file mode 100644
-index 000000000000..6e3f730f97ad
+index 000000000000..f80eca0a4f41
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
-@@ -0,0 +1,170 @@
++++ b/Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-lite.yaml
+@@ -0,0 +1,63 @@
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/media/samsung,exynos4210-csis.yaml#
++$id: http://devicetree.org/schemas/media/samsung,exynos4212-fimc-lite.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Samsung S5P/Exynos SoC series MIPI CSI-2 receiver (MIPI CSIS)
++title: Samsung Exynos SoC series camera host interface (FIMC-LITE)
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
 +
++description:
++  Each FIMC device should have an alias in the aliases node, in the form of
++  fimc-lite<n>, where <n> is an integer specifying the IP block instance.
++
 +properties:
 +  compatible:
 +    enum:
-+      - samsung,s5pv210-csis
-+      - samsung,exynos4210-csis
-+      - samsung,exynos4212-csis
-+      - samsung,exynos5250-csis
++      - samsung,exynos4212-fimc-lite
++      - samsung,exynos5250-fimc-lite
 +
 +  reg:
 +    maxItems: 1
 +
-+  '#address-cells':
-+    const: 1
-+
-+  bus-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [2, 4]
-+    description:
-+      Number of data lines supported.
-+
 +  clocks:
-+    maxItems: 2
++    maxItems: 1
 +
 +  clock-names:
 +    items:
-+      - const: csis
-+      - const: sclk_csis
-+
-+  clock-frequency:
-+    default: 166000000
-+    description:
-+      The IP's main (system bus) clock frequency in Hz.
++      - const: flite
 +
 +  interrupts:
 +    maxItems: 1
 +
-+  phys:
++  iommus:
 +    maxItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: csis
 +
 +  power-domains:
 +    maxItems: 1
 +
-+  '#size-cells':
-+    const: 0
-+
-+  vddio-supply:
-+    description: MIPI CSIS I/O and PLL voltage supply (e.g. 1.8V).
-+
-+  vddcore-supply:
-+    description: MIPI CSIS Core voltage supply (e.g. 1.1V).
-+
-+patternProperties:
-+  "^port@[34]$":
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+    description:
-+      Camera input port.
-+
-+    properties:
-+      reg:
-+        enum: [3, 4]
-+
-+      endpoint:
-+        $ref: video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 4
-+
-+          samsung,csis-hs-settle:
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            description: Differential receiver (HS-RX) settle time.
-+
-+          samsung,csis-wclk:
-+            type: boolean
-+            description:
-+              CSI-2 wrapper clock selection. If this property is present external clock
-+              from CMU will be used, or the bus clock if it's not specified.
-+
-+        required:
-+          - data-lanes
-+
-+    required:
-+      - reg
-+
 +required:
 +  - compatible
 +  - reg
-+  - bus-width
 +  - clocks
 +  - clock-names
 +  - interrupts
-+  - vddio-supply
-+  - vddcore-supply
-+
-+anyOf:
-+  - required:
-+      - port@3
-+  - required:
-+      - port@4
-+
-+allOf:
-+  - if:
-+      required:
-+        - samsung,isp-wb
-+    then:
-+      required:
-+        - samsung,sysreg
 +
 +additionalProperties: false
 +
@@ -232,139 +173,24 @@ index 000000000000..6e3f730f97ad
 +  - |
 +    #include <dt-bindings/clock/exynos4.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    csis@11890000 {
-+        compatible = "samsung,exynos4210-csis";
-+        reg = <0x11890000 0x4000>;
-+        clocks = <&clock CLK_CSIS1>,
-+                 <&clock CLK_SCLK_CSIS1>;
-+        clock-names = "csis", "sclk_csis";
-+        assigned-clocks = <&clock CLK_MOUT_CSIS1>,
-+                          <&clock CLK_SCLK_CSIS1>;
-+        assigned-clock-parents = <&clock CLK_MOUT_MPLL_USER_T>;
-+        assigned-clock-rates = <0>, <176000000>;
-+
-+        interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        bus-width = <2>;
-+        power-domains = <&pd_cam>;
-+        phys = <&mipi_phy 2>;
-+        phy-names = "csis";
-+
-+        vddcore-supply = <&ldo8_reg>;
-+        vddio-supply = <&ldo10_reg>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* Camera D (4) MIPI CSI-2 (CSIS1) */
-+        port@4 {
-+            reg = <4>;
-+
-+            endpoint {
-+                remote-endpoint = <&is_s5k6a3_ep>;
-+                data-lanes = <1>;
-+                samsung,csis-hs-settle = <18>;
-+                samsung,csis-wclk;
-+            };
-+        };
++    fimc-lite@12390000 {
++        compatible = "samsung,exynos4212-fimc-lite";
++        reg = <0x12390000 0x1000>;
++        clocks = <&isp_clock CLK_ISP_FIMC_LITE0>;
++        clock-names = "flite";
++        interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
++        power-domains = <&pd_isp>;
++        iommus = <&sysmmu_fimc_lite0>;
 +    };
-diff --git a/Documentation/devicetree/bindings/media/samsung-mipi-csis.txt b/Documentation/devicetree/bindings/media/samsung-mipi-csis.txt
-deleted file mode 100644
-index a4149c9434ea..000000000000
---- a/Documentation/devicetree/bindings/media/samsung-mipi-csis.txt
-+++ /dev/null
-@@ -1,81 +0,0 @@
--Samsung S5P/Exynos SoC series MIPI CSI-2 receiver (MIPI CSIS)
---------------------------------------------------------------
--
--Required properties:
--
--- compatible	  : "samsung,s5pv210-csis" for S5PV210 (S5PC110),
--		    "samsung,exynos4210-csis" for Exynos4210 (S5PC210),
--		    "samsung,exynos4212-csis" for Exynos4212/Exynos4412,
--		    "samsung,exynos5250-csis" for Exynos5250;
--- reg		  : offset and length of the register set for the device;
--- interrupts      : should contain MIPI CSIS interrupt; the format of the
--		    interrupt specifier depends on the interrupt controller;
--- bus-width	  : maximum number of data lanes supported (SoC specific);
--- vddio-supply    : MIPI CSIS I/O and PLL voltage supply (e.g. 1.8V);
--- vddcore-supply  : MIPI CSIS Core voltage supply (e.g. 1.1V);
--- clocks	  : list of clock specifiers, corresponding to entries in
--		    clock-names property;
--- clock-names	  : must contain "csis", "sclk_csis" entries, matching entries
--		    in the clocks property.
--
--Optional properties:
--
--- clock-frequency : The IP's main (system bus) clock frequency in Hz, default
--		    value when this property is not specified is 166 MHz;
--- samsung,csis-wclk : CSI-2 wrapper clock selection. If this property is present
--		    external clock from CMU will be used, or the bus clock if
--		    if it's not specified.
--
--The device node should contain one 'port' child node with one child 'endpoint'
--node, according to the bindings defined in Documentation/devicetree/bindings/
--media/video-interfaces.txt. The following are properties specific to those nodes.
--
--port node
-----------
--
--- reg		  : (required) must be 3 for camera C input (CSIS0) or 4 for
--		    camera D input (CSIS1);
--
--endpoint node
---------------
--
--- data-lanes	  : (required) an array specifying active physical MIPI-CSI2
--		    data input lanes and their mapping to logical lanes; the
--		    array's content is unused, only its length is meaningful;
--
--- samsung,csis-hs-settle : (optional) differential receiver (HS-RX) settle time;
--
--
--Example:
--
--	reg0: regulator@0 {
--	};
--
--	reg1: regulator@1 {
--	};
--
--/* SoC properties */
--
--	csis_0: csis@11880000 {
--		compatible = "samsung,exynos4210-csis";
--		reg = <0x11880000 0x1000>;
--		interrupts = <0 78 0>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--/* Board properties */
--
--	csis_0: csis@11880000 {
--		clock-frequency = <166000000>;
--		vddio-supply = <&reg0>;
--		vddcore-supply = <&reg1>;
--		port {
--			reg = <3>; /* 3 - CSIS0, 4 - CSIS1 */
--			csis0_ep: endpoint {
--				remote-endpoint = <...>;
--				data-lanes = <1>, <2>;
--				samsung,csis-hs-settle = <12>;
--			};
--		};
--	};
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 57d1d6ecb33d..0882e304c8f9 100644
+index 0882e304c8f9..2789c436c875 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -18465,6 +18465,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
- L:	linux-media@vger.kernel.org
+@@ -18466,6 +18466,7 @@ L:	linux-media@vger.kernel.org
  S:	Supported
  Q:	https://patchwork.linuxtv.org/project/linux-media/list/
-+F:	Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
+ F:	Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
++F:	Documentation/devicetree/bindings/media/samsung,exynos4212-fimc-lite.yaml
  F:	drivers/media/platform/samsung/exynos4-is/
  
  SAMSUNG SOC CLOCK DRIVERS
