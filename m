@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0606695FCC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:53:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3B80695FD8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:54:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230370AbjBNJxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 04:53:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
+        id S231411AbjBNJyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 04:54:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231599AbjBNJxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:53:05 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCECC168
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:53:02 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id r2so14987407wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:53:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5h6snxNwqi3yc/6b2X5fU8N8RXpsnnQV8JgbEOCMqVA=;
-        b=Zg+0MnvymGjqP4gxpMQwD9Q3XTn8SalhzG734eNYM7yp3GKshukmBnNbEp7k+/i2kN
-         XKOUlwohSxAf71gjs85dRbNziqx6ara61Gwr9DIb6Saw4j7Ael0VGx8urVl0KRrT3QW1
-         t1TPtdjZ7FIxJw/4t5+T01YofORhJSkOBF+N5mv0XWS2A6C8b+abhByZC6LSYPeVWRbx
-         PSGfsrmsjBgYpv8FRHa03vvPirJQy8ro7ZN/I/gVJPUtJHor5vyFSSuCQRXfur7j3IlV
-         OUp3j9p9HUuiDohBkjQgXXswEeBZcIQppcr7h9Ix0Z4rC9kaSguxckzyoQdf6J6T20pn
-         e7fQ==
+        with ESMTP id S231913AbjBNJyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:54:11 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BC510AB2
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:54:10 -0800 (PST)
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 07A443F5E5
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 09:54:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1676368447;
+        bh=JE/306lAIMQuM4AipngiHVIJwz47UBkV+PO3Q0pMIF8=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=YSErGl23i58Xzo86Vdv1PhFzy1oDj2ufZBY0d4ZQFfbg3KSnNuJT7+BcInlYaHqT2
+         tLyaGbasJay5EzLIZ8BU7JE1iPIOY1gGvLklU6MC64U5eGTU1Q/MTnVUwPVdVx6pof
+         LDdZDmG1ZxQRAH16FXr4Jy6kgrMg+TJt91iuvPPaw7BEQvL6rtxfDPS9qoz/Ihg2VE
+         Qav2WuIt87CmcmPCs2iRIsSsQ5a0ryx1357gToVJEfiG3t8H7WbCn2ZfprYocVFxS4
+         vdOYRkPDfQQAPugW47MV3KFZ2WvZYLOqG9zEO5ZZwxLc/lF8dTsfzXr74GezYa6ULd
+         MDSE6Pn5RKUmA==
+Received: by mail-qt1-f200.google.com with SMTP id l3-20020a05622a174300b003b9b6101f65so9105325qtk.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:54:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5h6snxNwqi3yc/6b2X5fU8N8RXpsnnQV8JgbEOCMqVA=;
-        b=DIRpRVdK/ZKw3cPeRzZpGFljigUIv+34BIcmAWIcgLhLbuF2eHNIk66Bh9NAuH/nu7
-         UAluWwiZAEm/JMua1X/83dwtxgOe87Asj0ZcJEsf5rQU3k1hwpp+2jvcnzcg/Y56vn+V
-         uAPJe0kezRZfoXTLGmlj5PVTl9NSr7UetznqXLqt1KtLNvs+ffgg2cnuirQb2Mihh/uG
-         QF4gISp5TYyQhm0ArjhdOUZ3sQh0ik6tAg5T2jixoZWq1JIyUxCQIrDJqqcQwBB9i9o+
-         4dSaTZ9m56Xf3HHCWgkooY44r7HRFZpEgzqELCAqMJWrP+KjNWdRRqZHtxdo8T9/YXhE
-         zm0w==
-X-Gm-Message-State: AO0yUKUmZeSC37pmwpwbIGA7XKz9B7IxKgITAKT31ja+2X1nPWrwMJxF
-        TAKcLeRmFLvZ3faEhR4HYh9+zA==
-X-Google-Smtp-Source: AK7set8EIkVs9H4ls60SXwzuLE+qdjwduzm8OuB7RL+BMEcLayw78GCkgI0ZA1TUtTydLwSVuXpI9Q==
-X-Received: by 2002:a5d:6b8e:0:b0:2c4:873:16b4 with SMTP id n14-20020a5d6b8e000000b002c4087316b4mr1511933wrx.16.1676368380676;
-        Tue, 14 Feb 2023 01:53:00 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w11-20020adff9cb000000b002c54e9f6bc2sm8137222wrr.77.2023.02.14.01.52.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 01:53:00 -0800 (PST)
-Message-ID: <df464409-9a93-c057-5f66-923a9e24696a@linaro.org>
-Date:   Tue, 14 Feb 2023 10:52:58 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JE/306lAIMQuM4AipngiHVIJwz47UBkV+PO3Q0pMIF8=;
+        b=rhLF1yrRUyXZWKK4vaeVkZwhVbL7ulcJ9wvt5j7TVp6faCff6YwISOnn4WHkP8JcJF
+         JSTXrLbpZZNwDgXWzQTGgcEa6VjXDBFU1+aEd5QYf33Y6YQwx0bMUJSMH6d0RP2FH3MW
+         P+lpcMn4MrnnhcmFNKvztvUu9qqJxUv5IIDwpHD7Jq5hNUVT9YLxTV0ZkndZLPwBOC0P
+         //j6KiGJ2oKJZQXv2/L2nKTu7ELfAQMgIYNTkAZqvjDhWzCWaekwRpSwE/b9KvRMkhdU
+         sAAOtwp8z1ij6TWF86GbTJKcrQZrDJhTZUwb9Wbe8gnYu77FJVq21Vw4ezEXdY5UysP1
+         POjw==
+X-Gm-Message-State: AO0yUKWjjywuqR/X8DOkR0H7P9KMqpi4F/2DL8MN8ZcK8hF25jelrEF2
+        u71+2hilBh+MWUvtxuf2V/R3Jzc1yqYeMMnylhTtQCSWiRWUxHnN3rRpKVZIO27IVTFfaxR8ATa
+        fYUJQVSAQymIYilgKZOZHnNBwSxNoQz8iR2CFan9nk6QxmHxB/cYUlUqkCesFK4Q=
+X-Received: by 2002:a37:be82:0:b0:706:865e:b9a with SMTP id o124-20020a37be82000000b00706865e0b9amr55164qkf.118.1676368438314;
+        Tue, 14 Feb 2023 01:53:58 -0800 (PST)
+X-Google-Smtp-Source: AK7set+P1tLvVDMoWJksLgtZmywCs4zIgltb1yweBhnu/pJ0jYCGp6Zovo2ROkR5fEIrexl5hhzt+EmJIcp1JbGGxLw=
+X-Received: by 2002:a37:be82:0:b0:706:865e:b9a with SMTP id
+ o124-20020a37be82000000b00706865e0b9amr55163qkf.118.1676368438074; Tue, 14
+ Feb 2023 01:53:58 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson
- EIOINTC
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+References: <20221220011247.35560-1-hal.feng@starfivetech.com> <20221220011247.35560-8-hal.feng@starfivetech.com>
+In-Reply-To: <20221220011247.35560-8-hal.feng@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Tue, 14 Feb 2023 10:53:41 +0100
+Message-ID: <CAJM55Z9Y_fF+4Dtu++C_jVS0+ohXp5U0GyuJCBpUh-SpTMGrVA@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
+ VisionFive 2 board device tree
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
-References: <cover.1676289084.git.zhoubinbin@loongson.cn>
- <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,134 +89,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 13:15, Binbin Zhou wrote:
-> Add Loongson Extended I/O Interrupt controller binding with DT schema
-> format using json-schema.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+On Tue, 20 Dec 2022 at 02:12, Hal Feng <hal.feng@starfivetech.com> wrote:
+>
+> From: Emil Renner Berthing <kernel@esmil.dk>
+>
+> Add a minimal device tree for StarFive JH7110 VisionFive 2 board
+> which has version A and version B. Support booting and basic
+> clock/reset/pinctrl/uart drivers.
+>
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
->  .../loongson,eiointc.yaml                     | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+>  arch/riscv/boot/dts/starfive/Makefile         |   1 +
+>  .../jh7110-starfive-visionfive-2-va.dts       |  13 ++
+>  .../jh7110-starfive-visionfive-2-vb.dts       |  13 ++
+>  .../jh7110-starfive-visionfive-2.dtsi         | 111 ++++++++++++++++++
+>  4 files changed, 138 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index 0ea1bc15ab30..79e925a4a227 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -1,2 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
+> +dtb-$(CONFIG_SOC_STARFIVE) += jh7110-starfive-visionfive-2-va.dtb jh7110-starfive-visionfive-2-vb.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts
 > new file mode 100644
-> index 000000000000..88580297f955
+> index 000000000000..188d3fddbe88
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/interrupt-controller/loongson,eiointc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-Drop quotes from bopth.
-
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + */
 > +
-> +title: Loongson Extended I/O Interrupt Controller
+> +/dts-v1/;
+> +#include "jh7110-starfive-visionfive-2.dtsi"
 > +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +/ {
+> +       model = "StarFive VisionFive 2 VA";
+> +       compatible = "starfive,visionfive-2-va", "starfive,jh7110";
+> +};
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts
+> new file mode 100644
+> index 000000000000..f75c10536f84
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + */
 > +
-> +description: |
-> +  This interrupt controller is found on the Loongson-3 family chips and
-> +  Loongson-2K0500 chip and is used to distribute interrupts directly to
-> +  individual cores without forwarding them through the HT's interrupt line.
+> +/dts-v1/;
+> +#include "jh7110-starfive-visionfive-2.dtsi"
 > +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
+> +/ {
+> +       model = "StarFive VisionFive 2 VB";
+> +       compatible = "starfive,visionfive-2-vb", "starfive,jh7110";
+
+Hi Hal,
+
+I just want to double check, is "VisionFive 2 VA" / "visoinfive-2-va"
+and "VisionFive 2 VB" / "visionfive-2-vb" really what you want? I
+still think having these names match what is printed on the silkscreen
+makes it a lot easier for everybody. Even your own releases calls the
+boards "v1.2A" and "v1.3B":
+https://github.com/starfive-tech/VisionFive2/releases/
+
+So I'd suggest
+model = "StarFive VisionFive 2 v1.3B";
+compatible = "starfive,visionfive-2-v1.3b", "starfive,jh7110";
+
+I haven't seen these "VA" and "VB" anywhere else, so if you don't want
+the version numbers and can promise that there will be no incompatible
+future revisions of the boards then maybe just drop the "V". Eg.
+model = "StarFive VisionFive 2 B";
+compatible = "starfive,visionfive-2-b", "starfive,jh7110";
+
+/Emil
+
+> +};
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> new file mode 100644
+> index 000000000000..c60280b89c73
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -0,0 +1,111 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + */
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - loongson,eiointc-1.0
-
-Why not using SoC based compatible? It is preferred.
-
+> +/dts-v1/;
+> +#include "jh7110.dtsi"
+> +#include "jh7110-pinfunc.h"
+> +#include <dt-bindings/gpio/gpio.h>
 > +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 3
-
-You need to describe the items.
-
+> +/ {
+> +       aliases {
+> +               serial0 = &uart0;
+> +       };
 > +
-> +  interrupt-controller: true
+> +       chosen {
+> +               stdout-path = "serial0:115200n8";
+> +       };
 > +
-> +  interrupts:
-> +    description:
-> +      Interrupt source of the CPU interrupts.
-
-You need to describe the items.
-
+> +       cpus {
+> +               timebase-frequency = <4000000>;
+> +       };
 > +
-> +  interrupt-names:
-> +    description:
-> +      List of names for the parent interrupts.
-
-Drop description.
-
-> +    items:
-> +      - const: int0
+> +       memory@40000000 {
+> +               device_type = "memory";
+> +               reg = <0x0 0x40000000 0x1 0x0>;
+> +       };
 > +
-> +  '#interrupt-cells':
-> +    const: 1
+> +       gpio-restart {
+> +               compatible = "gpio-restart";
+> +               gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
+> +               priority = <224>;
+> +       };
+> +};
 > +
-> +  'loongson,eio-num-vecs':
-
-Drop quotes.
-
-> +    description:
-> +      The number of devices supported by the extended I/O interrupt vector.
-
-Why this cannot be inferred from the compatible? Different boards with
-the same SoC support different devices?
-
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop quotes.
-
-> +    minimum: 1
-> +    maximum: 256
+> +&osc {
+> +       clock-frequency = <24000000>;
+> +};
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - 'loongson,eio-num-vecs'
+> +&rtc_osc {
+> +       clock-frequency = <32768>;
+> +};
 > +
-> +unevaluatedProperties: false
+> +&gmac0_rmii_refin {
+> +       clock-frequency = <50000000>;
+> +};
 > +
-> +examples:
-> +  - |
-> +    eiointc: interrupt-controller@1fe11600 {
-> +      compatible = "loongson,eiointc-1.0";
-> +      reg = <0x1fe11600 0x8
-> +             0x1fe11700 0x8
-> +             0x1fe11800 0x8>;
-
-That's not correct syntax. <>, <>, <>
-
+> +&gmac0_rgmii_rxin {
+> +       clock-frequency = <125000000>;
+> +};
 > +
-> +      interrupt-controller;
-> +      #interrupt-cells = <1>;
+> +&gmac1_rmii_refin {
+> +       clock-frequency = <50000000>;
+> +};
 > +
-> +      interrupt-parent = <&cpuintc>;
-> +      interrupts = <3>;
-> +      interrupt-names = "int0";
+> +&gmac1_rgmii_rxin {
+> +       clock-frequency = <125000000>;
+> +};
 > +
-> +      loongson,eio-num-vecs = <128>;
+> +&i2stx_bclk_ext {
+> +       clock-frequency = <12288000>;
+> +};
 > +
-
-Drop stray blank line.
-
-> +    };
+> +&i2stx_lrck_ext {
+> +       clock-frequency = <192000>;
+> +};
 > +
-> +...
-
-Best regards,
-Krzysztof
-
+> +&i2srx_bclk_ext {
+> +       clock-frequency = <12288000>;
+> +};
+> +
+> +&i2srx_lrck_ext {
+> +       clock-frequency = <192000>;
+> +};
+> +
+> +&tdm_ext {
+> +       clock-frequency = <49152000>;
+> +};
+> +
+> +&mclk_ext {
+> +       clock-frequency = <12288000>;
+> +};
+> +
+> +&uart0 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&uart0_pins>;
+> +       status = "okay";
+> +};
+> +
+> +&gpio {
+> +       uart0_pins: uart0-0 {
+> +               tx-pins {
+> +                       pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX, GPOEN_ENABLE, GPI_NONE)>;
+> +                       bias-disable;
+> +                       drive-strength = <12>;
+> +                       input-disable;
+> +                       input-schmitt-disable;
+> +                       slew-rate = <0>;
+> +               };
+> +
+> +               rx-pins {
+> +                       pinmux = <GPIOMUX(6, GPOUT_LOW, GPOEN_DISABLE, GPI_SYS_UART0_RX)>;
+> +                       bias-disable; /* external pull-up */
+> +                       drive-strength = <2>;
+> +                       input-enable;
+> +                       input-schmitt-enable;
+> +                       slew-rate = <0>;
+> +               };
+> +       };
+> +};
+> --
+> 2.38.1
+>
