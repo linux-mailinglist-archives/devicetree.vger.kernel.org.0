@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 798D5695692
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 03:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D33E6956A6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 03:24:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbjBNCSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 21:18:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41998 "EHLO
+        id S229597AbjBNCYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 21:24:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbjBNCSb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 21:18:31 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72082E382;
-        Mon, 13 Feb 2023 18:18:29 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9BF7124E13F;
-        Tue, 14 Feb 2023 10:18:27 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
- 2023 10:18:27 +0800
-Received: from [192.168.1.100] (183.27.97.168) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
- 2023 10:18:26 +0800
-Message-ID: <7ea58081-02d8-ae53-ce49-1fafd5d26a58@starfivetech.com>
-Date:   Tue, 14 Feb 2023 10:18:25 +0800
+        with ESMTP id S229436AbjBNCYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 21:24:17 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC6010413;
+        Mon, 13 Feb 2023 18:24:15 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id A050841DF4;
+        Tue, 14 Feb 2023 02:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1676341453; bh=QrvBfs8ixULKSq9GklOrtp9kQ96xkSGonZTX6j4xO+I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=Cdtf2ZaKvHQBXUIc/Rzfe4J0xUn+wAGKMfauDfgz+5NtVUJUyrI9HcgPOAC8wUNH8
+         3uVGq6k1K5g/FBhqVDdUw7UNc+Q4EQcKlY3+5uj3GvA1pB1gswqmAHhqBNVGJa0tUr
+         81jlXVGF9XhZOikv82qxB38645hNQdsnR8sfxAoTY8vw2kIW/e8zf/qPlQRycQ/0Xp
+         KAkzKN4uv4gD50pGDi24yuluAyQnfwwTkv6RtNvI3P6KV2Skcavl5/aCMm3QqKUmJJ
+         CSCz8i0rvJq5qeTRMdTJtf7I7kSwmdrn4z8NcLSz4enPflO6f7Jp4Bp9ete/kyr09i
+         zZely56M5hsig==
+Message-ID: <0a33fa04-039f-9a7e-f2a3-2a1a6abc98d4@marcan.st>
+Date:   Tue, 14 Feb 2023 11:24:08 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v1 1/4] riscv: dts: starfive: jh7110: Add aon syscon node
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 01/17] dt-bindings: power: apple,pmgr-pwrstate: Add t8112
+ compatible
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230210061713.6449-1-changhuang.liang@starfivetech.com>
- <20230210061713.6449-2-changhuang.liang@starfivetech.com>
- <e94c3d2c-10ab-01a6-ff41-cbca34b88fcf@linaro.org>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <e94c3d2c-10ab-01a6-ff41-cbca34b88fcf@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Kettenis <kettenis@openbsd.org>
+Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-1-cb5442d1c229@jannau.net>
+ <3287867a-456c-ddc3-adbf-90001950c926@linaro.org>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <3287867a-456c-ddc3-adbf-90001950c926@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.168]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/2/13 17:28, Krzysztof Kozlowski wrote:
-> On 10/02/2023 07:17, Changhuang Liang wrote:
->> Add aon syscon node for the Starfive JH7110 SoC. It can be used by
->> other modules such as DPHY.
+On 13/02/2023 20.09, Krzysztof Kozlowski wrote:
+> On 12/02/2023 16:41, Janne Grunau wrote:
+>> From: Hector Martin <marcan@marcan.st>
 >>
->> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->> ---
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 5 +++++
->>  1 file changed, 5 insertions(+)
+>> Add the apple,t8112-pmgr-pwrstate compatible for the Apple M2 SoC.
 >>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> index cfbaff4ea64b..bce3e407ab60 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -251,6 +251,11 @@ soc {
->>  		#size-cells = <2>;
->>  		ranges;
->>  
->> +		aon_syscon: aon_syscon@17010000 {
+>> This goes after t8103. The sort order logic here is having SoC numeric
+>> code families in release order, and SoCs within each family in release
+>> order:
+>>
+>> - t8xxx (Apple HxxP/G series, "phone"/"tablet" chips)
+>>   - t8103 (Apple H13G/M1)
+>>   - t8112 (Apple H14G/M2)
+>> - t6xxx (Apple HxxJ series, "desktop" chips)
+>>   - t6000 (Apple H13J(S)/M1 Pro)
+>>   - t6001 (Apple H13J(C)/M1 Max)
+>>   - t6002 (Apple H13J(D)/M1 Ultra)
+>>
+>> Note that t600[0-2] share the t6000 compatible where the hardware is
+>> 100% compatible, which is usually the case in this highly related set
+>> of SoCs.
+>>
+>> Signed-off-by: Hector Martin <marcan@marcan.st>
+>>
 > 
-> No underscores in node names, generic node names.
+> Missing SoB.
 > 
 
-OK, will change to "syscon".
+I'd rather get an r-b, since this is going back into my tree ;)
 
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
->> +			compatible = "syscon";
-> 
-> Nope. syscon cannot be alone. Run dtbs_check before sending DTS.
-> 
-
-OK, will fix it.
-
-> 
-> Best regards,
-> Krzysztof
-> 
+- Hector
