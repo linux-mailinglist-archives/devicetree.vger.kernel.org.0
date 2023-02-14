@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBBB8696FE6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 22:39:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11B81696FEB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 22:40:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232435AbjBNVjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 16:39:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36216 "EHLO
+        id S232925AbjBNVkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 16:40:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbjBNVjO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 16:39:14 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A237F2914E;
-        Tue, 14 Feb 2023 13:39:13 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id mc25so6095418ejb.13;
-        Tue, 14 Feb 2023 13:39:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tEXEnkugIFdL0Ne4cj0ASOooSzM+NebkL2xQfGimV1I=;
-        b=LOGQQmlrrtyslhxCZq7FxaENf1OLt7gXmBHDXGo2rOO++aHdPrlQs8Zb4MaQZHCggG
-         cGlLOghXahi6skESYI3e9yInWsHBjzSk4h3KPI4tKb3ov0UWbRwy56iSX49jO55ambs4
-         Zo4NOWnoxHZW//xdFQiNYHdCibsGaJdXQhp6sVsSuNSMBb85PXIS/V/TRjN25sQiCtuH
-         bTFfOSkMJKL7JvEZvQVLy1EhrS1vjvBUbHcN6qQRTv6QSYaNK0Px38hWS/15+C91Zutk
-         Aov/JJwRXUXeK8EzenMt5RYDvNsLeAqGxggll+5cQYF/ePpAISZG7IoK/UniflPiRtwS
-         utEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tEXEnkugIFdL0Ne4cj0ASOooSzM+NebkL2xQfGimV1I=;
-        b=kn/nEyjPU53JFUAOhuOPbR8nY4rbzVk5zqh6UeKFWJgWw9VXIjGOUNI0/nYnhOzkLN
-         Yn57VnGQRmlrwENUVIRE2kpAAKo2Pqezzk7oPqGqTlV34SVb+VgzBhflv+pWpBRhmhq0
-         TBPtXqqJMBOox1kSqunO0qtoOClD6Hc7O9DsEL8e5a7QEcgeIv4V0p8PtrnsKuuZbWxi
-         MgSyMGt4WIe+jXcTYNhdAa2SSoQQgjQ10M3vqy1QjDDp/Susx+xHOOwmXFGD9dBVuTbK
-         kUmaDxxM/U2/JE2Wc0QJ/iVFcZ9tkEqkuM6D973csSqwMBYvIDBAsnFZIe0NWgVN7nTF
-         Z7Sg==
-X-Gm-Message-State: AO0yUKUvT8hz8TqNiaqjMUAGj6Y9NLEymK3myA+yIh7QoRmqxgaQFvg5
-        SBGYNwg6vnLv3cISZ275hHY=
-X-Google-Smtp-Source: AK7set/mSD5r81hS62kdH25mU5YugY0DJUWnsLzPYW7DbBkWHEPacBx+dzCRnQ/WPf9ol8uI4vqYfw==
-X-Received: by 2002:a17:906:3c17:b0:8b1:3d04:7b9a with SMTP id h23-20020a1709063c1700b008b13d047b9amr319027ejg.38.1676410751985;
-        Tue, 14 Feb 2023 13:39:11 -0800 (PST)
-Received: from ?IPV6:2a01:c22:7234:f800:b56b:f43d:948c:eede? (dynamic-2a01-0c22-7234-f800-b56b-f43d-948c-eede.c22.pool.telefonica.de. [2a01:c22:7234:f800:b56b:f43d:948c:eede])
-        by smtp.googlemail.com with ESMTPSA id gl11-20020a170906e0cb00b0084d381d0528sm8678168ejb.180.2023.02.14.13.39.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 13:39:11 -0800 (PST)
-Message-ID: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
-Date:   Tue, 14 Feb 2023 22:39:05 +0100
+        with ESMTP id S232458AbjBNVkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 16:40:07 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B7828D31;
+        Tue, 14 Feb 2023 13:40:05 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id DD9E960003;
+        Tue, 14 Feb 2023 21:40:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1676410804;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UQzQSgnN9o1LOREIuibj1ZFyAx16UG7jYybKa3UpZ6Y=;
+        b=K6EdBLbg5UiHwV5SrxM16Ghhup6DyBZVdCMFUAfTPQb7dLjZypNRU0eL/dAwjL8aMzzk8H
+        XPQnEcJ6iPH0bIMyqGQBknC4J5+i6yHrz3HBHDH6n5A/mwQxRtU8pCSyt3I9jad5JlfFeK
+        2a9ZN7xBvYhlRW/xIikeMrt2gci4quq1IhFnQ09MpoDyEB0LEz10qkxF1yQOpyK4Y1bSL0
+        Pe/V0uMrrXEqO839CQak/T9bsuhCIRaD/posrw2jacdDLTgq05aCWdyp86EU3L42PUquOS
+        mh5Z+TChWJE7M1xrKaUBma6bEoNLrItaEyz2/b4i9EDB2hGwYUULhgBMs3JaYg==
+Date:   Tue, 14 Feb 2023 22:40:02 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+Subject: Re: [PATCH v3 1/2] drivers: rtc: add max313xx series rtc driver
+Message-ID: <Y+v/suob0EN1REX4@mail.local>
+References: <20221108122254.1185-1-Ibrahim.Tilki@analog.com>
+ <20221108122254.1185-2-Ibrahim.Tilki@analog.com>
+ <68ddb833-f38e-a05b-82c4-ce12330410a5@alliedtelesis.co.nz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2 0/3] mmc: support setting card detect interrupt from
- drivers and use it in meson-gx
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68ddb833-f38e-a05b-82c4-ce12330410a5@alliedtelesis.co.nz>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On certain platforms like Amlogic Meson gpiod_to_irq() isn't supported
-due to the design of gpio / interrupt controller. Therefore provide an
-option for drivers to pass the card detect interrupt number
-(retrieved e.g. from device tree) to mmc core.
+On 14/02/2023 20:28:05+0000, Chris Packham wrote:
+> Hi Ibrahim,
+> 
+> On 9/11/22 01:22, Ibrahim Tilki wrote:
+> > Adding support for Analog Devices MAX313XX series RTCs.
+> >
+> > Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> > Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> > ---
+> >   drivers/rtc/Kconfig        |   11 +
+> >   drivers/rtc/Makefile       |    1 +
+> >   drivers/rtc/rtc-max313xx.c | 1070 ++++++++++++++++++++++++++++++++++++
+> >   3 files changed, 1082 insertions(+)
+> >   create mode 100644 drivers/rtc/rtc-max313xx.c
+> 
+> What is the current state of this work? I see there are some comments on 
+> this v3 iteration from late last year and I couldn't find any newer 
+> iteration on any mailing list. We've got some new hardware arriving soon 
+> that will have the MAX31331 RTC and I'm keen to see this patch series 
+> land. Is there anything I can do to help it along? I can't be very 
+> specific about when I'll see the new hardware (who can these days), the 
+> last update was "boards are due in March".
+> 
+> For the maintainers on the Cc list once the dust settles how would I get 
+> this supported in a LTS kernel (we're currently using the 5.15 series)? 
+> Or is totally out of the question because it's not just a new device id?
 
-v2:
-- use another mechanism for passing and storing the cd interrupt
-- add patch 2
+This will not happen, you will have to update to the next LTS (which you
+should do anyway)
 
-Heiner Kallweit (3):
-  mmc: core: support setting card detect interrupt from drivers
-  dt-bindings: mmc: meson-gx: support specifying cd interrupt
-  mmc: meson-gx: support platform interrupt as card detect interrupt
-
- .../bindings/mmc/amlogic,meson-gx-mmc.yaml      |  2 +-
- drivers/mmc/core/slot-gpio.c                    | 17 ++++++++++++++++-
- drivers/mmc/host/meson-gx-mmc.c                 |  5 ++++-
- include/linux/mmc/slot-gpio.h                   |  1 +
- 4 files changed, 22 insertions(+), 3 deletions(-)
 
 -- 
-2.39.1
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
