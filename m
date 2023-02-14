@@ -2,81 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBDB0696734
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B27869673A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:44:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232975AbjBNOoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 09:44:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        id S233405AbjBNOot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 09:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbjBNOoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:44:15 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382563586
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:44:14 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id jg8so40686258ejc.6
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:44:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xrQFXlyYQ6BXMoPDycsGZ57c4QKFYnwrzSnOP2uhY5c=;
-        b=cyHfaTfuSm92uaxOOI5uhaqsN3TkKg07lGrEjNCHarVlWiuxKjf7oCRkDQiSrJ/KIk
-         p5VPejZpJlyqc19jdm4yIAtmbX44fCAdI6wqgg9v4YAaok/eEno0mOVacSZXPDhkxp2J
-         qbjHuqtbjrasP+JXVegXZbnKWHgRbS2t1jiCNmn6snPhkXdzrJH9qwW57EH/XhQrC7OJ
-         GsP5zfZEwJWcGtu9B4PtuDmEAtynzF2fLSrayg1qu971n2vEqSYIpVqTOiG566AkV1yM
-         rFM8V/u6mkKZxW8lB4fYFuz9Cm6kI3PSsKOAnaaCx59PjobGSRpOaMstMIaM4G63GO/I
-         oKUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xrQFXlyYQ6BXMoPDycsGZ57c4QKFYnwrzSnOP2uhY5c=;
-        b=1Z6SLW8s93HyRoGvLzJNd2qLXAX9FxKilMPcl3o0oyPArcL4a3uzdzxIZiDglp5oD3
-         kWNhyUUJTSoI/2SZQ87fjY688UPl2bB6g9m95RBMBP2ZZ2hd3ztAxyoSQB/RcJWAT/le
-         D8esYVnojJotyBn6XHkb4yoe/6ETaAU1epSmmx884x0fMmJAgvBOekJP49t/tCh7O2Qw
-         5BevlI2jL9RU1Ve+pbG4X+/tIBBit4IcQCIsBqiaXL374hGlnucaH8osGji8fYM5Qvf3
-         xMCQJvhatoBFFQMs7yevL+z08YJZXqiUiLdE4X6j8cdo4t/YixMs8BFTJ8flfoy3m2nT
-         PCzA==
-X-Gm-Message-State: AO0yUKXDYHqp3T5at2Obm2/LccCgkz/kINQ4ZB1619Ht/6dFbmyiXpU4
-        xGiKxho3NvGoRbk2utVRRfMh6XOG8xB/o614vM8hWg==
-X-Google-Smtp-Source: AK7set/YceEYxxH3TbzkuGJIzLDMG/nIB5TSYUNzc7KRmoGREeVdPIvcdk7XhvgncEgDMo7G5qTrhettsGOZMVxekYo=
-X-Received: by 2002:a17:907:9877:b0:878:4e40:d3e0 with SMTP id
- ko23-20020a170907987700b008784e40d3e0mr1424731ejc.13.1676385852883; Tue, 14
- Feb 2023 06:44:12 -0800 (PST)
+        with ESMTP id S232231AbjBNOos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:44:48 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DAC1D936;
+        Tue, 14 Feb 2023 06:44:41 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E976E40009;
+        Tue, 14 Feb 2023 14:44:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1676385880;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=spc8MwHpcjXgH4ztj2eiUqqTcn2TdRR+RZKvGct5U4M=;
+        b=mLlalOBeJtNca5NZp/JfEJYC3gTbI74xNgXIKae64Y0pqN0RthdmJRJy92EjgKWDF2gIac
+        0EIOt2l9hAGg9qptE6DnUPSV64dZQ/L7+C2zJtMxiBk5FGFkA0pEUPd7tIuGXrN3TpcI9P
+        RFaLVQa4/j4nhJAG2TRkr9alGESGvYb1bYBZNCyRgSyr4QzFv9Z9zjvpmuRwfM2QcCyDpu
+        jdVQrefBvkt5NYZb6pTRrxSNLOxY5HWul5OZAFOzlEg0OIZ7NnK7W2MMoEfeMNiRnFBzdX
+        tM/P2+9u2Cicj58KMvIslKfbEp0mR85LNh6SQqvEPrjPKeKkgxuhoU/BXW6Jsg==
+Date:   Tue, 14 Feb 2023 15:44:33 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document CPOL/CPHA
+ support
+Message-ID: <20230214154433.6a421c51@xps-13>
+In-Reply-To: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
+References: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20230209105628.50294-1-bchihi@baylibre.com> <20230209105628.50294-7-bchihi@baylibre.com>
-In-Reply-To: <20230209105628.50294-7-bchihi@baylibre.com>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Tue, 14 Feb 2023 15:43:36 +0100
-Message-ID: <CAGuA+oqOgprdu0dVcmB=qJd5HJjada3d8ZazMpoG-SBPizzuPQ@mail.gmail.com>
-Subject: Re: [PATCH v14 6/6] arm64: dts: mediatek: mt8195: Add temperature
- mitigation threshold
-To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias, Angelo,
+Hi Geert, Krzysztof, Rob,
 
-Would you please confirm if this patch can be applied?
-and, if it is the case, to which tree it will be applied?
+geert+renesas@glider.be wrote on Tue, 14 Feb 2023 15:26:43 +0100:
 
-Best regards,
-Balsam
+> SPI EEPROMs typically support both SPI Mode 0 (CPOL=3DCPHA=3D0) and Mode 3
+> (CPOL=3DCPHA=3D1).  However, using the latter is currently flagged as an
+> error by "make dtbs_check", e.g.:
+>=20
+>     arch/arm/boot/dts/r8a7791-koelsch.dtb: flash@0: Unevaluated propertie=
+s are not allowed ('spi-cpha', 'spi-cpol' were unexpected)
+> 	    From schema: Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>=20
+> Fix this by documenting support for CPOL=3DCPHA=3D1.
+>=20
+> Fixes: 233363aba72ac638 ("spi/panel: dt-bindings: drop CPHA and CPOL from=
+ common properties")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/D=
+ocumentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index f86255ce13af0871..bb62ac4585822982 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -76,6 +76,13 @@ properties:
+>        If "broken-flash-reset" is present then having this property does =
+not
+>        make any difference.
+> =20
+> +  spi-cpol: true
+> +  spi-cpha: true
+
+I see that spi-cpol and spi-cpha are described in spi-controller.yaml
+which references spi-peripheral-props.yaml, but jedec,spi-nor.yaml
+only references spi-peripheral-props.yaml leading to spi-cpol and
+spi-cpha not being recognized as valid properties.
+
+Wouldn't it be cleaner to to have these two properties defined in
+spi-peripheral-props.yaml instead?
+
+> +
+> +dependencies:
+> +  spi-cpol: [ spi-cpha ]
+> +  spi-cpha: [ spi-cpol ]
+> +
+>  unevaluatedProperties: false
+> =20
+>  examples:
+
+
+Thanks,
+Miqu=C3=A8l
