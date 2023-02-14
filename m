@@ -2,157 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC43F696387
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E416269638A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:33:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbjBNMdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 07:33:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52676 "EHLO
+        id S229864AbjBNMdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 07:33:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232240AbjBNMc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:32:57 -0500
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 229107284
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:32:52 -0800 (PST)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-52ecd867d89so155991847b3.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:32:52 -0800 (PST)
+        with ESMTP id S231815AbjBNMde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:33:34 -0500
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D5D61A9;
+        Tue, 14 Feb 2023 04:33:28 -0800 (PST)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-169ba826189so18810069fac.2;
+        Tue, 14 Feb 2023 04:33:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxKCQRN8kliMAds7bxWTjhzMHLjHvEjXGywgi7rr6WQ=;
-        b=rDAO2a38P7zgbx3Y2kJ3cH2rJGvgmDUtI0kxkXaLWSE8wUnGuoVNMk75UaizZ0MRld
-         2lKNqohuKqTYlQYOylf9VEZNma/yc1FDnQhDCTvnsZML7p7u9hndmVlWZ/wP6rRAjSoF
-         q8H20DJI5ndfFdULUU0WdpatDZ5pHlaXTwNGzNW3qrN6IXTGcQffw+NM/NlbX8HRa+CM
-         rAQVSEKkV436220SmU1TeyciTKg/oWERjAVwqME1oSH9J0Iv5CSouGCqlzhrnk/OTEGp
-         i93wmZTWZxLze5M+/EYeLpggNjjGY9wKL9uQZudgpHzUETAMxL6kW/dGmF45egSLKLnH
-         +QIg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IgtohfWeywZ5iaLHdRCZwUltQwqi6R7eJSFSt3jFt1A=;
+        b=ahSpfx86XqAtB35bv9vGGoPsTo6tRJw76mR/f9pqZP5h4at93ToHPqfDTyaujxVltZ
+         Eaeq4YwGMoMFgq5sBAP6R9uK9FGJCoF5BxbILFUoH9jTSuFba91stliOkUWYSizcriZU
+         CcBZyHeZiccpZIfU4+Rslmx+q4x5tRv2OA58BhREFE1JoFGirc1DxCx8NhivzUv/TAek
+         ejwkNT8SCa/mmHY5WjC7DuXsXHqujkarTBPdeV83IU1FQfj80u9nvShiVEVPKOm1WA9N
+         POLQ43bm4XNDmVLZuUyw3DSxGIGd0NXjQ7DV0fZhYQ1yOjfnL3qFaUzYoLEFqcImKnfT
+         JxJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oxKCQRN8kliMAds7bxWTjhzMHLjHvEjXGywgi7rr6WQ=;
-        b=vGw3nYxNwR/FybLcNC50ZfD2pSCTN0Tr3WK461baszOMy1HV8zAZZRnLtPXg8PJfJ0
-         Wz5HTQoXUWgQOdMD8eVSMWOI/OIKgRkP0icKxh7J/F0Nb6fGMtbt5lSQDPrITHx1Zc8z
-         NrgQIV93lRdCEcx0F9c5x75bQpDbixbestzULIbHpz59er5a/VqeP2dzcAcITFRCDf1g
-         J0fTm7VwN8cxS00V6xMyyyGSFA6Y8mUP/TBnJCJSacl/020zTeHz9cZ7FchWvweYpkfA
-         udiFgXquHMFhfbVhqdiQy23DRK0R+RBG14vUgq0ldJFVpQhEjEE87irjEZkbMrVfqotS
-         VMUw==
-X-Gm-Message-State: AO0yUKUL/O83VAFbgj/xRtiyqruxMiDLwshJGlA3d1uvW2/LwI5y4zGL
-        /0pxqzconAjztNbkaL2ywr4xVEIj3KJquU0IrRrvDg==
-X-Google-Smtp-Source: AK7set+00u4h+tFkq8Glzv8b9Z3L7I7jdWbbm+6ltv7HBmZJJqJvtilmdl7vCzM+yNUvcFDoJrAKD3a0h3t/rRZSoMU=
-X-Received: by 2002:a0d:cc8c:0:b0:52f:3c7:e64c with SMTP id
- o134-20020a0dcc8c000000b0052f03c7e64cmr236460ywd.503.1676377971221; Tue, 14
- Feb 2023 04:32:51 -0800 (PST)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IgtohfWeywZ5iaLHdRCZwUltQwqi6R7eJSFSt3jFt1A=;
+        b=rj73OgSz1e8Tbj/QI8xlupS2+0qlCa3nA2Vd8Rx1PJ9HzPJdZPeBIUuNjzERKmh5sG
+         KessbfsgXwjAjHL9yB1ozky1NHIE/U0VeKFLgWJExaffq0LDPhOPJC16R0t5QPr/Of1H
+         Rlhuo8gPToQKsFF0wJC8fjfWo89RVgo0eCHsiynGx/yvcXVQXLtJy6waLUIsxBHuKh2v
+         7w5bIO9IXm8ZwsTCjsuSWVsTj0gv2GkbkwtZ31ZCYhpouW+QLcvQ9vCjosVPvMHk1lP6
+         hGepAnactzhflArrtCJZQHXTXUaAL0ySVvW3yM2i7F+QekfNYG6SmbkPRfZI0dPx/t+Y
+         do/w==
+X-Gm-Message-State: AO0yUKVWoBMmc0BiA97POxNcircPHlaD1+tLYfRduojebvnzoliN7+fH
+        WIcmQDK2VuSUhHJ/927KVWZzPqY5tc0uwVM/+Ac=
+X-Google-Smtp-Source: AK7set9VmI1aC0fo8MVkfJmUvsrhVzrosS4PhPHb5s/dRPxRa4h1Qrdsu5DgtiwOBWMoPGqOsYrPiPeQ2DIJtDuU9bQ=
+X-Received: by 2002:a05:6870:9615:b0:169:fabf:b222 with SMTP id
+ d21-20020a056870961500b00169fabfb222mr3882911oaq.83.1676378007140; Tue, 14
+ Feb 2023 04:33:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20230213-sm6350-camcc-runtime_pm-v3-0-d35e0d833cc4@fairphone.com> <20230213-sm6350-camcc-runtime_pm-v3-1-d35e0d833cc4@fairphone.com>
-In-Reply-To: <20230213-sm6350-camcc-runtime_pm-v3-1-d35e0d833cc4@fairphone.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 14 Feb 2023 14:32:40 +0200
-Message-ID: <CAA8EJprzOLuLU8_tvRtQ9bX8M9xOqMFFnjuj-DwGz+24XPAQFg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] clk: qcom: camcc-sm6350: add pm_runtime support
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230211104915.116253-1-arinc.unal@arinc9.com> <20230211104915.116253-2-arinc.unal@arinc9.com>
+In-Reply-To: <20230211104915.116253-2-arinc.unal@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 14 Feb 2023 13:33:15 +0100
+Message-ID: <CAMhs-H-=Xgv-6OVji13R=kJhQr46cn661nL=Y3DwPc4fwZQxNA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] mips: dts: ralink: mt7621: add port@5 as CPU port
+To:     arinc9.unal@gmail.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 at 13:01, Luca Weiss <luca.weiss@fairphone.com> wrote:
+On Sat, Feb 11, 2023 at 11:50 AM <arinc9.unal@gmail.com> wrote:
 >
-> Make sure that we can enable and disable the power domains used for
-> camcc when the clocks are and aren't used.
+> From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
 >
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> On MT7621AT, MT7621DAT, and MT7621ST SoCs, port 5 of the MT7530 switch is
+> connected to the second MAC of the SoC as a CPU port. Add the port and se=
+t
+> up the second MAC on the bindings. Revert PHY muxing on GB-PC1.
+>
+> There's an external PHY connected to the second MAC of the SoC on GB-PC2,
+> therefore, disable port@5 for this device.
+>
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
 > ---
->  drivers/clk/qcom/camcc-sm6350.c | 25 ++++++++++++++++++++++++-
->  1 file changed, 24 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/qcom/camcc-sm6350.c b/drivers/clk/qcom/camcc-sm6350.c
-> index acba9f99d960..fc5532e2ee5b 100644
-> --- a/drivers/clk/qcom/camcc-sm6350.c
-> +++ b/drivers/clk/qcom/camcc-sm6350.c
-> @@ -7,6 +7,8 @@
->  #include <linux/clk-provider.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_clock.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/regmap.h>
->
->  #include <dt-bindings/clock/qcom,sm6350-camcc.h>
-> @@ -1869,6 +1871,19 @@ MODULE_DEVICE_TABLE(of, camcc_sm6350_match_table);
->  static int camcc_sm6350_probe(struct platform_device *pdev)
->  {
->         struct regmap *regmap;
-> +       int ret;
-> +
-> +       ret = devm_pm_runtime_enable(&pdev->dev);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       ret = devm_pm_clk_create(&pdev->dev);
-> +       if (ret < 0)
-> +               return ret;
+>  .../boot/dts/ralink/mt7621-gnubee-gb-pc1.dts  | 16 +++++-----------
+>  .../boot/dts/ralink/mt7621-gnubee-gb-pc2.dts  |  9 ++++++++-
+>  arch/mips/boot/dts/ralink/mt7621.dtsi         | 19 ++++++++++++++++++-
+>  3 files changed, 31 insertions(+), 13 deletions(-)
 
-This makes me wonder, what is the use for the pm_clk in your case? The
-driver doesn't seem to use of_pm_clk_add_clk(), of_pm_clk_add_clks()
-or pm_clk_add_clk(). So pm_clk_suspend() and pm_clk_resume() do
-nothing.
+Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-> +
-> +       ret = pm_runtime_get(&pdev->dev);
-> +       if (ret)
-> +               return ret;
->
->         regmap = qcom_cc_map(pdev, &camcc_sm6350_desc);
->         if (IS_ERR(regmap))
-> @@ -1879,14 +1894,22 @@ static int camcc_sm6350_probe(struct platform_device *pdev)
->         clk_agera_pll_configure(&camcc_pll2, regmap, &camcc_pll2_config);
->         clk_fabia_pll_configure(&camcc_pll3, regmap, &camcc_pll3_config);
->
-> -       return qcom_cc_really_probe(pdev, &camcc_sm6350_desc, regmap);
-> +       ret = qcom_cc_really_probe(pdev, &camcc_sm6350_desc, regmap);
-> +       pm_runtime_put(&pdev->dev);
-> +
-> +       return ret;
->  }
->
-> +static const struct dev_pm_ops camcc_pm_ops = {
-> +       SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
-> +};
-> +
->  static struct platform_driver camcc_sm6350_driver = {
->         .probe = camcc_sm6350_probe,
->         .driver = {
->                 .name = "sm6350-camcc",
->                 .of_match_table = camcc_sm6350_match_table,
-> +               .pm = &camcc_pm_ops,
->         },
->  };
->
->
-> --
-> 2.39.1
->
-
-
--- 
-With best wishes
-Dmitry
+Thanks,
+    Sergio Paracuellos
