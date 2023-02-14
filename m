@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43BF86961F0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 12:07:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4156961F2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 12:08:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbjBNLHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 06:07:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44274 "EHLO
+        id S232089AbjBNLH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 06:07:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231186AbjBNLHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 06:07:04 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F3726CFF
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 03:06:17 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id o18so15232181wrj.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 03:06:17 -0800 (PST)
+        with ESMTP id S232795AbjBNLHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 06:07:31 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C40274BD
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 03:06:42 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id az4-20020a05600c600400b003dff767a1f1so11254104wmb.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 03:06:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xC/enc1+3dAC9F4VSPgmL5u2+R8Ob6BnSNDwUJ8Loeg=;
-        b=TcoMKfo65P2Mq7SCSI6eeLVdPQcV+nJHhEPLTCiP3wm8OeQqW8rmBlwqFzWFCUr0nS
-         OPRJdZALmLtqlz2zlcUF4AwLJV9ONSspsSm+g5qdAZlKcTjBNSA3rPuRxG8mT9/CGRvN
-         TXX3Dmy+qcpbzhFhUtURNL+Tm6hDN+2nrZ+EwB9ZfT4zSmY2bUW7Hu1JjaEq4JwW2HFs
-         jNyVHwIY3p0XG47+aT3leIMCp3bQ8MLwYWEar+xTTP28R8fkx9dzkxzcpArTxZ/NBnvL
-         TpSpyjxDeke7tTEBu+rqge0LC8SAdxMPvKh9xEYFuJGckjVfM/qm84RH2XMmgP4d64gn
-         /ldw==
+        bh=UK/C7205cqjtXHN0YFXcPqVqX3FVcOGt0olsnjJ5Yyk=;
+        b=CLgo1ipcM0SOZ3IabdPYMw8o2rBkf3OFTn96N/o33hAXz4gmWafi8sAF7sArwncwKg
+         8ynnhTpG76ArNnlfoNRT3CXitVksvGo1O198b7k+WbfQNWhYQoLD+wyKsjk7bOxocMvN
+         VTxXamd0Piu38SLMWqJfafPsUGmNdnWv443uSQn3dWkG73e70GqfZou6sQ6uTfDh2Zds
+         mHZRAYn0y+ADObOQKpHUHZfjNXQBxX2iPjbfAeBzinqKZyToRVQCp9xdlNBRUHTLfs7x
+         n5Qv+iiJTZijgOhW1tM9zK28gJKbfjokvfyNrnbMXcljzciBhyl2Gpy3UlsBq62t8HWe
+         1I8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xC/enc1+3dAC9F4VSPgmL5u2+R8Ob6BnSNDwUJ8Loeg=;
-        b=5S1SfNGzKgJatsbrRNevl1MioSzhZKR/AfdAmdT/sFuW3SYixrrho6aMaza3e6H4Lv
-         /vXp39Gnf4nZ0x+qhK8RxT4yVatE6yDNYlt1kPZ12yWg/d1chy2eeyFlohBNhiTDWojo
-         spdxnMf/GlQYTtx69ucdz4ybt+4LKocPqpZTlJLL7QTgxer4dSF1w8u/XUIQvFEx3Xh+
-         JuPGSoAVx1y44iGIK/+sUH7LRdfg5rwxugweIhORXE4QGbGhSE2T1Y4uGhM6dHKpg/LQ
-         80JSqy1Oi7nB5QfsJ2v6tcUIIUYWiSeTni9lq52PBlw2uSbO23jsaPbGhjKDuy/75ecJ
-         XYIg==
-X-Gm-Message-State: AO0yUKW4SUp5YFcCyXF8ivQgoPeXSgrA68zjtzOjco4UWSVqt+9AdhiY
-        wZnD+SHf35KLMc05Nd4QqNRw+w==
-X-Google-Smtp-Source: AK7set8lRW1LYIFVwoC+aZJuCc67pPRHEMEIC1jSo50Pg5xuxW3UPvpIAzwCwYJ5D9LFvEW9vWb0Yg==
-X-Received: by 2002:a5d:4b41:0:b0:2c5:5298:893f with SMTP id w1-20020a5d4b41000000b002c55298893fmr2069989wrs.43.1676372773772;
-        Tue, 14 Feb 2023 03:06:13 -0800 (PST)
+        bh=UK/C7205cqjtXHN0YFXcPqVqX3FVcOGt0olsnjJ5Yyk=;
+        b=vnMWY6Ux5ClEeUaKdE+cZZeexxIhFiNKNxiVOGBqvbMpIPW2wbZO+p0WeCaoZr+uNf
+         r/j7q4Okctu5ZfRT93JMrdYxuq2vIkB2+CdIxpCO7z0oM411P6aFrmDK+WAKefVgiEsK
+         7u9PWrPJ0e7A5wJmKa4ik6wwXqn9xzNOkHkfnoj1No/mHKERlyJY/eFnCtC3eZWJr6ir
+         ZATmyloqkJohp5E5nUGsNu69SwaAXPcssF9G5R4UHI9KKoxpbX0CzdkV1ZuWyU5VHAhk
+         +V86lfBW5T+6Y9ebimuduwiyek6va7AQeUGW6S8gGx+i6bkvUnRlwWiTTzsgwIwTAh6F
+         QCeg==
+X-Gm-Message-State: AO0yUKXAbLjMADy28FIUo2sJhOaLwsWdhQQ+TMIfOVF2hMXLFV0pq+EQ
+        3hEbf9TRqRwTXKf2pA8y630RnA==
+X-Google-Smtp-Source: AK7set+WCTmbzixkGjfUeksuhVmxtXE7BRFOvctWQ5bUWqHhYKmxbb7uulPFzP3KWazlMzskbho9og==
+X-Received: by 2002:a05:600c:3310:b0:3dc:405b:99bf with SMTP id q16-20020a05600c331000b003dc405b99bfmr1732294wmp.15.1676372787011;
+        Tue, 14 Feb 2023 03:06:27 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q9-20020a5d6589000000b002c559405a1csm4498870wru.20.2023.02.14.03.06.09
+        by smtp.gmail.com with ESMTPSA id l16-20020a05600c2cd000b003daffc2ecdesm21019728wmc.13.2023.02.14.03.06.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 03:06:13 -0800 (PST)
-Message-ID: <c16693a0-d28f-b83f-e2b9-6e4451b68d7c@linaro.org>
-Date:   Tue, 14 Feb 2023 12:06:07 +0100
+        Tue, 14 Feb 2023 03:06:26 -0800 (PST)
+Message-ID: <ae66a024-1901-f7db-e64b-0ceb51131419@linaro.org>
+Date:   Tue, 14 Feb 2023 12:06:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 05/16] dt-bindings: interrupt-controller: apple,aic2:
- Add apple,t8112-aic compatible
+Subject: Re: [PATCH v2 06/16] dt-bindings: iommu: apple,sart: Add
+ apple,t8112-sart compatible string
 Content-Language: en-US
 To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
         Sven Peter <sven@svenpeter.dev>,
@@ -64,12 +64,11 @@ To:     Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Mark Kettenis <kettenis@openbsd.org>
 Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230202-asahi-t8112-dt-v2-0-22926a283d92@jannau.net>
- <20230202-asahi-t8112-dt-v2-5-22926a283d92@jannau.net>
+ <20230202-asahi-t8112-dt-v2-6-22926a283d92@jannau.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230202-asahi-t8112-dt-v2-5-22926a283d92@jannau.net>
+In-Reply-To: <20230202-asahi-t8112-dt-v2-6-22926a283d92@jannau.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,46 +81,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/02/2023 12:03, Janne Grunau wrote:
-> The Apple M2 SoC uses AICv2 and is compatible with the existing driver.
-> Add its per-SoC compatible.
-> Since multi-die versions of the M2 are not expected decrease
-> '#interrupt-cells' to 3 for apple,t8112-aic. This is seamlessly handled
-> inside the driver.
+> "apple,t8112-sart" as found on the Apple M2 SoC appears to be SART3 as
+> well. To allow for later discovered incompatibilities use
+> '"apple,t8112-sart", "apple,t6000-sart"' as compatible string.
 > 
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
 
-Thank you for your patch. There is something to discuss/improve.
 
->  
-> -      The 2nd cell contains the die ID.
-> +      The 2nd cell contains the die ID (only present on apple,t6000-aic).
->  
->        The next cell contains the interrupt number.
->          - HW IRQs: interrupt number
-> @@ -110,6 +113,20 @@ additionalProperties: false
->  allOf:
->    - $ref: /schemas/interrupt-controller.yaml#
->  
-> +if:
-
-This should be under "allOf" (as next entry so "  - if:").
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: apple,t8112-aic
-> +then:
-> +  properties:
-> +    '#interrupt-cells':
-> +      const: 3
-> +else:
-> +  properties:
-> +    '#interrupt-cells':
-> +      const: 4
-> +
->  examples:
->    - |
->      soc {
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
