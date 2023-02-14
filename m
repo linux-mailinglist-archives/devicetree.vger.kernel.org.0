@@ -2,114 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ADC06970CA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 23:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3F06970ED
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 23:54:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232067AbjBNWg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 17:36:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49062 "EHLO
+        id S230284AbjBNWyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 17:54:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232054AbjBNWg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 17:36:58 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D17CB2FCE9
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 14:36:54 -0800 (PST)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id F2D6D2C049F;
-        Wed, 15 Feb 2023 11:36:51 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1676414211;
-        bh=cyDTL/yYDuqCMGb1II30ndoGbPuz+1qrXx6xn9H+EoU=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=bYFpDGLzLZIkgkVR+s0EQFhtgEG3NKIAt5CpBBYwxNP/4OjpiKrAnH1N50xE8kDF+
-         WWLDl5XtUA2yNtZ6Ha7/UqwEqcYCZS/f0CbfLLz20rciXa4r+K3dAyiZ3r+gY4L2eA
-         xksK5CrdbW9YWKW+lYyFg2/sjeb2r1NeeuWGVnry34JE/eYrhANd0+LO7Dj2a16Tcx
-         1ja/8Qu/ZrO7h2UzM6wWd6nUxCQFq+W9/+AeFcUE6LmO6ENOVjbw6Rx2IwoG8n3pA5
-         V+mOfckKhSxXF7CIfXsotWLNBJ6Y1keGxTIfEnFMqiAnrCHprMOZu+765vesdxyxHI
-         7pTtraI0SmdVA==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B63ec0d030002>; Wed, 15 Feb 2023 11:36:51 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.45; Wed, 15 Feb 2023 11:36:51 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.045; Wed, 15 Feb 2023 11:36:51 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Subject: Re: [PATCH v3 1/2] drivers: rtc: add max313xx series rtc driver
-Thread-Topic: [PATCH v3 1/2] drivers: rtc: add max313xx series rtc driver
-Thread-Index: AQHZQLLY3ijYBbo43E6McZa87qvtIa7OHnUAgAAP3wA=
-Date:   Tue, 14 Feb 2023 22:36:51 +0000
-Message-ID: <8ffabc0d-73ca-27c6-5244-95e29901c60a@alliedtelesis.co.nz>
-References: <20221108122254.1185-1-Ibrahim.Tilki@analog.com>
- <20221108122254.1185-2-Ibrahim.Tilki@analog.com>
- <68ddb833-f38e-a05b-82c4-ce12330410a5@alliedtelesis.co.nz>
- <Y+v/suob0EN1REX4@mail.local>
-In-Reply-To: <Y+v/suob0EN1REX4@mail.local>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E5D9E7D68209B645A1B54DA70F7B870B@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S231905AbjBNWyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 17:54:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7AF29163
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 14:54:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8E6F0B81DB0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 22:54:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BB96C433D2;
+        Tue, 14 Feb 2023 22:54:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676415250;
+        bh=F1m163MfqlLt4FsZiQ/MfsbF4sF9/xANQE+DKZufALg=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=AHcgK2/o5YHIAetDjpO3DX40HBqcWBf3GjnF7U/ZcISKr6KuuC1hM6K8phuk+z6lz
+         DctcyupKOB8kxebRRH8Khr7zhqfuZZlmuMAOUl/gHUH6WHilykFVVUv0N9+oJcKUJX
+         55Viplsp5rug8/5ZI5JT5+7LpWkEeJiFBo6mY57EPrv+7M8X+OuW56Wey7Eywjx/qz
+         QfM6jst3+m+m20Wh5GZTlAQNpl3MFaZ4qCblK0YzlG8IQO6LHvQ9iho/at7OzMSyhb
+         BwNYrSVEhxT4NC92gOBsCyQv75PWmUeAH3NLYdVTvJnCx2fuByiHXcNk/Pnjo/whSU
+         zIE5FBjk0x+Rw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Linux-DT <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+In-Reply-To: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>
+References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: (subset) [PATCH v3 0/2] ASoC: dt-bindings: renesas,rsnd.yaml:
+ add R-Car Gen4 support
+Message-Id: <167641524728.3158779.5732216902897782213.b4-ty@kernel.org>
+Date:   Tue, 14 Feb 2023 22:54:07 +0000
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=U+ns8tju c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=m04uMKEZRckA:10 a=gAnH3GRIAAAA:8 a=_pSrP_Kwfl6zvDA_82YA:9 a=QEXdDO2ut3YA:10 a=oVHKYsEdi7-vN-J5QA_j:22
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxNS8wMi8yMyAxMDo0MCwgQWxleGFuZHJlIEJlbGxvbmkgd3JvdGU6DQo+IE9uIDE0LzAy
-LzIwMjMgMjA6Mjg6MDUrMDAwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IEhpIElicmFoaW0s
-DQo+Pg0KPj4gT24gOS8xMS8yMiAwMToyMiwgSWJyYWhpbSBUaWxraSB3cm90ZToNCj4+PiBBZGRp
-bmcgc3VwcG9ydCBmb3IgQW5hbG9nIERldmljZXMgTUFYMzEzWFggc2VyaWVzIFJUQ3MuDQo+Pj4N
-Cj4+PiBTaWduZWQtb2ZmLWJ5OiBJYnJhaGltIFRpbGtpIDxJYnJhaGltLlRpbGtpQGFuYWxvZy5j
-b20+DQo+Pj4gU2lnbmVkLW9mZi1ieTogWmV5bmVwIEFyc2xhbmJlbnplciA8WmV5bmVwLkFyc2xh
-bmJlbnplckBhbmFsb2cuY29tPg0KPj4+IC0tLQ0KPj4+ICAgIGRyaXZlcnMvcnRjL0tjb25maWcg
-ICAgICAgIHwgICAxMSArDQo+Pj4gICAgZHJpdmVycy9ydGMvTWFrZWZpbGUgICAgICAgfCAgICAx
-ICsNCj4+PiAgICBkcml2ZXJzL3J0Yy9ydGMtbWF4MzEzeHguYyB8IDEwNzAgKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrDQo+Pj4gICAgMyBmaWxlcyBjaGFuZ2VkLCAxMDgyIGlu
-c2VydGlvbnMoKykNCj4+PiAgICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ydGMvcnRjLW1h
-eDMxM3h4LmMNCj4+IFdoYXQgaXMgdGhlIGN1cnJlbnQgc3RhdGUgb2YgdGhpcyB3b3JrPyBJIHNl
-ZSB0aGVyZSBhcmUgc29tZSBjb21tZW50cyBvbg0KPj4gdGhpcyB2MyBpdGVyYXRpb24gZnJvbSBs
-YXRlIGxhc3QgeWVhciBhbmQgSSBjb3VsZG4ndCBmaW5kIGFueSBuZXdlcg0KPj4gaXRlcmF0aW9u
-IG9uIGFueSBtYWlsaW5nIGxpc3QuIFdlJ3ZlIGdvdCBzb21lIG5ldyBoYXJkd2FyZSBhcnJpdmlu
-ZyBzb29uDQo+PiB0aGF0IHdpbGwgaGF2ZSB0aGUgTUFYMzEzMzEgUlRDIGFuZCBJJ20ga2VlbiB0
-byBzZWUgdGhpcyBwYXRjaCBzZXJpZXMNCj4+IGxhbmQuIElzIHRoZXJlIGFueXRoaW5nIEkgY2Fu
-IGRvIHRvIGhlbHAgaXQgYWxvbmc/IEkgY2FuJ3QgYmUgdmVyeQ0KPj4gc3BlY2lmaWMgYWJvdXQg
-d2hlbiBJJ2xsIHNlZSB0aGUgbmV3IGhhcmR3YXJlICh3aG8gY2FuIHRoZXNlIGRheXMpLCB0aGUN
-Cj4+IGxhc3QgdXBkYXRlIHdhcyAiYm9hcmRzIGFyZSBkdWUgaW4gTWFyY2giLg0KPj4NCj4+IEZv
-ciB0aGUgbWFpbnRhaW5lcnMgb24gdGhlIENjIGxpc3Qgb25jZSB0aGUgZHVzdCBzZXR0bGVzIGhv
-dyB3b3VsZCBJIGdldA0KPj4gdGhpcyBzdXBwb3J0ZWQgaW4gYSBMVFMga2VybmVsICh3ZSdyZSBj
-dXJyZW50bHkgdXNpbmcgdGhlIDUuMTUgc2VyaWVzKT8NCj4+IE9yIGlzIHRvdGFsbHkgb3V0IG9m
-IHRoZSBxdWVzdGlvbiBiZWNhdXNlIGl0J3Mgbm90IGp1c3QgYSBuZXcgZGV2aWNlIGlkPw0KPiBU
-aGlzIHdpbGwgbm90IGhhcHBlbiwgeW91IHdpbGwgaGF2ZSB0byB1cGRhdGUgdG8gdGhlIG5leHQg
-TFRTICh3aGljaCB5b3UNCj4gc2hvdWxkIGRvIGFueXdheSkNCkkgd2FzIGFmcmFpZCB0aGF0IHdh
-cyBnb2luZyB0byBiZSB0aGUgYW5zd2VyLiBXZSdsbCBoYXZlIHRvIGNhcnJ5IGl0IGFzIA0KYSBs
-b2NhbCBwYXRjaCB1bnRpbCB0aGVyZSBpcyBhIExUUyB2ZXJzaW9uIHdpdGggdGhlIGRyaXZlciBz
-dXBwb3J0IHdlIA0KbmVlZCBpbiBpdC4=
+On Mon, 13 Feb 2023 02:12:41 +0000, Kuninori Morimoto wrote:
+> These are v3 of R-Car Gen4 support for Renesas sound driver.
+> 
+> I have posted these patches as [RFC], because the schemas
+> doesn't work correctly for me under certain conditions.
+> "required: dmas/dma-names" always hits to "if-then" and
+> never hits to "else" for some reasons. I'm still not sure why...
+> 
+> [...]
+
+Applied to
+
+   broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: renesas,rsnd.yaml: drop "dmas/dma-names" from "rcar_sound,ssi"
+      commit: 0438499a7f098c35e83134fc04899fe2188e4ef2
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
