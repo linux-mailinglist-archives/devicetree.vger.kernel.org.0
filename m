@@ -2,131 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A1D6956B5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 03:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2AC46956C1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 03:38:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbjBNCfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Feb 2023 21:35:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48120 "EHLO
+        id S231147AbjBNCiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Feb 2023 21:38:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjBNCfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 21:35:23 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28CB12045;
-        Mon, 13 Feb 2023 18:35:22 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 39F7D41F72;
-        Tue, 14 Feb 2023 02:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1676342121; bh=rE6qpyTWbpm8E3scpREdIZtWBIv4E6C9Mb9n1PSac2A=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To;
-        b=GvJn3KJxFK8whHrSfnoRkbvaRHCV6G94c5+N9L3/P+DaK4q3p7OA+XbN9ecxsuO58
-         O9xkSKBiKX5TDD8DG5Ld7ric4HsIdT+CCFXHihE44X4TjXtjkVI2hgooIdRH3ByXx8
-         uSWEon+y0EHzjYywOwzKOE7WHNoXdmqHGQcYW9ugeCWdA47EEbiqTrB1Kq22h6wNnK
-         3Caecm4+T5MhZB77KJAn/5yuWOt4+eRygMg4US362vJy5H/EvkZda6XFzg2h1M3DDx
-         2aL1V+fAszAxNr+QtYikx7t4mVqbN15c7TcWUAh6VAF6Jx8pa0OqNeFdd+h4Dw1ALd
-         PgLXwzW3nRb6w==
-Message-ID: <7b33b6de-81d2-0c9b-0e46-59f552eba5d4@marcan.st>
-Date:   Tue, 14 Feb 2023 11:35:15 +0900
+        with ESMTP id S229539AbjBNCiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Feb 2023 21:38:12 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF9617179;
+        Mon, 13 Feb 2023 18:38:09 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id D5BC224E2F8;
+        Tue, 14 Feb 2023 10:38:00 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
+ 2023 10:38:00 +0800
+Received: from [192.168.125.110] (183.27.97.168) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
+ 2023 10:37:59 +0800
+Message-ID: <6a5ced8a-e230-a520-f05f-9972ea77f17b@starfivetech.com>
+Date:   Tue, 14 Feb 2023 10:37:58 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Janne Grunau <j@jannau.net>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
- <20230202-asahi-t8112-dt-v1-2-cb5442d1c229@jannau.net>
- <5ebf96d9-689a-f915-29b8-31af891fc63f@linaro.org>
- <20230213115741.GA17933@jannau.net>
- <dfb765a1-a2bd-c5e3-344a-b368fad6d8de@linaro.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 02/17] dt-bindings: arm: apple: apple,pmgr: Add t8112-pmgr
- compatible
-In-Reply-To: <dfb765a1-a2bd-c5e3-344a-b368fad6d8de@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud>
+ <c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com>
+ <Y9og8Q2UnJ452KH/@wendy>
+ <df6755ed-a358-ea01-d89e-f3c004b9c297@starfivetech.com>
+ <Y9wR7Up+iObw5qoE@spud> <Y+TU98PLIvtkD8/R@wendy>
+ <e1d2646e-b5de-298e-bb91-19ad12fd31af@starfivetech.com>
+ <Y+oL6l5LzUyAzOgC@wendy>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y+oL6l5LzUyAzOgC@wendy>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.97.168]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 21.10, Krzysztof Kozlowski wrote:
-> On 13/02/2023 12:57, Janne Grunau wrote:
->> On 2023-02-13 12:10:36 +0100, Krzysztof Kozlowski wrote:
->>> On 12/02/2023 16:41, Janne Grunau wrote:
->>>> The block on Apple M2 SoCs is compatible with the existing driver so
->>>> just add its per-SoC compatible.
->>>>
->>>> Signed-off-by: Janne Grunau <j@jannau.net>
->>>>
->>>> ---
->>>> This trivial dt-bindings update should be merged through the asahi-soc
->>>> tree to ensure validation of the Apple M2 (t8112) devicetrees in this
->>>> series.
->>>
->>> No, the bindings go via subsystem. Just because you want to validate
->>> something is not really a reason - you can validate on next. Don't
->>> create special rules for Asahi... or rather - why Asahi is special than
->>> everyone else?
->>
->> We did that 2 or 3 times in the past without commnts that it is not 
->> desired so I wasn't aware that this would be special handling.
->>
->> Merging binding and devicetree updates together looks to me like the 
->> most sensible option since dtbs validation is the only testable 
->> dependecy of dt binding updates.
+On Mon, 13 Feb 2023 10:07:38 +0000, Conor Dooley wrote:
+> On Mon, Feb 13, 2023 at 05:41:02PM +0800, Hal Feng wrote:
+>> On Thu, 9 Feb 2023 11:11:51 +0000, Conor Dooley wrote:
+>> > On Thu, Feb 02, 2023 at 07:41:33PM +0000, Conor Dooley wrote:
+>> >> On Fri, Feb 03, 2023 at 02:56:41AM +0800, Hal Feng wrote:
+>> >> > On Wed, 1 Feb 2023 08:21:05 +0000, Conor Dooley wrote:
+>> >> > > On Wed, Feb 01, 2023 at 03:21:48PM +0800, Hal Feng wrote:
+>> >> > >> On Wed, 28 Dec 2022 22:48:43 +0000, Conor Dooley wrote:
+>> >> > >> > On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
+>> > 
+>> >> FWIW, the deadline for getting material in for v6.3 has already passed,
+>> >> so you can send the next version of this series without waiting for
+>> >> clarification on the compatibles & ISA string. We should have plenty of
+>> >> time to get those fixed up before the series gets applied.
+>> > 
+>> > Also, as it looks like the pinctrl driver is going to land in time for
+>> > v6.3, that leaves just this series and the clock driver required for
+>> > base support.
+>> > 
+>> > In the original submission, you sent the clock driver and dt in the same
+>> > series & I think it might make the process a bit faster if you sent them
+>> > both together for the next version again.
+>> > 
+>> > That way, both the drivers and dts can go together as their have an
+>> > inter dependence.
+>> > 
+>> > That's my opinion anyway, will make trying to sequence things between
+>> > trees easier.
+>> 
+>> Good idea. But how can I write the change log if we do so? Will it make
+>> the history confused? Thanks.
 > 
-> But it is not the recommended practice. Bindings were always going with
-> drivers and this was said by Rob multiple times.
-> 
-> For sure if there is no driver update at all or subsystem maintainer is
-> not responsive, bindings were picked up by SoC folks, but it's rather
-> fallback, not the main path.
+> I'm not sure what you mean w.r.t. history.
+> Both series are on V3 I think, so just make the next version v4 title it
+> something like "Basic clock, reset & dt support..."
+> For the changelogs, just mention you merged the two series again in
+> the cover letter & add the changelogs that you would have made for each
+> series to the cover as a single changelog.
+> Say somewhere in the cover that I suggested merging the series together
+> so that they could go via the same tree as the dt-binding headers are
+> required by both driver & devicetree.
 
-Rob also said that we can do trivial compatible additions ourselves and
-don't have to involve him or subsystem maintainers. It's too trivial to
-count as a "binding" change.
+OK, I see. I will merge the clock patch series [1] and this DT patch
+series in v4. Thanks for your suggestions.
 
-Let's not make this harder than it is. We have a pile of compatibles to
-add every SoC that will only keep growing, and we have the situation
-where this is largely a formality because it turns out the hardware *is*
-compatible anyway (we just change the top compatible just in case). The
-list of subsystems we touch will only keep growing. None of those
-subsystem maintainers have any useful input to add to this, as the only
-people with the information about what compatibles go together or don't
-is us (since we're reverse engineering the hardware). All the relevant
-bindings are listed in our section of MAINTAINERS. This stuff isn't
-worth gratuitous added complexity and involvement. It's hard enough
-getting driver changes into the kernel, let's not make it hard to get
-devices that *don't* need driver changes on top of that.
+[1] https://lore.kernel.org/all/20221220005054.34518-1-hal.feng@starfivetech.com/
 
->> I'll consider devicetree validation as eventually valid from now on and 
->> not care too much about it.
-> 
-> Everything will validate once reaches next as well...
-
-Only once both changes hit next. If the DT change hits next first, it
-won't validate. If the DT change hits mainline first, it won't validate.
-AIUI from what Rob decently told me, this is okay, so we can submit
-proper bindings changes to drivers from now on. But I still maintain
-that *trivial compatible additions* should go through SoC because
-there's no point in involving 15 subsystems instead of 1 every time
-Apple releases a new SoC that's compatible with previous ones on 14
-subsystems.
-
-- Hector
+Best regards,
+Hal
