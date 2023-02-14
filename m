@@ -2,111 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E76696D5F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 19:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDCB0696DA2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 20:15:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233358AbjBNSwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 13:52:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
+        id S230385AbjBNTPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 14:15:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233378AbjBNSwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 13:52:54 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896FC302A4;
-        Tue, 14 Feb 2023 10:52:40 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id nh19-20020a17090b365300b00233ceae8407so8759018pjb.3;
-        Tue, 14 Feb 2023 10:52:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eGALdumedzj5vEn2J6uPvtN959aI7mKYbul3DxbZlL4=;
-        b=GxGxY/VVoZXbA/e+6YZKXcyDG96LtKIyKpAXn6sVNQMowXf9Y/rsmEVQ9RJngDfmdb
-         3ZWraiTJmNCBHmhVEkTDqIke/jKt2v/BkHFEzLLq9cHJmRrbM1Iy6IU9nDuH0gXbnblX
-         XVj54sJd3TPEk3Qwr3pfBj6FiRqXb/JreX1SH86uBGYxLIb6C66r3v2hRUDGT9FTc+So
-         1dztbjeNMTFP0JuXZzVqunB1yQMxj3n8/rKbFqvqur8gioRIjXInSQ9fAS0GOP08b4/Q
-         7oS9PXyXqTRMPlqy2NzMys01FH21wH/82Ud31RSM3T0zAA26qByGblq8D5rd8b98MO1w
-         uAAA==
+        with ESMTP id S230162AbjBNTPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 14:15:19 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D929A25E2B;
+        Tue, 14 Feb 2023 11:15:18 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id s17so13800985ois.10;
+        Tue, 14 Feb 2023 11:15:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eGALdumedzj5vEn2J6uPvtN959aI7mKYbul3DxbZlL4=;
-        b=LnyPUcbXiryUwT0SEa5CsgNA76Wg1IzDzS7M9kRyReSMQwuD2uitvL96vXSlU48p8K
-         G5ILhmo5PnJAbt/dgtWHGyRXhUCjTIUpSFIPUfBfo9dY5Iwm5FYl6WJh8P9RnF8sY0GI
-         npZQIDgGeMeq7UmMch7liS4/LGtKVvJLwWPq1kRkGZqQ9ZZkIfnbnF9t/Mi8gSCxEdRX
-         D7CLxYb1xWafv781jqFEADIReXVG5n++JgmvYAoK3X2zHdmfvQoLn4H7aNINJ8bYZ+LN
-         vWbZ5bh2pnmgorfE/KGG01ue+Z2HAvq9CbZ4dMFXeF3/i9uyuKG5yBmotxjLIfyh1MFf
-         Janw==
-X-Gm-Message-State: AO0yUKUxFoE58PMqqT2W8O3Telty1cEY+h+l1lYWq8YHrBD9Yyhc/ZW/
-        8XI1dKxo0uo1Ojy9F+qnn0A=
-X-Google-Smtp-Source: AK7set/NN5Mqq/S3cCp1vINmL+OJbGqBYnA/vxuU2c1uwc8zNhDxHLZrmkVL4jLeuk3qYr3nWKv8Gw==
-X-Received: by 2002:a05:6a20:8f05:b0:be:a604:c683 with SMTP id b5-20020a056a208f0500b000bea604c683mr3935807pzk.45.1676400760002;
-        Tue, 14 Feb 2023 10:52:40 -0800 (PST)
-Received: from kazuki-mac ([2400:4051:ea3:5910::19a])
-        by smtp.gmail.com with ESMTPSA id f18-20020aa78b12000000b0059312530b54sm10069849pfd.180.2023.02.14.10.52.37
+        bh=n7E1DSdu/LjiowmOkJlnBDIhObd6gc/Np+y6yfsuUDM=;
+        b=XyDmGvworGqksLcRUTudP9jtCO64oyA9QLk/+ukbj+cOcIzle0xv1g6feBk/vIsBNA
+         Rgpk8a1X0QqCTaFTtPws8yTi86U/4uNyu+Z4hB0QGv6BrnT9OSTdzGYM2q1dLlEcO6Ll
+         xlLGuMAM0AARWOe2/Q/yogsAmsdvRYI7tZXg+cu0VOpwCprnUD9mAGetoeV9esf/3a7f
+         RpBbUl/jfxaEVgtZycc10wEyt20rZsLpNeFvN7wXpAhTn3DMJxZ2pqpATbusbASnwq+N
+         2QzR6DTQjhyFYyx21fkdfn9aAOZmiTig9mE4UoviPZpV4GoDiqQAabMXtyMtqvbgad5s
+         uIbg==
+X-Gm-Message-State: AO0yUKWiMbCEdkgbOueVvZ85em0JYhfGM6PRI/J07IijhfXHJRfYfmeN
+        K4OFO4D66U2sPMtNgzDV5g==
+X-Google-Smtp-Source: AK7set/s+ZMpe9dhdBmBZP5DzD386ZNtV5w8oBNaH00NPOjMkEe1Rab3IGnhmsWphHoipV10bWxlOg==
+X-Received: by 2002:a05:6808:a8b:b0:364:5b57:363d with SMTP id q11-20020a0568080a8b00b003645b57363dmr1460638oij.59.1676402118080;
+        Tue, 14 Feb 2023 11:15:18 -0800 (PST)
+Received: from robh_at_kernel.org (c-67-162-147-231.hsd1.co.comcast.net. [67.162.147.231])
+        by smtp.gmail.com with ESMTPSA id p125-20020acad883000000b003436fa2c23bsm6529285oig.7.2023.02.14.11.15.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Feb 2023 10:52:39 -0800 (PST)
-From:   Kazuki <kazukih0205@gmail.com>
-X-Google-Original-From: Kazuki <kazuki@kazuki-mac>
-Date:   Wed, 15 Feb 2023 03:52:34 +0900
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Janne Grunau <j@jannau.net>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 0/3] SPI core CS delay fixes and additions
-Message-ID: <20230214185234.uj63aovylzixs6xa@kazuki-mac>
-References: <20230113102309.18308-1-marcan@marcan.st>
- <167362544665.163457.10878671229075890152.b4-ty@kernel.org>
+        Tue, 14 Feb 2023 11:15:17 -0800 (PST)
+Received: (nullmailer pid 23333 invoked by uid 1000);
+        Tue, 14 Feb 2023 19:15:16 -0000
+Date:   Tue, 14 Feb 2023 13:15:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Shradha Todi <shradha.t@samsung.com>
+Cc:     lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
+        jingoohan1@gmail.com, Sergey.Semin@baikalelectronics.ru,
+        lukas.bulwahn@gmail.com, hongxing.zhu@nxp.com, tglx@linutronix.de,
+        m.szyprowski@samsung.com, jh80.chung@samsung.co,
+        pankaj.dubey@samsung.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/16] dt-bindings: PCI: Rename the term elbi to appl
+Message-ID: <20230214191516.GA17421-robh@kernel.org>
+References: <20230214121333.1837-1-shradha.t@samsung.com>
+ <CGME20230214121424epcas5p38e74b52a2d94a32b82a093c7e0a12499@epcas5p3.samsung.com>
+ <20230214121333.1837-6-shradha.t@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <167362544665.163457.10878671229075890152.b4-ty@kernel.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230214121333.1837-6-shradha.t@samsung.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023 at 03:57:26PM +0000, Mark Brown wrote:
-> On Fri, 13 Jan 2023 19:23:07 +0900, Hector Martin wrote:
-> > Commits f6c911f3308c ("spi: dt-bindings: Introduce
-> > spi-cs-setup-ns property") and 33a2fde5f77b ("spi: Introduce
-> > spi-cs-setup-ns property") introduced a new property to represent the
-> > CS setup delay in the device tree, but they have some issues:
-> > 
-> > - The property is only parsed as a 16-bit integer number of nanoseconds,
-> >   which limits the maximum value to ~65us. This is not a reasonable
-> >   upper limit, as some devices might need a lot more.
-> > - The property name is inconsistent with other delay properties, which
-> >   use a "*-delay-ns" naming scheme.
-> > - Only the setup delay is introduced, but not the related hold and
-> >   inactive delay times.
-> > 
-> > [...]
+On Tue, Feb 14, 2023 at 05:43:22PM +0530, Shradha Todi wrote:
+> DT uses the name elbi in reg-names for application logic
+> registers which is a wrong nomenclature. This patch fixes
+> the same.
 > 
-> Applied to
-> 
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-> 
-> Thanks!
-> 
-> [1/3] spi: Use a 32-bit DT property for spi-cs-setup-delay-ns
->       commit: f276aacf5d2f7fb57e400db44c807ea3b9525fd6
-Hi,
+> This commit shouldn't be applied without changes
+> "arm64: dts: Rename the term elbi to appl" and
+> "PCI: samsung: Rename the term elbi to appl"
 
-Shouldn't this be sent to 6.2 before the property becomes a stable ABI?
+Which is your clue that this is an ABI break. You're stuck with the old 
+name unless the ABI break is fine for all Samsung platforms using this.
 
-Thanks,
-Kazuki
->
+Rob
