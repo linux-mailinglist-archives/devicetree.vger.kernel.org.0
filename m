@@ -2,164 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 261E2696408
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 13:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87CFD69641F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 14:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232391AbjBNM5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 07:57:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        id S231716AbjBNNCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 08:02:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232320AbjBNM5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 07:57:45 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1A6244A0
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:57:42 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id m10so6629093wrn.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 04:57:42 -0800 (PST)
+        with ESMTP id S231593AbjBNNCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 08:02:31 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F78C171D;
+        Tue, 14 Feb 2023 05:02:30 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id y1so15574059wru.2;
+        Tue, 14 Feb 2023 05:02:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O1iX/bRjubyY8icLKwkxEeosnt7C5yf2ACUDqg5rTDE=;
-        b=esQrMFAYjAFxun7TNMECOXXoswmBWLNkD4VZvgXwJLZv9B9dC6O/boUaxl0G3y4JhJ
-         qyYz5+Xx6xwagnAkDjVSXoJpCSLVqOh4DDKSc2Oji8q8G5+d8VI9UIpPKyF65eQbaMDp
-         FgXD6/todPzvwTR25ZHo+QOiLnyozCwVXJ5DIPvBNFSAx5UMLu6Sv497sH7mvLQg1Yoy
-         ao7GdPCmGP4b3QxAIuSKQNBHcWdtn60IMFIKzE5zptCd2ZHFcyXIDrZsSvw7E3MIVzmZ
-         JrRvefgCI9Yxe46bZOfXmVrL+XkkitSS7lhc7XHpOO66FHU3N+beyfgJRpfkeNEREODa
-         2wNQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sBul4mgzs45bE2WzuID5dXHTGBIFUQ/hKqlFkOwGiAc=;
+        b=BNlMqkCxB6wVRpny4TkhAV36P3pHCVa75zArBFzcfTykR1B/pSlGuLrUg5yV+S+luX
+         Iqd0Eq7e7ruG+Vi2BJxQ9jzD94Q+TsN7yZ4Ghht7bnxAUIRcCzgGRAwdNs6MGKl/alc0
+         IkltwGUTsQt8qIzLnt3jEM2WwmwmnKigqNsInawYfgwQlIclRZM7SQWxDPnf/ouomKp9
+         Tqe7g3Xyqyu4B2Vr/bpWImqTvQslQQyFjYiXRg9v5h1alwHIr4wyiC6SnM6SW4kRH1vy
+         APleaNg9titz/wA4y42tzLJ+pRlAQNdzuRhzP0jL6LKImCa7TE88uhdY5KL7GpeaoYbQ
+         LtpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O1iX/bRjubyY8icLKwkxEeosnt7C5yf2ACUDqg5rTDE=;
-        b=7K7TArMohZzTKNfIW+sgVQg49Ye8l2ZmHDNZtRTQutmy9JjDxYfMsE2LG0zdWLf6xu
-         Ptx41b28L/xsByNHTjrspAb/4LVHvYrlSepzMfPICvgmzvWeuFI5Wt9WLCAHBQmKH1xH
-         +WhvILoRAgwLo2P1YVjEAVuZ1aopf954fj4tIi2QRlOPEipKXAA48Aa019klsRQhY+kC
-         c6WR7zAmikusWSmdSJgNGtXDVa33G/z5C85GhtR0tIkEc7o5uHV/GBoKQ9yPY51rq4wm
-         CPh11vtYaCjL0BG6idwamcgg+3zL/PYOQWAgsKO75zL42KDtzK4QxAQDoW4IaELrLCrI
-         7kpQ==
-X-Gm-Message-State: AO0yUKWg+f0WmItkysFeowvYnMmTt47VvRVs3Wqk4UW/wqpxHxkioswN
-        Bo3GjsmBOhO2igx7xDuOtA2J4g==
-X-Google-Smtp-Source: AK7set/UjSDcHRoAgTRcvJa1W636nGs1OeuTPzOc0E3YkcnrM795r2mKtZkyHB2LFc+TC0Zd423IHQ==
-X-Received: by 2002:a5d:4148:0:b0:2c5:4c7f:c91 with SMTP id c8-20020a5d4148000000b002c54c7f0c91mr2090318wrq.66.1676379461126;
-        Tue, 14 Feb 2023 04:57:41 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id q2-20020a5d5742000000b002c560e6ea57sm2628077wrw.47.2023.02.14.04.57.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 04:57:40 -0800 (PST)
-Message-ID: <ffeff1f8-ebf6-3115-38d1-fa318549baa0@linaro.org>
-Date:   Tue, 14 Feb 2023 12:57:39 +0000
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sBul4mgzs45bE2WzuID5dXHTGBIFUQ/hKqlFkOwGiAc=;
+        b=D1OQioK9cY2/ppbN+Ao9mqCsuDA/fGmrErecsbT++/aJ9JzxDSm6KYAP2hIRdu01j0
+         WX9OnJmv9+sHeKZPS8kxQyMaI7cnF4/+3pk62zV03ouKJVD9ZXwnzBqbPIPBmBghztg9
+         t0X3bWd0OSeQFmfOOLFZkehxFsqmZlE1tIli1xlcT6LaMpygwU/ie2WRsoc4Z3iQVwg9
+         ARmhaY55EcgUQwlR1i2iuJldKSNqtihpoHZRpzbmaYZI7NJN4jK1ykMco5OfrgTJnkYR
+         A5q7ig+fJfg0QYf7/FcSxTpcIJS7f53nfqYKAo+0dy4KwJotnyBfdPKIYehAeKqxATbe
+         FdBQ==
+X-Gm-Message-State: AO0yUKVZt12d5Fbytnjk5nSknql37WIRum1AV+1sSXqcG/n1nSJfqOyr
+        nrnXPjDUj4dHXoY5VVzu6yk=
+X-Google-Smtp-Source: AK7set/5JzZC9z60wMQR6fIFUfEKjuQDAdJ1gaPUmOgHOtcDI3lkfCyOKYhZ/oNcsE8Jtt6Z5kDP0Q==
+X-Received: by 2002:a5d:6885:0:b0:2c5:5451:9d7a with SMTP id h5-20020a5d6885000000b002c554519d7amr1847991wru.46.1676379748503;
+        Tue, 14 Feb 2023 05:02:28 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id g17-20020a5d5411000000b002c558f58c5bsm4997034wrv.28.2023.02.14.05.02.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Feb 2023 05:02:28 -0800 (PST)
+Message-ID: <109868b9492aecaca0a7170cba9fb51e62de7116.camel@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: sound: ep93xx: Add I2S and AC'97
+ descriptions
+From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Hartley Sweeten <hsweeten@visionengravers.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Date:   Tue, 14 Feb 2023 14:02:27 +0100
+In-Reply-To: <46d5b6af-23e1-4178-83bc-b4a435b1426e@linaro.org>
+References: <20230212232137.299005-1-alexander.sverdlin@gmail.com>
+         <46d5b6af-23e1-4178-83bc-b4a435b1426e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V4 5/5] firmware: scm: Modify only the DLOAD bit in TCSR
- register for download mode
-Content-Language: en-US
-To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
-        nfraprado@collabora.com, broonie@kernel.org,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_devipriy@quicinc.com
-References: <20230214051414.10740-1-quic_poovendh@quicinc.com>
- <20230214051414.10740-6-quic_poovendh@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230214051414.10740-6-quic_poovendh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Krzysztof,
 
+thank you for the quick review!
 
-On 14/02/2023 05:14, Poovendhan Selvaraj wrote:
-> CrashDump collection is based on the DLOAD bit of TCSR register.
-> To retain other bits, we read the register and modify only the DLOAD bit as
-> the other bits have their own significance.
-> 
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
-> ---
->   Changes in V4:
-> 	- retain the orginal value of tcsr register when download mode
-> 	  is not set
-> 
->   drivers/firmware/qcom_scm.c | 15 ++++++++++-----
->   1 file changed, 10 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-> index 468d4d5ab550..8a34b386ac3a 100644
-> --- a/drivers/firmware/qcom_scm.c
-> +++ b/drivers/firmware/qcom_scm.c
-> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
->   }
->   EXPORT_SYMBOL(qcom_scm_set_remote_state);
->   
-> -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
-> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, bool enable)
->   {
->   	struct qcom_scm_desc desc = {
->   		.svc = QCOM_SCM_SVC_BOOT,
-> @@ -417,7 +417,8 @@ static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
->   		.owner = ARM_SMCCC_OWNER_SIP,
->   	};
->   
-> -	desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
-> +	desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
-> +				val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE);
+On Tue, 2023-02-14 at 11:58 +0100, Krzysztof Kozlowski wrote:
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 const: cirrus,ep9301-i2s
+> > +
+> > +=C2=A0 '#sound-dai-cells':
+> > +=C2=A0=C2=A0=C2=A0 const: 0
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 interrupts:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0 minItems: 3
+>=20
+> maxItems instead
 
-why not read the value here before setting the DLOAD Mode instead of 
-doing it in qcom_scm_set_download_mode()?
-that would make the code simple and readable.
+reg and clocks are required, I suppose I should include both minItems
+and maxItems for both of them?
 
+> > +
+> > +=C2=A0 clock-names:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mclk
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sclk
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: lrclk
+>=20
+>=20
+> The clk suffixes are quite redundant. Don't these inputs have some
+> meaningful name?
 
+They are actually meaningful, as they are usually named in I2S, please
+refer to the EP93xx User's Guide:
+https://cdn.embeddedts.com/resource-attachments/ts-7000_ep9301-ug.pdf
+page 71, for instance.
 
->   
->   	return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
->   }
-> @@ -426,15 +427,19 @@ static void qcom_scm_set_download_mode(bool enable)
->   {
->   	bool avail;
->   	int ret = 0;
-> +	u32 dload_addr_val;
->   
->   	avail = __qcom_scm_is_call_available(__scm->dev,
->   					     QCOM_SCM_SVC_BOOT,
->   					     QCOM_SCM_BOOT_SET_DLOAD_MODE);
-> +	ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
-> +
-not checking ret value here before proceeding?
+--=20
+Alexander Sverdlin.
 
->   	if (avail) {
-> -		ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
-> +		ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, enable);
->   	} else if (__scm->dload_mode_addr) {
-> -		ret = qcom_scm_io_writel(__scm->dload_mode_addr,
-> -				enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
-> +		ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
-> +				dload_addr_val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
-> +				dload_addr_val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
->   	} else {
->   		dev_err(__scm->dev,
->   			"No available mechanism for setting download mode\n");
