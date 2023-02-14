@@ -2,138 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3E2695FAD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D094695FAE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 10:48:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232142AbjBNJry convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Feb 2023 04:47:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55910 "EHLO
+        id S232582AbjBNJsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 04:48:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231792AbjBNJrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:47:23 -0500
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F9325286;
-        Tue, 14 Feb 2023 01:47:02 -0800 (PST)
-Received: by mail-qv1-f50.google.com with SMTP id mg2so2878379qvb.9;
-        Tue, 14 Feb 2023 01:47:02 -0800 (PST)
+        with ESMTP id S229524AbjBNJrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 04:47:46 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80B72312C
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:47:45 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso13248057wms.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 01:47:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u3RPTKzuRFOyVfeP8KPrGZy3f2PFRah932ztv2gi7LM=;
+        b=Ehku01k+/yYEpZOWuGKz0Y+qBe4tXs89e0TgnDttDvcXQLfmTURvkF+aIZ0D8Ir0H+
+         zA4p6oKaZlt1fYFPagiJJdemDa78ClAug+gB8/j2h3DE/1RRfcnEAQotOBD0VXa/7jXS
+         SGxrwTZaJ1fcLUfrIBzbCOg5MB3YoronJsb2zgF0Jrvk654aLZ02dj7u8JKjSn6DjJUK
+         /BAMkSdpGQlrnczXrXb2f9cJ73YvEp3AwZQNxwvpclWFRBj8A/fvSwgVpdwsSsOj5lNq
+         eNwIZVNa0lnMFvKzQFvYIdKZ5XblEKjXNURoGKKtn0Ir/WdgOtnLJ9/Q6pzEahbosPUO
+         JbAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K+hs2DyiPjSA/GdZYafa4UC6AqjpTN5zpt+4ZJaQUkU=;
-        b=N99IVJ986ozCoD7gHWxfOsCMhdIgXiyCvK1pyvxc44CgweqVjNemMDGMu0GvDYf4/z
-         mymP2NjPliRK8lL5QAS5zyMEUqmR6VjN5o7zJ+HgB44HaaTvIBXE6xtTnKH5JA6Xkx4N
-         oDZRSnAZacG26ujiJybFNpKnkci1rx3prDzVEP6GQzOXyCEMnvua08qxK52WOrO2Uziv
-         PbVRgjfti6hl8RNJUqjnrrEcWd6FkZ9Tv5/xJKfbonp0GD+lccu9ZFXbsM/e4P20j5BU
-         VoilQxlcleg0Hok1GUjIP7736gp9iJb//fJDzz8uLDVQNUZ5CmYQmaJuRKTWJEuGEswp
-         V+BA==
-X-Gm-Message-State: AO0yUKWsfQDmnWBbfcmBNUFWDZeAcJtsfuI6quRuyqX4CAhPEe1yMyZU
-        qIJqClufck/SJi2BuftZK6rVKQWdwNS6CUy1
-X-Google-Smtp-Source: AK7set/09HpG47msX4+OqDltmIffuKg3g//pYcBSiDCgMTMYBsV7Xo28QJ13qxjWHAutGuJ6PKj3xQ==
-X-Received: by 2002:a05:6214:3016:b0:56c:61:7499 with SMTP id ke22-20020a056214301600b0056c00617499mr3882178qvb.23.1676368021270;
-        Tue, 14 Feb 2023 01:47:01 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id r129-20020a37a887000000b006cec8001bf4sm11539515qke.26.2023.02.14.01.47.00
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u3RPTKzuRFOyVfeP8KPrGZy3f2PFRah932ztv2gi7LM=;
+        b=gsNC308DpF/jupEZ/xqd8vQWXP8jAQhVG+/1Inrqh03dlBLLFBTCmGmGFqj4WVr0nT
+         ZZUuc8rL+w/SMmqIABVBxLM/HQW01b82JG+F9ySJoyVqMolIWCGa6DqnRoru86VrVRVA
+         MgWgAYVYS9LzF5hpfDnS3XXncgt65ie+ea3ipGjjEkLuVtZ3sZQVcGkCj7tRBmhaXShx
+         9j/dEgL7bvdxyMfFJKktOiuuPliT51zFNCHIR0RQ4fbQC8j+gOfarWmHVxBGDhnqHxww
+         YniWqCsnHPMy7V04j7LUIVxfoKmdS+iASIiYGwZb3d5LZO+FKn0Yke3JASX6cQaZkb1V
+         SaRw==
+X-Gm-Message-State: AO0yUKXxe1uZRFE4FPirVrfU0KDMFvoPk5E8czxAVosv4DOGIGHdR1Tg
+        UaE9FF090BHmsRO7IBidxnj5qQ==
+X-Google-Smtp-Source: AK7set/SHwwA36oOl1cfZ9Xajv6+FBR32/vaHlEdMYk0ojT9JelNUuP5y02Qh9FKx+tIMw4D9nhTAg==
+X-Received: by 2002:a05:600c:1695:b0:3dc:561a:79e7 with SMTP id k21-20020a05600c169500b003dc561a79e7mr1473755wmn.2.1676368064265;
+        Tue, 14 Feb 2023 01:47:44 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l40-20020a05600c1d2800b003dd1b00bd9asm18386329wms.32.2023.02.14.01.47.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 01:47:00 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-501c3a414acso198969227b3.7;
-        Tue, 14 Feb 2023 01:47:00 -0800 (PST)
-X-Received: by 2002:a0d:fec4:0:b0:52a:7505:84bc with SMTP id
- o187-20020a0dfec4000000b0052a750584bcmr121816ywf.383.1676368020433; Tue, 14
- Feb 2023 01:47:00 -0800 (PST)
+        Tue, 14 Feb 2023 01:47:43 -0800 (PST)
+Message-ID: <7336923b-e322-1211-0c1d-7ad70c7bfef7@linaro.org>
+Date:   Tue, 14 Feb 2023 10:47:42 +0100
 MIME-Version: 1.0
-References: <20230211165715.4024992-1-niklas.soderlund+renesas@ragnatech.se> <20230211165715.4024992-3-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20230211165715.4024992-3-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Feb 2023 10:46:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUALJ7QGtHmb5fkrPotw-8vj6biM5_M-sc6eV3dK0tqZA@mail.gmail.com>
-Message-ID: <CAMuHMdUALJ7QGtHmb5fkrPotw-8vj6biM5_M-sc6eV3dK0tqZA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: draak: Add overlay for CVBS input
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: qdu1000: Add IPCC, MPSS, AOSS nodes
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230213190122.178501-1-quic_molvera@quicinc.com>
+ <20230213190122.178501-2-quic_molvera@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230213190122.178501-2-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas, Laurent,
+On 13/02/2023 20:01, Melody Olvera wrote:
+> Add nodes for IPCC, MPSS, and AOSS drivers. Also update
+> the scm node to include its interconnect.
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
 
-On Sat, Feb 11, 2023 at 5:58 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->
-> The Draak board has an ADV7180 CVBS decoder and an ADV7612 HDMI decoder,
-> both connected to the same VIN input. DIP switches are used to select
-> one of the two devices, with the HDMI decoder being the default. Add an
-> overlay that selects the CVBS decoder.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> [Niklas: Inverted it from HDMI to CVBS]
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Thanks for your patch!
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso
-> @@ -0,0 +1,33 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2023 Ideas on Board Oy
-> + *
-> + * Device tree overlay for the Draak board, to enable CVBS input. This requires
-> + * setting DIP switches SW49, SW50, SW51 and SW52 to OFF, and SW53 and SW54 to
-> + * ON.
-> + */
+>  
+> +		aoss_qmp: power-controller@c300000 {
+> +			compatible = "qcom,qdu1000-aoss-qmp", "qcom,aoss-qmp";
+> +			reg = <0x0 0xc300000 0x0 0x400>;
+> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
+> +						     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +						     IRQ_TYPE_EDGE_RISING>;
+> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
 > +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&adv7180_out {
-> +       remote-endpoint = <&vin4_in>;
-> +};
+> +			#clock-cells = <0>;
+> +			#power-domain-cells = <1>;
 
-[...]
+This does not look right. Which part of aoss-qmp registers power domains?
 
-> +&vin4_in {
-> +       remote-endpoint = <&adv7180_out>;
-> +};
+Best regards,
+Krzysztof
 
-Unfortunately dtc doesn't like references to nodes it cannot find the
-names of:
-
-    arch/arm64/boot/dts/renesas/draak-cvbs-input.dtbo: Warning
-(graph_port): /fragment@0: graph port node name should be 'port'
-    arch/arm64/boot/dts/renesas/draak-cvbs-input.dtbo: Warning
-(graph_port): /fragment@2: graph port node name should be 'port'
-    arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso:13.14-15.3:
-Warning (graph_endpoint): /fragment@0/__overlay__: graph endpoint node
-name should be 'endpoint'
-    arch/arm64/boot/dts/renesas/draak-cvbs-input.dtso:27.10-29.3:
-Warning (graph_endpoint): /fragment@2/__overlay__: graph endpoint node
-name should be 'endpoint'
-
-Do you think it would be worthwhile to add more hierarchy (like in
-arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dtso), to get
-rid of the dtc warnings?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
