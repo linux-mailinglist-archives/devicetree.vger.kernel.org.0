@@ -2,91 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0D16966CF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDDCF6966D4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 15:28:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbjBNO1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 09:27:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51492 "EHLO
+        id S232601AbjBNO2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 09:28:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231877AbjBNO1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:27:31 -0500
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688CD2B635
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:26:55 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:2521:459c:4528:7ba9])
-        by albert.telenet-ops.be with bizsmtp
-        id M2So2900B4e7GJY062Sola; Tue, 14 Feb 2023 15:26:52 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pRwGJ-0090hz-R9;
-        Tue, 14 Feb 2023 15:26:48 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pRwGe-003wYY-KD;
-        Tue, 14 Feb 2023 15:26:48 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document CPOL/CPHA support
-Date:   Tue, 14 Feb 2023 15:26:43 +0100
-Message-Id: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232456AbjBNO2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 09:28:44 -0500
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7247059F2
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:28:26 -0800 (PST)
+Received: by mail-il1-x12e.google.com with SMTP id b9so6151025ila.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 06:28:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OC7OLIEjLzwlnn+8IHiaJZmpnrxZO4YxhVGP3rMedHI=;
+        b=qYxzyY2kErVbwyTWu/K6QEyKHIO3/dlMlcNYDO4AlI6KhfZGzNipBtlwSRLdCzl/RB
+         XiP6NsG2rpVCazElWSwD3tOamJXBZSNquGZg7bf45dCQ0L0BM3PcLysgdzp2akmV/Ct/
+         jCPQ6Rmjsu+S5tqklRwmcQzmPLuBlwhdA/ZLe+N2smKioUC7ptl9wJT3X1r4rZC5z83M
+         RNwAK42FLRr3vc1aNFgQeZb2WqOL7upnBWD5dsozoSVFk37toN3ayqFLq+MOaMDYgzfy
+         3HPexZxyuQrWptf+geTqtb1HHCS51X2FwbJ3xxfaYdnBEm0g91jFp2crX5pzb683NVEs
+         nUbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OC7OLIEjLzwlnn+8IHiaJZmpnrxZO4YxhVGP3rMedHI=;
+        b=Bm0mpgRufd4PNINIztboiUV9Zz30dor31MFU8k7JeJ1KH3r8kPGoXBDYSnr16eknRR
+         QJDFRn/hpIjWIRKQzF0TWb0Q34pmnO+RFWUbO8F0Kqsv5bjWKi+Hx7OH84MM+4XrPevC
+         qL6icxlKseGq0MP0I62kxABwT22ar2xnt9l5pQs+/ZEpJ3aLnQcykfXfDfte+I1yM3kw
+         k0TumSeN4gN4lvIeqObxL1QerqCvDWrXl806s3JWu1xwLBVI4LjCynt4jza3cvIvPFVJ
+         TUdg528mJ71s9Xt/Ii4ND8IG9x0FdORmUCH0GZsJmX0j1YT9b3z8PKyydLcmVbfhiOHm
+         7fDw==
+X-Gm-Message-State: AO0yUKVwPN3cFUtqLvSde0IBAJLFZyBDmn0Y5yJBltBg8VzS1y6d4baC
+        S9gZ6Vf1xqthGa44x50tF1OqFg==
+X-Google-Smtp-Source: AK7set++Rn0Fp5zH216z7M0t4anw+bCYk5cH+cbnFchQuoKPGQZKwWBPd9XzqxYZBAA0DXp2h8O+pg==
+X-Received: by 2002:a05:6e02:1a22:b0:315:29ff:da85 with SMTP id g2-20020a056e021a2200b0031529ffda85mr2455232ile.6.1676384905752;
+        Tue, 14 Feb 2023 06:28:25 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id t3-20020a92c903000000b0031535804125sm2524047ilp.88.2023.02.14.06.28.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Feb 2023 06:28:25 -0800 (PST)
+Message-ID: <a139f921-0f82-4d4b-6407-e0ad6807bb55@linaro.org>
+Date:   Tue, 14 Feb 2023 08:28:24 -0600
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8450: Add IMEM and PIL info
+ region
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1675443891-31709-1-git-send-email-quic_mojha@quicinc.com>
+ <1675443891-31709-2-git-send-email-quic_mojha@quicinc.com>
+ <cc30f686-dec7-db85-cf0d-c6c685a623ce@linaro.org>
+ <d1dc0c9b-eab2-0287-d0a2-ead44ecee5ce@quicinc.com>
+ <20230206210455.xgrvtvknkor4nllx@ripper>
+ <aac2b313-e4af-dc93-f177-0d0be9620e1b@quicinc.com>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <aac2b313-e4af-dc93-f177-0d0be9620e1b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SPI EEPROMs typically support both SPI Mode 0 (CPOL=CPHA=0) and Mode 3
-(CPOL=CPHA=1).  However, using the latter is currently flagged as an
-error by "make dtbs_check", e.g.:
+On 2/14/23 6:34 AM, Mukesh Ojha wrote:
+> +@alex,
+> 
+> Please comment.
+> 
+> -Mukesh
+> 
+> On 2/7/2023 2:34 AM, Bjorn Andersson wrote:
+>> On Mon, Feb 06, 2023 at 08:06:13PM +0530, Mukesh Ojha wrote:
+>>>
+>>>
+>>> On 2/4/2023 3:07 AM, Konrad Dybcio wrote:
+>>>>
+>>>>
+>>>> On 3.02.2023 18:04, Mukesh Ojha wrote:
+>>>>> Add a simple-mfd representing IMEM on SM8450 and define the PIL
+>>>>> relocation info region, so that post mortem tools will be able
+>>>>> to locate the loaded remoteprocs.
+>>>>>
+>>>>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>>>>> ---
+>>>>   From XBL:
+>>>>
+>>>> 0x14680000, 0x0002A000, "IMEM Base"
+>>>>
+>>>> Is there anything in that wider address range that would interest
+>>>> us? I recall Alex once dug into that when diving into IPA, but
+>>>> I can not recall the conclusion..
 
-    arch/arm/boot/dts/r8a7791-koelsch.dtb: flash@0: Unevaluated properties are not allowed ('spi-cpha', 'spi-cpol' were unexpected)
-	    From schema: Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+So you're saying a boot loader defines "IMEM Base" as
+a range of memory, size 0x2a000.
 
-Fix this by documenting support for CPOL=CPHA=1.
+>>> Spec-wise, yes IPA do own these 0x146A8000 - 0x146AA000 .
+>>> But, not sure what they use it for.
 
-Fixes: 233363aba72ac638 ("spi/panel: dt-bindings: drop CPHA and CPOL from common properties")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+And a subset of that range (at offset 0x28000, size 0x2000) is
+set aside for use by IPA.  IPA *does* use this memory area as
+"fast" memory to hold certain frequently-accessed tables.
+Details of that are under the modem's control, and I don't
+have knowledge of that.
 
-diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-index f86255ce13af0871..bb62ac4585822982 100644
---- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-+++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-@@ -76,6 +76,13 @@ properties:
-       If "broken-flash-reset" is present then having this property does not
-       make any difference.
- 
-+  spi-cpol: true
-+  spi-cpha: true
-+
-+dependencies:
-+  spi-cpol: [ spi-cpha ]
-+  spi-cpha: [ spi-cpol ]
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.34.1
+The IPA driver currently maps it's portion of this memory,
+but does *not* reflect that use in DT.  (This is something
+that will be corrected at some point, possibly soon.)
+
+
+>> The DT should not reflect the organization structure. Let's see if Alex
+>> have any input on this.
+
+As I understand it there's an "imem" node in DT defined, but
+it just defines the range of memory, and is something referred
+to by other drivers (or other nodes in a DTS file).  This seems
+reasonable, and it kind of matches the view I've seen in
+documents.  IPA does *not* follow that pattern, and should.
+
+I don't really have any strong input either way.  I can help
+define the "problem" but I don't claim to know the correct
+way to represent this.
+
+It's a contiguous block of special memory.  By convention
+(design) its range divided up, with portions intended to be
+used for different purposes, by different hardware.  IPA is
+one of the users.
+
+					-Alex
+
+
+>>
+>> Thanks,
+>> Bjorn
+>>
+>>> -Mukesh
+>>>>
+>>>> Konrad
+>>>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 15 +++++++++++++++
+>>>>>    1 file changed, 15 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi 
+>>>>> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> index 5704750..474ea1b 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> @@ -3536,6 +3536,21 @@
+>>>>>                };
+>>>>>            };
+>>>>> +        sram@146aa000 {
+>>>>> +            compatible = "qcom,sm8450-imem", "syscon", "simple-mfd";
+>>>>> +            reg = <0 0x146aa000 0 0x1000>;
+>>>>> +
+>>>>> +            #address-cells = <1>;
+>>>>> +            #size-cells = <1>;
+>>>>> +
+>>>>> +            ranges = <0 0 0x146aa000 0x1000>;
+>>>>> +
+>>>>> +            pil-reloc@94c {
+>>>>> +                compatible = "qcom,pil-reloc-info";
+>>>>> +                reg = <0x94c 0xc8>;
+>>>>> +            };
+>>>>> +        };
+>>>>> +
+>>>>>            apps_rsc: rsc@17a00000 {
+>>>>>                label = "apps_rsc";
+>>>>>                compatible = "qcom,rpmh-rsc";
 
