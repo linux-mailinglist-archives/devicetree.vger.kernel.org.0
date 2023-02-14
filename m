@@ -2,118 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4B9697004
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 22:47:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C2F69702C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 22:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbjBNVrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 16:47:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40106 "EHLO
+        id S229584AbjBNV4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 16:56:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjBNVrk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 16:47:40 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E387829400;
-        Tue, 14 Feb 2023 13:47:38 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31EK65T2010074;
-        Tue, 14 Feb 2023 21:47:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6NCAb+ClkItOONSxabmS6/8CYNLKrgnbP0lxkLcbOCc=;
- b=dsnAXD9t2DldWUXmSfg1eRhCJ+O0w0wKQX2GxnoD5FUFgB8SUkfii2Eyti1ou0kMUTGe
- +evfXO9a1AmmkawoLhmr03k0zDVHU/IMNo6ElQwW2SZb7DDbg/QoaONL/Jkxi6YuFyUD
- jyAaMG3lC53mDUiYynxCbMnjbMG6gXlvFMWSeHxWJrBA2Mb/tEB/tNUWfICCsOkK1JxG
- fyywMXGGu8ClLYgOtrYbHaEqKd5h3ZbMVkwVJ1C8kqoufp/4JmKLS8r3Lp80FL8xi5Ms
- foR5fji7IQUhGaAdA0IZyP9vxmw4zbFx/WUcc3Ao5ePk1hAc9GEPVR5hsiiUqGft2ySI 4w== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nqtv0bfj6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Feb 2023 21:47:35 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31ELlY9X005546
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Feb 2023 21:47:34 GMT
-Received: from [10.134.66.255] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 14 Feb
- 2023 13:47:33 -0800
-Message-ID: <63f41994-6408-1fe5-2d75-363dc6933eed@quicinc.com>
-Date:   Tue, 14 Feb 2023 13:47:33 -0800
+        with ESMTP id S229508AbjBNV4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 16:56:09 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6145B305CA;
+        Tue, 14 Feb 2023 13:56:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1676411735; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=Ca/TggrF2spbW8pMsdJvQthh73Cj9ui7TX9h4Ts4FoBXxMiH6Hts2WOnpoMstcylavAvDL1tu9lR9zJhB9Ovp9gw9HoTW6/ods2PbtaHuKDagLg4Qq3F5QpyO3kHgkbVcw/2Nz6lvy1Awx/gN3wq2ZwnaDp6hiYQLBsXs2M6Tr4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1676411735; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=vySWJ6MN7022l7oLRpZ2ZjFOTGdUlfBsedw6emUG1O4=; 
+        b=Zwqm7OmXoHxtZvgHa2/pUq1iRirvi9dcfAVHbkMliZfcGRmeBB8zIzju6AKZDpu7KyoIK+AhZRtz5Ufk1V3icIwlTT2wEKeh7Am3pBP5WhLBPyHsOkR1sccH7j1TNbW6jaLhHjus6/43LhFm+7RUoX5OZwrbylMGziC92LuvMb0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676411735;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=vySWJ6MN7022l7oLRpZ2ZjFOTGdUlfBsedw6emUG1O4=;
+        b=Di5jnN9soUnGjJdR/O7p+IrPvwh+BCFYmxAd+xdPOhAwkkYELy8sjacA87Z450a2
+        P5OB9yDUlso9h1rdQzX/jrL98upH6zSvN/R57MPEepNi1ber+l9HthibJ3jpEYutJNe
+        v44UgNwL7o5qW5XWT0ziksNDISF72+b3UbqcmqGU=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1676411732227685.6659792892178; Tue, 14 Feb 2023 13:55:32 -0800 (PST)
+Message-ID: <551f3ca9-d919-0eef-844b-8925c94ee236@arinc9.com>
+Date:   Wed, 15 Feb 2023 00:55:28 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: qdu1000: Add IPCC, MPSS, AOSS nodes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] arm: dts: mt7623: disable home key on Bananapi BPI-R2
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        arinc9.unal@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
+References: <20230212121354.44590-1-arinc.unal@arinc9.com>
+ <C18B89E3-7B54-47B4-98B3-B2D74AB29A54@public-files.de>
+ <fbc7cb4e-0424-f9c7-aa99-d8d9f7674175@gmail.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230213190122.178501-1-quic_molvera@quicinc.com>
- <20230213190122.178501-2-quic_molvera@quicinc.com>
- <7336923b-e322-1211-0c1d-7ad70c7bfef7@linaro.org>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <7336923b-e322-1211-0c1d-7ad70c7bfef7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1u1ylr2O_BeTw-I7zpYupQgODldTjDdN
-X-Proofpoint-ORIG-GUID: 1u1ylr2O_BeTw-I7zpYupQgODldTjDdN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-14_15,2023-02-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- lowpriorityscore=0 spamscore=0 malwarescore=0 mlxlogscore=442 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302140185
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <fbc7cb4e-0424-f9c7-aa99-d8d9f7674175@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2/14/2023 1:47 AM, Krzysztof Kozlowski wrote:
-> On 13/02/2023 20:01, Melody Olvera wrote:
->> Add nodes for IPCC, MPSS, and AOSS drivers. Also update
->> the scm node to include its interconnect.
+On 14.02.2023 21:09, Matthias Brugger wrote:
+> 
+> 
+> On 12/02/2023 13:33, Frank Wunderlich wrote:
+>> Am 12. Februar 2023 13:13:54 MEZ schrieb arinc9.unal@gmail.com:
+>>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>>
+>>> There's no home key on Bananapi BPI-R2. Disable it.
 >>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->
->>  
->> +		aoss_qmp: power-controller@c300000 {
->> +			compatible = "qcom,qdu1000-aoss-qmp", "qcom,aoss-qmp";
->> +			reg = <0x0 0xc300000 0x0 0x400>;
->> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
->> +						     IPCC_MPROC_SIGNAL_GLINK_QMP
->> +						     IRQ_TYPE_EDGE_RISING>;
->> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +			#clock-cells = <0>;
->> +			#power-domain-cells = <1>;
-> This does not look right. Which part of aoss-qmp registers power domains?
+>>>
+>>> +&mt6323keys {
+>>> +    home {
+>>> +        status = "disabled";
+>>> +    };
+>>> +};
+>>>
+>>
+>> Acked-by: Frank Wunderlich <frank-w@public-files.de>
+>> regards Frank
+> 
+> 
+> Applied, thanks!
 
-You're right; I didn't realize part of the driver that registered this had been removed. Will drop
-that line.
+Efkaristo poli! (I'm learning Greek, I'm trying to practice wherever I 
+can ;))
 
-Thanks,
-Melody
->
-> Best regards,
-> Krzysztof
->
+I'd like to remind my v3 patch series for the mt7623 DTs.
 
+Arınç
