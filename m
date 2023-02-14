@@ -2,100 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAFBE695C46
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:09:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5428A695C62
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjBNIJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:09:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45040 "EHLO
+        id S231615AbjBNILM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:11:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjBNIJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:09:28 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728F82111
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:09:27 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id m10so5810969wrn.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:09:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pf9170XvU7zLLAHBJUBXw8LaXOs2tRKFoZ7PkVXYtIY=;
-        b=LPaw8u0ct7tKtQNnm9Nx7k30Lqv1q3WeXUXy9e2Gd6QHcdvXAE67RvKMGi3qZWUoIg
-         e7X/IdGd7CpY22bkryhv5EUqfE65YWzy5ilmG300PpNCUxugKDSMDMYqcTUWEc+Dk42s
-         WwTMOFlV7+BYn6khsV4Zy3/9UsU5umHdY1eQB9h4+g5DeuRYUekGNH7+KEhF9pEzQPi4
-         T6ACNEscTe7S2OTMWhgH40DZuPdbO1QD5BVzb4vvw4S7RKgVIux0yGq5rCuX+ynXd+CZ
-         kAwHKytA8yjpvF1W6BzhCKYP8URTXGePXMGLjacd43Fo9mXqiRtBXQHGECvQJVS3e/i1
-         pfaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pf9170XvU7zLLAHBJUBXw8LaXOs2tRKFoZ7PkVXYtIY=;
-        b=LwczU4UewidAD4+8lSEoe7Z7GXtm99bJNIhbgue2C3UJqcrZVgNzHkIG84NwJgkxrv
-         P1KfH9zwZNDLHlDsHdipq/Y5aW6fy6em0HO2xW8e9FWL2XcDyyHSCRTasUfG7k7mkcSy
-         /snoNukEamVaJUiQJgvfk3ZWi4Rq9qVocamybOleSIqqz17e9pGGwe+rjJdnrhe56HDK
-         DYs3zJNY1cHPYYQ/MsDvUi/wC43edZ7kGkzMRZVj8yM28ik9V3T9lBgcip+FrAL1DfE/
-         gOKqt34xIa2/PjUXWr7rCzLPXx33V0E+baV4okQlbEzkv0u2g6+G7YrpwkpjaCxvBVtC
-         wJHQ==
-X-Gm-Message-State: AO0yUKXpZkxvaxItuJrKTdEPUtAplNDpM7wMprS2wH7rU22WViYgg51n
-        D6AUHiYBrejhIeOGYAqWOx9w5A==
-X-Google-Smtp-Source: AK7set8WK084Wm25gzk8fxH+tdMAdKMKDQpEY60rw+rQLHE2Nft2xLZqt5ECPRmIVsfYPqc19DrP/A==
-X-Received: by 2002:adf:f685:0:b0:2c5:5687:5ed5 with SMTP id v5-20020adff685000000b002c556875ed5mr1183986wrp.18.1676362166084;
-        Tue, 14 Feb 2023 00:09:26 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b16-20020adfe650000000b002c5534db60bsm6115122wrn.71.2023.02.14.00.09.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 00:09:25 -0800 (PST)
-Message-ID: <1f03e625-3385-06bc-1800-d30ba5da6f0c@linaro.org>
-Date:   Tue, 14 Feb 2023 09:09:23 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] dt-bindings: hwlock: sun6i: Add missing names
-Content-Language: en-US
-To:     Bastian Germann <bage@debian.org>,
-        Wilken Gottwalt <wilken.gottwalt@posteo.net>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231935AbjBNILG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:11:06 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFE023323
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:10:49 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pRqOg-0005Z0-NR; Tue, 14 Feb 2023 09:10:42 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pRqOf-0004c3-SU; Tue, 14 Feb 2023 09:10:41 +0100
+Date:   Tue, 14 Feb 2023 09:10:41 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20230213231931.6546-1-bage@debian.org>
- <20230213231931.6546-3-bage@debian.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213231931.6546-3-bage@debian.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: imx8mm-kontron: Add support for reading
+ SD_VSEL signal
+Message-ID: <20230214081041.6rys3eydmakim2yy@pengutronix.de>
+References: <20230213155833.1644366-1-frieder@fris.de>
+ <20230213155833.1644366-7-frieder@fris.de>
+ <20230213161548.ucaqpza65byyqvfo@pengutronix.de>
+ <eef49a1c-4dc3-7517-c760-ecc20704f943@denx.de>
+ <20230213195617.xndagbarc3k5kegr@pengutronix.de>
+ <b900238d-b06a-a9d7-6892-6a726603b63b@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b900238d-b06a-a9d7-6892-6a726603b63b@denx.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 00:19, Bastian Germann wrote:
-> The allwinner,sun6i-a31-hwspinlock.yaml binding needs clock-names
-> and reset-names set to "ahb" as required by the driver.
+On 23-02-13, Marek Vasut wrote:
+> On 2/13/23 20:56, Marco Felsch wrote:
+> > Hi Marek, Frieder,
 > 
-> Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock")
-> Signed-off-by: Bastian Germann <bage@debian.org>
-> ---
+> Hi,
+> 
+> > On 23-02-13, Marek Vasut wrote:
+> > > On 2/13/23 17:15, Marco Felsch wrote:
+> > > 
+> > > [...]
+> > > 
+> > > > > @@ -347,7 +347,7 @@ MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
+> > > > >    			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
+> > > > >    			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
+> > > > >    			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
+> > > > > -			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
+> > > > > +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x400001d0
+> > > > 
+> > > > The VSELECT pin should be driven by the (u)sdhc core...
+> > > > 
+> > > > >    		>;
+> > > > >    	};
+> > > > >    };
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
+> > > > > index 5172883717d1..90daaf54e704 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
+> > > > > @@ -196,6 +196,7 @@ reg_nvcc_sd: LDO5 {
+> > > > >    				regulator-name = "NVCC_SD (LDO5)";
+> > > > >    				regulator-min-microvolt = <1800000>;
+> > > > >    				regulator-max-microvolt = <3300000>;
+> > > > > +				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> > > > 
+> > > > and by using the sd-vsel-gpios property the IOMUXC_GPIO1_IO04 have to be
+> > > > muxed as GPIO, which is not the case. So I think that u-boot have a bug
+> > > > within the (u)sdhc core.
+> > > 
+> > > The trick here is that the VSELECT is operated by the usdhc block as a
+> > > function pin, but the PMIC driver can read the current state of the VSELECT
+> > > pin by reading out the GPIO block SR register. Since the IOMUX SION bit is
+> > > set on the VSELECT pin, the state of the pin is reflected in the GPIO block
+> > > SR register even if the pin is muxed as function pin.
+> > > 
+> > 
+> > Thanks for this explanation :) Why does the regulator driver need to
+> > know the current state of this pin?
+> 
+> Because that regulator has an input pin which selects between two states of
+> that regulator, L and H, and whatever L or H is depends on what is
+> configured into the regulator via I2C. To correctly report the state of the
+> regulator, you have to know the state of that input (selector) pin.
+> 
+> > Since the voltage switching requires
+> > some cmd's before the actual voltage level switch. So this must be
+> > handled within the core.
+> > 
+> > Also after checking the driver, adding the sd-vsel-gpios will request
+> > the specified gpio as output-high.
+> 
+> The GPIO would have to be requested as input, obviously.
 
-With the changes from Andre:
+But that isn't the case. According the driver comment they just want to
+make sure that this GPIO is high to ensure that the correct regulator
+config registers are used.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Out of curiosity, what's the bug you
+> > triggering within U-Boot?
+> 
+> AFAICT the readback of the initial state of the regulator (see paragraph
+> above), which affects Linux all the same.
 
-Best regards,
-Krzysztof
+According the binding the driver should check this and apply the value
+to the corresponding L/H register but unfortunately this isn't the case
+yet. Does U-Boot handle this correctly?
 
+Regards,
+  Marco
