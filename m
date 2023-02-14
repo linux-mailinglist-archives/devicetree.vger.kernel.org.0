@@ -2,107 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8B9695A6F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 08:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD443695ADE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 08:48:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231804AbjBNHRC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Feb 2023 02:17:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60860 "EHLO
+        id S229816AbjBNHsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 02:48:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231774AbjBNHQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 02:16:48 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27429234E5;
-        Mon, 13 Feb 2023 23:14:06 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 411AD24E39A;
-        Tue, 14 Feb 2023 15:11:03 +0800 (CST)
-Received: from EXMBX164.cuchost.com (172.16.7.74) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
- 2023 15:11:03 +0800
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX164.cuchost.com
- (172.16.6.74) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Feb
- 2023 15:11:02 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Tue, 14 Feb 2023 15:11:02 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Christoph Hellwig <hch@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
-Thread-Topic: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
-Thread-Index: AQHZNMIM/vLXVq3JgUiER7vBRC/T367F3jsAgACIQGD//3/YAIAHoM+AgACWCMA=
-Date:   Tue, 14 Feb 2023 07:11:02 +0000
-Message-ID: <d3ca1ec350d2442fb71eb006f8b57c45@EXMBX168.cuchost.com>
-References: <20230130154242.112613-1-jiajie.ho@starfivetech.com>
- <20230130154242.112613-5-jiajie.ho@starfivetech.com>
- <Y+S5fBjZQZli9nBg@gondor.apana.org.au>
- <88a62a7a11814d629e2198583a0349b6@EXMBX168.cuchost.com>
- <Y+TARjfzt2FMG6oJ@gondor.apana.org.au> <Y+smaRL9f7g9RWEB@infradead.org>
-In-Reply-To: <Y+smaRL9f7g9RWEB@infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.190.105.77]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S229742AbjBNHsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 02:48:03 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE2BA1C313
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:48:01 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id n33so4334779wms.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Feb 2023 23:48:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v9LBYoecALcKMnLalAfr6maJR0nbtDLWWltXeqYNnRQ=;
+        b=IlhY5d8bfT2GtFTzvc9TZ3Dmy0aKn8gG9uG2DaaOWibrPk5vh9mNu2/xizO1wOcXE5
+         YmDDkJsmZkeRX5UW31SJ5RbvTJoN5MJlOUYJAltfbqM72+QX2WY0Zfba95PktLhsPqmY
+         qfqqKVgaAE3iiBnIMKJyHhvHrwk+B7OrG/tFmytrou9l/kRutdW/cSeen0YogA0M6P6O
+         iThPvG9Grq3ewRJ/IX3Za1sApz50CtPSCt9q4pYzVOkot7GL3voQKjvU77/L3ECpVSM/
+         mYOVh6jErMyXNn4qsrrdHjYi82CSvur4MmjP3bRx6jN1iJmTQ0DaLYyu7UrnraxsdPnv
+         gzCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v9LBYoecALcKMnLalAfr6maJR0nbtDLWWltXeqYNnRQ=;
+        b=ktS8tfJwhiwtlBD20v220eZsnkxc+b9B6vInFHugmCvib7xjJDitl2CXwSRJ1GmmKJ
+         mlkLGXvLCUSv7NzASw6343YQoy9G6y9WViuPu7PfldDAcGd1azDAGZPSjlgA2t2pmQ4U
+         Ir4/9BJw5bsn3pL1t7baI5ykguDi9xBbLoAKYLYsnhWTDjboX2rqY88xA56tt8yjUMlO
+         a25oC//EQ/aYKGSG7XMgWEYTApThvhrQLRQpOevT5JpOT6N/r2uHhiy3t4gZh51fDMbH
+         H63xGKzK+6HRj/ZI6yxMjbLc1c694KjtX9OFIdMZrqo1YgBUGvAfJ6q2BrgCbaCmvbJh
+         NZMA==
+X-Gm-Message-State: AO0yUKWHYIZG0Q1BjfYComNylJ+LN4SkF37xLrXqQek0dWNg+FaCT/kd
+        uIGQM2TCsx1mM/G3toiOyiWezQ==
+X-Google-Smtp-Source: AK7set/WcU9lIqJ4Po60aUXsXakm5IcLvtMq6WakgTIVlgI22GmN5OrN1R/DMwYP88rmSbfZrjIjwQ==
+X-Received: by 2002:a1c:f012:0:b0:3d9:f769:2115 with SMTP id a18-20020a1cf012000000b003d9f7692115mr1094919wmb.26.1676360880577;
+        Mon, 13 Feb 2023 23:48:00 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id i16-20020a05600c4b1000b003dc4fd6e624sm15658892wmp.19.2023.02.13.23.47.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Feb 2023 23:48:00 -0800 (PST)
+Message-ID: <e569e7e8-4d7f-1e69-5a4b-ee4c4f83d7ce@linaro.org>
+Date:   Tue, 14 Feb 2023 08:47:57 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH V3 2/5] arm64: dts: qcom: Add support for Crashdump
+ collection on IPQ9574
+Content-Language: en-US
+To:     POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
+        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230208053332.16537-1-quic_poovendh@quicinc.com>
+ <20230208053332.16537-3-quic_poovendh@quicinc.com>
+ <dbc93125-afd5-9ed9-7b45-0d79f728b4a5@linaro.org>
+ <1a9ad881-7753-935a-ce7d-a2a79d34f16c@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1a9ad881-7753-935a-ce7d-a2a79d34f16c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Christoph Hellwig <hch@infradead.org>
-> Sent: 14 February, 2023 2:13 PM
-> To: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: JiaJie Ho <jiajie.ho@starfivetech.com>; David S . Miller
-> <davem@davemloft.net>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner Berthing
-> <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>; linux-
-> crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
-> Subject: Re: [PATCH v2 4/4] crypto: starfive - Add hash and HMAC support
+On 14/02/2023 05:11, POOVENDHAN SELVARAJ wrote:
 > 
-> On Thu, Feb 09, 2023 at 05:43:34PM +0800, Herbert Xu wrote:
-> > On Thu, Feb 09, 2023 at 09:33:06AM +0000, JiaJie Ho wrote:
-> > >
-> > > The DMA can only support 32-bit addressing.
-> > > So, I am copying everything in case kernel allocated memory region >32-
-> bit for a user app.
-> >
-> > Does your hardware support scatter-and-gather? If so you should at
-> > least allocate individual pages rather than one contiguous buffer.
-> >
-> > Then you can allocate them on-demand rather than before-hand.
-> >
-> > It would also be nice to not do the copy if the input you were given
-> > was in low memory (and contiguous if your hardware doesn't do SG).
+> On 2/8/2023 1:29 PM, Krzysztof Kozlowski wrote:
+>> On 08/02/2023 06:33, Poovendhan Selvaraj wrote:
+>>> Enable Crashdump collection in ipq9574
+>>>
+>>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>>> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>>> ---
+>>>   Changes in V3:
+>>> 	- No changes
+>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 26 +++++++++++++++++++++++++-
+>>>   1 file changed, 25 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> index 2b86ba17bb32..9c4523f50a57 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> @@ -81,6 +81,13 @@
+>>>   		reg = <0x0 0x40000000 0x0 0x0>;
+>>>   	};
+>>>   
+>>> +	firmware {
+>>> +		scm {
+>>> +			compatible = "qcom,scm-ipq9574", "qcom,scm";
+>>> +			qcom,dload-mode = <&tcsr_boot_misc 0>;
+>>> +		};
+>>> +	};
+>>> +
+>>>   	pmu {
+>>>   		compatible = "arm,cortex-a73-pmu";
+>>>   		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>>> @@ -95,11 +102,17 @@
+>>>   		#address-cells = <2>;
+>>>   		#size-cells = <2>;
+>>>   		ranges;
+>>> -
+>> I don't think anything improved here - still unrelated change.
+>>
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> All of that is done by the DMA API, or more specifically swiotlb and does not
-> need to be duplicated in individual drivers.
+> Okay sure...next series will add required smem and download mode nodes 
+> in different patches.
 
-I'll update the driver accordingly.
-Thanks Christoph and Herbert for the pointers.
+I commented the diff - specific hunk - which is unrelated.
 
-Regards
-Jia Jie
+Best regards,
+Krzysztof
+
