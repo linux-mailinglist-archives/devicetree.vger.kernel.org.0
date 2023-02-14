@@ -2,208 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C90DB69691A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4758696943
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 17:23:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232271AbjBNQRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 11:17:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60692 "EHLO
+        id S229964AbjBNQXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 11:23:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232342AbjBNQRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:17:37 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6223C2B0A6;
-        Tue, 14 Feb 2023 08:17:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1676391440; x=1707927440;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=uALPcs3Vx7BPrxo0UgAKw4uy0dcv8BW3De7tw3ZgiME=;
-  b=t4JY7/upbIvwslGvqbQW4m3Qpt3zwsXYc8F9FpbCYchlAnvmn0CSK9lX
-   wVVjWViWUxge5nq2D+DvCKPw9ZYdD4+RhwrYtjcYQpXYA6E1bQ70/msqc
-   PTj3DwPaaccH6mZJLaOfM8rAL4v/wBOz2Mu/4LESwIKgRD2TJ2PBuu9DQ
-   FtP3amgOBggEQ7EFt8/pfWU+6JxCRkZTbEtbd1kbMSJyQLoLO2e5Fc4cS
-   zjz8I0zzgQYqcw5K78acXC6iGrMv8nYEHDDvovVEbdcNXi2V0Tvh1Svgl
-   UvISJ9Muf+Izoi3AyE5cCUVF0/2WP2cnsqWTcuWrVyJopRScwoj6h8txP
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,297,1669100400"; 
-   d="scan'208";a="196891478"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Feb 2023 09:17:19 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 14 Feb 2023 09:17:07 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.16 via Frontend Transport; Tue, 14 Feb 2023 09:17:03 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <lars@metafoo.de>,
-        <perex@perex.cz>, <tiwai@suse.com>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 3/3] ASoC: mchp-pdmc: fix poc noise at capture startup
-Date:   Tue, 14 Feb 2023 18:14:35 +0200
-Message-ID: <20230214161435.1088246-4-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230214161435.1088246-1-claudiu.beznea@microchip.com>
-References: <20230214161435.1088246-1-claudiu.beznea@microchip.com>
+        with ESMTP id S230263AbjBNQXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 11:23:37 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4371323863
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:23:29 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id hx15so41378215ejc.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 08:23:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ho3W5bzFPULTUWzadsK5pu3BzadwOuUIPmOvHHDXQeo=;
+        b=giXtfREYAqOOutYXBXceTYvikLUhStzroO5RV1ME2JC4qcOZvI5aIJ2NAS7A2jSdLq
+         /5F1IWf6HQJL5EKIt7ZKju7oHlHhl4E/0N2B4M5fbcjUpcBQ/PjYQPpc1GLH2t7mJNcP
+         ApCiHEd1hvmXTHkbeTm4TE6lM9oOO7R6q2ldLDj80NvDXPw/38128vD8HjGI/kidNOXD
+         JOpsGD9RSuprwVxC8uoifM2XcvAwwsAloIUr/VR/RwkYPNKB0JaJddqk9ePktG6lmEp7
+         5efEK1stbx7Rlwxi0l93t2DbF3C+CYS6xd77b3YnXqs2OG1TE/rQhwSAsChFTFPsKQLF
+         n1Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ho3W5bzFPULTUWzadsK5pu3BzadwOuUIPmOvHHDXQeo=;
+        b=mSFSdbXIy8s9l38h0WBoQtR5Fz3SK3Tu2GG4ZyIHpGAA02OHXQD+sl0UrNG1nmvht3
+         RZNbfKYDaAepgoQQc0VWdnoBOreOLYMAJChMS5DTS1mklTiUya5Lt/EX9MPRnFCKpTwk
+         wByjglpFo+y/f17o8Ks83MMZrV5jSJm8SO7t47iiEeMPl7GqMDEeuXDn6e3yGJccskUV
+         lyg4r7pPXy7X13/OipzYechfg+I9wxdQMCu3Id6CMxn5FPz5RNGdhg0PUZOnGFe/fyJw
+         CHMDdEo7mfv4VXVvwxuMI44viD597egcsa3K/EmVxml7687E8oYE+GTZKZavI7lfT2CO
+         YoxA==
+X-Gm-Message-State: AO0yUKVh01+kT+a9/qX2/X23DPA+a0qLxO+BNY7OyKCerehrCZcWo97b
+        RXjTkrUwi6uy6Lb34CH48SRbJlJ9IhAFcYk/
+X-Google-Smtp-Source: AK7set8+7D22lJZ4bzs8ZV904jT3DvukWZwVtXIDVgJ1bizVPlfd0MknPDf5B1eGeOnE+Tscypb+PA==
+X-Received: by 2002:a17:906:2a15:b0:877:a2d1:7560 with SMTP id j21-20020a1709062a1500b00877a2d17560mr3495407eje.27.1676391807816;
+        Tue, 14 Feb 2023 08:23:27 -0800 (PST)
+Received: from fedora.. (cpezg-94-253-130-165-cbl.xnet.hr. [94.253.130.165])
+        by smtp.googlemail.com with ESMTPSA id bp8-20020a170907918800b008806a3c22c5sm1318027ejb.25.2023.02.14.08.23.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Feb 2023 08:23:27 -0800 (PST)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH 1/7] dt-bindings: clock: split qcom,gcc-ipq4019 to separate file
+Date:   Tue, 14 Feb 2023 17:23:19 +0100
+Message-Id: <20230214162325.312057-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Microchip PDMC IP doesn't filter microphone noises on startup. By default,
-it captures data received from digital microphones after
-the MCHP_PDMC_MR.EN bits are set. Thus when enable is set on PDMC side the
-digital microphones might not be ready yet and PDMC captures data from then
-in this time. This data captured is poc noise. To avoid this the software
-workaround is to the following:
-1/ enable PDMC channel
-2/ wait 150ms (on SAMA7G5-EK setup)
-3/ execute 16 dummy reads from RHR
-4/ clear interrupts
-5/ enable interrupts
-6/ enable DMA channel
+Move schema for the GCC on IPQ4019 platform to a separate file to be able
+to allow passing XO and sleep clks directly to GCC.
 
-Fixes: 50291652af52 ("ASoC: atmel: mchp-pdmc: add PDMC driver")
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
- sound/soc/atmel/mchp-pdmc.c | 55 +++++++++++++++++++++++++++++++++----
- 1 file changed, 50 insertions(+), 5 deletions(-)
+ .../bindings/clock/qcom,gcc-ipq4019.yaml      | 53 +++++++++++++++++++
+ .../bindings/clock/qcom,gcc-other.yaml        |  2 -
+ 2 files changed, 53 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-ipq4019.yaml
 
-diff --git a/sound/soc/atmel/mchp-pdmc.c b/sound/soc/atmel/mchp-pdmc.c
-index cf4084dcbd5e..c5f597ebfa47 100644
---- a/sound/soc/atmel/mchp-pdmc.c
-+++ b/sound/soc/atmel/mchp-pdmc.c
-@@ -114,6 +114,7 @@ struct mchp_pdmc {
- 	struct clk *gclk;
- 	u32 pdmcen;
- 	u32 suspend_irq;
-+	u32 startup_delay_us;
- 	int mic_no;
- 	int sinc_order;
- 	bool audio_filter_en;
-@@ -632,6 +633,29 @@ static int mchp_pdmc_hw_params(struct snd_pcm_substream *substream,
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-ipq4019.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq4019.yaml
+new file mode 100644
+index 0000000000000..6ebaef2288fa3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq4019.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-ipq4019.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller on IPQ4019
++
++maintainers:
++  - Stephen Boyd <sboyd@kernel.org>
++  - Taniya Das <tdas@codeaurora.org>
++  - Robert Marko <robert.markoo@sartura.hr>
++
++description: |
++  Qualcomm global clock control module provides the clocks, resets and power
++  domains on IPQ4019.
++
++  See also:: include/dt-bindings/clock/qcom,gcc-ipq4019.h
++
++allOf:
++  - $ref: qcom,gcc.yaml#
++
++properties:
++  compatible:
++    const: qcom,gcc-ipq4019
++
++  clocks:
++    items:
++      - description: board XO clock
++      - description: sleep clock
++
++  clock-names:
++    items:
++      - const: xo
++      - const: sleep_clk
++
++required:
++  - compatible
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    clock-controller@1800000 {
++      compatible = "qcom,gcc-ipq4019";
++      reg = <0x1800000 0x60000>;
++      #clock-cells = <1>;
++      #power-domain-cells = <1>;
++      #reset-cells = <1>;
++      clocks = <&xo>, <&sleep_clk>;
++      clock-names = "xo", "sleep_clk";
++    };
++...
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+index 2e8acca64af1c..ae01e77495342 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+@@ -15,7 +15,6 @@ description: |
+   domains.
  
-+static void mchp_pdmc_noise_filter_workaround(struct mchp_pdmc *dd)
-+{
-+	u32 tmp, steps = 16;
-+
-+	/*
-+	 * PDMC doesn't wait for microphones' startup time thus the acquisition
-+	 * may start before the microphones are ready leading to poc noises at
-+	 * the beginning of capture. To avoid this, we need to wait 50ms (in
-+	 * normal startup procedure) or 150 ms (worst case after resume from sleep
-+	 * states) after microphones are enabled and then clear the FIFOs (by
-+	 * reading the RHR 16 times) and possible interrupts before continuing.
-+	 * Also, for this to work the DMA needs to be started after interrupts
-+	 * are enabled.
-+	 */
-+	usleep_range(dd->startup_delay_us, dd->startup_delay_us + 5);
-+
-+	while (steps--)
-+		regmap_read(dd->regmap, MCHP_PDMC_RHR, &tmp);
-+
-+	/* Clear interrupts. */
-+	regmap_read(dd->regmap, MCHP_PDMC_ISR, &tmp);
-+}
-+
- static int mchp_pdmc_trigger(struct snd_pcm_substream *substream,
- 			     int cmd, struct snd_soc_dai *dai)
- {
-@@ -644,15 +668,17 @@ static int mchp_pdmc_trigger(struct snd_pcm_substream *substream,
- 	switch (cmd) {
- 	case SNDRV_PCM_TRIGGER_RESUME:
- 	case SNDRV_PCM_TRIGGER_START:
--		/* Enable overrun and underrun error interrupts */
--		regmap_write(dd->regmap, MCHP_PDMC_IER, dd->suspend_irq |
--			     MCHP_PDMC_IR_RXOVR | MCHP_PDMC_IR_RXUDR);
--		dd->suspend_irq = 0;
--		fallthrough;
- 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
- 		snd_soc_component_update_bits(cpu, MCHP_PDMC_MR,
- 					      MCHP_PDMC_MR_PDMCEN_MASK,
- 					      dd->pdmcen);
-+
-+		mchp_pdmc_noise_filter_workaround(dd);
-+
-+		/* Enable interrupts. */
-+		regmap_write(dd->regmap, MCHP_PDMC_IER, dd->suspend_irq |
-+			     MCHP_PDMC_IR_RXOVR | MCHP_PDMC_IR_RXUDR);
-+		dd->suspend_irq = 0;
- 		break;
- 	case SNDRV_PCM_TRIGGER_SUSPEND:
- 		regmap_read(dd->regmap, MCHP_PDMC_IMR, &dd->suspend_irq);
-@@ -796,6 +822,7 @@ static bool mchp_pdmc_readable_reg(struct device *dev, unsigned int reg)
- 	case MCHP_PDMC_CFGR:
- 	case MCHP_PDMC_IMR:
- 	case MCHP_PDMC_ISR:
-+	case MCHP_PDMC_RHR:
- 	case MCHP_PDMC_VER:
- 		return true;
- 	default:
-@@ -817,6 +844,17 @@ static bool mchp_pdmc_writeable_reg(struct device *dev, unsigned int reg)
- 	}
- }
- 
-+static bool mchp_pdmc_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MCHP_PDMC_ISR:
-+	case MCHP_PDMC_RHR:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
- static bool mchp_pdmc_precious_reg(struct device *dev, unsigned int reg)
- {
- 	switch (reg) {
-@@ -836,6 +874,7 @@ static const struct regmap_config mchp_pdmc_regmap_config = {
- 	.readable_reg	= mchp_pdmc_readable_reg,
- 	.writeable_reg	= mchp_pdmc_writeable_reg,
- 	.precious_reg	= mchp_pdmc_precious_reg,
-+	.volatile_reg	= mchp_pdmc_volatile_reg,
- 	.cache_type	= REGCACHE_FLAT,
- };
- 
-@@ -918,6 +957,11 @@ static int mchp_pdmc_dt_init(struct mchp_pdmc *dd)
- 		dd->channel_mic_map[i].clk_edge = edge;
- 	}
- 
-+	ret = of_property_read_u32(np, "microchip,startup-delay-us",
-+				   &dd->startup_delay_us);
-+	if (ret)
-+		dd->startup_delay_us = 150000;
-+
- 	return 0;
- }
- 
-@@ -941,6 +985,7 @@ static int mchp_pdmc_process(struct snd_pcm_substream *substream,
- static struct snd_dmaengine_pcm_config mchp_pdmc_config = {
- 	.process = mchp_pdmc_process,
- 	.prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config,
-+	.start_dma_last = 1,
- };
- 
- static int mchp_pdmc_runtime_suspend(struct device *dev)
+   See also::
+-    include/dt-bindings/clock/qcom,gcc-ipq4019.h
+     include/dt-bindings/clock/qcom,gcc-ipq6018.h
+     include/dt-bindings/reset/qcom,gcc-ipq6018.h
+     include/dt-bindings/clock/qcom,gcc-msm8953.h
+@@ -29,7 +28,6 @@ allOf:
+ properties:
+   compatible:
+     enum:
+-      - qcom,gcc-ipq4019
+       - qcom,gcc-ipq6018
+       - qcom,gcc-mdm9607
+       - qcom,gcc-msm8953
 -- 
-2.34.1
+2.39.1
 
