@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92304695CD3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E09C695CD9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:25:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231484AbjBNIWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:22:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
+        id S231781AbjBNIZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:25:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231912AbjBNIWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:22:50 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CDC20D2A
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:22:47 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id l21-20020a05600c1d1500b003dfe462b7e4so728959wms.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:22:47 -0800 (PST)
+        with ESMTP id S231824AbjBNIZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:25:08 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3F1BBA5
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:25:06 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id he5so2583887wmb.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:25:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xmA3b8HiSjRT79UCAMcXXDSaz4yP3Iu5XU3XjZNSgcs=;
-        b=Mdeb7l/gO1iHi3Lg/0KG01jAPdpw5Ut9tILOshVGLfexbTu90ZJ9NNc4vHME7CekPG
-         iTYEJwrhBlwlVGW8D4jwltemyyj8htlLc8ZvZnV8CzYJNSm0lBMMXNUm1EC6JY2lGF8r
-         0XggqTv/74ITxEp60OfDYPzaNSM7lVPMfx5lPryRqhNTo/I1q4vbPOxyPvjF+HgXecL3
-         BhS1Aa41+li8E2pShzNc9/DqMOzCET3kFYuzMPIL45bTYPilU0oi8fFJvTrgZ8eE3ID1
-         gTGMDWpg/y06sXgVQbRA4HtB0OzkUUMxKPXO8y5qimaVtdYDzY7eeCprsbYXkGSeqeRs
-         bffA==
+        bh=m6YzbHeijVYRLJ+k+ysFkY3qZGUT24eM/SXq0u2hpl0=;
+        b=zc3a2TNGE5lhWMT6/1egKMP6QQC2JoaLrNPh92Zha2FwXDhNacfwKU59fU8R2y4MB5
+         9OdCjIWcp8QrBrI3BVPkpYGGXRs7zoiQdAXhyjG4gxcQx0SFTbQgDd1UVJyoJHONINW9
+         21kKq89dLVQnfZAnvTIIGmESqyo0B0n1bf2FCz+fBumOznrCl6cEcWyLLXDlz0dSe9Fb
+         /7HENpCmmQ1Co5WvRFl6lku18FYGRwMnGX31VyikC1YHLydfJI3yRjvR4SfrZ0QDr+8e
+         GavwIr5tCzr5jJ07YU5JpMxoLkNO/nRPx9dGIwTKNNHZbTcVIYyqJehz9TZLdEIXaIMO
+         Mfpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xmA3b8HiSjRT79UCAMcXXDSaz4yP3Iu5XU3XjZNSgcs=;
-        b=ai+7s8lXNyefMXKqasBAnSvn0IYNQNIexPBkvLqi2othCJp2nff3zoWxDrPFx1ZtZH
-         TbTQJJWbmo5iJ+Mqde3jt/D5uTCoqr7D4u/vXYGSBgWIXr/avcTrUwByO2NQwrJUL1BA
-         kH59BlwxmcaB7rSpXUoloMuBzxiyUn+wTArS+CM4V11IZ8ecjZfOrOYS4QezL+1NNTr7
-         TUyLRsWZpKSGlH4rf/CCbuDF2iEKBJXGb8lPO1RsDsikiUy8piww9sYtgeyY8hjyMWWE
-         DIGR8vSPReXw2bSYP1oX3p2eZ0+GX2lCdqArUjuneLzr1UcD3H1G9l3025yR1j6jlDbe
-         Paeg==
-X-Gm-Message-State: AO0yUKVohB1Mnk5ldTsfjIijRC9JYVW21RmEbdNgEHkmRfhiUek+J+YH
-        /dyM5Sij9RnLxJK0Y/ycUC98GA==
-X-Google-Smtp-Source: AK7set9uBs9rsC63W3YxzyQXGm5Zt2Q+4Cb9pPI1ebmeYqdk8QnV4nGCuTVW/UBCU+QcFV/lUlyIrA==
-X-Received: by 2002:a7b:cc87:0:b0:3df:57aa:db52 with SMTP id p7-20020a7bcc87000000b003df57aadb52mr1322977wma.4.1676362966419;
-        Tue, 14 Feb 2023 00:22:46 -0800 (PST)
+        bh=m6YzbHeijVYRLJ+k+ysFkY3qZGUT24eM/SXq0u2hpl0=;
+        b=hlO/YqTfEDlTFizuPVL7GvL8dSx8YiC2m/DUe+fxPU0mOEb9r0BPSpXUxLzFNZq0df
+         IEqYtQtoec9/lckdXqUcczDnJJzU6dXjLderFnfWn0BxzVaGQFHDNtqxa8N/Rx4z4gga
+         PlgqLzr2ZoqPmEZaInvpU3iB7mZb5TIzm+5LsNw6jC5dULOvFTE3Rwf8VZDtgM833wwI
+         4Mm4rOQi+hSl9UYAINXgwrGwiYAUjlxiu71CM9TRlDCr/1chAak4woQqiqiNRRuNwLmh
+         4KIbJNCisC1fe5HK0wf6GeRGMTkYt58Tcxs2nuKPXzfR6PPT/D63p/GTQxdf76yZMSna
+         haxg==
+X-Gm-Message-State: AO0yUKXUY9xOJG6gqEDmFLZQifw/KrspUgxGZzMf3uxkI6t0cur6oYkV
+        0ikbUEHteUCU7O2RA4qFTgqMjA==
+X-Google-Smtp-Source: AK7set8ke1aM1nENCGqcij6HydhlyUcWM8+QrxYrQ+b6qRNZCSEisG5R7jEMFjOeoDhgNTaHgB7QAw==
+X-Received: by 2002:a05:600c:4b17:b0:3df:eb5d:c583 with SMTP id i23-20020a05600c4b1700b003dfeb5dc583mr1389270wmp.17.1676363104749;
+        Tue, 14 Feb 2023 00:25:04 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v18-20020a05600c445200b003de77597f16sm17894323wmn.21.2023.02.14.00.22.44
+        by smtp.gmail.com with ESMTPSA id hg8-20020a05600c538800b003e1202744f2sm13504837wmb.31.2023.02.14.00.25.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 00:22:46 -0800 (PST)
-Message-ID: <fc506954-3dd2-6c1c-fccc-52de755eca6e@linaro.org>
-Date:   Tue, 14 Feb 2023 09:22:44 +0100
+        Tue, 14 Feb 2023 00:25:04 -0800 (PST)
+Message-ID: <86f5121c-d9de-250d-b845-fee70f28c1c6@linaro.org>
+Date:   Tue, 14 Feb 2023 09:25:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/9] dt-bindings: mailbox: qcom-ipcc: Add compatible for
- QDU1000/QRU1000
+Subject: Re: [PATCH 3/9] dt-bindings: soc: qcom: aoss: Document
+ power-domain-cells for aoss
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -71,9 +71,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
 References: <20230213185218.166520-1-quic_molvera@quicinc.com>
- <20230213185218.166520-3-quic_molvera@quicinc.com>
+ <20230213185218.166520-4-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213185218.166520-3-quic_molvera@quicinc.com>
+In-Reply-To: <20230213185218.166520-4-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,12 +86,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/02/2023 19:52, Melody Olvera wrote:
-> Document the compatible for the QDU1000 mailbox.
+> Document "#-power-domain-cells" field for aoss devices as required
+> by power-controller bindings.
+
+The power domain cells are for power domain providers. The reason to add
+them is because it is a power domain provider. Power-controller bindings
+do not require drivers which are not power controllers to become such...
+and this driver is not power domain provider / power controller, is it?
+
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
