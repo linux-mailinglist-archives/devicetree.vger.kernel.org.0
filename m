@@ -2,122 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FADA695CF8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 133F2695D02
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:33:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbjBNIcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:32:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37518 "EHLO
+        id S231495AbjBNIdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:33:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbjBNIcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:32:05 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F8D3C29;
-        Tue, 14 Feb 2023 00:32:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676363505; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=iualKzOx4/tXV8fnCcIs5szqt55CddsE9QRpRAZMbcIlKV4pC14z23m9vbFNrm/RYaSeznxNACs4a4V48yII+jUBa7zw7EvDTllUkQ4JFBNr6qmRoQxGPF1T5PjFLyEseIDkveEAPXKKV7hcr+CZmsEnm6QdUE+AQRpX8pFA38s=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1676363505; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=IDHUVK6k6nJv+wJzQGsZyu/MG5qaz5nXBO6YgZMfEpo=; 
-        b=mciP8mZiBPztYw/VHZaOMd2CUEgMByjOjVFXtsUOEWz/f3UNj1Sh+PtXxi1SrhQVrZHuwbch2SlKGD0Axwel3cP5cxeqrpGZCFOiy1nieTXfwO72kWxbb2TeSXfLqaefe7TxY+23LNQxDHN2p64S/ezOGv7wcYsJo2SUtdY5Uws=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676363505;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:From:From:To:To:Cc:Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=IDHUVK6k6nJv+wJzQGsZyu/MG5qaz5nXBO6YgZMfEpo=;
-        b=ii+webR7VyQL/Z2HY0Pw0/+n6zo52eGzn0DL0sT6bUrH0zHLl7ER+9SW467Z7k87
-        EKUZz2UP1DtbU8Hv2G06A7BAruLOkIPLQNRwu4iP1D29VbTvalortWzcotqqWuwtOwe
-        6CSXyBYaa4HdzTWrNOzingPGXlOtAnnl0XXGtaMo=
-Received: from [10.10.9.4] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1676363503759332.83192985950996; Tue, 14 Feb 2023 00:31:43 -0800 (PST)
-Message-ID: <b302c25e-5365-c335-c790-71b3135847d0@arinc9.com>
-Date:   Tue, 14 Feb 2023 11:31:37 +0300
+        with ESMTP id S230153AbjBNIdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:33:51 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80065C16F
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:33:46 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso10920248wms.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:33:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ejEtMeBPAExp6t+VkmV02BN0b+eFcA/gZrz9wzLiQ7o=;
+        b=n8HQN19AxeMJEOJUepEp44f87OkEuIvnINHRadawoYB7AXncgM0A42B4HxFHpaH28C
+         InHrWqqU1ElMciZp3kyyl4rRVOP8otaTP9Yeisv9bQGrDAKOxfzt/b8riA3jk1B7fF1Z
+         UKZks+QEBoMVvAsCRtEvPzUgWQWQSQkufNeN1YJdz4dHEqCe6I9d8kf8R/7sRU557gvU
+         CHPlu2DBdmgFeMU+42kK8Xrw4T9cS9HNBiVeQoc+Np9fg2qEFs59vvid8ioYYm6aPVAo
+         Zxq06nv14MCT19FHta3cqoqdkwZlnh3AqtsHFdyl56yPCByq4oVvErXI1Y+D9WTDLt0V
+         Rw4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ejEtMeBPAExp6t+VkmV02BN0b+eFcA/gZrz9wzLiQ7o=;
+        b=umOYLoXPPMEXpVEEQgZtsf06G9JI/Nz51KD5AEyOMRPDeCnT+cefMjfspjRRSoocdf
+         AdpSwlMKzeM87JWr8QRXH8HqNnAgcHWt3skvCvydNQ688eGj/F/iGyhCiGaaw2tKC21y
+         LhWgcmhkZQHuH+I/Y3PAvrR0r8jMvmviKNOmjzcl5gi5eTjpYjy35mqyJUeG0Vkua0Vl
+         KCYUefMD6rGdGEiVn45kNJcPpB+OPLQhAuz1dV6mBea9R+YfbFp53i47wY6mFy3VcdQA
+         e2sPIijoAE7fcLBHOmhuHzh7x8ZTFcAni5XN6/yExKYFOarokceRR/GLVFGNhZAEvNue
+         55Ng==
+X-Gm-Message-State: AO0yUKWVZZGogvc3lFA4dzAabjBKa7vTlGixJ0tDVkfCuyOs3uuoNb+v
+        Mmv89bAvcPmNKzPJRe+/ko0PkA==
+X-Google-Smtp-Source: AK7set+A1fCoRJwiI7MCWml+SDJKG30LEP0RsDV/PHSNGYnlMV3CnQPGLlHbZbY8mBInF6MAprhLEQ==
+X-Received: by 2002:a7b:c3d7:0:b0:3df:ef18:b0a1 with SMTP id t23-20020a7bc3d7000000b003dfef18b0a1mr1225722wmj.12.1676363625117;
+        Tue, 14 Feb 2023 00:33:45 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id d1-20020adff841000000b002c5640f9bf9sm1106229wrq.85.2023.02.14.00.33.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Feb 2023 00:33:44 -0800 (PST)
+Message-ID: <60928656-c565-773d-52e6-2142e997eee4@linaro.org>
+Date:   Tue, 14 Feb 2023 09:33:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 0/3] watchdog: mt7621-wdt: avoid globals and arch
- dependencies
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
+ support
 Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20230213200519.889503-1-sergio.paracuellos@gmail.com>
- <7bff7c46-ed03-ba7d-6a88-f94dfd0cb1a5@arinc9.com>
-In-Reply-To: <7bff7c46-ed03-ba7d-6a88-f94dfd0cb1a5@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+References: <20230213145432.1192911-1-neeraj.sanjaykale@nxp.com>
+ <20230213145432.1192911-3-neeraj.sanjaykale@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230213145432.1192911-3-neeraj.sanjaykale@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14.02.2023 11:12, Arınç ÜNAL wrote:
-> On 13.02.2023 23:05, Sergio Paracuellos wrote:
->> Hi all,
->>
->> This series make an update in the MT7621 SoC's watchdog driver code. This
->> SoC already provides a system controller node to access reset status
->> register needed for the watchdog. Instead of using MIPS architecture
->> dependent operations in header 'asm/mach-ralink/ralink_regs.h' get
->> node syscon regmap using 'syscon_regmap_lookup_by_compatible()' and use.
->> regmap APIS. Driver is also using some globals that are not needed at
->> all if a driver data structure is used along the code. Hence, add all
->> new needed stuff inside a new driver data structure. With this changes
->> driver can be properly compile tested.
->>
->> Thanks in advance for reviewing this!
->>
->> v1 of this series here [0].
->> v2 of this series here [1].
->> v3 of this series here [2].
->> v4 of this series here [3].
->> v5 of this series here [4].
->>
->> Changes in v6:
->>      - Get regmap syscon using 'syscon_regmap_lookup_by_compatible()'
->>      - Add COMPILE_TEST and dependencies to Kconfig.
->>      - Collect Philippe Mathieu-Daudé 'Reviewed-by' tag for watchdog node
->>        warning fix.
->>
->> Changes in v5:
->>      - Drop patches related with device tree ABI breakage and only
->>        maintain the rest.
+On 13/02/2023 15:54, Neeraj Sanjay Kale wrote:
+> Add binding document for NXP bluetooth chipsets attached
+> over UART.
 > 
-> This makes me regret taking mt7621-dts out of drivers/staging. Clearly 
-> there were improvements to be made on the MT7621 drivers that would 
-> affect the devicetree binding. I don't think one would bat an eye to 
-> make dt-binding changes on a devicetree on drivers/staging.
-> 
-> I also want to make a similar change that would break the ABI. I want to 
-> split the MediaTek MIPS (currently called Ralink) pinctrl subdrivers 
-> further, namely mt7620.c, to split MT7628/MT7688 pinmux data from 
-> MT7620, so I can properly document which function can be given to which 
-> group(s) for the MT7628/MT7688 SoCs.
-> 
-> This means I've got to introduce a new compatible string for the MT76X8 
-> SoCs which would cause the pinctrl driver to stop working with an old DT 
-> for the MT76X8 SoCs. By the nature of the change, I can't make a way 
-> around with the code like Sergio did in v6.
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Resolved dt_binding_check errors. (Rob Herring)
+> v2: Modified description, added specific compatibility devices, corrected indentations. (Krzysztof Kozlowski)
+> v3: Modified description, renamed file (Krzysztof Kozlowski)
+> ---
+>  .../bindings/net/bluetooth/nxp,w8xxx-bt.yaml  | 44 +++++++++++++++++++
 
-Now that I think about it, I think there's a way I can introduce a new 
-compatible string for the sake of better documentation, and keep the 
-driver working with old DTs. I'd not like to convolute this series with 
-this conversation. I'll send a mail to the related mailing list when the 
-time is right.
+I don't think I proposed such filename.
 
-Arınç
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml
+> new file mode 100644
+> index 000000000000..2685f6d5904f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/bluetooth/nxp-bluetooth.yaml#
+
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP Bluetooth chips
+> +
+> +description:
+> +  This binding describes UART-attached NXP bluetooth chips.
+> +  These chips are dual-radio chips supporting WiFi and Bluetooth,
+> +  except for iw612, which is a tri-radio chip supporting 15.4
+> +  as well.
+> +  The bluetooth works on standard H4 protocol over 4-wire UART.
+> +  The RTS and CTS lines are used during FW download.
+> +  To enable power save mode, the host asserts break signal
+> +  over UART-TX line to put the chip into power save state.
+> +  De-asserting break wakes-up the BT chip.
+> +
+> +maintainers:
+> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,88w8987-bt
+> +      - nxp,88w8997-bt
+> +      - nxp,88w9098-bt
+> +      - nxp,iw416-bt
+> +      - nxp,iw612-bt
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    uart2 {
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+> +        uart-has-rtscts;
+> +        bluetooth {
+> +          compatible = "nxp,iw416-bt";
+
+Wrong indentation. Use 4 spaces for example indentation.
+
+
+Best regards,
+Krzysztof
+
