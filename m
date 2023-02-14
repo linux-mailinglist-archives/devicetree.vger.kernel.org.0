@@ -2,174 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133F2695D02
-	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E680C695D5F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Feb 2023 09:43:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231495AbjBNIdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 03:33:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39152 "EHLO
+        id S231276AbjBNInt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 03:43:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230153AbjBNIdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:33:51 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80065C16F
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:33:46 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id m16-20020a05600c3b1000b003dc4050c94aso10920248wms.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 00:33:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ejEtMeBPAExp6t+VkmV02BN0b+eFcA/gZrz9wzLiQ7o=;
-        b=n8HQN19AxeMJEOJUepEp44f87OkEuIvnINHRadawoYB7AXncgM0A42B4HxFHpaH28C
-         InHrWqqU1ElMciZp3kyyl4rRVOP8otaTP9Yeisv9bQGrDAKOxfzt/b8riA3jk1B7fF1Z
-         UKZks+QEBoMVvAsCRtEvPzUgWQWQSQkufNeN1YJdz4dHEqCe6I9d8kf8R/7sRU557gvU
-         CHPlu2DBdmgFeMU+42kK8Xrw4T9cS9HNBiVeQoc+Np9fg2qEFs59vvid8ioYYm6aPVAo
-         Zxq06nv14MCT19FHta3cqoqdkwZlnh3AqtsHFdyl56yPCByq4oVvErXI1Y+D9WTDLt0V
-         Rw4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ejEtMeBPAExp6t+VkmV02BN0b+eFcA/gZrz9wzLiQ7o=;
-        b=umOYLoXPPMEXpVEEQgZtsf06G9JI/Nz51KD5AEyOMRPDeCnT+cefMjfspjRRSoocdf
-         AdpSwlMKzeM87JWr8QRXH8HqNnAgcHWt3skvCvydNQ688eGj/F/iGyhCiGaaw2tKC21y
-         LhWgcmhkZQHuH+I/Y3PAvrR0r8jMvmviKNOmjzcl5gi5eTjpYjy35mqyJUeG0Vkua0Vl
-         KCYUefMD6rGdGEiVn45kNJcPpB+OPLQhAuz1dV6mBea9R+YfbFp53i47wY6mFy3VcdQA
-         e2sPIijoAE7fcLBHOmhuHzh7x8ZTFcAni5XN6/yExKYFOarokceRR/GLVFGNhZAEvNue
-         55Ng==
-X-Gm-Message-State: AO0yUKWVZZGogvc3lFA4dzAabjBKa7vTlGixJ0tDVkfCuyOs3uuoNb+v
-        Mmv89bAvcPmNKzPJRe+/ko0PkA==
-X-Google-Smtp-Source: AK7set+A1fCoRJwiI7MCWml+SDJKG30LEP0RsDV/PHSNGYnlMV3CnQPGLlHbZbY8mBInF6MAprhLEQ==
-X-Received: by 2002:a7b:c3d7:0:b0:3df:ef18:b0a1 with SMTP id t23-20020a7bc3d7000000b003dfef18b0a1mr1225722wmj.12.1676363625117;
-        Tue, 14 Feb 2023 00:33:45 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d1-20020adff841000000b002c5640f9bf9sm1106229wrq.85.2023.02.14.00.33.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Feb 2023 00:33:44 -0800 (PST)
-Message-ID: <60928656-c565-773d-52e6-2142e997eee4@linaro.org>
-Date:   Tue, 14 Feb 2023 09:33:41 +0100
+        with ESMTP id S229609AbjBNIns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 03:43:48 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81AE4EB78;
+        Tue, 14 Feb 2023 00:43:47 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 0271C41EF0;
+        Tue, 14 Feb 2023 08:43:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1676364225; bh=IWQwKEGZ+Hyg9S7V/KAooOYXp/6TYVVlk+qy9sZy6/I=;
+        h=Date:To:Cc:References:From:Subject:In-Reply-To;
+        b=icEjcHu0wQAeY610h6yVag+DPRwmCUZq8cQNOunSbto9QMNTiF3AafjXM0teOlHWE
+         JKq8NYgcPY5+j7DrA6Lhd3/Kqa3dINrkXOkiYZObRiutrz4bW4xQN88i9zipvh7HWu
+         2FDih2ThCX54wROM3kAtffOajQ0Iux+Rap63Fnf5nFh3TykqWWH8/5I0PbvixNdpY+
+         ZBNByyfE+HmH6fckVM0HCyskwROilMdSntvfFYCd/mHXTkj+PPPljFZQjLaapaQpPY
+         PIbekvcSPzbzFhp2kiy6hLYiTu4b0Y5kH2pVbzl7yfFP/fxsNZBL2Zgh1/5kgyc2gk
+         oq7d50yezWK+Q==
+Message-ID: <391ae107-8c10-b14e-c1ad-0fac74951432@marcan.st>
+Date:   Tue, 14 Feb 2023 17:43:40 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
- support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
 Content-Language: en-US
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        alok.a.tiwari@oracle.com, hdanton@sina.com,
-        ilpo.jarvinen@linux.intel.com, leon@kernel.org
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
-        rohit.fule@nxp.com, sherry.sun@nxp.com
-References: <20230213145432.1192911-1-neeraj.sanjaykale@nxp.com>
- <20230213145432.1192911-3-neeraj.sanjaykale@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230213145432.1192911-3-neeraj.sanjaykale@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Kettenis <kettenis@openbsd.org>
+Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net>
+ <20230202-asahi-t8112-dt-v1-1-cb5442d1c229@jannau.net>
+ <3287867a-456c-ddc3-adbf-90001950c926@linaro.org>
+ <0a33fa04-039f-9a7e-f2a3-2a1a6abc98d4@marcan.st>
+ <5ff55f1c-8f02-abec-2320-c2e0b7db8904@linaro.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 01/17] dt-bindings: power: apple,pmgr-pwrstate: Add t8112
+ compatible
+In-Reply-To: <5ff55f1c-8f02-abec-2320-c2e0b7db8904@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 15:54, Neeraj Sanjay Kale wrote:
-> Add binding document for NXP bluetooth chipsets attached
-> over UART.
+On 14/02/2023 16.50, Krzysztof Kozlowski wrote:
+> On 14/02/2023 03:24, Hector Martin wrote:
+>> On 13/02/2023 20.09, Krzysztof Kozlowski wrote:
+>>> On 12/02/2023 16:41, Janne Grunau wrote:
+>>>> From: Hector Martin <marcan@marcan.st>
+>>>>
+>>>> Add the apple,t8112-pmgr-pwrstate compatible for the Apple M2 SoC.
+>>>>
+>>>> This goes after t8103. The sort order logic here is having SoC numeric
+>>>> code families in release order, and SoCs within each family in release
+>>>> order:
+>>>>
+>>>> - t8xxx (Apple HxxP/G series, "phone"/"tablet" chips)
+>>>>   - t8103 (Apple H13G/M1)
+>>>>   - t8112 (Apple H14G/M2)
+>>>> - t6xxx (Apple HxxJ series, "desktop" chips)
+>>>>   - t6000 (Apple H13J(S)/M1 Pro)
+>>>>   - t6001 (Apple H13J(C)/M1 Max)
+>>>>   - t6002 (Apple H13J(D)/M1 Ultra)
+>>>>
+>>>> Note that t600[0-2] share the t6000 compatible where the hardware is
+>>>> 100% compatible, which is usually the case in this highly related set
+>>>> of SoCs.
+>>>>
+>>>> Signed-off-by: Hector Martin <marcan@marcan.st>
+>>>>
+>>>
+>>> Missing SoB.
+>>>
+>>
+>> I'd rather get an r-b, since this is going back into my tree ;)
 > 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
-> v2: Resolved dt_binding_check errors. (Rob Herring)
-> v2: Modified description, added specific compatibility devices, corrected indentations. (Krzysztof Kozlowski)
-> v3: Modified description, renamed file (Krzysztof Kozlowski)
-> ---
->  .../bindings/net/bluetooth/nxp,w8xxx-bt.yaml  | 44 +++++++++++++++++++
+> Please follow Linux process which requires SoB chain.
 
-I don't think I proposed such filename.
+A SoB is not an r-b. I do not upstream patches that are unreviewed. I
+wrote the patch. Someone needs to review it.
 
->  MAINTAINERS                                   |  7 +++
->  2 files changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml
-> new file mode 100644
-> index 000000000000..2685f6d5904f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,w8xxx-bt.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/bluetooth/nxp-bluetooth.yaml#
+The extra SoB is redundant because this is going back into my tree, I
+wrote it, and I will be the committer when I apply it. It's a one-liner
+patch. I know what I wrote. Sure we could record Janne's SoB as a
+technicality, but it feels silly. What matters more is that the patch
+gets reviewed, not that on a patch series technicality it ended up being
+Janne who sent it to the list. I could just pull the patch from my own
+branch and then it didn't go through Janne so it doesn't need his SoB.
+But it does need someone's review (because I absolutely refuse to merge
+my own patches without review, although not every maintainer has that
+policy unfortunately, which means there's lots of unreviewed code in the
+kernel).
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Please. Let's cut down on the silliness. Please. We're trying to get
+stuff done here. I'm tired of having to explain every little thing over
+and over and over again. I really am.
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Bluetooth chips
-> +
-> +description:
-> +  This binding describes UART-attached NXP bluetooth chips.
-> +  These chips are dual-radio chips supporting WiFi and Bluetooth,
-> +  except for iw612, which is a tri-radio chip supporting 15.4
-> +  as well.
-> +  The bluetooth works on standard H4 protocol over 4-wire UART.
-> +  The RTS and CTS lines are used during FW download.
-> +  To enable power save mode, the host asserts break signal
-> +  over UART-TX line to put the chip into power save state.
-> +  De-asserting break wakes-up the BT chip.
-> +
-> +maintainers:
-> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,88w8987-bt
-> +      - nxp,88w8997-bt
-> +      - nxp,88w9098-bt
-> +      - nxp,iw416-bt
-> +      - nxp,iw612-bt
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    uart2 {
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-> +        uart-has-rtscts;
-> +        bluetooth {
-> +          compatible = "nxp,iw416-bt";
-
-Wrong indentation. Use 4 spaces for example indentation.
-
-
-Best regards,
-Krzysztof
-
+- Hector
