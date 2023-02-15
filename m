@@ -2,140 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E45A6979D3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:28:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19BB46979E8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:31:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232248AbjBOK2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 05:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51108 "EHLO
+        id S234037AbjBOKbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 05:31:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbjBOK2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:28:41 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16E1366A3;
-        Wed, 15 Feb 2023 02:28:40 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id bh15so15370565oib.4;
-        Wed, 15 Feb 2023 02:28:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6yB8OFTfKD97aA5eOyH0KqfD+FWu2DzdqnSZBMyYeG0=;
-        b=jb760RmY2mhZp9FN8h0OdqgTxR3SOPTWq/yiTljm6AokXf9of5Gzv2bZsDnFB23SQH
-         E7USeo8jaYplkVWJOUaLwEPAR9Ccu0/8A9wKEn/E03VxuuUjod2y4rMkrGqhOPz28sm7
-         kKtAi0E5Da+z/RKtyYLW+/4MVWi9o5SChsWjkf692ZGyLOFZEXmSL7qZtTXJrOTYbA+6
-         Z0UwlZWYVQP8KbvPipWLrXrFNxzPIs9/ELq0n0JEYbvZCZC/Bb/7NsMGrJr1tLYYjyGR
-         dG4t//fwr+t3G451kZLqYVDupbCSADFd2k+PvX6Uk2L5Jjn3lzuOmIHJCPYnGLSWUC5D
-         a/GA==
+        with ESMTP id S233900AbjBOKbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:31:35 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E666C367F3
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 02:31:33 -0800 (PST)
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4AC433F57F
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 10:31:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1676457092;
+        bh=J/qDZkmn3KorSy6ubx2WDUhB6Kbdc/XauTgIuTzEF0w=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=opnWgQXcBM8nmJoaHvCchIjyolFlrBkKPKoei6AzwdRKmU7KHSu26UqiSBULMd2du
+         usLH/OGtTXbuHHXkIJit4r8aj5QgHXKEao91zbWHP8NJQvsYF/IRJAN5RNJbO/O8Px
+         xpwt+puIAwHxggdmlo0GOs8pYUuXxqbfTn7yLytbk2nSgoDZVRDv9ZnYcua4DDdHEN
+         A3ARSDPSB3VTrWZFRle4EVUJRx2uiuZ1Mm0dlwx8qgppRlFWjwb6hm4L6IQtcIf2pS
+         8S4Y0MW+J0F9hnGtmXMk1gmDIMymZTj5zzQyRk3o6KQZJg3naMyMg3zzPJxPSIWS4b
+         t1KuS6awTIhhg==
+Received: by mail-qk1-f198.google.com with SMTP id x14-20020a05620a14ae00b0072f7f0f356bso11141172qkj.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 02:31:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6yB8OFTfKD97aA5eOyH0KqfD+FWu2DzdqnSZBMyYeG0=;
-        b=U3jTDUI33WcE6ZEM+2KXfcOZXIlAjgUMZcUPzEZbQ/R/JwkJrXQXg5Sf3aepeF1AaI
-         BUQf9H2L9pZiBwhApFPgzGRxPCcqwhV+TqU2Mf+NMopP1dS/bhAEOc0ZKfQkz9Pg0bp1
-         x/AVdBWQN1oahfC99YPjGpYAYZPxrp6V4Lid7DdYgr284Nlp7Dor/foufolZlbleiFat
-         +tgTvf9Og9WaxJViOLRthW/SVLHK4tdQO31Qd7XUwkyFzaprOKv6M6/ruJnEG6Jigc7I
-         xw69FTmXf1TpENIWzIOJ6M76xhI7FkN03OMY/FJ/JHfHqdiBqahlRfd4TYcddxcZt9V0
-         pz9A==
-X-Gm-Message-State: AO0yUKWmXGCHrzstZ7s6CzgaTyqLyr7Wk+cQUz4KP6rNtiZOkQKQIF+u
-        8jYvDc9Ha17C4I2lpupUiKYO6Dm+EYsmipEbmD0=
-X-Google-Smtp-Source: AK7set8o82EF1RLdVxbKXwpb+W7OYj03kXyJab+ucP4FZwnFuHDzcmNItuleSEY+TdxxhHbCBhAnK/CkOwkljsDsIn8=
-X-Received: by 2002:a54:4508:0:b0:37d:8b23:1d1b with SMTP id
- l8-20020a544508000000b0037d8b231d1bmr167210oil.110.1676456920180; Wed, 15 Feb
- 2023 02:28:40 -0800 (PST)
+        bh=J/qDZkmn3KorSy6ubx2WDUhB6Kbdc/XauTgIuTzEF0w=;
+        b=3LtY6vdRqFYKMfpyEgaxK1R5kur2cspM6hbP+21ATRi69iLmpK0CHK2shcS/Hb45mV
+         6RwrLV5C4g1AuzKThBDkOblZFRoM5917IKOsRcm0qINT1+0OWmDVQql6lJGHNgkEmsGS
+         LeJqOSy6h4RJI7K4aANtxuFZxLePQEXv4+mvd3OZRukobWey3RCzSRUWUihhp5MTuhS3
+         UNtq90ewd/FuSqlgNyaSdQGLzc7U0KhMrrm8JFiw+4fhpRn5rnFm1QqReNADDRM3kLc7
+         YPjKa86SNsfP6Lfp3H1YcrvlcIscxkzQ1+gLawI1hdogMVSyJ1ier/eQCVXa4w7alP/G
+         1XIQ==
+X-Gm-Message-State: AO0yUKUWVNrRRq7tK+auvB9uXMh3b3BcsjZ1tvPalaIfPJMukEVhcVAN
+        KpQdkxLpCiOWCQXWTLRlSa0o0OCbuLXyei9NqjOjZNEbBjxwRqdyGyk9y6MfIPVpvPQrYCMjUwi
+        I5JTLTF1mFHdyL9kc22yhf9wJkg3HJC+Fu9cO/AK+QLxmXuQoyDHOTPg=
+X-Received: by 2002:a05:622a:164f:b0:3bc:e3a8:d1d6 with SMTP id y15-20020a05622a164f00b003bce3a8d1d6mr181341qtj.229.1676457091042;
+        Wed, 15 Feb 2023 02:31:31 -0800 (PST)
+X-Google-Smtp-Source: AK7set93hU2+oyuJ0C/LkbPAo2V6UGo4U5RSMbjNWw6Z8F8v4OAUsS6GhrWp/1jIOKMsaNCVvqP0POp7oTjMZpkPQ+g=
+X-Received: by 2002:a05:622a:164f:b0:3bc:e3a8:d1d6 with SMTP id
+ y15-20020a05622a164f00b003bce3a8d1d6mr181338qtj.229.1676457090719; Wed, 15
+ Feb 2023 02:31:30 -0800 (PST)
 MIME-Version: 1.0
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com> <7b8a8d38-feef-d2af-f23f-6b2b46f78110@opensource.wdc.com>
-In-Reply-To: <7b8a8d38-feef-d2af-f23f-6b2b46f78110@opensource.wdc.com>
-From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date:   Wed, 15 Feb 2023 11:28:03 +0100
-Message-ID: <CAAEEuhrzysR-xfx7X-gVqUdi17R1YiWxyBM+0asQxtyZ9PQozg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller driver
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+References: <20230203081913.81968-1-william.qiu@starfivetech.com> <20230203081913.81968-4-william.qiu@starfivetech.com>
+In-Reply-To: <20230203081913.81968-4-william.qiu@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 15 Feb 2023 11:31:14 +0100
+Message-ID: <CAJM55Z8CRT_H-by=Nj0Nu1iWug1wdPMZceiE+RMJvE+q4RzQ7w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: Add mmc node
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 2:51 AM Damien Le Moal
-<damien.lemoal@opensource.wdc.com> wrote:
+On Fri, 3 Feb 2023 at 09:21, William Qiu <william.qiu@starfivetech.com> wrote:
 >
-> Note about that: with your series applied, nothing was working for me on
-> my pine Rockpro64 board (AMD Ryzen host). I got weird/unstable behavior
-> and the host IOMMU screaming about IO page faults due to the endpoint
-> doing weird pci accesses. Running the host with IOMMU on really helps in
-> debugging this stuff :)
-
-Thank you for testing, I have also tested with a Ryzen host, I have IOMMU
-enabled as well.
-
+> This adds the mmc node for the StarFive JH7110 SoC.
+> Set mmco node to emmc and set mmc1 node to sd.
 >
-> With the few fixes to your series I commented about, things started to
-> work better, but still very unstable. More debugging and I found out that
-> the pci-epf-test drivers, both host and endpoint sides, have nasty
-> problems that lead to reporting failures when things are actually working,
-> or outright dummy things being done that trigger errors (e.g. bad DMA
-> synchronization triggers IOMMU page faults reports). I have a dozen fix
-> patches for these drivers. Will clean them up and post ASAP.
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-2.dtsi         | 23 ++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 37 +++++++++++++++++++
+>  2 files changed, 60 insertions(+)
 >
-> With the test drivers fixed + the fixes to your series, I have the
-> pci_test.sh tests passing 100% of the time, repeatedly (in a loop). All solid.
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index c60280b89c73..e1a0248e907f 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -42,6 +42,29 @@ &rtc_osc {
+>         clock-frequency = <32768>;
+>  };
 >
+> +&mmc0 {
+> +       max-frequency = <100000000>;
+> +       bus-width = <8>;
+> +       cap-mmc-highspeed;
+> +       mmc-ddr-1_8v;
+> +       mmc-hs200-1_8v;
+> +       non-removable;
+> +       cap-mmc-hw-reset;
+> +       post-power-on-delay-ms = <200>;
+> +       status = "okay";
+> +};
+> +
+> +&mmc1 {
+> +       max-frequency = <100000000>;
+> +       bus-width = <4>;
+> +       no-sdio;ru
+> +       no-mmc;
+> +       broken-cd;
+> +       cap-sd-highspeed;
+> +       post-power-on-delay-ms = <200>;
+> +       status = "okay";
+> +};
 
-Good to hear that it now works, I'll try them as well.
+Please add these so they're sorted alphabetically (but keep the clocks
+at the top), so there's at least some sort of system.
 
-> However, I am still seeing issues with my ongoing work with a NVMe
-> endpoint driver function: I see everything working when the host BIOS
-> pokes at the NVMe "drive" it sees (all good, that is normal), but once
-> Linux nvme driver probe kicks in, IRQs are essentially dead: the nvme
-> driver does not see anything strange and allocates IRQs (1 first, which
-> ends up being INTX, then multiple MSI one for each completion queue), but
-> on the endpoint side, attempting to raise MSI or INTX IRQs result in error
-> as the rockchip-ep driver sees both INTX and MSI as disabled. No clue what
-> is going on. I suspect that a pci reset may have happened and corrupted
-> the core configuration. However, the EPC/EPF infrastructure does not
-> catch/process PCI resets as far as I can tell. That may be the issue.
-> I do not see this issue with the epf test driver, because I suspect the
-> host BIOS not knowing anything about that device, it does not touch it.
-> This all may depend on the host & BIOS. Not sure. Need to try with
-> different hosts. Just FYI :)
+>  &gmac0_rmii_refin {
+>         clock-frequency = <50000000>;
+>  };
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index 64d260ea1f29..ae1a664e7af5 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -370,6 +370,11 @@ syscrg: clock-controller@13020000 {
+>                         #reset-cells = <1>;
+>                 };
 >
+> +               sysreg: syscon@13030000 {
+> +                       compatible = "starfive,sysreg", "syscon";
+> +                       reg = <0x0 0x13030000 0x0 0x1000>;
+> +               };
+> +
+>                 gpio: gpio@13040000 {
+>                         compatible = "starfive,jh7110-sys-pinctrl";
+>                         reg = <0x0 0x13040000 0x0 0x10000>;
+> @@ -407,5 +412,37 @@ gpioa: gpio@17020000 {
+>                         gpio-controller;
+>                         #gpio-cells = <2>;
+>                 };
+> +
+> +               mmc0: mmc@16010000 {
+> +                       compatible = "starfive,jh7110-mmc";
+> +                       reg = <0x0 0x16010000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
+> +                                <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
+> +                       clock-names = "biu","ciu";
+> +                       resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
+> +                       reset-names = "reset";
+> +                       interrupts = <74>;
+> +                       fifo-depth = <32>;
+> +                       fifo-watermark-aligned;
+> +                       data-addr = <0>;
+> +                       starfive,sysreg = <&sysreg 0x14 0x1a 0x7c000000>;
 
-Interesting that you are working on this, I started to patch the RK3399 PCIe
-endpoint controller driver for a similar project, I want to run our NVMe
-firmware in a Linux PCIe endpoint function.
+This may need updating depending on whether you fix the driver or bindings.
 
-For the IRQs there are two things that come to mind:
-1) The host driver could actually disable them and work in polling mode,
-I have seen that with different versions of the Linux kernel NVMe driver
-sometimes it would choose to use polling instead of IRQs for the queues.
-So maybe it's just the
-2) The RK3399 PCIe endpoint controller is said to be able only to generate
-one type of interrupt at a given time. "It is capable of generating MSI or
-Legacy interrupt if the PCIe is configured as EP. Notes that one PCIe
-component can't generate both types of interrupts. It is either one or the
-other." (see TRM 17.5.9 Interrupt Support).
-I don't know exactly what the TRM means the the controller cannot
-use both interrupts at the same time, but this might be a path to explore
+> +                       status = "disabled";
+> +               };
+> +
+> +               mmc1: mmc@16020000 {
+> +                       compatible = "starfive,jh7110-mmc";
+> +                       reg = <0x0 0x16020000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
+> +                                <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
+> +                       clock-names = "biu","ciu";
+> +                       resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
+> +                       reset-names = "reset";
+> +                       interrupts = <75>;
+> +                       fifo-depth = <32>;
+> +                       fifo-watermark-aligned;
+> +                       data-addr = <0>;
+> +                       starfive,sysreg = <&sysreg 0x9c 0x1 0x3e>;
+> +                       status = "disabled";
+> +               };
+>         };
+>  };
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
