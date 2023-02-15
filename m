@@ -2,163 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43100697A92
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 12:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D44697ACD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 12:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233189AbjBOLVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 06:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58410 "EHLO
+        id S233482AbjBOLcI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 Feb 2023 06:32:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233139AbjBOLVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 06:21:30 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D229D37729
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 03:21:28 -0800 (PST)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 72C883F4BA
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 11:21:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1676460087;
-        bh=hwzNkkVHAMig3SgTdNBISffkqWyB+YZfYs1moUFjJBQ=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=cQ/cbKTc7GkCr29Mxcb5UBckJwcf7/15OPWJehCFZc66ItYrp/W6igA0CYlVe3/kB
-         x1JuRl4ascRlF0s06xqPeox0O50+4fLmNf4u3tlgO95jZiS7fFwVkfr0sUbZO4El5J
-         ezi550gUwk3tYvGylY3NAttl32HRIHwhFSnJzRHnwxiFJ8/nHVbhvcK0ocklPsDEZB
-         zdtC2uXFSaev8AeeqBKlA4dmSmiDdTf2UN4xpFxnPoWpKCYsti3+JT72//NsVu232j
-         L3BbhFtUZrSDWe0W5pKhIzZi+HqmK1W6zPrXpKoMMRoU5oLzg+QU0AdA7atq9V84Hq
-         jMp5Zbu2aSMng==
-Received: by mail-qv1-f69.google.com with SMTP id r10-20020a0562140c8a00b0056ed45f262dso1875215qvr.11
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 03:21:27 -0800 (PST)
+        with ESMTP id S233036AbjBOLcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 06:32:08 -0500
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1773346C;
+        Wed, 15 Feb 2023 03:32:06 -0800 (PST)
+Received: by mail-qv1-f43.google.com with SMTP id di14so8409864qvb.12;
+        Wed, 15 Feb 2023 03:32:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hwzNkkVHAMig3SgTdNBISffkqWyB+YZfYs1moUFjJBQ=;
-        b=FvDGAJJenX5KhaHfoJ0uOrf3nCDTWnS0t8cIMXBcgR3T+gGOc3KxKsLhJb++LUmO+2
-         RxPd6BBzu6vVquCWbuiLfXJJeHZaF6CTTAo6sTjkcGbNvTJ9+0sGFBrZEfsBSrmTrpdH
-         S5uUPxgwHutuV4f9JJvBW9m3FgiQ3bDrJhtPI2eE+uYucu+aIKDr3TL1BaI4sh3w9j7T
-         Um+pIrpKBFXRPXWb6w7VXSbcR0pl5mAJ9b+DH+eb+tPxP+5mTxRYNsRDuLwTTWnxm/dC
-         XyUoSANj4Qy/QSvA5WPdm+fqh5nxuOS9kgX4EOJY+ue2f5gulwJlGP8y439h6Ecu3qqo
-         hOiA==
-X-Gm-Message-State: AO0yUKUduA2aWS/r5U4FIiQSSJTDRPKUPl8nD7Ob1A5BRDFgUoPVO00n
-        /ERwxCilrSxY/aCBwaGsxn+txGFAH/nm1rZJvCGiCVWhrOyuBT5eQ0iUl25UF+2rHJu5WsXSh4g
-        BTd9I1jOibJbwS45KWm1O7kgcqFh4Gcrvxaoq9iiLj4wDk16rXFMGwe0=
-X-Received: by 2002:a05:622a:164f:b0:3bc:e3a8:d1d6 with SMTP id y15-20020a05622a164f00b003bce3a8d1d6mr195950qtj.229.1676460075472;
-        Wed, 15 Feb 2023 03:21:15 -0800 (PST)
-X-Google-Smtp-Source: AK7set9/NeWH75yJcn/t46NzwvdAG3kpXtrEWKot0xC2tKbCmHsBGrLAxxXzoc7xjxLRcnJ3CgUfTfDnKiYp8juZgUM=
-X-Received: by 2002:a05:622a:164f:b0:3bc:e3a8:d1d6 with SMTP id
- y15-20020a05622a164f00b003bce3a8d1d6mr195937qtj.229.1676460075213; Wed, 15
- Feb 2023 03:21:15 -0800 (PST)
+        bh=9O+F4kNHWRbRQrTLIpt2WL53jefsE2I6zT13GRRhI70=;
+        b=dOXeActpVpgb1JlaI4hPYkSxPsAxBkLUUIZ7RTslwWulZjvHGdF/tc8FgG5aSuxQ3z
+         nNauIcH/GTmRaaV3Rmb61T5sCodIYqXH3aeBCCCHFGeNQTBW9YtKgHZronHKVbgK/XDo
+         376xajy9Poes1QwcS9/FV36IEqm0qkxUj2sSuc2UuVyWVTLlhNhQxU8hOwtJvORyD00O
+         FvLMHtRGm3Ru3B/nKOepHpyCNNBTPV4hQ6CaD34nNONLZ1rd++Z0JiA4/FuKlbmnTOAH
+         7X2UxC/tWRsqToamMio4PCUxS/CEtXj4vvtGv4HaDJTMS1Guz7ll1xhiJy2yuuUN7Glu
+         frwg==
+X-Gm-Message-State: AO0yUKXqRGNyGlKdYpcAovbQbqyJtkVpdPAzEXXq2zD/8mOl5OFQ8n8z
+        xEqPn31uNEff5XUWIwjhwlVO5xUfxXpKrA==
+X-Google-Smtp-Source: AK7set+ohg8neTD8YjkbLq9QqPavUBA+WeZqtpl/Dh4o3dZTKo5ozxcDu9CICDuzt09Q0+4ghnDMjQ==
+X-Received: by 2002:ad4:5fcb:0:b0:56e:8f5e:d96d with SMTP id jq11-20020ad45fcb000000b0056e8f5ed96dmr3065560qvb.34.1676460725598;
+        Wed, 15 Feb 2023 03:32:05 -0800 (PST)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id b1-20020a378001000000b0073b597ce5f8sm3286338qkd.120.2023.02.15.03.32.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Feb 2023 03:32:05 -0800 (PST)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-530b9a0a789so33265147b3.13;
+        Wed, 15 Feb 2023 03:32:04 -0800 (PST)
+X-Received: by 2002:a0d:f347:0:b0:4fc:962d:7dc1 with SMTP id
+ c68-20020a0df347000000b004fc962d7dc1mr220614ywf.301.1676460724637; Wed, 15
+ Feb 2023 03:32:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
- <Y+e+N/aiqCctIp6e@lunn.ch> <d1769dac-9e80-2f0d-6a5c-386ef70e1547@collabora.com>
-In-Reply-To: <d1769dac-9e80-2f0d-6a5c-386ef70e1547@collabora.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Wed, 15 Feb 2023 12:20:58 +0100
-Message-ID: <CAJM55Z8Uq2ZU3KvJZKDLZUJDLEyvHjCRJKcYn5CAOR0c2rhT7Q@mail.gmail.com>
-Subject: Re: [PATCH 08/12] net: stmmac: Add glue layer for StarFive JH7100 SoC
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Lee Jones <lee@kernel.org>,
+References: <20230209133507.150571-1-clement.leger@bootlin.com>
+ <20230209133507.150571-3-clement.leger@bootlin.com> <CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
+ <20230215092933.2f71ece0@fixe.home> <20230215115441.361aed53@fixe.home>
+In-Reply-To: <20230215115441.361aed53@fixe.home>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 15 Feb 2023 12:31:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVhGFyrWx6oD-K9WhZRtYT_xJ_kWRA+vhdvB_JubFk8YA@mail.gmail.com>
+Message-ID: <CAMuHMdVhGFyrWx6oD-K9WhZRtYT_xJ_kWRA+vhdvB_JubFk8YA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb
+ board device-tree
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Feb 2023 at 01:09, Cristian Ciocaltea
-<cristian.ciocaltea@collabora.com> wrote:
->
-> On 2/11/23 18:11, Andrew Lunn wrote:
-> >> +
-> >> +#define JH7100_SYSMAIN_REGISTER28 0x70
-> >> +/* The value below is not a typo, just really bad naming by StarFive =
-=C2=AF\_(=E3=83=84)_/=C2=AF */
-> >> +#define JH7100_SYSMAIN_REGISTER49 0xc8
+Hi Clément,
+
+On Wed, Feb 15, 2023 at 11:52 AM Clément Léger
+<clement.leger@bootlin.com> wrote:
+> Le Wed, 15 Feb 2023 09:29:33 +0100,
+> Clément Léger <clement.leger@bootlin.com> a écrit :
+> > Le Tue, 14 Feb 2023 17:25:14 +0100,
+> > Geert Uytterhoeven <geert@linux-m68k.org> a écrit :
+> > > On Thu, Feb 9, 2023 at 2:32 PM Clément Léger <clement.leger@bootlin.com> wrote:
+> > > > The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since this
+> > > > configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-eb.
+> > > > It adds support for the 2 additional switch ports (port C and D) that are
+> > > > available on that board.
+> > > >
+> > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > >
+> > > Thanks for your patch!
+> > >
+> > > > --- /dev/null
+> > > > +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-eb.dts
+
+> > > > +       pinctrl-0 = <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pins_eth4>,
+> > > > +                   <&pins_mdio1>;
+> > > > +
+> > > > +       mdio {
+> > > > +               /* CN15 and CN16 switches must be configured in MDIO2 mode */
+> > > > +               switch0phy1: ethernet-phy@1 {
+> > > > +                       reg = <1>;
+> > > > +                       marvell,reg-init = <3 16 0 0x1010>;
+> > >
+> > > marvell,reg-init is not documented in any DT bindings document?
 > >
-> > Seems like the comment should be one line earlier?
+> > Indeed, this is not somethiong that should be made available here. It's
+> > only inverting the LED polarity but supported by some internal patch.
+> > I'll remove that.
 
-Well yes, the very generic register names are also bad, but this
-comment refers to the fact that it kind of makes sense that register
-28 has the offset
-  28 * 4 bytes pr. register =3D 0x70
-..but then register 49 is oddly out of place at offset 0xc8 instead of
-  49 * 4 bytes pr. register =3D 0xc4
+> I actually was confused by a property I added in another device-tree but
+> marvell,reg-init exists, is handled by the marvell phy driver and used
+> in a few device-trees. Strangely, it is not documented anywhere. So I
+> can either remove that (and the LED won't work properly) or let it live
+> depending on what you prefer.
 
-> > There is value in basing the names on the datasheet, but you could
-> > append something meaningful on the end:
-> >
-> > #define JH7100_SYSMAIN_REGISTER49_DLYCHAIN 0xc8
->
-> Unfortunately the JH7100 datasheet I have access to doesn't provide any
-> information regarding the SYSCTRL-MAINSYS related registers. Maybe Emil
-> could provide some details here?
+In that case, please keep it.
+But the property really should be documented, one day...
 
-This is reverse engineered from the auto generated headers in their u-boot:
-https://github.com/starfive-tech/u-boot/blob/JH7100_VisionFive_devel/arch/r=
-iscv/include/asm/arch-jh7100/syscon_sysmain_ctrl_macro.h
+Gr{oetje,eeting}s,
 
-Christian, I'm happy that you're working on this, but mess like this
-and waiting for the non-coherent dma to be sorted is why I didn't send
-it upstream yet.
+                        Geert
 
-> >> +    if (!of_property_read_u32(np, "starfive,gtxclk-dlychain", &gtxclk=
-_dlychain)) {
-> >> +            ret =3D regmap_write(sysmain, JH7100_SYSMAIN_REGISTER49, =
-gtxclk_dlychain);
-> >> +            if (ret)
-> >> +                    return dev_err_probe(dev, ret, "error selecting g=
-txclk delay chain\n");
-> >> +    }
-> >
-> > You should probably document that if starfive,gtxclk-dlychain is not
-> > found in the DT blob, the value for the delay chain is undefined.  It
-> > would actually be better to define it, set it to 0 for example. That
-> > way, you know you don't have any dependency on the bootloader for
-> > example.
->
-> Sure, I will set it to 0.
->
-> >
-> >       Andrew
->
-> Thanks for reviewing,
-> Cristian
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
