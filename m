@@ -2,136 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6ED669730E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 02:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F3D69735E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 02:17:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjBOBEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 20:04:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48988 "EHLO
+        id S233441AbjBOBRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 20:17:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232704AbjBOBEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 20:04:49 -0500
-Received: from esa5.hgst.iphmx.com (esa5.hgst.iphmx.com [216.71.153.144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3C5311F5
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 17:04:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1676423067; x=1707959067;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=IL5gc63/fDsz5QiSOYrQinbaMAqccro2o4wNnnC1ado=;
-  b=dTwyriUSaW1sLwwD9m5FjTOBHNZ6DOXppKHEXvzXB/Y1q4YfkZwnelu/
-   Ja99AW3w7OkbI+wCb2yVs0Roy7cw8nw5JrWss0+CiMoe8Xz7OsvOiVVQc
-   aygg+RIY/ZulzyXHAe+QzWc2bi8oqfevaA9hTPycgkvn5Wk60dl+Y13xL
-   aBDSBYphxUh7WOgoJpePRAOLYfkEsxpIJKHsScPkTvPlsFHV3KK793yuI
-   UFxYmT/X3891J8eKp7pkr4NDrChNMJ1zaIv80Zz79P204S0h1SFCHAjpp
-   5P80xE+uPBBDjsJF3zT364flIAF0DWURdLSQEFLhKrYOQS7j8TXhYu+si
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,298,1669046400"; 
-   d="scan'208";a="223115574"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 15 Feb 2023 09:04:03 +0800
-IronPort-SDR: CQPBWQNH/lOjAF0rq8kTl3vmD/BavjjDXR7+rRGBLr7MjV6V4pGTPA8Wlu0zLtI2Gg6q+8Y8dB
- iO5U03mzrR99wcn+oc/U3/4zyaHkHeR3rTIEkUol4CShlKzWdwKSxlrq3S2tFUUmea333M0ec3
- JfqkGAHik4bfv34Hjejin1eIKNYtydfAk2Hu1gQLGPi8sjUj8SvtVDtBRFMo+v/qM0KiORhE3h
- m1TfC21XE1OGvBdNb/adz0/2aKCuRbPTmF3YhgvBT3M9h1KFOd5Cpt7m81Q51CpyzogooYAoQY
- of4=
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2023 16:15:24 -0800
-IronPort-SDR: SfvW/lAxwClaADyrr5Xl7HWT7waHHW6VO4Nr1gtnLAiHmuCOhhB01KMR2EDQZCUXLq+5a3PU5k
- WA/7UEzn7yW+5MM8J3aB4J7lDkTwNoRZOWekr4IMa/wBkGSDsQpwwvCHHglgFos0Qe2hjuduoB
- K3FwMGTl9OeUETnmRTJMeEkUiH9ywBJ6PuTrOdfqljNIsamvf2uH8cLzuY3CVGfQBLatKWstNf
- wYU6BNUmSbqRlym/ia/S4Rp27FlIbjcF37F1rwKTKx1BJBhFxYX/dmkANWcYCEtLj8E/kVhcM0
- o/8=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2023 17:04:03 -0800
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PGfwd3RmLz1Rwt8
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 17:04:01 -0800 (PST)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1676423040; x=1679015041; bh=IL5gc63/fDsz5QiSOYrQinbaMAqccro2o4w
-        NnnC1ado=; b=Agj6HOTfciGHKemaC/kKz7iwb6CDxRZwvQyJXZ4r8/Wi/iu/Y5x
-        CTHrTb+EYd1DfG81IRn+J5CowQcgNzU1UKMaSDpRmLucwnr0O/xoD9HuTSMt/y5n
-        v0DHHwlbDtB0Y9RGwLVWfbNN0OXginU5IkqIA+wNb6wubkR4SonTbnAvEjNFwr6E
-        Kt2dhee0G2LAQxBksA/ZC+A9yzPK87kxbzXPYEwwj6ZEukAmZFo9iqNMPblIx/TB
-        HExIgo5b8PRezGXV0HLOTck0/6XCBpFIAA7mca8M2bDhHCXYHI4RXs/SQKs1vVfQ
-        QLDkDMoKI9VONS4oU/tZrzHOGztVTmacCUw==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 5fr5xybqhXfg for <devicetree@vger.kernel.org>;
-        Tue, 14 Feb 2023 17:04:00 -0800 (PST)
-Received: from [10.225.163.116] (unknown [10.225.163.116])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PGfwY4pZ0z1RvLy;
-        Tue, 14 Feb 2023 17:03:57 -0800 (PST)
-Message-ID: <a0a2afa5-e364-b7af-958f-3d4a34672337@opensource.wdc.com>
-Date:   Wed, 15 Feb 2023 10:03:56 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 5/9] arm64: dts: rockchip: Add dtsi entry for RK3399
- PCIe endpoint core
-Content-Language: en-US
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-        alberto.dassatti@heig-vd.ch
-Cc:     xxm@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229454AbjBOBRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 20:17:30 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E52B3400D;
+        Tue, 14 Feb 2023 17:17:11 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id j17so25823882lfr.3;
+        Tue, 14 Feb 2023 17:17:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6xckzojwyNuatglXQ8YBBBb8WXJgZ0AoA0JB30UI/Xs=;
+        b=OgYp86eufa4KJDkPuznprFyD9bBb5XXjiNsIs6ic99AHYTTPSVR/1RXGmuIPcBnVZS
+         S2thwIhTULgtlMFbIaDQSlEPApuegu4bG6DVC4jyz/cF6PHIm7u1Dk8yQsuOmbXZiggP
+         T+S4q8Ma+sqAn6g5ffekiyI5OPuEZR3C0KVYxyjmE07jpiEm9Bjkx6upNOSuKv0aktoa
+         LGl+MK4WWemu2Ghtd9I8WVd1lIc9W600tp+BIMw1myFzATAX3r5bAHzXgYnUaMzQtW1W
+         +Pq4fPZbfDX50Utvo2d5I4SABLTUDlBdeQxaf9Gzjk4Xi1yBCOJppwI6bSfqhktn0XFv
+         nbWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6xckzojwyNuatglXQ8YBBBb8WXJgZ0AoA0JB30UI/Xs=;
+        b=Ajf45M47y+YR6m+y0XxwAPiMQM3ad5YHmowaXHa37i4cBiDLRveNFFrkwLtSFtP4qk
+         IW0X0HxIdBVLMeOrUwX7d2qNZ3X67JjakidKpdnK0ikbpRtYJbxSevH7rpzgzyPLBfJY
+         cshbAbxib8rjzMtuIHJVYz9WkOpMhfxqY7ZDFuehy2o1pK0XSn5cqK/j2MOp4jf2hJoS
+         JfRbc3IxGpN3EuQJDYDWm7CtRg4EEEx+68TOAY38JR3lh4Y81gfockjQjD9T7fnhk7/Z
+         sd6AdMF4E3AHDzA6HisNgzDRNxxGowZ7bmvM1WM/TBbwcGnTImpz7+Zd6K/Kwta3znNC
+         JAtg==
+X-Gm-Message-State: AO0yUKVNsHm6l9VLQB/8JbwuRIgE4Uk7JQksT92EtM6bjiTIFB+s4Q+K
+        7jSYefSdC+PtpNCQx3pnRp5Ej47WhBOxIQ==
+X-Google-Smtp-Source: AK7set+MASCAI4zdR7KY8dZVKqdEdoQgs6qmT0L36Iv2j549YbQiS8O883w1aFN1+K4OobCJghWHVg==
+X-Received: by 2002:adf:fece:0:b0:2c5:5ff8:6b01 with SMTP id q14-20020adffece000000b002c55ff86b01mr112414wrs.1.1676423357323;
+        Tue, 14 Feb 2023 17:09:17 -0800 (PST)
+Received: from archbox.v.cablecom.net (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id v15-20020adfebcf000000b002c3f81c51b6sm14198505wrn.90.2023.02.14.17.09.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Feb 2023 17:09:16 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <20230214140858.1133292-6-rick.wertenbroek@gmail.com>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20230214140858.1133292-6-rick.wertenbroek@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Always enable sd regulator on SOQuartz CM4IO
+Date:   Wed, 15 Feb 2023 02:09:14 +0100
+Message-Id: <20230215010914.104754-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/23 23:08, Rick Wertenbroek wrote:
-> Add dtsi entry for RK3399 PCIe endpoint core in the device tree.
-> The status is "disabled" by default, so it will not be loaded unless
-> explicitly chosen to. The RK3399 PCIe endpoit core should be enabled
-> with the RK3399 PCIe root complex disabled because the RK3399 PCIe
-> controller can only work one mode at the time, either in "root complex"
-> mode or in "endpoint" mode.
-> 
-> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+The 3.3V line coming from the SDMMC regulator is required for USB
+on the CM4IO board. Without it, the USB mux (U13 in the CM4IO
+schematic[1]) that's used likely remains unpowered, and no USB
+devices show up.
 
-You should also update the file:
+The consequence of this was the behaviour of an inserted SD card
+allowing USB to work, while pulling it out turned off all USB
+devices.
 
-Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt
+[1]: https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
 
-The example there is broken...
+Fixes: 5859b5a9c3ac ("arm64: dts: rockchip: add SoQuartz CM4IO dts")
+Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Otherwise, this works great for me.
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+index 263ce40770dd..88a61fa8a95c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+@@ -135,6 +135,12 @@ &sdmmc0 {
+ };
+ 
+ &sdmmc_pwr {
++	/*
++	 * USB also needs this regulator to work on this board, so just enable
++	 * it unconditionally.
++	 */
++	regulator-always-on;
++	regulator-boot-on;
+ 	regulator-min-microvolt = <3300000>;
+ 	regulator-max-microvolt = <3300000>;
+ 	status = "okay";
 -- 
-Damien Le Moal
-Western Digital Research
+2.39.1
 
