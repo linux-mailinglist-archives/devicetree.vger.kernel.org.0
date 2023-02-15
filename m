@@ -2,116 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E670697274
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 01:08:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C421A6972A6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 01:25:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjBOAIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 19:08:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
+        id S231611AbjBOAZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 19:25:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbjBOAII (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 19:08:08 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8211DBF5;
-        Tue, 14 Feb 2023 16:08:07 -0800 (PST)
-Received: from [192.168.1.90] (unknown [86.120.32.152])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 890DE660217D;
-        Wed, 15 Feb 2023 00:08:04 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676419686;
-        bh=zoW3noIDVP825JbgOO/Z2/ogb3Eb9ppZTgw5s0u1c6c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=UfvWpf+J3tW+akDw4oW44yeBej/Sq4UK3l7YLde3GTyggOvzrm6Ey9KYOBf0Dch/y
-         1pFHF63nR3TlRsC3Aj0VOX5DvVHeNBKnuyZqRF0tRlnNIrSbCP+hU1ZCnSmvUg3qvX
-         R6vNoD1ZEVdWkz2ZsquvmQtfWOI5VpL2yHXn0oh/AkXfFKK4NVnnZfAbG2SXw1HGbV
-         SX5mfN82oCQaQ0Xa5ehpLghlF/WW4YSASlkw5Wb9F6CFzEzN+Vt8y89a3mdJDd4bdo
-         QbITCjffcDyanACGG60Jp9Yu089C5uEnzns31zBFW5/BwbFb25oYS0BgapW32IKtJK
-         GJD1oSkYLWrcA==
-Message-ID: <d1769dac-9e80-2f0d-6a5c-386ef70e1547@collabora.com>
-Date:   Wed, 15 Feb 2023 02:08:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 08/12] net: stmmac: Add glue layer for StarFive JH7100 SoC
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S230389AbjBOAZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 19:25:52 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A6B2D14D
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 16:25:50 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id n2so11480072pfo.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 16:25:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=13xGsV2jjmQG8zQgYM+MlutjbCojfUR9ZAZxMQUAu6A=;
+        b=VbDHSuKi2kZRWENSk2pFNf3FMtXUOOe3VDfIEKUiwUU2+nF2+OCaaPOuXdYtNyUpLQ
+         9Xd6EO7n+xMbaBqmbVbZrsA/QZ0yVnFFzEFzoEbgloRQvcRU+Ki24BDOV+MfdQ2jBar5
+         eiZqKerrZbTyGjo6xBnZQi2ut6PhyieHf/h2xGezwbRP9mthdu/8cMTCBWAzZXPR2gdR
+         PiN1UI8bVN+UgiaeNJCUWgfamW6ad7EVUNUwK7ChPOaz9F0R9pHDUsTzhgm5s+peYflE
+         7CBDOVmIbnPaWF8jdyyrURj3MGG7bRXnNdgk62B6mB12/0Wng4KDkH5wFr2fI4oR7OxN
+         joRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=13xGsV2jjmQG8zQgYM+MlutjbCojfUR9ZAZxMQUAu6A=;
+        b=55LFdP9fqje7PXja1QMxVx0XHH7wg+NBFOA3n610rM+w8IzDjQ/txNZUiTP2xAZbsq
+         dXaU+LEXL+c9+NgveFB/k8dzY6NhrX8BRqVucioLeBergY+THqwR3m0tWKtb7ROnuZbn
+         4xMY/nDqk4XNXXZjfWagb06hRUFxsVrrIQNz/QkNkzvIP7Wx27mA9GzMscpjGaDILY8N
+         MSmrQ4QC14LgZKlaO9aPE1ySeX5/etGXw9q7ynlWbYaQQpc5ruqqxwZNdgR8gcd8Pb09
+         LVjj6JyZMohTgvZb1t1AT2P/899xXMqAEtHa3vpZRaxJwnTS1a/4OPL7LbOxiEejpeP2
+         hbnw==
+X-Gm-Message-State: AO0yUKXLdSDgp0siGiRRVaiqlnCnkfmEG55ItGpnQVMCQicTcrim7qIW
+        yQSeyUbEPkq5BiUGZN0kUmxrWw==
+X-Google-Smtp-Source: AK7set/RfDAmrDwKus+3EwyrpiXyachl6rM8SdJg8/oDC0GOfqqp5AasjoE8kO/Zq+15hhwXvqWA4Q==
+X-Received: by 2002:aa7:9581:0:b0:5a8:65e4:aba9 with SMTP id z1-20020aa79581000000b005a865e4aba9mr55940pfj.18.1676420750261;
+        Tue, 14 Feb 2023 16:25:50 -0800 (PST)
+Received: from localhost ([135.180.226.51])
+        by smtp.gmail.com with ESMTPSA id i22-20020aa787d6000000b005998a75dbc5sm10351038pfo.2.2023.02.14.16.25.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Feb 2023 16:25:49 -0800 (PST)
+Date:   Tue, 14 Feb 2023 16:25:49 -0800 (PST)
+X-Google-Original-Date: Tue, 14 Feb 2023 16:25:45 PST (-0800)
+Subject:     Re: [PATCH 4/4] riscv: dts: allwinner: d1: Add video engine node
+In-Reply-To: <4767366.GXAFRqVoOG@jernej-laptop>
+CC:     paul.kocialkowski@bootlin.com, samuel@sholland.org, wens@csie.org,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, aou@eecs.berkeley.edu,
         Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        Greg KH <gregkh@linuxfoundation.org>, mripard@kernel.org,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-9-cristian.ciocaltea@collabora.com>
- <Y+e+N/aiqCctIp6e@lunn.ch>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <Y+e+N/aiqCctIp6e@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
+        linux-sunxi@lists.linux.dev
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     jernej.skrabec@gmail.com
+Message-ID: <mhng-e29729d8-6f1e-42a5-bff6-852a16626cd4@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/11/23 18:11, Andrew Lunn wrote:
->> +
->> +#define JH7100_SYSMAIN_REGISTER28 0x70
->> +/* The value below is not a typo, just really bad naming by StarFive ¯\_(ツ)_/¯ */
->> +#define JH7100_SYSMAIN_REGISTER49 0xc8
-> 
-> Seems like the comment should be one line earlier?
-> 
-> There is value in basing the names on the datasheet, but you could
-> append something meaningful on the end:
-> 
-> #define JH7100_SYSMAIN_REGISTER49_DLYCHAIN 0xc8
-> 
-> ???
+On Thu, 05 Jan 2023 08:21:58 PST (-0800), jernej.skrabec@gmail.com wrote:
+> Dne četrtek, 05. januar 2023 ob 15:38:36 CET je Samuel Holland napisal(a):
+>> Hi Paul,
+>> 
+>> On 1/5/23 04:11, Paul Kocialkowski wrote:
+>> > On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
+>> >> D1 contains a video engine which is supported by the Cedrus driver.
+>> > 
+>> > Does it work "outside the box" without power domain management?
+>> > If not, it might be a bit confusing to add the node at this point.
+>> 
+>> Yes, it does. All of the power domains are enabled by default. However,
+>> if the PPU series is merged first, I will respin this to include the
+>> power-domains property from the beginning.
+>
+> I would rather see that merged before and having complete node right away.
+>
+> I've been away, but I'll merge everything that's ready for sunxi tree until 
+> end of the weekend.
 
-Unfortunately the JH7100 datasheet I have access to doesn't provide any 
-information regarding the SYSCTRL-MAINSYS related registers. Maybe Emil 
-could provide some details here?
+Just checking up on this one, as it's still in the RISC-V patchwork but 
+I don't see it in linux-next.  No big deal on my end, I just don't want 
+to be dropping the ball here.
 
->> +	if (!of_property_read_u32(np, "starfive,gtxclk-dlychain", &gtxclk_dlychain)) {
->> +		ret = regmap_write(sysmain, JH7100_SYSMAIN_REGISTER49, gtxclk_dlychain);
->> +		if (ret)
->> +			return dev_err_probe(dev, ret, "error selecting gtxclk delay chain\n");
->> +	}
-> 
-> You should probably document that if starfive,gtxclk-dlychain is not
-> found in the DT blob, the value for the delay chain is undefined.  It
-> would actually be better to define it, set it to 0 for example. That
-> way, you know you don't have any dependency on the bootloader for
-> example.
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-Sure, I will set it to 0.
+In case you were waiting for it (in which case sorry).
 
-> 
-> 	Andrew
-
-Thanks for reviewing,
-Cristian
+>
+> Best regards,
+> Jernej
+>
+>> 
+>> Regards,
+>> Samuel
+>> 
+>> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> >> ---
+>> >> 
+>> >>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 11 +++++++++++
+>> >>  1 file changed, 11 insertions(+)
+>> >> 
+>> >> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> >> b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi index
+>> >> dff363a3c934..4bd374279155 100644
+>> >> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> >> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> >> @@ -34,6 +34,17 @@ soc {
+>> >> 
+>> >>  		#address-cells = <1>;
+>> >>  		#size-cells = <1>;
+>> >> 
+>> >> +		ve: video-codec@1c0e000 {
+>> >> +			compatible = "allwinner,sun20i-d1-video-
+> engine";
+>> >> +			reg = <0x1c0e000 0x2000>;
+>> >> +			interrupts = <SOC_PERIPHERAL_IRQ(66) 
+> IRQ_TYPE_LEVEL_HIGH>;
+>> >> +			clocks = <&ccu CLK_BUS_VE>,
+>> >> +				 <&ccu CLK_VE>,
+>> >> +				 <&ccu CLK_MBUS_VE>;
+>> >> +			clock-names = "ahb", "mod", "ram";
+>> >> +			resets = <&ccu RST_BUS_VE>;
+>> >> +		};
+>> >> +
+>> >> 
+>> >>  		pio: pinctrl@2000000 {
+>> >>  		
+>> >>  			compatible = "allwinner,sun20i-d1-pinctrl";
+>> >>  			reg = <0x2000000 0x800>;
