@@ -2,283 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B30AC6973E6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 02:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DDD86973F5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 02:56:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjBOBvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 20:51:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38284 "EHLO
+        id S230212AbjBOB4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 20:56:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjBOBvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 20:51:19 -0500
-Received: from esa3.hgst.iphmx.com (esa3.hgst.iphmx.com [216.71.153.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130C52A987
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 17:51:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1676425876; x=1707961876;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=pY73svOgwdqd6BSUYdpIutEqwh8IMouiKs97EFOaRtU=;
-  b=TBgKh/3V9vot1/eyL8Y1zc4MEq9vQG5Ug0LU9eCn3/0mJ59HTqdveLcS
-   olvITRLAaKaUugBSXVQRWVS3n97M2AinJV9xYv5KPoamCzgos2p9umzqJ
-   nsIGJ0mPZM0w6o65PO9LnwfE+nVadrygAmIuHFzFqW2OZAeLNQ/rZfDFM
-   Jz8sSWTOsUyA5Qyx/3M/NK7YDL7QXYuJ28zbvTD+3M8T6s/oeqITHZhFg
-   3LxqJL/3qvma0rtfifsjlY5qxGyvLpeeau1yoKLvOBB3ZXDUQUBRDBkzY
-   rGlnw2B2N2WdKYckdqbpcuHs3TYGXL9+v8agF2CnW/LzJg/bU4s4dngGt
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,298,1669046400"; 
-   d="scan'208";a="228297718"
-Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 15 Feb 2023 09:51:15 +0800
-IronPort-SDR: ceKsicOXWe4LIt7LS9k+QW9dN3uH7j5ZTrKDDa2IXMRrRfs5JUyPA2xfuh0TExabwDLz/4QdL6
- xMBUK4Kk8xlDUqWZkFa4fLPWaGTtpizIB/9L5rmSQT5uzxEWak787J71HpyIDYxBByXb/qArNJ
- LO4g6UrxRZLUcLA1vXgd33OtfYWxS4ygRK95qanDOIPgKLiPwGGyz1u/Vidl6Eaz8hvwimbFE3
- 9tqdzNM+v3w8DMWF0wudUDjDHRKgHR7BNdmVBUgEkvwa50QiptuSs0/zVbytC2VKcEIney8CGw
- BnU=
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2023 17:02:37 -0800
-IronPort-SDR: /At9w+8b64PZXUhzuSYS2ZL49s5des3QLxFjkSiFM2G3ETQPhfHpPbaq7rxUc8zjTVU7mXliAQ
- 1nrDAE4M799kYPxPrMtlyfHmrHnvrHCh3MukRrUFCSUzhMTIZYvAtmvoOVXaaVkBWPuZQHgSCW
- VcS4mqcoMwTyoVtXyVZBW1TOivK8l/Ai0o6MpjKVD2kUdXjNiQ9Ju4jz5bWCjtp78HiXxjOsRK
- Ht1RGRwm+JEj93zzCUhabwf7P0IwCj8PLDDA17hhGs0BvtBI5ZVmOJ/sFjmi2GZq155URAPlfP
- 1Bo=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2023 17:51:16 -0800
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PGgz62jq5z1RvTp
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 17:51:14 -0800 (PST)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1676425872; x=1679017873; bh=pY73svOgwdqd6BSUYdpIutEqwh8IMouiKs9
-        7EFOaRtU=; b=fyOCQWDcyHlBOIbK5ysMm6noA8GFEVee8rIBYtpP645ZvUq2WUK
-        MIWuJ4Jp/o9n6yxWJulWoVmxAQTey45NL56acctMouqvmTabq+w8a9FF1Tu9h3uF
-        53UJlw9ti+KUvbutkgkr6kqQy+YpanfesZxIo/4C6lawhupHZ0wQqokRbvbQTwrG
-        85eT4K43J2Z3XozyGPg/1lufNDH4+cKpM2sJgMXuVmODYSAqvEzCa3vuCgbxV09J
-        hSHgiDXKPdvfruIUQkLVsBNvfIO59R0bH/5rgA2S7dngwp4SsnYB/bLG4CxMZavr
-        jKmwpzpL5zCdonGiardsQvMnjuuAmpH3rLw==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 1kV3pyh4X5mo for <devicetree@vger.kernel.org>;
-        Tue, 14 Feb 2023 17:51:12 -0800 (PST)
-Received: from [10.225.163.116] (unknown [10.225.163.116])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PGgz11G1Vz1RvLy;
-        Tue, 14 Feb 2023 17:51:09 -0800 (PST)
-Message-ID: <7b8a8d38-feef-d2af-f23f-6b2b46f78110@opensource.wdc.com>
-Date:   Wed, 15 Feb 2023 10:51:08 +0900
+        with ESMTP id S229454AbjBOB4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 20:56:49 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7B17DB9;
+        Tue, 14 Feb 2023 17:56:47 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id CE48E24E249;
+        Wed, 15 Feb 2023 09:56:45 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
+ 2023 09:56:45 +0800
+Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
+ 2023 09:56:45 +0800
+Message-ID: <c8e1e030-59a5-107b-d1a3-0ad7e289a419@starfivetech.com>
+Date:   Wed, 15 Feb 2023 09:56:45 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller
- driver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 0/3] StarFive's SDIO/eMMC driver support
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230203081913.81968-1-william.qiu@starfivetech.com>
+ <CAPDyKFqei-GjKpBUQnDZUbYnSyn-JS5f_EnTLOuA1U4PdYTyVA@mail.gmail.com>
 Content-Language: en-US
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-        alberto.dassatti@heig-vd.ch
-Cc:     xxm@rock-chips.com, rick.wertenbroek@heig-vd.ch,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <CAPDyKFqei-GjKpBUQnDZUbYnSyn-JS5f_EnTLOuA1U4PdYTyVA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/23 23:08, Rick Wertenbroek wrote:
-> This is a series of patches that fixes the PCIe endpoint controller driver
-> for the Rockchip RK3399 SoC. The driver was introduced in
-> cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip PCIe controller")
-> The original driver had issues and would not allow for the RK3399 to
-> operate in PCIe endpoint mode correctly. This patch series fixes that so
-> that the PCIe core controller of the RK3399 SoC can now act as a PCIe
-> endpoint. This is v2 of the patch series and addresses the concerns that
-> were raised during the review of the first version.
-> 
-> Thank you in advance for reviewing these changes and hopefully
-> getting this merged. Having a functional PCIe endpoint controller
-> driver for the RK3399 would allow to develop further PCIe endpoint
-> functions through the Linux PCIe endpoint framework using this SoC.
-> 
-> Problem: The Rockchip RK3399 PCIe endpoint controller driver introduced in
-> cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip PCIe controller")
-> did not work.
-> 
-> Summary of problems with the driver :
-> 
-> * Missing dtsi entry
-> * Could not update Device ID (DID)
-> * The endpoint could not be configured by a host computer because the
->   endpoint kept sending Configuration Request Retry Status (CRS) messages
-> * The kernel would sometimes hang on probe due to access to registers in
->   a clock domain of which the PLLs were not locked
-> * The memory window mapping and address translation mechanism had
->   conflicting mappings and did not follow the technical reference manual
->   as to how the address translation should be done
-> * Legacy IRQs were not generated by the endpoint
-> * Message Signaled interrupts (MSI) were not generated by the endpoint
-> 
-> The problems have been addressed and validated through tests (see below).
-> 
-> Summary of changes :
-> 
-> This patch series is composed of 9 patches that do the following :
-> * Remove writes to unused registers in the PCIe core register space.
->   The registers that were written to is marked "unused" and read
->   only in the technical reference manual of the RK3399 SoC.
-> * Write PCI Device ID (DID) to correct register, the DID was written to
->   a read only register and therefore would not update the DID.
-> * Assert PCI Configuration Enable bit after probe so that it would stop
->   sending Configuration Request Retry Status (CRS) messages to the
->   host once configured, without this the host would retry until
->   timeout and cancel the PCI configuration.
-> * Add poll and timeout to wait for PHY PLLs to be locked, this
->   is the only patch that also applies to the root complex function
->   of the PCIe core controller, without this the kernel would
->   sometimes access registers in the PHY PLL clock domain when the PLLs
->   were not yet locked and the system would hang. This was hackily solved
->   in other non mainline patches (e.g., in armbian) with a "msleep()"
->   that was added after PHY PLL configuration but without realizing
->   why it was needed. A poll with timeout seems like a sane approach.
-> * Add dtsi entry for RK3399 PCIe endpoint core. The new entry is
->   in "disabled" status by default, so unless it is explicitly enabled
->   it will not conflict with the PCIe root complex controller entry.
->   Developers that will enable it would know that the root complex function
->   then must be disabled, this can be done in the board level DTS.
-> * Fix window mapping and address translation for endpoint. The window
->   mapping and address translation did not follow the technical reference
->   manual and a single memory region was used which resulted in conflicting
->   address translations for memory allocated in that region. The current
->   patch allows to allocate up to 32 memory windows with 1MB pages.
-> * Fix legacy IRQ generation for RK3399 PCIe endpoint core, the legacy IRQs
->   were not sent by the device because their generation did not follow the
->   instructions in the technical reference manual. They now work.
-> * Use u32 variable to access 32-bit registers, u16 variables were used to
->   access and manipulate data of 32-bit registers, this would lead to
->   overflows e.g., when left shifting more than 16 bits.
-> * Add parameter check for RK3399 PCIe endpoint core set_msi(), return
->   -EINVAL when incompatible parameters are passed.
-> 
-> Validation on real hardware:
-> 
-> This patch series has been tested with kernel 6.0.19 (and 5.19)
-> on real hardware, a FriendlyElec NanoPC-T4 RK3399 based single computer
-> board connected to a host computer through PCIe x1 and x4. The PCIe
-> endpoint test function driver was loaded on the SoC and the PCIe endpoint
-> test driver was loaded on the host computer. The following tests were
-> executed through this setup :
-> 
-> * enumeration of the PCIe endpoint device (lspci)
->   lspci -vvv
-> * validation of PCI header and capabilities
->   setpci and lspci -xxxx
-> * device was recognized by host computer dans PCIe endpoint test driver
->   was loaded
->   lspci -v states "Kernel modules: pci_endpoint_test"
-> * tested the BARs 0-5
->   sudo /usr/bin/pcitest -b 0
->   ...
->   sudo /usr/bin/pcitest -b 5
-> * tested legacy interrupt through the test driver
->   sudo /usr/bin/pcitest -i 0
->   sudo /usr/bin/pcitest -l
-> * tested MSI interrupt through the test driver
->   sudo /usr/bin/pcitest -i 1
->   sudo /usr/bin/pcitest -m 1
-> * tested read/write to and from host through the test driver with checksum
->   sudo /usr/bin/pcitest -r -s 1024
->   sudo /usr/bin/pcitest -w -s 1024
-> * tested read/write with DMA enabled (all read/write tests also did IRQ)
->   sudo /usr/bin/pcitest -r -d -s 8192
->   sudo /usr/bin/pcitest -w -d -s 8192
-> 
-> Commands used on the SoC to launch the endpoint function (configfs) :
-> 
-> modprobe -i pci-epf-test
-> mkdir -p /sys/kernel/config/pci_ep/functions/pci_epf_test/pci_epf_test.0
-> echo 0xb500 > /sys/kernel/config/pci_ep/functions/pci_epf_test/pci_epf_test.0/deviceid
-> echo 0x104c > /sys/kernel/config/pci_ep/functions/pci_epf_test/pci_epf_test.0/vendorid
-> echo 16 > /sys/kernel/config/pci_ep/functions/pci_epf_test/pci_epf_test.0/msi_interrupts 
-> ln -s /sys/kernel/config/pci_ep/functions/pci_epf_test/pci_epf_test.0 \
-> /sys/kernel/config/pci_ep/controllers/fd000000.pcie-ep/
-> echo 1 > /sys/kernel/config/pci_ep/controllers/fd000000.pcie-ep/start
-> 
-> Note: to enable the endpoint controller on the board the file :
-> arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
-> Was edited to set the status of &pcie0 to "disabled" and &pcie0_ep
-> to "okay". This is not submitted as a patch because most users
-> will use the PCIe core controller in host (root complex) mode
-> rather than endpoint mode.
-> 
-> I have tested and confirmed all basic functionality required for the
-> endpoint with the test driver and tools. With the previous state of
-> the driver the device would not even be enumerated by the host
-> computer (mainly because of CRS messages being sent back to the root
-> complex) and tests would not pass (driver would not even be loaded
-> because DID was not set correctly) and then only the BAR test would
-> pass. Now all tests pass as stated above.
-
-Note about that: with your series applied, nothing was working for me on
-my pine Rockpro64 board (AMD Ryzen host). I got weird/unstable behavior
-and the host IOMMU screaming about IO page faults due to the endpoint
-doing weird pci accesses. Running the host with IOMMU on really helps in
-debugging this stuff :)
-
-With the few fixes to your series I commented about, things started to
-work better, but still very unstable. More debugging and I found out that
-the pci-epf-test drivers, both host and endpoint sides, have nasty
-problems that lead to reporting failures when things are actually working,
-or outright dummy things being done that trigger errors (e.g. bad DMA
-synchronization triggers IOMMU page faults reports). I have a dozen fix
-patches for these drivers. Will clean them up and post ASAP.
-
-With the test drivers fixed + the fixes to your series, I have the
-pci_test.sh tests passing 100% of the time, repeatedly (in a loop). All solid.
-
-However, I am still seeing issues with my ongoing work with a NVMe
-endpoint driver function: I see everything working when the host BIOS
-pokes at the NVMe "drive" it sees (all good, that is normal), but once
-Linux nvme driver probe kicks in, IRQs are essentially dead: the nvme
-driver does not see anything strange and allocates IRQs (1 first, which
-ends up being INTX, then multiple MSI one for each completion queue), but
-on the endpoint side, attempting to raise MSI or INTX IRQs result in error
-as the rockchip-ep driver sees both INTX and MSI as disabled. No clue what
-is going on. I suspect that a pci reset may have happened and corrupted
-the core configuration. However, the EPC/EPF infrastructure does not
-catch/process PCI resets as far as I can tell. That may be the issue.
-I do not see this issue with the epf test driver, because I suspect the
-host BIOS not knowing anything about that device, it does not touch it.
-This all may depend on the host & BIOS. Not sure. Need to try with
-different hosts. Just FYI :)
 
 
--- 
-Damien Le Moal
-Western Digital Research
+On 2023/2/14 20:18, Ulf Hansson wrote:
+> On Fri, 3 Feb 2023 at 09:19, William Qiu <william.qiu@starfivetech.com> wrote:
+>>
+>> Hi,
+>>
+>> This patchset adds initial rudimentary support for the StarFive
+>> designware mobile storage host controller driver. And this driver will
+>> be used in StarFive's VisionFive 2 board. The main purpose of adding
+>> this driver is to accommodate the ultra-high speed mode of eMMC.
+>>
+>> The last patch should be applied after the patchset [1]:
+>> [1] https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
+>>
+>> Changes since v2:
+>> - Wraped commit message according to Linux coding style.
+>> - Rephrased the description of the patches.
+>> - Changed the description of syscon regsiter.
+>> - Dropped redundant properties.
+>>
+>> The patch series is based on v6.1.
+>>
+>> William Qiu (3):
+>>   dt-bindings: mmc: Add StarFive MMC module
+>>   mmc: starfive: Add sdio/emmc driver support
+>>   riscv: dts: starfive: Add mmc node
+>>
+>>  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  77 ++++++++
+>>  MAINTAINERS                                   |   6 +
+>>  .../jh7110-starfive-visionfive-2.dtsi         |  23 +++
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  37 ++++
+>>  drivers/mmc/host/Kconfig                      |  10 +
+>>  drivers/mmc/host/Makefile                     |   1 +
+>>  drivers/mmc/host/dw_mmc-starfive.c            | 185 ++++++++++++++++++
+>>  7 files changed, 339 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>>  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
+>>
+> 
+> Patch 1 and patch 2 applied for next, thanks!
+> 
+> Note that I fixed some checkpatch errors/warnings. Next time, please
+> run ./scripts/checkpatch.pl before you submit your patches.
+> 
+> Kind regards
+> Uffe
+z
+Hi Uffe,
 
+Sorry about that, I'll check the patches before submit next time.
+Thanks for taking time reviewing this patch series.
+
+Best Regards
+William
