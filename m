@@ -2,171 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 390F26979C5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:22:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E45A6979D3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:28:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbjBOKWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 05:22:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47850 "EHLO
+        id S232248AbjBOK2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 05:28:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbjBOKWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:22:38 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22893346D;
-        Wed, 15 Feb 2023 02:22:36 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4C5CEB81F81;
-        Wed, 15 Feb 2023 10:22:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 057BBC433EF;
-        Wed, 15 Feb 2023 10:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676456554;
-        bh=CZtjdlZHpemY/bmUXegAh65vvUy+GqQ4slAml0d/DVE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eeDLCPzo4K9ri9suTobgjrJ3hd5X79inzJX4asmWpkGxPP+7GpzhAX700eFER6Tk2
-         OWP0bVNMWuNAdGAhZUN/evb8VfByeF5IcvfGRjw5yyYuTol/IvxmjW3vvuvp88Pnwq
-         BGlYIC7lDpCvp9Ky4Y5ZlGBEDI74G8fdvmZjMxma/bFfdlc4mSFtGh5XH/OXStdIjt
-         MAT01po3Z1DmNiKJdnNKDdm2ywURHHetmo+v6po09DAlPg7TBdIAdegVWiq8kXSsLA
-         zWqUIlxk/T5xjFktdWZkp5zwM9VKsYGr+AXVq3rqg6Uim4aKh2xj4RJrsOg7Q+8VCJ
-         kz7NNdJiFRJ7A==
-Date:   Wed, 15 Feb 2023 10:22:29 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] StarFive's SDIO/eMMC driver support
-Message-ID: <Y+yyZaBITDmEFUyB@spud>
-References: <20230203081913.81968-1-william.qiu@starfivetech.com>
- <CAPDyKFqei-GjKpBUQnDZUbYnSyn-JS5f_EnTLOuA1U4PdYTyVA@mail.gmail.com>
- <CAJM55Z8gpBDu9818GPLRYJ9DBa+NfXW0uo76_bkwWm6RS1S9wg@mail.gmail.com>
- <3ee9b726-10db-5d05-b24a-010c8bf5b59d@starfivetech.com>
+        with ESMTP id S229829AbjBOK2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:28:41 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16E1366A3;
+        Wed, 15 Feb 2023 02:28:40 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id bh15so15370565oib.4;
+        Wed, 15 Feb 2023 02:28:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6yB8OFTfKD97aA5eOyH0KqfD+FWu2DzdqnSZBMyYeG0=;
+        b=jb760RmY2mhZp9FN8h0OdqgTxR3SOPTWq/yiTljm6AokXf9of5Gzv2bZsDnFB23SQH
+         E7USeo8jaYplkVWJOUaLwEPAR9Ccu0/8A9wKEn/E03VxuuUjod2y4rMkrGqhOPz28sm7
+         kKtAi0E5Da+z/RKtyYLW+/4MVWi9o5SChsWjkf692ZGyLOFZEXmSL7qZtTXJrOTYbA+6
+         Z0UwlZWYVQP8KbvPipWLrXrFNxzPIs9/ELq0n0JEYbvZCZC/Bb/7NsMGrJr1tLYYjyGR
+         dG4t//fwr+t3G451kZLqYVDupbCSADFd2k+PvX6Uk2L5Jjn3lzuOmIHJCPYnGLSWUC5D
+         a/GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6yB8OFTfKD97aA5eOyH0KqfD+FWu2DzdqnSZBMyYeG0=;
+        b=U3jTDUI33WcE6ZEM+2KXfcOZXIlAjgUMZcUPzEZbQ/R/JwkJrXQXg5Sf3aepeF1AaI
+         BUQf9H2L9pZiBwhApFPgzGRxPCcqwhV+TqU2Mf+NMopP1dS/bhAEOc0ZKfQkz9Pg0bp1
+         x/AVdBWQN1oahfC99YPjGpYAYZPxrp6V4Lid7DdYgr284Nlp7Dor/foufolZlbleiFat
+         +tgTvf9Og9WaxJViOLRthW/SVLHK4tdQO31Qd7XUwkyFzaprOKv6M6/ruJnEG6Jigc7I
+         xw69FTmXf1TpENIWzIOJ6M76xhI7FkN03OMY/FJ/JHfHqdiBqahlRfd4TYcddxcZt9V0
+         pz9A==
+X-Gm-Message-State: AO0yUKWmXGCHrzstZ7s6CzgaTyqLyr7Wk+cQUz4KP6rNtiZOkQKQIF+u
+        8jYvDc9Ha17C4I2lpupUiKYO6Dm+EYsmipEbmD0=
+X-Google-Smtp-Source: AK7set8o82EF1RLdVxbKXwpb+W7OYj03kXyJab+ucP4FZwnFuHDzcmNItuleSEY+TdxxhHbCBhAnK/CkOwkljsDsIn8=
+X-Received: by 2002:a54:4508:0:b0:37d:8b23:1d1b with SMTP id
+ l8-20020a544508000000b0037d8b231d1bmr167210oil.110.1676456920180; Wed, 15 Feb
+ 2023 02:28:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UvkJAdnlfiLhyd8H"
-Content-Disposition: inline
-In-Reply-To: <3ee9b726-10db-5d05-b24a-010c8bf5b59d@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com> <7b8a8d38-feef-d2af-f23f-6b2b46f78110@opensource.wdc.com>
+In-Reply-To: <7b8a8d38-feef-d2af-f23f-6b2b46f78110@opensource.wdc.com>
+From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Date:   Wed, 15 Feb 2023 11:28:03 +0100
+Message-ID: <CAAEEuhrzysR-xfx7X-gVqUdi17R1YiWxyBM+0asQxtyZ9PQozg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller driver
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
+        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Feb 15, 2023 at 2:51 AM Damien Le Moal
+<damien.lemoal@opensource.wdc.com> wrote:
+>
+> Note about that: with your series applied, nothing was working for me on
+> my pine Rockpro64 board (AMD Ryzen host). I got weird/unstable behavior
+> and the host IOMMU screaming about IO page faults due to the endpoint
+> doing weird pci accesses. Running the host with IOMMU on really helps in
+> debugging this stuff :)
 
---UvkJAdnlfiLhyd8H
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for testing, I have also tested with a Ryzen host, I have IOMMU
+enabled as well.
 
-On Wed, Feb 15, 2023 at 06:16:35PM +0800, William Qiu wrote:
->=20
->=20
-> On 2023/2/15 18:00, Emil Renner Berthing wrote:
-> > On Tue, 14 Feb 2023 at 13:21, Ulf Hansson <ulf.hansson@linaro.org> wrot=
-e:
-> >>
-> >> On Fri, 3 Feb 2023 at 09:19, William Qiu <william.qiu@starfivetech.com=
-> wrote:
-> >> >
-> >> > Hi,
-> >> >
-> >> > This patchset adds initial rudimentary support for the StarFive
-> >> > designware mobile storage host controller driver. And this driver wi=
-ll
-> >> > be used in StarFive's VisionFive 2 board. The main purpose of adding
-> >> > this driver is to accommodate the ultra-high speed mode of eMMC.
-> >> >
-> >> > The last patch should be applied after the patchset [1]:
-> >> > [1] https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@star=
-fivetech.com/
-> >> >
-> >> > Changes since v2:
-> >> > - Wraped commit message according to Linux coding style.
-> >> > - Rephrased the description of the patches.
-> >> > - Changed the description of syscon regsiter.
-> >> > - Dropped redundant properties.
-> >> >
-> >> > The patch series is based on v6.1.
-> >> >
-> >> > William Qiu (3):
-> >> >   dt-bindings: mmc: Add StarFive MMC module
-> >> >   mmc: starfive: Add sdio/emmc driver support
-> >> >   riscv: dts: starfive: Add mmc node
-> >> >
-> >> >  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  77 ++++++++
-> >> >  MAINTAINERS                                   |   6 +
-> >> >  .../jh7110-starfive-visionfive-2.dtsi         |  23 +++
-> >> >  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  37 ++++
-> >> >  drivers/mmc/host/Kconfig                      |  10 +
-> >> >  drivers/mmc/host/Makefile                     |   1 +
-> >> >  drivers/mmc/host/dw_mmc-starfive.c            | 185 +++++++++++++++=
-+++
-> >> >  7 files changed, 339 insertions(+)
-> >> >  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,j=
-h7110-mmc.yaml
-> >> >  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
-> >> >
-> >>
-> >> Patch 1 and patch 2 applied for next, thanks!
-> >>
-> >> Note that I fixed some checkpatch errors/warnings. Next time, please
-> >> run ./scripts/checkpatch.pl before you submit your patches.
-> >=20
-> > Hi,
-> >=20
-> > Something here is not right. The bindings document "starfive,sysreg",
-> > but the code is looking for "starfive,syscon".
-> > William, did you test this and run dtbs_check before sending this serie=
-s?
-> >=20
-> > /Emil
->=20
-> Hi Emil,
->=20
-> Sorry about that, it's my negligence that I did dtbs_check without
+>
+> With the few fixes to your series I commented about, things started to
+> work better, but still very unstable. More debugging and I found out that
+> the pci-epf-test drivers, both host and endpoint sides, have nasty
+> problems that lead to reporting failures when things are actually working,
+> or outright dummy things being done that trigger errors (e.g. bad DMA
+> synchronization triggers IOMMU page faults reports). I have a dozen fix
+> patches for these drivers. Will clean them up and post ASAP.
+>
+> With the test drivers fixed + the fixes to your series, I have the
+> pci_test.sh tests passing 100% of the time, repeatedly (in a loop). All solid.
+>
 
-dtbs_check would be okay though, no? The binding and dts (from checking
-with eyeballs!) are consistent & it is just the driver that is looking
-for the wrong property name, no?
+Good to hear that it now works, I'll try them as well.
 
-> checking the configuration of CONFIG_SOC_STARFIVE. I made a modification=
-=20
-> in the next version and add binding for all the syscon at the same time. =
-Next
-> time I'll make sure the check is correct.I'm sorry again for this oversig=
-ht.
-> I'll send v4 patch series today.
+> However, I am still seeing issues with my ongoing work with a NVMe
+> endpoint driver function: I see everything working when the host BIOS
+> pokes at the NVMe "drive" it sees (all good, that is normal), but once
+> Linux nvme driver probe kicks in, IRQs are essentially dead: the nvme
+> driver does not see anything strange and allocates IRQs (1 first, which
+> ends up being INTX, then multiple MSI one for each completion queue), but
+> on the endpoint side, attempting to raise MSI or INTX IRQs result in error
+> as the rockchip-ep driver sees both INTX and MSI as disabled. No clue what
+> is going on. I suspect that a pci reset may have happened and corrupted
+> the core configuration. However, the EPC/EPF infrastructure does not
+> catch/process PCI resets as far as I can tell. That may be the issue.
+> I do not see this issue with the epf test driver, because I suspect the
+> host BIOS not knowing anything about that device, it does not touch it.
+> This all may depend on the host & BIOS. Not sure. Need to try with
+> different hosts. Just FYI :)
+>
 
-Ulf's subsystem & his rules, but I would just send a follow-on patch
-fixing the driver to use the property that is in the dt-binding.
+Interesting that you are working on this, I started to patch the RK3399 PCIe
+endpoint controller driver for a similar project, I want to run our NVMe
+firmware in a Linux PCIe endpoint function.
 
-Sorta unrelated, but please remind me about the dts patch once the base
-dts is merged. It's still in the RISC-V patchwork so *should* be fine,
-but in case the base dts takes a while it may get automatically
-archived.
-
-Thanks,
-Conor.
-
-
---UvkJAdnlfiLhyd8H
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+yyZQAKCRB4tDGHoIJi
-0qUcAP92thHyY+JVbUzE+IDz7yRfLo/nradx86cQ1UK9LspcsQEAsYL++31GQKhE
-XYviEZdxkDnknLoYmV07qJaxdO+bnAI=
-=2MVB
------END PGP SIGNATURE-----
-
---UvkJAdnlfiLhyd8H--
+For the IRQs there are two things that come to mind:
+1) The host driver could actually disable them and work in polling mode,
+I have seen that with different versions of the Linux kernel NVMe driver
+sometimes it would choose to use polling instead of IRQs for the queues.
+So maybe it's just the
+2) The RK3399 PCIe endpoint controller is said to be able only to generate
+one type of interrupt at a given time. "It is capable of generating MSI or
+Legacy interrupt if the PCIe is configured as EP. Notes that one PCIe
+component can't generate both types of interrupts. It is either one or the
+other." (see TRM 17.5.9 Interrupt Support).
+I don't know exactly what the TRM means the the controller cannot
+use both interrupts at the same time, but this might be a path to explore
