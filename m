@@ -2,138 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B36DB698048
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 17:14:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F17EF698125
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 17:45:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230005AbjBOQOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 11:14:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54904 "EHLO
+        id S229686AbjBOQp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 11:45:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbjBOQOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 11:14:10 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FB9F39CC3;
-        Wed, 15 Feb 2023 08:14:09 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id qw12so49490775ejc.2;
-        Wed, 15 Feb 2023 08:14:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uC/SvFAaTgyOUT62qSZHz5/1ITvVZfonGrD1ssJwpVw=;
-        b=O2unormQ4YLjFh1J9UYBKR0y+uFQ5K+/Pi5JPJrTjOqF41NoPgtIc1Sf7T+N6W7+pC
-         xdk0UGF05SpKe5ERkALQXaZQ1t3rEr6GehU8r73Xs60EF1BStYZyOUIRsDzqTuek2gp6
-         uY0dwwKhERyZ9r57VVQvmfPoXaJK4rPm5vhOnN3TcPcf8lA97JfEvatJrhXmxPYnqbZv
-         5SwEYiChmS00daXbf5hoXMcauIFQ5ap2wAOE8w25QwvrAkuWkLATMor0ph4HPRK8a9dl
-         fTeGlo1rHfqQ7ALcSEmZ9LREZNA6CshoTE+yTINzF1vvW9S4DyTXeXHR2M89zCZCagNv
-         5ehQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uC/SvFAaTgyOUT62qSZHz5/1ITvVZfonGrD1ssJwpVw=;
-        b=YpJ/6G08zFayYU46//cJyZfIsJgFB3BrT/NwspHV/d4jeop9UJ7oMqefGaWEF7sBL6
-         M17IW++MOIGMAbbsmLL1pya0kqx5MyFzi+gnk7RPmNSLuhJ9KjxNHCCPJ6Q/b9nM9npn
-         b5KgRmwdXyDUDS8pROqsssQ8TyY144103HiXnopA65Y87nih2KvRzQNCtkJBVbmOV+ck
-         JzwC6vKPbrp/kJ8FlHxqKdpDUQQce6Gpl+v1qiYtYix/A0Q+a8ttI2U3tzlbnW65dkwY
-         gzSKM7El6rBsLjZVrfKDn4Hag2rzz5ns5A/0uK1UCBMUhhmzsW/xPsONe4sll/+RX1Pn
-         weSw==
-X-Gm-Message-State: AO0yUKV79wDJqukiez5Moflvqj2DEYX6Zx/j9O16+pd85t5HXVN2qNSn
-        0xlu0QWU2b7cizGqfDkDLG0=
-X-Google-Smtp-Source: AK7set/gvuJ55M0r2BPZvJhlwvcq1chATR8smn/3mw5g1ugscCalkHUXm3FyAooLWsOIJtatUvGf+w==
-X-Received: by 2002:a17:906:bced:b0:8af:2b80:a1a with SMTP id op13-20020a170906bced00b008af2b800a1amr3227603ejb.10.1676477647607;
-        Wed, 15 Feb 2023 08:14:07 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id o13-20020a17090611cd00b008b12c368ba0sm2572509eja.45.2023.02.15.08.14.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Feb 2023 08:14:06 -0800 (PST)
-Message-ID: <e0168826-2276-405e-2d31-4b396335d02a@gmail.com>
-Date:   Wed, 15 Feb 2023 17:14:05 +0100
+        with ESMTP id S229726AbjBOQpz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 11:45:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C4D01F488;
+        Wed, 15 Feb 2023 08:45:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3DDB6B8225F;
+        Wed, 15 Feb 2023 16:45:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B69C433D2;
+        Wed, 15 Feb 2023 16:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676479552;
+        bh=gXCoCYIWuQ6zQPZdkRw/SFmCLHKeUNes3OHwjCNAvMk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=psgd15gCQzR+zIFPKZDbUDVORdJVqWAiGjsprnfd2q0y+Es3zKUuLREBAIDP7DK/m
+         oRuLXnYCxG4OCl9xEagjyaAvX45wWBke2h0+294ILt6c29k2FIvRTecbVMNhaD8N96
+         qX4fWiiRVAh7dVM2DcuQB0WHhM9zPb95PWTvgmCxhDFBfnvPxwHI8YeDthPp8JgJP5
+         QrcfrxBntN9fT5kgokVm3/0n7c8ZgDJb89Op5DjNLaz9De1vvdEjmxmpJVGzIYAWgR
+         ZNd2FMae3bS0E/rfrdyGxUlHO5EYTOoIIqVJ6Rrj9tAMzfCIKXe4FWfXC0wTsuTphV
+         bnU6Ki3TnIMHg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1pSKvg-0000Mv-4n; Wed, 15 Feb 2023 17:46:48 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 1/2] arm64: dts: sc8280xp-crd: fix external display 'data-lanes'
+Date:   Wed, 15 Feb 2023 17:45:23 +0100
+Message-Id: <20230215164524.1335-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/8] dt-bindings: gpio: rockchip,gpio-bank: add
- compatible string per SoC
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        heiko@sntech.de, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kever.yang@rock-chips.com, sjg@chromium.org,
-        philipp.tomsich@vrull.eu, john@metanate.com,
-        quentin.schulz@theobroma-systems.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com>
- <CACRpkdbmXri1vtRShm7a3N0sRA7Qg_ni5FpAtiEv+72a6g9Wng@mail.gmail.com>
- <CAMRc=MeKdb=xmidwXQiNxtJpb1xii1D-43m1z6cNtF1VxFwogg@mail.gmail.com>
- <e0bf4347-ec24-a4e2-0851-d5cdf850cc28@linaro.org>
- <CAMRc=MdZOmxSTvtKaPo7cnx6q+dg8ANQYuM8PeuN+KQ7fqV61g@mail.gmail.com>
-Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <CAMRc=MdZOmxSTvtKaPo7cnx6q+dg8ANQYuM8PeuN+KQ7fqV61g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The 'data-lanes' property belongs in the controller node but was
+erroneously moved to the endpoint nodes in the last revision of the
+external display series:
 
+	[drm] Invalid property "data-lanes", default max DP lanes = 4
 
-On 2/15/23 16:02, Bartosz Golaszewski wrote:
-> On Sun, Feb 12, 2023 at 5:14 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 10/02/2023 21:03, Bartosz Golaszewski wrote:
->>> On Wed, Feb 8, 2023 at 12:08 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->>>>
->>>> On Sat, Jan 21, 2023 at 12:06 PM Johan Jonker <jbx6244@gmail.com> wrote:
->>>>
->>>>> Currently all Rockchip gpio nodes have the same compatible.
->>>>> Compatible strings should be SoC related.
->>>>>
->>>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->>>>
->>>> Bartosz can you merge this one patch and keep the rest back
->>>> so we get a more defined DT binding baseline?
->>>>
->>>> Yours,
->>>> Linus Walleij
->>>
->>> Krzysztof, you left your ack but seem to also have pointed out an
->>> issue - do you want me to fix it up somehow before applying? Drop the
->>> oneOf and turn it back into an enum?
->>
->>
->> Sure, you can apply with my comment fixed but then just please check
->> with `make dt_binding_check DT_SCHEMA_FILES="xxx.yaml"`, that
->> indentation is not mixed up.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> I prefer to get your ack on the final version really.
-> 
+Fixes: bc9a747ae91f ("arm64: dts: qcom: sc8280xp-crd: Introduce pmic_glink")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-> Johan, please address the enum issue and resend just this patch.
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+index 0c3bdd3cdb9e..db6eb19d0da7 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+@@ -379,20 +379,22 @@ &mdss0 {
+ };
+ 
+ &mdss0_dp0 {
++	data-lanes = <0 1>;
++
+ 	status = "okay";
+ };
+ 
+ &mdss0_dp0_out {
+-	data-lanes = <0 1>;
+ 	remote-endpoint = <&pmic_glink_con0_ss>;
+ };
+ 
+ &mdss0_dp1 {
++	data-lanes = <0 1>;
++
+ 	status = "okay";
+ };
+ 
+ &mdss0_dp1_out {
+-	data-lanes = <0 1>;
+ 	remote-endpoint = <&pmic_glink_con1_ss>;
+ };
+ 
+-- 
+2.39.2
 
-I changed to oneOf, because with enum I didn't get it working.
-With 2 enum's it complains about: is not of type 'string'.
-I'm out of ideas...
-Maybe it's something simple that I overlook.
-Could Krzysztof give an example?
-
-Johan
-
-
-> 
-> Bart
