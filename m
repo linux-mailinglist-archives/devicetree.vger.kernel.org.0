@@ -2,129 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0FF697899
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 10:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 518F869789E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 10:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233405AbjBOJEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 04:04:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
+        id S233410AbjBOJGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 04:06:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbjBOJEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 04:04:43 -0500
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D40C29E33;
-        Wed, 15 Feb 2023 01:04:37 -0800 (PST)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-16e55be7c76so795435fac.6;
-        Wed, 15 Feb 2023 01:04:37 -0800 (PST)
+        with ESMTP id S233117AbjBOJF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 04:05:58 -0500
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B5529E33
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 01:05:57 -0800 (PST)
+Received: by mail-ua1-x92c.google.com with SMTP id v5so2980207uat.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 01:05:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uwa6xK/yGoAax/0OsXHRKw57tyZBvF5xhqokekA1410=;
-        b=GDNghYFolCi/Hr9GJz4CtFq5HIGPlsnHond8PtR6gzV+AKOQI0c5ta1t8Ys+Vo1+1+
-         LqR0SIWfHg+uDEfxg3zJoWLWm+ItSFe3B/rEqWrQZlX8B9RIJfiCtFlsbhgzY8FgqvEi
-         alHGClndUJRnWimlqeV7L6aFizOTLqkXT5HyOUbMaVK7Vy//g4Mmwg5Q36vb4NCDj/co
-         B07mudnoacRsfm9fjD1ljLv2fMgc/j3hXmfPcMJScf97NTnxM8z5LIiQoFWpSKwojuo0
-         OCM9Zu/SqB1cpmsXSsKi9j4VQqxFPXnlpkqwRp99noQIh0KsEt4vaXVB2SobFL1Q8SNP
-         cGXg==
+        bh=OK/Q/phuym1TfWPA1EBQC/91tXucWH+AbkqODxHd+vc=;
+        b=Ydmn7Xt5AYbZObMFlW/egeupY8qPMzmU1xlPaTedIdTaL5Ez0/yWJhFZIZ3aZXVvBg
+         nrdrAeik9VNFA7h2ki1EPQFikgu49LxPMUrmcd9F3sk+RrseVz/RFPOZ+kBo7dNxht+x
+         rDzU1+l1Utv8dlBbRI7I4zC/8valm/1auAciZ3SPUXpkbG4qqTC2zryrFlsI30ZyDoNb
+         wwfQYAEcjhFIVA+gSJqxHHOAiXNw1CeHIVi+0x9ECY46y7uQgA+OE+de9whr1yFj55dx
+         VDtys2BsD8LgZj4BWBOZZp5NWoxwPD7vM9EtdzOp1NkeWr8TEGQ6+9w9SkdQgovZef92
+         GU7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uwa6xK/yGoAax/0OsXHRKw57tyZBvF5xhqokekA1410=;
-        b=blKySwFw6HkUnwsrrvpWWvy+6hUENJFSnvWStbdUZkGUpCDTmmDpmoDFTefQoBexfW
-         ctC+MtiEkgsxA6OXchl0FfyFzflU3f7JLncOf+/fe9SzxUNFoLgsfEsZ57+bxiwVXZz0
-         m/6CoyWOxf/QXXZW1uUORFo0paSR+8XWRejQyCfPVktIil6c8MZWbZn13Y4YyQNkfN/D
-         A0koeeqTV6BOor4njU1sAKpXU9dlELEhxZe13dwk4EcpfOI7WMYFpR7qTNks114upkNS
-         Bq7eyJdTODOT6ehbYkrgvjV34p9J7hy20NIqwHsOq0ByIUbc0mDProaxDdtRl8WUCW+3
-         bozg==
-X-Gm-Message-State: AO0yUKVRhdfqaWf6y9yBwFNgld+TxJRlLKgITtigmPtkXfO6fbfZFZLO
-        0Ifi0i8/i+sEuaaS3ysIUpgA+Mm+juw/vI5wMpY=
-X-Google-Smtp-Source: AK7set8M3FNYNbgcQtYa5GBece8pIU/sBsIHK/rNnMAtR/NLp0PkALLbNqbe2utTTajf92iToM7B0At0xEH85Sc6K/0=
-X-Received: by 2002:a05:6870:10d7:b0:163:9dc0:78f1 with SMTP id
- 23-20020a05687010d700b001639dc078f1mr206361oar.265.1676451876492; Wed, 15 Feb
- 2023 01:04:36 -0800 (PST)
+        bh=OK/Q/phuym1TfWPA1EBQC/91tXucWH+AbkqODxHd+vc=;
+        b=Cmijm2mXp10F6+aDFiMzfzIFnHqTjZ1+NaRK7QGU9TndX0eNbSqQMi2aMZHrsnJZjR
+         qBKk0xXxKPT+sJ3C/lRFLzhA6/AmWj9HzwawkpGZkLqOEZPH6jhlO0BQoHfMmxrW6mZg
+         jufgv55udQL5Nj7OfblV0n2B0Wx4cBIdB79S1cerAXUDXYioZYB3uAR9mXWMA1dYnZ12
+         Eo5J1r3LkRcifAjVREp1CjQdm6UbwHYZaQ3M3txFaZBjsSRwt7cYtzSPGYXhkWA6x2YJ
+         EICK4K+4Z0yTAxkRJseJxkjmHiI7fqR/JuddQzLsUg5G+YSDYpas8z7Pb61zbXD9us2i
+         j+nA==
+X-Gm-Message-State: AO0yUKWaWKFJhd3TiTuBoDIa6eMEWDZKbsIOCBv8yHysPuBwInQV0/EF
+        LQ4KbExfwVgTX+k1pKPNl+NHsIBkh5/halqaPlkfEw==
+X-Google-Smtp-Source: AK7set/IPQ3wITuV5FFkFXqZdGFftAn+e/QA1ZQpZsxkd41HqT4E0+lCOoPrmpxpG6MkxmVXzPQcZEQxKrYNFzi4IsE=
+X-Received: by 2002:ab0:654d:0:b0:68a:7054:58a6 with SMTP id
+ x13-20020ab0654d000000b0068a705458a6mr184058uap.22.1676451956432; Wed, 15 Feb
+ 2023 01:05:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <20230214140858.1133292-2-rick.wertenbroek@gmail.com> <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
-In-Reply-To: <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
-From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date:   Wed, 15 Feb 2023 10:04:00 +0100
-Message-ID: <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/9] PCI: rockchip: Remove writes to unused registers
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+References: <20230214155715.451130-1-brgl@bgdev.pl> <602b1c64-db73-b6e3-020c-f2b24085a986@quicinc.com>
+In-Reply-To: <602b1c64-db73-b6e3-020c-f2b24085a986@quicinc.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 15 Feb 2023 10:05:45 +0100
+Message-ID: <CAMRc=McUOSZiW8nRO-o32y0XL4i+LCF2Z380QX0uDgv2J=cuZA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sa8775p-ride: enable relevant QUPv3 IPs
+To:     Shazad Hussain <quic_shazhuss@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 12:56 AM Damien Le Moal
-<damien.lemoal@opensource.wdc.com> wrote:
+On Wed, Feb 15, 2023 at 8:06 AM Shazad Hussain
+<quic_shazhuss@quicinc.com> wrote:
 >
-> I checked the TRM and indeed these registers are listed as unused.
-> However, with this patch, nothing work for me using a Pine rockpro64
-> board. Keeping this patch, your series (modulo some other fixes, more
-> emails coming) is making things work !
+>
+>
+> On 2/14/2023 9:27 PM, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > This enables the QUPv3 interfaces that are exposed on the sa8775p-ride
+> > board: I2C, SPI and the GNSS UART.
+> >
+> > Bartosz Golaszewski (3):
+> >    arm64: dts: qcom: sa8775p: add the i2c node for sa8775p-ride
+> >    arm64: dts: qcom: sa8775p: add the SPI node for sa8775p-ride
+> >    arm64: dts: qcom: sa8775p: add the GNSS high-speed UART for
+>
+> Hi Bartosz,
+> This instance is for BT HS UART , not for GNSS.
+> For GNSS we have uart12 (0x00A94000).
+>
 
-Hello, Thank you for testing the driver and commenting, I'll incorporate your
-suggestions in the next version of this series.
+Thanks, I'll rectify it in v2.
 
-This patch alone does not make the driver work. Without the fixes to the
-address windows and translation found in [PATCH v2 6/9] ("PCI: rockchip:
-Fix window mapping and address translation for endpoint") transfers will not
-work. However, as you said, with the patch series, the driver works.
-Good to see that you have the driver working on the rockpro64 which is a
-very similar but different board than the one I used (FriendlyElec NanoPC-T4).
-
-> So I think the bug is with the TRM, not the code. THinking logically about
-> htis, it makes sense: this is programming the address translation unit to
-> translate mmio & dma between host PCI address and local CPU space address.
-> If we never set the PU address, how can that unit possibly ever translate
-> anything ?
-
-No, the bug is not in the TRM:
-The RK3399 PCIe endpoint core has the physical address space of 64MB
-@ 0xF800'0000 to access the PCIe address space (TRM 17.5.4).
-This space is split into 33 windows, one of 32MBytes and 32 of 1MByte.
-Read-write accesses by the CPU to that region will be translated. Each
-window has a mapping that is configured through the ATR Configuration
-Register Address Map (TRM 17.6.8) and the registers addr0 and addr1
-will dictate the translation between the window (a physical CPU addr)
-into a PCI space address (with this the unit can translate). The other
-registers are for the PCIe header descriptor.
-The translation process is documented in TRM 17.5.5.1.1
-The core will translate all read-write accesses to the windows that fall
-in the 64MB space @ 0xF800'0000 and generate the PCIe addresses
-and headers according to the values in the registers in the ATR
-Configuration Register Address Map (@ 0xFDC0'0000).
-
-Translation does indeed take place and works
-but requires the changes in [PATCH v2 6/9] ("PCI: rockchip:
-Fix window mapping and address translation for endpoint")
-because it was broken from the start...
-
-The two writes that were removed are to unused (read-only) registers.
-The writes don't do anything, manually writing and reading back these
-addresses will always lead to 0 (they are read-only). So they are removed.
+Bart
