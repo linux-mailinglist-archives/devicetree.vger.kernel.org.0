@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E03FC69864F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:49:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D76698671
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:50:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbjBOUt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 15:49:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
+        id S230280AbjBOUuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 15:50:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbjBOUsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:48:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33B342DDD;
-        Wed, 15 Feb 2023 12:47:12 -0800 (PST)
+        with ESMTP id S230052AbjBOUtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:49:36 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDC2457E5;
+        Wed, 15 Feb 2023 12:47:31 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8A403B823C8;
-        Wed, 15 Feb 2023 20:47:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38E4C4339B;
-        Wed, 15 Feb 2023 20:47:09 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 30651CE2705;
+        Wed, 15 Feb 2023 20:47:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FF2CC433A1;
+        Wed, 15 Feb 2023 20:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676494030;
-        bh=Ylleevxb2VkHh6V5lkaTGbLVPbJDnUWzCONPpX+T5DU=;
+        s=k20201202; t=1676494033;
+        bh=TGryrwuA6HKr9VvU/8RU+K/sgCT6aPGkXxCYLy38lwc=;
         h=From:To:Cc:Subject:Date:From;
-        b=l29TXpwkBni48m2UZJfSbEHSR9ZHNhWDOWiwmn+NbUeYWjNSpA/k3+l68mw/DE8rR
-         kx0nNv317lwVRFEndfrZ/Gfke06CzVi/dLeZREeuZkV+5C41PAi72mSLrbz88ASYlY
-         cVaxU1P654BbZvrEkhn4B4LQ2jl0u0F9VlnMYq7BvdtK52mVMa7y6R/aVqjk0bH7ks
-         PEwZv0kywb+56BiZdtL35Qm6ZP9Uc0jYg6kH7vdKXUyH6SHrh2Qx+qYGum7lTLorXw
-         Len7Br5wtfyw/vDz3+drnJCu78g9/6WZCf6+c52v2OLaFHlDCVCtFSLgf3TnoG4UwU
-         xKnSLy83v3DOw==
+        b=k3Y4IX+h/mT3CkHHctXlWb9qhpmlnySZfHW0sADCt9jx5V5fCfvGY7YjF+O434W2g
+         R766Qkm1pK5MC1oDW2uGBMtKvSzXSB5gHb4E2TW+lya/TN5EfBHHBQq81AtMWYcZfA
+         WObgtzgx57Ww8aby7NzN8b69llygzpGxjjMmUvpoT0ttGs5MOEzP3Tf/n9yd2fFctv
+         gILz7qIQRZ+DH6JZY3DjpuOorM4mVdmEsqTXPd8qB/wjXR1TzrGOURxHa8Q0IY0B57
+         iFRqxzVZZ/fibdZk4vkcrFRAJZVQSkp5Ulsm83YFAK7STh/7+WeSGCZg/MXvzV3YAF
+         z2CWbxrjOYG0Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
@@ -38,9 +38,9 @@ Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
         krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 1/4] ARM: dts: rockchip: add power-domains property to dp node on rk3288
-Date:   Wed, 15 Feb 2023 15:47:05 -0500
-Message-Id: <20230215204708.2761432-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 1/3] ARM: dts: rockchip: add power-domains property to dp node on rk3288
+Date:   Wed, 15 Feb 2023 15:47:10 -0500
+Message-Id: <20230215204712.2761492-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 X-stable: review
@@ -72,10 +72,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index e442bf7427ae1..402b5e0fd616c 100644
+index 872e4e690beb4..c3440adc763ce 100644
 --- a/arch/arm/boot/dts/rk3288.dtsi
 +++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -1172,6 +1172,7 @@ edp: dp@ff970000 {
+@@ -1096,6 +1096,7 @@ edp: dp@ff970000 {
  		clock-names = "dp", "pclk";
  		phys = <&edp_phy>;
  		phy-names = "dp";
