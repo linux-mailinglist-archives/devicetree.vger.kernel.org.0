@@ -2,200 +2,402 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38FC2697F55
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 16:17:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE5E697F5E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 16:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjBOPRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 10:17:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45626 "EHLO
+        id S229679AbjBOPTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 10:19:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbjBOPRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 10:17:54 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C00E06A
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 07:17:52 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id jg8so49040934ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 07:17:52 -0800 (PST)
+        with ESMTP id S229501AbjBOPTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 10:19:20 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A7C72A4;
+        Wed, 15 Feb 2023 07:19:18 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id mc25so11647610ejb.13;
+        Wed, 15 Feb 2023 07:19:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ndEYZ/Bjp4bwqaU/mjVX2oSWMOkhNZXJ6KCxJAXPEeA=;
-        b=QNGGvgh0zUrXwxfLWb3A2eghj1qnoEtEDPe/Sk2jwdV8D+JPoCN9bUmLNA4j/NIqOu
-         9YnfdEFEq5/kBrKM/X7iM9ejx5Afjz09gPY00I2O3ZnzyPkufPkH4mbqLWk+kYfwo3TX
-         2TTxsTKPysXOBVbeCd/dBs0z4ccl1wKBnb/Zmd4q1RWoUn8rozESw45cm45YwAEUE4bm
-         XLHyGmBtbsZtLHPSJx3A0g0A9wPP6MycmkBfqH3sHZM5hi1ChnsFy+AHEtv4kb9W+ZFI
-         ng2IEIqi1r25+AzYN57LDDseyW1LaeVJuGZ/blZSO3FZ3mpDLfckADOwnC9Eio4UjB3r
-         cVBQ==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CWjWayzWFiWnvCbvFd6B45HYCVrR5UvgWU/JtS3dv2o=;
+        b=pLW35xOf6ygQLVpyP+glvXdNYZ2keZEEIWUU+zfZNqgygC6bzseLlSUt3vzcwam3i7
+         4PZAEnH87velYv9sTtWUR3PZgcdgM5gi9XqpxpuoWXKQKRPMy4ptniyKu9y2p3mXxX5O
+         yIjIvaWVnjoVZ1tY4Wehj1rrnoUrQvyqiRtJtG/lIVd63fLeMbQJ7hJgTwOXDivs8o27
+         SXYOW4UQ0MwBCQMB43nl7ShCYY4OL0769UneP5auV3toYQdH3qn9+aPtj6wLpAAN+DJC
+         jvLc0NnG5KVhK0eJNcHW9Zg5iHJrNEtzEtDuScHAE7sAYQjOG3lTdJssU+zT+1oeGE2X
+         ITUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ndEYZ/Bjp4bwqaU/mjVX2oSWMOkhNZXJ6KCxJAXPEeA=;
-        b=JQakHJL2j6HWG2i8H6uw9aI7hNd58ziHZsTSSg4xRO0VEYACWGfqLvBe1IyOzlGsFf
-         SbUpiIEQW02aqRLfLwlrmUl4mfKZvaCkN8miH1b0u7uc0VDwX1NCbkd/ZWRKtAThKn6G
-         t+2w1IfG3OoqFoqwWuCjr3QDI2OYuxqU6XhF3a6PjSJezWa6GEJ6W5UC6Bw4yfK7zECJ
-         YwidmjYViyBqVOi6DW5UMgU/L1OEquzlc47VMTFKgo4M3GWenft5NUsUgqMiTdNcoI9W
-         n/Eq7gJu8FoEa6sOmG5kTVTwGyZzhhZrXhCmyTOroarWA9CU3jwTcx3Fg0BH4f/J61gH
-         oQww==
-X-Gm-Message-State: AO0yUKX2y7H/f0r0sliDmg5p1BD2mVVV8g8+bYwvtgtdA9ojKZBX6UBa
-        +qNhJUZvnfdoPbNeZ7TjobOuZQ==
-X-Google-Smtp-Source: AK7set+dlJUmxoIzxdNx2JGoR5HPQMbv4gAQ41Hig3+QipJS5GpnPiyCRkUTBHYCjETZ4ObCuXHLcw==
-X-Received: by 2002:a17:906:82d1:b0:883:be32:cd33 with SMTP id a17-20020a17090682d100b00883be32cd33mr2719943ejy.35.1676474271248;
-        Wed, 15 Feb 2023 07:17:51 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ml21-20020a170906cc1500b008b14b807dbdsm493841ejb.67.2023.02.15.07.17.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Feb 2023 07:17:50 -0800 (PST)
-Message-ID: <1e26211a-c8eb-5f2f-9f55-c3d3ebc76b94@linaro.org>
-Date:   Wed, 15 Feb 2023 15:17:48 +0000
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CWjWayzWFiWnvCbvFd6B45HYCVrR5UvgWU/JtS3dv2o=;
+        b=3HKjSdCNwrAsgsJs0K77KbZTtz7vQE3fKRXloTJwe5zDHjIN37azF+kyUu5+6sf5f8
+         BDcIS3qhbBb8wjq3w5AAj9SYTsMyOuFJ0BmJa1kdKivtobFy5MZ6P/qHI3AtvQyu7osm
+         /qXgJ2eTpyqWOM9HEvUu83FAxH88NHKbQHckyDuVmJW1vwiaEjlrqmAiM7asJinsXEGs
+         oNtViQcVWSpFRhww6tukaFs9iHJ805wEMOHSerI2DBm07lG/yYcSuhj6WNstUVIeyVRw
+         gH9roINgX2hrXX9O7CrBC6aWhDssEnQFGL1qnwQY8yMi7RZ9T2e9I2b5IuMWI594SiPa
+         WgvA==
+X-Gm-Message-State: AO0yUKWdGDIpJUH7na4wwQZQ7BN5N/jMAqm60oHxug8sGy33zx2gweC7
+        XAZ4eLKUEm8DgaKSPOgFmUE=
+X-Google-Smtp-Source: AK7set/Sa1o6jfHHZBzx8++0P7GRlSEJlKikREn2cXH0TNgP2zn36NYKQHIZ8CxPNleS4q8iOlpA+Q==
+X-Received: by 2002:a17:907:a50e:b0:88f:8a5:b4cd with SMTP id vr14-20020a170907a50e00b0088f08a5b4cdmr3101307ejc.1.1676474356876;
+        Wed, 15 Feb 2023 07:19:16 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id t4-20020a1709060c4400b008b14399b74fsm980195ejf.201.2023.02.15.07.19.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Feb 2023 07:19:16 -0800 (PST)
+Date:   Wed, 15 Feb 2023 18:19:13 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <helgaas@kernel.org>
+Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, Sergey.Semin@baikalelectronics.ru,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v9 5/8] PCI: dwc: Add support for triggering legacy IRQs
+Message-ID: <20230215151913.ilqqzbfzfbitpeop@mobilestation>
+References: <20230210134917.2909314-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230210134917.2909314-6-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V4 5/5] firmware: scm: Modify only the DLOAD bit in TCSR
- register for download mode
-Content-Language: en-US
-To:     POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        robimarko@gmail.com, dmitry.baryshkov@linaro.org,
-        nfraprado@collabora.com, broonie@kernel.org,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_devipriy@quicinc.com
-References: <20230214051414.10740-1-quic_poovendh@quicinc.com>
- <20230214051414.10740-6-quic_poovendh@quicinc.com>
- <ffeff1f8-ebf6-3115-38d1-fa318549baa0@linaro.org>
- <b5135d69-3783-8147-bda5-8131cea726f7@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <b5135d69-3783-8147-bda5-8131cea726f7@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230210134917.2909314-6-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Feb 10, 2023 at 10:49:14PM +0900, Yoshihiro Shimoda wrote:
+> Add support for triggering legacy IRQs by using outbound ATU.
 
-
-On 15/02/2023 10:55, POOVENDHAN SELVARAJ wrote:
-> 
-> On 2/14/2023 6:27 PM, Srinivas Kandagatla wrote:
->>
->>
->> On 14/02/2023 05:14, Poovendhan Selvaraj wrote:
->>> CrashDump collection is based on the DLOAD bit of TCSR register.
->>> To retain other bits, we read the register and modify only the DLOAD 
->>> bit as
->>> the other bits have their own significance.
->>>
->>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->>> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->>> ---
->>>   Changes in V4:
->>>     - retain the orginal value of tcsr register when download mode
->>>       is not set
->>>
->>>   drivers/firmware/qcom_scm.c | 15 ++++++++++-----
->>>   1 file changed, 10 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
->>> index 468d4d5ab550..8a34b386ac3a 100644
->>> --- a/drivers/firmware/qcom_scm.c
->>> +++ b/drivers/firmware/qcom_scm.c
->>> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
->>>   }
->>>   EXPORT_SYMBOL(qcom_scm_set_remote_state);
->>>   -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
->>> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, 
->>> bool enable)
->>>   {
->>>       struct qcom_scm_desc desc = {
->>>           .svc = QCOM_SCM_SVC_BOOT,
->>> @@ -417,7 +417,8 @@ static int __qcom_scm_set_dload_mode(struct 
->>> device *dev, bool enable)
->>>           .owner = ARM_SMCCC_OWNER_SIP,
->>>       };
->>>   -    desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
->>> +    desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
->>> +                val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE);
->>
->> why not read the value here before setting the DLOAD Mode instead of 
->> doing it in qcom_scm_set_download_mode()?
->> that would make the code simple and readable.
-> 
-> dload_addr_val is used in both if and else if cases in 
-> qcom_scm_set_download_mode(), so we read in qcom_scm_set_download_mode() 
-> function and pass to __qcom_scm_set_dload_mode().
-
-that is fine as it is, I missread else part as calling 
-__qcom_scm_set_dload_mode() too.
-
-just check the ret value should be good.
-
---srini
-
+I supposed a little more details would nice, like outbound iATU is
+utilized to send assert and de-assert INTx TLPs. The message is
+generated based on the payloadless Msg TLP with type 0x14, where 0x4
+is the routing code implying the terminated at Receiver message. The
+message code is specified as b1000xx for the INTx assertion and
+b1001xx for the INTx de-assertion. Etc...
 
 > 
->    if (avail) {
-> -        ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
-> *+        ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, 
-> enable); *
->        } else if (__scm->dload_mode_addr) {
-> -        ret = qcom_scm_io_writel(__scm->dload_mode_addr,
-> -                enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
-> +        ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
-> + *  dload_addr_val | QCOM_SCM_BOOT_SET_DLOAD_MODE : **
-> **+                dload_addr_val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE)); *
->        } else {
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 66 +++++++++++++++++--
+>  drivers/pci/controller/dwc/pcie-designware.c  | 25 ++++---
+>  drivers/pci/controller/dwc/pcie-designware.h  | 12 +++-
+>  3 files changed, 87 insertions(+), 16 deletions(-)
 > 
->>
->>>         return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
->>>   }
->>> @@ -426,15 +427,19 @@ static void qcom_scm_set_download_mode(bool 
->>> enable)
->>>   {
->>>       bool avail;
->>>       int ret = 0;
->>> +    u32 dload_addr_val;
->>>         avail = __qcom_scm_is_call_available(__scm->dev,
->>>                            QCOM_SCM_SVC_BOOT,
->>>                            QCOM_SCM_BOOT_SET_DLOAD_MODE);
->>> +    ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
->>> +
->> not checking ret value here before proceeding?
->>
-> Okay, sure..will address in next patch series.
->>>       if (avail) {
->>> -        ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
->>> +        ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, 
->>> enable);
->>>       } else if (__scm->dload_mode_addr) {
->>> -        ret = qcom_scm_io_writel(__scm->dload_mode_addr,
->>> -                enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
->>> +        ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
->>> +                dload_addr_val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
->>> +                dload_addr_val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
->>>       } else {
->>>           dev_err(__scm->dev,
->>>               "No available mechanism for setting download mode\n");
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 95efe14f1036..886483bf378b 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -6,6 +6,7 @@
+>   * Author: Kishon Vijay Abraham I <kishon@ti.com>
+>   */
+>  
+> +#include <linux/delay.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  
+> @@ -182,8 +183,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
+>  	return 0;
+>  }
+>  
+> -static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no,
+> -				   phys_addr_t phys_addr,
+> +static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
+> +				   u8 code, u8 routing, phys_addr_t phys_addr,
+>  				   u64 pci_addr, size_t size)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> @@ -196,8 +197,9 @@ static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no,
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = dw_pcie_prog_ep_outbound_atu(pci, func_no, free_win, PCIE_ATU_TYPE_MEM,
+> -					   phys_addr, pci_addr, size);
+> +	ret = dw_pcie_prog_ep_outbound_atu(pci, func_no, free_win, type,
+> +					   code, routing, phys_addr, pci_addr,
+> +					   size);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -306,7 +308,8 @@ static int dw_pcie_ep_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  	struct dw_pcie_ep *ep = epc_get_drvdata(epc);
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  
+> -	ret = dw_pcie_ep_outbound_atu(ep, func_no, addr, pci_addr, size);
+> +	ret = dw_pcie_ep_outbound_atu(ep, func_no, PCIE_ATU_TYPE_MEM, 0, 0,
+> +				      addr, pci_addr, size);
+>  	if (ret) {
+>  		dev_err(pci->dev, "Failed to enable address\n");
+>  		return ret;
+> @@ -479,11 +482,43 @@ static const struct pci_epc_ops epc_ops = {
+>  	.get_features		= dw_pcie_ep_get_features,
+>  };
+>  
+> +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
+> +			       u8 routing)
+> +{
+> +	struct pci_epc *epc = ep->epc;
+> +	int ret;
+> +
+> +	ret = dw_pcie_ep_outbound_atu(ep, func_no, PCIE_ATU_TYPE_MSG, code,
+> +				      routing, ep->intx_mem_phys, 0,
+> +				      epc->mem->window.page_size);
+> +	if (ret)
+> +		return ret;
+> +	writel(0, ep->intx_mem);
+> +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no,
+> +					 int intx)
+> +{
+> +	int ret;
+> +
+> +	ret = dw_pcie_ep_send_msg(ep, func_no, PCIE_MSG_ASSERT_INTA + intx, 0x04);
+> +	if (ret)
+> +		return ret;
+> +	usleep_range(1000, 2000);
+> +	return dw_pcie_ep_send_msg(ep, func_no, PCIE_MSG_DEASSERT_INTA + intx, 0x04);
+> +}
+> +
+>  int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  	struct device *dev = pci->dev;
+>  
+
+> +	if (ep->intx_by_atu)
+
+IMO the flag is redundant. Your implementation is generic enough to be
+useful for all the DW PCIe EPs. If you are afraid to break things,
+then just make it optional. If no outbound physical memory could be
+allocated then initialize intx_mem with NULL and move on with further
+initializations. As before the Legacy IRQ raise method shall return
+EINVAL in that case.
+
+> +		return __dw_pcie_ep_raise_legacy_irq(ep, func_no, 0);
+> +
+>  	dev_err(dev, "EP cannot trigger legacy IRQs\n");
+>  
+>  	return -EINVAL;
+> @@ -617,6 +652,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+>  
+>  	dw_pcie_edma_remove(pci);
+>  
+> +	if (ep->intx_by_atu)
+> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
+> +				      epc->mem->window.page_size);
+> +
+>  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
+>  			      epc->mem->window.page_size);
+>  
+> @@ -789,9 +828,19 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  		goto err_exit_epc_mem;
+>  	}
+>  
+
+> +	if (ep->intx_by_atu) {
+> +		ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
+> +						      epc->mem->window.page_size);
+> +		if (!ep->intx_mem) {
+> +			ret = -ENOMEM;
+> +			dev_err(dev, "Failed to reserve memory for INTx\n");
+
+As I suggested above you can just dev_warn() here and move on with
+EP initialization.
+
+> +			goto err_free_epc_mem;
+> +		}
+> +	}
+> +
+>  	ret = dw_pcie_edma_detect(pci);
+>  	if (ret)
+> -		goto err_free_epc_mem;
+> +		goto err_free_epc_mem_intx;
+>  
+>  	if (ep->ops->get_features) {
+>  		epc_features = ep->ops->get_features(ep);
+> @@ -808,6 +857,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  err_remove_edma:
+>  	dw_pcie_edma_remove(pci);
+>  
+> +err_free_epc_mem_intx:
+> +	if (ep->intx_by_atu)
+> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
+> +				      epc->mem->window.page_size);
+> +
+>  err_free_epc_mem:
+>  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
+>  			      epc->mem->window.page_size);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 53a16b8b6ac2..b4315cf84340 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -465,8 +465,8 @@ static inline u32 dw_pcie_enable_ecrc(u32 val)
+>  }
+>  
+
+>  static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+> -				       int index, int type, u64 cpu_addr,
+> -				       u64 pci_addr, u64 size)
+> +				       int index, int type, u8 code, u8 routing,
+> +				       u64 cpu_addr, u64 pci_addr, u64 size)
+
+The implementation gets to be too complicated especially with having
+nine arguments now. Seven args have been not that good either, but at
+the very least it was more-or-less coherent with respect to the Mem/IO
+outbound TLPs generations. Now in addition to that it will be also
+responsible for the MSG TLPs mapping. What we could simplify here is:
+
+< either 1. Drop separate routing arg. It can be merged into the type
+argument seeing it's a part of one by specification. Thus we'll have
+only eight arguments left. That will simplify the prototype, but not
+the implementation.
+
+< or 2. Split up the outbound mem/IO and MSG windows setups.
+In the later case you'll need only the next data for the MSG TLPs
+mapping: function #, MW index, message code, CPU base address, MW size.
+
+< or 3. Convert __dw_pcie_prog_outbound_atu() to accepting a
+dw_pcie_outbound_atu(-ish) structure with all the arguments listed as
+fields: MW index, function #, message type, routing type, message
+code (valid if MSG type specified), CPU base address, PCIe base
+address, MW size.
+
+What do you think? @Rob, @Bjorn?
+
+(Please don't forget to define the macros for the routing and message
+code values.)
+
+>  {
+>  	u32 retries, val;
+>  	u64 limit_addr;
+> @@ -498,7 +498,7 @@ static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+>  	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_UPPER_TARGET,
+>  			      upper_32_bits(pci_addr));
+>  
+> -	val = type | PCIE_ATU_FUNC_NUM(func_no);
+> +	val = type | routing | PCIE_ATU_FUNC_NUM(func_no);
+>  	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr) &&
+>  	    dw_pcie_ver_is_ge(pci, 460A))
+>  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
+> @@ -506,7 +506,14 @@ static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+>  		val = dw_pcie_enable_ecrc(val);
+>  	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL1, val);
+>  
+> -	dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL2, PCIE_ATU_ENABLE);
+
+> +	if (code)
+> +		dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL2,
+> +				      PCIE_ATU_ENABLE |
+> +				      PCIE_ATU_INHIBIT_PAYLOAD |
+> +				      PCIE_ATU_HEADER_SUB_ENABLE | code);
+
+AFAICS the setup above is only specific to the Msg TLPs. If so then it
+would have been more generic to use if(type == ?) conditional
+statement here. What do you think?
+
+> +	else
+> +		dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL2,
+> +				      PCIE_ATU_ENABLE);
+
+The next modification seems to be looking better in this case:
++ val = PCIE_ATU_ENABLE;
++ if (type == PCIE_ATU_TYPE_MSG)
++ 	val |= PCIE_ATU_INHIBIT_PAYLOAD | PCIE_ATU_HEADER_SUB_ENABLE | code;
++ 
++ dw_pcie_writel_atu_ob(pci, index, PCIE_ATU_REGION_CTRL2, val);
+
+-Serge(y)
+
+>  
+>  	/*
+>  	 * Make sure ATU enable takes effect before any subsequent config
+> @@ -528,16 +535,16 @@ static int __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+>  int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
+>  			      u64 cpu_addr, u64 pci_addr, u64 size)
+>  {
+> -	return __dw_pcie_prog_outbound_atu(pci, 0, index, type,
+> +	return __dw_pcie_prog_outbound_atu(pci, 0, index, type, 0, 0,
+>  					   cpu_addr, pci_addr, size);
+>  }
+>  
+>  int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> -				 int type, u64 cpu_addr, u64 pci_addr,
+> -				 u64 size)
+> +				 int type, u8 code, u8 routing, u64 cpu_addr,
+> +				 u64 pci_addr, u64 size)
+>  {
+> -	return __dw_pcie_prog_outbound_atu(pci, func_no, index, type,
+> -					   cpu_addr, pci_addr, size);
+> +	return __dw_pcie_prog_outbound_atu(pci, func_no, index, type, code,
+> +					   routing, cpu_addr, pci_addr, size);
+>  }
+>  
+>  static inline u32 dw_pcie_readl_atu_ib(struct dw_pcie *pci, u32 index, u32 reg)
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 79713ce075cc..1a6e7e9489ee 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -147,11 +147,14 @@
+>  #define PCIE_ATU_TYPE_IO		0x2
+>  #define PCIE_ATU_TYPE_CFG0		0x4
+>  #define PCIE_ATU_TYPE_CFG1		0x5
+> +#define PCIE_ATU_TYPE_MSG		0x10
+>  #define PCIE_ATU_TD			BIT(8)
+>  #define PCIE_ATU_FUNC_NUM(pf)           ((pf) << 20)
+>  #define PCIE_ATU_REGION_CTRL2		0x004
+>  #define PCIE_ATU_ENABLE			BIT(31)
+>  #define PCIE_ATU_BAR_MODE_ENABLE	BIT(30)
+> +#define PCIE_ATU_INHIBIT_PAYLOAD	BIT(22)
+> +#define PCIE_ATU_HEADER_SUB_ENABLE	BIT(21)
+>  #define PCIE_ATU_FUNC_NUM_MATCH_EN      BIT(19)
+>  #define PCIE_ATU_LOWER_BASE		0x008
+>  #define PCIE_ATU_UPPER_BASE		0x00C
+> @@ -244,6 +247,9 @@
+>  /* Default eDMA LLP memory size */
+>  #define DMA_LLP_MEM_SIZE		PAGE_SIZE
+>  
+> +#define PCIE_MSG_ASSERT_INTA		0x20
+> +#define PCIE_MSG_DEASSERT_INTA		0x24
+> +
+>  struct dw_pcie;
+>  struct dw_pcie_rp;
+>  struct dw_pcie_ep;
+> @@ -352,7 +358,10 @@ struct dw_pcie_ep {
+>  	unsigned long		*ob_window_map;
+>  	void __iomem		*msi_mem;
+>  	phys_addr_t		msi_mem_phys;
+> +	void __iomem		*intx_mem;
+> +	phys_addr_t		intx_mem_phys;
+>  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
+> +	bool			intx_by_atu;
+>  };
+>  
+>  struct dw_pcie_ops {
+> @@ -419,7 +428,8 @@ int dw_pcie_wait_for_link(struct dw_pcie *pci);
+>  int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
+>  			      u64 cpu_addr, u64 pci_addr, u64 size);
+>  int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> -				 int type, u64 cpu_addr, u64 pci_addr, u64 size);
+> +				 int type, u8 code, u8 routing, u64 cpu_addr,
+> +				 u64 pci_addr, u64 size);
+>  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+>  			     u64 cpu_addr, u64 pci_addr, u64 size);
+>  int dw_pcie_prog_ep_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> -- 
+> 2.25.1
 > 
-> Regards,
-> Poovendhan S
 > 
