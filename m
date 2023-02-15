@@ -2,119 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB79697E9E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 15:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF495697EAD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 15:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjBOOpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 09:45:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41640 "EHLO
+        id S229871AbjBOOqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 09:46:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbjBOOpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 09:45:03 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F7E8A5A;
-        Wed, 15 Feb 2023 06:45:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ECE0F61C3C;
-        Wed, 15 Feb 2023 14:45:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BC86C433A7;
-        Wed, 15 Feb 2023 14:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676472301;
-        bh=J7FR16wSeO0h7U2Rx2QzFOI98aN6QgOwDZqATCeQYVQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lfElhBWLykO/IJQQRODB6ZD2kRjRd9ASIZp9f8lTKR1+9FgfwaFmqe0HnNRHT9Hl3
-         JkgU5v3vEdtLPgjeRRcJq3hv3Km6WJFocxQkgUlojqH7alhgWDMRAap4yyKNgWSlFM
-         VOKpNUIYYpHF2vVio8HrKf+q9cSvm2aoZha9llKLmKv0QphWJ/mxRv0vnCW8R6jklr
-         6/N5X7ZgJLm/dJ5bLJ2/oN/4kh2OUdKUkAp5UrVWyp3FdeUiiDJBhVtRjbFx85GCMO
-         FOoM69qE8ueaGL5qtN2q7B9tqqLreXbtKeazbacUgYNmZfg4npkiMi2Sg8mDYWsOhr
-         e3Fj94sQQv/6w==
-Received: by mail-vk1-f180.google.com with SMTP id i4so5108071vkn.13;
-        Wed, 15 Feb 2023 06:45:01 -0800 (PST)
-X-Gm-Message-State: AO0yUKWRxNVrkYU67FU8fZYkGWztrgBayDtmbx6BUB3/8dDceZjRwexI
-        v6YRg30pQvZI28f9FChM42EBwQg+U2USS8FoNQ==
-X-Google-Smtp-Source: AK7set/kjqpJSwgOPQgeLthfUJMRO50WEjm6M46aPnoKXLrEXKV0KxBlqDn2v26BG08pkp0X6ufGr+PEnWMps4WzT6E=
-X-Received: by 2002:a1f:1b83:0:b0:401:42f3:5657 with SMTP id
- b125-20020a1f1b83000000b0040142f35657mr350241vkb.42.1676472300265; Wed, 15
- Feb 2023 06:45:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20230214141053.92731-1-povik+lin@cutebit.org> <167638945429.3790.16067227881981242831.robh@kernel.org>
- <6B75F1A1-E2DE-40D5-AA79-A764C65D8AD2@cutebit.org>
-In-Reply-To: <6B75F1A1-E2DE-40D5-AA79-A764C65D8AD2@cutebit.org>
+        with ESMTP id S229800AbjBOOqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 09:46:44 -0500
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3511392AA;
+        Wed, 15 Feb 2023 06:46:37 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id y17-20020a4ade11000000b0051762fdf955so1920763oot.3;
+        Wed, 15 Feb 2023 06:46:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rBEXT/3oqd86oxSyfqYLg0yKXT/8DtJ6xnwvUSvOxQA=;
+        b=nwBdgSbQAxYNe6c+6rFk+4+hqmSyuPczecYrJVdqRDrMjuWBLZtI+1n5kOjDzR0MKT
+         gS4aBq7aQN6rxNeh3riz070+HpUYar77MCavTQAceSxhTfUs7bbOuePQBKyhAAJoOS7e
+         4bLdeNwp0t06fDzH4nuI7LgYz2jxULytopF7BFXgiTm7D9e8C5fdZBURqpJDiVH5nO46
+         YPYysYEp9Cna3RgFENqwm8M8Q8ngd4F+rRxo6NWDV66dGveA3kRW1hAoLhjm+jKz8F3S
+         8HU9rtUH5JGsk8dBm15DUwdst+/+vTdw9+HeZsQAoxKAFxuCx4+xhLf0QL411Xilf597
+         7k1w==
+X-Gm-Message-State: AO0yUKXgxTugT1G0nF/Yu9MucBZKmfJAa8KW6a5S0UZo3TdA7uB31wqv
+        l/WZ9KpXt9DwMzfnUPef/g==
+X-Google-Smtp-Source: AK7set+nN7gkSQK+tRLQHH367Wqkb9kKJmX6EWSzGmfUhKKFWebxk59RzxP5ZE1l3qKxhAHmuKo+EA==
+X-Received: by 2002:a4a:45d8:0:b0:502:a732:f8f5 with SMTP id y207-20020a4a45d8000000b00502a732f8f5mr1315351ooa.5.1676472397168;
+        Wed, 15 Feb 2023 06:46:37 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b18-20020a4aba12000000b004f2b4891329sm7011448oop.23.2023.02.15.06.46.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Feb 2023 06:46:36 -0800 (PST)
+Received: (nullmailer pid 125959 invoked by uid 1000);
+        Wed, 15 Feb 2023 14:46:35 -0000
+Date:   Wed, 15 Feb 2023 08:46:35 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 15 Feb 2023 08:44:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJTHy3ZGUKk1dv3aD+ToxdmvYrjq1JPjHYt7R7LVVZpGQ@mail.gmail.com>
-Message-ID: <CAL_JsqJTHy3ZGUKk1dv3aD+ToxdmvYrjq1JPjHYt7R7LVVZpGQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] dt-bindings: dma: apple,sio: Add schema
-To:     =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Janne Grunau <j@jannau.net>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>, andersson@kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>, agross@kernel.org,
+        marijn.suijten@somainline.org,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        krzysztof.kozlowski@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@svenpeter.dev>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Stanimir Varbanov <svarbanov@mm-sol.com>
+Subject: Re: [PATCH v2] dt-bindings: PCI: qcom: Fix msm8998-specific
+ compatible
+Message-ID: <167647239530.125903.1170051353603969134.robh@kernel.org>
+References: <20230214091202.2187321-1-konrad.dybcio@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230214091202.2187321-1-konrad.dybcio@linaro.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 14, 2023 at 1:18 PM Martin Povi=C5=A1er <povik+lin@cutebit.org>=
- wrote:
->
->
-> > On 14. 2. 2023, at 17:12, Rob Herring <robh@kernel.org> wrote:
-> > On Tue, 14 Feb 2023 15:10:53 +0100, Martin Povi=C5=A1er wrote:
-> >> Describe the SIO coprocessor which serves as pretend DMA controller on
-> >> recent Apple platforms.
-> >>
-> >> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
-> >> ---
-> >>
-> >> Since the schema mentions a loader preparing the binding appropriately=
-,
-> >> here's a PR with the relevant (WIP) loader code, if anyone wants to lo=
-ok:
-> >> https://github.com/AsahiLinux/m1n1/pull/286
-> >>
-> >> .../devicetree/bindings/dma/apple,sio.yaml    | 129 ++++++++++++++++++
-> >> 1 file changed, 129 insertions(+)
-> >> create mode 100644 Documentation/devicetree/bindings/dma/apple,sio.yam=
-l
-> >>
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
-k'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/dma/apple,sio.example.dts:24.35-27.11=
-: Warning (node_name_vs_property_name): /example-0/interrupt-controller: no=
-de name and property name conflict
->
-> I saw the warning, but since I had copied that part of the example from
-> apple,admac.yaml I didn=E2=80=99t make much of it. Now that I look at it =
-again,
-> the example in apple,admac doesn=E2=80=99t raise the same warning, how co=
-me?
->
-> This is just a curiosity since we don=E2=80=99t need the aic node in the =
-example
-> anyway (unlike in apple,admac where it=E2=80=99s needed because of empty =
-entries
-> in interrupts-extended).
 
-'interrupts-extended' is why. If the example just has 'interrupts',
-then a fake parent is constructed. It's pretty hacky, but necessary to
-parse the interrupts later on for validation.
+On Tue, 14 Feb 2023 10:12:02 +0100, Konrad Dybcio wrote:
+> In the commit mentioned in the fixes tag, everything went well except
+> the fallback and the specific compatible got swapped and the 8998 DTSI
+> began failing the dtbs check. Fix it.
+> 
+> Fixes: f86fe08ef00f ("dt-bindings: PCI: qcom: Add MSM8998 specific compatible")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> v1 - > v2:
+> 
+> - Use the correct commit in fixes
+> 
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
+
