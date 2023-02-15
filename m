@@ -2,101 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A4DA697667
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 07:28:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A80046976B2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 07:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233381AbjBOG2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 01:28:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43456 "EHLO
+        id S233521AbjBOGzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 01:55:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233410AbjBOG2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 01:28:51 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6427E311F5;
-        Tue, 14 Feb 2023 22:28:28 -0800 (PST)
-X-UUID: eb163dd0acf911ed945fc101203acc17-20230215
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=BZeA43XoOAkEaxyj8RL5V/54tyfKVdYzibdG9XTu4Dc=;
-        b=ZGRurWujtxttC3b1CTsAS9D4DsEJM62Sy3VqQgk3ygjZsoP8wlF1343tj9S9yUA25oOMc/H8wy22OV5BhxlwNw3bbQq2wtvRjzXrkRzrs9/Y4DFjRDKEQgbTtAGj1KnYHGNhSYk1tTkKUm03v/S3fJqxWrWySqOf8KfuVj128Ho=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.19,REQID:d31faf85-5213-4142-b3c1-909529df2372,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:885ddb2,CLOUDID:bf519f25-564d-42d9-9875-7c868ee415ec,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-UUID: eb163dd0acf911ed945fc101203acc17-20230215
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 107328126; Wed, 15 Feb 2023 14:28:10 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 15 Feb 2023 14:28:09 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 15 Feb 2023 14:28:08 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, <nfraprado@collabora.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-        "AngeloGioacchino Del Regno" 
-        <angelogioacchino.delregno@collabora.com>,
-        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
-        <jianjiao.zeng@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
-        <chengci.xu@mediatek.com>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>, Yong Wu <yong.wu@mediatek.com>
-Subject: [PATCH v4 11/11] arm64: dts: mt8186: Add dma-ranges for the parent "soc" node
-Date:   Wed, 15 Feb 2023 14:25:44 +0800
-Message-ID: <20230215062544.8677-12-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230215062544.8677-1-yong.wu@mediatek.com>
-References: <20230215062544.8677-1-yong.wu@mediatek.com>
+        with ESMTP id S233526AbjBOGzc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 01:55:32 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1ADB34C1D
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 22:55:31 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id o8so17004165pls.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 22:55:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dSwftWU2F5+UTSHoENK8S8rRksgligsrF8ZnqH0Z/+c=;
+        b=r0GU0FrgvuWSrTHQzfjG7T0NncxujdbQ0vayQzl0RG+iWcYm0XQ1pCGHOUElYwhpOD
+         BVGEiAy4SXWES9OG+dMRSUqiBXwOInbJ469hf8UCS0RffRJa/U/2rT15mwyWZh1V3fIT
+         4/5luP93WoWkGiyFGEcJYGqgK+CWV9DzCREtoDuKwxdp1KZF1cpJdWpiSIpQiU4umUds
+         ce4d3eJ+A715kaFGInuplLDo5LGUr1uCEHyJM+6ubsuL/sxvOmz6rbvy7V3b1d5rTmZb
+         euBzUxJS6ETOOV/5N2Ej1o5Rfx7VmEPRSJufWZw+xUENqfGDB4nG3eqbgpKfa9pjz+Kd
+         kPsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dSwftWU2F5+UTSHoENK8S8rRksgligsrF8ZnqH0Z/+c=;
+        b=oEfsBBtuDatsnIlHTFmL1GytjQylc++rjjo9yFwUKAVFqvS5JwKz460EdYp+/qy1lE
+         iphJfDQb6fZZW1ojm87p+/rIqAjcHC+LXTRhWUy7HjNJY+MP5esYurPlqk4D9mckEfmo
+         Lv2INyymBA+rxMsulWafGzTHruehDeOf9ye9mTpDxOyduuRcvOj5CDJpw6+7OzuU/bpT
+         3DAhnemK4uWS5Edybd3CSk3PqhApbVSfOxqJ22RMLD7OqM/QqXj2PQNkXI6OxaC7cweu
+         UsVSULgkgH2zn9z/doBTYNKM52fqzrczaAvFmyBQ+MWGAAlsnLxymaQrL0VRJcKfHoTy
+         w2cw==
+X-Gm-Message-State: AO0yUKXL4TG5gzNFutoH5RU8PD1D8MtyrIkqMbCEWfluBpcz2V3FGp5Z
+        /TtjQ0xwVWHB9c9eP23xF1PTEeKISq1ktx8=
+X-Google-Smtp-Source: AK7set9Y7ILgoFMCWGJJivuvjVaAZrV3BSCh8WD3upABWi2XyyCj6MlwbToqBqhkCzTY5DEe3y813g==
+X-Received: by 2002:a17:903:5cb:b0:199:bcb:3dae with SMTP id kf11-20020a17090305cb00b001990bcb3daemr1023260plb.56.1676444131115;
+        Tue, 14 Feb 2023 22:55:31 -0800 (PST)
+Received: from localhost.localdomain ([117.217.179.87])
+        by smtp.gmail.com with ESMTPSA id d23-20020a170902b71700b001933b4b1a49sm10276870pls.183.2023.02.14.22.55.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Feb 2023 22:55:30 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org
+Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        viresh.kumar@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 00/12] arm64: dts: qcom: Supply clock from cpufreq node to CPUs
+Date:   Wed, 15 Feb 2023 12:25:11 +0530
+Message-Id: <20230215065520.5535-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Prepare for the MM nodes whose dma-ranges(iova range) is 16GB.
+Hi,
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+As a follow-up of [1], this series adds support for supplying clock from
+cpufreq node to CPUs for rest of the SoCs.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index a0d3e1f731bd..251eace411c0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -324,6 +324,7 @@
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		compatible = "simple-bus";
-+		dma-ranges = <0x0 0x0 0x0 0x0 0x4 0x0>;
- 		ranges;
- 
- 		gic: interrupt-controller@c000000 {
+This series has been tested on SDM845, SM8450 and SC8280XP based boards.
+
+Thanks,
+Mani
+
+[1] https://lore.kernel.org/linux-arm-msm/20221117053145.10409-1-manivannan.sadhasivam@linaro.org/
+
+Manivannan Sadhasivam (12):
+  arm64: dts: qcom: sdm845: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sc7280: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm6350: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm8550: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm8250: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: qdu1000: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sc7180: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm8150: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm8350: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sc8280xp: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm6375: Supply clock from cpufreq node to CPUs
+  arm64: dts: qcom: sm6115: Supply clock from cpufreq node to CPUs
+
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi  | 5 +++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm6350.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm6375.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi   | 9 +++++++++
+ 12 files changed, 104 insertions(+)
+
 -- 
-2.18.0
+2.25.1
 
