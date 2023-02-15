@@ -2,240 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BC5069747C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 03:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FE3F69746F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 03:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbjBOClC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 21:41:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33172 "EHLO
+        id S232100AbjBOCj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 21:39:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjBOClB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 21:41:01 -0500
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E82232539
-        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 18:41:00 -0800 (PST)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230215024058epoutp0494d15806413ec06b9f239ed96ffbcb41~D3yoipWFG1709417094epoutp04V
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 02:40:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230215024058epoutp0494d15806413ec06b9f239ed96ffbcb41~D3yoipWFG1709417094epoutp04V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1676428858;
-        bh=dTVvHi0PSXlkaiJ8xKjPGGmEQywwSouz1POMk3kJ7r0=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=WcV7Iml3cQBk2xdmTt6DKzB3N0LqofAzcL9i439ju/04/YHetnE1C61dN9seGUcrw
-         /9whdyays8TxroKYRlVAwUDIp7skn99keWSJ8XaYRl9PkCRWlQYyWuICfew65E/fk3
-         lv3ShItg5ADep07USFNYOPxSjWR80w1pw0VrZzxQ=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20230215024057epcas2p4cdedf47d18e6c9c14f9b2d02758c9e28~D3yoJfhBG1328813288epcas2p4-;
-        Wed, 15 Feb 2023 02:40:57 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.102]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4PGj4T2nY2z4x9Q2; Wed, 15 Feb
-        2023 02:40:57 +0000 (GMT)
-X-AuditID: b6c32a46-4e1ff70000007a4b-35-63ec4639b2d7
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A6.70.31307.9364CE36; Wed, 15 Feb 2023 11:40:57 +0900 (KST)
-Mime-Version: 1.0
-Subject: RE: [PATCH 5/6] clk: samsung: exynos850: Add AUD and HSI main gate
- clocks
-Reply-To: chanho61.park@samsung.com
-Sender: CHANHO PARK <chanho61.park@samsung.com>
-From:   CHANHO PARK <chanho61.park@samsung.com>
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     David Virag <virag.david003@gmail.com>,
-        ALIM AKHTAR <alim.akhtar@samsung.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20230211064006.14981-6-semen.protsenko@linaro.org>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20230215024056epcms2p28f04cf946f20343643faca944ea147ea@epcms2p2>
-Date:   Wed, 15 Feb 2023 11:40:56 +0900
-X-CMS-MailID: 20230215024056epcms2p28f04cf946f20343643faca944ea147ea
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJJsWRmVeSWpSXmKPExsWy7bCmua6l25tkg9X/eSwezNvGZnH9y3NW
-        i/lHzrFa7H29ld1i0+NrrBYfe+6xWlzeNYfNYsb5fUwWF0+5WrTuPcJucfhNO6vFv2sbWSye
-        9wHFT939zG6xatcfRovj7x8zOgh4vL/Ryu6xc9Zddo9NqzrZPO5c28PmsXlJvUffllWMHp83
-        yQWwR2XbZKQmpqQWKaTmJeenZOal2yp5B8c7x5uaGRjqGlpamCsp5CXmptoqufgE6Lpl5gDd
-        rqRQlphTChQKSCwuVtK3synKLy1JVcjILy6xVUotSMkpMC/QK07MLS7NS9fLSy2xMjQwMDIF
-        KkzIzng05SNTwVr9iluvrrM3MF7U6GLk5JAQMJHo27OEqYuRi0NIYAejxOlPL9m6GDk4eAUE
-        Jf7uEAapERYIkfj38QojSFhIQFli47ZYiLC+xPf+JhYQm01AV2L+h0+sIGNEBO4zSux++pUR
-        xGEWOM4iMevmcUaIZbwSM9qfskDY0hLbl28Fi3MKOEhMuN7BDhHXkPixrJcZwhaVuLn6LTuM
-        /f7YfKg5IhKt985C1QhKPPi5G+w4CQFJiUlvIiDCARJN90EOArFzJDYcnMQGYZtLfH86H6yV
-        V8BX4uniBUwgNouAqsSLHTdZIca4SFzqcQYJMwvIS2x/O4cZJMwsoCmxfpc+RIWyxJFbLBAV
-        fBIdh/+yw/y3Y94TJghbXeLA9ulQv8pKdM/5DHWMh0TH7L/sExgVZyGCeRaSXbMQdi1gZF7F
-        KJZaUJybnlpsVGAEj9nk/NxNjOA0rOW2g3HK2w96hxiZOBgPMUpwMCuJ8Ao/fZEsxJuSWFmV
-        WpQfX1Sak1p8iNEU6MmJzFKiyfnATJBXEm9oYmlgYmZmaG5kamCuJM4rbXsyWUggPbEkNTs1
-        tSC1CKaPiYNTqoFJfkaPzb/Dv3SZzxR81CpdYKw258jWDVf3fb3z+sclfdW2wp1vlu4viBHR
-        6lid5HB/p7+77ZP9TTwOL559kzETmKApFM7Q52TZl5i34XiDwTVzxcOv779ZKaiinuHrqag2
-        Y6PelZmsM+LO/VpmsdtdTHei2+nw6U633yrOZOJpPMX4s/X7TlP9Gb+aBHPZGgRuT66e3hr4
-        /MNJ9iRp9U9T0+otuquXrm9R7tDYKbbAZ++fjQeOlq/2v+WUzXXWb6XsyRPi8ifKGba8VDwn
-        doH9hNu6331Pb07scDO1Ubfd3L3+qInNvsPM5yJmPjVZuijX+YRcZ1Py/ruJTL7PTgs33j3x
-        nIXrxOttBXUCsZMqlViKMxINtZiLihMBEtTJwkwEAAA=
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230211063956epcas2p423cb99655dcfdb34c6847bb228aa7324
-References: <20230211064006.14981-6-semen.protsenko@linaro.org>
-        <20230211064006.14981-1-semen.protsenko@linaro.org>
-        <CGME20230211063956epcas2p423cb99655dcfdb34c6847bb228aa7324@epcms2p2>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229527AbjBOCj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 21:39:56 -0500
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2080.outbound.protection.outlook.com [40.107.21.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7491B2CC42;
+        Tue, 14 Feb 2023 18:39:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mR0qoo8X3JqBmdj1xk14ktsRSATpQES/feHDWN3hFkafm4TpPMaBTOXnthRgeoF8NPyH8Bcsxk3vWVPf/9lpoJDcrVXupjvNUl7Z2wUXJiG+vtm/MAtvbdWrMbCMddQt2WkDLBlBpJm4Tz4TQHCo0us/GTHMEoB3mpKE1OiemqWq2kQ0kcIpBpJKad1nVhoRBBA8REbVKNcpdYdw6d6Cjyj62zQ2/W9UCQW+aVKLpz5dYWqhOPLGZU82fCvwz1TjJkcpdYxXyIpf43P0eg5D+QNAjeLHCBwLv0lMXYrA4M0/XiSMjWzno8zMGge+yJwfQcxLS2L51HTpBKFc4i9vEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MyJKHLItjvaoADuueMadlKG6pYM4lFf3pOuhLvgzjJU=;
+ b=IzXLVMlJn6q6Pr3ig7WrJvTH76GsNBtjnuQ1NJeBkJNU+TDaAo0DBg6b39+G4VmhSKkE+FKJtBk0mlVJl9EN+P5PFJItL6fB0z5oD4NvidfvAeAHyn0NacolZMBl/ulWW6mc6QbeBDutEwOv/ZoHHcCLnTFw3Bwy/Y+KdfjB6gXjTn5x3Ji59Cl3+jP0pa2i8SMHEafJ1vuni3w+F3bKOBDwx6PFXmy1+Uv2YiNkO0fdmuZXuXH/szBSjE7jtlBs5T4fcwzrt5oukFXfEJhDSvdSlfD45cRCB9GJ55tdzut4V5Ac2/0N/cCITABef4ve64O6N0haX3UiA+a3GprqkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MyJKHLItjvaoADuueMadlKG6pYM4lFf3pOuhLvgzjJU=;
+ b=qPZqgYyK/kxZY8Q+ggIwkFqT8KMDxqKvGwDB4NKZbH4HAfTMav3ozE0LFlFWNKamamtDTI+My58HSIM0oqLqbqtDNtyFTUsM39BJotcYIBFIJ/cMkTTSUea+Zvt3BQNAXkcOdw4R2Pp6m2I2ihXVlAxPIQ84sDkeIc0HVC5BSYs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+ by PAXPR04MB8975.eurprd04.prod.outlook.com (2603:10a6:102:20e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26; Wed, 15 Feb
+ 2023 02:39:52 +0000
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::1793:79b4:2cb7:4db]) by AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::1793:79b4:2cb7:4db%9]) with mapi id 15.20.6086.026; Wed, 15 Feb 2023
+ 02:39:52 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
+Subject: [PATCH v5 0/3] Add nxp bbnsm module support
+Date:   Wed, 15 Feb 2023 10:41:14 +0800
+Message-Id: <20230215024117.3357341-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0031.apcprd02.prod.outlook.com
+ (2603:1096:3:18::19) To AS8PR04MB8642.eurprd04.prod.outlook.com
+ (2603:10a6:20b:429::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|PAXPR04MB8975:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3347cdd9-5104-40c4-754c-08db0efde9f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3JXYFuZtA2EwNpYY2BxCSirA2NqNmQhyoSwS72sHqlocIYMKbLtuu2C5FISnf8kEu1lpSZIHXzq5WRHBHvDJRUTENq0+6hU0oy26IcPwRbl3ugS0hNRgbh0OqKUmp4iqw3nJtTxUbfvy7TzAufY0pmbLK5OZyBe9098E+1dnjnI55jtjLahofWfBFmMI/4iTWU32fB5/iJtUVD6MJbJfh3fo6WqM/yss1nRjZ6oJqtyZaMHm9E8dR3gORGqk0/t2UyvW8ViZ/hJyohFj1wqDb2LFrE/uV6upvYZtRYZK3S/bSQQe4Im0QDRhn9SZzsuKRo7O0QObIz35dNmsPVTmfIHaOD7kCqn38T00aUVEurmJ5NwMU+qyxNhO4141pCOnxQr0C3FkUlaAuqBdHmqn8RB5icv55F+Xy0iCFOsb1e7zUuGQEVQnawZ+OTS1K05dvL6z8znz2rp+9AWuvvh2ydlG7JPj4IoV6FaOzqdBSOuLcbz+EcE1VWNBLKrsgrELXtJnXjh9MPDVuuhwyP1dlyODs6RAGUzRjC1umednOIE6EMGiwzaO4f2DEBywqeC08vJ8zkBUnySjHv+c6RqoYu/245aHr9vATMVi3/fyNKgQ9DaA9ybFDuwqtnU0OqmuFgKvzxuTf7yOxt23uaNddcihD9n2bFzBihsUa0jxuxQ+ppd86CyFy6yY1uA9yMghr5uOEiQ2Ktm7nBMWcsIyNQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(376002)(366004)(136003)(396003)(39860400002)(451199018)(38100700002)(38350700002)(1076003)(6506007)(6666004)(36756003)(52116002)(316002)(7416002)(5660300002)(6486002)(478600001)(6512007)(26005)(186003)(2616005)(66556008)(66946007)(66476007)(8936002)(2906002)(8676002)(41300700001)(4326008)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jFq9x6l7GeiSJn6y6c2H3rrkYm9fUSFALml2O7h5ylVtm/guDT7zkylaT/pI?=
+ =?us-ascii?Q?qZk7GGkpHM3R1H3yO/S2ac6mcHIkbLGtIDBpnTHnxnGrstC4QmhThgIvVurB?=
+ =?us-ascii?Q?A6d7xnVQUIVIwDXA0dKYhf9djNUB6yO+OAk26KmXyPBSWG/0O9+NejnsnciQ?=
+ =?us-ascii?Q?kdEoj1VrNOQUgUInv1y+CbMQkA1OQk31wJwxUq2B7bWnhFwfxlMWJcdjTgXw?=
+ =?us-ascii?Q?FgXrPfNbrbakmeBD83yS5PkhEXD2kP+ALPbY3Q2H02Qmn8FDcChPifJPja/N?=
+ =?us-ascii?Q?VKfIwQ4+apnvuGmMHsmqIlm4/oenNLJLsK9Z3VyZXYGq7dDgDkTMhn/6od3z?=
+ =?us-ascii?Q?HRLM8kKBEhz5zhuGPWCzulGOrbteiv9JR13CeNM5l0cU8aqZD7cy3yMQ2iBb?=
+ =?us-ascii?Q?/AwqYNK3fApejNAxhFMR3WrthaqAmSOkA5OzWowOxFsSb9CJdzs70cPo8JYP?=
+ =?us-ascii?Q?LJ7O2ztNnkeB0RsFPFeKse8vkKld01vyiZwHBIbhPrLvN4aY5LNYzOQ0OiLw?=
+ =?us-ascii?Q?JD8aIx2uPxaUKDUvFjojr76Rt4Ek6fAdJDs/qYzWgZ6qPn/V+bt5D7Yipdzm?=
+ =?us-ascii?Q?bbpBq3K6oYxGFE9qGCa8RRVq02Qd4vCsqMh7jifqKwZ5QgpoiVe126jsCQwT?=
+ =?us-ascii?Q?TJYx9BcMnh4pa3rzWWJWfhVE09JTnKuUhfTMmDz5/f4kQ2Tw0hFOXq/PQvXN?=
+ =?us-ascii?Q?LeSsqUQFMpoETqLpdvFIp8zaohDhpcafzxl2RTCdMxoE9aAvvlyr8JKjTS/5?=
+ =?us-ascii?Q?92IjvZmkk/7N0NfSmQBQvPkaQO0LqI2wEJM9SgqhYj/KaAjt0UIhVTX6NK1T?=
+ =?us-ascii?Q?DeXYNQi9iDSd0Dt/lhzmd/0o7fGEiCRrF+opVloDiBA5l31VKQTKuQBPpV8m?=
+ =?us-ascii?Q?Cp8bJBmohehWdj9btLZiBMsARycf3eBdSQp6fPuKRLWYZKHQwDwraVpTt3KM?=
+ =?us-ascii?Q?RCcKO7JJ1gU48MX3t/Jx5Dprs5IXn9OY5AFjl1Q4PJVR0eacYeW8saMWHb7g?=
+ =?us-ascii?Q?wleIHYYHajBVPMUT+1KFmB7GDZw0pApi6oRfKvWZVuFX8SKuKMVg2Y6mlatE?=
+ =?us-ascii?Q?JdjDcYrvE2ccf8XZyrAA/jlGRGSXtR2orySqQEf7VvGOANuq8RVbZdhj+/zg?=
+ =?us-ascii?Q?p0qsKoZzxAy+RyU4APQ8sae4yyfwvJ6gm/VIUrwoHIZ6U9RVlmXzWeZ6TrTb?=
+ =?us-ascii?Q?ZsTEmZTo8AMvdCJ/e3bHS2JlMSDl3LDRk1phq3tLjddMlNV99UoiFWAG1L85?=
+ =?us-ascii?Q?2e40iJGDOjJt1BISExeGdP4nlm1RAcsy6aMoOc5GyBX2b4+18jeKzc6ouCjK?=
+ =?us-ascii?Q?r3D9FRuTSyKcmd20o6rE5WBkOV8vfnQTT1Vm8yUWAUWxJdE7jR5UKn4fs+w+?=
+ =?us-ascii?Q?PTRMHh+uJr7Eei3bPLq0W6tqiJ6+1BHIkpsOCG8wgB5BlXE6z1GigYHFrvPP?=
+ =?us-ascii?Q?+2FDiFEjSMyu+nEYkuj7T1axrqPw5Zp/jhFsO09GEz1/WLHxF9uFB6gh6FkC?=
+ =?us-ascii?Q?8m+Fk1un7w5DbuDSnlF5V6ye8AoMThyHouJ0PaOD3THr8oh19ys9ftuVDK1T?=
+ =?us-ascii?Q?TlZU5TKmKQRVHS0hOEXlJgmlIE+4YwYi03hTmNxy?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3347cdd9-5104-40c4-754c-08db0efde9f1
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2023 02:39:52.0768
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mr6JdsxJcYucjT06JG8bkRFKnkfM65wxyXm4fHxw4OOtagnPpKeXL+TPqc2b74ejatgydxuvcT8Ri8ApByiVNw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8975
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Sam Protsenko <semen.protsenko@linaro.org>
-> Sent: Saturday, February 11, 2023 3:40 PM
-> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Chanwoo Choi
-> <cw00.choi@samsung.com>; Sylwester Nawrocki <s.nawrocki@samsung.com>; Rob
-> Herring <robh+dt@kernel.org>
-> Cc: David Virag <virag.david003@gmail.com>; Chanho Park
-> <chanho61.park@samsung.com>; Alim Akhtar <alim.akhtar@samsung.com>; Sumit
-> Semwal <sumit.semwal@linaro.org>; Tomasz Figa <tomasz.figa@gmail.com>;
-> Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
-> <sboyd@kernel.org>; linux-samsung-soc@vger.kernel.org; linux-
-> clk@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> Subject: [PATCH 5/6] clk: samsung: exynos850: Add AUD and HSI main gate
-> clocks
-> 
-> Add main gate clocks for controlling AUD and HSI CMUs:
->   - gout_aud_cmu_aud_pclk
->   - gout_hsi_cmu_hsi_pclk
-> 
-> Those clocks were marked as CLK_IGNORE_UNUSED, as system hangs on boot
-> otherwise.
-> 
-> While at it, add missing PPMU (Performance Profiling Monitor Unit) clocks
-> for CMU_HSI.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  drivers/clk/samsung/clk-exynos850.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/clk/samsung/clk-exynos850.c
-> b/drivers/clk/samsung/clk-exynos850.c
-> index a24eff42baae..3d776d57cc8f 100644
-> --- a/drivers/clk/samsung/clk-exynos850.c
-> +++ b/drivers/clk/samsung/clk-exynos850.c
-> @@ -674,6 +674,7 @@ static const struct samsung_cmu_info apm_cmu_info
-> __initconst = {
->  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF4	0x2014
->  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF5	0x2018
->  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF6	0x201c
-> +#define CLK_CON_GAT_CLK_AUD_CMU_AUD_PCLK	0x2020
->  #define CLK_CON_GAT_GOUT_AUD_ABOX_ACLK		0x2048
->  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_SPDY	0x204c
->  #define CLK_CON_GAT_GOUT_AUD_ABOX_CCLK_ASB	0x2050
-> @@ -729,6 +730,7 @@ static const unsigned long aud_clk_regs[] __initconst
-> = {
->  	CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF4,
->  	CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF5,
->  	CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF6,
-> +	CLK_CON_GAT_CLK_AUD_CMU_AUD_PCLK,
->  	CLK_CON_GAT_GOUT_AUD_ABOX_ACLK,
->  	CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_SPDY,
->  	CLK_CON_GAT_GOUT_AUD_ABOX_CCLK_ASB,
-> @@ -848,6 +850,9 @@ static const struct samsung_div_clock aud_div_clks[]
-> __initconst = {  };
-> 
->  static const struct samsung_gate_clock aud_gate_clks[] __initconst = {
-> +	GATE(CLK_GOUT_AUD_CMU_AUD_PCLK, "gout_aud_cmu_aud_pclk",
-> +	     "dout_aud_busd",
-> +	     CLK_CON_GAT_CLK_AUD_CMU_AUD_PCLK, 21, CLK_IGNORE_UNUSED, 0),
->  	GATE(CLK_GOUT_AUD_CA32_CCLK, "gout_aud_ca32_cclk",
-> "mout_aud_cpu_hch",
->  	     CLK_CON_GAT_GOUT_AUD_ABOX_CCLK_CA32, 21, 0, 0),
->  	GATE(CLK_GOUT_AUD_ASB_CCLK, "gout_aud_asb_cclk",
-> "dout_aud_cpu_aclk", @@ -1117,12 +1122,15 @@ static const struct
-> samsung_cmu_info g3d_cmu_info __initconst = {
->  #define PLL_CON0_MUX_CLKCMU_HSI_MMC_CARD_USER			0x0610
->  #define PLL_CON0_MUX_CLKCMU_HSI_USB20DRD_USER			0x0620
->  #define CLK_CON_MUX_MUX_CLK_HSI_RTC				0x1000
-> +#define CLK_CON_GAT_CLK_HSI_CMU_HSI_PCLK			0x2000
->  #define CLK_CON_GAT_HSI_USB20DRD_TOP_I_RTC_CLK__ALV		0x2008
->  #define CLK_CON_GAT_HSI_USB20DRD_TOP_I_REF_CLK_50		0x200c
->  #define CLK_CON_GAT_HSI_USB20DRD_TOP_I_PHY_REFCLK_26		0x2010
->  #define CLK_CON_GAT_GOUT_HSI_GPIO_HSI_PCLK			0x2018
->  #define CLK_CON_GAT_GOUT_HSI_MMC_CARD_I_ACLK			0x2024
->  #define CLK_CON_GAT_GOUT_HSI_MMC_CARD_SDCLKIN			0x2028
-> +#define CLK_CON_GAT_GOUT_HSI_PPMU_ACLK				0x202c
-> +#define CLK_CON_GAT_GOUT_HSI_PPMU_PCLK				0x2030
->  #define CLK_CON_GAT_GOUT_HSI_SYSREG_HSI_PCLK			0x2038
->  #define CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_ACLK_PHYCTRL_20	0x203c
->  #define CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_BUS_CLK_EARLY		0x2040
-> @@ -1132,12 +1140,15 @@ static const unsigned long hsi_clk_regs[]
-> __initconst = {
->  	PLL_CON0_MUX_CLKCMU_HSI_MMC_CARD_USER,
->  	PLL_CON0_MUX_CLKCMU_HSI_USB20DRD_USER,
->  	CLK_CON_MUX_MUX_CLK_HSI_RTC,
-> +	CLK_CON_GAT_CLK_HSI_CMU_HSI_PCLK,
->  	CLK_CON_GAT_HSI_USB20DRD_TOP_I_RTC_CLK__ALV,
->  	CLK_CON_GAT_HSI_USB20DRD_TOP_I_REF_CLK_50,
->  	CLK_CON_GAT_HSI_USB20DRD_TOP_I_PHY_REFCLK_26,
->  	CLK_CON_GAT_GOUT_HSI_GPIO_HSI_PCLK,
->  	CLK_CON_GAT_GOUT_HSI_MMC_CARD_I_ACLK,
->  	CLK_CON_GAT_GOUT_HSI_MMC_CARD_SDCLKIN,
-> +	CLK_CON_GAT_GOUT_HSI_PPMU_ACLK,
-> +	CLK_CON_GAT_GOUT_HSI_PPMU_PCLK,
->  	CLK_CON_GAT_GOUT_HSI_SYSREG_HSI_PCLK,
->  	CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_ACLK_PHYCTRL_20,
->  	CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_BUS_CLK_EARLY,
-> @@ -1163,6 +1174,9 @@ static const struct samsung_mux_clock hsi_mux_clks[]
-> __initconst = {  };
-> 
->  static const struct samsung_gate_clock hsi_gate_clks[] __initconst = {
-> +	GATE(CLK_GOUT_HSI_CMU_HSI_PCLK, "gout_hsi_cmu_hsi_pclk",
-> +	     "mout_hsi_bus_user",
-> +	     CLK_CON_GAT_CLK_HSI_CMU_HSI_PCLK, 21, CLK_IGNORE_UNUSED, 0),
+NXP BBNSM (Battery-Backed Non-Secure Module) serves as non-volatile
+logic and storage for the system. it provides some similar functions
+like RTC and ON/OFF support as previous SNVS module found on legacy
+i.MX SoCs. The BBNSM is replacement of previous SNVS module, and more
+likely it will be used on all the future i.MX SoC or other SoCs from
+NXP.
 
-You'll need to put /* TODO: */ tag or use CLK_IS_CRITICAL if you make sure it is the critical clock.
+This patchset add the basic support for BBNSM that found on i.MX93.
 
->  	GATE(CLK_GOUT_USB_RTC_CLK, "gout_usb_rtc", "mout_hsi_rtc",
->  	     CLK_CON_GAT_HSI_USB20DRD_TOP_I_RTC_CLK__ALV, 21, 0, 0),
->  	GATE(CLK_GOUT_USB_REF_CLK, "gout_usb_ref", "mout_hsi_usb20drd_user",
-> @@ -1177,6 +1191,10 @@ static const struct samsung_gate_clock
-> hsi_gate_clks[] __initconst = {
->  	GATE(CLK_GOUT_MMC_CARD_SDCLKIN, "gout_mmc_card_sdclkin",
->  	     "mout_hsi_mmc_card_user",
->  	     CLK_CON_GAT_GOUT_HSI_MMC_CARD_SDCLKIN, 21, CLK_SET_RATE_PARENT,
-> 0),
-> +	GATE(CLK_GOUT_HSI_PPMU_ACLK, "gout_hsi_ppmu_aclk",
-> "mout_hsi_bus_user",
-> +	     CLK_CON_GAT_GOUT_HSI_PPMU_ACLK, 21, 0, 0),
-> +	GATE(CLK_GOUT_HSI_PPMU_PCLK, "gout_hsi_ppmu_pclk",
-> "mout_hsi_bus_user",
-> +	     CLK_CON_GAT_GOUT_HSI_PPMU_PCLK, 21, 0, 0),
->  	GATE(CLK_GOUT_SYSREG_HSI_PCLK, "gout_sysreg_hsi_pclk",
->  	     "mout_hsi_bus_user",
->  	     CLK_CON_GAT_GOUT_HSI_SYSREG_HSI_PCLK, 21, 0, 0),
-> --
-> 2.39.1
+Jacky Bai (3):
+  input: bbnsm_pwrkey: Add bbnsm power key support
+  rtc: bbnsm: Add the bbnsm rtc support
+  arm64: dts: imx93: Add the bbnsm dts node
+
+ arch/arm64/boot/dts/freescale/imx93.dtsi |  16 ++
+ drivers/input/misc/Kconfig               |  11 ++
+ drivers/input/misc/Makefile              |   1 +
+ drivers/input/misc/nxp-bbnsm-pwrkey.c    | 192 +++++++++++++++++++
+ drivers/rtc/Kconfig                      |  12 ++
+ drivers/rtc/Makefile                     |   1 +
+ drivers/rtc/rtc-nxp-bbnsm.c              | 226 +++++++++++++++++++++++
+ 7 files changed, 459 insertions(+)
+ create mode 100644 drivers/input/misc/nxp-bbnsm-pwrkey.c
+ create mode 100644 drivers/rtc/rtc-nxp-bbnsm.c
+
+-- 
+2.34.1
+
