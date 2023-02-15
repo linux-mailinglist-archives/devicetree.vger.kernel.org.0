@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5C1698147
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 17:50:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98EF66981DF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 18:24:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbjBOQua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 11:50:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
+        id S230038AbjBORYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 12:24:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbjBOQu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 11:50:28 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636FC32E6D;
-        Wed, 15 Feb 2023 08:50:26 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 19250B82315;
-        Wed, 15 Feb 2023 16:50:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C867BC433EF;
-        Wed, 15 Feb 2023 16:50:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676479823;
-        bh=uLarJKzg3GuQJ0dY2bl5m5RJLzCC31PglWJs+3lcu4s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hr5FzDtcqvXY60ppMmVSJoNwwexR29uuUJCiZGW74prZxlpjp9kb6Dd2fI2w7ROqY
-         TfltEnCuc/m8bayGoV0hzBXoIgfJxEKbTvrbmFpQ3YH+WNmsZkYX8kzgJu5FOxausV
-         /2N6GmnUwqmFQhTn3ptmgyIkzgl3Oqbgy0Nbhbtb8uYmWdgm82PFZ5sSgRRgqHnu0E
-         adLMIDPKbWUW2CrgQIhvmslvx41Fkd7ooszYK4MEInBb2xTn1AbDM5Eld7PXHW9iuH
-         7JUiD1/VR6UST5X/aCqBsfDBp2q4jGplemtO/wG5/vMu7j7G3VlhpardK9NBXRXKOF
-         K/ylOtQ3ITRvA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pSL04-0000Py-TM; Wed, 15 Feb 2023 17:51:20 +0100
-Date:   Wed, 15 Feb 2023 17:51:20 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        with ESMTP id S229593AbjBORYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 12:24:13 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE2EEB77;
+        Wed, 15 Feb 2023 09:24:12 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31FG6CpA016406;
+        Wed, 15 Feb 2023 17:23:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=Gg4S9S82OkPVNSqHx0vW9sEfi7mq/UakkdzYpUcytTc=;
+ b=BuFtR8q6q5/pxO9IO7fQ6XpZSVCUyr/E9OLqBKXZCqla4hjtWfOHjudg6SnrQeI8mGmK
+ Q2HiYApN5fz/wRS35hryrCXHbqRDbscEhuHNRii/rVQYaVNZonYVpW63OBK9/+K3Zo4r
+ UfvVyUJi8oTWgIoEYrTGZCuMNtLpIMEWSaQLjeI6Q1wXYoRUXIq0fjp1AcKit7K35oSH
+ EAAwSSwzoUVDZOJu4RMtzsE1YkT/qLZG54E12o6cbOp3cDW3MSJKMUBdcs7SFIySLLgb
+ lcujwlzJgTqxSbzp45/JCZDzLnmMQDjewtUACdmk9VY90IyQIOWGuJESwgTSM/Q4AKd9 pQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nruta1a19-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Feb 2023 17:23:50 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31FHNnjK031153
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Feb 2023 17:23:49 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 15 Feb 2023 09:23:48 -0800
+Date:   Wed, 15 Feb 2023 09:23:47 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Johan Hovold <johan@kernel.org>
+CC:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 16/22] dt-bindings: rtc: qcom-pm8xxx: add nvmem-cell
- offset
-Message-ID: <Y+0NiJsp4JjeyrqH@hovoldconsulting.com>
-References: <20230202155448.6715-1-johan+linaro@kernel.org>
- <20230202155448.6715-17-johan+linaro@kernel.org>
- <Y+bJqIpgZ0fbzL2b@mail.local>
- <Y+dQXlABqc/uzIXc@hovoldconsulting.com>
- <Y+fF94EOkUuMq9Fc@mail.local>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sc8280xp-crd: Introduce
+ pmic_glink
+Message-ID: <20230215172347.GA2417333@hu-bjorande-lv.qualcomm.com>
+References: <20230213215619.1362566-1-quic_bjorande@quicinc.com>
+ <20230213215619.1362566-3-quic_bjorande@quicinc.com>
+ <Y+yqPMdiuJ+ssisR@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <Y+fF94EOkUuMq9Fc@mail.local>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y+yqPMdiuJ+ssisR@hovoldconsulting.com>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zuDb66neyffvGrwGI05BsUyq6wN8oEOE
+X-Proofpoint-GUID: zuDb66neyffvGrwGI05BsUyq6wN8oEOE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-15_07,2023-02-15_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0
+ mlxlogscore=862 spamscore=0 clxscore=1015 adultscore=0 phishscore=0
+ mlxscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2302150155
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 11, 2023 at 05:44:39PM +0100, Alexandre Belloni wrote:
-> On 11/02/2023 09:22:54+0100, Johan Hovold wrote:
-> > On Fri, Feb 10, 2023 at 11:48:08PM +0100, Alexandre Belloni wrote:
-> > > On 02/02/2023 16:54:42+0100, Johan Hovold wrote:
-> > > > On many Qualcomm platforms the PMIC RTC control and time registers are
-> > > > read-only so that the RTC time can not be updated. Instead an offset
-> > > > needs be stored in some machine-specific non-volatile memory, which a
-> > > > driver can take into account.
-> > > > 
-> > > > Add an 'offset' nvmem cell which can be used to store a 32-bit offset
-> > > > from the Unix epoch so that the RTC time can be updated on such
-> > > > platforms.
-> > > > 
-> > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-
-> > > The patch doesn't apply because this part of the context is not
-> > > upstream. Can you rebase?
-> > 
-> > Ah, sorry about that. That's because of commit 51b3802e7960
-> > ("dt-bindings: rtc: qcom-pm8xxx: allow 'wakeup-source' property") which
-> > is now in Linus's tree (and your rtc-fixes branch).
-> > 
-> > Do you still want me to rebase or do you prefer to handle the conflict
-> > some other way?
+On Wed, Feb 15, 2023 at 10:47:40AM +0100, Johan Hovold wrote:
+> On Mon, Feb 13, 2023 at 01:56:17PM -0800, Bjorn Andersson wrote:
+[..]
+> > +&mdss0_dp0_out {
+> > +	data-lanes = <0 1>;
 > 
-> Ah yes, my bad, I'll merge rtc-fixes in rtc-next before applying
+> This does not work as the drm driver expects 'data-lanes' to be defined
+> in the controller node where you had it in the previous versions:
+> 
+> 	[    6.669325] [drm] Invalid property "data-lanes", default max DP lanes = 4
+> 
+> Moving it to the endpoint nodes would require updating both binding and
+> driver it seems.
+> 
 
-Sorry about reminding so soon, but with the merge window approaching
-fast, will you be able to get this merged for 6.3?
+I will go back and double-check, but this should be taken care of in
+d25cfeeec064 ("drm/msm/dp: parse data-lanes as property of dp_out
+endpoint").
 
-Johan
+Regards,
+Bjorn
