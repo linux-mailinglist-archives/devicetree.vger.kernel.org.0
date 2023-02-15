@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97124697C30
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:49:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B767C697C40
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:50:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbjBOMtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 07:49:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
+        id S229493AbjBOMu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 07:50:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjBOMtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:49:02 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BACC360BD
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:49:01 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id jk14so1512445plb.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:49:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1676465341;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zJ4BUazyXS0K48fM6Er+hgNzJxPV4473C9yyzDZurhE=;
-        b=DnpL/OJbs517pIJBv7UZkQPXuJR8Z2nfHPQPSGrgVEB3AgGXe2/9z+9pl6fRYuEKQM
-         WUXCCVLCc7uOKfu6lT8/n27etN4D1EUA1S5awS7D9NnaxpLT3fHsB8AeSUaNPZTJ+rHF
-         3Lq7mJgUAF44j3l1vtS++BCkZTin7RWVvctVr5/ejSMFlBostfi8WmjJFAo8t12fBQvz
-         +1ZR7z5r4yy6pchXbNEZ0jeqZiHTPQNQu3omoRURf0W0Jj2VTXTJptKR6ZQNjR+Rwy+K
-         qGTKHlG5fWbxis6XjSz4CJzknCwL/XpkLOHr6cinqtsRyEotQXxTotW8jO31FcB1DZvk
-         wmFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676465341;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zJ4BUazyXS0K48fM6Er+hgNzJxPV4473C9yyzDZurhE=;
-        b=VwjKwSLZx5yqLHo2BeELBMPoeITNfqZGakX1OUb4NR8KiGjOFgwbjCaWoHCpi3axXP
-         cx0EEzgEvEJ2pjLniNRBN3AVLHUAbHh05Wz2LliX2So5bZ2zhX4h3qdYuGjwiOfDcgrH
-         qV+BjfSb9mtacxWTCrGUUkIsKp8ZP0fNmJ22NR52Co1aD42zNbj5X17/jonhEjKZ3t8f
-         TiL9bADNZQmI/zKUssbJw/zBAVS6/oklmWL6g62CRIrNK6QL32FHjLpc4PfJ6Mwf5A3y
-         +QX853wVqo0nqIVmmrE76tTQMxRPtIUV9y6oa9z2EaSbZp7WjudKddi93CY739ac7sfw
-         I34Q==
-X-Gm-Message-State: AO0yUKXpKTaCoaHUCyBMdVyu3t4blabzUfX3CS6q+Tvduk0l0+CCTZZO
-        VRq6uuBE6eVoxxFKK4vX9HS/Nf+jkdHhq3e5kEEWdA==
-X-Google-Smtp-Source: AK7set+T7NKsh+QRbmcYjfUFAkz8tVhEKaLuhSPZ8VsL0cW+kM2Wy7wlgaC9MgBB5hg5VOCY6Tga4oo3jt03Pl9STMk=
-X-Received: by 2002:a17:903:26d1:b0:199:15c2:99ae with SMTP id
- jg17-20020a17090326d100b0019915c299aemr469271plb.20.1676465341107; Wed, 15
- Feb 2023 04:49:01 -0800 (PST)
+        with ESMTP id S233491AbjBOMu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:50:29 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70317360BD;
+        Wed, 15 Feb 2023 04:50:28 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4B4B66602181;
+        Wed, 15 Feb 2023 12:50:26 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676465427;
+        bh=qT7FVzm6XK8tCKeDe2rLup/JS7HhXYm37IBT1713P7Q=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=n5Sa5yQbLAyZlLdbKM0nuUTpSpAlmcoVgYTN741oN6XhBYAJQCZx5nFBDYoWjlIgN
+         +rke1O1rvOQmxISnqxiIBqZxXPc1sKiTZN7Nau3n2ZWvImrHwvzJwzppGFNRzgAGqb
+         J55j1iKJ431A/YAxH73wHTY4hNJsKiSC1fdqt2fc6pv+3szJ+pwD2fDflU0jwKVdhs
+         ifYqw0aRdbyhjNW9K5ATM7UmUaKWg1OdSlZSqnxgNumB+Z3pKDe8+rPcM8LE/iAUE6
+         2ZU7LbXCGQDc8cV3iGIThLAk8QJHS/zWnKM+qNv1MrYgdEPrHcpliFpNp+yhZw4bH6
+         cuUvGIQ9DXObg==
+Message-ID: <80c60f09-56eb-cb84-43f0-7b055ea4b32c@collabora.com>
+Date:   Wed, 15 Feb 2023 13:50:23 +0100
 MIME-Version: 1.0
-References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
-In-Reply-To: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 15 Feb 2023 13:48:24 +0100
-Message-ID: <CAPDyKFroB-TULOeia4OyXBW6rWMs7e3_Fp4Uw878Q8Gt=TDfag@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] mmc: support setting card detect interrupt from
- drivers and use it in meson-gx
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v14 6/6] arm64: dts: mediatek: mt8195: Add temperature
+ mitigation threshold
+Content-Language: en-US
+To:     Balsam CHIHI <bchihi@baylibre.com>, daniel.lezcano@linaro.org,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230209105628.50294-1-bchihi@baylibre.com>
+ <20230209105628.50294-7-bchihi@baylibre.com>
+ <CAGuA+oqOgprdu0dVcmB=qJd5HJjada3d8ZazMpoG-SBPizzuPQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGuA+oqOgprdu0dVcmB=qJd5HJjada3d8ZazMpoG-SBPizzuPQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 at 22:39, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> On certain platforms like Amlogic Meson gpiod_to_irq() isn't supported
-> due to the design of gpio / interrupt controller. Therefore provide an
-> option for drivers to pass the card detect interrupt number
-> (retrieved e.g. from device tree) to mmc core.
->
-> v2:
-> - use another mechanism for passing and storing the cd interrupt
-> - add patch 2
->
-> Heiner Kallweit (3):
->   mmc: core: support setting card detect interrupt from drivers
->   dt-bindings: mmc: meson-gx: support specifying cd interrupt
->   mmc: meson-gx: support platform interrupt as card detect interrupt
->
->  .../bindings/mmc/amlogic,meson-gx-mmc.yaml      |  2 +-
->  drivers/mmc/core/slot-gpio.c                    | 17 ++++++++++++++++-
->  drivers/mmc/host/meson-gx-mmc.c                 |  5 ++++-
->  include/linux/mmc/slot-gpio.h                   |  1 +
->  4 files changed, 22 insertions(+), 3 deletions(-)
->
+Il 14/02/23 15:43, Balsam CHIHI ha scritto:
+> Hi Matthias, Angelo,
+> 
+> Would you please confirm if this patch can be applied?
+> and, if it is the case, to which tree it will be applied?
+> 
+> Best regards,
+> Balsam
 
-Applied for next, thanks!
+I think it's fine to apply 5/6 and 6/6, as you're adding pre-Tjunction
+max temperature - this is not board specific, but rather SoC-specific.
+In reality it's practically the same for most SoCs, even.
 
-Kind regards
-Uffe
+Each board will define extensions (that are thermal envelope dependant)
+to these "please-dont-burn-my-device" initial thresholds, but that's a
+story for another day, and for other people anyway (including me).
+
+Matthias, over to you!
