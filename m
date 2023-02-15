@@ -2,175 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08254697FAD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 16:40:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21960697FE2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 16:52:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbjBOPkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 10:40:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58684 "EHLO
+        id S229833AbjBOPwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 10:52:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjBOPkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 10:40:16 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED703669D
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 07:40:13 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id g6-20020a05600c310600b003e1f6dff952so1900956wmo.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 07:40:13 -0800 (PST)
+        with ESMTP id S229726AbjBOPwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 10:52:44 -0500
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE1C36FE0
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 07:52:41 -0800 (PST)
+Received: by mail-ua1-x932.google.com with SMTP id b11so3678810uae.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 07:52:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=075PiImMlYWFaRFjC0H7YdFZXk92p3CzB07R2jH1NEM=;
-        b=B5nfRh2FzKSQmbdwPsBW3AnFRO1vEQhEmDVlf5Hj+XVaV+sl8LtbaFB+3rgm2dEFMq
-         PP9/tdjqd9hQxqx6jaUeC1f1pcCt4ySjmiu1B5riaZYufrjV7IpP8Z6NeiGzp2v+uAzM
-         vf2fODSusCv/3YjOJyQfLbjd5Dee4p/RpO3unLT/tet/iWKYJAIaeYMv4s7hs8tZz+g0
-         LdxMMH/1I1jcrFA14IormodbHtFwm1UiOu3S+/0sEA8k0XHRo+mLWG/Xr1H7TKAZ8p/x
-         +43bJO3lkVdfBZIT3du2uRhFMjkdaZdTv4X7FsnbrMbndfB5ZROUlTtu+fi91JQROO5E
-         wmqQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QHEckESBmtanHoXNoCvk3gYsaCb3mmNnsjrBL0CHXHo=;
+        b=uFE2tcYXYvgsB0sRGahu4i6/jR0i1fWRumRbB6+LOj6E4ZTQeoJQKY+uir8dwyQAPf
+         0tFSiyKW/Fnvdx7G9YqrFDzJ5rpovQR98oqoI9mDNOHpQoG6qkudJ1v0/vpv9DTZyvHu
+         2FZ5pBhMrW+AwLQ0UHgvstufkVnkWswfeG6NT/qsFhsMW+RqE4zXszDTo9BrlFUTp25+
+         B7HTBOKfeZtBkRm441r7YFaJc0rXVKo3xjPJcpiXV6JNc9DsILiJLKJHBFrcxHls+m2Y
+         ZP+U/dMUytGegPXffNuxumCFe0jCae7w9HsecNZLfJZoIChNvNanAquRYPfNiHANjZr/
+         6auA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=075PiImMlYWFaRFjC0H7YdFZXk92p3CzB07R2jH1NEM=;
-        b=aEclnpkRD1xi7+OwTO6pbK3XG/9gdiPcfJ3cAlcqzxpPSw4ysXBTbXYjeKauy8XH11
-         hSddfdyWxydgRs4U/jp9H8X30sxHzdTuvHMJCo/wDtgOrTPkJfWbMwOF+WgnRZeXa0ca
-         ddelykLvbe8yn/oibB6oAeHJUKkE7E1CyGH1MaodZxvi+VYbtV1vatHKQ/rYn7vsDRTu
-         RqyoTnJrUztPDDOfuDiSRszFGwywMQFTdGXrud/0GPRU/EdLaU3vsAL354Rdgh2+gS1r
-         e+cVhXv+zVh1ObRmOtjS/ucYX9/E04Tnl3hddA7fpbxz1vB053VkzDLtXVScbRkjz/to
-         X/mA==
-X-Gm-Message-State: AO0yUKWUs8AyX7MG6RfP8HLxMpC3jQn/uGVy7gLHjduIioLtTUGYZRrD
-        SKHt1aceYvszF2q+PY7jPOFFzw==
-X-Google-Smtp-Source: AK7set8irxK5YD/Oucuv582cwsYSLPJxqxjYkHjbqSk32FvKrHvsyLBj9Aq1VgOXINUygKQWL0wY2g==
-X-Received: by 2002:a05:600c:2e95:b0:3dd:97d6:8f2a with SMTP id p21-20020a05600c2e9500b003dd97d68f2amr2305269wmn.33.1676475612381;
-        Wed, 15 Feb 2023 07:40:12 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:ea02:3f39:48c0:67ce])
-        by smtp.gmail.com with ESMTPSA id j17-20020a05600c191100b003dd1c45a7b0sm2808877wmq.23.2023.02.15.07.40.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 07:40:12 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sa8775p: add the BT high-speed UART for sa8775p-ride
-Date:   Wed, 15 Feb 2023 16:40:02 +0100
-Message-Id: <20230215154002.446808-5-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230215154002.446808-1-brgl@bgdev.pl>
-References: <20230215154002.446808-1-brgl@bgdev.pl>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QHEckESBmtanHoXNoCvk3gYsaCb3mmNnsjrBL0CHXHo=;
+        b=s02XWj4fRAmIw4C/MHGKfFB/L4sFjwb6s+h33lLi7XGRSQx7MV4DEvSwOzP2WVenMD
+         Lj2Nwao90J8aHKDghVkMzXBYVTY5ggR4WH2+MlKqVrKcKmU0bUtTZgjHJ7FuoDPCrx6H
+         qCyCUyjXcD190qjo0UhTX+912y87Lw4QPghUAX6hSineozhg51mpaw7prWYR3mKeN8xI
+         H/CThZt7Yl77e7kdDJCR2cUNQRXvPYNJ/fjrGGm945ihWnarr8VOnsxuyXTlMHF1xY42
+         wCVlWW9fxe0HiwgW6mCKl77v9DR1XPYT9VCoDgcAZV9Ffc9azBEi+3oktYyGVW42XyQQ
+         3fyw==
+X-Gm-Message-State: AO0yUKXOr7A1zkx1kQviRHa0glmO12ESQhMuUgcJEo4YWm//B53pDqra
+        rWmCJetDSiXrkJ1yBfTdkVeJYPfJYawWDOgXlBpUzQ==
+X-Google-Smtp-Source: AK7set+vnGRn5VJvyu0QxjkbABjPQvrEocRoV7wexNKYGw75YkBBJD0qPPmjAkmta0f6ajtUkrNDoiyJSIKAB5KOn4A=
+X-Received: by 2002:ab0:654d:0:b0:68a:7054:58a6 with SMTP id
+ x13-20020ab0654d000000b0068a705458a6mr367631uap.22.1676476360679; Wed, 15 Feb
+ 2023 07:52:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230208173343.37582-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20230208173343.37582-1-andriy.shevchenko@linux.intel.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 15 Feb 2023 16:52:29 +0100
+Message-ID: <CAMRc=MdsCZKh12QcqdWk+Zht5UDpA_G1+rx6+_3dzwjDYe6L+Q@mail.gmail.com>
+Subject: Re: [PATCH v4 00/18] gpiolib cleanups
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Vincenzo Palazzo <vincenzopalazzodev@gmail.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stefan Schmidt <stefan@datenfreihafen.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc-tw-discuss@lists.sourceforge.net,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-m68k@lists.linux-m68k.org,
+        linuxppc-dev@lists.ozlabs.org, linux-sh@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com, linux-arch@vger.kernel.org,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Alex Shi <alexs@kernel.org>,
+        Yanteng Si <siyanteng@loongson.cn>,
+        Hu Haowen <src.res@email.cn>,
+        Russell King <linux@armlinux.org.uk>,
+        Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>,
+        Mun Yew Tham <mun.yew.tham@intel.com>,
+        Keerthy <j-keerthy@ti.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alexander Aring <alex.aring@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Kalle Valo <kvalo@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, Feb 8, 2023 at 6:34 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> These are some older patches Arnd did last year, rebased to
+> linux-next-20230208. On top there are Andy's patches regarding
+> similar topic. The series starts with Linus Walleij's patches.
+>
+> The main goal is to remove some of the legacy bits of the gpiolib
+> interfaces, where the corner cases are easily avoided or replaced
+> with gpio descriptor based interfaces.
+>
+> The idea is to get an immutable branch and route the whole series
+> via GPIO tree.
+>
 
-Add the serial port connected to the Bluetooth controller on sa8775p-ride.
+Andy,
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 33 +++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sa8775p.dtsi     | 17 ++++++++++++
- 2 files changed, 50 insertions(+)
+looks like this series has all the acks it needs but I decided to not
+send it in the upcoming merge window, I'd prefer it gets some time in
+next so I'll let it sit until the next release cycle.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 47cf26ea49e8..e7629cb0306c 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -14,6 +14,7 @@ / {
- 	aliases {
- 		serial0 = &uart10;
- 		serial1 = &uart12;
-+		serial2 = &uart17;
- 		i2c18 = &i2c18;
- 		spi16 = &spi16;
- 	};
-@@ -89,6 +90,29 @@ qup_uart12_tx: qup_uart12_tx-state {
- 	qup_uart12_rx: qup_uart12_rx-state {
- 		pins = "gpio55";
- 		function = "qup1_se5";
-+	};
-+
-+	qup_uart17_cts: qup-uart17-cts-state {
-+		pins = "gpio91";
-+		function = "qup2_se3";
-+		bias-disable;
-+	};
-+
-+	qup_uart17_rts: qup0_uart17_rts-state {
-+		pins = "gpio92";
-+		function = "qup2_se3";
-+		bias-pull-down;
-+	};
-+
-+	qup_uart17_tx: qup0_uart17_tx-state {
-+		pins = "gpio93";
-+		function = "qup2_se3";
-+		bias-pull-up;
-+	};
-+
-+	qup_uart17_rx: qup0_uart17_rx-state {
-+		pins = "gpio94";
-+		function = "qup2_se3";
- 		bias-pull-down;
- 	};
- };
-@@ -109,6 +133,15 @@ &uart12 {
- 	status = "okay";
- };
- 
-+&uart17 {
-+	pinctrl-0 = <&qup_uart17_cts>,
-+		    <&qup_uart17_rts>,
-+		    <&qup_uart17_tx>,
-+		    <&qup_uart17_rx>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <38400000>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 8b8931ea739d..9e057a34b14f 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -539,6 +539,23 @@ &config_noc SLAVE_QUP_2 0>,
- 				status = "disabled";
- 			};
- 
-+			uart17: serial@88c000 {
-+				compatible = "qcom,geni-uart";
-+				reg = <0x0 0x88c000 0x0 0x4000>;
-+				interrupts-extended = <&intc GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>,
-+						      <&tlmm 94 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
-+				clock-names = "se";
-+				interconnects = <&clk_virt MASTER_QUP_CORE_2 0
-+						 &clk_virt SLAVE_QUP_CORE_2 0>,
-+						<&gem_noc MASTER_APPSS_PROC 0
-+						 &config_noc SLAVE_QUP_2 0>;
-+				interconnect-names = "qup-core",
-+						     "qup-config";
-+				power-domains = <&rpmhpd SA8775P_CX>;
-+				status = "disabled";
-+			};
-+
- 			i2c18: i2c@890000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0x0 0x890000 0x0 0x4000>;
--- 
-2.37.2
-
+Bart
