@@ -2,124 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5800697882
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 09:53:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0FF697899
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 10:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbjBOIx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 03:53:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46920 "EHLO
+        id S233405AbjBOJEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 04:04:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbjBOIxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 03:53:25 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2040.outbound.protection.outlook.com [40.107.22.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F31D3018A;
-        Wed, 15 Feb 2023 00:53:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OM9IIMAGr7JBzAfp0VY27Wi6hfBFxQENntkLbUC8VEsr5IUyZd+e9NtShOjI4v19BnjvdOO964jOQfHB7IC+dmvSNGHKmin1hzFSmg50PXHBnQsuCso90eweCkwvRH1osxtshfIBdtJFfrolPu/31FZFtBxsXBTahE/m67p0cO+mxbShghcAo3Oi3wz97b5K04iUkrD+pKFntA+8IyeHtmQM2MCBEd6w8tijybE1cpRFUuT3fKxXBbwZ02cr0hcpsGwl1GuD8F+FqwkLH3weByOKnD+qsoAv/Zfv2MpVwhvn1LLLhP1LIbSboZEIC+t2KHJNTlgR/pi1plTyjx+HVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D/RobdagXr+ITKkW+ZDyR6P2/V7kHyYmDFRAyJ5xexg=;
- b=N88r9uYIXHaZtWREwZ9qi0k/6+4AqNIKDs1h18Nfr82Y5POszhwZ9k6jJvdLjESDQk1E6MbR904TFrNwM4zjOQGLZRJYqim0w8Lk7TpKBoxUYc7yIT5Yg1UBHXwS8I06wJg4HnE8WgdTJVXVJrS5L9/4/Ev744BvfafAdvG9RHU+IXb81fgA8LqL7R5jGf/TBhLf0qS2bRY1E0bRBBc2q6UXgizS9ykIU3eu3i1JSPDnfNtJVcRrJQU9RJyjhCqLsbOYHwPdllCqDLmROW1+A2Rue2W2T0QvEnyGz0yC2sl/Jej4ssnuKSDHP9UOtnoAVJWZdSf8OtJFlnmqXfWrGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D/RobdagXr+ITKkW+ZDyR6P2/V7kHyYmDFRAyJ5xexg=;
- b=DHKg9Mo1Dm1Qk5k7RlDFtBmDOriURwbfuqluLBAaLr6GX8xcVVYt4h7XOh2SEsriZ1N3VIAzc6Ley/X+A5zJggvpSpSNoF7qJGugH6FssdMgPOlhf4mKpp2aWuOFocNEqjTf8hSrwt2AMtu2p4C9H/3O1Uyb4Yd6khehs7RHJgU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by DBBPR04MB8011.eurprd04.prod.outlook.com (2603:10a6:10:1ec::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26; Wed, 15 Feb
- 2023 08:53:17 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::5725:92ec:f43e:f5fc%9]) with mapi id 15.20.6086.026; Wed, 15 Feb 2023
- 08:53:17 +0000
-Message-ID: <f4a1c8eb57f15ed67ebe3effd6d6d9f54dbfb486.camel@nxp.com>
-Subject: Re: [PATCH v3 5/6] drm: lcdif: Add multiple encoders and first
- bridges support
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     marex@denx.de, stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        krzysztof.kozlowski@linaro.org, LW@karo-electronics.de
-Date:   Wed, 15 Feb 2023 16:52:49 +0800
-In-Reply-To: <1893357.taCxCBeP46@steina-w>
-References: <20230213085612.1026538-1-victor.liu@nxp.com>
-         <20230213085612.1026538-6-victor.liu@nxp.com> <1893357.taCxCBeP46@steina-w>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG3P274CA0011.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::23)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+        with ESMTP id S229970AbjBOJEn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 04:04:43 -0500
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D40C29E33;
+        Wed, 15 Feb 2023 01:04:37 -0800 (PST)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-16e55be7c76so795435fac.6;
+        Wed, 15 Feb 2023 01:04:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uwa6xK/yGoAax/0OsXHRKw57tyZBvF5xhqokekA1410=;
+        b=GDNghYFolCi/Hr9GJz4CtFq5HIGPlsnHond8PtR6gzV+AKOQI0c5ta1t8Ys+Vo1+1+
+         LqR0SIWfHg+uDEfxg3zJoWLWm+ItSFe3B/rEqWrQZlX8B9RIJfiCtFlsbhgzY8FgqvEi
+         alHGClndUJRnWimlqeV7L6aFizOTLqkXT5HyOUbMaVK7Vy//g4Mmwg5Q36vb4NCDj/co
+         B07mudnoacRsfm9fjD1ljLv2fMgc/j3hXmfPcMJScf97NTnxM8z5LIiQoFWpSKwojuo0
+         OCM9Zu/SqB1cpmsXSsKi9j4VQqxFPXnlpkqwRp99noQIh0KsEt4vaXVB2SobFL1Q8SNP
+         cGXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uwa6xK/yGoAax/0OsXHRKw57tyZBvF5xhqokekA1410=;
+        b=blKySwFw6HkUnwsrrvpWWvy+6hUENJFSnvWStbdUZkGUpCDTmmDpmoDFTefQoBexfW
+         ctC+MtiEkgsxA6OXchl0FfyFzflU3f7JLncOf+/fe9SzxUNFoLgsfEsZ57+bxiwVXZz0
+         m/6CoyWOxf/QXXZW1uUORFo0paSR+8XWRejQyCfPVktIil6c8MZWbZn13Y4YyQNkfN/D
+         A0koeeqTV6BOor4njU1sAKpXU9dlELEhxZe13dwk4EcpfOI7WMYFpR7qTNks114upkNS
+         Bq7eyJdTODOT6ehbYkrgvjV34p9J7hy20NIqwHsOq0ByIUbc0mDProaxDdtRl8WUCW+3
+         bozg==
+X-Gm-Message-State: AO0yUKVRhdfqaWf6y9yBwFNgld+TxJRlLKgITtigmPtkXfO6fbfZFZLO
+        0Ifi0i8/i+sEuaaS3ysIUpgA+Mm+juw/vI5wMpY=
+X-Google-Smtp-Source: AK7set8M3FNYNbgcQtYa5GBece8pIU/sBsIHK/rNnMAtR/NLp0PkALLbNqbe2utTTajf92iToM7B0At0xEH85Sc6K/0=
+X-Received: by 2002:a05:6870:10d7:b0:163:9dc0:78f1 with SMTP id
+ 23-20020a05687010d700b001639dc078f1mr206361oar.265.1676451876492; Wed, 15 Feb
+ 2023 01:04:36 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DBBPR04MB8011:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f630b12-2ef6-4a11-6de4-08db0f3213f3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 77vTwvuXDvsNj3skakrLV7mWPIvd/WzIgGT1Drp0WCmk7X3nCbSn2YZ9MohoV36X+VRPgoqUIaGlFEe/43J2vy1s62bbJawKo4WVLlCI8KSZSWZmYPuL6tKQjd7AN832sFUYdGNOnDii7di41wKelE5sfH1g9gXTcD30d3eGV/X7U7g8sNgMTByrQuU3LyGdKbwtX6mJuTzkTz1vNbqdASADEydziF2ef9Ba7SBmHWYIH4bhuuTeKT9rO+ebXSe1d6HziKZKx4AVGYE2fLY0NJ3n9PEopVtgul5845dqXqyP3tkozYu/8HoS+l9LQBwx+3N0R0hYn8DLy34whvnV/33O8rCc6El4GNBepPOOYy6Z1Dm5ql7CuhRPpFEBnPSVOJ3bKcr0tk50cgFMtSs/+IeLFx/spcXsb+zDtGZx5mLtQahyszu3dM9pv02rUIvX2rofSSR0cXP1oICjgofdyUpfYEZVri2Y+4KZ0WuLKU1OpqEzilsZkRv3BDF2uDGIgJ4qSgYjm8oxr6C+UZiaRBM6YNlSTLRLsX7Bv/7BOItD5ZW7RPBilfMbm5u8XfZv8EIY4QgsYZcGMbED9AaQsHtsaUuqgc2pUIgQLKmQKtEmKoqlrQajARpp1NOMAFO310GsYVDY7AmeeiQb3vYQDZTVsBX8NNinljTkklVqHiKXty3RDKfhr+cADpAu9LuhDZdKHVSb/wPvjl+3l6CXkvqPfB9TY0UvaMyN5XB7uO8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(136003)(346002)(366004)(39860400002)(396003)(451199018)(83380400001)(478600001)(2616005)(52116002)(6486002)(6506007)(6666004)(36756003)(6512007)(186003)(26005)(38100700002)(38350700002)(41300700001)(5660300002)(86362001)(8936002)(7416002)(316002)(8676002)(4326008)(2906002)(66556008)(66476007)(66946007)(99106002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3FxaHczZUc1dUJ4ZlQ0NENnMFNJYjBGVitPSkxEbmlSUGI5R3llamtjMXVX?=
- =?utf-8?B?VmxMeEtiMU8rV3pBNWJNNmdmMTE4cTcxbFlTWWx5QTdTWlZMTnR1WWFxSlhJ?=
- =?utf-8?B?RjB4NHFtSDFYWmh2WVdRdHpVaUN4SHJXNTQreEt0dWE4enJvSFBqRGxBUm9u?=
- =?utf-8?B?TTk4c1JtS2UwOERmNW5yTW1SR091OEtLaEd6cXova1RIQVFza1dtVTVKTEoz?=
- =?utf-8?B?RWdNbTc4WHJIcGtnVjhPWGFBRm15NFVaejNWdjVnT08yU1RaejBHYTV2N1VN?=
- =?utf-8?B?bjZERWtWckhIYXpTL0VnWFpsVzhUa1crUEY0djI0c25lSmRia2ZDd3pybFh5?=
- =?utf-8?B?VTg0NWZHRlhzVVhsbDNPWXYrSm5ydDRuYk9KSzBUV3Vpdm5EcVdLc09Ua0hy?=
- =?utf-8?B?bldEM21COVpVeTE0MGltb1owUlJyeDBjMG9yekdYVVo2dGllT3gvc1RDVzhH?=
- =?utf-8?B?SnYySE5vVVFkY1BlcVZKeTVhdFRnVml6NzRqNkdCWlFINWliNm0xT1puNHU4?=
- =?utf-8?B?bktobXA5NTlISnhTSElMS05lbFNSOHZQa1FCYzhLV0FSN25VSnFOY045aFBk?=
- =?utf-8?B?MW1mdGdPb2ljdjVPSzk1RHM2M3p0NmovN3VFZC9xUWVVK0hINTZDSE8yMFBh?=
- =?utf-8?B?UUxPMmJQZ1Y3dHF1cUZsL2M4YjlnNk5GbHJTOVo5bkhWV2NaN0htLzhxN210?=
- =?utf-8?B?ZExvQlJIZnJHcHRZdDhBaUNUTFdJdmQvL1NaMzVVVHRmcXhhQkxBdHVUMDFh?=
- =?utf-8?B?Y0ZISTZpTDY0aUZpZW9TU0pTRUFvTFZMY2lyeWgyVXhyV2VzdkczVDR4aHNG?=
- =?utf-8?B?WW9CSnhSbE41a0V2Nkt2WW50M2tTamhiZWQzVFNNRnJ1eEl4TGRFYXN4aGJR?=
- =?utf-8?B?N012WjdHeFhiR3A4bmxCVWNNdWUzd3RiRDRUZlppcDRReHFIUjhlSkhpRnU0?=
- =?utf-8?B?aTl3cUorbjg3bGtOaStlYnZXOSswcGZIT3RkTVZuajM4bXhpZitQekswNmpn?=
- =?utf-8?B?Q0F0eW1xUDBFSXZMSWtaSC93R0VReHoyUUZpT2k3eWRwMmNkL2s1RzMrSW9s?=
- =?utf-8?B?U3U5RjR2MDFNNmVNd1hKL3kzbmh3NkljYXQwRnE1aEIzbnUvZy81SGFDa3Jl?=
- =?utf-8?B?TjUxOW1nd3VFeWxyV0ZIZUo0REIycm5UelhGYmVvaWZ5VGp2ekE5ZUE3MjlU?=
- =?utf-8?B?dUhRc0tjc2pvQkNsZlh4N0F3dWV0Q0tPWTdxSDE1bXZHRG9kdTZvUnIrUGlU?=
- =?utf-8?B?a1pHSDczUG80cURCRW03UFpiR0dQRmE3bmxvZ0hPK1RXaHRmdVBBS1QrWWFv?=
- =?utf-8?B?SjE3aHRlWEc0elR5S0tUb2t5WXNTL3NJNEhJL2RoVmV5Qmk3SkJSVngxYXZq?=
- =?utf-8?B?d1dvUTlOZUpqYXFhU0Y4UmhFRzdGdmVQcHFmTG9lczJsLzlsTHpQdTlTdmI1?=
- =?utf-8?B?VnJZYjdHNXFoeXh1d0g2YUpDcExMNkpFVCtZcmVlaVlMeTZjRngrL0tLaFN3?=
- =?utf-8?B?N1QxOUVsbDI5c0dXM1ExaU9nVG4rNFZ2SjFNK05mL0pGL095aDJ1cHZlY3dk?=
- =?utf-8?B?Mkx0MHhFaHVBdnowUi9qVEVjU2xta1RlZHN1SVpNVWZrNEhhMDhVa0FYZkVr?=
- =?utf-8?B?S25XK2twajJRWm5BTXNGb2JXUWU0dm9PaitaT0Zxa2JXUHNQazM4ZlV2VlJG?=
- =?utf-8?B?VEpBT2dRNTdZQllxVWZ5MTBtRUs0S0MxQ1l1eWh0MXo2c1ZFbDM0azlUSXdz?=
- =?utf-8?B?a3UvWWdiYUd0czhlM2IrQS9Dd1JDMDU2WjdrdEwzSGo3OXM2Uk5hQloxcThn?=
- =?utf-8?B?NlptLzI2TjhQUDZEbDgxR3BsRUxwMnFpczMrV1BaRnFmRnh0UmVOVGEvckdZ?=
- =?utf-8?B?dys1MzQraC84Z2g5TEtQc2x0NEpFanpVMHBWaUMxU3Q1MENQQTdNdllqZ0sy?=
- =?utf-8?B?TDA3RElUSDMvWHExRHNwSG1kU09CVGlVbmg0V09hQVpRbTFXRDRuNDFVWDVR?=
- =?utf-8?B?eXB3UTlKdzkvTVVNc2hZQzhZQTVXYUxwVFNxZGRFK0c2ZEN5VEMrNEcva0po?=
- =?utf-8?B?bWJCbVVlM21KZ21aVThXNWs1eElDZ3BoVk92eUNvU001S3FZOFlxbzlUMHBa?=
- =?utf-8?Q?IBdLTj+CrVtxqsGnuAHxm3Wh7?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f630b12-2ef6-4a11-6de4-08db0f3213f3
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2023 08:53:17.4476
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BoBBgtwqiLpn3iq8ObLrzffY7PV3sJ0v/+rwHo64Kav7BnQ945pQFMyx8UsSZyaxST3WM+UjYSw33E3shRW2BQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB8011
+References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
+ <20230214140858.1133292-2-rick.wertenbroek@gmail.com> <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
+In-Reply-To: <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
+From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Date:   Wed, 15 Feb 2023 10:04:00 +0100
+Message-ID: <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] PCI: rockchip: Remove writes to unused registers
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
+        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -127,185 +80,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2023-02-15 at 08:54 +0100, Alexander Stein wrote:
-> Hi Liu,
+On Wed, Feb 15, 2023 at 12:56 AM Damien Le Moal
+<damien.lemoal@opensource.wdc.com> wrote:
+>
+> I checked the TRM and indeed these registers are listed as unused.
+> However, with this patch, nothing work for me using a Pine rockpro64
+> board. Keeping this patch, your series (modulo some other fixes, more
+> emails coming) is making things work !
 
-Hi Alexander,
+Hello, Thank you for testing the driver and commenting, I'll incorporate your
+suggestions in the next version of this series.
 
-> 
-> thanks for the update.
+This patch alone does not make the driver work. Without the fixes to the
+address windows and translation found in [PATCH v2 6/9] ("PCI: rockchip:
+Fix window mapping and address translation for endpoint") transfers will not
+work. However, as you said, with the patch series, the driver works.
+Good to see that you have the driver working on the rockpro64 which is a
+very similar but different board than the one I used (FriendlyElec NanoPC-T4).
 
-Thanks for the review.
+> So I think the bug is with the TRM, not the code. THinking logically about
+> htis, it makes sense: this is programming the address translation unit to
+> translate mmio & dma between host PCI address and local CPU space address.
+> If we never set the PU address, how can that unit possibly ever translate
+> anything ?
 
-> 
-> Am Montag, 13. Februar 2023, 09:56:11 CET schrieb Liu Ying:
-> > The single LCDIF embedded in i.MX93 SoC may drive multiple displays
-> > simultaneously.  Look at LCDIF output port's remote port parents to
-> > find all enabled first bridges.  Add an encoder for each found
-> > bridge
-> > and attach the bridge to the encoder.  This is a preparation for
-> > adding i.MX93 LCDIF support.
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> > v2->v3:
-> > * No change.
-> > 
-> > v1->v2:
-> > * Split from patch 2/2 in v1. (Marek, Alexander)
-> > * Drop '!remote ||' from lcdif_attach_bridge(). (Lothar)
-> > * Drop unneeded 'bridges' member from lcdif_drm_private structure.
-> > 
-> >  drivers/gpu/drm/mxsfb/lcdif_drv.c | 68
-> > +++++++++++++++++++++++++++----
-> >  drivers/gpu/drm/mxsfb/lcdif_drv.h |  4 +-
-> >  drivers/gpu/drm/mxsfb/lcdif_kms.c | 21 ++--------
-> >  3 files changed, 66 insertions(+), 27 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> > b/drivers/gpu/drm/mxsfb/lcdif_drv.c index
-> > b5b9a8e273c6..eb6c265fa2fe 100644
-> > --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> > +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> > @@ -9,13 +9,16 @@
-> >  #include <linux/dma-mapping.h>
-> >  #include <linux/io.h>
-> >  #include <linux/module.h>
-> > +#include <linux/of.h>
-> >  #include <linux/of_device.h>
-> > +#include <linux/of_graph.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/pm_runtime.h>
-> > 
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_bridge.h>
-> >  #include <drm/drm_drv.h>
-> > +#include <drm/drm_encoder.h>
-> >  #include <drm/drm_fbdev_generic.h>
-> >  #include <drm/drm_gem_dma_helper.h>
-> >  #include <drm/drm_gem_framebuffer_helper.h>
-> > @@ -38,19 +41,68 @@ static const struct
-> > drm_mode_config_helper_funcs
-> > lcdif_mode_config_helpers = { .atomic_commit_tail =
-> > drm_atomic_helper_commit_tail_rpm,
-> >  };
-> > 
-> > +static const struct drm_encoder_funcs lcdif_encoder_funcs = {
-> > +	.destroy = drm_encoder_cleanup,
-> > +};
-> > +
-> >  static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
-> >  {
-> > -	struct drm_device *drm = lcdif->drm;
-> > +	struct device *dev = lcdif->drm->dev;
-> > +	struct device_node *ep;
-> >  	struct drm_bridge *bridge;
-> >  	int ret;
-> > 
-> > -	bridge = devm_drm_of_get_bridge(drm->dev, drm->dev->of_node, 0,
-> > 0);
-> > -	if (IS_ERR(bridge))
-> > -		return PTR_ERR(bridge);
-> > -
-> > -	ret = drm_bridge_attach(&lcdif->encoder, bridge, NULL, 0);
-> > -	if (ret)
-> > -		return dev_err_probe(drm->dev, ret, "Failed to attach 
-> 
-> bridge\n");
-> > +	for_each_endpoint_of_node(dev->of_node, ep) {
-> > +		struct device_node *remote;
-> > +		struct of_endpoint of_ep;
-> > +		struct drm_encoder *encoder;
-> > +
-> > +		remote = of_graph_get_remote_port_parent(ep);
-> 
-> Is it possible for remote to be NULL?
+No, the bug is not in the TRM:
+The RK3399 PCIe endpoint core has the physical address space of 64MB
+@ 0xF800'0000 to access the PCIe address space (TRM 17.5.4).
+This space is split into 33 windows, one of 32MBytes and 32 of 1MByte.
+Read-write accesses by the CPU to that region will be translated. Each
+window has a mapping that is configured through the ATR Configuration
+Register Address Map (TRM 17.6.8) and the registers addr0 and addr1
+will dictate the translation between the window (a physical CPU addr)
+into a PCI space address (with this the unit can translate). The other
+registers are for the PCIe header descriptor.
+The translation process is documented in TRM 17.5.5.1.1
+The core will translate all read-write accesses to the windows that fall
+in the 64MB space @ 0xF800'0000 and generate the PCIe addresses
+and headers according to the values in the registers in the ATR
+Configuration Register Address Map (@ 0xFDC0'0000).
 
-Yes. But, no worries.  Lothar said the check for '!remote' is not
-needed in v1 comment because of_device_is_available() checks that.
+Translation does indeed take place and works
+but requires the changes in [PATCH v2 6/9] ("PCI: rockchip:
+Fix window mapping and address translation for endpoint")
+because it was broken from the start...
 
-> 
-> > +		if (!of_device_is_available(remote)) {
-> > +			of_node_put(remote);
-> > +			continue;
-> > +		}
-> > +		of_node_put(remote);
-> > +
-> > +		ret = of_graph_parse_endpoint(ep, &of_ep);
-> > +		if (ret < 0) {
-> > +			dev_err(dev, "Failed to parse endpoint
-> > %pOF\n", 
-> 
-> ep);
-> > +			of_node_put(ep);
-> > +			return ret;
-> > +		}
-> > +
-> > +		if (of_ep.id >= MAX_DISPLAYS) {
-> > +			dev_warn(dev, "invalid endpoint id %u\n", 
-> 
-> of_ep.id);
-> 
-> I would write
-> dev_warn(dev, "ignoring invalid endpoint id %u\n", of_ep.id);
-> just because the parsing continues but this one is skipped.
-
-Ok, will do that in next version.
-
-> 
-> > +			continue;
-> > +		}
-> > +
-> > +		bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 
-> 
-> of_ep.id);
-> > +		if (IS_ERR(bridge)) {
-> > +			of_node_put(ep);
-> > +			return dev_err_probe(dev, PTR_ERR(bridge),
-> > +					     "Failed to get bridge 
-> 
-> for endpoint%u\n",
-> > +					     of_ep.id);
-> > +		}
-> > +
-> > +		encoder = &lcdif->encoders[of_ep.id];
-> > +		encoder->possible_crtcs = drm_crtc_mask(&lcdif->crtc);
-> > +		ret = drm_encoder_init(lcdif->drm, encoder, 
-> 
-> &lcdif_encoder_funcs,
-> > +				       DRM_MODE_ENCODER_NONE, NULL);
-> > +		if (ret) {
-> > +			dev_err(dev, "Failed to initialize encoder for 
-> 
-> endpoint%u: %d\n",
-> > +				of_ep.id, ret);
-> > +			of_node_put(ep);
-> > +			return ret;
-> > +		}
-> > +
-> > +		ret = drm_bridge_attach(encoder, bridge, NULL, 0);
-> > +		if (ret) {
-> > +			of_node_put(ep);
-> > +			return dev_err_probe(dev, ret,
-> > +					     "Failed to attach 
-> 
-> bridge for endpoint%u\n",
-> > +					     of_ep.id);
-> > +		}
-> 
-> Admittedly I'm not used to the drm API, but do we need to some manual
-> cleanup/
-> revert if some endpoints is e.g. deferred, but previous endpoints
-> already have 
-> been successfully added? e.g. endpoint 0 is added, but adding
-> endpoint 1 
-> fails.
-
-I think the bailout path is safe, because
-drm_mode_config_init_release() is called as the managed release action
-added through drm_mode_config_init(). drm_mode_config_cleanup() would
-clean things up.
-
-Regards,
-Liu Ying
-
+The two writes that were removed are to unused (read-only) registers.
+The writes don't do anything, manually writing and reading back these
+addresses will always lead to 0 (they are read-only). So they are removed.
