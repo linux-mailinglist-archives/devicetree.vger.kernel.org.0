@@ -2,147 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C6A69856F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:20:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EFC9698578
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbjBOUUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 15:20:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42580 "EHLO
+        id S229601AbjBOUWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 15:22:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbjBOUUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:20:33 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B46C298DC
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:20:31 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id j32-20020a05600c1c2000b003dc4fd6e61dso2513919wms.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:20:31 -0800 (PST)
+        with ESMTP id S229554AbjBOUWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:22:39 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 069AB298DC
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:22:38 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id m14so20379269wrg.13
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:22:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kNzCuF6BCyXsL2yh1ARNBckVMji8pzlET6deYgUkxoE=;
-        b=XSFpJ/VevZDFan5kWJUyXz9WwmiflZO3DOFhA4+AF8vqE6RUr6/iCVk8JQzqwhaEeZ
-         t6gERriMHefRcBZ3gW87YjfyQDjXuAwfEcdWu/6LmiwCRELo5LT0bglwGFgMLRWv9UVr
-         2oA3KjvI0qlohDfKpzUWIV1YceyqPCAj4WkCuRFYmeFC8EAQ3yjVAFK79iGopxCSqX98
-         XEPh5IUPqDXeJKqb+R5CHwg8CGotNyxYgFiEQPLyXLvAh+ldKo4oWWNwhfn2+EBnO6G9
-         iZP2ObgDXL31cnnyrgPsnHPqLoq5xN62QODC8H7oVyv4Q/Tf/t330v9HlX8jiFgI5UGs
-         wVPA==
+        bh=Zuvkbge6mkPjzQmD+S7+UtE4w7WXp41ZirBm14pyU3M=;
+        b=qCEEn9/tno24xig3oKrHMSFuh6lNDZw6d+ZJKxQLgfAf/b9K2EWWph2iLmBxpf0/ZC
+         9rXCDLBvrYVeqPeXUkzppaq7fyGf4bHi5NATAabtUr8dIdcs7AM03Q82RzK6Cmm3JDRl
+         vBfP2s5TICP4gSL3B8weD5lT2OZnZ+3whe2BSUGtUZVCcJOsS3fyzKJGNgetVhHEHWKw
+         YcbhjOC+Vs0XgoWbZiyvqn/NEm5M9j8pAK9anobkc/zzG+rWPeA8DXttqLp4BZVCtaxR
+         WQCJ+yhkrk1OOmECoxu3jaRLX4Gv4WlaLVnYc0ljzETNjoZCuZcGlXkOiJzqv4qijHNO
+         Jffg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kNzCuF6BCyXsL2yh1ARNBckVMji8pzlET6deYgUkxoE=;
-        b=WQ53MvyFIATW0AsXlFsC2u7FPblixUhVAjeOyRSrp6VQcXxx5GGstFHabdS5SIMWmy
-         hizMSF3tuFFnGm4oQoPPSJEBF7xTfKT0YaOMnZbQdz88c+mWmGsNSaYivjTTM9ktKf3w
-         qJVZpNJBA37Uxu2tVWXEU2eHTj/42f70bONsaAZAbi/kgXGxaS+A7fZ1ryaZcmfMav1+
-         zpGvyykcaa8oDrLLZ/xUF2en8NJdVfxC90KhXRZoahrvOdwUhhekd8QVdjrPAvXiiel4
-         ABsObbSUhIVF9LWo23f+Dni252F399McBJWCi7ByoPK9XB0ZjwQGwMYBNCuHyXhEi4dV
-         5yHQ==
-X-Gm-Message-State: AO0yUKU2sJdUCcY3EOwB35nx2ug1EhPhBw8hEr5A/jfALIHauYmuo4Ln
-        lH6hrM5dtbRrPkC/delE3tFgAQ==
-X-Google-Smtp-Source: AK7set9HivnC5lM/33lGnpMP4+zfEdLK/YWpE4+Ki+SgmylRZwxipc7gomV24OC7lBQFZ7fBot4O1Q==
-X-Received: by 2002:a05:600c:130f:b0:3dc:198c:dde with SMTP id j15-20020a05600c130f00b003dc198c0ddemr2710643wmf.41.1676492429680;
-        Wed, 15 Feb 2023 12:20:29 -0800 (PST)
+        bh=Zuvkbge6mkPjzQmD+S7+UtE4w7WXp41ZirBm14pyU3M=;
+        b=0h+gdmPyZ7evNjUsaqkGJ/8GIWFDJVHKZNWZEPg5HsE2HiCuEL8eavnVF6ufQsZbIf
+         29soArHdht5gxsjNt3nlBOMlYerlZfK+0gX3bnHx4XvODWVofRa8mTuWBlbpjhpbadyO
+         RxdZ6LkWzpl9oWiLFvYdfmbsQb3BjMNRO2L2TWub2mfI6pmX1Yhs+SxdiU3jHnlpRDEy
+         ZznBlTbc7mnxkzDrdjWU+bLcMHGAWIhG7XX9ksTp6Qfewez2fI9Kg7ezNsFLZOgXji+u
+         Ml/dh122DW3cObO4UL9cV8GeMbmEN9NHR/wCfG+La1/Z6FfoqKGYR/j/aj+MnJt5H3rz
+         X1fA==
+X-Gm-Message-State: AO0yUKUyCR40eGfalNIP5Alf93J57cVGpOxlyaYhCXGnqWMCZKIsN+Va
+        5LkXn5qSUZGsGndh+HWqlbW+Tw==
+X-Google-Smtp-Source: AK7set8kwaAvwsp2XgtutyMrq28GMkilDYbwLvbErvHm9KDz6GXESTACCyuIJDxf3J5pkyLgwsoJqQ==
+X-Received: by 2002:a5d:47cb:0:b0:2c5:642f:1550 with SMTP id o11-20020a5d47cb000000b002c5642f1550mr522851wrc.15.1676492556479;
+        Wed, 15 Feb 2023 12:22:36 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003dc492e4430sm3163621wms.28.2023.02.15.12.20.27
+        by smtp.gmail.com with ESMTPSA id a12-20020a5d508c000000b002c55ec7f661sm6928606wrt.5.2023.02.15.12.22.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Feb 2023 12:20:29 -0800 (PST)
-Message-ID: <865420b3-6afe-7f91-7a89-f9fbf831c2ab@linaro.org>
-Date:   Wed, 15 Feb 2023 21:20:27 +0100
+        Wed, 15 Feb 2023 12:22:35 -0800 (PST)
+Message-ID: <5e4b15b1-30f6-ca4e-1355-3c4d36b79541@linaro.org>
+Date:   Wed, 15 Feb 2023 21:22:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 5/9] dt-bindings: remoteproc: mpss: Document
- QDU1000/QRU1000 mpss devices
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: nxp,pcf8563: move
+ pcf85263/pcf85363 to a dedicated binding
 Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20230213185218.166520-1-quic_molvera@quicinc.com>
- <20230213185218.166520-6-quic_molvera@quicinc.com>
- <aba45ae9-8558-50c1-e5ad-dd910dacdbb3@linaro.org>
- <0cb9dcb8-130e-7ad2-1f58-3d2f1bb48a49@quicinc.com>
+        Michael Riesch <michael.riesch@wolfvision.net>
+References: <20230215081815.3141776-1-javier.carrasco@wolfvision.net>
+ <20230215081815.3141776-2-javier.carrasco@wolfvision.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0cb9dcb8-130e-7ad2-1f58-3d2f1bb48a49@quicinc.com>
+In-Reply-To: <20230215081815.3141776-2-javier.carrasco@wolfvision.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 22:23, Melody Olvera wrote:
+On 15/02/2023 09:18, Javier Carrasco wrote:
+> These Real Time Clocks are managed by the rtc-pcf85363 device driver,
+> which now supports the quartz-load-femtofarads property.
 > 
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+> v2:
+>   - create new bindings instead of adding conditional properties to an
+>     existing one.
 > 
-> On 2/14/2023 12:28 AM, Krzysztof Kozlowski wrote:
->> On 13/02/2023 19:52, Melody Olvera wrote:
->>> This documents the compatible for the component used to boot the
->>> MPSS on the QDU1000 and QRU1000 SoCs.
->>>
->>> The QDU1000 and QRU1000 mpss boot process now requires the specification
->>> of an RMB register space to complete the handshake needed to start or
->>> attach the mpss.
->>>
->>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>> ---
->>>  .../bindings/remoteproc/qcom,qdu1000-pas.yaml | 127 ++++++++++++++++++
->>>  1 file changed, 127 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml
->>> new file mode 100644
->>> index 000000000000..eb6ade984778
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-pas.yaml
->>> @@ -0,0 +1,127 @@
->>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/qcom,qdu1000-pas.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm QDU1000 Peripheral Authentication Service
->>> +
->>> +maintainers:
->>> +  - Melody Olvera <quic_molvera@quicinc.com>
->>> +
->>> +description:
->>> +  Qualcomm QDU1000 SoC Peripheral Authentication Service loads and boots firmware
->>> +  on the Qualcomm DSP Hexagon cores.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - qcom,qdu1000-mpss-pas
->> What about other remote processors? The subject prefix suggests it is
->> only for mpss, but filename is different.
+>  .../devicetree/bindings/rtc/nxp,pcf85363.yaml | 60 +++++++++++++++++++
+>  .../devicetree/bindings/rtc/nxp,pcf8563.yaml  |  2 -
+>  2 files changed, 60 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
 > 
-> Yeah so QDU1000 and QRU1000 only have mpss; there are no other remote processors.
-> However, it uses the same PAS driver as the other remote processors on other SoCs.
-> I can rename to Modem Peripheral Authentication Service.
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+> new file mode 100644
+> index 000000000000..52aa3e2091e9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/nxp,pcf85363.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Philips PCF85263/PCF85363 Real Time Clock
+> +
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,pcf85263
+> +      - nxp,pcf85363
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  clock-output-names:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  quartz-load-femtofarads:
+> +    description:
+> +      The capacitive load of the quartz(x-tal).
+> +    enum: [6000, 7000, 12500]
+> +    default: 7000
+> +
+> +  start-year: true
+> +  wakeup-source: true
 
-Yes, please rename the title. Also please rename the file (and $id) to
-be based on compatible:
-qcom,qdu1000-mpss-pas.yaml
+You could drop these two and use "unevaluatedProperties: false" instead
+of additionalProp - less coding and binding already will be prepared for
+any new RTC common properties. But it is fine for me as is.
 
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
