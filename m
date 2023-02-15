@@ -2,156 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EA2697538
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 05:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D206975A3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 06:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233116AbjBOENn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 23:13:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41370 "EHLO
+        id S232804AbjBOFBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 00:01:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232374AbjBOENS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 23:13:18 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4076932E5C;
-        Tue, 14 Feb 2023 20:13:10 -0800 (PST)
-X-UUID: 096f27faace711ed945fc101203acc17-20230215
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=e6eQQOvqn+zPWnCwihlkrd8bxgyCpuOOMe/nTlCqPLo=;
-        b=mCXmcwc7Kg1qn0j4tzae2VKQsVh7DjieCUl7LCOjhplL9p2n7BBKYQ0A48QIDoR6sJGr5NIknANZwYdYlX2/v1lDV/LXmwoY/yyhgvj9lI7+YU6GtUai/ZnarV1PglzjqjLHfzZqE4aY8L9Hxf18L69IUdhWo7JtzR+CZgb1LNI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.19,REQID:56c6486d-ec48-4ee1-bd9c-4a64267c9a3f,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:885ddb2,CLOUDID:23749b25-564d-42d9-9875-7c868ee415ec,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-UUID: 096f27faace711ed945fc101203acc17-20230215
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1189419126; Wed, 15 Feb 2023 12:13:01 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 15 Feb 2023 12:13:00 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 15 Feb 2023 12:13:00 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S229913AbjBOFBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 00:01:33 -0500
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F3D311C0
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 21:01:31 -0800 (PST)
+Received: from submission (posteo.de [185.67.36.169]) 
+        by mout02.posteo.de (Postfix) with ESMTPS id 0E5B524064F
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 06:01:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+        t=1676437290; bh=FWiteDJexgPQ7XRRBus0P85wr8k1keyo2CAWC376RBg=;
+        h=Date:From:To:Cc:Subject:From;
+        b=LgoCIgmA4DG3U60cJpRJjIfKH2twgmEqeqoq6NeO4a5klvUy8lbvR28CSQQGmpLeB
+         u/cuCqwPjajm87/BGARvdGKD7jbG7tuMZd5kvjp8XR7FGogGQjTtBILnhU4uOFLtaC
+         NqEN/t1repkDdAO46q6Frc8WszoJ4xFjstGj4D+W8YNzJsuOjZKChNHGl4So8xi1rm
+         dysZ4bqopyhPAep0kE1DpQm1+Oj9BVrxkLtcLGKvF3lFPY7+rgwOO1CH2LWK4dFQgu
+         T+4yjxHc7VypDuYwKSU/8pgo2ZmZr/rj9Xy4vbsFKRf+HNwzFWqVJ7a7ITbQOdHk4s
+         FsddejQMTLvWg==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4PGmBZ5hGhz9rxF;
+        Wed, 15 Feb 2023 06:01:26 +0100 (CET)
+Date:   Wed, 15 Feb 2023 05:01:25 +0000
+From:   Wilken Gottwalt <wilken.gottwalt@posteo.net>
+To:     Bastian Germann <bage@debian.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v7 12/12] arm64: dts: mediatek: mt8195: Add SCP 2nd core
-Date:   Wed, 15 Feb 2023 12:12:57 +0800
-Message-ID: <20230215041257.14548-13-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230215041257.14548-1-tinghan.shen@mediatek.com>
-References: <20230215041257.14548-1-tinghan.shen@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] Enable hwlock on Allwinner A64
+Message-ID: <20230215060125.0e06312e@posteo.net>
+In-Reply-To: <d483ea28-feed-41d1-f9b6-4abfcfe42874@debian.org>
+References: <20230213231931.6546-1-bage@debian.org>
+        <20230214001805.6ead683d@slackpad.lan>
+        <d483ea28-feed-41d1-f9b6-4abfcfe42874@debian.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rewrite the MT8195 SCP device node as a cluster and
-add the SCP 2nd core in it.
+On Tue, 14 Feb 2023 22:55:45 +0100
+Bastian Germann <bage@debian.org> wrote:
 
-Since the SCP device node is changed to multi-core structure,
-enable SCP cluster to enable probing SCP core 0.
+> Am 14.02.23 um 01:18 schrieb Andre Przywara:
+> > So are there Linux/Crust patches out there that use this device?
+> 
+> I do not know of any. I was just investigating the chip and checked the parts that I could easily
+> use in Linux.
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../boot/dts/mediatek/mt8195-cherry.dtsi      |  6 +++-
- arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 32 ++++++++++++++-----
- 2 files changed, 29 insertions(+), 9 deletions(-)
+Easily using it is, well, a bit questionable. The only reason to use this is
+for syncing access to hardware between the ARM and the embedded OpenRISC core.
+Like Andre wrote, it only makes sense if you want to etablish some form of
+shared access between Linux and the Crust firmware. Using this in Linux only
+instead of the common spinlocks won't be fun, that hwspinlock unit is slower.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 56749cfe7c33..31415d71b6a4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -933,7 +933,11 @@
- 	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
- };
- 
--&scp {
-+&scp_cluster {
-+	status = "okay";
-+};
-+
-+&scp_c0 {
- 	status = "okay";
- 
- 	firmware-name = "mediatek/mt8195/scp.img";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 8f1264d5290b..31209ef7e55d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -826,14 +826,30 @@
- 			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
- 		};
- 
--		scp: scp@10500000 {
--			compatible = "mediatek,mt8195-scp";
--			reg = <0 0x10500000 0 0x100000>,
--			      <0 0x10720000 0 0xe0000>,
--			      <0 0x10700000 0 0x8000>;
--			reg-names = "sram", "cfg", "l1tcm";
--			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-+		scp_cluster: scp@10500000 {
-+			compatible = "mediatek,mt8195-scp-dual";
-+			reg = <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
-+			reg-names = "cfg", "l1tcm";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x10500000 0x100000>;
- 			status = "disabled";
-+
-+			scp_c0: scp@0 {
-+				compatible = "mediatek,scp-core";
-+				reg = <0x0 0xa0000>;
-+				reg-names = "sram";
-+				interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
-+				status = "disabled";
-+			};
-+
-+			scp_c1: scp@a0000 {
-+				compatible = "mediatek,scp-core";
-+				reg = <0xa0000 0x20000>;
-+				reg-names = "sram";
-+				interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		scp_adsp: clock-controller@10720000 {
-@@ -2291,7 +2307,7 @@
- 				 <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
- 				 <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
- 			interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
--			mediatek,scp = <&scp>;
-+			mediatek,scp = <&scp_c0>;
- 			clocks = <&vencsys CLK_VENC_VENC>;
- 			clock-names = "venc_sel";
- 			assigned-clocks = <&topckgen CLK_TOP_VENC>;
--- 
-2.18.0
-
+greetings,
+Will
