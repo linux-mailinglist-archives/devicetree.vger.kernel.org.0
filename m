@@ -2,92 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 019A76986A6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:55:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 277936986C3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 22:01:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbjBOUzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 15:55:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43990 "EHLO
+        id S230061AbjBOVBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 16:01:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbjBOUy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:54:57 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69163460B5;
-        Wed, 15 Feb 2023 12:51:51 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id c15so16976987oic.8;
-        Wed, 15 Feb 2023 12:51:51 -0800 (PST)
+        with ESMTP id S230098AbjBOVBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 16:01:12 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD018A5C
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:59:18 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id dr8so60175ejc.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:59:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9J4+2O+6dPLiKhatW215i+nXvajg3X2gqM/YT6Nj4eM=;
+        b=qkg3aTo7kPqfzHtYOWxpxv7swca6ZxC//5ANvFMLCd7/fDSMS+9NvRo/7juQnDyhGK
+         y2V9ULlE8A5/AZa/1z+T/EZrEUeTy43C9SL5MRGS/DJ5hbK7CXgfPy8QpmUKXRz5O3zx
+         1LR/FCPiBy9/29NAsHqIYjwDoYzO1YZUMpyvuy0VmaVvBCyMgcDRbqI3BDx+Q1sVSKuv
+         wLNYgVOzr7eWzBCZ35QlZGB6BQPaMvPEnfahNdec/zv3RwQk8yn0WQnZfCgt2lvrKnFj
+         u6pvMdn67CBd1GnEUaGeR5dfkcAE0+MGAkNf2Plz6iDOaeKzbax2t4B7TVK/16vtmS4D
+         dRvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ga+t+f/0IwHyZHrwQgjPT2MoJkcZAMv05bM6ZtnYEzs=;
-        b=6IkNy3Es7V+TjHkv91yZ9JTlewzVDcCDnqS6eJNWLp9BbE1Q4Ssvchf6u/OG5FCmEZ
-         nhnLlby/mVdb8FbaSuGAQdDkg3bl+DVSsHBePfWjOEbZYJVdfpXYe1oKntGf4YF8sGfO
-         GJK1kR2OilavmTILOwnRvS8Jq9KofnSA6MIzWVMXAgc6eJYIJDKj/98p3EyavQ5wcXRR
-         mQl5A+2pYMEZLzT7gE+zenCxhcL/82RLgae79wiEY2sSVrM70tpcBR40yn4/WFdIL5Y7
-         iCqe8323zJ4LPAn7F8vq2s6facleQZvJ51psuTncgNRykTqE+wnDs3SktJ0nK5N6Qsnf
-         C8tg==
-X-Gm-Message-State: AO0yUKXqu8hKO8r5YXu8J7M7+EFmrfgJsNCQbWso9GdRuNbvAznsCILr
-        Q6N0nEffQi7zwP0eGEyItg==
-X-Google-Smtp-Source: AK7set9uKEXlFY7OztCxYaBkIzSGW27WpnODYmXq+svIfX/4qXfn14oKqa9ODmPlqs1+efwrWqjZQA==
-X-Received: by 2002:a54:4793:0:b0:378:79a4:867 with SMTP id o19-20020a544793000000b0037879a40867mr1521653oic.33.1676494173874;
-        Wed, 15 Feb 2023 12:49:33 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h15-20020aca180f000000b0037dcb5323d6sm1557457oih.51.2023.02.15.12.49.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 12:49:33 -0800 (PST)
-Received: (nullmailer pid 528815 invoked by uid 1000);
-        Wed, 15 Feb 2023 20:49:32 -0000
-Date:   Wed, 15 Feb 2023 14:49:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 3/7] media: dt-bindings: samsung,exynos4210-csis:
- convert to dtschema
-Message-ID: <167649417223.528776.7556862250752901936.robh@kernel.org>
-References: <20230214104508.51955-1-krzysztof.kozlowski@linaro.org>
- <20230214104508.51955-4-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9J4+2O+6dPLiKhatW215i+nXvajg3X2gqM/YT6Nj4eM=;
+        b=lYwB15hhQvATxl7nwLCp/nuiYHZnj9qIo8FXecVhJcM7Z1IixayhbMKBVpbn0+WcKe
+         Dy2t4LEtP51fysWG1BnuMjpncr0g1MBSfCJGMfPfiCm+Yy7JPAzfpCtGMoPBuEX12yTx
+         1Cgiu1bgS1ouVSr5qaM6DHtl5xM2E/jm/MIXSGAy+0EwJh1LTfeRqd6XgaG3URQFf3yA
+         EydiGjNm80vgGBdD5B2EktcxsIwFFTnr+WI/wyoPb4llGDQ7avetpfwAutwzfg7u1FMY
+         L1aPFtnvV4QzDywodE8r4aZeB44XOiB/nbzPQhkr0KgmMGqSWqq3E5Zvc+9MuwaaBOuS
+         qPQg==
+X-Gm-Message-State: AO0yUKVIM2QmcZtP6AZ3nMV0ssPBc6TOVzvGW3MG49d1ngYl3OwlIIaI
+        75TOeWLy99zVseVnnHfc1E+EFVQDOXOg5KIEOowFAEuE5RP32Q==
+X-Google-Smtp-Source: AK7set+YuOicYHlGgbYbe1IaylJwpRt8UMMp+PnI0BL61bAqsiAV0ZewTgN+WPYQh3nPf0eiV/TydYDXrsOnW/2YBhY=
+X-Received: by 2002:a05:6512:3d18:b0:4db:1e7d:5d42 with SMTP id
+ d24-20020a0565123d1800b004db1e7d5d42mr2074364lfv.0.1676494243853; Wed, 15 Feb
+ 2023 12:50:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214104508.51955-4-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230206201455.1790329-1-evan@rivosinc.com> <20230206201455.1790329-5-evan@rivosinc.com>
+ <Y+v8eNlcG+jbB2oy@spud>
+In-Reply-To: <Y+v8eNlcG+jbB2oy@spud>
+From:   Evan Green <evan@rivosinc.com>
+Date:   Wed, 15 Feb 2023 12:50:07 -0800
+Message-ID: <CALs-Hsu1K4taqMhZs0PyYsT6t-skSbW4QJWVP5csx3qecfz-3Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] dt-bindings: Add RISC-V misaligned access performance
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Palmer Dabbelt <palmer@rivosinc.com>, vineetg@rivosinc.com,
+        heiko@sntech.de, slewis@rivosinc.com,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Feb 14, 2023 at 1:26 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> On Mon, Feb 06, 2023 at 12:14:53PM -0800, Evan Green wrote:
+> > From: Palmer Dabbelt <palmer@rivosinc.com>
+> >
+> > This key allows device trees to specify the performance of misaligned
+> > accesses to main memory regions from each CPU in the system.
+> >
+> > Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > Signed-off-by: Evan Green <evan@rivosinc.com>
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > index c6720764e765..2c09bd6f2927 100644
+> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > @@ -85,6 +85,21 @@ properties:
+> >      $ref: "/schemas/types.yaml#/definitions/string"
+> >      pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
+> >
+> > +  riscv,misaligned-access-performance:
+> > +    description:
+> > +      Identifies the performance of misaligned memory accesses to main memory
+> > +      regions.  There are three flavors of unaligned access performance: "emulated"
+>
+> Is the performance: emulated the source of the dt_binding_check issues?
+> And the fix is as simple as:
+> -    description:
+> +    description: |
+> ?
 
-On Tue, 14 Feb 2023 11:45:04 +0100, Krzysztof Kozlowski wrote:
-> Convert the Samsung S5P/Exynos SoC series MIPI CSI-2 receiver (MIPI
-> CSIS) bindings to DT schema.  Changes during conversion - adjust to
-> existing DTS and Linux driver:
-> 1. Add phys and power-domains.
-> 2. Move samsung,csis-wclk property to the endpoint node.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../media/samsung,exynos4210-csis.yaml        | 170 ++++++++++++++++++
->  .../bindings/media/samsung-mipi-csis.txt      |  81 ---------
->  MAINTAINERS                                   |   1 +
->  3 files changed, 171 insertions(+), 81 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos4210-csis.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/samsung-mipi-csis.txt
-> 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Yep, I can pass cleanly with that change. Thanks!
