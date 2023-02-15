@@ -2,141 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 671E9697AD1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 12:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FA3697AEF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 12:38:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233535AbjBOLdA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 Feb 2023 06:33:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35666 "EHLO
+        id S233589AbjBOLih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 06:38:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233521AbjBOLc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 06:32:58 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1AED51B;
-        Wed, 15 Feb 2023 03:32:54 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 95AB924E27A;
-        Wed, 15 Feb 2023 19:32:53 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 19:32:53 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 15 Feb 2023 19:32:52 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233470AbjBOLif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 06:38:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B7FA36456;
+        Wed, 15 Feb 2023 03:38:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BF6B1B8212A;
+        Wed, 15 Feb 2023 11:38:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66C6BC4339B;
+        Wed, 15 Feb 2023 11:38:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676461111;
+        bh=GEGhQBwJhKB5uGEZCrbVyvrQHlkEYa/oj3PzWMLqoO4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bYRwKeocL2Wd5g1fa/CYXYw73nHewgZ0f6UKIAVdN6VWGY9qYmCCiHiM6NtVSLiyB
+         jPu3MFqsHBglKV9jegSIwaRDCYaSFZOvl1QxODkLZOIaz1t76rkmwWuJDtDiUwW5LR
+         nswPB0Eu8xACOe/rBITCo8RxgiWzmufuV/5OUELXRIDBkTXKBJViDCRY8x/zKQ6WwC
+         /wu2i0hyDiYDk9Tzjo+sS7d6qjWJQh5mJ/B6satQZenHBNgqQ/cBoHvEGp5gZ8lM52
+         iprLOSNd8jeyKtp/jH2gQRIA2biVVCj4S61UXB1/jtgSChtPT8bh6DgW3/kJQupela
+         wtprqWAxFWj5Q==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pSG7J-00AZUw-7C;
+        Wed, 15 Feb 2023 11:38:29 +0000
+Date:   Wed, 15 Feb 2023 11:38:28 +0000
+Message-ID: <86v8k3xiob.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     neil.armstrong@linaro.org
+Cc:     Andy Gross <agross@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 4/4] dt-bindings: syscon: Add StarFive syscon doc
-Date:   Wed, 15 Feb 2023 19:32:49 +0800
-Message-ID: <20230215113249.47727-5-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230215113249.47727-1-william.qiu@starfivetech.com>
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: qcom,pdc: Add compatible for SM8550
+In-Reply-To: <f6f81af2-00ec-a75b-0e9e-a1eaf649edf5@linaro.org>
+References: <20230127132558.1176730-1-abel.vesa@linaro.org>
+        <f6f81af2-00ec-a75b-0e9e-a1eaf649edf5@linaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: neil.armstrong@linaro.org, agross@kernel.org, abel.vesa@linaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski@linaro.org, andersson@kernel.org, konrad.dybcio@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation to describe StarFive System Controller Registers.
+On Wed, 15 Feb 2023 09:25:37 +0000,
+Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+> Hi Mark,
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- .../bindings/soc/starfive/jh7110-syscon.yaml  | 51 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
+Was this intended for me?
 
-diff --git a/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
-new file mode 100644
-index 000000000000..fa4d8522a454
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/starfive/jh7110-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: StarFive JH7110 SoC system controller
-+
-+maintainers:
-+  - William Qiu <william.qiu@starfivetech.com>
-+
-+description: |
-+  The StarFive JH7110 SoC system controller provides register information such
-+  as offset, mask and shift to configure related modules such as MMC and PCIe.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - starfive,jh7110-stg-syscon
-+          - starfive,jh7110-sys-syscon
-+          - starfive,jh7110-aon-syscon
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    syscon@10240000 {
-+        compatible = "starfive,jh7110-stg-syscon", "syscon";
-+        reg = <0x10240000 0x1000>;
-+    };
-+
-+    syscon@13030000 {
-+        compatible = "starfive,jh7110-sys-syscon", "syscon";
-+        reg = <0x13030000 0x1000>;
-+    };
-+
-+    syscon@17010000 {
-+        compatible = "starfive,jh7110-aon-syscon", "syscon";
-+        reg = <0x17010000 0x1000>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 644ac9479a6e..fc9d1781516a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19665,6 +19665,11 @@ F:	Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
- F:	drivers/reset/starfive/reset-starfive-jh71*
- F:	include/dt-bindings/reset/starfive?jh71*.h
- 
-+STARFIVE JH7110 SYSCON
-+M:	William Qiu <william.qiu@starfivetech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
-+
- STATIC BRANCH/CALL
- M:	Peter Zijlstra <peterz@infradead.org>
- M:	Josh Poimboeuf <jpoimboe@kernel.org>
+> 
+> On 27/01/2023 14:25, Abel Vesa wrote:
+> > Document the compatible for SM8550 PDC.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> > 
+> > The v1 is here:
+> > https://lore.kernel.org/all/20221116114210.2673902-1-abel.vesa@linaro.org/
+> > 
+> > Changes since v1:
+> >   * rebased on next-20230125
+> >   * added Krzysztof's R-b tag
+> > 
+> >   .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
+> >   1 file changed, 1 insertion(+)
+> 
+> Do you think you can pick it for v6.3 ?
+
+In general, I don't take standalone DT updates. I'm happy to take them
+when they result in something material. But this is only churn, as
+nothing relies on these extra compatible strings.
+
+This really should be routed via someone who cares (i.e not me).
+
+Thanks,
+
+	M.
+
 -- 
-2.34.1
-
+Without deviation from the norm, progress is not possible.
