@@ -2,117 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC56E697A25
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:46:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA19A697A3A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:52:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234181AbjBOKqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 05:46:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
+        id S233136AbjBOKwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 05:52:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234174AbjBOKqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:46:23 -0500
-Received: from eu-smtp-delivery-151.mimecast.com (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB0B34306
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 02:46:21 -0800 (PST)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-34-i_adRa_mOdaDGX2RAwwiCA-1; Wed, 15 Feb 2023 10:46:18 +0000
-X-MC-Unique: i_adRa_mOdaDGX2RAwwiCA-1
-Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
- (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.45; Wed, 15 Feb
- 2023 10:46:16 +0000
-Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
- id 15.00.1497.045; Wed, 15 Feb 2023 10:46:16 +0000
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Damien Le Moal' <damien.lemoal@opensource.wdc.com>,
-        Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-        "alberto.dassatti@heig-vd.ch" <alberto.dassatti@heig-vd.ch>
-CC:     "xxm@rock-chips.com" <xxm@rock-chips.com>,
-        "rick.wertenbroek@heig-vd.ch" <rick.wertenbroek@heig-vd.ch>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>,
+        with ESMTP id S230500AbjBOKwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:52:16 -0500
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194E520D13;
+        Wed, 15 Feb 2023 02:52:14 -0800 (PST)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id D048F1BF205;
+        Wed, 15 Feb 2023 10:52:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1676458333;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=hb2se20acyhll/dfbhOm4RHwsJa673hBX+v8MxUBBL4=;
+        b=iu5pUOqFNCvo1BTqFUMPc2RT9O408/qSQnskYDM9y6IEHt3h81EhIpAhPS/7YxvnskVDid
+        RS15A2zYW7dD+wxTvneV7v6SSy5ZFb0/4NKFzFuXGyP9Nx7y3q3so3lhRKQMYazWzFORca
+        WrnSYpGEhLiEvS6MgQBh8djTef4UqxDqKCf+bSGL/s+H0yeV3Wh7iRtFO3djceMQbXxXKf
+        SwLo1HRDCVdrZvu1/Vn34dQgIBZHp3szmnXT78sMTvjDyVE88eTAiVvrzto+gnJYZKogzb
+        cZabCi2KUq3vIVv5Lw2keOoHGPE8FBO/nfA7X49PaiJRQIxDz4NaySeeo+DWKQ==
+Date:   Wed, 15 Feb 2023 11:54:41 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?B?S3J6eXN6dG9mIFdpbGN6ecWEc2tp?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
-Subject: RE: [PATCH v2 8/9] PCI: rockchip: Use u32 variable to access 32-bit
- registers
-Thread-Topic: [PATCH v2 8/9] PCI: rockchip: Use u32 variable to access 32-bit
- registers
-Thread-Index: AQHZQN2t4tTaT5pAPkCiUYx37/Wq/67P0uRw
-Date:   Wed, 15 Feb 2023 10:46:16 +0000
-Message-ID: <2a80c4e1f1ad42c6849521d1e644b003@AcuMS.aculab.com>
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <20230214140858.1133292-9-rick.wertenbroek@gmail.com>
- <0fa5cef4-7096-7f59-422a-98011d01437c@opensource.wdc.com>
-In-Reply-To: <0fa5cef4-7096-7f59-422a-98011d01437c@opensource.wdc.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb
+ board device-tree
+Message-ID: <20230215115441.361aed53@fixe.home>
+In-Reply-To: <20230215092933.2f71ece0@fixe.home>
+References: <20230209133507.150571-1-clement.leger@bootlin.com>
+        <20230209133507.150571-3-clement.leger@bootlin.com>
+        <CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
+        <20230215092933.2f71ece0@fixe.home>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogRGFtaWVuIExlIE1vYWwNCj4gU2VudDogMTUgRmVicnVhcnkgMjAyMyAwMTozNA0KPiAN
-Cj4gT24gMi8xNC8yMyAyMzowOCwgUmljayBXZXJ0ZW5icm9layB3cm90ZToNCj4gPiBQcmV2aW91
-c2x5IHUxNiB2YXJpYWJsZXMgd2VyZSB1c2VkIHRvIGFjY2VzcyAzMi1iaXQgcmVnaXN0ZXJzLCB0
-aGlzDQo+ID4gcmVzdWx0ZWQgaW4gbm90IGFsbCBvZiB0aGUgZGF0YSBiZWluZyByZWFkIGZyb20g
-dGhlIHJlZ2lzdGVycy4gQWxzbw0KPiA+IHRoZSBsZWZ0IHNoaWZ0IG9mIG1vcmUgdGhhbiAxNi1i
-aXRzIHdvdWxkIHJlc3VsdCBpbiBtb3ZpbmcgZGF0YSBvdXQNCj4gPiBvZiB0aGUgdmFyaWFibGUu
-IFVzZSB1MzIgdmFyaWFibGVzIHRvIGFjY2VzcyAzMi1iaXQgcmVnaXN0ZXJzDQo+ID4NCj4gPiBG
-aXhlczogY2Y1OTBiMDc4MzkxICgiUENJOiByb2NrY2hpcDogQWRkIEVQIGRyaXZlciBmb3IgUm9j
-a2NoaXAgUENJZSBjb250cm9sbGVyIikNCj4gPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZw0K
-PiA+IFNpZ25lZC1vZmYtYnk6IFJpY2sgV2VydGVuYnJvZWsgPHJpY2sud2VydGVuYnJvZWtAZ21h
-aWwuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtcm9ja2No
-aXAtZXAuYyB8IDEwICsrKysrLS0tLS0NCj4gPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2ll
-LXJvY2tjaGlwLmggICAgfCAgMSArDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25z
-KCspLCA1IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2Nv
-bnRyb2xsZXIvcGNpZS1yb2NrY2hpcC1lcC5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2ll
-LXJvY2tjaGlwLWVwLmMNCj4gPiBpbmRleCBjYTViMzYzYmEuLmI3ODY1YTk0ZSAxMDA2NDQNCj4g
-PiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtcm9ja2NoaXAtZXAuYw0KPiA+ICsr
-KyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1yb2NrY2hpcC1lcC5jDQo+ID4gQEAgLTI5
-MiwxNSArMjkyLDE1IEBAIHN0YXRpYyBpbnQgcm9ja2NoaXBfcGNpZV9lcF9zZXRfbXNpKHN0cnVj
-dCBwY2lfZXBjICplcGMsIHU4IGZuLCB1OCB2Zm4sDQo+ID4gIHsNCj4gPiAgCXN0cnVjdCByb2Nr
-Y2hpcF9wY2llX2VwICplcCA9IGVwY19nZXRfZHJ2ZGF0YShlcGMpOw0KPiA+ICAJc3RydWN0IHJv
-Y2tjaGlwX3BjaWUgKnJvY2tjaGlwID0gJmVwLT5yb2NrY2hpcDsNCj4gPiAtCXUxNiBmbGFnczsN
-Cj4gPiArCXUzMiBmbGFnczsNCj4gPg0KPiA+ICAJZmxhZ3MgPSByb2NrY2hpcF9wY2llX3JlYWQo
-cm9ja2NoaXAsDQo+ID4gIAkJCQkgICBST0NLQ0hJUF9QQ0lFX0VQX0ZVTkNfQkFTRShmbikgKw0K
-PiA+ICAJCQkJICAgUk9DS0NISVBfUENJRV9FUF9NU0lfQ1RSTF9SRUcpOw0KPiA+ICAJZmxhZ3Mg
-Jj0gflJPQ0tDSElQX1BDSUVfRVBfTVNJX0NUUkxfTU1DX01BU0s7DQo+ID4gIAlmbGFncyB8PQ0K
-PiA+IC0JICAgKChtdWx0aV9tc2dfY2FwIDw8IDEpIDw8ICBST0NLQ0hJUF9QQ0lFX0VQX01TSV9D
-VFJMX01NQ19PRkZTRVQpIHwNCj4gPiAtCSAgIFBDSV9NU0lfRkxBR1NfNjRCSVQ7DQo+ID4gKwkg
-ICAobXVsdGlfbXNnX2NhcCA8PCBST0NLQ0hJUF9QQ0lFX0VQX01TSV9DVFJMX01NQ19PRkZTRVQp
-IHwNCj4gDQo+IFJPQ0tDSElQX1BDSUVfRVBfTVNJX0NUUkxfTU1DX09GRlNFVCBpcyAxNyBhbmQg
-bXVsdGlfbXNnX2NhcCBpcyBhIHU4Li4uDQo+IE5vdCBuaWNlLg0KDQpJdCByZWFsbHkgZG9lc24n
-dCBtYXR0ZXIuDQpBcyBzb29uIGFzIHlvdSBkbyBhbnkgYXJpdGhtZXRpYyBjaGFyIGFuZCBzaG9y
-dCBhcmUgcHJvbW90ZWQgdG8gaW50Lg0KDQoJRGF2aWQNCg0KLQ0KUmVnaXN0ZXJlZCBBZGRyZXNz
-IExha2VzaWRlLCBCcmFtbGV5IFJvYWQsIE1vdW50IEZhcm0sIE1pbHRvbiBLZXluZXMsIE1LMSAx
-UFQsIFVLDQpSZWdpc3RyYXRpb24gTm86IDEzOTczODYgKFdhbGVzKQ0K
+Le Wed, 15 Feb 2023 09:29:33 +0100,
+Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> a =C3=A9crit :
 
+> Le Tue, 14 Feb 2023 17:25:14 +0100,
+> Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
+>=20
+> > Hi Cl=C3=A9ment,
+> >=20
+> > CC Gareth
+> >=20
+> > On Thu, Feb 9, 2023 at 2:32 PM Cl=C3=A9ment L=C3=A9ger <clement.leger@b=
+ootlin.com> wrote: =20
+> > > The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since=
+ this
+> > > configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400=
+-eb.
+> > > It adds support for the 2 additional switch ports (port C and D) that=
+ are
+> > > available on that board.
+> > >
+> > > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>   =
+=20
+> >=20
+> > Thanks for your patch!
+> >  =20
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-eb.dts
+> > > @@ -0,0 +1,94 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Device Tree Source for the RZN1D-EB Board
+> > > + *
+> > > + * Copyright (C) 2023 Schneider-Electric
+> > > + *
+> > > + */
+> > > +
+> > > +#include "r9a06g032-rzn1d400-db.dts"
+> > > +
+> > > +/ {
+> > > +       model =3D "RZN1D-EB Board";
+> > > +       compatible =3D "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
+> > > +                    "renesas,r9a06g032";
+> > > +};
+> > > +
+> > > +&mii_conv2 {
+> > > +       renesas,miic-input =3D <MIIC_SWITCH_PORTD>;
+> > > +       status =3D "okay";
+> > > +};
+> > > +
+> > > +&mii_conv3 {
+> > > +       renesas,miic-input =3D <MIIC_SWITCH_PORTC>;
+> > > +       status =3D "okay";
+> > > +};
+> > > +
+> > > +&pinctrl{
+> > > +       pins_eth1: pins-eth1 {
+> > > +               pinmux =3D <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGM=
+II_RMII)>,
+> > > +                        <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(14, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(15, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(16, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(17, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(18, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(19, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(20, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(21, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(22, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(23, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>;
+> > > +               drive-strength =3D <6>;
+> > > +               bias-disable;
+> > > +       };
+> > > +
+> > > +       pins_eth2: pins-eth2 {
+> > > +               pinmux =3D <RZN1_PINMUX(24, RZN1_FUNC_CLK_ETH_MII_RGM=
+II_RMII)>,
+> > > +                        <RZN1_PINMUX(25, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(26, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(27, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(28, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(29, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(30, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(31, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(32, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(33, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(34, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>,
+> > > +                        <RZN1_PINMUX(35, RZN1_FUNC_CLK_ETH_MII_RGMII=
+_RMII)>;
+> > > +               drive-strength =3D <6>;
+> > > +               bias-disable;
+> > > +       };
+> > > +};
+> > > +
+> > > +&switch {
+> > > +       pinctrl-names =3D "default";   =20
+> >=20
+> > No need to specify pinctrl-names, as it is inherited from
+> > r9a06g032-rzn1d400-db.dts. =20
+>=20
+> Acked.
+>=20
+> >  =20
+> > > +       pinctrl-0 =3D <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pin=
+s_eth4>,
+> > > +                   <&pins_mdio1>;
+> > > +
+> > > +       mdio {
+> > > +               /* CN15 and CN16 switches must be configured in MDIO2=
+ mode */
+> > > +               switch0phy1: ethernet-phy@1 {
+> > > +                       reg =3D <1>;
+> > > +                       marvell,reg-init =3D <3 16 0 0x1010>;   =20
+> >=20
+> > marvell,reg-init is not documented in any DT bindings document? =20
+>=20
+> Indeed, this is not somethiong that should be made available here. It's
+> only inverting the LED polarity but supported by some internal patch.
+> I'll remove that.
+>=20
+
+Hi Geert,
+
+I actually was confused by a property I added in another device-tree but
+marvell,reg-init exists, is handled by the marvell phy driver and used
+in a few device-trees. Strangely, it is not documented anywhere. So I
+can either remove that (and the LED won't work properly) or let it live
+depending on what you prefer.
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
