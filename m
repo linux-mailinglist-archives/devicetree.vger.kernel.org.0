@@ -2,99 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1990B69878C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 22:55:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 226A96987D2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 23:30:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbjBOVzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 16:55:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44138 "EHLO
+        id S229710AbjBOWaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 17:30:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbjBOVzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 16:55:53 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58020252B2;
-        Wed, 15 Feb 2023 13:55:52 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id c15so17144699oic.8;
-        Wed, 15 Feb 2023 13:55:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ex8q2zDUDeHEdh9muzAk4Jw77fIktw5FRuus10AheOk=;
-        b=Or9QCws6+84T67Itj41A+YueCjA2NCy/F0Zf/G0XCAt8ddqZQPpHkiqieNMXnxUy8n
-         YipAFldY1Il6r2ZFtFpvEtDJgw+jMfYWvMxGvgQoaHQ4oL1yxFoqTtRZ/0hZ3scyRG/B
-         4LSVrBhE2yCEdvkUkHBjeR3LMdzpxiR1dVOm6aXsYnTIMFVbxk4Nf+cBr9oRZ3HoNEsA
-         DlCAvSQmuEzguyeZnDNItLClAD+o7oLPiCNL+NLWgREhhKbbjyebVXFF2toWAVGEj3N7
-         J/qK8g9XIrRWwox32tz0iuvjiteMgESLwcinBq6B7AwcHDDHH3YQ78YihfLLcU5x2sfM
-         CRfA==
-X-Gm-Message-State: AO0yUKWwT0gm04KVI2ISJIePqGWl5bLkKRN/79WkNJdBxfbswcAuLPxA
-        pxfovvPd3r91q2s6avmnpbS5GQjFVw==
-X-Google-Smtp-Source: AK7set8QEGb5Omu11b1kK2zldOn2Cwel+sPXJ54m7NTANSoNlGVwmnR845tkxxROFaoxx4TJ7xVENQ==
-X-Received: by 2002:a05:6808:6c8:b0:378:c02:bd51 with SMTP id m8-20020a05680806c800b003780c02bd51mr1645069oih.33.1676498151530;
-        Wed, 15 Feb 2023 13:55:51 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m128-20020acabc86000000b0037880fdb1f6sm7747510oif.24.2023.02.15.13.55.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 13:55:51 -0800 (PST)
-Received: (nullmailer pid 691658 invoked by uid 1000);
-        Wed, 15 Feb 2023 21:55:50 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] of: Use of_property_present() helper
-Date:   Wed, 15 Feb 2023 15:55:47 -0600
-Message-Id: <20230215215547.691573-2-robh@kernel.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230215215547.691573-1-robh@kernel.org>
-References: <20230215215547.691573-1-robh@kernel.org>
+        with ESMTP id S229705AbjBOWaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 17:30:10 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5071715545;
+        Wed, 15 Feb 2023 14:30:07 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECC34383;
+        Wed, 15 Feb 2023 23:30:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1676500205;
+        bh=wuX1VZt0T858LjbZibYjh+vwfA2kQppU1KSaFN5knas=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tO0adn+bBg5xGaoBSPqH82mU3mr9fOg8gJnoicwYhYe2QMWTe0DesyQINgrDcPj2B
+         sAurAjSnxDIIroWAHnQ37J1yssjUpf2udaKPwcetQs1Jh2cRePy76XncmgFg9iwYQR
+         7HiKIWPsZ2RNalaglxFiA1HJhi3NE6jlay2kggAE=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 00/15] media: i2c: imx290: Mono support, minor fixes, alternate INCK, and more controls
+Date:   Thu, 16 Feb 2023 00:29:48 +0200
+Message-Id: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use of_property_present() instead of of_get_property/of_find_property()
-in places where we just need to test presence of a property.
+Hello,
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/platform.c | 2 +-
- drivers/of/property.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+This patch series combines the "[PATCH v2 0/2] Add support for mono
+version of Sony IMX290 sensor" ([1]) and "[PATCH v2 00/13] imx290: Minor
+fixes, support for alternate INCK, and more ctrls" ([2]) previously
+submitted by Dave into a single series.
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index b3878a98d27f..284379e67649 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -529,7 +529,7 @@ static int __init of_platform_default_populate_init(void)
- 		int ret;
- 
- 		/* Check if we have a MacOS display without a node spec */
--		if (of_get_property(of_chosen, "linux,bootx-noscreen", NULL)) {
-+		if (of_property_present(of_chosen, "linux,bootx-noscreen")) {
- 			/*
- 			 * The old code tried to work out which node was the MacOS
- 			 * display based on the address. I'm dropping that since the
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 134cfc980b70..ff71d2ac26cb 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1086,7 +1086,7 @@ static struct device_node *of_get_compat_node(struct device_node *np)
- 			np = NULL;
- 		}
- 
--		if (of_find_property(np, "compatible", NULL))
-+		if (of_property_present(np, "compatible"))
- 			break;
- 
- 		np = of_get_next_parent(np);
+As promised in my review of v2 of both series, I have tested the changes
+with my IMX327 camera sensor, connected to the i.MX8MP ISP, with
+libcamera. I haven't noticed any regression (but, full disclaimer, I
+haven't tested all the newly features). I think we're thus good to go.
+
+This version handles all review comments from v2, resulting in the
+following changes:
+
+- Deprecate the sony,imx290 compatible
+- Update the DT example to use the new sony,imx290lqr compatible
+- Drop unneeded pointer cast
+- Don't move imx290_of_match table
+- Fix typos
+
+The code has also been rebased on top of the latest media master branch,
+with rebase conflicts and rebase-induced compilation breakages fixed.
+
+The patches are available from
+
+git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git next/media/sensors/imx290
+
+[1] https://lore.kernel.org/linux-media/20230203191644.947643-1-dave.stevenson@raspberrypi.com
+[2] https://lore.kernel.org/linux-media/20230203191811.947697-1-dave.stevenson@raspberrypi.com
+
+Dave Stevenson (15):
+  media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+  media: i2c: imx290: Add support for the mono sensor variant
+  media: i2c: imx290: Match kernel coding style on whitespace
+  media: i2c: imx290: Set the colorspace fields in the format
+  media: i2c: imx290: Add V4L2_SUBDEV_FL_HAS_EVENTS and subscribe hooks
+  media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s
+  media: i2c: imx290: Support 60fps in 2 lane operation
+  media: i2c: imx290: Use CSI timings as per datasheet
+  media: i2c: imx290: Convert V4L2_CID_HBLANK to read/write
+  media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
+  media: i2c: imx290: VMAX is mode dependent
+  media: i2c: imx290: Remove duplicated write to IMX290_CTRL_07
+  media: i2c: imx290: Add support for 74.25MHz external clock
+  media: i2c: imx290: Add support for H & V Flips
+  media: i2c: imx290: Add the error code to logs in start_streaming
+
+ .../bindings/media/i2c/sony,imx290.yaml       |  24 +-
+ drivers/media/i2c/imx290.c                    | 537 ++++++++++++++----
+ 2 files changed, 442 insertions(+), 119 deletions(-)
+
+
+base-commit: 83e0f265aa8d0e37cc8e15d318b64da0ec03ff41
 -- 
-2.39.1
+Regards,
+
+Laurent Pinchart
 
