@@ -2,149 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EFC9698578
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:22:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 085BB69857E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjBOUWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 15:22:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
+        id S229489AbjBOUYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 15:24:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjBOUWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:22:39 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 069AB298DC
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:22:38 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id m14so20379269wrg.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:22:37 -0800 (PST)
+        with ESMTP id S229561AbjBOUYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:24:40 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4582F5B98
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:24:39 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h16so20387353wrz.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:24:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zuvkbge6mkPjzQmD+S7+UtE4w7WXp41ZirBm14pyU3M=;
-        b=qCEEn9/tno24xig3oKrHMSFuh6lNDZw6d+ZJKxQLgfAf/b9K2EWWph2iLmBxpf0/ZC
-         9rXCDLBvrYVeqPeXUkzppaq7fyGf4bHi5NATAabtUr8dIdcs7AM03Q82RzK6Cmm3JDRl
-         vBfP2s5TICP4gSL3B8weD5lT2OZnZ+3whe2BSUGtUZVCcJOsS3fyzKJGNgetVhHEHWKw
-         YcbhjOC+Vs0XgoWbZiyvqn/NEm5M9j8pAK9anobkc/zzG+rWPeA8DXttqLp4BZVCtaxR
-         WQCJ+yhkrk1OOmECoxu3jaRLX4Gv4WlaLVnYc0ljzETNjoZCuZcGlXkOiJzqv4qijHNO
-         Jffg==
+        bh=CY6JL34+05ZutGH4b4w3uUc4dNGAvqRNs71sw+XJV5E=;
+        b=p0NuNLGeIiNPB5WqgDRjiFM/bwDPcUQu6zYFUajET34tWBE7Xm/dyU9FNgs0TyZ6AJ
+         RF7aEt8KLWxdL7ZwbO2VuvjI1z5dc5SMh/7q1osa4HZo3DVBFu73gQO6Lq0uonChDUsi
+         RJO1HhBwHtA+xb0+6VEPGPKi3vHaBuEzKnOiJ1fhN2i7CW00Dafji2TZpB0kqPGzLb4Z
+         jOBOnxe+cTtB7CV4mYlcox/g0pjMKVAUA2vXnX/lzLYrLy8E/d58dY1/uVfqqZRpR/iI
+         uK4oDGGpYYP91kLv0V7ZInIgBPezwT/TMfJRP5mNw8TiUOAvCJ1NZZ3dGNLcjNUiVprU
+         wU7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zuvkbge6mkPjzQmD+S7+UtE4w7WXp41ZirBm14pyU3M=;
-        b=0h+gdmPyZ7evNjUsaqkGJ/8GIWFDJVHKZNWZEPg5HsE2HiCuEL8eavnVF6ufQsZbIf
-         29soArHdht5gxsjNt3nlBOMlYerlZfK+0gX3bnHx4XvODWVofRa8mTuWBlbpjhpbadyO
-         RxdZ6LkWzpl9oWiLFvYdfmbsQb3BjMNRO2L2TWub2mfI6pmX1Yhs+SxdiU3jHnlpRDEy
-         ZznBlTbc7mnxkzDrdjWU+bLcMHGAWIhG7XX9ksTp6Qfewez2fI9Kg7ezNsFLZOgXji+u
-         Ml/dh122DW3cObO4UL9cV8GeMbmEN9NHR/wCfG+La1/Z6FfoqKGYR/j/aj+MnJt5H3rz
-         X1fA==
-X-Gm-Message-State: AO0yUKUyCR40eGfalNIP5Alf93J57cVGpOxlyaYhCXGnqWMCZKIsN+Va
-        5LkXn5qSUZGsGndh+HWqlbW+Tw==
-X-Google-Smtp-Source: AK7set8kwaAvwsp2XgtutyMrq28GMkilDYbwLvbErvHm9KDz6GXESTACCyuIJDxf3J5pkyLgwsoJqQ==
-X-Received: by 2002:a5d:47cb:0:b0:2c5:642f:1550 with SMTP id o11-20020a5d47cb000000b002c5642f1550mr522851wrc.15.1676492556479;
-        Wed, 15 Feb 2023 12:22:36 -0800 (PST)
+        bh=CY6JL34+05ZutGH4b4w3uUc4dNGAvqRNs71sw+XJV5E=;
+        b=6V1CjrJkTCz+j7tZGiruDDm4q72GCJNDak/lWAQF/T5TvbxA/tKNzJ07GiywDd6DW8
+         n45Bby1ix4ZJnxF4Ti+4eHlh9weoCdfzLhWbubQdo8vWzLQHfn3Gy+xAEO+HYeef1e5T
+         A5vZMaXz0G5WbLA26gVoMfZNJrud/6H8sMPZ3REZkARoQQWS4LktaRQ3h9KIsuEkRVjv
+         QEK7Z+g2YooHuyo4zVgGjAd+2bT2RUUDP6VDvz4e8qExyNgUn1t2dmlk332y+VGTmqfu
+         lyxDB2VypBk18+M8inMbgtHK2izoXdFol6ZFRZGLDHLPgfh4agXZI/yihTjXyib/x+6E
+         ZXFg==
+X-Gm-Message-State: AO0yUKXLQk46QegcgBSqZvoeB3OXbQaM4+1mnfJwIjnXDJwtoWh5H9EU
+        weozO7nUhmg7AvPwlgwUnyouvg==
+X-Google-Smtp-Source: AK7set9RbhuagyYiHFUSwwI3kdKoottE6qkGYvfMtZ624U/WicDoI3LqQ4K18skzS337+C0BpIYL+w==
+X-Received: by 2002:a5d:40cf:0:b0:2c5:594b:10d1 with SMTP id b15-20020a5d40cf000000b002c5594b10d1mr2636526wrq.23.1676492677768;
+        Wed, 15 Feb 2023 12:24:37 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a12-20020a5d508c000000b002c55ec7f661sm6928606wrt.5.2023.02.15.12.22.34
+        by smtp.gmail.com with ESMTPSA id z13-20020adfe54d000000b002c567e3808bsm4507094wrm.40.2023.02.15.12.24.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Feb 2023 12:22:35 -0800 (PST)
-Message-ID: <5e4b15b1-30f6-ca4e-1355-3c4d36b79541@linaro.org>
-Date:   Wed, 15 Feb 2023 21:22:34 +0100
+        Wed, 15 Feb 2023 12:24:37 -0800 (PST)
+Message-ID: <9f2debc1-6040-3182-5945-36e668eac171@linaro.org>
+Date:   Wed, 15 Feb 2023 21:24:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: nxp,pcf8563: move
- pcf85263/pcf85363 to a dedicated binding
+Subject: Re: [PATCH v3] dt-bindings: mailbox: sti-mailbox: convert to DT
+ schema
 Content-Language: en-US
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     Alain Volmat <avolmat@me.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20230215081815.3141776-1-javier.carrasco@wolfvision.net>
- <20230215081815.3141776-2-javier.carrasco@wolfvision.net>
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230214204945.4215-1-avolmat@me.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230215081815.3141776-2-javier.carrasco@wolfvision.net>
+In-Reply-To: <20230214204945.4215-1-avolmat@me.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2023 09:18, Javier Carrasco wrote:
-> These Real Time Clocks are managed by the rtc-pcf85363 device driver,
-> which now supports the quartz-load-femtofarads property.
+On 14/02/2023 21:49, Alain Volmat wrote:
+> Convert the sti-mailbox.txt file into st,sti-mailbox.yaml
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> Signed-off-by: Alain Volmat <avolmat@me.com>
 > ---
-> v2:
->   - create new bindings instead of adding conditional properties to an
->     existing one.
+> v3: remove quotes around $ref
+> v2: update commit log
+>     remove quotes around urls
+>     add mbox-name $ref
+>     remove mbox-name from required properties since not mandatory in the driver
+>     fix IRQ type in example
 > 
->  .../devicetree/bindings/rtc/nxp,pcf85363.yaml | 60 +++++++++++++++++++
->  .../devicetree/bindings/rtc/nxp,pcf8563.yaml  |  2 -
->  2 files changed, 60 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
-> new file mode 100644
-> index 000000000000..52aa3e2091e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/nxp,pcf85363.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Philips PCF85263/PCF85363 Real Time Clock
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,pcf85263
-> +      - nxp,pcf85363
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  quartz-load-femtofarads:
-> +    description:
-> +      The capacitive load of the quartz(x-tal).
-> +    enum: [6000, 7000, 12500]
-> +    default: 7000
-> +
-> +  start-year: true
-> +  wakeup-source: true
+>  .../bindings/mailbox/st,sti-mailbox.yaml      | 53 +++++++++++++++++++
+>  .../bindings/mailbox/sti-mailbox.txt          | 51 ------------------
 
-You could drop these two and use "unevaluatedProperties: false" instead
-of additionalProp - less coding and binding already will be prepared for
-any new RTC common properties. But it is fine for me as is.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
