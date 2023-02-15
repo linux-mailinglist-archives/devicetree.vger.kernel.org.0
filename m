@@ -2,110 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 918E06982BE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 18:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1866982E5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 19:04:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbjBORzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 12:55:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56450 "EHLO
+        id S230084AbjBOSEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 13:04:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbjBORzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 12:55:42 -0500
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D621C596;
-        Wed, 15 Feb 2023 09:55:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1676483740; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=R9zdu4+WzlQk2Yn0NLUar52TJiHYx7OI4m2mwDlD37A=;
-        b=JMBQAfbXiG4Q1ckxmQGkoJ5Qwry3u3ogtBJM8X512hbfmaZCfCZ4sDxBNfVsDB5syFV+pm
-        tjFmjiR797MynbmQEVfdgwScDfdodEOukLjh3EpuVJGjyBkOX3DTQ4wJnySisW7VwU42jq
-        VUOhiapOShTvFvc3XBvuA+JLYmDKfCs=
-Message-ID: <e1f92dc94a3e3df7c4bb32b441802cb333ccb6db.camel@crapouillou.net>
-Subject: Re: [RFC 0/3] Make WLAN and Bluetooth basically work for CI20
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Kees Cook <keescook@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     riccardo Mottola <riccardo.mottola@libero.it>, paul@boddie.org.uk,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com
-Date:   Wed, 15 Feb 2023 17:55:36 +0000
-In-Reply-To: <cover.1676482318.git.hns@goldelico.com>
-References: <cover.1676482318.git.hns@goldelico.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229532AbjBOSEe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 13:04:34 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE7834F7D
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 10:04:33 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pSM8f-0002SN-Cg; Wed, 15 Feb 2023 19:04:17 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pSM8a-005AGu-Sc; Wed, 15 Feb 2023 19:04:14 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pSM8b-003oDD-CX; Wed, 15 Feb 2023 19:04:13 +0100
+Date:   Wed, 15 Feb 2023 19:04:10 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
+        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/5] arm64: dts: apple: t8103: Add PWM controller
+Message-ID: <20230215180410.jhontngsrb5vvv55@pengutronix.de>
+References: <20230114132508.96600-1-fnkl.kernel@gmail.com>
+ <20230114132508.96600-4-fnkl.kernel@gmail.com>
+ <20230215111652.lyhebfntqlibtmex@pengutronix.de>
+ <CAMT+MTRydNiYnhBJYVCoS5iXnhr7MywCV0t7FanHWwbwv2TrbQ@mail.gmail.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yilcpz6dzlbuyk6k"
+Content-Disposition: inline
+In-Reply-To: <CAMT+MTRydNiYnhBJYVCoS5iXnhr7MywCV0t7FanHWwbwv2TrbQ@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
 
-Le mercredi 15 f=C3=A9vrier 2023 =C3=A0 18:31 +0100, H. Nikolaus Schaller a
-=C3=A9crit=C2=A0:
-> RFC V1 2023-02-15 18:31:58:
-> With the applied patch
->=20
-> rtc: jz4740: Register clock provider for the CLK32K pin
->=20
-> by Paul Cercueil <paul@crapouillou.net> it is now possible to make
-> the
-> CI20 WiFi and Bluetooth setup do something reasonable.
->=20
-> This series adds #clock-cells to the jz4780 and fixes the device tree
-> for
-> the CI20. It contains two ugly workarounds since BL_WAKE and WL_WAKE
-> can not
-> be controlled as shutdown-gpios or device-wakeup-gpios by the
-> drivers.
-> We also update the power setup and sequencing and add a clock chain
-> for
-> the 32 kHz clock.
-> Finally, we enable some required CONFIGs for the CI20.
+--yilcpz6dzlbuyk6k
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I do have my own patchset that I wanted to send in time for 6.3-rc1,
-but the RTC patchset was merged very late so I was waiting for -rc1 to
-be out before sending it to Thomas.
+Hello Sasha,
 
-I think my DT changes are better as I have no workarounds. I need to
-clean up the commits (and have proper commit messages) but you can find
-my current work there:
-https://github.com/OpenDingux/linux/commits/for-upstream-ci20
+On Wed, Feb 15, 2023 at 05:47:07PM +0100, Sasha Finkelstein wrote:
+> On Wed, 15 Feb 2023 at 12:16, Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > This missing newline looks wrong.
+> >
+> > Otherwise the patch looks fine to me.
+>
+> Do you want a respin, or can this be fixed when applying the patch?
 
-Cheers,
--Paul
+I'm not the one who will apply this patch, so I cannot say. Having said
+that, I wonder who will apply. Will this go via the arm tree, or via
+pwm?
 
->=20
-> Tested on CI20 with v6.2-rc6.
->=20
-> H. Nikolaus Schaller (3):
-> =C2=A0 MIPS: DTS: jz4780: add #clock-cells to rtc_dev
-> =C2=A0 MIPS: DTS: CI20: fixes for WiFi/Bluetooth
-> =C2=A0 MIPS: configs: ci20: enable drivers we need for WiFi/Bluetooth
->=20
-> =C2=A0arch/mips/boot/dts/ingenic/ci20.dts=C2=A0=C2=A0=C2=A0 | 77 ++++++++=
-++++++++++++++--
-> --
-> =C2=A0arch/mips/boot/dts/ingenic/jz4780.dtsi |=C2=A0 2 +
-> =C2=A0arch/mips/configs/ci20_defconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 18 +++++-
-> =C2=A03 files changed, 84 insertions(+), 13 deletions(-)
->=20
+Best regards
+Uwe
 
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--yilcpz6dzlbuyk6k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPtHpcACgkQwfwUeK3K
+7AnIUwf6A8IV/CXEap01qlTZISJ8wYlKprzqbrcfuItftWrFrVoOTL8ocSEW4fu8
+sYqEZHd/xW1SkHLXn6aCg/1ujkFmMZDT9facvPhBTDzAE61zGbOL7NsDGY1hrhja
+ngit5Zl77keHvabKpqNYKR9LmZtLTiqKpVKDcwhayfxGd1BRcMcA2sfm6HGjsNwi
++rIXUdzIJDC0t2rzDZAcFJWFbnScMeudnnV2A0OX/ljvDBKZLkQGDp5hHOxc6qmo
+oToABe+8nrF6EtQit0ChbjudhiCrFKKezElks34G4E1Ch3cmj952/rTNHkDA5DVS
+7nGERtYC2i9H2l/3kpgKsUSxI85jAw==
+=ODpw
+-----END PGP SIGNATURE-----
+
+--yilcpz6dzlbuyk6k--
