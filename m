@@ -2,284 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC0A6977AC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 08:56:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C09406977B5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 08:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233772AbjBOH4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 02:56:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40012 "EHLO
+        id S229988AbjBOH7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 02:59:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233768AbjBOH4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 02:56:04 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B0F29E2B;
-        Tue, 14 Feb 2023 23:56:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1676447762; x=1707983762;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5aoHBNbyTFqHml3HSxh/oFSy5INCLfV1gfmvC5sjnPc=;
-  b=HjDqm7rvemGGCIi70sHJy4HU3zTTc42f62YFVVv6+FoqR6OAF9BI25ch
-   3csp6eK8jJ8+1G6pjIolvaaguvU9m5n4vCGC41/rZdTG60ZYMkt3suNht
-   YNkxuSXVGqjJLhWWpvbt0CTWCn5KQq4JAGarp/JoZQmipAUwP7MXzfsiY
-   twWgDSNQ87KnngkKb7JpLylzsuEtUNYZA8T2F9TbVM49qS1iHS53uf9Xs
-   pMVGh7j42E3bBZ6Kx8huYf5PwPEHEnnskMDE1X76S8GFegi9YXoySbUc7
-   VSENwtMkjxWcIIiXJdZMHE5AIX1Ekh7/XsWypb+A5bcVsH2uTT9Aotf9p
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,299,1669071600"; 
-   d="scan'208";a="29090243"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 15 Feb 2023 08:56:00 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 15 Feb 2023 08:56:00 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 15 Feb 2023 08:56:00 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1676447760; x=1707983760;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5aoHBNbyTFqHml3HSxh/oFSy5INCLfV1gfmvC5sjnPc=;
-  b=HGR8fmAwS2yqWbdyABF50NCUh4zD3jvXwleEnwYUUSbgdkKF1J8W/t7z
-   7/Gc0eNJWirYPcmUzqqv4kOj1xV8LUGVBltPi/r452CgjDBg8hfj8uSVQ
-   mfHRUaRwbHlVm9XC3brxJj3TDiSPQUnfo5qCvQGi4q3yIjRZ/0Hh/3PPF
-   d7FfKu5QT8XEmoUO/rKwX8AFJQam2xJmXQBG/DhV80veqe8I2GpMmIaiX
-   oLJXy1nR67PP6JX/ygfjiETYMAH5Z1q6vExQBNsuOThciXe7I2qrZuhBW
-   Qbu6tHMMoMRggKr8TCLvbEQ1m5XZtAvxCy7WZTSXpZhnA1lPuTKSqbVPj
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,299,1669071600"; 
-   d="scan'208";a="29090241"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Feb 2023 08:55:59 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S233500AbjBOH7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 02:59:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F364B30B09;
+        Tue, 14 Feb 2023 23:59:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 88234280056;
-        Wed, 15 Feb 2023 08:55:59 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Liu Ying <victor.liu@nxp.com>
-Cc:     marex@denx.de, stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        krzysztof.kozlowski@linaro.org, LW@karo-electronics.de
-Subject: Re: [PATCH v3 4/6] drm: lcdif: Check consistent bus format and flags across first bridges
-Date:   Wed, 15 Feb 2023 08:55:59 +0100
-Message-ID: <2148647.Icojqenx9y@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230213085612.1026538-5-victor.liu@nxp.com>
-References: <20230213085612.1026538-1-victor.liu@nxp.com> <20230213085612.1026538-5-victor.liu@nxp.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id A1C42B82041;
+        Wed, 15 Feb 2023 07:59:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4747C433D2;
+        Wed, 15 Feb 2023 07:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676447973;
+        bh=AlCe6D2Z5HBYC7NYZS/tW0FzZvw6nnZ59icnVKOLKFk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jhATrRqocqdcwNHySsDVAM4AJyFs9yiQMEbw5gRi0OLjrfbo7rGn0WM4F7C6BDEaY
+         88FIpaZCHfsdHcN11pSI6TtSBfcrqPbIxuKukZooWrUCi+eXeA7PC25EPIX6olT+T2
+         DuHwtXABCp2ui7Jny/a1Y+1mtz5pRO4X/T0EkdMUFou4v/pSWfEWce2cEt6q3vGOes
+         /9sI7CpeRXKAbgTNSP7rM8yChLnkdEQYFFSppjo/AK9YHOIKgFTxYuOqqZf0xc6Wfm
+         fz/AoRswpVXS0tsxu8Fezhh9KOsPURglgrpfmZLyIG7jvH1mc5Wj7JLi5Ti55GPR3r
+         fOUfSyC3YvktA==
+Date:   Wed, 15 Feb 2023 07:59:27 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+Message-ID: <Y+yQ3+0lyo5OQr2z@spud>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com>
+ <Y6zHy9oL4xzl+6Rd@spud>
+ <c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com>
+ <Y9og8Q2UnJ452KH/@wendy>
+ <df6755ed-a358-ea01-d89e-f3c004b9c297@starfivetech.com>
+ <Y9wR7Up+iObw5qoE@spud>
+ <8b35344f-0f78-b4e6-2b5e-e6ec6b101a75@starfivetech.com>
+ <Y+yM6HgAbDoWlu1G@spud>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kQ9J72Cft2Lox+eu"
+Content-Disposition: inline
+In-Reply-To: <Y+yM6HgAbDoWlu1G@spud>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu,
 
-thanks for the update.
+--kQ9J72Cft2Lox+eu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Am Montag, 13. Februar 2023, 09:56:10 CET schrieb Liu Ying:
-> The single LCDIF embedded in i.MX93 SoC may drive multiple displays
-> simultaneously.  Check bus format and flags across first bridges in
-> ->atomic_check() to ensure they are consistent.  This is a preparation
-> for adding i.MX93 LCDIF support.
+On Wed, Feb 15, 2023 at 07:42:32AM +0000, Conor Dooley wrote:
+> Hey Hal!
 >=20
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v2->v3:
-> * No change.
+> On Wed, Feb 15, 2023 at 11:07:15AM +0800, Hal Feng wrote:
+> > On Thu, 2 Feb 2023 19:41:33 +0000, Conor Dooley wrote:
+> > > On Fri, Feb 03, 2023 at 02:56:41AM +0800, Hal Feng wrote:
+> > >> On Wed, 1 Feb 2023 08:21:05 +0000, Conor Dooley wrote:
+> > >> > On Wed, Feb 01, 2023 at 03:21:48PM +0800, Hal Feng wrote:
+> > >> >> On Wed, 28 Dec 2022 22:48:43 +0000, Conor Dooley wrote:
+> > >> >> > On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
+> > >> >=20
+> > >> >> >> +/ {
+> > >> >> >> +	compatible =3D "starfive,jh7110";
+> > >> >> >> +	#address-cells =3D <2>;
+> > >> >> >> +	#size-cells =3D <2>;
+> > >> >> >> +
+> > >> >> >> +	cpus {
+> > >> >> >> +		#address-cells =3D <1>;
+> > >> >> >> +		#size-cells =3D <0>;
+> > >> >> >> +
+> > >> >> >> +		S76_0: cpu@0 {
+> > >> >> >> +			compatible =3D "sifive,u74-mc", "riscv";
+> > >> >> >=20
+> > >> >> > The label here says S76 but the compatible says u74-mc.
+> > >> >>=20
+> > >> >> U74-MC has 5 cores including 1 * S7 core and 4 * U74 cores.
+> > >> >>=20
+> > >> >> > Which is correct? Your docs say S7 and S76, so I would imagine =
+that it
+> > >> >> > is actually an S76?
+> > >> >>=20
+> > >> >> I found SiFive website [1] call it S76, but call it S7 in other p=
+laces.
+> > >> >> So I misunderstood this. Considering the ISA difference you descr=
+ibed
+> > >> >> as below, I think it's proper to change the label to "S7_0".
+> > >> >=20
+> > >> > I'm less worried about the label & more interested in the compatib=
+le.
+> > >> > hart0 is, as you say, not a u74. Should we not be adding a "sifive=
+,s7"
+> > >> > compatible string to Documentation/devicetree/bindings/riscv/cpus.=
+yaml
+> > >> > and using that here instead?
+> > >>=20
+> > >> First of all, it's my fault that I didn't check the revision of U74-=
+MC
+> > >> manual, so most of my previous replies might not make sense.
+> > >=20
+> > > No that's fine. The manual stuff confused me too when I went looking
+> > > initially, and I still get get mixed up by the fact that there are
+> > > core-complex manuals but not core manuals.
+> > >=20
+> > >> If we add a new compatible string for S7, should we change the compa=
+tibles
+> > >> of hart1~3 to "sifive,u74" also? And then, there may be no point kee=
+ping some
+> > >> compatible strings of core complex like "sifive,u74-mc" and "sifive,=
+u54-mc".
+> > >> I'm not sure about this.
+> > >=20
+> > > [...]
+> > >=20
+> > >> >> Yes, "RV64IMAC" is correct. The monitor core in U74-MC is a
+> > >> >> S7-series core, not S76.
+> > >> >=20
+> > >> > Cool, thanks.
+> > >>=20
+> > >> Now I think it might be another version of S76.
+> > >=20
+> > > The SiFive docs describe the u74-mc core complex, which AFAIU you hav=
+e,
+> > > as being 1x S7 & 4x U7.
+> > >=20
+> > > I'd be happy with new binding for "sifive,s7" & then we use that here.
+> > > If you're sure it's S76, we can also use that. S76 is described, in w=
+hat
+> > > docs I can see, as a core complex containing an S7, so S7 seems likely
+> > > to be correct?
+> >=20
+> > I will add a new binding for "sifive,s7" and modify the code as follows.
+> >=20
+> > 	S7_0: cpu@0 {
+> > 		compatible =3D "sifive,s7", "riscv";
+> > 		...
+> > 		riscv,isa =3D "rv64imac_zicsr_zba_zbb";
 >=20
-> v1->v2:
-> * Split from patch 2/2 in v1. (Marek, Alexander)
-> * Drop a comment about bridge input bus format from
-> lcdif_crtc_atomic_check().
->=20
->  drivers/gpu/drm/mxsfb/lcdif_drv.c |  2 -
->  drivers/gpu/drm/mxsfb/lcdif_drv.h |  1 -
->  drivers/gpu/drm/mxsfb/lcdif_kms.c | 76 ++++++++++++++++++++++---------
->  3 files changed, 55 insertions(+), 24 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> b/drivers/gpu/drm/mxsfb/lcdif_drv.c index cc2ceb301b96..b5b9a8e273c6 1006=
-44
-> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> @@ -52,8 +52,6 @@ static int lcdif_attach_bridge(struct lcdif_drm_private
-> *lcdif) if (ret)
->  		return dev_err_probe(drm->dev, ret, "Failed to attach=20
-bridge\n");
->=20
-> -	lcdif->bridge =3D bridge;
-> -
->  	return 0;
->  }
->=20
-> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.h
-> b/drivers/gpu/drm/mxsfb/lcdif_drv.h index 6cdba6e20c02..aa6d099a1897 1006=
-44
-> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.h
-> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.h
-> @@ -31,7 +31,6 @@ struct lcdif_drm_private {
->  	} planes;
->  	struct drm_crtc			crtc;
->  	struct drm_encoder		encoder;
-> -	struct drm_bridge		*bridge;
->  };
->=20
->  static inline struct lcdif_drm_private *
-> diff --git a/drivers/gpu/drm/mxsfb/lcdif_kms.c
-> b/drivers/gpu/drm/mxsfb/lcdif_kms.c index 294cecdf5439..4ea3d2b2cf61 1006=
-44
-> --- a/drivers/gpu/drm/mxsfb/lcdif_kms.c
-> +++ b/drivers/gpu/drm/mxsfb/lcdif_kms.c
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_color_mgmt.h>
-> +#include <drm/drm_connector.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fb_dma_helper.h>
-> @@ -424,15 +425,19 @@ static int lcdif_crtc_atomic_check(struct drm_crtc
-> *crtc, struct drm_atomic_state *state)
->  {
->  	struct drm_device *drm =3D crtc->dev;
-> -	struct lcdif_drm_private *lcdif =3D to_lcdif_drm_private(drm);
->  	struct drm_crtc_state *crtc_state =3D=20
-drm_atomic_get_new_crtc_state(state,
->  							=09
-	  crtc);
->  	struct lcdif_crtc_state *lcdif_crtc_state =3D
-> to_lcdif_crtc_state(crtc_state); bool has_primary =3D crtc_state->plane_m=
-ask
-> &
->  			   drm_plane_mask(crtc->primary);
-> +	struct drm_connector_state *connector_state;
-> +	struct drm_connector *connector;
-> +	struct drm_encoder *encoder;
->  	struct drm_bridge_state *bridge_state;
-> -	struct drm_bridge *bridge =3D lcdif->bridge;
-> -	int ret;
-> +	struct drm_bridge *bridge;
-> +	u32 bus_format, bus_flags;
-> +	bool format_set =3D false, flags_set =3D false;
-> +	int ret, i;
->=20
->  	/* The primary plane has to be enabled when the CRTC is active. */
->  	if (crtc_state->active && !has_primary)
-> @@ -442,26 +447,55 @@ static int lcdif_crtc_atomic_check(struct drm_crtc
-> *crtc, if (ret)
->  		return ret;
->=20
-> -	bridge_state =3D drm_atomic_get_new_bridge_state(state, bridge);
-> -	if (!bridge_state)
-> -		lcdif_crtc_state->bus_format =3D MEDIA_BUS_FMT_FIXED;
-> -	else
-> -		lcdif_crtc_state->bus_format =3D bridge_state-
->input_bus_cfg.format;
-> -
-> -	if (lcdif_crtc_state->bus_format =3D=3D MEDIA_BUS_FMT_FIXED) {
-> -		dev_warn_once(drm->dev,
-> -			      "Bridge does not provide bus format,=20
-assuming
-> MEDIA_BUS_FMT_RGB888_1X24.\n" -			      "Please fix=20
-bridge driver by
-> handling atomic_get_input_bus_fmts.\n"); -		lcdif_crtc_state-
->bus_format =3D
-> MEDIA_BUS_FMT_RGB888_1X24;
-> +	/* Try to find consistent bus format and flags across first bridges.=20
-*/
-> +	for_each_new_connector_in_state(state, connector, connector_state,=20
-i) {
-> +		if (!connector_state->crtc)
-> +			continue;
-> +
-> +		encoder =3D connector_state->best_encoder;
-> +
-> +		bridge =3D drm_bridge_chain_get_first_bridge(encoder);
-> +		if (!bridge)
-> +			continue;
-> +
-> +		bridge_state =3D drm_atomic_get_new_bridge_state(state,=20
-bridge);
-> +		if (!bridge_state)
-> +			bus_format =3D MEDIA_BUS_FMT_FIXED;
-> +		else
-> +			bus_format =3D bridge_state->input_bus_cfg.format;
-> +
-> +		if (bus_format =3D=3D MEDIA_BUS_FMT_FIXED) {
-> +			dev_warn(drm->dev,
-> +				 "[ENCODER:%d:%s]'s bridge does not=20
-provide bus format, assuming
-> MEDIA_BUS_FMT_RGB888_1X24.\n" +				=20
-"Please fix bridge driver by handling
-> atomic_get_input_bus_fmts.\n", +				=20
-encoder->base.id, encoder->name);
-> +			bus_format =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +		}
-> +
-> +		if (!format_set) {
-> +			lcdif_crtc_state->bus_format =3D bus_format;
-> +			format_set =3D true;
-> +		} else if (lcdif_crtc_state->bus_format !=3D bus_format) {
-> +			DRM_DEV_DEBUG_DRIVER(drm->dev, "inconsistent bus=20
-format\n");
+> I'm not sure that I'd bother with the zicsr, it gets added automagically
+> by the Makefile if needed:
 
-Is there another way to know the actual reason the atomic_check fails? Mayb=
-e=20
-this is worthy to be an error message instead.
+Meh, I probably shouldn't have replied to this first thing in the
+morning as this comment of mine doesn't really make sense.
+I skipped the middle part of my point here...
+What I meant was that you can avoid zicsr & zifencei because when the
+binding was defined they were included in i. I meant to use the
+following as a kinda explanation of it depending on the version of the
+ISA spec & that we just assume that zicsr & zifencei are present.
+I suppose you can add them to the isa string if you like, dtbs_check
+shouldn't complain!
 
-Best regards,
-Alexander
-
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (bridge->timings)
-> +			bus_flags =3D bridge->timings->input_bus_flags;
-> +		else if (bridge_state)
-> +			bus_flags =3D bridge_state->input_bus_cfg.flags;
-> +		else
-> +			bus_flags =3D 0;
-> +
-> +		if (!flags_set) {
-> +			lcdif_crtc_state->bus_flags =3D bus_flags;
-> +			flags_set =3D true;
-> +		} else if (lcdif_crtc_state->bus_flags !=3D bus_flags) {
-> +			DRM_DEV_DEBUG_DRIVER(drm->dev, "inconsistent bus=20
-flags\n");
-> +			return -EINVAL;
-> +		}
->  	}
+> | # Newer binutils versions default to ISA spec version 20191213 which mo=
+ves some
+> | # instructions from the I extension to the Zicsr and Zifencei extension=
+s.
+> | toolchain-need-zicsr-zifencei :=3D $(call cc-option-yn, -march=3D$(risc=
+v-march-y)_zicsr_zifencei)
+> | riscv-march-$(toolchain-need-zicsr-zifencei) :=3D $(riscv-march-y)_zics=
+r_zifencei
 >=20
-> -	if (bridge->timings)
-> -		lcdif_crtc_state->bus_flags =3D bridge->timings-
->input_bus_flags;
-> -	else if (bridge_state)
-> -		lcdif_crtc_state->bus_flags =3D bridge_state-
->input_bus_cfg.flags;
-> -	else
-> -		lcdif_crtc_state->bus_flags =3D 0;
-> -
->  	return 0;
->  }
+> Otherwise, thanks for the actual confirmation of zba/zbb!
+>=20
+> Thanks,
+> Conor.
+>=20
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
 
+--kQ9J72Cft2Lox+eu
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+yQ3wAKCRB4tDGHoIJi
+0kxzAPwN73uyE4IsaZf4b1X4/Vmjb/o64MHCIZFKFohWkyQhBQEA4Rycf080nEpr
+wuhi9sHdevKSoKg9OzsIer2j0qfAxwY=
+=eXZM
+-----END PGP SIGNATURE-----
+
+--kQ9J72Cft2Lox+eu--
