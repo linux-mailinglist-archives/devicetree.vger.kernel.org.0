@@ -2,120 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C9F697D5C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 14:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD12697D66
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 14:30:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231935AbjBON3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 08:29:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
+        id S229508AbjBONay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 08:30:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232106AbjBON30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 08:29:26 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45D95580;
-        Wed, 15 Feb 2023 05:29:09 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pSHqN-0005qp-0A;
-        Wed, 15 Feb 2023 14:29:07 +0100
-Date:   Wed, 15 Feb 2023 13:27:30 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Mingming Su <Mingming.Su@mediatek.com>,
-        linux-crypto@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: rng: Add MediaTek MT7981 TRNG
-Message-ID: <c750e786ad0f529d2ae63c8f766d3c294808ff53.1676467500.git.daniel@makrotopia.org>
-References: <89865515728cb937b6591160ad9c30b4bcc8dd41.1676467500.git.daniel@makrotopia.org>
+        with ESMTP id S229478AbjBONay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 08:30:54 -0500
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 626C739BB5;
+        Wed, 15 Feb 2023 05:30:33 -0800 (PST)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-16346330067so22897970fac.3;
+        Wed, 15 Feb 2023 05:30:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g4qykj63UJf7GGMu3AeFW/Cix8FHMY/Z5cChBHKcGMk=;
+        b=NzQma3AeTuGF9zf2Aoyo25zuJOn665qQ8fsmJxxzl3Wj2zRi2jS8uAqJpbdfWILeaM
+         97oMNGmo9mJRLoVnwkXN6F04rf4Eh3Ix/Qg3D4lffnnsWGOu2GqR4LZhilu4R0y2+OM6
+         cwv0s11fZNW6roDLP1uWarSXY4j4HgBMegEv6hfaPYEvvs+ypWpJXNLOKM/aIGnRuwjG
+         5z0aUsYTxauIAgXMcEqqTfVHsGskcBzmluabtfpYCig0ZnAtbLb3wIJM/ObQy0barcax
+         rrT3t6yK/03/NWVdXwN1QkfZl5g+Dx7TSdZj/URs6AIOCa7Iec4DtOrICqWAi1YY2MGz
+         AM/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g4qykj63UJf7GGMu3AeFW/Cix8FHMY/Z5cChBHKcGMk=;
+        b=N7ON++FNTZtMM/Pkxi0WsUFbZWR0BbK9JIPdHSbNNTpsjeQ8yMxTlIw2ibfo2suKZy
+         6zmXvTFS+viwu5XsDYs/DqUSvLH/r+oJx0e5/1S3xXHjGZAxGKy0AyAG/ngziD63VLuM
+         nwYYm3Tp+YY2I4afJaLirFIKl9moSKq6F6wa/ImfRZ/HeDLFoFqAgXUen89EKOs3TMHA
+         0v4f9QywvH6sG52I7IoJRKh1C1qXWIF/QBJkNtPgiMY959C7gyvj24pakAGbfr0mPSaS
+         gJYThBj7F2jyVi3TAMsqP2FbsUVnrFKJXkOEyHMMUKn9Wy+MiwkrpIh8BAQQlmL1eeQV
+         317w==
+X-Gm-Message-State: AO0yUKUnMeB133XXlzb6F+6K+0luBYi9dO+PHv2b+OacaJEIw2tXiPzS
+        htd64QGwUAZhpf3FxTLWkr8KZLlYdBYUEM9d31g=
+X-Google-Smtp-Source: AK7set9ki4pg0AuPCD9fr8wF88TxedgHHpBoHt9MD5W5LvjEFLJ0fT+W3KgH4JkIIHpUWCGfqvT8bmgkLNLACbBG4+4=
+X-Received: by 2002:a05:6870:2051:b0:169:d2b7:df22 with SMTP id
+ l17-20020a056870205100b00169d2b7df22mr327851oad.245.1676467832510; Wed, 15
+ Feb 2023 05:30:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <89865515728cb937b6591160ad9c30b4bcc8dd41.1676467500.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <1676426457-1389-1-git-send-email-cy_huang@richtek.com>
+ <1676426457-1389-2-git-send-email-cy_huang@richtek.com> <Y+zYIyaWt1tQcUt7@sirena.org.uk>
+In-Reply-To: <Y+zYIyaWt1tQcUt7@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 15 Feb 2023 21:30:21 +0800
+Message-ID: <CADiBU38MztMgusoCCGfEt2fdNhB7hC=4t3h_UN6-3s3FEvpXgQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek RT5739
+To:     Mark Brown <broonie@kernel.org>
+Cc:     cy_huang@richtek.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation to describe the MediaTek true random number generator
-which is provided by ARM TrustedFirmware-A of the MT7981.
+Hi,
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../bindings/rng/mediatek,mt7981-rng.yaml     | 39 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 40 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
+Mark Brown <broonie@kernel.org> =E6=96=BC 2023=E5=B9=B42=E6=9C=8815=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:03=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Wed, Feb 15, 2023 at 10:00:56AM +0800, cy_huang@richtek.com wrote:
+>
+> > +  richtek,vsel-active-high:
+> > +    description: |
+> > +      If property is present, use the 'VSEL1' register group for buck =
+control.
+> > +      Else, use the 'VSEL0' register group. This depends on external h=
+ardware
+> > +      'VSEL' pin connecton.
+> > +    type: boolean
+>
+> I would expect this to be GPIO controlled rather than fixed in
+> the design, at least for some systems?  The name suggests it's
+> supposed to control the polarity of a GPIO too.  Sadly we don't
+> really have good infrastructure for fixed GPIOs AFAIK...  ideally
+> this would be a GPIO and then if we need to hold it high then
+> there would be some binding we could connect to the GPIO that
+> says that.  We don't have that though so for now a fixed property
+> might be OK.
 
-diff --git a/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml b/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
-new file mode 100644
-index 000000000000..d577d60538d8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rng/mediatek,mt7981-rng.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek Random number generator (v2/SMC)
-+
-+maintainers:
-+  - Daniel Golle <daniel@makrotopia.org>
-+
-+properties:
-+  $nodename:
-+    pattern: "^rng$"
-+
-+  compatible:
-+    enum:
-+      - mediatek,mt7981-rng
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: rng
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    rng {
-+      compatible = "mediatek,mt7981-rng";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90d82aba6d73..523f1abf00d5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13148,6 +13148,7 @@ F:	drivers/leds/leds-mt6323.c
- MEDIATEK RANDOM NUMBER GENERATOR SUPPORT
- M:	Sean Wang <sean.wang@mediatek.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/rng/mediatek,*
- F:	drivers/char/hw_random/mtk-rng-v2.c
- F:	drivers/char/hw_random/mtk-rng.c
- 
--- 
-2.39.1
-
+It's most like two phase buck controllers internally. 'Vsel' to
+control which buck output.
+Each phase has its registers (voltage/enable/mode).
+The common usage of 'vsel' pin is to connect the pin by SoC suspend/resume =
+pin.
+This can be used to implement system low power design (like as system
+awake 0.6V, sleep 0.3V or sleep buck off).
+I haven't seen the usage to connect it directly by GPIO.
