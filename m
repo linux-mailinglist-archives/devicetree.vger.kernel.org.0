@@ -2,100 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E391769739D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 02:28:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C71BB6973AE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 02:34:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233601AbjBOB2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 20:28:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
+        id S229647AbjBOBeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 20:34:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233472AbjBOB2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 20:28:05 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E331A1BA;
-        Tue, 14 Feb 2023 17:28:03 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 7D07E24E20A;
-        Wed, 15 Feb 2023 09:27:56 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 09:27:56 +0800
-Received: from [192.168.1.100] (183.27.97.168) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 09:27:55 +0800
-Message-ID: <e6b9e942-633b-90f4-104e-1d6fbe5d0235@starfivetech.com>
-Date:   Wed, 15 Feb 2023 09:27:54 +0800
+        with ESMTP id S229520AbjBOBeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 20:34:37 -0500
+Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D33F531E3E
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 17:34:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1676424875; x=1707960875;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=924sFE1g2peLp9NKsKxgM5DmB2kwoPIL6ZPhHqjTmPs=;
+  b=XSD9ZIdygeVw39k/5MTUMN52IDMHq0dp0AgU/82vl6Wtnjjq857Apoth
+   PBNTDRdPmZGGGpoGtcBQRPzuqJOy1pgBSLKoWTZidPBVzMOKjGCq724S2
+   WLIQTEzLMabXn62TBAdOLH8j172YoNTzZf45/v3n++uA+lf1TZrEI2az0
+   Dt6SliyuZn6+PsMjnFRr3B9Uzpnr1m9UKHSZ2I9kOxlexPZpr2uq8kVv1
+   JaNmLDp6T9bsldvhG1aJ3k3h1AsJoi67sG6rRyxBK6wDLnE23OSURodor
+   oGK4hJ9gNngkP1tawtV0LL93JuPK+OvEdvvzjXhPdZyFDQJkFRxhy7yG8
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,298,1669046400"; 
+   d="scan'208";a="223343953"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 15 Feb 2023 09:34:34 +0800
+IronPort-SDR: S29D1j8t3KUzLOiRm8ZGCkyb6pbZ/X2rFX2usLs/C9/35tzUQEoqu6qIxmsMaeZHVK2vyZa4Gw
+ HveJZERqw5LC935eRwH83kNihztddyf983nuW8I37FeRfM+deR6fWWq2tqmXdnpbje5OtH8N3X
+ qMpFoMA3uhZrDam2+EpjzlVPgnWQSYZC86kvwZAN2Btdhjtu2xxdM3uRZWzcs9La1zVJi6GoDS
+ fNuTc4yjnALY4msAnoZEtxs3pPnM3wvk8SfeoJzyuXUNcqEkf8S+lGnDMxDFmxH5sgBKFV8G6s
+ fe8=
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2023 16:51:42 -0800
+IronPort-SDR: y9hRiR4G7T3KleFqqTaXauc3dOYw52tGOvx+upmHLhuGU1HtEZEw8yU6m7Ei+uSzcE8vFL6BLz
+ GbSXgyWwNs5Ogzi9p1qpTMoBhBpTXf/Ofu+9kde9uOWPDO64RHpQHIy+kUp1rZPxuATyoJqaUe
+ BD0dziQbLlJMqZAtwUzfn8GQSJX1VT1rt5YmsLkpMuoRzOMDylIJK5T5YLOv5q43MQN0vw1ibf
+ 3MiNffQEFrYRvxxZyYUuegPm6ar9CynjqsumPU2TeVK9D7Y7MruWg9duGeiuPH1NyDyYuL5THp
+ TbQ=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Feb 2023 17:34:35 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PGgbt3DKvz1Rwrq
+        for <devicetree@vger.kernel.org>; Tue, 14 Feb 2023 17:34:34 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1676424872; x=1679016873; bh=924sFE1g2peLp9NKsKxgM5DmB2kwoPIL6ZP
+        hHqjTmPs=; b=NcuHz+QIvy/H1saJ1qx0LhjhASzkhwupF2e17HetKqtchLXPyg6
+        4vzTQpHO5bx1T0MAYixisGjshMgI2+osHJTLQR25WdPV6A4p+V0dJ3M9B565bFiZ
+        Xr+PFelkSFA6GLUSstdQLI6pS0W48QdNBClx133kPPunU5B8gOAPMMbH4RYKKdi6
+        Wr6dTwe8hCEhe9FE1aP4dfb3O7OOyVVQkCMRSdHG8nl2JiYb0KFxZN8gDmAeKe0a
+        VTOUj6Bfdu7H3a63V0/Nyb7tjHUB2ZLQQw+Ksm4K/6RlftLKrCwg4/qatQd8EZfG
+        R5hcXaJ52Fe1Vo0atlBBZYQiQS+9w1csSAQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id CSMagAmN3jT2 for <devicetree@vger.kernel.org>;
+        Tue, 14 Feb 2023 17:34:32 -0800 (PST)
+Received: from [10.225.163.116] (unknown [10.225.163.116])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PGgbn6kStz1RvLy;
+        Tue, 14 Feb 2023 17:34:29 -0800 (PST)
+Message-ID: <0fa5cef4-7096-7f59-422a-98011d01437c@opensource.wdc.com>
+Date:   Wed, 15 Feb 2023 10:34:28 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v1 2/4] dt-bindings: phy: Add starfive,jh7110-dphy-rx
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 8/9] PCI: rockchip: Use u32 variable to access 32-bit
+ registers
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+        alberto.dassatti@heig-vd.ch
+Cc:     xxm@rock-chips.com, rick.wertenbroek@heig-vd.ch,
+        stable@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230210061713.6449-1-changhuang.liang@starfivetech.com>
- <20230210061713.6449-3-changhuang.liang@starfivetech.com>
- <3fc07187-f5a0-86d1-a0fd-ba18a2baf555@linaro.org>
- <f33f3ce0-ca0f-b24e-eab6-4fb9a6ae6d4a@starfivetech.com>
- <80d16935-dad6-8087-c1b2-1d5b1c3f738e@linaro.org>
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <80d16935-dad6-8087-c1b2-1d5b1c3f738e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
+ <20230214140858.1133292-9-rick.wertenbroek@gmail.com>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20230214140858.1133292-9-rick.wertenbroek@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.168]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/2/14 15:49, Krzysztof Kozlowski wrote:
-> On 14/02/2023 04:07, Changhuang Liang wrote:
->>
->> OK, will drop quotes
->>
->>>> +    items:
->>>> +      items:
->>>> +        - description: phandle of AON SYSCON
->>>> +        - description: register offset
->>>> +    description: The register of dphy rx driver can be configured
->>>> +      by AON SYSCON in this property.
->>>
->>> Can be? So does not have to? But you made it a required property....
->>>
->>
->> Maybe I described it wrong.
->> I will change to:
->> 	description: The power of dphy rx can be configured by AON SYSCON
->> 	  in this property.
->> It is like AON SYSCON is the power switch of the dphy rx, it is necessary to
->> configure the AON SYSCON register, so I made it a required property.
+On 2/14/23 23:08, Rick Wertenbroek wrote:
+> Previously u16 variables were used to access 32-bit registers, this
+> resulted in not all of the data being read from the registers. Also
+> the left shift of more than 16-bits would result in moving data out
+> of the variable. Use u32 variables to access 32-bit registers
 > 
-> Then do not use "can be". Can is optional: I can jump but I don't have
-> to. :)
+> Fixes: cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip PCIe controller")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+> ---
+>  drivers/pci/controller/pcie-rockchip-ep.c | 10 +++++-----
+>  drivers/pci/controller/pcie-rockchip.h    |  1 +
+>  2 files changed, 6 insertions(+), 5 deletions(-)
 > 
+> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
+> index ca5b363ba..b7865a94e 100644
+> --- a/drivers/pci/controller/pcie-rockchip-ep.c
+> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
+> @@ -292,15 +292,15 @@ static int rockchip_pcie_ep_set_msi(struct pci_epc *epc, u8 fn, u8 vfn,
+>  {
+>  	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+>  	struct rockchip_pcie *rockchip = &ep->rockchip;
+> -	u16 flags;
+> +	u32 flags;
+>  
+>  	flags = rockchip_pcie_read(rockchip,
+>  				   ROCKCHIP_PCIE_EP_FUNC_BASE(fn) +
+>  				   ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+>  	flags &= ~ROCKCHIP_PCIE_EP_MSI_CTRL_MMC_MASK;
+>  	flags |=
+> -	   ((multi_msg_cap << 1) <<  ROCKCHIP_PCIE_EP_MSI_CTRL_MMC_OFFSET) |
+> -	   PCI_MSI_FLAGS_64BIT;
+> +	   (multi_msg_cap << ROCKCHIP_PCIE_EP_MSI_CTRL_MMC_OFFSET) |
 
-OK, "can be" will be changed to "is".
+ROCKCHIP_PCIE_EP_MSI_CTRL_MMC_OFFSET is 17 and multi_msg_cap is a u8...
+Not nice.
 
-Best Regards,
-Changhuang Liang
+Locally, I added the local variable:
+
+u32 mmc = multi_msg_cap;
+
+And use mmc instead of multi_msg_cap to avoid issues. Also,
+
+> +	   (PCI_MSI_FLAGS_64BIT << ROCKCHIP_PCIE_EP_MSI_FLAGS_OFFSET);
+>  	flags &= ~ROCKCHIP_PCIE_EP_MSI_CTRL_MASK_MSI_CAP;
+>  	rockchip_pcie_write(rockchip, flags,
+>  			    ROCKCHIP_PCIE_EP_FUNC_BASE(fn) +
+> @@ -312,7 +312,7 @@ static int rockchip_pcie_ep_get_msi(struct pci_epc *epc, u8 fn, u8 vfn)
+>  {
+>  	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+>  	struct rockchip_pcie *rockchip = &ep->rockchip;
+> -	u16 flags;
+> +	u32 flags;
+>  
+>  	flags = rockchip_pcie_read(rockchip,
+>  				   ROCKCHIP_PCIE_EP_FUNC_BASE(fn) +
+> @@ -374,7 +374,7 @@ static int rockchip_pcie_ep_send_msi_irq(struct rockchip_pcie_ep *ep, u8 fn,
+>  					 u8 interrupt_num)
+>  {
+>  	struct rockchip_pcie *rockchip = &ep->rockchip;
+> -	u16 flags, mme, data, data_mask;
+> +	u32 flags, mme, data, data_mask;
+>  	u8 msi_count;
+>  	u64 pci_addr, pci_addr_mask = 0xff;
+>  	u32 r;
+> diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
+> index e90c2a2b8..11dbf53cd 100644
+> --- a/drivers/pci/controller/pcie-rockchip.h
+> +++ b/drivers/pci/controller/pcie-rockchip.h
+> @@ -227,6 +227,7 @@
+>  #define ROCKCHIP_PCIE_EP_CMD_STATUS			0x4
+>  #define   ROCKCHIP_PCIE_EP_CMD_STATUS_IS		BIT(19)
+>  #define ROCKCHIP_PCIE_EP_MSI_CTRL_REG			0x90
+> +#define   ROCKCHIP_PCIE_EP_MSI_FLAGS_OFFSET			16
+
+You are not using this macro anywhere. The name is also not very
+descriptive. Better have it as:
+
+#define   ROCKCHIP_PCIE_EP_MSI_CTRL_ME		BIT(16)
+
+to match the TRM name and be clear that the bit indicates if MSI is
+enabled or not.
+
+>  #define   ROCKCHIP_PCIE_EP_MSI_CTRL_MMC_OFFSET		17
+>  #define   ROCKCHIP_PCIE_EP_MSI_CTRL_MMC_MASK		GENMASK(19, 17)
+>  #define   ROCKCHIP_PCIE_EP_MSI_CTRL_MME_OFFSET		20
+
+-- 
+Damien Le Moal
+Western Digital Research
+
