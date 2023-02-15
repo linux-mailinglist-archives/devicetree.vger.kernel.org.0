@@ -2,221 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A620697BB4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AEA697BBC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:29:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230479AbjBOM0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 07:26:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46906 "EHLO
+        id S233108AbjBOM3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 07:29:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbjBOM0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:26:45 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B598934C1B;
-        Wed, 15 Feb 2023 04:26:43 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 749B024E300;
-        Wed, 15 Feb 2023 20:26:42 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 20:26:42 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 20:26:41 +0800
-Message-ID: <d967d628-6961-568e-d72e-ce0e17153818@starfivetech.com>
-Date:   Wed, 15 Feb 2023 20:26:40 +0800
+        with ESMTP id S229546AbjBOM3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:29:07 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1B336446;
+        Wed, 15 Feb 2023 04:29:05 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DC18C6602193;
+        Wed, 15 Feb 2023 12:29:02 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676464143;
+        bh=WN5KFfVxspp0n9FETRjSp4FseprWdAvg7PmlHOmIOx0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OahlZnfc5QdgrlNeNrP8UDreZQCHyTo5ZWNrC9nQ6k9yY0AAt49dB7xNaPt+4r67d
+         HGYr75yHOu1XEJDPUXheAilFVYXXKbPhjbjZ7MLQShoApbp5cpm879FUXacIwHyyNo
+         KCDqVTOgKmsbmp45ETotMF+kaizptGg4NxDwyYU/vAuV2aopLm6XaTL4bsz/n4M2RU
+         WzwsFkBHzr1+njff/cN+j537ftmgkfY9cVEd6Bo6wL7/bc8CzaGGD3QCAxPtKVAxbe
+         SkROXRzR8YxCrJSCbbp3zwrmrOt8FlQuUjQ0uwPaGEqUWX1B5oYn2pjWdp4w8+0BBw
+         YsqrOIcAR4fVw==
+Message-ID: <1fb45a25-38e9-d9cf-6c69-0ba0dac83824@collabora.com>
+Date:   Wed, 15 Feb 2023 13:29:00 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 3/4] riscv: dts: starfive: Add mmc node
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v7 07/12] remoteproc: mediatek: Probe multi-core SCP
 Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-4-william.qiu@starfivetech.com>
- <CAJM55Z8gVEZS4Ws2Gi7_JbdkS-4y3_8mQvR4ZxLCWZ4A1y9X1g@mail.gmail.com>
- <CAJM55Z-h+CUmWtkn31Ek+qvxrOr5_Jz3QRRLqWYLz2A0E+h+rA@mail.gmail.com>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <CAJM55Z-h+CUmWtkn31Ek+qvxrOr5_Jz3QRRLqWYLz2A0E+h+rA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230215041257.14548-1-tinghan.shen@mediatek.com>
+ <20230215041257.14548-8-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230215041257.14548-8-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/2/15 20:22, Emil Renner Berthing wrote:
-> On Wed, 15 Feb 2023 at 13:12, Emil Renner Berthing
-> <emil.renner.berthing@canonical.com> wrote:
->>
->> On Wed, 15 Feb 2023 at 12:35, William Qiu <william.qiu@starfivetech.com> wrote:
->> >
->> > Add the mmc node for the StarFive JH7110 SoC.
->> > Set mmco node to emmc and set mmc1 node to sd.
->> >
->> > Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->> > ---
->> >  .../jh7110-starfive-visionfive-2.dtsi         | 23 +++++++++
->> >  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 47 +++++++++++++++++++
->> >  2 files changed, 70 insertions(+)
->> >
->> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> > index c60280b89c73..e1a0248e907f 100644
->> > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> > @@ -42,6 +42,29 @@ &rtc_osc {
->> >         clock-frequency = <32768>;
->> >  };
->> >
->> > +&mmc0 {
->> > +       max-frequency = <100000000>;
->> > +       bus-width = <8>;
->> > +       cap-mmc-highspeed;
->> > +       mmc-ddr-1_8v;
->> > +       mmc-hs200-1_8v;
->> > +       non-removable;
->> > +       cap-mmc-hw-reset;
->> > +       post-power-on-delay-ms = <200>;
->> > +       status = "okay";
->> > +};
->> > +
->> > +&mmc1 {
->> > +       max-frequency = <100000000>;
->> > +       bus-width = <4>;
->> > +       no-sdio;
->> > +       no-mmc;
->> > +       broken-cd;
->> > +       cap-sd-highspeed;
->> > +       post-power-on-delay-ms = <200>;
->> > +       status = "okay";
->> > +};
+Il 15/02/23 05:12, Tinghan Shen ha scritto:
+> The difference of single-core SCP and multi-core SCP device tree is
+> the presence of child device nodes described SCP cores. The SCP
+> driver populates the platform device and checks the child nodes
+> to identify whether it's a single-core SCP or a multi-core SCP.
 > 
-> These nodes are also still oddly placed in the middle of the external
-> clocks. Again please keep the external clocks at the top and then
-> order the nodes alphabetically to have some sort of system.
+> The resource structure of the multi-core SCP is a list of remoteproc
+> instances which is different to the single-core SCP. The corresponding
+> resource releasing action is based on the type of SCP.
 > 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>   drivers/remoteproc/mtk_common.h |   4 +
+>   drivers/remoteproc/mtk_scp.c    | 179 +++++++++++++++++++++++++++++---
+>   2 files changed, 168 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 3778894c96f3..7821cb15d6fd 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -140,6 +140,10 @@ struct mtk_scp {
+>   	size_t dram_size;
+>   
+>   	struct rproc_subdev *rpmsg_subdev;
+> +
+> +	struct list_head elem;
+> +	struct list_head cluster_cores;
+> +	struct list_head *cluster;
 
+I don't understand why you need both `cluster_cores` and `cluster`... check below.
 
-Hi Emil,
+>   };
+>   
+>   /**
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index 6270c388727a..6588e5acb159 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -862,7 +862,9 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
+>   }
+>   
+>   static int scp_rproc_init(struct platform_device *pdev,
+> -			  struct mtk_scp_of_regs *of_regs)
+> +			  struct mtk_scp_of_regs *of_regs,
+> +			  const struct mtk_scp_of_data *of_data,
+> +			  bool is_multi_core)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct device_node *np = dev->of_node;
+> @@ -883,7 +885,7 @@ static int scp_rproc_init(struct platform_device *pdev,
+>   	scp = (struct mtk_scp *)rproc->priv;
+>   	scp->rproc = rproc;
+>   	scp->dev = dev;
+> -	scp->data = of_device_get_match_data(dev);
+> +	scp->data = of_data;
+>   	platform_set_drvdata(pdev, scp);
+>   
+>   	scp->reg_base = of_regs->reg_base;
+> @@ -932,9 +934,11 @@ static int scp_rproc_init(struct platform_device *pdev,
+>   		goto remove_subdev;
+>   	}
+>   
+> -	ret = rproc_add(rproc);
+> -	if (ret)
+> -		goto remove_subdev;
+> +	if (!is_multi_core) {
+> +		ret = rproc_add(rproc);
+> +		if (ret)
+> +			goto remove_subdev;
+> +	}
+>   
+>   	return 0;
+>   
+> @@ -950,9 +954,125 @@ static int scp_rproc_init(struct platform_device *pdev,
+>   	return ret;
+>   }
+>   
+> +static void scp_rproc_free(struct mtk_scp *scp)
+> +{
+> +	int i;
+> +
+> +	scp_remove_rpmsg_subdev(scp);
+> +	scp_ipi_unregister(scp, SCP_IPI_INIT);
+> +	scp_unmap_memory_region(scp);
+> +	for (i = 0; i < SCP_IPI_MAX; i++)
+> +		mutex_destroy(&scp->ipi_desc[i].lock);
+> +	mutex_destroy(&scp->send_lock);
+> +}
+> +
+> +static void scp_rproc_exit(struct platform_device *pdev)
+> +{
+> +	struct mtk_scp *scp = platform_get_drvdata(pdev);
+> +
+> +	rproc_del(scp->rproc);
+> +	scp_rproc_free(scp);
+> +}
+> +
+> +static int scp_cluster_init(struct platform_device *pdev,
+> +			    struct mtk_scp_of_regs *of_regs)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev_of_node(dev);
+> +	struct platform_device *cpdev;
+> +	struct device_node *child;
+> +	const struct mtk_scp_of_data **cluster_of_data;
+> +	struct list_head *cluster;
 
-I'll update it in next version.
+Here you have a local `cluster` pointer.....
 
-Best Regards
-William
+> +	struct mtk_scp *scp, *temp;
+> +	int core_id, num_cores;
+> +	int ret;
+> +
+> +	cluster_of_data = (const struct mtk_scp_of_data **)of_device_get_match_data(dev);
+> +
+> +	for (num_cores = 0; cluster_of_data[num_cores]; num_cores++)
+> +		;
+> +
+> +	cluster = NULL;
 
->> >  &gmac0_rmii_refin {
->> >         clock-frequency = <50000000>;
->> >  };
->> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> > index 64d260ea1f29..17f7b3ee6ca3 100644
->> > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> > @@ -314,6 +314,11 @@ uart2: serial@10020000 {
->> >                         status = "disabled";
->> >                 };
->> >
->> > +               stg_syscon: syscon@10240000 {
->> > +                       compatible = "starfive,jh7110-stg-syscon", "syscon";
->> > +                       reg = <0x0 0x10240000 0x0 0x1000>;
->> > +               };
->> > +
->> >                 uart3: serial@12000000 {
->> >                         compatible = "snps,dw-apb-uart";
->> >                         reg = <0x0 0x12000000 0x0 0x10000>;
->> > @@ -370,6 +375,11 @@ syscrg: clock-controller@13020000 {
->> >                         #reset-cells = <1>;
->> >                 };
->> >
->> > +               sys_syscon: syscon@13030000 {
->> > +                       compatible = "starfive,jh7110-sys-syscon", "syscon";
->> > +                       reg = <0x0 0x13030000 0x0 0x1000>;
->> > +               };
->> > +
->> >                 gpio: gpio@13040000 {
->> >                         compatible = "starfive,jh7110-sys-pinctrl";
->> >                         reg = <0x0 0x13040000 0x0 0x10000>;
->> > @@ -397,6 +407,11 @@ aoncrg: clock-controller@17000000 {
->> >                         #reset-cells = <1>;
->> >                 };
->> >
->> > +               aon_syscon: syscon@17010000 {
->> > +                       compatible = "starfive,jh7110-aon-syscon", "syscon";
->> > +                       reg = <0x0 0x17010000 0x0 0x1000>;
->> > +               };
->> > +
->> >                 gpioa: gpio@17020000 {
->> >                         compatible = "starfive,jh7110-aon-pinctrl";
->> >                         reg = <0x0 0x17020000 0x0 0x10000>;
->> > @@ -407,5 +422,37 @@ gpioa: gpio@17020000 {
->> >                         gpio-controller;
->> >                         #gpio-cells = <2>;
->> >                 };
->> > +
->> > +               mmc0: mmc@16010000 {
->> > +                       compatible = "starfive,jh7110-mmc";
->> > +                       reg = <0x0 0x16010000 0x0 0x10000>;
->> > +                       clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
->> > +                                <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
->> > +                       clock-names = "biu","ciu";
->> > +                       resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
->> > +                       reset-names = "reset";
->> > +                       interrupts = <74>;
->> > +                       fifo-depth = <32>;
->> > +                       fifo-watermark-aligned;
->> > +                       data-addr = <0>;
->> > +                       starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
->> > +                       status = "disabled";
->> > +               };
->> > +
->> > +               mmc1: mmc@16020000 {
->> > +                       compatible = "starfive,jh7110-mmc";
->> > +                       reg = <0x0 0x16020000 0x0 0x10000>;
->> > +                       clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
->> > +                                <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
->> > +                       clock-names = "biu","ciu";
->> > +                       resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
->> > +                       reset-names = "reset";
->> > +                       interrupts = <75>;
->> > +                       fifo-depth = <32>;
->> > +                       fifo-watermark-aligned;
->> > +                       data-addr = <0>;
->> > +                       starfive,sysreg = <&sys_syscon 0x9c 0x1 0x3e>;
->> > +                       status = "disabled";
->> > +               };
->>
->> Hi William,
->>
->> These nodes still don't seem to be sorted by address, eg. by the
->> number after the @
->> Also please move the dt-binding patch before this one, so dtb_check
->> won't fail no matter where git bisect happens to land.
->>
->> /Emil
->>
->> >         };
->> >  };
->> > --
->> > 2.34.1
->> >
->> >
->> > _______________________________________________
->> > linux-riscv mailing list
->> > linux-riscv@lists.infradead.org
->> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+(unrelated: please initialize cluster and core_id on the declaration, not here)
+
+> +	core_id = 0;
+> +	for_each_available_child_of_node(np, child) {
+> +		if (core_id >= num_cores) {
+> +			ret = -EINVAL;
+> +			dev_err(dev, "Not support core %d\n", core_id);
+> +			of_node_put(child);
+> +			goto init_fail;
+> +		}
+> +
+> +		cpdev = of_find_device_by_node(child);
+> +		if (!cpdev) {
+> +			ret = -ENODEV;
+> +			dev_err(dev, "Not found platform device for core %d\n", core_id);
+> +			of_node_put(child);
+> +			goto init_fail;
+> +		}
+> +
+> +		ret = scp_rproc_init(cpdev, of_regs, cluster_of_data[core_id], true);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to initialize core %d rproc\n", core_id);
+> +			put_device(&cpdev->dev);
+> +			of_node_put(child);
+> +			goto init_fail;
+> +		}
+> +
+> +		scp = platform_get_drvdata(cpdev);
+> +		put_device(&cpdev->dev);
+> +		if (core_id == 0) {
+> +			INIT_LIST_HEAD(&scp->cluster_cores);
+
+...then here you initialize cluster_cores,
+
+> +			cluster = &scp->cluster_cores;
+
+and assign to your local `cluster` pointer and even set it
+
+> +			platform_set_drvdata(pdev, cluster);
+
+as platform drvdata.
+
+> +		}
+> +
+> +		list_add_tail(&scp->elem, cluster);
+
+Still using the local `cluster` pointer, which is `scp->cluster_cores`
+
+> +		scp->cluster = cluster;
+
+...and here, `scp->cluster` effectively points to local `cluster`, which is
+anyway `scp->cluster_cores`.
+
+As far as I understand, `scp->cluster` is EITHER `scp->cluster_cores` or NULL,
+hence the question: why do you need both scp->cluster and scp->cluster_cores,
+if they're always pointing to the same list?
+
+P.S.: I won't cut the rest of the patch so that the readers of this reply won't
+       have to click around to see the whole code; comments end here!
+
+Regards,
+Angelo
+
+> +
+> +		of_node_put(child);
+> +		core_id++;
+> +	}
+> +
+> +	list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
+> +		ret = rproc_add(scp->rproc);
+> +		if (ret)
+> +			goto add_fail;
+> +	}
+> +
+> +	return 0;
+> +
+> +add_fail:
+> +	list_for_each_entry_continue(scp, cluster, elem) {
+> +		rproc_del(scp->rproc);
+> +	}
+> +init_fail:
+> +	if (cluster) {
+> +		list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
+> +			list_del(&scp->elem);
+> +			scp_rproc_free(scp);
+> +		}
+> +	}
+> +	return ret;
+> +}
+> +
+> +static void scp_cluster_exit(struct platform_device *pdev)
+> +{
+> +	struct list_head *cluster = platform_get_drvdata(pdev);
+> +	struct platform_device *cpdev;
+> +	struct mtk_scp *scp, *temp;
+> +
+> +	list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
+> +		list_del(&scp->elem);
+> +		cpdev = to_platform_device(scp->dev);
+> +		scp_rproc_exit(cpdev);
+> +	}
+> +}
+> +
+>   static int scp_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct device_node *core_node;
+>   	struct resource *res;
+>   	struct mtk_scp_of_regs scp_regs;
+>   	int ret;
+> @@ -975,21 +1095,43 @@ static int scp_probe(struct platform_device *pdev)
+>   		scp_regs.l1tcm_phys = res->start;
+>   	}
+>   
+> -	return scp_rproc_init(pdev, &scp_regs);
+> +	ret = devm_of_platform_populate(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to populate platform devices\n");
+> +
+> +	core_node = of_get_child_by_name(np, "scp");
+> +	of_node_put(core_node);
+> +
+> +	if (!core_node) {
+> +		dev_info(dev, "single-core scp\n");
+> +
+> +		ret = scp_rproc_init(pdev, &scp_regs, of_device_get_match_data(dev), false);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to initialize single-core scp\n");
+> +	} else {
+> +		dev_info(dev, "multi-core scp\n");
+> +
+> +		ret = scp_cluster_init(pdev, &scp_regs);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to initialize scp cluster\n");
+> +	}
+> +
+> +	return 0;
+>   }
+>   
+>   static int scp_remove(struct platform_device *pdev)
+>   {
+> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
+> -	int i;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct device_node *core_node;
+>   
+> -	rproc_del(scp->rproc);
+> -	scp_remove_rpmsg_subdev(scp);
+> -	scp_ipi_unregister(scp, SCP_IPI_INIT);
+> -	scp_unmap_memory_region(scp);
+> -	for (i = 0; i < SCP_IPI_MAX; i++)
+> -		mutex_destroy(&scp->ipi_desc[i].lock);
+> -	mutex_destroy(&scp->send_lock);
+> +	core_node = of_get_child_by_name(np, "scp");
+> +	of_node_put(core_node);
+> +
+> +	if (!core_node)
+> +		scp_rproc_exit(pdev);
+> +	else
+> +		scp_cluster_exit(pdev);
+>   
+>   	return 0;
+>   }
+> @@ -1068,12 +1210,19 @@ static const struct mtk_scp_of_data mt8195_of_data_c1 = {
+>   	.host_to_scp_int_bit = MT8195_CORE1_HOST_IPC_INT_BIT,
+>   };
+>   
+> +static const struct mtk_scp_of_data *mt8195_of_data_cores[] = {
+> +	&mt8195_of_data,
+> +	&mt8195_of_data_c1,
+> +	NULL
+> +};
+> +
+>   static const struct of_device_id mtk_scp_of_match[] = {
+>   	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
+>   	{ .compatible = "mediatek,mt8186-scp", .data = &mt8186_of_data },
+>   	{ .compatible = "mediatek,mt8188-scp", .data = &mt8188_of_data },
+>   	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
+>   	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
+> +	{ .compatible = "mediatek,mt8195-scp-dual", .data = &mt8195_of_data_cores },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
+
