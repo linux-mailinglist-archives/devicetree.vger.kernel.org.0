@@ -2,271 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04F0E6974A8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 04:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9D06974BE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 04:18:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjBODHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Feb 2023 22:07:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43442 "EHLO
+        id S231959AbjBODSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Feb 2023 22:18:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjBODHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 22:07:21 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9967CBDE1;
-        Tue, 14 Feb 2023 19:07:18 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 56AC524E15C;
-        Wed, 15 Feb 2023 11:07:17 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 11:07:17 +0800
-Received: from [192.168.125.110] (183.27.97.168) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Feb
- 2023 11:07:16 +0800
-Message-ID: <8b35344f-0f78-b4e6-2b5e-e6ec6b101a75@starfivetech.com>
-Date:   Wed, 15 Feb 2023 11:07:15 +0800
+        with ESMTP id S229460AbjBODSl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Feb 2023 22:18:41 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 989E0241D6;
+        Tue, 14 Feb 2023 19:18:40 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31F1n8de022336;
+        Wed, 15 Feb 2023 03:18:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=QQZXePndB0lAR9S6w3Ec7/K5ucqSD6ZFFKzDBN8FhwI=;
+ b=KPzk68EGAKfLfKwPdJ/X8VLy6tXidZfSXfQdkPk7lapugrtU8cxhEKs16WJAPMkXNBKu
+ ipdXITFtBgK0k64+ecdm682ZyUAAkSpf5+pkLb4olOLmUiBf33gfRvM+LWWOc64hNPH/
+ uWSVbAW6rTcIgryGRQWmEOYAX1kmQQ9rO4MehvXq/X3uaT1W8kHQ6/ww0yv7CPe8ZYd8
+ eTXuNIBbjar//TT8mebvr79St0LTC9+iZ7+jY6SFoBvMcN/qBXU5T0WDida2Q8SMIcb0
+ zGNwtl6lLORvs0K+uaHvxN+SdUo4pGIvPXdJI501+tLwVRS92Bf5WrVQ/xRPs5XS6pZj Zw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nqyyguhab-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Feb 2023 03:18:17 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31F3IHi8001607
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Feb 2023 03:18:17 GMT
+Received: from [10.50.15.255] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 14 Feb
+ 2023 19:18:09 -0800
+Message-ID: <9fc73f31-71c7-f69c-ace1-2ddc9967ef36@quicinc.com>
+Date:   Wed, 15 Feb 2023 08:48:01 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
- device tree
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 5/7] dt-bindings: clock: Add PCIe pipe clock definitions
+To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <bhelgaas@google.com>,
+        <devicetree@vger.kernel.org>, <kishon@kernel.org>,
+        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <kw@linux.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <lpieralisi@kernel.org>, <mani@kernel.org>,
+        <mturquette@baylibre.com>, <p.zabel@pengutronix.de>,
+        <robh@kernel.org>, <svarbanov@mm-sol.com>, <vkoul@kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>
+References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
+ <20230214164135.17039-6-quic_devipriy@quicinc.com>
+ <f439f476121a5624b5243b0b340bd9a4.sboyd@kernel.org>
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     Conor Dooley <conor.dooley@microchip.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud>
- <c507e0b2-5ca3-cffe-55d2-873ed8c24e3d@starfivetech.com>
- <Y9og8Q2UnJ452KH/@wendy>
- <df6755ed-a358-ea01-d89e-f3c004b9c297@starfivetech.com>
- <Y9wR7Up+iObw5qoE@spud>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <Y9wR7Up+iObw5qoE@spud>
-Content-Type: text/plain; charset="UTF-8"
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <f439f476121a5624b5243b0b340bd9a4.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.168]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MSlr6nO5gYxTqeSQJsj7-XOScK86BMTD
+X-Proofpoint-GUID: MSlr6nO5gYxTqeSQJsj7-XOScK86BMTD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-14_17,2023-02-14_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ impostorscore=0 malwarescore=0 adultscore=0 mlxlogscore=999 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302150028
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Feb 2023 19:41:33 +0000, Conor Dooley wrote:
-> On Fri, Feb 03, 2023 at 02:56:41AM +0800, Hal Feng wrote:
->> On Wed, 1 Feb 2023 08:21:05 +0000, Conor Dooley wrote:
->> > On Wed, Feb 01, 2023 at 03:21:48PM +0800, Hal Feng wrote:
->> >> On Wed, 28 Dec 2022 22:48:43 +0000, Conor Dooley wrote:
->> >> > On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
->> > 
->> >> >> +/ {
->> >> >> +	compatible = "starfive,jh7110";
->> >> >> +	#address-cells = <2>;
->> >> >> +	#size-cells = <2>;
->> >> >> +
->> >> >> +	cpus {
->> >> >> +		#address-cells = <1>;
->> >> >> +		#size-cells = <0>;
->> >> >> +
->> >> >> +		S76_0: cpu@0 {
->> >> >> +			compatible = "sifive,u74-mc", "riscv";
->> >> > 
->> >> > The label here says S76 but the compatible says u74-mc.
->> >> 
->> >> U74-MC has 5 cores including 1 * S7 core and 4 * U74 cores.
->> >> 
->> >> > Which is correct? Your docs say S7 and S76, so I would imagine that it
->> >> > is actually an S76?
->> >> 
->> >> I found SiFive website [1] call it S76, but call it S7 in other places.
->> >> So I misunderstood this. Considering the ISA difference you described
->> >> as below, I think it's proper to change the label to "S7_0".
->> > 
->> > I'm less worried about the label & more interested in the compatible.
->> > hart0 is, as you say, not a u74. Should we not be adding a "sifive,s7"
->> > compatible string to Documentation/devicetree/bindings/riscv/cpus.yaml
->> > and using that here instead?
->> 
->> First of all, it's my fault that I didn't check the revision of U74-MC
->> manual, so most of my previous replies might not make sense.
-> 
-> No that's fine. The manual stuff confused me too when I went looking
-> initially, and I still get get mixed up by the fact that there are
-> core-complex manuals but not core manuals.
-> 
->> If we add a new compatible string for S7, should we change the compatibles
->> of hart1~3 to "sifive,u74" also? And then, there may be no point keeping some
->> compatible strings of core complex like "sifive,u74-mc" and "sifive,u54-mc".
->> I'm not sure about this.
-> 
-> [...]
-> 
->> >> Yes, "RV64IMAC" is correct. The monitor core in U74-MC is a
->> >> S7-series core, not S76.
->> > 
->> > Cool, thanks.
->> 
->> Now I think it might be another version of S76.
-> 
-> The SiFive docs describe the u74-mc core complex, which AFAIU you have,
-> as being 1x S7 & 4x U7.
-> 
-> I'd be happy with new binding for "sifive,s7" & then we use that here.
-> If you're sure it's S76, we can also use that. S76 is described, in what
-> docs I can see, as a core complex containing an S7, so S7 seems likely
-> to be correct?
+Thanks for taking time to review the patch!
 
-I will add a new binding for "sifive,s7" and modify the code as follows.
-
-	S7_0: cpu@0 {
-		compatible = "sifive,s7", "riscv";
-		...
-		riscv,isa = "rv64imac_zicsr_zba_zbb";
-		...
-	};
-
+On 2/15/2023 8:00 AM, Stephen Boyd wrote:
+> Quoting Devi Priya (2023-02-14 08:41:33)
+>> Add PCIe clock definitions for IPQ9574 SoC
+>>
+>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
+>>   include/dt-bindings/clock/qcom,ipq9574-gcc.h | 276 ++++++++++---------
+>>   1 file changed, 140 insertions(+), 136 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+>> index feedfdd5e00a..c89e96d568c6 100644
+>> --- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+>> +++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+>> @@ -74,140 +74,144 @@
+>>   #define GCC_PCIE3_AXI_S_BRIDGE_CLK                     65
+>>   #define GCC_PCIE3_AXI_S_CLK                            66
+>>   #define PCIE0_PIPE_CLK_SRC                             67
+>> -#define PCIE1_PIPE_CLK_SRC                             68
 > 
-> u7, u74 & u74-mc are valid compatibles, added by SiFive, in commit
-> 75e6d7248efc ("dt-bindings: riscv: Update DT binding docs to support
-> SiFive FU740 SoC"). Unfortunately, they never actually *used* those
-> compatibles for anything, and just used "sifive,bullet0" for the fu740.
+> Just add the new define at the end. This number and define is ABI
+> forever and shouldn't change.
+Sure, will update
 > 
-> I'll accept any of u7, u74 or u74-mc for those harts.
-> 
->> >> >> +			tlb-split;
->> >> >> +			status = "disabled";
->> >> >> +
->> >> >> +			cpu0_intc: interrupt-controller {
->> >> >> +				compatible = "riscv,cpu-intc";
->> >> >> +				interrupt-controller;
->> >> >> +				#interrupt-cells = <1>;
->> >> >> +			};
->> >> >> +		};
->> >> >> +
->> >> >> +		U74_1: cpu@1 {
->> >> >> +			compatible = "sifive,u74-mc", "riscv";
->> >> >> +			reg = <1>;
->> >> >> +			d-cache-block-size = <64>;
->> >> >> +			d-cache-sets = <64>;
->> >> >> +			d-cache-size = <32768>;
->> >> >> +			d-tlb-sets = <1>;
->> >> >> +			d-tlb-size = <40>;
->> >> >> +			device_type = "cpu";
->> >> >> +			i-cache-block-size = <64>;
->> >> >> +			i-cache-sets = <64>;
->> >> >> +			i-cache-size = <32768>;
->> >> >> +			i-tlb-sets = <1>;
->> >> >> +			i-tlb-size = <40>;
->> >> >> +			mmu-type = "riscv,sv39";
->> >> >> +			next-level-cache = <&ccache>;
->> >> >> +			riscv,isa = "rv64imafdc";
->> >> > 
->> >> > That also begs the question:
->> >> > Do your u74s support RV64GBC, as the (current) SiFive documentation
->> >> > suggests?
->> >> 
->> >> Actually, U74 doesn't support the full B extension, and the SiFive doc [1]
->> > 
->> > Yeah, I knew asking that question that the "RV64GBC" in SiFive's online
->> > documentation was using outdated terminology. Also, that is not the doc
->> > for your core complex as far as I can tell. That is the document for
->> > impid 0x0621_1222, whereas (IIRC) your core is 0x0421_0427.
->> > Jess and I had a look one evening but could not find the 21G1.02.00
->> > revision of this document, which is the one corresponding to 0x421_0427.
->> > See Table 92 for more details.
->> 
->> I found the 21G1.02.00 revision on StarFive internal net, but I'm not sure
->> whether I can make it public and I am checking this.
-> 
-> Yeah, certainly don't do anything without cross-checking!
-> 
->> This revision records
->> that the ISA of 21G1.02.00 U74 is "RV64GCB" and ISA of 21G1.02.00 S7 is
->> "RV64IMACB". I am asking someone to check with SiFive whether both 21G1.02.00
->> U74 and S7 support the full B extension.
-> 
-> Having cross-checked a 21G1.01.00 document against a 21G2.01.00 one, I'm
-> 99% sure that you have _Zba_Zbb.
-> The G2.01 document says _Zba_Zbb & has the same instructions listed as
-> supported as the G1.02 one.
-> I've also tried the Zbb support patches posted by Heiko [2] on a
-> VisionFive V2 and had them work - which is why a definitive statement on
-> the version of Zbb supported would be really great to have!
-> 
-> [2] - https://lore.kernel.org/linux-riscv/20230113212301.3534711-1-heiko@sntech.de/
-
-The 21G1.02.00 document is still not allowed to be public so far. By
-comparing with instructions included in b extensions [1], I can confirm
-that the 21G1.02.00 only supports Zba and Zbb.
-
-[1] https://github.com/riscv/riscv-bitmanip/blob/main/bitmanip/overview.adoc#
-
-Zicsr is also supported as described in 21G1.02.00 document. So I will
-modify as follows.
-
-	U74_1: cpu@1 {
-		compatible = "sifive,u74-mc", "riscv";
-		...
-		riscv,isa = "rv64imafdc_zicsr_zba_zbb";
-		...
-	};
-
-Best regards,
-Hal
-
-> 
->> >> describes the ISA of U74 is "RV64GC_Zba_Zbb_Sscofpmf" which "G" includes
->> >> "IMAFD".
->> > 
->> > I could not find the 21G1.02.00 version of this document online, but I
->> > was able to find the 21G1.01.00 version of it & that version does not
->> > support the Sscofpmf extension (but does have Zba/Zbb support).
->> > 
->> >> "_Zba_Zbb_Sscofpmf" is not shown in other device trees such as
->> >> jh7100.dtsi and fu740-c000.dtsi, so I didn't show them here.
->> > 
->> > Just because other devicetrees omit them, doesn't mean that you should
->> > too!
->> > This compatible should be an accurate description of your hardware, so
->> > you should add what you actually have.
->> 
->> Will keep it in mind. Thank you.
-> 
-> FWIW, the deadline for getting material in for v6.3 has already passed,
-> so you can send the next version of this series without waiting for
-> clarification on the compatibles & ISA string. We should have plenty of
-> time to get those fixed up before the series gets applied.
-> 
-> Thanks,
-> Conor.
-> 
->> > If you have Zba and Zbb, then add them.
->> > I would double check against your internal documentation for 21G2.02.00
->> > as to whether you do have Sscofpmf, and if you do, add that too!
->> > 
->> > That way, whenever support for those extensions lands, the jh7110 will
->> > automatically pick it up, rather than needing to have them retrofitted.
->> > 
->> >> [1] https://sifive.cdn.prismic.io/sifive/2dd11994-693c-4360-8aea-5453d8642c42_u74mc_core_complex_manual_21G3.pdf
-
+>> -#define PCIE2_PIPE_CLK_SRC                             69
+>> -#define PCIE3_PIPE_CLK_SRC                             70
+Best Regards,
+Devi Priya
