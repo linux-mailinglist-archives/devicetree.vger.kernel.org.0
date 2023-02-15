@@ -2,129 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B198D697CEC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 14:15:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42C9F697D5C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 14:29:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232996AbjBONPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 08:15:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59240 "EHLO
+        id S231935AbjBON3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 08:29:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232055AbjBONPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 08:15:07 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E79162411B;
-        Wed, 15 Feb 2023 05:15:06 -0800 (PST)
-Received: from mercury (dyndsl-095-033-159-037.ewe-ip-backbone.de [95.33.159.37])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 81B056602181;
-        Wed, 15 Feb 2023 13:15:05 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676466905;
-        bh=dwkwEZMUZEbFVvhUviofeDXBcsOqsOaQbrTHdVJ8mAM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f64LgxxoccMfGRd5MY2qsJk0C395jy4CGz+QoQYGn3lNsphKCeI9LzZjmjJcX7hG8
-         r72p7Tq3y503a/zcntpe1rjyp2zMc5wcjZvqqgcezyMr0uO/d3kg2AO2EYTWvspZQ3
-         azBbLr2CsyUtaC5udjzzqmgP+RPCOUppxXpwe1jFU/eCio3yew7SD9nlqIj9VFeGLA
-         lxW2YDpFWFqcZ8P6AitCWIPegkqZV/O/T99iiEGU7rF6txiV0NJxW6IZ5B9RtMRLyw
-         CnN+l6paW/dM9Ql3j93z8A7vij1Oa7EJiJA7KhtVl1fCebkP8c2yi0IK/bNphnz3mS
-         PedPnKeJn/14g==
-Received: by mercury (Postfix, from userid 1000)
-        id B1EF610603FE; Wed, 15 Feb 2023 14:15:03 +0100 (CET)
-Date:   Wed, 15 Feb 2023 14:15:03 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     ChiYuan Huang <cy_huang@richtek.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        ChiaEn Wu <chiaen_wu@richtek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        peterwu.pub@gmail.com
-Subject: Re: [Patch][next] dt-bindings: power: supply: Revise Richtek RT9467
- compatible name
-Message-ID: <20230215131503.lnk7onzpsnxq5atb@mercury.elektranox.org>
-References: <dc8873c3125f7aa6f84dc7b33a44bf00907e0814.1675853673.git.chiaen_wu@richtek.com>
- <20230213205321.xrhvrdqy5ksiagbv@mercury.elektranox.org>
- <75d37ae7-3632-a195-b12b-44e8a940be4a@linaro.org>
- <20230215033440.GA6570@linuxcarl2.richtek.com>
+        with ESMTP id S232106AbjBON30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 08:29:26 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45D95580;
+        Wed, 15 Feb 2023 05:29:09 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pSHqN-0005qp-0A;
+        Wed, 15 Feb 2023 14:29:07 +0100
+Date:   Wed, 15 Feb 2023 13:27:30 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
+        Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Mingming Su <Mingming.Su@mediatek.com>,
+        linux-crypto@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] dt-bindings: rng: Add MediaTek MT7981 TRNG
+Message-ID: <c750e786ad0f529d2ae63c8f766d3c294808ff53.1676467500.git.daniel@makrotopia.org>
+References: <89865515728cb937b6591160ad9c30b4bcc8dd41.1676467500.git.daniel@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3k3pldcpjihsbnrs"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230215033440.GA6570@linuxcarl2.richtek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <89865515728cb937b6591160ad9c30b4bcc8dd41.1676467500.git.daniel@makrotopia.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add documentation to describe the MediaTek true random number generator
+which is provided by ARM TrustedFirmware-A of the MT7981.
 
---3k3pldcpjihsbnrs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+ .../bindings/rng/mediatek,mt7981-rng.yaml     | 39 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 40 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
 
-Hi,
+diff --git a/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml b/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
+new file mode 100644
+index 000000000000..d577d60538d8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rng/mediatek,mt7981-rng.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek Random number generator (v2/SMC)
++
++maintainers:
++  - Daniel Golle <daniel@makrotopia.org>
++
++properties:
++  $nodename:
++    pattern: "^rng$"
++
++  compatible:
++    enum:
++      - mediatek,mt7981-rng
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: rng
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    rng {
++      compatible = "mediatek,mt7981-rng";
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 90d82aba6d73..523f1abf00d5 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13148,6 +13148,7 @@ F:	drivers/leds/leds-mt6323.c
+ MEDIATEK RANDOM NUMBER GENERATOR SUPPORT
+ M:	Sean Wang <sean.wang@mediatek.com>
+ S:	Maintained
++F:	Documentation/devicetree/bindings/rng/mediatek,*
+ F:	drivers/char/hw_random/mtk-rng-v2.c
+ F:	drivers/char/hw_random/mtk-rng.c
+ 
+-- 
+2.39.1
 
-On Wed, Feb 15, 2023 at 11:34:40AM +0800, ChiYuan Huang wrote:
-> H, Krzysztof/Sebastian:
-> On Tue, Feb 14, 2023 at 09:14:37AM +0100, Krzysztof Kozlowski wrote:
-> > On 13/02/2023 21:53, Sebastian Reichel wrote:
-> > > Hi,
-> > >=20
-> > > On Wed, Feb 08, 2023 at 11:14:24AM +0800, ChiaEn Wu wrote:
-> > >> Revise RT9467 compatible name from "richtek,rt9467-charger" to
-> > >> "richtek,rt9467"
-> > >>
-> > >> Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467=
- battery charger")
-> > >> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> > >> ---
-> > >=20
-> > > Is there a new version of this fixing the issues pointed out by Krzys=
-ztof?
-> > > Also I think the filename and $id should be changed to richtek,rt9467=
-=2Eyaml
-> > > in addition to the compatible change.
-> >=20
-> > Yes, indeed.
-> >=20
-> From the current discussion, there're things to be fixed.
-> 1. In bindings, change compatible property from 'richtek,rt9467-charger' =
-to 'richtek,rt9467'.
-> 2. Rename 'richtek,rt9467-charger.yaml' to 'richtek,rt9467.yaml'
->
-> Anything else? like as changing source code filename from from 'rt9467-ch=
-arger.c' to 'rt9467.c"?
-
-No, the source code can remain unchanged. But you also need to change
-the $id line (line 4) in 'richtek,rt9467-charger.yaml' after renaming
-file.
-
--- Sebastian
-
---3k3pldcpjihsbnrs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmPs2soACgkQ2O7X88g7
-+prtfhAAnsfReDwggQ6kbCNeAll0Sfl4BVg8e5HP8cO+f9PcGHrZ2QGRVw2qd53j
-nruU1+a10OYZp7rqCCnXXfR2JdQyXedNCY6KafJ8QhUnkVX4mRi66YziXcPeAdRm
-5hpcA8eOTY0aBsx9CvQA1XdA1MNyjtnaqmkQ2ZtRaTeSQnBHxb+GPbSqXwnn65LE
-TM2Zu8Y9SUYkamywW5bcHOE2QXmOlbDimostnI9R5eaW/jIJ8yP2f1fKbg76BaJz
-i4z4DY2QKdRN3FDsUD2Ukt8PkqokUbLfKeCqZQWUe7vGnu+dlUXPZJ2KtFsvGcyN
-qW15tbqKKpTsFQcLoqRw15Cv7//+g13vTz1tiFO8pPbuPsCgr9Y3pgE9qLJz/ODM
-OmiC57nSG1QEpCWrld+45vA6j4CNYsTwf8wTqU/CLHMQWMTzpsARBRSHX9npXv+b
-qWlF6m2mFZVhFwcdFE2ueI3p9vvDQ5J4A5epPUbXsumCBHVVWh2Y3WMWzLbRxQx5
-+1t36bQ9G/s3XjT/i00GYl9KbCNCchySoMhHASlaG0dsB3X5kq1fNuzxlRyQiQcl
-Bwxj3E8yI09zwbJQO19ayMlnVrh2jTDBjrtoSdkll04jFUOdVYDZZv/emX599gzN
-hnCqTKL3pHy0Du+1g6mD+eD0o4yPE7WigBzSl7HGmbEfPHp5yBE=
-=JKHO
------END PGP SIGNATURE-----
-
---3k3pldcpjihsbnrs--
