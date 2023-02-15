@@ -2,120 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D79697C1D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97124697C30
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:49:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbjBOMpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 07:45:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33460 "EHLO
+        id S231751AbjBOMtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 07:49:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbjBOMpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:45:53 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735B632CD0;
-        Wed, 15 Feb 2023 04:45:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676465152; x=1708001152;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ArTeTBl6HoOFZclYi5EBGCWmiDoltI/AT5lZ8Q0N0Tc=;
-  b=LUl8RwjvJvHWsbMm3lYFWgmu6ovPceV9XW2/YVQQd0Pa7TiexFx6GQG5
-   AMcTkq/5R7AfDDahp0nuNsBZSJkaB1iucFxqycaliKmh9wpH3SJ5pCpBs
-   7ZYSkOeyIeeXzvrnb2XOi2j1be13BeHC4jd5NjgHgDFloWdp1zRFYOMBR
-   1gBw0SrfCIbPdm2DIsZXHxBiTE1pDlmQJIy5pYQgpnS7RqohEyRMTluOG
-   KWfC+Nz/a2TWnsof+LjajXdhoCZpjaT7WgB/b+wX0GmKq19XptSKxRW+9
-   Etql2lcZGh0xfkVhw45clO6fxbjDdMRsvpYCp1oz0cAOCmny97ED/4+3q
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="417638100"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; 
-   d="scan'208";a="417638100"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2023 04:45:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="669600690"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; 
-   d="scan'208";a="669600690"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 15 Feb 2023 04:45:46 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pSHAP-0009MX-35;
-        Wed, 15 Feb 2023 12:45:45 +0000
-Date:   Wed, 15 Feb 2023 20:45:34 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     oe-kbuild-all@lists.linux.dev, linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 06/10] soc: fsl: cmp1: Add support for QMC
-Message-ID: <202302152037.NXHi2aFY-lkp@intel.com>
-References: <20230126083222.374243-7-herve.codina@bootlin.com>
+        with ESMTP id S229677AbjBOMtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:49:02 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BACC360BD
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:49:01 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id jk14so1512445plb.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:49:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1676465341;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zJ4BUazyXS0K48fM6Er+hgNzJxPV4473C9yyzDZurhE=;
+        b=DnpL/OJbs517pIJBv7UZkQPXuJR8Z2nfHPQPSGrgVEB3AgGXe2/9z+9pl6fRYuEKQM
+         WUXCCVLCc7uOKfu6lT8/n27etN4D1EUA1S5awS7D9NnaxpLT3fHsB8AeSUaNPZTJ+rHF
+         3Lq7mJgUAF44j3l1vtS++BCkZTin7RWVvctVr5/ejSMFlBostfi8WmjJFAo8t12fBQvz
+         +1ZR7z5r4yy6pchXbNEZ0jeqZiHTPQNQu3omoRURf0W0Jj2VTXTJptKR6ZQNjR+Rwy+K
+         qGTKHlG5fWbxis6XjSz4CJzknCwL/XpkLOHr6cinqtsRyEotQXxTotW8jO31FcB1DZvk
+         wmFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1676465341;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zJ4BUazyXS0K48fM6Er+hgNzJxPV4473C9yyzDZurhE=;
+        b=VwjKwSLZx5yqLHo2BeELBMPoeITNfqZGakX1OUb4NR8KiGjOFgwbjCaWoHCpi3axXP
+         cx0EEzgEvEJ2pjLniNRBN3AVLHUAbHh05Wz2LliX2So5bZ2zhX4h3qdYuGjwiOfDcgrH
+         qV+BjfSb9mtacxWTCrGUUkIsKp8ZP0fNmJ22NR52Co1aD42zNbj5X17/jonhEjKZ3t8f
+         TiL9bADNZQmI/zKUssbJw/zBAVS6/oklmWL6g62CRIrNK6QL32FHjLpc4PfJ6Mwf5A3y
+         +QX853wVqo0nqIVmmrE76tTQMxRPtIUV9y6oa9z2EaSbZp7WjudKddi93CY739ac7sfw
+         I34Q==
+X-Gm-Message-State: AO0yUKXpKTaCoaHUCyBMdVyu3t4blabzUfX3CS6q+Tvduk0l0+CCTZZO
+        VRq6uuBE6eVoxxFKK4vX9HS/Nf+jkdHhq3e5kEEWdA==
+X-Google-Smtp-Source: AK7set+T7NKsh+QRbmcYjfUFAkz8tVhEKaLuhSPZ8VsL0cW+kM2Wy7wlgaC9MgBB5hg5VOCY6Tga4oo3jt03Pl9STMk=
+X-Received: by 2002:a17:903:26d1:b0:199:15c2:99ae with SMTP id
+ jg17-20020a17090326d100b0019915c299aemr469271plb.20.1676465341107; Wed, 15
+ Feb 2023 04:49:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230126083222.374243-7-herve.codina@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
+In-Reply-To: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 15 Feb 2023 13:48:24 +0100
+Message-ID: <CAPDyKFroB-TULOeia4OyXBW6rWMs7e3_Fp4Uw878Q8Gt=TDfag@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] mmc: support setting card detect interrupt from
+ drivers and use it in meson-gx
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Herve,
+On Tue, 14 Feb 2023 at 22:39, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> On certain platforms like Amlogic Meson gpiod_to_irq() isn't supported
+> due to the design of gpio / interrupt controller. Therefore provide an
+> option for drivers to pass the card detect interrupt number
+> (retrieved e.g. from device tree) to mmc core.
+>
+> v2:
+> - use another mechanism for passing and storing the cd interrupt
+> - add patch 2
+>
+> Heiner Kallweit (3):
+>   mmc: core: support setting card detect interrupt from drivers
+>   dt-bindings: mmc: meson-gx: support specifying cd interrupt
+>   mmc: meson-gx: support platform interrupt as card detect interrupt
+>
+>  .../bindings/mmc/amlogic,meson-gx-mmc.yaml      |  2 +-
+>  drivers/mmc/core/slot-gpio.c                    | 17 ++++++++++++++++-
+>  drivers/mmc/host/meson-gx-mmc.c                 |  5 ++++-
+>  include/linux/mmc/slot-gpio.h                   |  1 +
+>  4 files changed, 22 insertions(+), 3 deletions(-)
+>
 
-I love your patch! Yet something to improve:
+Applied for next, thanks!
 
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on robh/for-next powerpc/next powerpc/fixes linus/master v6.2-rc8 next-20230215]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/dt-bindings-soc-fsl-cpm_qe-Add-TSA-controller/20230128-152424
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20230126083222.374243-7-herve.codina%40bootlin.com
-patch subject: [PATCH v4 06/10] soc: fsl: cmp1: Add support for QMC
-config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20230215/202302152037.NXHi2aFY-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/20ec2eacb76ca7252aa2934f53357663652edd0f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Herve-Codina/dt-bindings-soc-fsl-cpm_qe-Add-TSA-controller/20230128-152424
-        git checkout 20ec2eacb76ca7252aa2934f53357663652edd0f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302152037.NXHi2aFY-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   powerpc-linux-ld: drivers/soc/fsl/qe/qmc.o: in function `qmc_probe':
->> qmc.c:(.text.qmc_probe+0xd8): undefined reference to `get_immrbase'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Kind regards
+Uffe
