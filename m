@@ -2,115 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 254E5697B7E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:10:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4312B697B83
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 13:12:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231442AbjBOMK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 07:10:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37632 "EHLO
+        id S233901AbjBOMMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 07:12:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbjBOMK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:10:28 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4312387A
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:10:24 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id r2so18913957wrv.7
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:10:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=B88sRzH49NkKCIicSP4fo6lIj4LfSxlZhgeAIzbft1s=;
-        b=T8ISws1Qojl5kqPrr/5KFCLc99U5ay4mkoqR09aGtORtKk3YrmPsFAv30dXkJnB4Px
-         ya5aBKsXKP7u/qO2+RZT9jUc8CdLgpcvzBCh5E4ETP7g1wAEozqqncUK+1n+DMJtF7bZ
-         ZJZ452ihxoNMgLH3Ob5/BaCGk+Po+dOCwgNets9cQjxTEn6zd+nvOb57sRBp/RDoybNI
-         M0+1fZ/dwFIOBT4IMFcleDsVj9A1W0RQ/2IMxbY9XT2cD88HF5xgAABNWEaaAnAc1N4S
-         mdWQGdZvc/p4Wdm/GV+24PM1D1JVbSZMAmYVeTvVl6QftWr+K1Twne6T1bMQB6czZ2ee
-         ccLA==
+        with ESMTP id S233769AbjBOMMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 07:12:24 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6ABE2CC58
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:12:22 -0800 (PST)
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id DAEFA3F126
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 12:12:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1676463139;
+        bh=d2HVhvClqqd8WHxTQTRIymEsBK4G3tyKOtWAvm3jRPM=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=QhPZ1QoZz/LWBNLn6cSWQx/wvjpmTCGPPdhZJD/JOO1UzG/AC7Jc0md4qZm0cdgz2
+         FGm3hiCGnoMpd3rtdiuU5rq0Ulha1NBdgxuI9pZcn/qvi0afd9EACuKmD6wMWqi9ZD
+         TIzxqaM4ZHOMY606QP3JbOa3yBSY0LvqSnqkzlvl9+lSB0uAwBkql74z25e3DmxwEd
+         Sw4h+k5N/3r7fYRTQ7vlS0I758JMU4T572qmW3MmZXJZwsBGlI39a3MJeDxlUH4iq5
+         K3jRgyECzU+RPVdwt3xu94rvtPEmNCQx6FZHsYAEy3ds4X9ixZRBJblTxhfhIq+qt+
+         h33gaJ4PwPIeQ==
+Received: by mail-qk1-f198.google.com with SMTP id 130-20020a370588000000b0072fcbe20069so11424617qkf.22
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 04:12:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B88sRzH49NkKCIicSP4fo6lIj4LfSxlZhgeAIzbft1s=;
-        b=0X/MvHTOG1Os1tJ4IUH8A9N087bisQHFukrZUNXVe/FChV+tPpzwsu2Ww2fup9qOw8
-         KMc6DSUIjS7RoJJWwhKLI1IEW/nTl9OTGEYcfa6yp98aVbipNNUHQ4wzBoEsgQ0Oax0H
-         dyzT1374hGcJQ0hDNckvlCnp8dmMWf/8b6/bs0ong9P0GRt6BIyaZeW7EWHm3Jjiii2o
-         YJIwh2UgGyU7ZWJvyBZYPd7idTJt2EaHWL2GnNkoPyetShlVf/gyQyaSONkPgBRhoUnX
-         73n/rd+jMPVKAuwuPNKK4fBMxs7VpuG6aFyFXrLywNrQ0fluLWhCykXFdGF7wl/VtG3r
-         TUxg==
-X-Gm-Message-State: AO0yUKXNvA4E+SAD1li5JTh0zNURmmEA/7WSkMqheaM4h+rAA3Hge+ZP
-        cGjqwbXYkof9mY5UpezaEpG6OA==
-X-Google-Smtp-Source: AK7set99jj8objQ4uMIB7cUxdbUtE4aJnQuKjEF7GKvRvcGb2mUkzOk/bW78+lKB0A6h4fOPPoYfqQ==
-X-Received: by 2002:a5d:518b:0:b0:2c5:5237:3b21 with SMTP id k11-20020a5d518b000000b002c552373b21mr1230962wrv.69.1676463022903;
-        Wed, 15 Feb 2023 04:10:22 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id w19-20020a05600c099300b003db03725e86sm1923947wmp.8.2023.02.15.04.10.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 04:10:22 -0800 (PST)
-Date:   Wed, 15 Feb 2023 14:10:21 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: qcom,pdc: Add compatible for SM8550
-Message-ID: <Y+zLrQYBC5HQ7lJD@linaro.org>
-References: <20230127132558.1176730-1-abel.vesa@linaro.org>
+        d=1e100.net; s=20210112; t=1676463139;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d2HVhvClqqd8WHxTQTRIymEsBK4G3tyKOtWAvm3jRPM=;
+        b=P3X4CXSj+M4/7bLpEL+pm41uGvCLxjWxGuZpUA/jDLCksi8BuaNEiSOX8q43PkL+lX
+         fHe6IpInVjOqNusUZbbZLgTx8h8D6sCKaHLTXJsjqO52CJ/6/Zy+zjl0Z9cgZmfzCYl1
+         T/Ddty1iFrEMLbxPZs5RTuXzsObik0camk1Mpx8+9ESkIebWoQScQ9pBnnJYdfKDUcuJ
+         fQyWdBIKWwdtFOpft8pizGDErVCkuzcdmYJ0QousQfUd3/FKNh//MtD0xNygKoVeGkuJ
+         tdGqUbOPVxR49Z1HNg7RI37VVaTzO/aPgV1gEZmmEl7rRPA3Bidr1E5buPr7rKHPlPU2
+         SnNA==
+X-Gm-Message-State: AO0yUKUSiWkyp/WYbVD6BTGwDdkJjSBBnlQoTQgUZQvGkuFUq6lzkXQ+
+        NWZcsNsX5HPcY4tNl7jwUuYdOnsv3cKEAt/gdjMqE4mGNMiSE53wYON3Kfft7cE0v3sj4XfgNRy
+        KZc9GhfQqRcpBn0dQcPl2kVhAJnHYCDu0smyyK+YKSSCR9gYsPZmzWMc=
+X-Received: by 2002:a0c:aa99:0:b0:56e:9a77:3d2c with SMTP id f25-20020a0caa99000000b0056e9a773d2cmr120694qvb.5.1676463138967;
+        Wed, 15 Feb 2023 04:12:18 -0800 (PST)
+X-Google-Smtp-Source: AK7set94W4bHbLWyqqCBU/wia3LQtnIJnTfo8vvQ0Q6eIDjwkquQyW4opvnzwzhSgOt3jgiSN6xmjaU6v/LfsoIKTM0=
+X-Received: by 2002:a0c:aa99:0:b0:56e:9a77:3d2c with SMTP id
+ f25-20020a0caa99000000b0056e9a773d2cmr120692qvb.5.1676463138706; Wed, 15 Feb
+ 2023 04:12:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230127132558.1176730-1-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230215113249.47727-1-william.qiu@starfivetech.com> <20230215113249.47727-4-william.qiu@starfivetech.com>
+In-Reply-To: <20230215113249.47727-4-william.qiu@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 15 Feb 2023 13:12:01 +0100
+Message-ID: <CAJM55Z8gVEZS4Ws2Gi7_JbdkS-4y3_8mQvR4ZxLCWZ4A1y9X1g@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] riscv: dts: starfive: Add mmc node
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-27 15:25:58, Abel Vesa wrote:
-> Document the compatible for SM8550 PDC.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, 15 Feb 2023 at 12:35, William Qiu <william.qiu@starfivetech.com> wrote:
+>
+> Add the mmc node for the StarFive JH7110 SoC.
+> Set mmco node to emmc and set mmc1 node to sd.
+>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 > ---
+>  .../jh7110-starfive-visionfive-2.dtsi         | 23 +++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 47 +++++++++++++++++++
+>  2 files changed, 70 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index c60280b89c73..e1a0248e907f 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -42,6 +42,29 @@ &rtc_osc {
+>         clock-frequency = <32768>;
+>  };
+>
+> +&mmc0 {
+> +       max-frequency = <100000000>;
+> +       bus-width = <8>;
+> +       cap-mmc-highspeed;
+> +       mmc-ddr-1_8v;
+> +       mmc-hs200-1_8v;
+> +       non-removable;
+> +       cap-mmc-hw-reset;
+> +       post-power-on-delay-ms = <200>;
+> +       status = "okay";
+> +};
+> +
+> +&mmc1 {
+> +       max-frequency = <100000000>;
+> +       bus-width = <4>;
+> +       no-sdio;
+> +       no-mmc;
+> +       broken-cd;
+> +       cap-sd-highspeed;
+> +       post-power-on-delay-ms = <200>;
+> +       status = "okay";
+> +};
+> +
+>  &gmac0_rmii_refin {
+>         clock-frequency = <50000000>;
+>  };
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index 64d260ea1f29..17f7b3ee6ca3 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -314,6 +314,11 @@ uart2: serial@10020000 {
+>                         status = "disabled";
+>                 };
+>
+> +               stg_syscon: syscon@10240000 {
+> +                       compatible = "starfive,jh7110-stg-syscon", "syscon";
+> +                       reg = <0x0 0x10240000 0x0 0x1000>;
+> +               };
+> +
+>                 uart3: serial@12000000 {
+>                         compatible = "snps,dw-apb-uart";
+>                         reg = <0x0 0x12000000 0x0 0x10000>;
+> @@ -370,6 +375,11 @@ syscrg: clock-controller@13020000 {
+>                         #reset-cells = <1>;
+>                 };
+>
+> +               sys_syscon: syscon@13030000 {
+> +                       compatible = "starfive,jh7110-sys-syscon", "syscon";
+> +                       reg = <0x0 0x13030000 0x0 0x1000>;
+> +               };
+> +
+>                 gpio: gpio@13040000 {
+>                         compatible = "starfive,jh7110-sys-pinctrl";
+>                         reg = <0x0 0x13040000 0x0 0x10000>;
+> @@ -397,6 +407,11 @@ aoncrg: clock-controller@17000000 {
+>                         #reset-cells = <1>;
+>                 };
+>
+> +               aon_syscon: syscon@17010000 {
+> +                       compatible = "starfive,jh7110-aon-syscon", "syscon";
+> +                       reg = <0x0 0x17010000 0x0 0x1000>;
+> +               };
+> +
+>                 gpioa: gpio@17020000 {
+>                         compatible = "starfive,jh7110-aon-pinctrl";
+>                         reg = <0x0 0x17020000 0x0 0x10000>;
+> @@ -407,5 +422,37 @@ gpioa: gpio@17020000 {
+>                         gpio-controller;
+>                         #gpio-cells = <2>;
+>                 };
+> +
+> +               mmc0: mmc@16010000 {
+> +                       compatible = "starfive,jh7110-mmc";
+> +                       reg = <0x0 0x16010000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
+> +                                <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
+> +                       clock-names = "biu","ciu";
+> +                       resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
+> +                       reset-names = "reset";
+> +                       interrupts = <74>;
+> +                       fifo-depth = <32>;
+> +                       fifo-watermark-aligned;
+> +                       data-addr = <0>;
+> +                       starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               mmc1: mmc@16020000 {
+> +                       compatible = "starfive,jh7110-mmc";
+> +                       reg = <0x0 0x16020000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
+> +                                <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
+> +                       clock-names = "biu","ciu";
+> +                       resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
+> +                       reset-names = "reset";
+> +                       interrupts = <75>;
+> +                       fifo-depth = <32>;
+> +                       fifo-watermark-aligned;
+> +                       data-addr = <0>;
+> +                       starfive,sysreg = <&sys_syscon 0x9c 0x1 0x3e>;
+> +                       status = "disabled";
+> +               };
 
-Rob, will you pick this up yourself?
+Hi William,
 
-Thanks.
+These nodes still don't seem to be sorted by address, eg. by the
+number after the @
+Also please move the dt-binding patch before this one, so dtb_check
+won't fail no matter where git bisect happens to land.
 
-> 
-> The v1 is here:
-> https://lore.kernel.org/all/20221116114210.2673902-1-abel.vesa@linaro.org/
-> 
-> Changes since v1:
->  * rebased on next-20230125
->  * added Krzysztof's R-b tag
-> 
->  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> index 94791e261c42..5a733bd76b57 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> @@ -37,6 +37,7 @@ properties:
->            - qcom,sm8250-pdc
->            - qcom,sm8350-pdc
->            - qcom,sm8450-pdc
-> +          - qcom,sm8550-pdc
->        - const: qcom,pdc
->  
->    reg:
-> -- 
+/Emil
+
+>         };
+>  };
+> --
 > 2.34.1
-> 
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
