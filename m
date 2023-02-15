@@ -2,85 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BD3B698332
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 19:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87EC469833B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 19:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbjBOSWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 13:22:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
+        id S230138AbjBOSYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 13:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjBOSWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 13:22:50 -0500
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA55011B;
-        Wed, 15 Feb 2023 10:22:47 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 1A9E63200918;
-        Wed, 15 Feb 2023 13:22:44 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 15 Feb 2023 13:22:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-transfer-encoding:content-type:date:date:from
-        :from:in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1676485363; x=
-        1676571763; bh=ZRLk0sIoJitWI4IcgROuMQOwv0KwZO5d0pce1OVSuJ0=; b=E
-        y4A4PJy0716osh+rJplzhQRipm9VeeGrS5BKOSUm5w/g/IxyRe4s5obJEuijPFoT
-        oCZI8k1d2SfRpJkOBJkQi5mnDGwsBPt2t2gumJ1ycx81LeHCVUdO+X4uhBDe+h5E
-        kPd7bYoHmco9W2jHdkHXzh1HtKTdU+jGs3KC2qR1tQwWb42vDQMdwGjbVey0xqPq
-        L1v/CwLyva3GXymdXaxmuJNhoaOt8IOCygKhp/w9de0+eeqwCLjGNHvI+xUGGBdX
-        AcJZQuB90bUdw8BQgnk/X25yS56MmyHE6dSmW8xt0MvRZ+kCGFCZm3IOE/d2fxuL
-        3AiNZyzJEwse8jeo57D9A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1676485363; x=
-        1676571763; bh=ZRLk0sIoJitWI4IcgROuMQOwv0KwZO5d0pce1OVSuJ0=; b=i
-        89zCemRZ9924zfrY/BEKnRwRYmpPGuxv2wWL8Fp9B4JZaxyzOt/WFgcoqZeDWB9P
-        DUfLQirYJ+URiRiaz8eShaUGUmejuRjMBOoad/cwWPNgP1avXzH0M51n6LdV8XKE
-        yGpGcTpzwaaVmfeNvJJ1RyI+1UDxFdmcerH9/lPBFdENw+QCzrMRYI2O4O5bZtKl
-        u9ZBnVwyBtWxhuJXO1wKWMfrF4FwxvctjUMbhDG+dyZkAKrddVuxHaGwDcBZbcYI
-        LhOaMMDOliAJ0lAzkjmGesLMtHpZMFTl3djFUq4olazSXhGtxdeXdamr/LVJaDAk
-        NcFPfc+ntGMg1GGoyrzMA==
-X-ME-Sender: <xms:8iLtYyGzaAIaBFaiNhwNLzF3Usi9jW9qqNAv6hfL4v_1jm4OOXWkOg>
-    <xme:8iLtYzUH5h8P9vcZRF2OdbiFH52yB5DIQCM5YSTB0v_u0B3d-U6U1VpAg9dYoZh-u
-    LygEU8EybKv-XoE7ik>
-X-ME-Received: <xmr:8iLtY8IHp9GyCyoXATZpiPFAB2UTWN1Ldyn3sSHN_hBrndEH1WYnrNwPL1AHW3lC3iVD_qPdyt1qet0WnS_nMjmCOC61WWD2AFBA_83L3VerETurxCqs1H4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudeihedguddthecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecunecujfgurheptgfghfggufffkfhfvegjvffose
-    htqhhmtdhhtdejnecuhfhrohhmpefuvhgvnhcurfgvthgvrhcuoehsvhgvnhesshhvvghn
-    phgvthgvrhdruggvvheqnecuggftrfgrthhtvghrnhepvdfhtdduuddvueejueffgfduke
-    dvfeevgfeuieeivdeltdehgeeivefftdetkedunecuvehluhhsthgvrhfuihiivgeptden
-    ucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:8iLtY8EF0vzfCaCNJB49AvV6Kb_PBQA-fWKTokag73oSkXIslBsilg>
-    <xmx:8iLtY4Wdxz5nUump1OUwuGSTKIx0HrNtK7mWR0cUofNUjNpO0MIMvw>
-    <xmx:8iLtY_MrBiCO8J6Gitc1aQPBeuomNy8yrMginb5wTNADbYiwbyHr1w>
-    <xmx:8yLtYxOblFB1HnHIahFXzz2WSEjFw6KWM-ipajtn7ACUCO5jXtDrUg>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 15 Feb 2023 13:22:42 -0500 (EST)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From:   Sven Peter <sven@svenpeter.dev>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH v7 3/5] arm64: dts: apple: t8103: Add PWM controller
-Date:   Wed, 15 Feb 2023 19:22:30 +0100
-Message-Id: <C8BAB390-592D-4337-83A3-80C9CB2A7B2C@svenpeter.dev>
-References: <CAMT+MTQLOZUids4N8Eba5SYOShPGJWqMSaCyF=cmh2KvBE3CaA@mail.gmail.com>
-Cc:     =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
-        alyssa@rosenzweig.io, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <CAMT+MTQLOZUids4N8Eba5SYOShPGJWqMSaCyF=cmh2KvBE3CaA@mail.gmail.com>
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
-X-Mailer: iPhone Mail (20D47)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        with ESMTP id S229520AbjBOSYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 13:24:31 -0500
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4837A91
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 10:24:30 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id v24-20020a05683011d800b0068bdd29b160so5937052otq.13
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 10:24:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=croNtBtFGFvFdMAY84BMyPQyb+LWlr8w5m6GQUs4i5I=;
+        b=bZo8rA5UjG6v05sA+DJTEI4IgE4bEqKeC2WKF+YDHic807asuli6nBnCm8Rbvx3Pxh
+         AGi0k2NmHpNaG88RvYBdaBknDRh6xD32xQkBWEj9yyz93U36ecCssApGhWpTqlhtXiZC
+         XQaNYwHzO2OlQtLgCVHvYwCMDH7Ae9U4vExmt6j5Vh/7IT+EzCVu5o0aSA25UevpfU+F
+         WQo+Rn7iA8+/aWcWaRZXyvtW0b4Igt3iHP9l9XvHL2sAJpbhTSq1Ml9PZt89bYI6/ULI
+         Z1Jj/TxEVtPoSpltG00TEFcz3SKjCdjimKRJZO2lPKbVY2eZb9y8duF4a/lYYoR90Qo7
+         AO7Q==
+X-Gm-Message-State: AO0yUKWrtfS4bjYeQ8PYc8QV2zGukKXFkSq6W68ujS4WqJAp08iBPxTf
+        QoE0ebbjgz6mfYTrCw67aw==
+X-Google-Smtp-Source: AK7set8zlWRgo6R3dEb7rgRht7PM6KhWOHnrSq+VzjIm07U2/4liXTsawcI1ipRrKnjsL5m4ut8lcQ==
+X-Received: by 2002:a9d:7312:0:b0:690:b1b5:8d76 with SMTP id e18-20020a9d7312000000b00690b1b58d76mr1212853otk.15.1676485469744;
+        Wed, 15 Feb 2023 10:24:29 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id di14-20020a0568303a0e00b0068bd922a244sm7838254otb.20.2023.02.15.10.24.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Feb 2023 10:24:29 -0800 (PST)
+Received: (nullmailer pid 367716 invoked by uid 1000);
+        Wed, 15 Feb 2023 18:24:28 -0000
+Date:   Wed, 15 Feb 2023 12:24:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, Shawn Guo <shawnguo@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: display: imx: Describe drm binding
+ for fsl,imx-lcdc
+Message-ID: <167648546792.367649.2888565409489725256.robh@kernel.org>
+References: <20230210180014.173379-1-u.kleine-koenig@pengutronix.de>
+ <20230210180014.173379-2-u.kleine-koenig@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230210180014.173379-2-u.kleine-koenig@pengutronix.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,30 +74,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
+On Fri, 10 Feb 2023 19:00:13 +0100, Uwe Kleine-König wrote:
+> Modify the existing (fb-like) binding to support the drm-like binding in
+> parallel.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> ---
+>  .../bindings/display/imx/fsl,imx-lcdc.yaml    | 46 ++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 1 deletion(-)
+> 
 
->=20
-> On 15. Feb 2023, at 19:19, Sasha Finkelstein <fnkl.kernel@gmail.com> wrote=
-:
->=20
-> =EF=BB=BFOn Wed, 15 Feb 2023 at 19:04, Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
->> I'm not the one who will apply this patch, so I cannot say. Having said
->> that, I wonder who will apply. Will this go via the arm tree, or via
->> pwm?
->=20
-> That is a good question: The pwm driver should probably go via the
-> pwm tree, but the device tree changes would be better via asahi-soc.
-> That leaves the bindings as the, "no idea which one".
-> I wouldn't mind hearing from marcan or Krzysztof as to what their
-> thoughts are on how to send it properly.
-
-The usual process is to take the dt-binding changes and the driver through t=
-he subsystem tree (I guess pwm in this case) and the changes to the device t=
-rees themselves through our asahi-soc and then through Arnd=E2=80=99s soc tr=
-ee.
-
-Sven
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
