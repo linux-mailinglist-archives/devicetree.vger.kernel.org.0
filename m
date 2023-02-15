@@ -2,194 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE0A697E99
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 15:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB79697E9E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 15:45:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbjBOOn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 09:43:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
+        id S229800AbjBOOpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 09:45:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjBOOn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 09:43:56 -0500
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2F61C58F
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 06:43:54 -0800 (PST)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-51ba4b1b9feso274515797b3.11
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 06:43:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ga39QTsy+z+m6NyTC7ZtkFH0kMl3HCJFlPDjuWsRCWk=;
-        b=U8p4AERjm1Lc3YZ7T+TlMGqRY40l2Na0nQvgNEMfY5Va6AhzuV+WvbVhijMw9eW2HY
-         1Ssw2ZRTxZD2a3aWcS4Bskkin0pC6SDjPXDirKJjQxHmgsr/LxtWia0H07SUueLe3cd0
-         Fz2CmKxy3z/KV363+Ni/976R0aiofLVVtzbJVDUUhQIFTWzqQ8yJu7TQONZ1DJ9DX6nz
-         7cy9vMpvsysDuhhTVa93efaKniU8TkUS27YVjqfFa4KPoWzgSqIjlM7kXlMe2wxwxi7n
-         JnF2o4yPbHwZgyYV4dq9FtCYsEjkC/IJwWGKxu3/lf9aHkUAiE5NITBHcEpWEnosuCEW
-         FFVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ga39QTsy+z+m6NyTC7ZtkFH0kMl3HCJFlPDjuWsRCWk=;
-        b=TjkfpJAN24Re5OI36D+ohg/htpp5k+R5Z5zzduO/B1lbbybx2S6VriGr2nIbI5gCEd
-         czgsupCRvLMGAYxXOwsCYZoofcXctBaPUHq1nbkzB4TIt1NT+ubsV3V46BMAZuDSVYaK
-         1Zc5gLuYpgr/2D5WFEUJIiSkZh/72wVya0Aew0qyQqzvj04acPIITOApgR6RKYnIGS3o
-         X5BRkMT7JsbyVJv9NpHgGFjqBYsdaSrgZXSxsz8UmL1b7IXGEBXEQaPIcteduUy3Qyh8
-         lDDD7/LiEf1HAPY5jnVOFK5NLcx3EZ5RE4crkfjqlofVUiQe1fIliGt3QffERmyZ3pKz
-         q0Vg==
-X-Gm-Message-State: AO0yUKXTpdus3bIbyveS33qAKv6XwxQTfJ+dYOJmcSSx/DetptyvbndA
-        UtUNZAe/ZO5x9DKP+e/7TJx68nPCIU9Pn7Vo3XXf4ARi6YPGIaDE
-X-Google-Smtp-Source: AK7set8QDwgi+2WYBs7jbHO1kq1hZku7IWBRjrps5059OlF1v3nu7z62weSmEN4CYag/RCS63I3P5y145+a8zVOVNwg=
-X-Received: by 2002:a5b:c3:0:b0:83a:dd71:5b70 with SMTP id d3-20020a5b00c3000000b0083add715b70mr324341ybp.35.1676472233624;
- Wed, 15 Feb 2023 06:43:53 -0800 (PST)
+        with ESMTP id S229806AbjBOOpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 09:45:03 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F7E8A5A;
+        Wed, 15 Feb 2023 06:45:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ECE0F61C3C;
+        Wed, 15 Feb 2023 14:45:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BC86C433A7;
+        Wed, 15 Feb 2023 14:45:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676472301;
+        bh=J7FR16wSeO0h7U2Rx2QzFOI98aN6QgOwDZqATCeQYVQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lfElhBWLykO/IJQQRODB6ZD2kRjRd9ASIZp9f8lTKR1+9FgfwaFmqe0HnNRHT9Hl3
+         JkgU5v3vEdtLPgjeRRcJq3hv3Km6WJFocxQkgUlojqH7alhgWDMRAap4yyKNgWSlFM
+         VOKpNUIYYpHF2vVio8HrKf+q9cSvm2aoZha9llKLmKv0QphWJ/mxRv0vnCW8R6jklr
+         6/N5X7ZgJLm/dJ5bLJ2/oN/4kh2OUdKUkAp5UrVWyp3FdeUiiDJBhVtRjbFx85GCMO
+         FOoM69qE8ueaGL5qtN2q7B9tqqLreXbtKeazbacUgYNmZfg4npkiMi2Sg8mDYWsOhr
+         e3Fj94sQQv/6w==
+Received: by mail-vk1-f180.google.com with SMTP id i4so5108071vkn.13;
+        Wed, 15 Feb 2023 06:45:01 -0800 (PST)
+X-Gm-Message-State: AO0yUKWRxNVrkYU67FU8fZYkGWztrgBayDtmbx6BUB3/8dDceZjRwexI
+        v6YRg30pQvZI28f9FChM42EBwQg+U2USS8FoNQ==
+X-Google-Smtp-Source: AK7set/kjqpJSwgOPQgeLthfUJMRO50WEjm6M46aPnoKXLrEXKV0KxBlqDn2v26BG08pkp0X6ufGr+PEnWMps4WzT6E=
+X-Received: by 2002:a1f:1b83:0:b0:401:42f3:5657 with SMTP id
+ b125-20020a1f1b83000000b0040142f35657mr350241vkb.42.1676472300265; Wed, 15
+ Feb 2023 06:45:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20230215092421.143199-1-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20230215092421.143199-1-alexander.stein@ew.tq-group.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 15 Feb 2023 15:43:41 +0100
-Message-ID: <CACRpkdZbcs4zgGtuF5U4_JghHJ=A31T8jp2NTcN68P2Eh2azxg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] gpiolib: allow device numbering using OF alias
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Johan Hovold <johan@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+References: <20230214141053.92731-1-povik+lin@cutebit.org> <167638945429.3790.16067227881981242831.robh@kernel.org>
+ <6B75F1A1-E2DE-40D5-AA79-A764C65D8AD2@cutebit.org>
+In-Reply-To: <6B75F1A1-E2DE-40D5-AA79-A764C65D8AD2@cutebit.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 15 Feb 2023 08:44:49 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJTHy3ZGUKk1dv3aD+ToxdmvYrjq1JPjHYt7R7LVVZpGQ@mail.gmail.com>
+Message-ID: <CAL_JsqJTHy3ZGUKk1dv3aD+ToxdmvYrjq1JPjHYt7R7LVVZpGQ@mail.gmail.com>
+Subject: Re: [RFC PATCH] dt-bindings: dma: apple,sio: Add schema
+To:     =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Janne Grunau <j@jannau.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Top-posting because important people are missing from the to:line.
+On Tue, Feb 14, 2023 at 1:18 PM Martin Povi=C5=A1er <povik+lin@cutebit.org>=
+ wrote:
+>
+>
+> > On 14. 2. 2023, at 17:12, Rob Herring <robh@kernel.org> wrote:
+> > On Tue, 14 Feb 2023 15:10:53 +0100, Martin Povi=C5=A1er wrote:
+> >> Describe the SIO coprocessor which serves as pretend DMA controller on
+> >> recent Apple platforms.
+> >>
+> >> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+> >> ---
+> >>
+> >> Since the schema mentions a loader preparing the binding appropriately=
+,
+> >> here's a PR with the relevant (WIP) loader code, if anyone wants to lo=
+ok:
+> >> https://github.com/AsahiLinux/m1n1/pull/286
+> >>
+> >> .../devicetree/bindings/dma/apple,sio.yaml    | 129 ++++++++++++++++++
+> >> 1 file changed, 129 insertions(+)
+> >> create mode 100644 Documentation/devicetree/bindings/dma/apple,sio.yam=
+l
+> >>
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/dma/apple,sio.example.dts:24.35-27.11=
+: Warning (node_name_vs_property_name): /example-0/interrupt-controller: no=
+de name and property name conflict
+>
+> I saw the warning, but since I had copied that part of the example from
+> apple,admac.yaml I didn=E2=80=99t make much of it. Now that I look at it =
+again,
+> the example in apple,admac doesn=E2=80=99t raise the same warning, how co=
+me?
+>
+> This is just a curiosity since we don=E2=80=99t need the aic node in the =
+example
+> anyway (unlike in apple,admac where it=E2=80=99s needed because of empty =
+entries
+> in interrupts-extended).
 
-It seems you are trying to enforce topology here,
-i.e. hammering down what should come first, second etc, despite the
-probe order.
+'interrupts-extended' is why. If the example just has 'interrupts',
+then a fake parent is constructed. It's pretty hacky, but necessary to
+parse the interrupts later on for validation.
 
-First the DT people need to acknowledge that this is a valid way to use
-device tree aliases. I'm not so sure about that. Remember that DT
-is mostly OS neutral, but we do have aliases for some use cases that
-can be the same tricky in any OS.
-
-Second I want Johan Hovolds input on this from the Linux sysfs side, as
-he keeps reminding me that sysfs already has topology and should be
-discovered from there (loosely paraphrased from memory). It might
-be that you are fixing something that should not be fixed.
-
-Please keep the new respondents on subsequent postings.
-
-Yours,
-Linus Walleij
-
-On Wed, Feb 15, 2023 at 10:24 AM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
-
-> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
->
-> This is useful e.g. for the following cases
->
-> - GPIO IP name order is not aligned with SOC addresses
->   (i.MX93 from NXP)
-> - reproducible naming for GPIO expander chips
->
-> The implementation is a mix of the one found for MMC and RTC.
->
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> imx93 specifies alias for 4 on-chip GPIO controllers. But they are
-> ignored:
-> $ ls -o -g /sys/bus/gpio/devices/
-> total 0
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip0 -> ../../../devices/platform/soc@0/42000000.bus/42530000.i2c/i2c-2/2-0071/gpiochip0
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip1 -> ../../../devices/platform/soc@0/42000000.bus/42530000.i2c/i2c-2/2-0072/gpiochip1
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip2 -> ../../../devices/platform/soc@0/43810080.gpio/gpiochip2
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip3 -> ../../../devices/platform/soc@0/43820080.gpio/gpiochip3
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip4 -> ../../../devices/platform/soc@0/43830080.gpio/gpiochip4
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip5 -> ../../../devices/platform/soc@0/47400080.gpio/gpiochip5
-> lrwxrwxrwx 1 0 Feb 15 10:03 gpiochip6 -> ../../../devices/platform/soc@0/42000000.bus/42530000.i2c/i2c-2/2-0070/gpiochip6
->
-> With this patch this becomes:
-> $ ls -o -g /sys/bus/gpio/devices/
-> total 0
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip0 -> ../../../devices/platform/soc@0/47400080.gpio/gpiochip0
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip1 -> ../../../devices/platform/soc@0/43810080.gpio/gpiochip1
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip2 -> ../../../devices/platform/soc@0/43820080.gpio/gpiochip2
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip3 -> ../../../devices/platform/soc@0/43830080.gpio/gpiochip3
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip4 -> ../../../devices/platform/soc@0/42000000.bus/42530000.i2c/i2c-2/2-0071/gpiochip4
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip5 -> ../../../devices/platform/soc@0/42000000.bus/42530000.i2c/i2c-2/2-0072/gpiochip5
-> lrwxrwxrwx 1 0 Feb 15 10:18 gpiochip6 -> ../../../devices/platform/soc@0/42000000.bus/42530000.i2c/i2c-2/2-0070/gpiochip6
->
->  drivers/gpio/gpiolib.c | 33 +++++++++++++++++++++++++++++----
->  1 file changed, 29 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-> index 19bd23044b01..4d606ad522ac 100644
-> --- a/drivers/gpio/gpiolib.c
-> +++ b/drivers/gpio/gpiolib.c
-> @@ -663,10 +663,25 @@ static void gpiochip_setup_devs(void)
->         }
->  }
->
-> +/**
-> + * gpio_first_nonreserved_index() - get the first index that is not reserved
-> + */
-> +static int gpio_first_nonreserved_index(void)
-> +{
-> +       int max;
-> +
-> +       max = of_alias_get_highest_id("gpio");
-> +       if (max < 0)
-> +               return 0;
-> +
-> +       return max + 1;
-> +}
-> +
->  int gpiochip_add_data_with_key(struct gpio_chip *gc, void *data,
->                                struct lock_class_key *lock_key,
->                                struct lock_class_key *request_key)
->  {
-> +       int index, alias_id, min_idx;
->         struct fwnode_handle *fwnode = NULL;
->         struct gpio_device *gdev;
->         unsigned long flags;
-> @@ -696,12 +711,22 @@ int gpiochip_add_data_with_key(struct gpio_chip *gc, void *data,
->
->         device_set_node(&gdev->dev, gc->fwnode);
->
-> -       gdev->id = ida_alloc(&gpio_ida, GFP_KERNEL);
-> -       if (gdev->id < 0) {
-> -               ret = gdev->id;
-> -               goto err_free_gdev;
-> +       alias_id = of_alias_get_id(to_of_node(gc->fwnode), "gpio");
-> +       if (alias_id >= 0) {
-> +               index = ida_simple_get(&gpio_ida, alias_id, alias_id + 1,
-> +                                      GFP_KERNEL);
-> +       } else {
-> +               min_idx = gpio_first_nonreserved_index();
-> +               index = ida_simple_get(&gpio_ida, min_idx, 0,
-> +                                      GFP_KERNEL);
-> +               if (index < 0) {
-> +                       ret = gdev->id;
-> +                       goto err_free_gdev;
-> +               }
->         }
->
-> +       gdev->id = index;
-> +
->         ret = dev_set_name(&gdev->dev, GPIOCHIP_NAME "%d", gdev->id);
->         if (ret)
->                 goto err_free_ida;
-> --
-> 2.34.1
->
+Rob
