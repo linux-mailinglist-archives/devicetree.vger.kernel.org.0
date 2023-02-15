@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B78FB6986E1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 22:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD4BA6986E6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 22:04:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbjBOVDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 16:03:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60674 "EHLO
+        id S230235AbjBOVD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 16:03:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbjBOVDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 16:03:07 -0500
+        with ESMTP id S230342AbjBOVD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 16:03:27 -0500
 Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF8C47408;
-        Wed, 15 Feb 2023 13:01:24 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8BD946D7A;
+        Wed, 15 Feb 2023 13:01:45 -0800 (PST)
 Received: from local
         by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
          (Exim 4.96)
         (envelope-from <daniel@makrotopia.org>)
-        id 1pSOtu-0003c0-38;
-        Wed, 15 Feb 2023 22:01:15 +0100
-Date:   Wed, 15 Feb 2023 20:59:37 +0000
+        id 1pSOuO-0003cW-0d;
+        Wed, 15 Feb 2023 22:01:44 +0100
+Date:   Wed, 15 Feb 2023 21:00:08 +0000
 From:   Daniel Golle <daniel@makrotopia.org>
 To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -46,11 +46,14 @@ To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Andrew Lunn <andrew@lunn.ch>
 Cc:     Jianhui Zhao <zhaojh329@gmail.com>,
         =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>
-Subject: [PATCH v7 00/12] net: ethernet: mtk_eth_soc: various enhancements
-Message-ID: <cover.1676491901.git.daniel@makrotopia.org>
+Subject: [PATCH v7 02/12] dt-bindings: net: mediatek,net: add mt7981-eth
+ binding
+Message-ID: <df6cc25b914f7671546b605271408796981fcea6.1676491901.git.daniel@makrotopia.org>
+References: <cover.1676491901.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <cover.1676491901.git.daniel@makrotopia.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,91 +62,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series brings a variety of fixes and enhancements for mtk_eth_soc,
-adds support for the MT7981 SoC and facilitates sharing the SGMII PCS
-code between mtk_eth_soc and mt7530.
+Introduce DT bindings for the MT7981 SoC to mediatek,net.yaml.
 
-Note that this series depends on commit 697c3892d825
-("regmap: apply reg_base and reg_downshift for single register ops") to
-not break mt7530 pcs register access.
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+ .../devicetree/bindings/net/mediatek,net.yaml | 52 +++++++++++++++++--
+ 1 file changed, 47 insertions(+), 5 deletions(-)
 
-The whole series has been tested on MT7622+MT7531 (BPi-R64),
-MT7623+MT7530 (BPi-R2) and MT7981+GPY211 (GL.iNet GL-MT3000).
-
-Changes since v6:
- * label MAC MCR bit 12 in 08/12, MediaTek replied explaining its function
- * move mediatek,sgmiisys bindings to
-   Documentation/devicetree/bindings/clock
-
-Changes since v5:
- * drop dev pointer also from struct mtk_sgmii, pass it as function
-   paramter instead
- * address comments left for dt-bindings
- * minor improvements to commit messages
-
-Changes since v4:
- * remove unused dev pointer in struct pcs_mtk_lynxi
- * squash link timer check into correct follow-up patch
-
-Changes since v3:
- * remove unused #define's
- * use BMCR_* instead of #define'ing our own constants
- * return before changing registers in case of invalid link timer
-
-Changes since v2:
- * improve dt-bindings, convert sgmisys bindings to dt-schema yaml
- * fix typo
-
-Changes since v1:
- * apply reverse xmas tree everywhere
- * improve commit descriptions
- * add dt binding documentation
- * various small changes addressing all comments received for v1
-
-
-Daniel Golle (12):
-  net: ethernet: mtk_eth_soc: add support for MT7981 SoC
-  dt-bindings: net: mediatek,net: add mt7981-eth binding
-  dt-bindings: arm: mediatek: sgmiisys: Convert to DT schema
-  dt-bindings: arm: mediatek: sgmiisys: add MT7981 SoC
-  net: ethernet: mtk_eth_soc: set MDIO bus clock frequency
-  net: ethernet: mtk_eth_soc: reset PCS state
-  net: ethernet: mtk_eth_soc: only write values if needed
-  net: ethernet: mtk_eth_soc: fix RX data corruption issue
-  net: ethernet: mtk_eth_soc: ppe: add support for flow accounting
-  net: pcs: add driver for MediaTek SGMII PCS
-  net: ethernet: mtk_eth_soc: switch to external PCS driver
-  net: dsa: mt7530: use external PCS driver
-
- .../arm/mediatek/mediatek,sgmiisys.txt        |  27 --
- .../bindings/clock/mediatek,sgmiisys.yaml     |  55 ++++
- .../devicetree/bindings/net/mediatek,net.yaml |  52 ++-
- MAINTAINERS                                   |   7 +
- drivers/net/dsa/Kconfig                       |   1 +
- drivers/net/dsa/mt7530.c                      | 277 ++++------------
- drivers/net/dsa/mt7530.h                      |  47 +--
- drivers/net/ethernet/mediatek/Kconfig         |   2 +
- drivers/net/ethernet/mediatek/mtk_eth_path.c  |  14 +-
- drivers/net/ethernet/mediatek/mtk_eth_soc.c   |  67 +++-
- drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 105 +++---
- drivers/net/ethernet/mediatek/mtk_ppe.c       | 114 ++++++-
- drivers/net/ethernet/mediatek/mtk_ppe.h       |  25 +-
- .../net/ethernet/mediatek/mtk_ppe_debugfs.c   |   9 +-
- .../net/ethernet/mediatek/mtk_ppe_offload.c   |   8 +
- drivers/net/ethernet/mediatek/mtk_ppe_regs.h  |  14 +
- drivers/net/ethernet/mediatek/mtk_sgmii.c     | 192 ++---------
- drivers/net/pcs/Kconfig                       |   7 +
- drivers/net/pcs/Makefile                      |   1 +
- drivers/net/pcs/pcs-mtk-lynxi.c               | 303 ++++++++++++++++++
- include/linux/pcs/pcs-mtk-lynxi.h             |  13 +
- 21 files changed, 802 insertions(+), 538 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.txt
- create mode 100644 Documentation/devicetree/bindings/clock/mediatek,sgmiisys.yaml
- create mode 100644 drivers/net/pcs/pcs-mtk-lynxi.c
- create mode 100644 include/linux/pcs/pcs-mtk-lynxi.h
-
-
-base-commit: 9d9019bcea1aac7eed64a1a4966282b6b7b141c8
+diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+index 7ef696204c5a..925ab2982d54 100644
+--- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
++++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+@@ -21,6 +21,7 @@ properties:
+       - mediatek,mt7623-eth
+       - mediatek,mt7622-eth
+       - mediatek,mt7629-eth
++      - mediatek,mt7981-eth
+       - mediatek,mt7986-eth
+       - ralink,rt5350-eth
+ 
+@@ -78,6 +79,11 @@ properties:
+     description:
+       List of phandles to wireless ethernet dispatch nodes.
+ 
++  mediatek,wed-pcie:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the mediatek wed-pcie controller.
++
+   dma-coherent: true
+ 
+   mdio-bus:
+@@ -123,6 +129,8 @@ allOf:
+ 
+         mediatek,wed: false
+ 
++        mediatek,wed-pci: false
++
+   - if:
+       properties:
+         compatible:
+@@ -206,6 +214,45 @@ allOf:
+ 
+         mediatek,wed: false
+ 
++        mediatek,wed-pci: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt7981-eth
++    then:
++      properties:
++        interrupts:
++          minItems: 4
++
++        clocks:
++          minItems: 15
++          maxItems: 15
++
++        clock-names:
++          items:
++            - const: fe
++            - const: gp2
++            - const: gp1
++            - const: wocpu0
++            - const: sgmii_ck
++            - const: sgmii_tx250m
++            - const: sgmii_rx250m
++            - const: sgmii_cdr_ref
++            - const: sgmii_cdr_fb
++            - const: sgmii2_tx250m
++            - const: sgmii2_rx250m
++            - const: sgmii2_cdr_ref
++            - const: sgmii2_cdr_fb
++            - const: netsys0
++            - const: netsys1
++
++        mediatek,sgmiisys:
++          minItems: 2
++          maxItems: 2
++
++
+   - if:
+       properties:
+         compatible:
+@@ -242,11 +289,6 @@ allOf:
+           minItems: 2
+           maxItems: 2
+ 
+-        mediatek,wed-pcie:
+-          $ref: /schemas/types.yaml#/definitions/phandle
+-          description:
+-            Phandle to the mediatek wed-pcie controller.
+-
+ patternProperties:
+   "^mac@[0-1]$":
+     type: object
 -- 
 2.39.1
 
