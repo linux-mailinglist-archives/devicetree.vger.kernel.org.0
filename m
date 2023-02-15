@@ -2,84 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AFE26985F8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 894FD69866E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:50:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjBOUrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 15:47:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
+        id S230158AbjBOUuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 15:50:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjBOUqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:46:37 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C27742BE8;
-        Wed, 15 Feb 2023 12:46:19 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-16a7f5b6882so192900fac.10;
-        Wed, 15 Feb 2023 12:46:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LRSeJHy2SyPDaHEW/c54mDyRYYoKFp26R/Pea6LkzEc=;
-        b=xWMdioFYxB3OCmQinRmYb8EK/rsXkuou0mrA28li8TU0E7T1mPWP5P33goVtX/QO5n
-         BLCSC/VI2PGJNaD7X0NjHHANZQj2BGKJZ0/JDSwE6PTX+qOWmygM8T/SrE4STAj96EpH
-         4yjuIO/S7YgvE9TcaHsBtqRLDAmbi40pLwXHUBVcsV+vlD/q8g1QVLaZZD6hSOitjzFg
-         nhGbI4NkDfbOVc357vqn1GL+hqRhigdXGkmub7jKc4iHaEwqtfdRFk+wH6efRHx2UNrS
-         HFhpLYx4OfY8FNCt39C88codfiBSYsgJgNLu/xSfGAtIMk6uqDWcQfLnTt+sEFYCCJNX
-         Df0w==
-X-Gm-Message-State: AO0yUKWE2yInLXlZ1l2bZD9xH0n78KGP6AQ4rz7KBguzDg7buPvzUZ1H
-        /FnAuFUCBwIsKgsKmeDyvg==
-X-Google-Smtp-Source: AK7set9Qx/gWbtf7g0aqU3LEWnLSu3VeF6+00UZ95YNE+jQ7rAp4apcpfYgMAuHmUQO0WUzv4gkNMA==
-X-Received: by 2002:a05:6870:7392:b0:16d:db03:9efa with SMTP id z18-20020a056870739200b0016ddb039efamr1820371oam.28.1676493974619;
-        Wed, 15 Feb 2023 12:46:14 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e3-20020a056870c34300b0016dc6d38b16sm5623730oak.23.2023.02.15.12.46.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 12:46:14 -0800 (PST)
-Received: (nullmailer pid 525019 invoked by uid 1000);
-        Wed, 15 Feb 2023 20:46:13 -0000
-Date:   Wed, 15 Feb 2023 14:46:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Janne Grunau <j@jannau.net>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        asahi@lists.linux.dev, Will Deacon <will@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm-pmu: Add PMU compatible strings for
- Apple M2 cores
-Message-ID: <167649397316.524961.8297827132612365519.robh@kernel.org>
-References: <20230214-apple_m2_pmu-v1-0-9c9213ab9b63@jannau.net>
- <20230214-apple_m2_pmu-v1-1-9c9213ab9b63@jannau.net>
+        with ESMTP id S229929AbjBOUt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:49:27 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE7A4390A;
+        Wed, 15 Feb 2023 12:47:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 26E2161D97;
+        Wed, 15 Feb 2023 20:46:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44993C433D2;
+        Wed, 15 Feb 2023 20:46:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676494001;
+        bh=t8U8QoDWUAMqTQvuZn2SdMB6UARQXCHE/bK/scimVwU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=CaJ18mBiW11ALJASSX0sOeIpvomm/N6l0/oq/mVrWKqN/P9Zn8SgN6yRfN4MCuM2X
+         F29Z5bouJuESfhdUdhf8o+SNF1f03qfow1PSWe9pLThWtzmK/U23m1gAaBo5IdGH5L
+         n5tXqeszuvbAMKb5Vg63GZOXKAJ4PCZnCRIhHTuKZaUuXCshaC8sqYIfQQywkQq/tF
+         aEageWLzxZn/kteu7Fwz012ua8vY4r8BK593Q0R6fVKDcY1+ljzy3YfeqtZq5O5q90
+         L0xCs1fqqna0yePPFFYnylix+2Zm0WcLAzna58awqc4yudcbocH89/ia4s+Y2SgmLH
+         N6/0if97Drbmw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.15 03/12] arm64: dts: rockchip: drop unused LED mode property from rk3328-roc-cc
+Date:   Wed, 15 Feb 2023 15:46:25 -0500
+Message-Id: <20230215204637.2761073-3-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230215204637.2761073-1-sashal@kernel.org>
+References: <20230215204637.2761073-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214-apple_m2_pmu-v1-1-9c9213ab9b63@jannau.net>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Tue, 14 Feb 2023 11:38:01 +0100, Janne Grunau wrote:
-> The PMUs on the Apple M2 cores avalanche and blizzard CPU are compatible
-> with M1 ones. As on M1 we don't know exactly what the counters count so
-> use a distinct compatible for each micro-architecture.
-> Apple's PMU counter description omits a counter for M2 so there
-> is some variation on the interpretation of the counters.
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
->  Documentation/devicetree/bindings/arm/pmu.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+[ Upstream commit 1692bffec674551163a7a4be32f59fdde04ecd27 ]
 
-Acked-by: Rob Herring <robh@kernel.org>
+GPIO LEDs do not have a 'mode' property:
+
+  rockchip/rk3328-roc-pc.dtb: leds: led-0: Unevaluated properties are not allowed ('mode' was unexpected)
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Link: https://lore.kernel.org/r/20221125144135.477144-1-krzysztof.kozlowski@linaro.org
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+index aa22a0c222655..5d5d9574088ca 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+@@ -96,7 +96,6 @@ power_led: led-0 {
+ 			linux,default-trigger = "heartbeat";
+ 			gpios = <&rk805 1 GPIO_ACTIVE_LOW>;
+ 			default-state = "on";
+-			mode = <0x23>;
+ 		};
+ 
+ 		user_led: led-1 {
+@@ -104,7 +103,6 @@ user_led: led-1 {
+ 			linux,default-trigger = "mmc1";
+ 			gpios = <&rk805 0 GPIO_ACTIVE_LOW>;
+ 			default-state = "off";
+-			mode = <0x05>;
+ 		};
+ 	};
+ };
+-- 
+2.39.0
 
