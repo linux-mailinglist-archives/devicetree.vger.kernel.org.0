@@ -2,207 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6446697820
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 09:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38874697848
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 09:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233912AbjBOI1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 03:27:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58140 "EHLO
+        id S231318AbjBOIgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 03:36:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233909AbjBOI1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 03:27:24 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432A2367E8;
-        Wed, 15 Feb 2023 00:27:11 -0800 (PST)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E1034240007;
-        Wed, 15 Feb 2023 08:27:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1676449629;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=2TjOYJpQY/rMAj42OkOWvcZQditWdAM0UKPzvzdp8/g=;
-        b=Y01a+/BUoIPDLZROoJ7+KPPD6XkOyDZLGDR3flpg+BpXQWygnkZpyTdT1BH4hh8AanUnlq
-        ymmVw+hv4tKpdXzZEw7WmFndG217Y6ErYdyoteAN6gFucuRv6mN60PrYYUogBrSc1++hqa
-        WhtELk56Y6eLjuiuZOkjZq9N2L6mjLSqOJonvXr4s9DAS9i+EDK29Eq1jTsFEhH7wKmEOt
-        b62akRnwg3VyAz7LOlr3+m+xhmJwFJlp8F89IlhUn4NnTExHi2TC5PtVq++fWeFBMI2ykE
-        qCumpnzlF0lJ39hEoAvt9zbqiiIzD0b/OI0UYXdgvK20fsnZAFTN0clnpu2YXg==
-Date:   Wed, 15 Feb 2023 09:29:33 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233099AbjBOIgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 03:36:14 -0500
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45F72B282;
+        Wed, 15 Feb 2023 00:36:09 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 9EF9F5C0048;
+        Wed, 15 Feb 2023 03:36:06 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Wed, 15 Feb 2023 03:36:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1676450166; x=
+        1676536566; bh=XZK5UkyE7CjtpojrYc2FgpvA+SYcUllXqaeA4EFayKM=; b=U
+        kDor7El8E5FreYlWu+EXpGhMGbvNaaiKikFYEAEHodhtYXqzCYxw+65CWI6Qkpdv
+        6qQ6UCJ3hT+s3xlwtGvuMZLJGyGLOKCZ3CWAJ98357IE89oDDJQG498TU60JuLf6
+        ZrLZ7MVqlff5RaVQ2VaUnw/hWbxU2owRo5TIHAlb5OMhEEvumUUCqgutDUKFobed
+        IBGn35g2/4AgBNHFHGZ7ihSfQJFz0wM6CRDK1ab8mVcWMH9N+qVBTRDEqiwnhNXi
+        +YYNjub9l8trLcq0+5827hPO/KS8POenf9GTVbNVy5KzCzclyyINDqMQM5xSlZhX
+        VBCwWMGrk/1Z+AGRsYEiw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1676450166; x=
+        1676536566; bh=XZK5UkyE7CjtpojrYc2FgpvA+SYcUllXqaeA4EFayKM=; b=j
+        muEYldVia/EtWXAwmldCFwla/BTG6gX75lJJcXi/0pJdi365aN/OtbJU+NRx/DVg
+        7II/JlvgrRufjCXpaexxmiftmcu6KQGgYajm+yc2zPgyWxutf/xtfSeQQKUO0gYq
+        G9qcR7EKP7NajVKAtt209fpEkOJV5er11lVMpglwKQ7AuSbGq4RDjwmHzRY5yllj
+        rl87cJKlN+qYvdrH9jFk7Gkc2PJ35415himIaPCOOjK4gUbHckGaxpTX5CWc71vp
+        sYloQGEMpzfHw2I08FQ6NZlu4slc0FixOYKirK3pH62xBEF4UnV77vXJmEkuo/IX
+        WDgHyi4kuwS6C3bXTs7Og==
+X-ME-Sender: <xms:dZnsY3Z7mMf5i0b1jWUQRUbs4Bng7vmSDv0P-Rdx-o_C31Dds_THxw>
+    <xme:dZnsY2axlmfaZOtU1Gaws8kRLLHxVNZm671znzL29BwD1v2wjCfAYOPPEpLqnISwy
+    1ddDazl_aOpu_p9tg8>
+X-ME-Received: <xmr:dZnsY5-E83P8j8nMhh25Y0yT-ohlxRilKxtDaOyHaPb3uhQgGaTtOHPmp2D0IF5fo3Pd78aC_zQZRDAha-L1OeOJWPko_Mg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudeigedguddulecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtudenucfhrhhomhepofgr
+    gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
+    frrghtthgvrhhnpeelleefieelleetteefvdeikeeffeffvefhtdevgfehveduveehjedv
+    vdeiledtieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:dZnsY9q9TZGKLfq5OEGxYw0_uJu__l2YGUBBzkNEIutmZ_0JdmKJcQ>
+    <xmx:dZnsYyp25wPyNICTeU4PA2oxON__90EhbEMbMokTrM958QWv6xpKyg>
+    <xmx:dZnsYzSoVXmcnQt6dT07UWskI_6DvAxRWEcHjgOqvJyExjPGOJCQbw>
+    <xmx:dpnsY2oC9v_OvQaA9SAxa3GcNHBuPP2nfJ5wRUl_xks48FLjZgZTcw>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 15 Feb 2023 03:36:05 -0500 (EST)
+Date:   Wed, 15 Feb 2023 09:36:02 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     pelzi@flying-snail.de, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Subject: Re: [PATCH v2 2/2] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb
- board device-tree
-Message-ID: <20230215092933.2f71ece0@fixe.home>
-In-Reply-To: <CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
-References: <20230209133507.150571-1-clement.leger@bootlin.com>
-        <20230209133507.150571-3-clement.leger@bootlin.com>
-        <CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: allwinner: minimize irq debounce filter per
+ default
+Message-ID: <20230215083602.ecvtoqbku2gu2dy4@houat>
+References: <d0534762-3785-ec2d-8d1e-aba0e39f701b@feldner-bv.de>
+ <20230209202952.673d5a60@slackpad.lan>
+ <20230210082936.qefzz4fsp3jpalvp@houat>
+ <20230210094425.474cfba5@donnerap.cambridge.arm.com>
+ <20230210100620.z6j7rvkiwyu7paij@houat>
+ <20230210101814.2d36ae57@donnerap.cambridge.arm.com>
+ <20230213084329.ulckaigwd7dof37u@houat>
+ <c3dda403-6963-040a-3827-443edf0a377a@flying-snail.de>
+ <20230213091803.bxle6ly2sapodsbs@houat>
+ <20230213115652.3ab4f25c@donnerap.cambridge.arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230213115652.3ab4f25c@donnerap.cambridge.arm.com>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, 14 Feb 2023 17:25:14 +0100,
-Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
+On Mon, Feb 13, 2023 at 11:56:52AM +0000, Andre Przywara wrote:
+> On Mon, 13 Feb 2023 10:18:03 +0100
+> Maxime Ripard <maxime@cerno.tech> wrote:
+> > On Mon, Feb 13, 2023 at 09:49:55AM +0100, pelzi@flying-snail.de wrote:
+> > > Am 13.02.23 um 09:43 schrieb Maxime Ripard: =20
+> > > > On Fri, Feb 10, 2023 at 10:18:14AM +0000, Andre Przywara wrote: =20
+> > > > > > > Not sure if you were actually arguing this, but the change I =
+sketched
+> > > > > > > above (interpreting 0 as 24MHz/1) is separate though, as the =
+current
+> > > > > > > default is "no DT property", and not 0. There is no input-deb=
+ounce
+> > > > > > > property user in the kernel tree at the moment, so we wouldn'=
+t break
+> > > > > > > anyone. The only thing that would change is if a downstream u=
+ser was
+> > > > > > > relying on "0" being interpreted as "skip the setup", which i=
+sn't
+> > > > > > > really documented and could be argued to be an implementation=
+ detail.
+> > > > > > >=20
+> > > > > > > So I'd suggest to implement 0 as "lowest possible", and docum=
+enting that
+> > > > > > > and the 32KHz/1 default if no property is given. =20
+> > > > > > Ah, my bad.
+> > > > > >=20
+> > > > > > There's another thing to consider: there's already a generic pe=
+r-pin
+> > > > > > input-debounce property in pinctrl.
+> > > > > >=20
+> > > > > > Since we can't control it per pin but per bank, we moved it to =
+the
+> > > > > > controller back then, but there's always been this (implicit)
+> > > > > > expectation that it was behaving the same way.
+> > > > > >=20
+> > > > > > And the generic, per-pin, input-debounce documentation says:
+> > > > > >  =20
+> > > > > > > Takes the debounce time in usec as argument or 0 to disable d=
+ebouncing =20
+> > > > > > I agree that silently ignoring it is not great, but interpretin=
+g 0 as
+> > > > > > the lowest possible is breaking that behaviour which, I believe=
+, is a
+> > > > > > worse outcome. =20
+> > > > > Is it really? If I understand the hardware manuals correctly, we =
+cannot
+> > > > > really turn that feature off, so isn't the lowest possible time p=
+eriod (24
+> > > > > MHz/1 at the moment) the closest we can get to "turn it off"? So
+> > > > > implementing this would bring us actually closer to the documented
+> > > > > behaviour? Or did I get the meaning of this time period wrong?
+> > > > > At least that's my understanding of how it fixed Andreas' problem=
+: 1=B5s
+> > > > > is still not "off", but much better than the 31=B5s of the defaul=
+t. The new
+> > > > > 0 would then be 0.041=B5s. =20
+> > > > My point was that the property we share the name (and should share =
+the
+> > > > semantics with) documents 0 as disabled. We would have a behavior t=
+hat
+> > > > doesn't disable it. It's inconsistent.
+> > > >=20
+> > > > The reason doesn't really matter, we would share the same name but =
+have
+> > > > a completely different behavior, this is super confusing to me. =20
+> > >=20
+> > > I got the point. As far as I can tell from the datasheet, it is not p=
+ossible
+> > > to actually switch off input-debounce. But as a debounce filter is ac=
+tually
+> > > a low-pass filter, setting the cut-off frequency as high as possible,
+> > > appears to be the equivalent to switching it off. =20
+> >=20
+> > It's not really a matter of hardware here, it's a matter of driver
+> > behavior vs generic behavior from the framework. The hardware obviously
+> > influences the former, but it's marginal in that discussion.
+> >=20
+> > As that whole discussion shows, whether the frequency would be high
+> > enough is application dependent, and thus we cannot just claim that it's
+> > equivalent in all circumstances.
+> >=20
+> > Making such an assumption will just bite someone else down the road,
+> > except this time we will have users (you, I'd assume) relying on that
+> > behavior so we wouldn't be able to address it.
+> >=20
+> > But I also agree with the fact that doing nothing with 0 is bad UX and
+> > confusing as well.
+> >=20
+> > I still think that we can address both by just erroring out on 0 /
+> > printing an error message so that it's obvious that we can't support it,
+> > and we wouldn't change the semantics of the property either.
+> >=20
+> > And then you can set the actual debouncing time you need instead of
+> > "whatever" in the device tree.
+>=20
+> I am on the same page with regards to discouraging 0 as a proper value, a=
+nd
+> that we should warn if this is being used.
 
-> Hi Cl=C3=A9ment,
->=20
-> CC Gareth
->=20
-> On Thu, Feb 9, 2023 at 2:32 PM Cl=C3=A9ment L=C3=A9ger <clement.leger@boo=
-tlin.com> wrote:
-> > The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since t=
-his
-> > configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-e=
-b.
-> > It adds support for the 2 additional switch ports (port C and D) that a=
-re
-> > available on that board.
-> >
-> > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> =20
->=20
-> Thanks for your patch!
->=20
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-eb.dts
-> > @@ -0,0 +1,94 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Device Tree Source for the RZN1D-EB Board
-> > + *
-> > + * Copyright (C) 2023 Schneider-Electric
-> > + *
-> > + */
-> > +
-> > +#include "r9a06g032-rzn1d400-db.dts"
-> > +
-> > +/ {
-> > +       model =3D "RZN1D-EB Board";
-> > +       compatible =3D "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
-> > +                    "renesas,r9a06g032";
-> > +};
-> > +
-> > +&mii_conv2 {
-> > +       renesas,miic-input =3D <MIIC_SWITCH_PORTD>;
-> > +       status =3D "okay";
-> > +};
-> > +
-> > +&mii_conv3 {
-> > +       renesas,miic-input =3D <MIIC_SWITCH_PORTC>;
-> > +       status =3D "okay";
-> > +};
-> > +
-> > +&pinctrl{
-> > +       pins_eth1: pins-eth1 {
-> > +               pinmux =3D <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGMII=
-_RMII)>,
-> > +                        <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(14, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(15, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(16, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(17, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(18, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(19, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(20, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(21, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(22, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(23, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>;
-> > +               drive-strength =3D <6>;
-> > +               bias-disable;
-> > +       };
-> > +
-> > +       pins_eth2: pins-eth2 {
-> > +               pinmux =3D <RZN1_PINMUX(24, RZN1_FUNC_CLK_ETH_MII_RGMII=
-_RMII)>,
-> > +                        <RZN1_PINMUX(25, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(26, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(27, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(28, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(29, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(30, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(31, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(32, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(33, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(34, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>,
-> > +                        <RZN1_PINMUX(35, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
-MII)>;
-> > +               drive-strength =3D <6>;
-> > +               bias-disable;
-> > +       };
-> > +};
-> > +
-> > +&switch {
-> > +       pinctrl-names =3D "default"; =20
->=20
-> No need to specify pinctrl-names, as it is inherited from
-> r9a06g032-rzn1d400-db.dts.
+Great :)
 
-Acked.
+> However I think we should at the same time try to still get as low as
+> possible when 0 is specified.
 
+It's still undefined behaviour though. It will be context dependent, and
+if we ever encounter a bug at 1/24MHz, we'll change that value to
+something else that might break other users that were relying on that
+value.
+
+> The debounce property uses microseconds as the unit, but even the AW
+> hardware allows us to go lower than this. So we would leave that on
+> the table, somewhat needlessly: input-debounce =3D <1> would give us
+> 1333 ns, when the lowest possible is about 42 ns (1/24MHz).
 >=20
-> > +       pinctrl-0 =3D <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pins_=
-eth4>,
-> > +                   <&pins_mdio1>;
-> > +
-> > +       mdio {
-> > +               /* CN15 and CN16 switches must be configured in MDIO2 m=
-ode */
-> > +               switch0phy1: ethernet-phy@1 {
-> > +                       reg =3D <1>;
-> > +                       marvell,reg-init =3D <3 16 0 0x1010>; =20
->=20
-> marvell,reg-init is not documented in any DT bindings document?
+> So what about the following:
+> We document that 0 does not mean off, but tries to get as low as possible.
 
-Indeed, this is not somethiong that should be made available here. It's
-only inverting the LED polarity but supported by some internal patch.
-I'll remove that.
+I still don't really like the fact that we're changing the semantics of
+that property.
 
+> If the driver sees 0, it issues a warning, but still tries to lower the
+> debounce period as much as possible, and reports that, like:
+> [1.2345678] 1c20800.pinctrl: cannot turn off debouncing, setting to 41.7 =
+ns
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+I just thought about another thing that might be a solution: instead of
+checking/enforcing the input-debounce value at probe time, we can do so
+when the pin is configured.
+
+That way, the pinctrl driver will load without affecting the system boot
+too much, but we would still reject pin configurations whose bank are
+using 0.
+
+Actually configuring the debounce per bank each time is configured is
+probably going to complexify the driver, so we could set it up in the
+probe, and default to the lowest debouncing value if it's zero, but we
+would still actively check for that value to not be 0 as soon as a pin
+is configured which would effectively prevent anyone from using that
+value. I think this would be a good compromise?
+
+> Alternatively we use a different property name, if that is a concern. We
+> could then use nanoseconds as a unit value, and then can error out on 0.
+
+I mean, if that's a concern, we can also introduce an input-debounce-ns
+property that is mutually exclusive with input-debounce, with both
+erroring out on 0.
+
+Maxime
