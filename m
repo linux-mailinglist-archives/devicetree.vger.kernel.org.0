@@ -2,98 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59058698513
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 20:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A746698523
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 21:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229485AbjBOT6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 14:58:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
+        id S229570AbjBOUCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 15:02:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjBOT6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 14:58:17 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73716A6C;
-        Wed, 15 Feb 2023 11:58:16 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 138F8B823A6;
-        Wed, 15 Feb 2023 19:58:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DA22C433D2;
-        Wed, 15 Feb 2023 19:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676491093;
-        bh=HEs3ijSJ9Z1YToGd4T11LvIyBvbW09eo7oxaJ9H6xd8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RCI340uYvpdpCDHyOukhJQvtDVX6Ol1IO6hvwvvY/LJBUzhhUJG5NKIPV2QDPxKHH
-         7847vSrPglUGgYu2cITr5KKlW9zVylz0SI1NtAvX5dbLu777S9egXZgYudVJt52CB8
-         ClraFe4DPepmPaHGRRWrD5RiyMuBaTZsfDc8akk5zAjJTu04lOZe7feXYMdhNmGTPQ
-         qDcd6BEHPiayXa+UkIilbsqOoYM8R6cm3utsaQryVmzLbus1y7mCEBFUjrmxBQ876V
-         a8CJ6v9899+l6BIGY0covOLiS97+6GNJkfYwloz04fAM0Mf/sQ+Cq5bVKn1wi/NKCu
-         qKoMcGJuiyUfg==
-Date:   Wed, 15 Feb 2023 20:58:10 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Alain Volmat <avolmat@me.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229554AbjBOUCQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 15:02:16 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B341686B5;
+        Wed, 15 Feb 2023 12:02:15 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id bh15so16832317oib.4;
+        Wed, 15 Feb 2023 12:02:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CnYwpFSiJkxoqAenwxBT3P5OhTg1ARQ8fjLNlY4RHZo=;
+        b=WaWqFpDWZmZYfsB0Zc/FLcA6YKYqPTlaPhkuU6yHjMSG7ZRYOQMGC1k4WIQEcpYGnC
+         cokZ8pNOVfmTuarAQuB0F+glZU3Y5hcd2OOTiXexkISmY90gDcUzQYC7KpWwa/aDrpPh
+         RZ3UEWyzvWK4HGuDNohuvvA0tYXRNgIYm7PLYbeTt9q8b6D8q/1bFRTXoyyvM0BIANDM
+         /uzSvromxtuqwvh65KiRyHaaH7qhf9Fy1+7QRyHOYyJ0YOMWXDV7RoR7cOCXi6FETF5Y
+         Cks40ah7L8/dSaqDNV8vlmnfXdELi06DEspDM28qJwpc1WeGGNa1aSLjO7fPe3vSVBmU
+         6ehQ==
+X-Gm-Message-State: AO0yUKW6UX6Yy6501H568Vr0PoOo0WiCM2G+Nh2ezYeIfRn8myc6W2D6
+        rlxn86wVpe+cm0W2+bh7cg==
+X-Google-Smtp-Source: AK7set8fP7f98bfSC9h4Mu+gzjVfDfd39Q/pkCbq9lmO3NEodl2mRI8121AZZ5n0n5Hy0GqB22i4LQ==
+X-Received: by 2002:a05:6808:1d0:b0:364:ca56:dd47 with SMTP id x16-20020a05680801d000b00364ca56dd47mr1586600oic.0.1676491334902;
+        Wed, 15 Feb 2023 12:02:14 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l18-20020a05683004b200b0068d59d15a93sm8060848otd.40.2023.02.15.12.02.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Feb 2023 12:02:14 -0800 (PST)
+Received: (nullmailer pid 477812 invoked by uid 1000);
+        Wed, 15 Feb 2023 20:02:13 -0000
+Date:   Wed, 15 Feb 2023 14:02:13 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Frieder Schrempf <frieder@fris.de>
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: i2c: i2c-st: convert to DT schema
-Message-ID: <Y+05Uv/izJ+YyY0U@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Alain Volmat <avolmat@me.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230213191608.16503-1-avolmat@me.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Robin Gong <yibin.gong@nxp.com>, Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Per-Daniel Olsson <perdo@axis.com>,
+        Rickard x Andersson <rickaran@axis.com>
+Subject: Re: [PATCH 1/6] dt-bindings: regulator: pca9450: Document new usage
+ of sd-vsel-gpios
+Message-ID: <20230215200213.GA467386-robh@kernel.org>
+References: <20230213155833.1644366-1-frieder@fris.de>
+ <20230213155833.1644366-2-frieder@fris.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="FvTABU9AZrnonJXa"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230213191608.16503-1-avolmat@me.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230213155833.1644366-2-frieder@fris.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 13, 2023 at 04:58:19PM +0100, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> The sd-vsel-gpios property is abandoned in its current meaning as an
+> output. We now use it to specify an optional signal that can be
+> evaluated by the driver in order to retrieve the current status
+> of the SD_VSEL signal that is used to select the control register
+> of LDO5.
+> 
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
+>  .../regulator/nxp,pca9450-regulator.yaml      | 23 ++++++++++++++-----
+>  1 file changed, 17 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+> index 835b53302db8..c86534538a4e 100644
+> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+> @@ -40,8 +40,24 @@ properties:
+>      description: |
+>        list of regulators provided by this controller
+>  
+> +    properties:
+> +      LDO5:
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        description:
+> +          Properties for single LDO5 regulator.
+> +
+> +        properties:
+> +          sd-vsel-gpios:
 
---FvTABU9AZrnonJXa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It is a pin on the device, right? Then it belongs in the device node as 
+it was.
 
-On Mon, Feb 13, 2023 at 08:16:06PM +0100, Alain Volmat wrote:
-> Convert i2c-st.txt into st,sti-i2c.yaml for the i2c-st driver.
->=20
-> Signed-off-by: Alain Volmat <avolmat@me.com>
+Can't the direction of the signal tell you how it is used? Assuming the 
+pin is bidirectional?
 
-Applied to for-next, thanks!
+The binding should support any possible way the device is wired, not 
+just what's been seen so far on some boards.
 
-
---FvTABU9AZrnonJXa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPtOVIACgkQFA3kzBSg
-KbYTqhAAjkzeRVZmu6GrNxDuEVjGzJe6tFD2B5cP3zCtTJCL8mWEzNVzGtMYv8j1
-vIivTD/LZ+uJMD8mw4YGb+Lo7rWdvv79sAgoKoJjJuF5Z++GwflLQtz1+mwilKa4
-wjlXgwNKVkZjdI5OasLGnLeTvoIQWOa3ms8JGMarH80IP5lgbbM5RFfXUw7bF/oG
-sz48/ilJzEJqDuatW9YfSn1lhiwHL8FN+/ciZs06ejTGLXbnZdULfg0L1x/Xd4zt
-Xlz1V9xvcRL+g3RY1cPD7HzWqeK1YYV/+iMRm+cLq6hH7gw9yAPDI6n5fTwlD/a0
-5wmE8JLX+XbLwTXYXPb7our27lxUAzd3EBqSTTh75i3MpXioj3UJbBDtsZ70W5VV
-2GOuw4ViQhGwIYrkb+97dPDjJRBuNLm5Vc7WWReHk40IFqDu6UOdwcne2kAxbqNx
-9CgClfOtqk59oOIxmlV7u9VS8s3xkKOYaaRurs+MB0ag/vtbM+1DUWoXIff153+l
-LCEfqmBqw9VvMBUS8GfGdrU+u1NUnXHcLT6Y8Qr9VHd/ooQyIjJcJklNVdPPn65h
-yeZEfFuzH7DKgiSaftyHQ2Ndr66U0z9GTrJvRcCEx9P+oOgRWd0n3BNwhh/8Ki5v
-Hfsm4bvJ16nGNOo5YiAFxommPvbOxZ4k2YmvTVonKlqpkhidfHw=
-=zv87
------END PGP SIGNATURE-----
-
---FvTABU9AZrnonJXa--
+Rob
