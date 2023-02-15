@@ -2,219 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D62DF697943
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 10:47:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66A9A697962
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:00:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231750AbjBOJrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 04:47:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
+        id S229674AbjBOJ7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 04:59:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234087AbjBOJqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 04:46:55 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B4A36459;
-        Wed, 15 Feb 2023 01:46:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C097C61AC1;
-        Wed, 15 Feb 2023 09:46:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2494CC433D2;
-        Wed, 15 Feb 2023 09:46:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676454405;
-        bh=Jor57+yRXIkq/owLmTQVrQYrWDjgXONmDNhnp32CUfA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JDM+KRB3urZEkN6LH7dCQC6OZumuCXtAHKvYDdGNYWnt33OBrP/cWLvZvpmOZq1tm
-         gfeh3P1VaauiogfXkH6yDitMYGLfZnt7/nFJCBDwTuORMso1AZUeN6oF4f+tabrGyt
-         MYLpPMK0eHtbDBA4oqU2szxa/NSDEVIgsnuneq0NpOTOYvLHcPXdX/h2Ta9sM/8he7
-         qpBhCYOaIS637nFOIbXrT7b5ifhs0j+eu3xXakAhrJTcpebi10m8dL7Mw4aDjY3lzg
-         wmetZ55kGcw3N6xNEBpL+QWP978LsBJTetqYwac1yyaogtqlMbqN8wq26qHukXlPY6
-         XH3jvgfYwiBuQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pSEO4-0006dR-Em; Wed, 15 Feb 2023 10:47:41 +0100
-Date:   Wed, 15 Feb 2023 10:47:40 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sc8280xp-crd: Introduce
- pmic_glink
-Message-ID: <Y+yqPMdiuJ+ssisR@hovoldconsulting.com>
-References: <20230213215619.1362566-1-quic_bjorande@quicinc.com>
- <20230213215619.1362566-3-quic_bjorande@quicinc.com>
+        with ESMTP id S230035AbjBOJ7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 04:59:05 -0500
+Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B92924C8E
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 01:59:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1676455141; x=1707991141;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=WTkXI4W+MKwwJycy7cbo2GbIsg58uAfo8wCSpFIsYak=;
+  b=ak8xABhJU7xPuu+IG/yGP3vZieAiQkPX4ExqoFspqR9dsDm4PYnySNXD
+   UosTOgslXBWhNHoopMXoVq6sPDGhxWypVfCzdssEkYnLPrX05q36yJsOD
+   HEDWrnz6RENx9RsbYGspb9/JPHxTxLhCa9EslBwDQSAO04HMiEHS7qXOm
+   JTM2lxzLRX1FFC61Yr+4A17ze568FX7d9Y6N0isCopUtRQBPJ24a/fsRX
+   0kYzlLR7K1Tuvvk4I2KDFLtsbkkM8MaPxOKlkDvP1GzDhdO1g1iEnhI5f
+   Yuy0y0hm58uthCK4GUTu2y3EFqwqlKcLoICxjdjyGu6EPTX5NLr+V/Hy7
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,299,1669046400"; 
+   d="scan'208";a="223377102"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 15 Feb 2023 17:59:00 +0800
+IronPort-SDR: dhQRsRNORiDbtjVvDdAsS3ogYvf2xJpDn31TmA5RYqUHRcy2B3BCOmZnJqpoyhUZDwCmS16pYv
+ s/xvP+iCKegORkaAMrNLxo7o4AkiDtaqb+ZsshyhqEwgipyFlkpHPNS96oQhqTNbz/IwduNN7n
+ kNrdQsAXY1HYlGkW48CnpBlxygAbRAKO0eIsC4NoJgw3lgv5Zclo36u1JjG4dKUHThsQ4iRSfj
+ fN6RrnU7DbLHfAilyhHI4gLQzzDjuwpW5uouiGb4olXevXJBwnIOvxC/dY4WnycO5QvW6Adbfl
+ ahY=
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 01:10:23 -0800
+IronPort-SDR: 5ASdYgvr/EFZvrgDqBePsWBHTV4QG39gBY7dgR7e2/MPF+uPpKplAxnuT1msdGZIyB9LLhZwVA
+ bvqMrp958rZrWBsFI4iPzID34DisGTkGOS54KXbB27SjxynqMPB/og6YAm4zdV1UKe9r4rendZ
+ CLGhvy/xwA8A87sQKeHuSqVLuphB0Hmvsn6ev5E1w5TxzzbfCZf6E/Y56GTT2DtSM6pv7dgUpd
+ 3lFLojVUR68ftLjJZAudYP3/5Xk7tL0HCexCZlkhG6lIfkohO0kykQQAGgC8lyXXGjHZ+znuVt
+ 2eo=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 01:59:02 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PGtnw2FwKz1RvTr
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 01:59:00 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1676455138; x=1679047139; bh=WTkXI4W+MKwwJycy7cbo2GbIsg58uAfo8wC
+        SpFIsYak=; b=PJZxYfrKRw5XUinlQGXvfZTe3KKu/Pb7k6M6mo9VoygA9BCRL8P
+        CmYgtrhmCbWSof5IaNZ8DvwAJRu850zMvm4dueIboWgQIeIVQqo+u+ewop3IsAy5
+        ploWhU9Bc7LMDxcr81yCVuMSwVHJKNUGX0ZrbH74PLD3zRKzL+zI8kRNdsMIQrTu
+        URdww+2DEp8ij+FlBh1R5nBEFaHBSznzLxr2nemsrLThWaXNzR+qhR6QREVJzz7g
+        wl+oNtf2qJxgu97EvdrdKMkB0cC+XIFkBVkqvPbysEQci44SFwkFZF2lY7JImr/x
+        vAQQmj3UVM2hyFEXoW1Bj06/3zk+hzfbIqA==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id Wv6K7hcr-cbi for <devicetree@vger.kernel.org>;
+        Wed, 15 Feb 2023 01:58:58 -0800 (PST)
+Received: from [10.225.163.116] (unknown [10.225.163.116])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PGtnq2Qlbz1RvLy;
+        Wed, 15 Feb 2023 01:58:55 -0800 (PST)
+Message-ID: <559bdd8c-9cc8-d7ae-a937-ffee9cfbb8a6@opensource.wdc.com>
+Date:   Wed, 15 Feb 2023 18:58:54 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230213215619.1362566-3-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/9] PCI: rockchip: Remove writes to unused registers
+Content-Language: en-US
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
+        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
+ <20230214140858.1133292-2-rick.wertenbroek@gmail.com>
+ <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
+ <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 01:56:17PM -0800, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On 2/15/23 18:04, Rick Wertenbroek wrote:
+> On Wed, Feb 15, 2023 at 12:56 AM Damien Le Moal
+> <damien.lemoal@opensource.wdc.com> wrote:
+>>
+>> I checked the TRM and indeed these registers are listed as unused.
+>> However, with this patch, nothing work for me using a Pine rockpro64
+>> board. Keeping this patch, your series (modulo some other fixes, more
+>> emails coming) is making things work !
 > 
-> The SC8280XP CRD control over battery management and its two USB Type-C
-> port using pmic_glink and two GPIO-based SBU muxes.
+> Hello, Thank you for testing the driver and commenting, I'll incorporate your
+> suggestions in the next version of this series.
 > 
-> Enable the two DisplayPort instances, GPIO SBU mux instance and
-> pmic_glink with the two connectors on the CRD.
+> This patch alone does not make the driver work. Without the fixes to the
+> address windows and translation found in [PATCH v2 6/9] ("PCI: rockchip:
+> Fix window mapping and address translation for endpoint") transfers will not
+> work. However, as you said, with the patch series, the driver works.
+> Good to see that you have the driver working on the rockpro64 which is a
+> very similar but different board than the one I used (FriendlyElec NanoPC-T4).
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
+>> So I think the bug is with the TRM, not the code. THinking logically about
+>> htis, it makes sense: this is programming the address translation unit to
+>> translate mmio & dma between host PCI address and local CPU space address.
+>> If we never set the PU address, how can that unit possibly ever translate
+>> anything ?
 > 
-> Changes since v3:
-> - Moved data-lanes into dp/port/endpoint
-> - Moved dp/port/endpoint definition to sc8280xp.dtsi, and reference by
->   label - to avoid repeating structure in the dts
+> No, the bug is not in the TRM:
+> The RK3399 PCIe endpoint core has the physical address space of 64MB
+> @ 0xF800'0000 to access the PCIe address space (TRM 17.5.4).
+> This space is split into 33 windows, one of 32MBytes and 32 of 1MByte.
+> Read-write accesses by the CPU to that region will be translated. Each
+> window has a mapping that is configured through the ATR Configuration
+> Register Address Map (TRM 17.6.8) and the registers addr0 and addr1
+> will dictate the translation between the window (a physical CPU addr)
+> into a PCI space address (with this the unit can translate). The other
+> registers are for the PCIe header descriptor.
+> The translation process is documented in TRM 17.5.5.1.1
+> The core will translate all read-write accesses to the windows that fall
+> in the 64MB space @ 0xF800'0000 and generate the PCIe addresses
+> and headers according to the values in the registers in the ATR
+> Configuration Register Address Map (@ 0xFDC0'0000).
 > 
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 196 +++++++++++++++++++++-
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi    |  17 ++
->  2 files changed, 211 insertions(+), 2 deletions(-)
+> Translation does indeed take place and works
+> but requires the changes in [PATCH v2 6/9] ("PCI: rockchip:
+> Fix window mapping and address translation for endpoint")
+> because it was broken from the start...
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index 2179c06b4e3b..98a0f1f9f01e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -36,6 +36,84 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	pmic-glink {
-> +		compatible = "qcom,sc8280xp-pmic-glink", "qcom,pmic-glink";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_con0_hs: endpoint {
-> +						remote-endpoint = <&usb_0_role_switch>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_con0_ss: endpoint {
-> +						remote-endpoint = <&mdss0_dp0_out>;
-> +					};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +
-> +					pmic_glink_con0_sbu: endpoint {
-> +						remote-endpoint = <&usb0_sbu_mux>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		connector@1 {
-> +			compatible = "usb-c-connector";
-> +			reg = <1>;
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+> The two writes that were removed are to unused (read-only) registers.
+> The writes don't do anything, manually writing and reading back these
+> addresses will always lead to 0 (they are read-only). So they are removed.
 
-Nit: add a newline for consistency
+OK. Tested again and it is working-ish...
 
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_con1_hs: endpoint {
-> +						remote-endpoint = <&usb_1_role_switch>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_con1_ss: endpoint {
-> +						remote-endpoint = <&mdss0_dp1_out>;
-> +					};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +
-> +					pmic_glink_con1_sbu: endpoint {
-> +						remote-endpoint = <&usb1_sbu_mux>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	vreg_edp_3p3: regulator-edp-3p3 {
->  		compatible = "regulator-fixed";
-  
-> @@ -262,6 +380,24 @@ &mdss0 {
->  	status = "okay";
->  };
->  
-> +&mdss0_dp0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0_dp0_out {
-> +	data-lanes = <0 1>;
+./pcitest.sh
+## Loading pci_endpoint_test
+## BAR tests
+BAR0:		OKAY
+BAR1:		OKAY
+BAR2:		OKAY
+BAR3:		OKAY
+BAR4:		OKAY
+BAR5:		OKAY
 
-This does not work as the drm driver expects 'data-lanes' to be defined
-in the controller node where you had it in the previous versions:
+## Legacy interrupt tests
+SET IRQ TYPE TO LEGACY:		OKAY
+LEGACY IRQ:	OKAY
 
-	[    6.669325] [drm] Invalid property "data-lanes", default max DP lanes = 4
+## MSI interrupt tests
+SET IRQ TYPE TO MSI:		OKAY
+MSI1:		OKAY
+MSI2:		OKAY
+MSI3:		OKAY
+MSI4:		OKAY
+MSI5:		OKAY
+MSI6:		OKAY
+MSI7:		OKAY
+MSI8:		OKAY
+MSI9:		OKAY
+MSI10:		OKAY
+MSI11:		OKAY
+MSI12:		OKAY
+MSI13:		OKAY
+MSI14:		OKAY
+MSI15:		OKAY
+MSI16:		OKAY
 
-Moving it to the endpoint nodes would require updating both binding and
-driver it seems.
+## Read Tests (DMA)
+READ (      1 bytes):		OKAY
+READ (   1024 bytes):		OKAY
+READ (   1025 bytes):		OKAY
+READ (   4096 bytes):		OKAY
+READ ( 131072 bytes):		OKAY
+READ (1024000 bytes):		OKAY
+READ (1024001 bytes):		OKAY
+READ (1048576 bytes):		OKAY
 
-> +	remote-endpoint = <&pmic_glink_con0_ss>;
-> +};
-> +
-> +&mdss0_dp1 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0_dp1_out {
-> +	data-lanes = <0 1>;
+## Write Tests (DMA)
+WRITE (      1 bytes):		OKAY
+WRITE (   1024 bytes):		OKAY
+WRITE (   1025 bytes):		OKAY
+WRITE (   4096 bytes):		OKAY
+WRITE ( 131072 bytes):		OKAY
+WRITE (1024000 bytes):		OKAY
 
-Same here (and for X13s).
+Then stops here doing the 1024001 B case. The host waits for a completion that
+does not come. On the EP side, I see:
 
-> +	remote-endpoint = <&pmic_glink_con1_ss>;
-> +};
-> +
->  &mdss0_dp3 {
->  	compatible = "qcom,sc8280xp-edp";
->  	/delete-property/ #sound-dai-cells;
+[   94.307215] pci_epf_test pci_epf_test.0: READ src addr 0xffd00000, 1024001 B
+[   94.307960] pci_epc fd000000.pcie-ep: Map region 1 phys addr 0xfa100000 to
+pci addr 0xffd00000, 1024001 B
+[   94.308924] rockchip-pcie-ep fd000000.pcie-ep: Set atu: region 1, cpu addr
+0xfa100000, pci addr 0xffd00000, 1024001 B
+[  132.309645] dma-pl330 ff6e0000.dma-controller: Reset Channel-2
+CS-20000e FTC-40000
 
-Johan
+                                                  ^^^^^^^^^^^^^^^
+The DMA engine does not like something at all. Back to where I was when I tried
+your series initially, which is why I tried removing patch 1 to see what happens...
+
+[  132.370479] pci_epf_test pci_epf_test.0: READ => Size: 1024001 B, DMA: YES,
+Time: 38.059623935 s, Rate: 26 KB/s
+[  132.372152] pci_epc fd000000.pcie-ep: Unmap region 1
+[  132.372780] pci_epf_test pci_epf_test.0: RAISE MSI IRQ 1
+[  132.373312] rockchip-pcie-ep fd000000.pcie-ep: Send MSI IRQ 1
+[  132.373844] rockchip-pcie-ep fd000000.pcie-ep: MSI disabled
+[  132.374388] pci_epf_test pci_epf_test.0: Raise IRQ failed -22
+
+And it looks like the PCI core crashed or something because MSI does not work
+anymore as well (note that this is wheat I see with my nvme epf driver too, but
+I do not have that DMA channel reset message...)
+
+If I run the tests without DMA (mmio only), everything seems fine:
+
+## Read Tests (No DMA)
+READ (      1 bytes):		OKAY
+READ (   1024 bytes):		OKAY
+READ (   1025 bytes):		OKAY
+READ (1024000 bytes):		OKAY
+READ (1024001 bytes):		OKAY
+
+## Write Tests (No DMA)
+WRITE (      1 bytes):		OKAY
+WRITE (   1024 bytes):		OKAY
+WRITE (   1025 bytes):		OKAY
+WRITE (1024000 bytes):		OKAY
+WRITE (1024001 bytes):		OKAY
+
+## Copy Tests (No DMA)
+COPY (      1 bytes):		OKAY
+COPY (   1024 bytes):		OKAY
+COPY (   1025 bytes):		OKAY
+COPY (1024000 bytes):		OKAY
+COPY (1024001 bytes):		OKAY
+
+So it looks like translation is working with your patch, but that the driver is
+still missing something for DMA to work correctly...
+
+Will keep digging.
+
+Note that this is all tested with the patch series fixing pci-epf-test and
+pci_endpoint_test drivers that I posted earlier today. As mentioned, my host is
+an AMD Ryzen PC.
+
+-- 
+Damien Le Moal
+Western Digital Research
+
