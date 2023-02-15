@@ -2,279 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A9A697962
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5588B697974
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 11:01:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbjBOJ7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 04:59:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59812 "EHLO
+        id S231249AbjBOKBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 05:01:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbjBOJ7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 04:59:05 -0500
-Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B92924C8E
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 01:59:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1676455141; x=1707991141;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=WTkXI4W+MKwwJycy7cbo2GbIsg58uAfo8wCSpFIsYak=;
-  b=ak8xABhJU7xPuu+IG/yGP3vZieAiQkPX4ExqoFspqR9dsDm4PYnySNXD
-   UosTOgslXBWhNHoopMXoVq6sPDGhxWypVfCzdssEkYnLPrX05q36yJsOD
-   HEDWrnz6RENx9RsbYGspb9/JPHxTxLhCa9EslBwDQSAO04HMiEHS7qXOm
-   JTM2lxzLRX1FFC61Yr+4A17ze568FX7d9Y6N0isCopUtRQBPJ24a/fsRX
-   0kYzlLR7K1Tuvvk4I2KDFLtsbkkM8MaPxOKlkDvP1GzDhdO1g1iEnhI5f
-   Yuy0y0hm58uthCK4GUTu2y3EFqwqlKcLoICxjdjyGu6EPTX5NLr+V/Hy7
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,299,1669046400"; 
-   d="scan'208";a="223377102"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 15 Feb 2023 17:59:00 +0800
-IronPort-SDR: dhQRsRNORiDbtjVvDdAsS3ogYvf2xJpDn31TmA5RYqUHRcy2B3BCOmZnJqpoyhUZDwCmS16pYv
- s/xvP+iCKegORkaAMrNLxo7o4AkiDtaqb+ZsshyhqEwgipyFlkpHPNS96oQhqTNbz/IwduNN7n
- kNrdQsAXY1HYlGkW48CnpBlxygAbRAKO0eIsC4NoJgw3lgv5Zclo36u1JjG4dKUHThsQ4iRSfj
- fN6RrnU7DbLHfAilyhHI4gLQzzDjuwpW5uouiGb4olXevXJBwnIOvxC/dY4WnycO5QvW6Adbfl
- ahY=
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 01:10:23 -0800
-IronPort-SDR: 5ASdYgvr/EFZvrgDqBePsWBHTV4QG39gBY7dgR7e2/MPF+uPpKplAxnuT1msdGZIyB9LLhZwVA
- bvqMrp958rZrWBsFI4iPzID34DisGTkGOS54KXbB27SjxynqMPB/og6YAm4zdV1UKe9r4rendZ
- CLGhvy/xwA8A87sQKeHuSqVLuphB0Hmvsn6ev5E1w5TxzzbfCZf6E/Y56GTT2DtSM6pv7dgUpd
- 3lFLojVUR68ftLjJZAudYP3/5Xk7tL0HCexCZlkhG6lIfkohO0kykQQAGgC8lyXXGjHZ+znuVt
- 2eo=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 01:59:02 -0800
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PGtnw2FwKz1RvTr
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 01:59:00 -0800 (PST)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1676455138; x=1679047139; bh=WTkXI4W+MKwwJycy7cbo2GbIsg58uAfo8wC
-        SpFIsYak=; b=PJZxYfrKRw5XUinlQGXvfZTe3KKu/Pb7k6M6mo9VoygA9BCRL8P
-        CmYgtrhmCbWSof5IaNZ8DvwAJRu850zMvm4dueIboWgQIeIVQqo+u+ewop3IsAy5
-        ploWhU9Bc7LMDxcr81yCVuMSwVHJKNUGX0ZrbH74PLD3zRKzL+zI8kRNdsMIQrTu
-        URdww+2DEp8ij+FlBh1R5nBEFaHBSznzLxr2nemsrLThWaXNzR+qhR6QREVJzz7g
-        wl+oNtf2qJxgu97EvdrdKMkB0cC+XIFkBVkqvPbysEQci44SFwkFZF2lY7JImr/x
-        vAQQmj3UVM2hyFEXoW1Bj06/3zk+hzfbIqA==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id Wv6K7hcr-cbi for <devicetree@vger.kernel.org>;
-        Wed, 15 Feb 2023 01:58:58 -0800 (PST)
-Received: from [10.225.163.116] (unknown [10.225.163.116])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PGtnq2Qlbz1RvLy;
-        Wed, 15 Feb 2023 01:58:55 -0800 (PST)
-Message-ID: <559bdd8c-9cc8-d7ae-a937-ffee9cfbb8a6@opensource.wdc.com>
-Date:   Wed, 15 Feb 2023 18:58:54 +0900
+        with ESMTP id S233967AbjBOKBL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 05:01:11 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 138412BF16
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 02:01:05 -0800 (PST)
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 669D93F206
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 10:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1676455264;
+        bh=N6nLfe3Ogw8JebzYy5+qmB5POBTivnyXYU0aBkUXowQ=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=JIeaudR4mbYN5e4tKLDFictbCRnvVkglBxXXDqci5fp33DonnGKb6QTB0qQFzKfb6
+         vez+mG8MVCKwKnL7SLl0usuVkvF/KCuXL+BXiXhiGowKhVLfAuPyCsTj6LiOOyNejs
+         u08z4nyfN0sb9slFB9QVMzj+m0AvncBXSgS73wEnXbvQX5f5kKSptcBs/El+rF9M+y
+         HYs6coNe4gp2dk+UTvhTXcTbSpamiDJQ4DKX46tvhwI8L71rtZDfd/AOqyEjARLiK+
+         yeBWeNr+mC8G4UGiI64o8gusUbDY4+i5u07TYTEh7TdbQHpyfpvJxFzW2fkJ9u66wN
+         HUvqrbZbAjBww==
+Received: by mail-qt1-f197.google.com with SMTP id z12-20020ac8710c000000b003b829a0eda2so10950192qto.21
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 02:01:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N6nLfe3Ogw8JebzYy5+qmB5POBTivnyXYU0aBkUXowQ=;
+        b=TrNxQAT7trZip2wxhj+mianFEXd9mYTQA+t+Yb3h/qmfoS3doDhzCOInyzlFAIiRKv
+         7uXyc/fLr8MBs8xapIhQ1RhlF9V63yL3AeEUg+BvZhJU1/eV9MKxiZdUnHh7jaOKfqAm
+         U9r8Oy26LRu4gHEmcYqA/rCslz5Xs/dtFOvAIggtm/sOv+oO07cscx5h1wwhco3SSz4E
+         jHIEsFl9dFUGqsM4ZLSX7/dEU9AKAWH7uiRSRzzohDeIz6FWvxCgWwW6u17tXc+NvQwf
+         N5CeYuUpN+HJ9azZTIDn7ofU11aN3rNdNqZACP7FGYTt9Y4MmiDJpj4+0ZZWLTXw2x7m
+         rG1w==
+X-Gm-Message-State: AO0yUKWGHfeHXSpp0xIX5RnCFK2Zlu2kHh7q0mfsy0t/duTYZSfxJkey
+        +ulwdX6nCqbI377NfrUQha+P25+SSZnkvKvaNVtQSVkSYvYulKneUcI1XlUiGB8fBRp8dlfXsK5
+        9KMrnlDLe7H0kCjZ4OkxvONoix19cj64WMY2KuPkdPXCuvaSSYVU95l4=
+X-Received: by 2002:a37:4249:0:b0:73b:3411:48b1 with SMTP id p70-20020a374249000000b0073b341148b1mr77164qka.219.1676455263484;
+        Wed, 15 Feb 2023 02:01:03 -0800 (PST)
+X-Google-Smtp-Source: AK7set+9H4L1nqdu+2ESDHje9l8E+qLdMohDtVuTVdGzCspjXkgOLnXU/9AA+6LBSrMd5WIhdVG6YbR1SazSJWLVTSk=
+X-Received: by 2002:a37:4249:0:b0:73b:3411:48b1 with SMTP id
+ p70-20020a374249000000b0073b341148b1mr77162qka.219.1676455263227; Wed, 15 Feb
+ 2023 02:01:03 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/9] PCI: rockchip: Remove writes to unused registers
-Content-Language: en-US
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+References: <20230203081913.81968-1-william.qiu@starfivetech.com> <CAPDyKFqei-GjKpBUQnDZUbYnSyn-JS5f_EnTLOuA1U4PdYTyVA@mail.gmail.com>
+In-Reply-To: <CAPDyKFqei-GjKpBUQnDZUbYnSyn-JS5f_EnTLOuA1U4PdYTyVA@mail.gmail.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 15 Feb 2023 11:00:46 +0100
+Message-ID: <CAJM55Z8gpBDu9818GPLRYJ9DBa+NfXW0uo76_bkwWm6RS1S9wg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] StarFive's SDIO/eMMC driver support
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     William Qiu <william.qiu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <20230214140858.1133292-2-rick.wertenbroek@gmail.com>
- <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
- <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/15/23 18:04, Rick Wertenbroek wrote:
-> On Wed, Feb 15, 2023 at 12:56 AM Damien Le Moal
-> <damien.lemoal@opensource.wdc.com> wrote:
->>
->> I checked the TRM and indeed these registers are listed as unused.
->> However, with this patch, nothing work for me using a Pine rockpro64
->> board. Keeping this patch, your series (modulo some other fixes, more
->> emails coming) is making things work !
-> 
-> Hello, Thank you for testing the driver and commenting, I'll incorporate your
-> suggestions in the next version of this series.
-> 
-> This patch alone does not make the driver work. Without the fixes to the
-> address windows and translation found in [PATCH v2 6/9] ("PCI: rockchip:
-> Fix window mapping and address translation for endpoint") transfers will not
-> work. However, as you said, with the patch series, the driver works.
-> Good to see that you have the driver working on the rockpro64 which is a
-> very similar but different board than the one I used (FriendlyElec NanoPC-T4).
-> 
->> So I think the bug is with the TRM, not the code. THinking logically about
->> htis, it makes sense: this is programming the address translation unit to
->> translate mmio & dma between host PCI address and local CPU space address.
->> If we never set the PU address, how can that unit possibly ever translate
->> anything ?
-> 
-> No, the bug is not in the TRM:
-> The RK3399 PCIe endpoint core has the physical address space of 64MB
-> @ 0xF800'0000 to access the PCIe address space (TRM 17.5.4).
-> This space is split into 33 windows, one of 32MBytes and 32 of 1MByte.
-> Read-write accesses by the CPU to that region will be translated. Each
-> window has a mapping that is configured through the ATR Configuration
-> Register Address Map (TRM 17.6.8) and the registers addr0 and addr1
-> will dictate the translation between the window (a physical CPU addr)
-> into a PCI space address (with this the unit can translate). The other
-> registers are for the PCIe header descriptor.
-> The translation process is documented in TRM 17.5.5.1.1
-> The core will translate all read-write accesses to the windows that fall
-> in the 64MB space @ 0xF800'0000 and generate the PCIe addresses
-> and headers according to the values in the registers in the ATR
-> Configuration Register Address Map (@ 0xFDC0'0000).
-> 
-> Translation does indeed take place and works
-> but requires the changes in [PATCH v2 6/9] ("PCI: rockchip:
-> Fix window mapping and address translation for endpoint")
-> because it was broken from the start...
-> 
-> The two writes that were removed are to unused (read-only) registers.
-> The writes don't do anything, manually writing and reading back these
-> addresses will always lead to 0 (they are read-only). So they are removed.
+On Tue, 14 Feb 2023 at 13:21, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Fri, 3 Feb 2023 at 09:19, William Qiu <william.qiu@starfivetech.com> wrote:
+> >
+> > Hi,
+> >
+> > This patchset adds initial rudimentary support for the StarFive
+> > designware mobile storage host controller driver. And this driver will
+> > be used in StarFive's VisionFive 2 board. The main purpose of adding
+> > this driver is to accommodate the ultra-high speed mode of eMMC.
+> >
+> > The last patch should be applied after the patchset [1]:
+> > [1] https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
+> >
+> > Changes since v2:
+> > - Wraped commit message according to Linux coding style.
+> > - Rephrased the description of the patches.
+> > - Changed the description of syscon regsiter.
+> > - Dropped redundant properties.
+> >
+> > The patch series is based on v6.1.
+> >
+> > William Qiu (3):
+> >   dt-bindings: mmc: Add StarFive MMC module
+> >   mmc: starfive: Add sdio/emmc driver support
+> >   riscv: dts: starfive: Add mmc node
+> >
+> >  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  77 ++++++++
+> >  MAINTAINERS                                   |   6 +
+> >  .../jh7110-starfive-visionfive-2.dtsi         |  23 +++
+> >  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  37 ++++
+> >  drivers/mmc/host/Kconfig                      |  10 +
+> >  drivers/mmc/host/Makefile                     |   1 +
+> >  drivers/mmc/host/dw_mmc-starfive.c            | 185 ++++++++++++++++++
+> >  7 files changed, 339 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+> >  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
+> >
+>
+> Patch 1 and patch 2 applied for next, thanks!
+>
+> Note that I fixed some checkpatch errors/warnings. Next time, please
+> run ./scripts/checkpatch.pl before you submit your patches.
 
-OK. Tested again and it is working-ish...
+Hi,
 
-./pcitest.sh
-## Loading pci_endpoint_test
-## BAR tests
-BAR0:		OKAY
-BAR1:		OKAY
-BAR2:		OKAY
-BAR3:		OKAY
-BAR4:		OKAY
-BAR5:		OKAY
+Something here is not right. The bindings document "starfive,sysreg",
+but the code is looking for "starfive,syscon".
+William, did you test this and run dtbs_check before sending this series?
 
-## Legacy interrupt tests
-SET IRQ TYPE TO LEGACY:		OKAY
-LEGACY IRQ:	OKAY
+/Emil
 
-## MSI interrupt tests
-SET IRQ TYPE TO MSI:		OKAY
-MSI1:		OKAY
-MSI2:		OKAY
-MSI3:		OKAY
-MSI4:		OKAY
-MSI5:		OKAY
-MSI6:		OKAY
-MSI7:		OKAY
-MSI8:		OKAY
-MSI9:		OKAY
-MSI10:		OKAY
-MSI11:		OKAY
-MSI12:		OKAY
-MSI13:		OKAY
-MSI14:		OKAY
-MSI15:		OKAY
-MSI16:		OKAY
-
-## Read Tests (DMA)
-READ (      1 bytes):		OKAY
-READ (   1024 bytes):		OKAY
-READ (   1025 bytes):		OKAY
-READ (   4096 bytes):		OKAY
-READ ( 131072 bytes):		OKAY
-READ (1024000 bytes):		OKAY
-READ (1024001 bytes):		OKAY
-READ (1048576 bytes):		OKAY
-
-## Write Tests (DMA)
-WRITE (      1 bytes):		OKAY
-WRITE (   1024 bytes):		OKAY
-WRITE (   1025 bytes):		OKAY
-WRITE (   4096 bytes):		OKAY
-WRITE ( 131072 bytes):		OKAY
-WRITE (1024000 bytes):		OKAY
-
-Then stops here doing the 1024001 B case. The host waits for a completion that
-does not come. On the EP side, I see:
-
-[   94.307215] pci_epf_test pci_epf_test.0: READ src addr 0xffd00000, 1024001 B
-[   94.307960] pci_epc fd000000.pcie-ep: Map region 1 phys addr 0xfa100000 to
-pci addr 0xffd00000, 1024001 B
-[   94.308924] rockchip-pcie-ep fd000000.pcie-ep: Set atu: region 1, cpu addr
-0xfa100000, pci addr 0xffd00000, 1024001 B
-[  132.309645] dma-pl330 ff6e0000.dma-controller: Reset Channel-2
-CS-20000e FTC-40000
-
-                                                  ^^^^^^^^^^^^^^^
-The DMA engine does not like something at all. Back to where I was when I tried
-your series initially, which is why I tried removing patch 1 to see what happens...
-
-[  132.370479] pci_epf_test pci_epf_test.0: READ => Size: 1024001 B, DMA: YES,
-Time: 38.059623935 s, Rate: 26 KB/s
-[  132.372152] pci_epc fd000000.pcie-ep: Unmap region 1
-[  132.372780] pci_epf_test pci_epf_test.0: RAISE MSI IRQ 1
-[  132.373312] rockchip-pcie-ep fd000000.pcie-ep: Send MSI IRQ 1
-[  132.373844] rockchip-pcie-ep fd000000.pcie-ep: MSI disabled
-[  132.374388] pci_epf_test pci_epf_test.0: Raise IRQ failed -22
-
-And it looks like the PCI core crashed or something because MSI does not work
-anymore as well (note that this is wheat I see with my nvme epf driver too, but
-I do not have that DMA channel reset message...)
-
-If I run the tests without DMA (mmio only), everything seems fine:
-
-## Read Tests (No DMA)
-READ (      1 bytes):		OKAY
-READ (   1024 bytes):		OKAY
-READ (   1025 bytes):		OKAY
-READ (1024000 bytes):		OKAY
-READ (1024001 bytes):		OKAY
-
-## Write Tests (No DMA)
-WRITE (      1 bytes):		OKAY
-WRITE (   1024 bytes):		OKAY
-WRITE (   1025 bytes):		OKAY
-WRITE (1024000 bytes):		OKAY
-WRITE (1024001 bytes):		OKAY
-
-## Copy Tests (No DMA)
-COPY (      1 bytes):		OKAY
-COPY (   1024 bytes):		OKAY
-COPY (   1025 bytes):		OKAY
-COPY (1024000 bytes):		OKAY
-COPY (1024001 bytes):		OKAY
-
-So it looks like translation is working with your patch, but that the driver is
-still missing something for DMA to work correctly...
-
-Will keep digging.
-
-Note that this is all tested with the patch series fixing pci-epf-test and
-pci_endpoint_test drivers that I posted earlier today. As mentioned, my host is
-an AMD Ryzen PC.
-
--- 
-Damien Le Moal
-Western Digital Research
-
+> Kind regards
+> Uffe
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
