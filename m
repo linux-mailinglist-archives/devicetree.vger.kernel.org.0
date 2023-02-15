@@ -2,67 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF495697EAD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 15:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0F4E697EEE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 15:57:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbjBOOqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 09:46:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43822 "EHLO
+        id S229982AbjBOO5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 09:57:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229800AbjBOOqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 09:46:44 -0500
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3511392AA;
-        Wed, 15 Feb 2023 06:46:37 -0800 (PST)
-Received: by mail-oo1-f45.google.com with SMTP id y17-20020a4ade11000000b0051762fdf955so1920763oot.3;
-        Wed, 15 Feb 2023 06:46:37 -0800 (PST)
+        with ESMTP id S229943AbjBOO5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 09:57:46 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950163B0C7
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 06:57:19 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id n20-20020a17090aab9400b00229ca6a4636so2495327pjq.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 06:57:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WXiyNpETkYC9z6V5qLWPf0k+7IPR5cZpgLQTFb6RXec=;
+        b=NxZSpyUi5aOKG9wEEN6Nqjpnc+7z0Wt/NwdEqoJ1ebur20lHv/oM7Ija1av6J+Kncl
+         nOm6T/oa2vCuvOGkM8tfJi3YDwcNnr1gUq/F+Uc+kNbhRuxvLcbvaApeum8euQN5+QuD
+         kIp33+3YRSVtlkZc7HllsgFABTiFlh9E6gVNhKUPQVsDNNtCHHu/+ngs1Iy2Q5lyd5pH
+         DRNrtW9+envN/knBC5rHyRxzQtWvE6lYEmg5umG07qFxHLh2dxPYNsqO7qXQPxdkAXkk
+         kO735u+cYddx2jgMHJxJIGXkLoXLncSk+fH6EGqhIxvAI9NoJohjP93Wy0WeSuWCjztf
+         D8Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rBEXT/3oqd86oxSyfqYLg0yKXT/8DtJ6xnwvUSvOxQA=;
-        b=nwBdgSbQAxYNe6c+6rFk+4+hqmSyuPczecYrJVdqRDrMjuWBLZtI+1n5kOjDzR0MKT
-         gS4aBq7aQN6rxNeh3riz070+HpUYar77MCavTQAceSxhTfUs7bbOuePQBKyhAAJoOS7e
-         4bLdeNwp0t06fDzH4nuI7LgYz2jxULytopF7BFXgiTm7D9e8C5fdZBURqpJDiVH5nO46
-         YPYysYEp9Cna3RgFENqwm8M8Q8ngd4F+rRxo6NWDV66dGveA3kRW1hAoLhjm+jKz8F3S
-         8HU9rtUH5JGsk8dBm15DUwdst+/+vTdw9+HeZsQAoxKAFxuCx4+xhLf0QL411Xilf597
-         7k1w==
-X-Gm-Message-State: AO0yUKXgxTugT1G0nF/Yu9MucBZKmfJAa8KW6a5S0UZo3TdA7uB31wqv
-        l/WZ9KpXt9DwMzfnUPef/g==
-X-Google-Smtp-Source: AK7set+nN7gkSQK+tRLQHH367Wqkb9kKJmX6EWSzGmfUhKKFWebxk59RzxP5ZE1l3qKxhAHmuKo+EA==
-X-Received: by 2002:a4a:45d8:0:b0:502:a732:f8f5 with SMTP id y207-20020a4a45d8000000b00502a732f8f5mr1315351ooa.5.1676472397168;
-        Wed, 15 Feb 2023 06:46:37 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b18-20020a4aba12000000b004f2b4891329sm7011448oop.23.2023.02.15.06.46.36
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WXiyNpETkYC9z6V5qLWPf0k+7IPR5cZpgLQTFb6RXec=;
+        b=0r07A2a35QzLbfJp+Jm1TuqxFaqJOn06I930HDiUrNxcgjz3Ao1qJv/klLPuLUXgX0
+         UcMfGMM6Jfbd7S/Mck9+JI1KjjMoJmDHHO3TAmsgFVpeq12KhAKLn7EOFnKwkP2wOGOI
+         E6Ynq2Aq0AyK8L/29bZ6yJLh6ZOubGjzrbOvYtD2+Elecx3jcy1swVdExZvoVDQlcieU
+         rvP+Zk1NQV2moSl5FDKZze/hTfbLF1Rd5iaZl3hA3ihfy+V5VBwmT6tghUFZ7K9YAfOG
+         XFRIxR+n6O14OqWGfRnu87x1xUV5+njRqPdN7SFKGX9smwHINeY/mLFk97gOoLYrqYTM
+         qInw==
+X-Gm-Message-State: AO0yUKWrB+q2n0xWY45xKpMwMraI67ycLc58bYBlFZykV50HzFO1QFPX
+        dUptVWblC0wJwdZlxFTG0cP80Q==
+X-Google-Smtp-Source: AK7set/7P/HtTKptrN8fEWEQBq3y3lZIWLRAPkYVv5DtZxdSAAog0SbdOHfHXa5okdJFu7VPTr4zOA==
+X-Received: by 2002:a17:902:f54f:b0:199:26b1:17b3 with SMTP id h15-20020a170902f54f00b0019926b117b3mr2804547plf.28.1676473038684;
+        Wed, 15 Feb 2023 06:57:18 -0800 (PST)
+Received: from localhost ([135.180.226.51])
+        by smtp.gmail.com with ESMTPSA id iw6-20020a170903044600b0019ab6beea1esm3585233plb.87.2023.02.15.06.57.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 06:46:36 -0800 (PST)
-Received: (nullmailer pid 125959 invoked by uid 1000);
-        Wed, 15 Feb 2023 14:46:35 -0000
-Date:   Wed, 15 Feb 2023 08:46:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>, andersson@kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>, agross@kernel.org,
-        marijn.suijten@somainline.org,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        krzysztof.kozlowski@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>
-Subject: Re: [PATCH v2] dt-bindings: PCI: qcom: Fix msm8998-specific
- compatible
-Message-ID: <167647239530.125903.1170051353603969134.robh@kernel.org>
-References: <20230214091202.2187321-1-konrad.dybcio@linaro.org>
+        Wed, 15 Feb 2023 06:57:17 -0800 (PST)
+In-Reply-To: <20230104180513.1379453-1-conor@kernel.org>
+References: <20230104180513.1379453-1-conor@kernel.org>
+Subject: Re: [PATCH v1 0/2] dt-bindings: Add a cpu-capacity property for RISC-V
+Message-Id: <167647301916.19800.9191672449999836503.b4-ty@rivosinc.com>
+Date:   Wed, 15 Feb 2023 06:56:59 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214091202.2187321-1-konrad.dybcio@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.11.0-dev-e660e
+Cc:     Yanteng Si <siyanteng@loongson.cn>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-doc@vger.kernel.org,
+        Alex Shi <alexs@kernel.org>,
+        Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,22 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 4 Jan 2023 18:05:12 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Hey,
+> 
+> Ever since RISC-V starting using generic arch topology code, the code
+> paths for cpu-capacity have been there but there's no binding defined to
+> actually convey the information. Defining the same property as used on
+> arm seems to be the only logical thing to do, so do it.
+> 
+> [...]
 
-On Tue, 14 Feb 2023 10:12:02 +0100, Konrad Dybcio wrote:
-> In the commit mentioned in the fixes tag, everything went well except
-> the fallback and the specific compatible got swapped and the 8998 DTSI
-> began failing the dtbs check. Fix it.
-> 
-> Fixes: f86fe08ef00f ("dt-bindings: PCI: qcom: Add MSM8998 specific compatible")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> v1 - > v2:
-> 
-> - Use the correct commit in fixes
-> 
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Applied, thanks!
 
-Acked-by: Rob Herring <robh@kernel.org>
+[1/2] dt-bindings: arm: move cpu-capacity to a shared loation
+      https://git.kernel.org/palmer/c/7d2078310cbf
+[2/2] dt-bindings: riscv: add a capacity-dmips-mhz cpu property
+      https://git.kernel.org/palmer/c/991994509ee9
 
+Best regards,
+-- 
+Palmer Dabbelt <palmer@rivosinc.com>
