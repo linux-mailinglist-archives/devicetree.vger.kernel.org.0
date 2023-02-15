@@ -2,131 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B41EA6984F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 20:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59058698513
+	for <lists+devicetree@lfdr.de>; Wed, 15 Feb 2023 20:58:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjBOTvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 14:51:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49590 "EHLO
+        id S229485AbjBOT6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 14:58:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjBOTvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 14:51:46 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD6341B43;
-        Wed, 15 Feb 2023 11:51:28 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id x24-20020a9d4598000000b00690bf2011b2so2461ote.6;
-        Wed, 15 Feb 2023 11:51:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g+iuWlg41wdj9dsD9ORs/lnnSLbHgXl/OfpkvXkGtHs=;
-        b=U5Sdo59u0cs083SmSLQpSEdmDf+yTgO7sLNwPz6vf6Neq3oAZOpDPtcQdgFR2WtrP0
-         jk6gkmBQ8B19QkjC89Aoy/gaJ9HnPrskkqMvfvhLnyShn7yqNQZQ/gXBsW7IYVqkRxjF
-         alDgfLiW49GiYWTcP42QhSFK4iv6JDBSTbwhOIIAbp6LbcCd6WFXS8RDyB3B59Vw9Lnj
-         7GcycruoklEJtOdty7lTkR+0Caj+YqALeJN+iXww83mAP86iL5p0kTKHBC3lkXAwamle
-         m9hsgY0T/e7VeURDYTD2CABjSMQ81O/3uarGq4I0GrPnSw1bNKOVpYxjrwKYlZSfyATE
-         HQWQ==
-X-Gm-Message-State: AO0yUKW6uy6dJDdmsxRW9l5NKVZX1J3KiuWYaJFASqKJOmY2by6GhAQQ
-        yfBnSJO6ve13+i3IjImlOyVYEFZdJA==
-X-Google-Smtp-Source: AK7set9vg3F2/fpcnJD4aal3lfEtigJLUSjMzaiQ4iS1okk2WkDSxToxUr2UntVD7TP27C1xl5blSQ==
-X-Received: by 2002:a05:6830:129a:b0:68b:dc52:10f9 with SMTP id z26-20020a056830129a00b0068bdc5210f9mr1512185otp.5.1676490586196;
-        Wed, 15 Feb 2023 11:49:46 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z14-20020a05683020ce00b0068bb6043362sm7888188otq.11.2023.02.15.11.49.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Feb 2023 11:49:45 -0800 (PST)
-Received: (nullmailer pid 461289 invoked by uid 1000);
-        Wed, 15 Feb 2023 19:49:45 -0000
-Date:   Wed, 15 Feb 2023 13:49:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229436AbjBOT6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 14:58:17 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73716A6C;
+        Wed, 15 Feb 2023 11:58:16 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 138F8B823A6;
+        Wed, 15 Feb 2023 19:58:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DA22C433D2;
+        Wed, 15 Feb 2023 19:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676491093;
+        bh=HEs3ijSJ9Z1YToGd4T11LvIyBvbW09eo7oxaJ9H6xd8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RCI340uYvpdpCDHyOukhJQvtDVX6Ol1IO6hvwvvY/LJBUzhhUJG5NKIPV2QDPxKHH
+         7847vSrPglUGgYu2cITr5KKlW9zVylz0SI1NtAvX5dbLu777S9egXZgYudVJt52CB8
+         ClraFe4DPepmPaHGRRWrD5RiyMuBaTZsfDc8akk5zAjJTu04lOZe7feXYMdhNmGTPQ
+         qDcd6BEHPiayXa+UkIilbsqOoYM8R6cm3utsaQryVmzLbus1y7mCEBFUjrmxBQ876V
+         a8CJ6v9899+l6BIGY0covOLiS97+6GNJkfYwloz04fAM0Mf/sQ+Cq5bVKn1wi/NKCu
+         qKoMcGJuiyUfg==
+Date:   Wed, 15 Feb 2023 20:58:10 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Alain Volmat <avolmat@me.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson
- EIOINTC
-Message-ID: <20230215194945.GA458740-robh@kernel.org>
-References: <cover.1676289084.git.zhoubinbin@loongson.cn>
- <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: i2c: i2c-st: convert to DT schema
+Message-ID: <Y+05Uv/izJ+YyY0U@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Alain Volmat <avolmat@me.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230213191608.16503-1-avolmat@me.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FvTABU9AZrnonJXa"
 Content-Disposition: inline
-In-Reply-To: <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230213191608.16503-1-avolmat@me.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 08:15:27PM +0800, Binbin Zhou wrote:
-> Add Loongson Extended I/O Interrupt controller binding with DT schema
-> format using json-schema.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../loongson,eiointc.yaml                     | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
-> new file mode 100644
-> index 000000000000..88580297f955
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/interrupt-controller/loongson,eiointc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Loongson Extended I/O Interrupt Controller
-> +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> +
-> +description: |
-> +  This interrupt controller is found on the Loongson-3 family chips and
-> +  Loongson-2K0500 chip and is used to distribute interrupts directly to
-> +  individual cores without forwarding them through the HT's interrupt line.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - loongson,eiointc-1.0
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  interrupt-controller: true
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt source of the CPU interrupts.
-> +
-> +  interrupt-names:
-> +    description:
-> +      List of names for the parent interrupts.
-> +    items:
-> +      - const: int0
 
-Why do you need this if there is only 1 interrupt?
+--FvTABU9AZrnonJXa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Mon, Feb 13, 2023 at 08:16:06PM +0100, Alain Volmat wrote:
+> Convert i2c-st.txt into st,sti-i2c.yaml for the i2c-st driver.
+>=20
+> Signed-off-by: Alain Volmat <avolmat@me.com>
+
+Applied to for-next, thanks!
+
+
+--FvTABU9AZrnonJXa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPtOVIACgkQFA3kzBSg
+KbYTqhAAjkzeRVZmu6GrNxDuEVjGzJe6tFD2B5cP3zCtTJCL8mWEzNVzGtMYv8j1
+vIivTD/LZ+uJMD8mw4YGb+Lo7rWdvv79sAgoKoJjJuF5Z++GwflLQtz1+mwilKa4
+wjlXgwNKVkZjdI5OasLGnLeTvoIQWOa3ms8JGMarH80IP5lgbbM5RFfXUw7bF/oG
+sz48/ilJzEJqDuatW9YfSn1lhiwHL8FN+/ciZs06ejTGLXbnZdULfg0L1x/Xd4zt
+Xlz1V9xvcRL+g3RY1cPD7HzWqeK1YYV/+iMRm+cLq6hH7gw9yAPDI6n5fTwlD/a0
+5wmE8JLX+XbLwTXYXPb7our27lxUAzd3EBqSTTh75i3MpXioj3UJbBDtsZ70W5VV
+2GOuw4ViQhGwIYrkb+97dPDjJRBuNLm5Vc7WWReHk40IFqDu6UOdwcne2kAxbqNx
+9CgClfOtqk59oOIxmlV7u9VS8s3xkKOYaaRurs+MB0ag/vtbM+1DUWoXIff153+l
+LCEfqmBqw9VvMBUS8GfGdrU+u1NUnXHcLT6Y8Qr9VHd/ooQyIjJcJklNVdPPn65h
+yeZEfFuzH7DKgiSaftyHQ2Ndr66U0z9GTrJvRcCEx9P+oOgRWd0n3BNwhh/8Ki5v
+Hfsm4bvJ16nGNOo5YiAFxommPvbOxZ4k2YmvTVonKlqpkhidfHw=
+=zv87
+-----END PGP SIGNATURE-----
+
+--FvTABU9AZrnonJXa--
