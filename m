@@ -2,765 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C28A699991
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 17:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4334E699985
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 17:11:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbjBPQM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 11:12:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41498 "EHLO
+        id S229616AbjBPQLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 11:11:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbjBPQMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 11:12:25 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7094E5CA
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 08:12:20 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id r28so1893952wra.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 08:12:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=frJYuUOf4SsK7M177T8JB0ZwEndFTu5dUCC0dR+2PXk=;
-        b=5yb3VWT67u7aCGEFyIYqK/5stvWTM1QwIj0/S9f4YKIULM0oLOT5dihWhrpwkgo8MF
-         E2gKrnT+uhrj6xwCa4u9YK63wlk5aGVMaKgpvZWzYC7aaPmkIjVAG1RzDFAUtJHmW1MC
-         mXD88CAqot6B+shBAqLjQGbMqW1IcHe2OU94DZh/JY3+XEv/+GzdUm/ic9ooZdwYDUEX
-         8mgsxsK9edOLcO/2mEhDnZVtj2iuYpzTzAoIF9r/PZjgb4Noxhs+ei2WjuPW+ojY1jme
-         QwSFiHCq7jIMzyBW0zI/2hQ4y0MPAjor/oDGXHnSH6cfVOJC2lLM4/BDFAFsBJmC38x/
-         YruA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=frJYuUOf4SsK7M177T8JB0ZwEndFTu5dUCC0dR+2PXk=;
-        b=gdOU7ACTygbFjIoTzsiO7pxa6vv4OhGBfdeeDXN1l58vMwZCO6cNiRMWij1JDkq4iC
-         wSNHwNOqTCHnaC6gXnFTQpF3cvzLCaZBrm8q2Os5exnnXyvIvUvF4UZB7WffHLRfsQXo
-         0/A8ktGOc6EyeTxjF6Y0ASKre4O3QqEX1b9sQXJAVUtbqpZT5P+5qw96B0NLEUOVKYRY
-         km/4FuZuKpVhJb7VfujqsDKGWHHulhjmz553y32IfAxFSveWfDulCtgjoZejQfQbw+Ft
-         SmMLcZ1c558pxJD+kLvCahVvfZ6JmNn6UpESzfYZ2bbArBJZ4Yhb0GuGKCBE9i1RKvUl
-         2QAw==
-X-Gm-Message-State: AO0yUKUqBVC2Tm8gkl0Q3Bt6j9noMNl/PYMv5GkjT55tmVPYItE8BOwA
-        NydNVc+Ja6t1GkensQ4lcP+aog==
-X-Google-Smtp-Source: AK7set+m1NuFearRB3ZPuBw49lwQNmJ1xd05Qf5y/wuMi2H+4DN3zhIMnZQmHqWC7zje1QR/G1VY9g==
-X-Received: by 2002:a5d:5502:0:b0:2c3:e20b:82aa with SMTP id b2-20020a5d5502000000b002c3e20b82aamr4826363wrv.22.1676563938963;
-        Thu, 16 Feb 2023 08:12:18 -0800 (PST)
-Received: from [127.0.0.1] ([82.66.159.240])
-        by smtp.gmail.com with ESMTPSA id m16-20020adff390000000b002c56a1a5a95sm1845586wro.30.2023.02.16.08.12.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 08:12:18 -0800 (PST)
-From:   Guillaume Ranquet <granquet@baylibre.com>
-Date:   Thu, 16 Feb 2023 17:02:27 +0100
-Subject: [PATCH v8 3/3] phy: mediatek: add support for phy-mtk-hdmi-mt8195
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20220919-v8-3-a84c80468fe9@baylibre.com>
-References: <20220919-v8-0-a84c80468fe9@baylibre.com>
-In-Reply-To: <20220919-v8-0-a84c80468fe9@baylibre.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229563AbjBPQLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 11:11:47 -0500
+X-Greylist: delayed 159 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Feb 2023 08:11:45 PST
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C5D4CCAC;
+        Thu, 16 Feb 2023 08:11:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1676563716; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=UExMufGNAbdxg4Rau5cfUBui/sNMTv0xRaa7hTV0a2YUDWVqPCwEmzpmwpz2mQX9q0
+    FqwMUeYoog3PjWb2DqXBqiGrlLuEa8K2uMReFIHlfx1Wr4aw4BmMqtfKQU4MaYgWHrmM
+    W1n+ovBHzqAC/uDrkb9hMiAr/i5AdVWQTj+kJTmFTtCExUeFZ7h7EZTwUPqaZWwVZtDD
+    1Z8RE8zARpt1Lrqvr5WCbu+DJyMHCIJbtUUocfbREQ6yONMz+qagT7Etyia7W4LoCAgp
+    fH60qwW0uUVASryrAiWIs+pmMNANkRaR9BtpEzaeoVi82gUsqCUPAtn1gB9XGXQFBXO4
+    c8ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1676563716;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=ehg8EOSq35GC79Mm4B9aUGELRulukppK1jG4qgT2b/Y=;
+    b=Re53vaEKbGUeZBSJl1nghSyuFtNzLlvdgtB7pNNkiPwF1vR5zo7gX7KOo5RM796GOC
+    MYAoKeI9tYM2Ufeod/CSglbjk2XsLY/TeAgC3EbLu3+qga7WZdRzW4J+tCJz7//lqbB6
+    jhAh6ANlqWm/Iyp4cZmnbQ+CCBEmEVipWXII1INz3C+iFfF7RzoOoyeRWhjHVLGn6O2P
+    FT9u67X7kd7zvPFdtOQsfwyLaLqBg1cM+YR2pMRU0my7MTyQrYqBG+0MPded4lKBmqsk
+    +yGMHuLbm+B+08PZH5FcNaDTgB2vjeD7yQlQeILAZoTQZ2YRAhN+8+HTSq49ey+9pqmD
+    NRZg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1676563716;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=ehg8EOSq35GC79Mm4B9aUGELRulukppK1jG4qgT2b/Y=;
+    b=tTJ2JgVWAx64AZte3cmkAqFTHyv/rdT3pCTMHiZTwLq0NVBLmEB4NzM5bjwBwNAwyi
+    pihBEK/h9qOUJW4PgL/pb+bQAdYIEWGfs854JYGocRV+jyFXFIc4myFjTHVwZ5N+9t3q
+    ZnSE8mcMeKsQPluLax4eIbRxaKo/aTrHc+WPPf/n0Gg4NOkZdwhPGLFAxKWWDMb0cBLx
+    r/gmKqsI1Hz5efJX1oW7BcBdkoobhIB5HhyZMCN8qjNzuuZjF0iJM5JXMCWdRr5H4t54
+    4yqZSyzXwAdrs2B/Bq3lnMiaNoBrBPtGKfdGOkV7vCT9SiK/OMHr/PAL0XrbMKaUI5Tp
+    F2wQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGfq2U="
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 49.3.0 DYNA|AUTH)
+    with ESMTPSA id 326d57z1GG8ZhLU
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Thu, 16 Feb 2023 17:08:35 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [RFC 2/2] WIP: dt-bindings: omap: Convert omap.txt to yaml
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20230216153339.19987-3-afd@ti.com>
+Date:   Thu, 16 Feb 2023 17:08:34 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mac.shen@mediatek.com,
-        stuart.lee@mediatek.com, Guillaume Ranquet <granquet@baylibre.com>
-X-Mailer: b4 0.13-dev
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B4B86F81-3483-400B-8D14-AC92940D2B57@goldelico.com>
+References: <20230216153339.19987-1-afd@ti.com>
+ <20230216153339.19987-3-afd@ti.com>
+To:     Andrew Davis <afd@ti.com>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the mediatek hdmi phy on MT8195 SoC
+Hi,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
----
- drivers/phy/mediatek/Makefile              |   1 +
- drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c | 495 +++++++++++++++++++++++++++++
- drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h | 113 +++++++
- drivers/phy/mediatek/phy-mtk-hdmi.c        |   3 +
- drivers/phy/mediatek/phy-mtk-hdmi.h        |   2 +
- 5 files changed, 614 insertions(+)
+> Am 16.02.2023 um 16:33 schrieb Andrew Davis <afd@ti.com>:
+>=20
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+> .../devicetree/bindings/arm/omap/omap.yaml    | 174 ++++++++++++++++++
+> 1 file changed, 174 insertions(+)
+> create mode 100644 =
+Documentation/devicetree/bindings/arm/omap/omap.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/omap/omap.yaml =
+b/Documentation/devicetree/bindings/arm/omap/omap.yaml
+> new file mode 100644
+> index 0000000000000..cf07a7a7df279
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/omap/omap.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/omap/omap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments OMAP SoC architecture device tree bindings
+> +
+> +maintainers:
+> +  - Tony Lindgren <tony@atomide.com>
+> +
+> +description: |
+> +  Platforms based on Texas Instruments OMAP SoC architecture.
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +
+> +      - description: TI OMAP2420 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - ti,omap2420-h4 # TI OMAP2420 H4 board
+> +              - nokia,n800 # Nokia N800
+> +              - nokia,n810 # Nokia N810
+> +              - nokia,n810-wimax # Nokia N810 WiMax
+> +          - const: ti,omap2420
+> +          - const: ti,omap2
+> +
+> +      - description: TI OMAP2430 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - ti,omap2430-sdp # TI OMAP2430 SDP
+> +          - const: ti,omap2430
+> +          - const: ti,omap2
+> +
+> +      - description: TI OMAP3430 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - logicpd,dm3730-som-lv-devkit # LogicPD Zoom OMAP35xx =
+SOM-LV Development Kit
+> +              - logicpd,dm3730-torpedo-devkit # LogicPD Zoom OMAP35xx =
+Torpedo Development Kit
+> +              - ti,omap3430-sdp # TI OMAP3430 SDP
+> +              - ti,omap3-beagle # TI OMAP3 BeagleBoard
+> +              - compulab,omap3-cm-t3530 # CompuLab CM-T3530
+> +              - timll,omap3-devkit8000 # TimLL OMAP3 Devkit8000
+> +              - ti,omap3-evm # TI OMAP35XX EVM (TMDSEVM3530)
+> +              - ti,omap3-ldp # TI OMAP3430 LDP (Zoom1 Labrador)
+> +              - nokia,omap3-n900 # Nokia N900
+> +          - const: ti,omap3430
+> +          - const: ti,omap3
+> +
+> +      - description: TI OMAP3630 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - logicpd,dm3730-som-lv-devkit # LogicPD Zoom DM3730 =
+SOM-LV Development Kit
+> +              - logicpd,dm3730-torpedo-devkit # LogicPD Zoom DM3730 =
+Torpedo + Wireless Development Kit
+> +              - ti,omap3-beagle-xm # TI OMAP3 BeagleBoard xM
+> +              - compulab,omap3-cm-t3730 # CompuLab CM-T3730
+> +              - amazon,omap3-echo # Amazon Echo (first generation)
+> +              - ti,omap3-evm-37xx # TI OMAP37XX EVM (TMDSEVM3730)
+> +              - ti,omap3-gta04 # OMAP3 GTA04
 
-diff --git a/drivers/phy/mediatek/Makefile b/drivers/phy/mediatek/Makefile
-index fb1f8edaffa7..c9a50395533e 100644
---- a/drivers/phy/mediatek/Makefile
-+++ b/drivers/phy/mediatek/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-xsphy.o
- phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
- phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
- phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt8173.o
-+phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt8195.o
- obj-$(CONFIG_PHY_MTK_HDMI)		+= phy-mtk-hdmi-drv.o
- 
- phy-mtk-mipi-dsi-drv-y			:= phy-mtk-mipi-dsi.o
-diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-new file mode 100644
-index 000000000000..abfc077fb0a8
---- /dev/null
-+++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-@@ -0,0 +1,495 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 MediaTek Inc.
-+ * Copyright (c) 2022 BayLibre, SAS
-+ */
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/types.h>
-+#include <linux/units.h>
-+#include <linux/nvmem-consumer.h>
-+
-+#include "phy-mtk-io.h"
-+#include "phy-mtk-hdmi.h"
-+#include "phy-mtk-hdmi-mt8195.h"
-+
-+static void mtk_hdmi_ana_fifo_en(struct mtk_hdmi_phy *hdmi_phy)
-+{
-+	/* make data fifo writable for hdmi2.0 */
-+	mtk_phy_set_bits(hdmi_phy->regs + HDMI_ANA_CTL, REG_ANA_HDMI20_FIFO_EN);
-+}
-+
-+static void
-+mtk_phy_tmds_clk_ratio(struct mtk_hdmi_phy *hdmi_phy, bool enable)
-+{
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	mtk_hdmi_ana_fifo_en(hdmi_phy);
-+
-+	/* HDMI 2.0 specification, 3.4Gbps <= TMDS Bit Rate <= 6G,
-+	 * clock bit ratio 1:40, under 3.4Gbps, clock bit ratio 1:10
-+	 */
-+	if (enable)
-+		mtk_phy_update_field(regs + HDMI20_CLK_CFG, REG_TXC_DIV, 3);
-+	else
-+		mtk_phy_clear_bits(regs + HDMI20_CLK_CFG, REG_TXC_DIV);
-+}
-+
-+static void mtk_hdmi_pll_sel_src(struct clk_hw *hw)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	mtk_phy_clear_bits(regs + HDMI_CTL_3, REG_HDMITX_REF_XTAL_SEL);
-+	mtk_phy_clear_bits(regs + HDMI_CTL_3, REG_HDMITX_REF_RESPLL_SEL);
-+
-+	/* DA_HDMITX21_REF_CK for TXPLL input source */
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_10, RG_HDMITXPLL_REF_CK_SEL);
-+}
-+
-+static void mtk_hdmi_pll_perf(struct clk_hw *hw)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_BP2);
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_BC);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_IC, 0x1);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_BR, 0x2);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_IR, 0x2);
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_BP);
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_IBAND_FIX_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_1, RG_HDMITXPLL_RESERVE_BIT14);
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_HIKVCO);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_HREN, 0x1);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_LVR_SEL, 0x1);
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_1, RG_HDMITXPLL_RESERVE_BIT12_11);
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_TCL_EN);
-+}
-+
-+static int mtk_hdmi_pll_set_hw(struct clk_hw *hw, u8 prediv,
-+			       u8 fbkdiv_high,
-+			       u32 fbkdiv_low,
-+			       u8 fbkdiv_hs3, u8 posdiv1,
-+			       u8 posdiv2, u8 txprediv,
-+			       u8 txposdiv,
-+			       u8 digital_div)
-+{
-+	u8 txposdiv_value;
-+	u8 div3_ctrl_value;
-+	u8 posdiv_vallue;
-+	u8 div_ctrl_value;
-+	u8 reserve_3_2_value;
-+	u8 prediv_value;
-+	u8 reserve13_value;
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	mtk_hdmi_pll_sel_src(hw);
-+
-+	mtk_hdmi_pll_perf(hw);
-+
-+	mtk_phy_update_field(regs + HDMI_1_CFG_10, RG_HDMITX21_BIAS_PE_BG_VREF_SEL, 0x2);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_VREF_SEL);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_9, RG_HDMITX21_SLDO_VREF_SEL, 0x2);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_BIAS_PE_VREF_SELB);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_SLDOLPF_EN);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_6, RG_HDMITX21_INTR_CAL, 0x11);
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_PWD);
-+
-+	/* TXPOSDIV */
-+	txposdiv_value = ilog2(txposdiv);
-+
-+	mtk_phy_update_field(regs + HDMI_1_CFG_6, RG_HDMITX21_TX_POSDIV, txposdiv_value);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_TX_POSDIV_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_EN);
-+
-+	/* TXPREDIV */
-+	switch (txprediv) {
-+	case 2:
-+		div3_ctrl_value = 0x0;
-+		posdiv_vallue = 0x0;
-+		break;
-+	case 4:
-+		div3_ctrl_value = 0x0;
-+		posdiv_vallue = 0x1;
-+		break;
-+	case 6:
-+		div3_ctrl_value = 0x1;
-+		posdiv_vallue = 0x0;
-+		break;
-+	case 12:
-+		div3_ctrl_value = 0x1;
-+		posdiv_vallue = 0x1;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4, RG_HDMITXPLL_POSDIV_DIV3_CTRL, div3_ctrl_value);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4, RG_HDMITXPLL_POSDIV, posdiv_vallue);
-+
-+	/* POSDIV1 */
-+	switch (posdiv1) {
-+	case 5:
-+		div_ctrl_value = 0x0;
-+		break;
-+	case 10:
-+		div_ctrl_value = 0x1;
-+		break;
-+	case 12:
-+		div_ctrl_value = 0x2;
-+		break;
-+	case 15:
-+		div_ctrl_value = 0x3;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4, RG_HDMITXPLL_DIV_CTRL, div_ctrl_value);
-+
-+	/* DE add new setting */
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_1, RG_HDMITXPLL_RESERVE_BIT14);
-+
-+	/* POSDIV2 */
-+	switch (posdiv2) {
-+	case 1:
-+		reserve_3_2_value = 0x0;
-+		break;
-+	case 2:
-+		reserve_3_2_value = 0x1;
-+		break;
-+	case 4:
-+		reserve_3_2_value = 0x2;
-+		break;
-+	case 6:
-+		reserve_3_2_value = 0x3;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_1, RG_HDMITXPLL_RESERVE_BIT3_2, reserve_3_2_value);
-+
-+	/* DE add new setting */
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_1, RG_HDMITXPLL_RESERVE_BIT1_0, 0x2);
-+
-+	/* PREDIV */
-+	prediv_value = ilog2(prediv);
-+
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4, RG_HDMITXPLL_PREDIV, prediv_value);
-+
-+	/* FBKDIV_HS3 */
-+	reserve13_value = ilog2(fbkdiv_hs3);
-+
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_1, RG_HDMITXPLL_RESERVE_BIT13, reserve13_value);
-+
-+	/* FBDIV */
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4, RG_HDMITXPLL_FBKDIV_HIGH, fbkdiv_high);
-+	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_3, RG_HDMITXPLL_FBKDIV_LOW, fbkdiv_low);
-+
-+	/* Digital DIVIDER */
-+	mtk_phy_clear_bits(regs + HDMI_CTL_3, REG_PIXEL_CLOCK_SEL);
-+
-+	if (digital_div == 1) {
-+		mtk_phy_clear_bits(regs + HDMI_CTL_3, REG_HDMITX_PIXEL_CLOCK);
-+	} else {
-+		mtk_phy_set_bits(regs + HDMI_CTL_3, REG_HDMITX_PIXEL_CLOCK);
-+		mtk_phy_update_field(regs + HDMI_CTL_3, REG_HDMITXPLL_DIV, digital_div - 1);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mtk_hdmi_pll_calc(struct mtk_hdmi_phy *hdmi_phy, struct clk_hw *hw,
-+			     unsigned long rate, unsigned long parent_rate)
-+{
-+	u8 digital_div, txprediv, txposdiv, fbkdiv_high, posdiv1, posdiv2;
-+	u64 tmds_clk, pixel_clk, da_hdmitx21_ref_ck, ns_hdmipll_ck, pcw;
-+	u8 txpredivs[4] = { 2, 4, 6, 12 };
-+	u32 fbkdiv_low;
-+	int i, ret;
-+
-+	pixel_clk = rate;
-+	tmds_clk = pixel_clk;
-+
-+	if (tmds_clk < 25 * MEGA || tmds_clk > 594 * MEGA)
-+		return -EINVAL;
-+
-+	if (tmds_clk >= 340 * MEGA)
-+		hdmi_phy->tmds_over_340M = true;
-+	else
-+		hdmi_phy->tmds_over_340M = false;
-+
-+	/* in Hz */
-+	da_hdmitx21_ref_ck = 26 * MEGA;
-+
-+	/*  TXPOSDIV stage treatment:
-+	 *	0M  <  TMDS clk  < 54M		  /8
-+	 *	54M <= TMDS clk  < 148.35M    /4
-+	 *	148.35M <=TMDS clk < 296.7M   /2
-+	 *	296.7 <=TMDS clk <= 594M	  /1
-+	 */
-+	if (tmds_clk < 54 * MEGA)
-+		txposdiv = 8;
-+	else if (tmds_clk >= 54 * MEGA && tmds_clk < 148.35 * MEGA)
-+		txposdiv = 4;
-+	else if (tmds_clk >= 148.35 * MEGA && tmds_clk < 296.7 * MEGA)
-+		txposdiv = 2;
-+	else if (tmds_clk >= 296.7 * MEGA && tmds_clk <= 594 * MEGA)
-+		txposdiv = 1;
-+	else
-+		return -EINVAL;
-+
-+	/* calculate txprediv: can be 2, 4, 6, 12
-+	 * ICO clk = 5*TMDS_CLK*TXPOSDIV*TXPREDIV
-+	 * ICO clk constraint: 5G =< ICO clk <= 12G
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(txpredivs); i++) {
-+		ns_hdmipll_ck = 5 * tmds_clk * txposdiv * txpredivs[i];
-+		if (ns_hdmipll_ck >= 5 * GIGA &&
-+		    ns_hdmipll_ck <= 1 * GIGA)
-+			break;
-+	}
-+	if (i == (ARRAY_SIZE(txpredivs) - 1) &&
-+	    (ns_hdmipll_ck < 5 * GIGA || ns_hdmipll_ck > 12 * GIGA)) {
-+		return -EINVAL;
-+	}
-+	if (i == ARRAY_SIZE(txpredivs))
-+		return -EINVAL;
-+
-+	txprediv = txpredivs[i];
-+
-+	/* PCW calculation: FBKDIV
-+	 * formula: pcw=(frequency_out*2^pcw_bit) / frequency_in / FBKDIV_HS3;
-+	 * RG_HDMITXPLL_FBKDIV[32:0]:
-+	 * [32,24] 9bit integer, [23,0]:24bit fraction
-+	 */
-+	pcw = div_u64(((u64)ns_hdmipll_ck) << PCW_DECIMAL_WIDTH,
-+		      da_hdmitx21_ref_ck / PLL_FBKDIV_HS3);
-+
-+	if (pcw > GENMASK_ULL(32, 0))
-+		return -EINVAL;
-+
-+	fbkdiv_high = FIELD_GET(GENMASK_ULL(63, 32), pcw);
-+	fbkdiv_low = FIELD_GET(GENMASK(31, 0), pcw);
-+
-+	/* posdiv1:
-+	 * posdiv1 stage treatment according to color_depth:
-+	 * 24bit -> posdiv1 /10, 30bit -> posdiv1 /12.5,
-+	 * 36bit -> posdiv1 /15, 48bit -> posdiv1 /10
-+	 */
-+	posdiv1 = 10;
-+	posdiv2 = 1;
-+
-+	/* Digital clk divider, max /32 */
-+	digital_div = div_u64((u64)ns_hdmipll_ck, posdiv1 / posdiv2 / pixel_clk);
-+	if (!(digital_div <= 32 && digital_div >= 1))
-+		return -EINVAL;
-+
-+	mtk_hdmi_pll_set_hw(hw, PLL_PREDIV, fbkdiv_high, fbkdiv_low,
-+			    PLL_FBKDIV_HS3, posdiv1, posdiv2, txprediv,
-+			    txposdiv, digital_div);
-+	if (ret)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int mtk_hdmi_pll_drv_setting(struct clk_hw *hw)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+	void __iomem *regs = hdmi_phy->regs;
-+	u8 data_channel_bias, clk_channel_bias;
-+	u8 impedance, impedance_en;
-+	u32 tmds_clk;
-+	u32 pixel_clk = hdmi_phy->pll_rate;
-+
-+	tmds_clk = pixel_clk;
-+
-+	/* bias & impedance setting:
-+	 * 3G < data rate <= 6G: enable impedance 100ohm,
-+	 *      data channel bias 24mA, clock channel bias 20mA
-+	 * pixel clk >= HD,  74.175MHZ <= pixel clk <= 300MHZ:
-+	 *      enalbe impedance 100ohm
-+	 *      data channel 20mA, clock channel 16mA
-+	 * 27M =< pixel clk < 74.175: disable impedance
-+	 *      data channel & clock channel bias 10mA
-+	 */
-+
-+	/* 3G < data rate <= 6G, 300M < tmds rate <= 594M */
-+	if (tmds_clk > 300 * MEGA && tmds_clk <= 594 * MEGA) {
-+		data_channel_bias = 0x3c; /* 24mA */
-+		clk_channel_bias = 0x34; /* 20mA */
-+		impedance_en = 0xf;
-+		impedance = 0x36; /* 100ohm */
-+	} else if (pixel_clk >= 74.175 * MEGA && pixel_clk <= 300 * MEGA) {
-+		data_channel_bias = 0x34; /* 20mA */
-+		clk_channel_bias = 0x2c; /* 16mA */
-+		impedance_en = 0xf;
-+		impedance = 0x36; /* 100ohm */
-+	} else if (pixel_clk >= 27 * MEGA && pixel_clk < 74.175 * MEGA) {
-+		data_channel_bias = 0x14; /* 10mA */
-+		clk_channel_bias = 0x14; /* 10mA */
-+		impedance_en = 0x0;
-+		impedance = 0x0;
-+	} else {
-+		return -EINVAL;
-+	}
-+
-+	/* bias */
-+	mtk_phy_update_field(regs + HDMI_1_CFG_1, RG_HDMITX21_DRV_IBIAS_D0, data_channel_bias);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_1, RG_HDMITX21_DRV_IBIAS_D1, data_channel_bias);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_1, RG_HDMITX21_DRV_IBIAS_D2, data_channel_bias);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_0, RG_HDMITX21_DRV_IBIAS_CLK, clk_channel_bias);
-+
-+	/* impedance */
-+	mtk_phy_update_field(regs + HDMI_1_CFG_0, RG_HDMITX21_DRV_IMP_EN, impedance_en);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_2, RG_HDMITX21_DRV_IMP_D0_EN1, impedance);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_2, RG_HDMITX21_DRV_IMP_D1_EN1, impedance);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_2, RG_HDMITX21_DRV_IMP_D2_EN1, impedance);
-+	mtk_phy_update_field(regs + HDMI_1_CFG_2, RG_HDMITX21_DRV_IMP_CLK_EN1, impedance);
-+
-+	return 0;
-+}
-+
-+static int mtk_hdmi_pll_prepare(struct clk_hw *hw)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_TX_POSDIV_EN);
-+
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_0, RG_HDMITX21_SER_EN);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_D0_DRV_OP_EN);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_D1_DRV_OP_EN);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_D2_DRV_OP_EN);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_CK_DRV_OP_EN);
-+
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_D0_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_D1_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_D2_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_CK_EN);
-+
-+	mtk_hdmi_pll_drv_setting(hw);
-+
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_BG_PWD);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_BIAS_EN);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_CKLDO_EN);
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_SLDO_EN);
-+
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_4, DA_HDMITXPLL_PWR_ON);
-+	usleep_range(5, 10);
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_4, DA_HDMITXPLL_ISO_EN);
-+	usleep_range(5, 10);
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_PWD);
-+	usleep_range(30, 50);
-+	return 0;
-+}
-+
-+static void mtk_hdmi_pll_unprepare(struct clk_hw *hw)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	mtk_phy_set_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_BG_PWD);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_BIAS_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_CKLDO_EN);
-+	mtk_phy_clear_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_SLDO_EN);
-+
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_PWD);
-+	usleep_range(10, 20);
-+	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_4, DA_HDMITXPLL_ISO_EN);
-+	usleep_range(10, 20);
-+	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_4, DA_HDMITXPLL_PWR_ON);
-+}
-+
-+static int mtk_hdmi_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+
-+	dev_dbg(hdmi_phy->dev, "%s: %lu Hz, parent: %lu Hz\n", __func__, rate,
-+		parent_rate);
-+
-+	return mtk_hdmi_pll_calc(hdmi_phy, hw, rate, parent_rate);
-+}
-+
-+static long mtk_hdmi_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long *parent_rate)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+
-+	hdmi_phy->pll_rate = rate;
-+	return rate;
-+}
-+
-+static unsigned long mtk_hdmi_pll_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-+
-+	return hdmi_phy->pll_rate;
-+}
-+
-+static const struct clk_ops mtk_hdmi_pll_ops = {
-+	.prepare = mtk_hdmi_pll_prepare,
-+	.unprepare = mtk_hdmi_pll_unprepare,
-+	.set_rate = mtk_hdmi_pll_set_rate,
-+	.round_rate = mtk_hdmi_pll_round_rate,
-+	.recalc_rate = mtk_hdmi_pll_recalc_rate,
-+};
-+
-+static void vtx_signal_en(struct mtk_hdmi_phy *hdmi_phy, bool on)
-+{
-+	void __iomem *regs = hdmi_phy->regs;
-+
-+	if (on)
-+		mtk_phy_set_bits(regs + HDMI_1_CFG_0, RG_HDMITX21_DRV_EN);
-+	else
-+		mtk_phy_clear_bits(regs + HDMI_1_CFG_0, RG_HDMITX21_DRV_EN);
-+}
-+
-+static void mtk_hdmi_phy_enable_tmds(struct mtk_hdmi_phy *hdmi_phy)
-+{
-+	vtx_signal_en(hdmi_phy, true);
-+	usleep_range(100, 150);
-+}
-+
-+static void mtk_hdmi_phy_disable_tmds(struct mtk_hdmi_phy *hdmi_phy)
-+{
-+	vtx_signal_en(hdmi_phy, false);
-+}
-+
-+static int mtk_hdmi_phy_configure(struct phy *phy, union phy_configure_opts *opts)
-+{
-+	struct phy_configure_opts_dp *dp_opts = &opts->dp;
-+	struct mtk_hdmi_phy *hdmi_phy = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = clk_set_rate(hdmi_phy->pll, dp_opts->link_rate);
-+
-+	if (ret)
-+		return ret;
-+
-+	mtk_phy_tmds_clk_ratio(hdmi_phy, hdmi_phy->tmds_over_340M);
-+
-+	return ret;
-+}
-+
-+struct mtk_hdmi_phy_conf mtk_hdmi_phy_8195_conf = {
-+	.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
-+	.hdmi_phy_clk_ops = &mtk_hdmi_pll_ops,
-+	.hdmi_phy_enable_tmds = mtk_hdmi_phy_enable_tmds,
-+	.hdmi_phy_disable_tmds = mtk_hdmi_phy_disable_tmds,
-+	.hdmi_phy_configure = mtk_hdmi_phy_configure,
-+};
-+
-+MODULE_AUTHOR("Can Zeng <can.zeng@mediatek.com>");
-+MODULE_DESCRIPTION("MediaTek MT8195 HDMI PHY Driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-new file mode 100644
-index 000000000000..22a68dc9550c
---- /dev/null
-+++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-@@ -0,0 +1,113 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2022 MediaTek Inc.
-+ * Copyright (c) 2022 BayLibre, SAS
-+ */
-+
-+#ifndef _MTK_HDMI_PHY_8195_H
-+#define _MTK_HDMI_PHY_8195_H
-+
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/types.h>
-+
-+#define PCW_DECIMAL_WIDTH 24
-+#define PLL_PREDIV 1
-+#define PLL_FBKDIV_HS3 1
-+
-+#define HDMI20_CLK_CFG 0x70
-+#define REG_TXC_DIV GENMASK(31, 30)
-+
-+#define HDMI_1_CFG_0 0x00
-+#define RG_HDMITX21_DRV_IBIAS_CLK GENMASK(10, 5)
-+#define RG_HDMITX21_DRV_IMP_EN GENMASK(23, 20)
-+#define RG_HDMITX21_DRV_EN GENMASK(27, 24)
-+#define RG_HDMITX21_SER_EN GENMASK(31, 28)
-+
-+#define HDMI_1_CFG_1 0x04
-+#define RG_HDMITX21_DRV_IBIAS_D0 GENMASK(19, 14)
-+#define RG_HDMITX21_DRV_IBIAS_D1 GENMASK(25, 20)
-+#define RG_HDMITX21_DRV_IBIAS_D2 GENMASK(31, 26)
-+
-+#define HDMI_1_CFG_10 0x40
-+#define RG_HDMITXPLL_REF_CK_SEL GENMASK(2, 1)
-+#define RG_HDMITX21_VREF_SEL BIT(4)
-+#define RG_HDMITX21_BIAS_PE_VREF_SELB BIT(10)
-+#define RG_HDMITX21_BIAS_PE_BG_VREF_SEL GENMASK(16, 15)
-+#define RG_HDMITX21_BG_PWD BIT(20)
-+
-+#define HDMI_1_CFG_2 0x08
-+#define RG_HDMITX21_DRV_IMP_D0_EN1 GENMASK(13, 8)
-+#define RG_HDMITX21_DRV_IMP_D1_EN1 GENMASK(19, 14)
-+#define RG_HDMITX21_DRV_IMP_D2_EN1 GENMASK(25, 20)
-+#define RG_HDMITX21_DRV_IMP_CLK_EN1 GENMASK(31, 26)
-+
-+#define HDMI_1_CFG_3 0x0c
-+#define RG_HDMITX21_CKLDO_EN BIT(3)
-+#define RG_HDMITX21_SLDOLPF_EN BIT(7)
-+#define RG_HDMITX21_SLDO_EN GENMASK(11, 8)
-+
-+#define HDMI_1_CFG_6 0x18
-+#define RG_HDMITX21_D2_DRV_OP_EN BIT(8)
-+#define RG_HDMITX21_D1_DRV_OP_EN BIT(9)
-+#define RG_HDMITX21_D0_DRV_OP_EN BIT(10)
-+#define RG_HDMITX21_CK_DRV_OP_EN BIT(11)
-+#define RG_HDMITX21_FRL_EN BIT(12)
-+#define RG_HDMITX21_FRL_CK_EN BIT(13)
-+#define RG_HDMITX21_FRL_D0_EN BIT(14)
-+#define RG_HDMITX21_FRL_D1_EN BIT(15)
-+#define RG_HDMITX21_FRL_D2_EN BIT(16)
-+#define RG_HDMITX21_INTR_CAL GENMASK(22, 18)
-+#define RG_HDMITX21_TX_POSDIV GENMASK(27, 26)
-+#define RG_HDMITX21_TX_POSDIV_EN BIT(28)
-+#define RG_HDMITX21_BIAS_EN BIT(29)
-+
-+#define HDMI_1_CFG_9 0x24
-+#define RG_HDMITX21_SLDO_VREF_SEL GENMASK(5, 4)
-+
-+#define HDMI_1_PLL_CFG_0 0x44
-+#define RG_HDMITXPLL_HREN GENMASK(13, 12)
-+#define RG_HDMITXPLL_IBAND_FIX_EN BIT(24)
-+#define RG_HDMITXPLL_LVR_SEL GENMASK(27, 26)
-+#define RG_HDMITXPLL_BP2 BIT(30)
-+#define RG_HDMITXPLL_TCL_EN BIT(31)
-+
-+#define HDMI_1_PLL_CFG_1 0x48
-+#define RG_HDMITXPLL_RESERVE_BIT1_0 GENMASK(1, 0)
-+#define RG_HDMITXPLL_RESERVE_BIT3_2 GENMASK(3, 2)
-+#define RG_HDMITXPLL_RESERVE_BIT12_11 GENMASK(12, 11)
-+#define RG_HDMITXPLL_RESERVE_BIT13 BIT(13)
-+#define RG_HDMITXPLL_RESERVE_BIT14 BIT(14)
-+
-+#define HDMI_1_PLL_CFG_2 0x4c
-+#define RG_HDMITXPLL_BC GENMASK(28, 27)
-+#define RG_HDMITXPLL_IC GENMASK(26, 22)
-+#define RG_HDMITXPLL_BR GENMASK(21, 19)
-+#define RG_HDMITXPLL_IR GENMASK(18, 14)
-+#define RG_HDMITXPLL_BP GENMASK(13, 10)
-+#define RG_HDMITXPLL_HIKVCO BIT(29)
-+#define RG_HDMITXPLL_PWD BIT(31)
-+
-+#define HDMI_1_PLL_CFG_3 0x50
-+#define RG_HDMITXPLL_FBKDIV_LOW GENMASK(31, 0)
-+
-+#define HDMI_1_PLL_CFG_4 0x54
-+#define DA_HDMITXPLL_ISO_EN BIT(1)
-+#define DA_HDMITXPLL_PWR_ON BIT(2)
-+#define RG_HDMITXPLL_POSDIV_DIV3_CTRL BIT(21)
-+#define RG_HDMITXPLL_POSDIV GENMASK(23, 22)
-+#define RG_HDMITXPLL_DIV_CTRL GENMASK(25, 24)
-+#define RG_HDMITXPLL_PREDIV GENMASK(29, 28)
-+#define RG_HDMITXPLL_FBKDIV_HIGH BIT(31)
-+
-+#define HDMI_ANA_CTL 0x7c
-+#define REG_ANA_HDMI20_FIFO_EN BIT(16)
-+
-+#define HDMI_CTL_3 0xcc
-+#define REG_HDMITXPLL_DIV GENMASK(4, 0)
-+#define REG_HDMITX_REF_XTAL_SEL BIT(7)
-+#define REG_HDMITX_REF_RESPLL_SEL BIT(9)
-+#define REG_PIXEL_CLOCK_SEL BIT(10)
-+#define REG_HDMITX_PIXEL_CLOCK BIT(23)
-+
-+#endif /* MTK_HDMI_PHY_8195_H */
-diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c b/drivers/phy/mediatek/phy-mtk-hdmi.c
-index 32f713301768..d2e824771f9d 100644
---- a/drivers/phy/mediatek/phy-mtk-hdmi.c
-+++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
-@@ -161,6 +161,9 @@ static const struct of_device_id mtk_hdmi_phy_match[] = {
- 	{ .compatible = "mediatek,mt8173-hdmi-phy",
- 	  .data = &mtk_hdmi_phy_8173_conf,
- 	},
-+	{ .compatible = "mediatek,mt8195-hdmi-phy",
-+	  .data = &mtk_hdmi_phy_8195_conf,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_hdmi_phy_match);
-diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.h b/drivers/phy/mediatek/phy-mtk-hdmi.h
-index f5aac9d352d8..fc2ad6a0527f 100644
---- a/drivers/phy/mediatek/phy-mtk-hdmi.h
-+++ b/drivers/phy/mediatek/phy-mtk-hdmi.h
-@@ -40,10 +40,12 @@ struct mtk_hdmi_phy {
- 	unsigned char drv_imp_d0;
- 	unsigned int ibias;
- 	unsigned int ibias_up;
-+	bool tmds_over_340M;
- };
- 
- struct mtk_hdmi_phy *to_mtk_hdmi_phy(struct clk_hw *hw);
- 
-+extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_8195_conf;
- extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_8173_conf;
- extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_2701_conf;
- 
+precisely the GTA04 was not a TI product, but from Golden Delicious =
+Computers.
+It got this compatible because it originally shared a lot of device tree =
+with the ti,omap3-beagle-xm.
+Well, we could add a vendor prefix ("goldelico") and update the device =
+trees to "goldelico,gta04".
 
--- 
-2.39.0
+Generally, there is also the OpenPandora with both OMAP3 variants (3430 =
+and 3630):
+
+compatible =3D "openpandora,omap3-pandora-600mhz", "ti,omap3430", =
+"ti,omap3";
+compatible =3D "openpandora,omap3-pandora-1ghz", "ti,omap3630", =
+"ti,omap36xx", "ti,omap3";
+
+But it is also missing a vendor prefix. Should I send a patch for both =
+topics?
+Before the scheme is merged or afterwards?
+
+> +              - nokia,omap3-n9 # Nokia N9
+> +              - nokia,omap3-n950 # Nokia N950
+> +              - lg,omap3-sniper # LG Optimus Black
+> +              - ti,omap3-zoom3 # TI Zoom3
+> +          - const: ti,omap3630
+> +          - const: ti,omap3
+> +
+> +      - description: TI AM35 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - teejet,mt_ventoux # TeeJet Mt.Ventoux
+> +              - ti,am3517-craneboard # TI AM3517 CraneBoard =
+(TMDSEVM3517)
+> +              - ti,am3517-evm # TI AM3517 EVM (AM3517/05 TMDSEVM3517)
+> +              - compulab,omap3-sbc-t3517 # CompuLab SBC-T3517 with =
+CM-T3517
+> +          - const: ti,am3517
+> +          - const: ti,omap3
+> +
+> +      - description: TI OMAP4430 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - motorola,droid4 # Motorola Droid 4 XT894
+> +              - motorola,droid-bionic # Motorola Droid Bionic XT875
+> +              - amazon,omap4-kc1 # Amazon Kindle Fire (first =
+generation)
+> +              - ti,omap4-panda # TI OMAP4 PandaBoard
+> +              - ti,omap4-sdp # TI OMAP4 SDP board
+> +          - const: ti,omap4430
+> +          - const: ti,omap4
+> +
+> +      - description: TI OMAP4460 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - ti,omap4-panda-es # TI OMAP4 PandaBoard-ES
+> +          - const: ti,omap4460
+> +          - const: ti,omap4
+> +
+> +      - description: TI OMAP543 SoC based platforms
+
+s/TI OMAP543 SoC/TI OMAP5 SoC/
+
+> +        items:
+> +          - enum:
+> +              - compulab,omap5-cm-t54 # CompuLab CM-T54
+> +              - isee,omap5-igep0050 # IGEPv5
+> +              - ti,omap5-uevm # TI OMAP5 uEVM board
+> +          - const: ti,omap5
+> +
+> +      - description: TI AM33 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - ti,am335x-bone # TI AM335x BeagleBone
+> +              - compulab,cm-t335 # CompuLab CM-T335
+> +              - ti,am335x-evm # TI AM335x EVM
+> +              - ti,am335x-evmsk # TI AM335x EVM-SK
+> +              - bosch,am335x-guardian # Bosch AM335x Guardian
+> +              - ti,am3359-icev2 # TI AM3359 ICE-V2
+> +              - novatech,am335x-lxm # NovaTech OrionLXm
+> +              - moxa,uc-2101 # Moxa UC-2101
+> +              - moxa,uc-8100-me-t # Moxa UC-8100-ME-T
+> +              - gumstix,am335x-pepper # Gumstix Pepper
+> +              - tcl,am335x-sl50 # Toby Churchill SL50 Series
+> +          - pattern: '^ti,am33(5[1246789]|xx)$' # ti,am33xx is legacy =
+please use full SoC name
+> +
+> +      - description: TI AM43 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - compulab,am437x-cm-t43 # CompuLab CM-T43
+> +              - ti,am437x-gp-evm # TI AM437x GP EVM
+> +              - ti,am437x-idk-evm # TI AM437x Industrial Development =
+Kit
+> +              - ti,am437x-sk-evm # TI AM437x SK EVM
+> +          - pattern: '^ti,am4372[26789]$'
+> +          - const: ti,am43
+> +
+> +      - description: TI AM57 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - beagle,am5729-beagleboneai # BeagleBoard.org =
+BeagleBone AI
+> +              - compulab,cl-som-am57x # CompuLab CL-SOM-AM57x
+> +              - ti,am5718-idk # TI AM5718 IDK
+> +              - ti,am5728-idk # TI AM5728 IDK
+> +              - ti,am5748-idk # TI AM5748 IDK
+> +          - pattern: '^ti,am57[0124][689]$'
+> +          - const: ti,am57
+> +
+> +      - description: TI DRA7 SoC based platforms
+> +        items:
+> +          - enum:
+> +              - ti,dra718-evm # TI DRA718 EVM
+> +              - ti,dra722-evm # TI DRA722 EVM
+> +              - ti,dra742-evm # TI DRA742 EVM
+> +              - ti,dra762-evm # TI DRA762 EVM
+> +          - pattern: '^ti,dra7[12456][024568p]$'
+> +          - const: ti,dra7
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    / {
+> +        model =3D "TI OMAP2430 SDP (Software Development Board)";
+> +        compatible =3D "ti,omap2430-sdp", "ti,omap2430", "ti,omap2";
+> +
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +    };
+> +
+> +  - |
+> +    / {
+> +        model =3D "TI DRA762 EVM";
+> +        compatible =3D "ti,dra762-evm", "ti,dra762", "ti,dra7";
+> +
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +    };
+> +
+> +...
+> --=20
+> 2.39.1
+>=20
+
+BR,
+Nikolaus
 
