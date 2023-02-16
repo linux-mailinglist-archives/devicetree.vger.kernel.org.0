@@ -2,75 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD584698DE8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07467698DF2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjBPHmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 02:42:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46948 "EHLO
+        id S229700AbjBPHm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 02:42:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjBPHmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:42:07 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5243A87D
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:42:05 -0800 (PST)
-Received: by codeconstruct.com.au (Postfix, from userid 10000)
-        id 294F9202BB; Thu, 16 Feb 2023 15:42:02 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1676533322;
-        bh=WryB2GO2zbrBH8W+AuZGRUy0IPCfawW4rexCATxsMBo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=eEytakf3bWKJmEVJAsaqrNdZ4Yrkak1X/toUToOL/S3SqugAS2GUyL4iSuDNq/x94
-         ZRWUanKtpochL1PbTtn78MvlZxxMX59bsowwH5jjoMG+dEu00Iq0cFpzK+bMmxhKt6
-         P9mO2HzWrRRVyMdpNS/hhKrH5AzFapkgKUEew6wDO2MW+svjKBhPSH+cChFZPL9wNg
-         13t6mgcYwSe8qpqjL7CIgEqrZxCXWGl98/J3NuusTKbzmX9JRCt89+8mQAvsLInAEu
-         dsEdEOmVHwVlAeTkoOxtU2S+NDdLOo6kg2VmiUxXf/b4W3JLq9cVHKLm2RVpi8QtFQ
-         k86uz5pgQJRwA==
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     linux-i3c@lists.infradead.org
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Vitor Soares <ivitro@gmail.com>, linux-aspeed@lists.ozlabs.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229507AbjBPHm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:42:56 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A3D25285;
+        Wed, 15 Feb 2023 23:42:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A41FBB825DF;
+        Thu, 16 Feb 2023 07:42:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD1F9C433D2;
+        Thu, 16 Feb 2023 07:42:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676533372;
+        bh=MOa0xJmnMkeXlEHM9s4CPRRpe1xjLgxBt3dpclKQX5s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UfDNRhIc0/qbZMXtg5hF6K/EjZv8HzC9qZoSEtDu3XXxsT8GGVTpjEVV4ADQGcI+b
+         +n43X5NUq1AzksTktI+STfxuXuPIiemh0VecOBMvl/JfYVq71DggjY0tZHmA5WPFpT
+         1Zm2+lBDJ2V6/UEwYKruoHBnto/IgvsXfYijug6usrz9pj5Mx02Zj8UfTuRfjIvpxg
+         gvdazPcEsK+jPhaLhReN3AbQdjSAQ9lNH25MZF/3aeWFC0ecVPcc40ch02TqekF+6w
+         FQ5mvkb/J7rCsKRUNsohbnS7zAFiciBkP0zzjrJWHNl1X9NsyeQsAdGyi8O0kLGLt/
+         AxlK0dTuVt6+g==
+Date:   Wed, 15 Feb 2023 23:42:50 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Subject: [PATCH 4/4] i3c: dw: Add compatible string for ASPEED AST2600 BMC platform
-Date:   Thu, 16 Feb 2023 15:41:55 +0800
-Message-Id: <90e8fd66b42bc27e6b8c01085c40721232217a5d.1676532146.git.jk@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <cover.1676532146.git.jk@codeconstruct.com.au>
-References: <cover.1676532146.git.jk@codeconstruct.com.au>
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH 1/5] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
+ dedicated driver
+Message-ID: <Y+3eenOERCVGW+go@sol.localdomain>
+References: <20230214120253.1098426-1-abel.vesa@linaro.org>
+ <20230214120253.1098426-2-abel.vesa@linaro.org>
+ <7442b4f8-0560-35ea-4b0e-1f249fc5c902@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7442b4f8-0560-35ea-4b0e-1f249fc5c902@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have platform-specific code for the ast2600, enable it
-through a new compatible string.
+On Tue, Feb 14, 2023 at 02:34:47PM +0100, Konrad Dybcio wrote:
+> > +#define QCOM_ICE_BIST_STATUS_MASK		0xF0000000
+> GENMASK(31, 28)?
 
-Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
----
- drivers/i3c/master/dw-i3c-master.c | 1 +
- 1 file changed, 1 insertion(+)
+I personally think the plain number is much easier to read...
 
-diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index 9be3348cba0e..5ac226e0c558 100644
---- a/drivers/i3c/master/dw-i3c-master.c
-+++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -1269,6 +1269,7 @@ static const struct dw_i3c_platform_ops ast2600_platform_ops = {
- 
- static const struct of_device_id dw_i3c_master_of_match[] = {
- 	{ .compatible = "snps,dw-i3c-master-1.00a", },
-+	{ .compatible = "aspeed,ast2600-i3c", .data = &ast2600_platform_ops },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, dw_i3c_master_of_match);
--- 
-2.39.1
+> btw, most of these defines seem unused?
 
+Yes, the unused definitions can be dropped if people prefer.  I only included
+them in the original version because this hardware has no public documentation,
+so maybe it's helpful to see what registers and fields are available.
+
+I suppose that downstream code could always be dug up if needed, though.  Or
+maybe someday there will actually be documentation?
+
+> > +static struct qcom_ice *engine;
+> > +
+> > +static bool qcom_ice_check_supported(struct qcom_ice *ice)
+> > +{
+> > +	u32 regval = qcom_ice_readl(ice, QCOM_ICE_REG_VERSION);
+> > +	struct device *dev = ice->dev;
+> > +	int major = regval >> 24;
+> > +	int minor = (regval >> 16) & 0xFF;
+> > +	int step = regval & 0xFFFF;
+> FIELD_GET?
+
+Similarly, plain bit operations are much more universally understood...
+
+> > +	regval = qcom_ice_readl(ice, QCOM_ICE_REG_ADVANCED_CONTROL);
+> > +	/*
+> > +	 * Enable low power mode sequence
+> > +	 * [0]-0, [1]-0, [2]-0, [3]-E, [4]-0, [5]-0, [6]-0, [7]-0
+> Pardon my ignorance, but I have no idea how this comment corresponds
+> to the value OR'd..
+> 
+> > +	 */
+> > +	regval |= 0x7000;
+> > +	qcom_ice_writel(ice, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
+
+I'm not sure either!  I've never had access to any documentation for this
+hardware, so the above logic is just taken from downstream code.  I kept that
+comment because it was the only available explanation for the value OR'd.
+
+Since it doesn't seem to be useful, I'm fine with just removing it.  (But please
+keep the "Enable low power mode sequence" part, as that's useful.)
+
+My guess is that it is actually just describing the bits backwards, so [3]-E
+corresponds to the three bits that are set.
+
+> > +static void qcom_ice_optimization_enable(struct qcom_ice *ice)
+> > +{
+> > +	u32 regval;
+> > +
+> > +	if (!ice)
+> > +		return;
+> > +
+> > +	/* ICE Optimizations Enable Sequence */
+> > +	regval = qcom_ice_readl(ice, QCOM_ICE_REG_ADVANCED_CONTROL);
+> > +	regval |= 0xD807100;
+> Please use lowercase hex, or de-magic-ify this if you have the means to.
+
+I don't know what the 0xD807100 value means, sorry :-(  This is just the value
+that works to enable the "optimizations", and which the downstream code was
+using.  If anyone has access to the ICE hardware documentation (if there even
+*is* documentation), they might be able to say.
+
+- Eric
