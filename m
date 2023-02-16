@@ -2,94 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E8F5699B1F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 18:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61038699B31
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 18:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbjBPRUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 12:20:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40684 "EHLO
+        id S229675AbjBPRYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 12:24:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjBPRUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 12:20:22 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27A14C3ED;
-        Thu, 16 Feb 2023 09:20:21 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31GCt8qW010208;
-        Thu, 16 Feb 2023 17:20:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CvEmRzvubJL6Lk72z7V0twUXA882j4nFECNyTnUSNKA=;
- b=WmXomSAkO2ZvyPZHq93yDzzZbd1jnKyvIZ8kb6Wj8IF1AFQVWp37az/fklDNsmZwcqYN
- M4o7OzPB+0K8CgYQtUDcCD/6sJY8ncycdJs06xXLq5CnNo/uScApzO/VwwC6vM3TdWXj
- bmm4A1ysaQvZjYSgIPh+eaTND4GCBrlROmiTTHwUI/OyptmVpiImzzh9whKLfZTTsVat
- yNtcUvO+qaEBCbBiDUXZLB6PKULCiUxx3T7JzTk4rwGjHTVmnmwjeLgb0fGxhS5z+Gxe
- 4QuYJhNp7a7WsJBXR03m0NHfEa/mN8bTOa/kAVK/yHYUG2rdO8g7JZn2aG5ck61ZcTAh 6g== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ns0hkkspd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Feb 2023 17:20:10 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31GHK9Tu007598
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Feb 2023 17:20:09 GMT
-Received: from [10.110.95.168] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 16 Feb
- 2023 09:20:08 -0800
-Message-ID: <62a05595-ef52-aa51-039b-95d546fb6a81@quicinc.com>
-Date:   Thu, 16 Feb 2023 09:20:07 -0800
+        with ESMTP id S229737AbjBPRX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 12:23:59 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 200CB4D601;
+        Thu, 16 Feb 2023 09:23:52 -0800 (PST)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 17 Feb 2023 02:23:51 +0900
+Received: from mail.mfilter.local (mail-arc02.css.socionext.com [10.213.46.40])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id CF5402020789;
+        Fri, 17 Feb 2023 02:23:51 +0900 (JST)
+Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Fri, 17 Feb 2023 02:23:51 +0900
+Received: from [10.212.158.143] (unknown [10.212.158.143])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 4F226A855B;
+        Fri, 17 Feb 2023 02:23:51 +0900 (JST)
+Message-ID: <c6b86d56-a8a4-825d-ac34-7a9f00e43b42@socionext.com>
+Date:   Fri, 17 Feb 2023 02:23:50 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v10 13/26] gunyah: vm_mgr: Add ioctls to support basic
- non-proxy VM boot
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2] dt-bindings: ata: Add UniPhier controller binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230213045432.32614-1-hayashi.kunihiko@socionext.com>
+ <2d76ec86-6580-28b0-0f80-a5c497f8cef7@linaro.org>
+ <ed864d57-0de3-a169-ebde-628eb84b8a21@socionext.com>
+ <0c6dc673-7e11-eec5-ec2d-e00fb2060bf3@linaro.org>
 Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Arnd Bergmann" <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212427.3316544-1-quic_eberman@quicinc.com>
- <Y+3Ou02LwsfS0TLl@kroah.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y+3Ou02LwsfS0TLl@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <0c6dc673-7e11-eec5-ec2d-e00fb2060bf3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: i04LpIZhRqhzFvRQ8jaKjPqxZ-jLng_2
-X-Proofpoint-GUID: i04LpIZhRqhzFvRQ8jaKjPqxZ-jLng_2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-16_14,2023-02-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0 adultscore=0
- mlxscore=0 priorityscore=1501 suspectscore=0 phishscore=0 mlxlogscore=999
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302160150
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,48 +54,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2/15/2023 10:35 PM, Greg Kroah-Hartman wrote:
-> On Tue, Feb 14, 2023 at 01:24:26PM -0800, Elliot Berman wrote:
->> +	case GH_VM_SET_DTB_CONFIG: {
->> +		struct gh_vm_dtb_config dtb_config;
->> +
->> +		if (copy_from_user(&dtb_config, argp, sizeof(dtb_config)))
->> +			return -EFAULT;
->> +
->> +		dtb_config.size = PAGE_ALIGN(dtb_config.size);
->> +		ghvm->dtb_config = dtb_config;
+On 2023/02/14 18:42, Krzysztof Kozlowski wrote:
+> On 14/02/2023 10:33, Kunihiko Hayashi wrote:
+>> Hi Krzysztof,
+>>
+>> On 2023/02/13 18:10, Krzysztof Kozlowski wrote:
+>>> On 13/02/2023 05:54, Kunihiko Hayashi wrote:
+>>>> Add UniPhier SATA controller compatible string to the platform binding.
+>>>> This controller needs maximum three reset controls.
+>>>>
+>>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>>> ---
+>>>>    .../devicetree/bindings/ata/ahci-platform.yaml  | 17 +++++++++++++++++
+>>>>    1 file changed, 17 insertions(+)
+>>>>
+>>>> Changes since v1:
+>>>> - Restrict resets property changes with compatible strings
+>>>> - Fix maxItems from two to three
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>> b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>> index 7dc2a2e8f598..25dd5ffaa517 100644
+>>>> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>> @@ -45,6 +45,9 @@ properties:
+>>>>                  - marvell,armada-8k-ahci
+>>>>                  - marvell,berlin2-ahci
+>>>>                  - marvell,berlin2q-ahci
+>>>> +              - socionext,uniphier-pro4-ahci
+>>>> +              - socionext,uniphier-pxs2-ahci
+>>>> +              - socionext,uniphier-pxs3-ahci
+>>>>              - const: generic-ahci
+>>>>          - enum:
+>>>
+>>> Top level is saying reset=1, so did you test your bindings?
+>>
+>> Umm, I didn't see any errors on dt_binding_check, anyway I'll add
+>> initial minItems:1 and maxItems:3 on top level first.
 > 
-> Do you really mean to copy this tiny structure twice (once from
-> userspace and the second time off of the stack)?  If so, why?
-
-Ah, yes this can be optimized to copy directly.
+> You need to test also all DTS using these bindings. Yours and others.
+> If you tested the DTS (with proper binding, not one which is basically
+> noop):
 > 
-> And where are the values of the structure checked for validity?  Can any
-> 64bit value work for size and "gpa"?
-> 
+> uniphier-pro4-ace.dtb: sata@65600000: resets: [[27, 12], [27, 28], [37,
+> 3]] is too long
 
-The values get checked when starting the VM
+I've tried updating tools and doing dtbs_check, but I couldn't find this
+error. It seems that this error can't be detected unless there is the
+specified compatible in "select:".
 
-static int gh_vm_start(struct gh_vm *ghvm)
-	...
-	mapping = gh_vm_mem_find_mapping(ghvm, ghvm->dtb_config.gpa, 
-ghvm->dtb_config.size);
-	if (!mapping) {
-		pr_warn("Failed to find the memory_handle for DTB\n");
-		ret = -EINVAL;
-		goto err;
-	}
+> BTW, the patch has other errors - just look at the beginning of the
+> file. I cannot see it here in the diff, but when you open the file you
+> should notice it.
 
-If user passes an address that they've not set up, then 
-gh_vm_mem_find_mapping returns NULL and GH_VM_START ioctl fails.
+Sorry, but I cannot see anything wrong.
+I'll check the header or something...
 
-I've not done the check from the GH_VM_SET_DTB_CONFIG ioctl itself 
-because I didn't want to require userspace to share the memory first. 
-We'd need to check again anyway since user could SET_USER_MEMORY, 
-SET_DTB_CONFIG, SET_USER_MEMORY (remove), VM_START.
+Thank you,
 
-Thanks,
-Elliot
-
+---
+Best Regards
+Kunihiko Hayashi
