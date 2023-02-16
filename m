@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50AB0699101
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5AC269910D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:23:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjBPKVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:21:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57362 "EHLO
+        id S229845AbjBPKX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:23:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbjBPKVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:21:24 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C48237B59
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:21:20 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id cq19so2100688edb.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:21:19 -0800 (PST)
+        with ESMTP id S229505AbjBPKXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:23:25 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90AFA47424
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:23:22 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id f21so3936397ejq.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:23:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kiZhCQwvLAN/WcdEDHOGFwJWYHK65TJ2+yIdtEDWU5U=;
-        b=UJsU5/G0RWBnr0pdK7o1X8uJ7FXJYRFQfxjIOwjqRjGDbcANR74e9A2se117d+M5Ax
-         4VpfN1H6MBH80MdE9VEsP8xIcSVbDoLPirh3zT7pBh4l/0fOG/V7NDW0BS9GcXTSzGOn
-         XFEA6bYTLkJnVpqHloea08RSoWzjB9cO06RV2YCEnjthV9cWvCXIZ8wob3WDmKUTcdcd
-         x1OEx+Y6LzkT4QZdKvAA+0oV5moP+NefMKg6D11WlcNxDtqKi18o2fAZa95zOUeU6JUn
-         BrDacHVMqoG4eFASYngDItIKuJkXEUdr/XDWEplDQqEP9bVedlRj0Bty/GFUr5niu7V7
-         TQ5w==
+        bh=UQPmFYlzbC7KvPA9vOp38pjRFiHeLAnLDwoDfy/DHCQ=;
+        b=G+3SK83ZR+HwM9/pu4pN5BF9nCzAAVMNouC4FBsdvrBx/CahgW9lfHK94lhACaEZ5Q
+         tqC7+DWQZXXgTWKiSH9amNNGRs45HJ3yC983P8DQwUARHzT8F269RqvWGGybRLke1vEC
+         VFVjsLaY7Hjxia/B5LHgftlTN5STrzqIwP52AGpNfCyLhMuE+TFqdFTEkBVuqpwAZuE+
+         qP8CiWZOxCsfjVsoNGHIUslW8B/ozITvXANUiKYg9arfgeOqzNuMQOEwEigN7uxBLkJ/
+         NaPsqvFRc8FtQP75N00Uw1mDjGiz9irCKX17djHPjqy8Jp8CXJZgyXADQ/lUkQ3bX33X
+         VoTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kiZhCQwvLAN/WcdEDHOGFwJWYHK65TJ2+yIdtEDWU5U=;
-        b=DbWB6mZku8jvlIg6G15yGy2nm12uktx5gjNEliXpG1qwJ3QSJcNLT1tK5qoGA8jqsQ
-         kgMa3fc7o/mkfaIkeMjReS5nbHNKjmdzJrOppFXvZUYVmB1wJnreYf7v6t/v8WztMfuR
-         zairDrdiK72ewL7s7pjlQT+zwz14j6SowhBfEXyefCtZWujQ2NhCJoRdO8RxxParhU2f
-         CuLHJVrF/goGfAug9JfN2fiaE6JUhtD+TMwH37OANpuEy69uPdbc3pqorIKuuWTZ+sGO
-         SQUxiNpO/1V+KJD6aa0OhTf9wkX4Ck7vff1Qvp902dJG8gmc4kJ4NCzfH/GQL5k1QCJp
-         v5dw==
-X-Gm-Message-State: AO0yUKU376a+hj4GVr4V6O1cWk9nUw4ldLQE1+f3VpoAk5XSXfYbEo0V
-        aHXVb/2lbkeszPH6LQhgJvnH6A==
-X-Google-Smtp-Source: AK7set+Uqifl7Bor9xXuyZGiSNfoqpIyZ9ewf6xdIWS1dIDE9K/kVMAE/yboRk0mVw0cTTp63eBZzg==
-X-Received: by 2002:a05:6402:12cd:b0:4ac:c3ea:47e0 with SMTP id k13-20020a05640212cd00b004acc3ea47e0mr5786141edx.14.1676542878586;
-        Thu, 16 Feb 2023 02:21:18 -0800 (PST)
+        bh=UQPmFYlzbC7KvPA9vOp38pjRFiHeLAnLDwoDfy/DHCQ=;
+        b=tVQ7Gu4XOx7qU9kuVrDdtHm0FABPrhZ1Q5oi7oM46RbiGBT1AO/nk1eWfsC3CM+k4C
+         wN1BFZycdZWky8QkSpalzz2l4I6nu3muVT4v7wQSkWugMECjqCiOStyAcVlF3seGiqUe
+         wEt0gzrH6bw8nj0qaRaHcwWQxnOp2fllnUX3n1F05Tw6SpOk+3xJMaAgCRTW939mMrp8
+         VGJz4fvrHn7yui/PEegWfLkArhLYxUOeDVIyu2jWdpYABxBqo9Bvy4kF99OYF2WrKv+W
+         +TaMk76KBUbtTKK++OjXruTVOf39CcGssmoNZTeZx+s+c97naMEfDGSNojGeUBGGvzUC
+         2UPw==
+X-Gm-Message-State: AO0yUKXIyf8Tw/uqjjDIqkjxuI4+7NB/QADqUA6Y/1hfSD6b1zQ80/Uz
+        XUltKTwAMo31N9wlxyUVusfIPQ==
+X-Google-Smtp-Source: AK7set8RV32dZOV4847Uqa2HdLcRmRKN2CKjNW0l1ybJNPeIB6ipclW+lCXzwJkdnZR3ULc1QG2mWg==
+X-Received: by 2002:a17:907:78c1:b0:8b1:32dd:3b0 with SMTP id kv1-20020a17090778c100b008b132dd03b0mr5426062ejc.57.1676543001076;
+        Thu, 16 Feb 2023 02:23:21 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m19-20020a509313000000b00495f4535a33sm617932eda.74.2023.02.16.02.21.17
+        by smtp.gmail.com with ESMTPSA id h15-20020a1709063b4f00b008878909859bsm617630ejf.152.2023.02.16.02.23.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:21:18 -0800 (PST)
-Message-ID: <4bb1e640-475c-8516-2f73-ddfa0a3c23e0@linaro.org>
-Date:   Thu, 16 Feb 2023 11:21:16 +0100
+        Thu, 16 Feb 2023 02:23:06 -0800 (PST)
+Message-ID: <41bcc545-6eda-6c30-c600-d97ef009abf2@linaro.org>
+Date:   Thu, 16 Feb 2023 11:23:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v4 1/4] dt-bindings: mmc: Add StarFive MMC module
+Subject: Re: [PATCH v4 4/4] dt-bindings: syscon: Add StarFive syscon doc
 Content-Language: en-US
-To:     Shengyu Qu <wiagn233@outlook.com>,
-        William Qiu <william.qiu@starfivetech.com>,
+To:     William Qiu <william.qiu@starfivetech.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-mmc@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -66,10 +65,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Ulf Hansson <ulf.hansson@linaro.org>,
         linux-kernel@vger.kernel.org
 References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-2-william.qiu@starfivetech.com>
- <TY3P286MB26111053410F3F96C9C71D2798A39@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+ <20230215113249.47727-5-william.qiu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TY3P286MB26111053410F3F96C9C71D2798A39@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+In-Reply-To: <20230215113249.47727-5-william.qiu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,13 +79,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2023 12:59, Shengyu Qu wrote:
-> Hello William,
+On 15/02/2023 12:32, William Qiu wrote:
+> Add documentation to describe StarFive System Controller Registers.
 > 
-> Are you sure changing driver is better than changing yaml bindings? All
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
 
-What do you mean - changing driver? This is new driver, new code, isn't it?
+Thank you for your patch. There is something to discuss/improve.
 
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - starfive,jh7110-stg-syscon
+> +          - starfive,jh7110-sys-syscon
+> +          - starfive,jh7110-aon-syscon
+
+Maybe keep them ordered alphabetically?
+
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@10240000 {
+> +        compatible = "starfive,jh7110-stg-syscon", "syscon";
+> +        reg = <0x10240000 0x1000>;
+> +    };
+
+Keep only one example. All others are the same.
 
 
 Best regards,
