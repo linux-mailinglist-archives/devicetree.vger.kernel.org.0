@@ -2,143 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B6A7699E55
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 21:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 494BC699D20
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 20:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbjBPUyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 15:54:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60412 "EHLO
+        id S229460AbjBPTo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 14:44:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjBPUy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 15:54:29 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C64505D7;
-        Thu, 16 Feb 2023 12:54:28 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id m10so3058499wrn.4;
-        Thu, 16 Feb 2023 12:54:28 -0800 (PST)
+        with ESMTP id S229448AbjBPTo4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 14:44:56 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609C84E5C7;
+        Thu, 16 Feb 2023 11:44:55 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id eq11so7033555edb.6;
+        Thu, 16 Feb 2023 11:44:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=XxHXAnEzcfwmzL57yBeDEI2OXJgv4sM92NV8AEEiDjk=;
-        b=IyXielZJHYrNZdwUKZ/VHSjiRRKC/fjAWKB6XxREQUlMeGCRBy5MFzAGkBPKtYuX4z
-         msWn2erMVQDpu8k7efDx+nvXtSeWNs31J9hz/wEg2PaPxLq7OR55qY/q/YrNJOwefAZS
-         dSYlPVT7UlhosbScdEHNsDbT/vgPIxzsYh3RHF9qb0wZEOoMwe4jEGldfVHfsXzlipXB
-         pHKvx/izp8RyWFctgV4zplDi9ggX4ajBM3dpn2fUPYBbCJcl4kiOEAjtyS6blk1CWixb
-         voq8WTudsJtj8Wpif+Z8gjXgdM7gnXwodJ57wPcwEt1MP5VtwLyMDcUwDV0VR7RVEoE5
-         rxrA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X2TGP6B+IxbGPuvRSkNm+2wsr3WKYYRSuuWyBPcPIYA=;
+        b=a+4Kk1je213yxbfmrjyyha9AtYMFDoIL4SK0XgUTfaia+t0Y1Xm5WgR3veSJI6sp0l
+         aS5P6XGGFyhkLN+Z82ctnGUJ0apDpTvA4nIMzcpTaKDiAREsxRvFr9Y6Bf4dujioerZt
+         VF5qlzAjoJrZo0MRBRzF+U4khIoGCsjGmAtwtICnVRU/wethTuKbYgxx1jfTXQkeRGtb
+         H21cv/mSkxk12N+k7jiRO92NCfb9tWv1LbDS7+uhqFj6X6CLVdtTiutE199kFrFg5Q6T
+         TEaoG0Rg2HKNNqjQndCjkCtiRM6KjDPqC3A2M9QjHVoKnNRGBIgvQvgq+yrBVPLXDcgs
+         ezCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XxHXAnEzcfwmzL57yBeDEI2OXJgv4sM92NV8AEEiDjk=;
-        b=F4pOc7lBRkKpfcBSQQfjt+lBPSTLGR/5RQW8DzBRiPwd4K0IxJKrbj/qeTpjLxJvbM
-         /e8MsTZDANNOv4I8qNWEnlrH2UMwC8g6uLWXc7zh+jg/Y0e6T1la5gSd/hvivMJEt/Pr
-         JIaofMGc9R1qGDIXVKgCZmAAbrAgkMktG69/41ncNbrC6PVc9Wnd2sEj8DLfjJboOVwN
-         8HSyD9RRIx4y8LTuVspJd/Z3kBdsGKJk1JwcwxpxyFlNHOjui2rlIPyFXud+w0VjS0ew
-         sGOuxSV4tNEx36z9Pk/YMjNjJM0Pxn25tDN5uYEb5FB2FxcVHozSX1bTY8rpHSJSPtKD
-         FCrA==
-X-Gm-Message-State: AO0yUKV4g/82pYyIPAD1LKd2BAc9tlgH06umCkYavKxDvD0E+qxj9QnR
-        KxQM/8jLQudamiod7fHAgGzMMMjYIN8=
-X-Google-Smtp-Source: AK7set/m5y8QLJ2rVEPQuLfvuJfCZb7LXLMd5x6BkDXzGrf7EnTAlb0ezjgXsvVzFHXmWfzhzcXAjA==
-X-Received: by 2002:adf:f3cf:0:b0:2c5:8575:c37 with SMTP id g15-20020adff3cf000000b002c585750c37mr2323400wrp.66.1676580866381;
-        Thu, 16 Feb 2023 12:54:26 -0800 (PST)
-Received: from Ansuel-xps. (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
-        by smtp.gmail.com with ESMTPSA id w13-20020adfcd0d000000b002c54f39d34csm2368271wrm.111.2023.02.16.12.54.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 12:54:25 -0800 (PST)
-Message-ID: <63ee9801.df0a0220.a106.72a3@mx.google.com>
-X-Google-Original-Message-ID: <Y+3+0e1fVOF0m329@Ansuel-xps.>
-Date:   Thu, 16 Feb 2023 11:00:49 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        netdev@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>, Arun.Ramadoss@microchip.com
-Subject: Re: [PATCH v8 12/13] dt-bindings: net: phy: Document support for
- leds node
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
- <20230216013230.22978-13-ansuelsmth@gmail.com>
- <167651373836.1183034.17900591036429665419.robh@kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X2TGP6B+IxbGPuvRSkNm+2wsr3WKYYRSuuWyBPcPIYA=;
+        b=LSmsonBeDtV9yKo6SonCjlcM+xnxi8iN+0UFod0vOsLNMN5XsFBGM1Jigzf1ax80Kj
+         MwapDd8e/PK+srhhZE5oiexcRlfTC4Dl3RUot/0WYSoLk1wMyAsoSjMSgPnvRhuKlmyL
+         l7jOkfmhauCh0qBRGudu12hHIrA2M2GeuYu3OK8lQUAQ/vzEMkxQSOs85CLTvHJDISs0
+         LxZOTlzzdx/se7PpOE6tk3N8DaYA9C9jspb1psJBRz/+YY9+IAetD9MiHxU39gH+4A7X
+         pgMEn8KZ+zBUf7ji6HmOIGWiLuvZVHcGEodvJHTrW0vBmoQHmfe1gwLu5c0dxVcRVh44
+         9kUw==
+X-Gm-Message-State: AO0yUKXqWfKLIUmb3zIaLk7Bp1msK73HdODM5sIMgJiuVa7/wDLW6h0O
+        jBG05hf2fUyMeDpIzXMxG2w=
+X-Google-Smtp-Source: AK7set+GOmNvxidy4aSiFfWjv0DKYhrvVBpSkAum+m/SU2QKrWYPb2rsd/xwToJUw+4+K92uaoo/Xw==
+X-Received: by 2002:a17:906:84b:b0:8b1:800b:d2e9 with SMTP id f11-20020a170906084b00b008b1800bd2e9mr355562ejd.56.1676576693818;
+        Thu, 16 Feb 2023 11:44:53 -0800 (PST)
+Received: from ?IPV6:2a01:c23:c4f6:7c00:a039:5cde:fa47:7ceb? (dynamic-2a01-0c23-c4f6-7c00-a039-5cde-fa47-7ceb.c23.pool.telefonica.de. [2a01:c23:c4f6:7c00:a039:5cde:fa47:7ceb])
+        by smtp.googlemail.com with ESMTPSA id n2-20020a170906118200b008b1426fd60dsm1182681eja.176.2023.02.16.11.44.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 11:44:53 -0800 (PST)
+Message-ID: <3ac1eb14-e39e-066a-8066-a92572d0ba45@gmail.com>
+Date:   Thu, 16 Feb 2023 20:44:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <167651373836.1183034.17900591036429665419.robh@kernel.org>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH] dt-bindings: mmc: meson-gx: fix interrupt binding
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <d5542f6e-920e-93cf-a453-b0601d03f48d@gmail.com>
+ <21ae5f5f-2336-db5b-f98a-f83391e1becd@linaro.org>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <21ae5f5f-2336-db5b-f98a-f83391e1becd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 08:32:11PM -0600, Rob Herring wrote:
+On 16.02.2023 13:52, Neil Armstrong wrote:
+> On 16/02/2023 12:49, Heiner Kallweit wrote:
+>> Reflect in the binding that the cd interrupt is optional,
+>> and add a description of the interrupts.
+>>
+>> Fixes: 09b31a610328 ("dt-bindings: mmc: meson-gx: support specifying cd interrupt")
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>>   .../devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml         | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>> index c8c30300d..cd3f75821 100644
+>> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>> @@ -28,7 +28,11 @@ properties:
+>>       maxItems: 1
+>>       interrupts:
+>> +    minItems: 1
+>>       maxItems: 2
+>> +    description:
+>> +      mmc controller instance interrupt
+>> +      optional card detect interrupt
 > 
-> On Thu, 16 Feb 2023 02:32:29 +0100, Christian Marangi wrote:
-> > Document support for leds node in phy and add an example for it.
-> > Phy led will have to match led-phy pattern and should be treated as a
-> > generic led.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/ethernet-phy.yaml | 22 +++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
-> > 
+> I would instead write:
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> interrupts:
+>   minItems: 1
+>   items:
+>     - description: mmc controller instance
+>     - description: card detect
 > 
-> yamllint warnings/errors:
+> and drop maxItems.
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.example.dtb: ethernet-phy@0: leds:led-phy@0:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
-> 	'netdev' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
-> 	'netdev' does not match '^mmc[0-9]+$'
-> 	'netdev' does not match '^cpu[0-9]*$'
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+Thanks for the hint! Bindings isn't really my area of expertise (yet).
+
+> Neil
+>>       clocks:
+>>       maxItems: 3
 > 
 
-Hi, I could be wrong but this should be fixed by the previous patch that
-adds netdev to the trigger list.
-
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230216013230.22978-13-ansuelsmth@gmail.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
-
--- 
-	Ansuel
