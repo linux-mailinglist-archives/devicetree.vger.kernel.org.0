@@ -2,143 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 478EF699B6B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 18:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCCA8699B9C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 18:54:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbjBPRlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 12:41:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54996 "EHLO
+        id S229816AbjBPRyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 12:54:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbjBPRlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 12:41:15 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976B33B855;
-        Thu, 16 Feb 2023 09:41:13 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31G47P9d017065;
-        Thu, 16 Feb 2023 17:40:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2qzEUuV7n8pAGi2RGWf50M997hHG2Iw8kV9N8cxf5BY=;
- b=m3PLxpH6b+QaWZSgqV9wc7WiRw7pEK9qez0K8X0TalKmtaZpKJqYOqZOYr6YRtQAUruF
- PC5xJd2tRl7ENQO7EQjaMDGdTluzTYtKSQ2GhFOvGwmVbceOaF1ObqEUlU65Q1Mlw99F
- 13oVmOwLXDu41Wpxu7+61BRNtiLa7NFrcYipcSfwetV5UT1OlF/wFdB7f2nbn4t2R83D
- kRPzYk4DehEYpb/CwRnsJL/0Lcup/Pa+bQmFDfBJ7sbZ+9gtCyWaGBHChtHJRrhUZmcd
- ogVSukOPo72BqiyFyr5bQbyKG6fJBqJ+ivx9y+IoPWmxbxl5ZMqwtPqDhr6FEZqWEZv3 ww== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ns343bbb6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Feb 2023 17:40:55 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31GHesgZ009492
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Feb 2023 17:40:54 GMT
-Received: from [10.110.95.168] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 16 Feb
- 2023 09:40:53 -0800
-Message-ID: <b04aef26-ee0d-af01-3aa1-a0c77d9cbaf3@quicinc.com>
-Date:   Thu, 16 Feb 2023 09:40:52 -0800
+        with ESMTP id S229537AbjBPRyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 12:54:03 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C01233E1;
+        Thu, 16 Feb 2023 09:54:02 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id z13so2175938wmp.2;
+        Thu, 16 Feb 2023 09:54:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SRSURI/V2oyh1+/lXCmSSf5hGU04tceoQ6lHc66Onvc=;
+        b=ZVSA1PDnW/GVVqITC3q+aFLyrMGhZoPp1SwIbMDEQM5zrLrt+lc4a3oZgSvfgrSVMn
+         WG17GgMHv+7WOgbBRtNCLRxvFktcTNp9KKB47X+9AfXRhhsJLdBOyvBhD3Cf4DB+V5Xk
+         fR44y3yEbcd3paSwU92+xI+Fto/8ja3DBzSug7P9SFZOmJAflPWln7mTrmtbn9bJYSSv
+         mB+UA2WULHXC5UTbsKLgCdB2qfDnlJM0dMEd8dscaP8DPDCfjrY6XOdYSePMP8hwEcu5
+         jBmapzDhMZgD0AyT8KQhybSFSv+YDrylZrXv1IRWBqLh1//3IGEKH3GXjkW6YsPuUjm+
+         sJsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SRSURI/V2oyh1+/lXCmSSf5hGU04tceoQ6lHc66Onvc=;
+        b=iaZnG3ZouXLoFawd1ksT0Lb8L+uqlx49ZUSiZyxz81Uu5ttVv3whXiddN/n7dhmpk2
+         wqPY37cHlLhszvcMQeYaP++UClPuRsjMoDNk9yxNR6k+bSIZLwp7KpIRhoQeRpTLdU+D
+         FBXHNDWzutiQmzkFijPLdMZ9xCKGZ0Fz69T2puZtXUyJfhgzQuYBN2JhNKuwQ9ExSjRU
+         wpVIwSZi6hzZB5OyDDbQIopCY51H5EngEx+/ttOFLpE8y1wgJygAAow6C3E1uAHdP86z
+         pDepNLbzK/jty0PrS1Ce0Hx2z1bT29vlVY3dNJcIfPNbgcutvi+HpTQx0V0pgFH3n/cc
+         Q2mg==
+X-Gm-Message-State: AO0yUKUcSwmr9NtWUw0+daDQS5d8Ycfdgrnc5rU7PEZ/abqxmLdGtkEU
+        8OOhGBwRJn85AX4Q/3XK275aOsZd2yc1cA==
+X-Google-Smtp-Source: AK7set8bYnAD8/rjwzCkHqTHIF7S89uJjuIWGkWNU0JeWxVil+LGh+t5wtVMB5SPTqVAcvuKPFln3Q==
+X-Received: by 2002:a05:600c:1603:b0:3e0:1a9:b1d7 with SMTP id m3-20020a05600c160300b003e001a9b1d7mr5163837wmn.19.1676570041371;
+        Thu, 16 Feb 2023 09:54:01 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:31b2:19e1:4409:5c3b])
+        by smtp.gmail.com with ESMTPSA id o10-20020a1c750a000000b003dc4aae4739sm5826836wmc.27.2023.02.16.09.54.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Feb 2023 09:54:00 -0800 (PST)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] RZ/G2L: Add CRU, CSI support
+Date:   Thu, 16 Feb 2023 17:53:44 +0000
+Message-Id: <20230216175347.99778-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v10 08/26] gunyah: rsc_mgr: Add resource manager RPC core
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Arnd Bergmann" <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212327.3310128-1-quic_eberman@quicinc.com>
- <Y+3QqdQVH5BTbnaP@kroah.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y+3QqdQVH5BTbnaP@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PF4GoKGtM-5nQH14pMTEY9-9Gnxe-O_V
-X-Proofpoint-GUID: PF4GoKGtM-5nQH14pMTEY9-9Gnxe-O_V
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-16_14,2023-02-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 mlxlogscore=859 malwarescore=0 spamscore=0 phishscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302160152
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Hi All,
 
-On 2/15/2023 10:43 PM, Greg Kroah-Hartman wrote:
-> On Tue, Feb 14, 2023 at 01:23:25PM -0800, Elliot Berman wrote:
->> +struct gh_rm {
->> +	struct device *dev;
-> 
-> What device does this point to?
-> 
+This patch series adds support for CRU and CSI support to RZ/G2L SoC
+and enables it on the RZ/G2L SMARC EVK. Also ov5645 node is added which
+connects to the CSI2 node.
 
-The platform device.
+Note, this patch series applies on top of [0].
 
->> +	struct gunyah_resource tx_ghrsc, rx_ghrsc;
->> +	struct gh_msgq msgq;
->> +	struct mbox_client msgq_client;
->> +	struct gh_rm_connection *active_rx_connection;
->> +	int last_tx_ret;
->> +
->> +	struct idr call_idr;
->> +	struct mutex call_idr_lock;
->> +
->> +	struct kmem_cache *cache;
->> +	struct mutex send_lock;
->> +	struct blocking_notifier_head nh;
->> +};
-> 
-> This obviously is the "device" that your system works on, so what are
-> the lifetime rules of it?  Why isn't is just a real 'struct device' in
-> the system instead of a random memory blob with a pointer to a device?
-> 
-> What controls the lifetime of this structure and where is the reference
-> counting logic for it?
-> 
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-The lifetime of the structure is bound by the platform device that above 
-struct device *dev points to. get_gh_rm and put_gh_rm increments the 
-device ref counter and ensures lifetime of the struct is also extended.
+Cheers,
+Prabhakar
 
-> And why no documentation for this core structure?
-> 
+Lad Prabhakar (3):
+  arm64: dts: renesas: r9a07g044: Add CSI and CRU nodes
+  arm64: dts: renesas: rzg2l-smarc: Add OV5645 node
+  arm64: dts: renesas: rzg2l-smarc: Enable CRU and CSI nodes
 
-Sure, I will add.
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 79 +++++++++++++++++++
+ .../boot/dts/renesas/r9a07g044l2-smarc.dts    |  5 ++
+ .../boot/dts/renesas/rz-smarc-common.dtsi     | 76 ++++++++++++++++++
+ 3 files changed, 160 insertions(+)
 
-> thanks,
-> 
-> greg k-h
+-- 
+2.25.1
+
