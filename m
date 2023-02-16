@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6726699265
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89CAB699272
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:59:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbjBPK5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:57:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49204 "EHLO
+        id S230330AbjBPK7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:59:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjBPK5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:57:32 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59A956499
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:57:09 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id cq19so2224509edb.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:57:09 -0800 (PST)
+        with ESMTP id S230349AbjBPK7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:59:07 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0321732E56
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:58:36 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id c1so2234285edt.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:58:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=THtAgCOl9QgR+PBCQKm+XDfV9tIc7qpiTl9QgWvXcHg=;
-        b=U6H4iC7hYR/chymc+q+RyndAL4se27QK3fvzV8WqQIXuxxRKB3uUKGFgBjrA7pUhA3
-         TxIdXtyaKdN2b9jgQ/IS7kSk1qgAAicfUPdajYmMdO68hu6gElAWF2tGciziJJJ2dLBy
-         unTddpuWUJKM5PW0GhDoICAGoSiD8ND3c6o/LqYpOJTFrtts6Z0Ctnc88pmdzINdTmOL
-         z0G4cJOvTfV9H9Pe2fA72wHz2Y5/i1cyOIXzZmUQSlvV5V8FGEkKBISBPaNJfSQrpW6q
-         xDWxuzZRmspaKsBw+tYYoLaPol80grKVz8IS3y1SyxRIZUxnJpQNorzRPOwfXEQA/bpf
-         2MdQ==
+        bh=Yei8ThvI1DB0prMx1DJC9Vbkm4whBS/JFNUI6to2Eac=;
+        b=e8ayJaDeHMVROUGX98n51AQS93WuqGQnG5QqGC+MyiNJghIbI83JLUNzSbowWGprBm
+         ts/gdhKxjgzrqv1R7+vD1+htQ/RWTtAlhA+/R5OuJbOzzLs7tb1O6j5KOExS5OWauGJV
+         Ow4N6TBbfWNgdoUWypIFCLGp6HapPV+GHDIe7Cu4xI0jPyepav0nRt+Z+xhZsknaE99E
+         XmtHnd7Asc8az5prDwB3JPT4uWnzUuSRZLzQnTMEps/3WfoZLoZfdvFR6KNC90YDjs00
+         Xu05pVfMF1PQlHHQW1ccq4b587oVksGZVKtiD6lRJxUQtNfmyruqotAlnOt18fYp78Hd
+         fAow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=THtAgCOl9QgR+PBCQKm+XDfV9tIc7qpiTl9QgWvXcHg=;
-        b=t0CBgm0W9afd/XVYzFAknG6dci0cfVqe3eyqTqi6f/6RGfUIhDti09QInrjIUy+LA7
-         qK19zaDJFttEQqLfEEN8NE6czAGBaBW3/wvl7zsTUQAoTdpo5VxXQ9rLGMRPccbXN5cQ
-         tIoyv1rUddRkzf9Mfg5Wn7BhCLtN8lcRlnjW5+hVYN2ve8PZMa6iuhVIT64/0EcYTw7Y
-         ykew/80WOcJo0pnmftwyf2ZPHF+JJtJZEl3iKzlIAQvcfM5Gsk2q78otkQfT9miJn0kx
-         +aRcxTOa2pUzRjobrpeSBJnHtKZvXK6UeMdC3Dx3JdttdPEaIW+9F0zcuwSRRHZ5voI+
-         tSZA==
-X-Gm-Message-State: AO0yUKVjlyo+SXEmQNpRiQ1dEB/lqU03CFl3gMDr5TnQUb5B2aswZEAz
-        dfMiU254cnfp7WeeQhbWkNVMCw==
-X-Google-Smtp-Source: AK7set9OfkNt5LKvITUMHqNbfAMut7qF3b/o8biOq9I1xBhTpbQURE55MHNjA797MY9Vjl5S1t9X0Q==
-X-Received: by 2002:aa7:d4c1:0:b0:4ad:6fc6:ae9c with SMTP id t1-20020aa7d4c1000000b004ad6fc6ae9cmr432542edr.17.1676545023642;
-        Thu, 16 Feb 2023 02:57:03 -0800 (PST)
+        bh=Yei8ThvI1DB0prMx1DJC9Vbkm4whBS/JFNUI6to2Eac=;
+        b=xphAiPbf4QHu42/LJnsyLXChfxty0K35M0/VKBwqZlcMtm/6zGF7PptjVKDqGJjwtc
+         DkSYePY/VAZKX/b+eRAEkkTLGMMxGgbuZ0exRC5DnvqxtsV0GVvwKhNK8Go/Ld6bhGYZ
+         ygefCQsRS4OjCn2CPQxCGUy4Qi6y38XQUWjjUyfZwoCE7f8hG8sYqCf3bfMx8EVuX0za
+         mB4Jq7u3ckody+I9KRCRlZieLEofTjD+yk4tPc8NSe/2oqx7S/oJRo9OdNYsN5BRQzo5
+         jSMCivnCHEEWubKj4FfnhrKgKxjBN+NJ7tf4s6b0dAcVvXVlWELF/16KcZuOovjYpzOs
+         hnaQ==
+X-Gm-Message-State: AO0yUKX2ApMvm4+nUz3YWCXyhcqGZ4Q3gpcI9eMxvpaRxNU67uPIP090
+        g2JNsF067LF7aP7Am/IqgABGGQ==
+X-Google-Smtp-Source: AK7set96+1dYEvKZCx0zyJzU/+txtxZhg+Q8T4oRJyuGdXlhzrtykb8//QojwLmQSgi13Zqq8t6RXQ==
+X-Received: by 2002:aa7:c656:0:b0:4aa:a5b3:15e6 with SMTP id z22-20020aa7c656000000b004aaa5b315e6mr5085672edr.0.1676545114365;
+        Thu, 16 Feb 2023 02:58:34 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x72-20020a50bace000000b004acbe8255f1sm669464ede.86.2023.02.16.02.57.02
+        by smtp.gmail.com with ESMTPSA id u7-20020a50d507000000b004acdf09027esm689428edi.4.2023.02.16.02.58.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:57:03 -0800 (PST)
-Message-ID: <97a62d16-42cf-d778-f9a2-ddc7cc936d1d@linaro.org>
-Date:   Thu, 16 Feb 2023 11:57:01 +0100
+        Thu, 16 Feb 2023 02:58:34 -0800 (PST)
+Message-ID: <c316e930-6ecc-48a9-4ef5-505e2339e506@linaro.org>
+Date:   Thu, 16 Feb 2023 11:58:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 00/16] Refactor Exynos PCIe driver to make it generic
+Subject: Re: [PATCH 03/16] PCI: samsung: Change macro names to exynos specific
 Content-Language: en-US
 To:     Shradha Todi <shradha.t@samsung.com>, lpieralisi@kernel.org,
         kw@linux.com, robh@kernel.org, bhelgaas@google.com,
@@ -66,10 +66,11 @@ To:     Shradha Todi <shradha.t@samsung.com>, lpieralisi@kernel.org,
 Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CGME20230214121348epcas5p48a3b2b225f616d748cc20622d01edb97@epcas5p4.samsung.com>
- <20230214121333.1837-1-shradha.t@samsung.com>
+References: <20230214121333.1837-1-shradha.t@samsung.com>
+ <CGME20230214121416epcas5p4de066199144cba18858e68f6d0ccb1c0@epcas5p4.samsung.com>
+ <20230214121333.1837-4-shradha.t@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230214121333.1837-1-shradha.t@samsung.com>
+In-Reply-To: <20230214121333.1837-4-shradha.t@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,18 +84,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/02/2023 13:13, Shradha Todi wrote:
-> Currently pci-exynos is being used as a PCIe driver for Exynos5433
-> only. This patch set refactors the driver to make it extensible to
-> other Samsung manufactured SoCs having DWC PCIe controllers.
-> The major change points are:
-> - Renaming all common functions/structures to use "samsung" instead
->   of "exynos". Make common probe/remove/suspend/resume
-> - Making clock/regulator get/enable/disable generic
-> - Adding private struct to hold platform specific function ops
+> Since the macros being used in samsung file are for exynos
+> only, renaming it to be more specific.
+> 
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> Suggested-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> ---
+>  drivers/pci/controller/dwc/pci-samsung.c | 116 +++++++++++------------
+>  1 file changed, 58 insertions(+), 58 deletions(-)
 
-Thanks for the work. I appreciate it.
 
-Some comments in individual patches.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
