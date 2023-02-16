@@ -2,191 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 154D4698E51
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:10:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB17E698E64
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:13:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjBPIKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 03:10:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39240 "EHLO
+        id S229605AbjBPIN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 03:13:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbjBPIKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:10:40 -0500
+        with ESMTP id S229578AbjBPIN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:13:27 -0500
 Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B44B27D50
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:10:36 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id he33so3141033ejc.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:10:36 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EEAB23850
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:13:25 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id qw12so3284648ejc.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:13:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oW0V6umLJy0hS07mWMTA08LmxSLhrAJj8WzjMCOF2bw=;
-        b=Q/l20dOw+fFU30ZZsMO3nTpWbTXVMGX9nDXDEIIrCD/27js0WE/SpBC8PjaueADFv2
-         2TdpVfe/hJ0ftL4MGJIj+EmbR/GyCkTdnThpauSxR5AY2zNwl9E/TjGht6H+Gn6O7JqT
-         4RkgrLo0C15R2KnaZOyUtXliU+tZf1riBT+99p75VOiXtUhX2XKudTrsRuMAMen3dlKa
-         qvE92lbnqbViniVNKeDsc3Ut31Ev5a/E1fLy/GvJF//vB1QTkt66bXKf0JgdxkMNKLfr
-         O7O7AM7i9Ctgj7wsSa1w/oIKxnJhTzcEhFPzqsz4TvMaOYNZuXuM+7vt/8W06U9ZG15t
-         HfXw==
+        bh=B6MIr9w0JhLAMdjA5iNWKYrwooq+WRfPQyN5izB+i3U=;
+        b=pM5IQ7LP/GCPE4auZwxMqseFV38G3mMxAdbs6vTFEwJjVhIfIsGImLrwsSeHpVXrbu
+         /TFZ9CUB0VU3lHMSpNGgs0cVL6xrQT489uLY+s37f/W3rXBDMvYrbUg1rkHC9ZopIku6
+         sAvxuqT64Tg7HF8NhlG0JylB6yCUyFGzrYYpnWcAUKjwGLSPsQAfWayFbKV3ezbTPBOT
+         eAPPtHp1DApkbBPIbPd3NTOpTEfIieg97i18aor8pSWJ82izcLoObiv4ZHBqIpJeYz77
+         Y2/jqAh/Gcdic+qAQVoUhVSrpcJ0dV8kYbl6yxbnxJN7uvDuANeY/dyM5z7emqCj3hNa
+         9tSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oW0V6umLJy0hS07mWMTA08LmxSLhrAJj8WzjMCOF2bw=;
-        b=Zjvgarbn3DEZrdqfiYzZEbeA1Kjj3EMq7PVU9zroNkp6R+VBw6cYffImQ7D8sE920Q
-         6umkRDFiDNxLdHnz5G6bI79Ln98AZ+3N+QvB/NOoGSK5QnG1Ao0DDpe+87jnYEGQw/Jl
-         leDNPLOa5MluyJfrVIpVBzQpqffw1JPqUDM2lLvIhv1aU5g318KikshfEQa3g7V4VmVL
-         5ocK74jRV4eofllMW3pCjyDA6JOqkFLUD1vYJzc8hdpMGVYyDXWKn8Qvs3RPX/3tzOP0
-         HH+bJKT4SnV1dq1h0SqRaq+n9JC1HtvgQsp1JYIvAVpL9s1LlllwCE9flqEpSDQkwhF5
-         XLqA==
-X-Gm-Message-State: AO0yUKXsAf4cwlVWFRIsmVc1OljcWTpulOZG8AiW121ThlziArk0roDa
-        4t/qNWwQWbkxH2yvtlEY2BL7NQ==
-X-Google-Smtp-Source: AK7set+IG8aKhp/1WTD7nwtbH604B/L6qXfYbtPaA03zUfX6H1lEkvKZrd0aeoZ70gQgV5BAX4wwyQ==
-X-Received: by 2002:a17:906:288b:b0:88a:888b:c8b with SMTP id o11-20020a170906288b00b0088a888b0c8bmr5504301ejd.35.1676535034591;
-        Thu, 16 Feb 2023 00:10:34 -0800 (PST)
+        bh=B6MIr9w0JhLAMdjA5iNWKYrwooq+WRfPQyN5izB+i3U=;
+        b=HPNPFZxoY4H8T9f3TZV+xgQajmMfEKCYsZJqSQBbJ73qSCQu+kLA6rGTYIuZEy3SPq
+         2ptTZjj9E7T6wPkcrM2z5hVSJxLnOA3Pz+ig/eTuJpXurVTWjCIccOBv4JvNBnXpajHg
+         6YXcyd+kijbeW0i7DIFiP4bD6qqhcM967Ri+GSm1ery5SeuNjK3YMTje2ZPbusiUkDVd
+         5xX2NiNqohjosSGES8W34CVpFFuapPtcOJdHDN8uPyiC/LIe9zIWIKYkp+FxASGAeLOU
+         AaoPZQUf1F4Chk4Snb5goXUm5NPSOtF4aoc4kH0KMy5fOnqV5sFa5Gt5Jg03U/DxGIZM
+         bn3w==
+X-Gm-Message-State: AO0yUKXNp4FxCDZZBZEoO08byICbziSkGXsfFYNKQnRM4nVDi2gZwQMh
+        7wZ54xEShB8hqcZtgaZArBOyWw==
+X-Google-Smtp-Source: AK7set/Uy+Hmc8Q4dAMmjxdpjZHwIV47rA2IrMvPHIp0cqv896niQ9ZsYsSe1BbZoyLJJfKLOqFwug==
+X-Received: by 2002:a17:906:6c87:b0:7d3:c516:6ef4 with SMTP id s7-20020a1709066c8700b007d3c5166ef4mr5921075ejr.20.1676535203797;
+        Thu, 16 Feb 2023 00:13:23 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id jt8-20020a170906dfc800b008b13ce1c460sm477556ejc.40.2023.02.16.00.10.32
+        by smtp.gmail.com with ESMTPSA id my10-20020a1709065a4a00b0084d35ffbc20sm483150ejc.68.2023.02.16.00.13.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 00:10:34 -0800 (PST)
-Message-ID: <49c8255e-66f3-fa1f-2949-1f03f77a0fa4@linaro.org>
-Date:   Thu, 16 Feb 2023 09:10:32 +0100
+        Thu, 16 Feb 2023 00:13:23 -0800 (PST)
+Message-ID: <2bc63ab2-2fd6-3fae-33d5-a6096b78cec0@linaro.org>
+Date:   Thu, 16 Feb 2023 09:13:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson
- EIOINTC
+Subject: Re: [PATCH v4 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
+ number of resets and reset-names
 Content-Language: en-US
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+To:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
-References: <cover.1676289084.git.zhoubinbin@loongson.cn>
- <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
- <df464409-9a93-c057-5f66-923a9e24696a@linaro.org>
- <CAMpQs4JX0Vgf5tvv5Yw5eLGANFfn1p=iQ_kMS0yQPV6kE2tN1g@mail.gmail.com>
- <23068d0c-d37c-0563-e1c1-e4d112059f5b@linaro.org>
- <CAMpQs4K+aYGrOoWy04vrbEy53kba9zUzGkOwD34pwAH0c=D8iA@mail.gmail.com>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <20230118061701.30047-3-yanhong.wang@starfivetech.com>
+ <15a87640-d8c7-d7aa-bdfb-608fa2e497cb@linaro.org>
+ <c9ab22b5-3ffb-d034-b8b8-b056b82a96ce@starfivetech.com>
+ <aa85caa3-6051-46ab-d927-8c552d5a718d@linaro.org>
+ <e066920c-26a9-0f0e-3304-2b9940274d57@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMpQs4K+aYGrOoWy04vrbEy53kba9zUzGkOwD34pwAH0c=D8iA@mail.gmail.com>
+In-Reply-To: <e066920c-26a9-0f0e-3304-2b9940274d57@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 02:46, Binbin Zhou wrote:
-> On Tue, Feb 14, 2023 at 8:43 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 14/02/2023 13:40, Binbin Zhou wrote:
->>> On Tue, Feb 14, 2023 at 5:53 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 13/02/2023 13:15, Binbin Zhou wrote:
->>>>> Add Loongson Extended I/O Interrupt controller binding with DT schema
->>>>> format using json-schema.
+On 15/02/2023 08:46, yanhong wang wrote:
+> 
+> 
+> On 2023/2/7 15:59, Krzysztof Kozlowski wrote:
+>> On 07/02/2023 03:43, yanhong wang wrote:
+>>>
+>>>
+>>> On 2023/1/18 23:47, Krzysztof Kozlowski wrote:
+>>>> On 18/01/2023 07:16, Yanhong Wang wrote:
+>>>>> Some boards(such as StarFive VisionFive v2) require more than one value
+>>>>> which defined by resets property, so the original definition can not
+>>>>> meet the requirements. In order to adapt to different requirements,
+>>>>> adjust the maxitems number definition.
 >>>>>
->>>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>>>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
 >>>>> ---
->>>>>  .../loongson,eiointc.yaml                     | 80 +++++++++++++++++++
->>>>>  1 file changed, 80 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
+>>>>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++------
+>>>>>  1 file changed, 3 insertions(+), 6 deletions(-)
 >>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..88580297f955
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
->>>>> @@ -0,0 +1,80 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: "http://devicetree.org/schemas/interrupt-controller/loongson,eiointc.yaml#"
->>>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>>>> index e26c3e76ebb7..baf2c5b9e92d 100644
+>>>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>>>> @@ -133,12 +133,9 @@ properties:
+>>>>>          - ptp_ref
+>>>>>  
+>>>>>    resets:
+>>>>> -    maxItems: 1
 >>>>
->>>> Drop quotes from bopth.
+>>>> Also, this does not make sense on its own and messes constraints for all
+>>>> other users. So another no for entire patch.
 >>>>
->>>>> +
->>>>> +title: Loongson Extended I/O Interrupt Controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Binbin Zhou <zhoubinbin@loongson.cn>
->>>>> +
->>>>> +description: |
->>>>> +  This interrupt controller is found on the Loongson-3 family chips and
->>>>> +  Loongson-2K0500 chip and is used to distribute interrupts directly to
->>>>> +  individual cores without forwarding them through the HT's interrupt line.
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/interrupt-controller.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - loongson,eiointc-1.0
->>>>
->>>> Why not using SoC based compatible? It is preferred.
 >>>
->>> Hi Krzysztof:
+>>> Thanks. Change the properties of 'resets' and reset-names like this:
 >>>
->>> So far, from the datasheet, I know that only the EXIOINTC of the
->>> Loongson-2K0500 is different from the other chips, and that is the
->>> "loongson,eio-num-vecs" below, which is 128, while all the others are
->>> 256.
->>> My original idea was to add this property to make compatible
->>> consistent, and also to make it easier to add new chips if they have
->>> different eio-num-vecs.
+>>>   resets:
+>>>     minItems: 1
+>>>     maxItems: 2
+>>>
+>>>   reset-names:
+>>>     minItems: 1
+>>>     maxItems: 2
+>>>
+>>> Is it right?  Do you have any other better suggestions?
 >>
->> We talk about different things. SoC based compatibles are preferred over
->> version ones. This was on the lists expressed many times. Please provide
->> a reason why you deviate from general recommendation. Flexibility and
->> genericness of bindings is not a reason - it's the opposite of the
->> argument, thus this will be a: NAK. :(
+>> Isn't this allowing two reset items for every variant of snps,dwmac?
 >>
->>
-> Hi Krzysztof:
 > 
-> Allow me to give a brief overview of the current status of eiointc (DT-based):
->      Loongson-3A series supports eiointc;
->      Loongson-2K1000 does not support eiointc now;
->      Loongson-2K0500 supports eiointc, with differences from
-> Loongson-3, e.g. only up to 128 devices are supported;
->      Loongson-2K2000 supports eiointc, similar to Loongson-3.
->      ....
-> 
-> As can be seen, there is now a bit of confusion in the chip's design of eiointc.
-> 
-> The design of eiointc is probably refined step by step with the chip.
-> The same version of eiointc can be used for multiple chips, and the
-> same chip series may also use different versions of eiointc. Low-end
-> chips may use eiointc-2.0, and high-end chips may use eiointc-1.0,
-> depending on the time it's produced.
-> 
-> So in the Loongson-2K series I have defined the current state as
-> eiointc-1.0, using the dts property to indicate the maximum number of
-> devices supported by eiointc that can be used directly in the driver.
-> 
-> If there are new changes to the design later on, such as the
-> definition of registers, we can call it eiointc-2.0, which can also
-> cover more than one chip.
+> Sorry for not getting back to you faster.
+> After referring to the above modification, i used the command 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> to check all the bindings(including 'starfive,jh7110-dwmac.yaml'), no errors are reported,
+> and the errors reported by Rob Herring are gone.
 
-Just go with SoC-based compatibles. If your version is not specific
-enough, then it is not a good way to represent the hardware.
+I don't see how does it answer my question. I claim you loosen the
+constraints and allow now two resets for everyone. You say you don't see
+errors. I never claimed there will be errors. I claimed what I said -
+you allow now to reset everywhere, which might not be correct
+description of every hardware.
 
 Best regards,
 Krzysztof
