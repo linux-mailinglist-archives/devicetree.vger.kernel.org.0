@@ -2,247 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79EF5698DC6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:28:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67A2B698DE7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbjBPH2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 02:28:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42558 "EHLO
+        id S229522AbjBPHmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 02:42:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjBPH2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:28:49 -0500
-Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0AB38EBD
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:28:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1676532525; x=1708068525;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=/+KnIJGVAtqOq1Y5Tt7uoivGVLcBx2ntfW6kgLZW5DA=;
-  b=iUBNx7XtlPuTsfVQZDtTLRFCMbNXHHnI3Yd/HBkyN6sjmf7tShwiYX3R
-   pNxKnBoZAnpWpOwsTd7YrKi9dKxZldCt9NgvScHI6bbOfPQhqcl1Oarf8
-   txikNPPLCLioT0aJzbVnd8DH0kbxeCPgbwYSa+4uRpwAz5JS0r2cIbWYs
-   irtWUVX5loljYYKNiSjkXtS8kBTdznwIxWFdQcFda+fgkkWsi8CH2op0a
-   dE373daNWbpRNRM4taLdvFO/CvlL+KGahhmD54J43g1IXIVLhn2fgXUP6
-   H9iytAATPMvOvN/9Kd4WzXgO/OyBksBpTzaixnkL781TiW+OoaRzGF6n1
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,301,1669046400"; 
-   d="scan'208";a="221733429"
-Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 16 Feb 2023 15:28:45 +0800
-IronPort-SDR: HpNYhXCRTk1s8o9rApCMCGAO9BjUBs9GvxNz7NxRGoq4FjsYJlO6Z1mlxNMTei3bkbl1ty9Zpa
- rpnTeo/mhl2YJMfTZSn9LD8CWlS31GCcfPzjh2g1r0hiX1h5uKDSOXNbWNaTvgK1vHCasEVymV
- XP/YBNnvO3S5vFezuyjmodxEZTZo5ssslNQpEqRWpo/QyCKML+YwsI7vJGSrcX8aLG7QXUF9eJ
- YGY4pkDkRWSUw/DACTxsrgWNQ18/cJpU5pfYEG9o2y6+VTSUm7+2pRCUVAuCsBZV0t42Ls4HvE
- QU8=
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 22:45:50 -0800
-IronPort-SDR: zUS3FW56Xl8IV2HC4h9YlHx8JNtisx2gkC4NPuADSccjThGS5HwwwgaM6ThOjgSF7NRZfMybIZ
- OBAjCGxaNAzKL+oZoPCLDjxJs/gb2tABzP4EvC7EUPLMQNTCaUyrSRpe4owFamzzhVpo6SRMy1
- NvYrAsBu/SNB8SajxuoxkTUvXWbFtRaiIMFXvxxwesJDZObufhxQ/lgjd7p7jZUsXRWN2q3w45
- 1PLpuyJ6e/0/Ffvb4d05I87802ogTv8koHTmY7bILGPeDV7tErHpO0XuubXTwsgquHnK3PTbrF
- nfA=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 23:28:45 -0800
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PHRQ43hYmz1RvTp
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:28:44 -0800 (PST)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:references:to:from:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1676532523; x=1679124524; bh=/+KnIJGVAtqOq1Y5Tt7uoivGVLcBx2ntfW6
-        kgLZW5DA=; b=J2LH7sQxbsHptMcaledzG///pWJWAx5bwjrJ6nU5VVAXlJAhLtj
-        YHfI2WNz4A1+uMCffqA0b2euMkzGrz0eUKvvz32N8+zKVxaLYuokqFMPLuzCS0rV
-        KTuwLKAnX8ZKVCRR8noTK4NLHPviI13CbXT2tYebbqVRfvH5D3JdJNCb4bhzcEuO
-        pKnN7W3P/jw7qaKrDJPG2mpU+OqTc0nHv8Bpa8hpStcwQGWDWFyl3WtwYghNwWrz
-        1rmuXi12KNgZfhCHC51aM99dTMzq723P9TRRRz2s5X2UmLr1ijiKHsJfxunBuxuU
-        Hmqz1T7APeu+br31+HqiIJcaeoQNqulk+UQ==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id T_wR8R009Rhz for <devicetree@vger.kernel.org>;
-        Wed, 15 Feb 2023 23:28:43 -0800 (PST)
-Received: from [10.225.163.121] (unknown [10.225.163.121])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PHRQ03dv3z1RvLy;
-        Wed, 15 Feb 2023 23:28:40 -0800 (PST)
-Message-ID: <5c15e1d1-c7e9-0b7c-9b14-f95543c70383@opensource.wdc.com>
-Date:   Thu, 16 Feb 2023 16:28:38 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/9] PCI: rockchip: Remove writes to unused registers
-Content-Language: en-US
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229461AbjBPHmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:42:07 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6D43B0CE
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:42:05 -0800 (PST)
+Received: by codeconstruct.com.au (Postfix, from userid 10000)
+        id 35D4D200E3; Thu, 16 Feb 2023 15:42:00 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1676533320;
+        bh=4WNgPVjHnkyd+O8qT3n0+qVAMObFFFxGFkSm7gNIyyc=;
+        h=From:To:Cc:Subject:Date;
+        b=KSe9yqoyHL6hKI3XVVLn+TrKbxor3hAZuifCG1iXSrz7es7wQGnt+jzQtDV1zBJBS
+         nQ4o14z7Qp1Cud/UoYhKe6vyhkSUNLVxl/2OrkSl1TVMEVGqy4daaJfyd/2R3tJs8d
+         p3LfCXsqDbHT8fRnwBWAIkH/HyiSmpAZh2k/2doQtiqCaF1C80bT8SOY45T7MeBzxK
+         DqOJHpe4hGrve7dXH3zpOBAF74KBWt/mMvrtb75OrjrJQZceKTlzNQfqvWvULD1KCL
+         kcunY8cORDGx7DYNihRmVZC5PbnHGAK6aidU9aAicWQp2Irs8jfavEJg0zTp3qMFgM
+         Ohbvs0FGmK/3Q==
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     linux-i3c@lists.infradead.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Vitor Soares <ivitro@gmail.com>, linux-aspeed@lists.ozlabs.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <20230214140858.1133292-2-rick.wertenbroek@gmail.com>
- <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
- <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
- <559bdd8c-9cc8-d7ae-a937-ffee9cfbb8a6@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <559bdd8c-9cc8-d7ae-a937-ffee9cfbb8a6@opensource.wdc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Subject: [PATCH 0/4] i3c: Add support for ast2600 i3c controller
+Date:   Thu, 16 Feb 2023 15:41:51 +0800
+Message-Id: <cover.1676532146.git.jk@codeconstruct.com.au>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/15/23 18:58, Damien Le Moal wrote:
-[...]
-> WRITE ( 131072 bytes):		OKAY
-> WRITE (1024000 bytes):		OKAY
-> 
-> Then stops here doing the 1024001 B case. The host waits for a completion that
-> does not come. On the EP side, I see:
-> 
-> [   94.307215] pci_epf_test pci_epf_test.0: READ src addr 0xffd00000, 1024001 B
-> [   94.307960] pci_epc fd000000.pcie-ep: Map region 1 phys addr 0xfa100000 to
-> pci addr 0xffd00000, 1024001 B
-> [   94.308924] rockchip-pcie-ep fd000000.pcie-ep: Set atu: region 1, cpu addr
-> 0xfa100000, pci addr 0xffd00000, 1024001 B
-> [  132.309645] dma-pl330 ff6e0000.dma-controller: Reset Channel-2
-> CS-20000e FTC-40000
-> 
->                                                   ^^^^^^^^^^^^^^^
-> The DMA engine does not like something at all. Back to where I was when I tried
-> your series initially, which is why I tried removing patch 1 to see what happens...
-> 
-> [  132.370479] pci_epf_test pci_epf_test.0: READ => Size: 1024001 B, DMA: YES,
-> Time: 38.059623935 s, Rate: 26 KB/s
-> [  132.372152] pci_epc fd000000.pcie-ep: Unmap region 1
-> [  132.372780] pci_epf_test pci_epf_test.0: RAISE MSI IRQ 1
-> [  132.373312] rockchip-pcie-ep fd000000.pcie-ep: Send MSI IRQ 1
-> [  132.373844] rockchip-pcie-ep fd000000.pcie-ep: MSI disabled
-> [  132.374388] pci_epf_test pci_epf_test.0: Raise IRQ failed -22
-> 
-> And it looks like the PCI core crashed or something because MSI does not work
-> anymore as well (note that this is wheat I see with my nvme epf driver too, but
-> I do not have that DMA channel reset message...)
-> 
-> If I run the tests without DMA (mmio only), everything seems fine:
-> 
-> ## Read Tests (No DMA)
-> READ (      1 bytes):		OKAY
-> READ (   1024 bytes):		OKAY
-> READ (   1025 bytes):		OKAY
-> READ (1024000 bytes):		OKAY
-> READ (1024001 bytes):		OKAY
-> 
-> ## Write Tests (No DMA)
-> WRITE (      1 bytes):		OKAY
-> WRITE (   1024 bytes):		OKAY
-> WRITE (   1025 bytes):		OKAY
-> WRITE (1024000 bytes):		OKAY
-> WRITE (1024001 bytes):		OKAY
-> 
-> ## Copy Tests (No DMA)
-> COPY (      1 bytes):		OKAY
-> COPY (   1024 bytes):		OKAY
-> COPY (   1025 bytes):		OKAY
-> COPY (1024000 bytes):		OKAY
-> COPY (1024001 bytes):		OKAY
-> 
-> So it looks like translation is working with your patch, but that the driver is
-> still missing something for DMA to work correctly...
+The AST2600 SoC hardware includes a set of i3c controllers, based on the
+designware i3c core, plus some global registers for SoC integration.
 
-I kept testing this and realized that I was not getting a consistent behavior.
-Sometimes all tests passed, but would not repeat (running again would fail
-everything), sometimes NMIs from bad accesses, and other times "hang" (test not
-completing but no real machine hang/crash). So it started to hint at something
-randomly initialized...
+This series adds support for these i3c controllers, through the existing
+dw i3c master controller driver, by adding a set of platform-specific
+hooks to handle the global register configuration. This also gives us a
+way to add any future hardware-specific behaviours.
 
-Re-reading the TRM, particularly section 17.5.5.1.1, I realized that the lower
-16 bits of the desc2 register are used for the translation, but we never set
-them with the current code. Only desc0 and desc1... So I added a write(0) to
-desc2 and now it is finally working well. Running the tests in a loop, they all
-pass and no bad behavior is observed.
+We also need a DT binding to describe the ast2600-specific hardware.
+Since this involves new (mandatory) properties, I have added this as a
+separate binding rather than add a new compat string to the dw binding.
 
-My cleaned-up rockchip_pcie_prog_ep_ob_atu() function now looks like this:
+The dt-binding example depends on a prior submission to the dt binding
+headers:
 
-static void rockchip_pcie_prog_ep_ob_atu(struct rockchip_pcie *rockchip, u8 fn,
-                                         u32 r, u32 type, u64 phys_addr,
-                                         u64 pci_addr, size_t size)
-{
-        u64 sz = 1ULL << fls64(size - 1);
-        int num_pass_bits = ilog2(sz);
-        u32 addr0, addr1, desc0;
+  https://lore.kernel.org/linux-devicetree/cover.1676294433.git.jk@codeconstruct.com.au/
 
-        /* Sanity checks */
-        if (WARN_ON_ONCE(type == AXI_WRAPPER_NOR_MSG))
-                return;
-        if (WARN_ON_ONCE(ALIGN_DOWN(phys_addr, SZ_1M) != phys_addr))
-                return;
-        if (WARN_ON_ONCE(rockchip_ob_region(phys_addr + size - 1) != r))
-                return;
+Full support for the global regmap will land with this queued mfd change:
 
-        /* We must pass at least 8 bits of PCI bus address */
-        if (num_pass_bits < 8)
-                num_pass_bits = 8;
+  https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/commit/?id=cf2271843de835839e91c5c036492a87085af756
 
-        /* PCI bus address region */
-        addr0 = ((num_pass_bits - 1) & PCIE_CORE_OB_REGION_ADDR0_NUM_BITS) |
-                (lower_32_bits(pci_addr) & PCIE_CORE_OB_REGION_ADDR0_LO_ADDR);
-        addr1 = upper_32_bits(pci_addr);
-        desc0 = ROCKCHIP_PCIE_AT_OB_REGION_DESC0_DEVFN(fn) | type;
+Of course, any queries/comments/etc are most welcome.
 
-        rockchip_pcie_write(rockchip, addr0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR0(r));
-        rockchip_pcie_write(rockchip, addr1,
-                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR1(r));
-        rockchip_pcie_write(rockchip, desc0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_DESC0(r));
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_DESC1(r));
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_DESC2(r));
-}
+Cheers,
 
-And the function rockchip_pcie_clear_ep_ob_atu() also clears desc2:
 
-static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
-                                          u32 region)
-{
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR0(region));
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR1(region));
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_DESC0(region));
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_DESC1(region));
-        rockchip_pcie_write(rockchip, 0,
-                            ROCKCHIP_PCIE_AT_OB_REGION_DESC2(region));
-}
+Jeremy
 
-Thoughts ?
+Jeremy Kerr (4):
+  dt-bindings: i3c: Add AST2600 i3c controller
+  i3c: dw: Add platform operations
+  i3c: dw: Add AST2600 platform ops
+  i3c: dw: Add compatible string for ASPEED AST2600 BMC platform
+
+ .../bindings/i3c/aspeed,ast2600-i3c.yaml      |  73 ++++++++
+ drivers/i3c/master/dw-i3c-master.c            | 165 +++++++++++++++++-
+ 2 files changed, 232 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
 
 -- 
-Damien Le Moal
-Western Digital Research
+2.39.1
 
