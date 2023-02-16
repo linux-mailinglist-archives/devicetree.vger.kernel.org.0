@@ -2,107 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F812699576
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:15:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 578AE69957F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:16:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbjBPNPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 08:15:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
+        id S229827AbjBPNQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 08:16:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230321AbjBPNOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:14:51 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409FC5354D
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:14:47 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id a9so1859207ljr.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:14:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1676553287;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9Yd9lAcpRbHxF9RdOizjwYgJ/PMIKmYOw1xnRDHR/30=;
-        b=l8znhmby9Ou/ayAkmoZRFWINUtrj5JOzTE+qO0v5ncxadXQX+sRPJZrSwlx3b9U5LQ
-         JGD2YxEHCWY+a0/6/phBWXfrkWKf0XbXbw4h29RYUa4t4IdwHYfGLpyeTJA7CR47BslD
-         cxLmBpcfUz9asR25xyvhwK6VnwQBtE0Ok6Yt4LImw2GJ4/SyihNAphmibYOApmhEtRyP
-         I2Ch19kzlsNWNOQI3RtkzC5dBxIzV7h8EOAdkYVzdB6uMIFSg+7QGPc1aP2AO2kgHP4C
-         wdqkUeuwRINLInCO8XvY3HH9l4NCTnS/Jx+nu0L/xcUgB1OoRod5bB8EyJc4dzQY7wD7
-         YK9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676553287;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Yd9lAcpRbHxF9RdOizjwYgJ/PMIKmYOw1xnRDHR/30=;
-        b=fHOlB7aeUyrHClMZGkEjsKntqjFDrNrDwifZD/f0/EweF4SLxxmDCVf3XHAxLiLTjl
-         xg6f9N2MiW/vveu7KlvElyRdfiLnaqJfUdbzMeAfmzfMz3XveB3JEVWONNujm6hrlqb4
-         jYJzsvbAtUdzfvd4n0GslXNpYxElM07CGDGUQw57RNYORZVlbspvQyNQynzFOMEhIAP/
-         cERnbInSH9uAe6EwYthCn1aR26w3EbTItBpe0yAQ5kGmHH10d3LPec06QwFZRyscpUxZ
-         77EaboECmwOBp4h+C4fkI8lvlxWGAlr7oAF3MDvUNzvHiYjVLWBmBas9TWQyPDWe2HZ1
-         Xg2A==
-X-Gm-Message-State: AO0yUKURtTjbdoygNBU97WeHH9AgZDeo5RfDc6si6WfBQdOMciCCoorI
-        So/JU0nQGeESBz8zInN+LQfsuw==
-X-Google-Smtp-Source: AK7set8AC3akpCxImrycnKhop5QhurFRa136ZAhMWjejhNcYZ5p0qpTdFdN7gvG0ODXMGfP1qhBIoQ==
-X-Received: by 2002:a2e:9913:0:b0:293:4eac:734a with SMTP id v19-20020a2e9913000000b002934eac734amr1593461lji.0.1676553286845;
-        Thu, 16 Feb 2023 05:14:46 -0800 (PST)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id j8-20020a2e8248000000b00293500280e5sm194345ljh.111.2023.02.16.05.14.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 05:14:46 -0800 (PST)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-Subject: [PATCH v10 10/10] crypto: qce: core: Add a QCE IP family compatible 'qcom,qce'
-Date:   Thu, 16 Feb 2023 15:14:30 +0200
-Message-Id: <20230216131430.3107308-11-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230216131430.3107308-1-vladimir.zapolskiy@linaro.org>
-References: <20230216131430.3107308-1-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S229868AbjBPNQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:16:16 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F96B53554
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:16:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1676553373; x=1708089373;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DL5Q1SD6gefZMi2w6bHvNhOIfkmdJdtrS+ULofmUJaM=;
+  b=G0IFbBrT0aCdvqkcwZ3Lajt+NTGbcgoHRUpL+BOO/b3nM0vcmQKoZOV+
+   LSgMMWz9oM15SBr73teD3E4SkGuPEaZ3upjiuqVduNKfJLZ33nHOz/YyO
+   avl/MJ72vLt3POT+PV324NcXsd4xIRoY9Z2uov+oshCm4DVtdMl5W5O6s
+   jD6InXP0QMM5T9wftqfhbRaW0isQGWcPFLGLVcpN2h/3bHrguhomAbuvM
+   TZEY6MFm8NL1OoOo50yI1goDD2CoT5WiA4TvkJRmrQz+N7Vo4lFwmNeaw
+   4pSDewRIEtoI+149pve7mVGIp+HX/C2B60l/e+30b8X4WSN78audQlG6+
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,302,1669100400"; 
+   d="scan'208";a="212326806"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Feb 2023 06:16:12 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 16 Feb 2023 06:16:12 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.16 via Frontend
+ Transport; Thu, 16 Feb 2023 06:16:11 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor@kernel.org>, <soc@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v1] dt-bindings: riscv: correct starfive visionfive 2 compatibles
+Date:   Thu, 16 Feb 2023 13:15:12 +0000
+Message-ID: <20230216131511.3327943-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The added 'qcom,qce' compatible value will serve as a sole QCE IP family
-compatible, since a particular QCE IP version is discoverablem thus, if
-it'd be needed to differentiate various IP versions, it can be obtained
-in runtime.
+Using "va" and "vb" doesn't match what's written on the board, or the
+communications from StarFive.
+Switching to using the silkscreened version number will ease confusion &
+the risk of another spin of the board containing a "conflicting" version
+identifier.
+As the binding has not made it into mainline yet, take the opportunity
+to "correct" things.
 
-Two IP version based compatibles are left untouched to preserve backward
-DTB ABI compatibility.
-
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Suggested-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Link: https://lore.kernel.org/linux-riscv/Y+4AxDSDLyL1WAqh@wendy/
+Fixes: 97b7ed072784 ("dt-bindings: riscv: Add StarFive JH7110 SoC and VisionFive 2 board")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- drivers/crypto/qce/core.c | 1 +
- 1 file changed, 1 insertion(+)
+Arnd,
 
-diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-index 5bb2128c95ca..fce49c0dee3e 100644
---- a/drivers/crypto/qce/core.c
-+++ b/drivers/crypto/qce/core.c
-@@ -293,6 +293,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
- static const struct of_device_id qce_crypto_of_match[] = {
- 	{ .compatible = "qcom,crypto-v5.1", },
- 	{ .compatible = "qcom,crypto-v5.4", },
-+	{ .compatible = "qcom,qce", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
+If this is okay with the dt folk, could you please send this to Linus
+in the merge window?
+The dts for this binding hasn't landed yet so this is a standalone
+"fix" on top of my earlier dt for v6.3 PR.
+
+Thanks,
+Conor.
+---
+ Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
+index 60c7c03fcdce..cc4d92f0a1bf 100644
+--- a/Documentation/devicetree/bindings/riscv/starfive.yaml
++++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+@@ -26,8 +26,8 @@ properties:
+ 
+       - items:
+           - enum:
+-              - starfive,visionfive-2-va
+-              - starfive,visionfive-2-vb
++              - starfive,visionfive-2-v1.2a
++              - starfive,visionfive-2-v1.3b
+           - const: starfive,jh7110
+ 
+ additionalProperties: true
 -- 
-2.33.0
+2.39.0
 
