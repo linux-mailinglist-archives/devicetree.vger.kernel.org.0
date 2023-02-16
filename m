@@ -2,121 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEFC5698DFE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3C3698E0A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjBPHqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 02:46:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49956 "EHLO
+        id S229460AbjBPHuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 02:50:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjBPHqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:46:17 -0500
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28B4B3B0C8
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:46:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1676533574; x=1679125574;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=cX/aI9rmASBmm/xGYWZoGPWM25fF6gt6bv31Rd4ZuaY=;
-        b=BW/No2o081+/ivev0xrQi77a6Jmz8Eiq4jggTmGNCV4ziqMxlw68mnY/O7qtcI8e
-        wP7hwhphOi+qr4HlC6nvy8s/Y4cPqmoHeYiqe3H8dAdM4wtZl7DXJtMPjMGadv40
-        BY64UI54JpyXdxJNJrl/skgUiQLgTwGdwYoE7fqzfWw=;
-X-AuditID: ac14000a-917fe70000007ecb-a7-63eddf4649dd
-Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 5F.CB.32459.64FDDE36; Thu, 16 Feb 2023 08:46:14 +0100 (CET)
-Received: from Berlix.phytec.de (172.25.0.12) by Florix.phytec.de
- (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 16 Feb
- 2023 08:46:14 +0100
-Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
- Thu, 16 Feb 2023 08:46:14 +0100
-From:   Teresa Remmet <T.Remmet@phytec.de>
-To:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mm-phyboard: Add I2C4
- pinmuxing
-Thread-Topic: [PATCH v2] arm64: dts: freescale: imx8mm-phyboard: Add I2C4
- pinmuxing
-Thread-Index: AQHZQZXEvziKhXxVJU2M8lz78nRRYK7RIYyA
-Date:   Thu, 16 Feb 2023 07:46:14 +0000
-Message-ID: <2b0a6bed97c54b3282ce5c2c9f284b231f19d988.camel@phytec.de>
-References: <20230215233226.25856-1-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20230215233226.25856-1-laurent.pinchart@ideasonboard.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.0.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B10E2BE58B8FC947B0922674216935B9@phytec.de>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229490AbjBPHuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:50:01 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1EE941B5F
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:49:59 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id b2so3064690ejz.9
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:49:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KD9dKi3rj8RLYDdRMajBPNSYEk03xUbxX9rsJ1rYaZ8=;
+        b=x0nUT4z0dVNgTRoeAYWDQGqapE/BIq1qs/b7uBgyJC/ctnRV6z0Bqb0b0DKJm3E1HG
+         OgNGu74o7jZhuC8QboONAsa0l4GgRBzkasZ7dFB4+kX02asHCSRFI+YQVorelGADoSQB
+         HfQoyAGgI/tepjUu2ydV9JJUq9jJ886ddp0OK3QiLnlQFaiAPEI84naAZnz4TJQ8MMsB
+         65FzWSvXGNMYdp2sw0BpT31u8emkgR2O0dUF2x0EbUNO0TVky+HP8xqXtQBEnk95906I
+         WAuAwg6VZDAdDb7kv+6QBgij2N9Z4weE9w7PPCFSNFMqEzn+GFNCCg0mCXCJx1PzVmVi
+         ZHbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KD9dKi3rj8RLYDdRMajBPNSYEk03xUbxX9rsJ1rYaZ8=;
+        b=RXravE6obiZY2Gz1nmpq2Z7JBDg2f3mpiHBSwW2XKjDV3jA2v4mxtUndkiEGVKEB37
+         S+m/VmemdtdS0VE07rlgdCSKvdgCjLNOPROoLyqxHCoyu3pGO31gAzzaUd74s8Bq3HUZ
+         tmzpFxly77KV0m3XaKTHytaR8PLxXTLTGFE7unckwj50LUd0FmAkrcE4tTmHt0I++9Y7
+         qaxc28OKUXxEJ/g3rWmH0zHfJcsHZDiqkMQ1Z0RistxE/M86mt/nUpB05dPOar8WoN3D
+         zpJ27y0gbYSXralSsyWFDEH/ZZZgFOXlh+VCqvN/AznY+U7ZBg0fw+cGDyYJOENU7Zcc
+         T9ow==
+X-Gm-Message-State: AO0yUKUR3pSCJl8CxKcVP1q/UmtIC+3cxynVc8DBgqRnMZ7Zlsx3WE1A
+        7K5MlIE7lhHLvbLL+aHAZMw2qg==
+X-Google-Smtp-Source: AK7set9mjYyvMikODA+iXFUpJK7b+JCBVOC9KUseVYbV9TUdc8Qr1t9hthI8OSKalC0H0GGPJFkZ3w==
+X-Received: by 2002:a17:906:f151:b0:8aa:c090:a9ef with SMTP id gw17-20020a170906f15100b008aac090a9efmr4534845ejb.55.1676533798381;
+        Wed, 15 Feb 2023 23:49:58 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h8-20020a17090634c800b007aece68483csm446448ejb.193.2023.02.15.23.49.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Feb 2023 23:49:58 -0800 (PST)
+Message-ID: <a9d5d375-697d-93c8-0bed-4d2475e6643e@linaro.org>
+Date:   Thu, 16 Feb 2023 08:49:56 +0100
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMIsWRmVeSWpSXmKPExsWyRpKBV9ft/ttkg9czFS3mHznHarFq6k4W
-        i74XD5ktOicuYbfY9Pgaq0XXr5XMFq17j7BbvNgi7sDhMbtjJqvHplWdbB53ru1h89i8pN5j
-        47sdTB79fw08Pm+SC2CP4rJJSc3JLEst0rdL4Mo4MnM2S8EW4YrfN9YwNTB+Eepi5OSQEDCR
-        OP7gNGMXIxeHkMBiJomVX7axQjgPGCX617ZBZTYySrx+cZINpIVNQEPi5YluJpCEiMA8Rom1
-        X68wgzjMAgeYJCYePMIOUiUsECLR9qGfCcQWEQiV2PfrOwuEbSSxdtF7oEkcHCwCqhJvv/GD
-        hHkF3CT6Xz0CaxUCslu2PwCzOQXcJeYu3Qc2hlFAVmLDhvPMIDazgLjEpmffWSF+EJBYsgci
-        LiEgKvHy8T+ouLzEiVvTmEBWMQtoSqzfpQ/RaiFx/uBqNghbUWJK90N2iBMEJU7OfMIygVF8
-        FpINsxC6ZyHpnoWkexaS7gWMrKsYhXIzk7NTizKz9QoyKktSk/VSUjcxgiJahIFrB2PfHI9D
-        jEwcjIcYJTiYlUR4N918kyzEm5JYWZValB9fVJqTWnyIUZqDRUmc934PU6KQQHpiSWp2ampB
-        ahFMlomDU6qB0Uy0dNXN9HXZH2+6+LUZWnAk/Oa2ZLrm8jXVLeE/z9yT9mszkoWDWpK9qy5X
-        y873M1RWsHf1r35qZpdavCrk1u1brsxpv9eqWf6PexwYzitoaOxjEsn+Kn6J8uPet8vSN7G5
-        tZ37E7Yg7eDsoi2tPzkXvNvcqcHmfvfq2dLlk2Ns8vrYJvIosRRnJBpqMRcVJwIAMQkfM9YC
-        AAA=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car
+ Gen4 support
+Content-Language: en-US
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>
+ <87sffa8g99.wl-kuninori.morimoto.gx@renesas.com>
+ <9aa09940-91cf-32ba-34f4-a57c9e9965bc@linaro.org>
+ <Y+vKcGic3sC7+3I/@sirena.org.uk>
+ <7b194041-4386-3b82-c65d-f0e3ad5cf015@linaro.org>
+ <873576ju10.wl-kuninori.morimoto.gx@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <873576ju10.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QW0gRG9ubmVyc3RhZywgZGVtIDE2LjAyLjIwMjMgdW0gMDE6MzIgKzAyMDAgc2NocmllYiBMYXVy
-ZW50IFBpbmNoYXJ0Og0KPiBUaGUgSTJDNCBidXMgaXMgZXhwb3NlZCBvbiB0aGUgY2FtZXJhIGNv
-bm5lY3Rvci4gQWRkIGFuZCBzZWxlY3QgdGhlDQo+IGNvcnJlc3BvbmRpbmcgcGlubXV4IGVudHJp
-ZXMgYW5kIHNldCB0aGUgZGVmYXVsdCBmcmVxdWVuY3kuIFRoZQ0KPiBkZXZpY2UNCj4gaXMgbGVm
-dCBkaXNhYmxlZCwgdG8gYmUgZW5hYmxlZCBmcm9tIGNhbWVyYSBvdmVybGF5cy4NCj4gDQo+IFNp
-Z25lZC1vZmYtYnk6IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJv
-YXJkLmNvbT4NCg0KQWNrZWQtYnk6IFRlcmVzYSBSZW1tZXQgPHQucmVtbWV0QHBoeXRlYy5kZT4N
-Cg0KPiAtLS0NCj4gQ2hhbmdlcyBzaW5jZSB2MToNCj4gDQo+IC0gRG9uJ3Qgc2V0IGJpdCAwIGFz
-IGl0IGlzIHJlc2VydmVkDQo+IC0tLQ0KPiAgLi4uL2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWJv
-YXJkLXBvbGlzLXJkay5kdHMgICAgIHwgMTMNCj4gKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNo
-YW5nZWQsIDEzIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jv
-b3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0tcGh5Ym9hcmQtcG9saXMtDQo+IHJkay5kdHMgYi9hcmNo
-L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0tcGh5Ym9hcmQtcG9saXMtcmRrLmR0cw0K
-PiBpbmRleCA0YTNkZjJiNzdiMGIuLjBiMzg0YWQxZWE4MiAxMDA2NDQNCj4gLS0tIGEvYXJjaC9h
-cm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWJvYXJkLXBvbGlzLXJkay5kdHMNCj4g
-KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWJvYXJkLXBvbGlz
-LXJkay5kdHMNCj4gQEAgLTE2OCw2ICsxNjgsMTIgQEAgJmdwaW81IHsNCj4gIAkJIiIsICJFQ1NQ
-STFfU1MwIjsNCj4gIH07DQo+ICANCj4gKyZpMmM0IHsNCj4gKwljbG9jay1mcmVxdWVuY3kgPSA8
-NDAwMDAwPjsNCj4gKwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KPiArCXBpbmN0cmwtMCA9
-IDwmcGluY3RybF9pMmM0PjsNCj4gK307DQo+ICsNCj4gIC8qIFBDSWUgKi8NCj4gICZwY2llMCB7
-DQo+ICAJYXNzaWduZWQtY2xvY2tzID0gPCZjbGsgSU1YOE1NX0NMS19QQ0lFMV9BVVg+LA0KPiBA
-QCAtMzM2LDYgKzM0MiwxMyBAQCBNWDhNTV9JT01VWENfU0FJMV9SWEQ2X0dQSU80X0lPOAkweDE2
-DQo+ICAJCT47DQo+ICAJfTsNCj4gIA0KPiArCXBpbmN0cmxfaTJjNDogaTJjNGdycCB7DQo+ICsJ
-CWZzbCxwaW5zID0gPA0KPiArCQkJTVg4TU1fSU9NVVhDX0kyQzRfU0NMX0kyQzRfU0NMCQkweDQw
-MA0KPiAwMDFjMg0KPiArCQkJTVg4TU1fSU9NVVhDX0kyQzRfU0RBX0kyQzRfU0RBCQkweDQwMA0K
-PiAwMDFjMg0KPiArCQk+Ow0KPiArCX07DQo+ICsNCj4gIAlwaW5jdHJsX2xlZHM6IGxlZHMxZ3Jw
-IHsNCj4gIAkJZnNsLHBpbnMgPSA8DQo+ICAJCQlNWDhNTV9JT01VWENfR1BJTzFfSU8wMV9HUElP
-MV9JTzEJMHgxNg0KLS0gDQpQSFlURUMgTWVzc3RlY2huaWsgR21iSCB8IEJhcmNlbG9uYS1BbGxl
-ZSAxIHwgNTUxMjkgTWFpbnosIEdlcm1hbnkNCg0KR2VzY2jDpGZ0c2bDvGhyZXI6IERpcGwuLUlu
-Zy4gTWljaGFlbCBNaXRlemtpLCBEaXBsLi1JbmcuIEJvZG8gSHViZXIsDQpEaXBsLi1JbmcuIChG
-SCkgTWFya3VzIExpY2tlcyB8IEhhbmRlbHNyZWdpc3RlciBNYWlueiBIUkIgNDY1NiB8DQpGaW5h
-bnphbXQgTWFpbnogfCBTdC5Oci4gMjY2NTAwNjA4LCBERSAxNDkwNTk4NTUNCg==
+On 16/02/2023 02:09, Kuninori Morimoto wrote:
+> 
+> Hi Krzysztof
+> 
+>> If you leave the top-level definition without any constraints and you
+>> forget to include all your compatibles in allOf:if:then, then you end up
+>> without constraints. Consider:
+> (snip)
+>> -----
+>> properties:
+>>   compatible:
+>>     enum:
+>>       - foo
+>>       - bar
+>>
+>> clock-names:
+>>   description: anything
+>>
+>> if:
+>>   prop:
+>>     compat:
+>>       enum:
+>>         - foo
+>> then:
+>>   prop:
+>>     clock-names:
+>>       - ahb
+>>       - sclk
+>> -----
+>>
+>> What clocks are valid for bar?
+>>
+>> For simple cases this might be obvious, for more complex this is easy to
+>> miss. So the recommended syntax is with constraints at the top.
+> 
+> I can understand we want to avoid the future miss.
+> But I did it on v2 patch and you NACKed it.
+
+No, you did not do it in v2. The top-level property is a must, we talk
+now about constraints.
+
+> Thus people confused. That is the reason why above strange style was created.
+> And it is already using "else", your concern never happen ?
+
+Yes, with else my concern will never happen. However you have there
+multiple ifs, thus finding the one related to clocks is not obvious now
+and won't be anyhow easier later. What's more, clocks have constraints
+in top-level, thus seeing clock-names without the constraints also
+raises reviewers question. Someone might bring a new compatible with
+another set of clocks (quite likely), thus else won't be valid anymore
+and you will have to define constraints per *each* variant (each
+if:then:). When this happens, please move the widest constraints to
+top-level, just like I was asking since some time. Will you remember to
+do this? I might not because I assume we follow same pattern everywhere.
+
+With a promise of above:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
+
