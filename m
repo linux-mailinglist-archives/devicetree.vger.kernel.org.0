@@ -2,138 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D729C699A71
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 17:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BEF9699B17
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 18:18:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbjBPQrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 11:47:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43880 "EHLO
+        id S229816AbjBPRSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 12:18:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjBPQrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 11:47:04 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A794CC99;
-        Thu, 16 Feb 2023 08:47:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676566004; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=GrPLRpJVoAtGe1QSM3oCQ0Z1MFBjeDNtoCW1YI3XlifzYQPOMYr/9GjmDMdsTrwcbK
-    tkY4cEYKTRrV7XQUt8lMRdT+C/MBTGVdKtNvtaGVfvDcvKc8vOW6wL9ZvFMotGBZAljB
-    qRrOBCZCRvh6TWEOXgI/s+VLKj+G33aYhG8FNtYlCpuVgBayGM43eVC/oLvfFZaUIHy4
-    3MXRR9motdBqy1/7oaTvNJUbphFJ1aflOoVpnlrxn7fGA/8Cn0KBALY7wIVT5/cOVixX
-    /RFViT0DoBLlOMWScs09wdturZiJ+JAPNnOoIBZEjOtzVZKSMpNRhMEjRicZVaiD34fk
-    79CA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1676566004;
-    s=strato-dkim-0002; d=strato.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=Zi6Do96Wyv8JYhglKdzeHQTuT3KJmQXKv8y3uhJcpwY=;
-    b=iu2I4EX/mVPxDGay7t5wMaZ1MKu5LOLFVlxDP6Nq1Vt3ADuG/h4wfaS4VzRAdZokno
-    bvVtZaNFmV5ICWFFZ/aGGLxSnb63AIEJ04Xeiad+yHGW8HLa20aKakqe/bEa8SF9ULWO
-    67oRiViILIgGk9XtgemJPqoLMpyJnajvRFhXjwk6WCz9uFJNqcyOJ1XFRtTLbHEkTLJ2
-    JijZi19MbrkOz18hF4gEKjrBUB/hE19BpprTnQq7EAiu2etUR9597KMGgWmGbbU8YaKg
-    3/IioAJ2Aq7L9b1chqEr3lRF7o1yMTKDijP1AgGTNUDPhc0fFg9QEh0SDztUnOy5LA/s
-    fSBQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1676566004;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=Zi6Do96Wyv8JYhglKdzeHQTuT3KJmQXKv8y3uhJcpwY=;
-    b=abIRn0yOpZ11kuW3rSNDWUmU9Uad2JztvC5XQkBtn0VUakeoRm/zZblfnljQ5tBih2
-    WPjfVvVZcjXaj1FGtD6DXoXuG93Yb2R3zdq7k/5TWbwzglMRNBfEu7BCp/mpOanaMjl6
-    2ahc0UfmxHrYAFcjqYCJYkAFgqEADCDqgB426Bvq8lTrRIrmgXkCV+iFJ7LINZNiYJWk
-    ZwLUsZ7ZDbJg78vW0wvoAYvLihVoseYZUDN0LjGmsFotKZSrLaptxVlJBRDbJQNEh6Ap
-    opKgJzC9zoP40bcss0yIdO572BQUTefhRD4rfDtLj9tomlLqWzlMhPhX1TLnuBtmu6D7
-    MmNg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1iTDUhfN4hi3qVZq23J"
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 49.3.0 DYNA|AUTH)
-    with ESMTPSA id 326d57z1GGkhhTj
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 16 Feb 2023 17:46:43 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH] ARM: dts: omap3-gta04: fix compatible record for GTA04 board
-Date:   Thu, 16 Feb 2023 17:46:43 +0100
-Message-Id: <38b49aad0cf33bb5d6a511edb458139b58e367fd.1676566002.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S229663AbjBPRSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 12:18:34 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6342C4C3F1;
+        Thu, 16 Feb 2023 09:18:33 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31GArWmU013797;
+        Thu, 16 Feb 2023 17:18:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=065Xd7//5pM+MBjAeMGCDbNIHvUuqvLOuk8VwXjjjDI=;
+ b=P6LYdkhaASC7CRP/KQ/fiB9OrGmv6kinIxNTsaYCb8Fc7ZIfnlJ5h3ISMVIlXci+U+2J
+ tFoq/W/PSSOAN6NM1DktRV/2UmAM61d7a+0rHoC2jVJNGYveRCFZUX5Oa/LTVOXLpSGF
+ GHBKyOfY4qexmbUyrGmjL9fFWw+9NFhR2De5H10SAKgPziqU+EwI6MHfoYDknVlxPygt
+ SKgLqiw0odsPxveqk0ivVvhYOborkePH5CVC6ZvBi69BoUSsRuaMOZb1lnMg7s4nSsck
+ 7mb+2fYWMdyLiGhz5r4GNtuYDPm1cNa9PxAZb20cg5lpWOiaq7ni4qLrfTbWAKdY8wM3 mQ== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nsja913vx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Feb 2023 17:18:16 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31GHIF20030402
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Feb 2023 17:18:15 GMT
+Received: from [10.110.95.168] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 16 Feb
+ 2023 09:18:14 -0800
+Message-ID: <f273f9c6-7a6f-f451-4afa-eaea303613d9@quicinc.com>
+Date:   Thu, 16 Feb 2023 09:18:13 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v10 09/26] gunyah: rsc_mgr: Add VM lifecycle RPC
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Arnd Bergmann" <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212343.3311875-1-quic_eberman@quicinc.com>
+ <Y+3PvUqkC2YJaW5o@kroah.com>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <Y+3PvUqkC2YJaW5o@kroah.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vGZA4yzQKNvoP32q0R7fM1y6uxNK5uUT
+X-Proofpoint-ORIG-GUID: vGZA4yzQKNvoP32q0R7fM1y6uxNK5uUT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-16_13,2023-02-16_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ adultscore=0 malwarescore=0 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302160150
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vendor of the GTA04 boards is and always was
-Golden Delicious Computers GmbH&Co. KG, Germany
-and not Texas Instruments.
 
-Maybe, TI was references here because the GTA04 was based on
-the BeagleBoard design which is designated as "ti,omap3-beagle".
 
-While we are looking at vendors of omap3 based devices, we also
-add the record for OpenPandora. The DTS files for the pandora
-device already make use of it.
+On 2/15/2023 10:39 PM, Greg Kroah-Hartman wrote:
+> On Tue, Feb 14, 2023 at 01:23:42PM -0800, Elliot Berman wrote:
+>>
+>> Add Gunyah Resource Manager RPC to launch an unauthenticated VM.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   drivers/virt/gunyah/Makefile      |   2 +-
+>>   drivers/virt/gunyah/rsc_mgr.h     |  45 ++++++
+>>   drivers/virt/gunyah/rsc_mgr_rpc.c | 226 ++++++++++++++++++++++++++++++
+>>   include/linux/gunyah_rsc_mgr.h    |  73 ++++++++++
+>>   4 files changed, 345 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
+>>
+>> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+>> index cc864ff5abbb..de29769f2f3f 100644
+>> --- a/drivers/virt/gunyah/Makefile
+>> +++ b/drivers/virt/gunyah/Makefile
+>> @@ -2,5 +2,5 @@
+>>   
+>>   obj-$(CONFIG_GUNYAH) += gunyah.o
+>>   
+>> -gunyah_rsc_mgr-y += rsc_mgr.o
+>> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
+>>   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
+>> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
+>> index d4e799a7526f..7406237bc66d 100644
+>> --- a/drivers/virt/gunyah/rsc_mgr.h
+>> +++ b/drivers/virt/gunyah/rsc_mgr.h
+>> @@ -74,4 +74,49 @@ struct gh_rm;
+>>   int gh_rm_call(struct gh_rm *rsc_mgr, u32 message_id, void *req_buff, size_t req_buff_size,
+>>   		void **resp_buf, size_t *resp_buff_size);
+>>   
+>> +/* Message IDs: VM Management */
+>> +#define GH_RM_RPC_VM_ALLOC_VMID			0x56000001
+>> +#define GH_RM_RPC_VM_DEALLOC_VMID		0x56000002
+>> +#define GH_RM_RPC_VM_START			0x56000004
+>> +#define GH_RM_RPC_VM_STOP			0x56000005
+>> +#define GH_RM_RPC_VM_RESET			0x56000006
+>> +#define GH_RM_RPC_VM_CONFIG_IMAGE		0x56000009
+>> +#define GH_RM_RPC_VM_INIT			0x5600000B
+>> +#define GH_RM_RPC_VM_GET_HYP_RESOURCES		0x56000020
+>> +#define GH_RM_RPC_VM_GET_VMID			0x56000024
+>> +
+>> +struct gh_rm_vm_common_vmid_req {
+>> +	__le16 vmid;
+>> +	__le16 reserved0;
+> 
+> reserved for what?  What is a valid value for this field?  Should it be
+> checked for 0?
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 4 ++++
- arch/arm/boot/dts/omap3-gta04.dtsi                     | 3 +--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+This struct is transmitted "over the wire" and RM makes all of its 
+structures 4-byte aligned. The reserved fields are padding for this 
+alignment and will be zero but don't need to be checked. Linux 
+initializes the reserved fields to zero.
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 70ffb3780621b..1476aaaebf883 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -508,6 +508,8 @@ patternProperties:
-     description: GlobalTop Technology, Inc.
-   "^gmt,.*":
-     description: Global Mixed-mode Technology, Inc.
-+  "^goldelico,.*":
-+    description: Golden Delicious Computers GmbH & Co. KG
-   "^goodix,.*":
-     description: Shenzhen Huiding Technology Co., Ltd.
-   "^google,.*":
-@@ -959,6 +961,8 @@ patternProperties:
-     description: OpenCores.org
-   "^openembed,.*":
-     description: OpenEmbed
-+  "^openpandora,.*":
-+    description: OpenPandora GmbH
-   "^openrisc,.*":
-     description: OpenRISC.io
-   "^option,.*":
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 87e0ab1bbe957..5932012d04966 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -11,8 +11,7 @@
- 
- / {
- 	model = "OMAP3 GTA04";
--	compatible = "ti,omap3-gta04", "ti,omap3630", "ti,omap36xx", "ti,omap3";
--
-+	compatible = "goldelico,gta04", "ti,omap3630", "ti,omap36xx", "ti,omap3";
- 	cpus {
- 		cpu@0 {
- 			cpu0-supply = <&vcc>;
--- 
-2.38.1
+> 
+> Same with other "reserved0" fields in this file.
+> 
+> 
+>> +} __packed;
+>> +
+>> +/* Call: VM_ALLOC */
+>> +struct gh_rm_vm_alloc_vmid_resp {
+>> +	__le16 vmid;
+>> +	__le16 reserved0;
+>> +} __packed;
+>> +
+>> +/* Call: VM_STOP */
+>> +struct gh_rm_vm_stop_req {
+>> +	__le16 vmid;
+>> +#define GH_RM_VM_STOP_FLAG_FORCE_STOP	BIT(0)
+>> +	u8 flags;
+>> +	u8 reserved;
+> 
+> Why just "reserved" and not "reserved0"?  Naming is hard :(
+> 
 
+Some fields have multiple reserved fields. I'll clean up so "reserved0" 
+only appears when there are multiple padding fields.
+
+Thanks,
+Elliot
