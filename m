@@ -2,198 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F95698FC4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:27:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 669F7698FD0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:30:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229923AbjBPJ1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 04:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41222 "EHLO
+        id S229680AbjBPJaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:30:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbjBPJ1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:27:47 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F277142BE2
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:27:45 -0800 (PST)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8FC1C3F585
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 09:27:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1676539661;
-        bh=YtSJffCXpHu3ueJ8PsUTFVvEARiCiygu2497e6lu3sk=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=CeUzaLgpI0J1mAKHraUXg8X+aNq2zKtRd126ADJ4cV+L9dS2SMuwOFwkbopCM83Hc
-         XOoSH96u+FsPu+VIekHQtQgLECYYUBzOnKG35N8ag6okHpSHatTGNMkJRIBwJ8qetM
-         2tnLY2fN8M/QKX+8KrUHakvvf/Yhh6NAd1F+t8sWssDzj5sd4rmVrgHlswAf7ZvuQi
-         6D+iNVvJdYMOb51abfGCy+n4vovlWPvnZfPGnTGnQETchHLSSOH+21toXkoMy+ioTR
-         txVZQTPR9RlW896CqUFXcwvOQ8zJsrenb9YUAbksSHlR5e0vS4WZKO3zT96R2WlEOu
-         SQ/ePWTt7H7qw==
-Received: by mail-qv1-f69.google.com with SMTP id gu10-20020a056214260a00b0056c2005684aso759503qvb.23
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:27:41 -0800 (PST)
+        with ESMTP id S229611AbjBPJaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:30:02 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BD6EF;
+        Thu, 16 Feb 2023 01:30:01 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id v13so1839712eda.11;
+        Thu, 16 Feb 2023 01:30:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rsPY97Yb49Y5FgSF3U74uFpbs2etiGuSLqzypFzafCw=;
+        b=g8AHuQPOL0KbtLgNuQ3OlO2X1hOBflAHNSLWULqA0A4oZoC4vcFPCvaHiOm3nKowlG
+         NPNN3ClJykznTJ14yuyCFW3Q0Hp88LVZYi/6q67H/GtxcanaKQPTqCF228Tu53MZ+vWX
+         fcLDe3lwxdwD3V9aozeqfpC7sWgEh14YtWd8+NDWJW+5AhWcScDXnLJyx69p0gKrEa47
+         pssYFIQ88X9XsdHYB/duGe7d0dYkxVaFyrk1ZnsXFYAwBl68/I95F8uIYhxjEYQVkRce
+         lUPOsU+3MdE/aEQb7/hJzmfVskS859VLnr2V2SVdsqiNSfLdDQdLAtt5x+6AQfWQfAuQ
+         ir+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676539654;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YtSJffCXpHu3ueJ8PsUTFVvEARiCiygu2497e6lu3sk=;
-        b=MvmTlX5eBJIxZXend973EitTTczDcwjPunYdGg5wWQgIZiIsTPq7r7ezntNybNNYCM
-         UfjRWOKe9JU6+Nxr2sGpRCGGL7O4MeV4JLNA086f5m8aMPB0y3ZwBRV1HXOCk2/eH15m
-         /JVMzZvh44QQ9cQjtweL1IZtZl1tNlu80UMy88cET12dE2xQ+5AqvzMwFvNKttS1w55l
-         GM/CbDsyHqPef/RjzL3HW4qn89umZFY8QUKQFv/Yt67UnOFYL8JfyUiRSP41UuO9mcXD
-         m6s4UXMSRTXfDznaV3yNzMoLOZePkvN7H39kuRNhTw0DR0KBA6zt1NUxUGGU9iBbdnlI
-         qE0A==
-X-Gm-Message-State: AO0yUKW1u2Bg+8IU/rrKYLA6uhtkr8e7yH4jj429nzi9gS8rn0tn2+PY
-        nhezqOB24yemKtupZl2JsZThb6W06g2Z7p/PMuC+3R3ya+rCDTi5O6mv3OR+eZJxJwTss/nN9uA
-        O4JLERF/fLlOYnaPNnUE15ZAf5A9TJWewrbuJfKvDPrknfj7XOk3jskE=
-X-Received: by 2002:a0c:aa99:0:b0:56e:9a77:3d2c with SMTP id f25-20020a0caa99000000b0056e9a773d2cmr423870qvb.5.1676539654701;
-        Thu, 16 Feb 2023 01:27:34 -0800 (PST)
-X-Google-Smtp-Source: AK7set+gOh5M+60vN2srtjtTI82UUYYfTQ40fizvaxdbVgr7R/vjEXOgtRRd+V8bdRCq8Uk/39SmMqfAZgINDo1mvAo=
-X-Received: by 2002:a0c:aa99:0:b0:56e:9a77:3d2c with SMTP id
- f25-20020a0caa99000000b0056e9a773d2cmr423864qvb.5.1676539654466; Thu, 16 Feb
- 2023 01:27:34 -0800 (PST)
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rsPY97Yb49Y5FgSF3U74uFpbs2etiGuSLqzypFzafCw=;
+        b=WVQvlAhJvNETfjonpGlgkeUJVFinliVDPZUC3sfyPRwIpg8p8R+28UANltNq5LCcng
+         f9WAxI1uilzoth1SnKyj3ZcNsGve8Zxo6VASpftrnaaoSFMOoZW3t/aoI97KQC8okM5m
+         c8XRKoS8jVPkJzq/frcV9+KVnDej3hbpaONw836rRjH76wC/ROCG4ioQVWao8cpSm//m
+         KKqGheVsDjn7qj2hagGlvRwBJw/nyRjdHEfRa7N8A/LCpsByNIIAkX0H1/PA9Hg30oLg
+         /wFgK819chI3CVk/baTN9zpGFFvODo9wx3ieWepeYhA8HEJSFHHT9emKKHvFUge3LDhb
+         6MAg==
+X-Gm-Message-State: AO0yUKU/UFPcfhTdFauG+Yzren7sK7xZsndE5XXphH5rw6lriP1uezHD
+        q+YNpSs5qkG3U5wnoMv5MVo=
+X-Google-Smtp-Source: AK7set/As+S00Pk3E9sDFYTcqiBB9PX1GCdND6YbLhUo+BAQk/u4DugqNJ0Qj0Y47EFSy8ZbyNd4rg==
+X-Received: by 2002:a05:6402:180f:b0:4ac:be53:1789 with SMTP id g15-20020a056402180f00b004acbe531789mr5027357edy.40.1676539799932;
+        Thu, 16 Feb 2023 01:29:59 -0800 (PST)
+Received: from ?IPV6:2a01:c23:c4f6:7c00:a103:b0a3:f168:e08f? (dynamic-2a01-0c23-c4f6-7c00-a103-b0a3-f168-e08f.c23.pool.telefonica.de. [2a01:c23:c4f6:7c00:a103:b0a3:f168:e08f])
+        by smtp.googlemail.com with ESMTPSA id y23-20020a50ce17000000b004acc1374849sm548575edi.82.2023.02.16.01.29.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 01:29:59 -0800 (PST)
+Message-ID: <723119a3-7c7f-6447-254e-bc340a1fe2de@gmail.com>
+Date:   Thu, 16 Feb 2023 10:29:57 +0100
 MIME-Version: 1.0
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-8-hal.feng@starfivetech.com> <CAJM55Z9Y_fF+4Dtu++C_jVS0+ohXp5U0GyuJCBpUh-SpTMGrVA@mail.gmail.com>
- <af42ed91-95aa-014a-1efb-6f70ee5a0433@starfivetech.com>
-In-Reply-To: <af42ed91-95aa-014a-1efb-6f70ee5a0433@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Thu, 16 Feb 2023 10:27:17 +0100
-Message-ID: <CAJM55Z-+Cz8d=YySRaFJSAffDfoZ4Madx322qCX100-nAcx+5Q@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: meson-gx: support specifying cd
+ interrupt
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
+ <1c5996a5-491f-39d6-b120-bbef86473729@gmail.com>
+ <b87003f6-02a8-64fc-80fb-b90ca6bec37c@linaro.org>
+Content-Language: en-US
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <b87003f6-02a8-64fc-80fb-b90ca6bec37c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Feb 2023 at 15:04, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> On 2/14/2023 5:53 PM, Emil Renner Berthing wrote:
-> > On Tue, 20 Dec 2022 at 02:12, Hal Feng <hal.feng@starfivetech.com> wrote:
-> >>
-> >> From: Emil Renner Berthing <kernel@esmil.dk>
-> >>
-> >> Add a minimal device tree for StarFive JH7110 VisionFive 2 board
-> >> which has version A and version B. Support booting and basic
-> >> clock/reset/pinctrl/uart drivers.
-> >>
-> >> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> >> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> >> ---
-> >>  arch/riscv/boot/dts/starfive/Makefile         |   1 +
-> >>  .../jh7110-starfive-visionfive-2-va.dts       |  13 ++
-> >>  .../jh7110-starfive-visionfive-2-vb.dts       |  13 ++
-> >>  .../jh7110-starfive-visionfive-2.dtsi         | 111 ++++++++++++++++++
-> >>  4 files changed, 138 insertions(+)
-> >>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts
-> >>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts
-> >>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> >>
-> >> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> >> index 0ea1bc15ab30..79e925a4a227 100644
-> >> --- a/arch/riscv/boot/dts/starfive/Makefile
-> >> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> >> @@ -1,2 +1,3 @@
-> >>  # SPDX-License-Identifier: GPL-2.0
-> >>  dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
-> >> +dtb-$(CONFIG_SOC_STARFIVE) += jh7110-starfive-visionfive-2-va.dtb jh7110-starfive-visionfive-2-vb.dtb
-> >> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts
-> >> new file mode 100644
-> >> index 000000000000..188d3fddbe88
-> >> --- /dev/null
-> >> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-va.dts
-> >> @@ -0,0 +1,13 @@
-> >> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> >> +/*
-> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> >> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> >> + */
-> >> +
-> >> +/dts-v1/;
-> >> +#include "jh7110-starfive-visionfive-2.dtsi"
-> >> +
-> >> +/ {
-> >> +       model = "StarFive VisionFive 2 VA";
-> >> +       compatible = "starfive,visionfive-2-va", "starfive,jh7110";
-> >> +};
-> >> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts
-> >> new file mode 100644
-> >> index 000000000000..f75c10536f84
-> >> --- /dev/null
-> >> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-vb.dts
-> >> @@ -0,0 +1,13 @@
-> >> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> >> +/*
-> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> >> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> >> + */
-> >> +
-> >> +/dts-v1/;
-> >> +#include "jh7110-starfive-visionfive-2.dtsi"
-> >> +
-> >> +/ {
-> >> +       model = "StarFive VisionFive 2 VB";
-> >> +       compatible = "starfive,visionfive-2-vb", "starfive,jh7110";
-> >
-> > Hi Hal,
-> >
-> > I just want to double check, is "VisionFive 2 VA" / "visoinfive-2-va"
-> > and "VisionFive 2 VB" / "visionfive-2-vb" really what you want? I
-> > still think having these names match what is printed on the silkscreen
-> > makes it a lot easier for everybody. Even your own releases calls the
-> > boards "v1.2A" and "v1.3B":
-> > https://github.com/starfive-tech/VisionFive2/releases/
-> >
-> > So I'd suggest
-> > model = "StarFive VisionFive 2 v1.3B";
-> > compatible = "starfive,visionfive-2-v1.3b", "starfive,jh7110";
-> >
-> > I haven't seen these "VA" and "VB" anywhere else, so if you don't want
-> > the version numbers and can promise that there will be no incompatible
-> > future revisions of the boards then maybe just drop the "V". Eg.
-> > model = "StarFive VisionFive 2 B";
-> > compatible = "starfive,visionfive-2-b", "starfive,jh7110";
->
-> The version A board has reached the end of life. As far as I know, the
-> version B board will not update also unless there are some important
-> requirements and StarFive decides to update. Furthermore, it's too late
-> to change the compatible as patch 1 was already accepted. Will it be
-> easier to read if I modify it as below?
->
->         model = "StarFive VisionFive 2 vB";
->         compatible = "starfive,visionfive-2-vb", "starfive,jh7110";
+On 16.02.2023 10:18, Krzysztof Kozlowski wrote:
+> On 14/02/2023 22:42, Heiner Kallweit wrote:
+>> Support passing a second interrupt as card detect interrupt.
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>> index 46e235bf2..c8c30300d 100644
+>> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>> @@ -28,7 +28,7 @@ properties:
+>>      maxItems: 1
+>>  
+>>    interrupts:
+>> -    maxItems: 1
+>> +    maxItems: 2
+> 
+> Wait, you now *require* (not support) cd interrupt, so this looks like
+> ABI break.
+> 
+The second interrupt is optional. If not provided MMC core falls back to
+cd polling.
 
-Oh, that's sad that the kernel will now end up calling the boards
-something that's used nowhere else, even by StarFive :/
-But yeah, I guess vA and vB are a little easier to read.
+> Second, you must describe the items.
+> 
+OK, this will be added.
 
 > Best regards,
-> Hal
+> Krzysztof
+> 
+
