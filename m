@@ -2,98 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29E7B69961E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9672C69961A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230310AbjBPNnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 08:43:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54084 "EHLO
+        id S230402AbjBPNnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 08:43:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230309AbjBPNng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:43:36 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3332657742;
-        Thu, 16 Feb 2023 05:43:11 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 02F6420015;
-        Thu, 16 Feb 2023 13:43:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1676554989;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wDrrKcoDt5OylVFpmw/lEcsILEn2Xh6/If5wJz8K11g=;
-        b=myMbrnQ3jIOWVN0UUc4Up8EhZFHSLAnFjZ4SpXRkjm0HEb7EFyPl/RziTUR7iCB7LXy4PZ
-        +Z394AsfoNmtPi/eV8jM/UP8ANx5B+2Gw897mYkLUN+teEQuseHmmLCCC/J4pLxjM+5agt
-        jeIcPMJAA9wwe1JMBaj/P66S38UKAMCC3DodvHFd2o7A54Y8Y9GQ8VY06xcibdz6mwiHJs
-        RW30qn2Sn+if7Ewye0T3g+CNvjlJmJXwTGsJF+u4gDqLZUAXbQy0wjRjlfAsNuq9qFWF3w
-        gOU2+Er8ExohnVhdjSBLmVLBAbDrSJS/CEMa3vrxA1XR7a5utE0WkaKJoFN27Q==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v5 10/10] MAINTAINERS: add the Freescale QMC audio entry
-Date:   Thu, 16 Feb 2023 14:42:26 +0100
-Message-Id: <20230216134226.1692107-11-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230216134226.1692107-1-herve.codina@bootlin.com>
-References: <20230216134226.1692107-1-herve.codina@bootlin.com>
+        with ESMTP id S229676AbjBPNnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:43:22 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 104E859B75
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:43:06 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id fj20so2937728edb.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:43:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B5grLXxAB2C9edHtiWdcPQF4DNv/cRB6QAPzd9Oxh6M=;
+        b=NQVwbo6Oc/igVtVnE5j9BA51kVTizAW4bXxHKVG4u+nusPCgy7miJHd5yn7E/y/vwE
+         Lbs7+8Sr0blHOvDJhNvAZr7/ctXDElFMFdYLzKCICxnJc74z+IRIcXdToaV4DcHNepaB
+         sHUNy2du4sdjpZZUwqHJ/IgvysSmtgm5avpBXsoBsvUXr4WwhYESareQBPmsNpkxigqm
+         sLvfcnD0IqRS8czrjOh7oiIdJT8zJQz190ZtromTTjlV1Ve9RwuZpddtfThaWKj3nrQD
+         Q6Srqfd9txDc1vL5Hddz2gerivCodr1PmQS7WYHJ+hCxy2B2YvYi6XKOqCuu8M5oZ0YX
+         k1ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B5grLXxAB2C9edHtiWdcPQF4DNv/cRB6QAPzd9Oxh6M=;
+        b=SW+J79YGWhXQ1MbdrUTfuGHxRv8t8uEu18fCMgYvBKr1Fk6nv7G/sEUqvq4C50jZVc
+         P/75Pa2iVwavXfLX6YxJW+wPl/cpcFOjZScPWexr0PpPTW+qUbWmuzbMcQyBVvZ8pLSv
+         SvTNOArk693lX62qvDk+lS3yEOyrCjs594uMMDriPH8upMO0Oc8WO9vQ+HY0+eTl+AgA
+         XA3Fkb5Ztmv/dqjHEXZ7Xy1eLpDi1IjxsQelP1pOdpjJ4nJZLcAsfo/U5yLitFbH5cFn
+         OMjLB26z6B8ldLjg8YZbf89FvTD6JfydOYZfSADbJfgOzAETNVBK0/igEaEPUASr7qs+
+         xw4Q==
+X-Gm-Message-State: AO0yUKUDPN/Xwg/e61SNrN973gf6dpP8uujv3ZyaHBmmwHJJTwYREsA7
+        DT2ofc9EIER4n0FD3gsljgm+kw==
+X-Google-Smtp-Source: AK7set/TRdjG6xv8ct9rhgVcIRiyLMjQGkZkFuhAX6OpQzYrsPbm81px2CSsywNftx89T+9FNn5qpA==
+X-Received: by 2002:a05:6402:909:b0:4ab:1715:2858 with SMTP id g9-20020a056402090900b004ab17152858mr2272896edz.11.1676554985181;
+        Thu, 16 Feb 2023 05:43:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n28-20020a5099dc000000b004aab66d34c7sm898722edb.7.2023.02.16.05.43.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 05:43:04 -0800 (PST)
+Message-ID: <caed0029-57cf-cd95-661f-1657ef0a6d5e@linaro.org>
+Date:   Thu, 16 Feb 2023 14:43:02 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] dt-bindings: mmc: meson-gx: fix interrupt binding
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <d5542f6e-920e-93cf-a453-b0601d03f48d@gmail.com>
+ <21ae5f5f-2336-db5b-f98a-f83391e1becd@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <21ae5f5f-2336-db5b-f98a-f83391e1becd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the component, add myself as the maintainer
-for the Freescale QMC audio ASoC component.
+On 16/02/2023 13:52, Neil Armstrong wrote:
+>>     interrupts:
+>> +    minItems: 1
+>>       maxItems: 2
+>> +    description:
+>> +      mmc controller instance interrupt
+>> +      optional card detect interrupt
+> 
+> I would instead write:
+> 
+> interrupts:
+>    minItems: 1
+>    items:
+>      - description: mmc controller instance
+>      - description: card detect
+> 
+> and drop maxItems.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
++1
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f8d0981a16ca..a677e2862878 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8440,6 +8440,14 @@ F:	sound/soc/fsl/fsl*
- F:	sound/soc/fsl/imx*
- F:	sound/soc/fsl/mpc8610_hpcd.c
- 
-+FREESCALE SOC SOUND QMC DRIVER
-+M:	Herve Codina <herve.codina@bootlin.com>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+L:	linuxppc-dev@lists.ozlabs.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
-+F:	sound/soc/fsl/fsl_qmc_audio.c
-+
- FREESCALE USB PERIPHERAL DRIVERS
- M:	Li Yang <leoyang.li@nxp.com>
- L:	linux-usb@vger.kernel.org
--- 
-2.39.1
+Best regards,
+Krzysztof
 
