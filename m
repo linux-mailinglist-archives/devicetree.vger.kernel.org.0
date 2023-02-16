@@ -2,60 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D6DA6997C4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:46:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3F8699811
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:57:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbjBPOqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 09:46:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53834 "EHLO
+        id S230334AbjBPO47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 09:56:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbjBPOqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:46:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD540C7;
-        Thu, 16 Feb 2023 06:46:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 854F1B82854;
-        Thu, 16 Feb 2023 14:46:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98418C433D2;
-        Thu, 16 Feb 2023 14:46:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676558800;
-        bh=LCnYvIINjyxCa3G+TEGs6sBnENrcAhNBZIdvdQRNokM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dWikivDp9g3uqJMnhF5qkq9wSlzEUtynfuG1Py8cYJC4MBSyICywQ+WoX9BB+DvxX
-         s5KjPz6w8/VFI8UBwrD9wzm7IItOP9ei3SwC7c9X1LHl22BF2optDGqNESNad8gaJ4
-         3d8wujLi88RxAbY/ni8u+HAzbtvonJjG+2WfO9jzQx/iL5DCdZcKJKt8PYgqWKzl+r
-         bXJuB/cPvEt/4b6zYg17Ofhr6EzC7GM9z4s5AY9J+EDETJz+P/DM5oVm/4QDgrLFTG
-         c3EYCxCnY1Jlu8rcZcehKtLlzFC8BhJkX4N2ecPLeXrqcGma2/VoyUkl5HFm/5VWRC
-         1IzvqH7ImqfOQ==
-Date:   Thu, 16 Feb 2023 14:46:36 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Claudiu.Beznea@microchip.com, lgirdwood@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lars@metafoo.de, perex@perex.cz, tiwai@suse.com,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: sama7g5-pdmc: add
- microchip,startup-delay-us binding
-Message-ID: <Y+5BzEJBaTn3twBH@sirena.org.uk>
-References: <20230214161435.1088246-1-claudiu.beznea@microchip.com>
- <20230214161435.1088246-3-claudiu.beznea@microchip.com>
- <485d74fe-bfb5-c55e-724f-304476624abd@linaro.org>
- <954cdf90-c41a-4e21-31e0-88a0baf26065@microchip.com>
- <fd2f372f-4a1c-72c0-574d-1d5ef99dbdbc@linaro.org>
+        with ESMTP id S230308AbjBPO44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:56:56 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ADBB55E5C
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 06:56:52 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id y19so2225251ljq.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 06:56:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ojDsOUx0QxlHwnKO3iv7w8jD6D1QkQboQ8A+JjRFmOI=;
+        b=SondPCscTEEfrANSxAKrbtewG6FLTdvIPFAFYYLnp3D6+Sn+aQcShVMUm4krMOXcjZ
+         zbo80ni77TnS8/+4ZDiNXLavjjm+yeKidHBAkz7jX3QA31vJzCCCIqi/Kuh9dzPDXXlM
+         /hIpwe6+bwykNTXyuP24UuNpY2pgy2hRN5tf7u+OnnbVUZmXyC0Sif2c2hQyi2K7J93f
+         qX3ZquTNqVEE2BsSD5RTSPRcD8CO6ir6oJc7acuOYeiHpd1yUmdEvLFQoRF4sdnHisA1
+         a0csh6t9NnYQ6mi2jZwM7GMJ3HXYDMvMBOdq8newuRzxiAUWyrfbywABB9wT0OFft/jD
+         lPEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ojDsOUx0QxlHwnKO3iv7w8jD6D1QkQboQ8A+JjRFmOI=;
+        b=xonpYwucGq9qf5XDD7/bePv+0rCev1eXG3/Mre96HZq/jHUe1TOa9SkffAsY1qyiGb
+         gFbBM1hGZqjzIJseI8UVRUpa+pRBrMIoFC0VyPDmC1L4FeDOuM8H9c9DxbsQPIbL7zyX
+         8+O3thQPfom18aFQGwqYnc1FMk7FQny2ij7fhOFrN7HJrNbl2E7s3azqul6QR2/hqnch
+         AthITLPWzucFGOr2oFNysCMq8lCmqOw5M29PR2KJOLFTqKQYMf8eT2BE+yTVESsd4YMn
+         vOxUMarRUGjUliLqFSMEQSXvQoPLRD/q+4I3R7CRtd9FwqV+EjEY0tCzZ5K6OTDBD4it
+         bJug==
+X-Gm-Message-State: AO0yUKW3QzGrquyZmvL6Crkc6hGZGno+8QfNXock9Qn5P2kpmAQPME/c
+        zQd88+tTyiCssidlYMyL/6v4DPWrGU6Z4ImN
+X-Google-Smtp-Source: AK7set9+IAinWnvv0qZQ8rLV8eYgth93ol6l9oBQDHdUVVXXttEPDYhOnNeijW8y7UR22spzLJj41Q==
+X-Received: by 2002:a2e:a365:0:b0:28e:732e:206a with SMTP id i5-20020a2ea365000000b0028e732e206amr1548884ljn.12.1676559410725;
+        Thu, 16 Feb 2023 06:56:50 -0800 (PST)
+Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id f2-20020a2e1f02000000b00294619d902dsm230012ljf.112.2023.02.16.06.56.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Feb 2023 06:56:50 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/5] dt-bindings: arm-smmu: Add SM8350 Adreno SMMU
+Date:   Thu, 16 Feb 2023 15:56:42 +0100
+Message-Id: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="TxVDayxViJvYQhLz"
-Content-Disposition: inline
-In-Reply-To: <fd2f372f-4a1c-72c0-574d-1d5ef99dbdbc@linaro.org>
-X-Cookie: Serving suggestion.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,44 +75,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the Adreno SMMU present on SM8350.
 
---TxVDayxViJvYQhLz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Thu, Feb 16, 2023 at 11:18:16AM +0100, Krzysztof Kozlowski wrote:
-> On 16/02/2023 11:15, Claudiu.Beznea@microchip.com wrote:
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 4d7f61700cae..d89aa5b5c963 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -81,6 +81,7 @@ properties:
+               - qcom,sc7280-smmu-500
+               - qcom,sm8150-smmu-500
+               - qcom,sm8250-smmu-500
++              - qcom,sm8350-smmu-500
+           - const: qcom,adreno-smmu
+           - const: qcom,smmu-500
+           - const: arm,mmu-500
+-- 
+2.39.1
 
-> >>> +  microchip,startup-delay-us:
-> >>> +    description: |
-> >>> +      Specifies the delay in microseconds that needs to be applied after
-> >>> +      enabling the PDMC microphones to avoid unwanted noise due to microphones
-> >>> +      not being ready.
-
-> >> Is this some hardware delay? Or OS? If OS, why Linux specific delay is
-> >> put into DT?
-
-> > It's the delay used in software workaround that IP needs to filter noises.
-
-> Then this sounds like OS? Linux related properties usually do not belong
-> to DT.
-
-This is a hardware property, it's the time needed for the input
-to settle.
-
---TxVDayxViJvYQhLz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPuQcwACgkQJNaLcl1U
-h9AmJQf/TgHpEIGKbPryBe3ZR4YcUQhPbFNTGdI63vitiShh+bX3JzzEnswt6j41
-/RVENFOLuUfoh9viCWf/ulK9vT4YCfwsz2nZ1OHdFGkoJQ+loNNutpcgVUXUgmy/
-YSBs3uvJv1OCTM+1pPfzyiMKLK/ycbwrEi7N/xL8SDSZyW0DKLJCJgw/yjGEDNvg
-WYOi3VMr0Eo1SeJaPej+o8+BKHh63GBLvOwlMoMKT9YALS+pQtEAWdysVGfL4i1h
-JKpQHC3o5DDRT7qgAVhRLD1w7I26PdJZUJVB4ADbrnWjFQpKyV0Nvi517eaBKeTO
-mPTUYrEw348SwZ872VcV384YXSFffQ==
-=Ijuf
------END PGP SIGNATURE-----
-
---TxVDayxViJvYQhLz--
