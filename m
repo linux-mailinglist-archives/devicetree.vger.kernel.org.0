@@ -2,205 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5287A698FDC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69BA7698FE0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:34:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjBPJeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 04:34:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46902 "EHLO
+        id S229600AbjBPJex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:34:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjBPJeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:34:20 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2EC30B35
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:34:17 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a3so3722742ejb.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:34:17 -0800 (PST)
+        with ESMTP id S229495AbjBPJev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:34:51 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3102DE5D
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:34:50 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id u21so1942328edv.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:34:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xlE78N7SwGUFP9az71FkKXaJ04noS1VC//kRi/UVdqM=;
-        b=qk2ho0Dn+kiBw+yOLu9QE+mJzyhgW5YHK7yfLKrCDk+7P6TY2nUpDYs4QuUT9FNQ0U
-         SBQL9P8vhjDkHUz66C2I+MxGGXFiO1vzGi26LNgF87ZuacxT2PO6WNrqGosIi/w6/Kpo
-         Bt+IL1ruRfny21fybHwrw1TRWSXi4dGF2wIuJvRLdf15g8Dg5rr+PiR5UuQMKyuRbvmC
-         VHLCP6y3krEFfnMq7QdoyZ5Nx1/ChUiYWqaYsJ6m1kMotTeQ7f8/r88ETnMKkT0PNCuG
-         N/xcsFyTWgvdc+dY8quFVuXM3F49oNAjBTXczae77BTR0q5NyE1mC+ctqviU/XC4C9KN
-         IKcA==
+        bh=svWlMyI6wlXGD9pTyPzUoADIQ1sfpe0Mys0Y7wrsKnM=;
+        b=rwf8EHFvW0kW3XMm2w0YFkmx4JAKlvc3viohkBszIsyDH4rHJxkgGQTMTYzPHB8CdA
+         SB0OZaT0FjMRCP+17vXbb48oXVrHgcz8y61IbSU8kEvafFm6e/Tb5C3WQeFoUxKucYLY
+         /FAqAabTRqkWk3mrC4u0qVUJ87mNykTjEaj7d/F1OlHYSxTnjKOQ5BfLKDAS6Bk+K+uh
+         Jb31CjnwLO/PwkTnhZ1gyoBEU39tZJh2w3tBlZmOzEfBcw9WkUCJ39gmQB0tjEBSwxEL
+         smyUnLonCeuB/bQULncq6F9uy7cCB1T1YDT52+jZGwRL8na7S/svLNFfjLxf/cttW6Wd
+         tivw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xlE78N7SwGUFP9az71FkKXaJ04noS1VC//kRi/UVdqM=;
-        b=tpHvl5XtTZmJXZwAV3A1omolyb4JhbZwjnTTNCSDOJS+75vJmvtf1e0e6HlJGaX+V0
-         Q1KJz+PRTltAPmjHOT43AfmYDF33851ZjcyjnidLappEZSti93TnqU93gWN4kk+cfVKo
-         pTu3SGPgTmFE56bFg7PkhW3TInMcHSzrDnnp0jTflbONhQCPUVOIHT17yqI5zM7hIr2Z
-         HyBaZreQtbkETf01DyiXORQC1zWq3nQdKlW8190G1RqdUE/6m2mAsjls2piIlQpYflB4
-         gFdsfAPgzzqY5fV0DORQzGVgVWwEa1PyBf7/QfrQu6OzZMbn11ujuMn2Ja2XyikdO4uM
-         CZlg==
-X-Gm-Message-State: AO0yUKUuKYlSAMALKxfnKamp17gCyHCRwKctklDC6EizmC3zhE/VgTtk
-        X2KknwzwZJ4Wxd3yEWhncc5yUQ==
-X-Google-Smtp-Source: AK7set9DgurDP4wEVrFOs7M52beuPRqtI24FolaG8A6C0viAI6f+7xUUlXY8RCpQPV9oU7R/0Dg27A==
-X-Received: by 2002:a17:906:dfd2:b0:877:7113:71f3 with SMTP id jt18-20020a170906dfd200b00877711371f3mr5305331ejc.25.1676540056008;
-        Thu, 16 Feb 2023 01:34:16 -0800 (PST)
+        bh=svWlMyI6wlXGD9pTyPzUoADIQ1sfpe0Mys0Y7wrsKnM=;
+        b=b0WA9HQHciM8SuRnt08ZiFTQXO8/xc9BdPE7UjS1noZXO/ILnrqXPuENe3AR9CqHjh
+         JF00efdjM2XB/PvGttYH1uLup63Uz1+ffbtXUeSrXidxOSJDw5M5c/PgeoVtKoK3ooZ5
+         j90ulXTr915EwfRhSeOJDgWhhjxKtuefjw23f0fCMEeMNbY+NCVVGFibg45MLoIQIWxF
+         MrH07dTJ6MWmb2fhPWS7uwUqM7HQXbxwDNn4E9QKlZjYaSTBRqv/1OIJyTE3fKtRJQ+c
+         vy53CrU0HuSmSx9MbPkE7spTkdz51QF2vsoFfztl3dlAF7BauUTfpmzHusq72p5KODC+
+         KkjQ==
+X-Gm-Message-State: AO0yUKWA+Y3/Oqdvnrhr94QHXwTJyiU3/ekdloUwTKlxaqgbwaV4a1jn
+        k2Db9elzReU4nMyfnkEW6mf1ZQ==
+X-Google-Smtp-Source: AK7set/DywjlEvfAgh0u8LhyD8kSk6ewjjo4pcqO5hdesVF5obdc6Q7Zjlx6CvKJGOFdN4SGcYriag==
+X-Received: by 2002:a05:6402:885:b0:4aa:a248:a153 with SMTP id e5-20020a056402088500b004aaa248a153mr5000114edy.3.1676540089178;
+        Thu, 16 Feb 2023 01:34:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id dk14-20020a170906f0ce00b0087bd2924e74sm553002ejb.205.2023.02.16.01.34.12
+        by smtp.gmail.com with ESMTPSA id r11-20020a170906c28b00b008b1347773ccsm577463ejz.144.2023.02.16.01.34.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 01:34:14 -0800 (PST)
-Message-ID: <0f5f367e-5531-e209-9be3-94a94c4ad65c@linaro.org>
-Date:   Thu, 16 Feb 2023 10:34:11 +0100
+        Thu, 16 Feb 2023 01:34:46 -0800 (PST)
+Message-ID: <8e9d4c8a-40e0-65ef-ba72-ee8d1114ce97@linaro.org>
+Date:   Thu, 16 Feb 2023 10:34:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson
- EIOINTC
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: meson-gx: support specifying cd
+ interrupt
 Content-Language: en-US
-To:     Huacai Chen <chenhuacai@kernel.org>
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
-References: <cover.1676289084.git.zhoubinbin@loongson.cn>
- <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
- <df464409-9a93-c057-5f66-923a9e24696a@linaro.org>
- <CAMpQs4JX0Vgf5tvv5Yw5eLGANFfn1p=iQ_kMS0yQPV6kE2tN1g@mail.gmail.com>
- <23068d0c-d37c-0563-e1c1-e4d112059f5b@linaro.org>
- <CAMpQs4K+aYGrOoWy04vrbEy53kba9zUzGkOwD34pwAH0c=D8iA@mail.gmail.com>
- <49c8255e-66f3-fa1f-2949-1f03f77a0fa4@linaro.org>
- <CAAhV-H6+aDYZ4JAPpdkefPR0P3QFqKCmt=RsZiw+FZRRax5TgA@mail.gmail.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
+ <1c5996a5-491f-39d6-b120-bbef86473729@gmail.com>
+ <b87003f6-02a8-64fc-80fb-b90ca6bec37c@linaro.org>
+ <723119a3-7c7f-6447-254e-bc340a1fe2de@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAhV-H6+aDYZ4JAPpdkefPR0P3QFqKCmt=RsZiw+FZRRax5TgA@mail.gmail.com>
+In-Reply-To: <723119a3-7c7f-6447-254e-bc340a1fe2de@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 10:30, Huacai Chen wrote:
-> Hi, Krzysztof,
-> 
-> On Thu, Feb 16, 2023 at 4:10 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 16/02/2023 10:29, Heiner Kallweit wrote:
+> On 16.02.2023 10:18, Krzysztof Kozlowski wrote:
+>> On 14/02/2023 22:42, Heiner Kallweit wrote:
+>>> Support passing a second interrupt as card detect interrupt.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>>> index 46e235bf2..c8c30300d 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+>>> @@ -28,7 +28,7 @@ properties:
+>>>      maxItems: 1
+>>>  
+>>>    interrupts:
+>>> -    maxItems: 1
+>>> +    maxItems: 2
 >>
->> On 16/02/2023 02:46, Binbin Zhou wrote:
->>> On Tue, Feb 14, 2023 at 8:43 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 14/02/2023 13:40, Binbin Zhou wrote:
->>>>> On Tue, Feb 14, 2023 at 5:53 PM Krzysztof Kozlowski
->>>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>>>
->>>>>> On 13/02/2023 13:15, Binbin Zhou wrote:
->>>>>>> Add Loongson Extended I/O Interrupt controller binding with DT schema
->>>>>>> format using json-schema.
->>>>>>>
->>>>>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->>>>>>> ---
->>>>>>>  .../loongson,eiointc.yaml                     | 80 +++++++++++++++++++
->>>>>>>  1 file changed, 80 insertions(+)
->>>>>>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..88580297f955
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,eiointc.yaml
->>>>>>> @@ -0,0 +1,80 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: "http://devicetree.org/schemas/interrupt-controller/loongson,eiointc.yaml#"
->>>>>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>>>>>
->>>>>> Drop quotes from bopth.
->>>>>>
->>>>>>> +
->>>>>>> +title: Loongson Extended I/O Interrupt Controller
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Binbin Zhou <zhoubinbin@loongson.cn>
->>>>>>> +
->>>>>>> +description: |
->>>>>>> +  This interrupt controller is found on the Loongson-3 family chips and
->>>>>>> +  Loongson-2K0500 chip and is used to distribute interrupts directly to
->>>>>>> +  individual cores without forwarding them through the HT's interrupt line.
->>>>>>> +
->>>>>>> +allOf:
->>>>>>> +  - $ref: /schemas/interrupt-controller.yaml#
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    enum:
->>>>>>> +      - loongson,eiointc-1.0
->>>>>>
->>>>>> Why not using SoC based compatible? It is preferred.
->>>>>
->>>>> Hi Krzysztof:
->>>>>
->>>>> So far, from the datasheet, I know that only the EXIOINTC of the
->>>>> Loongson-2K0500 is different from the other chips, and that is the
->>>>> "loongson,eio-num-vecs" below, which is 128, while all the others are
->>>>> 256.
->>>>> My original idea was to add this property to make compatible
->>>>> consistent, and also to make it easier to add new chips if they have
->>>>> different eio-num-vecs.
->>>>
->>>> We talk about different things. SoC based compatibles are preferred over
->>>> version ones. This was on the lists expressed many times. Please provide
->>>> a reason why you deviate from general recommendation. Flexibility and
->>>> genericness of bindings is not a reason - it's the opposite of the
->>>> argument, thus this will be a: NAK. :(
->>>>
->>>>
->>> Hi Krzysztof:
->>>
->>> Allow me to give a brief overview of the current status of eiointc (DT-based):
->>>      Loongson-3A series supports eiointc;
->>>      Loongson-2K1000 does not support eiointc now;
->>>      Loongson-2K0500 supports eiointc, with differences from
->>> Loongson-3, e.g. only up to 128 devices are supported;
->>>      Loongson-2K2000 supports eiointc, similar to Loongson-3.
->>>      ....
->>>
->>> As can be seen, there is now a bit of confusion in the chip's design of eiointc.
->>>
->>> The design of eiointc is probably refined step by step with the chip.
->>> The same version of eiointc can be used for multiple chips, and the
->>> same chip series may also use different versions of eiointc. Low-end
->>> chips may use eiointc-2.0, and high-end chips may use eiointc-1.0,
->>> depending on the time it's produced.
->>>
->>> So in the Loongson-2K series I have defined the current state as
->>> eiointc-1.0, using the dts property to indicate the maximum number of
->>> devices supported by eiointc that can be used directly in the driver.
->>>
->>> If there are new changes to the design later on, such as the
->>> definition of registers, we can call it eiointc-2.0, which can also
->>> cover more than one chip.
+>> Wait, you now *require* (not support) cd interrupt, so this looks like
+>> ABI break.
 >>
->> Just go with SoC-based compatibles. If your version is not specific
->> enough, then it is not a good way to represent the hardware.
-> EIOINTC is a bit like the existing LIOINTC which is already use
-> version to represent hardware.
+> The second interrupt is optional. If not provided MMC core falls back to
+> cd polling.
 
-Heh, so why did you go with version in compatible for liointc if it also
-does not match it correctly?
+It is not. Your binding requires it. Did you test it on DTS without the
+second interrupt?
+
+> 
+>> Second, you must describe the items.
+>>
+> OK, this will be added.
+
 
 Best regards,
 Krzysztof
