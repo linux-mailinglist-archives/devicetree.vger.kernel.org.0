@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1234699578
+	by mail.lfdr.de (Postfix) with ESMTP id 2F812699576
 	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:15:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbjBPNPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 08:15:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
+        id S230243AbjBPNPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 08:15:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbjBPNOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:14:50 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F17DF5454A
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:14:45 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id a13so1885512ljq.6
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:14:45 -0800 (PST)
+        with ESMTP id S230321AbjBPNOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:14:51 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409FC5354D
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:14:47 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id a9so1859207ljr.13
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:14:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1676553285;
+        d=linaro.org; s=google; t=1676553287;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=drQma7nNWgYIegGN8xjgb6Jv9bqzaE0wjeikGVtXijQ=;
-        b=FDyBsCyO20brAo9mArK9sLpKTcfWTBO6lkQ3Yhr3vKaFRh7X8VpRii5YD/dln9157Z
-         oZwUTwCwWZ9SKKDfU2ny6zyEXZSUSyKQZwOJAm9/jheDgWsZvJLBgxNoKVOMZMv1VPus
-         F6a1RhDwbG23H7cN6ToOHVb+k/18K3OjlTHDDEvbY3eaDd2U7nZy3jpGav5FHc3fG2WD
-         uozmLlxxkCshEfDabs7uth+OvXysjEXFOQC9RZ96fKIwb9bNSwAGrc206vr2ME8ENGIX
-         BfjQ3PffZFduWDryHO4nGax/gDezfYGiG50J+jYLda+5pvysXUjZZCh5AfY9+CjrXKYU
-         iH8Q==
+        bh=9Yd9lAcpRbHxF9RdOizjwYgJ/PMIKmYOw1xnRDHR/30=;
+        b=l8znhmby9Ou/ayAkmoZRFWINUtrj5JOzTE+qO0v5ncxadXQX+sRPJZrSwlx3b9U5LQ
+         JGD2YxEHCWY+a0/6/phBWXfrkWKf0XbXbw4h29RYUa4t4IdwHYfGLpyeTJA7CR47BslD
+         cxLmBpcfUz9asR25xyvhwK6VnwQBtE0Ok6Yt4LImw2GJ4/SyihNAphmibYOApmhEtRyP
+         I2Ch19kzlsNWNOQI3RtkzC5dBxIzV7h8EOAdkYVzdB6uMIFSg+7QGPc1aP2AO2kgHP4C
+         wdqkUeuwRINLInCO8XvY3HH9l4NCTnS/Jx+nu0L/xcUgB1OoRod5bB8EyJc4dzQY7wD7
+         YK9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676553285;
+        d=1e100.net; s=20210112; t=1676553287;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=drQma7nNWgYIegGN8xjgb6Jv9bqzaE0wjeikGVtXijQ=;
-        b=qW1XuD3FcMJl9Rfn546WRQNB66N45LgEtK9oI/aFPdBfZrMO0ACYvg6uBNClKk+2gj
-         MWVs5aOrm2pmdjRgkY2WmtGVd2AVOYKpxfHeAFzeB+2mJN68gYnfTDt4Bxg5W11+1E3l
-         jwd9YTua6OZHH+SL86Bu8GL8yN0Hn5tqptvoci5K4WiPnq493VWmolWxo4h8duZKwhvO
-         yewJxUiNu7sJqUYClst4x6aMN84qoFnU0wMi0k8zXFfL/CN7k+5MBPVpANocsFf+BLDi
-         HqtF+gfbe/xKmi9nsneNFoRXl/6AUNvv9nevdZon0DFU0U1Y+4bPDSP6HudK6nmUoqJF
-         aVhQ==
-X-Gm-Message-State: AO0yUKX9p8uQ0+grzAwRx41YGyG4a+A3XtBdy8ZjhC1gCQDi2TaZB5qN
-        zsHqKecM+TkgMUWFfO6/XI6SCg==
-X-Google-Smtp-Source: AK7set/KKe9iXZAkK+yWzAUyqQqZOENyMPekg2hCaKYdm3gVnxuJhHxy5l5i0oL15TDFFzOk8pBsvA==
-X-Received: by 2002:a2e:9913:0:b0:293:4eac:734a with SMTP id v19-20020a2e9913000000b002934eac734amr1593442lji.0.1676553285510;
-        Thu, 16 Feb 2023 05:14:45 -0800 (PST)
+        bh=9Yd9lAcpRbHxF9RdOizjwYgJ/PMIKmYOw1xnRDHR/30=;
+        b=fHOlB7aeUyrHClMZGkEjsKntqjFDrNrDwifZD/f0/EweF4SLxxmDCVf3XHAxLiLTjl
+         xg6f9N2MiW/vveu7KlvElyRdfiLnaqJfUdbzMeAfmzfMz3XveB3JEVWONNujm6hrlqb4
+         jYJzsvbAtUdzfvd4n0GslXNpYxElM07CGDGUQw57RNYORZVlbspvQyNQynzFOMEhIAP/
+         cERnbInSH9uAe6EwYthCn1aR26w3EbTItBpe0yAQ5kGmHH10d3LPec06QwFZRyscpUxZ
+         77EaboECmwOBp4h+C4fkI8lvlxWGAlr7oAF3MDvUNzvHiYjVLWBmBas9TWQyPDWe2HZ1
+         Xg2A==
+X-Gm-Message-State: AO0yUKURtTjbdoygNBU97WeHH9AgZDeo5RfDc6si6WfBQdOMciCCoorI
+        So/JU0nQGeESBz8zInN+LQfsuw==
+X-Google-Smtp-Source: AK7set8AC3akpCxImrycnKhop5QhurFRa136ZAhMWjejhNcYZ5p0qpTdFdN7gvG0ODXMGfP1qhBIoQ==
+X-Received: by 2002:a2e:9913:0:b0:293:4eac:734a with SMTP id v19-20020a2e9913000000b002934eac734amr1593461lji.0.1676553286845;
+        Thu, 16 Feb 2023 05:14:46 -0800 (PST)
 Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id j8-20020a2e8248000000b00293500280e5sm194345ljh.111.2023.02.16.05.14.44
+        by smtp.gmail.com with ESMTPSA id j8-20020a2e8248000000b00293500280e5sm194345ljh.111.2023.02.16.05.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 05:14:44 -0800 (PST)
+        Thu, 16 Feb 2023 05:14:46 -0800 (PST)
 From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,10 +60,10 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
         "David S. Miller" <davem@davemloft.net>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, Jordan Crouse <jorcrous@amazon.com>
-Subject: [PATCH v10 09/10] crypto: qce: core: Make clocks optional
-Date:   Thu, 16 Feb 2023 15:14:29 +0200
-Message-Id: <20230216131430.3107308-10-vladimir.zapolskiy@linaro.org>
+        linux-crypto@vger.kernel.org
+Subject: [PATCH v10 10/10] crypto: qce: core: Add a QCE IP family compatible 'qcom,qce'
+Date:   Thu, 16 Feb 2023 15:14:30 +0200
+Message-Id: <20230216131430.3107308-11-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20230216131430.3107308-1-vladimir.zapolskiy@linaro.org>
 References: <20230216131430.3107308-1-vladimir.zapolskiy@linaro.org>
@@ -78,45 +78,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thara Gopinath <thara.gopinath@gmail.com>
+The added 'qcom,qce' compatible value will serve as a sole QCE IP family
+compatible, since a particular QCE IP version is discoverablem thus, if
+it'd be needed to differentiate various IP versions, it can be obtained
+in runtime.
 
-On certain Snapdragon processors, the crypto engine clocks are enabled by
-default by security firmware and the driver should not handle the clocks.
-Make acquiring of all the clocks optional in crypto engine driver, so that
-the driver initializes properly even if no clocks are specified in the dt.
+Two IP version based compatibles are left untouched to preserve backward
+DTB ABI compatibility.
 
-Tested-by: Jordan Crouse <jorcrous@amazon.com>
-Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-[Bhupesh: Massage the commit log]
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- drivers/crypto/qce/core.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/crypto/qce/core.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-index 0654b94cfb95..5bb2128c95ca 100644
+index 5bb2128c95ca..fce49c0dee3e 100644
 --- a/drivers/crypto/qce/core.c
 +++ b/drivers/crypto/qce/core.c
-@@ -209,15 +209,15 @@ static int qce_crypto_probe(struct platform_device *pdev)
- 	if (ret < 0)
- 		return ret;
- 
--	qce->core = devm_clk_get(qce->dev, "core");
-+	qce->core = devm_clk_get_optional(qce->dev, "core");
- 	if (IS_ERR(qce->core))
- 		return PTR_ERR(qce->core);
- 
--	qce->iface = devm_clk_get(qce->dev, "iface");
-+	qce->iface = devm_clk_get_optional(qce->dev, "iface");
- 	if (IS_ERR(qce->iface))
- 		return PTR_ERR(qce->iface);
- 
--	qce->bus = devm_clk_get(qce->dev, "bus");
-+	qce->bus = devm_clk_get_optional(qce->dev, "bus");
- 	if (IS_ERR(qce->bus))
- 		return PTR_ERR(qce->bus);
- 
+@@ -293,6 +293,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
+ static const struct of_device_id qce_crypto_of_match[] = {
+ 	{ .compatible = "qcom,crypto-v5.1", },
+ 	{ .compatible = "qcom,crypto-v5.4", },
++	{ .compatible = "qcom,qce", },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
 -- 
 2.33.0
 
