@@ -2,139 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B51E3698F96
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F415698F9B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjBPJTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 04:19:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34040 "EHLO
+        id S229630AbjBPJUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:20:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjBPJTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:19:19 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EEA01D913;
-        Thu, 16 Feb 2023 01:19:16 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pSaPz-0007OX-0D;
-        Thu, 16 Feb 2023 10:19:07 +0100
-Date:   Thu, 16 Feb 2023 09:19:01 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Mingming Su <Mingming.Su@mediatek.com>,
-        linux-crypto@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: rng: Add MediaTek MT7981 TRNG
-Message-ID: <Y+31BSUGVbiOSFxs@makrotopia.org>
-References: <89865515728cb937b6591160ad9c30b4bcc8dd41.1676467500.git.daniel@makrotopia.org>
- <c750e786ad0f529d2ae63c8f766d3c294808ff53.1676467500.git.daniel@makrotopia.org>
- <5341d0fa-1415-b711-30f0-f0a867af0bc4@linaro.org>
+        with ESMTP id S229515AbjBPJUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:20:23 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63748CC29
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:20:22 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id dr8so3518061ejc.12
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:20:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2DotY9xq4boB/Mcsod0xacR2OaK1YPcZWDgZTfKhuQo=;
+        b=COx7dzf+G7Cv2iqPmtOmPEe+ZgNG15bQAacMWsBJbP2y0W2jWn1qquysgqmRjOhLmC
+         AopDclPFTZbLeoFmmUwR2TDd21Quss0eg+F56ZNoxsToV+zmhKslS2VjcguZVHh+Tzyv
+         6/hXlfdUjEnBZQWDwjxCPmM18JKp/TAlhfPcO2mdWPJypBMYL5GSXXpP+Cyzp4jqSxJL
+         99CMjp/v5Xm1sBeymnjD3jv+nIZDNYmrMT29GVSdeWAlzdwJVfN/AmX57ynRZ57yCmg6
+         Io1CuTOL9s5sGu3j5JhohvinCfW+1BBsd56tFTDSZCSvgXNih1sv378I5D+EISsWtHdh
+         eAiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2DotY9xq4boB/Mcsod0xacR2OaK1YPcZWDgZTfKhuQo=;
+        b=XjoroVQ5wy7ukzzAuCU01sPqCVaDbp4HSJGs7N2Z9sZfh2ewv4fHYR6CtOyhw3rWGy
+         yjnPznGELq4DnH97WjeO007hK1qIjrrHFcGOIHSd05SbeJknB1v47XvXrLPkMaZ1WDNY
+         VYz9oWJdxrTYbb5z0967SDYYrBOnS8HixLBmQellUqSIj8PudtMsY/mC4FxjQDM6qtN2
+         /vhnwM518Ani1mNoLEM6v1CUPpY2v8LmMYTX8Y64VCdtWkOKBUGeQrg5d2sGVM61wTIt
+         n5QLV1+zTEEbzo7OKIYlGG0sqTQHED8l0VzLJV1f9AWDlyLUYUyBu7QBBe7p20XOgMBW
+         6odw==
+X-Gm-Message-State: AO0yUKUZ8oUzLiqTyW2rHSTi2E3pKO1ehKbojXwx4jkUtdJ8WU0CoolA
+        mr9LEsxxXKesSRqFuqGmoEJpcA==
+X-Google-Smtp-Source: AK7set+rX7Ybm1ymFLZH5r/hHPJgeLcoeop735NHEWRkuDpbuddXMRK+3E24gNlQtBTojxSYvdgI3A==
+X-Received: by 2002:a17:907:9892:b0:8a9:e330:3a23 with SMTP id ja18-20020a170907989200b008a9e3303a23mr5657316ejc.26.1676539220889;
+        Thu, 16 Feb 2023 01:20:20 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id qw13-20020a170906fcad00b008b131861890sm558183ejb.62.2023.02.16.01.20.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 01:20:20 -0800 (PST)
+Message-ID: <cf375c2d-cb73-7d24-1394-c0eeb10ea048@linaro.org>
+Date:   Thu, 16 Feb 2023 10:20:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5341d0fa-1415-b711-30f0-f0a867af0bc4@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,ulpi-ext-vbus-drv
+ quirk
+Content-Language: en-US
+To:     Piyush Mehta <piyush.mehta@amd.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        balbi@kernel.org, Thinh.Nguyen@synopsys.com
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, michal.simek@amd.com,
+        siva.durga.prasad.paladugu@amd.com, git@amd.com
+References: <20230215093146.5812-1-piyush.mehta@amd.com>
+ <20230215093146.5812-2-piyush.mehta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230215093146.5812-2-piyush.mehta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 16, 2023 at 10:14:33AM +0100, Krzysztof Kozlowski wrote:
-> On 15/02/2023 14:27, Daniel Golle wrote:
-> > Add documentation to describe the MediaTek true random number generator
-> > which is provided by ARM TrustedFirmware-A of the MT7981.
-> > 
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> >  .../bindings/rng/mediatek,mt7981-rng.yaml     | 39 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> >  2 files changed, 40 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml b/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
-> > new file mode 100644
-> > index 000000000000..d577d60538d8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rng/mediatek,mt7981-rng.yaml
-> > @@ -0,0 +1,39 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rng/mediatek,mt7981-rng.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek Random number generator (v2/SMC)
-> > +
-> > +maintainers:
-> > +  - Daniel Golle <daniel@makrotopia.org>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^rng$"
+On 15/02/2023 10:31, Piyush Mehta wrote:
+> Some ULPI USB PHYs do not support an internal vBus supply, to drive the
+> CPEN pin properly, it requires configuration of the ULPI DRVVBUSEXTERNAL
+> bit of the USB ULPI PHY OTG_CTRL register.
 > 
-> 1. We don't enforce it in device bindings, so drop it.
+> Added 'snps,ulpi-ext-vbus-drv' DT property to configure the USB2 PHY to
+> drives VBUS with an external supply.
+> 
+> When the ULPIEXTVBUSDRV bit is set to '1' in the Global USB2 PHY
+> Configuration registers, PHY drive vBus with an external 5V supply source.
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> ---
 
-Ack.
 
-> 2. It's not even correct. You have reg.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-No, there isn't any reg, as this driver does not access a MMIO mapped
-resource but rather uses Secure Monitor Call interface to access the
-TRNG via ARM TrustedFirmware-A.
+Best regards,
+Krzysztof
 
-> 
-> 
-> > +
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt7981-rng
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: rng
-> 
-> Drop clock-names and rely on index.
-
-Will drop, reg, clocks and clock-names, that slipped in from the
-document I used as template for this one. The driver uses neither of
-those.
-
-> 
-> > +
-> > +required:
-> > +  - compatible
-> 
-> and reg?
-> 
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    rng {
-> > +      compatible = "mediatek,mt7981-rng";
-> > +    };
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
