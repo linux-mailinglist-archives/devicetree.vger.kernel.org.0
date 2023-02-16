@@ -2,123 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0804698A85
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 03:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6684A698A8A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 03:32:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbjBPCbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 21:31:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S229462AbjBPCcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 21:32:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjBPCbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 21:31:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C4EE36472;
-        Wed, 15 Feb 2023 18:31:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DBB6461E52;
-        Thu, 16 Feb 2023 02:31:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42C92C4339B;
-        Thu, 16 Feb 2023 02:31:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676514660;
-        bh=u/bsvXIzqor9iuGuHPDp7QXFHLUgCYPJv8kDTJ19dx0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qg4Yx1CTlW7uJOZzQBGoAmXvvtMfsgQlgkbnnoxXpk1RiLLIBnvoc6D5rb3VacjZX
-         DALGn+aroOpfwTMd5dFSuR8rIoucYXrwTM23d0vD+fPdoN2wKsC93AmOugyNwdLkqk
-         ZZfW03HAH720W/8JYVty20mmIPWvnLFxgY7mKGo1DMbuDaveUqbdz48wubJTdGC/2T
-         83jhR3SwY+r0xlcMRzpsP+CcLx327Y2+Wx/nkmobygSSwWwEv0HUkrOOkQa4oGza9Z
-         t0ZUfnthGswAuLZkMBFdprwHfsdjA2EmSJxJA/rNS4jyC2CQW5CFWum9sX0ZPZgeCg
-         ckmNtbUXhPbKA==
-Received: by mail-vs1-f53.google.com with SMTP id g8so523095vso.3;
-        Wed, 15 Feb 2023 18:31:00 -0800 (PST)
-X-Gm-Message-State: AO0yUKWbFvfye+NAFqOWdIPVmZ7siOLK4kkHCbOLO2q+vXx66vPpkjLQ
-        KraIGr2Ud1oV6aQwQeONUB7aczow+2Muh4tOYQ==
-X-Google-Smtp-Source: AK7set/UhZadcx+v7m7CiQDl2HFSCVJPIEq7khDXu99TvHakVnEGqht+mmQEIEDWCRfTGq0q+vxgdUGvP+lMzf4BrcI=
-X-Received: by 2002:a67:d812:0:b0:412:4fed:e7ad with SMTP id
- e18-20020a67d812000000b004124fede7admr792108vsj.67.1676514659212; Wed, 15 Feb
- 2023 18:30:59 -0800 (PST)
+        with ESMTP id S229460AbjBPCcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 21:32:14 -0500
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF4636472;
+        Wed, 15 Feb 2023 18:32:13 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id bj22so416395oib.11;
+        Wed, 15 Feb 2023 18:32:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KOuLr4scIF1NfqJ8T0M99xrYHbB7KQ22DgnSgEZbsMk=;
+        b=c4PkKwkHgI//2uC5MFjnlmtuMa7Y2BImiCAfOfbklBahuvHPM72G7NpUMN80YI2gqV
+         CayArmTfDAUadfY/x/ASQFrnjZWwt3sUhJOcUllJVTmpVrJ/k+EgXV0e0PN8mtS/jeXu
+         uZAowfhOy3Dn7Gvu27YDt5+4glkS3gXzSulmDPIDQnYRY/ClJhrWaMQW/9Fve1+ai8cE
+         QCs1Mw9n7kIwF89KIdjySd4GE6cvedl0j05yaMynt4HAqzTue3/Qsm9l8W+hhPGWMaCE
+         VEDXseR3Ovi2n65+7roMXXjCPd43FGNJA45KTPOjY81KTDZP7z6CDGMJB2K7QmMhk0IB
+         ou5A==
+X-Gm-Message-State: AO0yUKULKz/xQw+1Sj5+uALtfWxDbq8YSWKK7LkAdSeYDUoXAXt41pHJ
+        dwYjomT4hIMBECI8eE7ZOg==
+X-Google-Smtp-Source: AK7set/YKv86MiKqaVAX4xz6xbPDlGpjyc03s+rvbI5f7CRlAlu6x8dJZTXBA89nFKc+/LzMvuW88A==
+X-Received: by 2002:aca:2213:0:b0:35a:d192:9a53 with SMTP id b19-20020aca2213000000b0035ad1929a53mr1864308oic.41.1676514732936;
+        Wed, 15 Feb 2023 18:32:12 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f9-20020a05680814c900b0037d59e90a07sm48171oiw.55.2023.02.15.18.32.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Feb 2023 18:32:12 -0800 (PST)
+Received: (nullmailer pid 1200075 invoked by uid 1000);
+        Thu, 16 Feb 2023 02:32:11 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230213155833.1644366-1-frieder@fris.de> <20230213155833.1644366-2-frieder@fris.de>
- <20230215200213.GA467386-robh@kernel.org> <a32979ac-d272-0865-f453-c65d405814c8@denx.de>
-In-Reply-To: <a32979ac-d272-0865-f453-c65d405814c8@denx.de>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 15 Feb 2023 20:30:47 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ3o3Z+jLy-GBJW2i1h7=uN=fPEaC+YTU07P+LbEoq5Vg@mail.gmail.com>
-Message-ID: <CAL_JsqJ3o3Z+jLy-GBJW2i1h7=uN=fPEaC+YTU07P+LbEoq5Vg@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: regulator: pca9450: Document new usage
- of sd-vsel-gpios
-To:     Marek Vasut <marex@denx.de>
-Cc:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        netdev@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Per-Daniel Olsson <perdo@axis.com>,
-        Rickard x Andersson <rickaran@axis.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Andrew Lunn <andrew@lunn.ch>, Arun.Ramadoss@microchip.com
+In-Reply-To: <20230216013230.22978-13-ansuelsmth@gmail.com>
+References: <20230216013230.22978-1-ansuelsmth@gmail.com>
+ <20230216013230.22978-13-ansuelsmth@gmail.com>
+Message-Id: <167651373836.1183034.17900591036429665419.robh@kernel.org>
+Subject: Re: [PATCH v8 12/13] dt-bindings: net: phy: Document support for
+ leds node
+Date:   Wed, 15 Feb 2023 20:32:11 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 7:27 PM Marek Vasut <marex@denx.de> wrote:
->
-> On 2/15/23 21:02, Rob Herring wrote:
-> > On Mon, Feb 13, 2023 at 04:58:19PM +0100, Frieder Schrempf wrote:
-> >> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> >>
-> >> The sd-vsel-gpios property is abandoned in its current meaning as an
-> >> output. We now use it to specify an optional signal that can be
-> >> evaluated by the driver in order to retrieve the current status
-> >> of the SD_VSEL signal that is used to select the control register
-> >> of LDO5.
-> >>
-> >> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> >> ---
-> >>   .../regulator/nxp,pca9450-regulator.yaml      | 23 ++++++++++++++-----
-> >>   1 file changed, 17 insertions(+), 6 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
-> >> index 835b53302db8..c86534538a4e 100644
-> >> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
-> >> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
-> >> @@ -40,8 +40,24 @@ properties:
-> >>       description: |
-> >>         list of regulators provided by this controller
-> >>
-> >> +    properties:
-> >> +      LDO5:
-> >> +        type: object
-> >> +        $ref: regulator.yaml#
-> >> +        description:
-> >> +          Properties for single LDO5 regulator.
-> >> +
-> >> +        properties:
-> >> +          sd-vsel-gpios:
-> >
-> > It is a pin on the device, right? Then it belongs in the device node as
-> > it was.
-> >
-> > Can't the direction of the signal tell you how it is used? Assuming the
-> > pin is bidirectional?
->
-> The pin is input to the PMIC, it is unidirection, i.e.
->
-> SoC(output)---->(input)PMIC
->
-> > The binding should support any possible way the device is wired, not
-> > just what's been seen so far on some boards.
->
-> The usage is always the above as far as I can tell.
 
-This patch is saying the opposite though. Something else drives the
-signal, but the signal is also routed to the SoC to sample the state.
+On Thu, 16 Feb 2023 02:32:29 +0100, Christian Marangi wrote:
+> Document support for leds node in phy and add an example for it.
+> Phy led will have to match led-phy pattern and should be treated as a
+> generic led.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/net/ethernet-phy.yaml | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
 
-Rob
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.example.dtb: ethernet-phy@0: leds:led-phy@0:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+	'netdev' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+	'netdev' does not match '^mmc[0-9]+$'
+	'netdev' does not match '^cpu[0-9]*$'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230216013230.22978-13-ansuelsmth@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
