@@ -2,126 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F19066994CF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 13:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F7166994D0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 13:53:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjBPMwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 07:52:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34496 "EHLO
+        id S230343AbjBPMxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 07:53:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbjBPMwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 07:52:15 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907CC269F
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:52:13 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id z13so1502414wmp.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:52:13 -0800 (PST)
+        with ESMTP id S229674AbjBPMxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 07:53:03 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E63B23E62E
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:53:01 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id l2so1802057wry.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:53:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3fURNFwbiEdBhrpBfrsEhNqdNbbdKyGMjFWCZrl9ICw=;
-        b=MJSZe0XdE7hWpZfFDi3EAkuzdy7c8YEweCJMwKpcADEai0u15DFqmcOkoDvjExQTNa
-         PGvJhh9XBhw+UlOIjzHld3Z4O/lHXZ9C8pFO+ro0isFF2RQ5zY2K/WpESSPUOPNeCjoq
-         qgabMPLc1NtSucZ27e1l/6zEIEtkMJxo7xgmEVyh87W4Gcljm/psyRzfY6g0ThJdTlI5
-         7LuIoRsBmosiX4RMdTXEMoOTJ3whb/qzFnzNk+EwuL7NeeecTUc9SdpT9iiAEXlYrp5Y
-         CZhO2/lEDx4zE4tyB8FjuUYCICQHMS+dWFhicTSx3izpzO2TnpSdIfK2Dj//V1eslWid
-         ooxg==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xezfJbuh45gj2JjckjB6XpRuXqlI1L0Zk27ygbHi2sM=;
+        b=RsKln7AsMorwkH0gJU5OyxYkvD7xpdbVrOXvSnQ+O3lOsKzg01F4eEfoPoTP9nDfda
+         x/G0TM2xa2QorP1CJtxSXjdKONHzb7sCtGQgHeRyp4Oy4M7pQG4SgxBXcy+kgZmHVdY9
+         /jLpfjxp7ZOSubVg73McCDBXV8jKx01//BOn5aZeDdhkeJ93Fkr19sv5gmHfUHnjXMVL
+         72vu1sp+yr5dF7Chsxr1/FbOt6stY59vrlelop6QHBpx+5+RrizttWpwXALe3Iscksl2
+         rX3MFmpEJCJIuEprwXqmJfE3lJWjfcpupeOdee5fvT5QeMIrih/NlhsYyfgMp71SsTYX
+         3wMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3fURNFwbiEdBhrpBfrsEhNqdNbbdKyGMjFWCZrl9ICw=;
-        b=IRquVJon5D1hnyw8F1waPjdXro6wDsZ6TDI4kbTej5BlNDNI8pEDmpRsJblP2sZJvC
-         Ps6qf0Oiyh8waJO6yW7FfnnwyEWEwFqOJrCDbTSDEh4A5sZ6v+wkI040dGWcPsA4Zr/f
-         yAXaa/GLuMZJrhocfQetYtR9QXqr8WvANCLxCdIcYOyU1dQHKxUfuFJ0HDRGc2ndBOIm
-         PbDBWLwc+LMdRqum9NX4UpJGybyTBuSnCN65JVvz7MufZBSoNxxQWf61AqaSnqt5cNyH
-         /z99Z25IO1F24ErPTT6UzBktdvALhStKbiyRuJ6KKX7BgnMmTa80+cSq9ai1LGrnzTsv
-         2ruA==
-X-Gm-Message-State: AO0yUKV9S1mDjEOia1THqm7NECQ1Skr5aGFhS0orTYNhwwyAFZaqN0zr
-        J32GPOpA7hUf4g3H+d4Wz1vwI728YxlPlY51izE=
-X-Google-Smtp-Source: AK7set94rPRKvqc3t74D75F2PTN7qeKsoMoOgT33uDhuTptxL7rcZglfbf8sW5s9AoblSSdXHQpAGg==
-X-Received: by 2002:a05:600c:4b29:b0:3e2:147f:ac1a with SMTP id i41-20020a05600c4b2900b003e2147fac1amr1256780wmp.21.1676551932009;
-        Thu, 16 Feb 2023 04:52:12 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:13e4:d5bc:1ce7:c1b6? ([2a01:e0a:982:cbb0:13e4:d5bc:1ce7:c1b6])
-        by smtp.gmail.com with ESMTPSA id a4-20020a05600c348400b003df5be8987esm5308945wmq.20.2023.02.16.04.52.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 04:52:11 -0800 (PST)
-Message-ID: <21ae5f5f-2336-db5b-f98a-f83391e1becd@linaro.org>
-Date:   Thu, 16 Feb 2023 13:52:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: mmc: meson-gx: fix interrupt binding
-Content-Language: en-US
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        bh=xezfJbuh45gj2JjckjB6XpRuXqlI1L0Zk27ygbHi2sM=;
+        b=Qwnojie+qAifYKj23xwQty9z8QS0qTZFatLNPTfo0w5ld+uuibrnxdcbcYzTesfklu
+         0adLw00Qq1k/7P/eJynOY66yE4prL1P426RdgzLS6SsoHD00qy4EIP6s6bdCBFA7Amao
+         jJRC6pEvc0j5Pmqj2poCuU7bQ/cSdJO4N9Hz+C8497l0kkhPlHxUtCLXsAflwA2M3a1z
+         zYvOfVO2HYEczP8l8p3q7elfprDf8xTVahYeaKR3kY1aN1kpYQBaJgIKnMx853CAAyg1
+         bW25+prv2jpRvR82seWrO2zVyRymteJiluwtbfUUGg5SfPdC47W49c3QFGxXPvhMUIof
+         etyw==
+X-Gm-Message-State: AO0yUKUWkG/UcOX8vG87M3LN4baG+Csz9r0vlY8hfmeShkdMAhPLFBVZ
+        ooepZVm7lKXvv98qjGlOhrw6kw==
+X-Google-Smtp-Source: AK7set8+SE5hruj4LixBR3rciJmVVEiwg886Sj8o4flmK5eiTC3sED9nIXtrzH7qrgBPh2zYIzA8Gg==
+X-Received: by 2002:a5d:68c1:0:b0:2c5:58f5:3c40 with SMTP id p1-20020a5d68c1000000b002c558f53c40mr4200012wrw.47.1676551980417;
+        Thu, 16 Feb 2023 04:53:00 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:7c5b:1160:db5d:72da])
+        by smtp.gmail.com with ESMTPSA id h18-20020adffd52000000b002be5bdbe40csm1453292wrs.27.2023.02.16.04.52.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Feb 2023 04:53:00 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <d5542f6e-920e-93cf-a453-b0601d03f48d@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <d5542f6e-920e-93cf-a453-b0601d03f48d@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v3 0/9] arm64: dts: qcom: sa8775p-ride: enable relevant QUPv3 IPs
+Date:   Thu, 16 Feb 2023 13:52:48 +0100
+Message-Id: <20230216125257.112300-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 12:49, Heiner Kallweit wrote:
-> Reflect in the binding that the cd interrupt is optional,
-> and add a description of the interrupts.
-> 
-> Fixes: 09b31a610328 ("dt-bindings: mmc: meson-gx: support specifying cd interrupt")
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->   .../devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml         | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> index c8c30300d..cd3f75821 100644
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> @@ -28,7 +28,11 @@ properties:
->       maxItems: 1
->   
->     interrupts:
-> +    minItems: 1
->       maxItems: 2
-> +    description:
-> +      mmc controller instance interrupt
-> +      optional card detect interrupt
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-I would instead write:
+This enables the QUPv3 interfaces that are exposed on the sa8775p-ride
+board: I2C, SPI and the Bluetooth and GNSS UART ports.
 
-interrupts:
-   minItems: 1
-   items:
-     - description: mmc controller instance
-     - description: card detect
+v2 -> v3:
+- fix the interrupt number for uart12
+- replace underscores with hyphens in DT node names (although make dtbs_check
+  does not raise warnings about this)
+- rearrange the commits so that they're more fine-grained with separate
+  patches for adding nodes to dtsi and enabling them for the board
 
-and drop maxItems.
+v1 -> v2:
+- uart17 is the Bluetooth port, not GNSS
+- add uart12 for GNSS too in that case
 
-Neil
->   
->     clocks:
->       maxItems: 3
+Bartosz Golaszewski (9):
+  arm64: dts: qcom: sa8775p: add the QUPv3 #2 node
+  arm64: dts: qcom: sa8775p-ride: enable QUPv3 #2
+  arm64: dts: qcom: sa8775p: add the i2c18 node
+  arm64: dts: qcom: sa8775p-ride: enable i2c18
+  arm64: dts: qcom: sa8775p: add the spi16 node
+  arm64: dts: qcom: sa8775p-ride: enable the SPI node
+  arm64: dts: qcom: sa8775p: add high-speed UART nodes
+  arm64: dts: qcom: sa8775p-ride: enable the GNSS UART port
+  arm64: dts: qcom: sa8775p-ride: enable the BT UART port
+
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 100 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi     |  86 +++++++++++++++++++
+ 2 files changed, 186 insertions(+)
+
+-- 
+2.37.2
 
