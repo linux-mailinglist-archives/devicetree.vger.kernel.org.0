@@ -2,67 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6270699CC2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 20:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B6A7699E55
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 21:54:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjBPTCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 14:02:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
+        id S229866AbjBPUyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 15:54:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbjBPTCx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 14:02:53 -0500
-Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6084E047;
-        Thu, 16 Feb 2023 11:02:51 -0800 (PST)
-Received: by mail-vs1-xe2e.google.com with SMTP id d6so566973vsv.6;
-        Thu, 16 Feb 2023 11:02:51 -0800 (PST)
+        with ESMTP id S229793AbjBPUy3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 15:54:29 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C64505D7;
+        Thu, 16 Feb 2023 12:54:28 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id m10so3058499wrn.4;
+        Thu, 16 Feb 2023 12:54:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1676574171;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ha38f0fmpEOnM1kND5UJ5DXzvrawvRzyWhHxzv54J54=;
-        b=k4e8tJRTk/ST2Zuu9Jj7yT2yrrzp2dTtvkU9E+tUBgW0F9T8FHJD9m9EQhPDxAFxIh
-         PB9KQjyHwgWkrGMMz0TENX3Edp63QP2QNQWjwBmzHXcAb1WhT77+4KzSmbz9kTpGaaVe
-         ZGtcIARy6tFjRbyGlelUngrDHcg1tAQVRQXbCwOuyt2jFxxsKyMSx2OdSlmZsgQaeqNZ
-         U5QolkzSC6pf3hk+TIHcEmejUyiE2QoogJ7dYennyPS6oB343S5rMFL0UpJinFSYwh/G
-         mXrRt9EmUgnG8cX8TS2q7GPy2o0Ygc/uTWOIrcFmF04ZRIfNELsiG1q8dHbE6/kgVps1
-         goGA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=XxHXAnEzcfwmzL57yBeDEI2OXJgv4sM92NV8AEEiDjk=;
+        b=IyXielZJHYrNZdwUKZ/VHSjiRRKC/fjAWKB6XxREQUlMeGCRBy5MFzAGkBPKtYuX4z
+         msWn2erMVQDpu8k7efDx+nvXtSeWNs31J9hz/wEg2PaPxLq7OR55qY/q/YrNJOwefAZS
+         dSYlPVT7UlhosbScdEHNsDbT/vgPIxzsYh3RHF9qb0wZEOoMwe4jEGldfVHfsXzlipXB
+         pHKvx/izp8RyWFctgV4zplDi9ggX4ajBM3dpn2fUPYBbCJcl4kiOEAjtyS6blk1CWixb
+         voq8WTudsJtj8Wpif+Z8gjXgdM7gnXwodJ57wPcwEt1MP5VtwLyMDcUwDV0VR7RVEoE5
+         rxrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1676574171;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ha38f0fmpEOnM1kND5UJ5DXzvrawvRzyWhHxzv54J54=;
-        b=UEBZMlCUnElPD/isQJ0III+azAe5t5NtsefQHrBMtvu3CNxDJBDpmS12lq1nA0LjW9
-         nCx186M+OJrBBDAVooKb60k7Q7/3PyiL4uHuuxdeksQ6sF8uHk7ylHLOsXrBN6GJsb1a
-         6TdYUae/PRDey1hP6xim6E+6EXi4r1UMUF83IDT+K6hfV5wU+hkjqJy4p7JNA4JPm50m
-         Zk6P3hWQd5qu1leHZENEuFJD9PlruC6ENLd6/PnPWbxW3ZV5rRXLszq3Gr1aC7Q2cL9/
-         V5VJUBTvGDjl3hPm7g+mnKXwdrFmDsyKyrho9qMOOSGXFN9fkbVxK3tmlscMn9VWeYN8
-         SI4w==
-X-Gm-Message-State: AO0yUKVeEfxldgNkM1z1Nf8IlRfO2fjHno/NOkjPE3Yiko4hNjRP5+qP
-        FBXHRjdyMhVVnQqO1DmJp3jbAawb/cO4KNXiwSg=
-X-Google-Smtp-Source: AK7set/E7pMIS7oAR73XeCfoO9S741Ct5H+sLf46Ix6uSMr2jWMdsM6k9JX7n0ycuwuRP0B2NKEGjPFBtD0BZKdEigA=
-X-Received: by 2002:a67:6c05:0:b0:412:378c:a3a5 with SMTP id
- h5-20020a676c05000000b00412378ca3a5mr1400063vsc.8.1676574170853; Thu, 16 Feb
- 2023 11:02:50 -0800 (PST)
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XxHXAnEzcfwmzL57yBeDEI2OXJgv4sM92NV8AEEiDjk=;
+        b=F4pOc7lBRkKpfcBSQQfjt+lBPSTLGR/5RQW8DzBRiPwd4K0IxJKrbj/qeTpjLxJvbM
+         /e8MsTZDANNOv4I8qNWEnlrH2UMwC8g6uLWXc7zh+jg/Y0e6T1la5gSd/hvivMJEt/Pr
+         JIaofMGc9R1qGDIXVKgCZmAAbrAgkMktG69/41ncNbrC6PVc9Wnd2sEj8DLfjJboOVwN
+         8HSyD9RRIx4y8LTuVspJd/Z3kBdsGKJk1JwcwxpxyFlNHOjui2rlIPyFXud+w0VjS0ew
+         sGOuxSV4tNEx36z9Pk/YMjNjJM0Pxn25tDN5uYEb5FB2FxcVHozSX1bTY8rpHSJSPtKD
+         FCrA==
+X-Gm-Message-State: AO0yUKV4g/82pYyIPAD1LKd2BAc9tlgH06umCkYavKxDvD0E+qxj9QnR
+        KxQM/8jLQudamiod7fHAgGzMMMjYIN8=
+X-Google-Smtp-Source: AK7set/m5y8QLJ2rVEPQuLfvuJfCZb7LXLMd5x6BkDXzGrf7EnTAlb0ezjgXsvVzFHXmWfzhzcXAjA==
+X-Received: by 2002:adf:f3cf:0:b0:2c5:8575:c37 with SMTP id g15-20020adff3cf000000b002c585750c37mr2323400wrp.66.1676580866381;
+        Thu, 16 Feb 2023 12:54:26 -0800 (PST)
+Received: from Ansuel-xps. (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
+        by smtp.gmail.com with ESMTPSA id w13-20020adfcd0d000000b002c54f39d34csm2368271wrm.111.2023.02.16.12.54.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Feb 2023 12:54:25 -0800 (PST)
+Message-ID: <63ee9801.df0a0220.a106.72a3@mx.google.com>
+X-Google-Original-Message-ID: <Y+3+0e1fVOF0m329@Ansuel-xps.>
+Date:   Thu, 16 Feb 2023 11:00:49 +0100
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        netdev@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>, Arun.Ramadoss@microchip.com
+Subject: Re: [PATCH v8 12/13] dt-bindings: net: phy: Document support for
+ leds node
+References: <20230216013230.22978-1-ansuelsmth@gmail.com>
+ <20230216013230.22978-13-ansuelsmth@gmail.com>
+ <167651373836.1183034.17900591036429665419.robh@kernel.org>
 MIME-Version: 1.0
-References: <20230210223638.12796-1-kaehndan@gmail.com> <20230210223638.12796-4-kaehndan@gmail.com>
- <Y+eFhKw5KcPUNyXy@smile.fi.intel.com>
-In-Reply-To: <Y+eFhKw5KcPUNyXy@smile.fi.intel.com>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Thu, 16 Feb 2023 13:02:40 -0600
-Message-ID: <CAP+ZCCcC6hVxMqZCR3qcRXAcUkQp_B=DF4PVy--ngLwmPY-UjQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] HID: cp2112: Fwnode Support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <167651373836.1183034.17900591036429665419.robh@kernel.org>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,66 +93,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Wed, Feb 15, 2023 at 08:32:11PM -0600, Rob Herring wrote:
+> 
+> On Thu, 16 Feb 2023 02:32:29 +0100, Christian Marangi wrote:
+> > Document support for leds node in phy and add an example for it.
+> > Phy led will have to match led-phy pattern and should be treated as a
+> > generic led.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  .../devicetree/bindings/net/ethernet-phy.yaml | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.example.dtb: ethernet-phy@0: leds:led-phy@0:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'netdev' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'netdev' does not match '^mmc[0-9]+$'
+> 	'netdev' does not match '^cpu[0-9]*$'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> 
 
-On Sat, Feb 11, 2023 at 6:10 AM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, Feb 10, 2023 at 04:36:38PM -0600, Danny Kaehn wrote:
-> > Bind i2c and gpio interfaces to subnodes with names
-> > "i2c" and "gpio" if they exist, respectively. This
-> > allows the gpio and i2c controllers to be described
-> > in firmware as usual. Additionally, support configuring the
-> > i2c bus speed from the clock-frequency device property.
->
-> Entire series (code-wise, w/o DT bindings, not an expert there) looks good to
-> me, but one thing to address.
->
-> ...
->
-> > +     dev->gc.fwnode                  = device_get_named_child_node(&hdev->dev, "gpio");
->
-> Using like this bumps a reference count IIRC, so one need to drop it after use.
-> But please double check this.
->
+Hi, I could be wrong but this should be fixed by the previous patch that
+adds netdev to the trigger list.
 
-Thanks for bringing this up -- I should have explicitly called this
-out as something I was looking for feedback on, as I was unsure on
-this.
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230216013230.22978-13-ansuelsmth@gmail.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-I noticed that many of the users of device_get_named_child_node didn't
-explicitly call fwnode_handle_put, and was unsure about the mechanics
-of when this is needed.
-
-The underlying call to device_get_named_child_node for an of_node is
-of_fwnode_get_named_child_node, which does call
-for_each_available_child_of_node and returns from within the loop, so
-I _think_ you're right that the return will have its refcount
-incremented (of_get_next_available_child calls of_node_get on the next
-node, and doesn't call put until the next iteration).
-
-However, I also noticed that many other functions in
-drivers/base/property.c contain a message like the following in their
-header comment:
-"The caller is responsible for calling fwnode_handle_put() for the
-returned node."
-and this isn't present for device_get_named_child_node, which is
-defined in that same file, which made me suspicious that this is
-somehow done elsewhere internally (although I should know better than
-to trust documenting comments :) ).
-
-I'll wait a while longer to see if someone with a better grasp than me
-on dynamic DT/firmware weighs in, otherwise, I'll assume I'll need to
-call fwnode_handle_put both on error paths in _probe as well as in
-_remove, since that appeared to be the case with the DT-specific
-of_get_child_by_name path.
-
-Thanks,
-
-Danny Kaehn
-
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+-- 
+	Ansuel
