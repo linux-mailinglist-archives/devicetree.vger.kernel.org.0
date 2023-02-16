@@ -2,105 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D22A4699FB5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 23:25:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 275EC69A2B3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 00:53:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230337AbjBPWZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 17:25:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
+        id S230111AbjBPXxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 18:53:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230283AbjBPWZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 17:25:22 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA8D2558A;
-        Thu, 16 Feb 2023 14:25:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1676586321; x=1708122321;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=MY99QrfOBLMmoR5qfOBBHic4fkNzKFK/inr8InHiPlo=;
-  b=BzN0k7gn72inAs2uKFv6lYLyR2/Nl4pUcLLijd2UcGMaBIQh40xF1x1M
-   A2Gz4anC8vBkHabhrjLJTUWZbOy3KLuZlb2wsOvkWpvxd/7+vPZgv44U3
-   Zu8/FREvMNyLwOYKfWw2Sff3Rx8M3lqMZd5SBxnq8KaGs9fSpOkugHbPD
-   QaAnAhE10FkAjbZPBHFtiSwAs58/Z+tfCkYwJYyMKgn62awfg0tiAcw36
-   HZ7hUEhH9QHpLQi4SP/vritMRO5iG4LvxApoTGsjVfUCoz2hG3DmYKYoX
-   PQ/aLmsTsPOqySs7kEdztT0THDSctWJnDIVU+zbiaNHsN8ytcuSF+YoSI
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,304,1669100400"; 
-   d="scan'208";a="201366783"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Feb 2023 15:25:17 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 16 Feb 2023 15:25:16 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.16 via Frontend Transport; Thu, 16 Feb 2023 15:25:16 -0700
-From:   <Ryan.Wanner@microchip.com>
-To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <ludovic.desroches@microchip.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Ryan Wanner <Ryan.Wanner@microchip.com>
-Subject: [PATCH v2 2/2] ARM: at91: dt: adding new macros
-Date:   Thu, 16 Feb 2023 15:25:24 -0700
-Message-ID: <20230216222524.3107759-3-Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230216222524.3107759-1-Ryan.Wanner@microchip.com>
-References: <20230216222524.3107759-1-Ryan.Wanner@microchip.com>
+        with ESMTP id S229614AbjBPXxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 18:53:31 -0500
+Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC065958C;
+        Thu, 16 Feb 2023 15:53:12 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4PHsFq0GS4z4x89;
+        Fri, 17 Feb 2023 10:53:02 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1676591584;
+        bh=fP7M6V+cjNdWp1AJeaYpecLEvF9ZpOfTM+q7vfHAObU=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=rACrYxab0E15ubVIDUkicHNZ9A7o6QYmslTZDcOJQfv/F/0NBjWDNSogqxgIeXY6/
+         ES7W5herbayThve7MD61VmbV1VgH9umTLzCioelUwYSDn5NuYy2zyhj33GJlWsir8a
+         ulpOs7iyxfs3sCIy0239wGGeto2v+Mo4XuIdQOnmhKX8lsw/gpAqMubXK7uzmr+MjE
+         fsVJHz/hJPLnVYPKrLNaflekWVbGGbrv7w8dC0g5WWu6f2WLbfm5nYmyePabZYU7Tz
+         xBdgnLQfW2lEvmPa2LK2SR31sA6tFbYUXnUOPsQzeJnqx7s55RErGykHtpIo2Udk4K
+         i8Rj2sYAlIr1g==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 00/10] Add the PowerQUICC audio support using the QMC
+In-Reply-To: <20230216134226.1692107-1-herve.codina@bootlin.com>
+References: <20230216134226.1692107-1-herve.codina@bootlin.com>
+Date:   Fri, 17 Feb 2023 10:52:58 +1100
+Message-ID: <87mt5dyxph.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+Herve Codina <herve.codina@bootlin.com> writes:
+> Hi,
+>
+> This series adds support for audio using the QMC controller available in
+> some Freescale PowerQUICC SoCs.
 
-Adding macros for sama7g drive strength.
+Who's going to take this series?
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
-changes from v1:
-- Fix ABI break.
-- Add some small comments to describe drive strength macros.
+By lines of code it's mostly in drivers/soc/fsl, so I was expecting it
+would go via that tree.
 
- include/dt-bindings/pinctrl/at91.h | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Or is it a sound series that should go via one of the sound trees?
 
-diff --git a/include/dt-bindings/pinctrl/at91.h b/include/dt-bindings/pinctrl/at91.h
-index e8e117306b1b..12f3edf2a9c4 100644
---- a/include/dt-bindings/pinctrl/at91.h
-+++ b/include/dt-bindings/pinctrl/at91.h
-@@ -42,8 +42,16 @@
- #define AT91_PERIPH_C		3
- #define AT91_PERIPH_D		4
- 
--#define ATMEL_PIO_DRVSTR_LO	1
-+/*These macros are for all other at91 pinctrl drivers*/
-+#define ATMEL_PIO_DRVSTR_LO	0
-+#define ATMEL_PIO_DRVSTR_LO_1	1
- #define ATMEL_PIO_DRVSTR_ME	2
- #define ATMEL_PIO_DRVSTR_HI	3
- 
-+/* These macros are for the sama7g5 pinctrl driver*/
-+#define ATMEL_PIO_DRVSTR_LO_D 0
-+#define ATMEL_PIO_DRVSTR_HI_A 1
-+#define ATMEL_PIO_DRVSTR_LO_C 2
-+#define ATMEL_PIO_DRVSTR_LO_B 3
-+
- #endif /* __DT_BINDINGS_AT91_PINCTRL_H__ */
--- 
-2.37.2
+cheers
 
+...
+>  .../soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml      |  172 ++
+>  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml |  234 +++
+>  .../bindings/sound/fsl,qmc-audio.yaml         |  117 ++
+>  MAINTAINERS                                   |   25 +
+>  arch/powerpc/platforms/8xx/cpm1.c             |    2 +-
+>  drivers/soc/fsl/qe/Kconfig                    |   23 +
+>  drivers/soc/fsl/qe/Makefile                   |    2 +
+>  drivers/soc/fsl/qe/qmc.c                      | 1533 +++++++++++++++++
+>  drivers/soc/fsl/qe/tsa.c                      |  869 ++++++++++
+>  drivers/soc/fsl/qe/tsa.h                      |   42 +
+>  include/dt-bindings/soc/fsl,tsa.h             |   13 +
+>  include/soc/fsl/qe/qmc.h                      |   71 +
+>  sound/soc/fsl/Kconfig                         |    9 +
+>  sound/soc/fsl/Makefile                        |    2 +
+>  sound/soc/fsl/fsl_qmc_audio.c                 |  735 ++++++++
+>  15 files changed, 3848 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
+>  create mode 100644 drivers/soc/fsl/qe/qmc.c
+>  create mode 100644 drivers/soc/fsl/qe/tsa.c
+>  create mode 100644 drivers/soc/fsl/qe/tsa.h
+>  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+>  create mode 100644 include/soc/fsl/qe/qmc.h
+>  create mode 100644 sound/soc/fsl/fsl_qmc_audio.c
