@@ -2,69 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2818D698C4B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:46:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC705698C6B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:52:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbjBPFq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 00:46:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44406 "EHLO
+        id S229696AbjBPFwC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Feb 2023 00:52:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbjBPFqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:46:55 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D70B2799F
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 21:46:54 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id b3so1470781lfv.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 21:46:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AXnpNrsFLRDRV5H6+heFUubgTFXomAt3idt+/hXx6hk=;
-        b=DR5HTzIRcGCfsQZrTk3dPz403ec4zkZ7v2QGxwWTqW4brRantS4Q8hbkgcqIPGDnZS
-         beeohWGG8lv6h/Eaw0k9W4ezb2NlcjU1wrTKlGBQ126PtulC+7xJHPBmlJBQy0gWzNN7
-         LKKa59sNKBZIwArta868ZHgo1AHIxCgFw63Mk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AXnpNrsFLRDRV5H6+heFUubgTFXomAt3idt+/hXx6hk=;
-        b=XUyEnSfptX1WrG4NStTj4kkuWxcwBbfxKhkPaRAr/cFFPFjsRBPo8jF9/prVJM3+x5
-         QMQeIe5G7GwxgdeP2kLBGD5mhegbWe6EJxQzuBbJtS1Un6J8YmKQFMnoOadTbJqb84SD
-         VHa/94qOxh7/lotA4ZFFiPShn2aQC79qzkRANzv7swC00uPvO6RZp8UyHzANcZB/STeN
-         RfoTCZa2NfvSjLl4lcttymgxyqXtWmrcWpJ7bj5X5Pi/+ik999V0zOZQHtgVMu4QfDAK
-         PYtqL9j+RuALgpUgXMiaQ/UWQ/sgApMFXy7jLqqjNRm3xSU83RUns8wYcYe2GCNCzEjX
-         KwUw==
-X-Gm-Message-State: AO0yUKVOVAtb/ed4TFxm+597VnSGv0612ZzmECZD62K4qevgok71asqe
-        x4OtafmexViNftCu+JwZeG7vLxWTFT5Hrlnx+Aw6nw==
-X-Google-Smtp-Source: AK7set8f23g7p+AR/YkqBF1Ux4RWNPz/KaYIccAQgKR03jXTvlUKhYKx543msIPep5T6lNeGd07g3VsILIOSERAdQrc=
-X-Received: by 2002:a05:6512:239a:b0:4db:1809:29a1 with SMTP id
- c26-20020a056512239a00b004db180929a1mr565281lfv.2.1676526412762; Wed, 15 Feb
- 2023 21:46:52 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Feb 2023 21:46:52 -0800
+        with ESMTP id S229568AbjBPFwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:52:01 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB4127D6E;
+        Wed, 15 Feb 2023 21:51:58 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id A1C3824E1EC;
+        Thu, 16 Feb 2023 13:51:51 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
+ 2023 13:51:51 +0800
+Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
+ 2023 13:51:50 +0800
+Message-ID: <79b6cc69-5f34-9983-58e3-64da9fac5ef3@starfivetech.com>
+Date:   Thu, 16 Feb 2023 13:51:50 +0800
 MIME-Version: 1.0
-In-Reply-To: <20230213165743.1.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
-References: <20230213165743.1.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 15 Feb 2023 21:46:52 -0800
-Message-ID: <CAE-0n51OSS=Nh2pZmPO3mg4QCvqGZsJ+AFBTAUGr-TZBHCPLCw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180: Fix trogdor qspi pull direction
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>
-Cc:     amstan@chromium.org, mka@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 1/4] dt-bindings: mmc: Add StarFive MMC module
+To:     Shengyu Qu <wiagn233@outlook.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230215113249.47727-1-william.qiu@starfivetech.com>
+ <20230215113249.47727-2-william.qiu@starfivetech.com>
+ <TY3P286MB26111053410F3F96C9C71D2798A39@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+ <9ef960ae-7b61-9ed3-5bab-822e6d7d5a76@starfivetech.com>
+ <202302160545.31G5jiuf087662@SH1-CSMTP-DB111.sundns.com>
+Content-Language: en-US
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <202302160545.31G5jiuf087662@SH1-CSMTP-DB111.sundns.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,42 +61,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2023-02-13 16:57:51)
-> Though it shouldn't matter very much, we've decided that it's slightly
-> better to park the qspi lines for trogdor with an internal pulldown
-> instead of an internal pullup. There was a footnote that Cr50 (which
-> connects to these lines too) may have pulldowns configured on one of
-> the data lines and we don't want to have fighting pulls.
 
-Ok.
 
-> This also
-> means that if the pulls somehow get left powered in S3 (which I'm
-> uncertain about) that they won't be pulling up lines on an unpowered
-> SPI part.
+On 2023/2/16 0:49, Shengyu Qu wrote:
+> Hello William,
+> 
+> Thanks for your reply. So there's v5 series? Btw, please fix maintainer information:
+> 
+> https://patchwork.kernel.org/project/linux-riscv/patch/20230215080203.27445-1-lukas.bulwahn@gmail.com/
+> 
+> Best regards,
+> 
+> Shengyu
+> 
+Hi Shengyu,
 
-As far as I know, the pulls are maintained in S3. There's verbage about
-"keeper" on the pins.
+Here is v4 series, and I fixed the maintainer information in this series which
+Uffe would merge in his next branch.
+Thanks for taking time to review this patch series.
 
-The SPI part is powered in S3 though. I believe it only loses power in
-S5. Can you reword this statement?
-
-The fighting pulls should be resolved though. Or maybe it is better to
-simply not put any pull on the line? Presumably the pull is there to
-avoid seeing 0->1 transitions on the data lines when inactive, but I'm
-not really convinced that is going to happen because the SPI chip itself
-would have to be doing that driving, and the chip select isn't changing.
-
->
-> Originally the pullup was picked because SPI transfers are active low
-> and thus the high state is somewhat more "idle", but that really isn't
-> that important because the chip select won't be asserted when the bus
-> is idle. The chip select has a nice external pullup on it that's
-> powered by the same power rail as the SPI flash.
->
-> This shouldn't have any functionality impact w/ reading/writing the
-> SPI since the lines are always push-pull when SPI transfers are
-> actually taking place.
->
-
-Right.
+Best Regards
+William
+>>
+>> On 2023/2/15 19:59, Shengyu Qu wrote:
+>>> Hello William,
+>>>
+>>> Are you sure changing driver is better than changing yaml bindings? All
+>>>
+>>> previous version sent was syscon and sysreg seems not consistent with
+>>>
+>>> other codes.
+>>>
+>>> Best regards,
+>>>
+>>> Shengyu
+>>>
+>> Hi Shengyu,
+>>
+>> After discussing with colleagues, we decided to restore the lable name to
+>> sys_syscon, and sysreg was just a unique name for the functionality of MMC,
+>> which will be used in all future versions.
+>>
+>> Thanks for taking time reviewing this patch series.
+>>
+>> Best Regards
+>> William
+>>
+>>>> Add documentation to describe StarFive designware mobile storage
+>>>> host controller driver.
+>>>>
+>>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>    .../bindings/mmc/starfive,jh7110-mmc.yaml     | 77 +++++++++++++++++++
+>>>>    1 file changed, 77 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..51e1b04e799f
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>>>> @@ -0,0 +1,77 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/mmc/starfive,jh7110-mmc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: StarFive Designware Mobile Storage Host Controller
+>>>> +
+>>>> +description:
+>>>> +  StarFive uses the Synopsys designware mobile storage host controller
+>>>> +  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: synopsys-dw-mshc-common.yaml#
+>>>> +
+>>>> +maintainers:
+>>>> +  - William Qiu <william.qiu@starfivetech.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: starfive,jh7110-mmc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: biu clock
+>>>> +      - description: ciu clock
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: biu
+>>>> +      - const: ciu
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  starfive,sysreg:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>> +    items:
+>>>> +      - items:
+>>>> +          - description: phandle to System Register Controller syscon node
+>>>> +          - description: offset of SYS_SYSCONSAIF__SYSCFG register for MMC controller
+>>>> +          - description: shift of SYS_SYSCONSAIF__SYSCFG register for MMC controller
+>>>> +          - description: mask of SYS_SYSCONSAIF__SYSCFG register for MMC controller
+>>>> +    description:
+>>>> +      Should be four parameters, the phandle to System Register Controller
+>>>> +      syscon node and the offset/shift/mask of SYS_SYSCONSAIF__SYSCFG register
+>>>> +      for MMC controller.
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - clocks
+>>>> +  - clock-names
+>>>> +  - interrupts
+>>>> +  - starfive,sysreg
+>>>> +
+>>>> +unevaluatedProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    mmc@16010000 {
+>>>> +        compatible = "starfive,jh7110-mmc";
+>>>> +        reg = <0x16010000 0x10000>;
+>>>> +        clocks = <&syscrg 91>,
+>>>> +                 <&syscrg 93>;
+>>>> +        clock-names = "biu","ciu";
+>>>> +        resets = <&syscrg 64>;
+>>>> +        reset-names = "reset";
+>>>> +        interrupts = <74>;
+>>>> +        fifo-depth = <32>;
+>>>> +        fifo-watermark-aligned;
+>>>> +        data-addr = <0>;
+>>>> +        starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
+>>>> +    };
