@@ -2,386 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ED95699746
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E3B6997B6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:42:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbjBPOWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 09:22:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60658 "EHLO
+        id S230239AbjBPOmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 09:42:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbjBPOWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:22:42 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B73356482
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 06:22:23 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id dz21so3334684edb.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 06:22:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LMSroA7NTqEfdgUOUGJc/loVGhG2ewqJeKTXz4Yo+Sk=;
-        b=Iy1hX2J4CDQ7crIeotIv6JEU5sfdu0+ODSWoveRg1dhhTyP4EErRzDUyg7HT3NQMa0
-         DcFOtejX0oHh7PLKj+xKi04ggiRj0gzryMUrm1DPdoVICJzLM4aQBtzif0qnZWxJx4Jq
-         5i1yvu1ci6dNgIaqqjzPRaA3RktrsPPHaDwUZhb2egH+8MmR6Ly5N2jebEU3izVBkraT
-         fCmPsllGNlOW9mVVMdUD8Z/GsXPsLawL9KAqacUAMYP0sxeJrjFfY+yqYQG2ckWevdAB
-         /W4tVb6pSVhtANMhPhms7quRXlF5iil514EErgHfba/Hx5/Zpmvh9XS2FmizB3iLGV1U
-         0ESw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LMSroA7NTqEfdgUOUGJc/loVGhG2ewqJeKTXz4Yo+Sk=;
-        b=WeFqa9x6MENZ/utOva+Z4Y8Y5Noioimp7ZekDk/h0Q41GDTEqAIY1mjXkwVzybJyQo
-         1o1TEs+FvKEzbtZCOBB0FWxG9AwNnlW9+YreAbTToNPhP6BH/qc0XfHGNG82jnU5L1z6
-         eWNW4RThkchDTuaWE/jCCgKIzcSSYHqMoxMdQ36F2vgi88iN6asI37XehZEhKNovqMIe
-         b+nUkfjR+btRt8s1NQyGSZrj5Sr7adyH2qCHVG8rXeOQKs+dkrFu/mLlfwcLsv5UskQL
-         BkdGbFDyhvI25Y6kYPVvgfJAiT9CJEiZNoY3yNBgrQO4edoFVLbNmvTXgYpuy9FGNd0n
-         bb9g==
-X-Gm-Message-State: AO0yUKWTe9sMqu9bI9EGu0Qxh1plTogjZueW8/fugfj2dTsWXQECCcN0
-        5foDb6FKCtoSb+f38vZc91FXUw==
-X-Google-Smtp-Source: AK7set89N50W4mmaSqBwdPY6RgizZS1mmkpPyZ18OccfyKyNudJTBiM4mQ3gJe99ju8HHFdGy7a4+A==
-X-Received: by 2002:a17:906:e89:b0:8b1:7fa:6588 with SMTP id p9-20020a1709060e8900b008b107fa6588mr6007393ejf.12.1676557339909;
-        Thu, 16 Feb 2023 06:22:19 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id ad24-20020a170907259800b0087bdac06a3bsm884757ejc.2.2023.02.16.06.22.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 06:22:19 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229980AbjBPOmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:42:47 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466474D627;
+        Thu, 16 Feb 2023 06:42:37 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 243D524DB8C;
+        Thu, 16 Feb 2023 22:42:22 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
+ 2023 22:42:22 +0800
+Received: from [192.168.125.82] (183.27.97.168) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
+ 2023 22:42:21 +0800
+Message-ID: <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
+Date:   Thu, 16 Feb 2023 22:42:20 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 7/7] media: dt-bindings: samsung,s5c73m3: convert to dtschema
-Date:   Thu, 16 Feb 2023 15:22:04 +0100
-Message-Id: <20230216142204.48394-8-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230216142204.48394-1-krzysztof.kozlowski@linaro.org>
-References: <20230216142204.48394-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220005054.34518-1-hal.feng@starfivetech.com>
+ <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
+ <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
+ <Y6tSWB2+98a8k9Qw@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y6tSWB2+98a8k9Qw@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.168]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung S5C73M3 8Mp camera ISP bindings to DT schema.
+On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
+> On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
+>> On Tue, 20 Dec 2022 23:14:39 +0000, Conor Dooley wrote:
+>> > On Tue, Dec 20, 2022 at 08:50:50AM +0800, Hal Feng wrote:
+>> > > From: Emil Renner Berthing <kernel@esmil.dk>
+>> > > 
+>> > > Add bindings for the system clock and reset generator (SYSCRG) on the
+>> > > JH7110 RISC-V SoC by StarFive Ltd.
+>> > > 
+>> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> 
+>> > > +  clocks:
+>> > > +    items:
+>> > > +      - description: Main Oscillator (24 MHz)
+>> > > +      - description: GMAC1 RMII reference
+>> > > +      - description: GMAC1 RGMII RX
+>> > > +      - description: External I2S TX bit clock
+>> > > +      - description: External I2S TX left/right channel clock
+>> > > +      - description: External I2S RX bit clock
+>> > > +      - description: External I2S RX left/right channel clock
+>> > > +      - description: External TDM clock
+>> > > +      - description: External audio master clock
+>> > 
+>> > So, from peeking at the clock driver & the dt - it looks like a bunch of
+>> > these are not actually required?
+>> 
+>> These clocks are used as root clocks or optional parent clocks in clock tree.
+>> Some of them are optional, but they are required if we want to describe the
+>> complete clock tree of JH7110 SoC.
+> 
+> Perhaps I have a misunderstand of what required means. To me, required
+> means "you must provide this clock for the SoC to operate in all
+> configurations".
+> Optional therefore would be for things that are needed only for some
+> configurations and may be omitted if not required.
+> 
+> From your comment below, boards with a JH7110 may choose not to populate
+> both external clock inputs to a mux. In that case, "dummy" clocks should
+> not have to be provided in the DT of such boards to satisfy this binding
+> which seems wrong to me..
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please see the picture of these external clocks in clock tree.
 
----
+# mount -t debugfs none /mnt
+# cat /mnt/clk/clk_summary
+                                 enable  prepare  protect                                duty  hardware
+   clock                          count    count    count        rate   accuracy phase  cycle    enable
+-------------------------------------------------------------------------------------------------------
+ *mclk_ext*                             0        0        0    12288000          0     0  50000         Y
+ *tdm_ext*                              0        0        0    49152000          0     0  50000         Y
+ *i2srx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+ *i2srx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+ *i2stx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+ *i2stx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+ *gmac1_rgmii_rxin*                     0        0        0   125000000          0     0  50000         Y
+    gmac1_rx                          0        0        0   125000000          0     0  50000         Y
+       gmac1_rx_inv                   0        0        0   125000000          0   180  50000         Y
+ *gmac1_rmii_refin*                     0        0        0    50000000          0     0  50000         Y
+    gmac1_rmii_rtx                    0        0        0    50000000          0     0  50000         Y
+       gmac1_tx                       0        0        0    50000000          0     0  50000         N
+          gmac1_tx_inv                0        0        0    50000000          0   180  50000         Y
+ *osc*                                  4        4        0    24000000          0     0  50000         Y
+    apb_func                          0        0        0    24000000          0     0  50000         Y
+ ...
 
-Changes since v2:
-1. Add Rb tag.
----
- .../bindings/media/samsung,s5c73m3.yaml       | 165 ++++++++++++++++++
- .../bindings/media/samsung-s5c73m3.txt        |  97 ----------
- MAINTAINERS                                   |   1 +
- 3 files changed, 166 insertions(+), 97 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
+The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
+actually used as the parent of other clocks. The "dummy" clocks
+you said are all internal clocks.
 
-diff --git a/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml b/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
-new file mode 100644
-index 000000000000..1b75390fdaac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
-@@ -0,0 +1,165 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/samsung,s5c73m3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S5C73M3 8Mp camera ISP
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-+
-+description:
-+  The S5C73M3 camera ISP supports MIPI CSI-2 and parallel (ITU-R BT.656)
-+  video data busses. The I2C bus is the main control bus and additionally the
-+  SPI bus is used, mostly for transferring the firmware to and from the
-+  device. Two slave device nodes corresponding to these control bus
-+  interfaces are required and should be placed under respective bus
-+  controller nodes.
-+
-+properties:
-+  compatible:
-+    const: samsung,s5c73m3
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: cis_extclk
-+
-+  clock-frequency:
-+    default: 24000000
-+    description: cis_extclk clock frequency.
-+
-+  standby-gpios:
-+    maxItems: 1
-+    description: STANDBY pin.
-+
-+  vdda-supply:
-+    description: Analog power supply (1.2V).
-+
-+  vdd-af-supply:
-+    description: lens power supply (2.8V).
-+
-+  vddio-cis-supply:
-+    description: CIS I/O power supply (1.2V to 1.8V).
-+
-+  vddio-host-supply:
-+    description: Host I/O power supply (1.8V to 2.8V).
-+
-+  vdd-int-supply:
-+    description: Digital power supply (1.2V).
-+
-+  vdd-reg-supply:
-+    description: Regulator input power supply (2.8V).
-+
-+  xshutdown-gpios:
-+    maxItems: 1
-+    description: XSHUTDOWN pin.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            items:
-+              - const: 1
-+              - const: 2
-+              - const: 3
-+              - const: 4
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      required:
-+        - spi-max-frequency
-+    then:
-+      properties:
-+        # The SPI node is simplified firmware-transfer interface only
-+        clocks: false
-+        clock-names: false
-+        standby-gpios: false
-+        vdda-supply: false
-+        vdd-af-supply: false
-+        vddio-cis-supply: false
-+        vddio-host-supply: false
-+        vdd-int-supply: false
-+        vdd-reg-supply: false
-+        xshutdown-gpios: false
-+        port: false
-+    else:
-+      required:
-+        - clocks
-+        - clock-names
-+        - standby-gpios
-+        - vdda-supply
-+        - vdd-af-supply
-+        - vddio-cis-supply
-+        - vddio-host-supply
-+        - vdd-int-supply
-+        - vdd-reg-supply
-+        - xshutdown-gpios
-+        - port
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        image-sensor@3c {
-+            compatible = "samsung,s5c73m3";
-+            reg = <0x3c>;
-+            clock-frequency = <24000000>;
-+            clocks = <&camera 0>;
-+            clock-names = "cis_extclk";
-+            standby-gpios = <&gpm0 6 GPIO_ACTIVE_LOW>;
-+            vdda-supply = <&cam_vdda_reg>;
-+            vdd-af-supply = <&cam_af_reg>;
-+            vddio-cis-supply = <&ldo9_reg>;
-+            vddio-host-supply = <&ldo18_reg>;
-+            vdd-int-supply = <&buck9_reg>;
-+            vdd-reg-supply = <&cam_io_reg>;
-+            xshutdown-gpios = <&gpf1 3 GPIO_ACTIVE_LOW>; /* ISP_RESET */
-+
-+            port {
-+                s5c73m3_ep: endpoint {
-+                    remote-endpoint = <&csis0_ep>;
-+                    data-lanes = <1 2 3 4>;
-+                };
-+            };
-+        };
-+    };
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        image-sensor@0 {
-+            compatible = "samsung,s5c73m3";
-+            reg = <0>;
-+            spi-max-frequency = <50000000>;
-+            controller-data {
-+                samsung,spi-feedback-delay = <2>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt b/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-deleted file mode 100644
-index f0ea9adad442..000000000000
---- a/Documentation/devicetree/bindings/media/samsung-s5c73m3.txt
-+++ /dev/null
-@@ -1,97 +0,0 @@
--Samsung S5C73M3 8Mp camera ISP
--------------------------------
--
--The S5C73M3 camera ISP supports MIPI CSI-2 and parallel (ITU-R BT.656) video
--data busses. The I2C bus is the main control bus and additionally the SPI bus
--is used, mostly for transferring the firmware to and from the device. Two
--slave device nodes corresponding to these control bus interfaces are required
--and should be placed under respective bus controller nodes.
--
--I2C slave device node
-----------------------
--
--Required properties:
--
--- compatible	    : "samsung,s5c73m3";
--- reg		    : I2C slave address of the sensor;
--- vdd-int-supply    : digital power supply (1.2V);
--- vdda-supply	    : analog power supply (1.2V);
--- vdd-reg-supply    : regulator input power supply (2.8V);
--- vddio-host-supply : host I/O power supply (1.8V to 2.8V);
--- vddio-cis-supply  : CIS I/O power supply (1.2V to 1.8V);
--- vdd-af-supply     : lens power supply (2.8V);
--- xshutdown-gpios   : specifier of GPIO connected to the XSHUTDOWN pin;
--- standby-gpios     : specifier of GPIO connected to the STANDBY pin;
--- clocks	    : should contain list of phandle and clock specifier pairs
--		      according to common clock bindings for the clocks described
--		      in the clock-names property;
--- clock-names	    : should contain "cis_extclk" entry for the CIS_EXTCLK clock;
--
--Optional properties:
--
--- clock-frequency   : the frequency at which the "cis_extclk" clock should be
--		      configured to operate, in Hz; if this property is not
--		      specified default 24 MHz value will be used.
--
--The common video interfaces bindings (see video-interfaces.txt) should be used
--to specify link from the S5C73M3 to an external image data receiver. The S5C73M3
--device node should contain one 'port' child node with an 'endpoint' subnode for
--this purpose. The data link from a raw image sensor to the S5C73M3 can be
--similarly specified, but it is optional since the S5C73M3 ISP and a raw image
--sensor are usually inseparable and form a hybrid module.
--
--Following properties are valid for the endpoint node(s):
--
--endpoint subnode
------------------
--
--- data-lanes : (optional) specifies MIPI CSI-2 data lanes as covered in
--  video-interfaces.txt. This sensor doesn't support data lane remapping
--  and physical lane indexes in subsequent elements of the array should
--  be only consecutive ascending values.
--
--SPI device node
-----------------
--
--Required properties:
--
--- compatible	    : "samsung,s5c73m3";
--
--For more details see description of the SPI busses bindings
--(../spi/spi-bus.txt) and bindings of a specific bus controller.
--
--Example:
--
--i2c@138a000000 {
--	...
--	s5c73m3@3c {
--		compatible = "samsung,s5c73m3";
--		reg = <0x3c>;
--		vdd-int-supply = <&buck9_reg>;
--		vdda-supply = <&ldo17_reg>;
--		vdd-reg-supply = <&cam_io_reg>;
--		vddio-host-supply = <&ldo18_reg>;
--		vddio-cis-supply = <&ldo9_reg>;
--		vdd-af-supply = <&cam_af_reg>;
--		clock-frequency = <24000000>;
--		clocks = <&clk 0>;
--		clock-names = "cis_extclk";
--		xshutdown-gpios = <&gpf1 3 1>;
--		standby-gpios = <&gpm0 1 1>;
--		port {
--			s5c73m3_ep: endpoint {
--				remote-endpoint = <&csis0_ep>;
--				data-lanes = <1 2 3 4>;
--			};
--		};
--	};
--};
--
--spi@1392000 {
--	...
--	s5c73m3_spi: s5c73m3@0 {
--		compatible = "samsung,s5c73m3";
--		reg = <0>;
--		...
--	};
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 87140ebb9a40..9bb777760964 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18441,6 +18441,7 @@ M:	Sylwester Nawrocki <s.nawrocki@samsung.com>
- M:	Andrzej Hajda <andrzej.hajda@intel.com>
- L:	linux-media@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/media/samsung,s5c73m3.yaml
- F:	drivers/media/i2c/s5c73m3/*
- 
- SAMSUNG S5K5BAF CAMERA DRIVER
--- 
-2.34.1
+For the audio related clocks (mclk_ext/tdm_ext/i2srx_lrck_ext/
+i2srx_bclk_ext/i2stx_lrck_ext/i2stx_bclk_ext), they will be used
+as the parent clocks in audio related drivers. Note that some
+clocks need to select different clocks as parent according to
+requirement.
+So all these external clocks are required.
 
+> 
+> It would seem to me that you need to set minItems < maxItems here to
+> account for that & you do in fact need clock-names.
+> 
+>> 
+>> > I'd have ploughed through this, but having read Krzysztof's comments on
+>> > the DTS I'm not sure that this binding is correct.
+>> > https://lore.kernel.org/linux-riscv/20221220011247.35560-1-hal.feng@starfivetech.com/T/#mdf67621a2344dce801aa8015d4963593a2c28bcc
+>> > 
+>> > I *think* the DT is correct - the fixed clocks are all inputs from clock
+>> > sources on the board and as such they are empty in soc.dtsi and are
+>> > populated in board.dts?
+>> 
+>> Yes, the fixed clocks are all clock sources on the board and input to the SoC.
+>> 
+>> > 
+>> > However, are they all actually required? In the driver I see:
+>> > 	JH71X0__MUX(JH7110_SYSCLK_GMAC1_RX, "gmac1_rx", 2,
+>> > 		    JH7110_SYSCLK_GMAC1_RGMII_RXIN,
+>> > 		    JH7110_SYSCLK_GMAC1_RMII_RTX),
+>> > That macro is:
+>> > #define JH71X0__MUX(_idx, _name, _nparents, ...) [_idx] = {			\
+>> > 	.name = _name,								\
+>> > 	.flags = 0,								\
+>> > 	.max = ((_nparents) - 1) << JH71X0_CLK_MUX_SHIFT,			\
+>> > 	.parents = { __VA_ARGS__ },						\
+>> > }
+>> > 
+>> > AFAICT, RMII reference feeds RMII_RTX & RGMII RX *is* RGMII_RXIN?
+>> > Does that mean you need to populate only one of GMAC1 RMII reference
+>> > and GMAC1 RMGII RX and the other is optional?
+>> 
+>> Yes, actually only one of them is chosen as the root clock
+>> source of the clock "gmac1_rx".
+>> 
+>> > 
+>> > What have I missed?
+>> > 
+>> > > +
+>> > > +  clock-names:
+>> > > +    items:
+>> > > +      - const: osc
+>> > > +      - const: gmac1_rmii_refin
+>> > > +      - const: gmac1_rgmii_rxin
+>> > > +      - const: i2stx_bclk_ext
+>> > > +      - const: i2stx_lrck_ext
+>> > > +      - const: i2srx_bclk_ext
+>> > > +      - const: i2srx_lrck_ext
+>> > > +      - const: tdm_ext
+>> > > +      - const: mclk_ext
+>> > 
+>> > If all clocks are in fact required though, isn't this kinda pointless to
+>> > have since we already know that the order is fixed from the "clocks"
+>> > property?
+>> > Krzk/Rob?
+>> 
+>> The clock-names are used to easily identify these clocks in the clock driver.
+> 
+> *IF* all clocks were in fact required, which they aren't, you could rely
+> on the order alone in the driver as it is enforced by the binding.
+
+OK, I'll remove "clock-names" property in the bindings and device tree.
+Instead, will use index to get these clocks in drivers.
+
+Best regards,
+Hal
