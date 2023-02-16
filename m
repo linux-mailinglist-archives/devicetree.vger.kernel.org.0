@@ -2,74 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B110F699184
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF1D69919A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:37:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbjBPKhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:37:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
+        id S229845AbjBPKhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:37:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbjBPKgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:36:48 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5631D55E45
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:36:26 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bp15so2165511lfb.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:36:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9JW0EJLLZnjtc5Rcfkvi40WpRhRyZAMonDW3VQmeurE=;
-        b=yzXttBf1kKa3GcyNUHCHisd7ta+C+4p+1Da1kfUuXpPyL7tA7mKigBSV2fYj/aWmYz
-         bwx4j/ZykC9mmoixS3ryXfMXOOMOZmL1X8XjFdN/CF1nVkcIfP61OsMGTB49JlSEOv78
-         ylQlGq9qwWnORdQOO/Uj9RRMEzWK13MWJgKeA0whYjG2FH8yl2qgZWGVJRcOTgFqCiYX
-         V9v0OnrkJNa6BiYuj1Vd7KF0e6Ly+dfBjeLHNHhNjK83OI8Pv4a9pivlc7zbjpJzAshc
-         yrAtjxWseSXdFpv0oNQwp9Ec2kqFRUwZkKQM9YqhtdBn2QyQfs/eqFfene4vI0uVsFqU
-         3X+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9JW0EJLLZnjtc5Rcfkvi40WpRhRyZAMonDW3VQmeurE=;
-        b=Pf/pFS2TgSbvpozN70HOFQRxsy7gyoOiGCZ5LZnXY7IPUyW87HfYWX10qIQYQnB9g4
-         KSPAKz+6Ho0zR6JgMXB3lhFgb9I36KVVPM5L7dVm/cx6ZIR7MpwazbSNZrPESKbv0/bu
-         6OpNrp5v5kJAb/HwbXVBAGX1pBiWADlGbmgRoqO8TTBrDGs4N4gvMXef/nL0fN332X3e
-         Y0PgKnhoL+76Hke3nDc/pZeeKojy5lKJw1CfKoWlvhsGTD/ZsoEq4Ur0MlRnWJRaeiib
-         DttUjjZlhiLAOJMZoM33VS0LVk/4wSqpnijXWvKZaI7Vm3wuiuDixxPmYlpV/DkMukfT
-         LIYA==
-X-Gm-Message-State: AO0yUKXuMKplhceNhfH99LtuM1iz+SMjdy2M7lcBUp9jYbkiKGCdRoUt
-        Ua6pE0tYOekc31AzcyNT3420tA==
-X-Google-Smtp-Source: AK7set9bDLo2KXqnfy06cq8SDtYjejF0UqV3SI7k8ZIMZ0EQ2wD7PrX42mQ+7fkiX2EWyaUv9/TRoQ==
-X-Received: by 2002:ac2:4a8b:0:b0:4cb:3b24:8390 with SMTP id l11-20020ac24a8b000000b004cb3b248390mr1504447lfp.59.1676543780089;
-        Thu, 16 Feb 2023 02:36:20 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id p3-20020a05651211e300b004db50ad07ffsm246087lfs.247.2023.02.16.02.36.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:36:19 -0800 (PST)
-Message-ID: <0c7e3064-4ad0-949a-76a6-4da548892ce8@linaro.org>
-Date:   Thu, 16 Feb 2023 11:36:18 +0100
+        with ESMTP id S230217AbjBPKhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:37:05 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818AE518C1
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:36:48 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pSbcs-0003dn-1s; Thu, 16 Feb 2023 11:36:30 +0100
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pSbcq-005KnE-2q; Thu, 16 Feb 2023 11:36:29 +0100
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pSbco-002Wie-4H; Thu, 16 Feb 2023 11:36:26 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     linux-pm@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 14/19] PM / devfreq: rockchip-dfi: Prepare for multiple users
+Date:   Thu, 16 Feb 2023 11:36:19 +0100
+Message-Id: <20230216103624.591901-15-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230216103624.591901-1-s.hauer@pengutronix.de>
+References: <20230216103624.591901-1-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [RESEND PATCH 04/12] arm64: dts: qcom: sm8550: Supply clock from
- cpufreq node to CPUs
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, viresh.kumar@linaro.org
-References: <20230215070400.5901-1-manivannan.sadhasivam@linaro.org>
- <20230215070400.5901-5-manivannan.sadhasivam@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230215070400.5901-5-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,97 +60,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+When adding perf support later the DFI must be enabled when
+either of devfreq-event or perf is active. Prepare for that
+by adding a usage counter for the DFI. Also move enabling
+and disabling of the clock away from the devfreq-event specific
+functions to which the perf specific part won't have access.
 
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+ drivers/devfreq/event/rockchip-dfi.c | 57 +++++++++++++++++++---------
+ 1 file changed, 40 insertions(+), 17 deletions(-)
 
-On 15.02.2023 08:03, Manivannan Sadhasivam wrote:
-> Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply clocks
-> to the CPU cores. But this relationship is not represented in DTS so far.
-> 
-> So let's make cpufreq node as the clock provider and CPU nodes as the
-> consumers. The clock index for each CPU node is based on the frequency
-> domain index.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+index c0b7b1e9805e9..eae010644935a 100644
+--- a/drivers/devfreq/event/rockchip-dfi.c
++++ b/drivers/devfreq/event/rockchip-dfi.c
+@@ -69,13 +69,28 @@ struct rockchip_dfi {
+ 	void __iomem *regs;
+ 	struct regmap *regmap_pmu;
+ 	struct clk *clk;
++	int usecount;
++	struct mutex mutex;
+ 	u32 ddr_type;
+ 	unsigned int channel_mask;
+ };
+ 
+-static void rockchip_dfi_start_hardware_counter(struct rockchip_dfi *dfi)
++static int rockchip_dfi_enable(struct rockchip_dfi *dfi)
+ {
+ 	void __iomem *dfi_regs = dfi->regs;
++	int ret = 0;
++
++	mutex_lock(&dfi->mutex);
++
++	dfi->usecount++;
++	if (dfi->usecount > 1)
++		goto out;
++
++	ret = clk_prepare_enable(dfi->clk);
++	if (ret) {
++		dev_err(&dfi->edev->dev, "failed to enable dfi clk: %d\n", ret);
++		goto out;
++	}
+ 
+ 	/* clear DDRMON_CTRL setting */
+ 	writel_relaxed(HIWORD_UPDATE(0, 0xffff), dfi_regs + DDRMON_CTRL);
+@@ -99,14 +114,30 @@ static void rockchip_dfi_start_hardware_counter(struct rockchip_dfi *dfi)
+ 	/* enable count, use software mode */
+ 	writel_relaxed(HIWORD_UPDATE(DDRMON_CTRL_SOFTWARE_EN, DDRMON_CTRL_SOFTWARE_EN),
+ 		       dfi_regs + DDRMON_CTRL);
++out:
++	mutex_unlock(&dfi->mutex);
++
++	return ret;
+ }
+ 
+-static void rockchip_dfi_stop_hardware_counter(struct rockchip_dfi *dfi)
++static void rockchip_dfi_disable(struct rockchip_dfi *dfi)
+ {
+ 	void __iomem *dfi_regs = dfi->regs;
+ 
++	mutex_lock(&dfi->mutex);
++
++	dfi->usecount--;
++
++	WARN_ON_ONCE(dfi->usecount < 0);
++
++	if (dfi->usecount > 0)
++		goto out;
++
+ 	writel_relaxed(HIWORD_UPDATE(0, DDRMON_CTRL_SOFTWARE_EN),
+ 		       dfi_regs + DDRMON_CTRL);
++	clk_disable_unprepare(dfi->clk);
++out:
++	mutex_unlock(&dfi->mutex);
+ }
+ 
+ static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_count *count)
+@@ -124,29 +155,20 @@ static void rockchip_dfi_read_counters(struct rockchip_dfi *dfi, struct dmc_coun
+ 	}
+ }
+ 
+-static int rockchip_dfi_disable(struct devfreq_event_dev *edev)
++static int rockchip_dfi_event_disable(struct devfreq_event_dev *edev)
+ {
+ 	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
+ 
+-	rockchip_dfi_stop_hardware_counter(dfi);
+-	clk_disable_unprepare(dfi->clk);
++	rockchip_dfi_disable(dfi);
+ 
+ 	return 0;
+ }
+ 
+-static int rockchip_dfi_enable(struct devfreq_event_dev *edev)
++static int rockchip_dfi_event_enable(struct devfreq_event_dev *edev)
+ {
+ 	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
+-	int ret;
+-
+-	ret = clk_prepare_enable(dfi->clk);
+-	if (ret) {
+-		dev_err(&edev->dev, "failed to enable dfi clk: %d\n", ret);
+-		return ret;
+-	}
+ 
+-	rockchip_dfi_start_hardware_counter(dfi);
+-	return 0;
++	return rockchip_dfi_enable(dfi);
+ }
+ 
+ static int rockchip_dfi_set_event(struct devfreq_event_dev *edev)
+@@ -190,8 +212,8 @@ static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
+ }
+ 
+ static const struct devfreq_event_ops rockchip_dfi_ops = {
+-	.disable = rockchip_dfi_disable,
+-	.enable = rockchip_dfi_enable,
++	.disable = rockchip_dfi_event_disable,
++	.enable = rockchip_dfi_event_enable,
+ 	.get_event = rockchip_dfi_get_event,
+ 	.set_event = rockchip_dfi_set_event,
+ };
+@@ -285,6 +307,7 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+ 		return PTR_ERR(dfi->regmap_pmu);
+ 
+ 	dfi->dev = dev;
++	mutex_init(&dfi->mutex);
+ 
+ 	desc = &dfi->desc;
+ 	desc->ops = &rockchip_dfi_ops;
+-- 
+2.30.2
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 9910006c32aa..21b4f668889d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -68,6 +68,7 @@ CPU0: cpu@0 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0>;
-> +			clocks = <&cpufreq_hw 0>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
->  			power-domains = <&CPU_PD0>;
-> @@ -91,6 +92,7 @@ CPU1: cpu@100 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x100>;
-> +			clocks = <&cpufreq_hw 0>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_100>;
->  			power-domains = <&CPU_PD1>;
-> @@ -110,6 +112,7 @@ CPU2: cpu@200 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x200>;
-> +			clocks = <&cpufreq_hw 0>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_200>;
->  			power-domains = <&CPU_PD2>;
-> @@ -129,6 +132,7 @@ CPU3: cpu@300 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x300>;
-> +			clocks = <&cpufreq_hw 1>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_300>;
->  			power-domains = <&CPU_PD3>;
-> @@ -148,6 +152,7 @@ CPU4: cpu@400 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x400>;
-> +			clocks = <&cpufreq_hw 1>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_400>;
->  			power-domains = <&CPU_PD4>;
-> @@ -167,6 +172,7 @@ CPU5: cpu@500 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x500>;
-> +			clocks = <&cpufreq_hw 1>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_500>;
->  			power-domains = <&CPU_PD5>;
-> @@ -186,6 +192,7 @@ CPU6: cpu@600 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x600>;
-> +			clocks = <&cpufreq_hw 1>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_600>;
->  			power-domains = <&CPU_PD6>;
-> @@ -205,6 +212,7 @@ CPU7: cpu@700 {
->  			device_type = "cpu";
->  			compatible = "qcom,kryo";
->  			reg = <0 0x700>;
-> +			clocks = <&cpufreq_hw 2>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_700>;
->  			power-domains = <&CPU_PD7>;
-> @@ -3341,6 +3349,7 @@ cpufreq_hw: cpufreq@17d91000 {
->  				     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "dcvsh-irq-0", "dcvsh-irq-1", "dcvsh-irq-2";
->  			#freq-domain-cells = <1>;
-> +			#clock-cells = <1>;
->  		};
->  
->  		pmu@24091000 {
