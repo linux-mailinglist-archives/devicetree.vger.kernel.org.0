@@ -2,112 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B14F6989AA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 02:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C386989B3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 02:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjBPBJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Feb 2023 20:09:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55692 "EHLO
+        id S229695AbjBPBLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Feb 2023 20:11:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbjBPBJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 20:09:20 -0500
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2117.outbound.protection.outlook.com [40.107.113.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A3A3D914
-        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 17:09:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TAH6HRP7tYgc7D8sqF0/inoTBXobb1h1bvxWoe2TjKew5EJig+6Z8uxrIJIeEenCrlsFO5ievFvKogsiHKZREFHpBkUbscHAbLNooUCUljP/6iP6raS5+E6frzPbK7BvSCpWjc2AvOYLVO+e79fL9aQ7bI4o6ru/RNQ5+jNw6ZnPUnmQv7RvReHPffRriiBqJVomjDCkezL8RHnBHwuk9pb5ZranBVPybVzfO7F2tWOVy/u8RNNJa2scXglIcDKigppJq3XkAmDSY8iXB46QHGpbp0+xEP0vtxLybEh/M7VXtkT5pfRlnBzb08wNXkE6eu6Ti7KPjZePUA36FFu/rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LQ1r5WRGCvcN/3tIfRM6HXbeG1yLt0wk6yvovtewyGk=;
- b=Y7vV34PTlckFQfHn8Yy6jRVF2ARP4Su6T5Gux1bFzpRX7SrRHeza5RNz1H7m8MdQcJpdH2xI4fOV9bmTRF6HnA31Zlu1UcH8/3y/AybAY49PCfP6ZC48c7WpV8hW7+MHg9zB47Y8CymQQjig1Wb6/L7XwWuuS1B8cNGGmbfz/qxxSATgu/0Sp2PK1qsFh5SXpUNNk4fB7sywtV1fRmHKwkTAoNgqf8szb0iNs9UNkpgcJAb9VJxBqtGswTm0p+TI2Y+lK1nPWwZebs3cqKNDm9egGJG7OrAbVFF+0Sp3GlKLZtMHTkoAv52xWcwt0QkkM0saTqMEbp1yzeR0eHhPpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LQ1r5WRGCvcN/3tIfRM6HXbeG1yLt0wk6yvovtewyGk=;
- b=V8ZM3Kd9usVCqILJNH8vlpJJZ3zYy/cbkRoRiOW3Qh9RTg4DnqCGzNMKyHmWeWYcM0IHVnKRAyppASzA4iVoBckVhLwEROTOtLvaihzDIPWPQMNDQ+E4Hdn0aDxP42yHIKjgEwdhZElZ265lGWOkDpkzlmEtFIbGlLlwYZKtr7w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB8440.jpnprd01.prod.outlook.com (2603:1096:400:15d::5)
- by TYWPR01MB9541.jpnprd01.prod.outlook.com (2603:1096:400:19a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.13; Thu, 16 Feb
- 2023 01:09:15 +0000
-Received: from TYCPR01MB8440.jpnprd01.prod.outlook.com
- ([fe80::c012:df4d:8ba9:3291]) by TYCPR01MB8440.jpnprd01.prod.outlook.com
- ([fe80::c012:df4d:8ba9:3291%7]) with mapi id 15.20.6086.026; Thu, 16 Feb 2023
- 01:09:15 +0000
-Message-ID: <873576ju10.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car Gen4 support
-In-Reply-To: <7b194041-4386-3b82-c65d-f0e3ad5cf015@linaro.org>
-References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>    <87sffa8g99.wl-kuninori.morimoto.gx@renesas.com>        <9aa09940-91cf-32ba-34f4-a57c9e9965bc@linaro.org>       <Y+vKcGic3sC7+3I/@sirena.org.uk>        <7b194041-4386-3b82-c65d-f0e3ad5cf015@linaro.org>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Thu, 16 Feb 2023 01:09:15 +0000
-X-ClientProxiedBy: TYCPR01CA0125.jpnprd01.prod.outlook.com
- (2603:1096:400:26d::7) To TYCPR01MB8440.jpnprd01.prod.outlook.com
- (2603:1096:400:15d::5)
+        with ESMTP id S229687AbjBPBLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Feb 2023 20:11:36 -0500
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E037D43469;
+        Wed, 15 Feb 2023 17:11:31 -0800 (PST)
+Received: by mail-oo1-xc32.google.com with SMTP id z25-20020a4ad1b9000000b00517affa07c0so67728oor.7;
+        Wed, 15 Feb 2023 17:11:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=geY9M3i7XS0320uJBxheu6zARAQyYBT5lOg2iBL00do=;
+        b=M4AsGCoOzSK/HwANSF7v+QiBaxKZX6YmRgH4e/5q47CbtBD7P1OC5icvPf0+fZRrRw
+         LtbJ3JvqpqUTihwsOgsFDhcm/u9TLaMRigpMJrzj7jAzSAokUH+2/Vbl1tlGzWgl7wsV
+         irhKdLv6DZIunEzq3Bk7DrCyJLZQaNs33FwhD1TSsYmL1i534eR5xjvvThpj/1IzsvdD
+         lCxLWPDKFw3ySn3iJv1/G2my33i0cXfR046b6qv+DyBW5wF7JxuZsS3TP/66I5AaW7C1
+         vYraJ9pS3U8jffEV8vKpW+4ARqqvPKRO6PzuDKYbCMpusQnjPSQwAzC3b7bCxEbuiLiK
+         w2Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=geY9M3i7XS0320uJBxheu6zARAQyYBT5lOg2iBL00do=;
+        b=K129kLfckk6RgJGY6z1bwUMGFHg1+gUc+hSP5WYpWPdTVwCxDlIr8NYY75FZpyfYh/
+         x3Ed0fQ/7GM3FnIMzUd4aPtKdof9AtOm71114KCZvBqhx/bj0iwDbpuuZmrRHjScsZnQ
+         8sx93WWl81ck67T7vICYBfKHW87n8+YeT/4k0lPv76y83crKFblZUvccV2w8OubfekfR
+         zaL8imwAURjx9utwKbzvqccuBuXwlWRx/JwDy79P5IlQD4UYlGaXD8DZER8ehe6WBzBa
+         LJUJJqaX3rt7PPZ0YLrUmJPCWLZWA6ggg68cgvRHQvJYYDuEzOS/PxoWGmRbTxfDsaCM
+         SF1g==
+X-Gm-Message-State: AO0yUKVgFPZZZJEEFJsHn/UTDbjapk38fXy2F/g+yuyNXLG6ukjUp+tQ
+        48Mcy0Be7j2oLz7RqtCl8n/ucbGwo/g=
+X-Google-Smtp-Source: AK7set8mdHS4xUJPPipnuOns4ssVaQddzJFUS0zOoSq3B5Bxv+Aj+piF/mTG90nkqIlfRUCHiPsr2A==
+X-Received: by 2002:a4a:96aa:0:b0:517:67ba:586 with SMTP id s39-20020a4a96aa000000b0051767ba0586mr1799148ooi.3.1676509891191;
+        Wed, 15 Feb 2023 17:11:31 -0800 (PST)
+Received: from localhost.localdomain (76-229-100-169.lightspeed.irvnca.sbcglobal.net. [76.229.100.169])
+        by smtp.gmail.com with ESMTPSA id k8-20020a4adfa8000000b005176714c603sm160021ook.4.2023.02.15.17.11.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Feb 2023 17:11:30 -0800 (PST)
+From:   Tony Dinh <mibodhi@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Tony Dinh <mibodhi@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: [PATCH] ARM: dts: mvebu: Add support for Thecus N2350 board
+Date:   Wed, 15 Feb 2023 17:10:45 -0800
+Message-Id: <20230216011046.3306-1-mibodhi@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB8440:EE_|TYWPR01MB9541:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6bbe6fdd-e30e-4d84-2e1e-08db0fba6c34
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: V4sNLZEj6DJ8dg+350Sem70AV7ar0jnkkRl1VQscoByH+pk7zVn/yQxkhOGr7M+sEpqzuDNaipoL8LjqcI7/KkXca/Yw3xhfZ25y6x4Xz6FQ0WCom2V9F0QwsGFfGIG15aEex3a3xfIood7FV26oA0JXClYhfUXsogN3tuE86nWHC+RxlUKfu5IBYdx55LOCbPmA26GqfDwBLG8MvWSOfyVUwvcse36rrgCpBKH7MpcLNn3/TqUnO5XGWsZr9v5VWUE7CzY57H4/ixmiOB+aVIwZcrVT/UZjSzn3kafKNJ4QuM8W7i0xzmYmWYYuW1c0s68Hz8K4sm4zVt9mIgiuCH9pTQIq5ANAcA1U/ViejTa0ExOOlw1yJmbLLYAMB+6ostuw5k/7RqJtO0LpcmlONVXLIWs68XabrFuSTJniqTcyreyztQIjXslT0T45RgApSe7VNMIX46gtAU+NGUsphDzppBnEehICySG7/k+kYb1I21we0P+ZN5/87ZvvqENS8Cw/2HjM9Ek+q/RuQvIkuKzhTBUgYaU6i9CG2Dxbd95NyYZMUuyfqqQ0zWKzTZ8Zz+pSdNd2P7OSYxVG8qTS6wK+pQGVjCq449sw+U0lgfLDaNakATNV28BGXiPh3VPPy2mU83J9LZwCiFXJe84KydOpT/OtBH4VJYZK4wSiU2yPzXxzMhMi6H8UgMFauB4V12OmvJaxDreqO199YkjSRA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB8440.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(39860400002)(376002)(136003)(396003)(346002)(451199018)(5660300002)(36756003)(83380400001)(4744005)(478600001)(6486002)(186003)(2616005)(52116002)(26005)(6512007)(6506007)(4326008)(8676002)(41300700001)(66476007)(66556008)(66946007)(6916009)(8936002)(86362001)(54906003)(316002)(38350700002)(38100700002)(2906002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HF1BgUcJUFddydqs3MADjDlCHJL0g4G3SRRdKSEou+ivmOq0O3uCpYwSwEAu?=
- =?us-ascii?Q?klP3/uBLXLaPUw/agcp2k+BfsB70hpq/uaQD47n5btnqWEu0ZppDY0eN5QJU?=
- =?us-ascii?Q?7Q4Cyggtda04Wh0NEy7AcDuWDwTJIR8yAI0qn5Rzl+7fN48MHuoiCnxyoCRq?=
- =?us-ascii?Q?Ca/HtGI2ZPgC4HXukPY3/SQNxPETOBFcyPIoeCIgL5ARcEWLwbvsHDTZAWFA?=
- =?us-ascii?Q?9oLwFgeY+KDHdT6caZnFrjQegJprh99/O8ePwl6VFJiHuDb9/jo2lw6BRLna?=
- =?us-ascii?Q?ExiGZls8x8W+3rox+rIGepLbPA+4LK06iVbcYeCfAn0y88dkSuHdWYps/XSW?=
- =?us-ascii?Q?XUNltglOLjZnN58CKYCztpdl69lQDJaOazjRX+XS8O3hGmubPDDMIUVFIdGz?=
- =?us-ascii?Q?dud+bcyENLKPaCV1Q2pv+YPxQCRu3JAcgx8vZ04oGsj4LgH1YgQvrMG4rsRZ?=
- =?us-ascii?Q?aaHkf05ujV1oQj6r3NTPo7nKw3IkcEoqa1upJD8lgQgTDHUlOr9huu6BxNM9?=
- =?us-ascii?Q?COlrPWeaHh4TA4z9qZTiGVJRN6UpZ7Le56jvwBWzQ+vVHzv/LBuy0V1A9CDm?=
- =?us-ascii?Q?AVgSMEHSzRTVMrgKHJLQBGqKVVF+DIwDJWPWndMkui60f6X/1qAULBdGmTc+?=
- =?us-ascii?Q?2lDesRX9sVuwILMhcL5eNNlnQm5ktqV9PXUtNWbNJAzksnsqnsNqZC9XcQie?=
- =?us-ascii?Q?e1qE+dtqkKNU/38RC3fxcTzWCgWMSwBjLR5ZVxdiMjLABks3ts5HAKwoLFJj?=
- =?us-ascii?Q?wGRHuYtw9enHAPqk0WLvuecE4aOTd1F/1cgJ0KtVekWZwEgq2+g8Ntls8DQ/?=
- =?us-ascii?Q?pkDZM7rHyfsA23PMVpiNz7FIk5sVHolb3kQRDJ0I57Q93xLsqk+ldloqemTN?=
- =?us-ascii?Q?mhDk+vtksDzoAzwhGbCRFFp3FeN3RQcCF7B7G44fQhWYjPWq+yciUvdCWPqs?=
- =?us-ascii?Q?9gljC4q69J1FcMg7z+iLZSRvKGD6xHYY23MrF24yLZ5O/a1t93Op1ZU9orrZ?=
- =?us-ascii?Q?QakT7wQEoy5e/TF7vJlbeUlcM7o2+iSzvLm+cpvkXn1F2VUml63TqGrso9Du?=
- =?us-ascii?Q?lM4T5ZtWRz1gbxi1wap530or+JgqQs+qBYiuWDvI4tHeTDVYgpyAJzsMXtap?=
- =?us-ascii?Q?JVfxKMexqDf1nUytAjcipkSIWa0AKimSB6d6kgdtYRmjMuFzNXBHiCOZOSmV?=
- =?us-ascii?Q?jeXm+MbwZ5oNQpmws9DuQ/6EJmZHi6+2uZIDfenLCsmYtAswKkXAsihAWX/u?=
- =?us-ascii?Q?GR43vtuhpyFfeZ0wczRddj0NsYXKau76F2OE10jrukyPeFHAM3532rgwEZxV?=
- =?us-ascii?Q?p231jQgvylwgzV8S0IIJsQq15VOEAy7JViR8vsV6FeI7Yl+RwGEvLQ9jIFG2?=
- =?us-ascii?Q?m3erdHufRUW+Ajq3a0/yGVSoQ3QfuJ19SwcR3brMzZcIISFpGvuUGMo4lokA?=
- =?us-ascii?Q?FDiFzh/1RrC/RBVYfp358L+3WlqVYfxoT4G/j50jVoyowCd0Non3nkm2gTLW?=
- =?us-ascii?Q?kvgLMQwXnUPDKNKDzVnP71XG2AZ4TJL3919BtnJXur9kbT4ZE4a6cvBaSDfh?=
- =?us-ascii?Q?4EiOAAehcqglpvjdNvhKTLr8T/fOaQ3r/xxlc1z3l4N2gT7N3Vqx4Zg6/R5y?=
- =?us-ascii?Q?iP9xKGfp5wKsnCUMG0eh6z0=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bbe6fdd-e30e-4d84-2e1e-08db0fba6c34
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB8440.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2023 01:09:15.7999
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0xtgrQ7hGvfiwFvEBIzmcyIRV2bvbZy9Csj/nXmVeLcb0FLdwrWsjvdt/9if2ocGVIjYtydy45XQ/lNRQg/FYYFlFpq3t6pmMF1pZTDeqV22WiPcegVdWyMuE1gCxZmb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9541
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -115,47 +74,480 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thecus N2350 is a NAS based on Marvell Armada 385 SoC.
 
-Hi Krzysztof
+Board Specification:
 
-> If you leave the top-level definition without any constraints and you
-> forget to include all your compatibles in allOf:if:then, then you end up
-> without constraints. Consider:
-(snip)
-> -----
-> properties:
->   compatible:
->     enum:
->       - foo
->       - bar
-> 
-> clock-names:
->   description: anything
-> 
-> if:
->   prop:
->     compat:
->       enum:
->         - foo
-> then:
->   prop:
->     clock-names:
->       - ahb
->       - sclk
-> -----
-> 
-> What clocks are valid for bar?
-> 
-> For simple cases this might be obvious, for more complex this is easy to
-> miss. So the recommended syntax is with constraints at the top.
+- Marvel MV88F6820 Dual Core at 1GHz
+- 1 GiB DDR4 RAM
+- 4MB Macronix mx25l3205d SPI flash
+- 512MB Hynix H27U4G8F2DTR-BC NAND flash
+- I2C
+- 2x USB 3.0
+- 1x GBE LAN port (PHY: Marvell 88E1510)
+- 2x SATA (hot swap slots)
+- 3x buttons
+- 10x LEDS
+- serial console
 
-I can understand we want to avoid the future miss.
-But I did it on v2 patch and you NACKed it.
-Thus people confused. That is the reason why above strange style was created.
-And it is already using "else", your concern never happen ?
-
-Thank you for your help !!
-
-Best regards
+Signed-off-by: Tony Dinh <mibodhi@gmail.com>
 ---
-Kuninori Morimoto
+
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/armada-385-thecus-n2350.dts | 432 ++++++++++++++++++
+ 2 files changed, 433 insertions(+)
+ create mode 100644 arch/arm/boot/dts/armada-385-thecus-n2350.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index d08a3c450..749790e6e 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1528,6 +1528,7 @@ dtb-$(CONFIG_MACH_ARMADA_38X) += \
+ 	armada-385-linksys-rango.dtb \
+ 	armada-385-linksys-shelby.dtb \
+ 	armada-385-synology-ds116.dtb \
++	armada-385-thecus-n2350.dtb \
+ 	armada-385-turris-omnia.dtb \
+ 	armada-388-clearfog.dtb \
+ 	armada-388-clearfog-base.dtb \
+diff --git a/arch/arm/boot/dts/armada-385-thecus-n2350.dts b/arch/arm/boot/dts/armada-385-thecus-n2350.dts
+new file mode 100644
+index 000000000..38114d842
+--- /dev/null
++++ b/arch/arm/boot/dts/armada-385-thecus-n2350.dts
+@@ -0,0 +1,432 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Device Tree file for Thecus N2350 board
++ *
++ * Copyright (C) 2018-2023 Tony Dinh <mibodhi@gmail.com>
++ * Copyright (C) 2018 Manuel Jung <manuel.jung@hotmail.com>
++ */
++
++/dts-v1/;
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/gpio/gpio.h>
++#include "armada-385.dtsi"
++
++/ {
++	model = "Thecus N2350";
++	compatible = "thecus,n2350", "marvell,armada385";
++
++	aliases {
++		ethernet0 = &eth0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory {
++		device_type = "memory";
++		reg = <0x00000000 0x40000000>; /* 1GB */
++	};
++
++	soc {
++		ranges = <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
++			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000
++			  MBUS_ID(0x09, 0x19) 0 0xf1100000 0x10000
++			  MBUS_ID(0x09, 0x15) 0 0xf1110000 0x10000
++			  MBUS_ID(0x0c, 0x04) 0 0xf1200000 0x100000>;
++
++	};
++
++	usb3_0_phy: usb3_0_phy {
++		compatible = "usb-nop-xceiv";
++		vcc-supply = <&usb3_0_power>;
++	};
++
++	usb3_1_phy: usb3_1_phy {
++		compatible = "usb-nop-xceiv";
++		vcc-supply = <&usb3_1_power>;
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		pinctrl-0 = <&pmx_power_button &pmx_copy_button &pmx_reset_button>;
++		pinctrl-names = "default";
++
++		button@1 {
++			label = "Power Button";
++			linux,code = <KEY_POWER>;
++			gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
++		};
++
++		button@2 {
++			label = "Copy Button";
++			linux,code = <KEY_COPY>;
++			gpios = <&gpio1 20 GPIO_ACTIVE_HIGH>;
++		};
++
++		button@3 {
++			label = "Reset Button";
++			linux,code = <KEY_RESTART>;
++			gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
++	gpio-leds {
++		compatible = "gpio-leds";
++		pinctrl-0 = <&pmx_sata1_white_led
++				&pmx_sata1_red_led
++				&pmx_sata2_white_led
++				&pmx_sata2_red_led
++				&pmx_sys_white_led
++				&pmx_sys_red_led
++				&pmx_pwr_blue_led
++				&pmx_pwr_red_led
++				&pmx_usb_white_led
++				&pmx_usb_red_led>;
++
++		pinctrl-names = "default";
++
++		white_sata1 {
++			label = "n2350:white:sata1";
++			gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
++		};
++
++		red_sata1 {
++			label = "n2350:red:sata1";
++			gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
++		};
++
++		white-sata2 {
++			label = "n2350:white:sata2";
++			gpios = <&gpio0 19 GPIO_ACTIVE_HIGH>;
++		};
++
++		red-sata2 {
++			label = "n2350:red:sata2";
++			gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
++		};
++
++		white-sys {
++			label = "n2350:white:sys";
++			gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "default-on";
++		};
++
++		red-sys {
++			label = "n2350:red:sys";
++			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
++		};
++
++		blue-pwr {
++			label = "n2350:blue:pwr";
++			gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
++		};
++
++		red-pwr {
++			label = "n2350:red:pwr";
++			gpios = <&gpio0 18 GPIO_ACTIVE_HIGH>;
++		};
++
++		white-usb {
++			label = "n2350:white:usb";
++			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
++		};
++
++		red-usb {
++			label = "n2350:red:usb";
++			gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
++	usb3_0_power: regulator@1 {
++		compatible = "regulator-fixed";
++		regulator-name = "USB3_0_Power";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		enable-active-high;
++		regulator-always-on;
++		regulator-boot-on;
++		gpio = <&gpio0 21 GPIO_ACTIVE_HIGH>;
++	};
++
++	usb3_1_power: regulator@2 {
++		compatible = "regulator-fixed";
++		regulator-name = "USB3_1_Power";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		enable-active-high;
++		regulator-always-on;
++		regulator-boot-on;
++		gpio = <&gpio0 24 GPIO_ACTIVE_HIGH>;
++	};
++
++	reg_sata0: regulator@3 {
++		compatible = "regulator-fixed";
++		regulator-name = "pwr_en_sata0";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		enable-active-high;
++		regulator-always-on;
++		regulator-boot-on;
++		gpio = <&gpio1 12 GPIO_ACTIVE_HIGH>;
++	};
++
++	reg_5v_sata0: v5-sata0 {
++		compatible = "regulator-fixed";
++		regulator-name = "v5.0-sata0";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&reg_sata0>;
++	};
++
++	reg_12v_sata0: v12-sata0 {
++		compatible = "regulator-fixed";
++		regulator-name = "v12.0-sata0";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		vin-supply = <&reg_sata0>;
++	};
++
++	reg_sata1: regulator@4 {
++		regulator-name = "pwr_en_sata1";
++		compatible = "regulator-fixed";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		enable-active-high;
++		regulator-always-on;
++		regulator-boot-on;
++		gpio = <&gpio1 13 GPIO_ACTIVE_HIGH>;
++	};
++
++	reg_5v_sata1: v5-sata1 {
++		compatible = "regulator-fixed";
++		regulator-name = "v5.0-sata1";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&reg_sata1>;
++	};
++
++	reg_12v_sata1: v12-sata1 {
++		compatible = "regulator-fixed";
++		regulator-name = "v12.0-sata1";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		vin-supply = <&reg_sata1>;
++	};
++
++	gpio-poweroff {
++		compatible = "gpio-poweroff";
++		pinctrl-0 = <&pmx_pwr_off>;
++		pinctrl-names = "default";
++		gpios = <&gpio1 22 GPIO_ACTIVE_HIGH>;
++	};
++
++};
++
++&ahci0 {
++	status = "okay";
++};
++
++&bm {
++	status = "okay";
++};
++
++&bm_bppi {
++	status = "okay";
++};
++
++&eth0 {
++	status = "okay";
++	phy = <&phy0>;
++	phy-mode = "sgmii";
++	buffer-manager = <&bm>;
++	bm,pool-long = <0>;
++	bm,pool-short = <1>;
++};
++
++&i2c0 {
++	status = "okay";
++	clock-frequency = <100000>;
++};
++
++&i2c1 {
++	status = "okay";
++	clock-frequency = <100000>;
++};
++
++&mdio {
++	phy0: ethernet-phy@0 {
++		reg = <1>;
++	};
++};
++
++&nand_controller {
++	status = "okay";
++
++	nand@0 {
++		status = "okay";
++		reg = <0>;
++		label = "pxa3xx_nand-0";
++		nand-rb = <0>;
++		marvell,nand-keep-config;
++		nand-on-flash-bbt;
++		nand-ecc-strength = <4>;
++		nand-ecc-step-size = <512>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "rootfs";
++				reg = <0x00000000 0x20000000>;
++			};
++
++		};
++	};
++};
++
++&pciec {
++	status = "okay";
++	pcie@1,0 {
++		/* Port 0, Lane 0 */
++		status = "okay";
++	};
++	pcie@2,0 {
++		/* Port 1, Lane 0 */
++		status = "okay";
++	};
++};
++
++&pinctrl {
++	pinctrl-names = "default";
++
++	pmx_power_button: pmx-power-button {
++		marvell,pins = "mpp49";
++		marvell,function = "gpio";
++	};
++
++	pmx_copy_button: pmx-copy-button {
++		marvell,pins = "mpp52";
++		marvell,function = "gpio";
++	};
++
++	pmx_reset_button: pmx-reset-button {
++		marvell,pins = "mpp50";
++		marvell,function = "gpio";
++	};
++
++	pmx_sata1_white_led: pmx-sata1-white-led {
++		marvell,pins = "mpp20";
++		marvell,function = "gpio";
++	};
++
++	pmx_sata1_red_led: pmx-sata1-red-led {
++		marvell,pins = "mpp46";
++		marvell,function = "gpio";
++	};
++
++	pmx_sata2_white_led: pmx-sata2-white-led {
++		marvell,pins = "mpp19";
++		marvell,function = "gpio";
++	};
++
++	pmx_sata2_red_led: pmx-sata2-red-led {
++		marvell,pins = "mpp47";
++		marvell,function = "gpio";
++	};
++
++	pmx_sys_white_led: pmx-sys-white-led {
++		marvell,pins = "mpp14";
++		marvell,function = "gpio";
++	};
++
++	pmx_sys_red_led: pmx-sys-red-led {
++		marvell,pins = "mpp15";
++		marvell,function = "gpio";
++	};
++
++	pmx_buzzer: pmx-buzzer {
++		marvell,pins = "mpp51";
++		marvell,function = "gpio";
++	};
++
++	pmx_pwr_off: pmx-pwr-off {
++		marvell,pins = "mpp54";
++		marvell,function = "gpio";
++	};
++
++	pmx_pwr_blue_led: pmx-pwr-blue-led {
++		marvell,pins = "mpp43";
++		marvell,function = "gpio";
++	};
++
++	pmx_pwr_red_led: pmx-pwr-red-led {
++		marvell,pins = "mpp18";
++		marvell,function = "gpio";
++	};
++
++	pmx_usb_white_led: pmx-usb-white-led {
++		marvell,pins = "mpp16";
++		marvell,function = "gpio";
++	};
++
++	pmx_usb_red_led: pmx-usb-red-led {
++		marvell,pins = "mpp17";
++		marvell,function = "gpio";
++	};
++};
++
++&sdhci {
++	broken-cd;
++	wp-inverted;
++	bus-width = <8>;
++	status = "okay";
++	no-1-8-v;
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi1_pins>;
++	status = "okay";
++
++	/* spi: 4M Flash Macronix MX25L3205D */
++	spi-flash@0 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "macronix,mx25l3205d", "jedec,spi-nor";
++		reg = <0>;
++
++		spi-max-frequency = <108000000>;
++		spi-cpha;
++
++		partition@0 {
++			label = "u-boot";
++			reg = <0x00000000 0x00100000>;
++		};
++
++		partition@100000 {
++			label = "u-boot-env";
++			reg = <0x00100000 0x00010000>;
++		};
++	};
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++};
++
++&usb3_0 {
++	status = "okay";
++};
++
++&usb3_1 {
++	status = "okay";
++};
+-- 
+2.30.2
+
