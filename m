@@ -2,176 +2,491 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F6F69944F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 13:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62FA1699460
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 13:32:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbjBPM14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 07:27:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37654 "EHLO
+        id S229505AbjBPMch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 07:32:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjBPM14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 07:27:56 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD7D12049;
-        Thu, 16 Feb 2023 04:27:52 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2A68224E391;
-        Thu, 16 Feb 2023 20:27:44 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
- 2023 20:27:44 +0800
-Received: from [192.168.125.82] (183.27.97.168) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
- 2023 20:27:42 +0800
-Message-ID: <fbf82563-0b2c-d813-2c7c-08ea712ea91d@starfivetech.com>
-Date:   Thu, 16 Feb 2023 20:27:42 +0800
+        with ESMTP id S229501AbjBPMcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 07:32:36 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1853E22782
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:32:35 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id 26so337233oix.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:32:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=O/mbVCUW37SP5uqxmbuctI4JAQmuxWJTA6baY6ZYJ+0=;
+        b=Ry6UpXEvwhJlC97SvhjGppSOLiW7Gf//PSyU+lyZXjAVAXIeTogm+hN8vh9AiEneBq
+         Qi+rB3DjeqBdOwtRYJW8ucQOQQ+uJAAezupE1zTREaqdwetEO+EVxtJbHt8MT428mgnl
+         MHAPQ+pT/tdV14Kk0YafC40Lm3KpP4m/9i+IY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O/mbVCUW37SP5uqxmbuctI4JAQmuxWJTA6baY6ZYJ+0=;
+        b=daBmJGZKSr7IoXme8W62aOefjyi2D3s/kkQHN30t5/x2D4z1Z1SdJuarY7YiEuyAHh
+         zcBtjGccODzCEXkNsdxqmL6qWnJwAakBD4pMbo4kL7ugTOtMpc+h24QHcXxT9pkJfWUe
+         eTDjgC+pv9BUWG49n3gOtrIAE1OEAL2mU4k2Dxm4+PnsB1n9CUt+Qi8eLE2NUKO4yV94
+         sYbdvCJdkw2pasQfRy81tNYA1z/s4LH7T4M9FptNoItEDqVG9LCCjdJ4GI0i6lmHcORc
+         XpsY+a7da+y6x3Bj29T8oHMIXY+L690P/KkeYYzsu8xyYS/RBPiKNFqgwPWOFD4wFMmx
+         17Fw==
+X-Gm-Message-State: AO0yUKW8+oXGIxmi3I1K1w59l8Y+0HAnt5A/L/KDWZRu/5geNsW69RU2
+        qjW470VkJcEfnZS0x3+n+A9aoJXd21u5YqI6v6FnXQ==
+X-Google-Smtp-Source: AK7set+Sr1eQOm0FWTiwt/xpuW9UUzdGx1RYsJnEMYw92LldArjz5Tz+ayVou6oWXjFrF+tQe0dkfqk99tKRv/CFndE=
+X-Received: by 2002:a05:6808:3203:b0:368:ca97:3a2a with SMTP id
+ cb3-20020a056808320300b00368ca973a2amr197482oib.261.1676550754202; Thu, 16
+ Feb 2023 04:32:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Conor Dooley" <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+References: <20230119163201.580858-1-konrad.dybcio@linaro.org>
+ <20230119163201.580858-2-konrad.dybcio@linaro.org> <725a5727-fdde-e3ae-a448-2679c5c4c7f4@linaro.org>
+In-Reply-To: <725a5727-fdde-e3ae-a448-2679c5c4c7f4@linaro.org>
+From:   Daniel Vetter <daniel@ffwll.ch>
+Date:   Thu, 16 Feb 2023 13:32:22 +0100
+Message-ID: <CAKMK7uFpc3Kg=Ym6ee_JTZo-0h2ig7Twtf2uwE7oV-1c6YRP=Q@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] gpu/drm/panel: Add Sony TD4353 JDI panel driver
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-8-hal.feng@starfivetech.com>
- <CAJM55Z9Y_fF+4Dtu++C_jVS0+ohXp5U0GyuJCBpUh-SpTMGrVA@mail.gmail.com>
- <af42ed91-95aa-014a-1efb-6f70ee5a0433@starfivetech.com>
- <CAJM55Z-+Cz8d=YySRaFJSAffDfoZ4Madx322qCX100-nAcx+5Q@mail.gmail.com>
- <Y+38bT8cnahu19bw@wendy> <Y+4AxDSDLyL1WAqh@wendy>
- <CAJM55Z9M2xgNBRxG8cNefGt5hn4fbZmgHWzC2e8AfmKUq9Gw7A@mail.gmail.com>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <CAJM55Z9M2xgNBRxG8cNefGt5hn4fbZmgHWzC2e8AfmKUq9Gw7A@mail.gmail.com>
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.168]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Feb 2023 11:32:31 +0100, Emil Renner Berthing wrote:
-> On Thu, 16 Feb 2023 at 11:09, Conor Dooley <conor.dooley@microchip.com> wrote:
->>
->> On Thu, Feb 16, 2023 at 09:50:37AM +0000, Conor Dooley wrote:
->> > On Thu, Feb 16, 2023 at 10:27:17AM +0100, Emil Renner Berthing wrote:
->> > > On Wed, 15 Feb 2023 at 15:04, Hal Feng <hal.feng@starfivetech.com> wrote:
->> > > > On 2/14/2023 5:53 PM, Emil Renner Berthing wrote:
->> > > > > On Tue, 20 Dec 2022 at 02:12, Hal Feng <hal.feng@starfivetech.com> wrote:
->> >
->> > > > >> +       model = "StarFive VisionFive 2 VB";
->> > > > >> +       compatible = "starfive,visionfive-2-vb", "starfive,jh7110";
->> > > > >
->> > > > > Hi Hal,
->> > > > >
->> > > > > I just want to double check, is "VisionFive 2 VA" / "visoinfive-2-va"
->> > > > > and "VisionFive 2 VB" / "visionfive-2-vb" really what you want? I
->> > > > > still think having these names match what is printed on the silkscreen
->> > > > > makes it a lot easier for everybody. Even your own releases calls the
->> > > > > boards "v1.2A" and "v1.3B":
->> > > > > https://github.com/starfive-tech/VisionFive2/releases/
->> > > > >
->> > > > > So I'd suggest
->> > > > > model = "StarFive VisionFive 2 v1.3B";
->> > > > > compatible = "starfive,visionfive-2-v1.3b", "starfive,jh7110";
->> > > > >
->> > > > > I haven't seen these "VA" and "VB" anywhere else, so if you don't want
->> > > > > the version numbers and can promise that there will be no incompatible
->> > > > > future revisions of the boards then maybe just drop the "V". Eg.
->> > > > > model = "StarFive VisionFive 2 B";
->> > > > > compatible = "starfive,visionfive-2-b", "starfive,jh7110";
->> > > >
->> > > > The version A board has reached the end of life. As far as I know, the
->> > > > version B board will not update also unless there are some important
->> > > > requirements and StarFive decides to update. Furthermore, it's too late
->> > > > to change the compatible as patch 1 was already accepted. Will it be
->> > > > easier to read if I modify it as below?
->> > > >
->> > > >         model = "StarFive VisionFive 2 vB";
->> > > >         compatible = "starfive,visionfive-2-vb", "starfive,jh7110";
->> > >
->> > > Oh, that's sad that the kernel will now end up calling the boards
->> > > something that's used nowhere else, even by StarFive :/
->> > > But yeah, I guess vA and vB are a little easier to read.
->> >
->> > Nothing has been released with that name so AFAIU we can change it
->> > still. If you sort it out today/tomorrow I'll try get it to Arnd before
->> > the merge window opens...
->> >
->> > I might've jumped the gun a bit here, I thought that it'd been changed
->> > to what you (Emil) had suggested.
-> 
-> No, I'm sorry for being late here. The below definitely looks better to me.
-> 
-> Hal, would you be fine with this change?
+On Thu, 16 Feb 2023 at 12:59, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 19.01.2023 17:32, Konrad Dybcio wrote:
+> > From: Konrad Dybcio <konrad.dybcio@somainline.org>
+> >
+> > Add support for the Sony TD4353 JDI 2160x1080 display panel used in
+> > some Sony Xperia XZ2 and XZ2 Compact smartphones. Due to the specifics
+> > of smartphone manufacturing, it is impossible to retrieve a better name
+> > for this panel.
+> >
+> > This revision adds support for the default 60 Hz configuration, however
+> > there could possibly be some room for expansion, as the display panels
+> > used on Sony devices have historically been capable of >2x refresh rate
+> > overclocking.
+> >
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > ---
+> Are there any outstanding issues with this driver, or perhaps I did
+> not CC some important list? It has gotten very little activity ever
+> since its initial submission around Sept'22..
 
-I'm fine with this. It will be more exact. Thanks.
+Sam is usually picking up panel drivers these days, but maybe we need
+a bit more help in this area? If anyone from linaro has a handful of
+drm patches landed in upstream they could apply for drm-misc commit
+rights and help push these. I think linaro has lost a few of the
+drm-misc committers so things tend to be stuck a bit more :-/
+-Daniel
 
-Best regards,
-Hal
+>
+> Konrad
+> > v3 -> v4:
+> > - De-magicize some numbers
+> > - Pick up rb
+> >  drivers/gpu/drm/panel/Kconfig                 |  10 +
+> >  drivers/gpu/drm/panel/Makefile                |   1 +
+> >  drivers/gpu/drm/panel/panel-sony-td4353-jdi.c | 329 ++++++++++++++++++
+> >  3 files changed, 340 insertions(+)
+> >  create mode 100644 drivers/gpu/drm/panel/panel-sony-td4353-jdi.c
+> >
+> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> > index d03a64155d15..8da741f1c2ba 100644
+> > --- a/drivers/gpu/drm/panel/Kconfig
+> > +++ b/drivers/gpu/drm/panel/Kconfig
+> > @@ -677,6 +677,16 @@ config DRM_PANEL_SONY_ACX565AKM
+> >         Say Y here if you want to enable support for the Sony ACX565AKM
+> >         800x600 3.5" panel (found on the Nokia N900).
+> >
+> > +config DRM_PANEL_SONY_TD4353_JDI
+> > +     tristate "Sony TD4353 JDI panel"
+> > +     depends on GPIOLIB && OF
+> > +     depends on DRM_MIPI_DSI
+> > +     depends on BACKLIGHT_CLASS_DEVICE
+> > +     help
+> > +       Say Y here if you want to enable support for the Sony Tama
+> > +       TD4353 JDI command mode panel as found on some Sony Xperia
+> > +       XZ2 and XZ2 Compact smartphones.
+> > +
+> >  config DRM_PANEL_SONY_TULIP_TRULY_NT35521
+> >       tristate "Sony Tulip Truly NT35521 panel"
+> >       depends on GPIOLIB && OF
+> > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> > index 1630dd0c69ae..22155d62bec0 100644
+> > --- a/drivers/gpu/drm/panel/Makefile
+> > +++ b/drivers/gpu/drm/panel/Makefile
+> > @@ -68,6 +68,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
+> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
+> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
+> >  obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
+> > +obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
+> >  obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
+> >  obj-$(CONFIG_DRM_PANEL_SONY_SYNAPTICS_JDI) += panel-sony-synaptics-jdi.o
+> >  obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
+> > diff --git a/drivers/gpu/drm/panel/panel-sony-td4353-jdi.c b/drivers/gpu/drm/panel/panel-sony-td4353-jdi.c
+> > new file mode 100644
+> > index 000000000000..8d8813dbaa45
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/panel/panel-sony-td4353-jdi.c
+> > @@ -0,0 +1,329 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2022 Konrad Dybcio <konrad.dybcio@somainline.org>
+> > + *
+> > + * Generated with linux-mdss-dsi-panel-driver-generator with a
+> > + * substantial amount of manual adjustments.
+> > + *
+> > + * SONY Downstream kernel calls this one:
+> > + * - "JDI ID3" for Akari  (XZ2)
+> > + * - "JDI ID4" for Apollo (XZ2 Compact)
+> > + */
+> > +
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#include <video/mipi_display.h>
+> > +
+> > +#include <drm/drm_mipi_dsi.h>
+> > +#include <drm/drm_modes.h>
+> > +#include <drm/drm_panel.h>
+> > +
+> > +enum {
+> > +     TYPE_TAMA_60HZ,
+> > +     /*
+> > +      * Leaving room for expansion - SONY very often uses
+> > +      * *truly reliably* overclockable panels on their flagships!
+> > +      */
+> > +};
+> > +
+> > +struct sony_td4353_jdi {
+> > +     struct drm_panel panel;
+> > +     struct mipi_dsi_device *dsi;
+> > +     struct regulator_bulk_data supplies[3];
+> > +     struct gpio_desc *panel_reset_gpio;
+> > +     struct gpio_desc *touch_reset_gpio;
+> > +     bool prepared;
+> > +     int type;
+> > +};
+> > +
+> > +static inline struct sony_td4353_jdi *to_sony_td4353_jdi(struct drm_panel *panel)
+> > +{
+> > +     return container_of(panel, struct sony_td4353_jdi, panel);
+> > +}
+> > +
+> > +static int sony_td4353_jdi_on(struct sony_td4353_jdi *ctx)
+> > +{
+> > +     struct mipi_dsi_device *dsi = ctx->dsi;
+> > +     struct device *dev = &dsi->dev;
+> > +     int ret;
+> > +
+> > +     dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> > +
+> > +     ret = mipi_dsi_dcs_set_column_address(dsi, 0x0000, 1080 - 1);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set column address: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret = mipi_dsi_dcs_set_page_address(dsi, 0x0000, 2160 - 1);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set page address: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret = mipi_dsi_dcs_set_tear_scanline(dsi, 0);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set tear scanline: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set tear on: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_ADDRESS_MODE, 0x00);
+> > +
+> > +     ret = mipi_dsi_dcs_set_pixel_format(dsi, 0x77);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set pixel format: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PARTIAL_ROWS,
+> > +                       0x00, 0x00, 0x08, 0x6f);
+> > +
+> > +     ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +     msleep(70);
+> > +
+> > +     mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_MEMORY_START);
+> > +
+> > +     ret = mipi_dsi_dcs_set_display_on(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to turn display on: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int sony_td4353_jdi_off(struct sony_td4353_jdi *ctx)
+> > +{
+> > +     struct mipi_dsi_device *dsi = ctx->dsi;
+> > +     struct device *dev = &dsi->dev;
+> > +     int ret;
+> > +
+> > +     dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> > +
+> > +     ret = mipi_dsi_dcs_set_display_off(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set display off: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +     msleep(22);
+> > +
+> > +     ret = mipi_dsi_dcs_set_tear_off(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to set tear off: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +     msleep(80);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void sony_td4353_assert_reset_gpios(struct sony_td4353_jdi *ctx, int mode)
+> > +{
+> > +     gpiod_set_value_cansleep(ctx->touch_reset_gpio, mode);
+> > +     gpiod_set_value_cansleep(ctx->panel_reset_gpio, mode);
+> > +     usleep_range(5000, 5100);
+> > +}
+> > +
+> > +static int sony_td4353_jdi_prepare(struct drm_panel *panel)
+> > +{
+> > +     struct sony_td4353_jdi *ctx = to_sony_td4353_jdi(panel);
+> > +     struct device *dev = &ctx->dsi->dev;
+> > +     int ret;
+> > +
+> > +     if (ctx->prepared)
+> > +             return 0;
+> > +
+> > +     ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     msleep(100);
+> > +
+> > +     sony_td4353_assert_reset_gpios(ctx, 1);
+> > +
+> > +     ret = sony_td4353_jdi_on(ctx);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to power on panel: %d\n", ret);
+> > +             sony_td4353_assert_reset_gpios(ctx, 0);
+> > +             regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ctx->prepared = true;
+> > +     return 0;
+> > +}
+> > +
+> > +static int sony_td4353_jdi_unprepare(struct drm_panel *panel)
+> > +{
+> > +     struct sony_td4353_jdi *ctx = to_sony_td4353_jdi(panel);
+> > +     struct device *dev = &ctx->dsi->dev;
+> > +     int ret;
+> > +
+> > +     if (!ctx->prepared)
+> > +             return 0;
+> > +
+> > +     ret = sony_td4353_jdi_off(ctx);
+> > +     if (ret < 0)
+> > +             dev_err(dev, "Failed to power off panel: %d\n", ret);
+> > +
+> > +     sony_td4353_assert_reset_gpios(ctx, 0);
+> > +     regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > +
+> > +     ctx->prepared = false;
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct drm_display_mode sony_td4353_jdi_mode_tama_60hz = {
+> > +     .clock = (1080 + 4 + 8 + 8) * (2160 + 259 + 8 + 8) * 60 / 1000,
+> > +     .hdisplay = 1080,
+> > +     .hsync_start = 1080 + 4,
+> > +     .hsync_end = 1080 + 4 + 8,
+> > +     .htotal = 1080 + 4 + 8 + 8,
+> > +     .vdisplay = 2160,
+> > +     .vsync_start = 2160 + 259,
+> > +     .vsync_end = 2160 + 259 + 8,
+> > +     .vtotal = 2160 + 259 + 8 + 8,
+> > +     .width_mm = 64,
+> > +     .height_mm = 128,
+> > +};
+> > +
+> > +static int sony_td4353_jdi_get_modes(struct drm_panel *panel,
+> > +                                struct drm_connector *connector)
+> > +{
+> > +     struct sony_td4353_jdi *ctx = to_sony_td4353_jdi(panel);
+> > +     struct drm_display_mode *mode = NULL;
+> > +
+> > +     if (ctx->type == TYPE_TAMA_60HZ)
+> > +             mode = drm_mode_duplicate(connector->dev, &sony_td4353_jdi_mode_tama_60hz);
+> > +     else
+> > +             return -EINVAL;
+> > +
+> > +     if (!mode)
+> > +             return -ENOMEM;
+> > +
+> > +     drm_mode_set_name(mode);
+> > +
+> > +     mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> > +     connector->display_info.width_mm = mode->width_mm;
+> > +     connector->display_info.height_mm = mode->height_mm;
+> > +     drm_mode_probed_add(connector, mode);
+> > +
+> > +     return 1;
+> > +}
+> > +
+> > +static const struct drm_panel_funcs sony_td4353_jdi_panel_funcs = {
+> > +     .prepare = sony_td4353_jdi_prepare,
+> > +     .unprepare = sony_td4353_jdi_unprepare,
+> > +     .get_modes = sony_td4353_jdi_get_modes,
+> > +};
+> > +
+> > +static int sony_td4353_jdi_probe(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct device *dev = &dsi->dev;
+> > +     struct sony_td4353_jdi *ctx;
+> > +     int ret;
+> > +
+> > +     ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> > +     if (!ctx)
+> > +             return -ENOMEM;
+> > +
+> > +     ctx->type = (uintptr_t)of_device_get_match_data(dev);
+> > +
+> > +     ctx->supplies[0].supply = "vddio";
+> > +     ctx->supplies[1].supply = "vsp";
+> > +     ctx->supplies[2].supply = "vsn";
+> > +     ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
+> > +                                   ctx->supplies);
+> > +     if (ret < 0)
+> > +             return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> > +
+> > +     ctx->panel_reset_gpio = devm_gpiod_get(dev, "panel-reset", GPIOD_ASIS);
+> > +     if (IS_ERR(ctx->panel_reset_gpio))
+> > +             return dev_err_probe(dev, PTR_ERR(ctx->panel_reset_gpio),
+> > +                                  "Failed to get panel-reset-gpios\n");
+> > +
+> > +     ctx->touch_reset_gpio = devm_gpiod_get(dev, "touch-reset", GPIOD_ASIS);
+> > +     if (IS_ERR(ctx->touch_reset_gpio))
+> > +             return dev_err_probe(dev, PTR_ERR(ctx->touch_reset_gpio),
+> > +                                  "Failed to get touch-reset-gpios\n");
+> > +
+> > +     ctx->dsi = dsi;
+> > +     mipi_dsi_set_drvdata(dsi, ctx);
+> > +
+> > +     dsi->lanes = 4;
+> > +     dsi->format = MIPI_DSI_FMT_RGB888;
+> > +     dsi->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> > +
+> > +     drm_panel_init(&ctx->panel, dev, &sony_td4353_jdi_panel_funcs,
+> > +                    DRM_MODE_CONNECTOR_DSI);
+> > +
+> > +     ret = drm_panel_of_backlight(&ctx->panel);
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "Failed to get backlight\n");
+> > +
+> > +     drm_panel_add(&ctx->panel);
+> > +
+> > +     ret = mipi_dsi_attach(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+> > +             drm_panel_remove(&ctx->panel);
+> > +             return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void sony_td4353_jdi_remove(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct sony_td4353_jdi *ctx = mipi_dsi_get_drvdata(dsi);
+> > +     int ret;
+> > +
+> > +     ret = mipi_dsi_detach(dsi);
+> > +     if (ret < 0)
+> > +             dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
+> > +
+> > +     drm_panel_remove(&ctx->panel);
+> > +}
+> > +
+> > +static const struct of_device_id sony_td4353_jdi_of_match[] = {
+> > +     { .compatible = "sony,td4353-jdi-tama", .data = (void *)TYPE_TAMA_60HZ },
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, sony_td4353_jdi_of_match);
+> > +
+> > +static struct mipi_dsi_driver sony_td4353_jdi_driver = {
+> > +     .probe = sony_td4353_jdi_probe,
+> > +     .remove = sony_td4353_jdi_remove,
+> > +     .driver = {
+> > +             .name = "panel-sony-td4353-jdi",
+> > +             .of_match_table = sony_td4353_jdi_of_match,
+> > +     },
+> > +};
+> > +module_mipi_dsi_driver(sony_td4353_jdi_driver);
+> > +
+> > +MODULE_AUTHOR("Konrad Dybcio <konrad.dybcio@somainline.org>");
+> > +MODULE_DESCRIPTION("DRM panel driver for SONY Xperia XZ2/XZ2c JDI panel");
+> > +MODULE_LICENSE("GPL");
 
-> 
->>
->> -- >8 --
->> From 4d44e8a83716d1caa314f25a95bd21ac8904909e Mon Sep 17 00:00:00 2001
->> From: Conor Dooley <conor.dooley@microchip.com>
->> Date: Thu, 16 Feb 2023 09:58:22 +0000
->> Subject: [PATCH] dt-bindings: riscv: correct starfive visionfive 2 compatibles
->>
->> Using "va" and "vb" doesn't match what's written on the board, or the
->> communications from StarFive.
->> Switching to using the silkscreened version number will ease confusion &
->> the risk of another spin of the board containing a "conflicting" version
->> identifier.
->>
->> Suggested-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->> Fixes: 97b7ed072784 ("dt-bindings: riscv: Add StarFive JH7110 SoC and VisionFive 2 board")
->> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
->> index 60c7c03fcdce..cc4d92f0a1bf 100644
->> --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
->> @@ -26,8 +26,8 @@ properties:
->>
->>        - items:
->>            - enum:
->> -              - starfive,visionfive-2-va
->> -              - starfive,visionfive-2-vb
->> +              - starfive,visionfive-2-v1.2a
->> +              - starfive,visionfive-2-v1.3b
->>            - const: starfive,jh7110
->>
->>  additionalProperties: true
->> --
->> 2.39.0
->>
->>
 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
