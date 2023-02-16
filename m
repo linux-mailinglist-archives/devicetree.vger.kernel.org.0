@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A6D6992E2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 181BF6992E7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:14:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbjBPLNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 06:13:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38892 "EHLO
+        id S230407AbjBPLOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 06:14:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbjBPLNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:13:34 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84C6E2DE6E
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:13:33 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id b1so1235581pft.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:13:33 -0800 (PST)
+        with ESMTP id S230236AbjBPLOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:14:52 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC9D82DE6E
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:14:49 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id x31so1035408pgl.6
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:14:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+kR6wh9kwB/E7vRE8CyQpd6LBLK+EqxdavmtcVlfOZ4=;
-        b=Sg+fQUNTyvr2FucvVuiPGyKptOmkutRklwZcQ74bdCjoB9dKmwUe+O3dHg1bLL+WbM
-         GLPXT2Oc1YhiCN9bgWt87QXsZKMzqs17B5ZeOxieV8XDjAghFZ7kj89SMUk1tGTSVVLS
-         cqgsFggPkidPlijzDql9Bvzljqp6ILWyqSrcH7KmXSaCAmQDqlxaRTsoper6rS+554Pm
-         arcq3zT/m5Ag2IUxtufCw0B0kqN3hjcsXJAj1gOIBUtGTJX3XMPyAQi6BrsajIHRS89c
-         GKGLBn4dER1Z42cJLAcUF48Jwzb1eHHaomFk7FJ0WFQ1tCdUt0QVD7tmxYdn0NaWChIl
-         N0kA==
+        bh=Avjd1bSEYKBQwiRvP4rk5Jz5oyYwjLMshH18syYNq5w=;
+        b=q1uY/Gu9ekbGw6hR893QCGaPMNAg9e6rZrsqIVmLBZPMPvMv1e7cvQZnW7ll67JAv9
+         qrekBncHqxl/kpnyJY3U1H6RK0ju6WQi+/nbWjntgoHbij22DP6/9r42E5eLJj1tCh9v
+         HE/L16XXH2eunjWebl76ACP0flcFcAJRlzHaxtgbyUle7Nc896L3sZ5YrIGNj3sB3kMb
+         WLEjWF270rOLYzJAEihSGF4l4kxHZ4pFtkJ3+4Q0+TVWbhJGwO+qfYrbCFHkE57/XzPU
+         CgJoLKFrEyAaiXKUcsuSiBR9AMDkmHWNHjN2W6XMwautll89kBNvNG04Yyxab0mYTIPn
+         Qy7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+kR6wh9kwB/E7vRE8CyQpd6LBLK+EqxdavmtcVlfOZ4=;
-        b=JBs+MtgAwZJuD6OlGTQLcnJ/kzy+Pb3fJCTCsxs2sRp8qC32YelRzpIVufYHN7DcHS
-         I8Se+oPlRk8MPIeS9VosKFPVxpzTSC9h8hqhUuBGF/UoN7h1GEiAWpPCvHZFjg/K6GJz
-         S6GWuzGGsHxPZLTcV+2/EpeZMuMWrTww+J3P7S/OuJT1feFN40zB1KPmxBq+EOEs9vul
-         Rcbk9L7bzb0uihUoiA+JYSrCfZdVNQYlVaV/eEDlzBTwoFcruOat0U6ch3jTOQAT1/yx
-         CG43PtmSaY6Dt96rx3+qVY4tDgkbgkgKr1hD8ORJsScZHf9fDvfPcXxMJRc9JFurN3rE
-         RUhQ==
-X-Gm-Message-State: AO0yUKV3kWVNDBfAgEoIOqMbivqaSSYZxZQfLV+FpfLNi4nVYB7PoZOC
-        LLqXTXRn+Wb3HnRJ0lrFhs9dPMPjsdpVJGtN53mgcw==
-X-Google-Smtp-Source: AK7set8RryQsbu+Kkw2qXt9myeqZ9YL9Pbk5ABXe5VqKD9hgnrBVz34nN6cjKsGVChY53slLb8UDby66Y68qOCd2T+k=
-X-Received: by 2002:a62:820f:0:b0:5a9:b28f:626c with SMTP id
- w15-20020a62820f000000b005a9b28f626cmr71691pfd.56.1676546012974; Thu, 16 Feb
- 2023 03:13:32 -0800 (PST)
+        bh=Avjd1bSEYKBQwiRvP4rk5Jz5oyYwjLMshH18syYNq5w=;
+        b=l+ph4DBVdsxlBcPZd2RC6NH3qSbEMfitUfDQ+csV32X4T6OCuLUWa3b3g8hK4TYsXf
+         SnArT27QGZ+Lb+7/yK2v+NU7lq48F1PXRjSS+sQFs4MCp7ookfHQuGpQ6Ui3k2xyV2jn
+         dGz04ulk7Srzqiw9oERdYyTwxk/B5AEDxqFfXz4SVm3PbK/aRin5DqAtqyM56T48TKz/
+         XRTmIMHZmuHN2nPWAZ2XnSn7HMBeU5vScaQ07+Y38QwC9fvQacdU0t54qfTulf64CZF6
+         nON6qK66qFDRjFNnl80QY8OzP3FX58Ptgvxe5MfKXZiBJmOkpM6QZcupS7INhlzYoCUP
+         Bsfg==
+X-Gm-Message-State: AO0yUKU1QlejnSn3OY7RaCNluHRQpqmDO/wJ8PBQLEBn9UhONgCtBxoR
+        SIii73azu7Uew/AyLv5zoSg5zmJjUoR68xC2imvsUA==
+X-Google-Smtp-Source: AK7set9jfIQb4YfFa1aI3LxnksHzAibjPxuDbZDPL2EwpTo+AnXmUsqWbePsGPMjqBdeGZEbrI+E1selRjGfj2UlJzE=
+X-Received: by 2002:a05:6a02:28c:b0:4f1:cd3a:3e83 with SMTP id
+ bk12-20020a056a02028c00b004f1cd3a3e83mr233413pgb.3.1676546089229; Thu, 16 Feb
+ 2023 03:14:49 -0800 (PST)
 MIME-Version: 1.0
 References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
- <1c5996a5-491f-39d6-b120-bbef86473729@gmail.com> <b87003f6-02a8-64fc-80fb-b90ca6bec37c@linaro.org>
- <723119a3-7c7f-6447-254e-bc340a1fe2de@gmail.com> <8e9d4c8a-40e0-65ef-ba72-ee8d1114ce97@linaro.org>
- <eef6172c-6d74-16e2-bde2-324227ca174c@gmail.com> <bcd24667-731d-8a6c-82aa-4763d033741a@gmail.com>
-In-Reply-To: <bcd24667-731d-8a6c-82aa-4763d033741a@gmail.com>
+ <CAPDyKFroB-TULOeia4OyXBW6rWMs7e3_Fp4Uw878Q8Gt=TDfag@mail.gmail.com> <48b4a87a-c5e9-c3ec-2492-bb2afb495398@linaro.org>
+In-Reply-To: <48b4a87a-c5e9-c3ec-2492-bb2afb495398@linaro.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 16 Feb 2023 12:12:56 +0100
-Message-ID: <CAPDyKFr4aczSaAWdaX0VS+v5sGyGgktYzUGxQKdwvCfWFj8AVw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: meson-gx: support specifying cd interrupt
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Date:   Thu, 16 Feb 2023 12:14:13 +0100
+Message-ID: <CAPDyKFoWyPHV2_EgxLrDu8EPVsS1gtTfdd4=QnsEuMr9wvGeJw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] mmc: support setting card detect interrupt from
+ drivers and use it in meson-gx
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>,
@@ -78,49 +77,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Feb 2023 at 10:49, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Thu, 16 Feb 2023 at 10:18, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 16.02.2023 10:41, Heiner Kallweit wrote:
-> > On 16.02.2023 10:34, Krzysztof Kozlowski wrote:
-> >> On 16/02/2023 10:29, Heiner Kallweit wrote:
-> >>> On 16.02.2023 10:18, Krzysztof Kozlowski wrote:
-> >>>> On 14/02/2023 22:42, Heiner Kallweit wrote:
-> >>>>> Support passing a second interrupt as card detect interrupt.
-> >>>>>
-> >>>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 2 +-
-> >>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> >>>>> index 46e235bf2..c8c30300d 100644
-> >>>>> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> >>>>> @@ -28,7 +28,7 @@ properties:
-> >>>>>      maxItems: 1
-> >>>>>
-> >>>>>    interrupts:
-> >>>>> -    maxItems: 1
-> >>>>> +    maxItems: 2
-> >>>>
-> >>>> Wait, you now *require* (not support) cd interrupt, so this looks like
-> >>>> ABI break.
-> >>>>
-> >>> The second interrupt is optional. If not provided MMC core falls back to
-> >>> cd polling.
+> On 15/02/2023 13:48, Ulf Hansson wrote:
+> > On Tue, 14 Feb 2023 at 22:39, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 > >>
-> >> It is not. Your binding requires it. Did you test it on DTS without the
-> >> second interrupt?
+> >> On certain platforms like Amlogic Meson gpiod_to_irq() isn't supported
+> >> due to the design of gpio / interrupt controller. Therefore provide an
+> >> option for drivers to pass the card detect interrupt number
+> >> (retrieved e.g. from device tree) to mmc core.
 > >>
-> > You're right, the binding misses a minItems 1. I'll add that and the
-> > interrupt description.
+> >> v2:
+> >> - use another mechanism for passing and storing the cd interrupt
+> >> - add patch 2
+> >>
+> >> Heiner Kallweit (3):
+> >>   mmc: core: support setting card detect interrupt from drivers
+> >>   dt-bindings: mmc: meson-gx: support specifying cd interrupt
+> >>   mmc: meson-gx: support platform interrupt as card detect interrupt
+> >>
+> >>  .../bindings/mmc/amlogic,meson-gx-mmc.yaml      |  2 +-
+> >>  drivers/mmc/core/slot-gpio.c                    | 17 ++++++++++++++++-
+> >>  drivers/mmc/host/meson-gx-mmc.c                 |  5 ++++-
+> >>  include/linux/mmc/slot-gpio.h                   |  1 +
+> >>  4 files changed, 22 insertions(+), 3 deletions(-)
+> >>
 > >
-> Ulf,
-> do you require an add-on patch that fixes the binding issue or a
-> replacement patch?
+> > Applied for next, thanks!
+>
+> A bit too fast. Binding is incorrect - suggests ABI break and makes
+> interrupts not described enough.
 
-Please send an incremental patch on top, I would like to avoid any
-further rebase at this late in the release cycle.
+Sorry! Thanks for pointing this out. Heiner is fixing this with an
+incremental patch on top, please help to review.
 
 Kind regards
 Uffe
