@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 236DB6992BD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8324C6992BF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjBPLI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 06:08:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33192 "EHLO
+        id S230350AbjBPLIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 06:08:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbjBPLI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:08:28 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800769035
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:08:08 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id y19so1533248ljq.7
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:08:08 -0800 (PST)
+        with ESMTP id S230352AbjBPLIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:08:31 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D6251F5C0
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:08:09 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id i18so928590ljc.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:08:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G+O+pbAbqz0ncakc7kjAFIJNZPlWAoJghHrDomQ2uJo=;
-        b=ABJcNBViId/LFgzzPqQ8fGMgiFzTXB39HzvdlCipNUEvcE7oIVERjcs4vqys8Dcmk6
-         rgDKT+Tf/mri8ucHPKWsBdw9+3Eh9bcjdZIiBzTJkR7Ut9duLtC/TJFSD6GI5ekNRsfn
-         ZmaIYN6MwWK6sEOrhL9jVczFEIMUajfJpaxXrsP2dOK8PUQPgZ82PMfI72O0nfHmhK2O
-         XNcc9sa+46ywv0i/5KIrp4Cqn+rfjbF8fBXlxbiCOYwROgLKBiSfwAxduqUfG/wVWmpB
-         rfs9SPYU6GgR7HHL0xm7En+TDTIZvam5gqikXG0WWGJM+SODA88MDWSmf8mKWU33gB7s
-         I1Tg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fFNh/v5PyRba+b9OKuV/fo4Fg+XrIWLYeu/MIaQD8HI=;
+        b=nRZdpd2TJ5NmFJKugptl9/m9MnrT7wgZMwQkXPOvJQDdKoJvd6euQdl6Z9V195G0QO
+         o9cRNbYokee/fxzuLNr52eb1c0y5avjQPG9RsMaF1XvsNmhJcnSOTAS3jKSS93N04Uud
+         cDurXwMwWopkyqpAGLFhzwvB8DDeS04SUi84MFLu1VPWEBcvww4EAqVJ6n8+aXKsBtOU
+         yaD7UjkpaaXOuBfAGZZwmPO4wCYJWOPa2IQMqrNDIsiuFe9hC3R452fFXwgSf/zJmOOf
+         QNKVeZr6YMDPtTpJWjeLXPO8oHB8cRWa1ImVq7SiKQFrcj169Fcr65cb/o48K30DkyX9
+         yK8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G+O+pbAbqz0ncakc7kjAFIJNZPlWAoJghHrDomQ2uJo=;
-        b=IodpGDKYl7niPyGhC5J0Douz5XMwb1JoPvxoWvJ2nvcJQvt3ZsA3mFPqGp673eymzl
-         6C0l8JwGHnCxRn38UvwseVECttbJ9idXHMrCvmnCS8IPQcp8uQNWhLcO3XgQmMjcK7sH
-         acA/JqPgnk1ZXZkMTV1gm7m1mX+6NgH0rsjaee6BA28kIyV3z5NUW4P4xB0m3nXIRT1g
-         F+L8uTeH6qH8+rw4vkdp5ZG/h+2AMvJs7dqLfwlTmHQJTlNhmi+pKrAN9AL0dSRmQEpz
-         iTUEthG4NZAH6XJeZjE2ObjkNGiJN9LhbhGDAMjDRyVQCpDaFuPXzcjk9C8LJ7em84ok
-         G2ug==
-X-Gm-Message-State: AO0yUKXDRsZ3v9syO4LFrnVNI6KdXC6GPZUMWKTPbZIphlLsMScgySHk
-        4NtvpvU5cLdPcSJCW4Wa7maYsQ==
-X-Google-Smtp-Source: AK7set+T+PyD+3gP4rn3YTnaR3dvg4ebsWrnu4i6E/myhVZC0uXfNPSeUIbhVBiGE5KA8lfWMyVzpQ==
-X-Received: by 2002:a2e:91d0:0:b0:294:666a:a38d with SMTP id u16-20020a2e91d0000000b00294666aa38dmr273771ljg.9.1676545686770;
-        Thu, 16 Feb 2023 03:08:06 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fFNh/v5PyRba+b9OKuV/fo4Fg+XrIWLYeu/MIaQD8HI=;
+        b=GyDvbErPeEJMclizOmcvf/ddjYXZY9ONSJ6NRAhK3X8MEznP2ZeI9TJxuOp4l1L1/J
+         VprzsMGYh7eJVvk2v1Zee/aMn7lqLsl4IvWX+Ie4z0b+tvZsrgMarUyO/5qBoF+VBVXo
+         z+s79GkixLwH/trQsjS80H4jluug8w7ZtE9YIHiTgyUJjzhJ1BRI/xGzPt/NHvgKHMwr
+         DVeipnEo5btEOxdNxG/gVIeS/uRxMvKMHGGOm/yXulq4c+0fTba7p629mZ2UvAYdGKhh
+         FeTu7qWtNl+ZdO2qR/3qIR4A2NioVung5C+eD6crBuTj6aE0DPFXv+J445eA2C6yOCcI
+         E7Lw==
+X-Gm-Message-State: AO0yUKULB+2mh7YYQBSOkELGPrS/WSM4vzgdQueVJUHBZHpwLdJ6AwSA
+        wYEfhLKfwPN0J+NB0JCFM1TAFQ==
+X-Google-Smtp-Source: AK7set9psRJZOenjDBzWRsX8u1qwYgjPnrP9p1UNfWJAEa18c2fgh6dKrd6v7bpMUmutB4Ypho19LA==
+X-Received: by 2002:a2e:b88b:0:b0:293:4ebc:98e0 with SMTP id r11-20020a2eb88b000000b002934ebc98e0mr1980800ljp.17.1676545688047;
+        Thu, 16 Feb 2023 03:08:08 -0800 (PST)
 Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id d19-20020ac25453000000b004db20d07decsm255993lfn.209.2023.02.16.03.08.05
+        by smtp.gmail.com with ESMTPSA id d19-20020ac25453000000b004db20d07decsm255993lfn.209.2023.02.16.03.08.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 03:08:06 -0800 (PST)
+        Thu, 16 Feb 2023 03:08:07 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
@@ -60,49 +61,113 @@ Cc:     marijn.suijten@somainline.org,
         Luca Weiss <luca@z3ntu.xyz>,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: arm: Add Cortex-A715 and X3
-Date:   Thu, 16 Feb 2023 12:08:02 +0100
-Message-Id: <20230216110803.3945747-1-konrad.dybcio@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: sm8550: Use correct CPU compatibles
+Date:   Thu, 16 Feb 2023 12:08:03 +0100
+Message-Id: <20230216110803.3945747-2-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230216110803.3945747-1-konrad.dybcio@linaro.org>
+References: <20230216110803.3945747-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatibles for the Cortex-A715 and X3 cores found in some
-recent flagship designs.
+Use the correct compatibles for the four kinds of CPU cores used on
+SM8550, based on the value of their MIDR_EL1 registers:
+
+CPU7: 0x411fd4e0 - CX3 r1p1
+CPU5-6: 0x412fd470 - CA710 r?p?
+CPU3-4: 0x411fd4d0 - CA715 r?p?
+CPU0-2: 0x411fd461 - CA510 r?p?
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/cpus.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-index a7586295a6f5..c145f6a035ee 100644
---- a/Documentation/devicetree/bindings/arm/cpus.yaml
-+++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-@@ -141,6 +141,7 @@ properties:
-       - arm,cortex-a78ae
-       - arm,cortex-a510
-       - arm,cortex-a710
-+      - arm,cortex-a715
-       - arm,cortex-m0
-       - arm,cortex-m0+
-       - arm,cortex-m1
-@@ -151,6 +152,7 @@ properties:
-       - arm,cortex-r7
-       - arm,cortex-x1
-       - arm,cortex-x2
-+      - arm,cortex-x3
-       - arm,neoverse-e1
-       - arm,neoverse-n1
-       - arm,neoverse-n2
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index ff4d342c0725..a65c3151baf3 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -66,7 +66,7 @@ cpus {
+ 
+ 		CPU0: cpu@0 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a510";
+ 			reg = <0 0>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+@@ -89,7 +89,7 @@ L3_0: l3-cache {
+ 
+ 		CPU1: cpu@100 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a510";
+ 			reg = <0 0x100>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_100>;
+@@ -108,7 +108,7 @@ L2_100: l2-cache {
+ 
+ 		CPU2: cpu@200 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a510";
+ 			reg = <0 0x200>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_200>;
+@@ -127,7 +127,7 @@ L2_200: l2-cache {
+ 
+ 		CPU3: cpu@300 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a715";
+ 			reg = <0 0x300>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_300>;
+@@ -146,7 +146,7 @@ L2_300: l2-cache {
+ 
+ 		CPU4: cpu@400 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a715";
+ 			reg = <0 0x400>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_400>;
+@@ -165,7 +165,7 @@ L2_400: l2-cache {
+ 
+ 		CPU5: cpu@500 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a710";
+ 			reg = <0 0x500>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_500>;
+@@ -184,7 +184,7 @@ L2_500: l2-cache {
+ 
+ 		CPU6: cpu@600 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-a710";
+ 			reg = <0 0x600>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_600>;
+@@ -203,7 +203,7 @@ L2_600: l2-cache {
+ 
+ 		CPU7: cpu@700 {
+ 			device_type = "cpu";
+-			compatible = "qcom,kryo";
++			compatible = "arm,cortex-x3";
+ 			reg = <0 0x700>;
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_700>;
 -- 
 2.39.1
 
