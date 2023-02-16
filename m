@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC705698C6B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:52:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D36DC698D1D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 07:35:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjBPFwC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Feb 2023 00:52:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46790 "EHLO
+        id S229509AbjBPGfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 01:35:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbjBPFwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:52:01 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB4127D6E;
-        Wed, 15 Feb 2023 21:51:58 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id A1C3824E1EC;
-        Thu, 16 Feb 2023 13:51:51 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
- 2023 13:51:51 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Feb
- 2023 13:51:50 +0800
-Message-ID: <79b6cc69-5f34-9983-58e3-64da9fac5ef3@starfivetech.com>
-Date:   Thu, 16 Feb 2023 13:51:50 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 1/4] dt-bindings: mmc: Add StarFive MMC module
-To:     Shengyu Qu <wiagn233@outlook.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229485AbjBPGfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 01:35:46 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D9141B50;
+        Wed, 15 Feb 2023 22:35:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B4B2861A1B;
+        Thu, 16 Feb 2023 06:35:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50420C433EF;
+        Thu, 16 Feb 2023 06:35:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1676529344;
+        bh=Y4GfQlxzKwZbc0WydlxWK4dEsOXa7BMquXaZxUfXd5U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eXq4JXzM6NOSyHEZD/wWTDygA1Lp21jSkGgMc3yKGLtu10FTY1hwRxExaVou4vrnz
+         lLTxftZcN4ly8Bya8/VY+zR951hX4698mg3RebcNAGyIigevqSJrDeEEwd01iXeTfl
+         8iZuaZihwaLA3VVCAXI6y5UjVfztgl+BPqamx4MY=
+Date:   Thu, 16 Feb 2023 07:35:39 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-2-william.qiu@starfivetech.com>
- <TY3P286MB26111053410F3F96C9C71D2798A39@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <9ef960ae-7b61-9ed3-5bab-822e6d7d5a76@starfivetech.com>
- <202302160545.31G5jiuf087662@SH1-CSMTP-DB111.sundns.com>
-Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <202302160545.31G5jiuf087662@SH1-CSMTP-DB111.sundns.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 13/26] gunyah: vm_mgr: Add ioctls to support basic
+ non-proxy VM boot
+Message-ID: <Y+3Ou02LwsfS0TLl@kroah.com>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212427.3316544-1-quic_eberman@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230214212427.3316544-1-quic_eberman@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,142 +69,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Feb 14, 2023 at 01:24:26PM -0800, Elliot Berman wrote:
+> +	case GH_VM_SET_DTB_CONFIG: {
+> +		struct gh_vm_dtb_config dtb_config;
+> +
+> +		if (copy_from_user(&dtb_config, argp, sizeof(dtb_config)))
+> +			return -EFAULT;
+> +
+> +		dtb_config.size = PAGE_ALIGN(dtb_config.size);
+> +		ghvm->dtb_config = dtb_config;
 
+Do you really mean to copy this tiny structure twice (once from
+userspace and the second time off of the stack)?  If so, why?
 
-On 2023/2/16 0:49, Shengyu Qu wrote:
-> Hello William,
-> 
-> Thanks for your reply. So there's v5 series? Btw, please fix maintainer information:
-> 
-> https://patchwork.kernel.org/project/linux-riscv/patch/20230215080203.27445-1-lukas.bulwahn@gmail.com/
-> 
-> Best regards,
-> 
-> Shengyu
-> 
-Hi Shengyu,
+And where are the values of the structure checked for validity?  Can any
+64bit value work for size and "gpa"?
 
-Here is v4 series, and I fixed the maintainer information in this series which
-Uffe would merge in his next branch.
-Thanks for taking time to review this patch series.
+thanks,
 
-Best Regards
-William
->>
->> On 2023/2/15 19:59, Shengyu Qu wrote:
->>> Hello William,
->>>
->>> Are you sure changing driver is better than changing yaml bindings? All
->>>
->>> previous version sent was syscon and sysreg seems not consistent with
->>>
->>> other codes.
->>>
->>> Best regards,
->>>
->>> Shengyu
->>>
->> Hi Shengyu,
->>
->> After discussing with colleagues, we decided to restore the lable name to
->> sys_syscon, and sysreg was just a unique name for the functionality of MMC,
->> which will be used in all future versions.
->>
->> Thanks for taking time reviewing this patch series.
->>
->> Best Regards
->> William
->>
->>>> Add documentation to describe StarFive designware mobile storage
->>>> host controller driver.
->>>>
->>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>    .../bindings/mmc/starfive,jh7110-mmc.yaml     | 77 +++++++++++++++++++
->>>>    1 file changed, 77 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
->>>> new file mode 100644
->>>> index 000000000000..51e1b04e799f
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
->>>> @@ -0,0 +1,77 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/mmc/starfive,jh7110-mmc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: StarFive Designware Mobile Storage Host Controller
->>>> +
->>>> +description:
->>>> +  StarFive uses the Synopsys designware mobile storage host controller
->>>> +  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
->>>> +
->>>> +allOf:
->>>> +  - $ref: synopsys-dw-mshc-common.yaml#
->>>> +
->>>> +maintainers:
->>>> +  - William Qiu <william.qiu@starfivetech.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: starfive,jh7110-mmc
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: biu clock
->>>> +      - description: ciu clock
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: biu
->>>> +      - const: ciu
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>> +
->>>> +  starfive,sysreg:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>>> +    items:
->>>> +      - items:
->>>> +          - description: phandle to System Register Controller syscon node
->>>> +          - description: offset of SYS_SYSCONSAIF__SYSCFG register for MMC controller
->>>> +          - description: shift of SYS_SYSCONSAIF__SYSCFG register for MMC controller
->>>> +          - description: mask of SYS_SYSCONSAIF__SYSCFG register for MMC controller
->>>> +    description:
->>>> +      Should be four parameters, the phandle to System Register Controller
->>>> +      syscon node and the offset/shift/mask of SYS_SYSCONSAIF__SYSCFG register
->>>> +      for MMC controller.
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - clocks
->>>> +  - clock-names
->>>> +  - interrupts
->>>> +  - starfive,sysreg
->>>> +
->>>> +unevaluatedProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    mmc@16010000 {
->>>> +        compatible = "starfive,jh7110-mmc";
->>>> +        reg = <0x16010000 0x10000>;
->>>> +        clocks = <&syscrg 91>,
->>>> +                 <&syscrg 93>;
->>>> +        clock-names = "biu","ciu";
->>>> +        resets = <&syscrg 64>;
->>>> +        reset-names = "reset";
->>>> +        interrupts = <74>;
->>>> +        fifo-depth = <32>;
->>>> +        fifo-watermark-aligned;
->>>> +        data-addr = <0>;
->>>> +        starfive,sysreg = <&sys_syscon 0x14 0x1a 0x7c000000>;
->>>> +    };
+greg k-h
