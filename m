@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24EF0699130
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF2D699139
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:30:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjBPK3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:29:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35710 "EHLO
+        id S230044AbjBPKaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:30:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbjBPK3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:29:32 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 508C5518DD
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:29:30 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id mc25so3911276ejb.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:29:30 -0800 (PST)
+        with ESMTP id S229988AbjBPKaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:30:22 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30AF14A1C6
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:30:06 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id t16so2067442edd.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:30:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=a9siJVZPOFvTKH6qbA3a38sGnlXPDe1LlTNA0o2LihA=;
-        b=AOvDsJeMQqZAscWrOwd++yaSB5pWNZLC1DGXNJLb/EmImWJhlUMZh/QkrYMOlg3y/I
-         oEXtb+SGVQnabDf8ii3/Tn7mSwJ3zPd0kR1SLHubef7tJuVLg0e3tcxfaY0JiQ4Ipy3H
-         uakQnIYX1URDOmbeigKL/+zcyZYnovZNVdeMUVr2oMBRDjuwEqSHOoAdUr1EkIEdTK0C
-         kJ7N3abgfqkV/8QjHokp1cHgPeOE2uRrEB5DcrmKkZ6kFO1zmpLU74ch+PrPiBXh8PlH
-         qqMHG7SNU0S+sHMEfAmRlKVYLVk0wZsqWSDDGxaRgfcAD4Hz/k1coir4sAMlAOX0atXN
-         Ry0w==
+        bh=trMy19lCfoNQKMYhTv+urc84CG0y8L9modeItMkODVw=;
+        b=Mv8q6XBJEV3iD/szEGMfFVC45l6lbFtsFxQmNKoFSQsOLucCqN9WzaOlpGx5dyuTRh
+         Rx7N0AfF1nCubrdjTYIKfn8ygSA63Bie+E49HgVYrMVAcfd9Xl94ltPW/+p1RF33MVKK
+         YnTLvV+y6ogWtctt4qk4tQRscpRXtgMyp2FwhlWqtBRC0w2wEkFYBEdd0ZtiHHrf5Nc1
+         3NCJQNb2SXbeqMisY+SbUN8yWn+whlhJIysz8rb7MnkdtXKzf36ry5ndLhZBNSZKVnq7
+         xepfCLyzHpxvmBk6PITESzTxtOz1ITo34HUUlgpuefwN37dVY1JzXrOJi1bc0d5NEhbh
+         NCpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a9siJVZPOFvTKH6qbA3a38sGnlXPDe1LlTNA0o2LihA=;
-        b=iY9WjCw6subfSGXTmsS8DWP1AfNC7l4LeR6zZVuAGaHzLjrobr5T4kAqBO5jjdtzok
-         EyMD3JdzNjFMJtzFbjtu7BVxxtSjnoKbsHo715bkepzdmEz8dRDksUJMVYrFa4PLRsoR
-         UEMCsnrrMzWGi5WOx0fhdagIqL8M+0TGy8yfHrP7MzaM8DA0CoTDwrtoGtujgK87zPao
-         LlpcFZ2FFWHhmXDz2o/WjVg5pNGATewHnypfM1uOY9YEy3Cyqqjf96a8zxlM2nRc9Vab
-         0IXB1J5E1kndOT5osTjsBh7j1yJHtACOy5xogOF5xEhmMnLVqGEn2mbkY1tI1MVwdfJT
-         /LpQ==
-X-Gm-Message-State: AO0yUKWl+QjRTWlbMnS3DBa8G5bgchyrgeoe664pG7g9L2ciDlOs4Lz5
-        NANUkvT7VqVJUhfr4jwmgLXRDQ==
-X-Google-Smtp-Source: AK7set8Py/urVAnDtSVqOAA45n+CZn4wecDP3p27sIw8OB/YpmZIlVwbIdd7aUzHO+JP4miZ6M97dQ==
-X-Received: by 2002:a17:906:9f25:b0:8b1:2eef:154c with SMTP id fy37-20020a1709069f2500b008b12eef154cmr1592559ejc.0.1676543368620;
-        Thu, 16 Feb 2023 02:29:28 -0800 (PST)
+        bh=trMy19lCfoNQKMYhTv+urc84CG0y8L9modeItMkODVw=;
+        b=knFrB94HtFPxoRCUgMbrqLBf9iU8i3+GNPJhRxAxAkzGtRGaXySsr3yyvnNcmDlim2
+         LpYd7/rg7dU85Uphm0J6ypJFjRikWcOgFDopAsFrkwN0qmlD9KCr8Zd11yzToypmatjt
+         G4F79NP+wm519a/XusAVcpzfq0ikyWf7kqFWpgBTbgewWt5BDsZ4A+0YfLupEA1w8coS
+         zKfm3VuG7o5GJ+ROtaeRS2hVv8p9HriDkm4JC8nalHBLsc1vnfKK/E8ywEcY7lYZbqdn
+         iv9x3rph00MLwp0EwGvULYKvV8rV2IQm/r+Riy1W3jRFvVrSvs5WhqwFCDAHsQ5pm3JS
+         KtWQ==
+X-Gm-Message-State: AO0yUKWmCS3cJqsh+kdvJ7Dc0z9LcoaNTcTrBF0piJ10aXc9/H91p4qP
+        KvH7GVzRTKySlXTPNwgMsjshuw==
+X-Google-Smtp-Source: AK7set+e6/QJL3lGLViNLI1RrrQJkAnhpGCZU/48DSywTKjOFl3uP6B32GFpz+Yqmal9PtkGNSwEkw==
+X-Received: by 2002:aa7:da88:0:b0:4aa:f910:c21c with SMTP id q8-20020aa7da88000000b004aaf910c21cmr4671262eds.3.1676543404709;
+        Thu, 16 Feb 2023 02:30:04 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id lf18-20020a170906ae5200b008af2b5cc1a2sm630463ejb.69.2023.02.16.02.29.25
+        by smtp.gmail.com with ESMTPSA id v9-20020a509549000000b004acc6cbc451sm643303eda.36.2023.02.16.02.30.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:29:28 -0800 (PST)
-Message-ID: <f883e857-1281-ceae-74ac-72a1f07d6413@linaro.org>
-Date:   Thu, 16 Feb 2023 11:29:24 +0100
+        Thu, 16 Feb 2023 02:30:04 -0800 (PST)
+Message-ID: <a1d93b17-ccd5-fc90-1450-b0b900e00916@linaro.org>
+Date:   Thu, 16 Feb 2023 11:30:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/7] dt-bindings: PCI: qcom: Add IPQ9574 specific
+Subject: Re: [PATCH 3/7] dt-bindings: phy: qcom,qmp-pcie: Add ipq9574
  compatible
 Content-Language: en-US
 To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
@@ -71,9 +71,9 @@ Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
         quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
         quic_arajkuma@quicinc.com, quic_anusha@quicinc.com
 References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
- <20230214164135.17039-2-quic_devipriy@quicinc.com>
+ <20230214164135.17039-4-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230214164135.17039-2-quic_devipriy@quicinc.com>
+In-Reply-To: <20230214164135.17039-4-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,75 +87,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/02/2023 17:41, Devi Priya wrote:
-> Document the compatible for IPQ9574
+> Add the compatible for the PCIe QMP PHYs found on IPQ9574
 > 
 > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 > ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 72 ++++++++++++++++++-
->  1 file changed, 70 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index 872817d6d2bd..dabdf2684e2d 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - qcom,pcie-ipq8064-v2
->            - qcom,pcie-ipq8074
->            - qcom,pcie-ipq8074-gen3
-> +          - qcom,pcie-ipq9574
->            - qcom,pcie-msm8996
->            - qcom,pcie-qcs404
->            - qcom,pcie-sa8540p
-> @@ -44,11 +45,11 @@ properties:
->  
->    reg:
->      minItems: 4
-> -    maxItems: 5
-> +    maxItems: 6
->  
->    reg-names:
->      minItems: 4
-> -    maxItems: 5
-> +    maxItems: 6
->  
->    interrupts:
->      minItems: 1
-> @@ -105,6 +106,8 @@ properties:
->      items:
->        - const: pciephy
->  
-> +  msi-parent: true
-> +
->    power-domains:
->      maxItems: 1
->  
-> @@ -173,6 +176,27 @@ allOf:
->              - const: parf # Qualcomm specific registers
->              - const: config # PCIe configuration space
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-ipq9574
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 5
-> +          maxItems: 6
-> +        reg-names:
-> +          minItems: 5
-> +          items:
-> +            - const: dbi # DesignWare PCIe registers
-> +            - const: elbi # External local bus interface registers
-> +            - const: atu # ATU address space
-> +            - const: parf # Qualcomm specific registers
-> +            - const: config # PCIe configuration space
-> +            - const: aggr_noc #PCIe aggr_noc
 
-Why last one is optional? I would assume device either has it or has not.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
