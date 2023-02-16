@@ -2,116 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62940698F80
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1032698F8E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:18:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjBPJQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 04:16:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59074 "EHLO
+        id S229680AbjBPJST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:18:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjBPJQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:16:45 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF0213D61
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:16:44 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id jg8so3573528ejc.6
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:16:44 -0800 (PST)
+        with ESMTP id S229911AbjBPJSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:18:15 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE39D26862
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:18:10 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id lf10so3599214ejc.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:18:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d9FNglQcCxQyOSfgnClzbl2z0FIefkJaddL/GbB5I2c=;
-        b=apzS31Voo3MgYzPmwbJiZkFUGxtflTAPDcXAbwJ0mp1CtQbZZJ2H1e80+rf4Z9ysnM
-         pDh5Ycv7nwP+Bqxbk4TSRr8/yiylu8DH8Dvie0/+AoGuEj+AzfjWLvTYCHUSiDaFANBu
-         PtiXZ3iKKrAaxqLSyuZdrzqBhBHmORz6Mba6N0i6FM+BR5Sz5CT6GiYh8o7HQ9wPn7vd
-         qYQqUr+q+cPsgA1CgVogBJwRyG9JvuE2z0rwVqzQhnY/Krr2x1yoZt0Wpc7bxL6rYoNH
-         xWMG/QLtj5e7nzdufjcSgEehgPyAnN7yDnC20VsumJw/j4zcF+fSbelE3VCqJdm13Hx7
-         7b/A==
+        bh=I0OaMl2j24ssPCY78+tQ9h2rBFC0lvbgjl9TBRcDzuE=;
+        b=WSk8SkTl9EoyJJ6lWRhrOy4GIRLG55z7HOikjpJK9gD3ZnNWyV8WiBs28KD7Vxtvmf
+         5JJfNhqL/frGPEeRE73OuIH2lc2P1S1yxBYBfZ+f2HZt846a+pViAAcQAb27QdlR94F0
+         ppdwMJIYaskjEZbuXw3ZsZrvlmJCFC+k1+80ekw6jc+gHQrFQjIUOMSaW6CzG1VMgE6Y
+         sTQ9bNByHWroLquA6MkenemTD0BrPDskjgOrWfxu1uaZeZm8eOEmkBFLAeN/AXJV7r9/
+         lI6MQXztcBQjjuLsU/2KOLCMOxRxbIEc1JvqQMEoFSAy8n7PiYePWIsgzBrfG0mH2Rcj
+         dwCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d9FNglQcCxQyOSfgnClzbl2z0FIefkJaddL/GbB5I2c=;
-        b=D5iwSvpfxrp6+NKkM9Vhi3yH0eiB1MeQT71MYIHzZkdbaweh0FrXaUsvYNZWRI3Gfk
-         dZDUsoqKtJ3b2qncATneulzUnAcRfa1eCM+bb6ePWmYoeW9SGcncdbGlw+hbzTDKpU9j
-         tpwaViUje1oBxIEFBpgR3wRH0tr42jK4JadKjAImbfYVV8dI8wU2yCqrdWR7DYnNPWB1
-         viMp8vD2utnSOYr1A5oO9zED9WCeKd8VlZG1Mngl5dcOV4Z8DX41BGH5Qg+uwFqcb3Je
-         QX+EPsrCofTsrvNSAqX4jjU+N0IZuq2d731NmKrn1HoZx8G84fY4iF8Rv7ympnhGjq/L
-         1QeA==
-X-Gm-Message-State: AO0yUKUBSqXEu//TtmPAQzgOY8mmynZivotdhigy8G/Yp6htBgi6YCZ7
-        2IzETiZ+/ipGZ2VrW7pc6l8ctg==
-X-Google-Smtp-Source: AK7set+kDJLUJSKzlsLyJSrK6+rqxZAGJG3YyEt+vkobl86x6eiiVQc1B5fHb46oVN3xWoQIa18+Qg==
-X-Received: by 2002:a17:906:38f:b0:87b:e105:5d9a with SMTP id b15-20020a170906038f00b0087be1055d9amr5228518eja.67.1676539002792;
-        Thu, 16 Feb 2023 01:16:42 -0800 (PST)
+        bh=I0OaMl2j24ssPCY78+tQ9h2rBFC0lvbgjl9TBRcDzuE=;
+        b=4XdMBo3P7yYmIR+B1p+L5yABuN1+km0dV0/SkdmCJPOc3wAVWrbLw/KhujBScYhzbc
+         guLTXczT6Kju8cQr4yzq6bi8Om0sFu3HVAlFGSy1Nl0tqPm8GTLnb+deufydT1YYNfRZ
+         3gi4qSHKQ16LfASxQsEqpblMHvqJgk1Vay5bVDtEPmV4dyy6zKUYh5+nwz0meP0i52su
+         FR/+e3V8mOuTYxgNf0VR7OeQ3W/uffUPq+Ob5BNH83CymBwJJ/oc8sALGTSSq5fkbvF+
+         /7oJSgL6Glrdww+jsXJBJEBtHohIMqDowWZxfMT8Ky8kk7/Zqs99YaT2LJ2EZVmBXSQM
+         4yaw==
+X-Gm-Message-State: AO0yUKWtdH7zXB33mhGnDhshq06N11ixBUti+8Ok/Um2a4KdPN6TvS44
+        Yr/CAXpWu+qxUDXaI5H9KGO5Bg==
+X-Google-Smtp-Source: AK7set/0yZSEl0O3Eolg3vrUoRP0zKyWipe/qhUAkIfNDz34VhzrmmAd1oAq71N9MXp54mBNbA5Kqw==
+X-Received: by 2002:a17:906:379a:b0:88f:9f5e:f40 with SMTP id n26-20020a170906379a00b0088f9f5e0f40mr5071128ejc.68.1676539088937;
+        Thu, 16 Feb 2023 01:18:08 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e26-20020a50a69a000000b00499703df898sm531436edc.69.2023.02.16.01.16.39
+        by smtp.gmail.com with ESMTPSA id md1-20020a170906ae8100b008b174ef3cdesm111131ejb.27.2023.02.16.01.18.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 01:16:42 -0800 (PST)
-Message-ID: <fb380316-c8c5-104b-3054-a504f0fed6c0@linaro.org>
-Date:   Thu, 16 Feb 2023 10:16:38 +0100
+        Thu, 16 Feb 2023 01:18:08 -0800 (PST)
+Message-ID: <b87003f6-02a8-64fc-80fb-b90ca6bec37c@linaro.org>
+Date:   Thu, 16 Feb 2023 10:18:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v7 0/7] add support for CDX bus
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: meson-gx: support specifying cd
+ interrupt
 Content-Language: en-US
-To:     "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "saravanak@google.com" <saravanak@google.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "masahiroy@kernel.org" <masahiroy@kernel.org>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-References: <20230131084049.23698-1-nipun.gupta@amd.com>
- <BL1PR12MB533354263F0C9A8D5234272E9DA39@BL1PR12MB5333.namprd12.prod.outlook.com>
+References: <15df9ef0-9b73-ca5a-d3cf-0585cd135bc5@gmail.com>
+ <1c5996a5-491f-39d6-b120-bbef86473729@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <BL1PR12MB533354263F0C9A8D5234272E9DA39@BL1PR12MB5333.namprd12.prod.outlook.com>
+In-Reply-To: <1c5996a5-491f-39d6-b120-bbef86473729@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2023 13:52, Agarwal, Nikhil wrote:
-> [AMD Official Use Only - General]
+On 14/02/2023 22:42, Heiner Kallweit wrote:
+> Support passing a second interrupt as card detect interrupt.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> index 46e235bf2..c8c30300d 100644
+> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
+> @@ -28,7 +28,7 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    maxItems: 2
 
-We keep seeing this in our mailboxes, so I wonder - what does it mean?
-That following email is an official statement from AMD and you represent
-the company?
+Wait, you now *require* (not support) cd interrupt, so this looks like
+ABI break.
+
+Second, you must describe the items.
 
 Best regards,
 Krzysztof
