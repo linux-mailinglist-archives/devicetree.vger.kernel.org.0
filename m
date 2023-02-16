@@ -2,139 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BC8D698E6B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4622D698E8C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:20:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbjBPIQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 03:16:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
+        id S229892AbjBPIU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 03:20:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbjBPIQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:16:02 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04ACC23850
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:16:01 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id my5so3224931ejc.7
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:16:00 -0800 (PST)
+        with ESMTP id S229873AbjBPIU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:20:26 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CAD27D6B
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:20:19 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id a3so3303046ejb.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:20:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BUKG5YPhru70hIY0uF2wn2wEXa9HKzbQaUOh/EWXtKE=;
-        b=TviBwG1j/4T74Vy5Q6UPni7S2+k88DB0D9XxQuZPZ3KxBM6rmpF6ejlSi7F9MJPGZI
-         VtDzQ+ZLdUhLt9yF/yoMkJEdDt9PGO01fOVFuPUp7FudOFGBR+d+K6Z81gx0quW7LdaK
-         aKeCWpx1thXc+SxM5UjxbR8Xvng8gU1PhdSyo5RcTu5uJEtyeYTyw9oA+Loeuk0Rxb/8
-         53xcK6jF7OaaYuqfl/f+KJu3Q9N6MQUJza5K+UxS8H468npU1g5pJZHtTCeb0Wy8oOxZ
-         YdMEN98CfqUjWYrIkhfK7U6lb7h82Kq/f3Q/gS/bOacLGpxcBFdFFPtN2u1HZpiTuoiy
-         FldA==
+        bh=g9hfU2Fl5/j4A3QnaJpUGjRq1/KXRcgp861nKkf/nNw=;
+        b=FZJzzH1JQE4zZJfEpbXHoNj8o9hV8HehrRzPhVUsyc3lBjhsoqWpAR2BAYj0Qccw3t
+         wpxXp14Qr5EE9xu9CWMbcAKLn1ckqsqYWNFvISMIXlwAnkbdxKSD0V4EaJMxPHdPYOP3
+         Q/RHiTlf+SrFj4Soo+wqFuVT9KJt3QYpwkIG8ZWYuBCOwY2UtoVEl7Fylwfl/KLi4Oq6
+         88g2MuMD7QDRoPkMP3tlSKuOUy/EnyEReWCDPfx42GyAnsnxyAJM8nErZA2sL/QQ4/U7
+         0uoWCY/K//o8ozFnCllcXwUd4UjSE0PTGZuahmsa9kjNiMl3Vb/fSfuYdWn1K80UKJ+X
+         Zr3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BUKG5YPhru70hIY0uF2wn2wEXa9HKzbQaUOh/EWXtKE=;
-        b=5JkmQ49gp+ILP15BLf6X6uwd6FvqLLUmAKnqsHqDOUgXlikvxv4M4yu0o4YUN9b1mm
-         0ZGGtUUnkTsg9P9Rjr9tn9lozqgvrYEGfhiROMlCLoDm3Q4knlkSxCGFk19c55wcpKHo
-         yr3xEeQ8DPsSgnot6bIlhGwlEHm34rSv+nvnbELXTDWCB3mK5UyPEVyJnhjMF2nTkZd6
-         u1kjfkYUCrcISQgRltbeArU1Eis0xsP7eoVCMZIA2v5QRn03K0JcCW6CGYVWuV/lObON
-         a1qV3/QgiCZlJuPfMH8DH1mhsC+2b+nAPW6kUmKT0USzR+oWEIcwRP8s/XlozOD/SXvn
-         jJEg==
-X-Gm-Message-State: AO0yUKXMlm8LF87dRkOKc7/u2ViLlWFRJeVTuH2T7JUOQ5y/IYB2IS+v
-        sA5hg3z1aCHsbe42pvBA9E5y1w==
-X-Google-Smtp-Source: AK7set9NqBS/MqufYv5CckvhPlTpKHEyZXD1IaqYeAqa8KMVWLtyfPIOV1bTl9tEMBgo6Lcejy4AYA==
-X-Received: by 2002:a17:906:68c7:b0:8a6:93a4:c892 with SMTP id y7-20020a17090668c700b008a693a4c892mr5133777ejr.44.1676535359466;
-        Thu, 16 Feb 2023 00:15:59 -0800 (PST)
+        bh=g9hfU2Fl5/j4A3QnaJpUGjRq1/KXRcgp861nKkf/nNw=;
+        b=KZYmwzbwzbQFdx1H7FLz9R2/viUytGY1DOtvkU41DYuVpP3qI45r3Ipo9kD+OFLXn2
+         VEYeRi+lFS3CZGqstorrIUwJDe5iOSPjqInFq2O5MXw04wTrFPRebboD+/s0ZRubcArz
+         F5MG90XQG/EYawycs+VTOsA+qs/sKCS83h1clgXaBtpBMBVi5oIx/kYcPWgKN+EMJnle
+         evzENY93VQup+TqpUvucGt7T+Kp+oGAUrxqV74YkyKV+H57OvDwnTUjHrZbD0gHomMtk
+         DE2em+iOhiVHMTI4t9Xp85c8x9i/2OO89XWAEoQKvbGnC1dXsWy4Nl7QdwQLTFhuOOu6
+         dS/Q==
+X-Gm-Message-State: AO0yUKVsdDbMUehtH4iLIdAA81Q6jAYOUHNkwZwL+qaHvWKgOrjk+ENj
+        PAG3nmLLclrwDDNoUu3GXGChCQ==
+X-Google-Smtp-Source: AK7set9HeLdz9xi9BB7rkdqCHJi4WyceVUvbWuT5oEQ0FuJ2pmvnuibIKYF7wC8OyZ5RPuSE0jy6eA==
+X-Received: by 2002:a17:906:ca47:b0:8b1:2d40:a399 with SMTP id jx7-20020a170906ca4700b008b12d40a399mr5111853ejb.42.1676535617582;
+        Thu, 16 Feb 2023 00:20:17 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g24-20020a170906395800b008b1315bff9fsm480986eje.148.2023.02.16.00.15.57
+        by smtp.gmail.com with ESMTPSA id i15-20020a17090685cf00b008b1435bd1cbsm488199ejy.105.2023.02.16.00.20.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 00:15:58 -0800 (PST)
-Message-ID: <fa013fbc-dc54-6d20-7935-2ce01afc37be@linaro.org>
-Date:   Thu, 16 Feb 2023 09:15:56 +0100
+        Thu, 16 Feb 2023 00:20:17 -0800 (PST)
+Message-ID: <5ab1d573-aaf2-6747-291d-0c64a01b9ffc@linaro.org>
+Date:   Thu, 16 Feb 2023 09:20:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] dt-bindings: hwlock: sun6i: Add missing names
+Subject: Re: [PATCH v6 3/3] watchdog: mt7621-wdt: avoid ralink architecture
+ dependent code
 Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Wilken Gottwalt <wilken.gottwalt@posteo.net>,
-        Bastian Germann <bage@debian.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20230213231931.6546-1-bage@debian.org>
- <20230213231931.6546-3-bage@debian.org> <20230214104554.35338faa@posteo.net>
- <43336959-643d-4041-d11a-b0c030fbf050@linaro.org>
- <20230214181138.4a8f4beb@donnerap.cambridge.arm.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, tsbogend@alpha.franken.de,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20230213200519.889503-1-sergio.paracuellos@gmail.com>
+ <20230213200519.889503-4-sergio.paracuellos@gmail.com>
+ <f105c7a8-8821-1e7b-af46-13a46971db63@linaro.org>
+ <aa68fc8c-cfa1-902d-b95e-4fcbd3154f93@roeck-us.net>
+ <c23f78fe-8ea4-1a5c-c36e-fd981a2c381d@linaro.org>
+ <7c815038-e3d2-dd78-26af-8a6f498a6a1e@roeck-us.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230214181138.4a8f4beb@donnerap.cambridge.arm.com>
+In-Reply-To: <7c815038-e3d2-dd78-26af-8a6f498a6a1e@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 19:11, Andre Przywara wrote:
-> On Tue, 14 Feb 2023 13:37:20 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
-> Hi Krzysztof,
-> 
->> On 14/02/2023 10:45, Wilken Gottwalt wrote:
->>> On Tue, 14 Feb 2023 00:19:29 +0100
->>> Bastian Germann <bage@debian.org> wrote:
->>>   
->>>> The allwinner,sun6i-a31-hwspinlock.yaml binding needs clock-names
->>>> and reset-names set to "ahb" as required by the driver.  
+On 14/02/2023 16:07, Guenter Roeck wrote:
+> On 2/14/23 04:15, Krzysztof Kozlowski wrote:
+>> On 14/02/2023 13:10, Guenter Roeck wrote:
+>>> On 2/14/23 00:31, Krzysztof Kozlowski wrote:
+>>>> On 13/02/2023 21:05, Sergio Paracuellos wrote:
+>>>>> MT7621 SoC has a system controller node. Watchdog need to access to reset
+>>>>> status register. Ralink architecture and related driver are old and from
+>>>>> the beggining they are using some architecture dependent operations for
+>>>>> accessing this shared registers through 'asm/mach-ralink/ralink_regs.h'
+>>>>> header file. However this is not ideal from a driver perspective which can
+>>>>> just access to the system controller registers in an arch independent way
+>>>>> using regmap syscon APIs. Update Kconfig accordingly to select new added
+>>>>> dependencies and allow driver to be compile tested.
+>>>>>
+>>>>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>>>>> ---
+>>>>>    drivers/watchdog/Kconfig      |  4 +++-
+>>>>>    drivers/watchdog/mt7621_wdt.c | 18 +++++++++++++-----
+>>>>>    2 files changed, 16 insertions(+), 6 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+>>>>> index b64bc49c7..cf752ad64 100644
+>>>>> --- a/drivers/watchdog/Kconfig
+>>>>> +++ b/drivers/watchdog/Kconfig
+>>>>> @@ -1865,7 +1865,9 @@ config GXP_WATCHDOG
+>>>>>    config MT7621_WDT
+>>>>>    	tristate "Mediatek SoC watchdog"
+>>>>>    	select WATCHDOG_CORE
+>>>>> -	depends on SOC_MT7620 || SOC_MT7621
+>>>>> +	select REGMAP_MMIO
+>>>>> +	select MFD_SYSCON
+>>>>> +	depends on SOC_MT7620 || SOC_MT7621 || COMPILE_TEST
+>>>>>    	help
+>>>>>    	  Hardware driver for the Mediatek/Ralink MT7621/8 SoC Watchdog Timer.
+>>>>>    
+>>>>> diff --git a/drivers/watchdog/mt7621_wdt.c b/drivers/watchdog/mt7621_wdt.c
+>>>>> index 40fb2c9ba..22e979bdd 100644
+>>>>> --- a/drivers/watchdog/mt7621_wdt.c
+>>>>> +++ b/drivers/watchdog/mt7621_wdt.c
+>>>>> @@ -15,8 +15,8 @@
+>>>>>    #include <linux/moduleparam.h>
+>>>>>    #include <linux/platform_device.h>
+>>>>>    #include <linux/mod_devicetable.h>
+>>>>> -
+>>>>> -#include <asm/mach-ralink/ralink_regs.h>
+>>>>> +#include <linux/mfd/syscon.h>
+>>>>> +#include <linux/regmap.h>
+>>>>>    
+>>>>>    #define SYSC_RSTSTAT			0x38
+>>>>>    #define WDT_RST_CAUSE			BIT(1)
+>>>>> @@ -34,6 +34,7 @@
+>>>>>    struct mt7621_wdt_data {
+>>>>>    	void __iomem *base;
+>>>>>    	struct reset_control *rst;
+>>>>> +	struct regmap *sysc;
+>>>>>    	struct watchdog_device wdt;
+>>>>>    };
+>>>>>    
+>>>>> @@ -104,9 +105,12 @@ static int mt7621_wdt_stop(struct watchdog_device *w)
+>>>>>    	return 0;
+>>>>>    }
+>>>>>    
+>>>>> -static int mt7621_wdt_bootcause(void)
+>>>>> +static int mt7621_wdt_bootcause(struct mt7621_wdt_data *d)
+>>>>>    {
+>>>>> -	if (rt_sysc_r32(SYSC_RSTSTAT) & WDT_RST_CAUSE)
+>>>>> +	u32 val;
+>>>>> +
+>>>>> +	regmap_read(d->sysc, SYSC_RSTSTAT, &val);
+>>>>> +	if (val & WDT_RST_CAUSE)
+>>>>>    		return WDIOF_CARDRESET;
+>>>>>    
+>>>>>    	return 0;
+>>>>> @@ -143,6 +147,10 @@ static int mt7621_wdt_probe(struct platform_device *pdev)
+>>>>>    	if (!drvdata)
+>>>>>    		return -ENOMEM;
+>>>>>    
+>>>>> +	drvdata->sysc = syscon_regmap_lookup_by_compatible("mediatek,mt7621-sysc");
+>>>>> +	if (IS_ERR(drvdata->sysc))
+>>>>> +		return PTR_ERR(drvdata->sysc);
+>>>>
+>>>> This should be the backup/error path for original code using syscon
+>>>> property. Looking up by compatible is really not portable/re-usable.
+>>>>
 >>>
->>> Hmm, this one is a bit odd. If you look into my earlier versions of the
->>> patchset, you may notice, that I actually included these bindings and they
->>> were refused. I think the argumentation was like
->>> "there is only one bus = no need for it".
+>>> I really disagree here.
 >>>
->>> If it gets accepted now, I really like to know why. (It was some trouble
->>> back then to get the documentation properly done and accepted.)  
+>>> $ git grep syscon_regmap_lookup_by_compatible | wc
+>>>        90     326    8940
+>>>
+>>> I have not yet reviewed this code, but I do not accept this argument against it.
 >>
->> The clock names and resent names are not correct. They should have never
->> been added. If you got comments about this and did not update driver,
->> that's not nice. You just shoved incomplete bindings. :(
+>> First, argument that bad pattern is being used is not an argument to
+>> keep it and repeat it.
 >>
->> So indeed to avoid precedence - people pushing fake bindings and
->> avoiding review - NAK on this.
+>> Second, we already had examples that:
+>> 1. Author used syscon_regmap_lookup_by_compatible() and assumed "we will
+>> never add new variant/soc".
+>> 2. Then turns out that new variants are obviously added and
+>> syscon_regmap_lookup_by_compatible() stops scaling.
+>>
 > 
-> Maybe it's just me, but I don't think this tone is necessary.
+> Your arguments only applies if 1) there is ever going to be a new Mediatek/Ralink
+> chip with the same watchdog core, and 2) that chip also has the same watchdog
+> related registers in its syscon node.
 > 
-> Wilken's original submission was correct. Later there was a comment just
-> on the binding patch, to remove the not needed clock-names and reset-names
-> properties. But there was not a word in there that the driver requires
-> changing as well, and I don't think it's fair to blame Wilken on this, or
-> somewhat even implying intention. There were several patch revisions after
-> this was raised, and this just slipped through review. But surely no one
-> wanted this or pushed for that.
+> Both is highly unlikely to happen. There already is a more generic watchdog
+> driver for later Mediatek chips (mtk_wdt.c). Even if Mediatek/Ralink ever
+> decides to revive this specific watchdog core for whatever reason,
+> the time to make the code more generic would have been at that time, at the same
+> time ensuring that the more generic code actually works and does have the
+> same syscon registers to obtain the boot status.
 
-I would say it is quite obvious. Otherwise you could remove entire
-binding and still submit the driver, right? Isn't the entire point of
-the binding to match what the driver is doing, as it is the description
-of interface used by driver towards DTS?
+Sure. In other cases we experienced, people also claimed that this will
+not happen. But it happened... I cannot judge whether this will happen
+here or not, thus I give generic guideline. If you (singular and plural)
+are sure this will not happen, then the code is fine.
 
 > 
-> If anything, it tells us that we should be more careful when merging
-> drivers without users: if there would have been a DT patch, possibly even
-> a consumer, this would have been flagged by dtbs_check.
+>> Whether any new variant/compatible/platform can appear for this watchdog
+>> - I don't know.
+>>
+>> Third, with syscon_regmap_lookup_by_compatible() you have undocumented
+>> (not in the binding) dependency between blocks which:
+>> a. stops any reusability,
+>> b. affects device links and probe ordering (simply - there is no, device
+>> must defer probe),
+>> c. is simply undocumented.
+>>
+>> The usage of syscon_regmap_lookup_by_compatible() has clear drawbacks
+>> thus new code should rather use syscon phandles which solve all of above.
+>>
+> 
+> "new code". Exactly. This isn't new code.
 
-Sure. To me it tells - this patch is a no-go and driver should be fixed.
+New code not as "new driver" but new code adding syscon usage. Syscon is
+new here so we have flexibility to make it differently, and IMHO, one
+way is better than other (for the reasons I stated).
+
+> 
+> In order to make progress, I'll accept v7, assuming its updated devicetree
+> description is going to be accepted, but my argument still stands.
+
 
 Best regards,
 Krzysztof
