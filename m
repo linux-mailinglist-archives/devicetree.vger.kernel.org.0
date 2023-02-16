@@ -2,113 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 388B2699D2C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 20:50:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 963B6699D38
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 20:56:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229837AbjBPTu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 14:50:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53728 "EHLO
+        id S229781AbjBPTz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 14:55:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbjBPTu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 14:50:28 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F11853A853;
-        Thu, 16 Feb 2023 11:50:27 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id eq11so7086883edb.6;
-        Thu, 16 Feb 2023 11:50:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5WbCjPVVHxVyatJVjIE5iJwBzccUEGGzVCMAq6wVW1E=;
-        b=mSWg2oBKFkPul+atB5VeAVNgOr1TfqCf5rNbQI/cRUaUs7SZohENoUOegYtyDBgdjW
-         qzbNn6w4RFuvRyuzzg3IWSMvIdci+iSlK2Q6Yk8z00moPhOyPu6U161NhgodpP5qbafP
-         8xKOC30NdV+mzkTEPOVY3kNASR/RasCLNFZjSGML/HPDHtRP6Nd16tDvhwoBkpw//LG8
-         1cpb+6Q0IXAEPOlvr/2nyrA6ZpNxbdkyctEAcOD6Fiyn0HOCVWzXhKHGb1sU2O4jhCrg
-         GBokeBVilUdtDrjdZYJjWkm2rLyaC6gevc78uA84if2S6smLsT38P1KyCe2HbK8t2KXO
-         pbIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5WbCjPVVHxVyatJVjIE5iJwBzccUEGGzVCMAq6wVW1E=;
-        b=i6/5jU3r6EZtny1lAKHNPZ7PEXqOnmEEDJ2IQ9hVsox3xVjIdeHVEpyIB/YYNe2cd3
-         PUC/ysoN+mqKCtGn1eORbrhlc5HgDSLDABFOCBcXzKvTE5J5/4K+M5qHOgj5vMPaaLVm
-         Py0uOGY5Ytow+h+w4zmvXdBeoOS7LEDV4yuA7u6CE0iQLFVtym1xEculCyuvzPDZoXFf
-         ueRCH4frJ6M7PTSbapTjYTxrWf1e4TE4UGm1PBqde3Jf/1zhFtRcSKYvkdHrAQ8jXr+l
-         C/Yfgool0Y5LBhOveIK/C6tiRVjZBQjeSwiBnJveVjgH4bcpX57dyqOjmdSApdj3fIAX
-         b9jg==
-X-Gm-Message-State: AO0yUKWMUKO2+CLqHZnWmNxznwsKSatRyEu1PYGxokvxiS77Q9cC4xCz
-        85+4gezR5WayfWvrBd2w5tM=
-X-Google-Smtp-Source: AK7set/8hJwZaPL25gBs7qCnElf8JUzDRNCJ+vB+zV5BWa3yWWyCY8bo3aUHbv5/JFssem5zK4+evw==
-X-Received: by 2002:a17:907:98a4:b0:8b1:32dd:3af with SMTP id ju4-20020a17090798a400b008b132dd03afmr7489651ejc.28.1676577026386;
-        Thu, 16 Feb 2023 11:50:26 -0800 (PST)
-Received: from ?IPV6:2a01:c23:c4f6:7c00:a039:5cde:fa47:7ceb? (dynamic-2a01-0c23-c4f6-7c00-a039-5cde-fa47-7ceb.c23.pool.telefonica.de. [2a01:c23:c4f6:7c00:a039:5cde:fa47:7ceb])
-        by smtp.googlemail.com with ESMTPSA id hf13-20020a1709072c4d00b008868cd4ef98sm1178667ejc.87.2023.02.16.11.50.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 11:50:25 -0800 (PST)
-Message-ID: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
-Date:   Thu, 16 Feb 2023 20:50:22 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S229668AbjBPTz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 14:55:57 -0500
+Received: from mr85p00im-zteg06021901.me.com (mr85p00im-zteg06021901.me.com [17.58.23.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D08774E5C7
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 11:55:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1676577355; bh=RUfJu6y0WYXkt4HXb2z6pwJB4ycyWjcjOOycElKaW1Q=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=R5wmTrl0pEEvveArLE7JohZa5FhpIf5gnJokOhGMEAXRmMUieAd/3quPvKdlOr5EH
+         CLZHfbiB/GGkaPs1/x3lx4/TwetUoaq5yoALDILyLIoo97vpPjml8UVUn9Lvdwga5X
+         AmWTuhK9ZwsX+zJOFN2dS7A3bv2ltnz2LxYd2JKwUL/N9WMnEEoW5yTsQ6As04iIFq
+         Sh45lYI5+UN0NkNba/ZWo0+448nWHWbNuAzEYwIrhdy2b2+DZSL3AJBPGo/4xlXUmI
+         gb+YW+iEcpXSfSoPet4IoiCfTrrT++tmIid2vvkRi93xcx74NA1h0BUY3xieQUAeYN
+         TG9SAeUtOLgiA==
+Received: from imac101 (mr38p00im-dlb-asmtp-mailmevip.me.com [17.57.152.18])
+        by mr85p00im-zteg06021901.me.com (Postfix) with ESMTPSA id 112E7743C27;
+        Thu, 16 Feb 2023 19:55:49 +0000 (UTC)
+Date:   Thu, 16 Feb 2023 20:55:46 +0100
+From:   Alain Volmat <avolmat@me.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] dt-bindings: mmc: meson-gx: fix interrupt binding
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 05/11] dt-bindings: arm: sti: remove bindings for stih415
+ and stih416
+Message-ID: <Y+6KQrLY12vySYdJ@imac101>
+Mail-Followup-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com, linux-pm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230209091659.1409-1-avolmat@me.com>
+ <20230209091659.1409-6-avolmat@me.com>
+ <5512bd3a-f4b5-1f65-c9eb-b5c8bcac7514@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5512bd3a-f4b5-1f65-c9eb-b5c8bcac7514@linaro.org>
+X-Proofpoint-GUID: h2nWGoRwMYWMPRBryMB9ogV7NUla-KLL
+X-Proofpoint-ORIG-GUID: h2nWGoRwMYWMPRBryMB9ogV7NUla-KLL
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.572,17.0.605.474.0000000_definitions?=
+ =?UTF-8?Q?=3D2020-02-14=5F11:2020-02-14=5F02,2020-02-14=5F11,2020-01-23?=
+ =?UTF-8?Q?=5F02_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 malwarescore=0 mlxscore=0
+ spamscore=0 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ mlxlogscore=666 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2302160171
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reflect in the binding that the cd interrupt is optional,
-and add a description of the interrupts.
+Patch dropped, modification done as part of another patch separately.
 
-Fixes: 09b31a610328 ("dt-bindings: mmc: meson-gx: support specifying cd interrupt")
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- omit maxItems and use items
----
- .../devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml        | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-index c8c30300d..bc403ae9e 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-@@ -28,7 +28,10 @@ properties:
-     maxItems: 1
- 
-   interrupts:
--    maxItems: 2
-+    minItems: 1
-+    items:
-+      - description: mmc controller instance
-+      - description: card detect
- 
-   clocks:
-     maxItems: 3
--- 
-2.39.1
-
+On Thu, Feb 09, 2023 at 10:30:35AM +0100, Krzysztof Kozlowski wrote:
+> On 09/02/2023 10:16, Alain Volmat wrote:
+> > STiH415 and STiH416 platforms are no more supported hence remove
+> > the bindings for those two platforms.
+> > 
+> > Signed-off-by: Alain Volmat <avolmat@me.com>
+> 
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
