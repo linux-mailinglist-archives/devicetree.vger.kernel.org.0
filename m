@@ -2,61 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7018698C31
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2818D698C4B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:46:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbjBPFkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 00:40:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41778 "EHLO
+        id S229892AbjBPFq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 00:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbjBPFkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:40:22 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE161A940;
-        Wed, 15 Feb 2023 21:40:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 1BD86CE290A;
-        Thu, 16 Feb 2023 05:40:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2ED0BC4339C;
-        Thu, 16 Feb 2023 05:40:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676526018;
-        bh=QhOv2y9XRsJs0byJc6XeAvQzSdln+PXDBsqhD2FkRXE=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=bxTqOdAD8gU1b7TH++RQyINtP3JqzghARulIXGPQfpniGjfTg5tbWOSg0im/WpdSK
-         liH/aQ12baLeKXCTUt9oAvW80Rd67t4ig8OpahMkvVIkzwGxk1z0u+KzQi8EmyGADP
-         duk3SS5AYqZzC36CNfiSgqW9S6QdpHYSSRq20iqJ0mdFpkymcm+rzBx8uGGOmWRcEH
-         y3rv/Zv+w8E6y3CqK0rom/HGVctsCvKGJlYnZ3hKK5+QGDAb2KNCXyZliQw1PBlIQP
-         mKE+J2GUi+CzsEAROaxKHZDJMwXjcOSMQ97Ik6PWjpLAbX4S3IIvNGfbRNBbFUzZUj
-         OMo8m68D+Z/ZA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0B653E21EC4;
-        Thu, 16 Feb 2023 05:40:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229536AbjBPFqz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:46:55 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D70B2799F
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 21:46:54 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id b3so1470781lfv.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 21:46:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AXnpNrsFLRDRV5H6+heFUubgTFXomAt3idt+/hXx6hk=;
+        b=DR5HTzIRcGCfsQZrTk3dPz403ec4zkZ7v2QGxwWTqW4brRantS4Q8hbkgcqIPGDnZS
+         beeohWGG8lv6h/Eaw0k9W4ezb2NlcjU1wrTKlGBQ126PtulC+7xJHPBmlJBQy0gWzNN7
+         LKKa59sNKBZIwArta868ZHgo1AHIxCgFw63Mk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AXnpNrsFLRDRV5H6+heFUubgTFXomAt3idt+/hXx6hk=;
+        b=XUyEnSfptX1WrG4NStTj4kkuWxcwBbfxKhkPaRAr/cFFPFjsRBPo8jF9/prVJM3+x5
+         QMQeIe5G7GwxgdeP2kLBGD5mhegbWe6EJxQzuBbJtS1Un6J8YmKQFMnoOadTbJqb84SD
+         VHa/94qOxh7/lotA4ZFFiPShn2aQC79qzkRANzv7swC00uPvO6RZp8UyHzANcZB/STeN
+         RfoTCZa2NfvSjLl4lcttymgxyqXtWmrcWpJ7bj5X5Pi/+ik999V0zOZQHtgVMu4QfDAK
+         PYtqL9j+RuALgpUgXMiaQ/UWQ/sgApMFXy7jLqqjNRm3xSU83RUns8wYcYe2GCNCzEjX
+         KwUw==
+X-Gm-Message-State: AO0yUKVOVAtb/ed4TFxm+597VnSGv0612ZzmECZD62K4qevgok71asqe
+        x4OtafmexViNftCu+JwZeG7vLxWTFT5Hrlnx+Aw6nw==
+X-Google-Smtp-Source: AK7set8f23g7p+AR/YkqBF1Ux4RWNPz/KaYIccAQgKR03jXTvlUKhYKx543msIPep5T6lNeGd07g3VsILIOSERAdQrc=
+X-Received: by 2002:a05:6512:239a:b0:4db:1809:29a1 with SMTP id
+ c26-20020a056512239a00b004db180929a1mr565281lfv.2.1676526412762; Wed, 15 Feb
+ 2023 21:46:52 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Feb 2023 21:46:52 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: snps,dwmac: Fix snps,reset-delays-us
- dependency
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167652601803.11549.5242243421394636673.git-patchwork-notify@kernel.org>
-Date:   Thu, 16 Feb 2023 05:40:18 +0000
-References: <20230214171505.224602-1-ahalaney@redhat.com>
-In-Reply-To: <20230214171505.224602-1-ahalaney@redhat.com>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     devicetree@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
-        joabreu@synopsys.com, mripard@kernel.org, shenwei.wang@nxp.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230213165743.1.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
+References: <20230213165743.1.I6f03f86546e6ce9abb1d24fd9ece663c3a5b950c@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 15 Feb 2023 21:46:52 -0800
+Message-ID: <CAE-0n51OSS=Nh2pZmPO3mg4QCvqGZsJ+AFBTAUGr-TZBHCPLCw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180: Fix trogdor qspi pull direction
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>
+Cc:     amstan@chromium.org, mka@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,31 +72,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Quoting Douglas Anderson (2023-02-13 16:57:51)
+> Though it shouldn't matter very much, we've decided that it's slightly
+> better to park the qspi lines for trogdor with an internal pulldown
+> instead of an internal pullup. There was a footnote that Cr50 (which
+> connects to these lines too) may have pulldowns configured on one of
+> the data lines and we don't want to have fighting pulls.
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+Ok.
 
-On Tue, 14 Feb 2023 11:15:04 -0600 you wrote:
-> The schema had snps,reset-delay-us as dependent on snps,reset-gpio. The
-> actual property is called snps,reset-delays-us, so fix this to catch any
-> devicetree defining snsps,reset-delays-us without snps,reset-gpio.
-> 
-> Fixes: 7db3545aef5f ("dt-bindings: net: stmmac: Convert the binding to a schemas")
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> 
-> [...]
+> This also
+> means that if the pulls somehow get left powered in S3 (which I'm
+> uncertain about) that they won't be pulling up lines on an unpowered
+> SPI part.
 
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: net: snps,dwmac: Fix snps,reset-delays-us dependency
-    https://git.kernel.org/netdev/net-next/c/affb6a3fd8f4
-  - [v2,2/2] arm64: dts: imx8dxl-evk: Fix eqos phy reset gpio
-    (no matching commit)
+As far as I know, the pulls are maintained in S3. There's verbage about
+"keeper" on the pins.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+The SPI part is powered in S3 though. I believe it only loses power in
+S5. Can you reword this statement?
 
+The fighting pulls should be resolved though. Or maybe it is better to
+simply not put any pull on the line? Presumably the pull is there to
+avoid seeing 0->1 transitions on the data lines when inactive, but I'm
+not really convinced that is going to happen because the SPI chip itself
+would have to be doing that driving, and the chip select isn't changing.
 
+>
+> Originally the pullup was picked because SPI transfers are active low
+> and thus the high state is somewhat more "idle", but that really isn't
+> that important because the chip select won't be asserted when the bus
+> is idle. The chip select has a nice external pullup on it that's
+> powered by the same power rail as the SPI flash.
+>
+> This shouldn't have any functionality impact w/ reading/writing the
+> SPI since the lines are always push-pull when SPI transfers are
+> actually taking place.
+>
+
+Right.
