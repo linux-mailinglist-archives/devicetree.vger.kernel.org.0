@@ -2,120 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E8469927C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:59:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6753369929C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:02:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbjBPK7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:59:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52750 "EHLO
+        id S229522AbjBPLCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 06:02:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjBPK7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:59:37 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65EFC30B04
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:59:29 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id n2so1019693pgb.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:59:29 -0800 (PST)
+        with ESMTP id S230036AbjBPLCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:02:42 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056151BF5
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:02:41 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id a10so2178570edu.9
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:02:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wUwtxTNrGxdg9BYsoTpYW1OupabW0YeM169NaiVjmL4=;
-        b=gclcawT1st6EiwSqGAnIkgbaoTQmWUFxODnJlpPrHqBwEas8neXbswcWc4IMPZNlba
-         uEPJguMOBFHlRQtqM3t9xjLbbapn5naV29bODLtWgbFFNtXijhme93FoJflfeXclEIT1
-         WR+8gPiYt9xNNSpb4zF5ziZ0GP9QxnT/WBMTpBEZU5yGMYe5KgMLkJklQ3iN7rvLNgT8
-         xJUZemi4pufnNBBlL8FzuAqlYEktXW7fvA+NtF8x+HvrNSkNVmqcVrKAB7YWFwIPFXjY
-         9VMJrtx4JVT9GC90boj1FJLEoO8LmZnb28avOiuH99/Rop+dLqLnrHItPFeDfIIadrJp
-         D3VQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ea7TLkXH9nH4DA//1th+Z+4aboDPChuuD0jgIfj0RCw=;
+        b=H1baVUnJRcg8cDc1YjHMX5yBmKVB2yuz7kOfaFXzi2M87JnaU3ZH7ZFmSYmqmioNiY
+         L5NydmwgfDVfi1bon2+jot0meHsl3BYpV0o2/eQzfEdy63bOv+s7f/422AoDnb9kyF9Q
+         GEMIr23IMOsksGGdtc9KoJqd/GvjHE8QZhQmWg8Txwh7mw/mSa2IGdir2zCRa5Yt69Nk
+         Y05jarUZjiTC7KJNHqNBgyFRB+u4B5v9oPTPb+tYqojbfLU2fiJ09sgyhDe8CS/TMem8
+         3Apo17N1y0wFe10mh038/JL0BG9nlzeD9e9OWHtVG+Q0INccnlCJgj83B6fsBqGjpvOd
+         H3fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wUwtxTNrGxdg9BYsoTpYW1OupabW0YeM169NaiVjmL4=;
-        b=4parPFHwYz6sKmQet7Q+CDAsVi7vc+4PSmHCaJoFf+DVTIcA4iY/P07tsTjgbDTwKW
-         1uH+slaQAnvls8PbmBG87kjGK378p+2A9nUZtrBherrdwDty+vrIAigw1oYvzt8SX/y7
-         SIjN1SET23d0aC7u0tDwYhatO5EHvXH5Yfp3vqufqegfmUuiLTEqNuZW9AS4dD7AOSvT
-         czoVU7ev8VtXMEmRxZsYkdrhTK5WGfXsC4gWSSR6WI7CBHHJNw5uAig7lryBvmMbZ4mP
-         hzGStQgmFVgzNvyglaWocTiM0h1XoiDOEC+hHehY9w0/wDRTTwk1HUZF3VtDzdhV+ykS
-         gWmw==
-X-Gm-Message-State: AO0yUKVmb+1EJZa39/sKw/LrEHVHOAbMCTZhdG1rC5lotXPDwIjpEHbb
-        0CvIiilvJr64jrOjRRi31OLAMYAj/LwzJkQHqXIgHA==
-X-Google-Smtp-Source: AK7set9TBhxKZy2kQoKauQhNJYoNrdjcISmxAqqPLdN9X3hfahISDWjjgxuL5aVg/UEu7YkqH+r7vQqRiVvBPBZmAY4=
-X-Received: by 2002:a63:3dc4:0:b0:4ce:e113:5e32 with SMTP id
- k187-20020a633dc4000000b004cee1135e32mr788869pga.10.1676545168884; Thu, 16
- Feb 2023 02:59:28 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ea7TLkXH9nH4DA//1th+Z+4aboDPChuuD0jgIfj0RCw=;
+        b=fqfMUCigFw44UJRwqT+qUb0ykdoqeTgdldY/+mckSE68loUm18/PVVEJOXnEpbsPsl
+         R436/FmzdxTQhnABTcskXkBRqtu4FYA25AL4CXhwI4IAkJ/vr8Xu24sv4zda3Hf7GNtV
+         qBRYUxefBZ/K4k6cMFqgZniuXC/9s0bmlZwlGdidP4Yi8IR2HessbWo/xKt7BEzq5Oyz
+         Q/MUQH7N3OMKsQocJAK3W2y12mnxL/OaFZ9syq07DQHJcEteRLHgZGlWjZmV6HZQ8oDl
+         iXdF7CSazc23tvMRTgeiWXkNoZqiyKfok3SU+qiNjbKA/qupgs/EkJu4+65ECN30eAX8
+         zE9g==
+X-Gm-Message-State: AO0yUKVSkpmkpAVsXeddAog3JA2akV9uA7FHEvuu8zmBQffeZGxz5qB/
+        f6gjScrlGyVvsfCUE7hAHkbOEg==
+X-Google-Smtp-Source: AK7set+G0Y1PwG7+QRividE03emGpRaIuD1Nl9H0Z7JGdPW6YUb7ULVXwZn1OpLNIQkPqQB9Ggh7Pg==
+X-Received: by 2002:aa7:d846:0:b0:4ab:4c2f:a449 with SMTP id f6-20020aa7d846000000b004ab4c2fa449mr5010022eds.20.1676545359538;
+        Thu, 16 Feb 2023 03:02:39 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y23-20020a50ce17000000b004acc1374849sm669369edi.82.2023.02.16.03.02.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 03:02:39 -0800 (PST)
+Message-ID: <649a8d88-0504-5aa9-d167-d25d394f3f26@linaro.org>
+Date:   Thu, 16 Feb 2023 12:02:36 +0100
 MIME-Version: 1.0
-References: <20230214161211.306462-1-robert.marko@sartura.hr>
- <20230214161211.306462-2-robert.marko@sartura.hr> <c55a17fb-3c49-6e7e-f22e-95917daf97c0@linaro.org>
-In-Reply-To: <c55a17fb-3c49-6e7e-f22e-95917daf97c0@linaro.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Thu, 16 Feb 2023 11:59:17 +0100
-Message-ID: <CA+HBbNHTGX1BBhQuOSfwo=j-+dY9KgDpYn4Ty9m0fU5aiMV-Zw@mail.gmail.com>
-Subject: Re: [PATCH 2/4] ARM: dts: qcom: ipq4018-ap120c-ac: align GPIO hog
- with DT schema
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        luka.perkov@sartura.hr
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 04/16] PCI: samsung: Use clock bulk API to get clocks
+Content-Language: en-US
+To:     Shradha Todi <shradha.t@samsung.com>, lpieralisi@kernel.org,
+        kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
+        jingoohan1@gmail.com, Sergey.Semin@baikalelectronics.ru,
+        lukas.bulwahn@gmail.com, hongxing.zhu@nxp.com, tglx@linutronix.de,
+        m.szyprowski@samsung.com, jh80.chung@samsung.co,
+        pankaj.dubey@samsung.com
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230214121333.1837-1-shradha.t@samsung.com>
+ <CGME20230214121420epcas5p3a4419059969adfb45b379f7e7741968c@epcas5p3.samsung.com>
+ <20230214121333.1837-5-shradha.t@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230214121333.1837-5-shradha.t@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 16, 2023 at 11:48 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 14.02.2023 17:12, Robert Marko wrote:
-> > Align USB power GPIO hog node to DT schema.
-> >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> Unless you submitted a separate patch for this, I only see
-> hog being allowed in 845 TLMM.
+On 14/02/2023 13:13, Shradha Todi wrote:
+> Adopt to clock bulk API to handle clocks.
+> 
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> ---
+>  drivers/pci/controller/dwc/pci-samsung.c | 46 ++++++------------------
+>  1 file changed, 11 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-samsung.c b/drivers/pci/controller/dwc/pci-samsung.c
+> index cfe384aee754..6c07d3f151be 100644
+> --- a/drivers/pci/controller/dwc/pci-samsung.c
+> +++ b/drivers/pci/controller/dwc/pci-samsung.c
+> @@ -54,8 +54,8 @@
+>  struct exynos_pcie {
+>  	struct dw_pcie			pci;
+>  	void __iomem			*elbi_base;
+> -	struct clk			*clk;
+> -	struct clk			*bus_clk;
+> +	struct clk_bulk_data		*clks;
+> +	int				clk_cnt;
+>  	struct phy			*phy;
+>  	struct regulator_bulk_data	supplies[2];
+>  };
+> @@ -65,30 +65,18 @@ static int exynos_pcie_init_clk_resources(struct exynos_pcie *ep)
+>  	struct device *dev = ep->pci.dev;
+>  	int ret;
+>  
+> -	ret = clk_prepare_enable(ep->clk);
+> -	if (ret) {
+> -		dev_err(dev, "cannot enable pcie rc clock");
+> +	ret = devm_clk_bulk_get_all(dev, &ep->clks);
+> +	if (ret < 0)
+>  		return ret;
+> -	}
+>  
+> -	ret = clk_prepare_enable(ep->bus_clk);
+> -	if (ret) {
+> -		dev_err(dev, "cannot enable pcie bus clock");
+> -		goto err_bus_clk;
+> -	}
+> +	ep->clk_cnt = ret;
 
-No, cause there is a gpio-hog schema in dtschema and I did not
-even look into the pinctrl bindings and dtbs_check is not throwing
-a warning.
-
-I dont really see a point further allowing it in pinctrl bindings.
-
-Regards,
-Robert
->
-> Konrad
-> >  arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
-> > index 38efd45433da5..cd2a32d0d5548 100644
-> > --- a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
-> > @@ -76,7 +76,7 @@ mux_cs {
-> >               };
-> >       };
-> >
-> > -     usb-power {
-> > +     usb-power-hog {
-> >               line-name = "USB-power";
-> >               gpios = <1 GPIO_ACTIVE_HIGH>;
-> >               gpio-hog;
+I think this misses check if you got two clocks.
 
 
+Best regards,
+Krzysztof
 
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
