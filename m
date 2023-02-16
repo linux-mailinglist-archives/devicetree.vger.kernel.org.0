@@ -2,81 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3495B698ED1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:37:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE9B6698ED5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbjBPIhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 03:37:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
+        id S229573AbjBPIip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 03:38:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbjBPIhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:37:33 -0500
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5525B34C1D
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:37:32 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:4605:3635:9491:c6bc])
-        by albert.telenet-ops.be with bizsmtp
-        id MkdU2900V3wKl5506kdUJU; Thu, 16 Feb 2023 09:37:29 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pSZlK-0099qN-1G;
-        Thu, 16 Feb 2023 09:37:28 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pSZlg-005Dq1-Nw;
-        Thu, 16 Feb 2023 09:37:28 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Martin Liu <liumartin@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] of: reserved_mem: Use proper binary prefix
-Date:   Thu, 16 Feb 2023 09:37:25 +0100
-Message-Id: <20230216083725.1244817-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229502AbjBPIio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:38:44 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22CB3AA4
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:38:43 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id fj20so1760919edb.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:38:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b6uhhPMnk5tW+I7axF/xp2194BIT+Ni9bQQoOVB8Q2k=;
+        b=tdjaFmK69i3vrH5icnfybzD4qKi4lwWd8tUb/IEaSMXSylVW8YfeiMuuJ70j/Hkkxk
+         KFLZMm6L7UBHRS59b2I+in7CcNFbE/YhDGo5OMASUEZ+yVoUf97jHSqkmKS3kPoGCIXJ
+         Fd8vcqjoriC0hOLwnnt/7fvhIt9tVlzE1OF7nAu45XTBLFVLtmteLHfa4yF5EsiuWiMB
+         NcF9VOytK4mR9Bydc3e6IbOvWPjNUQK9pklwCsFY85skEHzZED4n78RZi03zn+1xYPml
+         ZlVqggM6NO+Q83ySlkjrRwzacgqUvl1b193UbBlfy3uFJo99s9OV2tjyZkRIXhNlOsDm
+         Ushw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b6uhhPMnk5tW+I7axF/xp2194BIT+Ni9bQQoOVB8Q2k=;
+        b=5vCj5xkpvnoAI+aPaBVSpmq4Q1N04eOTJ3PQcH5FhJ1ZHUipmevd1cdl0kN3WdDbjO
+         JGOWPOOD6bVEwjG5oc/IfvSKqSZuxkjym/YtPN+cNqsY6cywY15tIfDcomgdNfhRYecL
+         ebYtaaPivn4Gfm2+cNCl+VCQmmjTjYulEkuo2QSDG5IWaEmesi4/0XCJF+9ztOO1ssBN
+         6uiDBYxj1vs1DY2sF4+Md/bap2mDQ+zovM4I+DxdYxbglRRgiIyZY1JtV+ls8FHFkvfl
+         vCXP5FHcSLYV90G8LtJ5tIE/rSHS+4VSkEjM1kKLuNM5d4olCFh+JVnFV+dh5MKIPBBW
+         +4WA==
+X-Gm-Message-State: AO0yUKV45P7GcAUqolJEudX+4CWDdGu4WjLF6LJvVCiu7SB7wW3eveNT
+        TEwioEB6+rWV7NVx2oiq/1gkLw==
+X-Google-Smtp-Source: AK7set8rS5weYiUSTsAm8dci9nN8p9H70SprTzEbU1eg/Z2jw8gh1OWSRR4tgGMJ1xPeclU6/ljGMA==
+X-Received: by 2002:a05:6402:31e1:b0:47e:eaae:9a69 with SMTP id dy1-20020a05640231e100b0047eeaae9a69mr5292392edb.41.1676536722170;
+        Thu, 16 Feb 2023 00:38:42 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k26-20020a50ce5a000000b004a2470f920esm491185edj.25.2023.02.16.00.38.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 00:38:41 -0800 (PST)
+Message-ID: <19c21e4b-7ea1-aae3-9f94-bbc108a402db@linaro.org>
+Date:   Thu, 16 Feb 2023 09:38:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 4/5] dt-bindings: hwlock: sun6i: Add a64 compatible
+ string
+Content-Language: en-US
+To:     Bastian Germann <bage@debian.org>,
+        Wilken Gottwalt <wilken.gottwalt@posteo.net>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <20230215203711.6293-1-bage@debian.org>
+ <20230215203711.6293-5-bage@debian.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230215203711.6293-5-bage@debian.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The printed reserved memory information uses the non-standard "K"
-prefix, while all other printed values use proper binary prefixes.
-Fix this by using "Ki" instead.
+On 15/02/2023 21:37, Bastian Germann wrote:
+> Add an allwinner,sun50i-a64-hwspinlock compatible string to the device
+> tree binding. The A31 and A64 have compatible hwspinlocks.
+> 
+> Signed-off-by: Bastian Germann <bage@debian.org>
+> ---
+>  .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml       | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+> index 6cdfe22deb3c..281c285282a1 100644
+> --- a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+> +++ b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+> @@ -15,7 +15,9 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: allwinner,sun6i-a31-hwspinlock
+> +    items:
+> +      - const: allwinner,sun6i-a31-hwspinlock
+> +      - const: allwinner,sun50i-a64-hwspinlock
 
-While at it, drop the superfluous spaces inside the parentheses, to
-reduce printed line length.
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
 
-Fixes: aeb9267eb6b1df99 ("of: reserved-mem: print out reserved-mem details during boot")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-K = Kelvin
-k = kilo
-Ki = kibi
----
- drivers/of/of_reserved_mem.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's my template answer. More detailed:
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 27de0d32145939e3..948efa9f99e3bc90 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -290,7 +290,7 @@ void __init fdt_init_reserved_mem(void)
- 				bool reusable =
- 					(of_get_flat_dt_prop(node, "reusable", NULL)) != NULL;
- 
--				pr_info("%pa..%pa ( %lu KB ) %s %s %s\n",
-+				pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
- 					&rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
- 					nomap ? "nomap" : "map",
- 					reusable ? "reusable" : "non-reusable",
--- 
-2.34.1
+Please test that your DTS changes always pass your binding changes. The
+above looks reversed with your DTS, thus if you tested DTS, you would
+see errors. Expecting that existing in-kernel DTS passes dtbs_check is a
+bit too much (although Samsung Exynos is almost there!), but at least
+new code could not introduce new errors.
+
+Best regards,
+Krzysztof
 
