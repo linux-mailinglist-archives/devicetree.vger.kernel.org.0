@@ -2,65 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23EA9699675
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6DB1699688
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:01:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbjBPN64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 08:58:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37518 "EHLO
+        id S229554AbjBPOBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 09:01:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjBPN6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:58:55 -0500
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E8926AF
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:58:54 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id w11so1727156oiv.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 05:58:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+ViCQNNU/x441WaeFAdW3KxGJXeuOAm5VDmC6mRNH38=;
-        b=MIcO2RrCgFwxF+/J+nYnZurm0Gu2nZ3OPXM008ZS5od4xGUoeXJ76BJcN0GLQOKdBN
-         vbEnACVOr3koHPvyGAN3SdoGWdsNx/c1VL+iVWOmtJmQyTb7bBFb4o+rS2vbVY2Pww7z
-         1kV5PLjBi5gBp8qh0j8dCnHBGv4U4Z4Hz2+0qR8xk3ubqOwPR2NOYI0Jd0Ij63+GBI/s
-         rZLRxwCVeBiwwB07/dhPGp9y9tBTUL/oHTcC/4R1Mohbs4TQ+//asBH1nxm/i+2TLzWb
-         GbVRbhow8pDEgmAqctnkYoXFYtqI5hqSRUuxvOjg/EWiVU1+T7ZsHAzWarQjk8mT0qFS
-         PDHA==
-X-Gm-Message-State: AO0yUKXwJUsA81AhRuUUfnicAQBRj9NqNeunvdWxqPkP1oYDeJNeIdx6
-        ZduuqbU0cWbOiqF6ZxUTVQ==
-X-Google-Smtp-Source: AK7set9+niocv5iHjmV2FG/y98pgRCFH2p2yv+ry0Fn7siDHXOUJyBElG7qV3ToHWtp0pb59Wz8ocA==
-X-Received: by 2002:aca:1e0f:0:b0:364:f5da:54b7 with SMTP id m15-20020aca1e0f000000b00364f5da54b7mr2478772oic.36.1676555934095;
-        Thu, 16 Feb 2023 05:58:54 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n23-20020aca2417000000b0037d8dbe4308sm546196oic.48.2023.02.16.05.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 05:58:53 -0800 (PST)
-Received: (nullmailer pid 2312585 invoked by uid 1000);
-        Thu, 16 Feb 2023 13:58:52 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229504AbjBPOBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:01:33 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B6326AF;
+        Thu, 16 Feb 2023 06:01:32 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31GArWdL013797;
+        Thu, 16 Feb 2023 14:01:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=3IATf/n2gVdgnP0wM+657JvVHnwtpkGHrGuCmG1Wmsk=;
+ b=fESsklKUlmz2EDYTlklM3uKlMD7yrP+myH/sAkYamDRT/9kXDs8jsdcdp4htbbCtsmN8
+ VOaKP+9j/93iEiajwCCpLz+yEEfgtIaUicypteD4PxXycDNrlKfDsabeODy+UJUOV9sH
+ 6g30MNh9FvVauyIFkohTlqoznhAN/0jMuCmhYCFRdg2KJ8qNZxWbLJQuQJHz2nZlBrlC
+ oM+SUs5NSyX/gB8xNozEDGVHT722Nid/+bbHf60q3QbHgmK+wEbxgQ4CqDuGRP76JtiR
+ Hf8hj91LZq7oqaPwHHSqwWj0uC7lOUX1QqiJaafCNLU+IktE4T2YdHRzZAe5TOKt3u6s OQ== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nsja90h31-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Feb 2023 14:01:07 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31GE1680017414
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Feb 2023 14:01:06 GMT
+Received: from [10.216.54.159] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 16 Feb
+ 2023 06:00:56 -0800
+Message-ID: <51bd93be-f8d3-a33c-18ad-ba4a331f2bcf@quicinc.com>
+Date:   Thu, 16 Feb 2023 19:30:53 +0530
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i3c@lists.infradead.org, Joel Stanley <joel@jms.id.au>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Vitor Soares <ivitro@gmail.com>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        linux-aspeed@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>
-In-Reply-To: <82d750f53df622d8986e9a07053c7ee27dee61a2.1676532146.git.jk@codeconstruct.com.au>
-References: <cover.1676532146.git.jk@codeconstruct.com.au>
- <82d750f53df622d8986e9a07053c7ee27dee61a2.1676532146.git.jk@codeconstruct.com.au>
-Message-Id: <167655476600.2292444.1311837457935007933.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: i3c: Add AST2600 i3c controller
-Date:   Thu, 16 Feb 2023 07:58:52 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V5 5/5] firmware: scm: Modify only the DLOAD bit in TCSR
+ register for download mode
+Content-Language: en-US
+To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <robimarko@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
+        <broonie@kernel.org>, <quic_gurus@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+References: <20230216120012.28357-1-quic_poovendh@quicinc.com>
+ <20230216120012.28357-6-quic_poovendh@quicinc.com>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <20230216120012.28357-6-quic_poovendh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kUFx6QUrIQ5HGL-ouXwHrXrP8Rf7V14s
+X-Proofpoint-ORIG-GUID: kUFx6QUrIQ5HGL-ouXwHrXrP8Rf7V14s
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-16_10,2023-02-16_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ adultscore=0 malwarescore=0 clxscore=1011 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302160121
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,56 +93,83 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 16 Feb 2023 15:41:52 +0800, Jeremy Kerr wrote:
-> Add a devicetree binding for the ast2600 i3c controller hardware. This
-> is heavily based on the designware i3c core, plus a reset facility
-> and two platform-specific properties:
+
+On 2/16/2023 5:30 PM, Poovendhan Selvaraj wrote:
+> CrashDump collection is based on the DLOAD bit of TCSR register.
+> To retain other bits, we read the register and modify only the DLOAD bit as
+> the other bits have their own significance.
 > 
->  - sda-pullup-ohms: to specify the value of the configurable pullup
->    resistors on the SDA line
-> 
->  - aspeed,global-regs: to reference the (ast2600-specific) i3c global
->    register block, and the device index to use within it.
-> 
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
-> 
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
 > ---
-> changes from RFC:
->  - add vendor prefix to global-regs properties
->  - add item description on global-regs property
->  - drop global reg node from example
-> ---
->  .../bindings/i3c/aspeed,ast2600-i3c.yaml      | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
+>   Changes in V5:
+> 	- checking the return value in qcom_scm_set_download_mode function as
+> 	  suggested by Srinivas Kandagatla
 > 
+>   Changes in V4:
+> 	- retain the orginal value of tcsr register when download mode
+> 	  is not set
+> 
+>   drivers/firmware/qcom_scm.c | 21 ++++++++++++++++-----
+>   1 file changed, 16 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+> index 468d4d5ab550..d88c5f14bd54 100644
+> --- a/drivers/firmware/qcom_scm.c
+> +++ b/drivers/firmware/qcom_scm.c
+> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
+>   }
+>   EXPORT_SYMBOL(qcom_scm_set_remote_state);
+>   
+> -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, bool enable)
+>   {
+>   	struct qcom_scm_desc desc = {
+>   		.svc = QCOM_SCM_SVC_BOOT,
+> @@ -417,7 +417,8 @@ static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+>   	};
+>   
+> -	desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
+> +	desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
+> +				val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE);
+>   
+>   	return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
+>   }
+> @@ -426,15 +427,25 @@ static void qcom_scm_set_download_mode(bool enable)
+>   {
+>   	bool avail;
+>   	int ret = 0;
+> +	u32 dload_addr_val;
+>   
+>   	avail = __qcom_scm_is_call_available(__scm->dev,
+>   					     QCOM_SCM_SVC_BOOT,
+>   					     QCOM_SCM_BOOT_SET_DLOAD_MODE);
+> +	ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
+> +
+> +	if (ret) {
+> +		dev_err(__scm->dev,
+> +			"failed to read dload mode address value: %d\n", ret);
+> +		return;
+> +	}
+> +
+>   	if (avail) {
+> -		ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+> +		ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, enable);
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Did you test this on a target where it comes under this if statement? 
+does it really need to know dload_mode_addr for this target ?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.example.dts:30.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1508: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/82d750f53df622d8986e9a07053c7ee27dee61a2.1676532146.git.jk@codeconstruct.com.au
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-Mukesh
+>   	} else if (__scm->dload_mode_addr) {
+> -		ret = qcom_scm_io_writel(__scm->dload_mode_addr,
+> -				enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
+> +		ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
+> +				dload_addr_val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
+> +				dload_addr_val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
+>   	} else {
+>   		dev_err(__scm->dev,
+>   			"No available mechanism for setting download mode\n");
