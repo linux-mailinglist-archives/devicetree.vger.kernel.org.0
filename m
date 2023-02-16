@@ -2,299 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDE53698DB2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79EF5698DC6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 08:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjBPHWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 02:22:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39650 "EHLO
+        id S229652AbjBPH2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 02:28:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjBPHWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:22:55 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01008524B;
-        Wed, 15 Feb 2023 23:22:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9017461EA3;
-        Thu, 16 Feb 2023 07:22:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72DD3C433EF;
-        Thu, 16 Feb 2023 07:22:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676532171;
-        bh=kZ1WjxkkGFjEg+o/K47n5dpVDH7R2gXcd9cVzzQujE0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rZWP45HDcQpfjun1y3qe6ONR7rQIZZ0GYjAnbKe41lHNpQS89LtbS4qlTyo4b1hgv
-         iHqfSAycowngnN1s5SMqXw4LddJHrmDWkn9YPHFV1sD3V4MindmwQvrW+sRYwHexMx
-         tsNABpYBgF4TsHm9PpJ/BgyO1JDuC3vjcZPhGAq+synTvrZSOeuNCIiX5OoHbAGp75
-         P+y+aPZrTiaZogPk2hP5iL91SPjrXQMCQMQMjZKV2A//7e+IoviICF8L+CMI60nH4W
-         nbSj3nLrlHGZfsOwqbzSFMZJrt1GWqi5+I7m/SIFHx23LvFCxfCA2ceMCEw6wptDxk
-         x/vX1X1Sc/knQ==
-Date:   Wed, 15 Feb 2023 23:22:49 -0800
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH 1/5] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
- dedicated driver
-Message-ID: <Y+3ZyVRowJplzm9t@sol.localdomain>
-References: <20230214120253.1098426-1-abel.vesa@linaro.org>
- <20230214120253.1098426-2-abel.vesa@linaro.org>
+        with ESMTP id S229573AbjBPH2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 02:28:49 -0500
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0AB38EBD
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:28:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1676532525; x=1708068525;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=/+KnIJGVAtqOq1Y5Tt7uoivGVLcBx2ntfW6kgLZW5DA=;
+  b=iUBNx7XtlPuTsfVQZDtTLRFCMbNXHHnI3Yd/HBkyN6sjmf7tShwiYX3R
+   pNxKnBoZAnpWpOwsTd7YrKi9dKxZldCt9NgvScHI6bbOfPQhqcl1Oarf8
+   txikNPPLCLioT0aJzbVnd8DH0kbxeCPgbwYSa+4uRpwAz5JS0r2cIbWYs
+   irtWUVX5loljYYKNiSjkXtS8kBTdznwIxWFdQcFda+fgkkWsi8CH2op0a
+   dE373daNWbpRNRM4taLdvFO/CvlL+KGahhmD54J43g1IXIVLhn2fgXUP6
+   H9iytAATPMvOvN/9Kd4WzXgO/OyBksBpTzaixnkL781TiW+OoaRzGF6n1
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,301,1669046400"; 
+   d="scan'208";a="221733429"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 16 Feb 2023 15:28:45 +0800
+IronPort-SDR: HpNYhXCRTk1s8o9rApCMCGAO9BjUBs9GvxNz7NxRGoq4FjsYJlO6Z1mlxNMTei3bkbl1ty9Zpa
+ rpnTeo/mhl2YJMfTZSn9LD8CWlS31GCcfPzjh2g1r0hiX1h5uKDSOXNbWNaTvgK1vHCasEVymV
+ XP/YBNnvO3S5vFezuyjmodxEZTZo5ssslNQpEqRWpo/QyCKML+YwsI7vJGSrcX8aLG7QXUF9eJ
+ YGY4pkDkRWSUw/DACTxsrgWNQ18/cJpU5pfYEG9o2y6+VTSUm7+2pRCUVAuCsBZV0t42Ls4HvE
+ QU8=
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 22:45:50 -0800
+IronPort-SDR: zUS3FW56Xl8IV2HC4h9YlHx8JNtisx2gkC4NPuADSccjThGS5HwwwgaM6ThOjgSF7NRZfMybIZ
+ OBAjCGxaNAzKL+oZoPCLDjxJs/gb2tABzP4EvC7EUPLMQNTCaUyrSRpe4owFamzzhVpo6SRMy1
+ NvYrAsBu/SNB8SajxuoxkTUvXWbFtRaiIMFXvxxwesJDZObufhxQ/lgjd7p7jZUsXRWN2q3w45
+ 1PLpuyJ6e/0/Ffvb4d05I87802ogTv8koHTmY7bILGPeDV7tErHpO0XuubXTwsgquHnK3PTbrF
+ nfA=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Feb 2023 23:28:45 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PHRQ43hYmz1RvTp
+        for <devicetree@vger.kernel.org>; Wed, 15 Feb 2023 23:28:44 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:references:to:from:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1676532523; x=1679124524; bh=/+KnIJGVAtqOq1Y5Tt7uoivGVLcBx2ntfW6
+        kgLZW5DA=; b=J2LH7sQxbsHptMcaledzG///pWJWAx5bwjrJ6nU5VVAXlJAhLtj
+        YHfI2WNz4A1+uMCffqA0b2euMkzGrz0eUKvvz32N8+zKVxaLYuokqFMPLuzCS0rV
+        KTuwLKAnX8ZKVCRR8noTK4NLHPviI13CbXT2tYebbqVRfvH5D3JdJNCb4bhzcEuO
+        pKnN7W3P/jw7qaKrDJPG2mpU+OqTc0nHv8Bpa8hpStcwQGWDWFyl3WtwYghNwWrz
+        1rmuXi12KNgZfhCHC51aM99dTMzq723P9TRRRz2s5X2UmLr1ijiKHsJfxunBuxuU
+        Hmqz1T7APeu+br31+HqiIJcaeoQNqulk+UQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id T_wR8R009Rhz for <devicetree@vger.kernel.org>;
+        Wed, 15 Feb 2023 23:28:43 -0800 (PST)
+Received: from [10.225.163.121] (unknown [10.225.163.121])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PHRQ03dv3z1RvLy;
+        Wed, 15 Feb 2023 23:28:40 -0800 (PST)
+Message-ID: <5c15e1d1-c7e9-0b7c-9b14-f95543c70383@opensource.wdc.com>
+Date:   Thu, 16 Feb 2023 16:28:38 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214120253.1098426-2-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 1/9] PCI: rockchip: Remove writes to unused registers
+Content-Language: en-US
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
+        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
+ <20230214140858.1133292-2-rick.wertenbroek@gmail.com>
+ <2ebd33e2-46ef-356d-ff4c-81b74950d02f@opensource.wdc.com>
+ <CAAEEuhr273bKFBWiTVyTjhHhxjuTK=TVd+5K2B07WfWMD+N7mA@mail.gmail.com>
+ <559bdd8c-9cc8-d7ae-a937-ffee9cfbb8a6@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <559bdd8c-9cc8-d7ae-a937-ffee9cfbb8a6@opensource.wdc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Abel,
+On 2/15/23 18:58, Damien Le Moal wrote:
+[...]
+> WRITE ( 131072 bytes):		OKAY
+> WRITE (1024000 bytes):		OKAY
+> 
+> Then stops here doing the 1024001 B case. The host waits for a completion that
+> does not come. On the EP side, I see:
+> 
+> [   94.307215] pci_epf_test pci_epf_test.0: READ src addr 0xffd00000, 1024001 B
+> [   94.307960] pci_epc fd000000.pcie-ep: Map region 1 phys addr 0xfa100000 to
+> pci addr 0xffd00000, 1024001 B
+> [   94.308924] rockchip-pcie-ep fd000000.pcie-ep: Set atu: region 1, cpu addr
+> 0xfa100000, pci addr 0xffd00000, 1024001 B
+> [  132.309645] dma-pl330 ff6e0000.dma-controller: Reset Channel-2
+> CS-20000e FTC-40000
+> 
+>                                                   ^^^^^^^^^^^^^^^
+> The DMA engine does not like something at all. Back to where I was when I tried
+> your series initially, which is why I tried removing patch 1 to see what happens...
+> 
+> [  132.370479] pci_epf_test pci_epf_test.0: READ => Size: 1024001 B, DMA: YES,
+> Time: 38.059623935 s, Rate: 26 KB/s
+> [  132.372152] pci_epc fd000000.pcie-ep: Unmap region 1
+> [  132.372780] pci_epf_test pci_epf_test.0: RAISE MSI IRQ 1
+> [  132.373312] rockchip-pcie-ep fd000000.pcie-ep: Send MSI IRQ 1
+> [  132.373844] rockchip-pcie-ep fd000000.pcie-ep: MSI disabled
+> [  132.374388] pci_epf_test pci_epf_test.0: Raise IRQ failed -22
+> 
+> And it looks like the PCI core crashed or something because MSI does not work
+> anymore as well (note that this is wheat I see with my nvme epf driver too, but
+> I do not have that DMA channel reset message...)
+> 
+> If I run the tests without DMA (mmio only), everything seems fine:
+> 
+> ## Read Tests (No DMA)
+> READ (      1 bytes):		OKAY
+> READ (   1024 bytes):		OKAY
+> READ (   1025 bytes):		OKAY
+> READ (1024000 bytes):		OKAY
+> READ (1024001 bytes):		OKAY
+> 
+> ## Write Tests (No DMA)
+> WRITE (      1 bytes):		OKAY
+> WRITE (   1024 bytes):		OKAY
+> WRITE (   1025 bytes):		OKAY
+> WRITE (1024000 bytes):		OKAY
+> WRITE (1024001 bytes):		OKAY
+> 
+> ## Copy Tests (No DMA)
+> COPY (      1 bytes):		OKAY
+> COPY (   1024 bytes):		OKAY
+> COPY (   1025 bytes):		OKAY
+> COPY (1024000 bytes):		OKAY
+> COPY (1024001 bytes):		OKAY
+> 
+> So it looks like translation is working with your patch, but that the driver is
+> still missing something for DMA to work correctly...
 
-On Tue, Feb 14, 2023 at 02:02:49PM +0200, Abel Vesa wrote:
-> This takes the already existing duplicated support in both ufs-qcom
-> and sdhci-msm drivers and makes it a dedicated driver that can be used
-> by both mentioned drivers. The reason for this is because, staring with
-> SM8550, the ICE IP block is shared between UFS and SDCC, which means we
-> need to probe a dedicated device and share it between those two
-> consumers. So let's add the ICE dedicated driver as a soc driver.
+I kept testing this and realized that I was not getting a consistent behavior.
+Sometimes all tests passed, but would not repeat (running again would fail
+everything), sometimes NMIs from bad accesses, and other times "hang" (test not
+completing but no real machine hang/crash). So it started to hint at something
+randomly initialized...
 
-Thanks for doing this!
+Re-reading the TRM, particularly section 17.5.5.1.1, I realized that the lower
+16 bits of the desc2 register are used for the translation, but we never set
+them with the current code. Only desc0 and desc1... So I added a write(0) to
+desc2 and now it is finally working well. Running the tests in a loop, they all
+pass and no bad behavior is observed.
 
-About a year ago there was also a patch (that seems to have been abandoned) by
-Gaurav Kashyap to create an ICE library:
-https://lore.kernel.org/linux-scsi/20211206225725.77512-2-quic_gaurkash@quicinc.com
+My cleaned-up rockchip_pcie_prog_ep_ob_atu() function now looks like this:
 
-That patch just made it a library, not an actual device driver.
+static void rockchip_pcie_prog_ep_ob_atu(struct rockchip_pcie *rockchip, u8 fn,
+                                         u32 r, u32 type, u64 phys_addr,
+                                         u64 pci_addr, size_t size)
+{
+        u64 sz = 1ULL << fls64(size - 1);
+        int num_pass_bits = ilog2(sz);
+        u32 addr0, addr1, desc0;
 
-Is it fair to say that the library approach would not be appropriate anymore for
-the reason you mention above: on the latest SoC there's now a single ICE
-instance for both the UFS and eMMC host controllers, instead of one per host
-controller?
+        /* Sanity checks */
+        if (WARN_ON_ONCE(type == AXI_WRAPPER_NOR_MSG))
+                return;
+        if (WARN_ON_ONCE(ALIGN_DOWN(phys_addr, SZ_1M) != phys_addr))
+                return;
+        if (WARN_ON_ONCE(rockchip_ob_region(phys_addr + size - 1) != r))
+                return;
 
-Will there be any issue with using the dedicated driver on older SoCs that do
-have separate ICE instances?
+        /* We must pass at least 8 bits of PCI bus address */
+        if (num_pass_bits < 8)
+                num_pass_bits = 8;
 
-Also, in both cases, how will the ICE clock be controlled?  Currently the ICE
-clock gets turned on and off by the UFS and eMMC drivers.  I don't see any logic
-in your new driver that turns the clock on and off.
+        /* PCI bus address region */
+        addr0 = ((num_pass_bits - 1) & PCIE_CORE_OB_REGION_ADDR0_NUM_BITS) |
+                (lower_32_bits(pci_addr) & PCIE_CORE_OB_REGION_ADDR0_LO_ADDR);
+        addr1 = upper_32_bits(pci_addr);
+        desc0 = ROCKCHIP_PCIE_AT_OB_REGION_DESC0_DEVFN(fn) | type;
 
-> +config QCOM_INLINE_CRYPTO_ENGINE
-> +	bool "QCOM UFS & SDCC Inline Crypto Engine driver"
+        rockchip_pcie_write(rockchip, addr0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR0(r));
+        rockchip_pcie_write(rockchip, addr1,
+                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR1(r));
+        rockchip_pcie_write(rockchip, desc0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_DESC0(r));
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_DESC1(r));
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_DESC2(r));
+}
 
-Shouldn't this be a tristate?
+And the function rockchip_pcie_clear_ep_ob_atu() also clears desc2:
 
-Also should it really be user-selectable (have a prompt string)?  There's
-already SCSI_UFS_QCOM and MMC_SDHCI_MSM that control the host controller
-drivers, and SCSI_UFS_CRYPTO and MMC_CRYPTO that control the inline encryption
-support for those host controller drivers.  Shouldn't the kconfig just select
-QCOM_INLINE_CRYPTO_ENGINE if 'SCSI_UFS_QCOM && SCSI_UFS_CRYPTO' or
-'MMC_SDHCI_MSM && MMC_CRYPTO'?  I don't think there's any need to make users
-explicitly select yet another option.
+static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
+                                          u32 region)
+{
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR0(region));
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_PCI_ADDR1(region));
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_DESC0(region));
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_DESC1(region));
+        rockchip_pcie_write(rockchip, 0,
+                            ROCKCHIP_PCIE_AT_OB_REGION_DESC2(region));
+}
 
-> diff --git a/drivers/soc/qcom/qcom-ice.c b/drivers/soc/qcom/qcom-ice.c
-> new file mode 100644
-> index 000000000000..40c9adbc2666
-> --- /dev/null
-> +++ b/drivers/soc/qcom/qcom-ice.c
+Thoughts ?
 
-The directory is already named "qcom", so how about just naming the file
-"ice.c"?
+-- 
+Damien Le Moal
+Western Digital Research
 
-> @@ -0,0 +1,315 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Qualcomm ICE (Inline Crypto Engine) support.
-> + *
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-
-Can you please keep the copyright statements from the file this is derived from?
-
-> +/* Only one ICE instance is supported currently by HW */
-> +static struct qcom_ice *engine;
-
-Isn't it very bad practice for drivers to store state in static variables like
-this?  Sure, the SCM calls are global anyway, so multiple ICE instances aren't
-going to be supported regardless.  But surely it isn't necessary to use a static
-variable like this too, since the device private data could be used instead?
-
-> +static bool qcom_ice_check_supported(struct qcom_ice *ice)
-> +{
-> +	u32 regval = qcom_ice_readl(ice, QCOM_ICE_REG_VERSION);
-> +	struct device *dev = ice->dev;
-> +	int major = regval >> 24;
-> +	int minor = (regval >> 16) & 0xFF;
-> +	int step = regval & 0xFFFF;
-> +
-> +	ice->supported = true;
-> +
-> +	/* For now this driver only supports ICE version 3. */
-> +	if (major != 3) {
-> +		dev_warn(dev, "Unsupported ICE version: v%d.%d.%d\n",
-> +			 major, minor, step);
-> +		ice->supported = false;
-> +		goto out;
-> +	}
-> +
-> +	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
-> +		 major, minor, step);
-> +
-> +	/* If fuses are blown, ICE might not work in the standard way. */
-> +	regval = qcom_ice_readl(ice, QCOM_ICE_REG_FUSE_SETTING);
-> +	if (regval & (QCOM_ICE_FUSE_SETTING_MASK |
-> +		      QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK |
-> +		      QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK)) {
-> +		dev_warn(dev, "Fuses are blown; ICE is unusable!\n");
-> +		ice->supported = false;
-> +		goto out;
-> +	}
-> +out:
-> +	return ice->supported;
-> +}
-
-Is the 'supported' field necessary?  Shouldn't the driver just not bind to the
-device if it doesn't support it?
-
-> +void qcom_ice_low_power_mode_enable(struct qcom_ice *ice)
-> +{
-
-Please make functions static whenever possible.
-
-> +/* Poll until all BIST bits are reset */
-> +static int qcom_ice_wait_bist_status(struct qcom_ice *ice)
-> +{
-> +	int count;
-> +	u32 reg;
-> +
-> +	if (!ice)
-> +		return 0;
-> +
-> +	for (count = 0; count < 100; count++) {
-> +		reg = qcom_ice_readl(ice, QCOM_ICE_REG_BIST_STATUS);
-> +		if (!(reg & QCOM_ICE_BIST_STATUS_MASK))
-> +			break;
-> +		udelay(50);
-> +	}
-> +
-> +	if (reg)
-> +		return -ETIMEDOUT;
-> +
-> +	return 0;
-> +}
-
-The version of this function in drivers/mmc/host/sdhci-msm.c has a better
-comment, and a simpler implementation using readl_poll_timeout().  How about
-using that version of this function?
-
-> +int qcom_ice_resume(struct qcom_ice *ice)
-> +{
-> +	struct device *dev = ice->dev;
-> +	int err;
-> +
-> +	if (!ice)
-> +		return 0;
-
-The above NULL check occurs after the pointer was already dereferenced.
-
-Also, why is NULL allowed here anyway?
-
-> +/*
-> + * Program a key into a QC ICE keyslot, or evict a keyslot.  QC ICE requires
-> + * vendor-specific SCM calls for this; it doesn't support the standard way.
-> + */
-> +int qcom_ice_program_key(struct qcom_ice *ice, bool config_enable,
-> +			 u8 crypto_cap_idx, u8 algorithm_id,
-> +			 u8 key_size, const u8 crypto_key[],
-> +			 u8 data_unit_size, int slot)
-> +{
-> +	struct device *dev = ice->dev;
-> +	union {
-> +		u8 bytes[AES_256_XTS_KEY_SIZE];
-> +		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
-> +	} key;
-> +	int i;
-> +	int err;
-> +
-> +	if (!config_enable)
-> +		return qcom_scm_ice_invalidate_key(slot);
-
-Can you please make eviction a separate function?  All it needs is the ICE
-instance and the keyslot, not the other parameters.
-
-Yes, the UFS and eMMC drivers have the program_key method that does both
-programming and eviction, but that doesn't mean this has to do the same.
-
-> diff --git a/include/soc/qcom/ice.h b/include/soc/qcom/ice.h
-> new file mode 100644
-> index 000000000000..3ee8add7aeb9
-> --- /dev/null
-> +++ b/include/soc/qcom/ice.h
-> @@ -0,0 +1,61 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-> +
-> +#ifndef __QCOM_ICE_H__
-> +#define __QCOM_ICE_H__
-> +
-> +#include <linux/err.h>
-> +
-> +struct qcom_ice {
-> +	struct device *dev;
-> +	struct device_node *np;
-> +	void __iomem *base;
-> +
-> +	struct clk *core_clk;
-> +
-> +	bool supported;
-> +};
-
-Shouldn't struct qcom_ice be private to the driver?
-
-> +enum qcom_ice_crypto_key_size {
-> +	QCOM_ICE_CRYPTO_KEY_SIZE_INVALID	= 0x0,
-> +	QCOM_ICE_CRYPTO_KEY_SIZE_128		= 0x1,
-> +	QCOM_ICE_CRYPTO_KEY_SIZE_192		= 0x2,
-> +	QCOM_ICE_CRYPTO_KEY_SIZE_256		= 0x3,
-> +	QCOM_ICE_CRYPTO_KEY_SIZE_512		= 0x4,
-> +};
-> +
-> +enum qcom_ice_crypto_alg {
-> +	QCOM_ICE_CRYPTO_ALG_AES_XTS		= 0x0,
-> +	QCOM_ICE_CRYPTO_ALG_BITLOCKER_AES_CBC	= 0x1,
-> +	QCOM_ICE_CRYPTO_ALG_AES_ECB		= 0x2,
-> +	QCOM_ICE_CRYPTO_ALG_ESSIV_AES_CBC	= 0x3,
-> +};
-
-This patch series introduces an implicit assumption that these values match the
-UFS and eMMC algorithm constants.
-
-The way it worked previously is that the UFS driver explicitly checked that the
-UFS algorithm ID was AES-256-XTS before translating it into
-QCOM_SCM_ICE_CIPHER_AES_256_XTS, and similarly for eMMC.
-
-Now there are these intermediate QCOM_ICE_CRYPTO_ALG_* constants, and there's no
-explicit validation that they actually match the UFS and eMMC constants.
-
-Maybe this part should be kept more similar to how it was before, where the
-check for AES-256-XTS happens in the UFS and eMMC drivers?
-
-- Eric
