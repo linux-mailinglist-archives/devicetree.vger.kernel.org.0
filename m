@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F415698F9B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF0B4698F9F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:21:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjBPJUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 04:20:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34744 "EHLO
+        id S229645AbjBPJVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:21:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjBPJUX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:20:23 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63748CC29
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:20:22 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id dr8so3518061ejc.12
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:20:22 -0800 (PST)
+        with ESMTP id S229534AbjBPJVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:21:06 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F28E1E5F3
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:21:05 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id d40so1852659eda.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:21:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2DotY9xq4boB/Mcsod0xacR2OaK1YPcZWDgZTfKhuQo=;
-        b=COx7dzf+G7Cv2iqPmtOmPEe+ZgNG15bQAacMWsBJbP2y0W2jWn1qquysgqmRjOhLmC
-         AopDclPFTZbLeoFmmUwR2TDd21Quss0eg+F56ZNoxsToV+zmhKslS2VjcguZVHh+Tzyv
-         6/hXlfdUjEnBZQWDwjxCPmM18JKp/TAlhfPcO2mdWPJypBMYL5GSXXpP+Cyzp4jqSxJL
-         99CMjp/v5Xm1sBeymnjD3jv+nIZDNYmrMT29GVSdeWAlzdwJVfN/AmX57ynRZ57yCmg6
-         Io1CuTOL9s5sGu3j5JhohvinCfW+1BBsd56tFTDSZCSvgXNih1sv378I5D+EISsWtHdh
-         eAiQ==
+        bh=QICcZD+PgFsGFoOEwt7J2Od7jkS4WHo0ZTXSjNqBbTc=;
+        b=mfpHDB8Oy6XWEJRnuYg0wHDj4hNxQ7QE770q5mLgqIOHo65Pspkhpct8QewFldFv4v
+         3R6v6Zfzrp42R17ah1Ef8ki3OAAraUtNfpzfAMRyqk/fjnIa94kOzwedskNG9JVUOGDR
+         JUEOCbG6EDUguPOCVeHFNLN9auDkEjW5ELjrMjcqvSA4iG8NfkJELki0aMUf2j/mCOcj
+         v8E7OQxBHS8b2KwESqZluTj9ybEaX4OLiXA/KedEhqnVrE7/PoIBs+SPh0kRuPoPctc3
+         P/D6jL9/CrcUMQI15rwz5ZUVjUEP3hqziE+y/IO/7QpXoBQxmf6mG8OKI6edmd4YIODF
+         uq7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2DotY9xq4boB/Mcsod0xacR2OaK1YPcZWDgZTfKhuQo=;
-        b=XjoroVQ5wy7ukzzAuCU01sPqCVaDbp4HSJGs7N2Z9sZfh2ewv4fHYR6CtOyhw3rWGy
-         yjnPznGELq4DnH97WjeO007hK1qIjrrHFcGOIHSd05SbeJknB1v47XvXrLPkMaZ1WDNY
-         VYz9oWJdxrTYbb5z0967SDYYrBOnS8HixLBmQellUqSIj8PudtMsY/mC4FxjQDM6qtN2
-         /vhnwM518Ani1mNoLEM6v1CUPpY2v8LmMYTX8Y64VCdtWkOKBUGeQrg5d2sGVM61wTIt
-         n5QLV1+zTEEbzo7OKIYlGG0sqTQHED8l0VzLJV1f9AWDlyLUYUyBu7QBBe7p20XOgMBW
-         6odw==
-X-Gm-Message-State: AO0yUKUZ8oUzLiqTyW2rHSTi2E3pKO1ehKbojXwx4jkUtdJ8WU0CoolA
-        mr9LEsxxXKesSRqFuqGmoEJpcA==
-X-Google-Smtp-Source: AK7set+rX7Ybm1ymFLZH5r/hHPJgeLcoeop735NHEWRkuDpbuddXMRK+3E24gNlQtBTojxSYvdgI3A==
-X-Received: by 2002:a17:907:9892:b0:8a9:e330:3a23 with SMTP id ja18-20020a170907989200b008a9e3303a23mr5657316ejc.26.1676539220889;
-        Thu, 16 Feb 2023 01:20:20 -0800 (PST)
+        bh=QICcZD+PgFsGFoOEwt7J2Od7jkS4WHo0ZTXSjNqBbTc=;
+        b=UJb83l+HBrvaqQdxOZ6ahOJKXf3zeHEvcP6fC9oL9r8EujEYobvIfyKdWRqSSk/KO1
+         pcia2Mp2BKJCtdiHa3zfAN+8BwDDNOJg4WluH8+UMWf1Fmc6FqCok4DPwXawVEMNYLrF
+         Gxs5VZ3IR9VIcbzZO7lCAGFE3qUHQVNx6CmCht+TRvXLfXgn4CjGEkikTXskRlqyGHFa
+         TQNmROFUdnglX9AX24eyYVofLUEs908OvY0tQLOXwB+8VL2ZWZeI0JnNreiiP1ZMFqRK
+         1YVwhqR9U5VDPLqvQbfGPmpVIFo/WfZV/0djpDH0Sqq/kdDBpftGQtjGS9rgcA7nn3j3
+         Thow==
+X-Gm-Message-State: AO0yUKUEeZFjGx62uGIddM+LQUAUagWsOQqVfOuyGvhSDzAhFIlAXc6O
+        Gaha/kAl0fMSohDywJ52DcUYdw==
+X-Google-Smtp-Source: AK7set9STcXussFDXouuPm3WzxGdJij6lEuQJwj8KfQn4K+7Yi2MLpesEfjeb9R8T/OKd77L0RkYFg==
+X-Received: by 2002:aa7:c981:0:b0:4ab:16a8:bc64 with SMTP id c1-20020aa7c981000000b004ab16a8bc64mr5324123edt.24.1676539263978;
+        Thu, 16 Feb 2023 01:21:03 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id qw13-20020a170906fcad00b008b131861890sm558183ejb.62.2023.02.16.01.20.19
+        by smtp.gmail.com with ESMTPSA id v9-20020a509549000000b004acc6cbc451sm552809eda.36.2023.02.16.01.21.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 01:20:20 -0800 (PST)
-Message-ID: <cf375c2d-cb73-7d24-1394-c0eeb10ea048@linaro.org>
-Date:   Thu, 16 Feb 2023 10:20:18 +0100
+        Thu, 16 Feb 2023 01:21:03 -0800 (PST)
+Message-ID: <568d585c-0f89-0b0b-3cbe-d3025208cdea@linaro.org>
+Date:   Thu, 16 Feb 2023 10:21:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,ulpi-ext-vbus-drv
- quirk
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8775p: add the GNSS high-speed
+ UART for sa8775p-ride
 Content-Language: en-US
-To:     Piyush Mehta <piyush.mehta@amd.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        balbi@kernel.org, Thinh.Nguyen@synopsys.com
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, michal.simek@amd.com,
-        siva.durga.prasad.paladugu@amd.com, git@amd.com
-References: <20230215093146.5812-1-piyush.mehta@amd.com>
- <20230215093146.5812-2-piyush.mehta@amd.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230214155715.451130-1-brgl@bgdev.pl>
+ <20230214155715.451130-4-brgl@bgdev.pl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230215093146.5812-2-piyush.mehta@amd.com>
+In-Reply-To: <20230214155715.451130-4-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,22 +81,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2023 10:31, Piyush Mehta wrote:
-> Some ULPI USB PHYs do not support an internal vBus supply, to drive the
-> CPEN pin properly, it requires configuration of the ULPI DRVVBUSEXTERNAL
-> bit of the USB ULPI PHY OTG_CTRL register.
+On 14/02/2023 16:57, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Added 'snps,ulpi-ext-vbus-drv' DT property to configure the USB2 PHY to
-> drives VBUS with an external supply.
+> Add the serial port connected to the GNSS on sa8775p-ride.
 > 
-> When the ULPIEXTVBUSDRV bit is set to '1' in the Global USB2 PHY
-> Configuration registers, PHY drive vBus with an external 5V supply source.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 34 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi     | 17 ++++++++++++
+>  2 files changed, 51 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> index d01ca3a9ee37..9aee6e4c1ba1 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> @@ -13,6 +13,7 @@ / {
+>  
+>  	aliases {
+>  		serial0 = &uart10;
+> +		serial1 = &uart17;
+>  		i2c18 = &i2c18;
+>  		spi16 = &spi16;
+>  	};
+> @@ -66,6 +67,30 @@ qup_i2c18_default: qup-i2c18-state {
+>  		drive-strength = <2>;
+>  		bias-pull-up;
+>  	};
+> +
+> +	qup_uart17_cts: qup-uart17-cts-state {
+> +		pins = "gpio91";
+> +		function = "qup2_se3";
+> +		bias-disable;
+> +	};
+> +
+> +	qup_uart17_rts: qup0_uart17_rts-state {
 
+No underscores in node names.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
 
 Best regards,
 Krzysztof
