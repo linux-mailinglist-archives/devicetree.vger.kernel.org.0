@@ -2,122 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67D5699826
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:58:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC2B699846
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 16:04:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjBPO6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 09:58:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38042 "EHLO
+        id S229538AbjBPPEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 10:04:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbjBPO6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:58:21 -0500
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE412886B;
-        Thu, 16 Feb 2023 06:57:57 -0800 (PST)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-16e809949eeso1265270fac.9;
-        Thu, 16 Feb 2023 06:57:57 -0800 (PST)
+        with ESMTP id S229475AbjBPPEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 10:04:10 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01020131
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 07:04:08 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id y1so2162406wru.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 07:04:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=D0SWa6ZBRkjqa18mu1E+Tl+FPjfljxPZFk68O+yxexw=;
-        b=YKdtLtbmUpldrBKWVbzDVnWWch57Y/JXvy6Lup/JK6NA2Em5Zn/21rALTQJBHPgo0/
-         fqXLaShcR2amSP2E0uZqZJK4xXFb8LKuu00AohCqC/EAXF8vdLg0CZveDPkjBV5BG2QR
-         uF5ZaD7VXVWA9zK3SDGYxvaDBMjQBL+zvO0Oq7X0v+A2bPak2lQCXNJhnpP1kMIQD140
-         3xBA0rpJlNbMjCI2Z9mGDTYHvXoHJYTrr4eF9cPe6MenaFR8YUur0fmS6Ropwu7RSCz2
-         1XdNo9o4Co19sDT5ZtkvkuOXqfsOrSTGePQTzJRAY7UJjNRHupOr2UpbchivMXw+pOzK
-         U09Q==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eQ4D1e7OsydChicX50RhYW35hCzCmSAMZsBfa+Xta+0=;
+        b=SNz8dv5zMWNJuuPbgHGxQDPr/JPYIjY+/Yn3i8jbcWefLvGrtBBslS4YbYeD18sYar
+         3vHRciM2MR8NfSDR+NgRzxZ9elZcLE6bzJlPl0pVou0ce9bxWjQjBVTHf58S3N7KTAwf
+         ci1Vzxpr3ceLWo7TBeqCnA+x6t/qW1MCN5RekRKn3XbHrZSiayRrVvZt3D0DVxEqOjyd
+         zGWRRbL0UrxYQNcLBbJJhwmqlbCGfvtRQfsboU+PI+4Gdmfx9Ny5WQY4kWoSYUZE1r+E
+         DELL42Q4JzyosvMCQZnmlXDmyRg0/GpntLP/kDYSynSi6H/9Ftbhp0LStArH8XAwloez
+         81nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D0SWa6ZBRkjqa18mu1E+Tl+FPjfljxPZFk68O+yxexw=;
-        b=LRpQOnBoOtQ+anN77qoBcbrqd3emRSKwrGeLQJy2pwADXplIfUbZB0tztG2f9G7b1V
-         mnYtmMSwGQibgoy2sMKyhpc3QEa7knH4UGfnN3Hth0dRmTWNHm6JgDS4YQrfndC1MDN8
-         ntpKqa1HDcBfrlJah8LCHIC+3/75ci8cnv3ttgzDQ+hTf7pT9En0EfVojtZbOhji7+nb
-         azHbDmBlp0swL12WxuDQZ70ewIu14JVcqWLBYdbEVZ/tcJm+/YNRdMGfLA2Q74aO9HM1
-         oZAAl63SdomjVYW491HCo4pR75NM3UW8YmE4VXDbPhcABaF/v7JPWQ04sxFVs1/8Suo8
-         7H2g==
-X-Gm-Message-State: AO0yUKXH3AYX3I6dabvXv1K2ZxbuYTi2o/vCs+C0+2GELaD+04kmTeTf
-        ckeIHCyJSGrWI6M3Geh0AL4=
-X-Google-Smtp-Source: AK7set/qIkXn0ARD0apht7YbDTCtMTsrBPfcN20gMPdgnzo2fkgFPzcCqyvcvGeo6ZL5TGFxx05lxw==
-X-Received: by 2002:a05:6870:b6aa:b0:16e:f84:5552 with SMTP id cy42-20020a056870b6aa00b0016e0f845552mr3553893oab.57.1676559475549;
-        Thu, 16 Feb 2023 06:57:55 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r6-20020a4ae506000000b005177c244f31sm691325oot.41.2023.02.16.06.57.53
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eQ4D1e7OsydChicX50RhYW35hCzCmSAMZsBfa+Xta+0=;
+        b=Iu+YphAO6BdfYsc5bPSblP7QoTrVnq1o4MHBKaVq6sj3Dj82UJyzCLp/zWQtArL6Gu
+         RsvasWjoMCwvH5a5kdDEHxodt18iivCqfiGC1Pa1JRBa6OVDNGOtOXhVKlIPqGKGaZYM
+         j2dTKPhJCdTtG1ZXavUwIUFFRNAOFNE52JsoybDGYayjrCEaK3erZsqDZimOb/6tFqR7
+         beCGKTI8xaEIGb21u5V2cD47lFXnXRhTR65MM5EhKp5VqDd6wfujeElW6EkdimLFxj/G
+         uhL30QSO7u7FtpXwMEgtHOxgcsZVcwR7mMYMLVUf9L25L3hdyp2bl1SVBc0aE9+tvBbM
+         ze+Q==
+X-Gm-Message-State: AO0yUKUxt/PL5WXPcTHQ7lnGj83l1TRQXSOd+WcXJH7Hqfpcc+DE3eTW
+        2sRzYFaYyMpdKWvIDghAh6a8AA==
+X-Google-Smtp-Source: AK7set8vMvgLkfVuOhbBQcIoMKcYBI3CyptMMUKw+8/IdahJJGKA/oBlPMJi1NauBsBuPE9BP4H+ig==
+X-Received: by 2002:adf:f888:0:b0:2c3:e993:9d7d with SMTP id u8-20020adff888000000b002c3e9939d7dmr4733394wrp.30.1676559847439;
+        Thu, 16 Feb 2023 07:04:07 -0800 (PST)
+Received: from [10.35.4.184] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id c4-20020adfe704000000b002c5534db60bsm1714097wrm.71.2023.02.16.07.04.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 06:57:54 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <bfc81429-1829-bec1-ac29-0559f6a01215@roeck-us.net>
-Date:   Thu, 16 Feb 2023 06:57:52 -0800
+        Thu, 16 Feb 2023 07:04:07 -0800 (PST)
+Message-ID: <9b374250-3afc-6277-d1c6-0dac1c682bca@sifive.com>
+Date:   Thu, 16 Feb 2023 15:04:05 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/3] drivers: watchdog: Add StarFive Watchdog driver
-Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 2/4] i3c: dw: Add platform operations
+To:     Jeremy Kerr <jk@codeconstruct.com.au>,
+        linux-i3c@lists.infradead.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Vitor Soares <ivitro@gmail.com>, linux-aspeed@lists.ozlabs.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org
-References: <20221219094233.179153-1-xingyu.wu@starfivetech.com>
- <20221219094233.179153-3-xingyu.wu@starfivetech.com>
- <20230201224619.GA3194283@roeck-us.net>
- <1f18bfdc-7a04-4914-d970-7ef1d4f99653@starfivetech.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <1f18bfdc-7a04-4914-d970-7ef1d4f99653@starfivetech.com>
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+References: <cover.1676532146.git.jk@codeconstruct.com.au>
+ <eb90bc9ee9f72efc2012abce3e4e50186552e194.1676532146.git.jk@codeconstruct.com.au>
+Content-Language: en-GB
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <eb90bc9ee9f72efc2012abce3e4e50186552e194.1676532146.git.jk@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/15/23 23:11, Xingyu Wu wrote:
-> On 2023/2/2 6:46, Guenter Roeck wrote:
->> On Mon, Dec 19, 2022 at 05:42:32PM +0800, Xingyu Wu wrote:
->>> Add watchdog driver for the StarFive JH7110 SoC.
->>>
->>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>> +
->>> [...]
->>> +
->>> +static const struct watchdog_info starfive_wdt_ident = {
->>> +	.options = OPTIONS,
->>> +	.firmware_version = 0,
->>
->> It is not necessary to initilize a static variable with 0.
->>
->>> +	.identity = "StarFive Watchdog",
->>> +};
+On 16/02/2023 07:41, Jeremy Kerr wrote:
+> The dw i3c core can be integrated into various SoC devices. Platforms
+> that use this core may need a little configuration that is specific to
+> that platform.
 > 
-> Hi Guenter,
+> Add a little infrastructure to allow platform-specific behaviour: a bit
+> of data on struct dw_i3c_master, and two hooks to the probe and init
+> calls to enable this.
 > 
-> It would be a compilation error if drop the '0'. I found that other files
-
-No.
-
-> initialize this static variable as well.
+> A future change will add new platform support that uses these hooks.
 > 
+> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> ---
+>   drivers/i3c/master/dw-i3c-master.c | 42 +++++++++++++++++++++++++-----
+>   1 file changed, 36 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
+> index d73d57362b3b..49b891449222 100644
+> --- a/drivers/i3c/master/dw-i3c-master.c
+> +++ b/drivers/i3c/master/dw-i3c-master.c
+> @@ -241,6 +241,17 @@ struct dw_i3c_master {
+>   	char version[5];
+>   	char type[5];
+>   	u8 addrs[MAX_DEVS];
+> +
+> +	/* platform-specific data */
+> +	const struct dw_i3c_platform_ops *platform_ops;
+> +	union {
+> +	} pdata;
+> +
+> +};
+> +
+> +struct dw_i3c_platform_ops {
+> +	int (*probe)(struct dw_i3c_master *i3c, struct platform_device *pdev);
+> +	int (*init)(struct dw_i3c_master *i3c);
+>   };
 
-Ah, the old "others do it, so do I" argument.
-Sorry, that is not a valid argument.
+Given the comment below having this and the main probe defined in a 
+header so users can just call in and we don't have to change the
+main code here every time someone comes up with their own
+special way of handing this?
 
-Guenter
+>   struct dw_i3c_i2c_dev_data {
+> @@ -612,6 +623,12 @@ static int dw_i3c_master_bus_init(struct i3c_master_controller *m)
+>   	u32 thld_ctrl;
+>   	int ret;
+>   
+> +	if (master->platform_ops && master->platform_ops->init) {
+> +		ret = master->platform_ops->init(master);
+> +		if (ret)
+> +			return ret;
+> +	}
+
+I'd rather have a "default" set of ops than have all this checking for
+NULL pointers all over the place.
+
+> +
+>   	switch (bus->mode) {
+>   	case I3C_BUS_MODE_MIXED_FAST:
+>   	case I3C_BUS_MODE_MIXED_LIMITED:
+> @@ -1128,8 +1145,15 @@ static const struct i3c_master_controller_ops dw_mipi_i3c_ops = {
+>   	.i2c_xfers = dw_i3c_master_i2c_xfers,
+>   };
+>   
+> +static const struct of_device_id dw_i3c_master_of_match[] = {
+> +	{ .compatible = "snps,dw-i3c-master-1.00a", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, dw_i3c_master_of_match);
+> +
+>   static int dw_i3c_probe(struct platform_device *pdev)
+>   {
+> +	const struct of_device_id *match;
+>   	struct dw_i3c_master *master;
+>   	int ret, irq;
+>   
+> @@ -1181,6 +1205,18 @@ static int dw_i3c_probe(struct platform_device *pdev)
+>   	master->maxdevs = ret >> 16;
+>   	master->free_pos = GENMASK(master->maxdevs - 1, 0);
+>   
+> +	/* match any platform-specific ops */
+> +	match = of_match_node(dw_i3c_master_of_match, pdev->dev.of_node);
+> +	if (match && match->data)
+> +		master->platform_ops = match->data;
+
+I'm sure there's a of_device_get_match_data() which would have
+both removed hte need to move the match table around and the
+call to of_match_node().
+
+> +
+> +	/* platform-specific probe */
+> +	if (master->platform_ops && master->platform_ops->probe) {
+> +		ret = master->platform_ops->probe(master, pdev);
+> +		if (ret)
+> +			goto err_assert_rst;
+> +	}
+> +
+>   	ret = i3c_master_register(&master->base, &pdev->dev,
+>   				  &dw_mipi_i3c_ops, false);
+>   	if (ret)
+> @@ -1213,12 +1249,6 @@ static int dw_i3c_remove(struct platform_device *pdev)
+>   	return 0;
+>   }
+>   
+> -static const struct of_device_id dw_i3c_master_of_match[] = {
+> -	{ .compatible = "snps,dw-i3c-master-1.00a", },
+> -	{},
+> -};
+> -MODULE_DEVICE_TABLE(of, dw_i3c_master_of_match);
+> -
+>   static struct platform_driver dw_i3c_driver = {
+>   	.probe = dw_i3c_probe,
+>   	.remove = dw_i3c_remove,
 
