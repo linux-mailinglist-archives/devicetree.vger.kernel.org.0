@@ -2,147 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC8896994EA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 13:53:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 778FE699514
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 14:02:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230447AbjBPMxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 07:53:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
+        id S229998AbjBPNCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 08:02:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbjBPMxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 07:53:13 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C76AB48E0E
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:53:09 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id l2so1802493wry.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 04:53:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y7uOoIM/ZRg0/gRsck8jf0SfprCY2FGC+Fvuy6yN0cU=;
-        b=fPkAi4CQml76sUQkY6HVbTV58puI9K5+Y647bTINfv4YSDC3Lwk1ywAEfNb97YZLMS
-         PKryfMPzh4sWPNuJXpcoIJBIYYgO1MJrdA0WxDg1ok3HACqnXaO24w9R7e+KbMVeQt+s
-         L0pspxbKqVzg+zFB6hzb0iCxi3dAuq+lnZ3owM8KMQzKfvCBS82qtbYXUlThm21SAIf4
-         JsC8SFef6Md824r1IufIKTreB56D37SdnnRPmY1kbOfzuJ2blFPLV94tkK0dAk32UDKe
-         xa7xkNLuza7lT0tLahiWWwC5hTqB6rw+KVyoOfZi2E64eR3se2hBtch0AtWAWDzUJtmS
-         8lMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y7uOoIM/ZRg0/gRsck8jf0SfprCY2FGC+Fvuy6yN0cU=;
-        b=rBbkK9O8iFVqwFEOlS0WZ7lh5n4hsYbeIgD2Nr3lqZg16gU6HKP9S8A2CAmx/GNwHO
-         rur/7NFtevchNsTzqMGTsaMqLDfYV1tXAV6GnD21dq7tED/M0OpE9hHkPrUsHB1znEhv
-         kyrIlap6U4F9AT7j5suXwdLmkbeL/40OPsdvTNkf1IHc2qXf3O86NH/eSzvkGT9x8ADW
-         b7AMj/ExuZUsLzBjTYNJFa/ywI8InKa8s1ZD9guKvM37xy51KhZTF16m+35RVlr29JW5
-         fKRM9X81TSna8NCH5lfP+QF6q3apPub2iqO6cZgh1A9y0+lzo7rNtUPxVY0Zq6XYGime
-         JWOQ==
-X-Gm-Message-State: AO0yUKXc1dDJrHiY83nSpV3dsjUOvpbXyPtXd/IIK4NP9Tz6qDTd13Xs
-        qnhIZ2T5N0cak2joNgWSP9FBUA==
-X-Google-Smtp-Source: AK7set+/NiMGAZRAJZ7qxw6w9doBfQNzPfKzK290K1n3NTgUPyfQ3H+vcHbgP3WrFvbklGAWJsoPQg==
-X-Received: by 2002:a05:6000:180e:b0:2c5:4aad:db85 with SMTP id m14-20020a056000180e00b002c54aaddb85mr4476913wrh.37.1676551989337;
-        Thu, 16 Feb 2023 04:53:09 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:7c5b:1160:db5d:72da])
-        by smtp.gmail.com with ESMTPSA id h18-20020adffd52000000b002be5bdbe40csm1453292wrs.27.2023.02.16.04.53.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Feb 2023 04:53:08 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230001AbjBPNCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 08:02:38 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6793E634;
+        Thu, 16 Feb 2023 05:02:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1676552550; x=1708088550;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2Os0cbA1NKAY1dAa1OM2C6w4bQcGQRi9Ty+JzgyPKLI=;
+  b=XLOHhQTgLpPuOhcK1ggfZfnnyZEcgQuYFBsMcoS+MOQ4zBC5rb9lg19X
+   Ij/NzxRD7Czv4J6cfClavhAgmipcg8w1QDpS4ZzKU1mjXV58DbMCqvFAH
+   nbHgCVD6s2uLzvHJBFxfjMpQ/QOsU7ldwXKyDN0l/F9BX3Tc7UgssRYb2
+   Ysa+HDhWJuZfEHvc5KRKFEfs4ZJWy2xdIBM9/LhgGdpMvrwPIQf1+ESVV
+   4nAv8/1NgBOSNpwtVOQcNInE4WNEYEhx9AN6wgK71BOwQ4DHGDE5S5pk3
+   AboofXbOCkzlOIUi65w1fnwOgHCRCYQ0wfLKDP2949cbHsSpsJWKtv7b3
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.97,302,1669100400"; 
+   d="asc'?scan'208";a="200985890"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Feb 2023 06:02:30 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 16 Feb 2023 06:02:29 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Thu, 16 Feb 2023 06:02:26 -0700
+Date:   Thu, 16 Feb 2023 13:02:00 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v3 9/9] arm64: dts: qcom: sa8775p-ride: enable the BT UART port
-Date:   Thu, 16 Feb 2023 13:52:57 +0100
-Message-Id: <20230216125257.112300-10-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230216125257.112300-1-brgl@bgdev.pl>
-References: <20230216125257.112300-1-brgl@bgdev.pl>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
+ VisionFive 2 board device tree
+Message-ID: <Y+4pSMS0vCQi7e/U@wendy>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-8-hal.feng@starfivetech.com>
+ <CAJM55Z9Y_fF+4Dtu++C_jVS0+ohXp5U0GyuJCBpUh-SpTMGrVA@mail.gmail.com>
+ <af42ed91-95aa-014a-1efb-6f70ee5a0433@starfivetech.com>
+ <CAJM55Z-+Cz8d=YySRaFJSAffDfoZ4Madx322qCX100-nAcx+5Q@mail.gmail.com>
+ <Y+38bT8cnahu19bw@wendy>
+ <Y+4AxDSDLyL1WAqh@wendy>
+ <CAJM55Z9M2xgNBRxG8cNefGt5hn4fbZmgHWzC2e8AfmKUq9Gw7A@mail.gmail.com>
+ <fbf82563-0b2c-d813-2c7c-08ea712ea91d@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="aNjJmvAN8VFzp7As"
+Content-Disposition: inline
+In-Reply-To: <fbf82563-0b2c-d813-2c7c-08ea712ea91d@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+--aNjJmvAN8VFzp7As
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Enable the high-speed UART port connected to the Bluetooth controller on
-the sa8775p-adp development board.
+On Thu, Feb 16, 2023 at 08:27:42PM +0800, Hal Feng wrote:
+> On Thu, 16 Feb 2023 11:32:31 +0100, Emil Renner Berthing wrote:
+> > On Thu, 16 Feb 2023 at 11:09, Conor Dooley <conor.dooley@microchip.com>=
+ wrote:
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 33 +++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> >=20
+> > No, I'm sorry for being late here. The below definitely looks better to=
+ me.
+> >=20
+> > Hal, would you be fine with this change?
+>=20
+> I'm fine with this. It will be more exact. Thanks.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 6f96907b335c..1de3b9d4a05a 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -14,6 +14,7 @@ / {
- 	aliases {
- 		serial0 = &uart10;
- 		serial1 = &uart12;
-+		serial2 = &uart17;
- 		i2c18 = &i2c18;
- 		spi16 = &spi16;
- 	};
-@@ -89,6 +90,29 @@ qup_uart12_tx: qup-uart12-tx-state {
- 	qup_uart12_rx: qup-uart12-rx-state {
- 		pins = "gpio55";
- 		function = "qup1_se5";
-+	};
-+
-+	qup_uart17_cts: qup-uart17-cts-state {
-+		pins = "gpio91";
-+		function = "qup2_se3";
-+		bias-disable;
-+	};
-+
-+	qup_uart17_rts: qup0-uart17-rts-state {
-+		pins = "gpio92";
-+		function = "qup2_se3";
-+		bias-pull-down;
-+	};
-+
-+	qup_uart17_tx: qup0-uart17-tx-state {
-+		pins = "gpio93";
-+		function = "qup2_se3";
-+		bias-pull-up;
-+	};
-+
-+	qup_uart17_rx: qup0-uart17-rx-state {
-+		pins = "gpio94";
-+		function = "qup2_se3";
- 		bias-pull-down;
- 	};
- };
-@@ -109,6 +133,15 @@ &uart12 {
- 	status = "okay";
- };
- 
-+&uart17 {
-+	pinctrl-0 = <&qup_uart17_cts>,
-+		    <&qup_uart17_rts>,
-+		    <&qup_uart17_tx>,
-+		    <&qup_uart17_rx>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <38400000>;
- };
--- 
-2.37.2
+I'll convert these both to Acked-by & send this as a real patch then.
+Thanks!
 
+> >> -- >8 --
+> >> From 4d44e8a83716d1caa314f25a95bd21ac8904909e Mon Sep 17 00:00:00 2001
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >> Date: Thu, 16 Feb 2023 09:58:22 +0000
+> >> Subject: [PATCH] dt-bindings: riscv: correct starfive visionfive 2 com=
+patibles
+> >>
+> >> Using "va" and "vb" doesn't match what's written on the board, or the
+> >> communications from StarFive.
+> >> Switching to using the silkscreened version number will ease confusion=
+ &
+> >> the risk of another spin of the board containing a "conflicting" versi=
+on
+> >> identifier.
+> >>
+> >> Suggested-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> >> Fixes: 97b7ed072784 ("dt-bindings: riscv: Add StarFive JH7110 SoC and =
+VisionFive 2 board")
+> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++--
+> >>  1 file changed, 2 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/D=
+ocumentation/devicetree/bindings/riscv/starfive.yaml
+> >> index 60c7c03fcdce..cc4d92f0a1bf 100644
+> >> --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> >> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> >> @@ -26,8 +26,8 @@ properties:
+> >>
+> >>        - items:
+> >>            - enum:
+> >> -              - starfive,visionfive-2-va
+> >> -              - starfive,visionfive-2-vb
+> >> +              - starfive,visionfive-2-v1.2a
+> >> +              - starfive,visionfive-2-v1.3b
+> >>            - const: starfive,jh7110
+> >>
+> >>  additionalProperties: true
+> >> --
+> >> 2.39.0
+> >>
+> >>
+>=20
+>=20
+
+--aNjJmvAN8VFzp7As
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY+4pSAAKCRB4tDGHoIJi
+0hWTAPsF72hFmfBpwWWe1huxbfD6A8AQj7JWhe5LZj8JTj/YIQD/Ul9+sm7R2NEE
+Www1V7URz90OHBMRDrhYgZzhCTViVAM=
+=sfbd
+-----END PGP SIGNATURE-----
+
+--aNjJmvAN8VFzp7As--
