@@ -2,169 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 477AB699183
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:37:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E1B86991B6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbjBPKg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:36:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47030 "EHLO
+        id S230201AbjBPKht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:37:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjBPKgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:36:45 -0500
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 54441552A9;
-        Thu, 16 Feb 2023 02:36:22 -0800 (PST)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 192.168.10.47
-        by mg.richtek.com with MailGates ESMTP Server V5.0(23454:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Thu, 16 Feb 2023 18:35:30 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Thu, 16 Feb
- 2023 18:35:30 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.20 via Frontend
- Transport; Thu, 16 Feb 2023 18:35:30 +0800
-Date:   Thu, 16 Feb 2023 18:35:30 +0800
-From:   ChiYuan Huang <cy_huang@richtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <lgirdwood@gmail.com>,
-        <u0084500@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT5739
-Message-ID: <20230216103530.GA17387@linuxcarl2.richtek.com>
-References: <1676426457-1389-1-git-send-email-cy_huang@richtek.com>
- <1676426457-1389-2-git-send-email-cy_huang@richtek.com>
- <9c1f4d0e-83c9-014e-bdb1-38b4b0fb2bbf@linaro.org>
- <20230216095714.GA14578@linuxcarl2.richtek.com>
- <38824a96-804d-84a2-2750-be1325b2e1d2@linaro.org>
+        with ESMTP id S230262AbjBPKhd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:37:33 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D19A55E48
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:37:09 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pSbcs-0003dF-21; Thu, 16 Feb 2023 11:36:30 +0100
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pSbcp-005Kn0-Ck; Thu, 16 Feb 2023 11:36:28 +0100
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pSbcn-002Whz-QW; Thu, 16 Feb 2023 11:36:25 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     linux-pm@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 00/19] Add perf support to the rockchip-dfi driver
+Date:   Thu, 16 Feb 2023 11:36:05 +0100
+Message-Id: <20230216103624.591901-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <38824a96-804d-84a2-2750-be1325b2e1d2@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 16, 2023 at 11:03:39AM +0100, Krzysztof Kozlowski wrote:
-> On 16/02/2023 10:57, ChiYuan Huang wrote:
-> > On Thu, Feb 16, 2023 at 10:12:15AM +0100, Krzysztof Kozlowski wrote:
-> >> On 15/02/2023 03:00, cy_huang@richtek.com wrote:
-> >>> From: ChiYuan Huang <cy_huang@richtek.com>
-> >>>
-> >>> Add the binding document for Richtek RT5739.
-> >>
-> >> Subject: drop second/last, redundant "bindings for". The "dt-bindings"
-> >> prefix is already stating that these are bindings.
-> >>
-> > Then, refine it to "dt-bindings: regulator: Add Richtek RT5739 document" 
-> 
-> I propose also to drop "document" - it is also redundant. Can bindings
-> be something else than document?
->
-Yes, you'r right. 
-> 
-> >>>
-> >>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> >>> ---
-> >>>  .../bindings/regulator/richtek,rt5739.yaml         | 80 ++++++++++++++++++++++
-> >>>  1 file changed, 80 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
-> >>> new file mode 100644
-> >>> index 00000000..7dc4f78
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
-> >>> @@ -0,0 +1,80 @@
-> >>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/regulator/richtek,rt5739.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Richtek RT5739 2.4MHz 3.5A Step-Down Converter
-> >>> +
-> >>> +maintainers:
-> >>> +  - ChiYuan Huang <cy_huang@richtek.com>
-> >>> +
-> >>> +description: |
-> >>> +  The RT5739 is a step-down switching voltage regulator that delivers a
-> >>> +  digitally programmable output from an input voltage supply of 2.5V to 5.5V.
-> >>> +  The output voltage is programmed through an I2C interface capable of
-> >>> +  operating up to 3.4MHz.
-> >>> +
-> >>> +  Using a proprietary architecture with synchronous rectification, the RT5739
-> >>> +  is capable of delivering 3.5A continuously at over 80% efficiency,
-> >>> +  maintaining that efficiency at load current as low as 10mA. The regulator
-> >>> +  operates at a normal fixed frequency of 2.4MHz, which reduces the value of
-> >>> +  the external components. 
-> >>
-> >> Can we drop the marketing from kernel? Last part of sentence is not
-> >> related to this submission at all. The internal frequency also looks
-> >> unrelated to the topic...
-> >>
-> > Okay, too much marketing text. I'll shorten it and simply describe the function or
-> > voltage range only. 
-> >>> Additional output capacitance can be added to
-> >>> +  improve regulation during load transients without affecting stability.
-> >>> +
-> >>> +allOf:
-> >>> +  - $ref: regulator.yaml#
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - richtek,rt5739
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  enable-gpios:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  richtek,vsel-active-high:
-> >>> +    description: |
-> >>> +      If property is present, use the 'VSEL1' register group for buck control.
-> >>> +      Else, use the 'VSEL0' register group. This depends on external hardware
-> >>> +      'VSEL' pin connecton.
-> >>> +    type: boolean
-> >>> +
-> >>> +  regulator-allowed-modes:
-> >>> +    description: |
-> >>> +      buck allowed operating mode
-> >>> +        0: Auto PFM/PWM mode
-> >>> +        1: Forced PWM mode
-> >>> +    maxItems: 2
-> >>> +    items:
-> >>> +      enum: [0, 1]
-> >>
-> >> So you always require two items? Thus I wonder what's the point of
-> >> having it in DT? To skip the property entirely if none of the modes are
-> >> allowed?
-> >>
-> > Not always need two. So does it mean no need to describe the 'maxItems' and 'Items'.
-> 
-> Your minItems is 2, so you always need two. If you accept one, the add
-> minItems: 1.
-> 
-https://elixir.bootlin.com/linux/v6.2-rc8/source/drivers/regulator/of_regulator.c#L198
-It seems no need to limit the maxItems. Regulator core will call 'of_map_mode' to check the value.
-Even the value is repeat.
+This is the third round of patches for adding perf support to the
+rockchip-dfi driver. The binding changes seem to be sorted out now,
+would be great to get some feedback to the driver changes as well.
 
-And for minItems, 'regulator.yaml' already said it's uint32-array. Must be lager than zero, right?
+Sascha
 
-So how about just keep 'items' and remove the 'maxItems'?
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes since v2:
+- Fix broken reference to binding
+- Add Reviewed-by from Rob
+
+Changes since v1:
+- Fix example to actually match the binding and fix the warnings resulted thereof
+- Make addition of rockchip,rk3568-dfi an extra patch
+
+Sascha Hauer (19):
+  PM / devfreq: rockchip-dfi: Embed desc into private data struct
+  PM / devfreq: rockchip-dfi: use consistent name for private data
+    struct
+  PM / devfreq: rockchip-dfi: Make pmu regmap mandatory
+  PM / devfreq: rockchip-dfi: Add SoC specific init function
+  PM / devfreq: rockchip-dfi: dfi store raw values in counter struct
+  PM / devfreq: rockchip-dfi: Use free running counter
+  PM / devfreq: rockchip-dfi: introduce channel mask
+  PM / devfreq: rk3399_dmc,dfi: generalize DDRTYPE defines
+  PM / devfreq: rockchip-dfi: Clean up DDR type register defines
+  PM / devfreq: rockchip-dfi: Add RK3568 support
+  PM / devfreq: rockchip-dfi: Handle LPDDR2 correctly
+  PM / devfreq: rockchip-dfi: Handle LPDDR4X
+  PM / devfreq: rockchip-dfi: Pass private data struct to internal
+    functions
+  PM / devfreq: rockchip-dfi: Prepare for multiple users
+  PM / devfreq: rockchip-dfi: Add perf support
+  arm64: dts: rockchip: rk3399: Enable DFI
+  arm64: dts: rockchip: rk356x: Add DFI
+  dt-bindings: devfreq: event: convert Rockchip DFI binding to yaml
+  dt-bindings: devfreq: event: rockchip,dfi: Add rk3568 support
+
+ .../bindings/devfreq/event/rockchip,dfi.yaml  |  72 ++
+ .../bindings/devfreq/event/rockchip-dfi.txt   |  18 -
+ .../rockchip,rk3399-dmc.yaml                  |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |   1 -
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   7 +
+ drivers/devfreq/event/rockchip-dfi.c          | 659 +++++++++++++++---
+ drivers/devfreq/rk3399_dmc.c                  |  10 +-
+ include/soc/rockchip/rk3399_grf.h             |   9 +-
+ include/soc/rockchip/rk3568_grf.h             |  13 +
+ include/soc/rockchip/rockchip_grf.h           |  16 +
+ 10 files changed, 674 insertions(+), 133 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+ create mode 100644 include/soc/rockchip/rk3568_grf.h
+ create mode 100644 include/soc/rockchip/rockchip_grf.h
+
+-- 
+2.30.2
+
