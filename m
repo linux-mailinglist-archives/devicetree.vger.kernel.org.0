@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7544E698F17
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DED698F40
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:04:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjBPIzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 03:55:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42030 "EHLO
+        id S229759AbjBPJER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:04:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjBPIzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:55:03 -0500
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9C43B3E6
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:55:01 -0800 (PST)
-Received: from submission (posteo.de [185.67.36.169]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id B925A240032
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 09:54:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1676537699; bh=CdZyo6JjpXiyHzEMPe2wM0kSGNglA5FAaZGZKnEZChU=;
-        h=Date:From:To:Cc:Subject:From;
-        b=akvlP+baPY54hFTe8mhaLsQDpW7Q0HkLtOhiZUwaqOd5CffXSBd/wBAWdbY4tTjUn
-         Wg/KgfJ404RrC3YrPy6XwgjoIx2jMysE+GhJ1BBb/RSBYFH5czIwxDhwkOrZ50yL7W
-         CG4VQrswEwREMDPI+c0/j67huYtAAjqMyMBDCiKlcyjw7d1h5iYi79wJlAVd9CziZ+
-         cUHwSnFRFBSfShfvkxN6hQsE6mX5SHFNlq0Sek7g3i5PonEmfK8kUbCXVP74OqL0af
-         YJ8pmWwLvXsVtqUZUe4QwvMQc25zjJg2rQlxRLL7m3RV6UQZrP61jPmJ21ywADTFAB
-         fX8/Mwc7NWEyg==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4PHTKW4zcRz6tm5;
-        Thu, 16 Feb 2023 09:54:55 +0100 (CET)
-Date:   Thu, 16 Feb 2023 08:54:54 +0000
-From:   Wilken Gottwalt <wilken.gottwalt@posteo.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bastian Germann <bage@debian.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229739AbjBPJEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:04:15 -0500
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED13121A2D;
+        Thu, 16 Feb 2023 01:04:12 -0800 (PST)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id 295AE26F7A6; Thu, 16 Feb 2023 10:04:11 +0100 (CET)
+Date:   Thu, 16 Feb 2023 10:04:11 +0100
+From:   Janne Grunau <j@jannau.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: hwlock: sun6i: Add missing names
-Message-ID: <20230216095454.54f4d5ca@posteo.net>
-In-Reply-To: <a2d10295-d9eb-cd1f-8f48-b61f97487208@linaro.org>
-References: <20230215203711.6293-1-bage@debian.org>
-        <20230215203711.6293-4-bage@debian.org>
-        <a2d10295-d9eb-cd1f-8f48-b61f97487208@linaro.org>
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Kazuki <kazukih0205@gmail.com>
+Subject: Re: [PATCH v2 0/3] SPI core CS delay fixes and additions
+Message-ID: <20230216090411.GH17933@jannau.net>
+References: <20230113102309.18308-1-marcan@marcan.st>
+ <167362544665.163457.10878671229075890152.b4-ty@kernel.org>
+ <20230214185234.uj63aovylzixs6xa@kazuki-mac>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230214185234.uj63aovylzixs6xa@kazuki-mac>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Feb 2023 09:36:08 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hej Mark,
 
-> On 15/02/2023 21:37, Bastian Germann wrote:
-> > The allwinner,sun6i-a31-hwspinlock.yaml binding needs clock-names and
-> > reset-names set to "ahb" as required by the Linux driver.
+On 2023-02-15 03:52:34 +0900, Kazuki wrote:
+> On Fri, Jan 13, 2023 at 03:57:26PM +0000, Mark Brown wrote:
+> > On Fri, 13 Jan 2023 19:23:07 +0900, Hector Martin wrote:
+> > > Commits f6c911f3308c ("spi: dt-bindings: Introduce
+> > > spi-cs-setup-ns property") and 33a2fde5f77b ("spi: Introduce
+> > > spi-cs-setup-ns property") introduced a new property to represent the
+> > > CS setup delay in the device tree, but they have some issues:
+> > > 
+> > > - The property is only parsed as a 16-bit integer number of nanoseconds,
+> > >   which limits the maximum value to ~65us. This is not a reasonable
+> > >   upper limit, as some devices might need a lot more.
+> > > - The property name is inconsistent with other delay properties, which
+> > >   use a "*-delay-ns" naming scheme.
+> > > - Only the setup delay is introduced, but not the related hold and
+> > >   inactive delay times.
+> > > 
+> > > [...]
 > > 
-> > Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock") 
-> > Signed-off-by: Bastian Germann <bage@debian.org>
+> > Applied to
+> > 
+> >    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> > 
+> > Thanks!
+> > 
+> > [1/3] spi: Use a 32-bit DT property for spi-cs-setup-delay-ns
+> >       commit: f276aacf5d2f7fb57e400db44c807ea3b9525fd6
 > 
-> With new data, I changed my opinion and NAKed this. Still NAK, sorry.
-> Please drop the clock/reset-names from the driver (use indices) and DTS.
+> Shouldn't this be sent to 6.2 before the property becomes a stable ABI?
 
-I won't be able to fix this in the next time. I'm currently in the state of
-moving and can't set up my hardware to test the changes. And I'm not willing
-to submit changes without testing. And with testing I really mean testing it
-against a running Crust firmware which touches the hwspinlock unit.
+can we still get "spi: Use a 32-bit DT property for 
+spi-cs-setup-delay-ns" into 6.2?
 
-If someone wants to change that, I'm happy to see it working out, but please
-do it properly. Just testing the locks in Linux only is not sufficient. If
-some directions are required, I still have my working repo up at Github:
-https://github.com/wgottwalt/sunxi_hwspinlock
-It may be a bit dated, but should be a good start.
+If not I can send a single line patch which switches 
+of_property_read_u16() to of_property_read_u32() to avoid defining 
+"spi-cs-setup-delay-ns" to u16 as stable devicetree ABI.
 
-Greetings,
-Will
+sorry this comes so late before 6.2, we missed to track the patches.
+
+Thanks,
+Janne
