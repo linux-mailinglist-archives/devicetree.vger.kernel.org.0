@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F20E699150
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2DC699157
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:33:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbjBPKcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:32:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40728 "EHLO
+        id S229490AbjBPKdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:33:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbjBPKcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:32:51 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2389B474FA
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:32:43 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id br9so2214125lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:32:43 -0800 (PST)
+        with ESMTP id S230033AbjBPKdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:33:43 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E007F53556
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:33:12 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id bi36so2188082lfb.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:33:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BCK20eTXQW6Y2BWSFKVLcgBB4N/DSY71r76AA/HBbFU=;
-        b=sJWuwt4KwJV97l3LJMpObf7RRuFDfr8+x48QjcsMp4+xn44sijqelzmpNrcL0EqEv9
-         4j6RvaE3FkOZlycLjRZ3dRu4z9kF2l/blAIHpnI2SDOuqaJXM3Cq6J1Yb7MXXlZXeDa+
-         5tW2jnzRyBESjPqzzBu84Y4ScvXhQh/iFVaHvnwWdgAhsmwYABU8dBsd17X1brOQTlaN
-         HW3RoIvjJQEN/Gsqr+gm5/pAyXhWl5R/n2aLz8UsrnPdZBIhqi4Dsr9p7avthii266Ig
-         wdO2RrSJyh8qXwv84culJ5+9nwvFnnU84qddV4cmgdWlcEeS5CQgOO1CMXgFkbnPOqqi
-         Z+LA==
+        bh=G28TAuy/6oFk/suK4dD0fVgYuOSi6iwQbnKbW0IjYhs=;
+        b=fQq4rkcz+L115UYJbdYTul6ajjgtT8qDegn+dhmI5X/Vt7lsw2szYwaC+e+FoWzVzS
+         UqnjA+aDLU4Hu0G1ujtKt3OiD9t9bbRmthTvyxQxFytX3bij9mu8+X6Y1T5ek6z9MDTe
+         dWl0WNVTyeCnQa4+2gFyZu2F7m4GPY54nXa8BUeWWiyI+brJDfqzsNZ8k2lH2MtcDiGq
+         nrjmRc5Vp3P0r50THhPSDvH69ViYPzsqDnCwszmXC3Q+SPNgsncu7kZuKKOJNMOv+yQM
+         11W4u57Otb3je3SCTBfjqFGkZVFasqzpNUnwGyA5lDUZ3J9jm+0SNJllNF2SR0L90nZF
+         kz9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BCK20eTXQW6Y2BWSFKVLcgBB4N/DSY71r76AA/HBbFU=;
-        b=4ulp+zQrSJzl3Wo4IQoz1mG0fcwjGYPHXleGki0rIYgrc+ec3gN9PQ0sN9hC9J0c6t
-         rrN+8mL1zwCQdGWWxcr3wayPoWWj77Gx8Sm6Zljkf3FngPWHZ0LpEsAj68bVpGqAZ9hf
-         cC+E1LUofcSq+atDYWK0QdDqXHKCigvVhw8dhQuCXsJ8kwA81E5XFEFIXI+mthPK/v9X
-         e7jm1rKh5xT6bAplPcolYXXeJP+XDTHKU1VFrfXbOYXAEn59ZwXCuQCwOCs6djUFRusL
-         U2DzyzYFUlqthntQEPPT14x8xf6ZyXVsYUL8/gmq1BovCuWMgu3DvDsXpcdxbY4TrcZP
-         fq1Q==
-X-Gm-Message-State: AO0yUKXnGZ3awpaLhLiuuPFDGxziiS/HZZu/1MTrsDZCR4wcsdaIajj1
-        yqUCjqxRtCQqfaLLRsn7+WnaFg==
-X-Google-Smtp-Source: AK7set/ingP4zgBQJmUCPOUsNQRitk9RgEQ3H0m4B7e4aekEO0gseaAaUEOvDnNGlOcgxZ6a1I7LoQ==
-X-Received: by 2002:ac2:54aa:0:b0:4b5:a4f1:fbbe with SMTP id w10-20020ac254aa000000b004b5a4f1fbbemr2037363lfk.67.1676543561403;
-        Thu, 16 Feb 2023 02:32:41 -0800 (PST)
+        bh=G28TAuy/6oFk/suK4dD0fVgYuOSi6iwQbnKbW0IjYhs=;
+        b=v+lzj9LZrfOK4H2Ssw8OnLvAOnL0ZePDW8RoMfAgNnYUE1WEHzgk9PIDMU1YY+NBbo
+         V37y2TRysy9Pwrrrs/itJyCn53zSPotpoND/IPz6UTKiXKPkg7O14dPaH1tIUCXJWB44
+         zkpXlrE/+6p1ntiPZPdwWtaqYUcW1KRwYZOduOOi30i4XWamqNdHhrSzFfkkDMespJ51
+         P0AJC8MTg+AqpHEAB+mhfKXyuzr1NxO0a1U4shLVm+qLoSrP/fvB8k1gTKwmgvXDIuwU
+         tlkKJ4tvYp4g3N3nT/siwaAWLLvIy+QEcUiZO9CoJzbgF+JnGzz0PyOUtqyW0U9oLosu
+         hh4A==
+X-Gm-Message-State: AO0yUKUhzNfqayM3h+7GXPKgz2VqVJguIy+5G9d05kgtcT7bTnY7J0QA
+        y9sHIuJjixd0t4eBOoTWjQHhZtIrtYPafOvU
+X-Google-Smtp-Source: AK7set+ny/k21yqV1u4cmjdixiAmB7aht5jerIGcbd4dSjACtG8rjnomZdynpsWysY5VscuIlYDr3g==
+X-Received: by 2002:ac2:44b9:0:b0:4b5:1545:222b with SMTP id c25-20020ac244b9000000b004b51545222bmr1416421lfm.47.1676543591151;
+        Thu, 16 Feb 2023 02:33:11 -0800 (PST)
 Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id b4-20020a056512024400b004db2bda9527sm245282lfo.121.2023.02.16.02.32.40
+        by smtp.gmail.com with ESMTPSA id y14-20020ac24e6e000000b004db00415a1asm242534lfs.248.2023.02.16.02.33.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:32:41 -0800 (PST)
-Message-ID: <87af9f78-c1dc-0bb0-870b-c2d6055d828f@linaro.org>
-Date:   Thu, 16 Feb 2023 11:32:39 +0100
+        Thu, 16 Feb 2023 02:33:10 -0800 (PST)
+Message-ID: <e8f1110e-7f60-3031-25d4-d4993fa04cb9@linaro.org>
+Date:   Thu, 16 Feb 2023 11:33:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
-Subject: Re: [RESEND PATCH 00/12] arm64: dts: qcom: Supply clock from cpufreq
- node to CPUs
+Subject: Re: [RESEND PATCH 01/12] arm64: dts: qcom: sdm845: Supply clock from
+ cpufreq node to CPUs
 Content-Language: en-US
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         andersson@kernel.org
@@ -63,8 +63,9 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, viresh.kumar@linaro.org
 References: <20230215070400.5901-1-manivannan.sadhasivam@linaro.org>
+ <20230215070400.5901-2-manivannan.sadhasivam@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230215070400.5901-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20230215070400.5901-2-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,47 +81,94 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 15.02.2023 08:03, Manivannan Sadhasivam wrote:
-> Hi,
+> Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply clocks
+> to the CPU cores. But this relationship is not represented in DTS so far.
 > 
-> As a follow-up of [1], this series adds support for supplying clock from
-> cpufreq node to CPUs for rest of the SoCs.
+> So let's make cpufreq node as the clock provider and CPU nodes as the
+> consumers. The clock index for each CPU node is based on the frequency
+> domain index.
 > 
-> This series has been tested on SDM845, SM8450 and SC8280XP based boards.
-> 
-> Thanks,
-> Mani
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20221117053145.10409-1-manivannan.sadhasivam@linaro.org/
-Maybe it would be beneficial to mark '#clock-cells' required in
-bindings now, to prevent people from hitting that OPP bug?
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> Manivannan Sadhasivam (12):
->   arm64: dts: qcom: sdm845: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sc7280: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm6350: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm8550: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm8250: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: qdu1000: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sc7180: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm8150: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm8350: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sc8280xp: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm6375: Supply clock from cpufreq node to CPUs
->   arm64: dts: qcom: sm6115: Supply clock from cpufreq node to CPUs
-> 
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi  | 5 +++++
->  arch/arm64/boot/dts/qcom/sc7180.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sdm845.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm6115.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm6350.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm6375.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm8150.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm8250.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm8350.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/qcom/sm8550.dtsi   | 9 +++++++++
->  12 files changed, 104 insertions(+)
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 479859bd8ab3..1d5e6ade8ae7 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -92,6 +92,7 @@ CPU0: cpu@0 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x0>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+>  			dynamic-power-coefficient = <290>;
+> @@ -118,6 +119,7 @@ CPU1: cpu@100 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x100>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+>  			dynamic-power-coefficient = <290>;
+> @@ -140,6 +142,7 @@ CPU2: cpu@200 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x200>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+>  			dynamic-power-coefficient = <290>;
+> @@ -162,6 +165,7 @@ CPU3: cpu@300 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x300>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+>  			dynamic-power-coefficient = <290>;
+> @@ -184,6 +188,7 @@ CPU4: cpu@400 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x400>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <1024>;
+>  			dynamic-power-coefficient = <442>;
+> @@ -206,6 +211,7 @@ CPU5: cpu@500 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x500>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <1024>;
+>  			dynamic-power-coefficient = <442>;
+> @@ -228,6 +234,7 @@ CPU6: cpu@600 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x600>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <1024>;
+>  			dynamic-power-coefficient = <442>;
+> @@ -250,6 +257,7 @@ CPU7: cpu@700 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x700>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <1024>;
+>  			dynamic-power-coefficient = <442>;
+> @@ -5232,6 +5240,7 @@ cpufreq_hw: cpufreq@17d43000 {
+>  			clock-names = "xo", "alternate";
+>  
+>  			#freq-domain-cells = <1>;
+> +			#clock-cells = <1>;
+>  		};
+>  
+>  		wifi: wifi@18800000 {
