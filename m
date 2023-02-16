@@ -2,258 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952226992CF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EEA06992D6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 12:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbjBPLKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 06:10:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35584 "EHLO
+        id S230027AbjBPLL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 06:11:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbjBPLKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:10:38 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D66956ECC;
-        Thu, 16 Feb 2023 03:10:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676545833; x=1708081833;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=J6BNHHswTkDcX5jOI5ShWTSFAJ7P3SXfiqTD8tl74ZA=;
-  b=HclVVJpJ1L8+UNiq0TyJU+4RP4WTMDaTFv1KPej9mxZMT/PeaUTbB8ex
-   V3HzSv0M+aWvD2mznhj4IGllgpIZ66Od4XBzgbR09kDpweHTPJJ/pf/Nx
-   O0wVGaZIVDeE+s8LM63BW8i2fLCb4Qd+n+t6SDfP7V/6DAL5QdvWH6qy+
-   ofJo7fPT669r/BvPs9WwYHt7pRF/socml9GzPCxeWHars3G9VD9LvhAVh
-   ztFYVFHNllLoFZ5qAayXK/4tgfsULMP1vnhgjD1y9IvF0ouwNzyAB5TmY
-   Gnp29YKF8jM6aGkMlbSnwyCkoyOfioKm7nYvBqL7l4kyPJqq5ieIF7BN3
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="417913088"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; 
-   d="scan'208";a="417913088"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2023 03:10:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="670089954"
-X-IronPort-AV: E=Sophos;i="5.97,302,1669104000"; 
-   d="scan'208";a="670089954"
-Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 16 Feb 2023 03:10:25 -0800
-Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pSc9g-000ADR-1N;
-        Thu, 16 Feb 2023 11:10:24 +0000
-Date:   Thu, 16 Feb 2023 19:09:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 16/26] firmware: qcom_scm: Register Gunyah platform
- ops
-Message-ID: <202302161942.xItsHIi1-lkp@intel.com>
-References: <20230214212457.3319814-1-quic_eberman@quicinc.com>
+        with ESMTP id S229660AbjBPLLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 06:11:55 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EFE83F7
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:11:53 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a3so4310445ejb.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 03:11:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zNhqYGj1vLN2v1vRAyqF2Z1mw1XUvACBLxpmP0puvR8=;
+        b=AQKhMPfIpqNRBEQiQTqupLYJIPzl6FkSv6NQ3Fri9M5xBtaBlylJ5RwbTz0GLBArQN
+         kesQKiEVvQWNQ+/3oTPajBmOOPLknDGR7hJQMbw7wlmr3TZKEtiN+v/mrdQNkBqTQcO2
+         jgLwilgOpSwOLBFBUahZs427LfIoryXmcTJbd84L8CQW1Sc4R8vB3KroAEu5qFeKw6WO
+         Bj8x0dQiIkYQqm9KTSNyzWIsm3JYEVZ59iLo3sJB9eltLqMYVf693OxQFqSa7eHz2Zzk
+         o7LLWKp6stJ9VAzjoZoFanuJ+QMsEAwpyPvXi9T4Y1fmkNUtwnqB1DL8n47eRiwa0qFX
+         XFPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zNhqYGj1vLN2v1vRAyqF2Z1mw1XUvACBLxpmP0puvR8=;
+        b=ew8b/u1T8AgwfiBm+DrBX5CQ3WwyYfN73utvgYDkUXI7DqgRoh5NDRHohvjMdoijnp
+         jd0aevzoxAeckOsN1ofUS27kfczJaRhijecMLVVtgvAlMD1WMFtKsZZIkwXz+0WSaM8m
+         AX4+LwAs4xdFfnzjIUmWc3pXJkTREb/gmcvFMpjWwph7vv2uEWlj7tduf/x5CrCH9aHv
+         k7ewt3GS0QWkJ4sCdtIh4A7sQEjsRyjH1BvLNjp+V6Jvc3R0XxqVRft4d6iTEMK3lATa
+         6E1wS6ZHbvIXO131eOTqkS6yVmuhJxLFK7edrUFg+qrCtBi3peguIjpc2NjG3tpxmMd+
+         FUAQ==
+X-Gm-Message-State: AO0yUKUE9/DccLbBF2pp4gLvA4lpnbft2kFWxy0+Tg27oUQwiSGpReZ4
+        wFGYnBx8BJjlTBCfHB6LnabTEw==
+X-Google-Smtp-Source: AK7set/DH6Dn0+3n9f9oN7LRJsmOT12HOFk4osoy37duY3LEuxFLeBMCEwkXEDq4XLqQZe9Hchgqvw==
+X-Received: by 2002:a17:907:2ce4:b0:8b1:22af:b39f with SMTP id hz4-20020a1709072ce400b008b122afb39fmr7188453ejc.13.1676545912107;
+        Thu, 16 Feb 2023 03:11:52 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t19-20020a1709066bd300b008b133f9a197sm656548ejs.198.2023.02.16.03.11.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 03:11:51 -0800 (PST)
+Message-ID: <a0c79665-adb9-a846-5a84-d85e0684c25f@linaro.org>
+Date:   Thu, 16 Feb 2023 12:11:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214212457.3319814-1-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 15/16] PCI: samsung: Add structure to hold resource
+ operations
+Content-Language: en-US
+To:     Shradha Todi <shradha.t@samsung.com>, lpieralisi@kernel.org,
+        kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
+        jingoohan1@gmail.com, Sergey.Semin@baikalelectronics.ru,
+        lukas.bulwahn@gmail.com, hongxing.zhu@nxp.com, tglx@linutronix.de,
+        m.szyprowski@samsung.com, jh80.chung@samsung.co,
+        pankaj.dubey@samsung.com
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230214121333.1837-1-shradha.t@samsung.com>
+ <CGME20230214121503epcas5p291dce2b37ec4cdabcfecbf8fbdfcca51@epcas5p2.samsung.com>
+ <20230214121333.1837-16-shradha.t@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230214121333.1837-16-shradha.t@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elliot,
+On 14/02/2023 13:13, Shradha Todi wrote:
+> Some resources might differ based on platforms and we
 
-Thank you for the patch! Yet something to improve:
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-[auto build test ERROR on 3ebb0ac55efaf1d0fb1b106f852c114e5021f7eb]
+Wrapping looks a bit short...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Elliot-Berman/docs-gunyah-Introduce-Gunyah-Hypervisor/20230215-055721
-base:   3ebb0ac55efaf1d0fb1b106f852c114e5021f7eb
-patch link:    https://lore.kernel.org/r/20230214212457.3319814-1-quic_eberman%40quicinc.com
-patch subject: [PATCH v10 16/26] firmware: qcom_scm: Register Gunyah platform ops
-config: hexagon-randconfig-r041-20230212 (https://download.01.org/0day-ci/archive/20230216/202302161942.xItsHIi1-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project db89896bbbd2251fff457699635acbbedeead27f)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/33f0c4b130c7b249a1524da8076dd12333aa7cde
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Elliot-Berman/docs-gunyah-Introduce-Gunyah-Hypervisor/20230215-055721
-        git checkout 33f0c4b130c7b249a1524da8076dd12333aa7cde
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/firmware/
+> need platform specific functions to initialize or alter
+> them. For better code reusibility, making a separate
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302161942.xItsHIi1-lkp@intel.com/
+typo, I think it is: re-usability
 
-All errors (new ones prefixed by >>):
+> res_ops which will hold all such function pointers or
+> other resource specific data.
 
-   In file included from drivers/firmware/qcom_scm.c:7:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from drivers/firmware/qcom_scm.c:7:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from drivers/firmware/qcom_scm.c:7:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
->> drivers/firmware/qcom_scm.c:1335:7: error: incompatible pointer types passing 'u64 *' (aka 'unsigned long long *') to parameter of type 'unsigned int *' [-Werror,-Wincompatible-pointer-types]
-                                                   &src_cpy, new_perms, mem_parcel->n_acl_entries);
-                                                   ^~~~~~~~
-   drivers/firmware/qcom_scm.c:912:18: note: passing argument to parameter 'srcvm' here
-                           unsigned int *srcvm,
-                                         ^
-   drivers/firmware/qcom_scm.c:1353:7: error: incompatible pointer types passing 'u64 *' (aka 'unsigned long long *') to parameter of type 'unsigned int *' [-Werror,-Wincompatible-pointer-types]
-                                                   &src_cpy, new_perms, 1));
-                                                   ^~~~~~~~
-   include/asm-generic/bug.h:147:18: note: expanded from macro 'WARN_ON_ONCE'
-           DO_ONCE_LITE_IF(condition, WARN_ON, 1)
-                           ^~~~~~~~~
-   include/linux/once_lite.h:28:27: note: expanded from macro 'DO_ONCE_LITE_IF'
-                   bool __ret_do_once = !!(condition);                     \
-                                           ^~~~~~~~~
-   drivers/firmware/qcom_scm.c:912:18: note: passing argument to parameter 'srcvm' here
-                           unsigned int *srcvm,
-                                         ^
-   drivers/firmware/qcom_scm.c:1385:7: error: incompatible pointer types passing 'u64 *' (aka 'unsigned long long *') to parameter of type 'unsigned int *' [-Werror,-Wincompatible-pointer-types]
-                                                   &src_cpy, &new_perms, 1);
-                                                   ^~~~~~~~
-   drivers/firmware/qcom_scm.c:912:18: note: passing argument to parameter 'srcvm' here
-                           unsigned int *srcvm,
-                                         ^
-   6 warnings and 3 errors generated.
+Are you saying that interrupts differ in different devices?
 
+> 
+> This patch includes adding function pointer for IRQ
 
-vim +1335 drivers/firmware/qcom_scm.c
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-  1303	
-  1304	static int qcom_scm_gh_rm_pre_mem_share(struct gh_rm *rm, struct gh_rm_mem_parcel *mem_parcel)
-  1305	{
-  1306		struct qcom_scm_vmperm *new_perms;
-  1307		u64 src, src_cpy;
-  1308		int ret = 0, i, n;
-  1309		u16 vmid;
-  1310	
-  1311		new_perms = kcalloc(mem_parcel->n_acl_entries, sizeof(*new_perms), GFP_KERNEL);
-  1312		if (!new_perms)
-  1313			return -ENOMEM;
-  1314	
-  1315		for (n = 0; n < mem_parcel->n_acl_entries; n++) {
-  1316			vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
-  1317			if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
-  1318				new_perms[n].vmid = vmid;
-  1319			else
-  1320				new_perms[n].vmid = QCOM_SCM_RM_MANAGED_VMID;
-  1321			if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_X)
-  1322				new_perms[n].perm |= QCOM_SCM_PERM_EXEC;
-  1323			if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_W)
-  1324				new_perms[n].perm |= QCOM_SCM_PERM_WRITE;
-  1325			if (mem_parcel->acl_entries[n].perms & GH_RM_ACL_R)
-  1326				new_perms[n].perm |= QCOM_SCM_PERM_READ;
-  1327		}
-  1328	
-  1329		src = (1ull << QCOM_SCM_VMID_HLOS);
-  1330	
-  1331		for (i = 0; i < mem_parcel->n_mem_entries; i++) {
-  1332			src_cpy = src;
-  1333			ret = qcom_scm_assign_mem(le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
-  1334							le64_to_cpu(mem_parcel->mem_entries[i].size),
-> 1335							&src_cpy, new_perms, mem_parcel->n_acl_entries);
-  1336			if (ret) {
-  1337				src = 0;
-  1338				for (n = 0; n < mem_parcel->n_acl_entries; n++) {
-  1339					vmid = le16_to_cpu(mem_parcel->acl_entries[n].vmid);
-  1340					if (vmid <= QCOM_SCM_MAX_MANAGED_VMID)
-  1341						src |= (1ull << vmid);
-  1342					else
-  1343						src |= (1ull << QCOM_SCM_RM_MANAGED_VMID);
-  1344				}
-  1345	
-  1346				new_perms[0].vmid = QCOM_SCM_VMID_HLOS;
-  1347	
-  1348				for (i--; i >= 0; i--) {
-  1349					src_cpy = src;
-  1350					WARN_ON_ONCE(qcom_scm_assign_mem(
-  1351							le64_to_cpu(mem_parcel->mem_entries[i].ipa_base),
-  1352							le64_to_cpu(mem_parcel->mem_entries[i].size),
-  1353							&src_cpy, new_perms, 1));
-  1354				}
-  1355				break;
-  1356			}
-  1357		}
-  1358	
-  1359		kfree(new_perms);
-  1360		return ret;
-  1361	}
-  1362	
+> initialization which will help to move common operations for
+> host init into the probe sequence.
+> 
+> Suggested-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> ---
+>  drivers/pci/controller/dwc/pci-samsung.c | 26 ++++++++++++++++--------
+>  1 file changed, 17 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-samsung.c b/drivers/pci/controller/dwc/pci-samsung.c
+> index 47ca2a6a545d..01882f2d06c7 100644
+> --- a/drivers/pci/controller/dwc/pci-samsung.c
+> +++ b/drivers/pci/controller/dwc/pci-samsung.c
+> @@ -55,6 +55,7 @@ struct samsung_pcie_pdata {
+>  	struct pci_ops				*pci_ops;
+>  	const struct dw_pcie_ops		*dwc_ops;
+>  	const struct dw_pcie_host_ops		*host_ops;
+> +	const struct samsung_res_ops		*res_ops;
+>  };
+>  
+>  /*
+> @@ -77,6 +78,10 @@ struct samsung_pcie {
+>  	struct regulator_bulk_data	supplies[2];
+>  };
+>  
+> +struct samsung_res_ops {
+> +	int (*irq_init)(struct samsung_pcie *sp, struct platform_device *pdev);
+> +};
+> +
+>  static int samsung_pcie_init_clk_resources(struct samsung_pcie *sp)
+>  {
+>  	struct device *dev = sp->pci.dev;
+> @@ -276,7 +281,7 @@ static const struct dw_pcie_host_ops exynos_pcie_host_ops = {
+>  	.host_init = exynos_pcie_host_init,
+>  };
+>  
+> -static int exynos_add_pcie_port(struct samsung_pcie *sp,
+> +static int exynos_irq_init(struct samsung_pcie *sp,
+>  				       struct platform_device *pdev)
+>  {
+>  	struct dw_pcie *pci = &sp->pci;
+> @@ -295,15 +300,8 @@ static int exynos_add_pcie_port(struct samsung_pcie *sp,
+>  		return ret;
+>  	}
+>  
+> -	pp->ops = &exynos_pcie_host_ops;
+>  	pp->msi_irq[0] = -ENODEV;
+>  
+> -	ret = dw_pcie_host_init(pp);
+> -	if (ret) {
+> -		dev_err(dev, "failed to initialize host\n");
+> -		return ret;
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> @@ -314,6 +312,10 @@ static const struct dw_pcie_ops exynos_dw_pcie_ops = {
+>  	.start_link = exynos_pcie_start_link,
+>  };
+>  
+> +static const struct samsung_res_ops exynos_res_ops_data = {
+> +	.irq_init		= exynos_irq_init,
+> +};
+> +
+>  static int samsung_pcie_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -357,7 +359,12 @@ static int samsung_pcie_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, sp);
+>  
+> -	ret = exynos_add_pcie_port(sp, pdev);
+> +	if (pdata->res_ops->irq_init)
+> +		pdata->res_ops->irq_init(sp, pdev);
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Check return value and handle errors.
+
+> +
+> +	sp->pci.pp.ops = pdata->host_ops;
+> +
+> +	ret = dw_pcie_host_init(&sp->pci.pp);
+>  	if (ret < 0)
+>  		goto fail_probe;
+>  
+> @@ -428,6 +435,7 @@ static const struct samsung_pcie_pdata exynos_5433_pcie_rc_pdata = {
+>  	.dwc_ops		= &exynos_dw_pcie_ops,
+>  	.pci_ops		= &exynos_pci_ops,
+>  	.host_ops		= &exynos_pcie_host_ops,
+> +	.res_ops		= &exynos_res_ops_data,
+>  };
+>  
+>  static const struct of_device_id samsung_pcie_of_match[] = {
+
+Best regards,
+Krzysztof
+
