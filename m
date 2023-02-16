@@ -2,96 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0DBA6991CA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E860E6991CE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbjBPKjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:39:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51546 "EHLO
+        id S230240AbjBPKjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:39:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbjBPKjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:39:32 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE6C54574
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:39:06 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id he33so3996898ejc.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:39:06 -0800 (PST)
+        with ESMTP id S230247AbjBPKjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:39:36 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2652B4C6F9
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:39:11 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id o20so2225001lfk.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:39:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sLrFLNHeU+0lLuzFD8IVs3u+DZSPRSwwfeLZdEjgDYM=;
-        b=hn+vFzEL3ILDwPxJqj6OUOa9CnpR84xsN2Hr6TESe15oV73q3F3WW1o3f4JnPjRsni
-         7LRG806AS5WO5/8YYqZzUTU51Dz2nKYeClgphuDAHOSKX5SqbHJ/bauW3dt9fUvykleU
-         bts0uLzBeCDqAoaHXovdRxr1Me8hV3XTEqFWqPCa5w/u/egkC/xG+t5HrdGl9jUkit2r
-         +gbXsnEMTS+Gmf7L6vpgpLJwxA8X9nIThTpBr+KYTXZWj6MsPIIPnE7vxDPfKEzqCCCU
-         UQO365K6JJRkdxCSbnCDFq6/+U5NVLwp4w+y8o2+AHXFecOK0sdyI8TlTivmY2ZY/9c/
-         39cA==
+        bh=+1Uh6UnIr1rZdCAl04sfUqzZT3t6zuycsH5e9znf6i8=;
+        b=dscOv1oO2Gpn5k/t+7JAcEkMhchzgACTe3hK4E6j0erBPU4eB7s2tHkq3bPLwMMMT1
+         IUMr+DoS14tlxbvcVxssapn9HgHoeA+gFsV0xqxUVcnoaWFkcHq7TZv5PIXzrBBcBBCk
+         TabRxWjW+hFdFzBOR8Z+nI/QxIPVCznX8scjOWvG1GKMN/rqEg2oCTZD9L/+GLGYqT8q
+         PWxCIMiursPql4nQv/kjkyKQiY5kgXA4y4L+F0aOcwubCdOmzlUrdQe05EXOvj1RpT73
+         EQs2NncX25hgsjl7LyC8PRgG5ZfGwch9JHfDKqROxIKBFagdaaNOQ5Lj0IgFfd7Pc+uw
+         ZAQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sLrFLNHeU+0lLuzFD8IVs3u+DZSPRSwwfeLZdEjgDYM=;
-        b=ljl2KWdC29K9dSiWUGtDSoVRWQNh0a9vipZ4YZqNBULVcPl20QTtl4JNQeQ2bv+3oQ
-         1+cKOP+aIj4tYFjsi06DFewosVMjq5iD/Y81m2inqUZfFVv3PStRTWM5U9Ts+9AVy+2Y
-         3VPAHwyKx8L7UdxcR9MqnN9fsyUc4o7/RYz+TsVOcxXL4mMWxUIjOAdLY+f3apN5Q4ha
-         G/X1IB0axiZi5FRLd1qKCeiKYw7+CFy+pSSZ0yz+iwSRqGpG31QOQPfj6Qf/jt+N3vGf
-         n4NGY9xvqB4q2jB3BA9A97OvBOO9ixdN6/R/Zklr5qMOtZX9B58lw7Xv5DG8t9Y70WCZ
-         yalg==
-X-Gm-Message-State: AO0yUKUjBCmZegzveTjFYeXfZ/Up4FeeG6oroUYlspW9dEwt+oL2946O
-        VE2X592KkkuWk4+d0Y0jpIcgOg==
-X-Google-Smtp-Source: AK7set9/CqKyWkEqPDvPc2d1jdxozbn09liDcmYzlQaGwfPl7/6w6LJzSsv7ImeZK73flh1q13DHTQ==
-X-Received: by 2002:a17:906:d114:b0:88b:4962:b72f with SMTP id b20-20020a170906d11400b0088b4962b72fmr5900381ejz.20.1676543937987;
-        Thu, 16 Feb 2023 02:38:57 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id kk15-20020a170907766f00b0087329ff591esm637089ejc.132.2023.02.16.02.38.51
+        bh=+1Uh6UnIr1rZdCAl04sfUqzZT3t6zuycsH5e9znf6i8=;
+        b=oPQ8pFv/swwZ5OgletwdGIled8JgnXkdp1bsmzvrS/LgiaHYUMaa9SH+BCKDVgX9oB
+         bDB3cxB+JHHf7cqbSp7b4tniMyjTk5uYnYAgTDON2nMVF6uh5LAn1y27bdbxuI0/B6kM
+         fbMRCk8/0v3Zf0el5mQQdhFiPsVkrHaeakDwCT8JnJgFs5j+DIGvKyVOqnoW7HAWlAO5
+         D4NclKqzpBTwr2kbdO+PlUb6bRrkyKOgPoRAunrtgHMGGyGLErtzEGL5NUD/YTsKTb9p
+         +djsa11GXvWJwx2+Hs/ZHRBvW6iVEqu2241QA0jbCkx/wF3KjaNLfXEzYgTYabEuWD6Z
+         hP/A==
+X-Gm-Message-State: AO0yUKW+M5muklYfsXXY9gst08eeXMLaalDYPoqqrl+E7fZwIdMYT65k
+        b6rcf8JHHFnQBTU6hLSeASye2A==
+X-Google-Smtp-Source: AK7set8iml837526dfoScrbhXkJ9NlnSWP+4trFlux9OvGyL4kmCukxICaJuAsccOm1v1Y6bbCrgFQ==
+X-Received: by 2002:ac2:5ec8:0:b0:4cc:7ff3:ab4d with SMTP id d8-20020ac25ec8000000b004cc7ff3ab4dmr1587296lfq.20.1676543948996;
+        Thu, 16 Feb 2023 02:39:08 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id q14-20020ac246ee000000b004cb08ec4c30sm247919lfo.99.2023.02.16.02.39.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:38:52 -0800 (PST)
-Message-ID: <028e8b51-621e-e0af-f781-b7395802601b@linaro.org>
-Date:   Thu, 16 Feb 2023 11:38:50 +0100
+        Thu, 16 Feb 2023 02:39:08 -0800 (PST)
+Message-ID: <f066cf9c-ca73-b534-3949-c9e59b676bf5@linaro.org>
+Date:   Thu, 16 Feb 2023 11:39:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document CPOL/CPHA
- support
+ Thunderbird/102.7.2
+Subject: Re: [RESEND PATCH 09/12] arm64: dts: qcom: sm8350: Supply clock from
+ cpufreq node to CPUs
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, viresh.kumar@linaro.org
+References: <20230215070400.5901-1-manivannan.sadhasivam@linaro.org>
+ <20230215070400.5901-10-manivannan.sadhasivam@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230215070400.5901-10-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 15:26, Geert Uytterhoeven wrote:
-> SPI EEPROMs typically support both SPI Mode 0 (CPOL=CPHA=0) and Mode 3
-> (CPOL=CPHA=1).  However, using the latter is currently flagged as an
-> error by "make dtbs_check", e.g.:
+
+
+On 15.02.2023 08:03, Manivannan Sadhasivam wrote:
+> Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply clocks
+> to the CPU cores. But this relationship is not represented in DTS so far.
 > 
+> So let's make cpufreq node as the clock provider and CPU nodes as the
+> consumers. The clock index for each CPU node is based on the frequency
+> domain index.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Konrad
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index 0a422637b61f..1b423c42ec0d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -48,6 +48,7 @@ CPU0: cpu@0 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x0>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+> @@ -69,6 +70,7 @@ CPU1: cpu@100 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x100>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_100>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+> @@ -86,6 +88,7 @@ CPU2: cpu@200 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x200>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_200>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+> @@ -103,6 +106,7 @@ CPU3: cpu@300 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x300>;
+> +			clocks = <&cpufreq_hw 0>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_300>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+> @@ -120,6 +124,7 @@ CPU4: cpu@400 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x400>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_400>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+> @@ -137,6 +142,7 @@ CPU5: cpu@500 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x500>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_500>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+> @@ -155,6 +161,7 @@ CPU6: cpu@600 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x600>;
+> +			clocks = <&cpufreq_hw 1>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_600>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+> @@ -172,6 +179,7 @@ CPU7: cpu@700 {
+>  			device_type = "cpu";
+>  			compatible = "qcom,kryo685";
+>  			reg = <0x0 0x700>;
+> +			clocks = <&cpufreq_hw 2>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_700>;
+>  			qcom,freq-domain = <&cpufreq_hw 2>;
+> @@ -2283,6 +2291,7 @@ cpufreq_hw: cpufreq@18591000 {
+>  			clock-names = "xo", "alternate";
+>  
+>  			#freq-domain-cells = <1>;
+> +			#clock-cells = <1>;
+>  		};
+>  
+>  		ufs_mem_hc: ufshc@1d84000 {
