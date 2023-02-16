@@ -2,93 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E8B698F4F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BCD698F6A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 10:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbjBPJGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 04:06:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50548 "EHLO
+        id S229739AbjBPJM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 04:12:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbjBPJGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:06:45 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F9E3B3E1
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:06:38 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id jg8so3513645ejc.6
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:06:38 -0800 (PST)
+        with ESMTP id S230036AbjBPJMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 04:12:25 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635D64A1CD
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:12:19 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id w3so1867490edc.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 01:12:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lE6LSLIcAP5FrE/vC34wg8FJ0P/L+KW8doE4ZRZMJC4=;
-        b=chVLOAn79Tc5gs5dRNDiYJ0sMb8By83LdDP9nzQdURTpDjjx/8ZQlo2M1xHLqkgmpZ
-         WxKNVf5pjXJcgyMVyz/bLDty0ztmEAtewxR41C8USNNwKCVJn6faf3+IgssJA/To6OrR
-         SLQxlNv1XoOJ71ygbdhSaaCdoqwSoVJt7bIObiX3t4kFC4AiOrFCetnde9FCPcwgTTF5
-         ZVVUKeVVWzcdhGA30bMz2yiX7HSA9beIVQX54iQ9/LlfXu1/ZFhAGP97nkcfYxF4wzI7
-         VL3Rnv2ReDy0KZ5sq2KqUWFI3KarM1TummLTswHkXQOnJEZMiLyQueGx1JPITP6WRKdp
-         Uzpw==
+        bh=O8xTaSVWV8eCcA3aGYZTtzHQygaT6P6tleF9HZfYaVg=;
+        b=dE/QylYHy5/d+CtAyaD0GfhSEd/r4N9dWV2ka4PTSahYakJz1OOeGqyBUu1Sk4yXEP
+         nlaR4zg2QYHUrZcreq3MQ5zC3zPDhLpWxoqMeRQpLIxi2Sui6ue2gv2G/MChJveAMBVb
+         Nbf7v83FDvUoN0LUp41sk2r8jlVJeHkl9ZIYh8IxUMnt4ovKEWvfiCqFwWTnJbT3O9PW
+         u8jsPZOF+UEIbpgfSy8muk/JSShBHPXTXxqytVY7uWMywFcGdqBfr7JLkpZSWuDT0bji
+         3Y2QJL5bGeZVI3eJhYt202NRDZGrwuPaE6di9N/zXMONonRl88Cjw6hJ2IAElR5wb1qm
+         wyQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lE6LSLIcAP5FrE/vC34wg8FJ0P/L+KW8doE4ZRZMJC4=;
-        b=zIrZ6u8kKYXETBfsFmPcOAIaSqIkqkAIGLbVXgkrPQQXjOPM4Y0J4sKSeJnVT+c1EY
-         AYXqZA8Dk/43irBCRhYznN1ZJUTerdOGSg3sfoks6s6XdjaIz1L3D1Vomr/0xLJMfP3z
-         nhi2i4FxmPoHo6GnZlEk9XSzBTQKvPUsup7IuLsEKIDSZxKvcL8nV6zRMzed+0QTEB6T
-         IFdEV/iiCzEB3e8oUxKfl6LoXODElJ4/VFd1RGKOQIx3zYDufI+m7av1LuIsRUZz5DLW
-         7UBq4MNFsqgBmIyggyDEd9rviAQJ4cTy4ThFmPFgnfrXV5+flgi6Vzi/Rn4kzsd3OSfo
-         89MA==
-X-Gm-Message-State: AO0yUKWc7AJpXTJo4f6Krqq7ZuwWXwrzShwqaOqTc/qxZN5NSHXss2Yf
-        RcBQnbUILSwaPrxqzZN4A5/bSw==
-X-Google-Smtp-Source: AK7set+GKXSjb8+Ezjvo+rbU9zHZSatKZxAD0G02lrCf1tnsC/Nw6qr41Jdv72PEqrmAZCdHDpXInw==
-X-Received: by 2002:a17:906:1d07:b0:8b1:3a8d:6fc5 with SMTP id n7-20020a1709061d0700b008b13a8d6fc5mr5964407ejh.25.1676538397363;
-        Thu, 16 Feb 2023 01:06:37 -0800 (PST)
+        bh=O8xTaSVWV8eCcA3aGYZTtzHQygaT6P6tleF9HZfYaVg=;
+        b=nSPvz7W5oum59eRiKIlWgBv6DATtaNec6LEROFNhfDrFQYE9wx+nVkG88AEmaBySCi
+         cnIN6O1OvvDC04bp9sMs8JMG9rMGkonLEJhI9ODrMbNWBsVeYFRBNc/Mkpj4MoAC+0p6
+         yOZCMnYwCAKPaKGb5K/l53ocFDlD0oBlqT3MFfjHGH/DijZUhYM+SJ8ITqecdTR/5rOy
+         qTmtyzljNJCjcWbJPrExQViAMfriA7k2hQqbuDM5DV+8wCPS33rN631QJ+mJoT7kOjeh
+         HcI0Eo6U7pjwgifAOe+BiiDUNhaeTzcrYZIJxEsLSyUlaS6gw+hjxa44dDlf1+kOtNuk
+         jfMw==
+X-Gm-Message-State: AO0yUKUCmXiY6WQwCvrKc39+WClftJZmJaJN2DKbUtG+wjHvebf7YM3J
+        wr/ZcDzDBHnp8DyxA8uZxyVkCA==
+X-Google-Smtp-Source: AK7set8kMK8vzlUIrZY76WpBhXiwWpWpNnBam4ADmn49dwO8Wg9z5RT7JiA1OUaJ8X6cNOiBTcHsJw==
+X-Received: by 2002:aa7:c497:0:b0:4aa:a8e7:c04c with SMTP id m23-20020aa7c497000000b004aaa8e7c04cmr5680600edq.21.1676538737890;
+        Thu, 16 Feb 2023 01:12:17 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h11-20020a50cdcb000000b004aaa4da918fsm520142edj.45.2023.02.16.01.06.35
+        by smtp.gmail.com with ESMTPSA id a25-20020a509b59000000b004acbda55f6bsm536899edj.27.2023.02.16.01.12.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 01:06:36 -0800 (PST)
-Message-ID: <5b2c2505-5bf3-1bb2-81cc-241ff831a382@linaro.org>
-Date:   Thu, 16 Feb 2023 10:06:34 +0100
+        Thu, 16 Feb 2023 01:12:17 -0800 (PST)
+Message-ID: <9c1f4d0e-83c9-014e-bdb1-38b4b0fb2bbf@linaro.org>
+Date:   Thu, 16 Feb 2023 10:12:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH V6 1/3] dt-bindings: i2c: xiic: Add 'xlnx,axi-iic-2.1' to
- compatible
-To:     Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
-        michal.simek@xilinx.com, michal.simek@amd.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     git@amd.com, srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-        manion05gk@gmail.com,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-References: <1676467944-17426-1-git-send-email-manikanta.guntupalli@amd.com>
- <1676467944-17426-2-git-send-email-manikanta.guntupalli@amd.com>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek
+ RT5739
 Content-Language: en-US
+To:     cy_huang@richtek.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     lgirdwood@gmail.com, u0084500@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1676426457-1389-1-git-send-email-cy_huang@richtek.com>
+ <1676426457-1389-2-git-send-email-cy_huang@richtek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1676467944-17426-2-git-send-email-manikanta.guntupalli@amd.com>
+In-Reply-To: <1676426457-1389-2-git-send-email-cy_huang@richtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2023 14:32, Manikanta Guntupalli wrote:
-> From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+On 15/02/2023 03:00, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Add xilinx I2C new version 'xlnx,axi-iic-2.1' string to compatible.
-> Add clock-frequency as optional property.
+> Add the binding document for Richtek RT5739.
 
+Subject: drop second/last, redundant "bindings for". The "dt-bindings"
+prefix is already stating that these are bindings.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../bindings/regulator/richtek,rt5739.yaml         | 80 ++++++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
+> new file mode 100644
+> index 00000000..7dc4f78
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/richtek,rt5739.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT5739 2.4MHz 3.5A Step-Down Converter
+> +
+> +maintainers:
+> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +
+> +description: |
+> +  The RT5739 is a step-down switching voltage regulator that delivers a
+> +  digitally programmable output from an input voltage supply of 2.5V to 5.5V.
+> +  The output voltage is programmed through an I2C interface capable of
+> +  operating up to 3.4MHz.
+> +
+> +  Using a proprietary architecture with synchronous rectification, the RT5739
+> +  is capable of delivering 3.5A continuously at over 80% efficiency,
+> +  maintaining that efficiency at load current as low as 10mA. The regulator
+> +  operates at a normal fixed frequency of 2.4MHz, which reduces the value of
+> +  the external components. 
+
+Can we drop the marketing from kernel? Last part of sentence is not
+related to this submission at all. The internal frequency also looks
+unrelated to the topic...
+
+> Additional output capacitance can be added to
+> +  improve regulation during load transients without affecting stability.
+> +
+> +allOf:
+> +  - $ref: regulator.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - richtek,rt5739
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  richtek,vsel-active-high:
+> +    description: |
+> +      If property is present, use the 'VSEL1' register group for buck control.
+> +      Else, use the 'VSEL0' register group. This depends on external hardware
+> +      'VSEL' pin connecton.
+> +    type: boolean
+> +
+> +  regulator-allowed-modes:
+> +    description: |
+> +      buck allowed operating mode
+> +        0: Auto PFM/PWM mode
+> +        1: Forced PWM mode
+> +    maxItems: 2
+> +    items:
+> +      enum: [0, 1]
+
+So you always require two items? Thus I wonder what's the point of
+having it in DT? To skip the property entirely if none of the modes are
+allowed?
+
 
 Best regards,
 Krzysztof
