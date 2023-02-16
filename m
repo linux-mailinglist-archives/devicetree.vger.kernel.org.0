@@ -2,99 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A265698E9D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:24:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DE02698EA1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 09:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbjBPIYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 03:24:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51140 "EHLO
+        id S229871AbjBPI0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 03:26:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbjBPIYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:24:13 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD73659C7
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:24:12 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id cq19so1693021edb.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:24:12 -0800 (PST)
+        with ESMTP id S229743AbjBPI0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 03:26:21 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE91CFF19
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:26:19 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a3so3334572ejb.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 00:26:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3luqpqMCqAArv+ATLddgvJho7XZ+hO7X+w3N9TqYySA=;
-        b=ZTxnV/pt75FixULSRW+glSd/hEjCXD8kSVS1r8oK9IOroR7sEG8JT29KIQj6OuayTg
-         82J9W6gT48Lvgr6AcrWkoyiTpKMuj4o4/UdxGuUiJYGdaxYeWV9T/BOUek5StlA8gCnx
-         +506CByaxqr2qgUUmIYMd6JqI1TtLJwWmCo6E4QOJvlnhPCuaRtZ88PHpIA9+MP3dxt+
-         haxe9mhuH5Il+VJnO3nDaXdbplYlFej6e5+KcqoBoFzATDSlqUG2I4bPwkJsvzkGq3hy
-         Mjwnz0aw/Nn71zBBBxYBF0qUOA7vVy1oOoUcDGgG73EPIZEhJ8XiDK5pfrgZaITZmAoh
-         o2MA==
+        bh=1y/DnoDY4cr2inx1d0abfCvpq1Au8g3KdiOb6gVRGSQ=;
+        b=CyM4dCoyshPvP3LOw00Xa4BGVZWnr+NUtMvw5cLRyATZ/fRXs0P5/2jwITogiDGzM5
+         NeI3Y1q6sYe57oCVGKp1QB0LFAWAaQYkYffh5ProcDWN/mk2J3Mq751a0DF2PFtvJwlD
+         uij3HTYmSsaivZFc5uX4D6Q15uSDL9iyp8ZzX+8lCt6DEqj6TyKVTHvdQOtPPKYWNMkR
+         epXtJLDaNKBtHJAYP3aFliVa3ICoCSOrmTV+2Ykuyk2XNpQgXZRXJ3NGF6owZ2y2UGpD
+         2CulBf7sxzRXUhzi8T3Tffu02H6Pu/CaoxZ3TFmIXXgi1lEDoPeucdhC5bbWJK+loEC3
+         eyHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3luqpqMCqAArv+ATLddgvJho7XZ+hO7X+w3N9TqYySA=;
-        b=fiJuGjiT7nK1L0gnG1DAEssl/2K0JA47rg5FJO7DpDbU7skxxNOmNEQZfTnxtB4f4J
-         i/aH1qCtaWmOKzYY6tJy12YFIjrD3rsdaeUAa8TB79YkzdetSkcNU8pqvIWkI132GoGx
-         egeSc7zNQM1PUSwjo4Hv2Hqv2dU/tTovNYRD5appWWxkqKE4VpdLcALmaQZWFFaMC6wj
-         awUwhY77IPwHEH218poKQcNAYAPjji6Fkik80+AWfS0ofyjx/vjXjelwOJV4uKphWQHM
-         ebIQ66m49KixOUmByslYfIIZB85dSH28b5R+EgFb3l5Zm6lLvWHks2/YlvcL9ODRb780
-         RpLQ==
-X-Gm-Message-State: AO0yUKU55EYsGMffJf5C7aQ1NS55WVJ6pPXpLCQOZZjvhFU3cXca8ozy
-        uNpwclrxfdC2x8Dmes0ZKojTbA==
-X-Google-Smtp-Source: AK7set8ht+d14A7kUkpoXY1VjY6KH78thAEOM9Wve8zpWCCCgGBjK9Fie6hCWP6IGMCq8uOAAoLarw==
-X-Received: by 2002:a05:6402:885:b0:4ac:b97f:214c with SMTP id e5-20020a056402088500b004acb97f214cmr4664837edy.2.1676535851432;
-        Thu, 16 Feb 2023 00:24:11 -0800 (PST)
+        bh=1y/DnoDY4cr2inx1d0abfCvpq1Au8g3KdiOb6gVRGSQ=;
+        b=STrgZkMqVbmZj7nRTWSwgW0zT2/ue9vehqjiYDTlK4dVf9cIx1T5IXCSg9KC2QsUHV
+         W0fRv4XS2ZT5c1FZcFxfQIATfb748nGSP5qPtVPzpYOSD0lC+6Yg6q0Q8myhsVQhJI3H
+         c+vqb2d6t1sAyU/kve4t9+mUhFlcFJnoOt9YwLViRZaRAMRVkD/efkDlq2V/zbZytNRv
+         JGahkfCMpTEMGV8VZ8LFJL/QhsiqImAW/wIdvmM9KZgx88jIhClpn//gG1eZNQOToD5t
+         xhTxqeXOe5UqyKXt+aBa/w7Yfxvv2/RK+Do42mbftuVJyGy0sp+D4ojciABrWr9vgcwH
+         qByA==
+X-Gm-Message-State: AO0yUKUwpWL5sN+v9pvWXf4t/HU0chj/ued9gGjw3EXGvPQMtEXpsq77
+        qtYMqEmQOp3ycWhykN40ZaLeKw==
+X-Google-Smtp-Source: AK7set/Bsd/yL07K9LlnPqeF1yzA0J6rARMafhYQk/XahfBz22ROq0FZQJFbJxehhd0xJWCffI4Exg==
+X-Received: by 2002:a17:906:1d07:b0:8b1:3a8d:6fc5 with SMTP id n7-20020a1709061d0700b008b13a8d6fc5mr5878631ejh.25.1676535978458;
+        Thu, 16 Feb 2023 00:26:18 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q2-20020a50aa82000000b004ab4c28a967sm476133edc.44.2023.02.16.00.24.10
+        by smtp.gmail.com with ESMTPSA id ce25-20020a170906b25900b008b05b21e8aesm492276ejb.172.2023.02.16.00.26.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 00:24:11 -0800 (PST)
-Message-ID: <03fe68be-ca9f-967c-b5ef-0599177caf90@linaro.org>
-Date:   Thu, 16 Feb 2023 09:24:09 +0100
+        Thu, 16 Feb 2023 00:26:17 -0800 (PST)
+Message-ID: <425f637c-34a3-4203-2b1b-c4e459da72c2@linaro.org>
+Date:   Thu, 16 Feb 2023 09:26:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/4] dt-bindings: i3c: Add AST2600 i3c controller
+Subject: Re: [PATCH v2 2/2] arm64: dts: imx8dxl-evk: Fix eqos phy reset gpio
 Content-Language: en-US
-To:     Jeremy Kerr <jk@codeconstruct.com.au>,
-        linux-i3c@lists.infradead.org
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Vitor Soares <ivitro@gmail.com>, linux-aspeed@lists.ozlabs.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-References: <cover.1676532146.git.jk@codeconstruct.com.au>
- <82d750f53df622d8986e9a07053c7ee27dee61a2.1676532146.git.jk@codeconstruct.com.au>
+To:     Andrew Halaney <ahalaney@redhat.com>, devicetree@vger.kernel.org
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, alexandre.torgue@foss.st.com,
+        peppe.cavallaro@st.com, joabreu@synopsys.com, mripard@kernel.org,
+        shenwei.wang@nxp.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230214171505.224602-1-ahalaney@redhat.com>
+ <20230214171505.224602-2-ahalaney@redhat.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <82d750f53df622d8986e9a07053c7ee27dee61a2.1676532146.git.jk@codeconstruct.com.au>
+In-Reply-To: <20230214171505.224602-2-ahalaney@redhat.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 08:41, Jeremy Kerr wrote:
-> Add a devicetree binding for the ast2600 i3c controller hardware. This
-> is heavily based on the designware i3c core, plus a reset facility
-> and two platform-specific properties:
+On 14/02/2023 18:15, Andrew Halaney wrote:
+> The deprecated property is named snps,reset-gpio, but this devicetree
+> used snps,reset-gpios instead which results in the reset not being used
+> and the following make dtbs_check error:
 > 
->  - sda-pullup-ohms: to specify the value of the configurable pullup
->    resistors on the SDA line
+>     ./arch/arm64/boot/dts/freescale/imx8dxl-evk.dtb: ethernet@5b050000: 'snps,reset-gpio' is a dependency of 'snps,reset-delays-us'
+>         From schema: ./Documentation/devicetree/bindings/net/snps,dwmac.yaml
 > 
->  - aspeed,global-regs: to reference the (ast2600-specific) i3c global
->    register block, and the device index to use within it.
+> Use the preferred method of defining the reset gpio in the phy node
+> itself. Note that this drops the 10 us pre-delay, but prior this wasn't
+> used at all and a pre-delay doesn't make much sense in this context so
+> it should be fine.
 > 
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
-> 
+> Fixes: 8dd495d12374 ("arm64: dts: freescale: add support for i.MX8DXL EVK board")
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> ---
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
