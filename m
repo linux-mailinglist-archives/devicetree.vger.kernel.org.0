@@ -2,128 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A2A698C18
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:35:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7018698C31
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 06:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbjBPFf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 00:35:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
+        id S229884AbjBPFkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 00:40:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjBPFf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:35:26 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F2D46096;
-        Wed, 15 Feb 2023 21:35:08 -0800 (PST)
-X-UUID: a7bdfaecadbb11eda06fc9ecc4dadd91-20230216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=LrqqZVczADf4UXxLULFwBwcdFJyfPBBKUZSijRZtoyk=;
-        b=MlDTKuG4oQCkSsOoRT0CHi9Ya+0DK1C+NdyNaSqkmALKlIuapMvZdJZlyv8fW9VVhh/fak5nJ5oy0GZCbpFZfrr0FbDM+qVdsv3WxqUyxuRqQ9LCJ1fu6e8nQFhiyqdBvREZBILsJy4Jq9e2mK6Hqlj+wkzQ2IJ1u3PJF4fqLvM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.19,REQID:62d7e7ef-4aa7-4802-bb0b-5254b9a0c8e7,IP:0,U
-        RL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-20
-X-CID-META: VersionHash:885ddb2,CLOUDID:02059cb0-beed-4dfc-bd9c-e1b22fa6ccc4,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:1,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-UUID: a7bdfaecadbb11eda06fc9ecc4dadd91-20230216
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1678086085; Thu, 16 Feb 2023 13:35:00 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 16 Feb 2023 13:35:00 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 16 Feb 2023 13:34:59 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yong Wu <yong.wu@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <iommu@lists.linux.dev>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <mingyuan.ma@mediatek.com>,
-        <yf.wang@mediatek.com>, <jianjiao.zeng@mediatek.com>,
-        <chengci.xu@mediatek.com>, <youlin.pei@mediatek.com>
-Subject: [PATCH v7 6/6] iommu/mediatek: mt8188: Add iova_region_larb_msk
-Date:   Thu, 16 Feb 2023 13:33:22 +0800
-Message-ID: <20230216053322.11596-7-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230216053322.11596-1-yong.wu@mediatek.com>
-References: <20230216053322.11596-1-yong.wu@mediatek.com>
+        with ESMTP id S229875AbjBPFkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 00:40:22 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE161A940;
+        Wed, 15 Feb 2023 21:40:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 1BD86CE290A;
+        Thu, 16 Feb 2023 05:40:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2ED0BC4339C;
+        Thu, 16 Feb 2023 05:40:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676526018;
+        bh=QhOv2y9XRsJs0byJc6XeAvQzSdln+PXDBsqhD2FkRXE=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=bxTqOdAD8gU1b7TH++RQyINtP3JqzghARulIXGPQfpniGjfTg5tbWOSg0im/WpdSK
+         liH/aQ12baLeKXCTUt9oAvW80Rd67t4ig8OpahMkvVIkzwGxk1z0u+KzQi8EmyGADP
+         duk3SS5AYqZzC36CNfiSgqW9S6QdpHYSSRq20iqJ0mdFpkymcm+rzBx8uGGOmWRcEH
+         y3rv/Zv+w8E6y3CqK0rom/HGVctsCvKGJlYnZ3hKK5+QGDAb2KNCXyZliQw1PBlIQP
+         mKE+J2GUi+CzsEAROaxKHZDJMwXjcOSMQ97Ik6PWjpLAbX4S3IIvNGfbRNBbFUzZUj
+         OMo8m68D+Z/ZA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0B653E21EC4;
+        Thu, 16 Feb 2023 05:40:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: snps,dwmac: Fix snps,reset-delays-us
+ dependency
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167652601803.11549.5242243421394636673.git-patchwork-notify@kernel.org>
+Date:   Thu, 16 Feb 2023 05:40:18 +0000
+References: <20230214171505.224602-1-ahalaney@redhat.com>
+In-Reply-To: <20230214171505.224602-1-ahalaney@redhat.com>
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     devicetree@vger.kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
+        joabreu@synopsys.com, mripard@kernel.org, shenwei.wang@nxp.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski@linaro.org
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iova_region_larb_msk for mt8188. We separate the 16GB iova regions
-by each device's larbid/portid.
-Refer to include/dt-bindings/memory/mediatek,mt8188-memory-port.h
+Hello:
 
-Note: larb19(21) as commented in that h above, it means larb19 while its SW
-index is 21.
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/iommu/mtk_iommu.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+On Tue, 14 Feb 2023 11:15:04 -0600 you wrote:
+> The schema had snps,reset-delay-us as dependent on snps,reset-gpio. The
+> actual property is called snps,reset-delays-us, so fix this to catch any
+> devicetree defining snsps,reset-delays-us without snps,reset-gpio.
+> 
+> Fixes: 7db3545aef5f ("dt-bindings: net: stmmac: Convert the binding to a schemas")
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> 
+> [...]
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index a3012fdc8f61..7dc7cd510a8b 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -1595,6 +1595,20 @@ static const struct mtk_iommu_plat_data mt8188_data_infra = {
- 	.iova_region_nr   = ARRAY_SIZE(single_domain),
- };
- 
-+static const u32 mt8188_larb_region_msk[MT8192_MULTI_REGION_NR_MAX][MTK_LARB_NR_MAX] = {
-+	[0] = {~0, ~0, ~0, ~0},               /* Region0: all ports for larb0/1/2/3 */
-+	[1] = {0, 0, 0, 0, 0, 0, 0, 0,
-+	       0, 0, 0, 0, 0, 0, 0, 0,
-+	       0, 0, 0, 0, 0, ~0, ~0, ~0},    /* Region1: larb19(21)/21(22)/23 */
-+	[2] = {0, 0, 0, 0, ~0, ~0, ~0, ~0,    /* Region2: the other larbs. */
-+	       ~0, ~0, ~0, ~0, ~0, ~0, ~0, ~0,
-+	       ~0, ~0, ~0, ~0, ~0, 0, 0, 0,
-+	       0, ~0},
-+	[3] = {0},
-+	[4] = {[24] = BIT(0) | BIT(1)},       /* Only larb27(24) port0/1 */
-+	[5] = {[24] = BIT(2) | BIT(3)},       /* Only larb27(24) port2/3 */
-+};
-+
- static const struct mtk_iommu_plat_data mt8188_data_vdo = {
- 	.m4u_plat       = M4U_MT8188,
- 	.flags          = HAS_BCLK | HAS_SUB_COMM_3BITS | OUT_ORDER_WR_EN |
-@@ -1606,6 +1620,7 @@ static const struct mtk_iommu_plat_data mt8188_data_vdo = {
- 	.banks_enable   = {true},
- 	.iova_region    = mt8192_multi_dom,
- 	.iova_region_nr = ARRAY_SIZE(mt8192_multi_dom),
-+	.iova_region_larb_msk = mt8188_larb_region_msk,
- 	.larbid_remap   = {{2}, {0}, {21}, {0}, {19}, {9, 10,
- 			   11 /* 11a */, 25 /* 11c */},
- 			   {13, 0, 29 /* 16b */, 30 /* 17b */, 0}, {5}},
-@@ -1622,6 +1637,7 @@ static const struct mtk_iommu_plat_data mt8188_data_vpp = {
- 	.banks_enable   = {true},
- 	.iova_region    = mt8192_multi_dom,
- 	.iova_region_nr = ARRAY_SIZE(mt8192_multi_dom),
-+	.iova_region_larb_msk = mt8188_larb_region_msk,
- 	.larbid_remap   = {{1}, {3}, {23}, {7}, {MTK_INVALID_LARBID},
- 			   {12, 15, 24 /* 11b */}, {14, MTK_INVALID_LARBID,
- 			   16 /* 16a */, 17 /* 17a */, MTK_INVALID_LARBID,
+Here is the summary with links:
+  - [v2,1/2] dt-bindings: net: snps,dwmac: Fix snps,reset-delays-us dependency
+    https://git.kernel.org/netdev/net-next/c/affb6a3fd8f4
+  - [v2,2/2] arm64: dts: imx8dxl-evk: Fix eqos phy reset gpio
+    (no matching commit)
+
+You are awesome, thank you!
 -- 
-2.18.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
