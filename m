@@ -2,137 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264A26996FC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9027269970D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 15:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229876AbjBPOSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 09:18:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55338 "EHLO
+        id S229886AbjBPOTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 09:19:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbjBPOSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:18:17 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE374BE93;
-        Thu, 16 Feb 2023 06:18:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8846560ABC;
-        Thu, 16 Feb 2023 14:18:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72D37C433EF;
-        Thu, 16 Feb 2023 14:18:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676557095;
-        bh=FJ/3UUWVjEdyo6sc6ZR1O3Q4KgQjH18wZv40K7Gof6M=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=Ix5GRxoJn+k+9ve36EFVTZOAAPQNXVIXjT+0mFF9O7L62zuzPEJ9cDrEWxAxi8bTr
-         czE37Jf6LNa/aCYs9LaJpSbJLuPyn63SKCWY76kuwysC50mh8ZkMNXAd7ci/EOfQ+Q
-         M6PD88cnympwxc/0DTqkkuk2drSH1ELQJqzA0o+GCRv+xnIvMM+e9pwZwJwDtBNEYo
-         SABcScV1X3lYLo4OBer/IlNAiTmVjfxYGtqh9jRl5L3m0sOjSqnqlaWgbe60JOeBm0
-         qxA4aI8lhOtuiYuUrk37SMCQgCo9nK5Y7lyEx8FfvAi3GPR4KbiP7s0DX0HBmN1VBm
-         KnQOa2GT7gsgQ==
-Message-ID: <16e3ddb4-219e-70a8-8644-c62973f84d31@kernel.org>
-Date:   Thu, 16 Feb 2023 15:18:10 +0100
+        with ESMTP id S229928AbjBPOTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 09:19:16 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDEF4BE89
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 06:19:10 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id cf42so2985815lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 06:19:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GxTGD03obauPpwowDNWVaAqc6zJSxkIOx+vWTE0ZGWc=;
+        b=ioT50KfL2v2ZGczCYrYam4vv9r38LafB0yPYgqxhE/AVoKHMUBUue/zcDbiM/LbZO1
+         Ys+b9JoyAbT82AsAcG8vqXWIe4tD4zAKp0zj+7jvGOCwAFLAECV/eIzcTeESGTrSnkyd
+         gHAZ9o3o1QgtBI1j+oWcNsAp1z3E8VaCOFK4SNU9wUifXYHlfu8B0ePlQgyDiF8JXsBA
+         JyNACezoNt4eXHkBjw93dVAJ2KB4Rw7unu/zcU2mD8Z5SgkYE7jY+pAeuttsk8NspEID
+         YGQDKxkWQDkpxIDu1vEUx3JxASKgvxPOOlLawgulLlcPm90D3SzmANe37fXVvu9SbRNb
+         02lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GxTGD03obauPpwowDNWVaAqc6zJSxkIOx+vWTE0ZGWc=;
+        b=n2u7S0h7MfDRKT/WU8igLOVFjMRQ5M4cDJrcJF5PI1jsq8DKhEwBlvB9cXiPT374Ub
+         CXLRR4zgVgZ09TQKjGi0ZcS12ZT2E0OLwkTZ40OC4QMT2el3oyDZMXmws1ffvg2VzQJi
+         IstEJ9kPt1oe8lbc/6ClEfRIdNcMGeO8Y3l2Z46ElSoz4ZPE8dSv84WWi/JHjk7rq2K8
+         X5PgPU1Lii2RYgaNfbLDNOhVBn6Clpz67sZ0HTjwlEhHrl5zxGPthhXUC0KbQY1VAHhs
+         acxWIhD6/W1IHseXSXeKSiUNFCiPoOg+rPkRef5bO/SagHOVgJCJPWZMxwZvG5bVw2rh
+         tHIQ==
+X-Gm-Message-State: AO0yUKUr/AT0tOM57Cdt/oEyonExWOfqbkdjGE+5AkkJP2yAo5b+ShG3
+        LWNnm9CZa9ws9haIcIYkyh/37Q==
+X-Google-Smtp-Source: AK7set/luZwL1YyDPx/x8pAcIL8TjZWGGzKs1pIi0y2GYmBhjYX69LgYeoXWrxqa2gGSDDdtBsJ3cA==
+X-Received: by 2002:a05:6512:491:b0:4b6:e4c8:8a4e with SMTP id v17-20020a056512049100b004b6e4c88a4emr1683189lfq.0.1676557148977;
+        Thu, 16 Feb 2023 06:19:08 -0800 (PST)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id q28-20020ac2515c000000b004d8580b2470sm311445lfd.225.2023.02.16.06.19.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 06:19:08 -0800 (PST)
+Message-ID: <a5b6255c-7282-32ed-8031-a4b841a78db7@linaro.org>
+Date:   Thu, 16 Feb 2023 16:18:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH V2 6/6] arm64: tegra: Add GTE nodes
+ Thunderbird/102.0.2
+Subject: Re: [PATCH v7 1/1] dma: qcom: bam_dma: Add support to initialize
+ interconnect path
 Content-Language: en-US
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev
-References: <20230214115553.10416-1-dipenp@nvidia.com>
- <20230214115553.10416-7-dipenp@nvidia.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230214115553.10416-7-dipenp@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        dmaengine@vger.kernel.org
+Cc:     agross@kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com, vkoul@kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20220921030649.1436434-1-bhupesh.sharma@linaro.org>
+ <20220921030649.1436434-2-bhupesh.sharma@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20220921030649.1436434-2-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2023 12:55, Dipen Patel wrote:
-> Add GTE nodes for the tegra234. Also modify AON GTE nodes for the
-> tegra194 to remove nvidia,slice property and add nvidia,gpio-controller
-> propertyto specify AON GPIO controller node so that GTE driver can
-> do namespace conversion between GPIO lines provided by the gpiolib
-> framework and hardware timestamping engine subsystem.
+On 9/21/22 06:06, Bhupesh Sharma wrote:
+> From: Thara Gopinath <thara.gopinath@gmail.com>
 > 
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+> BAM dma engine associated with certain hardware blocks could require
+> relevant interconnect pieces be initialized prior to the dma engine
+> initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
+
+Apparently it's proven that the change description is incorrect, Qualcomm
+crypto engine is working fine on SM8250 and even more recent platforms,
+so far there is no obvious necessity in this change.
+
+> is passed on to the bam dma driver from dt via the "interconnects"
+> property. Add support in bam_dma driver to check whether the interconnect
+> path is accessible/enabled prior to attempting driver intializations.
+> 
+> If interconnects are not yet setup, defer the BAM DMA driver probe().
+> 
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> [Bhupesh: Make header file inclusion alphabetical and use 'devm_of_icc_get()']
 > ---
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi |  3 +--
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 19 +++++++++++++++++++
->  2 files changed, 20 insertions(+), 2 deletions(-)
+>   drivers/dma/qcom/bam_dma.c | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> index 4afcbd60e144..4c92850b1ec4 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> @@ -1363,7 +1363,6 @@
->  			reg = <0x3aa0000 0x10000>;
->  			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
->  			nvidia,int-threshold = <1>;
-> -			nvidia,slices = <11>;
->  			#timestamp-cells = <1>;
->  			status = "okay";
->  		};
-> @@ -1586,7 +1585,7 @@
->  			reg = <0xc1e0000 0x10000>;
->  			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
->  			nvidia,int-threshold = <1>;
-> -			nvidia,slices = <3>;
-> +			nvidia,gpio-controller = <&gpio_aon>;
->  			#timestamp-cells = <1>;
->  			status = "okay";
->  		};
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> index eaf05ee9acd1..4a87490c5fd4 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -1086,6 +1086,15 @@
->  			clock-names = "fuse";
->  		};
->  
-> +		hte_lic: hardware-timestamp@3aa0000 {
-> +			compatible = "nvidia,tegra234-gte-lic";
-> +			reg = <0x3aa0000 0x10000>;
-> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> +			nvidia,int-threshold = <1>;
-> +			#timestamp-cells = <1>;
-> +			status = "okay";
-
-Why do you need status? It's okay by default.
-
-> +		};
+> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+> index 2ff787df513e..a5b0cf28ffb7 100644
+> --- a/drivers/dma/qcom/bam_dma.c
+> +++ b/drivers/dma/qcom/bam_dma.c
+> @@ -26,6 +26,7 @@
+>   #include <linux/kernel.h>
+>   #include <linux/io.h>
+>   #include <linux/init.h>
+> +#include <linux/interconnect.h>
+>   #include <linux/slab.h>
+>   #include <linux/module.h>
+>   #include <linux/interrupt.h>
+> @@ -394,6 +395,7 @@ struct bam_device {
+>   	const struct reg_offset_data *layout;
+>   
+>   	struct clk *bamclk;
+> +	struct icc_path *mem_path;
+>   	int irq;
+>   
+>   	/* dma start transaction tasklet */
+> @@ -1294,6 +1296,14 @@ static int bam_dma_probe(struct platform_device *pdev)
+>   	if (IS_ERR(bdev->bamclk))
+>   		return PTR_ERR(bdev->bamclk);
+>   
+> +	/* Ensure that interconnects are initialized */
+> +	bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
+> +	if (IS_ERR(bdev->mem_path)) {
+> +		ret = dev_err_probe(bdev->dev, PTR_ERR(bdev->mem_path),
+> +				    "failed to acquire icc path\n");
+> +		return ret;
+> +	}
 > +
->  		hsp_top0: hsp@3c00000 {
->  			compatible = "nvidia,tegra234-hsp", "nvidia,tegra194-hsp";
->  			reg = <0x03c00000 0xa0000>;
-> @@ -1603,6 +1612,16 @@
->  			#mbox-cells = <2>;
->  		};
->  
-> +		hte_aon: hardware-timestamp@c1e0000 {
-> +			compatible = "nvidia,tegra234-gte-aon";
-> +			reg = <0xc1e0000 0x10000>;
-> +			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +			nvidia,int-threshold = <1>;
-> +			nvidia,gpio-controller = <&gpio_aon>;
-> +			#timestamp-cells = <1>;
-> +			status = "okay";
+>   	ret = clk_prepare_enable(bdev->bamclk);
+>   	if (ret) {
+>   		dev_err(bdev->dev, "failed to prepare/enable clock\n");
 
+I'm resurrecting the comments on this change to emphasize the observation
+that the change is not needed at all to run QCE.
 
-Also here
-
-Best regards,
-Krzysztof
-
+--
+Best wishes,
+Vladimir
