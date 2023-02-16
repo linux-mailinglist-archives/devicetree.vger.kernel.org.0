@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0465A6990A2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 016E76990A9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Feb 2023 11:04:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbjBPKDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 05:03:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43342 "EHLO
+        id S229644AbjBPKEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 05:04:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbjBPKDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:03:44 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50B603A098
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:03:43 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id w3so2048951edc.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:03:43 -0800 (PST)
+        with ESMTP id S229506AbjBPKEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 05:04:42 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915A34DBFD
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:04:37 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id cq19so2038725edb.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 02:04:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5MNk+N+FPh906nbSA6gdVy2qNPnVA6IBf/TJsfB7Coo=;
-        b=N3U3Jty8e8wshJjZddf06gVT/9xE+hM6FmlBZPEKZ326EkoqUpiMINKtCZoagtrpIV
-         xCG7iFgimslIOsULNr6jzeAMZjQUSg+1ag3malW4xt62JNac8OQkVRz8kqelk6cxP99h
-         Epd9CMcRVqUxvRMHqGEF3IvGtJmYUh6Uv8d8+mKJdDshdxekPnG8KLhbZTGiWGOFYIwe
-         m3A0jRXwf5+ao3DqrRVYcI9DuPP5G6PrO+30yuQhZbyN4D92m3yZu1LGFLJaODputzlm
-         gH8jaKE4cNGm0nH44HKPf688XodCyi3Oa8UpLw6WMo7dWCIwkRUmWAIRKHaYA+IG4Kv+
-         i//w==
+        bh=uHOyQ5lmh44/x0N5o9EsWAl8D2lj1V8oYJTQzd4/iwg=;
+        b=bjZQpJ3lzdwQ8hGv3TiVKeTU35vniZY/thIN9btZzz90XUJOLhcN9Z7phrwR7ME7jb
+         XNm/51PJRU2HHchyrEc8hwF7cdzv7z4r+93iuikWUBkyxjgFKu3gxT9bjSmgPNT4Pl6d
+         Bv2Ws/i4ScQ9647GxmC2sxRX1idbw5LtIJ9cdtmJnoyNduPYEGa5xPI2josYcuT5Fllh
+         lsssLoSR0N8rc0QYXHSOHtTtcmeY6toL74u5lem43ZI+jAa7IJua79bHUW3TVpdCaoxt
+         wQDDndTj0CAlUME4H68ScsnMzc8nPyAgBhr3Y1qJS979xJeDTQM/S46vbI9pL4tjg+C4
+         q35Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5MNk+N+FPh906nbSA6gdVy2qNPnVA6IBf/TJsfB7Coo=;
-        b=CavRC1h84UgXz96aafF/Ee7hqQ42p8hZCEVTvERe1cSnEGUn034xuEdm1Tq0bR9S+4
-         PIdDDy6NkNBO3hw98EqQlmDPyVf9LHT4LF6G5JK5Iwf511govwzhZe/mlu8uwrsXP1d6
-         7H56Z7uHKUDR614CU90Aphbh1deRXJck7MLPDT80jHSjs+Mt9CWsC8F+6q3HFzqNa+jr
-         FwPmAikuxqsNnCto7IcYC1Xudy7Fc6ghaLZOFISxPY67c4Di39QRn2eASnf9KHXknuEF
-         NitWhxXCCDt5/kP7RqUg3+saSCYUOL1EFpyPliCN4rpCwn3NR7Wp2yL0EDLxdkUlfgOy
-         BhJw==
-X-Gm-Message-State: AO0yUKVAInXIq6nBA3Iu0W8dCzlLv5chIYdjiOuNA149OHR5PR2rN75H
-        dPxTrGljMh3GJRjld0Ac1d+13txfXPNVusHv
-X-Google-Smtp-Source: AK7set9QKdl6+sYhEGzGPg25Wn1X7CiO91MgYy/8ehCtpSMckDA0cKkQdX8vvZ1xfmz3DNoRKn/A2g==
-X-Received: by 2002:a05:6402:3890:b0:4ab:4410:ae1a with SMTP id fd16-20020a056402389000b004ab4410ae1amr1134284edb.15.1676541821824;
-        Thu, 16 Feb 2023 02:03:41 -0800 (PST)
+        bh=uHOyQ5lmh44/x0N5o9EsWAl8D2lj1V8oYJTQzd4/iwg=;
+        b=X7qYZKLlHhU+UC6r70LI4WOpD9RpHgaZ6NEVOfmH7nYbN1jSsWYWi/PIZ54lbWdrMc
+         s5T37eWLok/UrRpCWRfRt9bNZszALLP+5X/FbtlrZDS1BdhMJmCWnecZNiLkWDu3IxRr
+         98H0/s9DKv0H7F5sORXLghh6WgCEXmTDI3j3r2kDQCo4ALL7kG7IXaj5jCukOkl0V9qD
+         g3Yvz6UcmpTL5RxGLyhh8YRg8O3DJqOLyE+zAuB043NDzxVvPE3eAI0gm5wxa7qTthXZ
+         vCoaf5Aot0qRyRmqpSlLoAH8Ugadaq4CirgIaZ1pQHW/HwORjlsaQ/U2woQzzzuh2u5v
+         YKqw==
+X-Gm-Message-State: AO0yUKU3Y66RzhhCpoW6zYWgXUQfWZEamdpY0iWzNO1fmrLrg2eFiSAC
+        +ozL1sfbfAeKo+1wXsZ/f+pUfA==
+X-Google-Smtp-Source: AK7set9uWaBpaH1PbK5+K7zWxGk9xtocPZW9k0aRimgCx3zjxnmc6I9YqaLLs+v34zBVzX/5pzScEg==
+X-Received: by 2002:aa7:d28b:0:b0:4a0:e31a:434 with SMTP id w11-20020aa7d28b000000b004a0e31a0434mr5546917edq.27.1676541876140;
+        Thu, 16 Feb 2023 02:04:36 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q11-20020a50c34b000000b004ad601533a3sm258643edb.55.2023.02.16.02.03.40
+        by smtp.gmail.com with ESMTPSA id i5-20020a50c3c5000000b004aad8d2158dsm579668edf.66.2023.02.16.02.04.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Feb 2023 02:03:41 -0800 (PST)
-Message-ID: <38824a96-804d-84a2-2750-be1325b2e1d2@linaro.org>
-Date:   Thu, 16 Feb 2023 11:03:39 +0100
+        Thu, 16 Feb 2023 02:04:35 -0800 (PST)
+Message-ID: <485d74fe-bfb5-c55e-724f-304476624abd@linaro.org>
+Date:   Thu, 16 Feb 2023 11:04:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT5739
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: sama7g5-pdmc: add
+ microchip,startup-delay-us binding
 Content-Language: en-US
-To:     ChiYuan Huang <cy_huang@richtek.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        u0084500@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <1676426457-1389-1-git-send-email-cy_huang@richtek.com>
- <1676426457-1389-2-git-send-email-cy_huang@richtek.com>
- <9c1f4d0e-83c9-014e-bdb1-38b4b0fb2bbf@linaro.org>
- <20230216095714.GA14578@linuxcarl2.richtek.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de, perex@perex.cz,
+        tiwai@suse.com, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230214161435.1088246-1-claudiu.beznea@microchip.com>
+ <20230214161435.1088246-3-claudiu.beznea@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230216095714.GA14578@linuxcarl2.richtek.com>
+In-Reply-To: <20230214161435.1088246-3-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,107 +79,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 10:57, ChiYuan Huang wrote:
-> On Thu, Feb 16, 2023 at 10:12:15AM +0100, Krzysztof Kozlowski wrote:
->> On 15/02/2023 03:00, cy_huang@richtek.com wrote:
->>> From: ChiYuan Huang <cy_huang@richtek.com>
->>>
->>> Add the binding document for Richtek RT5739.
->>
->> Subject: drop second/last, redundant "bindings for". The "dt-bindings"
->> prefix is already stating that these are bindings.
->>
-> Then, refine it to "dt-bindings: regulator: Add Richtek RT5739 document" 
+On 14/02/2023 17:14, Claudiu Beznea wrote:
+> Add microchip,startup-delay-us binding to let PDMC users to specify
+> startup delay.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  .../devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml   | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml b/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
+> index c4cf1e5ab84b..9b40268537cb 100644
+> --- a/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
+> +++ b/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
+> @@ -67,6 +67,12 @@ properties:
+>      maxItems: 4
+>      uniqueItems: true
+>  
+> +  microchip,startup-delay-us:
+> +    description: |
+> +      Specifies the delay in microseconds that needs to be applied after
+> +      enabling the PDMC microphones to avoid unwanted noise due to microphones
+> +      not being ready.
 
-I propose also to drop "document" - it is also redundant. Can bindings
-be something else than document?
-
-
->>>
->>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
->>> ---
->>>  .../bindings/regulator/richtek,rt5739.yaml         | 80 ++++++++++++++++++++++
->>>  1 file changed, 80 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
->>> new file mode 100644
->>> index 00000000..7dc4f78
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
->>> @@ -0,0 +1,80 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/regulator/richtek,rt5739.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Richtek RT5739 2.4MHz 3.5A Step-Down Converter
->>> +
->>> +maintainers:
->>> +  - ChiYuan Huang <cy_huang@richtek.com>
->>> +
->>> +description: |
->>> +  The RT5739 is a step-down switching voltage regulator that delivers a
->>> +  digitally programmable output from an input voltage supply of 2.5V to 5.5V.
->>> +  The output voltage is programmed through an I2C interface capable of
->>> +  operating up to 3.4MHz.
->>> +
->>> +  Using a proprietary architecture with synchronous rectification, the RT5739
->>> +  is capable of delivering 3.5A continuously at over 80% efficiency,
->>> +  maintaining that efficiency at load current as low as 10mA. The regulator
->>> +  operates at a normal fixed frequency of 2.4MHz, which reduces the value of
->>> +  the external components. 
->>
->> Can we drop the marketing from kernel? Last part of sentence is not
->> related to this submission at all. The internal frequency also looks
->> unrelated to the topic...
->>
-> Okay, too much marketing text. I'll shorten it and simply describe the function or
-> voltage range only. 
->>> Additional output capacitance can be added to
->>> +  improve regulation during load transients without affecting stability.
->>> +
->>> +allOf:
->>> +  - $ref: regulator.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - richtek,rt5739
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  enable-gpios:
->>> +    maxItems: 1
->>> +
->>> +  richtek,vsel-active-high:
->>> +    description: |
->>> +      If property is present, use the 'VSEL1' register group for buck control.
->>> +      Else, use the 'VSEL0' register group. This depends on external hardware
->>> +      'VSEL' pin connecton.
->>> +    type: boolean
->>> +
->>> +  regulator-allowed-modes:
->>> +    description: |
->>> +      buck allowed operating mode
->>> +        0: Auto PFM/PWM mode
->>> +        1: Forced PWM mode
->>> +    maxItems: 2
->>> +    items:
->>> +      enum: [0, 1]
->>
->> So you always require two items? Thus I wonder what's the point of
->> having it in DT? To skip the property entirely if none of the modes are
->> allowed?
->>
-> Not always need two. So does it mean no need to describe the 'maxItems' and 'Items'.
-
-Your minItems is 2, so you always need two. If you accept one, the add
-minItems: 1.
-
-
+Is this some hardware delay? Or OS? If OS, why Linux specific delay is
+put into DT?
 
 Best regards,
 Krzysztof
