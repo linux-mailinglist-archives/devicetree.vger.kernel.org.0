@@ -2,391 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B495069A70E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D232F69A722
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:38:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjBQIgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 03:36:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37828 "EHLO
+        id S229724AbjBQIin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 03:38:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjBQIgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:36:03 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20245F249;
-        Fri, 17 Feb 2023 00:36:01 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31H6xegI024176;
-        Fri, 17 Feb 2023 08:35:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=4PACSUSfG9NYfpWMaj7IqSUQdLakVBd5jCYmDpLW54Y=;
- b=j+kno/JLqj6U05Mc/nqD7MeovkuRi1KWUTsfeztqvmtRu251ZYfTrxZvGWjZqc1vdBdK
- 3QZT1OsCD479eEzRUjoeavnnsnyOOX3WfIngOnqNgPmYSYSddBsMhdOqPo+8+itp1CZ9
- 4Mwz+gXGPp8rLI6sBZQrr7wyI/F8A2H9nREkIwmlXj/OInrNdDgDDkE0WzR7lqmax4JE
- ez/KjMyEkmzAq2L8OcHnzWsc676tVXxHeIL4elBFSYVsS6cARZtOIEYEF5DZdqKCzlf2
- RyAtVlzveYoPh19ONoroXBUlXOGB/8rwlVnARHD5GHsx+ubleqB0w22tBCKYIDPIdW3k rw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nse3d3s7b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 08:35:45 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31H8ZiHA032265
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 08:35:44 GMT
-Received: from [10.216.47.237] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 17 Feb
- 2023 00:35:36 -0800
-Message-ID: <288a7d8a-130d-5ad1-42ea-726db3b880ce@quicinc.com>
-Date:   Fri, 17 Feb 2023 14:05:23 +0530
+        with ESMTP id S229619AbjBQIim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:38:42 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6099A1BF0
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:38:41 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id ez12so1487077edb.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:38:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aotVjKdB3w06esRBunGunh97EJ04YUQLCEZCyWhQd9k=;
+        b=df6K4Ks6N85m4BeBsuetyvq5ED9kxeN+MXWQ6tWrvqcrayBDZOQvLUZq+PatnBKOx6
+         Hou9Zny1NgQ7aOulocFLMA5Ol7oI+a3qZhLwVUzEBFlzsiw6ATSD0rtEeTcvl6HlC3Iu
+         Z/jXrI9UDvDmcOLT/XgSbzRbihv1WOWC5Rfx/7SoXAznNUeovsYE9a/bdTOyMeLK2wng
+         SgWVhhQT6d0NpDxHH1Z14rA72CsgdPP9kxWIgfV+lAfMkG+49sypbkF3plDhXvztVTxd
+         6lDVMWUb+Cauezs/fjktq/kyaIXB94cG83EEb3Bis8A5QclisLYdAV9gSvflVChF804F
+         njGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aotVjKdB3w06esRBunGunh97EJ04YUQLCEZCyWhQd9k=;
+        b=Ui7w0vwwUS3f++7p+habk872+oW+Cqp8ZPtXgp38HOCmTfq+VzAQG6dF03kD3wIvgj
+         yun56AHEA0SDNMo4/sp7DX/LfLd1LLaCAhX6SMTHOnJdH1SkwYHLI5+QqImWdwTQlNXP
+         JB5IDYnOBh9Kej4bBBgH5xKsHf2MgGOK4YvklUINxlkbxTCEyGM4VQmLPSth0E3mVK3Q
+         1+kU1XAgqEKayBBTOuziUhzV6sPrgaMyXG83dvN7TgJu+FbOX00PkYRzyVdUm8Q+xgZP
+         8xWYkwOUTDm0qeF1SGsgvv+6BwmOdJoZR0sLxmKlQLBsknNCHirkiSHt6brIm4BMT2dJ
+         r9xw==
+X-Gm-Message-State: AO0yUKWfDVYRJuZta/SubiyEsVacN080HWoEVSjiMPaXvrU737axzEzU
+        +8PRKmaMXBChNAMtUCwe2alzZBZoWrJw+08J
+X-Google-Smtp-Source: AK7set+/MdUcpE4Maq2Ti97rOUOiH4YBI2R73rUdx7sI33PB3L/2q6FL13Hu1VFrtA7SlI4oLARTpw==
+X-Received: by 2002:a17:907:2b11:b0:8ae:b008:9b5a with SMTP id gc17-20020a1709072b1100b008aeb0089b5amr6579929ejc.69.1676623119785;
+        Fri, 17 Feb 2023 00:38:39 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id g23-20020a170906539700b008b128106fc7sm1850796ejo.46.2023.02.17.00.38.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 00:38:39 -0800 (PST)
+Message-ID: <fb9c9533-b72b-7e20-0ee2-cca6491ea2af@linaro.org>
+Date:   Fri, 17 Feb 2023 09:38:38 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: ipq9574: Add PCIe PHYs and
- controller nodes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] ARM: dts: mvebu: Add support for Thecus N2350 board
 Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <mani@kernel.org>, <p.zabel@pengutronix.de>,
-        <svarbanov@mm-sol.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>
-CC:     <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>
-References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
- <20230214164135.17039-8-quic_devipriy@quicinc.com>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <20230214164135.17039-8-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Tony Dinh <mibodhi@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+References: <20230216011046.3306-1-mibodhi@gmail.com>
+ <b9af4410-2352-b5f1-0fa8-8fc481001065@linaro.org>
+ <CAJaLiFypS2wtsj65D1WrSjsgDeN+jpUVYcbvOHdiYvneiCK_Aw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJaLiFypS2wtsj65D1WrSjsgDeN+jpUVYcbvOHdiYvneiCK_Aw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RNHO2AL8UremHs_k-XSZHieOagXvcZR4
-X-Proofpoint-ORIG-GUID: RNHO2AL8UremHs_k-XSZHieOagXvcZR4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-17_04,2023-02-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
- mlxscore=0 impostorscore=0 priorityscore=1501 adultscore=0 phishscore=0
- malwarescore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302170076
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Devi,
-
-On 2/14/2023 10:11 PM, Devi Priya wrote:
-> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
-> found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane Gen3
-> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+On 16/02/2023 22:25, Tony Dinh wrote:
+> Hi Andrew,
+> Hi Krzysztof,
 > 
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  28 ++
->   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 477 ++++++++++++++++++-
->   2 files changed, 499 insertions(+), 6 deletions(-)
+> On Thu, Feb 16, 2023 at 12:31 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 16/02/2023 02:10, Tony Dinh wrote:
+>>> Thecus N2350 is a NAS based on Marvell Armada 385 SoC.
+>>>
+>>> Board Specification:
+>>>
+>>> - Marvel MV88F6820 Dual Core at 1GHz
+>>> - 1 GiB DDR4 RAM
+>>> - 4MB Macronix mx25l3205d SPI flash
+>>> - 512MB Hynix H27U4G8F2DTR-BC NAND flash
+>>> - I2C
+>>> - 2x USB 3.0
+>>> - 1x GBE LAN port (PHY: Marvell 88E1510)
+>>> - 2x SATA (hot swap slots)
+>>> - 3x buttons
+>>> - 10x LEDS
+>>> - serial console
+>>>
+>>> Signed-off-by: Tony Dinh <mibodhi@gmail.com>
+>>> ---
+>>>
+>>>  arch/arm/boot/dts/Makefile                    |   1 +
+>>>  arch/arm/boot/dts/armada-385-thecus-n2350.dts | 432 ++++++++++++++++++
+>>>  2 files changed, 433 insertions(+)
+>>>  create mode 100644 arch/arm/boot/dts/armada-385-thecus-n2350.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index d08a3c450..749790e6e 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1528,6 +1528,7 @@ dtb-$(CONFIG_MACH_ARMADA_38X) += \
+>>>       armada-385-linksys-rango.dtb \
+>>>       armada-385-linksys-shelby.dtb \
+>>>       armada-385-synology-ds116.dtb \
+>>> +     armada-385-thecus-n2350.dtb \
+>>>       armada-385-turris-omnia.dtb \
+>>>       armada-388-clearfog.dtb \
+>>>       armada-388-clearfog-base.dtb \
+>>> diff --git a/arch/arm/boot/dts/armada-385-thecus-n2350.dts b/arch/arm/boot/dts/armada-385-thecus-n2350.dts
+>>> new file mode 100644
+>>> index 000000000..38114d842
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/armada-385-thecus-n2350.dts
+>>> @@ -0,0 +1,432 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> +/*
+>>> + * Device Tree file for Thecus N2350 board
+>>> + *
+>>> + * Copyright (C) 2018-2023 Tony Dinh <mibodhi@gmail.com>
+>>> + * Copyright (C) 2018 Manuel Jung <manuel.jung@hotmail.com>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include "armada-385.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "Thecus N2350";
+>>> +     compatible = "thecus,n2350", "marvell,armada385";
+>>
+>> Missing vendor prefix documentation. I wanted to say: "missing new
+>> compatible documentation", but seems Marvell is missing these. Let's
+>> start documenting at least new compatibles in YAML? Like Rob proposed
+>> here for OMAP:
+>> https://lore.kernel.org/all/20230209173534.GA539622-robh@kernel.org/
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
-> index 2c8430197ec0..21b53f34ce84 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
-> @@ -8,6 +8,7 @@
->   
->   /dts-v1/;
->   
-> +#include <dt-bindings/gpio/gpio.h>
->   #include "ipq9574.dtsi"
->   
->   / {
-> @@ -29,6 +30,33 @@
->   	status = "okay";
->   };
->   
-> +&pcie1_phy {
-> +	status = "okay";
-> +};
-> +
-> +&pcie1_x1 {
-> +	perst-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie2_phy {
-> +	status = "okay";
-> +};
-> +
-> +&pcie2_x2 {
-> +	perst-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie3_phy {
-> +	status = "okay";
-> +};
-> +
-> +&pcie3_x2 {
-> +	perst-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
->   &sdhc_1 {
->   	pinctrl-0 = <&sdc_default_state>;
->   	pinctrl-names = "default";
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 062f80798ebb..a32dbdeb5bed 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -6,8 +6,8 @@
->    * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->    */
->   
-> -#include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
->   
->   / {
-> @@ -22,11 +22,41 @@
->   			#clock-cells = <0>;
->   		};
->   
-> +		pcie30_phy0_pipe_clk: pcie30_phy0_pipe_clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <250000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		pcie30_phy1_pipe_clk: pcie30_phy1_pipe_clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <250000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		pcie30_phy2_pipe_clk: pcie30_phy2_pipe_clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <250000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		pcie30_phy3_pipe_clk: pcie30_phy3_pipe_clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <250000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
->   		sleep_clk: sleep-clk {
->   			compatible = "fixed-clock";
->   			#clock-cells = <0>;
->   		};
->   
-> +		usb3phy_0_cc_pipe_clk: usb3phy_0_cc_pipe_clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <125000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
+> I was under the impression that the Documentation patch has to be a
+> separate patch, as stated in
+> Documentation/devicetree/bindings/submitting-patches.rst. Should I
+> include documentation in this add-support patch?
 
-   Why is the usb clock added here ?
+Yes, it must be separate patch and must be first in the patchset using
+new compatibles. Otherwise when we apply this, we get warnings of
+undocumented compatibles.
 
->   		xo_board_clk: xo-board-clk {
->   			compatible = "fixed-clock";
->   			#clock-cells = <0>;
-> @@ -121,6 +151,155 @@
->   		#size-cells = <1>;
->   		ranges = <0 0 0 0xffffffff>;
->   
-> +		pcie0_phy: phy@84000 {
-> +			compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
-> +			reg = <0x00084000 0x1bc>; /* Serdes PLL */
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +			clocks = <&gcc GCC_PCIE0_AUX_CLK>,
-> +				 <&gcc GCC_PCIE0_AHB_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE0_1LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE0_1LANE_S_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE0_AUX_CLK>;
-> +			assigned-clock-rates = <20000000>;
-> +
-> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
-> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
-> +			reset-names = "phy", "common";
-> +
-> +			status = "disabled";
-> +
-> +			pcie0_lane: phy@84200 {
-> +				reg = <0x00084200 0x16c>, /* Serdes Tx */
-> +				      <0x00084400 0x200>, /* Serdes Rx */
-> +				      <0x00084800 0x1f0>, /* PCS: Lane0, COM, PCIE */
-> +				      <0x00084c00 0xf4>;  /* pcs_misc */
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "gcc_pcie0_pipe_clk_src";
-> +				#clock-cells = <0>;
-> +			};
-> +		};
-> +
-> +		pcie2_phy: phy@8c000 {
 
-   Can the phy/pcie nodes labelled in order ?
-   Currently it 0/2/3/1 ?
-
-> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> +			reg = <0x0008c000 0x1bc>; /* Serdes PLL */
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			clocks = <&gcc GCC_PCIE2_AUX_CLK>,
-> +				 <&gcc GCC_PCIE2_AHB_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE2_AUX_CLK>;
-> +			assigned-clock-rates = <20000000>;
-> +
-> +			resets = <&gcc GCC_PCIE2_PHY_BCR>,
-> +				 <&gcc GCC_PCIE2PHY_PHY_BCR>;
-> +			reset-names = "phy", "common";
-> +
-> +			status = "disabled";
-> +
-> +			pcie2_lanes: phy@8c200 {
-> +				reg = <0x0008c200 0x16c>, /* Serdes Tx0 */
-> +				      <0x0008c400 0x200>, /* Serdes Rx0 */
-> +				      <0x0008d000 0x1f0>, /* PCS: Lane0, COM, PCIE */
-> +				      <0x0008c600 0x16c>, /* Serdes Tx1 */
-> +				      <0x0008c800 0x200>, /* Serdes Rx1 */
-> +				      <0x0008d400 0x0f8>; /* pcs_misc */
-> +
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&gcc GCC_PCIE2_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "gcc_pcie2_pipe_clk_src";
-> +				#clock-cells = <0>;
-> +			};
-> +		};
-> +
-> +		pcie3_phy: phy@f4000 {
-> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> +			reg = <0x000f4000 0x1bc>; /* Serdes PLL */
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			clocks = <&gcc GCC_PCIE3_AUX_CLK>,
-> +				 <&gcc GCC_PCIE3_AHB_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE3_2LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE3_2LANE_S_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE3_AUX_CLK>;
-> +			assigned-clock-rates = <20000000>;
-> +
-> +			resets = <&gcc GCC_PCIE3_PHY_BCR>,
-> +				 <&gcc GCC_PCIE3PHY_PHY_BCR>;
-> +			reset-names = "phy", "common";
-> +
-> +			status = "disabled";
-> +
-> +			pcie3_lanes: phy@f4200 {
-> +				reg = <0x000f4200 0x16c>, /* Serdes Tx0 */
-> +				      <0x000f4400 0x200>, /* Serdes Rx0 */
-> +				      <0x000f5000 0x1f0>, /* PCS: Lane0, COM, PCIE */
-> +				      <0x000f4600 0x16c>, /* Serdes Tx1 */
-> +				      <0x000f4800 0x200>, /* Serdes Rx1 */
-> +				      <0x000f5400 0x0f8>; /* pcs_misc */
-> +
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&gcc GCC_PCIE3_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "gcc_pcie3_pipe_clk_src";
-> +				#clock-cells = <0>;
-> +			};
-> +		};
-> +
-> +		pcie1_phy: phy@fc000 {
-> +			compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
-> +			reg = <0x000fc000 0x1bc>; /* Serdes PLL */
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			clocks = <&gcc GCC_PCIE1_AUX_CLK>,
-> +				 <&gcc GCC_PCIE1_AHB_CLK>,
-> +				 <&gcc GCC_ANOC_PCIE1_1LANE_M_CLK>,
-> +				 <&gcc GCC_SNOC_PCIE1_1LANE_S_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE1_AUX_CLK>;
-> +			assigned-clock-rates = <20000000>;
-> +
-> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
-> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
-> +			reset-names = "phy", "common";
-> +
-> +			status = "disabled";
-> +
-> +			pcie1_lane: phy@fc200 {
-> +				reg = <0x000fc200 0x16c>, /* Serdes Tx */
-> +				      <0x000fc400 0x200>, /* Serdes Rx */
-> +				      <0x000fc800 0x1f0>, /* PCS: Lane0, COM, PCIE */
-> +				      <0x000fcc00 0xf4>;  /* pcs_misc */
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "gcc_pcie1_pipe_clk_src";
-> +				#clock-cells = <0>;
-> +			};
-> +		};
-> +
->   		tlmm: pinctrl@1000000 {
->   			compatible = "qcom,ipq9574-tlmm";
->   			reg = <0x01000000 0x300000>;
-> @@ -145,11 +324,11 @@
->   			clocks = <&xo_board_clk>,
->   				 <&sleep_clk>,
->   				 <&bias_pll_ubi_nc_clk>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>;
-> +				 <&pcie30_phy0_pipe_clk>,
-> +				 <&pcie30_phy1_pipe_clk>,
-> +				 <&pcie30_phy2_pipe_clk>,
-> +				 <&pcie30_phy3_pipe_clk>,
-> +				 <&usb3phy_0_cc_pipe_clk>;
-
-    Same , why usb3 clk is added here ?
-
-Regards,
-  Sricharan
+Best regards,
+Krzysztof
 
