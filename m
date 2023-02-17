@@ -2,401 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2989569A3C2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 03:07:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DFE269A3E2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 03:27:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbjBQCHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 21:07:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38514 "EHLO
+        id S230046AbjBQC1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 21:27:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbjBQCHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 21:07:17 -0500
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 808374FC8A;
-        Thu, 16 Feb 2023 18:07:13 -0800 (PST)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 192.168.10.46
-        by mg.richtek.com with MailGates ESMTP Server V5.0(23463:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Fri, 17 Feb 2023 10:07:00 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Fri, 17 Feb
- 2023 10:06:59 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.20 via Frontend
- Transport; Fri, 17 Feb 2023 10:06:59 +0800
-From:   <cy_huang@richtek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <lgirdwood@gmail.com>, <cy_huang@richtek.com>,
-        <u0084500@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v2 2/2] regulator: Add support for Richtek RT5739 voltage regulator
-Date:   Fri, 17 Feb 2023 10:06:58 +0800
-Message-ID: <1676599618-24819-3-git-send-email-cy_huang@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1676599618-24819-1-git-send-email-cy_huang@richtek.com>
-References: <1676599618-24819-1-git-send-email-cy_huang@richtek.com>
+        with ESMTP id S229460AbjBQC1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 21:27:40 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E9A24DE23;
+        Thu, 16 Feb 2023 18:27:37 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 79BA024E287;
+        Fri, 17 Feb 2023 10:27:29 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Feb
+ 2023 10:27:29 +0800
+Received: from [192.168.125.82] (183.27.98.67) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Feb
+ 2023 10:27:28 +0800
+Message-ID: <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
+Date:   Fri, 17 Feb 2023 10:27:27 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220005054.34518-1-hal.feng@starfivetech.com>
+ <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
+ <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
+ <Y6tSWB2+98a8k9Qw@spud>
+ <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
+ <Y+5z8skN2DuvxDEL@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y+5z8skN2DuvxDEL@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.67]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On Thu, 16 Feb 2023 18:20:34 +0000, Conor Dooley wrote:
+> Hey Hal!
+> 
+> On Thu, Feb 16, 2023 at 10:42:20PM +0800, Hal Feng wrote:
+>> On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
+>> > On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
+>> >> On Tue, 20 Dec 2022 23:14:39 +0000, Conor Dooley wrote:
+>> >> > On Tue, Dec 20, 2022 at 08:50:50AM +0800, Hal Feng wrote:
+>> >> > > From: Emil Renner Berthing <kernel@esmil.dk>
+>> >> > > 
+>> >> > > Add bindings for the system clock and reset generator (SYSCRG) on the
+>> >> > > JH7110 RISC-V SoC by StarFive Ltd.
+>> >> > > 
+>> >> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> >> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> > 
+>> >> > > +  clocks:
+>> >> > > +    items:
+>> >> > > +      - description: Main Oscillator (24 MHz)
+>> >> > > +      - description: GMAC1 RMII reference
+>> >> > > +      - description: GMAC1 RGMII RX
+>> >> > > +      - description: External I2S TX bit clock
+>> >> > > +      - description: External I2S TX left/right channel clock
+>> >> > > +      - description: External I2S RX bit clock
+>> >> > > +      - description: External I2S RX left/right channel clock
+>> >> > > +      - description: External TDM clock
+>> >> > > +      - description: External audio master clock
+>> >> > 
+>> >> > So, from peeking at the clock driver & the dt - it looks like a bunch of
+>> >> > these are not actually required?
+>> >> 
+>> >> These clocks are used as root clocks or optional parent clocks in clock tree.
+>> >> Some of them are optional, but they are required if we want to describe the
+>> >> complete clock tree of JH7110 SoC.
+>> > 
+>> > Perhaps I have a misunderstand of what required means. To me, required
+>> > means "you must provide this clock for the SoC to operate in all
+>> > configurations".
+>> > Optional therefore would be for things that are needed only for some
+>> > configurations and may be omitted if not required.
+>> > 
+>> > From your comment below, boards with a JH7110 may choose not to populate
+>> > both external clock inputs to a mux. In that case, "dummy" clocks should
+>> > not have to be provided in the DT of such boards to satisfy this binding
+>> > which seems wrong to me..
+>> 
+>> Please see the picture of these external clocks in clock tree.
+>> 
+>> # mount -t debugfs none /mnt
+>> # cat /mnt/clk/clk_summary
+>>                                  enable  prepare  protect                                duty  hardware
+>>    clock                          count    count    count        rate   accuracy phase  cycle    enable
+>> -------------------------------------------------------------------------------------------------------
+>>  *mclk_ext*                             0        0        0    12288000          0     0  50000         Y
+>>  *tdm_ext*                              0        0        0    49152000          0     0  50000         Y
+>>  *i2srx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+>>  *i2srx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+>>  *i2stx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+>>  *i2stx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+>>  *gmac1_rgmii_rxin*                     0        0        0   125000000          0     0  50000         Y
+>>     gmac1_rx                          0        0        0   125000000          0     0  50000         Y
+>>        gmac1_rx_inv                   0        0        0   125000000          0   180  50000         Y
+>>  *gmac1_rmii_refin*                     0        0        0    50000000          0     0  50000         Y
+>>     gmac1_rmii_rtx                    0        0        0    50000000          0     0  50000         Y
+>>        gmac1_tx                       0        0        0    50000000          0     0  50000         N
+>>           gmac1_tx_inv                0        0        0    50000000          0   180  50000         Y
+>>  *osc*                                  4        4        0    24000000          0     0  50000         Y
+>>     apb_func                          0        0        0    24000000          0     0  50000         Y
+>>  ...
+>> 
+>> The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
+>> actually used as the parent of other clocks.
+> 
+>> The "dummy" clocks
+>> you said are all internal clocks.
+> 
+> No, what I meant by "dummy" clocks is that if you make clocks "required"
+> in the binding that are not needed by the hardware for operation a
+> customer of yours might have to add "dummy" clocks to their devicetree
+> to pass dtbs_check.
+> 
+>> For the audio related clocks (mclk_ext/tdm_ext/i2srx_lrck_ext/
+>> i2srx_bclk_ext/i2stx_lrck_ext/i2stx_bclk_ext), they will be used
+>> as the parent clocks in audio related drivers. Note that some
+>> clocks need to select different clocks as parent according to
+>> requirement.
+>> So all these external clocks are required.
+>> 
+>> > 
+>> > It would seem to me that you need to set minItems < maxItems here to
+>> > account for that & you do in fact need clock-names.
+>> > 
+>> >> 
+>> >> > I'd have ploughed through this, but having read Krzysztof's comments on
+>> >> > the DTS I'm not sure that this binding is correct.
+>> >> > https://lore.kernel.org/linux-riscv/20221220011247.35560-1-hal.feng@starfivetech.com/T/#mdf67621a2344dce801aa8015d4963593a2c28bcc
+>> >> > 
+>> >> > I *think* the DT is correct - the fixed clocks are all inputs from clock
+>> >> > sources on the board and as such they are empty in soc.dtsi and are
+>> >> > populated in board.dts?
+>> >> 
+>> >> Yes, the fixed clocks are all clock sources on the board and input to the SoC.
+>> >> 
+>> >> > 
+>> >> > However, are they all actually required? In the driver I see:
+>> >> > 	JH71X0__MUX(JH7110_SYSCLK_GMAC1_RX, "gmac1_rx", 2,
+>> >> > 		    JH7110_SYSCLK_GMAC1_RGMII_RXIN,
+>> >> > 		    JH7110_SYSCLK_GMAC1_RMII_RTX),
+>> >> > That macro is:
+>> >> > #define JH71X0__MUX(_idx, _name, _nparents, ...) [_idx] = {			\
+>> >> > 	.name = _name,								\
+>> >> > 	.flags = 0,								\
+>> >> > 	.max = ((_nparents) - 1) << JH71X0_CLK_MUX_SHIFT,			\
+>> >> > 	.parents = { __VA_ARGS__ },						\
+>> >> > }
+> 
+>> >> > AFAICT, RMII reference feeds RMII_RTX & RGMII RX *is* RGMII_RXIN?
+>> >> > Does that mean you need to populate only one of GMAC1 RMII reference
+>> >> > and GMAC1 RMGII RX and the other is optional?
+> 
+>> >> Yes, actually only one of them is chosen as the root clock
+>> >> source of the clock "gmac1_rx".
+> |  *gmac1_rgmii_rxin*   
+> |     gmac1_rx          
+> |        gmac1_rx_inv   
+> |  *gmac1_rmii_refin*   
+> |     gmac1_rmii_rtx    
+> |        gmac1_tx       
+> |           gmac1_tx_inv
+> |
+> | description: GMAC1 RMII reference
+> | description: GMAC1 RGMII RX
+> 
+> 
+> So you're telling me that you can either:
+> - Provide GMAC1 RMII reference and GMAC1 RGMII RX & then use different
+>   clocks for gmac1_rx and gmac1_tx
+> - Provide only GMAC1 RMII reference & use it for both gmac1_tx *and*
+>   gmac1_rx
+> 
+> Is that correct?
 
-The RT5739 is a step-down switching voltage regulator that supports
-output voltage ragne from 300mV to 1300mV with the wide input supply
-voltage range from 2.5V to 5.5V.
+Yes, it is.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-Since v2: no change
+Best regards,
+Hal
 
----
- drivers/regulator/Kconfig  |  13 ++
- drivers/regulator/Makefile |   1 +
- drivers/regulator/rt5739.c | 290 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 304 insertions(+)
- create mode 100644 drivers/regulator/rt5739.c
-
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 820c9a0..f7f992c 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1112,6 +1112,19 @@ config REGULATOR_RT5190A
- 	  buck converters, 1 LDO, mute AC OFF depop function, with the general
- 	  I2C control interface.
- 
-+config REGULATOR_RT5739
-+	tristate "Rcihtek RT5739 Regulator"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This adds support for voltage regulator in Richtek RT5739.
-+	  It's a step-down switching voltage regulator. Using a proprietary
-+	  architecture with synchronous rectification, it is capable of
-+	  delivering 3.5A continuously at over 80% efficiency.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called rt5739.
-+
- config REGULATOR_RT5759
- 	tristate "Richtek RT5759 Regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index b9f5eb3..30a61fc 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -133,6 +133,7 @@ obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
- obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
- obj-$(CONFIG_REGULATOR_RT5120)	+= rt5120-regulator.o
- obj-$(CONFIG_REGULATOR_RT5190A) += rt5190a-regulator.o
-+obj-$(CONFIG_REGULATOR_RT5739)	+= rt5739.o
- obj-$(CONFIG_REGULATOR_RT5759)	+= rt5759-regulator.o
- obj-$(CONFIG_REGULATOR_RT6160)	+= rt6160-regulator.o
- obj-$(CONFIG_REGULATOR_RT6190)	+= rt6190-regulator.o
-diff --git a/drivers/regulator/rt5739.c b/drivers/regulator/rt5739.c
-new file mode 100644
-index 00000000..0a9e102
---- /dev/null
-+++ b/drivers/regulator/rt5739.c
-@@ -0,0 +1,290 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Device driver for RT5739 regulator
-+ *
-+ * Copyright (C) 2023 Richtek Technology Corp.
-+ *
-+ * Author: ChiYuan Huang <cy_huang@richtek.com>
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+#define RT5739_AUTO_MODE	0
-+#define RT5739_FPWM_MODE	1
-+
-+#define RT5739_REG_NSEL0	0x00
-+#define RT5739_REG_NSEL1	0x01
-+#define RT5739_REG_CNTL1	0x02
-+#define RT5739_REG_ID1		0x03
-+#define RT5739_REG_CNTL2	0x06
-+#define RT5739_REG_CNTL4	0x08
-+
-+#define RT5739_VSEL_MASK	GENMASK(7, 0)
-+#define RT5739_MODEVSEL1_MASK	BIT(1)
-+#define RT5739_MODEVSEL0_MASK	BIT(0)
-+#define RT5739_VID_MASK		GENMASK(7, 5)
-+#define RT5739_ACTD_MASK	BIT(7)
-+#define RT5739_ENVSEL1_MASK	BIT(1)
-+#define RT5739_ENVSEL0_MASK	BIT(0)
-+
-+#define RT5739_VOLT_MINUV	300000
-+#define RT5739_VOLT_MAXUV	1300000
-+#define RT5739_VOLT_STPUV	5000
-+#define RT5739_N_VOLTS		201
-+#define RT5739_I2CRDY_TIMEUS	1000
-+
-+static int rt5739_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	const struct regulator_desc *desc = rdev->desc;
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mask, val;
-+
-+	if (desc->vsel_reg == RT5739_REG_NSEL0)
-+		mask = RT5739_MODEVSEL0_MASK;
-+	else
-+		mask = RT5739_MODEVSEL1_MASK;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		val = mask;
-+		break;
-+	case REGULATOR_MODE_NORMAL:
-+		val = 0;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, RT5739_REG_CNTL1, mask, val);
-+}
-+
-+static unsigned int rt5739_get_mode(struct regulator_dev *rdev)
-+{
-+	const struct regulator_desc *desc = rdev->desc;
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mask, val;
-+	int ret;
-+
-+	if (desc->vsel_reg == RT5739_REG_NSEL0)
-+		mask = RT5739_MODEVSEL0_MASK;
-+	else
-+		mask = RT5739_MODEVSEL1_MASK;
-+
-+	ret = regmap_read(regmap, RT5739_REG_CNTL1, &val);
-+	if (ret)
-+		return REGULATOR_MODE_INVALID;
-+
-+	if (val & mask)
-+		return REGULATOR_MODE_FAST;
-+
-+	return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rt5739_set_suspend_voltage(struct regulator_dev *rdev, int uV)
-+{
-+	const struct regulator_desc *desc = rdev->desc;
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int reg, vsel;
-+
-+	if (uV < RT5739_VOLT_MINUV || uV > RT5739_VOLT_MAXUV)
-+		return -EINVAL;
-+
-+	if (desc->vsel_reg == RT5739_REG_NSEL0)
-+		reg = RT5739_REG_NSEL1;
-+	else
-+		reg = RT5739_REG_NSEL0;
-+
-+	vsel = (uV - RT5739_VOLT_MINUV) / RT5739_VOLT_STPUV;
-+	return regmap_write(regmap, reg, vsel);
-+}
-+
-+static int rt5739_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	const struct regulator_desc *desc = rdev->desc;
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mask;
-+
-+	if (desc->vsel_reg == RT5739_REG_NSEL0)
-+		mask = RT5739_ENVSEL1_MASK;
-+	else
-+		mask = RT5739_ENVSEL0_MASK;
-+
-+	return regmap_update_bits(regmap, desc->enable_reg, mask, mask);
-+}
-+
-+static int rt5739_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	const struct regulator_desc *desc = rdev->desc;
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mask;
-+
-+	if (desc->vsel_reg == RT5739_REG_NSEL0)
-+		mask = RT5739_ENVSEL1_MASK;
-+	else
-+		mask = RT5739_ENVSEL0_MASK;
-+
-+	return regmap_update_bits(regmap, desc->enable_reg, mask, 0);
-+}
-+
-+static int rt5739_set_suspend_mode(struct regulator_dev *rdev,
-+				   unsigned int mode)
-+{
-+	const struct regulator_desc *desc = rdev->desc;
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int mask, val;
-+
-+	if (desc->vsel_reg == RT5739_REG_NSEL0)
-+		mask = RT5739_MODEVSEL1_MASK;
-+	else
-+		mask = RT5739_MODEVSEL0_MASK;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		val = mask;
-+		break;
-+	case REGULATOR_MODE_NORMAL:
-+		val = 0;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, RT5739_REG_CNTL1, mask, val);
-+}
-+
-+static const struct regulator_ops rt5739_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.enable	= regulator_enable_regmap,
-+	.disable = regulator_disable_regmap,
-+	.is_enabled = regulator_is_enabled_regmap,
-+	.set_active_discharge = regulator_set_active_discharge_regmap,
-+	.set_mode = rt5739_set_mode,
-+	.get_mode = rt5739_get_mode,
-+	.set_suspend_voltage = rt5739_set_suspend_voltage,
-+	.set_suspend_enable = rt5739_set_suspend_enable,
-+	.set_suspend_disable = rt5739_set_suspend_disable,
-+	.set_suspend_mode = rt5739_set_suspend_mode,
-+};
-+
-+static unsigned int rt5739_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case RT5739_AUTO_MODE:
-+		return REGULATOR_MODE_NORMAL;
-+	case RT5739_FPWM_MODE:
-+		return REGULATOR_MODE_FAST;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static void rt5739_init_regulator_desc(struct regulator_desc *desc,
-+				       bool vsel_active_high)
-+{
-+	/* Fixed */
-+	desc->name = "rt5739-regulator";
-+	desc->owner = THIS_MODULE;
-+	desc->ops = &rt5739_regulator_ops;
-+	desc->n_voltages = RT5739_N_VOLTS;
-+	desc->min_uV = RT5739_VOLT_MINUV;
-+	desc->uV_step = RT5739_VOLT_STPUV;
-+	desc->vsel_mask = RT5739_VSEL_MASK;
-+	desc->enable_reg = RT5739_REG_CNTL2;
-+	desc->active_discharge_reg = RT5739_REG_CNTL1;
-+	desc->active_discharge_mask = RT5739_ACTD_MASK;
-+	desc->active_discharge_on = RT5739_ACTD_MASK;
-+	desc->of_map_mode = rt5739_of_map_mode;
-+
-+	/* Assigned by vsel level */
-+	if (vsel_active_high) {
-+		desc->vsel_reg = RT5739_REG_NSEL1;
-+		desc->enable_mask = RT5739_ENVSEL1_MASK;
-+	} else {
-+		desc->vsel_reg = RT5739_REG_NSEL0;
-+		desc->enable_mask = RT5739_ENVSEL0_MASK;
-+	}
-+}
-+
-+static const struct regmap_config rt5739_regmap_config = {
-+	.name = "rt5739",
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT5739_REG_CNTL4,
-+};
-+
-+static int rt5739_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct regulator_desc *desc;
-+	struct regmap *regmap;
-+	struct gpio_desc *enable_gpio;
-+	struct regulator_config cfg = {};
-+	struct regulator_dev *rdev;
-+	bool vsel_acth;
-+	unsigned int vid;
-+	int ret;
-+
-+	desc = devm_kzalloc(dev, sizeof(*desc), GFP_KERNEL);
-+	if (!desc)
-+		return -ENOMEM;
-+
-+	enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(enable_gpio))
-+		return dev_err_probe(dev, PTR_ERR(enable_gpio), "Failed to get 'enable' gpio\n");
-+	else if (enable_gpio)
-+		usleep_range(RT5739_I2CRDY_TIMEUS, RT5739_I2CRDY_TIMEUS + 1000);
-+
-+	regmap = devm_regmap_init_i2c(i2c, &rt5739_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
-+
-+	ret = regmap_read(regmap, RT5739_REG_ID1, &vid);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read VID\n");
-+
-+	/* RT5739: (VID & MASK) must be 0 */
-+	if (vid & RT5739_VID_MASK)
-+		return dev_err_probe(dev, -ENODEV, "Incorrect VID (0x%02x)\n", vid);
-+
-+	vsel_acth = device_property_read_bool(dev, "richtek,vsel-active-high");
-+
-+	rt5739_init_regulator_desc(desc, vsel_acth);
-+
-+	cfg.dev = dev;
-+	cfg.of_node = dev_of_node(dev);
-+	cfg.init_data = of_get_regulator_init_data(dev, dev_of_node(dev), desc);
-+	rdev = devm_regulator_register(dev, desc, &cfg);
-+	if (IS_ERR(rdev))
-+		return dev_err_probe(dev, PTR_ERR(rdev), "Failed to register regulator\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id rt5739_device_table[] = {
-+	{ .compatible = "richtek,rt5739" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rt5739_device_table);
-+
-+static struct i2c_driver rt5739_driver = {
-+	.driver = {
-+		.name = "rt5739",
-+		.of_match_table = rt5739_device_table,
-+	},
-+	.probe_new = rt5739_probe,
-+};
-+module_i2c_driver(rt5739_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("Richtek RT5739 regulator driver");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+> 
+>> >> > 
+>> >> > > +
+>> >> > > +  clock-names:
+>> >> > > +    items:
+>> >> > > +      - const: osc
+>> >> > > +      - const: gmac1_rmii_refin
+>> >> > > +      - const: gmac1_rgmii_rxin
+>> >> > > +      - const: i2stx_bclk_ext
+>> >> > > +      - const: i2stx_lrck_ext
+>> >> > > +      - const: i2srx_bclk_ext
+>> >> > > +      - const: i2srx_lrck_ext
+>> >> > > +      - const: tdm_ext
+>> >> > > +      - const: mclk_ext
+>> >> > 
+>> >> > If all clocks are in fact required though, isn't this kinda pointless to
+>> >> > have since we already know that the order is fixed from the "clocks"
+>> >> > property?
+>> >> > Krzk/Rob?
+>> >> 
+>> >> The clock-names are used to easily identify these clocks in the clock driver.
+>> > 
+>> > *IF* all clocks were in fact required, which they aren't, you could rely
+>> > on the order alone in the driver as it is enforced by the binding.
+>> 
+>> OK, I'll remove "clock-names" property in the bindings and device tree.
+>> Instead, will use index to get these clocks in drivers.
+> 
+> Hang on until you answer my question above before deleting this from the
+> dt-binding & driver ;)
+> 
 
