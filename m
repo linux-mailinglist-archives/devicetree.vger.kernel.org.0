@@ -2,206 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8B9F69ADEA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:21:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10C3169ADFF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:24:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjBQOVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 09:21:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
+        id S229489AbjBQOYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 09:24:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229867AbjBQOVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:21:44 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C106CA3D;
-        Fri, 17 Feb 2023 06:21:28 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31HDsEiE024326;
-        Fri, 17 Feb 2023 14:21:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=W4CccyOiOo4G+9Es20Lt/Igbfhe3yQ8E6P+ulKFqOQ4=;
- b=KKnn2YA4C/q4bzr0pZRTSfkhxtIcbpXOgv89lNb9meIIBJYmhQTW05/m2giorExz+OIB
- skEX41ZREMfrQlCQYmSCuMT1I0B/f6c8w9+3bqmYl5xcJPSE6AG64Jyo1jsCbF4lR21q
- OGa5mhUyxqavxmR0caRk4ph8Z/ZODdJqEG6JhqycX8gDUGo65QDvskVdJ0CMFXo9AC44
- 3YxBtT8n6eNas750kuvGQr0FxtI7Xq6Ymko3kzKiQhyV8HkdZxNRb5Nw2CJtEORClKKM
- gMs0bgDA+gPL2d0bq3/D2Ck1jPNYWUP4/Fo86bxBVztDCNTL/23sGGUFbvi0Q7H9/2ai RQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nt5kurshh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 14:21:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31HELO4m025162
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 14:21:24 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Fri, 17 Feb 2023 06:21:18 -0800
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_ipkumar@quicinc.com>
-Subject: [PATCH V2 6/6] arm64: dts: qcom: ipq9574: Add cpufreq support
-Date:   Fri, 17 Feb 2023 19:50:30 +0530
-Message-ID: <20230217142030.16012-7-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230217142030.16012-1-quic_devipriy@quicinc.com>
-References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
+        with ESMTP id S229508AbjBQOYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:24:52 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89789A24A
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:24:50 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id ez12so4895033edb.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:24:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FFjYG4jLURw1kYo7ShDSCBnd1OYlrQohbQF4zsR/gVk=;
+        b=OJ7TQIHzJQsa9/EIpru1db+VCZ+X8QPOmP8Ua+5RufEjNaROgv5Dn9z0CgKGtVsa7X
+         CNn1AyalhSJZY4Yyk818UgKQh8HiZo36uePEcFO6JiJavsq/SrbxryXvtXI2qPYjBsHQ
+         GuF9Erxp4Uz3LxkoIF0rKcclWfy+iF8GSohzT0lI2imelyWfBKATTefqn5GExQgtaAox
+         tzoYg81uHbP/ty0VRPfsz8fo4qWr22tRn3VwyvCUoZYcAhIhl3Zt8kUoa6pAOdOIw02F
+         afh8zWhUZBDzuP3pY1+DT4w6RnVe70qzP41d4lnTSKDyX1AZljqUeG2KLhdEEUsxB0u+
+         /t9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FFjYG4jLURw1kYo7ShDSCBnd1OYlrQohbQF4zsR/gVk=;
+        b=EUoEcy15R4w+32Df/C8LF5BKw0N/I9+LTCiBiuv98nS2Crk3M0x7jXGg970HH4o904
+         fzLd151zOFWuaT3ttGCKEETdyuh/f8i3x1j03S2fE9EslairFJydK5rWcGIVnSfdw0h9
+         3SYkiVZEbbsKBcFYuaTLxGR72LEn/Q9es/FVwIyloXxNG2RiZmWBxjo8Yad4AX4un9TX
+         kxnQOrNjO3HgE89mCNvWziUwokDWRZUbCr0a3I80H9AvjHyXsGPlv7wyBFflHO+d3VeN
+         QA/foH1jKX2FmXsL0eF5rn0N2L2d1Z50j3xMg65pP3jcJxbW+sJHEVY8KXJMwebi72lG
+         Fx7w==
+X-Gm-Message-State: AO0yUKXugEawEXGo8Msks8i+sux6nz+iFaHZMs+lWHwEzSmxtIICWc9n
+        gotkeBj1Hgd6oJLjdgpG5VGYaw==
+X-Google-Smtp-Source: AK7set8cRq4IQx60rnukD9fbsNxxPpGXqav2rSq1nDhiVMKrQpHtAHfPgWf+DofWiP2cGt75L4meVA==
+X-Received: by 2002:a17:906:6454:b0:8b1:4507:eec with SMTP id l20-20020a170906645400b008b145070eecmr758694ejn.34.1676643889054;
+        Fri, 17 Feb 2023 06:24:49 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f27-20020a170906139b00b008b14399b74fsm2155741ejc.201.2023.02.17.06.24.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 06:24:48 -0800 (PST)
+Message-ID: <272c1291-dfea-3dcb-9462-5f84c55f7637@linaro.org>
+Date:   Fri, 17 Feb 2023 15:24:46 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _1oZblUYjUfXvl7ArZfyPYNgaUgvgJVv
-X-Proofpoint-ORIG-GUID: _1oZblUYjUfXvl7ArZfyPYNgaUgvgJVv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-17_09,2023-02-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 lowpriorityscore=0 mlxlogscore=780 mlxscore=0 adultscore=0
- malwarescore=0 clxscore=1015 phishscore=0 spamscore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302170130
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v5 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230216134226.1692107-1-herve.codina@bootlin.com>
+ <20230216134226.1692107-2-herve.codina@bootlin.com>
+ <6ae9af19-1d52-c31f-79be-a36f06caaf80@linaro.org>
+ <20230217145019.0def6f9a@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230217145019.0def6f9a@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add cpu freq nodes in the device tree to bump
-cpu frequency above 800MHz
+On 17/02/2023 14:50, Herve Codina wrote:
+> Hi Krzysztof,
+> 
+> On Fri, 17 Feb 2023 10:14:48 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 16/02/2023 14:42, Herve Codina wrote:
+>>> Add support for the time slot assigner (TSA)
+>>> available in some PowerQUICC SoC such as MPC885
+>>> or MPC866.
+>>>
+>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>> ---
+>>>  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml | 234 ++++++++++++++++++
+>>>  include/dt-bindings/soc/fsl,tsa.h             |  13 +
+>>>  2 files changed, 247 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+>>>  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+> 
+> [...]
+>>> +
+>>> +patternProperties:
+>>> +  '^tdm@[0-1]$':
+>>> +    description:
+>>> +      The TDM managed by this controller
+>>> +    type: object
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        minimum: 0
+>>> +        maximum: 1
+>>> +        description:
+>>> +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
+> [...]
+>>> +
+>>> +      fsl,rx-frame-sync-delay-bits:
+>>> +        enum: [0, 1, 2, 3]  
+>>
+>> maxItems: 1
+> 
+> The property is an enum
+> Why this maxItems value ?
 
-Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V2:
-	- Created a separate patch for CPU freq related nodes
-	- Updated cpu0-supply to cpu-supply in CPU@0 node
-	- Moved the opp-table-cpu node after memory to have it sorted
-	  alphabetically
-	- Added a new line between the subnodes in opp-table-cpu
+Hm, it's an array, but you are right that enum forces dtschema to
+interpret it as scalar value, so your code is correct.
+> 
+> If I add the maxItems value, I've got some dt_binding_check errors:
+>   /xxxx/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml:
+>   patternProperties:^tdm@[0-1]$:properties:fsl,rx-frame-sync-delay-bits:
+>   'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+> 	hint: Scalar and array keywords cannot be mixed
+> 	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 58 +++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 2f300cbab93e..2bb4053641da 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
-@@ -73,6 +74,10 @@
- 			reg = <0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU1: cpu@1 {
-@@ -81,6 +86,10 @@
- 			reg = <0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU2: cpu@2 {
-@@ -89,6 +98,10 @@
- 			reg = <0x2>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU3: cpu@3 {
-@@ -97,6 +110,10 @@
- 			reg = <0x3>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		L2_0: l2-cache {
-@@ -111,6 +128,47 @@
- 		reg = <0x0 0x40000000 0x0 0x0>;
- 	};
- 
-+	cpu_opp_table: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-936000000 {
-+			opp-hz = /bits/ 64 <936000000>;
-+			opp-microvolt = <725000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1104000000 {
-+			opp-hz = /bits/ 64 <1104000000>;
-+			opp-microvolt = <787500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1416000000 {
-+			opp-hz = /bits/ 64 <1416000000>;
-+			opp-microvolt = <862500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1488000000 {
-+			opp-hz = /bits/ 64 <1488000000>;
-+			opp-microvolt = <925000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <987500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-2208000000 {
-+			opp-hz = /bits/ 64 <2208000000>;
-+			opp-microvolt = <1062500>;
-+			clock-latency-ns = <200000>;
-+		};
-+	};
-+
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-ipq9574", "qcom,scm";
--- 
-2.17.1
+Best regards,
+Krzysztof
 
