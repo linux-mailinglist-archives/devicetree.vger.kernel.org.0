@@ -2,153 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C2869A8E6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 11:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6C669A922
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 11:37:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjBQKMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 05:12:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34092 "EHLO
+        id S229445AbjBQKhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 05:37:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbjBQKMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 05:12:17 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E13627E4;
-        Fri, 17 Feb 2023 02:12:16 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id ez12so2353315edb.1;
-        Fri, 17 Feb 2023 02:12:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7hw648BlWiWtBk/f0KKzoPuGmE7KbLFt/y3M1QgpRb8=;
-        b=DkGgz7LrrshUUqf98FEQHx+4ZLsw1fmj5xlLMYyg/apRAjsxEw7p1q2hYhewpY//AC
-         JgOSPxlI58u/6CrB5nHfIey6F8vFzD+IG3h1qtADCX3oNJnQ9VuURgFNHi9tc2KKhQ3Y
-         T7cRhAo/RxwKzzcpWDvHV4kJRYaTe3ZU5R4DFUcINE8j4tEYgcDBxmVD9MAKeJayMoFL
-         s+cpWPIhjOUCWh+HZPwXIWgujNEJrGjyWRFZLc2Ph8F+9Tj2N54bsdJ4+9gbMYFO5+ME
-         ZMjzQcSSj5F3MJtyWzD6nHA/Vj/ff9wONV3GbAUHv9o3HdcwAF1IQ1JX6zFdJsQ/hGcZ
-         iU6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7hw648BlWiWtBk/f0KKzoPuGmE7KbLFt/y3M1QgpRb8=;
-        b=BLFx10LkRaBafgzqD6uyLL8qh0YZB8e41yxP621iZVpvHK9m8J1H61SloIK8ztQWiF
-         h8OFtYQTQlZia34h3SdT1VxLwV7I2jmo5+g17Koj0OEOdAK1iQqAXepAlS4Zo6kS9rxJ
-         PlLUrql1HMsDefAyjy7niEgQUsHFHqSulKPbhvAvsZ8MShVG7KSmUgeSGcqv233oIwwx
-         peDCRDbVxZnR2YHYmAnSTkepIK0ufJrUl1edp6fcgmhxf8NA1Kvw5ze+MhCAANHTH9ws
-         58W7bcUJ5nadH3aZ92BKlUj8gilfCTebPjr2tlj3liGR02oP7Dyzj/cMOR4BM7A+7oBn
-         Y27w==
-X-Gm-Message-State: AO0yUKXM8105Az32Bw2C0tMqgy3hp13nzK6VQjG8rScWrK4kD1HOx6hC
-        XS35pO5PzxllvzCE8/LEDmLddvVxIIU+4enbDE8=
-X-Google-Smtp-Source: AK7set+GT0Ah3I/6vPnxNmj3RSo2G/EDRSHCWkFAtQuG+sMISDYexJpAIhdh9LnTy7Wf3Mb443eJzI2NRdM6y6KK2Zo=
-X-Received: by 2002:a17:907:76ad:b0:8b1:749f:b2c6 with SMTP id
- jw13-20020a17090776ad00b008b1749fb2c6mr1849103ejc.2.1676628734827; Fri, 17
- Feb 2023 02:12:14 -0800 (PST)
+        with ESMTP id S229820AbjBQKhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 05:37:46 -0500
+X-Greylist: delayed 1151 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 17 Feb 2023 02:37:43 PST
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084DE63581
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 02:37:42 -0800 (PST)
+Received: from [167.98.27.226] (helo=[10.35.4.184])
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1pSxox-004Ucb-FN; Fri, 17 Feb 2023 10:18:27 +0000
+Message-ID: <4a25cf89-bcf0-e78c-a8ab-7ba0c4f8e2bf@codethink.co.uk>
+Date:   Fri, 17 Feb 2023 10:18:26 +0000
 MIME-Version: 1.0
-References: <cover.1676289084.git.zhoubinbin@loongson.cn> <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
- <df464409-9a93-c057-5f66-923a9e24696a@linaro.org> <CAMpQs4JX0Vgf5tvv5Yw5eLGANFfn1p=iQ_kMS0yQPV6kE2tN1g@mail.gmail.com>
- <23068d0c-d37c-0563-e1c1-e4d112059f5b@linaro.org> <CAMpQs4K+aYGrOoWy04vrbEy53kba9zUzGkOwD34pwAH0c=D8iA@mail.gmail.com>
- <49c8255e-66f3-fa1f-2949-1f03f77a0fa4@linaro.org> <CAMpQs4KennWg60ccQ5NYOs=5a9gqTk_bKY26noQ3u0qLQSBg_w@mail.gmail.com>
- <4dcaaa70-11e0-fc9d-da03-224d34e36983@linaro.org>
-In-Reply-To: <4dcaaa70-11e0-fc9d-da03-224d34e36983@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Fri, 17 Feb 2023 18:12:01 +0800
-Message-ID: <CAMpQs4KpE7RLyxw4++4z4RhjR_ix300mtDfwh6KgJJw1B43CqA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson EIOINTC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v4 6/8] RISC-V: Use Zicboz in clear_page when available
+Content-Language: en-GB
+To:     Andrew Jones <ajones@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     'Anup Patel ' <apatel@ventanamicro.com>,
+        'Palmer Dabbelt ' <palmer@dabbelt.com>,
+        'Paul Walmsley ' <paul.walmsley@sifive.com>,
+        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
+        'Atish Patra ' <atishp@rivosinc.com>,
+        'Heiko Stuebner ' <heiko@sntech.de>,
+        'Jisheng Zhang ' <jszhang@kernel.org>,
+        'Rob Herring ' <robh@kernel.org>,
+        'Albert Ou ' <aou@eecs.berkeley.edu>,
+        'Conor Dooley ' <conor.dooley@microchip.com>
+References: <20230209152628.129914-1-ajones@ventanamicro.com>
+ <20230209152628.129914-7-ajones@ventanamicro.com>
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <20230209152628.129914-7-ajones@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 17, 2023 at 4:40 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 17/02/2023 07:09, Binbin Zhou wrote:
->
-> >>> Hi Krzysztof:
-> >>>
-> >>> Allow me to give a brief overview of the current status of eiointc (DT-based):
-> >>>      Loongson-3A series supports eiointc;
-> >>>      Loongson-2K1000 does not support eiointc now;
-> >>>      Loongson-2K0500 supports eiointc, with differences from
-> >>> Loongson-3, e.g. only up to 128 devices are supported;
-> >>>      Loongson-2K2000 supports eiointc, similar to Loongson-3.
-> >>>      ....
-> >>>
-> >>> As can be seen, there is now a bit of confusion in the chip's design of eiointc.
-> >>>
-> >>> The design of eiointc is probably refined step by step with the chip.
-> >>> The same version of eiointc can be used for multiple chips, and the
-> >>> same chip series may also use different versions of eiointc. Low-end
-> >>> chips may use eiointc-2.0, and high-end chips may use eiointc-1.0,
-> >>> depending on the time it's produced.
-> >>>
-> >>> So in the Loongson-2K series I have defined the current state as
-> >>> eiointc-1.0, using the dts property to indicate the maximum number of
-> >>> devices supported by eiointc that can be used directly in the driver.
-> >>>
-> >>> If there are new changes to the design later on, such as the
-> >>> definition of registers, we can call it eiointc-2.0, which can also
-> >>> cover more than one chip.
-> >>
-> >> Just go with SoC-based compatibles. If your version is not specific
-> >> enough, then it is not a good way to represent the hardware.
-> >>
-> >
-> > Hi Krzysztof:
-> >
-> > I have tried to write the following  SoC-based compatibles,  is it fine?
-> >
-> > compatible:
-> >     enum:
-> >       - loongson,ls3a-eiointc  # For MIPS Loongson-3A if necessary.
-> >       - loongson,ls2k0500-eiointc
-> >       - loongson,ls2k200-eiointc
->
-> Looks good, but didn't you state these are compatible between each
-> other? I have impression there is a common set, so maybe one compatible
-> work on other device with reduced number of devices?
->
+On 09/02/2023 15:26, Andrew Jones wrote:
+> Using memset() to zero a 4K page takes 563 total instructions, where
+> 20 are branches. clear_page(), with Zicboz and a 64 byte block size,
+> takes 169 total instructions, where 4 are branches and 33 are nops.
+> Even though the block size is a variable, thanks to alternatives, we
+> can still implement a Duff device without having to do any preliminary
+> calculations. This is achieved by taking advantage of 'vendor_id'
+> being used as application-specific data for alternatives, enabling us
+> to stop patching / unrolling when 4K bytes have been zeroed (we would
+> loop and continue after 4K if the page size would be larger)
+> 
+> For 4K pages, unrolling 16 times allows block sizes of 64 and 128 to
+> only loop a few times and larger block sizes to not loop at all. Since
+> cbo.zero doesn't take an offset, we also need an 'add' after each
+> instruction, making the loop body 112 to 160 bytes. Hopefully this
+> is small enough to not cause icache misses.
+> 
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>   arch/riscv/Kconfig                | 13 ++++++
+>   arch/riscv/include/asm/insn-def.h |  4 ++
+>   arch/riscv/include/asm/page.h     |  6 ++-
+>   arch/riscv/kernel/cpufeature.c    | 11 +++++
+>   arch/riscv/lib/Makefile           |  1 +
+>   arch/riscv/lib/clear_page.S       | 71 +++++++++++++++++++++++++++++++
+>   6 files changed, 105 insertions(+), 1 deletion(-)
+>   create mode 100644 arch/riscv/lib/clear_page.S
+> 
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 029d1d3b40bd..9590a1661caf 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -456,6 +456,19 @@ config RISCV_ISA_ZICBOM
+>   
+>   	   If you don't know what to do here, say Y.
+>   
+> +config RISCV_ISA_ZICBOZ
+> +	bool "Zicboz extension support for faster zeroing of memory"
+> +	depends on !XIP_KERNEL && MMU
+> +	select RISCV_ALTERNATIVE
+> +	default y
+> +	help
+> +	   Enable the use of the ZICBOZ extension (cbo.zero instruction)
+> +	   when available.
+> +
+> +	   The Zicboz extension is used for faster zeroing of memory.
+> +
+> +	   If you don't know what to do here, say Y.
+> +
+>   config TOOLCHAIN_HAS_ZIHINTPAUSE
+>   	bool
+>   	default y
+> diff --git a/arch/riscv/include/asm/insn-def.h b/arch/riscv/include/asm/insn-def.h
+> index e01ab51f50d2..6960beb75f32 100644
+> --- a/arch/riscv/include/asm/insn-def.h
+> +++ b/arch/riscv/include/asm/insn-def.h
+> @@ -192,4 +192,8 @@
+>   	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
+>   	       RS1(base), SIMM12(2))
+>   
+> +#define CBO_zero(base)						\
+> +	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
+> +	       RS1(base), SIMM12(4))
+> +
+>   #endif /* __ASM_INSN_DEF_H */
+> diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
+> index 9f432c1b5289..ccd168fe29d2 100644
+> --- a/arch/riscv/include/asm/page.h
+> +++ b/arch/riscv/include/asm/page.h
+> @@ -49,10 +49,14 @@
+>   
+>   #ifndef __ASSEMBLY__
+>   
+> +#ifdef CONFIG_RISCV_ISA_ZICBOZ
+> +void clear_page(void *page);
+> +#else
+>   #define clear_page(pgaddr)			memset((pgaddr), 0, PAGE_SIZE)
+> +#endif
+>   #define copy_page(to, from)			memcpy((to), (from), PAGE_SIZE)
+>   
+> -#define clear_user_page(pgaddr, vaddr, page)	memset((pgaddr), 0, PAGE_SIZE)
+> +#define clear_user_page(pgaddr, vaddr, page)	clear_page(pgaddr)
+>   #define copy_user_page(vto, vfrom, vaddr, topg) \
+>   			memcpy((vto), (vfrom), PAGE_SIZE)
+>   
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 74736b4f0624..42246bbfa532 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -280,6 +280,17 @@ void __init riscv_fill_hwcap(void)
+>   #ifdef CONFIG_RISCV_ALTERNATIVE
+>   static bool riscv_cpufeature_application_check(u32 feature, u16 data)
+>   {
+> +	switch (feature) {
+> +	case RISCV_ISA_EXT_ZICBOZ:
+> +		/*
+> +		 * Zicboz alternative applications provide the maximum
+> +		 * supported block size order, or zero when it doesn't
+> +		 * matter. If the current block size exceeds the maximum,
+> +		 * then the alternative cannot be applied.
+> +		 */
+> +		return data == 0 || riscv_cboz_block_size <= (1U << data);
+> +	}
+> +
+>   	return data == 0;
+>   }
+>   
+> diff --git a/arch/riscv/lib/Makefile b/arch/riscv/lib/Makefile
+> index 6c74b0bedd60..26cb2502ecf8 100644
+> --- a/arch/riscv/lib/Makefile
+> +++ b/arch/riscv/lib/Makefile
+> @@ -8,5 +8,6 @@ lib-y			+= strlen.o
+>   lib-y			+= strncmp.o
+>   lib-$(CONFIG_MMU)	+= uaccess.o
+>   lib-$(CONFIG_64BIT)	+= tishift.o
+> +lib-$(CONFIG_RISCV_ISA_ZICBOZ)	+= clear_page.o
+>   
+>   obj-$(CONFIG_FUNCTION_ERROR_INJECTION) += error-inject.o
+> diff --git a/arch/riscv/lib/clear_page.S b/arch/riscv/lib/clear_page.S
+> new file mode 100644
+> index 000000000000..5b851e727f7c
+> --- /dev/null
+> +++ b/arch/riscv/lib/clear_page.S
+> @@ -0,0 +1,71 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2023 Ventana Micro Systems Inc.
+> + */
+> +
+> +#include <linux/linkage.h>
+> +#include <asm/asm.h>
+> +#include <asm/alternative-macros.h>
+> +#include <asm/hwcap.h>
+> +#include <asm/insn-def.h>
+> +#include <asm/page.h>
+> +
+> +#define CBOZ_ALT(order, old, new)	\
+> +	ALTERNATIVE(old, new, order, RISCV_ISA_EXT_ZICBOZ, CONFIG_RISCV_ISA_ZICBOZ)
 
-So far, the difference between ls2k SOCs is the number of devices
-supported by eiointc.
+I thought this was meant to be a CPUFEATURE_ZICBOZ thing for the
+alternatives?
 
-Do you mean use unified compatible and reuse loongson,eio-num-vecs?
+I may also be missing something, but when backporting this to 5.19
+to test it on our system the "order" argument is in fact the vendor-id
+so this doesn't work as the alternatives don't get patched in at-all.
 
-Would this be possible, e.g.
-compatible:
-     const: loongson,ls2k-eiointc
+> +
+> +/* void clear_page(void *page) */
+> +ENTRY(__clear_page)
+> +WEAK(clear_page)
+> +	li	a2, PAGE_SIZE
+> +
+> +	/*
+> +	 * If Zicboz isn't present, or somehow has a block
+> +	 * size larger than 4K, then fallback to memset.
+> +	 */
+> +	CBOZ_ALT(12, "j .Lno_zicboz", "nop")
 
-  loongson,eio-num-vecs:
-    description:
-      The number of devices supported by the extended I/O interrupt vector.
-    $ref: /schemas/types.yaml#/definitions/uint32
-    minimum: 1
-    maximum: 256
+I can't see how the CBOZ_ALT is checking for the CBOZ block
+size being bigger than 4k... I guess we should have also
+tested the block size is an exact multiple of page size?
 
-Thanks.
-Binbin
+It would also be better if we just didn't enable it and printed
+an warn when we initialise and then never advertise the feature
+in the first place?
 
-> Best regards,
-> Krzysztof
->
+> +
+> +	lw	a1, riscv_cboz_block_size
+> +	add	a2, a0, a2
+> +.Lzero_loop:
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBOZ_ALT(11, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBOZ_ALT(10, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBOZ_ALT(9, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
+
+I'm also wondering why we are using CBOZ_ALT past the first
+check. I don't see why it shouldn't just be a loop with a siz
+check like:
+
+Lzero_loop:
+	CBO_zero(a0)
+	add	a0, a0, a1
+	blge	a0, a2, .Lzero_done
+	....
+
+
+If you wanted to do multiple CBO_zero(a0) then maybe testing
+and branching would be easier to allow a certain amount of
+loop unrolling.
+
+
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBOZ_ALT(8, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	CBO_zero(a0)
+> +	add	a0, a0, a1
+> +	bltu	a0, a2, .Lzero_loop
+> +	ret
+> +.Lno_zicboz:
+> +	li	a1, 0
+> +	tail	__memset
+> +END(__clear_page)
+
+Whilst this seems to work, I am not sure why and it probably wants
+more testing.
+
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
+
