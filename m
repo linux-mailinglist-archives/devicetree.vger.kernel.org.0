@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B3269AA1F
+	by mail.lfdr.de (Postfix) with ESMTP id DC14669AA20
 	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjBQLQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 06:16:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60422 "EHLO
+        id S229976AbjBQLQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 06:16:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbjBQLQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:16:44 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192A066CCF
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:25 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id f22so630276lja.6
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:25 -0800 (PST)
+        with ESMTP id S229992AbjBQLQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:16:47 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9343B85A
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:26 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id e30so756642ljb.8
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9wJq/iqxZ5CY0MZ8/qvZLLKvRq4WEHI7wVVOEpRQbpw=;
-        b=MC0poj+iXKkHo+R2YU6rbuzxgf0jQAaVXqzsfYcg40ZF3p+sobPJSFb784cEKAph2V
-         omQrmbXAmq+e1xvIDhXtXGahku8AXRkp8Hz9BUHYS5N2NI75Ie5HsrrrN1BrptallZmn
-         2TwPVpLlWyflzhC3CIJhIZ1SaXKypl1Zl0Cp2u4JDIn8IGlNRUVSobKIjOAUsFJgLCn8
-         HhnKdH+BWhPGRNFicVt4LPpwUvJgaFW9pffXdR9uy10rZ3UDaL1Nto35bJYb/NaH5hcx
-         +KiYim1dXAd7QtUADL/nmLwNcpU2tZuRtQJm4+FhOK/8RdcUA45ToDW7owata6sb3Ddb
-         /jlA==
+        bh=0e01nddNNggomilaOmguOcFx036Ua8m431JWLUtouH8=;
+        b=CFjALJfnxDN/Vkk/EMv9EpN+uCLAJekJSpOmCzBM9HXaRJ1JDo7s2RCA5W9MOFiU4O
+         LSz8x1NWXU/in4bBl5bfF+OzpMaO0it5JqnthD7bg3demWpykgfsjuLvr9zKwHciV5wm
+         ntBwFtaAAlAt3gNjbBxObFbRG1Mw+QvPpogE+FebZvekkA1XJuhO4OwosATUot/pcB39
+         CdXW73vyWq+1LejmEunqRaXoQdvoAvZS653gC2SD1x+g4TwVsANDagPpvF42OqrznDVj
+         6TUy8oUbhmODSfsNDQLct/ogTWOGCZMbxm8pCozighMcbny1GUQ1RQQ9uf+t7CHnHjXG
+         jNUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9wJq/iqxZ5CY0MZ8/qvZLLKvRq4WEHI7wVVOEpRQbpw=;
-        b=zMwtfJQcxrUCLBJfq8f1IRmTLf5dmR0uVYnuXJFe5UasS252WTl+uNPXElPmqo9Uo7
-         8AcPea14GUyEs50C8vvoCYWNV4EhSe9sAFtk21709xmUwHVcaGfGnyFYkKBRokiCiZ0j
-         m9vIT7A+WWfHXH962lS3nCmztFeNM2ZfQpruDQ9nKXsejSEDP9Ny2CCCnHPe0uXTCtEj
-         PpE124Z3thMvyC1poLnSau2lIdD1LQjnUxto2RroDIfVljWMzeDifQULWrih1isJ+Xc7
-         sKV8ygtohQR5gaL3hQk5d4UxxtiYlziGurgeEIB7rXu1U/86XNIT++FPhbeGQhUlr1j5
-         EX9Q==
-X-Gm-Message-State: AO0yUKXYX0yxT8fvwtvxGUP8h5tAWnLzMQ8mLiHF2Zfpa+6pEm5N4cwp
-        DJJaraNQTXT88bSaf04ssCuqRg==
-X-Google-Smtp-Source: AK7set+MHcEoedvXSDYloedEh6Y9Sy1Tzo13ZFKtLdr645Gc9MRYQ7gRjlpO3L0eUgXSthIRnqVygQ==
-X-Received: by 2002:a05:651c:1031:b0:293:4b8d:daeb with SMTP id w17-20020a05651c103100b002934b8ddaebmr66584ljm.34.1676632583401;
-        Fri, 17 Feb 2023 03:16:23 -0800 (PST)
+        bh=0e01nddNNggomilaOmguOcFx036Ua8m431JWLUtouH8=;
+        b=syqu3AI2uIZLIec/zYCbIgTzLf3roAYzDcDro3PMdZnIoMKLS2cUqT8CLe7eAewU/e
+         U3L5p59OFtt+9Kh9ScboRxDrbaE3rqyXSsxtaX5E0rOVKz34RWYd8WS2iU9I4b1LAHMP
+         IXYbywn7sPkPSRk0vZoC3dFr9WyJia0srsyH4zvxJTkOp1A4fS6IRVTJ2lk3YfjH7M6e
+         H4XoYypCMRm1fqN4Uryyc19GoTIgwqm5LpWw76gPd5D+CAkRpAeTUeHuIfFW1vsXl3Lt
+         2MfzLibkjeVdiXI/gureE9eL36wZnhqZ8gae5g76HjFv4zx5J8FERXtMd/LnsZzp0gzd
+         ydpg==
+X-Gm-Message-State: AO0yUKWspuZxCdNnphSPSoZsU5Nxp4555HvcSzw+xOqMLYeUYOqi2KSf
+        bAOLgKiJAdJ3mLRwJ8HEWk7WkQ==
+X-Google-Smtp-Source: AK7set8UZtt/gDomOxIqtofjuy2wALx/F9R2DtKLK8ThMjlMdmnvCx7zhJ+vQFPf9RFthPrvueUFsA==
+X-Received: by 2002:a2e:574b:0:b0:294:712a:5190 with SMTP id r11-20020a2e574b000000b00294712a5190mr739293ljd.28.1676632584963;
+        Fri, 17 Feb 2023 03:16:24 -0800 (PST)
 Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id u21-20020a2e9b15000000b002935899fe3fsm554818lji.116.2023.02.17.03.16.22
+        by smtp.gmail.com with ESMTPSA id u21-20020a2e9b15000000b002935899fe3fsm554818lji.116.2023.02.17.03.16.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 03:16:23 -0800 (PST)
+        Fri, 17 Feb 2023 03:16:24 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
@@ -61,9 +61,9 @@ Cc:     marijn.suijten@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/6] arm64: dts: qcom: sc7280: Add qcom,smmu-500 to Adreno SMMU
-Date:   Fri, 17 Feb 2023 12:16:10 +0100
-Message-Id: <20230217111613.306978-3-konrad.dybcio@linaro.org>
+Subject: [PATCH v2 4/6] arm64: dts: qcom: sm8150: Add qcom,smmu-500 to Adreno SMMU
+Date:   Fri, 17 Feb 2023 12:16:11 +0100
+Message-Id: <20230217111613.306978-4-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230217111613.306978-1-konrad.dybcio@linaro.org>
 References: <20230217111613.306978-1-konrad.dybcio@linaro.org>
@@ -86,23 +86,23 @@ Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 v1 -> v2:
 No changes
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index bdcb74925313..a8227bb6b336 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2677,7 +2677,8 @@ dma@117f000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index d94171f9b73d..3da77141a164 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -2287,7 +2287,8 @@ gpucc: clock-controller@2c90000 {
  		};
  
- 		adreno_smmu: iommu@3da0000 {
--			compatible = "qcom,sc7280-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
-+			compatible = "qcom,sc7280-smmu-500", "qcom,adreno-smmu",
+ 		adreno_smmu: iommu@2ca0000 {
+-			compatible = "qcom,sm8150-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
++			compatible = "qcom,sm8150-smmu-500", "qcom,adreno-smmu",
 +				     "qcom,smmu-500", "arm,mmu-500";
- 			reg = <0 0x03da0000 0 0x20000>;
+ 			reg = <0 0x02ca0000 0 0x10000>;
  			#iommu-cells = <2>;
- 			#global-interrupts = <2>;
+ 			#global-interrupts = <1>;
 -- 
 2.39.1
 
