@@ -2,221 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8A4169A7CD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C44F69A7D8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbjBQJGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 04:06:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38528 "EHLO
+        id S229504AbjBQJI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 04:08:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbjBQJGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:06:15 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A9E60A50
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:06:13 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id dn12so9462415edb.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:06:13 -0800 (PST)
+        with ESMTP id S230030AbjBQJIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:08:24 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908F15FDD;
+        Fri, 17 Feb 2023 01:08:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JSIBIYecSAzgxxMW+baXFDwV8+JzmvL6P/jsbxXUIM8=;
-        b=Y2/kbJRo//tgiNv267ceDZHTRJQc2QnBbl/hTDbXCBcGUZvpafMthRihk5BXV3snif
-         cdDwQPfx9WkHfioUXRlfrNGz+jerIwUcJae2X+t80PPfeVGxjSz525CexDnpbEy9l3ur
-         iZ7J9Cy+uD7yYGVOug5xKR96sCVbBIZNKdA88bV2PSthIpSjZ0xpdZMovRKwrA/SGMsE
-         cwPQgX6mS4SKZn7BQTDj8FeWIRhFgtEXgtMZtRJiYvwPjW6gG4VjWYESNU0EFvEtUmDS
-         6tVhg3Yo43uOA3MxppWLtxEKPnwUEFiQuimIDdxdP8h0NKmSn867Vqe5Eqd23J9a4JiD
-         UlIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JSIBIYecSAzgxxMW+baXFDwV8+JzmvL6P/jsbxXUIM8=;
-        b=UeVbIXTtwn+K9mDf6Xbw2CD6Sh+u/nYBx6rxQSco/4Uoy0teztwTL/OPBNlRY2a+eo
-         0yXKuhxn1OsfFd9HG9IooQ//nq1kZqe6RI8bdfvcDGOh9+xFVWNmB8f7GC0CJWQUJdGh
-         kQT54TYVVAuX41e+YLnN8pWt/07DH5asdVHFWkzQTboTpRD07PeakhV+nxDoEvSS9Lc6
-         jm6RpaDtYw9lH2DZC4y5ZC0T1qTnbHg8ykmGqAeNv8SSm4iKaArbUH3QfeesKjufR4nq
-         DPkTG5fGTbgbVJp5UAymjRo1D7WNXnBEkAKli8UVWX7L1ahPV334FoFnodjWPKaVYBLd
-         avMg==
-X-Gm-Message-State: AO0yUKX+KOZyesOOf4LaBRCQtXVQ4po6MWhEsJBIwi5lxbwp0EIGKDTF
-        nwLqObxe86UN+jXI7edO5r9WIwNftkicznYp
-X-Google-Smtp-Source: AK7set9mE6QyfGJnv+24G8XcIOFFM/CXR2pndtsVwQAW5+l7mkajK1EbhdqM4iSWcJJFbpSblf6ZPQ==
-X-Received: by 2002:a17:906:e293:b0:8aa:9abe:8edd with SMTP id gg19-20020a170906e29300b008aa9abe8eddmr1718372ejb.66.1676624771844;
-        Fri, 17 Feb 2023 01:06:11 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o1-20020a170906288100b0084cb4d37b8csm1906045ejd.141.2023.02.17.01.06.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 01:06:11 -0800 (PST)
-Message-ID: <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
-Date:   Fri, 17 Feb 2023 10:06:09 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1676624897; x=1708160897;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=7Vc5xOeqdDqnSlLrTyhfLk5SSq2C5UlsLZ+03AMgLRE=;
+  b=h/RFzoWe9L9YmNMz0iAUeVfEb0IAn92Wno7WsKnpRzR6kN15ZPRUy1C2
+   0s5TL3gsYgaYuNaNXaGPeAIxy3YuBe2rlI5OzDAZuNmIyjHuqAC1/M1qs
+   U8+9cTlG1upqdnYE3aoFPmPAr1vcP1VOJ2w9IaejmQAb5BpDT4u5jHdSw
+   wjhBf5Anybk6YsGKc1mXXWLRVOnCVQoq2VFKv+YQZdoMQf/5MXumV9qo4
+   Q4R0D0Tq1cPcEREoFKCDwO5e9cdqrnXnxn9cOiFuRhQhIbj4p0cyEVEKT
+   oPGFAQy6OCwo6HRlIei0iYBcMdTqyJp5kMMc96HE7JcBlEKwAzu2NvHs9
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.97,304,1669071600"; 
+   d="scan'208";a="29150118"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 17 Feb 2023 10:08:15 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 17 Feb 2023 10:08:14 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 17 Feb 2023 10:08:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1676624895; x=1708160895;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=7Vc5xOeqdDqnSlLrTyhfLk5SSq2C5UlsLZ+03AMgLRE=;
+  b=MC8ulJkIsyfcExdobJu3K7EBCiY1L6/94Z00QaI2GpeQJTk/pmnNP29N
+   dvTwLdt4gtAeI753j/BL+LaTJ3+92d7cLOq/EQ+BetamAZg+/dBQzMZsL
+   jLYTCJurkRvjLNCytt3ISeLYgGk28jmwmYbLIeOWZfiBCCkX5BxuoFKSc
+   RPShSWDaKEGRwmhmKxve2X6fu7bWTOReoCCCWYZqQvtPz/3FGozVVrkwP
+   h6uHpIjB0k7PzdWoSW/iCaMnoIPmgzVZr4iuk/oHP+o1VfyrqeIwz7uKV
+   4POLMhkPFVMkp71HX9H/EN1v119xanz0fvg+EKhuvYHxxOTdEiOSRY8Al
+   g==;
+X-IronPort-AV: E=Sophos;i="5.97,304,1669071600"; 
+   d="scan'208";a="29150117"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 17 Feb 2023 10:08:14 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 15FFE280056;
+        Fri, 17 Feb 2023 10:08:14 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-media@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 00/15] media: i2c: imx290: Mono support, minor fixes, alternate INCK, and more controls
+Date:   Fri, 17 Feb 2023 10:08:12 +0100
+Message-ID: <1924202.PYKUYFuaPT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
+References: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1 1/4] dt-bindings: mfd: Add DT bindings for TI TPS6594
- PMIC
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        corbet@lwn.net
-Cc:     hdegoede@redhat.com, eric.auger@redhat.com, jgg@ziepe.ca,
-        razor@blackwall.org, suma.hegde@amd.com,
-        stephen@networkplumber.org, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, eblanc@baylibre.com,
-        jneanne@baylibre.com
-References: <20230216114410.183489-1-jpanis@baylibre.com>
- <20230216114410.183489-2-jpanis@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230216114410.183489-2-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 12:44, Julien Panis wrote:
-> TPS6594 is a Power Management IC which provides regulators and others
+Hi Laurent,
 
-Subject: drop second/last, redundant "DT bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-
-> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> PFSM (Pre-configurable Finite State Machine) managing the state of the
-> device.
-> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
-> 
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 164 ++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> new file mode 100644
-> index 000000000000..37968d6c0420
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI TPS6594 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Julien Panis <jpanis@baylibre.com>
-> +
-> +description: |
-> +  TPS6594 is a Power Management IC which provides regulators and others
-> +  features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> +  PFSM (Pre-configurable Finite State Machine) managing the state of the device.
-> +  TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,tps6594
-> +      - ti,tps6593
-> +      - ti,lp8764x
-
-Any particular choice of ordering (different than alphabetical)?
-
-> +
-> +  reg:
-> +    description: I2C slave address or SPI chip select number.
-> +    maxItems: 1
-> +
-> +  ti,use-crc:
-> +    type: boolean
-> +    description: If true, use CRC for I2C and SPI interface protocols.
-
-Hm, why different boards would like to enable or disable it? Why this
-suits DT?
-
-> +
-> +  system-power-controller: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ti,multi-phase-id:
-> +    description: |
-> +      Describes buck multi-phase configuration, if any. For instance, XY id means
-> +      that outputs of buck converters X and Y are combined in multi-phase mode.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [12, 34, 123, 1234]
-> +
-> +patternProperties:
-> +  "^buck([1-5]|12|34|123|1234)-supply$":
-> +    description: Input supply phandle for each buck.
-> +
-> +  "^ldo[1-4]-supply$":
-> +    description: Input supply phandle for each ldo.
-> +
-> +  regulators:
-
-This should go to properties, not patternProperties.
-
-> +    type: object
-> +    description: List of regulators provided by this controller.
-> +
-> +    patternProperties:
-> +      "^buck([1-5]|12|34|123|1234)$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +
-> +        unevaluatedProperties: false
-> +
-> +      "^ldo[1-4]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +
-> +        unevaluatedProperties: false
-> +
-
-You could add here - on this level - of indentation allOf:if for
-excluding setups
-
-if:
-  required:
-    - buck12
-then:
-  properties:
-    buck123: false
-    buck1234: false
-
-Or, if you want to require regulator then:
-oneOf:
-  - required:
-      - buck12
-  - required:
-      - buck123
-  - required:
-      - buck1234
-
-and anyway exclude buck34 with two above.
-
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-
-
+thanks for the wrap-up.
+I could test this series on my TQMa8MPxL (i.MX8MP) using ISP and libcamera =
+as=20
+well. I think as well that we're good to go.
 
 Best regards,
-Krzysztof
+Alexander
+
+Am Mittwoch, 15. Februar 2023, 23:29:48 CET schrieb Laurent Pinchart:
+> Hello,
+>=20
+> This patch series combines the "[PATCH v2 0/2] Add support for mono
+> version of Sony IMX290 sensor" ([1]) and "[PATCH v2 00/13] imx290: Minor
+> fixes, support for alternate INCK, and more ctrls" ([2]) previously
+> submitted by Dave into a single series.
+>=20
+> As promised in my review of v2 of both series, I have tested the changes
+> with my IMX327 camera sensor, connected to the i.MX8MP ISP, with
+> libcamera. I haven't noticed any regression (but, full disclaimer, I
+> haven't tested all the newly features). I think we're thus good to go.
+>=20
+> This version handles all review comments from v2, resulting in the
+> following changes:
+>=20
+> - Deprecate the sony,imx290 compatible
+> - Update the DT example to use the new sony,imx290lqr compatible
+> - Drop unneeded pointer cast
+> - Don't move imx290_of_match table
+> - Fix typos
+>=20
+> The code has also been rebased on top of the latest media master branch,
+> with rebase conflicts and rebase-induced compilation breakages fixed.
+>=20
+> The patches are available from
+>=20
+> git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git
+> next/media/sensors/imx290
+>=20
+> [1]
+> https://lore.kernel.org/linux-media/20230203191644.947643-1-dave.stevenso=
+n@
+> raspberrypi.com [2]
+> https://lore.kernel.org/linux-media/20230203191811.947697-1-dave.stevenso=
+n@
+> raspberrypi.com
+>=20
+> Dave Stevenson (15):
+>   media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+>   media: i2c: imx290: Add support for the mono sensor variant
+>   media: i2c: imx290: Match kernel coding style on whitespace
+>   media: i2c: imx290: Set the colorspace fields in the format
+>   media: i2c: imx290: Add V4L2_SUBDEV_FL_HAS_EVENTS and subscribe hooks
+>   media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s
+>   media: i2c: imx290: Support 60fps in 2 lane operation
+>   media: i2c: imx290: Use CSI timings as per datasheet
+>   media: i2c: imx290: Convert V4L2_CID_HBLANK to read/write
+>   media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
+>   media: i2c: imx290: VMAX is mode dependent
+>   media: i2c: imx290: Remove duplicated write to IMX290_CTRL_07
+>   media: i2c: imx290: Add support for 74.25MHz external clock
+>   media: i2c: imx290: Add support for H & V Flips
+>   media: i2c: imx290: Add the error code to logs in start_streaming
+>=20
+>  .../bindings/media/i2c/sony,imx290.yaml       |  24 +-
+>  drivers/media/i2c/imx290.c                    | 537 ++++++++++++++----
+>  2 files changed, 442 insertions(+), 119 deletions(-)
+>=20
+>=20
+> base-commit: 83e0f265aa8d0e37cc8e15d318b64da0ec03ff41
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
