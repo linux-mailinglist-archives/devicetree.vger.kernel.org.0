@@ -2,125 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A719569AA61
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0B569AA64
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:30:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbjBQLa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 06:30:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45532 "EHLO
+        id S229798AbjBQLaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 06:30:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbjBQLa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:30:28 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 042426568D
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:30:08 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id ee31so4584570edb.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:30:07 -0800 (PST)
+        with ESMTP id S230050AbjBQLao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:30:44 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E7F65693
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:30:40 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id t4so386125lfr.7
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:30:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FBs3G+5rDOAD7jz6/mROi4c/cabIc4TAXJ4KNHRdV7Y=;
-        b=xdjshueeGfdfkVtEqdmdj/CHWIs7xaE5c4jvbsQpmt2UQWO3DWcFWQDXbOqXyjLzmg
-         QDxt7nWPHa8d9XZdU8QxjONPQaMrRNOotXOzqPTCtb0lbk0bQx/nvv/cNeX/t6fjBMNc
-         bT3IVdfOZ/8KFRyPBs+4Ak5T4wb/iM73iES1CCLgraAC2IC67fK2vmWUMxlcyRMHICIR
-         cy+SVJSfHFgUnWg004CIIBWvxuwVBetSk9TNh+M5k7iKsVR6Ysyq9aSBn6c+Q4jAaid9
-         eD/GiYXcMF1xA5R5KtwAA7Rj2IbgVobOB7p4+64O8WENZ4tWVSmum8Ui7/VfUJ7oIMwM
-         XfXg==
+        bh=+UjwnnvTvMLJ4Y6XS63B/yytwWRXv2XOhJTYsHtcd/Q=;
+        b=hGOt/7OwzHwSqQUN3Tzpj+3yaknb8/DjSJB7C42+87giBwwCDuzXKAjOM5Vwgc9AyC
+         M6rQSCAC7CjUDRVHzyZXc2WQAiX8WRPW+oO7arWmTc8dJ5oi1rW9/cmcV7O3F5cQSry7
+         Zkkcmp8a+lMyaY34bjpQEFgtrkoVXRqvD0oeWzhjH2U9vDXW9xLQF5yGzBw9PQrban8+
+         kzJPQcP0z/nK9Qf/2OajBqsFPUhpGPmTFAYMhLbpWNNZuOaDf9kymnlsxhrTSPOHUKpp
+         f7FTEr/veTESFn19lGiEQUgkx633n8B3HleRoeVY/dOlrpoiTAJKAMCBImGZhgdS+Lmc
+         cN9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FBs3G+5rDOAD7jz6/mROi4c/cabIc4TAXJ4KNHRdV7Y=;
-        b=Gbs16HC7vLXoHNUEqm+8ZS6HjGhyn1HsqlPIV1iBFlQIaIYW4Qq+R1wABOdOkrJyDA
-         cHv6UeZZDKFhrXZVgabT+i0pUM982fS2hE1o//MB3yyeAqQv4/LyvHBDsXQ2zMYYEbgW
-         wzLkclwuXDB+D88hvhHKnpVNgOGDqItW7jRx6eFpL/O6z8zOAli4Y17of1oSy7XsfxCQ
-         37v2wgfhJW/CSMZT3L8RwMXvUMDrTNAcnyPKMS82tDS1kfGrWKSJA/uXzjtZZ8XSQnF5
-         LCPbmYdU16Yy4wsG2vlVmPsZo00X1MHFr4FCJ3OAtUjAfpJooLEEgZnmJHqUK7nCK17E
-         /+wg==
-X-Gm-Message-State: AO0yUKXoc7LQAxX84TUl8vZHYcYu0qp6U/vKDfuphQ2JVi6tlLk5bFrw
-        DbCL5Gkk4kWOtS+7IowI/LEVjA==
-X-Google-Smtp-Source: AK7set84zZR/iqCf2WhRExqzAoyqtlMbTwfj3Shf6m/+1SOuGTvZ+sZaA/bAqfZcJy4eRAzK/G8eaw==
-X-Received: by 2002:a05:6402:695:b0:4aa:a0ed:e373 with SMTP id f21-20020a056402069500b004aaa0ede373mr1235952edy.7.1676633406486;
-        Fri, 17 Feb 2023 03:30:06 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w10-20020a50c44a000000b004ad1815f3e9sm2110588edf.97.2023.02.17.03.30.04
+        bh=+UjwnnvTvMLJ4Y6XS63B/yytwWRXv2XOhJTYsHtcd/Q=;
+        b=SGHFTLeJ4+wjFy8FkRCGvNpdYo5wxDpExjbeZUIDiFw3NA/CE33iarZCC61/IU3cEw
+         REyaJKYmrmb5/Oa5+YNHLv7Pz34t7pbleThhDE1/mZrqwYOD0wwvUwKNAl2U/rm6Iy5Q
+         AKOQNyMYlgOb7CUg0d7LFo22zDBRG1xMBEs3u/XpVmj/OJSJu9MdyG3hWr4rcySUSWOG
+         XPSlIam+h5aB+rz9ukMjeILOk8B+IND2ssobiofJg8UrRO5efa4w6Lp+7un3aZX2Aj26
+         TCKjyobgw60KT8/M36AO9kFk4kgebbkMfjAPvB89oQZ4s7QKkjNnEMVsit+dE5gGmSG0
+         WYfw==
+X-Gm-Message-State: AO0yUKVktXn4bFqtbxEBryHaJYI4VmBS0uSfRgQ/GHc9g2vLgrZipfE1
+        9bljjz2LupvsLv/h11VFwTO7jg==
+X-Google-Smtp-Source: AK7set9/oFSncZ7n4xQLDvOgiunaPd7KrfeKbnHML6a2gS6//S6mgs8oyqxmQmKKwh9BQSG1P8JLNQ==
+X-Received: by 2002:a19:550b:0:b0:4db:26d3:e2f8 with SMTP id n11-20020a19550b000000b004db26d3e2f8mr2512777lfe.22.1676633438722;
+        Fri, 17 Feb 2023 03:30:38 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id w25-20020a05651204d900b004dab932248fsm651981lfq.180.2023.02.17.03.30.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 03:30:06 -0800 (PST)
-Message-ID: <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
-Date:   Fri, 17 Feb 2023 12:30:04 +0100
+        Fri, 17 Feb 2023 03:30:38 -0800 (PST)
+Message-ID: <07defd1c-2cbd-f25b-d1f4-824023d27135@linaro.org>
+Date:   Fri, 17 Feb 2023 12:30:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated QCM2290 compatible
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 2/2] dt-bindings: watchdog: Add MSM8994 watchdog timer
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230217111316.306241-1-konrad.dybcio@linaro.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        linux-watchdog@vger.kernel.org
+References: <20221117105845.13644-1-konrad.dybcio@linaro.org>
+ <20221117105845.13644-2-konrad.dybcio@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221117105845.13644-2-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 12:13, Konrad Dybcio wrote:
-> SM6115 previously erroneously added just "qcom,dsi-ctrl-6g-qcm2290",
-> without the generic fallback. Fix the deprecated binding to reflect
-> that.
+
+
+On 17.11.2022 11:58, Konrad Dybcio wrote:
+> Document the MSM8994 watchdog timer which is already used in DT.
 > 
-> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> Depends on (and should have been a part of):
+Looks like this never got applied?
+
+Konrad
+>  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
-> 
-> v1 -> v2:
-> New patch
-> 
->  .../devicetree/bindings/display/msm/dsi-controller-main.yaml     | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 41cdb631d305..ee19d780dea8 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -37,7 +37,6 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> index d8ac0be36e6c..a1f17c9e02db 100644
+> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> @@ -17,6 +17,7 @@ properties:
+>      oneOf:
 >        - items:
-
-If this way stays, drop the items as it is just an enum.
-
 >            - enum:
->                - qcom,dsi-ctrl-6g-qcm2290
-> -          - const: qcom,mdss-dsi-ctrl
-
-Wasn't then intention to deprecate both - qcm2290 and mdss - when used
-alone?
-
-
-Best regards,
-Krzysztof
-
+> +              - qcom,apss-wdt-msm8994
+>                - qcom,apss-wdt-qcs404
+>                - qcom,apss-wdt-sc7180
+>                - qcom,apss-wdt-sc7280
