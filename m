@@ -2,63 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 275EC69A2B3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 00:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7C469A2F3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 01:32:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjBPXxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Feb 2023 18:53:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54342 "EHLO
+        id S230230AbjBQAcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Feb 2023 19:32:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjBPXxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 18:53:31 -0500
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC065958C;
-        Thu, 16 Feb 2023 15:53:12 -0800 (PST)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+        with ESMTP id S229492AbjBQAcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Feb 2023 19:32:53 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1F365BF;
+        Thu, 16 Feb 2023 16:32:51 -0800 (PST)
+Received: from [192.168.1.90] (unknown [86.120.32.152])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4PHsFq0GS4z4x89;
-        Fri, 17 Feb 2023 10:53:02 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1676591584;
-        bh=fP7M6V+cjNdWp1AJeaYpecLEvF9ZpOfTM+q7vfHAObU=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=rACrYxab0E15ubVIDUkicHNZ9A7o6QYmslTZDcOJQfv/F/0NBjWDNSogqxgIeXY6/
-         ES7W5herbayThve7MD61VmbV1VgH9umTLzCioelUwYSDn5NuYy2zyhj33GJlWsir8a
-         ulpOs7iyxfs3sCIy0239wGGeto2v+Mo4XuIdQOnmhKX8lsw/gpAqMubXK7uzmr+MjE
-         fsVJHz/hJPLnVYPKrLNaflekWVbGGbrv7w8dC0g5WWu6f2WLbfm5nYmyePabZYU7Tz
-         xBdgnLQfW2lEvmPa2LK2SR31sA6tFbYUXnUOPsQzeJnqx7s55RErGykHtpIo2Udk4K
-         i8Rj2sYAlIr1g==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 00/10] Add the PowerQUICC audio support using the QMC
-In-Reply-To: <20230216134226.1692107-1-herve.codina@bootlin.com>
-References: <20230216134226.1692107-1-herve.codina@bootlin.com>
-Date:   Fri, 17 Feb 2023 10:52:58 +1100
-Message-ID: <87mt5dyxph.fsf@mpe.ellerman.id.au>
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2189766020BD;
+        Fri, 17 Feb 2023 00:32:48 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676593969;
+        bh=Pijk7J1JiCVDIPHd1Fu56Q59b7X2BTHU0d+zzfSw4ok=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=R2YHuHryIxI4sX2DHvXuf3KkHJD0wdjhm5wp/kDeuQ1BcrJNTcNmeQunFVnY4zdAs
+         uTQOGAl5b/d/h7z6f6tfbukkf5pEC+9omQGycaFq8ETbHgv9NFKIQaxQcDv3QEotNs
+         2U5oXYEiCqKvOl9eqGHT+AeXqkuKIJZHwEjpIvOB2Sa9HhzhgvFfPXT4RtlKegzlah
+         ZpcJWmvUYMyQxYyzZfdcZOUodk/yfGp5SwUOtDRVS3GQBvcxq01CQgBDOgWHPKhSkN
+         OAGvg9p1k+jg6j0+p6EWD1tkh3ghxG3KHv5Aq31mk5CpBrQ2PPIIyohNjZoTTEp114
+         2EKZugb5oSkmA==
+Message-ID: <a824a7f6-0a62-7cab-180b-f20297311a2b@collabora.com>
+Date:   Fri, 17 Feb 2023 02:32:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 07/12] dt-bindings: net: Add StarFive JH7100 SoC
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
+ <20230211031821.976408-8-cristian.ciocaltea@collabora.com>
+ <Y+e74UIV/Td91lKB@lunn.ch>
+ <586971af-2d78-456d-a605-6c7b2aefda91@collabora.com>
+ <Y+zXv90rGfQupjPP@lunn.ch>
+ <cfa0f980-4bb6-4419-909c-3fce697cf8f9@collabora.com>
+ <Y+5t4Jlb0ytw40pu@lunn.ch>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <Y+5t4Jlb0ytw40pu@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,44 +81,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Herve Codina <herve.codina@bootlin.com> writes:
-> Hi,
->
-> This series adds support for audio using the QMC controller available in
-> some Freescale PowerQUICC SoCs.
+On 2/16/23 19:54, Andrew Lunn wrote:
+>> I gave "rgmii-id" a try and it's not usable, I get too many errors. So
+>> "rgmii" should be the right choice here.
+> 
+> I would actually say it shows we don't understand what is going on
+> with delays. "rgmii" is not every often the correct value. The fact it
+> works suggests the MAC is adding delays.
+> 
+> What value are you using for starfive,gtxclk-dlychain ? 
 
-Who's going to take this series?
+This is set to '4' in patch 12/12.
 
-By lines of code it's mostly in drivers/soc/fsl, so I was expecting it
-would go via that tree.
+> Try 0 and then "rgmii-id"
 
-Or is it a sound series that should go via one of the sound trees?
+I made some more tests and it seems the only stable configuration is 
+"rgmii" with "starfive,gtxclk-dlychain" set to 4:
 
-cheers
+phy-mode | dlychain | status
+---------+----------+--------------------------------------------
+rgmii    |        4 | OK (no issues observed)
+rgmii-id |        4 | BROKEN (errors reported [1])
+rgmii    |        0 | UNRELIABLE (no errors, but frequent stalls)
+rgmii-id |        0 | BROKEN (errors reported)
 
-...
->  .../soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml      |  172 ++
->  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml |  234 +++
->  .../bindings/sound/fsl,qmc-audio.yaml         |  117 ++
->  MAINTAINERS                                   |   25 +
->  arch/powerpc/platforms/8xx/cpm1.c             |    2 +-
->  drivers/soc/fsl/qe/Kconfig                    |   23 +
->  drivers/soc/fsl/qe/Makefile                   |    2 +
->  drivers/soc/fsl/qe/qmc.c                      | 1533 +++++++++++++++++
->  drivers/soc/fsl/qe/tsa.c                      |  869 ++++++++++
->  drivers/soc/fsl/qe/tsa.h                      |   42 +
->  include/dt-bindings/soc/fsl,tsa.h             |   13 +
->  include/soc/fsl/qe/qmc.h                      |   71 +
->  sound/soc/fsl/Kconfig                         |    9 +
->  sound/soc/fsl/Makefile                        |    2 +
->  sound/soc/fsl/fsl_qmc_audio.c                 |  735 ++++++++
->  15 files changed, 3848 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
->  create mode 100644 drivers/soc/fsl/qe/qmc.c
->  create mode 100644 drivers/soc/fsl/qe/tsa.c
->  create mode 100644 drivers/soc/fsl/qe/tsa.h
->  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
->  create mode 100644 include/soc/fsl/qe/qmc.h
->  create mode 100644 sound/soc/fsl/fsl_qmc_audio.c
+[1] Reported errors in case of BROKEN status:
+$ grep '' /sys/class/net/eth0/statistics/* | grep -v ':0$'
+
+/sys/class/net/eth0/statistics/rx_crc_errors:6
+/sys/class/net/eth0/statistics/rx_errors:6
+/sys/class/net/eth0/statistics/tx_bytes:10836
+/sys/class/net/eth0/statistics/tx_packets:46
+
+> 	Andrew			
+> 
