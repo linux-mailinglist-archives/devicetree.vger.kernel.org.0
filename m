@@ -2,113 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E233069AF00
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:07:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1556D69AF09
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:08:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230270AbjBQPHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 10:07:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39078 "EHLO
+        id S229947AbjBQPIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 10:08:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbjBQPHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:07:05 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB591557D
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:06:44 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id er25so5136979edb.6
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:06:44 -0800 (PST)
+        with ESMTP id S229928AbjBQPIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:08:31 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5CB6F7FD;
+        Fri, 17 Feb 2023 07:08:11 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id ee31so6911255edb.3;
+        Fri, 17 Feb 2023 07:08:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AfR58zk5Lq0Y4NpQRVcnXrMaw/hr0XQUMG7wTZBuFEA=;
-        b=xltorjJqnSMn9avO+CAsyd8bicX3NQVHPp2PNAklprp4tJLGKGevWTMcEr34ls0ZFC
-         0bR/EVXvyCS4R+RWN8/dbeBa7h0tRyd1m+OL80XEfzI8MHMmrl3exVUscP7io7EsB+Qa
-         QjtZEUk+8K0oUV4OYsdx2ubv3woHrCuuGsCAn+WSQf8t8WfDFfBk+kl+6q9C27hg0+Xu
-         L4Jj4rmMKdBgC2Sp2oc01OLN3V9PQk5YFyLPYGBC2FN+EyBcpO3JZveG+9m+/Rc+hAVj
-         Q085YiwR1p+xvLr36lC9k811UeBquC44G4SKDBBpsaNBjY4Mo8NqL9CpcjFIrPBTfl5m
-         zSZw==
+        bh=9XUILxJkgGPNaMRl2JbRx7qYAbvRZIGjpLxeN912ccY=;
+        b=G4X6wgf7AEX//7Db1yuig5RhDz/ee6wAdskoyteqSRR2eG/YE8FdI7IYVazfcHugni
+         fvacc3m2qfGycjJPeLioj1IWhBtVd2uoV9GYHd9bKMP/mlOqicPP+aNZ/70d4GurbLZw
+         g1zPJOd50omQxw+3drQPmJRO2J6uZPEbp2Vhce3GCeO5cwf8Awr9rXcwn2klWt48dV9O
+         2Pg7ecD+Cf75HF530Y1ILKXVWJNcl4hWDyX+WPHL1whLXncbdga8Jgo37IbMX4pnifJr
+         10KOaHQXZtQgp1N2GYtOLWeU6ljFMcsxaMiW7nIRPlX8iFEaiNI6VolqDMPH0aAbeO/Y
+         MHpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AfR58zk5Lq0Y4NpQRVcnXrMaw/hr0XQUMG7wTZBuFEA=;
-        b=NI8iLd6fNJU4dyd6TkfESNILchT+1jGHoJZR7rXUt5/kkAYKR5r2u91oh0NdUy8J8s
-         KGPlGJapVlacT1K5VuGHo8HfCM1b6PxRmt+57R1uXQDq3jO7ZOdUQfS8wkkD5OBn/uXI
-         IchDlJnsz1NpdCjSn8UCQABPke3cQcOCheW/0lK9vNI+WwItKuTFoF1R4OBSp14GO/jN
-         pVQti6cPxSDW170v4VqLPkkS3PRzQMguR/97fSUYgBnELdKauq33O+F52lpCXOwALCXN
-         omvY3y7mKopCa2TaLsjDeZLhUqVlxCfalCCqMfB/GbMm7OD78GGUAQm4cvN8cDp2aF5v
-         4W1A==
-X-Gm-Message-State: AO0yUKXuGOr229MtzMMKDvO3W3SCmwkVTQ9lsRpysjoEEXKUA0mSNHtb
-        VxeLNlUX5qqqIZkRgJfBe1vWFg==
-X-Google-Smtp-Source: AK7set/KwPZmBYn2iAIMR26SlMvThSNNLiKnjZs3zyLE9MpxGJ+X05/w4/XNBlegEFA+gRT9U4tMJw==
-X-Received: by 2002:a17:906:5a4c:b0:8b1:811e:cd30 with SMTP id my12-20020a1709065a4c00b008b1811ecd30mr2904858ejc.22.1676646401896;
-        Fri, 17 Feb 2023 07:06:41 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id fx15-20020a170906b74f00b008b14ba6c954sm2221303ejb.194.2023.02.17.07.06.39
+        bh=9XUILxJkgGPNaMRl2JbRx7qYAbvRZIGjpLxeN912ccY=;
+        b=FXfVVQi8DzAZkYCIyQdu8vOgDicjMXORrXjr6tjxp0mKZ4Z2CMDkN6Z9KCHf01JE+g
+         163irNYubtekQgaZs9EF3iItcTr0oD1wQ+jAQjF1ZlFdSMClEOeAfl73D29p/mSUOXQP
+         4aS0eB/isphwTULC6/OgcrfXEMdHKFHZpLP06EYYrlBgNn9sUn7lJ+bNd4t4sR8fg2cW
+         L6orWOocXsbRwQcse7P32Bf6JwCW+r3hVWCbxWs2IifyyfMAkmO6TL2nEar6/DYBjrB+
+         OcDsu/YaebS9FKSbGBFvQsfRiYXtUjG+Zhk6/TXCH3J6BednoxcKJpozYOzoS+dT0u+a
+         gxyA==
+X-Gm-Message-State: AO0yUKXSBA6KV6gtd0Oldr9TpEnvHfX55dqZRKqvyIZqLYCW7Gv0+pvE
+        nePhgzNmhPanu2LYgJIerGo=
+X-Google-Smtp-Source: AK7set8u6obZlXK/SaRdt9ibfXZIbRe2VxSJpVCjm54J7DNn3RllHsKwpaWO3Ucyw9xqCgqLwy5bPw==
+X-Received: by 2002:aa7:cd63:0:b0:4ac:dac1:3f91 with SMTP id ca3-20020aa7cd63000000b004acdac13f91mr1492923edb.18.1676646490338;
+        Fri, 17 Feb 2023 07:08:10 -0800 (PST)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id t10-20020a50c24a000000b004aee5dbabf9sm35555edf.24.2023.02.17.07.08.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 07:06:41 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Fri, 17 Feb 2023 07:08:09 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
+        jarkko.nikula@linux.intel.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        - <patches@opensource.cirrus.com>,
-        Adrien Grassein <adrien.grassein@gmail.com>,
-        Randy Li <ayaka@soulik.info>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        stable@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: exynos: fix WM8960 clock name in Itop Elite
-Date:   Fri, 17 Feb 2023 16:06:27 +0100
-Message-Id: <20230217150627.779764-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230217150627.779764-1-krzysztof.kozlowski@linaro.org>
-References: <20230217150627.779764-1-krzysztof.kozlowski@linaro.org>
+        linux-kernel@vger.kernel.org,
+        William Salmon <william.salmon@sifive.com>,
+        u.kleine-koenig@pengutronix.de,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: (subset) [PATCH v7 00/10] Designware PWM driver updates for OF
+Date:   Fri, 17 Feb 2023 16:08:09 +0100
+Message-Id: <167664644976.3317584.11838750253013149302.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20221223153820.404565-1-ben.dooks@sifive.com>
+References: <20221223153820.404565-1-ben.dooks@sifive.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The WM8960 Linux driver expects the clock to be named "mclk".  Otherwise
-the clock will be ignored and not prepared/enabled by the driver.
+On Fri, 23 Dec 2022 15:38:10 +0000, Ben Dooks wrote:
+> An updated set of patches for the Designware PWM driver
+> split into PCI and OF versions. I think I got all the
+> review issues in this set.
+> 
+> Sorry for the delay in getting this out, between conferences
+> and other absences there has been little time to deal with
+> this set. I will be now out of office until 3rd Jan 2023.
+> 
+> [...]
 
-Cc: <stable@vger.kernel.org>
-Fixes: 339b2fb36a67 ("ARM: dts: exynos: Add TOPEET itop elite based board")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/exynos4412-itop-elite.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied, thanks!
 
-diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-index b596e997e451..6260da187e92 100644
---- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
-+++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-@@ -182,7 +182,7 @@ codec: audio-codec@1a {
- 		compatible = "wlf,wm8960";
- 		reg = <0x1a>;
- 		clocks = <&pmu_system_controller 0>;
--		clock-names = "MCLK1";
-+		clock-names = "mclk";
- 		wlf,shared-lrclk;
- 		#sound-dai-cells = <0>;
- 	};
+[01/10] dt-bindings: pwm: Document Synopsys DesignWare snps,pwm-dw-apb-timers-pwm2
+        commit: 0f03bf300833c05d914ab7f5ab3d8bc8564e9912
+[02/10] pwm: dwc: allow driver to be built with COMPILE_TEST
+        commit: c901a57e39db555ad7950fd61e1470cdecc8e654
+[03/10] pwm: dwc: change &pci->dev to dev in probe
+        commit: 8f3c7ab881ed7329003e10a2dd58f735abda2259
+[04/10] pwm: dwc: move memory alloc to own function
+        commit: a4218d7cf8978f397e731d1f15ef33d28f77e42b
+[05/10] pwm: dwc: use devm_pwmchip_add
+        commit: 7a77daf8223e772a225d6aa6202a5b1ae2392caf
+
+Best regards,
 -- 
-2.34.1
-
+Thierry Reding <thierry.reding@gmail.com>
