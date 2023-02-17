@@ -2,83 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C64B469A9A5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:05:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 043D369A9C6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:09:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjBQLFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 06:05:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44090 "EHLO
+        id S229968AbjBQLJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 06:09:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbjBQLFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:05:40 -0500
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C4D9D642E9;
-        Fri, 17 Feb 2023 03:05:10 -0800 (PST)
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1pSyXr-0008WE-02; Fri, 17 Feb 2023 12:04:51 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id ED554C28A0; Fri, 17 Feb 2023 12:04:37 +0100 (CET)
-Date:   Fri, 17 Feb 2023 12:04:37 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Genjian <zhanggenjian123@gmail.com>
-Cc:     paulburton@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Genjian Zhang <zhanggenjian@kylinos.cn>,
-        k2ci <kernel-bot@kylinos.cn>
-Subject: Re: [PATCH] MIPS: dts: Boston: Fix dtc 'pci_device_reg' warning
-Message-ID: <20230217110437.GC7138@alpha.franken.de>
-References: <20230213062451.1688755-1-zhanggenjian@kylinos.cn>
+        with ESMTP id S229508AbjBQLIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:08:55 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59F365375
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:08:27 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id i13so1357381lfe.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:08:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wRR1n0XeDdy5V08KPVN+/glZnOr/Dk6nj2f2AocKRk8=;
+        b=uzy95TUWPEQ/pFcFlGAABly8kMmtksc9oZs1YKejPXT5xMuVPYYjr79NWZ3GP0gd8q
+         O/dA2yA9Ap6nN7V/5Uq6WELQwaxraX81jxNq8pQYiguqkm69K0q5Mj/6ugR/+YwbhC6z
+         JuEt1jLxVPsnS2unp+4ltilcI41w6rwYz7rMBw5IoTyXWiSruFOqxYdRGkDMTD/jUBVq
+         NdoKviCVOF9su3ND0/2GB+UFBsx0TZf0lAzlPn5WKA2DqbZJPjNcOkEm9FOeyhpj3vZD
+         J9gJfE4Uu3A3OyuL/SCYv/n4S6To6QFecuE3gqE13S6AZpXE2Bsl+aa1knYMNLLfuOFy
+         3CpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wRR1n0XeDdy5V08KPVN+/glZnOr/Dk6nj2f2AocKRk8=;
+        b=Kx+4jC7Tx0qBFGakYuNaN+cEohvMmjdsUIuroAhHLjFglYdNwXmyB4S50baYA4x4Yw
+         UDtMAMca7TQZa2+L7GTNfQGFbWqwcQD85KbCI4XI1cvNqQSecnGDD5JJ66SPpEfM/D44
+         7bbB6zPGVrcsj/9M8gntvOxwjNa1AaEzJQxhW4YaefUqsqXCBQxGG8b041nfTDRGnf3V
+         4KCcHn96xJSKG9qu37T3bEFRW9cHObepT13jerl5LmymaqVyoMqIyFa4ZwjLpdYC5QBe
+         4MF6/c4+uucd6mQhFwGfzqMRSCfxMYeSn6yT7UqNB9oslvZU+u1xetk5b3aDNgMEgQBN
+         k1GQ==
+X-Gm-Message-State: AO0yUKWm76AZdsHVeib/HUOMekZXXor9+GNycbuxQOKJT9JhCFWmsy2p
+        XzHjFMy4tdtLdA5xucp3+SlYP4naZM28NiRV
+X-Google-Smtp-Source: AK7set+n0zZzJXjwg7j/nMo5ecWppmtiOhjXh6RvXkVirG7sINiiMQQG/m1uNXsctXHhLvEgMt30eg==
+X-Received: by 2002:a19:5208:0:b0:4db:4bd0:428c with SMTP id m8-20020a195208000000b004db4bd0428cmr67985lfb.37.1676632105941;
+        Fri, 17 Feb 2023 03:08:25 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id a12-20020a056512020c00b004b57162edfasm640162lfo.117.2023.02.17.03.08.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Feb 2023 03:08:25 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v10 0/6] Add support for Core Power Reduction v3, v4 and
+ Hardened
+Date:   Fri, 17 Feb 2023 12:08:23 +0100
+Message-Id: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230213062451.1688755-1-zhanggenjian@kylinos.cn>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACdg72MC/x2N0QqDMAwAf0XyvEBNB4K/MvbQxmgDUku6jYH47
+ wt7vIPjTuhiKh3m4QSTj3Y9qsMYbgNwSXUT1MUFUKAYaJzwdTRl5Gax4CIUKa/5PgmDFzl1wWy
+ pcvGmvvfdZTNZ9ft/PJ7X9QNdHfnFcwAAAA==
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1676632104; l=6741;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=h0l1hgNgeqLh7FuJm9g71PZWisSbTarsphtDHkQiqTI=;
+ b=FIQ5jVSRBkH6sUcP2mOOxVt5GaPpJF2muKtsNSPnM2uzdnqPtrNZV4H5WQFTpqXo+YMK443Q2jdW
+ btynX9JjCVUO+mo5HoAUZ2hjBArV9kNSjMoBWoQ7S1Uz6hKnNvIF
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 02:24:51PM +0800, Genjian wrote:
-> From: Genjian Zhang <zhanggenjian@kylinos.cn>
-> 
-> dtbs_check currently complains that:
-> arch/mips/boot/dts/img/boston.dts:128.19-178.5: Warning (pci_device_reg):
-> /pci@14000000/pci2_root@0,0,0: PCI unit address format error,
-> expected "0,0"
-> The unit-address format should be '<device>,<function>'.
-> Fix the unit-address accordingly.
-> 
-> Reported-by: k2ci <kernel-bot@kylinos.cn>
-> Signed-off-by: Genjian Zhang <zhanggenjian@kylinos.cn>
-> ---
->  arch/mips/boot/dts/img/boston.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/mips/boot/dts/img/boston.dts b/arch/mips/boot/dts/img/boston.dts
-> index 84328afa3a55..72f7605d2e31 100644
-> --- a/arch/mips/boot/dts/img/boston.dts
-> +++ b/arch/mips/boot/dts/img/boston.dts
-> @@ -125,7 +125,7 @@ pci2_intc: interrupt-controller {
->  			#interrupt-cells = <1>;
->  		};
->  
-> -		pci2_root@0,0,0 {
-> +		pci2_root@0,0 {
->  			compatible = "pci10ee,7021";
->  			reg = <0x00000000 0 0 0 0>;
->  
-> -- 
-> 2.25.1
+Changes in v10:
+- Skip "Let qcom,opp-fuse-level be a 2-long array" (Applied by Viresh)
+- Use b4 (it may be the first time you're receiving this if git send-email
+  omitted you before..)
+- +Cc Robert Marko (expressed interest in previous revisions)
+- Add "Document CPR3 open/closed loop volt adjustment"
+CPR:
+- %hhu -> %u (checkpatch)
+CPR BINDINGS:
+- Drop QCS404 fuse set (it doesn't use this driver, what did I even think..)
+  but leave the allOf:if: block for expansion (sdm660, msm8996, ipqABCD should
+  follow soon..)
+- Drop Rob's R-b (as things changed *again*, please take one more look to make
+  sure you're okay with this file, Rob..)
 
-applied to mips-next.
+Link to v9:
+https://lore.kernel.org/linux-arm-msm/20230116093845.72621-1-konrad.dybcio@linaro.org/
 
-Thomas.
+Changes in v9:
+- Restore forgotten MAINTAINERS patch (oops)
+CPR:
+- Include the missing header (big oops!)
+- Fix kconfig dependencies
+CPR bindings:
+- Fix cpu reg in example (why didn't dt_binding_check scream at that)
+- Add newlines between nodes in example
+- Change opp table node names to opp-table-cpu[04]
+- Change opp table labels to cpu[04]_opp_table
+- Change CPRh opp subnode names to opp-N from oppN
+- Remove some stray newlines
+- Bring back nvmem-cell-names and add the 8998's set
+- Allow power-domains for VDDCX_AO voting
+- Remove Rob's r-b, there's been quite a bit of changes..
+CPR DT:
+- Send the correct revision of the patch this time around..
+OPP bindings:
+- Add Rob's ack
 
+Link to v8:
+https://lore.kernel.org/linux-arm-msm/20230110175605.1240188-1-konrad.dybcio@linaro.org/
+
+Changes in v8:
+- Overtake this series from AGdR
+- Apply all review comments from v7 except Vladimir's request to
+  not create the include/ header; it will be strictly necessary for
+  OSM-aware cpufreq_hw programming, which this series was more or
+  less created just for..
+- Drop QCS404 dtsi change, account for not breaking backwards compat
+  in [3/5]
+- Add type phandle type reference to acc-syscon in [1/5]
+- Update AGdR's email addresses for maintainer entries
+- Add [2/5] to make dt_binding_check happy
+- Separate the CPRh DT addition from cpufreq_hw addition, sort and
+  properly indent new nodes
+- Drop CPR yaml conversion, that happened in meantime
+- Reorder the patches to make a bit more sense
+- Tested again on MSM8998 Xperia XZ Premium (Maple)
+- I take no responsibility for AGdR's cheeky jokes, only the code!
+
+Link to v7:
+https://lore.kernel.org/lkml/20210901155735.629282-1-angelogioacchino.delregno@somainline.org/
+
+Changes in v7:
+- Rebased on linux-next as of 210901
+- Changed cpr_read_efuse calls to nvmem_cell_read_variable_le_u32,
+  following what was done in commit c77634b9d916
+
+Changes in v6:
+- Fixes from Bjorn's review
+- After a conversation with Viresh, it turned out I was abusing the
+  OPP API to pass the APM and MEM-ACC thresholds to qcom-cpufreq-hw,
+  so now the driver is using the genpd created virtual device and
+  passing drvdata instead to stop the abuse
+- Since the CPR commonization was ignored for more than 6 months,
+  it is now included in the CPRv3/4/h series, as there is no point
+  in commonizing without having this driver
+- Rebased on v5.13
+
+Changes in v5:
+- Fixed getting OPP table when not yet installed by the caller
+  of power domain attachment
+
+Changes in v4:
+- Huge patch series has been split for better reviewability,
+  as suggested by Bjorn
+
+Changes in v3:
+- Fixed YAML doc issues
+- Removed unused variables and redundant if branch
+
+Changes in v2:
+- Implemented dynamic Memory Accelerator corners support, needed
+  by MSM8998
+- Added MSM8998 Silver/Gold parameters
+
+This commit introduces a new driver, based on the one for cpr v1,
+to enable support for the newer Qualcomm Core Power Reduction
+hardware, known downstream as CPR3, CPR4 and CPRh, and support
+for MSM8998 and SDM630 CPU power reduction.
+
+In these new versions of the hardware, support for various new
+features was introduced, including voltage reduction for the GPU,
+security hardening and a new way of controlling CPU DVFS,
+consisting in internal communication between microcontrollers,
+specifically the CPR-Hardened and the Operating State Manager.
+
+The CPR v3, v4 and CPRh are present in a broad range of SoCs,
+from the mid-range to the high end ones including, but not limited
+to, MSM8953/8996/8998, SDM630/636/660/845.
+
+As to clarify, SDM845 does the CPR/SAW/OSM setup in TZ firmware, but
+this is limited to the CPU context; despite GPU CPR support being not
+implemented in this series, it is planned for the future, and some
+SDM845 need the CPR (in the context of GPU CPR) to be configured from
+this driver.
+
+It is also planned to add the CPR data for MSM8996, since this driver
+does support the CPRv4 found on that SoC, but I currently have no time
+to properly test that on a real device, so I prefer getting this big
+implementation merged before adding more things on top.
+
+As for MSM8953, we (read: nobody from SoMainline) have no device with
+this chip: since we are unable to test the cpr data and the entire
+driver on that one, we currently have no plans to do this addition
+in the future. This is left to other nice developers: I'm sure that
+somebody will come up with that, sooner or later
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+AngeloGioacchino Del Regno (5):
+      MAINTAINERS: Add entry for Qualcomm CPRv3/v4/Hardened driver
+      dt-bindings: soc: qcom: cpr3: Add bindings for CPR3 driver
+      soc: qcom: cpr: Move common functions to new file
+      soc: qcom: Add support for Core Power Reduction v3, v4 and Hardened
+      arm64: dts: qcom: msm8998: Configure CPRh
+
+Konrad Dybcio (1):
+      dt-bindings: opp: v2-qcom-level: Document CPR3 open/closed loop volt adjustment
+
+ .../devicetree/bindings/opp/opp-v2-qcom-level.yaml |   14 +
+ .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    |  299 ++
+ MAINTAINERS                                        |    6 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  873 ++++++
+ drivers/soc/qcom/Kconfig                           |   22 +
+ drivers/soc/qcom/Makefile                          |    2 +
+ drivers/soc/qcom/cpr-common.c                      |  363 +++
+ drivers/soc/qcom/cpr-common.h                      |  110 +
+ drivers/soc/qcom/cpr.c                             |  386 +--
+ drivers/soc/qcom/cpr3.c                            | 2923 ++++++++++++++++++++
+ include/soc/qcom/cpr.h                             |   17 +
+ 11 files changed, 4651 insertions(+), 364 deletions(-)
+---
+base-commit: c068f40300a0eaa34f7105d137a5560b86951aa9
+change-id: 20230217-topic-cpr3h-de232bfb47ec
+
+Best regards,
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
