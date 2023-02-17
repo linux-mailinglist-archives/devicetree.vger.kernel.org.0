@@ -2,65 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB9D269B507
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5021C69B51E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:53:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjBQVpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 16:45:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53260 "EHLO
+        id S229601AbjBQVxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 16:53:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229942AbjBQVph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:45:37 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4E64A1E5;
-        Fri, 17 Feb 2023 13:45:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7709261FCF;
-        Fri, 17 Feb 2023 21:45:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53401C4339B;
-        Fri, 17 Feb 2023 21:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676670327;
-        bh=USNORW4F2KLd13StIiUXR1qHnC7J7sEVnUW9KmPmB6A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uQSEvwJeeGZ8oTXsUNHUgrBjVVlOltObrOf1SMhQXgvzJI8sjs1AsE4+X+Y61cqkL
-         tPLzihNqsN3/5Yvpgv0/urcILHx/oVe5VfcbPjZPvGeu1Ysr7woYghw5VIYmkv21Og
-         69gnj9bEaSMME/ZEybzfoAFCUZoq4hP4GhiwLHEx7TulAvvRE7ymCKwqB0HmOcQ90I
-         j/gCp092Br2BhUzOC/B45osj3gYJnSqVJe7z/0aAaEnNCAEup0Y6vmyU6EVhzHkGs6
-         xkbMk8+l4ScrvECko2gPywEwB8qeI7xhBSbqptvmhPoBI46qFgmvGb8ercbBFQiEV0
-         wKpJ6Q1IsPGIg==
-Date:   Fri, 17 Feb 2023 22:45:24 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Cc:     michal.simek@xilinx.com, michal.simek@amd.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com,
-        shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-Subject: Re: [PATCH V6 3/3] i2c: xiic: Add SCL frequency configuration support
-Message-ID: <Y+/1dO03cvNbzfWk@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
-        michal.simek@xilinx.com, michal.simek@amd.com,
-        devicetree@vger.kernel.org, andrew@lunn.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com,
-        shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-References: <1676467944-17426-1-git-send-email-manikanta.guntupalli@amd.com>
- <1676467944-17426-4-git-send-email-manikanta.guntupalli@amd.com>
+        with ESMTP id S229570AbjBQVxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:53:11 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A32D474DA
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:53:10 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id bi36so3130816lfb.6
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:53:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vrYTA9ehfsvjQ2qG5X1k0zYCEbq+LYYxzJxLjm69hqo=;
+        b=QOYBkUXHs2WGR2RY9Cl7thRfNc7rrF6Ki0EE4FKplBKuWQ3y9zQiUR/SP1/8768+Md
+         m7px3SfKFTU+A4FgIpUNECBrtYZv8FeScl+A32VAkUgdA+nd1KqFI2ry1MAAPtlltxgd
+         knzyDJqLNL3HubGVKEHzTlJnX4nBiDt2Adk2fFW8loBYRf3uM8q+YHHMwRR3misgi8SR
+         Fc+KpgG6056leD9Vj/q/FAtnsIKKBbZfhJbVgXhoXkykeCg3omZNYEbg9hsotJ3ZC6fI
+         aMeIMtVYq0VPiXQIpUlC0akEU/cfE6vXCSKB0plmgn199AS70Hq/qBNGozUCOC/9JRqW
+         J3Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vrYTA9ehfsvjQ2qG5X1k0zYCEbq+LYYxzJxLjm69hqo=;
+        b=kM04wA1qwCSAyhvxgQ2JGRCTYFuyx8wUdteME2UhM6a/5npgPkITq1w7t0xqkXL6AL
+         MnGCNh6OMM2SASjDOVIUXEHKbydGWQjpEaDtyPyNbKikaiydLWG3oB12QQEy4xg9jhjT
+         MLUq19V4qShWXJgVV/muwJsHwJ9bGnw2j5ellC/XSy4ICw9vaiYUzNjVEZf5qe8UjpS5
+         O+Gg0nzp6YOXM9JTQPrsE/cq5FoBgTOml+24lRb12E345/Zvh9wPVBh7bVnztvljg9RS
+         AfE2B2kmvQtGhwac5zKLjWDB2ojlL68PdBJIhpSDGc9sUK2G+ax78sFRzMaefUlfkF5L
+         R+wA==
+X-Gm-Message-State: AO0yUKX2XhuU2CtWR8J0uskAmHoDBozYcggYN3uA+DyFSQcTw1/GZMlC
+        28oXZjAn57S9Qba5FlEFZV+jug==
+X-Google-Smtp-Source: AK7set/lwfUg5aQxQh5XTDxnNOktYivNX1xwI+g+h8QmaqrpaHYpf2rRQUZ8wDRxH7BzUCeYprXFPg==
+X-Received: by 2002:ac2:4c8f:0:b0:4d7:2187:e1c8 with SMTP id d15-20020ac24c8f000000b004d72187e1c8mr499038lfl.44.1676670788426;
+        Fri, 17 Feb 2023 13:53:08 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id t1-20020ac25481000000b004d16263b36bsm786961lfk.111.2023.02.17.13.53.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 13:53:08 -0800 (PST)
+Message-ID: <7ff320ef-22dc-a3fc-764e-bfc50079dfdb@linaro.org>
+Date:   Fri, 17 Feb 2023 23:53:07 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="v9dWdwZ/vqGMAhLb"
-Content-Disposition: inline
-In-Reply-To: <1676467944-17426-4-git-send-email-manikanta.guntupalli@amd.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v13 13/13] drm/msm/disp/dpu: update dpu_enc crtc state on
+ crtc enable/disable during self refresh
+Content-Language: en-GB
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
+References: <1676219337-6526-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1676219337-6526-14-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1676219337-6526-14-git-send-email-quic_vpolimer@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,52 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/02/2023 18:28, Vinod Polimera wrote:
+> Populate the enocder software structure to reflect the updated
+> crtc appropriately during crtc enable/disable for a new commit
+> while taking care of the self refresh transitions when crtc
+> disable is triggered from the drm self refresh library.
+> 
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 29 +++++++++++++++++++++++++----
+>   1 file changed, 25 insertions(+), 4 deletions(-)
 
---v9dWdwZ/vqGMAhLb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On Wed, Feb 15, 2023 at 07:02:24PM +0530, Manikanta Guntupalli wrote:
-> From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
->=20
-> From 'clock-frequency' device tree property, configure I2C SCL
-> frequency by calculating the timing register values according to
-> input clock.
->=20
-> After soft reset in reinit function, the timing registers are set
-> to default values (configured in design tool). So, setting SCL
-> frequency is done inside reinit function after the soft reset.
-> This allows configuration of SCL frequency exclusively through
-> software via device tree property, overriding the design.
-> If the clock-frequency parameter is not specified in DT, driver
-> doesn't configure frequency, making it backward compatible.
->=20
-> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> Acked-by: Michal Simek <michal.simek@amd.com>
+-- 
+With best wishes
+Dmitry
 
-Applied to for-next, thanks!
-
-
---v9dWdwZ/vqGMAhLb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPv9XQACgkQFA3kzBSg
-KbbHAA//bWv7c9SD1ZqJg8loddrZ65QP1kQeG+s8WjWCmnEHcnPg+YdGmahUt+64
-6JgM7vFV5KSPakzk1Ra3rK3t56H627STGN1FgAdcKVorGAiS+ZruhXgij49NL/46
-7Ut9iStQAAuY22SnT8JoefcRgb2OKs87zJ36hZFZNe0+ifnpmU7KNRfZu1cShxSk
-a+1kHshrk7cYzUebZXhieugVWLyHwSSO/eO3zX7z69YDHdWPkwpwTq5+faUDnFaN
-ekM+vEwDAAWmpy7VVFF0/xtqMWbRRZq8C2zcCDTbbGK9kTeSLrS6j7JWjcA0Qql0
-u/Ej+v4K4u0PvkYUSFzI3Fy7qShIyx0PVkrSUWOtSfrvgnH3dm7daUZ/4kQu7A60
-4Q3ACu20/+YcmTtab4MH3hl4FnR0rIxYqL/A9dUaFH6TtcGe5MgthbClICpyZqYi
-jLPlOFtnqXPwJN4m+ZuHRYtdYN6cgADZABArqiVcSYbH9bkkSbTRieeho3v+jdTf
-DTb91PxLaZ/eY7fQ1EmyLT44Z6w8AqydNuiLa1bmj2bkrd9WPf8YFQljIt5cWfTJ
-ZtHgksGE6VrBMdh0bgeYIgnS/AMpNxJPcdyQ080JWPy79kpM8J9DnR+6k00RblrD
-t2fAdvmFM5Xngkfqf63SOVEqCsw86ABY96z7l7AQovH1InV+/Vs=
-=5+yg
------END PGP SIGNATURE-----
-
---v9dWdwZ/vqGMAhLb--
