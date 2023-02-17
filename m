@@ -2,149 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F2369AD27
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF0A69AD5C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjBQNvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 08:51:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
+        id S229478AbjBQOJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 09:09:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230050AbjBQNvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:51:08 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC9F692A9;
-        Fri, 17 Feb 2023 05:50:29 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 47F6B60003;
-        Fri, 17 Feb 2023 13:50:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1676641825;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=IXtty5j4EPkHzMourS16qE5SNRSNmBZzzykreudpYyw=;
-        b=RoBsXKNPDSFIw+waIM9X3bayblvPaLqhufkZQmycFa7Xnrs3aTpCAWzjhfnGtitb8+V2N1
-        7lvs3fA9mB2xffWdKYEEfQNqEKifHKxSneXjI8wUgFitrhpYd/n+2eAtt+u9wdBpmfiF99
-        3+IsOBT6U1N4DOFMFnmQspVrm+xBGluGmi55YzwE/u8kJufXbbl+0bmekuU9Xl8KhAW5EU
-        AVXU7Vb/pZ14cC+S+t5i+AZPWyZoqSPusgF7ggwvHd6IDqZnmrk8/AarNmkNGQDl6tIZJP
-        kmwG5k2P/GWE4TNLz5ynqio6byKJqgjXOVaFfHowgpEcNTsKLnSWj+XNN8tEKQ==
-Date:   Fri, 17 Feb 2023 14:50:19 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
- controller
-Message-ID: <20230217145019.0def6f9a@bootlin.com>
-In-Reply-To: <6ae9af19-1d52-c31f-79be-a36f06caaf80@linaro.org>
-References: <20230216134226.1692107-1-herve.codina@bootlin.com>
-        <20230216134226.1692107-2-herve.codina@bootlin.com>
-        <6ae9af19-1d52-c31f-79be-a36f06caaf80@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S229711AbjBQOJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:09:15 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF1A67820
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:09:12 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id r12so1276548ljg.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:09:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eAcHRXTLt7SupN6OB2+PfIbmUDEWyQYUaBk0d3PubKo=;
+        b=XX+5ab8wML2ibWLmDYvDu+h3Mjgg84TttF8Sb5bXmJ9vgkDafURuIrnVx3lJYV+THw
+         T2pujcOHq56N2jHo1P0leoHSGFwgmPR4Jw0E7ocmygdE090LufshHZ9AiMef2OMW+YrE
+         sPvbeCpsqWcTwFa224uaonT5w6OY7JrIv62jDSjU5mcJ5P5dLujI7wYwE8LSCx5DXSDj
+         b4R5Zo6SBeDwrK1R28i+kpUfe+BKB4Mtu/TMafx3z75NHWPNNNg0HEFSkcu/k243HfgJ
+         g2bi+w61U213J6NznH2zJOetaTpDu9cQTqyDgmfu02U62rJr8dS6RXobS/9bKrRGG1te
+         6Oog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eAcHRXTLt7SupN6OB2+PfIbmUDEWyQYUaBk0d3PubKo=;
+        b=VqY/nsNbQhfrlSPiMfmczzq0G37xacqVD1a+kauhqRrDsx3fi+ty5ayWzGNtCKOu6d
+         hHyZ1KqSEN+sPpOlB98+iJj4N5bwNwAOjIQsM2bX2fhYPaAYaJfdH2YvHdIn73mM1IY4
+         sAiuIzY9A8gSkL7yUk45KJAK6p9Ci+KHXd2kXXNXH0zmlwQRBQM5u0QXrnDeuWnqytm1
+         FWOv8R0066FuECv6muYiLIbc6wWaiSuTwtKnWI7fm0U47A1EMIXQpoEU6W5TR7Kj2yfK
+         ECXpYA1fEbU+Pg9SacbgVE6QhDG5neQm7+lYxtYNYXoaRRq9WFUwaU2tK+S84ZCNerdF
+         TO5Q==
+X-Gm-Message-State: AO0yUKUj0ScSLPv9bo0r41oe7tl4rz5r3R/dhS+uffs+ORZAk7WKz9dm
+        lww1wpsvwBMU0DHaN+PoJGnQ2A==
+X-Google-Smtp-Source: AK7set/jy4R5UST1yIabXGvqmH2beS3jnDZRk+0LwZDG70gUpUnQhKS9mjEG66BUv/onu23P4gQDdQ==
+X-Received: by 2002:a2e:a238:0:b0:294:70b7:fd65 with SMTP id i24-20020a2ea238000000b0029470b7fd65mr863927ljm.30.1676642950765;
+        Fri, 17 Feb 2023 06:09:10 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id t5-20020ac243a5000000b004dcf20843efsm16847lfl.239.2023.02.17.06.09.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 06:09:10 -0800 (PST)
+Message-ID: <4a8ff51e-b4d8-23bc-e9d6-e27ecf1e303d@linaro.org>
+Date:   Fri, 17 Feb 2023 15:09:08 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v10 3/6] dt-bindings: soc: qcom: cpr3: Add bindings for
+ CPR3 driver
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>, devicetree@vger.kernel.org,
+        Nishanth Menon <nm@ti.com>, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Mark Brown <broonie@kernel.org>
+References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
+ <20230217-topic-cpr3h-v10-3-67aed8fdfa61@linaro.org>
+ <167664119785.650200.1249609435784298678.robh@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <167664119785.650200.1249609435784298678.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Fri, 17 Feb 2023 10:14:48 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 16/02/2023 14:42, Herve Codina wrote:
-> > Add support for the time slot assigner (TSA)
-> > available in some PowerQUICC SoC such as MPC885
-> > or MPC866.
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml | 234 ++++++++++++++++++
-> >  include/dt-bindings/soc/fsl,tsa.h             |  13 +
-> >  2 files changed, 247 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
-l,cpm1-tsa.yaml
-> >  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
-
-[...]
-> > +
-> > +patternProperties:
-> > +  '^tdm@[0-1]$':
-> > +    description:
-> > +      The TDM managed by this controller
-> > +    type: object
-> > +
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      reg:
-> > +        minimum: 0
-> > +        maximum: 1
-> > +        description:
-> > +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
-[...]
-> > +
-> > +      fsl,rx-frame-sync-delay-bits:
-> > +        enum: [0, 1, 2, 3] =20
->=20
-> maxItems: 1
-
-The property is an enum
-Why this maxItems value ?
-
-If I add the maxItems value, I've got some dt_binding_check errors:
-  /xxxx/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml:
-  patternProperties:^tdm@[0-1]$:properties:fsl,rx-frame-sync-delay-bits:
-  'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMax=
-imum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-
->=20
-> > +        default: 0
-> > +        description: |
-> > +          Receive frame sync delay in number of bits.
-> > +          Indicates the delay between the Rx sync and the first bit of=
- the Rx
-> > +          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits dela=
-y.
-> > +
-> > +      fsl,tx-frame-sync-delay-bits:
-> > +        enum: [0, 1, 2, 3] =20
->=20
-> maxItems: 1
-
-Same question here.
 
 
-Thanks for the review,
+On 17.02.2023 14:47, Rob Herring wrote:
+> 
+> On Fri, 17 Feb 2023 12:08:26 +0100, Konrad Dybcio wrote:
+>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>>
+>> Add the bindings for the CPR3 driver to the documentation.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>> [Konrad: Make binding check pass; update AGdR's email]
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    | 299 +++++++++++++++++++++
+>>  1 file changed, 299 insertions(+)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-1: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-2: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-3: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
+That's added in the previous patch
 
-Herv=C3=A9
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-3:qcom,opp-fuse-level:0: [2, 3] is too lonAnd that's fixed in
+
+https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=68d8ad3bd9c397f2bf009368cb13e48cb91ea018
+
+Konrad
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230217-topic-cpr3h-v10-3-67aed8fdfa61@linaro.org
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
