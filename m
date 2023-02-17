@@ -2,82 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF0A69AD5C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E013A69ADA9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:14:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbjBQOJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 09:09:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
+        id S230092AbjBQOOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 09:14:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbjBQOJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:09:15 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF1A67820
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:09:12 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id r12so1276548ljg.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:09:12 -0800 (PST)
+        with ESMTP id S230049AbjBQOOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:14:36 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E72F6CA00
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:14:02 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id t4so923928lfr.7
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:14:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eAcHRXTLt7SupN6OB2+PfIbmUDEWyQYUaBk0d3PubKo=;
-        b=XX+5ab8wML2ibWLmDYvDu+h3Mjgg84TttF8Sb5bXmJ9vgkDafURuIrnVx3lJYV+THw
-         T2pujcOHq56N2jHo1P0leoHSGFwgmPR4Jw0E7ocmygdE090LufshHZ9AiMef2OMW+YrE
-         sPvbeCpsqWcTwFa224uaonT5w6OY7JrIv62jDSjU5mcJ5P5dLujI7wYwE8LSCx5DXSDj
-         b4R5Zo6SBeDwrK1R28i+kpUfe+BKB4Mtu/TMafx3z75NHWPNNNg0HEFSkcu/k243HfgJ
-         g2bi+w61U213J6NznH2zJOetaTpDu9cQTqyDgmfu02U62rJr8dS6RXobS/9bKrRGG1te
-         6Oog==
+        bh=gYtCMx/kti0jpLx30V7iRToqe2dlKfo8PgV47Er9Snw=;
+        b=uMmgk3jk5YihD4JseTRRVnUYVNjtimUEyzbCPwgpy1MFIUYeyGcYT+bLMfLRysoLHM
+         3sn7t9eudbpljQID7T+ckb7lqmFk7S5W6ggfA0rIulpdzu7Vn+egyGi8hwPAKJHsJZ92
+         USQ6WocfXD06707nhFid9xmueHGpm59H16YESvOBUxpKYTHqN8UKNxoyufXWm+NOvb1B
+         ZUfO21vzm24ecyV0x20miNEx8i0mcrCJFLw/SKnoL8E4vmcIAuZavJvGoe2jwAAXv+rN
+         c92dORpOVLL4vdZKTWHsOcnSnW6YE7YCK6AlNh+i17DRFkeXWE7G/duEQrYT2BivvrLf
+         9qgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eAcHRXTLt7SupN6OB2+PfIbmUDEWyQYUaBk0d3PubKo=;
-        b=VqY/nsNbQhfrlSPiMfmczzq0G37xacqVD1a+kauhqRrDsx3fi+ty5ayWzGNtCKOu6d
-         hHyZ1KqSEN+sPpOlB98+iJj4N5bwNwAOjIQsM2bX2fhYPaAYaJfdH2YvHdIn73mM1IY4
-         sAiuIzY9A8gSkL7yUk45KJAK6p9Ci+KHXd2kXXNXH0zmlwQRBQM5u0QXrnDeuWnqytm1
-         FWOv8R0066FuECv6muYiLIbc6wWaiSuTwtKnWI7fm0U47A1EMIXQpoEU6W5TR7Kj2yfK
-         ECXpYA1fEbU+Pg9SacbgVE6QhDG5neQm7+lYxtYNYXoaRRq9WFUwaU2tK+S84ZCNerdF
-         TO5Q==
-X-Gm-Message-State: AO0yUKUj0ScSLPv9bo0r41oe7tl4rz5r3R/dhS+uffs+ORZAk7WKz9dm
-        lww1wpsvwBMU0DHaN+PoJGnQ2A==
-X-Google-Smtp-Source: AK7set/jy4R5UST1yIabXGvqmH2beS3jnDZRk+0LwZDG70gUpUnQhKS9mjEG66BUv/onu23P4gQDdQ==
-X-Received: by 2002:a2e:a238:0:b0:294:70b7:fd65 with SMTP id i24-20020a2ea238000000b0029470b7fd65mr863927ljm.30.1676642950765;
-        Fri, 17 Feb 2023 06:09:10 -0800 (PST)
+        bh=gYtCMx/kti0jpLx30V7iRToqe2dlKfo8PgV47Er9Snw=;
+        b=Lsqy0vuQr6UxskyF0mR7ngeMaTkAOKVG4WroQJOW5IhFiU2KUNz7hwYjgg8d2kP7AI
+         xk9ZhdWR9N18cGLiay5xXwWsUREHoz+eiuaC9lJkoKa8zsXViYcSf3+TkEqakk0PtBzx
+         dh4fu8pd2fhg8qb7mkilndZi/rET1Fu/740WHw2JBB2ziX1l33EFTzTWZglOAHH9eOuN
+         NoeaXI5AtTikmO5bJzKSrVMLyCjjYMrutYpRvhBc681VS9Y/pUezRytuzVmS8abm8PBU
+         f21kf26fQuRENLo2iK0aM+q1woEPwtnfVPS72OkBsDRE4jqsREq99m9FIqXnCBbIHbNM
+         pg6g==
+X-Gm-Message-State: AO0yUKUZ1huPmvA7W+9lGjy4hx6EkOAZqJ9QfPbEewUwusP47tHUbzE7
+        IYFsv5Z2luI9a+mZCu++soebIlxsOT4zF98K
+X-Google-Smtp-Source: AK7set+svXre1fPN5AAKA8TPRXVWNEQ1Aqr05EubQA9KL9NoO35A//rxqj06+qBqcI2diF6uLlM6XA==
+X-Received: by 2002:a19:c510:0:b0:4b5:2ef3:fd2a with SMTP id w16-20020a19c510000000b004b52ef3fd2amr690350lfe.47.1676643236489;
+        Fri, 17 Feb 2023 06:13:56 -0800 (PST)
 Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id t5-20020ac243a5000000b004dcf20843efsm16847lfl.239.2023.02.17.06.09.08
+        by smtp.gmail.com with ESMTPSA id q28-20020ac2511c000000b004dc4bb914c7sm694085lfb.201.2023.02.17.06.13.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 06:09:10 -0800 (PST)
-Message-ID: <4a8ff51e-b4d8-23bc-e9d6-e27ecf1e303d@linaro.org>
-Date:   Fri, 17 Feb 2023 15:09:08 +0100
+        Fri, 17 Feb 2023 06:13:55 -0800 (PST)
+Message-ID: <3bc2f33d-163c-1f26-1d05-e3056f852bcd@linaro.org>
+Date:   Fri, 17 Feb 2023 15:13:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
-Subject: Re: [PATCH v10 3/6] dt-bindings: soc: qcom: cpr3: Add bindings for
- CPR3 driver
+Subject: Re: [PATCH V2 2/5] clk: qcom: apss-ipq-pll: Enable APSS clock driver
+ in IPQ9574
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>, devicetree@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Mark Brown <broonie@kernel.org>
-References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
- <20230217-topic-cpr3h-v10-3-67aed8fdfa61@linaro.org>
- <167664119785.650200.1249609435784298678.robh@kernel.org>
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jassisinghbrar@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        dmitry.baryshkov@linaro.org, arnd@arndb.de,
+        geert+renesas@glider.be, nfraprado@collabora.com,
+        broonie@kernel.org, rafal@milecki.pl,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com
+References: <20230217134107.13946-1-quic_devipriy@quicinc.com>
+ <20230217134107.13946-3-quic_devipriy@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <167664119785.650200.1249609435784298678.robh@kernel.org>
+In-Reply-To: <20230217134107.13946-3-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,56 +88,81 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 17.02.2023 14:47, Rob Herring wrote:
-> 
-> On Fri, 17 Feb 2023 12:08:26 +0100, Konrad Dybcio wrote:
->> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>
->> Add the bindings for the CPR3 driver to the documentation.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> [Konrad: Make binding check pass; update AGdR's email]
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    | 299 +++++++++++++++++++++
->>  1 file changed, 299 insertions(+)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-1: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-2: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-3: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
-That's added in the previous patch
+On 17.02.2023 14:41, Devi Priya wrote:
+The subject is.. weird.. something like:
 
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-3:qcom,opp-fuse-level:0: [2, 3] is too lonAnd that's fixed in
+clk: qcom: apss-ipq-pll: add support for IPQ9574
 
-https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=68d8ad3bd9c397f2bf009368cb13e48cb91ea018
+would have made more sense, as you're not enabling the clock
+driver, and certainly not *in* the SoC.
+
+> Add the compatible and configuration values
+Generally the lines in commit messages should be broken at 70-75
+chars, not 40.
+
+> for A73 Huayra PLL found on IPQ9574
+> 
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+Is Praveenkumar's last name "I"?
+
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+Otherwise the code looks good, I think.
 
 Konrad
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+>  Changes in V2:
+> 	- Rebased the changes on the below series which refactors the
+> 	  driver to accommodate Huayra & Stromer Plus PLLs
+> 	  https://lore.kernel.org/linux-arm-msm/20230217083308.12017-2-quic_kathirav@quicinc.com/
+> 	- Changed the hex value in ipq9574_pll_config to lowercase
+> 	- Dropped the mailbox driver changes as ipq9574 mailbox is 
+> 	  compatible with ipq6018
 > 
-> doc reference errors (make refcheckdocs):
+>  drivers/clk/qcom/apss-ipq-pll.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230217-topic-cpr3h-v10-3-67aed8fdfa61@linaro.org
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
+> index cf4f0d340cbf..ce28d882ee78 100644
+> --- a/drivers/clk/qcom/apss-ipq-pll.c
+> +++ b/drivers/clk/qcom/apss-ipq-pll.c
+> @@ -111,6 +111,18 @@ static const struct alpha_pll_config ipq8074_pll_config = {
+>  	.test_ctl_hi_val = 0x4000,
+>  };
+>  
+> +static const struct alpha_pll_config ipq9574_pll_config = {
+> +	.l = 0x3b,
+> +	.config_ctl_val = 0x200d4828,
+> +	.config_ctl_hi_val = 0x6,
+> +	.early_output_mask = BIT(3),
+> +	.aux2_output_mask = BIT(2),
+> +	.aux_output_mask = BIT(1),
+> +	.main_output_mask = BIT(0),
+> +	.test_ctl_val = 0x0,
+> +	.test_ctl_hi_val = 0x4000,
+> +};
+> +
+>  struct apss_pll_data {
+>  	int pll_type;
+>  	struct clk_alpha_pll *pll;
+> @@ -135,6 +147,12 @@ static struct apss_pll_data ipq6018_pll_data = {
+>  	.pll_config = &ipq6018_pll_config,
+>  };
+>  
+> +static struct apss_pll_data ipq9574_pll_data = {
+> +	.pll_type = CLK_ALPHA_PLL_TYPE_HUAYRA,
+> +	.pll = &ipq_pll_huayra,
+> +	.pll_config = &ipq9574_pll_config,
+> +};
+> +
+>  static const struct regmap_config ipq_pll_regmap_config = {
+>  	.reg_bits		= 32,
+>  	.reg_stride		= 4,
+> @@ -180,6 +198,7 @@ static const struct of_device_id apss_ipq_pll_match_table[] = {
+>  	{ .compatible = "qcom,ipq5332-a53pll", .data = &ipq5332_pll_data },
+>  	{ .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_data },
+>  	{ .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_data },
+> +	{ .compatible = "qcom,ipq9574-a73pll", .data = &ipq9574_pll_data },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, apss_ipq_pll_match_table);
