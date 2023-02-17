@@ -2,221 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22C2269B357
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 20:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF04869B379
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 21:07:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjBQTuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 14:50:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34480 "EHLO
+        id S229597AbjBQUHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 15:07:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjBQTub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 14:50:31 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8644FCA2;
-        Fri, 17 Feb 2023 11:50:29 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31HCcsIi011130;
-        Fri, 17 Feb 2023 19:50:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=DDzxof5IcVzLldI7GDtr6orQv7jtauqlTg374hNf258=;
- b=J1I9wcoWsNoCHPUw/T99krE+vM9Yl0vUe6jdsO+5fbZzNu8YBkwIrPmZxXZgLCkbxtPp
- QmL7iLiLfClTNQPRYUvU9UJRmrdv9ECdJZXydIvCRFr1DTyNPVrFNvuXXL7E+1kigZS8
- sJzNTmjsdfbt9495/qUlvVXFg+OwoGzF1g2sRCzEwJFTauiTGMOIX0LE0kQk40VsEu3v
- FeZT9SC36sWmSVLS+AR1VxgYCxfI1XwFal37Krt2Q3sMwGD9iQDJ7LJ09cJqo53CXMdi
- +4fOS2h7RJVxX85Pxq9OjAIkCe4qGHyJEHSJA8mOCw5JX5hzbNF+CvYIWGDGptLAXWVE nw== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nshe5mxvf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 19:50:08 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31HJo7J9026503
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 19:50:07 GMT
-Received: from [10.216.18.25] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 17 Feb
- 2023 11:49:57 -0800
-Message-ID: <38780d01-3e02-fd30-4c11-8cb307eeae4d@quicinc.com>
-Date:   Sat, 18 Feb 2023 01:19:54 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V5 5/5] firmware: scm: Modify only the DLOAD bit in TCSR
- register for download mode
-Content-Language: en-US
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <robimarko@gmail.com>,
-        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
-        <broonie@kernel.org>, <quic_gurus@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_devipriy@quicinc.com>
-References: <20230216120012.28357-1-quic_poovendh@quicinc.com>
- <20230216120012.28357-6-quic_poovendh@quicinc.com>
- <51bd93be-f8d3-a33c-18ad-ba4a331f2bcf@quicinc.com>
-In-Reply-To: <51bd93be-f8d3-a33c-18ad-ba4a331f2bcf@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HEPiM6rO7lmKJJLLDWAeOiU3MwhP2ynR
-X-Proofpoint-ORIG-GUID: HEPiM6rO7lmKJJLLDWAeOiU3MwhP2ynR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-17_14,2023-02-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 bulkscore=0 impostorscore=0
- mlxlogscore=999 spamscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302170173
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229521AbjBQUHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 15:07:42 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A565F263
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 12:07:41 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id b15-20020a252e4f000000b008ee1c76c25dso1523544ybn.11
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 12:07:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=U1nM6W22xHjS3Bc4zx0z84OyKRX34ntnrDpqWA7KxXE=;
+        b=Rq55dr4IlqUaOCip4zZ6Bfk+GkgFZxk6avpazKoRSLojShtX34gYkNdC8/5SbhTzhE
+         4MZAJbUgib1m72WWVl4DX98FY0VipeLo3JbjLgwWqrnyMvf9E8/cpyyb+UHevXrKil5B
+         OFSI6s5GRiEmESPGK5Mym34edcC6jcPzHNGj9fKb3z0Q7JKQU9Rk8bq9XGX0asjVIqMa
+         3Y/ftanfYZzyuJsazVqATYvrwQPpNp1pqC4h5bnBaoOIGcluscjTPWhlqmghiYk7hTCP
+         5m0zMNIOVvgn5s9wb7XSLLz9wIs2SItRvq6ibRdib84zXFWqaukJHmJ0yNIZQNG6iYPd
+         AAuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U1nM6W22xHjS3Bc4zx0z84OyKRX34ntnrDpqWA7KxXE=;
+        b=2A9d1lYJfVxi41xgtVrMh8iagqAYlFezbc95uwnyO4BPRg0vrkhab2t9412V7ipW0G
+         3ckYd15IeW1G2M9rUTnNHtZeSJ7diPLISTzBAk1Ttqr8DAV9jhceWfA8MGCmqU+AEAwS
+         JVwBKfGMTk6zOJO7GK7vBrtqk1K/kPBwpeCKJ7LzIhKAmd+m8poeK/mE5pb2cA5Mpr5A
+         qDp47Pgzejn6wWEPgPrs7waNCuNYfZ97njE7J5OpDPJplisYQ2xddFOcNQPzroEozRim
+         r/1A6uBvy92bxaIKoZesYTRnsnhosIt5YcCXtr3AV5JxACd4GI84d109w5bkMCDk+/xy
+         CAxw==
+X-Gm-Message-State: AO0yUKUX13QJCqayZ5TWz7IqJxEkIVfMpFudOnf4PfpTINo3YNsPOo4y
+        lcna7uU1mdyKE/XBhuha4KKNMKZI66oDhQXZPP9ZQA==
+X-Google-Smtp-Source: AK7set+IwRI9hRSSzsNSYknwwsteTFcswm8J6ufEohRY3jA3I/YoGe5TdkvTwxTX1AFimUbEPQLZIEhxMkSJ9cDiYtvt1Q==
+X-Received: from isaacmanjarres.irv.corp.google.com ([2620:15c:2d:3:723d:63ac:5b97:6d54])
+ (user=isaacmanjarres job=sendgmr) by 2002:a5b:d45:0:b0:8f2:9e6:47a4 with SMTP
+ id f5-20020a5b0d45000000b008f209e647a4mr264475ybr.7.1676664460718; Fri, 17
+ Feb 2023 12:07:40 -0800 (PST)
+Date:   Fri, 17 Feb 2023 12:07:30 -0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.39.2.637.g21b0678d19-goog
+Message-ID: <20230217200731.285514-1-isaacmanjarres@google.com>
+Subject: [PATCH 5.15] of: reserved_mem: Have kmemleak ignore dynamically
+ allocated reserved mem
+From:   "Isaac J. Manjarres" <isaacmanjarres@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Mike Rapoport <rppt@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Saravana Kannan <saravanak@google.com>, linux-mm@kvack.org,
+        "Isaac J. Manjarres" <isaacmanjarres@google.com>,
+        "Kirill A . Shutemov" <kirill.shtuemov@linux.intel.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Rob Herring <robh@kernel.org>, stable@vger.kernel.org,
+        kernel-team@android.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+commit ce4d9a1ea35ac5429e822c4106cb2859d5c71f3e upstream.
 
+Patch series "Fix kmemleak crashes when scanning CMA regions", v2.
 
-On 2/16/2023 7:30 PM, Mukesh Ojha wrote:
-> 
-> 
-> On 2/16/2023 5:30 PM, Poovendhan Selvaraj wrote:
->> CrashDump collection is based on the DLOAD bit of TCSR register.
->> To retain other bits, we read the register and modify only the DLOAD 
->> bit as
->> the other bits have their own significance.
->>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
->> ---
->>   Changes in V5:
->>     - checking the return value in qcom_scm_set_download_mode function as
->>       suggested by Srinivas Kandagatla
->>
->>   Changes in V4:
->>     - retain the orginal value of tcsr register when download mode
->>       is not set
->>
->>   drivers/firmware/qcom_scm.c | 21 ++++++++++++++++-----
->>   1 file changed, 16 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
->> index 468d4d5ab550..d88c5f14bd54 100644
->> --- a/drivers/firmware/qcom_scm.c
->> +++ b/drivers/firmware/qcom_scm.c
->> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
->>   }
->>   EXPORT_SYMBOL(qcom_scm_set_remote_state);
->> -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
->> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, 
->> bool enable)
->>   {
->>       struct qcom_scm_desc desc = {
->>           .svc = QCOM_SCM_SVC_BOOT,
->> @@ -417,7 +417,8 @@ static int __qcom_scm_set_dload_mode(struct device 
->> *dev, bool enable)
->>           .owner = ARM_SMCCC_OWNER_SIP,
->>       };
->> -    desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
->> +    desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
->> +                val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE);
->>       return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
->>   }
->> @@ -426,15 +427,25 @@ static void qcom_scm_set_download_mode(bool enable)
->>   {
->>       bool avail;
->>       int ret = 0;
->> +    u32 dload_addr_val;
->>       avail = __qcom_scm_is_call_available(__scm->dev,
->>                            QCOM_SCM_SVC_BOOT,
->>                            QCOM_SCM_BOOT_SET_DLOAD_MODE);
->> +    ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
->> +
->> +    if (ret) {
->> +        dev_err(__scm->dev,
->> +            "failed to read dload mode address value: %d\n", ret);
->> +        return;
->> +    }
->> +
->>       if (avail) {
->> -        ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
->> +        ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, 
->> enable);
-> 
-> Did you test this on a target where it comes under this if statement? 
-> does it really need to know dload_mode_addr for this target ?
+When trying to boot a device with an ARM64 kernel with the following
+config options enabled:
 
+CONFIG_DEBUG_PAGEALLOC=y
+CONFIG_DEBUG_PAGEALLOC_ENABLE_DEFAULT=y
+CONFIG_DEBUG_KMEMLEAK=y
 
-Can we do something like this? I would let other review as well.
+a crash is encountered when kmemleak starts to scan the list of gray
+or allocated objects that it maintains. Upon closer inspection, it was
+observed that these page-faults always occurred when kmemleak attempted
+to scan a CMA region.
 
---------------------------------------->0-------------------------------------------
-diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-index cdbfe54..26b7eda 100644
---- a/drivers/firmware/qcom_scm.c
-+++ b/drivers/firmware/qcom_scm.c
-@@ -419,6 +419,7 @@ static void qcom_scm_set_download_mode(bool enable)
-  {
-         bool avail;
-         int ret = 0;
-+       u32 dload_addr_val;
+At the moment, kmemleak is made aware of CMA regions that are specified
+through the devicetree to be dynamically allocated within a range of
+addresses. However, kmemleak should not need to scan CMA regions or any
+reserved memory region, as those regions can be used for DMA transfers
+between drivers and peripherals, and thus wouldn't contain anything
+useful for kmemleak.
 
-         avail = __qcom_scm_is_call_available(__scm->dev,
-                                              QCOM_SCM_SVC_BOOT,
-@@ -426,8 +427,16 @@ static void qcom_scm_set_download_mode(bool enable)
-         if (avail) {
-                 ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
-         } else if (__scm->dload_mode_addr) {
--               ret = qcom_scm_io_writel(__scm->dload_mode_addr,
--                               enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
-+               ret = qcom_scm_io_readl(__scm->dload_mode_addr, 
-&dload_addr_val);
-+               if (ret) {
-+                       dev_err(__scm->dev,
-+                               "failed to read dload mode address 
-value: %d\n", ret);
-+                       return;
-+               }
+Additionally, since CMA regions are unmapped from the kernel's address
+space when they are freed to the buddy allocator at boot when
+CONFIG_DEBUG_PAGEALLOC is enabled, kmemleak shouldn't attempt to access
+those memory regions, as that will trigger a crash. Thus, kmemleak
+should ignore all dynamically allocated reserved memory regions.
+
+This patch (of 1):
+
+Currently, kmemleak ignores dynamically allocated reserved memory regions
+that don't have a kernel mapping.  However, regions that do retain a
+kernel mapping (e.g.  CMA regions) do get scanned by kmemleak.
+
+This is not ideal for two reasons:
+
+1  kmemleak works by scanning memory regions for pointers to allocated
+   objects to determine if those objects have been leaked or not.
+   However, reserved memory regions can be used between drivers and
+   peripherals for DMA transfers, and thus, would not contain pointers to
+   allocated objects, making it unnecessary for kmemleak to scan these
+   reserved memory regions.
+
+2  When CONFIG_DEBUG_PAGEALLOC is enabled, along with kmemleak, the
+   CMA reserved memory regions are unmapped from the kernel's address
+   space when they are freed to buddy at boot.  These CMA reserved regions
+   are still tracked by kmemleak, however, and when kmemleak attempts to
+   scan them, a crash will happen, as accessing the CMA region will result
+   in a page-fault, since the regions are unmapped.
+
+Thus, use kmemleak_ignore_phys() for all dynamically allocated reserved
+memory regions, instead of those that do not have a kernel mapping
+associated with them.
+
+Link: https://lkml.kernel.org/r/20230208232001.2052777-1-isaacmanjarres@google.com
+Link: https://lkml.kernel.org/r/20230208232001.2052777-2-isaacmanjarres@google.com
+Fixes: a7259df76702 ("memblock: make memblock_find_in_range method private")
+Signed-off-by: Isaac J. Manjarres <isaacmanjarres@google.com>
+Acked-by: Mike Rapoport (IBM) <rppt@kernel.org>
+Acked-by: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Kirill A. Shutemov <kirill.shtuemov@linux.intel.com>
+Cc: Nick Kossifidis <mick@ics.forth.gr>
+Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Cc: Saravana Kannan <saravanak@google.com>
+Cc: <stable@vger.kernel.org>	[5.15+]
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+---
+ drivers/of/of_reserved_mem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 9da8835ba5a5..9e949ddcb146 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -47,9 +47,10 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+ 		err = memblock_mark_nomap(base, size);
+ 		if (err)
+ 			memblock_free(base, size);
+-		kmemleak_ignore_phys(base);
+ 	}
+ 
++	kmemleak_ignore_phys(base);
 +
-+               ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
-+                               dload_addr_val | 
-QCOM_SCM_BOOT_SET_DLOAD_MODE :
-+                               dload_addr_val & 
-~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
-         } else {
-                 dev_err(__scm->dev,
-                         "No available mechanism for setting download 
-mode\n");
+ 	return err;
+ }
+ 
+-- 
+2.39.2.637.g21b0678d19-goog
 
--Mukesh
-> 
-> -Mukesh
->>       } else if (__scm->dload_mode_addr) {
->> -        ret = qcom_scm_io_writel(__scm->dload_mode_addr,
->> -                enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
->> +        ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
->> +                dload_addr_val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
->> +                dload_addr_val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
->>       } else {
->>           dev_err(__scm->dev,
->>               "No available mechanism for setting download mode\n");
