@@ -2,294 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC6C669A922
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 11:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B4CA69A8FF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 11:21:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbjBQKhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 05:37:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
+        id S229507AbjBQKV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 05:21:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbjBQKhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 05:37:46 -0500
-X-Greylist: delayed 1151 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 17 Feb 2023 02:37:43 PST
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084DE63581
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 02:37:42 -0800 (PST)
-Received: from [167.98.27.226] (helo=[10.35.4.184])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1pSxox-004Ucb-FN; Fri, 17 Feb 2023 10:18:27 +0000
-Message-ID: <4a25cf89-bcf0-e78c-a8ab-7ba0c4f8e2bf@codethink.co.uk>
-Date:   Fri, 17 Feb 2023 10:18:26 +0000
+        with ESMTP id S229539AbjBQKV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 05:21:56 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2113.outbound.protection.outlook.com [40.107.93.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD5E63BCA;
+        Fri, 17 Feb 2023 02:21:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MbWHVCmGofe+vptNkzKZZEfafpPP44MClTPD4APqBkkoeyw8Sn/jLRDuMTVawVHpooahhnF8IWF9UBRRCrzb9t6Qxa9/eBNzYspBuQsyW2haK11qHvTEg+9uRfZ0cUr/kPruJeAn3V2LoVZzEctqNGIUkexTblScuWtkVifBYevR/KlRfIDpQh7UVd2JgOOocj2x2WNi0kEkbx7wpUHsETd61C5rEzFoxG6NPqgKsuoW6Mus9sMbBmBblfy3cAlid/dZnj5QDBY82tJ8xVfr44iiIXczVZC8VAcvvPLLs2VZCde9nblASz792ueOf07fK1UrvXYukIaH8P2WCgprAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AKL373CjcuzR3fvZWfxjTwV33fkBzAZ3MFds40urUpw=;
+ b=bIezg1dP78T1+rcudyLXEiZPihiijVWGWntjoJdoLz6XRpGaOYyIJBijtDshxmSlfxk93N4YqjdOWgHPU0D5jLUesYAP5wE8H79IPfd66qxlhY4RkygtD/cuwxiRxi+fb8/rzuWiNkBtqHwjZQMK8x7QbuSFd88IacUMiloZOBuj32Nf/bDNlRNjl0FxGaLtZAcKX4Ant9QrRNs/ognKt2KFjM5PMDwiHXyYbfOPDKZRaJGh5OJTG+AsP6pO++Wy+eONYHmy/W21op5WDa0ZI2NC6rKKRNrnahMTHmhtRzwGT1dj0MyNAVVY4MPvXBPTPMhqbGAuRTh4vv9BESNE/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AKL373CjcuzR3fvZWfxjTwV33fkBzAZ3MFds40urUpw=;
+ b=uItoYMgG4LlJ9JdyDyl1tYc1Wm/5icVs8svuo6HWUtDwQMOl93XIFP2skGSb799ph/fQpbvBtE947wPv5nMyqTHYsFzC6iRLOCPaUHvQ+08uCFwPpiSInQyUj0fEEnZh2zFf/4O7zU0serm7d713RXqLycyCd7Bl/7Mdt1W3ou4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SN6PR01MB4973.prod.exchangelabs.com (2603:10b6:805:c4::13) by
+ BYAPR01MB5143.prod.exchangelabs.com (2603:10b6:a03:1a::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6111.13; Fri, 17 Feb 2023 10:21:49 +0000
+Received: from SN6PR01MB4973.prod.exchangelabs.com
+ ([fe80::a807:4f38:56ee:b079]) by SN6PR01MB4973.prod.exchangelabs.com
+ ([fe80::a807:4f38:56ee:b079%4]) with mapi id 15.20.6086.028; Fri, 17 Feb 2023
+ 10:21:49 +0000
+From:   Chanh Nguyen <chanh@os.amperecomputing.com>
+To:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     Chanh Nguyen <chanh@os.amperecomputing.com>
+Subject: [PATCH] ARM: dts: aspeed: mtmitchell: Enable NCSI
+Date:   Fri, 17 Feb 2023 17:21:22 +0700
+Message-Id: <20230217102122.16547-1-chanh@os.amperecomputing.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR06CA0013.apcprd06.prod.outlook.com
+ (2603:1096:4:186::18) To SN6PR01MB4973.prod.exchangelabs.com
+ (2603:10b6:805:c4::13)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v4 6/8] RISC-V: Use Zicboz in clear_page when available
-Content-Language: en-GB
-To:     Andrew Jones <ajones@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     'Anup Patel ' <apatel@ventanamicro.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Rob Herring ' <robh@kernel.org>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Conor Dooley ' <conor.dooley@microchip.com>
-References: <20230209152628.129914-1-ajones@ventanamicro.com>
- <20230209152628.129914-7-ajones@ventanamicro.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20230209152628.129914-7-ajones@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR01MB4973:EE_|BYAPR01MB5143:EE_
+X-MS-Office365-Filtering-Correlation-Id: b65e0dbe-d525-4d94-344e-08db10d0c76d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mjnJiX1MwqUR967BOMlzPEHIisfJ8d86AnJEDleH07V90MQUCqlo+Q4g7iBO8vaS+WwUs4CAVzsApX5zQxH8r7WKPyiLr2qSxfMEn5DQ799xI7fUn2TnwryUxC5hlFxUpJfuCVEO6hxaRAWKc5a0IDVNqycyzI9RF6kTVHK8WGajNyohCgomHjW4OT0wUODaF7HvsVmV7umLZ8pLjXb4rgF8tgPEEQg0qc2TaP+rBTmyrhpM54ZwLSebFVlA/SWnG8df+psTpBIuES60xkr2nSJr5BfLA0VOYMhfEt1clKs4xLoYwt1xV1tbzhPlK+i9n4/H6UTDFWgglMw98PqmldPS1MyWI0VRw3lVZUIqXjYWjSb++fiQKpU8UuJPs5UXLp6Bsb9+FT/UBx8MuH2MSFA/fcEZ7wtaUyq4/mqpyS/mfzKtVmGnDuJ9IGgAWEmReGHVHCSsGZ0sKeWzLI4/Tm2z128IL7nr0gMzGjDYAjhMxCNq0Zmf41/TrJYoTFbIKIf6NdLg00vOXfYvhOJXVMY50JbCReCYIfLsDA1/9kKsHW/Qy+ElXGyYQLCWoplLZtwSPURl2tENAiwvE//ipCrP6OIjZF7sMqnGyBRWmWg3ntR0vUBLicuxjbWvkZAgHjibEKuMQRO8o136Y76w5AKpYNAcYSBQuRLSKIxc+lUhT9gJ41kgBuQrglQJeZ4oiYoGx4JQ6Wxxdbrq/DOwsO5cVIUezzKCdfeW+gF21B8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR01MB4973.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(346002)(396003)(376002)(136003)(39850400004)(451199018)(2906002)(86362001)(83380400001)(2616005)(38100700002)(38350700002)(5660300002)(66476007)(110136005)(66946007)(8676002)(66556008)(316002)(8936002)(4326008)(41300700001)(1076003)(6506007)(6512007)(186003)(107886003)(6666004)(26005)(478600001)(52116002)(6486002)(449214003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vtp+gVxTA/yFoc4GfgSDTPqR0R/SZ+P80OXrB7YK6Fy/rtxn2lXXLoiHjPk3?=
+ =?us-ascii?Q?7nyWV8FcnKfui3aivjA3EFWg88jCKqN92pUpIJ+Fe1RhNeqFJn0pq1yu9nOR?=
+ =?us-ascii?Q?OCfMR6LnIsUFV/9b0DTGVTBjShFjE8ZIn+7ET6zvi7sUQBwYw2Yz8hOuqK13?=
+ =?us-ascii?Q?xrSVscfhPW+EF6PoyULiDUC2kADd5Pv26Fk4kRpCnimvh2BR0koxYAOnqVYG?=
+ =?us-ascii?Q?yjFAPADaZuFrYb476rCFh3KehqGxXJkWl7kdgOjx3/EzZ72feZdJQqIclZ/9?=
+ =?us-ascii?Q?se7zuiHZgJuvx/GeOctt++yF/GyE+ZCMNvTfK5B3HRoDOluSWq5U6KW178rO?=
+ =?us-ascii?Q?fc3wvxeioB6BbSvXLZDbOyEE6P6ChE9gsanssUHvgkhyr1zFs+2S2Yt01mP/?=
+ =?us-ascii?Q?sGjGROa6RXFO77GDDlN5IR6GXLlKWNBxtLf9i7ebojZkjtAbnooZ7RNQIOhi?=
+ =?us-ascii?Q?pxowAnz54QBNK9Jjv/vo8sqMx8bBMugSgNsk6DPK9GoQNn1/M9qHrXZ0Fin5?=
+ =?us-ascii?Q?Wn9X1EZC0HjcAvPJhH5jE/7iq7NGv2EC6yBblcjwPv6o7DWYLDfHR5UmQkHW?=
+ =?us-ascii?Q?sYqCGF3urPja2RYxJnFhot8e/3iRWAmXEQls3TM9LrHV49cOaQzw1Qr2pxVL?=
+ =?us-ascii?Q?8/OHraGKAbo99htPJG6+uGMGmo0nJbn/MckZAyFOp2i25TR34wOY2M1sv7FE?=
+ =?us-ascii?Q?jVaBvdIspZVJWmHBMkqgY5qKqzj4ay8hYVASOmmlQFkffeavyshay349uDho?=
+ =?us-ascii?Q?u8LgbuxgriU2QVTItsuyTQVwrIL3RLOOsLL0cHq/wtWx7/x62dc27vRZk+Dn?=
+ =?us-ascii?Q?nvJUZWWUxJciQEs8/cya2ZQr/8drS2x/2oWlSg4rsSAmr/DFF/WzyGrog6Sq?=
+ =?us-ascii?Q?UirC8mK0rj5hfFfTaK3jWObqP5lWtS7w2l49ytJiePiWHos3RzwdWaz5IJyb?=
+ =?us-ascii?Q?wJ7VYHoT2T5+2DIJ1tc6Ysc+RrpqePCbYdRv2uoWaKOYD8KBc5m7N/ggo9M9?=
+ =?us-ascii?Q?fCqwS8sVQKXfhuPMeghuYW1jng6EbN4xUwol6xzHnb2xhwLnhEzpXs2dAHVk?=
+ =?us-ascii?Q?l6/qsMH5sArEpysIU7ppR3Gh9QLtrsh0vDZ/ER0B2udzpISXGzI5azEv0NYD?=
+ =?us-ascii?Q?0DAJqe/xQQyXsPHEbQlmE9u0Wko5i2nrUTPrNR1OmgRIygRLqLO1W25entxO?=
+ =?us-ascii?Q?20EMa7+/bPZSlw5Ee7SyijryFkAo8pe52IYIE2TU9hC82KPkoKyRaf6dQpQt?=
+ =?us-ascii?Q?QLS4wDu7CbDB7Qk7GOtosNFJ0Sg2+DtJVgR0fg07NfCQX3E1VkS0q5ifOHSa?=
+ =?us-ascii?Q?PtPjloJ4IvKMVIzwVFFoDYRH0h1+NLcMfou35iTtY/gp65MK47JHXbW+cXVu?=
+ =?us-ascii?Q?Dr+QzIDbOCtDEqPBeXX0MyKMfci0zj286NZhr3T2Nfp1A2wK7f92Ccq3+N5B?=
+ =?us-ascii?Q?Rv3XYpynmuibpkgbIcT5kO9FpZACb4/Jxf1wIoxZmiubAzx1CE22qfO5npw8?=
+ =?us-ascii?Q?0+g7V2TRUxq4PksYexfIiZqTBVeddotCw5S+ZuGz50jFc+4ymU2NYYzk66MA?=
+ =?us-ascii?Q?rInUPwPRNNcg4y4gqC/Bk3PJRkmhfjpV1cvGlCFgzqRCiIvA5mwJacUt6MXw?=
+ =?us-ascii?Q?HPtpOzq3wjW9vhygBPlEjR4=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b65e0dbe-d525-4d94-344e-08db10d0c76d
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR01MB4973.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 10:21:49.0778
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ItK21EG0epD1BFj8vT/rgg1O2wQC9azQxgsXwqxoet+bm/0I0oH5GeS4nPuOxFfHs8EkM7zrU5p66SgOspWsB2N2QgyvHba2mzvGkqgT/3X/y9QZUG+cfuHOx4UJUfFS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR01MB5143
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,WEIRD_QUOTING autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2023 15:26, Andrew Jones wrote:
-> Using memset() to zero a 4K page takes 563 total instructions, where
-> 20 are branches. clear_page(), with Zicboz and a 64 byte block size,
-> takes 169 total instructions, where 4 are branches and 33 are nops.
-> Even though the block size is a variable, thanks to alternatives, we
-> can still implement a Duff device without having to do any preliminary
-> calculations. This is achieved by taking advantage of 'vendor_id'
-> being used as application-specific data for alternatives, enabling us
-> to stop patching / unrolling when 4K bytes have been zeroed (we would
-> loop and continue after 4K if the page size would be larger)
-> 
-> For 4K pages, unrolling 16 times allows block sizes of 64 and 128 to
-> only loop a few times and larger block sizes to not loop at all. Since
-> cbo.zero doesn't take an offset, we also need an 'add' after each
-> instruction, making the loop body 112 to 160 bytes. Hopefully this
-> is small enough to not cause icache misses.
-> 
-> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   arch/riscv/Kconfig                | 13 ++++++
->   arch/riscv/include/asm/insn-def.h |  4 ++
->   arch/riscv/include/asm/page.h     |  6 ++-
->   arch/riscv/kernel/cpufeature.c    | 11 +++++
->   arch/riscv/lib/Makefile           |  1 +
->   arch/riscv/lib/clear_page.S       | 71 +++++++++++++++++++++++++++++++
->   6 files changed, 105 insertions(+), 1 deletion(-)
->   create mode 100644 arch/riscv/lib/clear_page.S
-> 
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 029d1d3b40bd..9590a1661caf 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -456,6 +456,19 @@ config RISCV_ISA_ZICBOM
->   
->   	   If you don't know what to do here, say Y.
->   
-> +config RISCV_ISA_ZICBOZ
-> +	bool "Zicboz extension support for faster zeroing of memory"
-> +	depends on !XIP_KERNEL && MMU
-> +	select RISCV_ALTERNATIVE
-> +	default y
-> +	help
-> +	   Enable the use of the ZICBOZ extension (cbo.zero instruction)
-> +	   when available.
-> +
-> +	   The Zicboz extension is used for faster zeroing of memory.
-> +
-> +	   If you don't know what to do here, say Y.
-> +
->   config TOOLCHAIN_HAS_ZIHINTPAUSE
->   	bool
->   	default y
-> diff --git a/arch/riscv/include/asm/insn-def.h b/arch/riscv/include/asm/insn-def.h
-> index e01ab51f50d2..6960beb75f32 100644
-> --- a/arch/riscv/include/asm/insn-def.h
-> +++ b/arch/riscv/include/asm/insn-def.h
-> @@ -192,4 +192,8 @@
->   	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
->   	       RS1(base), SIMM12(2))
->   
-> +#define CBO_zero(base)						\
-> +	INSN_I(OPCODE_MISC_MEM, FUNC3(2), __RD(0),		\
-> +	       RS1(base), SIMM12(4))
-> +
->   #endif /* __ASM_INSN_DEF_H */
-> diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
-> index 9f432c1b5289..ccd168fe29d2 100644
-> --- a/arch/riscv/include/asm/page.h
-> +++ b/arch/riscv/include/asm/page.h
-> @@ -49,10 +49,14 @@
->   
->   #ifndef __ASSEMBLY__
->   
-> +#ifdef CONFIG_RISCV_ISA_ZICBOZ
-> +void clear_page(void *page);
-> +#else
->   #define clear_page(pgaddr)			memset((pgaddr), 0, PAGE_SIZE)
-> +#endif
->   #define copy_page(to, from)			memcpy((to), (from), PAGE_SIZE)
->   
-> -#define clear_user_page(pgaddr, vaddr, page)	memset((pgaddr), 0, PAGE_SIZE)
-> +#define clear_user_page(pgaddr, vaddr, page)	clear_page(pgaddr)
->   #define copy_user_page(vto, vfrom, vaddr, topg) \
->   			memcpy((vto), (vfrom), PAGE_SIZE)
->   
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 74736b4f0624..42246bbfa532 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -280,6 +280,17 @@ void __init riscv_fill_hwcap(void)
->   #ifdef CONFIG_RISCV_ALTERNATIVE
->   static bool riscv_cpufeature_application_check(u32 feature, u16 data)
->   {
-> +	switch (feature) {
-> +	case RISCV_ISA_EXT_ZICBOZ:
-> +		/*
-> +		 * Zicboz alternative applications provide the maximum
-> +		 * supported block size order, or zero when it doesn't
-> +		 * matter. If the current block size exceeds the maximum,
-> +		 * then the alternative cannot be applied.
-> +		 */
-> +		return data == 0 || riscv_cboz_block_size <= (1U << data);
-> +	}
-> +
->   	return data == 0;
->   }
->   
-> diff --git a/arch/riscv/lib/Makefile b/arch/riscv/lib/Makefile
-> index 6c74b0bedd60..26cb2502ecf8 100644
-> --- a/arch/riscv/lib/Makefile
-> +++ b/arch/riscv/lib/Makefile
-> @@ -8,5 +8,6 @@ lib-y			+= strlen.o
->   lib-y			+= strncmp.o
->   lib-$(CONFIG_MMU)	+= uaccess.o
->   lib-$(CONFIG_64BIT)	+= tishift.o
-> +lib-$(CONFIG_RISCV_ISA_ZICBOZ)	+= clear_page.o
->   
->   obj-$(CONFIG_FUNCTION_ERROR_INJECTION) += error-inject.o
-> diff --git a/arch/riscv/lib/clear_page.S b/arch/riscv/lib/clear_page.S
-> new file mode 100644
-> index 000000000000..5b851e727f7c
-> --- /dev/null
-> +++ b/arch/riscv/lib/clear_page.S
-> @@ -0,0 +1,71 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2023 Ventana Micro Systems Inc.
-> + */
-> +
-> +#include <linux/linkage.h>
-> +#include <asm/asm.h>
-> +#include <asm/alternative-macros.h>
-> +#include <asm/hwcap.h>
-> +#include <asm/insn-def.h>
-> +#include <asm/page.h>
-> +
-> +#define CBOZ_ALT(order, old, new)	\
-> +	ALTERNATIVE(old, new, order, RISCV_ISA_EXT_ZICBOZ, CONFIG_RISCV_ISA_ZICBOZ)
+Support the mac3 (RGMII4) as an NC-SI stack instead of an MDIO PHY.
 
-I thought this was meant to be a CPUFEATURE_ZICBOZ thing for the
-alternatives?
+The OCP slot #0 and OCP slot #1 use a common the BMC_NCSI signal,
+so we use only one of them at the same time. The OCP slot #0 will
+be enabled by PCA9539's setting by default.
 
-I may also be missing something, but when backporting this to 5.19
-to test it on our system the "order" argument is in fact the vendor-id
-so this doesn't work as the alternatives don't get patched in at-all.
+Also, enable the OCP Auxiliary Power during booting.
 
-> +
-> +/* void clear_page(void *page) */
-> +ENTRY(__clear_page)
-> +WEAK(clear_page)
-> +	li	a2, PAGE_SIZE
-> +
-> +	/*
-> +	 * If Zicboz isn't present, or somehow has a block
-> +	 * size larger than 4K, then fallback to memset.
-> +	 */
-> +	CBOZ_ALT(12, "j .Lno_zicboz", "nop")
+Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+---
+ .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 37 ++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
-I can't see how the CBOZ_ALT is checking for the CBOZ block
-size being bigger than 4k... I guess we should have also
-tested the block size is an exact multiple of page size?
-
-It would also be better if we just didn't enable it and printed
-an warn when we initialise and then never advertise the feature
-in the first place?
-
-> +
-> +	lw	a1, riscv_cboz_block_size
-> +	add	a2, a0, a2
-> +.Lzero_loop:
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBOZ_ALT(11, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBOZ_ALT(10, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBOZ_ALT(9, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
-
-I'm also wondering why we are using CBOZ_ALT past the first
-check. I don't see why it shouldn't just be a loop with a siz
-check like:
-
-Lzero_loop:
-	CBO_zero(a0)
-	add	a0, a0, a1
-	blge	a0, a2, .Lzero_done
-	....
-
-
-If you wanted to do multiple CBO_zero(a0) then maybe testing
-and branching would be easier to allow a certain amount of
-loop unrolling.
-
-
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBOZ_ALT(8, "bltu a0, a2, .Lzero_loop; ret", "nop; nop")
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	CBO_zero(a0)
-> +	add	a0, a0, a1
-> +	bltu	a0, a2, .Lzero_loop
-> +	ret
-> +.Lno_zicboz:
-> +	li	a1, 0
-> +	tail	__memset
-> +END(__clear_page)
-
-Whilst this seems to work, I am not sure why and it probably wants
-more testing.
-
+diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+index 4b91600eaf62..e8a6b1f08d6a 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+@@ -251,6 +251,14 @@
+ 	pinctrl-0 = <&pinctrl_rgmii1_default>;
+ };
+ 
++&mac3 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rmii4_default>;
++	clock-names = "MACCLK", "RCLK";
++	use-ncsi;
++};
++
+ &fmc {
+ 	status = "okay";
+ 	flash@0 {
+@@ -439,6 +447,26 @@
+ 	status = "okay";
+ };
+ 
++&i2c8 {
++	status = "okay";
++
++	pca9539@77 {
++		compatible = "nxp,pca9539";
++		reg = <0x77>;
++		gpio-controller;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		#gpio-cells = <2>;
++
++		bmc-ocp0-en-hog {
++			gpio-hog;
++			gpios = <7 GPIO_ACTIVE_LOW>;
++			output-high;
++			line-name = "bmc-ocp0-en-n";
++		};
++	};
++};
++
+ &i2c9 {
+ 	status = "okay";
+ };
+@@ -530,13 +558,20 @@
+ 	/*V0-V7*/	"s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
+ 			"host0-reboot-ack-n","host0-ready","host0-shd-req-n",
+ 			"host0-shd-ack-n","s0-overtemp-n",
+-	/*W0-W7*/	"ocp-aux-pwren","ocp-main-pwren","ocp-pgood","",
++	/*W0-W7*/	"","ocp-main-pwren","ocp-pgood","",
+ 			"bmc-ok","bmc-ready","spi0-program-sel","spi0-backup-sel",
+ 	/*X0-X7*/	"i2c-backup-sel","s1-fault-alert","s1-fw-boot-ok",
+ 			"s1-hightemp-n","s0-spi-auth-fail-n","s1-sys-auth-failure-n",
+ 			"s1-overtemp-n","s1-spi-auth-fail-n",
+ 	/*Y0-Y7*/	"","","","","","","","host0-special-boot",
+ 	/*Z0-Z7*/	"reset-button","ps0-pgood","ps1-pgood","","","","","";
++
++	ocp-aux-pwren-hog {
++		gpio-hog;
++		gpios = <ASPEED_GPIO(W, 0) GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "ocp-aux-pwren";
++	};
+ };
+ 
+ &gpio1 {
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+2.17.1
 
