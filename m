@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99B1D69B54A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 23:09:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83FAB69B558
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 23:15:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjBQWJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 17:09:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41838 "EHLO
+        id S229531AbjBQWPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 17:15:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjBQWJ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 17:09:27 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0836D63BEC;
-        Fri, 17 Feb 2023 14:09:27 -0800 (PST)
+        with ESMTP id S229477AbjBQWPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 17:15:46 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306465A3B6;
+        Fri, 17 Feb 2023 14:15:46 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 943EE61F16;
-        Fri, 17 Feb 2023 22:09:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A53C433D2;
-        Fri, 17 Feb 2023 22:09:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BFF7562071;
+        Fri, 17 Feb 2023 22:15:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E96C4339C;
+        Fri, 17 Feb 2023 22:15:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676671766;
-        bh=dohttyIu2Bl/pSJu7ZcRis3drhqvSiIATad3K6P7nD4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JESuvLAQEnqEPF+zw9tWnCJgonovlmjSXmDYYxH2Tcv22pZ4aoxOMx29W0sw9y62s
-         V0XJFaWTV4Q+4S7jritA874UJz6+C0ubdrBxiT3kj5SvrK53MfM8RqAmndsrw897XR
-         OGB++BEAf0y/A4h5ejiKfqvdPnmAi9bev0iP17i6oL7qxIdE3bzq4G6nh/QB0/Qnu1
-         XuBPCZ5M+k6lt9afOl94cZHQDl9hijZE8W2GpvgjIZermehvhvAAeEvUoxYuIsHmN+
-         rQnCCKsl2wuO9JCuZlMe6LbO1qZ8on61B8mxvcEDesBseWVwFVIVrtU/k5LsgV5plC
-         MYz1olJrfNvrg==
-Date:   Fri, 17 Feb 2023 23:09:22 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 5/5] MAINTAINERS: Add HPE GXP I2C Support
-Message-ID: <Y+/7Epi667Kd22Ro@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, nick.hawkins@hpe.com,
-        verdun@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230217155054.99757-1-nick.hawkins@hpe.com>
- <20230217155054.99757-6-nick.hawkins@hpe.com>
+        s=k20201202; t=1676672145;
+        bh=CAwFwvxZLX8x0bqlIXBGrQ70JsVcL+a1viVjg97kZ+s=;
+        h=In-Reply-To:References:Subject:From:To:Date:From;
+        b=tqp5Xt/xckaqoCokZm2wkFFj0J4BPwv9TpLdmAqHOTievevAo8KOHXezOT+yolUyK
+         Q6z3qdkdgygS9IsafThKWWBqDrVlt8OuXOb7ObGSke2N+s1Tu6ybmfZ6eQ5VOkwUO5
+         2wUcvsFtDd2FMd0ZEBxLm2BHZ+sJUgE1rSTOC/pYt4vMdN4XhvvUBE+5CsyLiLCDAY
+         Bx0Lk8i7+JtwwjIXbJXg9vd0bF5CyX8g+zH9awUPe5Pj19zLF921jDoFEGHSEtJQCG
+         7bwEweqcXCl7pN2k8i23xLu0D9g4vHTPmKfBXhITnKuihKAoyEU4soTQVFw6bE6rgp
+         Lr9TmMNMQbIBA==
+Message-ID: <8332a1cf44b01f06bdd5db9dc5d7f387.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kwZfFsG/0xbvXpT5"
-Content-Disposition: inline
-In-Reply-To: <20230217155054.99757-6-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn>
+References: <20221129034157.15036-1-zhuyinbo@loongson.cn> <20221129034157.15036-2-zhuyinbo@loongson.cn> <31c690a347f858a477bbba9c838984ed.sboyd@kernel.org> <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn>
+Subject: Re: [PATCH v10 2/4] clk: clk-loongson2: add clock controller driver support
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, liupeibao@loongson.cn,
+        loongarch@lists.linux.dev, wanghongliang@loongson.cn,
+        zhuyinbo@loongson.cn
+Date:   Fri, 17 Feb 2023 14:15:42 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,41 +62,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---kwZfFsG/0xbvXpT5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Feb 17, 2023 at 09:50:54AM -0600, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+Quoting zhuyinbo (2023-02-14 23:35:22)
 >=20
-> Add the I2C controller source and bindings.
+> =E5=9C=A8 2023/2/11 =E4=B8=8A=E5=8D=887:42, Stephen Boyd =E5=86=99=E9=81=
+=93:
+> > Quoting Yinbo Zhu (2022-11-28 19:41:55)
+> >
+> >> +
+> >> +       mult =3D (val >> LOONGSON2_USB_FREQSCALE_SHIFT) &
+> >> +                       clk_div_mask(LOONGSON2_USB_FREQSCALE_WIDTH);
+> >> +
+> >> +       rate =3D parent_rate * (mult + 1);
+> >> +       do_div(rate, 8);
+> > Why is do_div() being used?
+> no expecial reason, I only want to get a result that rate divide 8.
+
+Ok, you can use div_u64() here and simplify.
+
+> >
 >=20
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> you meaning is to use clk_parent_data to rework=20
+> loongson2_clk_pll_register=C2=A0 and drop
+>=20
+> loongson2_obtain_fixed_clk_hw ?
+
+Yes
+
+>=20
+> >
+> >> +}
+> >> +
+> >> +static void __init loongson2_clocks_init(struct device_node *np)
+> >> +{
+> >> +       struct clk_hw **hws;
+> >> +       struct clk_hw_onecell_data *clk_hw_data;
+> >> +       spinlock_t loongson2_clk_lock;
+> >> +
+> >> +       loongson2_pll_base =3D of_iomap(np, 0);
+> >> +
+> >> +       if (!loongson2_pll_base) {
+> >> +               pr_err("clk: unable to map loongson2 clk registers\n");
+> >> +               goto err;
+> > return?
+> sorry, I don't get it.=C2=A0 you meaning is that=C2=A0 remove "goto err".=
+ Instead,=20
+> add a "return".
+
+Yes.
+
+> >
+> >> +       }
+> >> +
+> >> +       clk_hw_data =3D kzalloc(struct_size(clk_hw_data, hws, LOONGSON=
+2_CLK_END),
+> >> +                                       GFP_KERNEL);
+> >> +       if (WARN_ON(!clk_hw_data))
+> >> +               goto err;
+[...]
+> >> +
+> >> +err:
+> >> +       iounmap(loongson2_pll_base);
+> >> +}
+> >> +
+> >> +CLK_OF_DECLARE(loongson2_clk, "loongson,ls2k-clk", loongson2_clocks_i=
+nit);
+> > Any reason this can't be a platform driver?
+>=20
+> For the compatible consideration of other clock controllers of=20
+> Loongson-2 series in the future, the way of using dts can be
+>=20
+> better compatible.
 >=20
 
-Applied to for-next, thanks!
-
-
---kwZfFsG/0xbvXpT5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPv+xIACgkQFA3kzBSg
-KbbKKw//X/yFv2vG58NRX8V/lYMSp8qJfQTvbP+3DEVuOG7CkzSjCWjXURxeVeAj
-8lWMgT3wKrsBZm39Z+eN+OeGydVnMzCO8hs7lqNFng1T2zFh0fOeJo/EZKjMQ+yN
-QXAu077ea4zVD3c5qmWGJR7dgcMEwtrAT04DtBehkJ0550KHxp6LihkSx96RrPrD
-faxpAVkz1RbFH1Z5Fqn+MkvQhxwLnVehnqxykA+ZgiT4LGheNt0r94lJ5a2imR/J
-BWYh5RtsWldgKlig2uJzM34yMWXrDsfmhHdEawxAwVdegjK2iNniwHcJ05xIspo/
-P4S7F+KU/m5f4AIyraUIUBtxjSKJsk42JVSBOfMvw2RVuRqyPL9dhC+ObssttFzW
-j4xZUcHo+Quq+SS6lXf4xCVw0hKHfrXIBBZl8T354kri+3dDkNeZbly2wbbwGoT6
-ksj/I5Vwtarrr8B6Sb21cByiisgOi67rwBjRFApHYF7dIYyj3MjAW2BKJxpwugYz
-46iB+I+nMXW49205lDWjIVyd3gpVPkOP/4bILc0L8gndRc7K63U7eVXoaV69bhwQ
-su0hrDPMSR5POsIYMFVbPYd27MCzJpnSdmistMAIfBMEnXMMaM0j9M3Rcwa1Bo6c
-opqHXRbj70It5zmbY/mXPimBJkvLsX9A6X74FUeWvQwbi10kG+M=
-=TfSf
------END PGP SIGNATURE-----
-
---kwZfFsG/0xbvXpT5--
+Sorry that sentence doesn't make sense to me. The use of dts doesn't
+require the use of CLK_OF_DECLARE.
