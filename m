@@ -2,245 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B97869ABFE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 13:57:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D92869AC1C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:06:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbjBQM5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 07:57:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
+        id S230045AbjBQNGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 08:06:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbjBQM5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 07:57:11 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D11A1A951;
-        Fri, 17 Feb 2023 04:57:09 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5F9E12D8;
-        Fri, 17 Feb 2023 13:57:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1676638626;
-        bh=Ir7oJf+hvbJDHRFZ81MDofW8bdJd+0sZrLJTMAgzQI4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=L7Hgr8gpFqZHEZgveWosIO7YDT0EBNpnm8sEuO6PQHkHdiTQuUqU/1saRmupcXoiT
-         QoBuLmtzyPpZrulfeGlwlGrHahjMfbOns/RNiODEBZkls8M4sqZIFtaSfBwF43l9no
-         1bFeIjn0OjjOhcmoWZa2WGBS83ZJjvwUsaESXVNI=
-Message-ID: <9f3f0744-f771-cd2c-3b8e-5b79f7a430c7@ideasonboard.com>
-Date:   Fri, 17 Feb 2023 14:57:02 +0200
+        with ESMTP id S230036AbjBQNGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:06:47 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704B05BD87
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 05:06:45 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id bi36so1395129lfb.6
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 05:06:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vvEa0mJYtd+G6bvaOGxPbkna4LTkKOOJGlw7PwM4jDk=;
+        b=OutRggqL6ChRrd7U4h7FjSaKRX8WvJF/ILzuPwurg/Db6xOW3nMZZYCNIJfBd8JIux
+         8zbjn89swfdF7wVtCdBXk9jnBBSKY+0gDx0/HaYI8LQ62I4G6Ousiqg5KBaOLkPRje/c
+         xmL9hhjL9D9hEPMTml7RRabmctWihOc/iDi9/vi/yfbRFj7WBmwFZhEg5+UpDaYNrIp7
+         qXHnjYWt0lwDte8lMI5kYdP053zXRMe8BfuLqvzE1oh3jG70fSkcdL+6V4t6lClAZCCF
+         qP+LPRs85W+uYpwc5mXsNiLGEgzxpr/GVtvJIFDjCCZQDHa+OMqYZ0SvNTQWy3uS7zy6
+         Hcuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vvEa0mJYtd+G6bvaOGxPbkna4LTkKOOJGlw7PwM4jDk=;
+        b=Gt7/bLPd8aFL7JN9MOH8QlwQnWGe26W4pYW4UITDhnzgH2DKTWGXXW9an39bo0RBLO
+         IAb/6aDio3KL8fLNElJSCEIF+mKAreTEZyre4C3iIFw/+LpsB+hr6vvKfMZ2OBYL8z0Q
+         JK6ZsT7rGAQaHG7UuaQD3hDVQL7ArUDjVy08zVooisvAUvVDbS9ZmWPjWn5WtE54GqsD
+         a+1TdxD/Xu6ykDOVsl0+lpgKj5ZA7WLpGLRYSLSOSNN1S8+uJbnq+n9jKsYSWvmvNvf/
+         ZhsyOcgUZ7LaXeSRSm9fzBVjXemfUQKeWP9PfNCmEsi7Yv73sA+jX1fa6nXfAsBBVs8j
+         Q03Q==
+X-Gm-Message-State: AO0yUKVB+YhSwYN7MZhDeBJQG7K+spl10usF+kFJvTRRh3FtfpKQF4Qd
+        cf3OlEySrCyJmihdF0B7zuM6yw==
+X-Google-Smtp-Source: AK7set/lbeT9EHF1pBE4+EMSMKbkVmLPsQwro43XW0FTt2Afuh+Wj39B9+9Wd1kBfJ9Q0Dco/BJl4g==
+X-Received: by 2002:a19:ad42:0:b0:4da:e925:c95b with SMTP id s2-20020a19ad42000000b004dae925c95bmr152872lfd.62.1676639203626;
+        Fri, 17 Feb 2023 05:06:43 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id t1-20020ac25481000000b004d16263b36bsm673878lfk.111.2023.02.17.05.06.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 05:06:43 -0800 (PST)
+Message-ID: <0d955930-df72-127a-7c53-3e3519affafa@linaro.org>
+Date:   Fri, 17 Feb 2023 14:06:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v9 0/8] i2c-atr and FPDLink
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
+ deprecated QCM2290 compatible
 Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>
-References: <20230216140747.445477-1-tomi.valkeinen@ideasonboard.com>
- <Y+5Rb17FTG4IxcE0@smile.fi.intel.com>
- <e4141652-53c0-fce1-dac7-5da5368e2240@ideasonboard.com>
- <Y+9j3cYOG+Z0zmyC@smile.fi.intel.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y+9j3cYOG+Z0zmyC@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
+ <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
+ <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
+ <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
+ <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
+ <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 13:24, Andy Shevchenko wrote:
-> On Fri, Feb 17, 2023 at 08:57:32AM +0200, Tomi Valkeinen wrote:
->> On 16/02/2023 17:53, Andy Shevchenko wrote:
->>> On Thu, Feb 16, 2023 at 04:07:39PM +0200, Tomi Valkeinen wrote:
-> 
-> ...
-> 
->>>>    	struct i2c_board_info ser_info = {
->>>> -		.of_node = to_of_node(rxport->remote_fwnode),
->>>> -		.fwnode = rxport->remote_fwnode,
+
+
+On 17.02.2023 13:24, Krzysztof Kozlowski wrote:
+> On 17/02/2023 12:36, Konrad Dybcio wrote:
+>>>>
+>>>> compatible = "qcom,dsi-ctrl-6g-qcm2290";
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm6115.dtsi?h=next-20230217#n1221
 >>>
->>>> +		.of_node = to_of_node(rxport->ser.fwnode),
->>>> +		.fwnode = rxport->ser.fwnode,
+>>> I meant, that original commit wanted to deprecate:
+>>> compatible="qcom,dsi-ctrl-6g-qcm2290";
+>>> compatible="qcom,mdss-dsi-ctrl";
 >>>
->>> Why do you need to have both?!
->>
->> I didn't debug it, but having only fwnode there will break the probing (no
->> match).
+>> Okay, so what would be the correct resolution?
+>> Drop this patch and keep 2/2?
 > 
-> This needs to be investigated. The whole fwnode approach, when we have both
-> fwnode and legacy of_node fields in the same data structure, is that fwnode
-> _OR_ of_node initialization is enough, when both are defined the fwnode
-> should take precedence.
-> 
-> If your testing is correct (and I have no doubts) it means we have a serious
-> bug lurking somewhere.
+> First, it would be nice to know what was the intention of Bryan's commit?
+AFAICT, it was necessary to add per-SoC compatibles to all DSI hosts
+to make documenting clocks possible (they differ per-platform).
 
-Having both defined or only of_node defined works for me.
+The qcm2290 deprecation came from the oddity of the compatible name
+(it did not match qcom,socname-hw), but he seems to have overlooked
+that (at least before my recent patchset [1]), it was necessary as it
+needed to circumvent part of the driver's logic. So it was first made
+up-to-speed with the rest by adding the fallback common compatible and
+then (wrongly) deprecated.
 
-Perhaps the issue is that these drivers only add of_match_table, and 
-thus having only .fwnode above is not enough.
 
-Looking at i2c_device_match(), i2c_of_match_device() only uses of_node, 
-so perhaps I would need CONFIG_ACPI for acpi_driver_match_device to do 
-matching with of_node? Although I don't see the acpi code using fwnode, 
-just of_node. Well, I have to say I have no idea without spending more 
-time on this.
+Then, SM6115 DSI DTS part was added parallel to that, so he did not
+update it.
 
->>>>    		.platform_data = ser_pdata,
->>>>    	};
-> 
-> ...
-> 
->>> 		cur_vc = desc.entry[0].bus.csi2.vc;
->>>
->>>> +		for (i = 0; i < desc.num_entries; ++i) {
->>>> +			u8 vc = desc.entry[i].bus.csi2.vc;
->>>
->>>> +			if (i == 0) {
->>>> +				cur_vc = vc;
->>>> +				continue;
->>>> +			}
->>>
->>> This is an invariant to the loop, see above.
->>
->> Well, the current code handles the case of num_entries == 0. I can change it
->> as you suggest, and first check if num_entries == 0 and also start the loop
->> from 1.
-> 
-> You may try to compile both variants and see which one gets lets code.
-> I believe it will be mine or they are equivalent in case compiler is clever
-> enough to recognize the invariant.
+With [1] its deprecation is correct and this series tries to complete
+it.
 
-But your suggestion accesses desc.entry[0] even if there are no entries, 
-accessing possibly uninitialized memory. In that case it doesn't use it 
-for anything, but at least I find that kind of code worrying.
+Konrad
 
->>>> +			if (vc == cur_vc)
->>>> +				continue;
->>>> +
->>>> +			dev_err(&priv->client->dev,
->>>> +				"rx%u: source with multiple virtual-channels is not supported\n",
->>>> +				nport);
->>>> +			return -ENODEV;
->>>> +		}
+[1] https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
 > 
-> ...
+> Second, if the intention was to deprecate both of these, then this
+> commit could stay with changes - make it enum for both compatibles (not
+> list).
 > 
->>>> +	for (i = 0; i < 6; ++i)
->>>>    		ub960_read(priv, UB960_SR_FPD3_RX_ID(i), &id[i]);
->>>>    	id[6] = 0;
->>>
->>> Wondering if this magic can be defined.
->>
->> The number of ID registers? Yes, I can add a define.
+> Best regards,
+> Krzysztof
 > 
-> Yes.
-> 
-> ...
-> 
-> ...
-> 
->>>>    	if (ret) {
->>>>    		if (ret != -EINVAL) {
->>>> -			dev_err(dev,
->>>> -				"rx%u: failed to read 'ti,strobe-pos': %d\n",
->>>> -				nport, ret);
->>>> +			dev_err(dev, "rx%u: failed to read '%s': %d\n", nport,
->>>> +				"ti,strobe-pos", ret);
->>>>    			return ret;
->>>>    		}
->>>>    	} else if (strobe_pos < UB960_MIN_MANUAL_STROBE_POS ||
->>>> @@ -3512,8 +3403,8 @@ ub960_parse_dt_rxport_link_properties(struct ub960_data *priv,
->>>>    	ret = fwnode_property_read_u32(link_fwnode, "ti,eq-level", &eq_level);
->>>>    	if (ret) {
->>>>    		if (ret != -EINVAL) {
->>>> -			dev_err(dev, "rx%u: failed to read 'ti,eq-level': %d\n",
->>>> -				nport, ret);
->>>> +			dev_err(dev, "rx%u: failed to read '%s': %d\n", nport,
->>>> +				"ti,eq-level", ret);
->>>>    			return ret;
->>>>    		}
->>>>    	} else if (eq_level > UB960_MAX_EQ_LEVEL) {
->>>
->>
->> Hmm, I noticed this one (and the one above) was missing return -EINVAL.
->>
->>> Seems like you may do (in both cases) similar to the above:
->>>
->>> 	var = 0;
->>> 	ret = read_u32();
->>> 	if (ret && ret != -EINVAL) {
->>> 		// error handling
->>> 	}
->>> 	if (var > limit) {
->>> 		// another error handling
->>> 	}
->>
->> That's not the same. You'd also need to do:
->>
->> if (!ret) {
->> 	// handle the retrieved value
->> }
->>
->> which, I think, is not any clearer (perhaps more unclear).
->>
->> What I could do is:
->>
->> if (ret) {
->> 	if (ret != -EINVAL) {
->> 		dev_err(dev, "rx%u: failed to read '%s': %d\n", nport,
->> 			"ti,eq-level", ret);
->> 		return ret;
->> 	}
->> } else {
->> 	if (eq_level > UB960_MAX_EQ_LEVEL) {
->> 		dev_err(dev, "rx%u: illegal 'ti,eq-level' value: %d\n",
->> 			nport, eq_level);
->> 		return -EINVAL;
->> 	}
->>
->> 	rxport->eq.manual_eq = true;
->> 	rxport->eq.manual.eq_level = eq_level;
->> }
->>
->> Maybe the above style makes it clearer, as it clearly splits the "don't have
->> value" and "have value" branches.
-> 
-> Up to you, but this just a good example why I do not like how optional
-> properties are handled in a "smart" way.
-> 
-> To me
-> 
-> 	foo = DEFAULT;
-> 	_property_read_(&foo); // no error checking
-> 
-> is clean, neat, small and good enough solution.
-
-Yes, if you have a default. I don't. I could add a new magic number for 
-the eq_level which means not-defined and use it as a default, but I 
-don't usually like default values which are not 0. Here I have the 
-manual_eq boolean to tell if we're using manual EQ or not.
-
-  Tomi
-
