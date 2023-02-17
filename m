@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFBD69A744
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A97869A750
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjBQIpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 03:45:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46404 "EHLO
+        id S229814AbjBQIr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 03:47:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjBQIpW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:45:22 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7925F279
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:45:21 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id ez12so1543651edb.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:45:21 -0800 (PST)
+        with ESMTP id S229510AbjBQIrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:47:25 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4034BEAA
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:47:24 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id co2so1061406edb.13
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:47:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3ebHEjhhQg6SrbCXlcwPL5qX5DnluT/Ueq/0wDwmR68=;
-        b=DcBx0ksgIs/Y1vPtT+jyIe2mwq2R5Uj65SNGWhVnpxL3apephRUFA5dmvWlcG1iAWd
-         AYG6KMSQvl2YxKwT570b/G8SUFUnrlq7ZZuwG+swU2QQefmq3LAChUj3E3Aw51ydYEp5
-         zxKm2NBilHiHnis5s6l7xsZ3BIJwf8SaYgRcDqnC8ualc3FsyoKs2KyS33qzyE8/VA1G
-         /bl3is1dlGWSCwNfUUs7Dc3/sc716DNXG02oYtURYr6Da9fpFiNwYW8wi/NYWIt7n0pW
-         xhop3be0Y08IC2s/Apc/3QrKS8DLrfSbCKdV/DbkHkWvcQ4Ph+Fro45iVOp5iuub7D+J
-         PKjg==
+        bh=VxihBAJijOKWkC1DDpICuhn4t5+4cYDnf5ZAevcjFq8=;
+        b=L0aHsWYreKItVLEfbGbZWxMmtJwDTCItVW85fLIPOPtbJ0Qkp44qB5GawSf2BLcDeP
+         M/2r7kxbk5gakqq+hNO3Nv8Y1j6U61SgIMfvMrZu2Y8cKsx2AL0tTwT7LhT4Hf6UjmtB
+         EwiCL61tYlall0Hi+t6R7WwLQNQ8fC/AU39MQH9gBXJBSBuSU7LB8rYDIVK24hutIOge
+         aWZdA4EvmMXXc6wE8eE7+oRns0auEt4T+KQq90qOrtiOJre/WkinzpzKZFrLrxV2Ek+6
+         aXPAGbRrpQyeRtApfOe9HWujyJRJS3hv6IxakCISk55tBifsXWv60LAUyiM2kEuqOnMD
+         yxfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ebHEjhhQg6SrbCXlcwPL5qX5DnluT/Ueq/0wDwmR68=;
-        b=hp0B4+Q/VzwxF4Q0yroyOXBrftA+dg6RoKIE+XybzZCC7d7owFI/LtOD8KDYSR8NUf
-         /pjQPGfsHImyqzKiXWTHeVK6uvVAM7YRUsuiYlGBZBXywB6Nue4FmikIi+ldEVcNG/FO
-         by9HwyCPqZEktKA+XmkbwKw5wZ7CBU0Nl7SJ3rYmnLRAHCwUmwase3kbs3JUFqsf1K7r
-         16hhxPE3wMBXeqZ6VFj3VoVK4YsomMUW4fVgj/JnQbZ46hnI0s7RG5NfPzuOn1SirFiQ
-         8JWRPWY1eTDeJNErrxLBm/dtGuawW248y/9pVLfKyAqDjup/tJTLnyAQoV9CQ7Rj+axG
-         Vq6g==
-X-Gm-Message-State: AO0yUKWSefN5H4eT0O+9DHgWhC7Qckmce+JKblwIqTwrl+hF8Qp5xUeo
-        iBM/MZ4uWVB9ezHV7WnP7/GK3A==
-X-Google-Smtp-Source: AK7set8i0o5lqUG8tIq6CIIUZR3TFQhZ+xoWnygHa2WHOM25cp1THXFzaVlWebxs9MpN/Vx4lSkkWg==
-X-Received: by 2002:aa7:cc0c:0:b0:4ac:bbb1:e61c with SMTP id q12-20020aa7cc0c000000b004acbbb1e61cmr62829edt.1.1676623519966;
-        Fri, 17 Feb 2023 00:45:19 -0800 (PST)
+        bh=VxihBAJijOKWkC1DDpICuhn4t5+4cYDnf5ZAevcjFq8=;
+        b=XDe32ADucaCJMqJMaZwpFIk3jsPSo7PFeffSUhVUCZmpZXO9Nuwj8sygdN+Chq/KwH
+         OrAiMONwr11ILKRyd/C38p11ZdCMq6qAbUOlaKiE6aq9jj0W6ds+OmPT2ZpOi5nhijcn
+         F+pyPETa5gBiqfG5at+jTRT1RWYYr3gWhbCTS2WniSCZVNsbl7ffrjAqzSF0c8vHI6ns
+         Fb6mJ/SYhve5T5KUSw1aPPXjBbwz8XUCkKN8JyfEtrMclK6bcI5pZBEdsy9L2W7NUYMR
+         L5bfW6K114lHqhjl7ocONcfVOC3g75ABgADdDScxruF7oLC9raFrJMLqUiFgKtKCt/5O
+         ITaQ==
+X-Gm-Message-State: AO0yUKWO3HY5qMVnmPFU1dortcIiwOBsOQtGSEo6pB0oaXUcv18l6h9z
+        pgq6IdIAicHvIxxxxztz6ZBXjgYkNQGI+Cuw
+X-Google-Smtp-Source: AK7set/xPaakocNl2c8BTFzyTn0kwtOGUwPF5KG2r8yqfPo4qD431YkkX8rraLHa3kMcVilYvJFzsA==
+X-Received: by 2002:a17:907:a044:b0:8b1:7eda:702e with SMTP id gz4-20020a170907a04400b008b17eda702emr2241307ejc.32.1676623643174;
+        Fri, 17 Feb 2023 00:47:23 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u12-20020a50c04c000000b004ab4db9be14sm1963166edd.81.2023.02.17.00.45.18
+        by smtp.gmail.com with ESMTPSA id k20-20020a170906a39400b008b14c5a82e7sm1840919ejz.127.2023.02.17.00.47.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 00:45:19 -0800 (PST)
-Message-ID: <76dcdd11-ab4c-62cd-2570-51058252fb4d@linaro.org>
-Date:   Fri, 17 Feb 2023 09:45:17 +0100
+        Fri, 17 Feb 2023 00:47:22 -0800 (PST)
+Message-ID: <994c3edd-040c-5050-9c99-1e8326459d54@linaro.org>
+Date:   Fri, 17 Feb 2023 09:47:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add Richtek RT5739
+Subject: Re: [PATCH v2 2/2] ARM: at91: dt: adding new macros
 Content-Language: en-US
-To:     cy_huang@richtek.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     lgirdwood@gmail.com, u0084500@gmail.com,
+To:     Ryan.Wanner@microchip.com, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, ludovic.desroches@microchip.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1676599618-24819-1-git-send-email-cy_huang@richtek.com>
- <1676599618-24819-2-git-send-email-cy_huang@richtek.com>
+References: <20230216222524.3107759-1-Ryan.Wanner@microchip.com>
+ <20230216222524.3107759-3-Ryan.Wanner@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1676599618-24819-2-git-send-email-cy_huang@richtek.com>
+In-Reply-To: <20230216222524.3107759-3-Ryan.Wanner@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,24 +78,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 03:06, cy_huang@richtek.com wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On 16/02/2023 23:25, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Add the binding document for Richtek RT5739.
+> Adding macros for sama7g drive strength.
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+Nothing improved here.
+
 > 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
-> Since v2:
-> - Refine dt-binding patch subject
-> - Shorten and refine title and description without too much marketing text.
-> - Fix the typo from 'connecton' to 'connection' in 'richtek,vsel-active-high'
->   property description
-> - Remove maxItems in property 'regulator-allowed-modes'
-> - Fix the wrong min/max microvolt in binding example. Must be '300000' and
->   '1300000', respectively.
+> changes from v1:
+> - Fix ABI break.
+> - Add some small comments to describe drive strength macros.
+> 
+>  include/dt-bindings/pinctrl/at91.h | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/pinctrl/at91.h b/include/dt-bindings/pinctrl/at91.h
+> index e8e117306b1b..12f3edf2a9c4 100644
+> --- a/include/dt-bindings/pinctrl/at91.h
+> +++ b/include/dt-bindings/pinctrl/at91.h
+> @@ -42,8 +42,16 @@
+>  #define AT91_PERIPH_C		3
+>  #define AT91_PERIPH_D		4
+>  
+> -#define ATMEL_PIO_DRVSTR_LO	1
+> +/*These macros are for all other at91 pinctrl drivers*/
+> +#define ATMEL_PIO_DRVSTR_LO	0
+> +#define ATMEL_PIO_DRVSTR_LO_1	1
+>  #define ATMEL_PIO_DRVSTR_ME	2
+>  #define ATMEL_PIO_DRVSTR_HI	3
+>  
+> +/* These macros are for the sama7g5 pinctrl driver*/
 
+What I mean, is the explanation of the constants. What is LO_D?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +#define ATMEL_PIO_DRVSTR_LO_D 0
+
+Also looks like wrong indentation between define and value.
+
+> +#define ATMEL_PIO_DRVSTR_HI_A 1
+> +#define ATMEL_PIO_DRVSTR_LO_C 2
+> +#define ATMEL_PIO_DRVSTR_LO_B 3
+> +
+>  #endif /* __DT_BINDINGS_AT91_PINCTRL_H__ */
 
 Best regards,
 Krzysztof
