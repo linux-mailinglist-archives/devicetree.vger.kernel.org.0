@@ -2,129 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 544C269A80C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9008169A8C1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbjBQJXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 04:23:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
+        id S229780AbjBQJ7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 04:59:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229765AbjBQJXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:23:40 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B935CF1A
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:23:39 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id ez12so1899950edb.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:23:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1uhXWC5aUog2B3MifbzjgvTuIZZSneoOYENLVLF/lKo=;
-        b=chKsPtB2hT8iQd0O3UAtAE7NwizW0neSxB7B7EZwVa3mYLn0K1FcBNjdDKkUNi/rY7
-         6Ib1WaGIu+wGXltyhaFqmjH0cXGQsq0ZzT2buGbSUgs2IG0Dd8sUWjQT1uIIT3V2CXf4
-         Pz+eYhFnz/IU927IhztkWlsp0ucMgWhusahIc5sEyW6IbDd5i8RjUxHXElXJgdeMS5xv
-         kl6xIMSb4dILHSFFuLnMcehWArNGYohQoc6UsdNKUF03qFZaDfwpMfJXjv5A0SuVIhVu
-         ecNo5OI2lELoSVgwN870+3hoDnbZpDvLC0fBYFqGlQJ2le7qPg0lqwK83mpPu1SRCUvR
-         aZfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1uhXWC5aUog2B3MifbzjgvTuIZZSneoOYENLVLF/lKo=;
-        b=P61GYpY9yECM59/E3wG4mgz/IZg9GvdgTx04E9ngSXDxabZjg0Rz87asf9nS/jdYzt
-         6AajZRhYUHuI8NAZtknbQTCqdWLPeCa8c7VllU26JL4sJmH5qYriSM27E4FEZI//PPcG
-         RrmwA2vDri+y7mUSP4YitFFEMSBttpmYayTpBDt7bUyIoArMTQ+ircExMobbSmvQhsKV
-         tizBkhIMYL5ePnHOKO3dV+SNgsbK0uDA8euRL0xhI89GLMQAiEFsBYhafwfX4mz/KfSm
-         u3tj+kTdyEbHgDhiyIpWHuTc+xcqgdG/Ih4nu4l4SR3XuXWv19K/rTEV8uNSXviBMqNS
-         yA/Q==
-X-Gm-Message-State: AO0yUKXkx1TozbrMuaJL/kS/K7glLKYOZaG1M6cdCBMJAm0z8pKI1xDL
-        EMACZNDWKMGVg7YrZN+It7XX7w==
-X-Google-Smtp-Source: AK7set917pjRrPajgtaJkUtWkGOkMBJyKzJs5QyJgmH71D2U+yOlZOHZsD2RSv78b/Ft7In+yuB16w==
-X-Received: by 2002:aa7:cd51:0:b0:4ac:b32e:b6f with SMTP id v17-20020aa7cd51000000b004acb32e0b6fmr104366edw.23.1676625817729;
-        Fri, 17 Feb 2023 01:23:37 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x29-20020a50d61d000000b0049e1f167956sm2000726edi.9.2023.02.17.01.23.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 01:23:37 -0800 (PST)
-Message-ID: <08b993f9-f998-14c8-221a-a0b80ac5d342@linaro.org>
-Date:   Fri, 17 Feb 2023 10:23:34 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v7 1/6] dt-bindings: mediatek: mt8188: Add binding for MM
- & INFRA IOMMU
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S229724AbjBQJ7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:59:25 -0500
+X-Greylist: delayed 1649 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 17 Feb 2023 01:59:16 PST
+Received: from spamfilter04.delta.nl (spamfilter04.delta.nl [217.102.255.204])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC615DE1B;
+        Fri, 17 Feb 2023 01:59:16 -0800 (PST)
+Received: from host-ubmmyvj.static.zeelandnet.nl ([217.102.255.198] helo=mail.zeelandnet.nl)
+        by spamfilter04.delta.nl with esmtp (Exim 4.92)
+        (envelope-from <mike.looijmans@topic.nl>)
+        id 1pSx5g-0002F2-96; Fri, 17 Feb 2023 10:31:57 +0100
+X-Sender-IP: 204.168.188.16
+Received: from phenom.domain_not_set.invalid (016-188-168-204.dynamic.caiway.nl [204.168.188.16])
+        (Authenticated sender: glasveze@delta.nl)
+        by mail.zeelandnet.nl (Postfix) with ESMTPA;
+        Fri, 17 Feb 2023 10:31:28 +0100 (CET)
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
+        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
-        jianjiao.zeng@mediatek.com, chengci.xu@mediatek.com,
-        youlin.pei@mediatek.com
-References: <20230216053322.11596-1-yong.wu@mediatek.com>
- <20230216053322.11596-2-yong.wu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230216053322.11596-2-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: iio: adc: Add driver for TI ADS1100 and ADS1000
+Date:   Fri, 17 Feb 2023 10:31:27 +0100
+Message-Id: <20230217093128.8344-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: 217.102.255.198
+X-DELTA-Domain: zeelandnet.nl
+X-DELTA-Username: 217.102.255.198
+Authentication-Results: delta.nl; auth=pass smtp.auth=217.102.255.198@zeelandnet.nl
+X-DELTA-Outgoing-Class: ham
+X-DELTA-Outgoing-Evidence: Combined (0.04)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT/JtpJ85U5oQJKJbxIe8gTePUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5xzeemUa7CfwmLuWRw6Ruql9Wrt/oF2ofKYeezPZTW+uL/H
+ seNZtCKdSRRS0Op9pfwEIJgF/Accv4lLtE4TWYNIjgZ0d6t6F7vRFkkblm+Z5L7uq2AYbiB7eX7C
+ A0Ee9FXnLqvnkE9k+JY3j0cID29DoODujL6FEsNqPMBZcb5VIYa36rQUNKpqI1Q4bofNkWUu8fTD
+ ZLzKN6k+QrhjNGJv3vMX8kxfmgvnPiAPWmoBuxmBwTME+9GFGInGiou45HNmtfv+FqJdBAzMzmkl
+ 3RebQxyzcaJWgnTP1X4liYqSLtlnibl3vcBqVmvQB4A18adDnQKevvKDWdWJ/wxJwe8KAVXirbLu
+ Jjy3NtnGWLbnBD5wBOYayDY3tUZW3y7uaAiYA/VUAhdIJZFus1IsgsCDrtkUVrXMjRtSszqFofHQ
+ kL+CgfasVEKELzhStrT89iLQPrbYmyedRWSaH5Jq+f9dFu3a+YmrU6Iy71ckAFY+TtvrQQT37tVB
+ F8TuA2zDxdadd1WxHO/mLVgwAb47uaav6rkstLAf90f4v3S1FulD9czOuJQrulh5Fko3Tg7NaUQc
+ YIYdvv9xV5Ex49z0ZSNkjgZ0d6t6F7vRFkkblm+Z5MW9qS2/3RCT5H9A6khsXlWGs9HjdrlYbXkZ
+ KU5GQmOJZsmqX57B1EDhkm+xMEreF4WyYiqdZEM01eRU4ONdoVEFBfQHNmmYaIBwRgEu+hlkUryY
+ cSJLFEwVd01VIyXuC84PLa7Kvs1vJgz+jb+KUZ4ZI4crFqIiLO9pmeAxg3M8BMj+y2IddO0/FlXY
+ D8b+M8bPMsyA7EJ+U7NdS2YrNZ05xOYqJ9Tq2b0GjLr7lMbCJ9uFCwxUz+7mzjTsriXxHrjdWiOx
+ jT+Uoc44sbCX7JxqjLaXu1AD0YHYM/EUhlEfE6TG2ORqQuRwhOvtgDJH0WotQdu7BL5WjlV6WURt
+ Nxb4RqrqGwDerCVKfZxBaa6lpe1/5cEtgGt7CHfC+dbEjaN+/GAFlUDQdIxEvZe3STQUwRm7JL7H
+ UFLEjZ4tI2w6weBlgtnhN6vUJqrLQEcK+vPvzy/hTW1WrcVDSDSSDu0wxuDU9J+Dmr/6e4fImcm4
+ 9R/2gMGq0KWAzmMf+ibVDqLZPzE7W9Cqnhlc7GZSDtYOqFKIG2trlPUTQYEjbgmVnZqbKIaNWdFw
+ SHKOTj4XQZ8i4WqksVTtjhZSepuHki+xkgmaS1TA/Dv/4AHP2EFtNptbHtgZAQM3rG32ibSwsxBN
+ fS19KOA46lF/j0xwFgg=
+X-Report-Abuse-To: spam@spamfilter03.delta.nl
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
+        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 06:33, Yong Wu wrote:
-> From: "Chengci.Xu" <chengci.xu@mediatek.com>
-> 
-> Add descriptions for mt8188 IOMMU which also use ARM Short-Descriptor
-> translation table format.
-> 
-> In mt8188, there are two smi-common HW and IOMMU, one is for vdo(video
-> output), the other is for vpp(video processing pipe). They connects
-> with different smi-larbs, then some setting(larbid_remap) is different.
-> Differentiate them with the compatible string.
-> 
-> Something like this:
-> 
->   IOMMU(VDO)          IOMMU(VPP)
->       |                   |
-> SMI_COMMON_VDO      SMI_COMMON_VPP
-> 
-> ---------------     ----------------
->   |     |    ...      |     |    ...
-> larb0 larb2  ...    larb1 larb3  ...
-> 
-> We also have an IOMMU that is for infra master like PCIe.
-> And infra master don't have the larb and ports.
-> 
-> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
-> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-> ---
-> Hi Krzysztof,
-> I added some comment about larbid index, this is for readable when
-> adding iova_region_larb_msk in the code.
-> I'm not sure if it is ok for you, thus don't keep your A-b currently.
-> Thanks.
-> ---
->  .../bindings/iommu/mediatek,iommu.yaml        |  12 +-
->  .../memory/mediatek,mt8188-memory-port.h      | 489 ++++++++++++++++++
->  2 files changed, 500 insertions(+), 1 deletion(-)
+The ADS1100 is a 16-bit ADC (at 8 samples per second).
+The ADS1000 is similar, but has a fixed data rate.
 
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Best regards,
-Krzysztof
+ .../bindings/iio/adc/ti,ads1100.yaml          | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+new file mode 100644
+index 000000000000..ad30af8453a1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,ads1100.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI ADS1100/ADS1000 single channel I2C analog to digital converter
++
++maintainers:
++  - Mike Looijmans <mike.looijmans@topic.nl>
++
++description: |
++  Datasheet at: https://www.ti.com/lit/gpn/ads1100
++
++properties:
++  compatible:
++    enum:
++      - ti,ads1100
++      - ti,ads1000
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@49 {
++            compatible = "ti,ads1100";
++            reg = <0x49>;
++        };
++    };
++...
+-- 
+2.17.1
 
