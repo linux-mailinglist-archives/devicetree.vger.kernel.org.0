@@ -2,159 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2205A69B57D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 23:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 940E269B585
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 23:32:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbjBQW0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 17:26:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54114 "EHLO
+        id S229812AbjBQWcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 17:32:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjBQW0b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 17:26:31 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8AE05D3ED
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 14:26:28 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id x4so3158811lfq.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 14:26:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nk0P5TEcjLAlZRZi1tf2S3Zc1fDdctQasJLS4BDXM9w=;
-        b=vSJPS7u+IYoDpIUA+dfRFb+S3oLZOXXPRmirjjw6S3qPOReKK0aPTSTvFwB88nm8l2
-         7cCBxdEmxGN/KzKqvt/TxqtUlfX+AXs12qiVyGyCr0vwLBa2IwYLfSXHv02pmuNByR09
-         GmhsDB5ZQZKXE0SvuOy4txvWAOzqcHyj67bkSQ95TIxI917dL/BX5HQ30LYC4E0Mu/s2
-         9bGtMFcREbBi5fvbQqWRm2KmR/pmZOnK2I0X0lpLnTu5PKVusRfJer1i3W3gf0brUltz
-         C4hYeM0jGidLIXMEoDCpGrncUy2X6oVUk30PJ97jH4cW/hUTXRaVwR4r1OqYjTOeV5Oq
-         /CCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nk0P5TEcjLAlZRZi1tf2S3Zc1fDdctQasJLS4BDXM9w=;
-        b=G1dndorJDVbC5bvUDWuCxY8pPSBcFMwrFCxAlzVtdJMjUPfoN14b8fImpdYyAO9ZWg
-         8Si37c7h50qGWxXhdh+oFlUzg2kIy4K4nyFaBBvxzC+iL3PlFVOP6xxkkhhcBM51726L
-         PnHIaZrY8erF+hIA7FB5tXQAY44RQKXg+SMq9Z4wwY9d9ofMBU1mK4j/TqRuXLSzD9/5
-         Dl5JjESyt3K9VZFI8PeHelZVrRDwt4j8m30B8fACS0i+nAqlI2nceDJl++V5m9yL5OAN
-         /EriK7w3PYuN7cl/vDFWPDrchLYf32muBOXfsUVHDmDGmuXI06acmUBHJ8ErfT7T/I+y
-         npoA==
-X-Gm-Message-State: AO0yUKWWjkyNRa35u0vxSyCXNVuzy4WUPew8hnDVrKwFBG7UT93RsGTv
-        H/f3fduIbkYf6ngzdjpOThB+IQ==
-X-Google-Smtp-Source: AK7set9tQUZjlvOjEPKgIZhNhaqAqfvoIjGR/tM9dONOTFbJZHwBM+4tpGwqyBXE9VDv0qHRQ1y7TQ==
-X-Received: by 2002:a05:6512:10d3:b0:4db:5123:c271 with SMTP id k19-20020a05651210d300b004db5123c271mr2439616lfg.29.1676672786935;
-        Fri, 17 Feb 2023 14:26:26 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id q13-20020ac25a0d000000b004b578e52d81sm791238lfn.176.2023.02.17.14.26.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 14:26:26 -0800 (PST)
-Message-ID: <3c17e91a-4903-ac13-7829-54c2c31bab6f@linaro.org>
-Date:   Sat, 18 Feb 2023 00:26:25 +0200
+        with ESMTP id S229506AbjBQWcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 17:32:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C3D35F82F;
+        Fri, 17 Feb 2023 14:32:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DB84562079;
+        Fri, 17 Feb 2023 22:32:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD74C433EF;
+        Fri, 17 Feb 2023 22:32:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676673134;
+        bh=ljIRf4v/2Lck45BTBTKuuhmK3+RkCe6yFCOyrKX7H3I=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=R13VLdJsuoHYn0xU8tfr9mc13V7jn7ydQx+MIweScZeogkDB132Jv3B8bp86RCvRW
+         uMWku/J8hS8vdLDuQOBQ3UYFETswKyLpNHvhBwXypGSlEkFY9INAbyrUq0X59XKnUJ
+         Zmmrl5N1qMQQyvLQzDEJP5TRPlPwL1StkzuYz/bGFDsKvULYaj9XxlmBW+E1IQrARV
+         r8ySbb9uHqTXGVfM8nq+JLqfa/K7Kyhtt4G/CF/5BsaYOKgm830t7zXG8D2xN3HY91
+         GOnXe6QxpCAd3ujDY3SgT0yz1GfKB8+jKT3WxunNBBygBHlzR5TBb41UewvzvDhlfC
+         xYJWgqyjCghzg==
+Message-ID: <3601c73df55dd9d9756869817420f368.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v4 4/4] drm/msm/dpu: manage DPU resources if CTM is
- requested
-Content-Language: en-GB
-To:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com,
-        marijn.suijten@somainline.org
-References: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
- <1676286704-818-5-git-send-email-quic_kalyant@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1676286704-818-5-git-send-email-quic_kalyant@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2cfd99ac-a3fe-5014-1a51-19a0ee95eaa1@ti.com>
+References: <20221226095745.19757-1-a-bhatia1@ti.com> <20221226095745.19757-2-a-bhatia1@ti.com> <8980856c1138571976f00413b94cfeb8.sboyd@kernel.org> <1856e963-4514-92f3-5d43-d5b711083193@ti.com> <367fba29-bc08-1f27-249c-09e406adfbbb@ideasonboard.com> <f324c845f0d291d041a13046a349ae95.sboyd@kernel.org> <2cfd99ac-a3fe-5014-1a51-19a0ee95eaa1@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: fixed-factor: Add TI AM62 SoC OLDI clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linux Clock List <linux-clk@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Date:   Fri, 17 Feb 2023 14:32:11 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/02/2023 13:11, Kalyan Thota wrote:
-> Allow modeset to be triggered during CTM enable/disable.
-> In the modeset callbacks, DPU resources required for the
-> CTM feature are managed appropriately.
-> 
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+Quoting Aradhya Bhatia (2023-02-05 21:34:53)
+> Hi Stephen,
+>=20
+> On 26-Jan-23 05:36, Stephen Boyd wrote:
+> > Quoting Tomi Valkeinen (2023-01-17 01:40:24)
+> >> On 16/01/2023 11:51, Aradhya Bhatia wrote:
+> >>> Hi Stephen,
+> >>>
+> >>> Thanks for taking a look at the patch.
+> >>>
+> >>> On 12-Jan-23 01:14, Stephen Boyd wrote:
+> >>>> Quoting Aradhya Bhatia (2022-12-26 01:57:44)
+> >>>>> Add "ti,k3-am62-oldi-clk-div" to the fixed factor clock compatible =
+enum
+> >>>>> list.
+> >>>>>
+> >>>>> "ti,k3-am62-oldi-clk-div" is a fixed-factor clock that helps the TI
+> >>>>> display subsystem request a pixel clock for itself and a correspond=
+ing
+> >>>>> serial clock for its OLDI Transmitters. The serial clock is 7 times=
+ the
+> >>>>> pixel clock. This clock needs the clock set rate request to be
+> >>>>> propagated to the parent clock provider.
+> >>>>>
+> >>>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> >>>>> ---
+> >>>>> =C2=A0 Documentation/devicetree/bindings/clock/fixed-factor-clock.y=
+aml | 1 +
+> >>>>> =C2=A0 1 file changed, 1 insertion(+)
+> >>>>>
+> >>>>> diff --git=20
+> >>>>> a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml=20
+> >>>>> b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+> >>>>> index 8f71ab300470..0696237530f7 100644
+> >>>>> --- a/Documentation/devicetree/bindings/clock/fixed-factor-clock.ya=
+ml
+> >>>>> +++ b/Documentation/devicetree/bindings/clock/fixed-factor-clock.ya=
+ml
+> >>>>> @@ -14,6 +14,7 @@ properties:
+> >>>>> =C2=A0=C2=A0=C2=A0 compatible:
+> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
+> >>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - fixed-factor-clock
+> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - ti,k3-am62-oldi-clk-div
+> >>>>
+> >>>> I don't see this compatible anywhere in the kernel tree. Is there a
+> >>>> patch that adds a node using this? I wonder why the display subsystem
+> >>>> can't add this fixed factor clk directly in the driver. Does the OLDI
+> >>>> Transmitter send a clk to the display subsystem?
+> >>>>
+> >>>> I'm asking all these questions because we got rid of vendor compatib=
+les
+> >>>> here in hopes of simplifying the logic. Maybe the problem can be
+> >>>> approached differently, but I don't know all the details.
+> >>>
+> >>>
+> >>> +--------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ +------------------+
+> >>> |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> >>> |=C2=A0 PLL=C2=A0=C2=A0 +---+----+------------->| OLDI Transmitter |
+> >>> |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> >>> +--------+=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +------------------+
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +------------------+
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0 +------------->| OLDI Transmitter |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +------------------+
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +------------------+
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 +----------+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 /7=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Display=C2=A0=C2=A0=C2=A0=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 +-->|=C2=A0=C2=A0 Clock=C2=A0 +--->| Sub-System (DSS) |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 Div=C2=A0=C2=A0 |=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> >>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +----------+=C2=A0=C2=A0=C2=A0 +------------=
+------+
+> >>>
+> >>> This is how the the clock architecture for DSS looks like.
+> >>>
+> >>> The clock divider is not a part of DSS, but outside it.
+> >=20
+> > The divider is fixed as well? And presumably inside the SoC?
+> Yes, and yes!
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Ok.
 
-> ---
->   drivers/gpu/drm/msm/msm_atomic.c | 18 ++++++++++++++++++
->   drivers/gpu/drm/msm/msm_drv.c    |  2 +-
->   drivers/gpu/drm/msm/msm_drv.h    |  1 +
->   3 files changed, 20 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-> index 1686fbb..e3e607c 100644
-> --- a/drivers/gpu/drm/msm/msm_atomic.c
-> +++ b/drivers/gpu/drm/msm/msm_atomic.c
-> @@ -179,6 +179,24 @@ static unsigned get_crtc_mask(struct drm_atomic_state *state)
->   	return mask;
->   }
->   
-> +int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
-> +{
-> +	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
-> +	struct drm_crtc *crtc;
-> +	int i;
-> +
+>=20
+> >=20
+> >>>
+> >>> The clock request flow is initiated by the DSS driver because it has =
+the
+> >>> required timing parameter information. It requests a certain pixel
+> >>> frequency. But the frequency required by the OLDI TXes is 7 times
+> >>> that pixel frequency.
+> >>>
+> >>> (Just for clarification, in some cases, the OLDI TX does require only
+> >>> 3.5 times the pixel frequency, but in those situations there is anoth=
+er
+> >>> divider in-front of OLDI TX that gets activated with a signal and
+> >>> divides the incoming frequency by 2, thereby requiring the PLL to sti=
+ll
+> >>> generate a 7x frequency.)
+> >>>
+> >>> Hence, the idea is that the clock divider is able to propagate the set
+> >>> rate request back to PLL, asking for a frequency 7 times more than the
+> >>> DSS's asking rate.
+> >=20
+> > Got it. Can the PLL driver provide a pll_div_7 clk that is used for the
+> > DSS pixel clk?
+> >=20
+> The PLL driver can not map the clock divider and hence can't provide the
+> pll_div_7 clock directly to DSS.
 
-I hope this can be gone for good if at some point we have CRTC resource 
-allocation split from encoder resource alloc.
+Isn't the divider fixed? So what is there to map?
 
-> +	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state,
-> +				      new_crtc_state, i) {
-> +		if ((old_crtc_state->ctm && !new_crtc_state->ctm) ||
-> +		    (!old_crtc_state->ctm && new_crtc_state->ctm)) {
-> +			new_crtc_state->mode_changed = true;
-> +			state->allow_modeset = true;
-> +		}
-> +	}
-> +
-> +	return drm_atomic_helper_check(dev, state);
-> +}
-> +
->   void msm_atomic_commit_tail(struct drm_atomic_state *state)
->   {
->   	struct drm_device *dev = state->dev;
-> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-> index 0759e2d..3221284 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.c
-> +++ b/drivers/gpu/drm/msm/msm_drv.c
-> @@ -52,7 +52,7 @@
->   static const struct drm_mode_config_funcs mode_config_funcs = {
->   	.fb_create = msm_framebuffer_create,
->   	.output_poll_changed = drm_fb_helper_output_poll_changed,
-> -	.atomic_check = drm_atomic_helper_check,
-> +	.atomic_check = msm_atomic_check,
->   	.atomic_commit = drm_atomic_helper_commit,
->   };
->   
-> diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-> index ea80846..7d0243a 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.h
-> +++ b/drivers/gpu/drm/msm/msm_drv.h
-> @@ -209,6 +209,7 @@ int msm_atomic_init_pending_timer(struct msm_pending_timer *timer,
->   		struct msm_kms *kms, int crtc_idx);
->   void msm_atomic_destroy_pending_timer(struct msm_pending_timer *timer);
->   void msm_atomic_commit_tail(struct drm_atomic_state *state);
-> +int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
->   struct drm_atomic_state *msm_atomic_state_alloc(struct drm_device *dev);
->   void msm_atomic_state_clear(struct drm_atomic_state *state);
->   void msm_atomic_state_free(struct drm_atomic_state *state);
+>=20
+> >>>
+> >>> If this is something less than ideal and should not go up, then I can
+> >>> implement a new clock device with a separate but similar clock driver.
+> >>>
+> >>> Let me know what you think!
+> >>
+> >> As a clarification I would also add to the above that on other TI SoCs=
+=20
+> >> with DSS, and also for the second video port on AM62, the clock=20
+> >> framework provides DSS a clock using the pclk frequency.
+> >>
+> >=20
+> > Are you saying that adding a fixed div-7 clk in the DSS driver is wrong?
+> Yes. All variants of DSS accept a pixel clock and it would be wrong to
+> implement a fixed div-7 in the DSS driver.
 
--- 
-With best wishes
-Dmitry
+The reason being that it has an input of a pixel clk divided by 7?
+That's why I suggested having the PLL provide a clk output that is
+divided by 7.
 
+>=20
+> All that said, I now understand that the new compatible shouldn't go
+> there. I will implement a new driver and post it. =3D)
+>=20
+
+The block diagram above shows the fixed divider living outside of the
+PLL or display subsystem or OLDI transmitter(s). It could just as well
+be drawn where the PLL has two outputs, one divided by 7 and sent as the
+pixel clk and the other not divided by 7. For all I know the PLL and the
+fixed divider are shipped by the same hardware engineer, so it looks
+totally arbitrary.
+
+Isn't it easier to _not_ create a struct device, _not_ create a
+different device node, and simply make the PLL have another output clk,
+so that we don't need to implement this as a new compatible string and
+update the basic clk type code? To clarify, I don't understand why this
+must be implemented through devicetree. We already have a driver for the
+PLL and that knows what SoC it is, so why can't we add the fixed divider
+there?
