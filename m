@@ -2,299 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4510769AB0C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 13:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 098D369AB42
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 13:20:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjBQMKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 07:10:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47528 "EHLO
+        id S229889AbjBQMUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 07:20:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjBQMKo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 07:10:44 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E498A644D8
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 04:10:41 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id dn12so11194384edb.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 04:10:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aB17o/jMbl0mQSIHKLDRIzmjCLvKTzoO4e8k0fo/3C4=;
-        b=Bx9FoQZKwMBR7rjygoX5aHQujxfB8WirDrwXEECPglcNNqnljEL9Rpv84LAkob4f2I
-         HmUqs4N2+5GxaFa2bTrKVptX6Udv0Lvq3qPGkuA6+6bjKY9TSspfbFz3aolnzXse/Zo4
-         P2YwBMPY9AXr3thwLPUN+p3cgambghGMmVrvaC4buZ4uHph9AF0+aKj8CNjq1hurFZn1
-         s6KhK0hKiGNO5k/uDLODBecXt8QOcwyLkDAqM/gBEDU6vb2wqRKPtjOchY8mFURKeMqn
-         gGbmBC8wZIX740/ZYPls5rU0E82/M8qKWVCZ3n6+p748T3iYZv2ZjxGi/uv4DASJHh1R
-         TBqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aB17o/jMbl0mQSIHKLDRIzmjCLvKTzoO4e8k0fo/3C4=;
-        b=OoGDzNv9ELKvIhuT1FNvkJxzMlf8twZmVj3s+L+UdPWkpPqnhCyprNWZoXXv0n6QVv
-         +Na1sPrhedTU7onmHUr7MrGNTC+bhLkChgND6V9Xera0hFA1scH8VpslY56+OIg4O7Uv
-         3zjAkcmaL1M/ZhQOflFWvG8XODZKaH2uWdNmgoAjT4l4HNRKPPiaV044qofgErRAXHNk
-         vI3hBbbH4BHYVYFE+bZOdP97XULZYyfob1KvrxMuIIXWRRwhr3d4inhpf/QwdDwVjSfZ
-         RSYX+5kwhC9EtvdRxv2fdcBrTqurKGUMFdlB0yLpFWAhWx6nrvb9KvZgNKJNaDPJz7zu
-         9CMQ==
-X-Gm-Message-State: AO0yUKXNn8fw90MDxhaBo7EvEOXbfkxBTSDZ8mIn0xLy7g7kaRdhpJJP
-        rz/cTlU1q+zvufLU7H1lTuLTPQ==
-X-Google-Smtp-Source: AK7set+wkleOBTUL23QSSRC2ZHsbI3GMBhC0RL6WDYUMQrmOML8P2aJ8lKZzQpe3Fj5ZVzUwLgRqdA==
-X-Received: by 2002:a17:906:230f:b0:8aa:af33:72d6 with SMTP id l15-20020a170906230f00b008aaaf3372d6mr8688731eja.45.1676635840413;
-        Fri, 17 Feb 2023 04:10:40 -0800 (PST)
-Received: from [192.168.240.121] (196.161.185.81.rev.sfr.net. [81.185.161.196])
-        by smtp.gmail.com with ESMTPSA id v20-20020a50d594000000b004ad7962d5bbsm1317811edi.42.2023.02.17.04.10.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 04:10:40 -0800 (PST)
-Message-ID: <4e64838c-b727-923b-b6d5-413a0681977c@baylibre.com>
-Date:   Fri, 17 Feb 2023 13:10:38 +0100
+        with ESMTP id S229864AbjBQMUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 07:20:33 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9EA66046;
+        Fri, 17 Feb 2023 04:20:25 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id C1BF624E07C;
+        Fri, 17 Feb 2023 20:20:17 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Feb
+ 2023 20:20:17 +0800
+Received: from [192.168.125.82] (183.27.98.67) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Feb
+ 2023 20:20:17 +0800
+Message-ID: <d3b06d0b-ff17-ebab-bae5-e1ec836fe667@starfivetech.com>
+Date:   Fri, 17 Feb 2023 20:20:14 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v1 1/4] dt-bindings: mfd: Add DT bindings for TI TPS6594
- PMIC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net
-Cc:     hdegoede@redhat.com, eric.auger@redhat.com, jgg@ziepe.ca,
-        razor@blackwall.org, suma.hegde@amd.com,
-        stephen@networkplumber.org, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, eblanc@baylibre.com,
-        jneanne@baylibre.com
-References: <20230216114410.183489-1-jpanis@baylibre.com>
- <20230216114410.183489-2-jpanis@baylibre.com>
- <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
 Content-Language: en-US
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220005054.34518-1-hal.feng@starfivetech.com>
+ <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
+ <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
+ <Y6tSWB2+98a8k9Qw@spud>
+ <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
+ <Y+5z8skN2DuvxDEL@spud>
+ <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
+ <Y+8x/KSujhgNLAd6@wendy>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y+8x/KSujhgNLAd6@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.67]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 17 Feb 2023 07:51:24 +0000, Conor Dooley wrote:
+> On Fri, Feb 17, 2023 at 10:27:27AM +0800, Hal Feng wrote:
+>> On Thu, 16 Feb 2023 18:20:34 +0000, Conor Dooley wrote:
+>> > Hey Hal!
+>> > 
+>> > On Thu, Feb 16, 2023 at 10:42:20PM +0800, Hal Feng wrote:
+>> >> On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
+>> >> > On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
+>> >> >> On Tue, 20 Dec 2022 23:14:39 +0000, Conor Dooley wrote:
+>> >> >> > On Tue, Dec 20, 2022 at 08:50:50AM +0800, Hal Feng wrote:
+>> >> >> > > From: Emil Renner Berthing <kernel@esmil.dk>
+>> >> >> > > 
+>> >> >> > > Add bindings for the system clock and reset generator (SYSCRG) on the
+>> >> >> > > JH7110 RISC-V SoC by StarFive Ltd.
+>> >> >> > > 
+>> >> >> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> >> >> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> >> > 
+>> >> >> > > +  clocks:
+>> >> >> > > +    items:
+>> >> >> > > +      - description: Main Oscillator (24 MHz)
+>> >> >> > > +      - description: GMAC1 RMII reference
+>> >> >> > > +      - description: GMAC1 RGMII RX
+>> >> >> > > +      - description: External I2S TX bit clock
+>> >> >> > > +      - description: External I2S TX left/right channel clock
+>> >> >> > > +      - description: External I2S RX bit clock
+>> >> >> > > +      - description: External I2S RX left/right channel clock
+>> >> >> > > +      - description: External TDM clock
+>> >> >> > > +      - description: External audio master clock
+>> >> >> > 
+>> >> >> > So, from peeking at the clock driver & the dt - it looks like a bunch of
+>> >> >> > these are not actually required?
+>> >> >> 
+>> >> >> These clocks are used as root clocks or optional parent clocks in clock tree.
+>> >> >> Some of them are optional, but they are required if we want to describe the
+>> >> >> complete clock tree of JH7110 SoC.
+>> >> > 
+>> >> > Perhaps I have a misunderstand of what required means. To me, required
+>> >> > means "you must provide this clock for the SoC to operate in all
+>> >> > configurations".
+>> >> > Optional therefore would be for things that are needed only for some
+>> >> > configurations and may be omitted if not required.
+>> >> > 
+>> >> > From your comment below, boards with a JH7110 may choose not to populate
+>> >> > both external clock inputs to a mux. In that case, "dummy" clocks should
+>> >> > not have to be provided in the DT of such boards to satisfy this binding
+>> >> > which seems wrong to me..
+>> >> 
+>> >> Please see the picture of these external clocks in clock tree.
+>> >> 
+>> >> # mount -t debugfs none /mnt
+>> >> # cat /mnt/clk/clk_summary
+>> >>                                  enable  prepare  protect                                duty  hardware
+>> >>    clock                          count    count    count        rate   accuracy phase  cycle    enable
+>> >> -------------------------------------------------------------------------------------------------------
+>> >>  *mclk_ext*                             0        0        0    12288000          0     0  50000         Y
+>> >>  *tdm_ext*                              0        0        0    49152000          0     0  50000         Y
+>> >>  *i2srx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+>> >>  *i2srx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+>> >>  *i2stx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+>> >>  *i2stx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+>> >>  *gmac1_rgmii_rxin*                     0        0        0   125000000          0     0  50000         Y
+>> >>     gmac1_rx                          0        0        0   125000000          0     0  50000         Y
+>> >>        gmac1_rx_inv                   0        0        0   125000000          0   180  50000         Y
+>> >>  *gmac1_rmii_refin*                     0        0        0    50000000          0     0  50000         Y
+>> >>     gmac1_rmii_rtx                    0        0        0    50000000          0     0  50000         Y
+>> >>        gmac1_tx                       0        0        0    50000000          0     0  50000         N
+>> >>           gmac1_tx_inv                0        0        0    50000000          0   180  50000         Y
+>> >>  *osc*                                  4        4        0    24000000          0     0  50000         Y
+>> >>     apb_func                          0        0        0    24000000          0     0  50000         Y
+>> >>  ...
+>> >> 
+>> >> The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
+>> >> actually used as the parent of other clocks.
+>> > 
+>> >> The "dummy" clocks
+>> >> you said are all internal clocks.
+>> > 
+>> > No, what I meant by "dummy" clocks is that if you make clocks "required"
+>> > in the binding that are not needed by the hardware for operation a
+>> > customer of yours might have to add "dummy" clocks to their devicetree
+>> > to pass dtbs_check.
+>> > 
+>> >> For the audio related clocks (mclk_ext/tdm_ext/i2srx_lrck_ext/
+>> >> i2srx_bclk_ext/i2stx_lrck_ext/i2stx_bclk_ext), they will be used
+>> >> as the parent clocks in audio related drivers. Note that some
+>> >> clocks need to select different clocks as parent according to
+>> >> requirement.
+>> >> So all these external clocks are required.
+>> >> 
+>> >> > 
+>> >> > It would seem to me that you need to set minItems < maxItems here to
+>> >> > account for that & you do in fact need clock-names.
+>> >> > 
+>> >> >> 
+>> >> >> > I'd have ploughed through this, but having read Krzysztof's comments on
+>> >> >> > the DTS I'm not sure that this binding is correct.
+>> >> >> > https://lore.kernel.org/linux-riscv/20221220011247.35560-1-hal.feng@starfivetech.com/T/#mdf67621a2344dce801aa8015d4963593a2c28bcc
+>> >> >> > 
+>> >> >> > I *think* the DT is correct - the fixed clocks are all inputs from clock
+>> >> >> > sources on the board and as such they are empty in soc.dtsi and are
+>> >> >> > populated in board.dts?
+>> >> >> 
+>> >> >> Yes, the fixed clocks are all clock sources on the board and input to the SoC.
+>> >> >> 
+>> >> >> > 
+>> >> >> > However, are they all actually required? In the driver I see:
+>> >> >> > 	JH71X0__MUX(JH7110_SYSCLK_GMAC1_RX, "gmac1_rx", 2,
+>> >> >> > 		    JH7110_SYSCLK_GMAC1_RGMII_RXIN,
+>> >> >> > 		    JH7110_SYSCLK_GMAC1_RMII_RTX),
+>> >> >> > That macro is:
+>> >> >> > #define JH71X0__MUX(_idx, _name, _nparents, ...) [_idx] = {			\
+>> >> >> > 	.name = _name,								\
+>> >> >> > 	.flags = 0,								\
+>> >> >> > 	.max = ((_nparents) - 1) << JH71X0_CLK_MUX_SHIFT,			\
+>> >> >> > 	.parents = { __VA_ARGS__ },						\
+>> >> >> > }
+>> > 
+>> >> >> > AFAICT, RMII reference feeds RMII_RTX & RGMII RX *is* RGMII_RXIN?
+>> >> >> > Does that mean you need to populate only one of GMAC1 RMII reference
+>> >> >> > and GMAC1 RMGII RX and the other is optional?
+>> > 
+>> >> >> Yes, actually only one of them is chosen as the root clock
+>> >> >> source of the clock "gmac1_rx".
+>> > |  *gmac1_rgmii_rxin*   
+>> > |     gmac1_rx          
+>> > |        gmac1_rx_inv   
+>> > |  *gmac1_rmii_refin*   
+>> > |     gmac1_rmii_rtx    
+>> > |        gmac1_tx       
+>> > |           gmac1_tx_inv
+>> > |
+>> > | description: GMAC1 RMII reference
+>> > | description: GMAC1 RGMII RX
+>> > 
+>> > 
+>> > So you're telling me that you can either:
+>> > - Provide GMAC1 RMII reference and GMAC1 RGMII RX & then use different
+>> >   clocks for gmac1_rx and gmac1_tx
+>> > - Provide only GMAC1 RMII reference & use it for both gmac1_tx *and*
+>> >   gmac1_rx
+>> > 
+>> > Is that correct?
+>> 
+>> Yes, it is.
+> 
+> Which would then make GMAC1 RGMII RX optional, rather than required?
 
-On 2/17/23 10:06, Krzysztof Kozlowski wrote:
-> On 16/02/2023 12:44, Julien Panis wrote:
->> TPS6594 is a Power Management IC which provides regulators and others
-> Subject: drop second/last, redundant "DT bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
->
->
->> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->> PFSM (Pre-configurable Finite State Machine) managing the state of the
->> device.
->> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
->>
->> Signed-off-by: Julien Panis <jpanis@baylibre.com>
->> ---
->>   .../devicetree/bindings/mfd/ti,tps6594.yaml   | 164 ++++++++++++++++++
->>   1 file changed, 164 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->> new file mode 100644
->> index 000000000000..37968d6c0420
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->> @@ -0,0 +1,164 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI TPS6594 Power Management Integrated Circuit
->> +
->> +maintainers:
->> +  - Julien Panis <jpanis@baylibre.com>
->> +
->> +description: |
->> +  TPS6594 is a Power Management IC which provides regulators and others
->> +  features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->> +  PFSM (Pre-configurable Finite State Machine) managing the state of the device.
->> +  TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,tps6594
->> +      - ti,tps6593
->> +      - ti,lp8764x
-> Any particular choice of ordering (different than alphabetical)?
+If thinking in this way, I must say yes, it is optional. But actually
+GMAC1 RGMII RX feeds gmac1_rx by default. 
+For a mux, it usually works if you populate only one input to it.
+Does it mean all the other inputs are optional? And how can we define
+which input is required?
 
-Thank you for the review.
-
-I chose this ordering because it emphasizes the fact that tps6593 and 
-lp8764x
-are derivatives of tps6594 : tps6593 is nearly the same (a minor feature 
-is not
-supported), and lp8764x has less resources (less bucks/LDO, and no RTC).
-
-Besides, a multi-PMIC synchronization scheme is implemented in the PMIC 
-device
-to synchronize the power state changes with other PMIC devices. This is done
-through a SPMI bus : the master PMIC is the controller device on the 
-SPMI bus,
-and the slave PMICs are the target devices on the SPMI bus. For the 5 boards
-we work on (for which device trees will be sent in another patch series):
-- tps6594 is used on 3 boards and is always master (multi-PMIC config)
-- tps6593 is used on 1 board and is master (single-PMIC config)
-- lp8764x is used on 2 boards and is always slave (multi-PMIC config)
-There might not be situations in which lp8764x would be master and tps6594
-or tps6593 would be slave.
-
-That's why I preferred this ordering.
-
-Do you think that alphabetical order would be better ?
-
->
->> +
->> +  reg:
->> +    description: I2C slave address or SPI chip select number.
->> +    maxItems: 1
->> +
->> +  ti,use-crc:
->> +    type: boolean
->> +    description: If true, use CRC for I2C and SPI interface protocols.
-> Hm, why different boards would like to enable or disable it? Why this
-> suits DT?
-
-You're right. Reading your comment, it appears to me that CRC feature is 
-not fully
-related to HW description and should not be set in DT.
-
-CRC is not 'fully' related to HW, but...
-For CRC feature as well, PMICs are synchronized (for boards with 
-multi-PMIC config).
-To use CRC mode, this feature must be requested explicitly on the master 
-PMIC
-through I2C or SPI driver, then it is enabled for the slave PMICs 
-through SPMI bus: that
-sync is performed 'automatically', without intervention from the I2C or 
-SPI driver to
-enable CRC on slave PMICs.
-As a consequence, CRC feature is enabled for all PMICs at I2C/SPI driver 
-probe,
-or it is let disabled for all PMICs. But it can't be enabled for one 
-PMIC and disabled
-for another one.
-
-This will probably rediscussed for I2C/SPI drivers, but do you think 
-that a 'use_crc'
-driver parameter would be an acceptable solution ? If so, the master 
-PMIC would have
-to be identified, so that the driver can explicitly enable CRC mode for 
-this one if
-'use_crc' is true. With this solution, some 'ti,is-master;' bool 
-property would be necessary.
-
->
->> +
->> +  system-power-controller: true
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  ti,multi-phase-id:
->> +    description: |
->> +      Describes buck multi-phase configuration, if any. For instance, XY id means
->> +      that outputs of buck converters X and Y are combined in multi-phase mode.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [12, 34, 123, 1234]
->> +
->> +patternProperties:
->> +  "^buck([1-5]|12|34|123|1234)-supply$":
->> +    description: Input supply phandle for each buck.
->> +
->> +  "^ldo[1-4]-supply$":
->> +    description: Input supply phandle for each ldo.
->> +
->> +  regulators:
-> This should go to properties, not patternProperties.
->
->> +    type: object
->> +    description: List of regulators provided by this controller.
->> +
->> +    patternProperties:
->> +      "^buck([1-5]|12|34|123|1234)$":
->> +        type: object
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +
->> +        unevaluatedProperties: false
->> +
->> +      "^ldo[1-4]$":
->> +        type: object
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +
->> +        unevaluatedProperties: false
->> +
-> You could add here - on this level - of indentation allOf:if for
-> excluding setups
->
-> if:
->    required:
->      - buck12
-> then:
->    properties:
->      buck123: false
->      buck1234: false
->
-> Or, if you want to require regulator then:
-> oneOf:
->    - required:
->        - buck12
->    - required:
->        - buck123
->    - required:
->        - buck1234
->
-> and anyway exclude buck34 with two above.
-
-I am not sure that we have the same understanding of the multi-phase setup.
-Maybe the description I wrote is not clear enough (?) Or I just don't 
-understand
-what you mean exactly.
-
-How would you combine outputs of bucks 3 and 4 ?
-We use 'buck34' property to mean that:
-  - buck1 output is mono-phase,
-  - buck2 output is mono-phase,
-  - buck3 and buck4 outputs are combined (i.e. multi-phases).
-This weird configuration is supported by these PMICs.
-
-Using a PMIC without using the provided regulators does not seem very 
-interesting
-indeed.
-But strictly speaking, these regulators are not required. One could use 
-some others
-resources provided by the PMIC (the Error Signal Monitor device for 
-instance).
-Besides, multi-phase mode depends on the chosen design and is not 
-required for
-all situations.
-
->
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +additionalProperties: false
->
->
-> Best regards,
-> Krzysztof
->
-
+Best regards,
+Hal
