@@ -2,136 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D92869AC1C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:06:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CBC69AC28
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbjBQNGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 08:06:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34758 "EHLO
+        id S229477AbjBQNJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 08:09:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbjBQNGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:06:47 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704B05BD87
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 05:06:45 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id bi36so1395129lfb.6
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 05:06:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vvEa0mJYtd+G6bvaOGxPbkna4LTkKOOJGlw7PwM4jDk=;
-        b=OutRggqL6ChRrd7U4h7FjSaKRX8WvJF/ILzuPwurg/Db6xOW3nMZZYCNIJfBd8JIux
-         8zbjn89swfdF7wVtCdBXk9jnBBSKY+0gDx0/HaYI8LQ62I4G6Ousiqg5KBaOLkPRje/c
-         xmL9hhjL9D9hEPMTml7RRabmctWihOc/iDi9/vi/yfbRFj7WBmwFZhEg5+UpDaYNrIp7
-         qXHnjYWt0lwDte8lMI5kYdP053zXRMe8BfuLqvzE1oh3jG70fSkcdL+6V4t6lClAZCCF
-         qP+LPRs85W+uYpwc5mXsNiLGEgzxpr/GVtvJIFDjCCZQDHa+OMqYZ0SvNTQWy3uS7zy6
-         Hcuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vvEa0mJYtd+G6bvaOGxPbkna4LTkKOOJGlw7PwM4jDk=;
-        b=Gt7/bLPd8aFL7JN9MOH8QlwQnWGe26W4pYW4UITDhnzgH2DKTWGXXW9an39bo0RBLO
-         IAb/6aDio3KL8fLNElJSCEIF+mKAreTEZyre4C3iIFw/+LpsB+hr6vvKfMZ2OBYL8z0Q
-         JK6ZsT7rGAQaHG7UuaQD3hDVQL7ArUDjVy08zVooisvAUvVDbS9ZmWPjWn5WtE54GqsD
-         a+1TdxD/Xu6ykDOVsl0+lpgKj5ZA7WLpGLRYSLSOSNN1S8+uJbnq+n9jKsYSWvmvNvf/
-         ZhsyOcgUZ7LaXeSRSm9fzBVjXemfUQKeWP9PfNCmEsi7Yv73sA+jX1fa6nXfAsBBVs8j
-         Q03Q==
-X-Gm-Message-State: AO0yUKVB+YhSwYN7MZhDeBJQG7K+spl10usF+kFJvTRRh3FtfpKQF4Qd
-        cf3OlEySrCyJmihdF0B7zuM6yw==
-X-Google-Smtp-Source: AK7set/lbeT9EHF1pBE4+EMSMKbkVmLPsQwro43XW0FTt2Afuh+Wj39B9+9Wd1kBfJ9Q0Dco/BJl4g==
-X-Received: by 2002:a19:ad42:0:b0:4da:e925:c95b with SMTP id s2-20020a19ad42000000b004dae925c95bmr152872lfd.62.1676639203626;
-        Fri, 17 Feb 2023 05:06:43 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id t1-20020ac25481000000b004d16263b36bsm673878lfk.111.2023.02.17.05.06.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 05:06:43 -0800 (PST)
-Message-ID: <0d955930-df72-127a-7c53-3e3519affafa@linaro.org>
-Date:   Fri, 17 Feb 2023 14:06:41 +0100
+        with ESMTP id S229882AbjBQNJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:09:45 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B409E68566;
+        Fri, 17 Feb 2023 05:09:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676639382; x=1708175382;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=EipxcAyNbRifMzOG9QwPzSpk0i0NDRf5+rYrpaSO3p8=;
+  b=cLQlwnfHWyjMjGtSDWKR1BT6YtuUD8zpLxcbfTSIGnoZ02UOWTzT+x5x
+   Y93KLCl2yGvs+/zihYHLjy5/K5nw6F5nYst7ZDVkOB+RRUMYJhEgOAewS
+   AJaBVFPT5kZ0oyI4M54wO0PEFzL96qnHaj2Ta8cmrxIkuW9nCCkxyway9
+   3Ah5GpHZ7fASopqyDqirP1Zgu2zzjVQE5JT/MGnEF8B0SJuhAwh32IWkw
+   uwMG6jdafhzO+ybNcf725zNtVfiQuq85DOISbcCq/HPXl3Fjzclzs3EzX
+   AGLfdsZNP29Ss+9YKcHIVqH3a7wZjsGY15ny11kKTU6CLAsjcKWRfBzs7
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329702791"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; 
+   d="scan'208";a="329702791"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2023 05:09:28 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="648077433"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; 
+   d="scan'208";a="648077433"
+Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.99.16.144]) ([10.99.16.144])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2023 05:09:25 -0800
+Message-ID: <bd634d42-ebab-f713-365d-6936fdb5d77f@linux.intel.com>
+Date:   Fri, 17 Feb 2023 14:09:23 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated QCM2290 compatible
+Subject: Re: [PATCH v2 1/3] ASoC: soc-pcm: add option to start DMA after DAI
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230217124151.236216-1-claudiu.beznea@microchip.com>
+ <20230217124151.236216-2-claudiu.beznea@microchip.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
- <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
- <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
- <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
- <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
- <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From:   =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
+        <amadeuszx.slawinski@linux.intel.com>
+In-Reply-To: <20230217124151.236216-2-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17.02.2023 13:24, Krzysztof Kozlowski wrote:
-> On 17/02/2023 12:36, Konrad Dybcio wrote:
->>>>
->>>> compatible = "qcom,dsi-ctrl-6g-qcm2290";
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm6115.dtsi?h=next-20230217#n1221
->>>
->>> I meant, that original commit wanted to deprecate:
->>> compatible="qcom,dsi-ctrl-6g-qcm2290";
->>> compatible="qcom,mdss-dsi-ctrl";
->>>
->> Okay, so what would be the correct resolution?
->> Drop this patch and keep 2/2?
+On 2/17/2023 1:41 PM, Claudiu Beznea wrote:
+> Add option to start DMA component after DAI trigger. This is done
+> by filling the new struct snd_soc_component_driver::start_dma_last.
 > 
-> First, it would be nice to know what was the intention of Bryan's commit?
-AFAICT, it was necessary to add per-SoC compatibles to all DSI hosts
-to make documenting clocks possible (they differ per-platform).
-
-The qcm2290 deprecation came from the oddity of the compatible name
-(it did not match qcom,socname-hw), but he seems to have overlooked
-that (at least before my recent patchset [1]), it was necessary as it
-needed to circumvent part of the driver's logic. So it was first made
-up-to-speed with the rest by adding the fallback common compatible and
-then (wrongly) deprecated.
-
-
-Then, SM6115 DSI DTS part was added parallel to that, so he did not
-update it.
-
-With [1] its deprecation is correct and this series tries to complete
-it.
-
-Konrad
-
-[1] https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>   include/sound/soc-component.h |  2 ++
+>   sound/soc/soc-pcm.c           | 27 ++++++++++++++++++++++-----
+>   2 files changed, 24 insertions(+), 5 deletions(-)
 > 
-> Second, if the intention was to deprecate both of these, then this
-> commit could stay with changes - make it enum for both compatibles (not
-> list).
-> 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/include/sound/soc-component.h b/include/sound/soc-component.h
+> index 3203d35bc8c1..0814ed143864 100644
+> --- a/include/sound/soc-component.h
+> +++ b/include/sound/soc-component.h
+> @@ -190,6 +190,8 @@ struct snd_soc_component_driver {
+>   	bool use_dai_pcm_id;	/* use DAI link PCM ID as PCM device number */
+>   	int be_pcm_base;	/* base device ID for all BE PCMs */
+>   
+> +	unsigned int start_dma_last;
+> +
+>   #ifdef CONFIG_DEBUG_FS
+>   	const char *debugfs_prefix;
+>   #endif
+> diff --git a/sound/soc/soc-pcm.c b/sound/soc/soc-pcm.c
+> index 005b179a770a..5eb056b942ce 100644
+> --- a/sound/soc/soc-pcm.c
+> +++ b/sound/soc/soc-pcm.c
+> @@ -1088,22 +1088,39 @@ static int soc_pcm_hw_params(struct snd_pcm_substream *substream,
+>   static int soc_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
+>   {
+>   	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
+> -	int ret = -EINVAL, _ret = 0;
+> +	struct snd_soc_component *component;
+> +	int ret = -EINVAL, _ret = 0, start_dma_last = 0, i;
+>   	int rollback = 0;
+>   
+>   	switch (cmd) {
+>   	case SNDRV_PCM_TRIGGER_START:
+>   	case SNDRV_PCM_TRIGGER_RESUME:
+>   	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> +		/* Do we need to start dma last? */
+> +		for_each_rtd_components(rtd, i, component) {
+> +			if (component->driver->start_dma_last) {
+> +				start_dma_last = 1;
+> +				break;
+> +			}
+> +		}
+> +
+>   		ret = snd_soc_link_trigger(substream, cmd, 0);
+>   		if (ret < 0)
+>   			goto start_err;
+>   
+> -		ret = snd_soc_pcm_component_trigger(substream, cmd, 0);
+> -		if (ret < 0)
+> -			goto start_err;
+> +		if (start_dma_last) {
+> +			ret = snd_soc_pcm_dai_trigger(substream, cmd, 0);
+> +			if (ret < 0)
+> +				goto start_err;
+> +
+> +			ret = snd_soc_pcm_component_trigger(substream, cmd, 0);
+> +		} else {
+> +			ret = snd_soc_pcm_component_trigger(substream, cmd, 0);
+> +			if (ret < 0)
+> +				goto start_err;
+>   
+> -		ret = snd_soc_pcm_dai_trigger(substream, cmd, 0);
+> +			ret = snd_soc_pcm_dai_trigger(substream, cmd, 0);
+> +		}
+>   start_err:
+>   		if (ret < 0)
+>   			rollback = 1;
+
+Can all of the above be implemented similarly to already present 
+stop_dma_first? It looks similar and I don't see reason to have one flag 
+in snd_soc_component_driver and other in snd_soc_dai_link.
+
+
