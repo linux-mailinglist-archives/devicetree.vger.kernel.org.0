@@ -2,93 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C40769A788
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:55:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E981569A795
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229951AbjBQIzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 03:55:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58336 "EHLO
+        id S229475AbjBQI55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 03:57:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjBQIzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:55:10 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C22E5A3B3
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:55:04 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id cn2so1648746edb.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:55:04 -0800 (PST)
+        with ESMTP id S229966AbjBQI54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:57:56 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6008ABB89
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:57:54 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id j20so3158839edw.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:57:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ms/iLQOf6WZ9kdAbvZ5kczj2Q3S8/Va+SZXQUp0aFpI=;
-        b=kyzKIEWzCOJNIjmoYP09ulmEIikLSDcsMAPktcU/zWhA8o+CjPafc5vCUetue3nzNw
-         yZJajUL3OKiOn4cPunKJmdk6bY8dn/9B/wqP/ak4CccyAwha4eEfTZIFRto1eQHfZR5T
-         hbmWXWAAUNSa2k987EgtNHckC0Uk5yEaGLndg17UBttAMDoSLQZN0Z3NpEbY6U+6qyiS
-         RQ9cuKe0Nys02eKGay+6fVitO/IfdcfyZJeKiqELcsQW6jUD5c03QeweZNTK3qNNvjby
-         QRbDy/hBo5yJT8Lo5l6ouL05JQEk4g3y03z2phQE7necbjVx6yWeXzvgZDGkjwwiuMLj
-         Ok1w==
+        bh=JxmTPfEZSHv/qWrcZKvsN9uAVFNGcnCsPAcIEn+aGbM=;
+        b=S3hhqXofYhKYklwyVx1ZiaQVV6VUVxQl+CNp6N2KHoO/UUbSNw+3Td5LP2oYASqzUE
+         M7OAtXBpVInxsSayj23toB0vGa3eNd1R/CQzLMYehtOMXDEuBo+jRRWtYPdl3O3ymj68
+         wYm5hr3vcVph1ZKGwrTvEzyWyqWU+0sH66QfQFNQ5nNNs3PNdXWT6Mnsh0c/A065HGBh
+         HRXIN+ARWXjVn2pAjZRKGW7pfCQNiJlAeyPy7XkwY8NKMPUL2xL+YDZWiQEw9m4eW24e
+         Bp2IAnTkMM6ZShPMQdvPc31wCddIrMcKmJiEhEQDYvqTObdVIhFFUpBQ5bxu+X2sU97g
+         bIkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ms/iLQOf6WZ9kdAbvZ5kczj2Q3S8/Va+SZXQUp0aFpI=;
-        b=cN9em+Ztq4JQ5qhka6w85AiU4jp7UGRz23qA0GMrO5Sjpb6aod0mI13vvtCzt8c3cU
-         Wp1YFuNrZv76WdmRlMpYjnGOStnMEQumf3EfDVrfX/w+3XjGp5sBO2Zh8elfe/GqFyRj
-         k2bubsTi+7ttNtcxgih49BbaYq0C1A4CgKMnDxdMVOj41ueJV+7FFKCt00wZ+EiNu2BC
-         xDrwQau4zkzc0zK97vXnjWZwmO0wfVEZDHeBQOv5+7sBuK6NWCheaJkf5JlvAiPw3JtL
-         XcXegjbdu+P30oI1wTXPp77b7C2B0CcWggseLtvsLjMKcP0JMC9YpBakSk+PWJ7oAmFg
-         YCQA==
-X-Gm-Message-State: AO0yUKUZWvVnT7tmnr41bewD5WRXnCOZqJ/Modn8Mw1vVzxdRJM2gsUG
-        g8P4ChsBmTzWXN2TPvcfcXFOdA==
-X-Google-Smtp-Source: AK7set+IEv2TbISTklidgD6uq9zlJmbOrq7lhiGovewXGe1Rb+O6Stn+ccGdmM+r+kEvUce/0FYZYg==
-X-Received: by 2002:a05:6402:784:b0:4ab:4411:2f71 with SMTP id d4-20020a056402078400b004ab44112f71mr156745edy.37.1676624102715;
-        Fri, 17 Feb 2023 00:55:02 -0800 (PST)
+        bh=JxmTPfEZSHv/qWrcZKvsN9uAVFNGcnCsPAcIEn+aGbM=;
+        b=aUr8z39iFHzLe6EgcKagplR6jW1sl+9B6JZi1YfFHJAG32SB2ZsU7J3MT74Z6gpauq
+         GNAEOGQkYkadZwS6F1ypwAESU4KrLTO85fvVWo05glW25QQcE9BLxoc9zR34AiPs/lmb
+         seiC+gIbt0UVBKimsLJllmgC4B7Lu+3rK7c6UfUJfGw6oje8PU0A2WxBvhG90YV21l/N
+         BlyJ6ayahi6xDy3u9/mt0qZNonMpouIcGMiZGVJ8NiZPd+QPqoiShN9PY3Hih4O9/Jk5
+         4Zra2u4OctsQjHAGZEHdmlPCaDwvwtjmDS2Fzp+epz8uzQIp8G5yi0ezGOXOIBq78ID5
+         ZAFQ==
+X-Gm-Message-State: AO0yUKUbb8MJafH3ZJjOAut+yI7qVjSWZTmPwIAbNecQ410ywHZchwKR
+        Z7RmFTjxkJsCCRP6MNNJT863HQ==
+X-Google-Smtp-Source: AK7set9s6X9YCl0+Jv/Abcpk9KSI2ZLrpWThyt+bZQlD5CjypRTHefOM/EEsy2zJt587ycEEWaGNUQ==
+X-Received: by 2002:a17:906:944b:b0:8b1:3ba8:3f4d with SMTP id z11-20020a170906944b00b008b13ba83f4dmr8436182ejx.70.1676624272837;
+        Fri, 17 Feb 2023 00:57:52 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a36-20020a509ea7000000b004a7e9ec2087sm1964054edf.76.2023.02.17.00.55.01
+        by smtp.gmail.com with ESMTPSA id jz19-20020a17090775f300b008b17cc28d3dsm993330ejc.20.2023.02.17.00.57.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 00:55:02 -0800 (PST)
-Message-ID: <2d2290c3-e4ac-aee3-f2cf-496c6d29a188@linaro.org>
-Date:   Fri, 17 Feb 2023 09:55:00 +0100
+        Fri, 17 Feb 2023 00:57:52 -0800 (PST)
+Message-ID: <6217b51c-4982-8548-688d-8bfce97d3352@linaro.org>
+Date:   Fri, 17 Feb 2023 09:57:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/5] dt-bindings: arm-smmu: Add SM8350 Adreno SMMU
+Subject: Re: [PATCH v10 05/10] dt-bindings: qcom-qce: Add new SoC compatible
+ strings for Qualcomm QCE IP
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230216131430.3107308-1-vladimir.zapolskiy@linaro.org>
+ <20230216131430.3107308-6-vladimir.zapolskiy@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230216131430.3107308-6-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 15:56, Konrad Dybcio wrote:
-> Document the Adreno SMMU present on SM8350.
+On 16/02/2023 14:14, Vladimir Zapolskiy wrote:
+> Introduce a generic IP family compatible 'qcom,qce' and its two derivatives
+> based on SoC names rather than on IP versions. Having a generic compatible
+> is only partially sufficient, the QCE IP version can be discovered in
+> runtime, however there are two known groups of QCE IP versions, which
+> require different DT properties, these two groups are populated with SoC
+> based compatibles known at the moment.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+> Keep the old compatibles 'qcom,crypto-v5.1' and 'qcom,crypto-v5.4' for
+> backward compatibility of DTB ABI, but mark them as deprecated.
+> 
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+As I asked at v9, please mention that you document already used v5.4
+compatible. You do not "keep it", because it was never there in the binding.
 
 Best regards,
 Krzysztof
