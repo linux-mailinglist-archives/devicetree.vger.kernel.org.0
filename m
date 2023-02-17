@@ -2,107 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A60B569ACE7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F2369AD27
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:51:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjBQNr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 08:47:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        id S229982AbjBQNvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 08:51:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbjBQNr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:47:56 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C41E394;
-        Fri, 17 Feb 2023 05:47:08 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id j3so272030oig.10;
-        Fri, 17 Feb 2023 05:47:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Ll8Isr+ZQ5RTN0lxyEq78i/SRcydT0DelmTMS9mE0Q0=;
-        b=mf0kjSWWivbhgOgFUiixZ4W3DuB9yNCzBhPWp/nDX42ZxcOPAu4RGMNnWkHl7Azbia
-         QoTM9cFy1rcB8cer7+FJulToVCAIzza+ap2ujywZlaFanFc86SrLhRdrdgE0sOQZwNVj
-         QshBA9dHUPtE/+NebK2m/9g1DkKUVkDxLg0tyEyRaGW2/wtRPD/tqk8CqYNJ6skzEJst
-         g0wnwF1+a38zwTnS6bDdUdobeM01njyx4VD/FEMQYMWuiMoKCl0kRjsdJqWTpHFCDO5k
-         /1BcO2gQDL6K2bi8U/JRYLR8xurYqmWeX3ARRZ4b4L5FzfQ1KvIBslFJYmk5CydWlxyK
-         4fTQ==
-X-Gm-Message-State: AO0yUKVa1yINfRFTmB1xwxvHl9+k1UXlbs//HKDF7/LVzEjzl3ynV3O6
-        p6tEi8UcVXqI229eyVDndQ==
-X-Google-Smtp-Source: AK7set/7ra3cC64KBGTHRmgqZjgzQ5r/BmLrcdpf3i2v7IFIDWgBmLnbArZOiIa7rczADFQMR8z/aA==
-X-Received: by 2002:a05:6808:86:b0:37f:978d:45bf with SMTP id s6-20020a056808008600b0037f978d45bfmr2247435oic.41.1676641621779;
-        Fri, 17 Feb 2023 05:47:01 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z6-20020aca3306000000b0037adc5702d4sm1741963oiz.38.2023.02.17.05.47.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 05:47:01 -0800 (PST)
-Received: (nullmailer pid 658534 invoked by uid 1000);
-        Fri, 17 Feb 2023 13:47:00 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S230050AbjBQNvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:51:08 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC9F692A9;
+        Fri, 17 Feb 2023 05:50:29 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 47F6B60003;
+        Fri, 17 Feb 2023 13:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1676641825;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=IXtty5j4EPkHzMourS16qE5SNRSNmBZzzykreudpYyw=;
+        b=RoBsXKNPDSFIw+waIM9X3bayblvPaLqhufkZQmycFa7Xnrs3aTpCAWzjhfnGtitb8+V2N1
+        7lvs3fA9mB2xffWdKYEEfQNqEKifHKxSneXjI8wUgFitrhpYd/n+2eAtt+u9wdBpmfiF99
+        3+IsOBT6U1N4DOFMFnmQspVrm+xBGluGmi55YzwE/u8kJufXbbl+0bmekuU9Xl8KhAW5EU
+        AVXU7Vb/pZ14cC+S+t5i+AZPWyZoqSPusgF7ggwvHd6IDqZnmrk8/AarNmkNGQDl6tIZJP
+        kmwG5k2P/GWE4TNLz5ynqio6byKJqgjXOVaFfHowgpEcNTsKLnSWj+XNN8tEKQ==
+Date:   Fri, 17 Feb 2023 14:50:19 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org
-In-Reply-To: <20230217093128.8344-1-mike.looijmans@topic.nl>
-References: <20230217093128.8344-1-mike.looijmans@topic.nl>
-Message-Id: <167664119704.650159.16760653306114793445.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add driver for TI ADS1100
- and ADS1000
-Date:   Fri, 17 Feb 2023 07:47:00 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Message-ID: <20230217145019.0def6f9a@bootlin.com>
+In-Reply-To: <6ae9af19-1d52-c31f-79be-a36f06caaf80@linaro.org>
+References: <20230216134226.1692107-1-herve.codina@bootlin.com>
+        <20230216134226.1692107-2-herve.codina@bootlin.com>
+        <6ae9af19-1d52-c31f-79be-a36f06caaf80@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
-On Fri, 17 Feb 2023 10:31:27 +0100, Mike Looijmans wrote:
-> The ADS1100 is a 16-bit ADC (at 8 samples per second).
-> The ADS1000 is similar, but has a fixed data rate.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> 
-> ---
-> 
->  .../bindings/iio/adc/ti,ads1100.yaml          | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> 
+On Fri, 17 Feb 2023 10:14:48 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> On 16/02/2023 14:42, Herve Codina wrote:
+> > Add support for the time slot assigner (TSA)
+> > available in some PowerQUICC SoC such as MPC885
+> > or MPC866.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml | 234 ++++++++++++++++++
+> >  include/dt-bindings/soc/fsl,tsa.h             |  13 +
+> >  2 files changed, 247 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
+l,cpm1-tsa.yaml
+> >  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
 
-yamllint warnings/errors:
+[...]
+> > +
+> > +patternProperties:
+> > +  '^tdm@[0-1]$':
+> > +    description:
+> > +      The TDM managed by this controller
+> > +    type: object
+> > +
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 1
+> > +        description:
+> > +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
+[...]
+> > +
+> > +      fsl,rx-frame-sync-delay-bits:
+> > +        enum: [0, 1, 2, 3] =20
+>=20
+> maxItems: 1
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1100.example.dtb: adc@49: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+The property is an enum
+Why this maxItems value ?
 
-doc reference errors (make refcheckdocs):
+If I add the maxItems value, I've got some dt_binding_check errors:
+  /xxxx/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml:
+  patternProperties:^tdm@[0-1]$:properties:fsl,rx-frame-sync-delay-bits:
+  'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMax=
+imum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+	hint: Scalar and array keywords cannot be mixed
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230217093128.8344-1-mike.looijmans@topic.nl
+>=20
+> > +        default: 0
+> > +        description: |
+> > +          Receive frame sync delay in number of bits.
+> > +          Indicates the delay between the Rx sync and the first bit of=
+ the Rx
+> > +          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits dela=
+y.
+> > +
+> > +      fsl,tx-frame-sync-delay-bits:
+> > +        enum: [0, 1, 2, 3] =20
+>=20
+> maxItems: 1
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Same question here.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
 
-pip3 install dtschema --upgrade
+Thanks for the review,
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Herv=C3=A9
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
