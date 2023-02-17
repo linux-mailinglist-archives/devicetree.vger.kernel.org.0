@@ -2,86 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 764E569AA8A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:36:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4510769AB0C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 13:10:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230203AbjBQLgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 06:36:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51436 "EHLO
+        id S229558AbjBQMKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 07:10:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjBQLgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:36:51 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE9E28D31
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:36:48 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id u22so1389016lfu.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:36:48 -0800 (PST)
+        with ESMTP id S229461AbjBQMKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 07:10:44 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E498A644D8
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 04:10:41 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id dn12so11194384edb.5
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 04:10:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sZ1ZgDuA3P/7xbAGGx5EOYOqmYAV/laB2blIXJcdyKQ=;
-        b=TW3uATxonKY5J86lyjHy1JXMRi3EzdAokUzTtBT1nLQ6eXuk8Dz7+jdhRTghChHQVj
-         3ujR8QtM7gz6Fy5LfYHUBomsJkAl4JGe9I1ovRFX522GIidHZfvzoUqmNjov8AGPrAqK
-         ujFT8T4+pOuSCYr18aps0rY6sbM/4+JXUb7OZ/cpwPXCBWdXz6meDEoqGoQ1TUy8usdM
-         ZoMvqRO66qQkybYIAnkbLWAnQ0pbJp2WCec1LEJxdJcGFYb0BFnqo7lRcjb5vDl3OMLj
-         JqYpryFCZInO4iDA1i8t+DQ79Pc59HXVO+FWe5jDPK7IDqOa/2K9iyz0FJCwQ/GlhShV
-         DO9g==
+        bh=aB17o/jMbl0mQSIHKLDRIzmjCLvKTzoO4e8k0fo/3C4=;
+        b=Bx9FoQZKwMBR7rjygoX5aHQujxfB8WirDrwXEECPglcNNqnljEL9Rpv84LAkob4f2I
+         HmUqs4N2+5GxaFa2bTrKVptX6Udv0Lvq3qPGkuA6+6bjKY9TSspfbFz3aolnzXse/Zo4
+         P2YwBMPY9AXr3thwLPUN+p3cgambghGMmVrvaC4buZ4uHph9AF0+aKj8CNjq1hurFZn1
+         s6KhK0hKiGNO5k/uDLODBecXt8QOcwyLkDAqM/gBEDU6vb2wqRKPtjOchY8mFURKeMqn
+         gGbmBC8wZIX740/ZYPls5rU0E82/M8qKWVCZ3n6+p748T3iYZv2ZjxGi/uv4DASJHh1R
+         TBqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sZ1ZgDuA3P/7xbAGGx5EOYOqmYAV/laB2blIXJcdyKQ=;
-        b=0YCysangqZOWpNHszJ5YuExyouQoJuaig5LnjwYjEj0+en7y/2MLokhDuAROFZjDMn
-         u4ox/J9/dXc/qZgXmpVjjoTbmNSZMp1IAs3Wx24YENZFKEaUvhNTlFsnwhXyeAklezVx
-         BPO8kFnxAJIkoFdMo7eLvyyluBjysfcJAL5QSuObqESqxNchWZB0ymRm747si9thFFLp
-         vuaHOctLuktShXa9UZ9/TbEZiTXyORfIjxoMA7utCXedS3Fv+ZGr7ne0yKHkNOzxFIyj
-         7hkxiZ69d0Yw0aRsbuuw0W6xaCmCOjH51N2gHVt1mPJpr30jdTYuXgUHEz/ySQ2bQWEt
-         /s9A==
-X-Gm-Message-State: AO0yUKV7rdpWxy2vM5Q3T7HY6pKxXF+E84nhO80wzAus6hK6iqXCceBw
-        bUeMIJhj5oFo5j4UR6duxQrH0A==
-X-Google-Smtp-Source: AK7set9JXpy1zNlhq7Kt+wDBf9jBmCKvkt/1DfrrqWm6Gm3fV/rslVunYO58LlW1TvHtcyCA+CmnWg==
-X-Received: by 2002:a19:f513:0:b0:4a4:68b7:e71c with SMTP id j19-20020a19f513000000b004a468b7e71cmr367256lfb.6.1676633807219;
-        Fri, 17 Feb 2023 03:36:47 -0800 (PST)
-Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id j11-20020ac2550b000000b004dbebb3a6fasm653907lfk.175.2023.02.17.03.36.45
+        bh=aB17o/jMbl0mQSIHKLDRIzmjCLvKTzoO4e8k0fo/3C4=;
+        b=OoGDzNv9ELKvIhuT1FNvkJxzMlf8twZmVj3s+L+UdPWkpPqnhCyprNWZoXXv0n6QVv
+         +Na1sPrhedTU7onmHUr7MrGNTC+bhLkChgND6V9Xera0hFA1scH8VpslY56+OIg4O7Uv
+         3zjAkcmaL1M/ZhQOflFWvG8XODZKaH2uWdNmgoAjT4l4HNRKPPiaV044qofgErRAXHNk
+         vI3hBbbH4BHYVYFE+bZOdP97XULZYyfob1KvrxMuIIXWRRwhr3d4inhpf/QwdDwVjSfZ
+         RSYX+5kwhC9EtvdRxv2fdcBrTqurKGUMFdlB0yLpFWAhWx6nrvb9KvZgNKJNaDPJz7zu
+         9CMQ==
+X-Gm-Message-State: AO0yUKXNn8fw90MDxhaBo7EvEOXbfkxBTSDZ8mIn0xLy7g7kaRdhpJJP
+        rz/cTlU1q+zvufLU7H1lTuLTPQ==
+X-Google-Smtp-Source: AK7set+wkleOBTUL23QSSRC2ZHsbI3GMBhC0RL6WDYUMQrmOML8P2aJ8lKZzQpe3Fj5ZVzUwLgRqdA==
+X-Received: by 2002:a17:906:230f:b0:8aa:af33:72d6 with SMTP id l15-20020a170906230f00b008aaaf3372d6mr8688731eja.45.1676635840413;
+        Fri, 17 Feb 2023 04:10:40 -0800 (PST)
+Received: from [192.168.240.121] (196.161.185.81.rev.sfr.net. [81.185.161.196])
+        by smtp.gmail.com with ESMTPSA id v20-20020a50d594000000b004ad7962d5bbsm1317811edi.42.2023.02.17.04.10.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 03:36:46 -0800 (PST)
-Message-ID: <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
-Date:   Fri, 17 Feb 2023 12:36:45 +0100
+        Fri, 17 Feb 2023 04:10:40 -0800 (PST)
+Message-ID: <4e64838c-b727-923b-b6d5-413a0681977c@baylibre.com>
+Date:   Fri, 17 Feb 2023 13:10:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated QCM2290 compatible
-Content-Language: en-US
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v1 1/4] dt-bindings: mfd: Add DT bindings for TI TPS6594
+ PMIC
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
- <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
- <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
- <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net
+Cc:     hdegoede@redhat.com, eric.auger@redhat.com, jgg@ziepe.ca,
+        razor@blackwall.org, suma.hegde@amd.com,
+        stephen@networkplumber.org, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, eblanc@baylibre.com,
+        jneanne@baylibre.com
+References: <20230216114410.183489-1-jpanis@baylibre.com>
+ <20230216114410.183489-2-jpanis@baylibre.com>
+ <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
+Content-Language: en-US
+From:   Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,61 +83,218 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 2/17/23 10:06, Krzysztof Kozlowski wrote:
+> On 16/02/2023 12:44, Julien Panis wrote:
+>> TPS6594 is a Power Management IC which provides regulators and others
+> Subject: drop second/last, redundant "DT bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+>
+>
+>> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+>> PFSM (Pre-configurable Finite State Machine) managing the state of the
+>> device.
+>> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
+>>
+>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+>> ---
+>>   .../devicetree/bindings/mfd/ti,tps6594.yaml   | 164 ++++++++++++++++++
+>>   1 file changed, 164 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+>> new file mode 100644
+>> index 000000000000..37968d6c0420
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+>> @@ -0,0 +1,164 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI TPS6594 Power Management Integrated Circuit
+>> +
+>> +maintainers:
+>> +  - Julien Panis <jpanis@baylibre.com>
+>> +
+>> +description: |
+>> +  TPS6594 is a Power Management IC which provides regulators and others
+>> +  features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+>> +  PFSM (Pre-configurable Finite State Machine) managing the state of the device.
+>> +  TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,tps6594
+>> +      - ti,tps6593
+>> +      - ti,lp8764x
+> Any particular choice of ordering (different than alphabetical)?
 
-On 17.02.2023 12:35, Krzysztof Kozlowski wrote:
-> On 17/02/2023 12:32, Konrad Dybcio wrote:
->>
->>
->> On 17.02.2023 12:30, Krzysztof Kozlowski wrote:
->>> On 17/02/2023 12:13, Konrad Dybcio wrote:
->>>> SM6115 previously erroneously added just "qcom,dsi-ctrl-6g-qcm2290",
->>>> without the generic fallback. Fix the deprecated binding to reflect
->>>> that.
->>>>
->>>> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>> Depends on (and should have been a part of):
->>>>
->>>> https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
->>>>
->>>> v1 -> v2:
->>>> New patch
->>>>
->>>>  .../devicetree/bindings/display/msm/dsi-controller-main.yaml     | 1 -
->>>>  1 file changed, 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>>> index 41cdb631d305..ee19d780dea8 100644
->>>> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>>> @@ -37,7 +37,6 @@ properties:
->>>>        - items:
->>>
->>> If this way stays, drop the items as it is just an enum.
->>>
->>>>            - enum:
->>>>                - qcom,dsi-ctrl-6g-qcm2290
->>>> -          - const: qcom,mdss-dsi-ctrl
->>>
->>> Wasn't then intention to deprecate both - qcm2290 and mdss - when used
->>> alone?
->> "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl"
->>
->> was never used. The only upstream usage of the 2290 compat
->> is in sm6115.dtsi:
->>
->> compatible = "qcom,dsi-ctrl-6g-qcm2290";
->> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm6115.dtsi?h=next-20230217#n1221
-> 
-> I meant, that original commit wanted to deprecate:
-> compatible="qcom,dsi-ctrl-6g-qcm2290";
-> compatible="qcom,mdss-dsi-ctrl";
-> 
-Okay, so what would be the correct resolution?
-Drop this patch and keep 2/2?
+Thank you for the review.
 
-Konrad
+I chose this ordering because it emphasizes the fact that tps6593 and 
+lp8764x
+are derivatives of tps6594 : tps6593 is nearly the same (a minor feature 
+is not
+supported), and lp8764x has less resources (less bucks/LDO, and no RTC).
+
+Besides, a multi-PMIC synchronization scheme is implemented in the PMIC 
+device
+to synchronize the power state changes with other PMIC devices. This is done
+through a SPMI bus : the master PMIC is the controller device on the 
+SPMI bus,
+and the slave PMICs are the target devices on the SPMI bus. For the 5 boards
+we work on (for which device trees will be sent in another patch series):
+- tps6594 is used on 3 boards and is always master (multi-PMIC config)
+- tps6593 is used on 1 board and is master (single-PMIC config)
+- lp8764x is used on 2 boards and is always slave (multi-PMIC config)
+There might not be situations in which lp8764x would be master and tps6594
+or tps6593 would be slave.
+
+That's why I preferred this ordering.
+
+Do you think that alphabetical order would be better ?
+
+>
+>> +
+>> +  reg:
+>> +    description: I2C slave address or SPI chip select number.
+>> +    maxItems: 1
+>> +
+>> +  ti,use-crc:
+>> +    type: boolean
+>> +    description: If true, use CRC for I2C and SPI interface protocols.
+> Hm, why different boards would like to enable or disable it? Why this
+> suits DT?
+
+You're right. Reading your comment, it appears to me that CRC feature is 
+not fully
+related to HW description and should not be set in DT.
+
+CRC is not 'fully' related to HW, but...
+For CRC feature as well, PMICs are synchronized (for boards with 
+multi-PMIC config).
+To use CRC mode, this feature must be requested explicitly on the master 
+PMIC
+through I2C or SPI driver, then it is enabled for the slave PMICs 
+through SPMI bus: that
+sync is performed 'automatically', without intervention from the I2C or 
+SPI driver to
+enable CRC on slave PMICs.
+As a consequence, CRC feature is enabled for all PMICs at I2C/SPI driver 
+probe,
+or it is let disabled for all PMICs. But it can't be enabled for one 
+PMIC and disabled
+for another one.
+
+This will probably rediscussed for I2C/SPI drivers, but do you think 
+that a 'use_crc'
+driver parameter would be an acceptable solution ? If so, the master 
+PMIC would have
+to be identified, so that the driver can explicitly enable CRC mode for 
+this one if
+'use_crc' is true. With this solution, some 'ti,is-master;' bool 
+property would be necessary.
+
+>
+>> +
+>> +  system-power-controller: true
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  ti,multi-phase-id:
+>> +    description: |
+>> +      Describes buck multi-phase configuration, if any. For instance, XY id means
+>> +      that outputs of buck converters X and Y are combined in multi-phase mode.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [12, 34, 123, 1234]
+>> +
+>> +patternProperties:
+>> +  "^buck([1-5]|12|34|123|1234)-supply$":
+>> +    description: Input supply phandle for each buck.
+>> +
+>> +  "^ldo[1-4]-supply$":
+>> +    description: Input supply phandle for each ldo.
+>> +
+>> +  regulators:
+> This should go to properties, not patternProperties.
+>
+>> +    type: object
+>> +    description: List of regulators provided by this controller.
+>> +
+>> +    patternProperties:
+>> +      "^buck([1-5]|12|34|123|1234)$":
+>> +        type: object
+>> +        $ref: /schemas/regulator/regulator.yaml#
+>> +
+>> +        unevaluatedProperties: false
+>> +
+>> +      "^ldo[1-4]$":
+>> +        type: object
+>> +        $ref: /schemas/regulator/regulator.yaml#
+>> +
+>> +        unevaluatedProperties: false
+>> +
+> You could add here - on this level - of indentation allOf:if for
+> excluding setups
+>
+> if:
+>    required:
+>      - buck12
+> then:
+>    properties:
+>      buck123: false
+>      buck1234: false
+>
+> Or, if you want to require regulator then:
+> oneOf:
+>    - required:
+>        - buck12
+>    - required:
+>        - buck123
+>    - required:
+>        - buck1234
+>
+> and anyway exclude buck34 with two above.
+
+I am not sure that we have the same understanding of the multi-phase setup.
+Maybe the description I wrote is not clear enough (?) Or I just don't 
+understand
+what you mean exactly.
+
+How would you combine outputs of bucks 3 and 4 ?
+We use 'buck34' property to mean that:
+  - buck1 output is mono-phase,
+  - buck2 output is mono-phase,
+  - buck3 and buck4 outputs are combined (i.e. multi-phases).
+This weird configuration is supported by these PMICs.
+
+Using a PMIC without using the provided regulators does not seem very 
+interesting
+indeed.
+But strictly speaking, these regulators are not required. One could use 
+some others
+resources provided by the PMIC (the Error Signal Monitor device for 
+instance).
+Besides, multi-phase mode depends on the chosen design and is not 
+required for
+all situations.
+
+>
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+>> +additionalProperties: false
+>
+>
 > Best regards,
 > Krzysztof
-> 
+>
+
