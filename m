@@ -2,83 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B769169AE13
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D50069AE5B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 15:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbjBQOa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 09:30:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58976 "EHLO
+        id S229677AbjBQOuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 09:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbjBQOa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:30:27 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3439453EF4;
-        Fri, 17 Feb 2023 06:30:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=0X0KR6KIImr3njb+LcrxRAY3MAezNWa9+WxGiZCAfFY=; b=OVX7E88fSsqCYEc24Kk1hDFXHj
-        wm1BdCUL//jetXaQ2r1z+pF+T1VopwmP3V6brnWEntKic/aa4w2rsfbJptPh9BsuaBHKUmqFXVkrY
-        vaRfdU5qLhuqWyqjBDATAERpW+yYtZ2omr+Mz6IHeuD6MuXjO0FYEgcOFvry8xqg+NZk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pT1kb-005IF6-GM; Fri, 17 Feb 2023 15:30:13 +0100
-Date:   Fri, 17 Feb 2023 15:30:13 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Arun.Ramadoss@microchip.com
-Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
-Message-ID: <Y++PdVq+DlzdotMq@lunn.ch>
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
+        with ESMTP id S229541AbjBQOuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 09:50:39 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D036D27F
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:50:38 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id r12so1398993ljg.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 06:50:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IfMrwTYv/UXoa7T4u9ssxGz4oHUgnUkMNtSANg8q2aA=;
+        b=cgz14t7XoHnNwjs4GdXOH21yNb7lcn+UPq02doQu4fDIlBKV/U0ioGG9GbxWdCIx2v
+         eYg5URXUxeFM3qYVPyv68dPjhhmPr14U2tFHY1hFj/ATiw3KQ2vk8SOpK/hGWaZjvaDC
+         k0SHf3bMhxxxlCe9urmwPAPNQBkyhJUlLMA13hA4/RhmMDCu8o9hPQwkGtxXN277ACSO
+         oHIYInVlX6INYNgQOH3zAgT7z8pQaWUD/aewj2rOyDiCqrIXH3Sa+1PpfjUIruAhvf88
+         O6E34RtyDKx7+GzBaSk9TP0qVfvS8X3MCrv2IoyloETngSzSsNyu10E9xGGx2MrWScjm
+         A0Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IfMrwTYv/UXoa7T4u9ssxGz4oHUgnUkMNtSANg8q2aA=;
+        b=fpca8bgB1QXYIQXRZts64y+KbZOJxAcMA2dHCeV1sZ2hEv+JYZnZaWDd4lCmTJGKij
+         KmX5/9ViT+rezaTrhP6Uzehx6iW8PDtlVbNGYKEahVbb5D3eGT0L6ejxwgHAQWxpiAbG
+         PSh8JQ3UzntWb/+atw8Y/eLdbE3oFB4hMaCxyIB2PBOQOuiedyCzghzK2igWDr2JZVWr
+         i0/YwpgmYktsgvamPFeanqhSBMJpeHYw7PGylYXAsRiAl4Gte18s+Muh4MMlc4dVsfnq
+         nKwJ01D1EAGvGpm/nsdsAUrXHriWzklPINtnW4bCOsoogiQ8xL1vb2sVpDy7TeK0GiPS
+         AEnw==
+X-Gm-Message-State: AO0yUKUs3mLFEU8e9BFW3cyA+/7fVStGphR5Piy9ZH9fo8j27XkywfZ4
+        3geIeiLN4lUOg9e+fTE3nNLpvA==
+X-Google-Smtp-Source: AK7set/hfBuG6JsWKdDSQ3c2iSdoJBvniIXs0og+UFY+N5qNHXkbuBsaDap+aTDXp7RVbdyt8hSaNg==
+X-Received: by 2002:a05:651c:513:b0:290:463:430 with SMTP id o19-20020a05651c051300b0029004630430mr1802192ljp.15.1676645436605;
+        Fri, 17 Feb 2023 06:50:36 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id i62-20020a2e2241000000b002934d0ff439sm589070lji.104.2023.02.17.06.50.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 06:50:36 -0800 (PST)
+Message-ID: <12d23d88-6f42-09ea-3f26-e1b7a0878767@linaro.org>
+Date:   Fri, 17 Feb 2023 15:50:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230216013230.22978-1-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH V2 5/6] arm64: dts: qcom: ipq9574: Add RPM related nodes
+Content-Language: en-US
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
+ <20230217142030.16012-6-quic_devipriy@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230217142030.16012-6-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 16, 2023 at 02:32:17AM +0100, Christian Marangi wrote:
-> This is another attempt on adding this feature on LEDs, hoping this is
-> the right time and someone finally notice this.
 
-Hi Christian
 
-Thanks for keeping working on this.
+On 17.02.2023 15:20, Devi Priya wrote:
+> Add RPM Glink, RPM message RAM and SMPA1 regulator
+> nodes to support frequency scaling on IPQ9574
+> 
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  Changes in V2:
+> 	- Splitted the RPM and CPU Freq changes to individual patches
+> 	- Moved the regulators node to Board DT
+> 	- Dropped the regulator-always-on property
+> 	- Updated the compatible in regulators node with the existing
+> 	  mp5496 compatible
+> 
+>  arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts | 11 +++++++++++
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 17 +++++++++++++++++
+>  2 files changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+> index 21b53f34ce84..8a6caaeb0c4b 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+> @@ -57,6 +57,17 @@
+>  	status = "okay";
+>  };
+>  
+> +&rpm_requests {
+> +	regulators {
+> +		compatible = "qcom,rpm-mp5496-regulators";
+> +
+> +		ipq9574_s1: s1 {
+> +			regulator-min-microvolt = <587500>;
+> +			regulator-max-microvolt = <1075000>;
+> +		};
+> +	};
+> +};
+This belongs in a separate patch.
 
-I want to review it, and maybe implement LED support in a PHY
-driver. But i'm busy with reworking EEE at the moment.
+> +
+>  &sdhc_1 {
+>  	pinctrl-0 = <&sdc_default_state>;
+>  	pinctrl-names = "default";
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index d20f3c7383f5..2f300cbab93e 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -133,6 +133,11 @@
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> +		rpm_msg_ram: rpm@60000 {
+Since this is a part of the MMIO region and not a part of DRAM,
+we generally put this node under /soc with the compatible of
+qcom,rpm-msg-ram and without no-map.
 
-The merge window is about to open, so patches are not going to be
-accepted for the next two weeks. So i will take a look within that
-time and give you feedback.
+And the node name then should be sram@.
 
-     Andrew
+> +			reg = <0x0 0x00060000 0x0 0x6000>;
+> +			no-map;
+> +		};
+> +
+>  		tz_region: tz@4a600000 {
+>  			reg = <0x0 0x4a600000 0x0 0x400000>;
+>  			no-map;
+> @@ -768,6 +773,18 @@
+>  		};
+>  	};
+>  
+> +	rpm-glink {
+Alphabetically this should come before /soc.
+
+Konrad
+> +		compatible = "qcom,glink-rpm";
+> +		interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+> +		qcom,rpm-msg-ram = <&rpm_msg_ram>;
+> +		mboxes = <&apcs_glb 0>;
+> +
+> +		rpm_requests: glink-channel {
+> +			compatible = "qcom,rpm-ipq9574";
+> +			qcom,glink-channels = "rpm_requests";
+> +		};
+> +	};
+> +
+>  	timer {
+>  		compatible = "arm,armv8-timer";
+>  		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
