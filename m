@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFACD69ACC1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 537F369ACD4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 14:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjBQNm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 08:42:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36712 "EHLO
+        id S229744AbjBQNpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 08:45:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbjBQNm4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:42:56 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C061692BB;
-        Fri, 17 Feb 2023 05:42:34 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31H6p6Tp020792;
-        Fri, 17 Feb 2023 13:42:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=cULItb46ULJKNwBUpggs73TuMg6y7kRi6xedZUrC7Hg=;
- b=TkfAimLu1gljcRymMmiHTiNT/IHuqooj3SaNGvcVoL9Ims+xBGNrHY/ljQ9/6YCwjMZ1
- I2oHrLy3vJ3YrKgnBB4FpDKmIOmktaSCqzh1N8IGagWP+sUI62whGbJz7DYHPSNCIAGk
- wGQOI0ApYgkgYhOmWYMH7iHuj/5TZZg3hlVHH+z73xw2jxZq98nsE6D52l/yK3zDbzzC
- i3KOze+PN5UeMaysuYjORJzZwuUXDg2qmtQKFe7M+DQrYteGYuMzDhnUIr22mXUuwrQ2
- l9WlFfH8+A56V2dPIsC/8jCCySeaIu12yhe4jEBbH5itexjeWjdfSTf5iVOCuiqQI4Ae OA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nsjyw3p8c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 13:42:13 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31HDgCSw008376
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Feb 2023 13:42:12 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Fri, 17 Feb 2023 05:42:04 -0800
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
-        <broonie@kernel.org>, <rafal@milecki.pl>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>
-Subject: [PATCH V2 5/5] arm64: defconfig: Enable ipq6018 apss clock and PLL controller
-Date:   Fri, 17 Feb 2023 19:11:07 +0530
-Message-ID: <20230217134107.13946-6-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230217134107.13946-1-quic_devipriy@quicinc.com>
-References: <20230217134107.13946-1-quic_devipriy@quicinc.com>
+        with ESMTP id S229564AbjBQNpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 08:45:41 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0119F5590;
+        Fri, 17 Feb 2023 05:45:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676641540; x=1708177540;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=0bI4eu7CsGkpbAbTeeplt9TFcf3bqOc9S2sMj8KlvNs=;
+  b=gkUGGhTWui7lPJvnP5+Drme2/AzBxD1pXx2Z2pHErj3yuXjqBXMeHFtQ
+   VxOkT37TGWl5ndSwOgwYtNFpqVYGviHlTwGUYUNLbYY715Qo64eSWrw0l
+   ubaAldEenZ/lX/cDjqX6iBvlX1mu3RGxVEGEzIncMFU0rObizMUcqAsEu
+   UAGM3JwNpN5N7hN07E/iTwOPcMB4e4ZxzDiQ/qD2aw3G7o8aMA1jEx9Fg
+   2LXC3zdZjCFrb7gkaTXTp5QTj/zp5EdAPwPcU6MLcK0tVofZE+YOGTFmM
+   3wD0pageQnMci0ojr1xGdC+HeFCiojdMnnEqdA5hC5da2CwEGRSSoJb4C
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="359437736"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; 
+   d="scan'208";a="359437736"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2023 05:45:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="670546804"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; 
+   d="scan'208";a="670546804"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 17 Feb 2023 05:45:32 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1pT13J-008EHk-24;
+        Fri, 17 Feb 2023 15:45:29 +0200
+Date:   Fri, 17 Feb 2023 15:45:29 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>
+Subject: Re: [PATCH v9 0/8] i2c-atr and FPDLink
+Message-ID: <Y++E+Rr54p3vd8Jn@smile.fi.intel.com>
+References: <20230216140747.445477-1-tomi.valkeinen@ideasonboard.com>
+ <Y+5Rb17FTG4IxcE0@smile.fi.intel.com>
+ <e4141652-53c0-fce1-dac7-5da5368e2240@ideasonboard.com>
+ <Y+9j3cYOG+Z0zmyC@smile.fi.intel.com>
+ <9f3f0744-f771-cd2c-3b8e-5b79f7a430c7@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nHYiSS898w8_osU_u6501od49xUMJoOS
-X-Proofpoint-ORIG-GUID: nHYiSS898w8_osU_u6501od49xUMJoOS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-17_08,2023-02-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 phishscore=0 spamscore=0 clxscore=1015 mlxscore=0 bulkscore=0
- malwarescore=0 impostorscore=0 mlxlogscore=865 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302170123
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9f3f0744-f771-cd2c-3b8e-5b79f7a430c7@ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,31 +88,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PLL and IPQ6018 APSS clock controller are
-used on several IPQ platforms to clock the CPU.
-Hence it should be enabled and built-in.
+On Fri, Feb 17, 2023 at 02:57:02PM +0200, Tomi Valkeinen wrote:
+> On 17/02/2023 13:24, Andy Shevchenko wrote:
+> > On Fri, Feb 17, 2023 at 08:57:32AM +0200, Tomi Valkeinen wrote:
+> > > On 16/02/2023 17:53, Andy Shevchenko wrote:
+> > > > On Thu, Feb 16, 2023 at 04:07:39PM +0200, Tomi Valkeinen wrote:
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V2:
-	- Added the comment as why the config is being 
-	  enabled
+...
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> > > > >    	struct i2c_board_info ser_info = {
+> > > > > -		.of_node = to_of_node(rxport->remote_fwnode),
+> > > > > -		.fwnode = rxport->remote_fwnode,
+> > > > 
+> > > > > +		.of_node = to_of_node(rxport->ser.fwnode),
+> > > > > +		.fwnode = rxport->ser.fwnode,
+> > > > 
+> > > > Why do you need to have both?!
+> > > 
+> > > I didn't debug it, but having only fwnode there will break the probing (no
+> > > match).
+> > 
+> > This needs to be investigated. The whole fwnode approach, when we have both
+> > fwnode and legacy of_node fields in the same data structure, is that fwnode
+> > _OR_ of_node initialization is enough, when both are defined the fwnode
+> > should take precedence.
+> > 
+> > If your testing is correct (and I have no doubts) it means we have a serious
+> > bug lurking somewhere.
+> 
+> Having both defined or only of_node defined works for me.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c2dfa833af3f..e5a797e3a4bf 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1122,6 +1122,7 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
- CONFIG_QCOM_CLK_APCC_MSM8996=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
-+CONFIG_IPQ_APSS_6018=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
+But of_node is _legacy_ stuff. We should not really consider this option in the
+new code.
+
+> Perhaps the issue is that these drivers only add of_match_table, and thus
+> having only .fwnode above is not enough.
+
+No, the code should work with fwnode that carrying DT node or another.
+The matching table shouldn't affect this either.
+
+> Looking at i2c_device_match(), i2c_of_match_device() only uses of_node, so
+> perhaps I would need CONFIG_ACPI for acpi_driver_match_device to do matching
+> with of_node? Although I don't see the acpi code using fwnode, just of_node.
+> Well, I have to say I have no idea without spending more time on this.
+
+Again, there is a bug and that bug seems nasty one as it would allow to
+work the device in one environment and not in another.
+
+Since it's about I²C board files, I believe that an issue is in I²C core.
+
+> > > > >    		.platform_data = ser_pdata,
+> > > > >    	};
+
+...
+
+> > > > 		cur_vc = desc.entry[0].bus.csi2.vc;
+> > > > 
+> > > > > +		for (i = 0; i < desc.num_entries; ++i) {
+> > > > > +			u8 vc = desc.entry[i].bus.csi2.vc;
+> > > > 
+> > > > > +			if (i == 0) {
+> > > > > +				cur_vc = vc;
+> > > > > +				continue;
+> > > > > +			}
+> > > > 
+> > > > This is an invariant to the loop, see above.
+> > > 
+> > > Well, the current code handles the case of num_entries == 0. I can change it
+> > > as you suggest, and first check if num_entries == 0 and also start the loop
+> > > from 1.
+> > 
+> > You may try to compile both variants and see which one gets lets code.
+> > I believe it will be mine or they are equivalent in case compiler is clever
+> > enough to recognize the invariant.
+> 
+> But your suggestion accesses desc.entry[0] even if there are no entries,
+> accessing possibly uninitialized memory. In that case it doesn't use it for
+> anything, but at least I find that kind of code worrying.
+
+Yes you probably will need a 0 case to be handled separately. I was and
+is not objecting this.
+
+> > > > > +			if (vc == cur_vc)
+> > > > > +				continue;
+> > > > > +
+> > > > > +			dev_err(&priv->client->dev,
+> > > > > +				"rx%u: source with multiple virtual-channels is not supported\n",
+> > > > > +				nport);
+> > > > > +			return -ENODEV;
+> > > > > +		}
+
+...
+
+> > Up to you, but this just a good example why I do not like how optional
+> > properties are handled in a "smart" way.
+> > 
+> > To me
+> > 
+> > 	foo = DEFAULT;
+> > 	_property_read_(&foo); // no error checking
+> > 
+> > is clean, neat, small and good enough solution.
+> 
+> Yes, if you have a default. I don't.
+
+It can't be true. If you have an optional property you always have a default
+even if you are not using it (let's call it special case).
+
+	foo_present = property_present();
+	property_read(&foo_val);
+
+	...
+
+	if (foo_present) {
+		// do something with foo_val
+	}
+
+The boolean variable is needed when the range of the foo_val takes all possible
+values of the type (u32?). Otherwise you always can define a magic that will
+tell you "okay, this is not in use". Of course having boolean always is also
+fine.
+
+> I could add a new magic number for the
+> eq_level which means not-defined and use it as a default, but I don't
+> usually like default values which are not 0. Here I have the manual_eq
+> boolean to tell if we're using manual EQ or not.
+
+Oh, this is similar that I described above.
+
+But as I said, you can keep your initial version, it's up to you and
+maintainers to cope with that (uglification).
+
 -- 
-2.17.1
+With Best Regards,
+Andy Shevchenko
+
 
