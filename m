@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D9A69B47A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:16:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2744F69B493
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:20:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbjBQVQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 16:16:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58972 "EHLO
+        id S229854AbjBQVUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 16:20:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbjBQVQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:16:57 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C00415DE25
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:16:56 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id r28so2426317ljk.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:16:56 -0800 (PST)
+        with ESMTP id S229830AbjBQVUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:20:51 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EFAB5FC47
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:20:49 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 8-20020a05600c230800b003ddca7a2bcbso1777685wmo.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:20:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=nexus-software-ie.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ak+8LJfZoxeGXvU223WgSUa5zrwLYuaf0G4KExhaBo=;
-        b=WzEOsJAM51nZI+PuUQMFYxrbKH7Kjm8RcRectrj+YJYrBMe+/jr5G9W5GGLK273tAj
-         gyjiRxoptN1RuyRNovdVWFp+ptTyoDHm529ypMikm1AiVSB5GDRWTDsMSOPt9EFaDz2E
-         pQFdM4oRJUIWegWmV0VxOKzhP9sc5f8lirdFKrWE21JUKlh/tWSsWIrK5mqV4YmP0iry
-         jOdqCvOeVogJ3hFYfAIi8tNUZOL0RqszwRCt3aaK0ZJCB0kRRZY0DgfyHNycj3SAnZyB
-         LJUHYJK4iBf+vmfocarwLgTs7Logeygdg3qTkX5+At0uvcMB8dBYFrjcgD+dhuM0EmAF
-         mSDQ==
+        bh=fG5SLtoM0wtpwjDkO7HF0+tlYQd+noTOTI3vBQPoJo8=;
+        b=w8ncplniUBt+6IvkMo+dy6w8R/fuJs9sZVhA5HsgPWHm6OXkJqlGUVBxceYd3Hzcw/
+         tYiXRJAPhbJ4NCDsAugvq7gWkk6zD+JNDOmHgcrUCrTzlwsWNo8fGpo8BYK/Yx3fDw+7
+         LNiQNmF0pVwC3dURJhPgQ5+XNOipPw6XSAizb2qodYJIGSSRZBa4uqBIiax4lcXrxOy+
+         LM11vZDQ0cfW10hVz47ZEpoJ3EQJgC5F5jb/rps2sFEcz3ObQje9FuCabXb8GGbplUwP
+         N33Kv/mdpn3QGw1Fw2GAgxnSl66LU+c6AqtLyOcSTf7xHaD0W97rwl9O1bXlqX+U5qFT
+         Gatw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6ak+8LJfZoxeGXvU223WgSUa5zrwLYuaf0G4KExhaBo=;
-        b=X9Xlt58jUp+LYWUcA+E416/uC1CA37+suA0wxUBwnXr2Sx96bUdHOKWmnjuXnxpBo+
-         39esFuxFn7PeyH8EuLF9KRSI9mg8yLe2NZiGuOhE6PHOhgrXAFbeuR2SztATWpvIzL0K
-         CSJn3WAbR2NeqVLMcUxk7OpzME0P2QbZfkzxF00SP3WI9EHYdAXJm6ON29bW0ymlOtHn
-         G2AL+fDLEJT1wijFP+q0+bTYHwWQ2K/X38wRbw+IU8ljl/2IgCEhwZUzuH/ZgpZoTv/d
-         V0jSg1OPrUf7SvbfMXDXpGHEVshK8ki5hXmT3L/I8Jjey/U92RWTJyM8atNQ6DHKvu8B
-         ngGw==
-X-Gm-Message-State: AO0yUKWH+HT0hDQ8AQVeXNlBSV7Xde8ykGGQ1eGGc2CkCbDObvhQm1rA
-        aUdHq8vDUE8uQnWhIf233kY6kA==
-X-Google-Smtp-Source: AK7set8VSoLlRuQGJZe18IhRYONY61gU+0TX2DkgH0lkoDkSvTfwelptN1tew4Wv5aXvT6asmBteAw==
-X-Received: by 2002:a2e:7112:0:b0:293:4fff:9f0b with SMTP id m18-20020a2e7112000000b002934fff9f0bmr333071ljc.19.1676668615011;
-        Fri, 17 Feb 2023 13:16:55 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id t13-20020a05651c204d00b0029571d505a1sm31133ljo.80.2023.02.17.13.16.53
+        bh=fG5SLtoM0wtpwjDkO7HF0+tlYQd+noTOTI3vBQPoJo8=;
+        b=gwdUdd/FeQ25t/Z3Cu5fpIb7gbork4SYJvm7zM0U2at6gjLsQfpaS0z1cFvHX0JAVL
+         cQlwLrdBF3g9dlyOblaHiHbpz2LIq1E/h1Buv2Sj2TJFZ0yXshhPPseWleHBfwkn88os
+         eM1Z4taE8hXA8ZJwC2+YZIDF0VpdFtRiieIod8PDB0wr/6ooX4jbApuWpSpKKAUM545d
+         QgWTEQm44HEXw1un3RYyeleNtSu+vM+nwStawmjri0goLxsdFybofaQiVD91+wyNIk35
+         gMa+8DqZirwX7QNA/zW+1ONpuU7Sc+zl9GUMBvqA/zhT4ZsdcNvw0Hl8tY6w+ziZtBfu
+         mvQQ==
+X-Gm-Message-State: AO0yUKVJ4IHTqGsoFaAdesCCC/ksCmkdmKKLeun5IbMvCZN2UyvGJX0e
+        I91G0TIWJT9zzz9m1oCxCXq1rg==
+X-Google-Smtp-Source: AK7set9fzwn18p3L36vUlE7QAvIXE1IZGf36C/OC1NkzutJb49RjQizbwoUUn89B5EiLd/COy2eBCw==
+X-Received: by 2002:a05:600c:2a08:b0:3e2:1fa6:f428 with SMTP id w8-20020a05600c2a0800b003e21fa6f428mr3055036wme.15.1676668847653;
+        Fri, 17 Feb 2023 13:20:47 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id o9-20020a056000010900b002c54241b4fesm5119375wrx.80.2023.02.17.13.20.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 13:16:54 -0800 (PST)
-Message-ID: <76de00dc-f128-e609-7f0c-b53161036b97@linaro.org>
-Date:   Fri, 17 Feb 2023 22:16:52 +0100
+        Fri, 17 Feb 2023 13:20:47 -0800 (PST)
+Message-ID: <0b3e8c81-b0fb-651b-8688-872f03c68d8f@nexus-software.ie>
+Date:   Fri, 17 Feb 2023 21:20:46 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
+ Thunderbird/102.7.0
 Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
  deprecated QCM2290 compatible
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
@@ -78,47 +79,35 @@ References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
  <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
  <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
  <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+ <76de00dc-f128-e609-7f0c-b53161036b97@linaro.org>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <76de00dc-f128-e609-7f0c-b53161036b97@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/02/2023 21:16, Konrad Dybcio wrote:
+> Correct, but QCM2290 is not supported upstream yet.
+> 
+> SM6115 (a different SoC) however is, but it used the qcm2290 compatible
+> as it was a convenient hack to get the DSI host ID recognized based on
+> the (identical-to-qcm2290) base register without additional driver changes.
+> We're now trying to untangle that mess..
 
+Gand so what we want documented is:
 
-On 17.02.2023 22:13, Bryan O'Donoghue wrote:
-> On 17/02/2023 12:24, Krzysztof Kozlowski wrote:
->> First, it would be nice to know what was the intention of Bryan's commit?
-> 
-> Sorry I've been grazing this thread but, not responding.
-> 
-> - qcom,dsi-ctrl-6g-qcm2290
-> 
-> is non-compliant with qcom,socid-dsi-ctrl which is our desired naming convention, so that's what the deprecation is about i.e. moving this compat to "qcom,qcm2290-dsi-ctrl"
-> 
-> Actually I have the question why we are deciding to go with "sm6115" instead of "qcm2290" ?
-> 
-> The stamp on the package you receive from Thundercomm says "qcm2290" not "sm6115"
-Correct, but QCM2290 is not supported upstream yet.
+compatible = "qcom,qcs2290-dsi-ctrl", qcom,mdss-dsi-ctrl";
+compatible = "qcom,sm6115-dsi-ctrl", qcom,mdss-dsi-ctrl";
 
-SM6115 (a different SoC) however is, but it used the qcm2290 compatible
-as it was a convenient hack to get the DSI host ID recognized based on
-the (identical-to-qcm2290) base register without additional driver changes.
-We're now trying to untangle that mess..
+with the old compatible = "qcom,dsi-ctrl-6g-qcm2290"; clanger continuing 
+to be deprecated.
 
-Konrad
-> 
-> ?
-> 
-> ---
-> bod
-> 
-> 
+---
+bod
