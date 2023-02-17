@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D6069A755
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02CCF69A75E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:48:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjBQIr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 03:47:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48742 "EHLO
+        id S229822AbjBQIsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 03:48:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjBQIr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:47:57 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F366A16337
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:47:54 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id i28so1059141eda.8
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:47:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6mCPUncoNNGQDkBH1K4Qwr2txnBpLQ2xqpC1PN44nIo=;
-        b=zMOgIsHj6qxMkglPlIGwHPtY65joY5FCUCHW41i1STnDb9VvgcgzUZZh3zCuj7WAtZ
-         hCP7+xRs0HlbLdfpWze78Iq4IdVNmlM3KLY6QC66gFDQZ/Fx+N57yeDOTHIQJ4uK3q7l
-         R1yG2LZBj0iqb6wVnsQF1yusZT/z8wy1Z2s2+Fb7mnDdSo5NiCn+kAHS6ZHq6BCBFzds
-         3aHQAavQHhPeB2EeMjpIh3J/J4dY4ASe3ZqaaljUn5HDCSqtDcxSMHD9L37ooqzBsBE3
-         AKFreSM6PdOXsILNgz/BjMR9maQiQOVcoN2SjBddVvzXAHnj2IiRxb9g4aU7TOi2UapT
-         JmTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6mCPUncoNNGQDkBH1K4Qwr2txnBpLQ2xqpC1PN44nIo=;
-        b=X9gTVVLs4z+/sz+DDMYDjwA1vIC8HyQlc1hFZE2HXKUHqBdfCKSvt7baw31csqw62Y
-         v0sdgGZ+n+cCd4goceB9QCU5SZsKtF17XMsPfr0z+c6aahuUPMN5wisII47EjFvTw9SD
-         qeovGRe5a/00VK1Rdqx7SIG7ARfIwkFKRy/uOxfvfrEsUcJUVxPAY4yeRLTy0NoQpZp6
-         wTpPQw2xlkhViXnzlTJdiRF1w4yJL0iU6iaZ7OuYfPKjJ+fl4tK0h9QSVaOdbyPigmVd
-         NqFgE4RiuRgNv3ByrtrQaiOKh0ocK305poJKv6CSPaSZzmofITr2cn7lSbL1j4dS73un
-         H8DQ==
-X-Gm-Message-State: AO0yUKX+1W/K+ms9MkMh1P6Q6I/x/EAvq5pIzmVk4HujLp4//KB0joj6
-        QorvXM2aKU94ltugk7xF+ozjLI/GCjLnD0WG
-X-Google-Smtp-Source: AK7set+bc046PiYwSDnVyB86S6c9jja8hnHbQX0stMjnEgo8oKt4A8NuJK9HWepfuMYEn0SaZNEmQw==
-X-Received: by 2002:a05:6402:445:b0:4ac:c720:9255 with SMTP id p5-20020a056402044500b004acc7209255mr580406edw.34.1676623673490;
-        Fri, 17 Feb 2023 00:47:53 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f29-20020a50a6dd000000b004ad6e3e4a26sm1532945edc.84.2023.02.17.00.47.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 00:47:53 -0800 (PST)
-Message-ID: <86945f01-351b-9843-0ba8-08377f12dd4d@linaro.org>
-Date:   Fri, 17 Feb 2023 09:47:51 +0100
+        with ESMTP id S229913AbjBQIsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:48:39 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A641F604F0;
+        Fri, 17 Feb 2023 00:48:26 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31H63KTZ014637;
+        Fri, 17 Feb 2023 08:48:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=33eDyuvYJVBHbnCO5NSYD6X2R8vEOym0xz2B1IWSiNg=;
+ b=OIzwO8AxZ1YEu1WVQkroLorCRDoyjaojbAzbQTYgUPPpqLFaxp4ghkZ9IX/VogWDw7qH
+ yTKGdlOVi6ylU2qBDFvH7PeLyo+QW7Xc2ss0akTBlH5SVw6c8EhiuCLsDXSwfm+S5M7T
+ f5ph1fTyguTQKzyO3leW+qksSnT8+1VJubAYzrHZdRTrPcQBBcTXwUWsVP2fcGqyBdbB
+ 83qiq7ls4+U69wb4NijORuMQQCt3u2KHt3zRewnZE2DTzCYw0SK9tUqyzW+aaQsjDyzf
+ vyPvIo1Vgh15nhK5x9zYP83dh8+VEs4fDveRVNHW7kPuSiycyVJNbfcDw1jkBEbfci6K bg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nt10u0v06-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 17 Feb 2023 08:48:16 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31H8mFVp000693
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 17 Feb 2023 08:48:15 GMT
+Received: from [10.216.47.237] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 17 Feb
+ 2023 00:48:06 -0800
+Message-ID: <a987fc17-3924-7ece-59e2-3fa1d000afc1@quicinc.com>
+Date:   Fri, 17 Feb 2023 14:18:03 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2] dt-bindings: mmc: meson-gx: fix interrupt binding
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 0/7] Add PCIe support for IPQ9574
 Content-Language: en-US
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c1437eb6-0c01-809f-422b-cb1109489355@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Devi Priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <mani@kernel.org>, <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>
+References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <20230214164135.17039-1-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SkGcIu3rfLWbX5OreuJ1hWeFzovxmJIH
+X-Proofpoint-GUID: SkGcIu3rfLWbX5OreuJ1hWeFzovxmJIH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-17_04,2023-02-16_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 mlxscore=0 impostorscore=0
+ adultscore=0 mlxlogscore=693 phishscore=0 suspectscore=0 clxscore=1015
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302170078
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 20:50, Heiner Kallweit wrote:
-> Reflect in the binding that the cd interrupt is optional,
-> and add a description of the interrupts.
+
+
+On 2/14/2023 10:11 PM, Devi Priya wrote:
+> PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+> are found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane
+> Gen3 host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
 > 
-> Fixes: 09b31a610328 ("dt-bindings: mmc: meson-gx: support specifying cd interrupt")
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
+> This series adds support for enabling the same
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+<svarbanov@mm-sol.com>  --> This is bouncing, please remove it
 
+Regards,
+  Sricharan
