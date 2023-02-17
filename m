@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C6269B2E6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 20:16:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D6269B301
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 20:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbjBQTQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 14:16:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
+        id S229436AbjBQTZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 14:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjBQTQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 14:16:10 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E2133446
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 11:15:52 -0800 (PST)
+        with ESMTP id S229570AbjBQTZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 14:25:09 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9491453ECD
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 11:25:08 -0800 (PST)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 530C885C0A;
-        Fri, 17 Feb 2023 20:15:49 +0100 (CET)
+        by phobos.denx.de (Postfix) with ESMTPSA id 645A485A77;
+        Fri, 17 Feb 2023 20:25:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1676661349;
-        bh=gEU3mJVEXDASlr9eibB+Yu/upzRGoMgMYGfr7TBBBE0=;
+        s=phobos-20191101; t=1676661906;
+        bh=x7fuwhUKjB5vUIj3mnUCvV0X01Ki32U/RAFxUcx9Wek=;
         h=From:To:Cc:Subject:Date:From;
-        b=n2F9Q3AD/QknGG4I3iD6ojzgXfsoSvyBmW+U+/ic/JjnsnrnVHR+11H7kYTk+G291
-         vKFXZeAnN/VZHoUDjAKwlrIBraZ3zE77nbdEfQmZJOuFqCpDDPYzHA1cgMzTWf0q07
-         iKO1UBoyG0VUq+aF9YzYs3V5c2azIAyj8nQqGBclPeqyPi5GrtLx1OjaD127Sdj6Ch
-         /TJMDpLrLuwYen4ytfhFh7oIDfAa8I0MTWhOT98rs7J/Ox65PSvJD1aCMxHP3v4bwW
-         ttl/kmI6EvrcLviSMDZeBIhIVcth0iY0gmjJURhbrRLXzUIxx8nE2S0EUDSzql/9mM
-         98Gn53/7FVGBA==
+        b=MyPsXPxKo8WI8IkpyBbN68NN6aDQZbREzMqm1CNUyoGaqihnyNQBNy6V1n+NxItUJ
+         Atx08XQLqZ0UFnWxhUf8nAzBo5+/VYYv4qLja3utBmGJolXQeHPfjw8OMH7ReHHMU1
+         M3ZlCzBOJKyl7JHoAzSSrCZbGCOgsEGbNsnEuk22v7TlJvJGoFNTKfvm3EPipCnhyi
+         TjIzQ1iZ20jgloHcuQr15kB8yt094qaaRBnObztp0RL2RNnzbQHsFtubLM7FBIBUOy
+         509GQBQL1M8wVPgQ0b2NWvGkLZJaX5+UnZ9FGcckXrzzcUfDw3/FjttX6coAsojghx
+         w+q8VF+tN00ig==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp: Fix LCDIF2 node clock order
-Date:   Fri, 17 Feb 2023 20:15:38 +0100
-Message-Id: <20230217191538.54810-1-marex@denx.de>
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        kernel@dh-electronics.com
+Subject: [PATCH] arm64: dts: imx8mp: Add PCIe support to DH electronics i.MX8M Plus DHCOM and PDK2
+Date:   Fri, 17 Feb 2023 20:24:44 +0100
+Message-Id: <20230217192444.61680-1-marex@denx.de>
 X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -57,41 +57,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'axi' clock are the bus APB clock, the 'disp_axi' clock are the
-pixel data AXI clock. The naming is confusing. Fix the clock order.
+Add PCIe support for DH electronics i.MX8M Plus DHCOM SoM on PDK2 carrier board.
 
-Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Fabio Estevam <festevam@gmail.com>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Marek Vasut <marex@denx.de>
 Cc: NXP Linux Team <linux-imx@nxp.com>
 Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Richard Cochran <richardcochran@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Sascha Hauer <s.hauer@pengutronix.de>
 Cc: Shawn Guo <shawnguo@kernel.org>
 Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index a19224fe1a6ad..2dd60e3252f35 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1131,8 +1131,8 @@ lcdif2: display-controller@32e90000 {
- 				reg = <0x32e90000 0x238>;
- 				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX_ROOT>,
--					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
--					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
- 				clock-names = "pix", "axi", "disp_axi";
- 				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
- 						  <&clk IMX8MP_VIDEO_PLL1>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+index 382fbedaf6ba4..fdf18b7f208d5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+@@ -151,6 +151,20 @@ &flexcan1 {
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	clock-names = "ref";
++	clocks = <&clk IMX8MP_SYS_PLL2_100M>;
++	fsl,clkreq-unsupported;
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_UNUSED>;
++	status = "okay";
++};
++
++&pcie {
++	fsl,max-link-speed = <1>;
++	reset-gpio = <&gpio1 6 GPIO_ACTIVE_LOW>;	/* GPIO J */
++	status = "okay";
++};
++
+ &usb3_1 {
+ 	fsl,over-current-active-low;
+ };
 -- 
 2.39.1
 
