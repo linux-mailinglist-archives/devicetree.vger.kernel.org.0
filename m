@@ -2,65 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D48AB69B28F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 19:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8285C69B298
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 19:53:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229664AbjBQStO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 13:49:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50536 "EHLO
+        id S229674AbjBQSxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 13:53:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbjBQStO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 13:49:14 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F565FC50;
-        Fri, 17 Feb 2023 10:49:11 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id t13so2263700oiw.1;
-        Fri, 17 Feb 2023 10:49:11 -0800 (PST)
+        with ESMTP id S229682AbjBQSxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 13:53:00 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E1D11E93;
+        Fri, 17 Feb 2023 10:52:58 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id a11-20020a05600c224b00b003e1f6dff952so1584155wmm.1;
+        Fri, 17 Feb 2023 10:52:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S3yNRn8MWww6wdZq63JvrvwjyqjnOgv65RZw/9AtJW8=;
-        b=WeIZuz5swzFWt4PORzyQejSbIJdFOlwYAngYOhJeg2nCwSSn3PyCu7HlH2BL5rjMel
-         qyajIQ75pSJL3iGudsIQcqWJC1yPuQ4RMTVdMjf3smTuIOdZQ7iCdAu0tWCwdd4eS3+g
-         Fz5ildGg3VTyBGkx12IW6/2GsrPh///Acfx1d48y3kHG2GoVJvgasl6/AGa8getZgesp
-         gva2G4KKxwKRRb/5sESMFZiWkF1jw/+O7GDeAwNIFwRuDWHCiaPwjoSEULnplcwwxpjd
-         fyLi+DiboFyZ3vDGC5SJK4UcykIuyHyX2sS619zHMIVO8YJsCFDhSfLX9kegeDrbWm1+
-         DvHQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZHDnEinTRmd4SoQ9dH9rKDosnOXl5ELjM68bNY773ck=;
+        b=ZGTIKXW15RTh+6YdP9JSTUqLZXDje6luzloNlmWCiiNhBBlavbWtSIvnZMKHdaxo/B
+         1A3VxyC1BuknxTlALkbhI6IQQbuQvy9BESbaR89ijyJVg+Hv2FIGcNZ9AsGYeJrCE4nD
+         xnPA1boK5QEOWiiBm2cXZja4NgIuMRIaDlCeq//OlcroxQzGZ6i6q+ahbvVMqYPfEcKJ
+         KRQrGfGKtXJRUWe1zzjKj2L0XlW5g+n0oSeuqSrNdVVFOnvZXpllG4wHf7THpEhJpSkR
+         WBrO6BRyWUpiukCUfwDyggImfL0Cs2NksPc9QyLkNchs3IDQJXwFZKYJJkSwxNS17PSh
+         csCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S3yNRn8MWww6wdZq63JvrvwjyqjnOgv65RZw/9AtJW8=;
-        b=l/E4t0Ex666NuUqaeTu0Oyc7K1LIoTermC1E2uXpIXLmn6ihEnvXBjr2x8vt0O1AKY
-         NTN2f6wFjk6EkkiMUpznjHYB9prdkmIAtdrd/Sk1YvQRObGlwwvSAhTtNUJz4m4CfL5n
-         0gMnsm6Vt1sxVgibfGE3BAjC3IJFtQfw3sPEy0bnMVh/g4wxeguCTmft/ltfVtv0ODBX
-         TqExrjZ+Kvj4P33CoZweGyCmT7WLGLdsWTF1UvxZXIqW8rhr4a4hCJ+oaRK80knYS5EE
-         ZlCmz8Zca7QpxfOYn4vOGpHPsTWf0eTMP64lfpUGFPV9Km3TLyX/fTalEDBtpcJOM3iq
-         yhqw==
-X-Gm-Message-State: AO0yUKVX3oODV9JXfilXWnXwGshG6iYCqp+1pF9FNT/jSDf5lmq/DTYi
-        kTXMhScntINk0HWyPIsScJI=
-X-Google-Smtp-Source: AK7set+FDkP+n2jORChu0F4S+5U5L8MGXN9ERX14b1GmWD+Sm+twNGSgg9lPEZ7G/F0WyREkFMH8qA==
-X-Received: by 2002:a05:6808:5ce:b0:37b:4e19:3fd2 with SMTP id d14-20020a05680805ce00b0037b4e193fd2mr1186396oij.55.1676659750340;
-        Fri, 17 Feb 2023 10:49:10 -0800 (PST)
-Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
-        by smtp.gmail.com with ESMTPSA id s22-20020acaa916000000b0037fa61eb1dasm1198521oie.47.2023.02.17.10.49.09
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZHDnEinTRmd4SoQ9dH9rKDosnOXl5ELjM68bNY773ck=;
+        b=mVzoKMXIoFbtmocmppc9Sa50A+hnummJTI99WcP95A4hD92a0jhDHjxT5Xsn1eGRNq
+         kIluMN4W8zCtZmlZT8j/Toq4bVKnZOBrNyjOXmgYDVbQhnstzu6tP2nYHtcQPaPjwO2D
+         M2CaM/YKWhlu+y6oHNnEi6jUwboaIA2WHMRTZyKJ+RGMNsVtn2GnVv19RhlWFvLV3GnL
+         oD5iKreY7qHw+6TdunDcRzjsc8pce7uXPoLft/ZWIJc2M9HVJOcFf3SHR4SD+meRHvrX
+         duR0IR8p9eLROhXrO8fQafrrprkkMmnldNf0jKlfvK9MCru18Bn6xahxlv9wRHGXTMQ7
+         +vCg==
+X-Gm-Message-State: AO0yUKWrgMTJEnDw/rtgq8UAZND5uaegjHwFeYHGtcZ0Jv294TPG8sKl
+        w7b7u56jT0ZdHVkfG3vMGz/vlqcVsyRTIQ==
+X-Google-Smtp-Source: AK7set9XnLnmKIlm6nCz1Hs+VH2mjKrxq3W6ZQ1AmK9c7R9ar4hKJKKl+c9m/V5wh9omNS+GlIEuCA==
+X-Received: by 2002:a05:600c:4494:b0:3e1:f8af:8da4 with SMTP id e20-20020a05600c449400b003e1f8af8da4mr806854wmo.1.1676659976455;
+        Fri, 17 Feb 2023 10:52:56 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:d8bd:e692:c27f:c09d])
+        by smtp.gmail.com with ESMTPSA id l37-20020a05600c1d2500b003db0ad636d1sm2964514wms.28.2023.02.17.10.52.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 10:49:09 -0800 (PST)
-From:   Danny Kaehn <kaehndan@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com
-Cc:     bartosz.golaszewski@linaro.org, andriy.shevchenko@linux.intel.com,
-        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Subject: [PATCH v6 3/3] HID: cp2112: Fwnode Support
-Date:   Fri, 17 Feb 2023 12:49:04 -0600
-Message-Id: <20230217184904.1290-4-kaehndan@gmail.com>
+        Fri, 17 Feb 2023 10:52:55 -0800 (PST)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/4] RZ/G2L SSI: Update interrupt numbers
+Date:   Fri, 17 Feb 2023 18:52:21 +0000
+Message-Id: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230217184904.1290-1-kaehndan@gmail.com>
-References: <20230217184904.1290-1-kaehndan@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,86 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bind i2c and gpio interfaces to subnodes with names
-"i2c" and "gpio" if they exist, respectively. This
-allows the gpio and i2c controllers to be described
-in firmware as usual. Additionally, support configuring the
-i2c bus speed from the clock-frequency device property.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
----
- drivers/hid/hid-cp2112.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+Hi All,
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 27cadadda7c9..0013bf863f0f 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -1234,6 +1234,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	u8 buf[3];
- 	struct cp2112_smbus_config_report config;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
- 	int ret;
- 
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1292,6 +1293,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	device_set_node(&dev->adap.dev, device_get_named_child_node(&hdev->dev, "i2c"));
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
-@@ -1300,7 +1305,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		hid_err(hdev, "error setting SMBus config\n");
- 		if (ret >= 0)
- 			ret = -EIO;
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_set_drvdata(hdev, (void *)dev);
-@@ -1322,7 +1327,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 
- 	if (ret) {
- 		hid_err(hdev, "error registering i2c adapter\n");
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_dbg(hdev, "adapter registered\n");
-@@ -1336,6 +1341,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	dev->gc.ngpio			= 8;
- 	dev->gc.can_sleep		= 1;
- 	dev->gc.parent			= &hdev->dev;
-+	dev->gc.fwnode			= device_get_named_child_node(&hdev->dev, "gpio");
- 
- 	dev->irq.name = "cp2112-gpio";
- 	dev->irq.irq_startup = cp2112_gpio_irq_startup;
-@@ -1376,7 +1382,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- err_gpiochip_remove:
- 	gpiochip_remove(&dev->gc);
- err_free_i2c:
-+	fwnode_handle_put(dev->gc.fwnode);
- 	i2c_del_adapter(&dev->adap);
-+err_free_i2c_of:
-+	fwnode_handle_put(dev->adap.dev.fwnode);
- err_power_normal:
- 	hid_hw_power(hdev, PM_HINT_NORMAL);
- err_hid_close:
-@@ -1391,6 +1400,8 @@ static void cp2112_remove(struct hid_device *hdev)
- 	struct cp2112_device *dev = hid_get_drvdata(hdev);
- 	int i;
- 
-+	fwnode_handle_put(dev->gc.fwnode);
-+	fwnode_handle_put(dev->adap.dev.fwnode);
- 	sysfs_remove_group(&hdev->dev.kobj, &cp2112_attr_group);
- 	i2c_del_adapter(&dev->adap);
- 
+This patch series aims to fix interrupt numbers for SSI channels and updates
+the DT binding and the driver accordingly.
+
+Note, this patch series applies on top of [0].
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  ASoC: dt-bindings: renesas,rz-ssi: Update interrupts and
+    interrupt-names properties
+  ASoC: sh: rz-ssi: Update interrupt handling for half duplex channels
+  arm64: dts: renesas: r9a07g044: Update IRQ numbers for SSI channels
+  arm64: dts: renesas: r9a07g043: Update IRQ numbers for SSI channels
+
+ .../bindings/sound/renesas,rz-ssi.yaml        | 21 ++++---
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 19 +++---
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 19 +++---
+ sound/soc/sh/rz-ssi.c                         | 63 +++++++++++++------
+ 4 files changed, 70 insertions(+), 52 deletions(-)
+
 -- 
 2.25.1
 
