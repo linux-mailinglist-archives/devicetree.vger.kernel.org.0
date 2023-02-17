@@ -2,166 +2,383 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C44F69A7D8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:08:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF98C69A7EF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjBQJI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 04:08:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
+        id S229572AbjBQJO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 04:14:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230030AbjBQJIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:08:24 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908F15FDD;
-        Fri, 17 Feb 2023 01:08:16 -0800 (PST)
+        with ESMTP id S229496AbjBQJO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:14:57 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC335F803
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:14:55 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id j20so3324524edw.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:14:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1676624897; x=1708160897;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=7Vc5xOeqdDqnSlLrTyhfLk5SSq2C5UlsLZ+03AMgLRE=;
-  b=h/RFzoWe9L9YmNMz0iAUeVfEb0IAn92Wno7WsKnpRzR6kN15ZPRUy1C2
-   0s5TL3gsYgaYuNaNXaGPeAIxy3YuBe2rlI5OzDAZuNmIyjHuqAC1/M1qs
-   U8+9cTlG1upqdnYE3aoFPmPAr1vcP1VOJ2w9IaejmQAb5BpDT4u5jHdSw
-   wjhBf5Anybk6YsGKc1mXXWLRVOnCVQoq2VFKv+YQZdoMQf/5MXumV9qo4
-   Q4R0D0Tq1cPcEREoFKCDwO5e9cdqrnXnxn9cOiFuRhQhIbj4p0cyEVEKT
-   oPGFAQy6OCwo6HRlIei0iYBcMdTqyJp5kMMc96HE7JcBlEKwAzu2NvHs9
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,304,1669071600"; 
-   d="scan'208";a="29150118"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 17 Feb 2023 10:08:15 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 17 Feb 2023 10:08:14 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 17 Feb 2023 10:08:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1676624895; x=1708160895;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=7Vc5xOeqdDqnSlLrTyhfLk5SSq2C5UlsLZ+03AMgLRE=;
-  b=MC8ulJkIsyfcExdobJu3K7EBCiY1L6/94Z00QaI2GpeQJTk/pmnNP29N
-   dvTwLdt4gtAeI753j/BL+LaTJ3+92d7cLOq/EQ+BetamAZg+/dBQzMZsL
-   jLYTCJurkRvjLNCytt3ISeLYgGk28jmwmYbLIeOWZfiBCCkX5BxuoFKSc
-   RPShSWDaKEGRwmhmKxve2X6fu7bWTOReoCCCWYZqQvtPz/3FGozVVrkwP
-   h6uHpIjB0k7PzdWoSW/iCaMnoIPmgzVZr4iuk/oHP+o1VfyrqeIwz7uKV
-   4POLMhkPFVMkp71HX9H/EN1v119xanz0fvg+EKhuvYHxxOTdEiOSRY8Al
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,304,1669071600"; 
-   d="scan'208";a="29150117"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 17 Feb 2023 10:08:14 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 15FFE280056;
-        Fri, 17 Feb 2023 10:08:14 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 00/15] media: i2c: imx290: Mono support, minor fixes, alternate INCK, and more controls
-Date:   Fri, 17 Feb 2023 10:08:12 +0100
-Message-ID: <1924202.PYKUYFuaPT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
-References: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K51Bjs5B3NHAbD45wBFw53eNVShrx9FURGTxvHG8bmI=;
+        b=N33Csxe86TgmSFiUEClcGuaTp0xjJ6B2T4dmJYtpwfx51AJEd/QSYkmOOir04Sy+8g
+         4zVdOHQveUMqAGZWBPdvOtUSwOsrGj8UH7eOe4C7GeUx2h2IV+cmQTe22DEiuepi2Y9Y
+         /RvFBDbzIbryiqSB9pTtRiKr95HY6Kf5Dg4yO5gmp5xyAfJjaKWP4l3yRjWEDejLuSEl
+         QQXeAkWvlwWBVvrbOCYIV5y0tnS3Ec+zOLXjuQ1yiVB7LBvEkXJL/JSa/jHXZ05Y+tvV
+         iU/cASkwhV1YVH6a6yCZixhk0ox43qvhgL5V1VcZM871dhiCb6VnCOrKXdZOeSBBpWdn
+         7zBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K51Bjs5B3NHAbD45wBFw53eNVShrx9FURGTxvHG8bmI=;
+        b=0iSsd4EJnk19792LErF1aUIa6hSbl7KZkKWPjBx6q+4jnXfZKioY8LV0/pYDqN+LH2
+         aRP8ova0Zjh2R2K4SqDbIXXXRiRFmTL81G+FUYM2Gb/9S3yZ1y6TKPpfJQSVuj8nL7Km
+         Sn+vTfqhwGFVrsdUY0/dAUQtnINZUnG4TlgiPEhOjIrUrlQ+LGP11yBUvStAIO/HG2gh
+         K3yg/Pkm7d5g0WXMMns2Brt7Y3am8TMy/fGSh8Sy0JQeZWA4UiQkYQpmHYOYuEpAz0OF
+         6m3HL0ytew/WVEhAW72IGv+DsNfG/1g94ZrH0p0n629vMHeHzGqcc8B9yDvk0brEPAyc
+         VNJA==
+X-Gm-Message-State: AO0yUKU7u7plcD/waxFhxcCQ/2G9mwjvmiLkbu6tw6yKYSjh2unfQH+7
+        hgXGSAACmrAv+Ia+59mdbzSIag==
+X-Google-Smtp-Source: AK7set8z65bE0+M0gykNppgGWBk8TlWcsgx5DUzESwfw/Ax2XlbrCEBLdhV3Mv/HMzjJGvRob3b5gw==
+X-Received: by 2002:a17:906:6d53:b0:88e:682e:3a9e with SMTP id a19-20020a1709066d5300b0088e682e3a9emr8396987ejt.61.1676625293786;
+        Fri, 17 Feb 2023 01:14:53 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k20-20020a170906a39400b008b14c5a82e7sm1868846ejz.127.2023.02.17.01.14.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 01:14:53 -0800 (PST)
+Message-ID: <6ae9af19-1d52-c31f-79be-a36f06caaf80@linaro.org>
+Date:   Fri, 17 Feb 2023 10:14:48 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v5 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230216134226.1692107-1-herve.codina@bootlin.com>
+ <20230216134226.1692107-2-herve.codina@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230216134226.1692107-2-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 16/02/2023 14:42, Herve Codina wrote:
+> Add support for the time slot assigner (TSA)
+> available in some PowerQUICC SoC such as MPC885
+> or MPC866.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml | 234 ++++++++++++++++++
+>  include/dt-bindings/soc/fsl,tsa.h             |  13 +
+>  2 files changed, 247 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+>  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+> new file mode 100644
+> index 000000000000..bcd03f89780e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+> @@ -0,0 +1,234 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PowerQUICC CPM Time-slot assigner (TSA) controller
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+> +
+> +description:
+> +  The TSA is the time-slot assigner that can be found on some PowerQUICC SoC.
+> +  Its purpose is to route some TDM time-slots to other internal serial
+> +  controllers.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,mpc885-tsa
+> +          - fsl,mpc866-tsa
+> +      - const: fsl,cpm1-tsa
+> +
+> +  reg:
+> +    items:
+> +      - description: SI (Serial Interface) register base
+> +      - description: SI RAM base
+> +
+> +  reg-names:
+> +    items:
+> +      - const: si_regs
+> +      - const: si_ram
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#fsl,serial-cells':
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    const: 1
+> +    description:
+> +      TSA consumers that use a phandle to TSA need to pass the serial identifier
+> +      with this phandle (defined in dt-bindings/soc/fsl,tsa.h).
+> +      For instance "fsl,tsa-serial = <&tsa FSL_CPM_TSA_SCC4>;".
+> +
+> +patternProperties:
+> +  '^tdm@[0-1]$':
+> +    description:
+> +      The TDM managed by this controller
+> +    type: object
+> +
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 1
+> +        description:
+> +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
+> +
+> +      fsl,common-rxtx-pins:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          The hardware can use four dedicated pins for Tx clock, Tx sync, Rx
+> +          clock and Rx sync or use only two pins, Tx/Rx clock and Tx/Rx sync.
+> +          Without the 'fsl,common-rxtx-pins' property, the four pins are used.
+> +          With the 'fsl,common-rxtx-pins' property, two pins are used.
+> +
+> +      clocks:
+> +        minItems: 2
+> +        items:
+> +          - description: External clock connected to L1RSYNC pin
+> +          - description: External clock connected to L1RCLK pin
+> +          - description: External clock connected to L1TSYNC pin
+> +          - description: External clock connected to L1TCLK pin
 
-thanks for the wrap-up.
-I could test this series on my TQMa8MPxL (i.MX8MP) using ISP and libcamera =
-as=20
-well. I think as well that we're good to go.
+Blank line
+
+> +      clock-names:
+> +        minItems: 2
+> +        items:
+> +          - const: l1rsync
+> +          - const: l1rclk
+> +          - const: l1tsync
+> +          - const: l1tclk
+> +
+> +      fsl,diagnostic-mode:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum: [disabled, echo, internal-loopback, control-loopback]
+> +        default: disabled
+> +        description: |
+> +          The diagnostic mode can be used to diagnose some communication issues.
+> +          It should not be set (or set to 'disabled') when diagnostic is not
+> +          needed.
+
+I don't think this is property for DT. Are you going to ship devices to
+customers with diagnostic mode? As you explained: no, so this can never
+appear. You might need sysfs/debugfs knob.
+
+You already got a comment for this. Your explanation "I plan" is not an
+explanation why DT is suitable for such property. So let's make it more
+obvious: drop it.
+
+> +          Diagnostic mode:
+> +            - disabled:
+> +                Diagnostic disabled (ie. normal operation)
+> +            - echo:
+> +                Automatic echo. Rx data is resent on Tx.
+> +            - internal-loopback:
+> +                The TDM transmitter is connected to the receiver. Data appears
+> +                on Tx pin.
+> +            - control-loopback:
+> +                The TDM transmitter is connected to the receiver. The Tx pin is
+> +                disconnected.
+> +
+> +      fsl,rx-frame-sync-delay-bits:
+> +        enum: [0, 1, 2, 3]
+
+maxItems: 1
+
+> +        default: 0
+> +        description: |
+> +          Receive frame sync delay in number of bits.
+> +          Indicates the delay between the Rx sync and the first bit of the Rx
+> +          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
+> +
+> +      fsl,tx-frame-sync-delay-bits:
+> +        enum: [0, 1, 2, 3]
+
+maxItems: 1
+
+> +        default: 0
+> +        description: |
+> +          Transmit frame sync delay in number of bits.
+> +          Indicates the delay between the Tx sync and the first bit of the Tx
+> +          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
+> +
+> +      fsl,clock-falling-edge:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          Data is sent on falling edge of the clock (and received on the rising
+> +          edge). If 'clock-falling-edge' is not present, data is sent on the
+> +          rising edge (and received on the falling edge).
+> +
+> +      fsl,fsync-rising-edge:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          Frame sync pulses are sampled with the rising edge of the channel
+> +          clock. If 'fsync-rising-edge' is not present, pulses are sampled with
+> +          the falling edge.
+> +
+> +      fsl,double-speed-clock:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          The channel clock is twice the data rate.
+> +
+> +    patternProperties:
+> +      '^fsl,[rt]x-ts-routes$':
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +        description: |
+> +          A list of tuple that indicates the Tx or Rx time-slots routes.
+> +        items:
+> +          items:
+> +            - description:
+> +                The number of time-slots
+> +              minimum: 1
+> +              maximum: 64
+> +            - description: |
+> +                The source (Tx) or destination (Rx) serial interface
+> +                (dt-bindings/soc/fsl,tsa.h defines these values)
+> +                 - 0: No destination
+> +                 - 1: SCC2
+> +                 - 2: SCC3
+> +                 - 3: SCC4
+> +                 - 4: SMC1
+> +                 - 5: SMC2
+> +              enum: [0, 1, 2, 3, 4, 5]
+> +        minItems: 1
+> +        maxItems: 64
+> +
+> +    allOf:
+> +      # If fsl,common-rxtx-pins is present, only 2 clocks are needed.
+> +      # Else, the 4 clocks must be present.
+> +      - if:
+> +          required:
+> +            - fsl,common-rxtx-pins
+> +        then:
+> +          properties:
+> +            clocks:
+> +              maxItems: 2
+> +            clock-names:
+> +              maxItems: 2
+> +        else:
+> +          properties:
+> +            clocks:
+> +              minItems: 4
+> +            clock-names:
+> +              minItems: 4
+> +
+> +    required:
+> +      - reg
+> +      - clocks
+> +      - clock-names
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - '#fsl,serial-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/soc/fsl,tsa.h>
+> +
+> +    tsa@ae0 {
+> +        compatible = "fsl,mpc885-tsa", "fsl,cpm1-tsa";
+> +        reg = <0xae0 0x10>,
+> +              <0xc00 0x200>;
+> +        reg-names = "si_regs", "si_ram";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        #fsl,serial-cells = <1>;
+> +
+> +        tdm@0 {
+> +            /* TDMa */
+> +            reg = <0>;
+> +
+> +            clocks = <&clk_l1rsynca>, <&clk_l1rclka>;
+> +            clock-names = "l1rsync", "l1rclk";
+> +
+> +            fsl,common-rxtx-pins;
+> +            fsl,fsync-rising-edge;
+> +
+> +            fsl,tx-ts-routes = < 2 0 >,             /* TS 0..1 */
+
+No spaces after < and before >
+
+> +                           < 24 FSL_CPM_TSA_SCC4 >, /* TS 2..25 */
+> +                           < 1 0 >,                 /* TS 26 */
+> +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> +
+> +            fsl,rx-ts-routes = < 2 0 >,             /* TS 0..1 */
+> +                           < 24 FSL_CPM_TSA_SCC4 >, /* 2..25 */
+> +                           < 1 0 >,                 /* TS 26 */
+> +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/soc/fsl,tsa.h b/include/dt-bindings/soc/fsl,tsa.h
+> new file mode 100644
+> index 000000000000..2cc44e867dbe
+> --- /dev/null
+> +++ b/include/dt-bindings/soc/fsl,tsa.h
+
+Use same name as binding file.
+
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +
+> +#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
+> +#define __DT_BINDINGS_SOC_FSL_TSA_H
 
 Best regards,
-Alexander
-
-Am Mittwoch, 15. Februar 2023, 23:29:48 CET schrieb Laurent Pinchart:
-> Hello,
->=20
-> This patch series combines the "[PATCH v2 0/2] Add support for mono
-> version of Sony IMX290 sensor" ([1]) and "[PATCH v2 00/13] imx290: Minor
-> fixes, support for alternate INCK, and more ctrls" ([2]) previously
-> submitted by Dave into a single series.
->=20
-> As promised in my review of v2 of both series, I have tested the changes
-> with my IMX327 camera sensor, connected to the i.MX8MP ISP, with
-> libcamera. I haven't noticed any regression (but, full disclaimer, I
-> haven't tested all the newly features). I think we're thus good to go.
->=20
-> This version handles all review comments from v2, resulting in the
-> following changes:
->=20
-> - Deprecate the sony,imx290 compatible
-> - Update the DT example to use the new sony,imx290lqr compatible
-> - Drop unneeded pointer cast
-> - Don't move imx290_of_match table
-> - Fix typos
->=20
-> The code has also been rebased on top of the latest media master branch,
-> with rebase conflicts and rebase-induced compilation breakages fixed.
->=20
-> The patches are available from
->=20
-> git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git
-> next/media/sensors/imx290
->=20
-> [1]
-> https://lore.kernel.org/linux-media/20230203191644.947643-1-dave.stevenso=
-n@
-> raspberrypi.com [2]
-> https://lore.kernel.org/linux-media/20230203191811.947697-1-dave.stevenso=
-n@
-> raspberrypi.com
->=20
-> Dave Stevenson (15):
->   media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
->   media: i2c: imx290: Add support for the mono sensor variant
->   media: i2c: imx290: Match kernel coding style on whitespace
->   media: i2c: imx290: Set the colorspace fields in the format
->   media: i2c: imx290: Add V4L2_SUBDEV_FL_HAS_EVENTS and subscribe hooks
->   media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s
->   media: i2c: imx290: Support 60fps in 2 lane operation
->   media: i2c: imx290: Use CSI timings as per datasheet
->   media: i2c: imx290: Convert V4L2_CID_HBLANK to read/write
->   media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
->   media: i2c: imx290: VMAX is mode dependent
->   media: i2c: imx290: Remove duplicated write to IMX290_CTRL_07
->   media: i2c: imx290: Add support for 74.25MHz external clock
->   media: i2c: imx290: Add support for H & V Flips
->   media: i2c: imx290: Add the error code to logs in start_streaming
->=20
->  .../bindings/media/i2c/sony,imx290.yaml       |  24 +-
->  drivers/media/i2c/imx290.c                    | 537 ++++++++++++++----
->  2 files changed, 442 insertions(+), 119 deletions(-)
->=20
->=20
-> base-commit: 83e0f265aa8d0e37cc8e15d318b64da0ec03ff41
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
