@@ -2,105 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92E1869B2DE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 20:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BBE69B2E2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 20:15:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjBQTNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 14:13:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39764 "EHLO
+        id S229520AbjBQTP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 14:15:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbjBQTNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 14:13:47 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC149303FA;
-        Fri, 17 Feb 2023 11:13:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676661227; x=1708197227;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=y/DG8dDv5JQH3+DdWNOcDhRtu7djrvaGaHw6jtRRZAM=;
-  b=WjHMybO5nqQQWPkGKDLa2JedOoFG9L7pK/ko6s2iR6wTE6IrfzUF0HSQ
-   1i/heNyW2Dylp86TG/6P+UXceUrQ53LwoiKrtee7PJ9smP1Bzll5O3CIO
-   HwR8D7isf/MGDXfbNQxP0vhyg1Zrjs/kVbRNB3Tbgu8vFhmuBsvgrcNzU
-   978L/R5OOj21ipX17fW24AKERXOSnWU+Jwqu5jckPkI43Utg2Qpgqq3KZ
-   5UmoBHbtnwQueHqre1eQStrRJI2SgjV6JyWZJgzuzshxho8p6HQw/Nl1c
-   HTHBXzC2mYaLtmNcCCLuwUqUcFZSPTuxixFDqtId+0vutm0fB83n5P1Kt
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="320171299"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; 
-   d="scan'208";a="320171299"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2023 11:13:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="813469631"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; 
-   d="scan'208";a="813469631"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 17 Feb 2023 11:13:43 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pT6Av-008Khi-2P;
-        Fri, 17 Feb 2023 21:13:41 +0200
-Date:   Fri, 17 Feb 2023 21:13:41 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v6 3/3] HID: cp2112: Fwnode Support
-Message-ID: <Y+/R5W6zxY7kknmH@smile.fi.intel.com>
-References: <20230217184904.1290-1-kaehndan@gmail.com>
- <20230217184904.1290-4-kaehndan@gmail.com>
+        with ESMTP id S229445AbjBQTP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 14:15:27 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F2A305DB;
+        Fri, 17 Feb 2023 11:15:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CECD61F45;
+        Fri, 17 Feb 2023 19:15:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489C9C433D2;
+        Fri, 17 Feb 2023 19:15:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676661325;
+        bh=G/85bFWMblsbIz5H+NTur/T3kbROSsPA8F4KeWTtTxM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SrtDEi1IVNLAktpZEhk1uI+ToDFVeSSVBgZ1ez9vN0+RG7D2uXX5SgnlxwL3xEegT
+         C94sbFYK/5JALtaoEkcw2FnS3IPBE51MIA3vbDJIg3dUUGrjNZwbxAPcmC/5D1AWg7
+         muCfEXNkTG36ZqSXp9JLKJhC8+0hc1Y4GTLJQ3VPu8D30oovBCHr+3QNV94QhuEXln
+         HgvqZiK1aL5KstnK1JlPXZLECJovSIJRjY0lQjHbqoqBx4sOkU+BENovq6FAiIZp3V
+         cOr4kQbfd0EB3DlvLvKAMLxOMyteV8x5AViB9AypQd+HuWclObS5sK1YGBBpMtQVG3
+         ujbn+ASxOwZsw==
+Date:   Fri, 17 Feb 2023 19:15:22 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>,
+        Li Yang <leoyang.li@nxp.com>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 00/10] Add the PowerQUICC audio support using the QMC
+Message-ID: <Y+/SStm9ifszrYA1@sirena.org.uk>
+References: <20230216134226.1692107-1-herve.codina@bootlin.com>
+ <87mt5dyxph.fsf@mpe.ellerman.id.au>
+ <0606f44f-bdbb-055c-6fff-440007222ce3@csgroup.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="VaNrrXW2eNrXN8Fc"
 Content-Disposition: inline
-In-Reply-To: <20230217184904.1290-4-kaehndan@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <0606f44f-bdbb-055c-6fff-440007222ce3@csgroup.eu>
+X-Cookie: Serving suggestion.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 17, 2023 at 12:49:04PM -0600, Danny Kaehn wrote:
-> Bind i2c and gpio interfaces to subnodes with names
 
-I2C
-GPIO
+--VaNrrXW2eNrXN8Fc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> "i2c" and "gpio" if they exist, respectively. This
-> allows the gpio and i2c controllers to be described
+On Fri, Feb 17, 2023 at 06:32:03AM +0000, Christophe Leroy wrote:
 
-GPIO
-I2C
+> Mark, is that ok for you or do you expect this series to go via soc tree ?
 
-> in firmware as usual. Additionally, support configuring the
-> i2c bus speed from the clock-frequency device property.
+Sure, that sounds good to me.  I'll give it another check and
+then assuming everything is fine apply for -rc1.
 
-I2C
+--VaNrrXW2eNrXN8Fc
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> +err_free_i2c_of:
-> +	fwnode_handle_put(dev->adap.dev.fwnode);
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPv0kkACgkQJNaLcl1U
+h9A2ZAf+JT6rtuHjPfgpWsk/znSGdDmha4+vtlzEcAE1Dbq5/LFIShop84OCskiY
+0dIpfquVu0eN9u5F983mJtpr/jZfFZIvvJaN5ccwRNpduirs17rh3o8V0LoJRElD
+jv+lct+lydazjRFK/kmsuCtxrFvdoPI6edCHvAx8xIYUyG2cbNIpsU7X5hHGHzc6
+lxhGZDHR7DNveAVx91r1WaAzd8loxbpXkjGGsoqZr2/dkdSx5jlLiyIbMLlTdfrT
+PrkJ/ITqKSkmwMRCK0KH/gASwr7ChraDgaEIRhC+O0K+I3pL0BnInwSuv3XezGz9
+hdSU/02x5goYzdcJddt12woaNCqQYw==
+=SHcR
+-----END PGP SIGNATURE-----
 
-Please, use dev_fwnode(&dev->adap.dev)
-
-...
-
-> +	fwnode_handle_put(dev->adap.dev.fwnode);
-
-Ditto.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--VaNrrXW2eNrXN8Fc--
