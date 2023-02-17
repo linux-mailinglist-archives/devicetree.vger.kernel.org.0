@@ -2,132 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 445BA69B4AB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DAB269B4F5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:44:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229667AbjBQVYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 16:24:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38888 "EHLO
+        id S229736AbjBQVoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 16:44:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbjBQVYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:24:38 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331E55B778
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:24:37 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id t6-20020a7bc3c6000000b003dc57ea0dfeso1881731wmj.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:24:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i99jD1tlOm2J+DaW0h6qwAWv/L8x6GC6XmOgvZVvFkg=;
-        b=P4w7/wTCAaJZbUMoUy6T0Bm9u/G07nwRjiDAqAfkDP+ELzlrstGe6/FfGCOYa+sQsl
-         A/D1An0YMCwegS9JEhZMHfVmFJV41dAjQR0EnBSLeK8GlxXvkTAhMfzeCWPOlwXFkWus
-         GcsuN8w8+h4YcA24+hXZ8TFUVnxkwGQf368nonUkNkJxOV9BrCiKQ54YaCd0MHekT9L2
-         0YRig4wE3PbTHXqs8ZN99+LL1s5LEKULExv1buN5YUOGohp7pGb2vz13ieTPpMpVr0VD
-         ATdPI3c7WZs0EyDxZJRu/EKqIc9W0wyHxr+L2m9MMXU+nN2rVFlvAD4YsFmEUdNhskAf
-         jYAQ==
+        with ESMTP id S229663AbjBQVoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:44:04 -0500
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02DF83B20F;
+        Fri, 17 Feb 2023 13:44:04 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id bg20so2072379oib.9;
+        Fri, 17 Feb 2023 13:44:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i99jD1tlOm2J+DaW0h6qwAWv/L8x6GC6XmOgvZVvFkg=;
-        b=0kG2usBzcFhmB5XttY1/xZ+5BTcPUPi5W9QjLO6tdIVtBPfrMd2ZAbDHOIdNTLfBht
-         IFqwqjs7Yb2jk6amu+eJ6LJoxgWVTyDYXGbTfSXpAmrnekr8F6VGwvAOKC8hbn9m7BLo
-         0kEXXtdz5AoCm9LoUkZ8I7ZY42jhs3JWiMWUMp1lo0l2tCytpzHJPm4fevMkbMmIS2dc
-         Iy04GSdnWKnEmpysX+3lMeHTI7FXI4GFsPI6Pl/fRLZ36kGIzz47mtJVgik64c6WjEBz
-         fyiDGXR3Mt3ZykR3pJdz03AQwU0O+88+qAz99DUnZiqXGeoGqv4YPKD2QoSfQO3jshfR
-         xRpQ==
-X-Gm-Message-State: AO0yUKWi3FYoRSgztrJal+xGAfSgH6vxpyTTfzAJfSrd2TQgyO6giWr7
-        OzXzC0PA2k4kzQVwL8c6XbphtA==
-X-Google-Smtp-Source: AK7set+Xc51wFSpAOQt9chC3jAJ9CBbqWhtN3Jab8NU4rTVA1dGR+XeDIG7qIaGN1P/mLOMJ4aQRYw==
-X-Received: by 2002:a05:600c:908:b0:3e2:5c3:bcfc with SMTP id m8-20020a05600c090800b003e205c3bcfcmr1283074wmp.18.1676669075673;
-        Fri, 17 Feb 2023 13:24:35 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n12-20020a05600c294c00b003dc42d48defsm6015281wmd.6.2023.02.17.13.24.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 13:24:35 -0800 (PST)
-Message-ID: <4faf391d-f606-2da2-86ce-02b9c97fdbb5@linaro.org>
-Date:   Fri, 17 Feb 2023 21:24:34 +0000
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qWC7nngXi0EDz5gN4HHMCNDgyMiC4P5brzXAk68iqjo=;
+        b=lGQy4jHtd4fp7TdUTSSiq+DlawvCDsG6dPj1InTdNgQQQwLy8td1DDaeLfIh9PIcCm
+         P5DOJh4RQHvE43cne3RBZhlzsRUT+NUcOc7fwWDK3XOtJtTiHS9CGrIUnZ3fIlHtuiOP
+         bmAZI4hX5cEztLKNfDpoIg33F2S96rHcXnvzbOiN0hHPv+rMHHyrAVkO14N2xx1hX70D
+         CCrtfugiy+dGOI/5v2+29UmC9NpXMGIwARvfa50fBDsYSeHheYlEmefg4yJSihZXxM5D
+         MV56pWfTMVUMSvK/an160d3fMJQFqkEquEm9NQ/UN+9SAjOYf3+9ML4gJOZkyy4rPVb8
+         BS2A==
+X-Gm-Message-State: AO0yUKX9Pz6/AyqggeqDvOzH8ApHlppmqTl0oTcoXOKEhJhH8bLSl1cK
+        9GgOkChYo2dT0t56ZVsKvDSK9yXnew==
+X-Google-Smtp-Source: AK7set+d69N7zLQXRXR5ATUVWt0hggwD5Fwdthm5UlkIeCoztjD/btqolUFiC3gkRIVmn6wlM/WH1w==
+X-Received: by 2002:a05:6808:6392:b0:36e:c24a:a620 with SMTP id ec18-20020a056808639200b0036ec24aa620mr827867oib.1.1676670243244;
+        Fri, 17 Feb 2023 13:44:03 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r204-20020acac1d5000000b0037834b1a20bsm2282871oif.0.2023.02.17.13.44.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Feb 2023 13:44:02 -0800 (PST)
+Received: (nullmailer pid 1611422 invoked by uid 1000);
+        Fri, 17 Feb 2023 21:44:02 -0000
+Date:   Fri, 17 Feb 2023 15:44:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/7] of: unittest: new node lifecycle tests
+Message-ID: <20230217214402.GA1611091-robh@kernel.org>
+References: <20230213185702.395776-1-frowand.list@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated QCM2290 compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
- <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
- <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
- <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
- <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
- <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
- <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
- <76de00dc-f128-e609-7f0c-b53161036b97@linaro.org>
- <0b3e8c81-b0fb-651b-8688-872f03c68d8f@nexus-software.ie>
- <0989eef7-cd0e-324c-eef9-aa8500197b91@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <0989eef7-cd0e-324c-eef9-aa8500197b91@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230213185702.395776-1-frowand.list@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 21:23, Konrad Dybcio wrote:
+On Mon, Feb 13, 2023 at 12:56:55PM -0600, Frank Rowand wrote:
+> Create new devicetree node lifecycle tests.
 > 
+> The tests introduce use of EXPECT_NOT messages, similar to EXPECT
+> messages.  This requires updating scripts/dtc/of_unittest_expect
+> to process EXPECT_NOT messages.
 > 
-> On 17.02.2023 22:20, Bryan O'Donoghue wrote:
->> On 17/02/2023 21:16, Konrad Dybcio wrote:
->>> Correct, but QCM2290 is not supported upstream yet.
->>>
->>> SM6115 (a different SoC) however is, but it used the qcm2290 compatible
->>> as it was a convenient hack to get the DSI host ID recognized based on
->>> the (identical-to-qcm2290) base register without additional driver changes.
->>> We're now trying to untangle that mess..
->>
->> Gand so what we want documented is:
->>
->> compatible = "qcom,qcs2290-dsi-ctrl", qcom,mdss-dsi-ctrl";
-> qcm* yes, this became documented with your original cleanup
+> The new tests revealed an issue in printk formatting when using
+> format "%pOF" on a node with a reference count of zero.  A patch
+> is included to the fix the caller which revealed the issue.
 > 
->> compatible = "qcom,sm6115-dsi-ctrl", qcom,mdss-dsi-ctrl";
-> and yes this became documented (well, in the DSI binding) in
-> my other patch series and is finished being documented in this one
+> Update kconfig unittest help to further explain that unittests
+> should only be enabled for developer kernels.  Also add info
+> about using scripts/dtc/of_unittest_expect to process the output
+> of unittests.
 > 
->>
->> with the old compatible = "qcom,dsi-ctrl-6g-qcm2290"; clanger continuing to be deprecated.
-> correct, we still have to note it but keep it deprecated
+> Add an additional consistency check to of_node_release(), which
+> is the function that potentially frees node related memory when
+> the node's reference count is decremented to zero.
 > 
-> Konrad
->>
->> ---
->> bod
+> Add docbook documentation to the devicetree node creation functions
+> about caller responsibility to call of_node_put() and how the
+> memory free process works.
+> 
+> Frank Rowand (7):
+>   of: prepare to add processing of EXPECT_NOT to of_unittest_expect
+>   of: add processing of EXPECT_NOT to of_unittest_expect
+>   of: update kconfig unittest help
+>   of: unittest: add node lifecycle tests
+>   of: do not use "%pOF" printk format on node with refcount of zero
+>   of: add consistency check to of_node_release()
+>   of: dynamic: add lifecycle docbook info to node creation functions
 
-Cool.
+Series applied.
 
-That maps to my understanding & the intention of the deprecation.
-
----
-bod
+Rob
