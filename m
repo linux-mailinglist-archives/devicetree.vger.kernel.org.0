@@ -2,132 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35F9569B625
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 00:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E17569A7C8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjBQXF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 18:05:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53196 "EHLO
+        id S229705AbjBQJFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 04:05:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjBQXF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 18:05:56 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4A753EF3;
-        Fri, 17 Feb 2023 15:05:49 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id f19so2083120wml.3;
-        Fri, 17 Feb 2023 15:05:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=iVfVFdTeB2G3+/DvdyG5XCOtX+6GFkOVr0x9Cn2QTxo=;
-        b=Ig7F6MDvxzH2xO4k4V5CyCuAP+VEIWRZnElFSl3gDmgkZXzDs0a9yfd/jXD80CuCnf
-         s14ylBa5jeejT3JSppnZW2zljtI51xTkCg2gRZHP/dd+7hvdnc4L2cmTVRaX+sfiE2Wf
-         FamRFPY6zNQY0FxFeO5m/XgHn33HEBfeJI6q3nRoEtTEMAYgltFmzoWX3bOfx5He/BSV
-         q9HSbWlcajc1cZGzMSZLxlBUIg01c4uQHTMnwQuR6qNkAqOfI22Vu7D7ii0KK+BSn7c4
-         6x3pSoxDBCfVBCZnhL9+9WRSnKKCOSJTRh46EGuiuhId11P/ypX2v+wrrYTzXPpLpRY1
-         r7RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iVfVFdTeB2G3+/DvdyG5XCOtX+6GFkOVr0x9Cn2QTxo=;
-        b=41LfT0BNsOfpkXHF8gIBTdC16yh9oKN/EKnZagi7CLTzA45AlYu0Moe8d1TSQsP4ow
-         GIfroUEtpmpE1SQszGO2NakvZZsMSuJseF21wZKfFyrglGk4lHMDeGUlmrMFoVRe2e6+
-         X8OUN72p8JDFLOeu+8kHmC9HEtYU1ZYDhhyJCbsgXHEhOQRKParrlIvz8lW2iXT7Itqq
-         /F0jAqm5pl7rOBwW3h0HmwqxGjsI15vswm5HJb/WuVyeSbAADzyA4P6epDBObvJffkpD
-         xe2GzTENppz9+EkHQtk3qGOhbBjpOOrprcwcLk1a74YiQCU9iLMxPo7G9yF9cuvUOH5G
-         r7WQ==
-X-Gm-Message-State: AO0yUKXcxy5rtF6/PU+as7tdgpVk71AmC65ECkA3u1BpFZhWYe+t0Ahk
-        w/WQwGpPZ+QnSDdi8YZU04O4b5qGo/M=
-X-Google-Smtp-Source: AK7set8BQ4qFWRGud1mnA7eMLLnciVgGPOUjg93Es34dRLtOBPjQ/tZzPiJ1IoxUodF9lEeqKDJTlA==
-X-Received: by 2002:a05:600c:a29e:b0:3d2:3be4:2d9a with SMTP id hu30-20020a05600ca29e00b003d23be42d9amr1466478wmb.20.1676675146706;
-        Fri, 17 Feb 2023 15:05:46 -0800 (PST)
-Received: from Ansuel-xps. (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
-        by smtp.gmail.com with ESMTPSA id d8-20020adfe2c8000000b002c3ea5ebc73sm5325065wrj.101.2023.02.17.15.05.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 15:05:46 -0800 (PST)
-Message-ID: <63f0084a.df0a0220.6220b.fb5a@mx.google.com>
-X-Google-Original-Message-ID: <Y+8Xj50FwrXOsBKi@Ansuel-xps.>
-Date:   Fri, 17 Feb 2023 06:58:39 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Arun.Ramadoss@microchip.com
-Subject: Re: [PATCH v8 11/13] dt-bindings: leds: Document netdev trigger
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
- <20230216013230.22978-12-ansuelsmth@gmail.com>
- <20230217230346.GA2217008-robh@kernel.org>
+        with ESMTP id S229637AbjBQJFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:05:45 -0500
+Received: from mail.dufert24.com (mail.dufert24.com [38.242.205.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C40604FD
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 01:05:44 -0800 (PST)
+Received: by mail.dufert24.com (Postfix, from userid 1001)
+        id 11E19420B4; Fri, 17 Feb 2023 10:00:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dufert24.com; s=mail;
+        t=1676624434; bh=oIICWKo9u1D1jW6PXE1Xkws2aZgemRr9S/HRdzov8s4=;
+        h=Date:From:To:Subject:From;
+        b=Vqs6+concZQqhUVN1CwsE/sVzDxp5WrypHOahfqXNotjJ3NyEhejq0uaviHhp9S0z
+         lUtyrRc4PqDhaFo/1FdauGy/eASIfF4GSmQ9W2OHcdQJOXpacVwqMNHfrd2YwPsxZM
+         k0FON+Yr8HJqJU6VQtUnhENTmTH4iGnxqMXZ/pNCk3Yg7iDP60U3ULL0835dsDIr6O
+         dfNbb2qHUyv71jFsJYcUKn1Iez0Y77lu+NhHmg8lDAMxeR/Q/dqicrJViEy6/KZKKW
+         ch0768yqwmmesttcEhOjbXoqpjxf0AiKmry72qatwMwZD2c+QFIYEKXE6zG7ORCbae
+         WDERiPhzJz7ZA==
+Received: by mail.dufert24.com for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 09:00:29 GMT
+Message-ID: <20230217084500-0.1.22.6rlo.0.c0nxb14j4a@dufert24.com>
+Date:   Fri, 17 Feb 2023 09:00:29 GMT
+From:   "Nikolaus Mazal" <nikolaus.mazal@dufert24.com>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?Dropshipping_-_spolupr=C3=A1ce?=
+X-Mailer: mail.dufert24.com
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230217230346.GA2217008-robh@kernel.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,LOTS_OF_MONEY,MIXED_ES,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+        *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
+        *      blocklist
+        *      [URIs: dufert24.com]
+        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *      [38.242.205.183 listed in zen.spamhaus.org]
+        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
+        *      blocklist
+        *      [URIs: dufert24.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  1.9 MIXED_ES Too many es are not es
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 17, 2023 at 05:03:46PM -0600, Rob Herring wrote:
-> On Thu, Feb 16, 2023 at 02:32:28AM +0100, Christian Marangi wrote:
-> > Document the netdev trigger that makes the LED blink or turn on based on
-> > switch/phy events or an attached network interface.
-> 
-> NAK. What is netdev?
+Dobr=C3=A9 r=C3=A1no,
 
-But netdev is a trigger, nothing new. Actually it was never documented.
-Is the linux,default-trigger getting deprecated? 
+Prost=C5=99ednictv=C3=ADm syst=C3=A9mu dropshippingov=C3=A9ho prodeje pod=
+porujeme podnikatele ji=C5=BE 20 let.
 
-> 
-> Don't add new linux,default-trigger entries either. We have better ways 
-> to define trigger sources, namely 'trigger-sources'.
-> 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/leds/common.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> > index d34bb58c0037..6e016415a4d8 100644
-> > --- a/Documentation/devicetree/bindings/leds/common.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> > @@ -98,6 +98,8 @@ properties:
-> >              # LED alters the brightness for the specified duration with one software
-> >              # timer (requires "led-pattern" property)
-> >            - pattern
-> > +            # LED blink and turns on based on netdev events
-> > +          - netdev
-> >        - pattern: "^cpu[0-9]*$"
-> >        - pattern: "^hci[0-9]+-power$"
-> >          # LED is triggered by Bluetooth activity
-> > -- 
-> > 2.38.1
-> > 
+Hled=C3=A1me partnery pro spolupr=C3=A1ci zam=C4=9B=C5=99enou na konkr=C3=
+=A9tn=C3=AD zisky z prodeje modern=C3=ADch produkt=C5=AF na platform=C4=9B=
+ Amazon nebo jin=C3=A9m tr=C5=BEi=C5=A1ti =E2=80=93 bez nutnosti m=C3=ADt=
+ sklad, nakupovat zbo=C5=BE=C3=AD na sklad a p=C5=99ipravovat z=C3=A1silk=
+y pro z=C3=A1kazn=C3=ADky.
+=20
+Vyr=C3=A1b=C3=ADme na zak=C3=A1zku rolety, obrazy, tapety a dal=C5=A1=C3=AD=
+ ti=C5=A1t=C4=9Bn=C3=A9 dekora=C4=8Dn=C3=AD prvky, kter=C3=A9 jsou mezi o=
+bdarovan=C3=BDmi velmi obl=C3=ADben=C3=A9. Za pouh=C3=BD m=C4=9Bs=C3=ADc =
+=C4=8Dinil prodej rolet na n=C4=9Bmeck=C3=A9m trhu Amazon 12 500 000 EUR.
 
--- 
-	Ansuel
+Poskytujeme produkty nejvy=C5=A1=C5=A1=C3=AD kvality, neomezen=C3=A9 skla=
+dov=C3=A9 z=C3=A1soby, spr=C3=A1vn=C4=9B organizovanou logistiku po cel=C3=
+=A9 Evrop=C4=9B, prodejn=C3=AD materi=C3=A1ly a podporu supervizora p=C5=99=
+i spolupr=C3=A1ci.
+
+M=C3=A1te z=C3=A1jem diskutovat o mo=C5=BEnosti nav=C3=A1z=C3=A1n=C3=AD s=
+polupr=C3=A1ce?
+
+
+Pozdravy
+Nikolaus Mazal
