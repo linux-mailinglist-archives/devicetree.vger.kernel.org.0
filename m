@@ -2,135 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B522069AF73
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:25:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A55E69AF8B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbjBQPZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 10:25:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
+        id S230316AbjBQPcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 10:32:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjBQPZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:25:21 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 095136EF1E;
-        Fri, 17 Feb 2023 07:25:19 -0800 (PST)
-Received: from [192.168.1.90] (unknown [86.120.32.152])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S229608AbjBQPcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:32:01 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6856F3E7;
+        Fri, 17 Feb 2023 07:32:00 -0800 (PST)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C11E866021B3;
-        Fri, 17 Feb 2023 15:25:16 +0000 (GMT)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C876666021B3;
+        Fri, 17 Feb 2023 15:31:54 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676647518;
-        bh=u3KoxZVrumBXHky7NSspaxJOp8H2j+XZUk4y1KNptJI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XNw8qC13BbGUvncrt5In0WQZMUFKRE5HdluJEsHVNO/neSDYGjDNHVgripQYaAWXh
-         JLCH4M8sJLPqpv6EhIGO909UOxpEdI2axn+OHveHwr29oR8BE/H7jsHms1I/v3et2N
-         dGNG3+th8t0XkQewAVreP1A+JMU2dUkccFzNhWbADg9zOxXurEaKiq0IG+gwqi1W+D
-         vrgwIw0q9wchaowLs+RDdpT2QpNRlRY7TvDK/6kka8eAWesC3yazUltbJ2NgAThB4k
-         EMxee89Oke3CkrbBA+JrMWIeSBhcvIWurXxoUNloMg9mjjcrMytfEdWH2wSHxjo1Rb
-         AsJkSUdQVLuuQ==
-Message-ID: <350b400f-210a-a2cf-0828-25beb1b93a43@collabora.com>
-Date:   Fri, 17 Feb 2023 17:25:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 07/12] dt-bindings: net: Add StarFive JH7100 SoC
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        s=mail; t=1676647918;
+        bh=z3neAe3zoYlZjaNu5/O4X7BlXl5dBIVOCRdEyu7SXI8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Nxh4xsmaUDncSMm3Xd4ZUNIVUVCFSZpnwyMMAk2yZk7jPmNwjl9AVlGUgoNWzKlQa
+         di0Umh1TV7gB5sQTQMFJc/rYvKopRkQKCIf9ewVBqA4whnjzZ7KnLgPlS8TyXz3FXv
+         1eKjOVMvbD/u6K1pPw/+6xgUVkeIbpwn3jU3/+yith2Y7Gn19e9LEe3hgj421tJF0x
+         uT8ql0nhsVDl1O10zXEm4IGkS4xrpJZLJjCKe2Wb4/iOk3JEVNUORP9H1iO0Xamr/z
+         WGlGxmhR0TSvn8drY0HIf3cZJ+QBa13Mdn2LrVl4QTgQT4V/O/WZsZ5ElmWvsZKuA1
+         ISNwaECR5P4rg==
+Date:   Fri, 17 Feb 2023 10:31:50 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-8-cristian.ciocaltea@collabora.com>
- <Y+e74UIV/Td91lKB@lunn.ch>
- <586971af-2d78-456d-a605-6c7b2aefda91@collabora.com>
- <Y+zXv90rGfQupjPP@lunn.ch>
- <cfa0f980-4bb6-4419-909c-3fce697cf8f9@collabora.com>
- <Y+5t4Jlb0ytw40pu@lunn.ch>
- <a824a7f6-0a62-7cab-180b-f20297311a2b@collabora.com>
- <Y++BZWhJm1LpdrA9@lunn.ch>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <Y++BZWhJm1LpdrA9@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        chrome-platform@lists.linux.dev,
+        =?utf-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
+Subject: Re: [PATCH v11 6/9] drm/bridge: anx7625: Register Type C mode
+ switches
+Message-ID: <20230217153150.tl3zqywvpw6elyg5@notapiano>
+References: <20230204133040.1236799-1-treapking@chromium.org>
+ <20230204133040.1236799-7-treapking@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230204133040.1236799-7-treapking@chromium.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/17/23 15:30, Andrew Lunn wrote:
->>> I would actually say it shows we don't understand what is going on
->>> with delays. "rgmii" is not every often the correct value. The fact it
->>> works suggests the MAC is adding delays.
->>>
->>> What value are you using for starfive,gtxclk-dlychain ?
->>
->> This is set to '4' in patch 12/12.
->>
->>> Try 0 and then "rgmii-id"
->>
->> I made some more tests and it seems the only stable configuration is "rgmii"
->> with "starfive,gtxclk-dlychain" set to 4:
->>
->> phy-mode | dlychain | status
->> ---------+----------+--------------------------------------------
->> rgmii    |        4 | OK (no issues observed)
->> rgmii-id |        4 | BROKEN (errors reported [1])
->> rgmii    |        0 | UNRELIABLE (no errors, but frequent stalls)
->> rgmii-id |        0 | BROKEN (errors reported)
->>
->> [1] Reported errors in case of BROKEN status:
->> $ grep '' /sys/class/net/eth0/statistics/* | grep -v ':0$'
-> 
-> Thanks for the testing.
-> 
-> So it seems like something is adding delays when it probably should
-> not. Ideally we want to know what.
-> 
-> There is a danger here, something which has happened in the past. A
-> PHY which ignored "rgmii" and actually did power on defaults which was
-> "rgmii-id". As a result, lots of boards put "rmgii" in there DT blob,
-> which 'worked'. Until a board came along which really did need
-> "rgmii". The developer bringing that board up debugged the PHY, found
-> the problem and made it respect "rgmii" so their board worked. And the
-> fix broke a number of 'working' boards which had the wrong "rgmii"
-> instead of "rgmii-id".
+On Sat, Feb 04, 2023 at 09:30:37PM +0800, Pin-yen Lin wrote:
+[..]
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+[..]
+> +static void anx7625_set_crosspoint_switch(struct anx7625_data *ctx,
+> +					  enum typec_orientation orientation)
+> +{
+> +	if (orientation == TYPEC_ORIENTATION_NORMAL) {
+> +		anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
+> +				  SW_SEL1_SSRX_RX1 | SW_SEL1_DPTX0_RX2);
+> +		anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
+> +				  SW_SEL2_SSTX_TX1 | SW_SEL2_DPTX1_TX2);
 
-Thanks for the heads-up.
+This seems inverted compared to the binding. Binding says 
 
-> So you have a choice. Go with 4 and "rgmii", but put in a big fat
-> warning, "Works somehow but is technically wrong and will probably
-> break sometime in the future". Or try to understand what is really
-> going on here, were are the delays coming from, and fix the issue.
-> 
->        Andrew
+  0, 1, 2, 3 in "data-lanes" maps to SSRX1, SSTX1, SSRX2, SSTX2, respectively.
 
-I will try to analyze this further.
+But in anx7625_register_typec_switches(), lanes 0-1 mean orientation normal,
+then in this logic, you set RX2 and TX2 to carry the DP signals. So the driver
+is mapping lanes 0-1 to SSRX2/SSTX2 and lanes 2-3 to SSRX1/SSTX1, the opposite
+from the binding.
 
-Regards,
-Cristian
+Thanks,
+Nícolas
+
+> +	} else if (orientation == TYPEC_ORIENTATION_REVERSE) {
+> +		anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
+> +				  SW_SEL1_SSRX_RX2 | SW_SEL1_DPTX0_RX1);
+> +		anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
+> +				  SW_SEL2_SSTX_TX2 | SW_SEL2_DPTX1_TX1);
+> +	}
+> +}
+> +
+[..]
+> +static int anx7625_register_typec_switches(struct device *dev, struct anx7625_data *ctx)
+> +{
+[..]
+> +		ctx->port_data[i].orientation = (dp_lanes[0] / 2 == 0) ?
+> +			TYPEC_ORIENTATION_NORMAL : TYPEC_ORIENTATION_REVERSE;
+[..]
