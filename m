@@ -2,109 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E602569A61A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 08:29:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DD1369A627
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 08:37:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbjBQH3K convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Feb 2023 02:29:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46936 "EHLO
+        id S229722AbjBQHhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 02:37:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbjBQH3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 02:29:09 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB7265A0;
-        Thu, 16 Feb 2023 23:28:53 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5D5A624DE83;
-        Fri, 17 Feb 2023 15:28:32 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Feb
- 2023 15:28:32 +0800
-Received: from [192.168.125.128] (183.27.98.67) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Feb
- 2023 15:28:30 +0800
-Message-ID: <267ab62d-d680-d505-4183-ccb8c654419e@starfivetech.com>
-Date:   Fri, 17 Feb 2023 15:29:00 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v2 2/3] drivers: watchdog: Add StarFive Watchdog driver
-Content-Language: en-US
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229522AbjBQHhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 02:37:15 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023B34FCBD;
+        Thu, 16 Feb 2023 23:37:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BC62615C9;
+        Fri, 17 Feb 2023 07:37:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 577F0C433D2;
+        Fri, 17 Feb 2023 07:37:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1676619433;
+        bh=rF2nhK+06ELdbRmCQi57VJGIdRujdnHAVF4wTr7HW1Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vkin1QZwm35J/E67DcAxhmZfKhkXlh5yXtFx4tp2JtU+bWbgKo4o/iGPSN8KtfVxi
+         n/Oj06uwpF57s0G6xj4AVm2xs+MZeCvJCoRDl8WiwKd710KREskPk//EPUnnYC9ehJ
+         9sG2NedTQxSTBq+wzhJ5XpZyze6KQcJaeHt/mVIU=
+Date:   Fri, 17 Feb 2023 08:37:10 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221219094233.179153-1-xingyu.wu@starfivetech.com>
- <20221219094233.179153-3-xingyu.wu@starfivetech.com>
- <20230201224619.GA3194283@roeck-us.net>
- <1f18bfdc-7a04-4914-d970-7ef1d4f99653@starfivetech.com>
- <bfc81429-1829-bec1-ac29-0559f6a01215@roeck-us.net>
- <c0b03600-13a9-b9e7-e4f3-701fd5b55c86@starfivetech.com>
-In-Reply-To: <c0b03600-13a9-b9e7-e4f3-701fd5b55c86@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [183.27.98.67]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 08/26] gunyah: rsc_mgr: Add resource manager RPC core
+Message-ID: <Y+8upgx58a+vLeaT@kroah.com>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212327.3310128-1-quic_eberman@quicinc.com>
+ <Y+3QqdQVH5BTbnaP@kroah.com>
+ <b04aef26-ee0d-af01-3aa1-a0c77d9cbaf3@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b04aef26-ee0d-af01-3aa1-a0c77d9cbaf3@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/2/17 10:30, Xingyu Wu wrote:
-> On 2023/2/16 22:57, Guenter Roeck wrote:
->> On 2/15/23 23:11, Xingyu Wu wrote:
->>> On 2023/2/2 6:46, Guenter Roeck wrote:
->>>> On Mon, Dec 19, 2022 at 05:42:32PM +0800, Xingyu Wu wrote:
->>>>> Add watchdog driver for the StarFive JH7110 SoC.
->>>>>
->>>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>>>> +
->>>>> [...]
->>>>> +
->>>>> +static const struct watchdog_info starfive_wdt_ident = {
->>>>> +    .options = OPTIONS,
->>>>> +    .firmware_version = 0,
->>>>
->>>> It is not necessary to initilize a static variable with 0.
->>>>
->>>>> +    .identity = "StarFive Watchdog",
->>>>> +};
->>>
->>> Hi Guenter,
->>>
->>> It would be a compilation error if drop the '0'. I found that other files
->> 
->> No.
->> 
->>> initialize this static variable as well.
->>>
->> 
->> Ah, the old "others do it, so do I" argument.
->> Sorry, that is not a valid argument.
->> 
+On Thu, Feb 16, 2023 at 09:40:52AM -0800, Elliot Berman wrote:
 > 
-> Can I assign ‘firmware_version’ to a macro definition in the probe?
 > 
+> On 2/15/2023 10:43 PM, Greg Kroah-Hartman wrote:
+> > On Tue, Feb 14, 2023 at 01:23:25PM -0800, Elliot Berman wrote:
+> > > +struct gh_rm {
+> > > +	struct device *dev;
+> > 
+> > What device does this point to?
+> > 
+> 
+> The platform device.
 
-Or drop the 'firmware_version' ?
+What platform device?  And why a platform device?
 
-Best regards,
-Xingyu Wu
+> > > +	struct gunyah_resource tx_ghrsc, rx_ghrsc;
+> > > +	struct gh_msgq msgq;
+> > > +	struct mbox_client msgq_client;
+> > > +	struct gh_rm_connection *active_rx_connection;
+> > > +	int last_tx_ret;
+> > > +
+> > > +	struct idr call_idr;
+> > > +	struct mutex call_idr_lock;
+> > > +
+> > > +	struct kmem_cache *cache;
+> > > +	struct mutex send_lock;
+> > > +	struct blocking_notifier_head nh;
+> > > +};
+> > 
+> > This obviously is the "device" that your system works on, so what are
+> > the lifetime rules of it?  Why isn't is just a real 'struct device' in
+> > the system instead of a random memory blob with a pointer to a device?
+> > 
+> > What controls the lifetime of this structure and where is the reference
+> > counting logic for it?
+> > 
+> 
+> The lifetime of the structure is bound by the platform device that above
+> struct device *dev points to. get_gh_rm and put_gh_rm increments the device
+> ref counter and ensures lifetime of the struct is also extended.
 
+But this really is "your" device, not the platform device.  So make it a
+real one please as that is how the kernel's driver model works.  Don't
+hang "magic structures" off of a random struct device and have them
+control the lifetime rules of the parent without actually being a device
+themself.  This should make things simpler overall, not more complex,
+and allow you to expose things to userspace properly (right now your
+data is totally hidden.)
+
+thanks,
+
+greg k-h
