@@ -2,116 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B64C269AFBB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:47:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA59469AFE9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:55:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbjBQPrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 10:47:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
+        id S229880AbjBQPzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 10:55:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjBQPry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:47:54 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE24C661
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:47:52 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id ee31so7372988edb.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:47:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/ydvsRPVG061WS4UTZVStbsfcU/oL9Zx0nIHQuE4tyA=;
-        b=xHv1htd37Mqx8hvLnrTvHhIKTpFqgdOz/1uJyvsbCg+1IPuW59e2MfJdhcJtQ3aWyV
-         xUB/T+IXHjLDCvXwC9m29LDgZ+A61/SeNTAAUrd6IJpaDhZJxoEe5LF44aoAoG0mrzUu
-         0lOJcKpvLEP5h4rgVdXnUYvWRSgvSOu+eCQTNX3hkJ54KJL6CBHqpmqkLP5mr5eh1brS
-         ++TVu9WgIto2kqXvqrncZ44tK7YBoLdTHeaTJ09BtZ2wu03bTVchrrGc3ZuVFHbD6vn2
-         ESq5gYkZ6eNaSTUmCDMI6zhEA2eovgrlV9Q83ml6nk9QzoAJwaS7RdSM9QG25SKYHLfv
-         1+kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ydvsRPVG061WS4UTZVStbsfcU/oL9Zx0nIHQuE4tyA=;
-        b=bo9KVHhCyh6tidh8XAIhtPMwTW80BY4zHhEcyK+gk/UdnsSCAoSjqmyAmUwWlLtVve
-         IQsgGAbCfKjIAYxDJzM0pEqTh5l5RAvQ3Rop2AcpXNVepY4NpBH6Y6Mg22UmXvIZKQxZ
-         DuSHPsDQvn2anvg8rKdcAAEHEQTPmj16BMhKi0/yjG4pXyP2VEviv54aNnc74oTTkCwo
-         6ySSZ3CKGElnjxQlhESBNuR/B12ciXuxUt/mv1kMl65SxSkwWHSd7ELDhvZavIj72tV2
-         N39uJjztzfUShz2J7JT45qndR8r8GlcBQOFDrKKjV1Gc5pr+vF34fudX31/7R0kNrVJU
-         A7yQ==
-X-Gm-Message-State: AO0yUKWmIuEQVpJvS4XPOpzC81LdEQy1qVxQ0huGLQWkA6MLoT+ebdhZ
-        NQ+VsPvhE6X3sj9a4eicf5PDSg==
-X-Google-Smtp-Source: AK7set92ggsq7QntNOjYeDE1GS2W9aHhklXHaJSFIAczwRnKnbIvvSu4L4kHtCgfE55Dgzu7wN1V/Q==
-X-Received: by 2002:a17:906:9f25:b0:8b1:2eef:154c with SMTP id fy37-20020a1709069f2500b008b12eef154cmr5350244ejc.0.1676648871136;
-        Fri, 17 Feb 2023 07:47:51 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id ui41-20020a170907c92900b008af3930c394sm2282740ejc.60.2023.02.17.07.47.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 07:47:50 -0800 (PST)
-Message-ID: <dcba75b5-7b62-35aa-6836-5d5edd785002@linaro.org>
-Date:   Fri, 17 Feb 2023 16:47:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-Cc:     Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-References: <20221220005054.34518-1-hal.feng@starfivetech.com>
- <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
- <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
- <Y6tSWB2+98a8k9Qw@spud>
- <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
- <Y+5z8skN2DuvxDEL@spud>
- <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
- <Y+8x/KSujhgNLAd6@wendy>
- <d3b06d0b-ff17-ebab-bae5-e1ec836fe667@starfivetech.com>
- <Y++B43uCnPQlRYFi@wendy>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y++B43uCnPQlRYFi@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230404AbjBQPzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:55:18 -0500
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2526782F;
+        Fri, 17 Feb 2023 07:55:17 -0800 (PST)
+Received: from pps.filterd (m0134422.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31HEP4UB005924;
+        Fri, 17 Feb 2023 15:54:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=4OUr6pL09KN9lLfyZ7+aT6RKEnK7PkGU9uIG3Tj1ADg=;
+ b=b/fB4xvy49JGUD/Ydgi91DeWbsfAE2O8PMTxvMScgqo3g3/M0LlUyxwkuyhGbXrVQrRR
+ xApIp34Z2L+8o7WNL/bXSeyeBHElvawTQu/2wjymjc7pP1JHHPNuB/ew55662cBx4dW2
+ MQu6snhhckxCFoNFtAN30ylMSv73GzlPo62MqjUd6Uc/1KWIb1QDCqdkFAPtkbaYKOR7
+ vX6omDMVfqAD9fns8/QPUuxsX1Js5gn3FCfphfthrszoH0vWbwGOL0CI+Nef/eg3X3j4
+ FcqygeEzEVM3FlPi2GYOawY05qnoMdv8VCci6AC3xnRII83QM91XJczVBo8WNlBwJr8a CA== 
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3ntbak8xk8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 17 Feb 2023 15:54:56 +0000
+Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 06508800354;
+        Fri, 17 Feb 2023 15:54:54 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id D22978071C3;
+        Fri, 17 Feb 2023 15:54:53 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        wsa@kernel.org
+Subject: [PATCH v5 0/5] ARM: Add GXP I2C Support
+Date:   Fri, 17 Feb 2023 09:50:49 -0600
+Message-Id: <20230217155054.99757-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: xXcB28YSWEo46jHpmwW9z7fsc_bV8GxF
+X-Proofpoint-GUID: xXcB28YSWEo46jHpmwW9z7fsc_bV8GxF
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-17_10,2023-02-17_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ mlxlogscore=952 bulkscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ mlxscore=0 impostorscore=0 priorityscore=1501 clxscore=1015 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302170140
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 14:32, Conor Dooley wrote:
->>>> Yes, it is.
->>>
->>> Which would then make GMAC1 RGMII RX optional, rather than required?
->>
->> If thinking in this way, I must say yes, it is optional. But actually
->> GMAC1 RGMII RX feeds gmac1_rx by default. 
->> For a mux, it usually works if you populate only one input to it.
->> Does it mean all the other inputs are optional? And how can we define
->> which input is required?
-> 
-> I'm not sure, that is a question for Krzysztof and/or Rob.
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-That's a long thread, please summarize what you ask. Otherwise I have no
-clue what is the question.
+The GXP SoC supports 10 I2C engines. Each I2C engine is completely
+independent and can function both as an I2C master and I2C slave. The
+I2C master can operate in a multi master environment. The engines support
+a scalable speed from 8kHZ to 1.5 Mhz.
 
-Does the mux works correctly if clock input is not connected? I mean,
-are you now talking about real hardware or some simplification from SW
-point of view?
+---
+Changes since v4:
+ *Removed use of i2c_global_init_done
+ *Removed use of if else case for inline conditional
+ *Removed error messages for timeouts and NACKS
+ *Added bit definitions to replace magic values
+ *Fix build error
+ *Relocate Kconfig definition
+Changes since v3:
+ *Switch engine variable to u32
+ *Disable IRQ on device remove with register write instead
+ *Provided even greater description with the use of Phandle
+Changes since v2:
+ *Disable IRQ on a device remove
+ *Remove use of I2C_CLASS_DEPRECATED
+ *Use i2c_parse_fw_timings instead of of_property_read_u32
+ *Remove redundant dev_err_probe as platform_get_irq already has one
+ *Used __iomem instead of res->start to find physical address
+ *Use BIT in gxp_i2c_irq_handler
+ *Made value u8 instead of u16 for u8 read
+ *Provided a better description of Phandle in yaml
+Changes since v1:
+ *Removed yaml documentation of hpe,gxp-sysreg as it has been
+  applied to syscon.yaml
+ *Made i2cX a generic node name i2c in dts file
+ *Added status field to the dtsi and the dts for i2c bus
+ *Removed unnecessary size-cells and address-cells from yaml
+ *Removed phandle from hpe,sysreg-phandle
+ *Changed hpe,i2c-max-bus-freq to clock-frequency
+ *Removed rogue tab in structure definition
+ *Removed use of __iomem *base local variables as it was
+  unnecessary
+ *Switched #if IS_ENABLED() -> if (IS_ENABLED()) inside
+  functions
+ *Removed use of pr_* functions
+ *Removed informational prints in register and unregister
+  functions
+ *Removed print from interrupt handler
+ *Removed informational prints from probe function
+ *Switched dev_err -> dev_err_probe in probe function
+ *Used the respective helper for mapping the resource to
+  __iomem*
 
-Best regards,
-Krzysztof
+Nick Hawkins (5):
+  i2c: hpe: Add GXP SoC I2C Controller
+  dt-bindings: i2c: Add hpe,gxp-i2c
+  ARM: dts: hpe: Add I2C Topology
+  ARM: multi_v7_defconfig: add gxp i2c module
+  MAINTAINERS: Add HPE GXP I2C Support
+
+ .../devicetree/bindings/i2c/hpe,gxp-i2c.yaml  |  59 ++
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      | 109 +++
+ arch/arm/boot/dts/hpe-gxp.dtsi                | 125 ++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ drivers/i2c/busses/Kconfig                    |   7 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-gxp.c                  | 620 ++++++++++++++++++
+ 8 files changed, 924 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
+ create mode 100644 drivers/i2c/busses/i2c-gxp.c
+
+-- 
+2.17.1
 
