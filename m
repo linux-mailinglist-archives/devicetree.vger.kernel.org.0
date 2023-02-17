@@ -2,60 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F2A69B496
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9FBD69B4A4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 22:23:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbjBQVV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 16:21:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34812 "EHLO
+        id S229522AbjBQVXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 16:23:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbjBQVV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:21:28 -0500
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00AD5FC42;
-        Fri, 17 Feb 2023 13:21:27 -0800 (PST)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-1718b32f589so2302528fac.5;
-        Fri, 17 Feb 2023 13:21:27 -0800 (PST)
+        with ESMTP id S229591AbjBQVXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 16:23:32 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B873954D73
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:23:30 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id y29so2971889lfj.12
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 13:23:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=giMyztqRFKja8+Zwf+y6h9FIEuqpthPiWJnY4CCgAMk=;
+        b=UnlSVCeMmWi4Fe0tQX0SeGUAzOM4BfaNyF7VyR3lU2KBasoP+uqiVB8V0h+eBASK6D
+         BhRiwsAxhW+SjjuighcXsDpNB1WWZnV/G+ew0LEiqaDKbYid4yOUXvvpnDVFsQMFYjOG
+         7zhh+xijUUr+Na0yRcijoA9gl8VWvc96lOYWLNoLuBdQQOnuUI37oaFM1OBS1UUdg+GJ
+         2AbVHFZRjxiGdfQ4O9qSbFmAfHsmLpj+sY2RP5SLULo3aZ17Ng4sTO599ecSFmlhsWoM
+         EnntPjIqC7MoPIxVyMJH22Ax7+7W2HBjUr4u/hn3nYfvxrQySenJb90dGUoqfwOh0YCb
+         WToQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wirRbKhf3MWwNROVpqqNHC4Xkahqi7SWsTs4Gn2w8d0=;
-        b=nuw5KN8Nl1SP8TuYCwNVZwWzVMK3GUQjHxu1czi3fJer6/KHdm3rIAi4kKOt6cXNzd
-         NOLQ2GEW0dyKjFZuSH0SJilkLhAYtD5or3gA2/D1wTA8ScLtOPL6OeV0fFlOnpTWtOki
-         Y/cYXiS5J3U97Utlo7NH5l05Sw3Xey1fXUD9Q1/t2RCPxwVKEKpUcY+7yibX1etdv4G7
-         zjmqZKG3kLwrNb0EQSL/1uhclbMxThjg4FWQCOHnxKwbl+S3NCFmcXDP8KTAPK4nwbI0
-         fv82WZiRxZMntYDwkMWnOeiX+gKAFxGMazqfJUUpTjEuy3M2/m3pFC61PENpgwNqkZ+Z
-         IFbg==
-X-Gm-Message-State: AO0yUKVBXo0E2NlIL2nMe0x0AsKMBbmDdiw/6+cVqdWWEH//38AThFAR
-        Xw5vNzbYKPDrAcJUhiU1Uw==
-X-Google-Smtp-Source: AK7set9Q+FUV+z3tpeRWeGDUyrxrbP90b9GTSGKlVJHVimr2DphyVfenUBR97ZyHVoOENEFa9BRS0g==
-X-Received: by 2002:a05:6870:3290:b0:16a:cfc:525e with SMTP id q16-20020a056870329000b0016a0cfc525emr7083386oac.23.1676668887149;
-        Fri, 17 Feb 2023 13:21:27 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g1-20020a056870c38100b0016b0369f08fsm2093082oao.15.2023.02.17.13.21.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 13:21:23 -0800 (PST)
-Received: (nullmailer pid 1583881 invoked by uid 1000);
-        Fri, 17 Feb 2023 21:21:19 -0000
-Date:   Fri, 17 Feb 2023 15:21:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Martin Liu <liumartin@google.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] of: reserved_mem: Use proper binary prefix
-Message-ID: <167666886188.1582566.4979581606494434424.robh@kernel.org>
-References: <20230216083725.1244817-1-geert+renesas@glider.be>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=giMyztqRFKja8+Zwf+y6h9FIEuqpthPiWJnY4CCgAMk=;
+        b=6HbTtmkikN3XGwCFYJnHCBtTsUj4ypVKGiAeLCaLgoxIgZD9IgfqcUKEWVSx+7wro+
+         esVrKXuyVaJGH4FRjRdXRVP+x2cFVqi6EUnDMh3kDmdX1w9nuQ/SQhaHBgHDPvEaaXur
+         DkiKVYNulNKU34+BIXpDypSEfGSi5gfdXjBgSI7Ckmn6CzF8VKJzhF+kRXbiFlVjZnBb
+         iSHEurSZ3VBEb6WL98mLimkfjBnFfQlkxrnJpl/XyqaiBn1CwZNhY+Z0RIRm0+X5zGiP
+         +Dz+5vnIYuMfc0VHkCRAggbm+O9I4cDrvnAgUftSAez3yR79IA+CWTKz6OKoWB1jbyOv
+         5T1A==
+X-Gm-Message-State: AO0yUKUPKoRxM/SDVmeo6y9Z1quthGF0OhbBOY/ZP8CcCe9P+rAHMW7Z
+        cDyGK48Lg/zQDjVIMlcixms5jg==
+X-Google-Smtp-Source: AK7set+qbs0k8IvIUWwm+GXxnhNiNcoHfnb8Iihm8m3SF+0EJQzyZBvPz1ay8Bd4yoV+kZqL0VCW6A==
+X-Received: by 2002:ac2:598e:0:b0:4dc:823c:8127 with SMTP id w14-20020ac2598e000000b004dc823c8127mr1048307lfn.57.1676669008996;
+        Fri, 17 Feb 2023 13:23:28 -0800 (PST)
+Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
+        by smtp.gmail.com with ESMTPSA id b6-20020ac25626000000b004db25f2c103sm783789lff.86.2023.02.17.13.23.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 13:23:28 -0800 (PST)
+Message-ID: <0989eef7-cd0e-324c-eef9-aa8500197b91@linaro.org>
+Date:   Fri, 17 Feb 2023 22:23:27 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230216083725.1244817-1-geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
+ deprecated QCM2290 compatible
+Content-Language: en-US
+To:     Bryan O'Donoghue <pure.logic@nexus-software.ie>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
+ <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
+ <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
+ <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
+ <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
+ <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
+ <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
+ <76de00dc-f128-e609-7f0c-b53161036b97@linaro.org>
+ <0b3e8c81-b0fb-651b-8688-872f03c68d8f@nexus-software.ie>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <0b3e8c81-b0fb-651b-8688-872f03c68d8f@nexus-software.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,24 +96,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 16 Feb 2023 09:37:25 +0100, Geert Uytterhoeven wrote:
-> The printed reserved memory information uses the non-standard "K"
-> prefix, while all other printed values use proper binary prefixes.
-> Fix this by using "Ki" instead.
-> 
-> While at it, drop the superfluous spaces inside the parentheses, to
-> reduce printed line length.
-> 
-> Fixes: aeb9267eb6b1df99 ("of: reserved-mem: print out reserved-mem details during boot")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> K = Kelvin
-> k = kilo
-> Ki = kibi
-> ---
->  drivers/of/of_reserved_mem.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
 
-Applied, thanks!
+On 17.02.2023 22:20, Bryan O'Donoghue wrote:
+> On 17/02/2023 21:16, Konrad Dybcio wrote:
+>> Correct, but QCM2290 is not supported upstream yet.
+>>
+>> SM6115 (a different SoC) however is, but it used the qcm2290 compatible
+>> as it was a convenient hack to get the DSI host ID recognized based on
+>> the (identical-to-qcm2290) base register without additional driver changes.
+>> We're now trying to untangle that mess..
+> 
+> Gand so what we want documented is:
+> 
+> compatible = "qcom,qcs2290-dsi-ctrl", qcom,mdss-dsi-ctrl";
+qcm* yes, this became documented with your original cleanup
 
+> compatible = "qcom,sm6115-dsi-ctrl", qcom,mdss-dsi-ctrl";
+and yes this became documented (well, in the DSI binding) in
+my other patch series and is finished being documented in this one
+
+> 
+> with the old compatible = "qcom,dsi-ctrl-6g-qcm2290"; clanger continuing to be deprecated.
+correct, we still have to note it but keep it deprecated
+
+Konrad
+> 
+> ---
+> bod
