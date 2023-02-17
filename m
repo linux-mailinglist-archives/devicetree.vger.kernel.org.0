@@ -2,57 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAE0569B134
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 17:42:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD71669B147
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 17:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjBQQlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 11:41:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53456 "EHLO
+        id S229582AbjBQQpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 11:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbjBQQlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 11:41:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1A972E11;
-        Fri, 17 Feb 2023 08:41:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5C0B7B82CB5;
-        Fri, 17 Feb 2023 16:41:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83AB1C433D2;
-        Fri, 17 Feb 2023 16:40:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676652059;
-        bh=AjGLCJDaBLeS+ZJn3SLxobc8nrc/IffXtF3vDUxqz3g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DJZUfZJnxBBHc7U58XjuoN3nKx5tYwwfWvMR2Th9MWOHCJUNLBLpQTvlzEzhANqBg
-         9/3/flM25H3zbd4a4lV/1IVmMkTLVbyu7b9/w3JPxK792qbt5lqq0SuCrIOpnocGei
-         JamiHe3RWjCsfJIUVjC1n0pPX2XJWAAyz+hzWt8Po4zzy7bjZRNSU6SZiPc/CK8zz7
-         vI+i/ytI7wIXaKDnkznja8D9vqq1gl+bAPHa0aLz7zLB3QDf7A0ua7/b5wbo7DCT8P
-         KeYv8P+PWww3Gr8MMYyQp/cgpX5KP8xXe9XvT6LV+mrqLJmnEq3zR2rijr64wboTTS
-         q4hT3s5P+3F1A==
-From:   Conor Dooley <conor@kernel.org>
-To:     Xu Yilun <yilun.xu@intel.com>, conor@kernel.org
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
+        with ESMTP id S229570AbjBQQpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 11:45:47 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA42C1BF5
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 08:45:45 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id l3so1623303ljq.9
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 08:45:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OVlcR3h6+h36cZzj9rEe6pSxdR36N6jX3gc7PvYzj0U=;
+        b=g/D55bpcstBNEWJe4ZZN0oCCrZXGUZc39w28Wo1J70cOKSlzqcuF95vXBiIfqFbzyz
+         M1e0rjjbN2qqmOA7RBc3SQzhPW5VVbGih2FyIADP07b4Q9T5ol2olkAmRoapS4lWX6i+
+         VBjh7CJXGSNoNvi3P4ZBVxkZ+tTypF1rhQ1ftPnBJRXeWYpC+i/8BiUjJWlFBDdG7z/r
+         FWDdZ9yUZFNhtSy9QKtEvKbEConUso3VnmXYDUch45HeWNM+7m6uLz1HdfeyvWHakQcm
+         G5Ji4+r1mVOK1BmcwmbfcNXoTPv9i+dU91NfHhMM+e09s1g8N57SiAezhDA0lu7PDzCE
+         kJ8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OVlcR3h6+h36cZzj9rEe6pSxdR36N6jX3gc7PvYzj0U=;
+        b=bgKVTrQsbe0LHxCZ+1nNJEQF3eFw7V+3UUTj3Mjynop+PYZq27w3BkmurvMXD9OCRB
+         zw68A5HbHSQp7odUeywwa/LQKJPLRtvWM/0Mi5v8cQHzo2ypFPMMdlrGCejsCNB2f/fm
+         AdzFn1ZRVheDBUqLVkoihG18Vu7UqoM3Wo/7iq1mYIZxg7KcG3lE249Conzmrax9Ilm8
+         p/kCH2wjSeXLVRZj5knYG5dt4FWif17oIcOAih8A2FVSVWpPebq1mbNw2pgbcUq4RnNC
+         9wYxfRj75MPJSqZiAmLw8fWaTbyY+lN0yMNZt4DCucZ+VmNHL7yPWpgUSV9jenB1J7KG
+         Zg0g==
+X-Gm-Message-State: AO0yUKWR4juDqzP2AEpOqxTtN+6HK7iKCt7o6ANJcDIJ6QYfHQx6tVxd
+        nhyJv3rFCUbyqiywK8x1kXf4Ug==
+X-Google-Smtp-Source: AK7set+skClcydzZ68kU5ppwSH5SYKJp+n6Ctbk4vNZZbeZvDfNOZRJttcRlKzdd4zgNA5n2qwmTQQ==
+X-Received: by 2002:a2e:b4a1:0:b0:293:45b9:d188 with SMTP id q1-20020a2eb4a1000000b0029345b9d188mr301607ljm.41.1676652344003;
+        Fri, 17 Feb 2023 08:45:44 -0800 (PST)
+Received: from [192.168.1.101] (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
+        by smtp.gmail.com with ESMTPSA id h4-20020a2e3a04000000b0028bcc644e95sm619189lja.60.2023.02.17.08.45.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 08:45:43 -0800 (PST)
+Message-ID: <10c022fa-6400-bc15-12b7-11453bc3eb43@linaro.org>
+Date:   Fri, 17 Feb 2023 17:45:42 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc7280: align RPMh regulator nodes
+ with bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-        Tom Rix <trix@redhat.com>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org
-Subject: [PATCH v1 6/6] riscv: dts: microchip: add the mpfs' system controller qspi & associated flash
-Date:   Fri, 17 Feb 2023 16:40:23 +0000
-Message-Id: <20230217164023.14255-7-conor@kernel.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230217164023.14255-1-conor@kernel.org>
-References: <20230217164023.14255-1-conor@kernel.org>
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3434; i=conor.dooley@microchip.com; h=from:subject; bh=zi1BUMETDrjgTzSYci2/43ZGtuWfx3kHNh6ZsIx3EnU=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDMnv174taji+aGd1T7v7hmnptxf0/j/+TWbS4esnvu5es1/p zo3bNh2lLAxiHAyyYoosibf7WqTW/3HZ4dzzFmYOKxPIEAYuTgGYSEc7I8Pxv0r/94uLtlyYuI05O9 Mz3lZ6QmVdj3j8kpg5W/b9z4lmZLgfxHNHOGcjq8mVBye2SveKfDypZT6Z64XQxI0XbRZtrGYHAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
+ <20230217155838.848403-3-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230217155838.848403-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,105 +79,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-The system controller's flash can be accessed via an MSS-exposed QSPI
-controller sitting, which sits between the mailbox's control & data
-registers. On Icicle, it has an MT25QL01GBBB8ESF connected to it.
 
-The system controller and MSS both have separate QSPI controllers, both
-of which can access the flash, although the system controller takes
-priority.
-Unfortunately, on engineering sample silicon, such as that on Icicle
-kits, the MSS' QSPI controller cannot write to the flash due to a bug.
-As a workaround, a QSPI controller can be implemented in the FPGA
-fabric and the IO routing modified to connect it to the flash in place
-of the "hard" controller in the MSS.
+On 17.02.2023 16:58, Krzysztof Kozlowski wrote:
+> Device node names should be generic and bindings expect certain pattern
+> for RPMh regulator nodes.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../boot/dts/microchip/mpfs-icicle-kit.dts    | 21 ++++++++++++++++
- arch/riscv/boot/dts/microchip/mpfs.dtsi       | 24 ++++++++++++++-----
- 2 files changed, 39 insertions(+), 6 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-index 90b261114763..2dae3f8f33f6 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-@@ -199,6 +199,27 @@ &syscontroller {
- 	status = "okay";
- };
- 
-+&syscontroller_qspi {
-+	/*
-+	 * The flash *is* there, but Icicle kits that have engineering sample
-+	 * silicon (write?) access to this flash to non-functional. The system
-+	 * controller itself can actually access it, but the MSS cannot write
-+	 * an image there. Instantiating a coreQSPI in the fabric & connecting
-+	 * it to the flash instead should work though. Pre-production or later
-+	 * silicon does not have this issue.
-+	 */
-+	status = "disabled";
-+
-+	sys_ctrl_flash: flash@0 { // MT25QL01GBBB8ESF-0SIT
-+		compatible = "jedec,spi-nor";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <20000000>;
-+		spi-rx-bus-width = <1>;
-+		reg = <0>;
-+	};
-+};
-+
- &usb {
- 	status = "okay";
- 	dr_mode = "host";
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 0a9bb84af438..568da2b570c0 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -173,11 +173,6 @@ refclk: mssrefclk {
- 		#clock-cells = <0>;
- 	};
- 
--	syscontroller: syscontroller {
--		compatible = "microchip,mpfs-sys-controller";
--		mboxes = <&mbox 0>;
--	};
--
- 	soc {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -498,11 +493,28 @@ usb: usb@20201000 {
- 
- 		mbox: mailbox@37020000 {
- 			compatible = "microchip,mpfs-mailbox";
--			reg = <0x0 0x37020000 0x0 0x1000>, <0x0 0x2000318C 0x0 0x40>;
-+			reg = <0x0 0x37020000 0x0 0x58>, <0x0 0x2000318C 0x0 0x40>,
-+			      <0x0 0x37020800 0x0 0x100>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <96>;
- 			#mbox-cells = <1>;
- 			status = "disabled";
- 		};
-+
-+		syscontroller_qspi: spi@37020100 {
-+			compatible = "microchip,mpfs-qspi", "microchip,coreqspi-rtl-v2";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0x37020100 0x0 0x100>;
-+			interrupt-parent = <&plic>;
-+			interrupts = <110>;
-+			clocks = <&clkcfg CLK_QSPI>; /* this is probably wrong, consult the docs! */
-+			status = "disabled";
-+		};
-+	};
-+
-+	syscontroller: syscontroller {
-+		compatible = "microchip,mpfs-sys-controller";
-+		mboxes = <&mbox 0>;
- 	};
- };
--- 
-2.39.1
-
+Konrad
+> 
+> I was fixing these in other boards, but missed SC7280. Previous
+> (applied) set:
+> https://lore.kernel.org/r/20230127114347.235963-4-krzysztof.kozlowski@linaro.org
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts        | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts           | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi          | 4 ++--
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi        | 4 ++--
+>  5 files changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> index 1185141f348e..afae7f46b050 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> @@ -27,7 +27,7 @@ chosen {
+>  };
+>  
+>  &apps_rsc {
+> -	pmg1110-regulators {
+> +	regulators-2 {
+>  		compatible = "qcom,pmg1110-rpmh-regulators";
+>  		qcom,pmic-id = "k";
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> index 4e0b013e25f4..df39a64da923 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> @@ -40,7 +40,7 @@ vreg_edp_bl_crd: vreg-edp-bl-crd-regulator {
+>  /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
+>  
+>  &apps_rsc {
+> -	pmg1110-regulators {
+> +	regulators-2 {
+>  		compatible = "qcom,pmg1110-rpmh-regulators";
+>  		qcom,pmic-id = "k";
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index ba64316b4427..15222e92e3f5 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -25,7 +25,7 @@ chosen {
+>  };
+>  
+>  &apps_rsc {
+> -	pmr735a-regulators {
+> +	regulators-2 {
+>  		compatible = "qcom,pmr735a-rpmh-regulators";
+>  		qcom,pmic-id = "e";
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 8b5293e7fd2a..8ebcf763b3c7 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -184,7 +184,7 @@ codec {
+>  };
+>  
+>  &apps_rsc {
+> -	pm7325-regulators {
+> +	regulators-0 {
+>  		compatible = "qcom,pm7325-rpmh-regulators";
+>  		qcom,pmic-id = "b";
+>  
+> @@ -279,7 +279,7 @@ vreg_l19b_1p8: ldo19 {
+>  		};
+>  	};
+>  
+> -	pm8350c-regulators {
+> +	regulators-1 {
+>  		compatible = "qcom,pm8350c-rpmh-regulators";
+>  		qcom,pmic-id = "c";
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> index 88204f794ccb..cb0cc2ba2fa3 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> @@ -87,7 +87,7 @@ &apps_rsc {
+>  	 * are left out of here since they are managed elsewhere.
+>  	 */
+>  
+> -	pm7325-regulators {
+> +	regulators-0 {
+>  		compatible = "qcom,pm7325-rpmh-regulators";
+>  		qcom,pmic-id = "b";
+>  
+> @@ -188,7 +188,7 @@ vreg_l19b_1p8: ldo19 {
+>  		};
+>  	};
+>  
+> -	pm8350c-regulators {
+> +	regulators-1 {
+>  		compatible = "qcom,pm8350c-rpmh-regulators";
+>  		qcom,pmic-id = "c";
+>  
