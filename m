@@ -2,612 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3994B69A8C5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 11:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 783B769A832
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 10:34:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbjBQKA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 05:00:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55908 "EHLO
+        id S229685AbjBQJe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 04:34:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjBQKAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 05:00:55 -0500
-Received: from spamfilter04.delta.nl (spamfilter04.delta.nl [217.102.255.204])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBEE755A3;
-        Fri, 17 Feb 2023 02:00:52 -0800 (PST)
-Received: from host-ubmmyvj.static.zeelandnet.nl ([217.102.255.198] helo=mail.zeelandnet.nl)
-        by spamfilter04.delta.nl with esmtp (Exim 4.92)
-        (envelope-from <mike.looijmans@topic.nl>)
-        id 1pSx61-0002ND-Bo; Fri, 17 Feb 2023 10:32:05 +0100
-X-Sender-IP: 204.168.188.16
-Received: from phenom.domain_not_set.invalid (016-188-168-204.dynamic.caiway.nl [204.168.188.16])
-        (Authenticated sender: glasveze@delta.nl)
-        by mail.zeelandnet.nl (Postfix) with ESMTPA;
-        Fri, 17 Feb 2023 10:31:46 +0100 (CET)
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: adc: Add driver for TI ADS1100 and ADS1000 chips
-Date:   Fri, 17 Feb 2023 10:31:28 +0100
-Message-Id: <20230217093128.8344-2-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230217093128.8344-1-mike.looijmans@topic.nl>
-References: <20230217093128.8344-1-mike.looijmans@topic.nl>
-X-Originating-IP: 217.102.255.198
-X-DELTA-Domain: zeelandnet.nl
-X-DELTA-Username: 217.102.255.198
-Authentication-Results: delta.nl; auth=pass smtp.auth=217.102.255.198@zeelandnet.nl
-X-DELTA-Outgoing-Class: ham
-X-DELTA-Outgoing-Evidence: SB/global_tokens (5.58220942115e-05)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT8Ek/evweAfCr35UpAYUD3+PUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5xzeemUa7CfwmLuWRw6Ruql9Wrt/oF2ofKYeezPZTW+uL/H
- seNZtCKdSRRS0Op9pfwEIJgF/Accv4lLtE4TWYNIjgZ0d6t6F7vRFkkblm+Z5NM7uAX91bCdERq+
- A7shw5HBQ2daKZyt52e93s8gLaWLOD0k0yEeil+YFQCKRVPBg05RYxHc7P83X0MN+qD//KRAIHit
- SXey4py3ysTASO2UXeFQ4Qgt4X4Tp95rRBIvvWBPBRhQMjnWPePTCfZDmArPZIeACtMN2+k7Hl2f
- CJBCzMQSU0TAfewY74azpmhUFMUm6WR+8c0KEwPTO8SnuobzsYGVSJ8wtWY1sFszHIIOCVaSXCYz
- 6id0Qp9FVqPRF2suI8AhfWAI+3OB0r2i1Lt3K9A6cgdCiY8xmftez8R17qICVXFBwzSiou3p4l21
- Lnm4raDtqovtutf+6p3IWiEp7sv8hwpvb9d6DiO/MNJCAi4VQGJ+1LTkbQYmusVqy7ayNInQ+0lb
- zXWs+DxTD0/y9NItsM9ttotsEyQnvsnwgLS2YCXoa0H3byJv27sfTQg0uDekYo1Hqy4HTtnbisEY
- dF3BmDDWlyN0s3TqgqYglfL26r6XjWWOjRxq519qzGAk8LmqWByQuE4NgLCNvMqE1OOhyzG/Oscj
- BsvZZcW2F/eP5MA2oM4kHoDesUvzBiKGdVbzMHZCLbq+RUAvJzB5kqRXG94JLe5wjSBKHlptjwLc
- C/q3ulM+N0SFWvYGld402dhO3rKV6pwQxFvCm4fZge4+1O2L9U8n0gI8wLSjrhcJAwxv5UO5sZxd
- eqrFmDfltnogTj8qLK1JEjQtdLlpGGJIVc62Nqo696BsygOetfhl6mn95SwmcmfcGGUA0e6qXhdN
- qA/HGy79l8NsddgLhvp0D3f4afLIxAhC50yRfl6ccly0PzSbw88/mVDVjJtxNRxDtVtSVZUycqyT
- RYlryfBAuZ5Et+LGxtm9bdYCmKJZW+BrFDC/0X/A+ATYOc7UfRNcx89nmby0P9XyoKjuEiLQ7atO
- 8HFTGDgCMvPsvCrJPmnnTHzVkpybMK7ZTcy7gw0xIsUMCrkLcCOUpBeAxMISlhTTogmIm+7uWnoK
- mjYRxHdk36dyx5RXwY9bPSk4xAm9D8KTeKJT7gNACPda9C5A1O6kFyeoUgLG9Fmq65AUgaZnd2hL
- 2hmYKGSbsZnDQjgsSw49Sii5+aiGrIAWIi25oV9mrhSyrCr9ZkLoYuqq9KhbrPlc7mH86PRM2wXS
- rZeO7490DQ4oonjwx7zj1NX1DIR11dSkmPvtyWJgnC5zP7uIa3lQ/u231eSo5G2x/iFPdyw4ROzm
- NnUfS+9D/8f1V4XA52uMvrBv5mOLRYyA4gWNdmAd3MxX1sDOTbqvraXMdrNhWyDyKHiG9D9npc/l
- oKm25XEdh/tdoFOMHHASJNUmoOHSoqgqxfHmWWD85nwkbPmrbEw7dsSRat9CQHDi1xXFs3q3IhkP
- kh0tg/7K/pvhMveDMLvPOCN7G4f8/9jMrNCEeHzU1fqcBF0cc09c/vXmiMsV0QMqN40gdI/Bo0mx
- wy49VYRt2QpvK9MHbp7CnWC4JNX3FpKX5O1CJVQsd8mXfdwBJpdMG5E66qnk8yMIt1SRoB9SzM1R
- dTEvuGslKTrRIXcXpFg5ivY=
-X-Report-Abuse-To: spam@spamfilter03.delta.nl
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
-        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230073AbjBQJex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 04:34:53 -0500
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2043.outbound.protection.outlook.com [40.107.243.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B784B507;
+        Fri, 17 Feb 2023 01:34:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iBSatMiL1B38BKgnLKLTkwOoqqA3jPscb0giXLAeRQa5vMm3IxlzQecaIFyDq9JPLTL3HD8/8nh21Z//vRimog1cGU5LLBdAglk8N24DJTo6gDY/R9k9gxCnkQIwf1LufjiJX03Oaz5XG5CXVpFQcTOy3L6PHO7aLP0CsfJalaqbHMoLzj3sc/jlAW5Qo6/4y7ZudGISrt6G7i0ur8ISRFAgF6e+m0d9wwm85MXZuL/c0AkaE6qb5/5+lfaWDyVQS+G8FucXMEhgARvm05VipEu9a/8wfhxboDkvXaWkmtD71RgN0lyG3MZPiIHQctGhW4/jkHqymbzElJmraIcZ8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ElGoSWJlFqF/9Q6ZF8MG9FHIibUHrBQ0PPuvawn4h30=;
+ b=GWv8VVDYRWFvgz+O8GjySePIUP4Q5ot25OzxkOJUs9/daJCDq4YcP9XpGkirUABgQuzdJLOsoHfkItfV8N/WwsCUc0JM/uaB7RIP5TlgrxFcpeUFa6KwxKx5AdPQDbF4jLFxI0pYZa3EdOXLQY03Fo95vfXqsYdOfeQsG/ejyMNIgG3a8IwYenDHODr2Sf1Vk1vp1VUpEQWhHPUMKUGaKy5nwCUNGNK3Np68poDzuhx+k8O12CYDiYaA6PdBXiysQJEiWu/kaecJZxnzCZBZHtyQ1uj1uJSVObgATRU5cE4GTqhjOOKld9HKhgjW5lbnYzUEI5IytIfUWpdfMChGhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=metafoo.de smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ElGoSWJlFqF/9Q6ZF8MG9FHIibUHrBQ0PPuvawn4h30=;
+ b=H8DsMH4cBNKmGh/bJgWWBRFmUTHSb47IaUSoCzgHz+tFTOzfq5tR51vML8TpMjZgRqhXtRa8EFAknsF7B9HDaKD6gulECbVNn9r1/0jL8Uku5x9YdepanXvwEW4V/LiqZJqd5SC7nJc2i3DvYKRw/N8+3odeRlaDqB9OvIp5IEo=
+Received: from MW4PR04CA0380.namprd04.prod.outlook.com (2603:10b6:303:81::25)
+ by SA1PR12MB8600.namprd12.prod.outlook.com (2603:10b6:806:257::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26; Fri, 17 Feb
+ 2023 09:34:46 +0000
+Received: from CO1NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:81:cafe::4b) by MW4PR04CA0380.outlook.office365.com
+ (2603:10b6:303:81::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.13 via Frontend
+ Transport; Fri, 17 Feb 2023 09:34:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT003.mail.protection.outlook.com (10.13.175.93) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6111.13 via Frontend Transport; Fri, 17 Feb 2023 09:34:45 +0000
+Received: from [10.254.241.51] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 17 Feb
+ 2023 03:34:42 -0600
+Message-ID: <08839e77-5b0f-db13-ac7f-c9addc73b7a3@amd.com>
+Date:   Fri, 17 Feb 2023 10:34:39 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 1/2] i2c: cadence: Allow to specify the FIFO depth and
+ maximum transfer length
+Content-Language: en-US
+To:     Lars-Peter Clausen <lars@metafoo.de>, Wolfram Sang <wsa@kernel.org>
+CC:     Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230205230208.58355-1-lars@metafoo.de>
+ <813224a5-54c9-f6f1-4288-703a6388dab6@amd.com>
+ <c26a994e-a004-8706-eb82-ce89b6cbbeb0@metafoo.de>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <c26a994e-a004-8706-eb82-ce89b6cbbeb0@metafoo.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT003:EE_|SA1PR12MB8600:EE_
+X-MS-Office365-Filtering-Correlation-Id: a6f01054-8e88-4421-688b-08db10ca3499
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EcS4mJoyrd2n7o8JwFpPNHEtRlnxbZPZcfWGp6ccJz7zGW/ph6R67yPwji+1YNxo2Dnq/mRFVbACNfSmlZREH8WkolFK3p2ZjpfsBKUYsXZqCVh5Ij9iMgeB6z/o1YKqnukLXHIi1rb1XZzGX2pCGuk/hmBKeudZ4VrhLpcSPMCZz49/sVdG93GtnATuOTWbEWvn0k9FgSJMkOSeo5oYQBGjFyZ+bHIhWIqTRsNRcimUpX9DUYRXpaTF0qkul7OQDULWbPzb9F9SoiqGnlaaQZBzUrI60KZyR5jJkxRGPVElTYdSdcSuWvNwa+iJqEJlSmDtCDy1UPmw2/r5wuZUfzvw5QKWY76vECl3SrUvbhBx5g+kPed1u5cygw8PekYjSVeNwESkSTawKmpeZBzpielAQDIL7/OHoG0OCxhlp30xRr96gb5ACzWh6Y4dkf8Sqxd5FeN6hQHs0iwnJmUQXkiWT+a21UxVt/beO/4DhLIQU7jKIATscTcuvhVKDGUGsRE01vdBWle5JIDPqlZ8TzKfhlZs3s7O2PGOM+Kzvmi7oXFSagTONusnxmsuErLId7NG2ZRl9JOS1JyPUFehuFt2Wx0R1gN4oB9Ge2l6kWy09CAkGpWmNlF0R1IPB+9WKexwzihpD9Vv2dijja9vkG6j8eh0AhK2M2p1ni0EcGD3XjNNrCa5sQCEDUB8+VkAxAxRj+W6SDyQlpfm+fSdYppp22/uPFRSego6Mzb7XS62hC1lfrzwoOI32OKojQJlbtyRMiDfmlKREHkF9mIjWw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(136003)(396003)(376002)(346002)(39860400002)(451199018)(36840700001)(40470700004)(46966006)(2906002)(31686004)(356005)(36860700001)(44832011)(5660300002)(426003)(83380400001)(8936002)(41300700001)(40460700003)(54906003)(16576012)(8676002)(36756003)(4326008)(70206006)(110136005)(316002)(70586007)(336012)(40480700001)(16526019)(86362001)(82740400003)(186003)(478600001)(47076005)(31696002)(82310400005)(2616005)(81166007)(53546011)(26005)(6666004)(43740500002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 09:34:45.3401
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6f01054-8e88-4421-688b-08db10ca3499
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT003.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ADS1100 is a 16-bit ADC (at 8 samples per second).
-The ADS1000 is similar, but has a fixed data rate.
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 
----
+On 2/16/23 15:12, Lars-Peter Clausen wrote:
+> On 2/6/23 00:02, Michal Simek wrote:
+>>
+>>
+>> On 2/6/23 00:02, Lars-Peter Clausen wrote:
+>>> The FIFO depth and maximum transfer length are Synthesis configuration
+>>> parameters of the Cadence I2C IP. Different SoCs will use different values
+>>> for these parameters.
+>>>
+>>> Currently the driver has the FIFO depth hardcoded to 16 and the maximum
+>>> transfer length to 255. Trying to use the driver with an IP instance that
+>>> uses smaller values for these will work for short transfers. But longer
+>>> transfers will fail.
+>>>
+>>> The maximum transfer length can easily be detected at runtime since the
+>>> unused MSBs of the transfer length register are hardwired to 0. Writing
+>>> 0xff and then reading back the value will give the maximum transfer length.
+>>
+>> I think that these are pretty much two patches in one.
+>> The first should target transfer length part and second fifo depth part.
+> Hm, I'm not sure it is worth separating this out. These two are very tightly 
+> related, but I can split it.
 
- drivers/iio/adc/Kconfig      |  12 +
- drivers/iio/adc/Makefile     |   1 +
- drivers/iio/adc/ti-ads1100.c | 467 +++++++++++++++++++++++++++++++++++
- 3 files changed, 480 insertions(+)
- create mode 100644 drivers/iio/adc/ti-ads1100.c
+thanks
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 63f80d747cbd..bc1918d87f8e 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1207,6 +1207,18 @@ config TI_ADS1015
- 	  This driver can also be built as a module. If so, the module will be
- 	  called ti-ads1015.
- 
-+config TI_ADS1100
-+	tristate "Texas Instruments ADS1100 and ADS1000 ADC"
-+	depends on I2C
-+	select IIO_BUFFER
-+	select IIO_TRIGGERED_BUFFER
-+	help
-+	  If you say yes here you get support for Texas Instruments ADS1100 and
-+	  ADS1000 ADC chips.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called ti-ads1100.
-+
- config TI_ADS7950
- 	tristate "Texas Instruments ADS7950 ADC driver"
- 	depends on SPI && GPIOLIB
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 4ef41a7dfac6..61ef600fab99 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -107,6 +107,7 @@ obj-$(CONFIG_TI_ADC108S102) += ti-adc108s102.o
- obj-$(CONFIG_TI_ADC128S052) += ti-adc128s052.o
- obj-$(CONFIG_TI_ADC161S626) += ti-adc161s626.o
- obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
-+obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
- obj-$(CONFIG_TI_ADS7950) += ti-ads7950.o
- obj-$(CONFIG_TI_ADS8344) += ti-ads8344.o
- obj-$(CONFIG_TI_ADS8688) += ti-ads8688.o
-diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
-new file mode 100644
-index 000000000000..0b0d3e5b6bd6
---- /dev/null
-+++ b/drivers/iio/adc/ti-ads1100.c
-@@ -0,0 +1,467 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ADS1100 - Texas Instruments Analog-to-Digital Converter
-+ *
-+ * Copyright (c) 2023, Topic Embedded Products
-+ *
-+ * IIO driver for ADS1100 and ADS1000 ADC 16-bit I2C
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/init.h>
-+#include <linux/i2c.h>
-+#include <linux/mutex.h>
-+#include <linux/property.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <linux/iio/iio.h>
-+#include <linux/iio/types.h>
-+#include <linux/iio/sysfs.h>
-+
-+#define ADS1100_DRV_NAME "ads1100"
-+
-+/* The ADS1100 has a single byte config register */
-+
-+/* Conversion in progress bit */
-+#define ADS1100_CFG_ST_BSY	BIT(7)
-+/* Single conversion bit */
-+#define ADS1100_CFG_SC		BIT(4)
-+/* Data rate */
-+#define ADS1100_DR_MASK		(BIT(3) | BIT(2))
-+#define ADS1100_DR_SHIFT	2
-+/* Gain */
-+#define ADS1100_PGA_MASK	(BIT(1) | BIT(0))
-+
-+#define ADS1100_CONTINUOUS	0
-+#define	ADS1100_SINGLESHOT	ADS1100_CFG_SC
-+
-+#define ADS1100_SLEEP_DELAY_MS	2000
-+
-+static const int ads1100_data_rate[] = {128, 32, 16, 8};
-+static const int ads1100_data_rate_scale[] = {2048, 8192, 16384, 32768};
-+static const int ads1100_gain[] = {1, 2, 4, 8};
-+
-+struct ads1100_data {
-+	struct i2c_client *client;
-+	struct regulator *reg_vdd;
-+	struct mutex lock;
-+	u8 config;
-+	bool supports_data_rate; /* Only the ADS1100 can select the rate */
-+};
-+
-+static const struct iio_chan_spec ads1100_channel = {
-+	.type = IIO_VOLTAGE,
-+	.differential = 0,
-+	.indexed = 0,
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+	.info_mask_shared_by_all =
-+				BIT(IIO_CHAN_INFO_SCALE) |
-+				BIT(IIO_CHAN_INFO_HARDWAREGAIN) |
-+				BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+	.info_mask_shared_by_all_available =
-+				BIT(IIO_CHAN_INFO_HARDWAREGAIN) |
-+				BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+	.scan_type = {
-+		.sign = 's',
-+		.realbits = 16,
-+		.storagebits = 16,
-+		.shift = 0,
-+		.endianness = IIO_CPU,
-+	},
-+	.datasheet_name = "AIN",
-+};
-+
-+static int ads1100_set_config_bits(struct ads1100_data *data, u8 mask, u8 value)
-+{
-+	int ret;
-+	u8 config = (data->config & ~mask) | value;
-+
-+	if (data->config == config)
-+		return 0; /* Already done */
-+
-+	ret = i2c_master_send(data->client, &config, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	data->config = config;
-+	return 0;
-+};
-+
-+static int ads1100_set_conv_mode(struct ads1100_data *data, u8 flag)
-+{
-+	return ads1100_set_config_bits(data, ADS1100_CFG_SC, flag);
-+};
-+
-+static int ads1100_data_rate_index(struct ads1100_data *data)
-+{
-+	return (data->config & ADS1100_DR_MASK) >> ADS1100_DR_SHIFT;
-+}
-+
-+static int ads1100_pga_index(struct ads1100_data *data)
-+{
-+	return (data->config & ADS1100_PGA_MASK);
-+}
-+
-+/* Calculate full-scale value */
-+static int ads1100_full_scale(struct ads1100_data *data)
-+{
-+	return ads1100_data_rate_scale[ads1100_data_rate_index(data)] *
-+			ads1100_gain[ads1100_pga_index(data)];
-+
-+}
-+
-+#ifdef CONFIG_PM
-+static int ads1100_set_power_state(struct ads1100_data *data, bool on)
-+{
-+	int ret;
-+	struct device *dev = &data->client->dev;
-+
-+	if (on) {
-+		ret = pm_runtime_resume_and_get(dev);
-+	} else {
-+		pm_runtime_mark_last_busy(dev);
-+		ret = pm_runtime_put_autosuspend(dev);
-+	}
-+
-+	return ret < 0 ? ret : 0;
-+}
-+
-+#else /* !CONFIG_PM */
-+
-+static int ads1100_set_power_state(struct ads1100_data *data, bool on)
-+{
-+	return 0;
-+}
-+
-+#endif /* !CONFIG_PM */
-+
-+static int ads1100_get_adc_result(struct ads1100_data *data, int chan, int *val)
-+{
-+	int ret;
-+	u8 buffer[2];
-+
-+	if (chan != 0)
-+		return -EINVAL;
-+
-+	ret = i2c_master_recv(data->client, buffer, sizeof(buffer));
-+	if (ret < 0) {
-+		dev_err(&data->client->dev, "I2C read fail: %d\n", ret);
-+		return ret;
-+	}
-+
-+	*val = (s16)(((u16)buffer[0] << 8) | buffer[1]);
-+	return 0;
-+}
-+
-+static int ads1100_set_gain(struct ads1100_data *data, int gain)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(ads1100_gain); ++i) {
-+		if (ads1100_gain[i] == gain) {
-+			return ads1100_set_config_bits(
-+						data, ADS1100_PGA_MASK, i);
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int ads1100_set_data_rate(struct ads1100_data *data, int chan, int rate)
-+{
-+	int i;
-+	int size = data->supports_data_rate ? ARRAY_SIZE(ads1100_data_rate) : 1;
-+
-+	for (i = 0; i < size; ++i) {
-+		if (ads1100_data_rate[i] == rate) {
-+			return ads1100_set_config_bits(
-+				data, ADS1100_DR_MASK, i << ADS1100_DR_SHIFT);
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int ads1100_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      const int **vals, int *type, int *length,
-+			      long mask)
-+{
-+	struct ads1100_data *data = iio_priv(indio_dev);
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EINVAL;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*type = IIO_VAL_INT;
-+		*vals = ads1100_data_rate;
-+		if (data->supports_data_rate)
-+			*length = ARRAY_SIZE(ads1100_data_rate);
-+		else
-+			*length = 1;
-+		return IIO_AVAIL_LIST;
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		*type = IIO_VAL_INT;
-+		*vals = ads1100_gain;
-+		*length = ARRAY_SIZE(ads1100_gain);
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ads1100_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	int ret;
-+	struct ads1100_data *data = iio_priv(indio_dev);
-+
-+	dev_info(&data->client->dev, "%s %ld\n", __func__, mask);
-+
-+	mutex_lock(&data->lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			break;
-+
-+		ret = ads1100_set_power_state(data, true);
-+		if (ret < 0)
-+			goto release_direct;
-+
-+		ret = ads1100_get_adc_result(data, chan->address, val);
-+		if (ret < 0) {
-+			ads1100_set_power_state(data, false);
-+			goto release_direct;
-+		}
-+
-+		ret = ads1100_set_power_state(data, false);
-+		if (ret < 0)
-+			goto release_direct;
-+
-+		ret = IIO_VAL_INT;
-+release_direct:
-+		iio_device_release_direct_mode(indio_dev);
-+		break;
-+	case IIO_CHAN_INFO_SCALE:
-+		ret = regulator_get_voltage(data->reg_vdd);
-+		if (ret > 0) {
-+			/* full-scale is the supply voltage (microvolts now) */
-+			*val = ret / 1000; /* millivolts, range 27000..50000 */
-+			*val2 = 1000 * ads1100_full_scale(data);
-+			ret = IIO_VAL_FRACTIONAL;
-+		}
-+		break;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = ads1100_data_rate[ads1100_data_rate_index(data)];
-+		ret = IIO_VAL_INT;
-+		break;
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		*val = ads1100_gain[ads1100_pga_index(data)];
-+		*val2 = 0;
-+		ret = IIO_VAL_INT;
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
-+	mutex_unlock(&data->lock);
-+
-+	return ret;
-+}
-+
-+static int ads1100_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct ads1100_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	mutex_lock(&data->lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		ret = ads1100_set_gain(data, val);
-+		break;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		ret = ads1100_set_data_rate(data, chan->address, val);
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
-+	mutex_unlock(&data->lock);
-+
-+	return ret;
-+}
-+
-+static const struct iio_info ads1100_info = {
-+	.read_avail	= ads1100_read_avail,
-+	.read_raw	= ads1100_read_raw,
-+	.write_raw	= ads1100_write_raw,
-+};
-+
-+static int ads1100_setup(struct ads1100_data *data)
-+{
-+	int ret;
-+	u8 buffer[3];
-+
-+	/* Setup continuous sampling mode at 8sps */
-+	buffer[0] = ADS1100_DR_MASK | ADS1100_CONTINUOUS;
-+	ret = i2c_master_send(data->client, buffer, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = i2c_master_recv(data->client, buffer, sizeof(buffer));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Config register returned in third byte, strip away the busy status */
-+	data->config = buffer[2] & ~ADS1100_CFG_ST_BSY;
-+
-+	/* Detect the sample rate capability by checking the DR bits */
-+	data->supports_data_rate = !!(buffer[2] & ADS1100_DR_MASK);
-+
-+	return 0;
-+}
-+
-+static int ads1100_probe(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev;
-+	struct ads1100_data *data;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	i2c_set_clientdata(client, indio_dev);
-+	data->client = client;
-+	mutex_init(&data->lock);
-+
-+	indio_dev->name = ADS1100_DRV_NAME;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = &ads1100_channel;
-+	indio_dev->num_channels = 1;
-+	indio_dev->info = &ads1100_info;
-+
-+	data->reg_vdd = devm_regulator_get(&client->dev, "vdd");
-+	if (IS_ERR(data->reg_vdd))
-+		return PTR_ERR(data->reg_vdd);
-+
-+	ret = regulator_enable(data->reg_vdd);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = ads1100_setup(data);
-+	if (ret) {
-+		dev_err(&client->dev, "Failed to communicate with device\n");
-+		goto exit_regulator;
-+	}
-+
-+	ret = pm_runtime_set_active(&client->dev);
-+	if (ret)
-+		goto exit_regulator;
-+
-+	pm_runtime_set_autosuspend_delay(&client->dev, ADS1100_SLEEP_DELAY_MS);
-+	pm_runtime_use_autosuspend(&client->dev);
-+	pm_runtime_enable(&client->dev);
-+
-+	ret = iio_device_register(indio_dev);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Failed to register IIO device\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+
-+exit_regulator:
-+	regulator_disable(data->reg_vdd);
-+	return ret;
-+}
-+
-+static void ads1100_remove(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-+	struct ads1100_data *data = iio_priv(indio_dev);
-+
-+	iio_device_unregister(indio_dev);
-+
-+	ads1100_set_conv_mode(data, ADS1100_SINGLESHOT);
-+
-+	pm_runtime_disable(&client->dev);
-+	pm_runtime_set_suspended(&client->dev);
-+}
-+
-+#ifdef CONFIG_PM
-+static int ads1100_runtime_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
-+	struct ads1100_data *data = iio_priv(indio_dev);
-+
-+	ads1100_set_conv_mode(data, ADS1100_SINGLESHOT);
-+	regulator_disable(data->reg_vdd);
-+
-+	return 0;
-+}
-+
-+static int ads1100_runtime_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
-+	struct ads1100_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = regulator_enable(data->reg_vdd);
-+	if (ret) {
-+		dev_err(&data->client->dev, "Failed to enable Vdd\n");
-+		return ret;
-+	}
-+
-+	/*
-+	 * We'll always change the mode bit in the config register, so there is
-+	 * no need here to "force" a write to the config register. If the device
-+	 * has been power-cycled, we'll re-write its config register now.
-+	 */
-+	return ads1100_set_conv_mode(data, ADS1100_CONTINUOUS);
-+}
-+#endif
-+
-+static const struct dev_pm_ops ads1100_pm_ops = {
-+	SET_RUNTIME_PM_OPS(ads1100_runtime_suspend,
-+			   ads1100_runtime_resume, NULL)
-+};
-+
-+static const struct i2c_device_id ads1100_id[] = {
-+	{ "ads1100", },
-+	{ "ads1000", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, ads1100_id);
-+
-+static const struct of_device_id ads1100_of_match[] = {
-+	{ .compatible = "ti,ads1100", },
-+	{ .compatible = "ti,ads1000", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ads1100_of_match);
-+
-+static struct i2c_driver ads1100_driver = {
-+	.driver = {
-+		.name = ADS1100_DRV_NAME,
-+		.of_match_table = ads1100_of_match,
-+		.pm = &ads1100_pm_ops,
-+	},
-+	.probe_new	= ads1100_probe,
-+	.remove		= ads1100_remove,
-+	.id_table	= ads1100_id,
-+};
-+
-+module_i2c_driver(ads1100_driver);
-+
-+MODULE_AUTHOR("Mike Looijmans <mike.looijmans@topic.nl>");
-+MODULE_DESCRIPTION("Texas Instruments ADS1100 ADC driver");
-+MODULE_LICENSE("GPL");
--- 
-2.17.1
+>>
+>>>   /**
+>>>    * cdns_i2c_probe - Platform registration call
+>>>    * @pdev:    Handle to the platform device structure
+>>> @@ -1242,6 +1274,7 @@ static int cdns_i2c_probe(struct platform_device *pdev)
+>>>       struct cdns_i2c *id;
+>>>       int ret, irq;
+>>>       const struct of_device_id *match;
+>>> +    u32 val;
+>>>         id = devm_kzalloc(&pdev->dev, sizeof(*id), GFP_KERNEL);
+>>>       if (!id)
+>>> @@ -1317,6 +1350,12 @@ static int cdns_i2c_probe(struct platform_device *pdev)
+>>>   #endif
+>>>       id->ctrl_reg = CDNS_I2C_CR_ACK_EN | CDNS_I2C_CR_NEA | CDNS_I2C_CR_MS;
+>>>   +    val = CDNS_I2C_FIFO_DEPTH_DEFAULT;
+>>
+>> you can remove val completely.
+>> id->fifo_depth = CDNS_I2C_FIFO_DEPTH_DEFAULT;
+> But only if I make fifo_depth a u32.
 
+No problem for me.
+
+M
