@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FAAE69AFFD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE4B69B000
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbjBQP6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 10:58:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55482 "EHLO
+        id S229926AbjBQP6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 10:58:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbjBQP6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:58:48 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677D75D3EC
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:46 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id i28so5481731eda.8
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:46 -0800 (PST)
+        with ESMTP id S229893AbjBQP6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:58:50 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4555A3A6
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:48 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id h14so6241338edz.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CYkwCuqigGfCoKLWcMDTYElj0W4J5moHrJOlJcxcQqo=;
-        b=Cy5xpdNu8jAGyMXKMw3pmI3Hl887D2GB5iBSBv4klpb/X79+4aCl+UyrY5aXkE7jxB
-         08blWIZpGSuvoBZhvG2VtFCv/cKz3j5htB3McpbBCareoy1un2gWkk848fwlUthfnf4/
-         LuVXpCEWkjxreVdc57pZxBZ+Fd3DRdhfIkMlvH4fniN1EhGdj7/JrDRXV0Yqw17s5LfI
-         1ViOaiS1PWBdJlSOu5F+qc2DFiWy/pEVCtmwJAzGccsxmcQtnJ0VYvxEfzh+a71n8t/l
-         RUQ8PfyPYSvBYQTxtiyv5ahl9mcggirbkvpwMve14frGI6kOJO/cTwjSMejwSzqCu4hR
-         QyZg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/AdPiwh3b8A+zGiRoWfdq4qtMfxRdZ+CJHCAn9rHssM=;
+        b=NOxz72QPbXJ3FlLpmA9orNXQV7RHz+HVkf7e59E8kduNeQ1x994jq3mmmK3Cih6fyd
+         lkzTKzN0xhPvp0+uLa1pQcPx+XEk4hzlLOguCPdtYAu+hIjqlAkWPis87L3zMMuS8EUX
+         ttoqE6sXqA06pHBYh28ALZ0yA8z/BF4Eoc2SCXsS11NsyEiSpkLuRW/uFFpJstm7f8vv
+         H50+nZ68TOPCvLfm5USzBqleq4knxdfObRzvuH5CeE3w9jighOILVq9jbz3tSjtrplc3
+         i3bGkzTF3Ax1cKfM+wFrwuMfsXWAEPN3n/XSHaffrDCE7K2IDqcWmBJrwoCD+GVtvcvT
+         xczA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CYkwCuqigGfCoKLWcMDTYElj0W4J5moHrJOlJcxcQqo=;
-        b=e6MO2710eqPtPPOfQT51CqJSDAPbnPIBZiXyzZhgauJkSl+KZJBgMPk5M3YiujVxUC
-         DTAfLYaqK6Qx3hU7fpMs4mtZWsPOwSQ9R1YZ5xEUN+4a09KEQ3xeGFVWOD33pvppuh0m
-         YCXyuMlJC0WRgdwUMdPHEagU6Tl3MlWj/txo4jA9mrwidCpp5+00wUj7fgfEBN0gM7nA
-         3QPaBYPsOtuVKxeQnhuOHAcH4Ne1evurRgnL0zjmxWxbphndNm22BzYfQdrIWNDvIq94
-         AJBv0AEUKSp/+4MWpfu/OZpzey+LXnliAfKFDP/pmkt1atYzB61qe9AGQn5PG5De/+7P
-         8tZQ==
-X-Gm-Message-State: AO0yUKVRa+bzDXeht/1M39Go9Qxm3rlncT2IT0x5LdSYunJTMN6h3kr5
-        DQOQQT7MyVQm22bbCOg+DymQdA==
-X-Google-Smtp-Source: AK7set8sTy6QcLCsFDFZbGkcAunox6kJ4vp/Xj1tVQsgXo2ftR5DkhQIJTc8kUk8n5DMgr5OXMM/mQ==
-X-Received: by 2002:a17:906:4a58:b0:884:930:b014 with SMTP id a24-20020a1709064a5800b008840930b014mr9887865ejv.6.1676649524887;
-        Fri, 17 Feb 2023 07:58:44 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/AdPiwh3b8A+zGiRoWfdq4qtMfxRdZ+CJHCAn9rHssM=;
+        b=X1E8tFc581uKszzLacZTvOlARfxiLvwT/vTA/lmvoz0v7tDfCb3+29rU7hx9+DopB5
+         6IaaqwQns2OqOnhxa1V4Eh6HUf2J3eQUhbD26jngi+YKtwOJcxyhvTSAQsEUMCkCXy0f
+         /alJ2P5g1vJEVVK2HOXOiajOmMNj3du0Tl4h005mheH8qme+DTwSH83T1/3PfiQmUNcN
+         0Ae/sUsPqo3vFYXx2HWBMxR5qRdpLy9fZaqvdXWuZl6vQyZU2y9SnZFJdu4UwmvrmauS
+         qBtmunpIr7gjLOnW55r3fujAaG2Zm8+YC2hIdPlxUQ00WG35/8Zd8x+Cq2Trqr1HN6q3
+         TTig==
+X-Gm-Message-State: AO0yUKXnxFONq/CVkJiTiU6fmBZc0A4BrAKEfLnfrCSatGvd+0ek/z6w
+        529fcbaHSOrMZdLoMY2bNLIS7A==
+X-Google-Smtp-Source: AK7set/fhUZ+YsPyas6G5lnBSvnhDlmTuRWFwJI7Z0eOSZGDUbnuYLhTVBUIjvN84F6WDlxXSS7NHw==
+X-Received: by 2002:a17:906:90c9:b0:8aa:502c:44d3 with SMTP id v9-20020a17090690c900b008aa502c44d3mr10810229ejw.41.1676649526740;
+        Fri, 17 Feb 2023 07:58:46 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i15-20020a17090685cf00b008b1435bd1cbsm2290068ejy.105.2023.02.17.07.58.43
+        by smtp.gmail.com with ESMTPSA id i15-20020a17090685cf00b008b1435bd1cbsm2290068ejy.105.2023.02.17.07.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 07:58:44 -0800 (PST)
+        Fri, 17 Feb 2023 07:58:46 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,10 +58,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] arm64: dts: qcom: sc7180-trogdor-pazquel360: drop incorrect RT5682S VBAT-supply
-Date:   Fri, 17 Feb 2023 16:58:36 +0100
-Message-Id: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] arm64: dts: qcom: sc7280-herobrine-audio-rt5682: add missing supplies
+Date:   Fri, 17 Feb 2023 16:58:37 +0100
+Message-Id: <20230217155838.848403-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
+References: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,32 +75,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It seems that the RT5682S codec does not use VBAT-supply:
+Bindings expect DBVDD-supply and LDO1-IN-supply:
 
-  sc7180-trogdor-pazquel360-lte.dtb: codec@1a: Unevaluated properties are not allowed ('VBAT-supply' was unexpected)
+  sc7280-herobrine-evoker-lte.dtb: codec@1a: 'DBVDD-supply' is a required property
+  sc7280-herobrine-evoker-lte.dtb: codec@1a: 'LDO1-IN-supply' is a required property
+
+In sc7180-trogdor.dtsi they come from the same regulator, so let's
+assume intention was the same here.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ .../arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi     | 2 ++
+ 2 files changed, 4 insertions(+)
 
-I don't have access to datasheet. Driver still requests VBAT-supply but
-other boards simply remove this property for RT5682S.
----
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-index bc4f3b6c6634..273e2249f018 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-@@ -12,6 +12,7 @@ &alc5682 {
- 	compatible = "realtek,rt5682s";
- 	realtek,dmic1-clk-pin = <2>;
- 	realtek,dmic-clk-rate-hz = <2048000>;
-+	/delete-property/ VBAT-supply;
- };
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+index 1ca11a14104d..485f9942e128 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+@@ -94,6 +94,8 @@ alc5682: codec@1a {
+ 		interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
  
- ap_ts_pen_1v8: &i2c4 {
+ 		AVDD-supply = <&pp1800_alc5682>;
++		DBVDD-supply = <&pp1800_alc5682>;
++		LDO1-IN-supply = <&pp1800_alc5682>;
+ 		MICVDD-supply = <&pp3300_codec>;
+ 
+ 		realtek,dmic1-data-pin = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+index 69e7aa7b2f6c..8b855345e5c7 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+@@ -76,6 +76,8 @@ alc5682: codec@1a {
+ 		interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
+ 
+ 		AVDD-supply = <&pp1800_alc5682>;
++		DBVDD-supply = <&pp1800_alc5682>;
++		LDO1-IN-supply = <&pp1800_alc5682>;
+ 		MICVDD-supply = <&pp3300_codec>;
+ 
+ 		realtek,dmic1-data-pin = <1>;
 -- 
 2.34.1
 
