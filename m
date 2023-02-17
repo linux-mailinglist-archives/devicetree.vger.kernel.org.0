@@ -2,130 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA12969B0D3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 17:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C50C69B0D7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 17:28:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbjBQQ2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 11:28:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37108 "EHLO
+        id S230011AbjBQQ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 11:28:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbjBQQ2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 11:28:00 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03F7714993;
-        Fri, 17 Feb 2023 08:27:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E41561E5D;
-        Fri, 17 Feb 2023 16:27:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 319E9C433EF;
-        Fri, 17 Feb 2023 16:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676651259;
-        bh=/7n/cDvLrD1MXgANvvSLbsLrYC+ZynSXWqXQNtEzktE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JQHjgKLShFCu5HAbOO1K5ZDvuKqqVeT7xE/idx4eN0YIW/K0UasNEHeI3XABJC7I9
-         Vf5wgVsQzkFPIwCfpt3c9eZdigzQg4aNmrJZSGmmiK2lz0UfEvfR/4jjdedtkYDNE1
-         EypnzsRRkRIINmCxlBMRnv6LLfYPj113Outk3HAZifmYM3D12C/SBUJ5jGrsmzmuRp
-         5D3t+Meu4JZbcHIdsLu31iFzIpa4tIukVg3SJZsGOWHlAWdOliy4k4XYnv+Ndj+JYF
-         8+b169D7idvuqlNoQvr5zKdjwlJL5jGkL26fSVg6/dFJtlAOC3MEaUN/ilmSWruiIA
-         xBJgpKnd6Lnsw==
-Date:   Fri, 17 Feb 2023 16:27:34 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230100AbjBQQ2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 11:28:10 -0500
+Received: from FRA01-PR2-obe.outbound.protection.outlook.com (mail-pr2fra01on2077.outbound.protection.outlook.com [40.107.12.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6CC3A9C;
+        Fri, 17 Feb 2023 08:27:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fIsBqEYZ2oTBNrmmNtMMzrIr7BLT7CZNm2H2rSG807RKXIF1ODEjO/B8r+mbRhcrjZCJ/JjeixxA9EfYvpVVjvggobaKRx6njYTjCfFClutyQ115XRHo9S+/g5jDen5MxiPkgbXPItNngLifURvFGG2WMJm9aiR0w663Que46VlvYuriNTqWrkxHYNoRIuTMpEsuCygVPHf1PVViHktD9BG8vVbqaLHEF8XsLnkRmNAq1ZUI85XsWlEwAi6+X7wCzPpvvZJPudMjDIiPCYV9nwnTsRFNayaeVxBgIof6WGRXWFOw7eM9rZPoTZF70/xpYD6A5XsWg5PbKzE8KiPexA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nV1yLTJYfB1mffpaqdyLLoqs6y3zfSbghzz/ztGpkwU=;
+ b=NussVf4NDVQFZCM8lHmZtvYm5qsXeWyjeGYWVmJTxHe672IOEkmsG2Xw2jjgFT7pC7ZLf+u6v6cT6Jx429dsE3tuwEJf+tYDXM/EfmvzlIogcAyrZP0znQgfAFhRBXjxv5s96nqddEMiV7fT3wNtJ3jxCqmGf7h6vnNd2lri8GXD34nkxOEh7FwO7O0nAqsPpO1WqBSyMYEBz9nP+Xy00V15l+H4bYMqcAgrEg7J3PvZ7gQiLrzlPwakdcSyriBvU7P2uj88Rozk0oZ7gxfVos3KhWlRBN83iPYqw/jLhWzbE1+ssQl5QA5aFLP+MFpv+RUTrFyNxnuvYGoIdZePtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=csgroup.eu; dmarc=pass action=none header.from=csgroup.eu;
+ dkim=pass header.d=csgroup.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=csgroup.eu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nV1yLTJYfB1mffpaqdyLLoqs6y3zfSbghzz/ztGpkwU=;
+ b=bWROf97T2KOMBB6akYRZu4ORjZBZlCBPnzRf7KJHYO+Yp7cdmFciOvj2QkUx5JFxfBvL6rDcW4ImKjtED7x6Wy+LAWA5mrfsEz7ZctoFMPRiojCNfaQ2hJJMMfVzLMfbMOHQ8NC8eMauphNzj+I66yvd3x/Fa394p2eO3BPZJLTtbBN4s3HBMbepsbaa/iCV/1jJ3uxqcVmVgmBA2wQM32UrSfbGO5JPJbGGAvGO9g0qFG36Ba4cdyOpqCMQhnRhpD+PSVSvI743V9ZRpzXVVDispH6Bb2AiZbSsqDoRNCIV/ZZ/VpSgH7CyMltie6jCyXDYWkk8j26NtOKv0fIhfw==
+Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:31::15)
+ by MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:31::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.13; Fri, 17 Feb
+ 2023 16:27:47 +0000
+Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::2cfb:d4c:1932:b097]) by MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::2cfb:d4c:1932:b097%4]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
+ 16:27:47 +0000
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Message-ID: <Y++q9ln8P3XegqfN@spud>
-References: <Y6JB37Pd5TZoGMy4@spud>
- <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
- <Y6tSWB2+98a8k9Qw@spud>
- <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
- <Y+5z8skN2DuvxDEL@spud>
- <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
- <Y+8x/KSujhgNLAd6@wendy>
- <d3b06d0b-ff17-ebab-bae5-e1ec836fe667@starfivetech.com>
- <Y++B43uCnPQlRYFi@wendy>
- <dcba75b5-7b62-35aa-6836-5d5edd785002@linaro.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 03/10] MAINTAINERS: add the Freescale TSA controller
+ entry
+Thread-Topic: [PATCH v6 03/10] MAINTAINERS: add the Freescale TSA controller
+ entry
+Thread-Index: AQHZQuAYv7BLzP3t10+T4tyz77z/767TU8mA
+Date:   Fri, 17 Feb 2023 16:27:47 +0000
+Message-ID: <332ab487-199d-9644-8c00-0e6c09152397@csgroup.eu>
+References: <20230217145645.1768659-1-herve.codina@bootlin.com>
+ <20230217145645.1768659-4-herve.codina@bootlin.com>
+In-Reply-To: <20230217145645.1768659-4-herve.codina@bootlin.com>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=csgroup.eu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MRZP264MB2988:EE_
+x-ms-office365-filtering-correlation-id: 95a5c683-1966-44a0-9fb7-08db1103e801
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EmEw4/mQ2+adVSwNX09oA19OUdNZLDyep0aYNyti7fPFr6GlTJE6nu6TGDGEfMGKLBfRSlUcT8Vqo3XUNtqiQ/Al61qa/hRpSboqSUJ1eRFoB+sxnUt/+GYkb8VOpJ7vL+1OT16t6n1pFyPCAjQnB9Bpfnx5dKmRxWnHbiyachFUN88iDUcJ3l7BsMwldiHwFLpKyPRbTtulbOxTwiksRppoNVCARWtYVkq1JBo4zd5xne3PNdi0R27Gl3iQaooYMg6OJ7pO/g62LiZM7CTDK8OV2qCpDF33g/t4OEO0XBYUUhxlrvIBcxBYQ5nuPBOjcHRRT7tpngRceUws1zOG3xxur2B34ykET/KP33SqOgsMr+51gLWWZTqVp/SP+btD2lzZFshJfvXw6BJQ8dnWgPT7mGZNkUQRi4/cw4z7t4EtPpPYiNrpQTDb4c6V4ExdZHmBbu8cnhWUGSFLaXeONYCLWPz7FwibiQpf2jaRBblwcHFfq8EMO1L5Y+sbGl34V7pLTJTNxMzqPGQffgS7UO6HObiHgDQXZiUo8Xz04p+Y1UctvE9BZTCcdN4I32NfwfFEUZXpiCnbqZrpW1kE9s7lUUZ9yJ0fvIi546jUZYBJcyvyTxT2vi1oi+KvYyuuGbkkybgxC1t6SxIwj0mI1KseER2fvWc6RaLvVtGF+chDIj0ee37Cs5K2evd8a/LO810peE99KFNa11RUbstFNEuem8wEFPNr7Sm+65a6WHmu+trEPxP9fXD6dWkuFc5YI6BXngEdM+aaLNIUgRZ41GaXuLyCQW+KV/X8KPAkHX8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(39850400004)(376002)(346002)(136003)(396003)(451199018)(5660300002)(110136005)(7416002)(66946007)(71200400001)(66556008)(8936002)(316002)(44832011)(54906003)(66446008)(2906002)(4744005)(4326008)(478600001)(76116006)(91956017)(66476007)(41300700001)(8676002)(64756008)(36756003)(6506007)(2616005)(122000001)(38100700002)(31696002)(6512007)(186003)(26005)(921005)(6486002)(86362001)(38070700005)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UzdrVStwZTR3RVJiSTJFSFlodkZYWnZubzZpZDVTOUdKbEloN3U5aTJ5VWhN?=
+ =?utf-8?B?Q0xBT1VLR3UreFpCSTJTKzN5TDM1MVZyWjZZU0VxY3NoYjFGZ0I1OUNCQXVX?=
+ =?utf-8?B?ZHQvblZhcDZ2Vm9sdUNjdFdGZUMvOVpxREZGcCttOEpZRTZFL3lYQmRjT1Bk?=
+ =?utf-8?B?V2h6QjVaaWZqdG85YnlBNzNhdnhjanpNVzR2VktVVjNHZ040cG1FSlh3d1VY?=
+ =?utf-8?B?ZXYxbnVQdXZDTmhldEV6elBIenVLQkxOK0lFb3VHQ3VOSS9vUXJnNXRzNk9m?=
+ =?utf-8?B?MDhTTVVEWE1wUHJLc1NNd3dXQS9KblpEb084RzIrSEhVdUhnWkZUajNGS0pm?=
+ =?utf-8?B?aC9Wdkx3TXpXbFBsWGsvTUltbjZ1U0NzT3ZBcE1rY05zK1A1NkN1ZGg1UmdU?=
+ =?utf-8?B?amt3TElHYkxxTzE3QnU0eDQyZXgrdlA2WDhCS005N0piY2lyTit1cGxDUkZ5?=
+ =?utf-8?B?M0RjSmhZbFJuMXlTN010Q3l2U0RKa2xpM0Mramk0dnc4ZTVrV25rQ1BUTjFI?=
+ =?utf-8?B?M0dTWEJ1YytTVFZkTTlsbFZkdk90SHdqQTJoTElYWnkxVUZkMW04cFN0b0Y1?=
+ =?utf-8?B?Qk5KUXFBQWd4Ni93Tko3Q05OdDlRZktIdmRFRjJydGdLaTNVSTNwZzJPbnhI?=
+ =?utf-8?B?R3RkdXNMQ1l1bmpiZVkxSGg5NHVTNU0yaGxvTjlPcGprSWRId1dHeUxMOWh0?=
+ =?utf-8?B?TE9DczFuSytVQWdLZzV3dzlramRYbloxV2pWNUVycDNxMHpJVmZnNEl6TXhX?=
+ =?utf-8?B?c05DQWlpTm81K2U1eDMrZXgwYjIyQ1grK05FYjJKVERZTS9ERzhiL1JROW1Y?=
+ =?utf-8?B?b2xhbVVFRkpNanh4UDNWb0UwaWtGa1VEZ29jRFZOeDEwRHBVZFJuaEdIS0Rn?=
+ =?utf-8?B?ZGtLNWF1TWQrU0RWRVhJdXByOGJKZlJmbjRLb3o5eXdCNDJpdzBLRGtLLy9u?=
+ =?utf-8?B?Q2xtMGRIRGtvOTJKM21MRDdNRU1WTWIwZm0yYkpoZm9jVDlkckZPUUx2VkFI?=
+ =?utf-8?B?SSt0aVJ3bkFJbHd0Z0syUlFadHlEbjNTdmRoN1RWNmJGV3ZlRHg2ZWhxb0hT?=
+ =?utf-8?B?VXQrNFVEcDk0NDVUbWVIVG1xSjhodnB6RGdlWmc2MlJVeVN2NzBvQ3JhWHlO?=
+ =?utf-8?B?RHRRcU9KWlkrQjhRUlNmVzZYWURZWG5iVVY2azlDZ2k2a3kwajEvaDdXNTZW?=
+ =?utf-8?B?Y21Zb01pWmoyRTNPTUNFdER3dHE3dk1WTlR0eFI3WUJVRmxJajlhZW5NUmU2?=
+ =?utf-8?B?anR5MWJ0N1Q0MkF3NWRrelVXN3EvV1F4dXhUb3V1YkE1RCtMb3JqTjE5QW4x?=
+ =?utf-8?B?WS9TVDhNbmJrR1hybDVrKytBdWE1cmRycXh0OFlqbG9pRFJwWGRiaGpNa2ht?=
+ =?utf-8?B?T1VrK0pvVldDUGtMZDRGa0JsemRtc01tL3p2eEdmN0ZTamVmaGprd1lGczF2?=
+ =?utf-8?B?QWs1U0t1OVJDUEJ6QndMcFQ1dmdoYnFTWjBpS1MxbnBpVFNqMFRsSkJIdDZ2?=
+ =?utf-8?B?WEY0UDB3dEc1YzAvV25talhxcTdoeE56R201aXJTL3B2THo2MlFnZjduTFM5?=
+ =?utf-8?B?VTM0UEdKYWx2akZQUVZJaFgxNjkxaHJWNzhSREw1Y2E4b3paSTU4eFg0d3FS?=
+ =?utf-8?B?SmxhcXhJamZEL2FQWVh0N2VGbXFKdVV4RUVaMzJwMFl0SHRETFpXRTBLZklJ?=
+ =?utf-8?B?SlJKWUk0ZSsxK2J3TE5vVmltZWN4UkhTbldnWmJOcHpOTXdQbm5UbjJrQlVO?=
+ =?utf-8?B?S3JtZytqaCs5Y01kK3FlSW5iQzlyZTZGWkNOcHU4SzZnb1ArRWpUdGQ0TWtw?=
+ =?utf-8?B?Qzg3SC9GTUJqMHdRanphendkZU9SUEpmaldvUEJ5OWdDYThTUWJtcFNUK1ky?=
+ =?utf-8?B?SUJhdlo3U2VZZEkrSEUxYkR4U3VvdmFGUUdSQzhEWTZoR1krejZnZ2xleEE5?=
+ =?utf-8?B?Z1FwMzdNTjAyZHpxY3FGTXQ2Vlc2c2Q4NTA3c2diMm1lZ1V2OG9CVGdObVd6?=
+ =?utf-8?B?eUNkMUNEbTVHMVMwNnJZK09LUUlMd2RiT2lZaDZxSzBxcktUOUpyZW43VmpM?=
+ =?utf-8?B?c0ZqSWNBUzFvcWRpaEhLaThVaElPRG5SR2hGWXlkQXpDbXhGb1lIN1BxSVAz?=
+ =?utf-8?B?d2dpcC9XSE4yZ21jYkdiQnZOMC90TXUwYWNEeE9MVWdhdUdLYVU5M2RIb2wr?=
+ =?utf-8?B?Q0E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8AD168A98BB98A48A2574DA800AEC1E4@FRAP264.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SyOFsqOpDx+l/Uu8"
-Content-Disposition: inline
-In-Reply-To: <dcba75b5-7b62-35aa-6836-5d5edd785002@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: csgroup.eu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95a5c683-1966-44a0-9fb7-08db1103e801
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2023 16:27:47.7895
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9914def7-b676-4fda-8815-5d49fb3b45c8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7WticCdOPp+M5VVwCGitMeOb8JLHCqF2x/FOQqrqCMkxa7UrolU4gde18VOpj8wgeKqK82ATnZ+R9pRPBSik1ssovUS0pT8zvtPx4XeLjss=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRZP264MB2988
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---SyOFsqOpDx+l/Uu8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Feb 17, 2023 at 04:47:48PM +0100, Krzysztof Kozlowski wrote:
-> On 17/02/2023 14:32, Conor Dooley wrote:
-> >>>> Yes, it is.
-> >>>
-> >>> Which would then make GMAC1 RGMII RX optional, rather than required?
-> >>
-> >> If thinking in this way, I must say yes, it is optional. But actually
-> >> GMAC1 RGMII RX feeds gmac1_rx by default.=20
-> >> For a mux, it usually works if you populate only one input to it.
-> >> Does it mean all the other inputs are optional? And how can we define
-> >> which input is required?
-> >=20
-> > I'm not sure, that is a question for Krzysztof and/or Rob.
->=20
-> That's a long thread, please summarize what you ask. Otherwise I have no
-> clue what is the question.
-
-Sorry. I tried to preserve the context of the conversation the last time
-I cropped it so that things would be contained on one email.
-
-For me at least, I am wondering how you convey that out of a list of
-clock inputs (for example a, b, c, d) that two of the clocks are inputs
-to a mux and it is only required to provide one of the two (say b & c).
-
-> Does the mux works correctly if clock input is not connected? I mean,
-> are you now talking about real hardware or some simplification from SW
-> point of view?
-
-I'm coming at this from an angle of "is a StarFive customer going to show
-up with a devicetree containing dummy fixed-clocks to satisfy dtbs_check
-because they opted to only populate one input to the mux".
-I don't really care about implications for the driver, just about
-whether the hardware allows for inputs to the mux to be left
-un-populated.
-
-Cheers,
-Conor.
-
-
---SyOFsqOpDx+l/Uu8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY++q5AAKCRB4tDGHoIJi
-0of0AP9b4nngiPS2EpyTXEZ+/C7SPEoZpvSl1nRB1hqHGRePTgD/e/wC+yu8sTRR
-cTy0Wvob6bxyC4j38a5p5UnXb+ZTtgw=
-=Wk+p
------END PGP SIGNATURE-----
-
---SyOFsqOpDx+l/Uu8--
+DQoNCkxlIDE3LzAyLzIwMjMgw6AgMTU6NTYsIEhlcnZlIENvZGluYSBhIMOpY3JpdMKgOg0KPiBB
+ZnRlciBjb250cmlidXRpbmcgdGhlIGRyaXZlciwgYWRkIG15c2VsZiBhcyB0aGUgbWFpbnRhaW5l
+cg0KPiBmb3IgdGhlIEZyZWVzY2FsZSBUU0EgY29udHJvbGxlci4NCj4gDQo+IFNpZ25lZC1vZmYt
+Ynk6IEhlcnZlIENvZGluYSA8aGVydmUuY29kaW5hQGJvb3RsaW4uY29tPg0KDQpSZXZpZXdlZC1i
+eTogQ2hyaXN0b3BoZSBMZXJveSA8Y2hyaXN0b3BoZS5sZXJveUBjc2dyb3VwLmV1Pg0KDQo+IC0t
+LQ0KPiAgIE1BSU5UQUlORVJTIHwgOSArKysrKysrKysNCj4gICAxIGZpbGUgY2hhbmdlZCwgOSBp
+bnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJTkVS
+Uw0KPiBpbmRleCA3Zjg2ZDAyY2I0MjcuLjA5N2E4MGQ2NjIzYiAxMDA2NDQNCj4gLS0tIGEvTUFJ
+TlRBSU5FUlMNCj4gKysrIGIvTUFJTlRBSU5FUlMNCj4gQEAgLTgzNzIsNiArODM3MiwxNSBAQCBT
+OglNYWludGFpbmVkDQo+ICAgRjoJZHJpdmVycy9zb2MvZnNsL3FlLw0KPiAgIEY6CWluY2x1ZGUv
+c29jL2ZzbC9xZS8NCj4gICANCj4gK0ZSRUVTQ0FMRSBRVUlDQyBFTkdJTkUgVFNBIERSSVZFUg0K
+PiArTToJSGVydmUgQ29kaW5hIDxoZXJ2ZS5jb2RpbmFAYm9vdGxpbi5jb20+DQo+ICtMOglsaW51
+eHBwYy1kZXZAbGlzdHMub3psYWJzLm9yZw0KPiArUzoJTWFpbnRhaW5lZA0KPiArRjoJRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy9mc2wvY3BtX3FlL2ZzbCxjcG0xLXRzYS55
+YW1sDQo+ICtGOglkcml2ZXJzL3NvYy9mc2wvcWUvdHNhLmMNCj4gK0Y6CWRyaXZlcnMvc29jL2Zz
+bC9xZS90c2EuaA0KPiArRjoJaW5jbHVkZS9kdC1iaW5kaW5ncy9zb2MvY3BtMS1mc2wsdHNhLmgN
+Cj4gKw0KPiAgIEZSRUVTQ0FMRSBRVUlDQyBFTkdJTkUgVUNDIEVUSEVSTkVUIERSSVZFUg0KPiAg
+IE06CUxpIFlhbmcgPGxlb3lhbmcubGlAbnhwLmNvbT4NCj4gICBMOgluZXRkZXZAdmdlci5rZXJu
+ZWwub3JnDQo=
