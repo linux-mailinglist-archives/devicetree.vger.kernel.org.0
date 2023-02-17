@@ -2,157 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFA3869B2A2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 19:53:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E8669B2DD
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 20:11:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjBQSxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 13:53:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52900 "EHLO
+        id S229659AbjBQTLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 14:11:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbjBQSxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 13:53:08 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1948B5A39A;
-        Fri, 17 Feb 2023 10:53:02 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id w13so1860757wrl.13;
-        Fri, 17 Feb 2023 10:53:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cuYdi9JDEfUk3bSVOxhib3+XS2kP3hKiS/trU9amA0Y=;
-        b=jBbUGhXuPutU68xy8v1/tTsH0FNkiWcyXEw0HRthPl4z3nkGFqNw+kj5VJ7Wh9Q584
-         CIu6EA9SF2weK+TuPLhmITSGD3rWzVwFmy7XYY3YGKls9yoDKsBPPLv/VFcFViTGQ/ig
-         KCFgVY4rEeesYCejYw+zVbjhqijsiAohmzZeKk+1VKP9eXTPzaYvsHGH8y8XVbVikxrj
-         GLED2JiK1fhLGqY2ujnZyPnMkH+kzM7Bnt6RuCmxKBM/Mg9s3l3yqKcFB9Hga2l5ICR1
-         P+T8w0OicRCBtXvTBGvWuGpzL0W7dpN5artCkgvfoQD2s11ogxjcxPnazs4at/hr60V9
-         dCnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cuYdi9JDEfUk3bSVOxhib3+XS2kP3hKiS/trU9amA0Y=;
-        b=URe9rRqqQHXeFLTZu1CNo38fL9RUdlZKdyK7cQjN7PIHKIEJkcPETSwORWxXVxQBc2
-         b9YLWCtTzvWadI00lzF1bxr68UBAOm+O8x2Zbwh8kWlxS7uQi41n4GBwMHUxakom5Hup
-         lxpj1APWoohaSYDmZ/GVhmC1J9IuBR1/4WYCCgq36yBjO0ee9/zHcexOxiTxT40vzCMw
-         lWBbnfBPn6MXyu/h7qMLUm5pukKHnngAPWpdLrjFbmsrLvslnoCfJdv5pBmEqDSTh1jA
-         La2AHdyi6AldUjcX4YX4kzw+sStWEzUxj8PI/JkoVYqMR0IHGvg5ZKiUGKAUIDkIpxUV
-         TjwQ==
-X-Gm-Message-State: AO0yUKWwYJV+TJ9HsqrZG1gQ7cRGz3yTJK9qyFTLnBL198wZ/aIICFSV
-        qzZeoM42MVTpKB31MsbUY+bYmNflyqL/CQ==
-X-Google-Smtp-Source: AK7set8PNytjo88R/CSuQUpQ6yNfiv2mI4cAeSeVkEQxv9w+c+gUg8tywgNqdnVB1ce+k+fDvDn5Tg==
-X-Received: by 2002:adf:f646:0:b0:2c6:e87f:f19 with SMTP id x6-20020adff646000000b002c6e87f0f19mr2032734wrp.57.1676659980387;
-        Fri, 17 Feb 2023 10:53:00 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2501:c701:d8bd:e692:c27f:c09d])
-        by smtp.gmail.com with ESMTPSA id l37-20020a05600c1d2500b003db0ad636d1sm2964514wms.28.2023.02.17.10.52.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 10:52:59 -0800 (PST)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: r9a07g043: Update IRQ numbers for SSI channels
-Date:   Fri, 17 Feb 2023 18:52:25 +0000
-Message-Id: <20230217185225.43310-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229507AbjBQTLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 14:11:06 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA53D27D48;
+        Fri, 17 Feb 2023 11:11:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676661061; x=1708197061;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lWCaHZAw0kLtLlEq2+zfX18B0agu1/sB1EOkFQ86aRI=;
+  b=i3luiE4iC5fzmLnY6W5lHyWcroN3QoqTXE8cfvQ72sgl/Tvx9VSlhJV6
+   LR+wT5WSQV8Xb2yOKmhGzTa5RS2NLMvpZv24wG/cqNrp6qwnIX8UppXVo
+   mlgaVx2MSCXvUBym3m5B+tYm/7hwt8hLtswY8k7YDovjdthyjasVisnAr
+   MXU3pZXSf9g3Qjziob59CS86SRAWweCkAMo1kiJNYToHQgdLuQ+xFBEz3
+   t/uiQaFP8PHVx3Dd7ukutnEZKPX//fyxtXgfstsNHTIv/vI/MPKV2SbkN
+   ESsnd2Za1STN4uiHbstVqjBjOxBnwin9+73OwWmrlVgupt743NZUh9qyD
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="330730852"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; 
+   d="scan'208";a="330730852"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2023 11:11:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="779882009"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; 
+   d="scan'208";a="779882009"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP; 17 Feb 2023 11:10:59 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pT68H-008KeN-0A;
+        Fri, 17 Feb 2023 21:10:57 +0200
+Date:   Fri, 17 Feb 2023 21:10:56 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Danny Kaehn <kaehndan@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v6 2/3] HID: usbhid: Share USB device firmware node with
+ child HID device
+Message-ID: <Y+/RQFs5IZpbxQw8@smile.fi.intel.com>
+References: <20230217184904.1290-1-kaehndan@gmail.com>
+ <20230217184904.1290-3-kaehndan@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230217184904.1290-3-kaehndan@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, Feb 17, 2023 at 12:49:03PM -0600, Danny Kaehn wrote:
+> USB HID core now shares its fwnode with its child HID device.
+> Since there can only be one HID device on a USB interface, it is redundant
+> to specify a hid node under the USB device. This allows usb HID device
+> drivers to be described in firmware and make use of device properties.
 
-From R01UH0968EJ0100 Rev.1.00 HW manual the interrupt numbers for SSI
-channels have been updated,
+FWIW,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-SPI 329 - SSIF0 is now marked as reserved
-SPI 333 - SSIF1 is now marked as reserved
-SPI 335 - SSIF2 is now marked as reserved
-SPI 336 - SSIF2 is now marked as reserved
-SPI 341 - SSIF3 is now marked as reserved
+> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
+> ---
+>  drivers/hid/usbhid/hid-core.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/hid/usbhid/hid-core.c b/drivers/hid/usbhid/hid-core.c
+> index be4c731aaa65..a0859c49d9f4 100644
+> --- a/drivers/hid/usbhid/hid-core.c
+> +++ b/drivers/hid/usbhid/hid-core.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/list.h>
+>  #include <linux/mm.h>
+>  #include <linux/mutex.h>
+> +#include <linux/property.h>
+>  #include <linux/spinlock.h>
+>  #include <asm/unaligned.h>
+>  #include <asm/byteorder.h>
+> @@ -1369,6 +1370,7 @@ static int usbhid_probe(struct usb_interface *intf, const struct usb_device_id *
+>  	hid->hiddev_report_event = hiddev_report_event;
+>  #endif
+>  	hid->dev.parent = &intf->dev;
+> +	device_set_node(&hid->dev, dev_fwnode(&intf->dev));
+>  	hid->bus = BUS_USB;
+>  	hid->vendor = le16_to_cpu(dev->descriptor.idVendor);
+>  	hid->product = le16_to_cpu(dev->descriptor.idProduct);
+> -- 
+> 2.25.1
+> 
 
-This patch drops the above IRQs from SoC DTSI.
-
-Fixes: 559f2b0708c70 ("arm64: dts: renesas: r9a07g043: Add SSI{1,2,3} nodes and fillup the SSI0 stub node")
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 19 +++++++------------
- 1 file changed, 7 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index c8a83e42c4f3..a9700654b421 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -80,9 +80,8 @@ ssi0: ssi@10049c00 {
- 			reg = <0 0x10049c00 0 0x400>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(326) IRQ_TYPE_LEVEL_HIGH>,
- 				     <SOC_PERIPHERAL_IRQ(327) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(328) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(329) IRQ_TYPE_EDGE_RISING>;
--			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+				     <SOC_PERIPHERAL_IRQ(328) IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx";
- 			clocks = <&cpg CPG_MOD R9A07G043_SSI0_PCLK2>,
- 				 <&cpg CPG_MOD R9A07G043_SSI0_PCLK_SFR>,
- 				 <&audio_clk1>, <&audio_clk2>;
-@@ -101,9 +100,8 @@ ssi1: ssi@1004a000 {
- 			reg = <0 0x1004a000 0 0x400>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(330) IRQ_TYPE_LEVEL_HIGH>,
- 				     <SOC_PERIPHERAL_IRQ(331) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(332) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(333) IRQ_TYPE_EDGE_RISING>;
--			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+				     <SOC_PERIPHERAL_IRQ(332) IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx";
- 			clocks = <&cpg CPG_MOD R9A07G043_SSI1_PCLK2>,
- 				 <&cpg CPG_MOD R9A07G043_SSI1_PCLK_SFR>,
- 				 <&audio_clk1>, <&audio_clk2>;
-@@ -121,10 +119,8 @@ ssi2: ssi@1004a400 {
- 				     "renesas,rz-ssi";
- 			reg = <0 0x1004a400 0 0x400>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(334) IRQ_TYPE_LEVEL_HIGH>,
--				     <SOC_PERIPHERAL_IRQ(335) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(336) IRQ_TYPE_EDGE_RISING>,
- 				     <SOC_PERIPHERAL_IRQ(337) IRQ_TYPE_EDGE_RISING>;
--			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+			interrupt-names = "int_req", "dma_rt";
- 			clocks = <&cpg CPG_MOD R9A07G043_SSI2_PCLK2>,
- 				 <&cpg CPG_MOD R9A07G043_SSI2_PCLK_SFR>,
- 				 <&audio_clk1>, <&audio_clk2>;
-@@ -143,9 +139,8 @@ ssi3: ssi@1004a800 {
- 			reg = <0 0x1004a800 0 0x400>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(338) IRQ_TYPE_LEVEL_HIGH>,
- 				     <SOC_PERIPHERAL_IRQ(339) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(340) IRQ_TYPE_EDGE_RISING>,
--				     <SOC_PERIPHERAL_IRQ(341) IRQ_TYPE_EDGE_RISING>;
--			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+				     <SOC_PERIPHERAL_IRQ(340) IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx";
- 			clocks = <&cpg CPG_MOD R9A07G043_SSI3_PCLK2>,
- 				 <&cpg CPG_MOD R9A07G043_SSI3_PCLK_SFR>,
- 				 <&audio_clk1>, <&audio_clk2>;
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
