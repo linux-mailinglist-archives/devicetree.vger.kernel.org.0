@@ -2,65 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64D7D69AF8F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:32:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B64C269AFBB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbjBQPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 10:32:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59750 "EHLO
+        id S229603AbjBQPrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 10:47:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjBQPc1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:32:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4776F7FD
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:32:26 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1pT2ii-0000fo-9L; Fri, 17 Feb 2023 16:32:20 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1pT2ic-0006Rh-25; Fri, 17 Feb 2023 16:32:14 +0100
-Date:   Fri, 17 Feb 2023 16:32:14 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Shengyu Qu <wiagn233@outlook.com>
-Cc:     devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
-        frattaroli.nicolas@gmail.com, heiko@sntech.de,
-        jacob-chen@iotwrt.com, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        mchehab@kernel.org, robh+dt@kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH RESEND 2/2] arm64: dts: rockchip: Add RGA2 support to
- rk356x
-Message-ID: <20230217153214.GB28242@pengutronix.de>
-Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
-        Shengyu Qu <wiagn233@outlook.com>, devicetree@vger.kernel.org,
-        ezequiel@vanguardiasur.com.ar, frattaroli.nicolas@gmail.com,
-        heiko@sntech.de, jacob-chen@iotwrt.com,
-        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        mchehab@kernel.org, robh+dt@kernel.org, kernel@pengutronix.de
-References: <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
- <TY3P286MB26115F60D273E840D36A610598CA9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <20230217110413.GA28242@pengutronix.de>
- <TY3P286MB2611256E28AF951F2B38A5B098A19@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+        with ESMTP id S230363AbjBQPry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:47:54 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE24C661
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:47:52 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id ee31so7372988edb.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:47:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/ydvsRPVG061WS4UTZVStbsfcU/oL9Zx0nIHQuE4tyA=;
+        b=xHv1htd37Mqx8hvLnrTvHhIKTpFqgdOz/1uJyvsbCg+1IPuW59e2MfJdhcJtQ3aWyV
+         xUB/T+IXHjLDCvXwC9m29LDgZ+A61/SeNTAAUrd6IJpaDhZJxoEe5LF44aoAoG0mrzUu
+         0lOJcKpvLEP5h4rgVdXnUYvWRSgvSOu+eCQTNX3hkJ54KJL6CBHqpmqkLP5mr5eh1brS
+         ++TVu9WgIto2kqXvqrncZ44tK7YBoLdTHeaTJ09BtZ2wu03bTVchrrGc3ZuVFHbD6vn2
+         ESq5gYkZ6eNaSTUmCDMI6zhEA2eovgrlV9Q83ml6nk9QzoAJwaS7RdSM9QG25SKYHLfv
+         1+kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ydvsRPVG061WS4UTZVStbsfcU/oL9Zx0nIHQuE4tyA=;
+        b=bo9KVHhCyh6tidh8XAIhtPMwTW80BY4zHhEcyK+gk/UdnsSCAoSjqmyAmUwWlLtVve
+         IQsgGAbCfKjIAYxDJzM0pEqTh5l5RAvQ3Rop2AcpXNVepY4NpBH6Y6Mg22UmXvIZKQxZ
+         DuSHPsDQvn2anvg8rKdcAAEHEQTPmj16BMhKi0/yjG4pXyP2VEviv54aNnc74oTTkCwo
+         6ySSZ3CKGElnjxQlhESBNuR/B12ciXuxUt/mv1kMl65SxSkwWHSd7ELDhvZavIj72tV2
+         N39uJjztzfUShz2J7JT45qndR8r8GlcBQOFDrKKjV1Gc5pr+vF34fudX31/7R0kNrVJU
+         A7yQ==
+X-Gm-Message-State: AO0yUKWmIuEQVpJvS4XPOpzC81LdEQy1qVxQ0huGLQWkA6MLoT+ebdhZ
+        NQ+VsPvhE6X3sj9a4eicf5PDSg==
+X-Google-Smtp-Source: AK7set92ggsq7QntNOjYeDE1GS2W9aHhklXHaJSFIAczwRnKnbIvvSu4L4kHtCgfE55Dgzu7wN1V/Q==
+X-Received: by 2002:a17:906:9f25:b0:8b1:2eef:154c with SMTP id fy37-20020a1709069f2500b008b12eef154cmr5350244ejc.0.1676648871136;
+        Fri, 17 Feb 2023 07:47:51 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ui41-20020a170907c92900b008af3930c394sm2282740ejc.60.2023.02.17.07.47.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 07:47:50 -0800 (PST)
+Message-ID: <dcba75b5-7b62-35aa-6836-5d5edd785002@linaro.org>
+Date:   Fri, 17 Feb 2023 16:47:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <TY3P286MB2611256E28AF951F2B38A5B098A19@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Hal Feng <hal.feng@starfivetech.com>
+Cc:     Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <20221220005054.34518-1-hal.feng@starfivetech.com>
+ <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
+ <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
+ <Y6tSWB2+98a8k9Qw@spud>
+ <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
+ <Y+5z8skN2DuvxDEL@spud>
+ <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
+ <Y+8x/KSujhgNLAd6@wendy>
+ <d3b06d0b-ff17-ebab-bae5-e1ec836fe667@starfivetech.com>
+ <Y++B43uCnPQlRYFi@wendy>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y++B43uCnPQlRYFi@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,47 +92,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shengyu,
-
-On Fri, 17 Feb 2023 22:14:13 +0800, Shengyu Qu wrote:
-> Seems we could use GFP_DMA32 flag to limit memory required by driver into
-> upper size range(actually using ZONE_DMA32 configured by device tree). Just
-> some driver modification needed. 
-
-I don't think the GFP_DMA32 flag works with DmaBuf import. The buffer may be
-allocated by some other driver that is able to address more than 4G and
-imported into the RGA driver. In this case, limiting the allocations is not
-enough, but we would still need error handling in the map function for buffers
-that cannot be addressed by the RGA.
-
-I guess we need both, a limit for the allocation and error checking for the
-map.
-
-Michael
-
-> Maybe Nicolas could help testing? I would
+On 17/02/2023 14:32, Conor Dooley wrote:
+>>>> Yes, it is.
+>>>
+>>> Which would then make GMAC1 RGMII RX optional, rather than required?
+>>
+>> If thinking in this way, I must say yes, it is optional. But actually
+>> GMAC1 RGMII RX feeds gmac1_rx by default. 
+>> For a mux, it usually works if you populate only one input to it.
+>> Does it mean all the other inputs are optional? And how can we define
+>> which input is required?
 > 
-> like to fix this, but I don't have much free time these days.
-> 
-> Best regards,
-> 
-> Shengyu
-> 
-> > Hi,
-> > 
-> > On Sun, 22 Jan 2023 00:50:37 +0800, Shengyu Qu wrote:
-> > > Since we have the over-4GB problem now, should we mark this problem as a
-> > > TODO or something?
-> > I am not really sure where to put such a TODO to make it visible for people
-> > that are running into the issue and to make sure that it is removed once it is
-> > fixed.
-> > 
-> > Maybe it would be better to add error handling to the rga_buf_map function to
-> > fail if the address of the buffer that should be mapped has the upper 32 bit
-> > set and print a warning. Furthermore, the driver would be able to skip the
-> > buffer and prevent potential memory corruption caused by the erroneous
-> > mapping.
-> > 
-> > Unfortunately, I don't have hardware that allows me to test this.
-> > 
-> > Michael
+> I'm not sure, that is a question for Krzysztof and/or Rob.
+
+That's a long thread, please summarize what you ask. Otherwise I have no
+clue what is the question.
+
+Does the mux works correctly if clock input is not connected? I mean,
+are you now talking about real hardware or some simplification from SW
+point of view?
+
+Best regards,
+Krzysztof
+
