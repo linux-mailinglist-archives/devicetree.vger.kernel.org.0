@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D232F69A722
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE9169A729
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjBQIin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 03:38:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42014 "EHLO
+        id S229607AbjBQIk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 03:40:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbjBQIim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:38:42 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6099A1BF0
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:38:41 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id ez12so1487077edb.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:38:41 -0800 (PST)
+        with ESMTP id S229528AbjBQIk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:40:56 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F4DF2D45
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:40:54 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id h14so1758849edz.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:40:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aotVjKdB3w06esRBunGunh97EJ04YUQLCEZCyWhQd9k=;
-        b=df6K4Ks6N85m4BeBsuetyvq5ED9kxeN+MXWQ6tWrvqcrayBDZOQvLUZq+PatnBKOx6
-         Hou9Zny1NgQ7aOulocFLMA5Ol7oI+a3qZhLwVUzEBFlzsiw6ATSD0rtEeTcvl6HlC3Iu
-         Z/jXrI9UDvDmcOLT/XgSbzRbihv1WOWC5Rfx/7SoXAznNUeovsYE9a/bdTOyMeLK2wng
-         SgWVhhQT6d0NpDxHH1Z14rA72CsgdPP9kxWIgfV+lAfMkG+49sypbkF3plDhXvztVTxd
-         6lDVMWUb+Cauezs/fjktq/kyaIXB94cG83EEb3Bis8A5QclisLYdAV9gSvflVChF804F
-         njGA==
+        bh=yNlzdhkOQHzq20NVyGLukWTdEN+zeap3hr8OBMls538=;
+        b=xD6/IJpi470BpQTRI/51fSBug+Im2ui4QtKq+o4q97OX5PiWIG3hNYI27KdZnkUYgh
+         kosxXQJkJhA0oRORMQKnD2L8v3TsBt1bcb/Wp5wxbdmKuejaoBsrPMKGYWa3l3xM4NIu
+         SDYChuxobHu2bS4v0WbwIm/U3GMasJcboFEumhaepTHUzGNo+2oTYY0MfjaQYPVaXYcE
+         vpSbqMdqCaRcdbcPqAzLbFISfPMETDr9GZSS5h17oYPSPy9RmjgamOAyCMnfrar5xmaC
+         11YwTblo+ykwObG+HDz4V2xHFmwBj/X3WYOt8+acK5thggzxlI2bThv6thANwTn5D7T6
+         JE9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aotVjKdB3w06esRBunGunh97EJ04YUQLCEZCyWhQd9k=;
-        b=Ui7w0vwwUS3f++7p+habk872+oW+Cqp8ZPtXgp38HOCmTfq+VzAQG6dF03kD3wIvgj
-         yun56AHEA0SDNMo4/sp7DX/LfLd1LLaCAhX6SMTHOnJdH1SkwYHLI5+QqImWdwTQlNXP
-         JB5IDYnOBh9Kej4bBBgH5xKsHf2MgGOK4YvklUINxlkbxTCEyGM4VQmLPSth0E3mVK3Q
-         1+kU1XAgqEKayBBTOuziUhzV6sPrgaMyXG83dvN7TgJu+FbOX00PkYRzyVdUm8Q+xgZP
-         8xWYkwOUTDm0qeF1SGsgvv+6BwmOdJoZR0sLxmKlQLBsknNCHirkiSHt6brIm4BMT2dJ
-         r9xw==
-X-Gm-Message-State: AO0yUKWfDVYRJuZta/SubiyEsVacN080HWoEVSjiMPaXvrU737axzEzU
-        +8PRKmaMXBChNAMtUCwe2alzZBZoWrJw+08J
-X-Google-Smtp-Source: AK7set+/MdUcpE4Maq2Ti97rOUOiH4YBI2R73rUdx7sI33PB3L/2q6FL13Hu1VFrtA7SlI4oLARTpw==
-X-Received: by 2002:a17:907:2b11:b0:8ae:b008:9b5a with SMTP id gc17-20020a1709072b1100b008aeb0089b5amr6579929ejc.69.1676623119785;
-        Fri, 17 Feb 2023 00:38:39 -0800 (PST)
+        bh=yNlzdhkOQHzq20NVyGLukWTdEN+zeap3hr8OBMls538=;
+        b=lm6oVfFsZpIeI4Xrg0VKZv3rT0CR7hC8Kz1u0sU4BMvNgIdhhaX/Kn9xI2ON3Ogmld
+         AtsfIcrJCSU5BtXEjPJjAKJ7pYopOmhZNLWwsI4QstfaP4ChVoMHP8aF0zELG7cAc/wp
+         +pC4i2wxuVesegFiqf44iKfW2YiToCms1YyLeqKMKuGXXA7nUJCq1BLUFxGexeyqcvKQ
+         al9rG994PXsdMmuWw6X0JlNQpy3QlOVkoYuecQruB1woLLJ1/fKxAyY8YVgzlwNAOM2e
+         3ZB8fSkR6caJlkcFytrUd8ksXnxAwWIgzG6BymoRLu42q9j4CC/YS5Khs1SzE6/+WnB9
+         i3vw==
+X-Gm-Message-State: AO0yUKV6wwP3nkiKR5VKU77Ptmf2rOOoghE2Ym3oS0gLGkpsWiFRi0LB
+        FzMV7vh+Iw6V/OGogpxxeGffmw==
+X-Google-Smtp-Source: AK7set9PRGCfdro26MLR7ocLmnYzrc1z44bpXULKIiN9W8O9OqdmP07SWABEAtqN/zho+4rT/h7Ovw==
+X-Received: by 2002:a17:906:308a:b0:8b1:81eb:159e with SMTP id 10-20020a170906308a00b008b181eb159emr1395860ejv.7.1676623252738;
+        Fri, 17 Feb 2023 00:40:52 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g23-20020a170906539700b008b128106fc7sm1850796ejo.46.2023.02.17.00.38.38
+        by smtp.gmail.com with ESMTPSA id lt13-20020a170906fa8d00b00888d593ce76sm1859298ejb.72.2023.02.17.00.40.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 00:38:39 -0800 (PST)
-Message-ID: <fb9c9533-b72b-7e20-0ee2-cca6491ea2af@linaro.org>
-Date:   Fri, 17 Feb 2023 09:38:38 +0100
+        Fri, 17 Feb 2023 00:40:52 -0800 (PST)
+Message-ID: <4dcaaa70-11e0-fc9d-da03-224d34e36983@linaro.org>
+Date:   Fri, 17 Feb 2023 09:40:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH] ARM: dts: mvebu: Add support for Thecus N2350 board
+Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add Loongson
+ EIOINTC
 Content-Language: en-US
-To:     Tony Dinh <mibodhi@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-References: <20230216011046.3306-1-mibodhi@gmail.com>
- <b9af4410-2352-b5f1-0fa8-8fc481001065@linaro.org>
- <CAJaLiFypS2wtsj65D1WrSjsgDeN+jpUVYcbvOHdiYvneiCK_Aw@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1676289084.git.zhoubinbin@loongson.cn>
+ <a9f697906df6599e6b001981e668479da71aa7a0.1676289084.git.zhoubinbin@loongson.cn>
+ <df464409-9a93-c057-5f66-923a9e24696a@linaro.org>
+ <CAMpQs4JX0Vgf5tvv5Yw5eLGANFfn1p=iQ_kMS0yQPV6kE2tN1g@mail.gmail.com>
+ <23068d0c-d37c-0563-e1c1-e4d112059f5b@linaro.org>
+ <CAMpQs4K+aYGrOoWy04vrbEy53kba9zUzGkOwD34pwAH0c=D8iA@mail.gmail.com>
+ <49c8255e-66f3-fa1f-2949-1f03f77a0fa4@linaro.org>
+ <CAMpQs4KennWg60ccQ5NYOs=5a9gqTk_bKY26noQ3u0qLQSBg_w@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJaLiFypS2wtsj65D1WrSjsgDeN+jpUVYcbvOHdiYvneiCK_Aw@mail.gmail.com>
+In-Reply-To: <CAMpQs4KennWg60ccQ5NYOs=5a9gqTk_bKY26noQ3u0qLQSBg_w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,88 +92,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 22:25, Tony Dinh wrote:
-> Hi Andrew,
-> Hi Krzysztof,
-> 
-> On Thu, Feb 16, 2023 at 12:31 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 16/02/2023 02:10, Tony Dinh wrote:
->>> Thecus N2350 is a NAS based on Marvell Armada 385 SoC.
->>>
->>> Board Specification:
->>>
->>> - Marvel MV88F6820 Dual Core at 1GHz
->>> - 1 GiB DDR4 RAM
->>> - 4MB Macronix mx25l3205d SPI flash
->>> - 512MB Hynix H27U4G8F2DTR-BC NAND flash
->>> - I2C
->>> - 2x USB 3.0
->>> - 1x GBE LAN port (PHY: Marvell 88E1510)
->>> - 2x SATA (hot swap slots)
->>> - 3x buttons
->>> - 10x LEDS
->>> - serial console
->>>
->>> Signed-off-by: Tony Dinh <mibodhi@gmail.com>
->>> ---
->>>
->>>  arch/arm/boot/dts/Makefile                    |   1 +
->>>  arch/arm/boot/dts/armada-385-thecus-n2350.dts | 432 ++++++++++++++++++
->>>  2 files changed, 433 insertions(+)
->>>  create mode 100644 arch/arm/boot/dts/armada-385-thecus-n2350.dts
->>>
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index d08a3c450..749790e6e 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>> @@ -1528,6 +1528,7 @@ dtb-$(CONFIG_MACH_ARMADA_38X) += \
->>>       armada-385-linksys-rango.dtb \
->>>       armada-385-linksys-shelby.dtb \
->>>       armada-385-synology-ds116.dtb \
->>> +     armada-385-thecus-n2350.dtb \
->>>       armada-385-turris-omnia.dtb \
->>>       armada-388-clearfog.dtb \
->>>       armada-388-clearfog-base.dtb \
->>> diff --git a/arch/arm/boot/dts/armada-385-thecus-n2350.dts b/arch/arm/boot/dts/armada-385-thecus-n2350.dts
->>> new file mode 100644
->>> index 000000000..38114d842
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/armada-385-thecus-n2350.dts
->>> @@ -0,0 +1,432 @@
->>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>> +/*
->>> + * Device Tree file for Thecus N2350 board
->>> + *
->>> + * Copyright (C) 2018-2023 Tony Dinh <mibodhi@gmail.com>
->>> + * Copyright (C) 2018 Manuel Jung <manuel.jung@hotmail.com>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +#include <dt-bindings/input/input.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include "armada-385.dtsi"
->>> +
->>> +/ {
->>> +     model = "Thecus N2350";
->>> +     compatible = "thecus,n2350", "marvell,armada385";
->>
->> Missing vendor prefix documentation. I wanted to say: "missing new
->> compatible documentation", but seems Marvell is missing these. Let's
->> start documenting at least new compatibles in YAML? Like Rob proposed
->> here for OMAP:
->> https://lore.kernel.org/all/20230209173534.GA539622-robh@kernel.org/
-> 
-> I was under the impression that the Documentation patch has to be a
-> separate patch, as stated in
-> Documentation/devicetree/bindings/submitting-patches.rst. Should I
-> include documentation in this add-support patch?
+On 17/02/2023 07:09, Binbin Zhou wrote:
 
-Yes, it must be separate patch and must be first in the patchset using
-new compatibles. Otherwise when we apply this, we get warnings of
-undocumented compatibles.
+>>> Hi Krzysztof:
+>>>
+>>> Allow me to give a brief overview of the current status of eiointc (DT-based):
+>>>      Loongson-3A series supports eiointc;
+>>>      Loongson-2K1000 does not support eiointc now;
+>>>      Loongson-2K0500 supports eiointc, with differences from
+>>> Loongson-3, e.g. only up to 128 devices are supported;
+>>>      Loongson-2K2000 supports eiointc, similar to Loongson-3.
+>>>      ....
+>>>
+>>> As can be seen, there is now a bit of confusion in the chip's design of eiointc.
+>>>
+>>> The design of eiointc is probably refined step by step with the chip.
+>>> The same version of eiointc can be used for multiple chips, and the
+>>> same chip series may also use different versions of eiointc. Low-end
+>>> chips may use eiointc-2.0, and high-end chips may use eiointc-1.0,
+>>> depending on the time it's produced.
+>>>
+>>> So in the Loongson-2K series I have defined the current state as
+>>> eiointc-1.0, using the dts property to indicate the maximum number of
+>>> devices supported by eiointc that can be used directly in the driver.
+>>>
+>>> If there are new changes to the design later on, such as the
+>>> definition of registers, we can call it eiointc-2.0, which can also
+>>> cover more than one chip.
+>>
+>> Just go with SoC-based compatibles. If your version is not specific
+>> enough, then it is not a good way to represent the hardware.
+>>
+> 
+> Hi Krzysztof:
+> 
+> I have tried to write the following  SoC-based compatibles,  is it fine?
+> 
+> compatible:
+>     enum:
+>       - loongson,ls3a-eiointc  # For MIPS Loongson-3A if necessary.
+>       - loongson,ls2k0500-eiointc
+>       - loongson,ls2k200-eiointc
 
+Looks good, but didn't you state these are compatible between each
+other? I have impression there is a common set, so maybe one compatible
+work on other device with reduced number of devices?
 
 Best regards,
 Krzysztof
