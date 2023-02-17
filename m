@@ -2,137 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FAB69B558
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 23:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2205A69B57D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 23:26:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbjBQWPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 17:15:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45250 "EHLO
+        id S229591AbjBQW0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 17:26:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjBQWPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 17:15:46 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306465A3B6;
-        Fri, 17 Feb 2023 14:15:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BFF7562071;
-        Fri, 17 Feb 2023 22:15:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E96C4339C;
-        Fri, 17 Feb 2023 22:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676672145;
-        bh=CAwFwvxZLX8x0bqlIXBGrQ70JsVcL+a1viVjg97kZ+s=;
-        h=In-Reply-To:References:Subject:From:To:Date:From;
-        b=tqp5Xt/xckaqoCokZm2wkFFj0J4BPwv9TpLdmAqHOTievevAo8KOHXezOT+yolUyK
-         Q6z3qdkdgygS9IsafThKWWBqDrVlt8OuXOb7ObGSke2N+s1Tu6ybmfZ6eQ5VOkwUO5
-         2wUcvsFtDd2FMd0ZEBxLm2BHZ+sJUgE1rSTOC/pYt4vMdN4XhvvUBE+5CsyLiLCDAY
-         Bx0Lk8i7+JtwwjIXbJXg9vd0bF5CyX8g+zH9awUPe5Pj19zLF921jDoFEGHSEtJQCG
-         7bwEweqcXCl7pN2k8i23xLu0D9g4vHTPmKfBXhITnKuihKAoyEU4soTQVFw6bE6rgp
-         Lr9TmMNMQbIBA==
-Message-ID: <8332a1cf44b01f06bdd5db9dc5d7f387.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229553AbjBQW0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 17:26:31 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8AE05D3ED
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 14:26:28 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id x4so3158811lfq.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 14:26:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Nk0P5TEcjLAlZRZi1tf2S3Zc1fDdctQasJLS4BDXM9w=;
+        b=vSJPS7u+IYoDpIUA+dfRFb+S3oLZOXXPRmirjjw6S3qPOReKK0aPTSTvFwB88nm8l2
+         7cCBxdEmxGN/KzKqvt/TxqtUlfX+AXs12qiVyGyCr0vwLBa2IwYLfSXHv02pmuNByR09
+         GmhsDB5ZQZKXE0SvuOy4txvWAOzqcHyj67bkSQ95TIxI917dL/BX5HQ30LYC4E0Mu/s2
+         9bGtMFcREbBi5fvbQqWRm2KmR/pmZOnK2I0X0lpLnTu5PKVusRfJer1i3W3gf0brUltz
+         C4hYeM0jGidLIXMEoDCpGrncUy2X6oVUk30PJ97jH4cW/hUTXRaVwR4r1OqYjTOeV5Oq
+         /CCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nk0P5TEcjLAlZRZi1tf2S3Zc1fDdctQasJLS4BDXM9w=;
+        b=G1dndorJDVbC5bvUDWuCxY8pPSBcFMwrFCxAlzVtdJMjUPfoN14b8fImpdYyAO9ZWg
+         8Si37c7h50qGWxXhdh+oFlUzg2kIy4K4nyFaBBvxzC+iL3PlFVOP6xxkkhhcBM51726L
+         PnHIaZrY8erF+hIA7FB5tXQAY44RQKXg+SMq9Z4wwY9d9ofMBU1mK4j/TqRuXLSzD9/5
+         Dl5JjESyt3K9VZFI8PeHelZVrRDwt4j8m30B8fACS0i+nAqlI2nceDJl++V5m9yL5OAN
+         /EriK7w3PYuN7cl/vDFWPDrchLYf32muBOXfsUVHDmDGmuXI06acmUBHJ8ErfT7T/I+y
+         npoA==
+X-Gm-Message-State: AO0yUKWWjkyNRa35u0vxSyCXNVuzy4WUPew8hnDVrKwFBG7UT93RsGTv
+        H/f3fduIbkYf6ngzdjpOThB+IQ==
+X-Google-Smtp-Source: AK7set9tQUZjlvOjEPKgIZhNhaqAqfvoIjGR/tM9dONOTFbJZHwBM+4tpGwqyBXE9VDv0qHRQ1y7TQ==
+X-Received: by 2002:a05:6512:10d3:b0:4db:5123:c271 with SMTP id k19-20020a05651210d300b004db5123c271mr2439616lfg.29.1676672786935;
+        Fri, 17 Feb 2023 14:26:26 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id q13-20020ac25a0d000000b004b578e52d81sm791238lfn.176.2023.02.17.14.26.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 14:26:26 -0800 (PST)
+Message-ID: <3c17e91a-4903-ac13-7829-54c2c31bab6f@linaro.org>
+Date:   Sat, 18 Feb 2023 00:26:25 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn>
-References: <20221129034157.15036-1-zhuyinbo@loongson.cn> <20221129034157.15036-2-zhuyinbo@loongson.cn> <31c690a347f858a477bbba9c838984ed.sboyd@kernel.org> <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn>
-Subject: Re: [PATCH v10 2/4] clk: clk-loongson2: add clock controller driver support
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, liupeibao@loongson.cn,
-        loongarch@lists.linux.dev, wanghongliang@loongson.cn,
-        zhuyinbo@loongson.cn
-Date:   Fri, 17 Feb 2023 14:15:42 -0800
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v4 4/4] drm/msm/dpu: manage DPU resources if CTM is
+ requested
+Content-Language: en-GB
+To:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com,
+        marijn.suijten@somainline.org
+References: <1676286704-818-1-git-send-email-quic_kalyant@quicinc.com>
+ <1676286704-818-5-git-send-email-quic_kalyant@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1676286704-818-5-git-send-email-quic_kalyant@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting zhuyinbo (2023-02-14 23:35:22)
->=20
-> =E5=9C=A8 2023/2/11 =E4=B8=8A=E5=8D=887:42, Stephen Boyd =E5=86=99=E9=81=
-=93:
-> > Quoting Yinbo Zhu (2022-11-28 19:41:55)
-> >
-> >> +
-> >> +       mult =3D (val >> LOONGSON2_USB_FREQSCALE_SHIFT) &
-> >> +                       clk_div_mask(LOONGSON2_USB_FREQSCALE_WIDTH);
-> >> +
-> >> +       rate =3D parent_rate * (mult + 1);
-> >> +       do_div(rate, 8);
-> > Why is do_div() being used?
-> no expecial reason, I only want to get a result that rate divide 8.
+On 13/02/2023 13:11, Kalyan Thota wrote:
+> Allow modeset to be triggered during CTM enable/disable.
+> In the modeset callbacks, DPU resources required for the
+> CTM feature are managed appropriately.
+> 
+> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
 
-Ok, you can use div_u64() here and simplify.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> >
->=20
-> you meaning is to use clk_parent_data to rework=20
-> loongson2_clk_pll_register=C2=A0 and drop
->=20
-> loongson2_obtain_fixed_clk_hw ?
+> ---
+>   drivers/gpu/drm/msm/msm_atomic.c | 18 ++++++++++++++++++
+>   drivers/gpu/drm/msm/msm_drv.c    |  2 +-
+>   drivers/gpu/drm/msm/msm_drv.h    |  1 +
+>   3 files changed, 20 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
+> index 1686fbb..e3e607c 100644
+> --- a/drivers/gpu/drm/msm/msm_atomic.c
+> +++ b/drivers/gpu/drm/msm/msm_atomic.c
+> @@ -179,6 +179,24 @@ static unsigned get_crtc_mask(struct drm_atomic_state *state)
+>   	return mask;
+>   }
+>   
+> +int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
+> +{
+> +	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+> +	struct drm_crtc *crtc;
+> +	int i;
+> +
 
-Yes
+I hope this can be gone for good if at some point we have CRTC resource 
+allocation split from encoder resource alloc.
 
->=20
-> >
-> >> +}
-> >> +
-> >> +static void __init loongson2_clocks_init(struct device_node *np)
-> >> +{
-> >> +       struct clk_hw **hws;
-> >> +       struct clk_hw_onecell_data *clk_hw_data;
-> >> +       spinlock_t loongson2_clk_lock;
-> >> +
-> >> +       loongson2_pll_base =3D of_iomap(np, 0);
-> >> +
-> >> +       if (!loongson2_pll_base) {
-> >> +               pr_err("clk: unable to map loongson2 clk registers\n");
-> >> +               goto err;
-> > return?
-> sorry, I don't get it.=C2=A0 you meaning is that=C2=A0 remove "goto err".=
- Instead,=20
-> add a "return".
+> +	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state,
+> +				      new_crtc_state, i) {
+> +		if ((old_crtc_state->ctm && !new_crtc_state->ctm) ||
+> +		    (!old_crtc_state->ctm && new_crtc_state->ctm)) {
+> +			new_crtc_state->mode_changed = true;
+> +			state->allow_modeset = true;
+> +		}
+> +	}
+> +
+> +	return drm_atomic_helper_check(dev, state);
+> +}
+> +
+>   void msm_atomic_commit_tail(struct drm_atomic_state *state)
+>   {
+>   	struct drm_device *dev = state->dev;
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> index 0759e2d..3221284 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -52,7 +52,7 @@
+>   static const struct drm_mode_config_funcs mode_config_funcs = {
+>   	.fb_create = msm_framebuffer_create,
+>   	.output_poll_changed = drm_fb_helper_output_poll_changed,
+> -	.atomic_check = drm_atomic_helper_check,
+> +	.atomic_check = msm_atomic_check,
+>   	.atomic_commit = drm_atomic_helper_commit,
+>   };
+>   
+> diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
+> index ea80846..7d0243a 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.h
+> +++ b/drivers/gpu/drm/msm/msm_drv.h
+> @@ -209,6 +209,7 @@ int msm_atomic_init_pending_timer(struct msm_pending_timer *timer,
+>   		struct msm_kms *kms, int crtc_idx);
+>   void msm_atomic_destroy_pending_timer(struct msm_pending_timer *timer);
+>   void msm_atomic_commit_tail(struct drm_atomic_state *state);
+> +int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
+>   struct drm_atomic_state *msm_atomic_state_alloc(struct drm_device *dev);
+>   void msm_atomic_state_clear(struct drm_atomic_state *state);
+>   void msm_atomic_state_free(struct drm_atomic_state *state);
 
-Yes.
+-- 
+With best wishes
+Dmitry
 
-> >
-> >> +       }
-> >> +
-> >> +       clk_hw_data =3D kzalloc(struct_size(clk_hw_data, hws, LOONGSON=
-2_CLK_END),
-> >> +                                       GFP_KERNEL);
-> >> +       if (WARN_ON(!clk_hw_data))
-> >> +               goto err;
-[...]
-> >> +
-> >> +err:
-> >> +       iounmap(loongson2_pll_base);
-> >> +}
-> >> +
-> >> +CLK_OF_DECLARE(loongson2_clk, "loongson,ls2k-clk", loongson2_clocks_i=
-nit);
-> > Any reason this can't be a platform driver?
->=20
-> For the compatible consideration of other clock controllers of=20
-> Loongson-2 series in the future, the way of using dts can be
->=20
-> better compatible.
->=20
-
-Sorry that sentence doesn't make sense to me. The use of dts doesn't
-require the use of CLK_OF_DECLARE.
