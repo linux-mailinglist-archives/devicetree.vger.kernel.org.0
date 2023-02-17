@@ -2,79 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE05869AA0A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D419669AA0F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:15:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjBQLN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 06:13:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56294 "EHLO
+        id S229673AbjBQLPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 06:15:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbjBQLNx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:13:53 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EF366666
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:13:38 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id i13so1372108lfe.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:13:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hs8Yxp1MVlT0I86oaYY4unW9sTOxwBrv4kqwbTUdvms=;
-        b=CGC563MdG5ZK3KHRue7aFJyu4Qnz5uziqhEbG4CsGGHsvLQEojFDL7WA+mLIDUIYhi
-         /bFndr3aVqCYYfFvbp+nWjTxYHkp7/r35T07SX4F/p4FWasT9dOMUFDg4Xda1dglXy9F
-         PGC48gU7jQdiXLtBlm/U1tejAbRSQIc1GcusXhTSmWJKO8lKbCu7lygQFsA8EkqWasQi
-         kmjY8YfAwEoSxdNE0+et+Pr2zriuPlpXO5w5ps4Kd7jerOZ53+45+96+CffC/ZoAyniQ
-         GupQVFTR6ctOzUXuh0LryBWoof8+SpejsVhrH8XshLe3J5gkEaNape3WO0jJwMLagK/q
-         fxOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hs8Yxp1MVlT0I86oaYY4unW9sTOxwBrv4kqwbTUdvms=;
-        b=fp6H6KjYy1VkByO4dA7RptSNfAU8OEjiel3lXJe5qTdUAN5Hxa3PEVYcHVFzsn7wSc
-         I6VILD4an7G6XkPAvxLO/OvcfGkRh02Nj2aQ9+e6zv8sqXvYjYtWR7iO7pWddXGxiTgR
-         KtNXhdDCNVX0sKJlCV9w1gmszxW+F8iyBzfjstW7htYIv1JCzha707jpz7Z1a72V8Se8
-         64RoSjscY4foI7Bd+PJvM67zFmFb8lsBKAivqyyuM1jDFtZtpUFrlKqUG8caP01Teoej
-         LnY52uH2UNMEVX6iLnoe5DRCgUklSa9m3SgDFHLmeP1+kcTQD5EHnPpg1ZyOEljCpP4C
-         OjBQ==
-X-Gm-Message-State: AO0yUKUyc/SCqsR8zLCd5IXoDdwN9lpi9/yCJ01uvYk3LbCnW4YxP6GP
-        ynCemn9R60Q/jYjM2BWZ6zdzmg==
-X-Google-Smtp-Source: AK7set8ZhdFUqbXhgL08rWxQqCGaftiy0CrErLGx8HogZOY2K9jf5KtkaFsV9HvhIdLZFYbGXK9viA==
-X-Received: by 2002:a19:5202:0:b0:4cb:430b:c6b with SMTP id m2-20020a195202000000b004cb430b0c6bmr172623lfb.29.1676632401630;
-        Fri, 17 Feb 2023 03:13:21 -0800 (PST)
-Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id h11-20020ac250cb000000b004b564e1a4e0sm642683lfm.76.2023.02.17.03.13.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 03:13:21 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229635AbjBQLPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:15:36 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C600B642DF;
+        Fri, 17 Feb 2023 03:15:07 -0800 (PST)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 17 Feb 2023 20:14:50 +0900
+Received: from mail.mfilter.local (mail-arc01.css.socionext.com [10.213.46.36])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id AA8AD2058B4F;
+        Fri, 17 Feb 2023 20:14:50 +0900 (JST)
+Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Fri, 17 Feb 2023 20:14:50 +0900
+Received: from [10.212.159.180] (unknown [10.212.159.180])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id C87137374;
+        Fri, 17 Feb 2023 20:14:49 +0900 (JST)
+Message-ID: <27903ae4-3a66-004e-b9f5-e0d4deebdaa6@socionext.com>
+Date:   Fri, 17 Feb 2023 20:14:49 +0900
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2] dt-bindings: ata: Add UniPhier controller binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: display: msm: sm6115-mdss: Fix DSI compatible
-Date:   Fri, 17 Feb 2023 12:13:16 +0100
-Message-Id: <20230217111316.306241-2-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230217111316.306241-1-konrad.dybcio@linaro.org>
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230213045432.32614-1-hayashi.kunihiko@socionext.com>
+ <2d76ec86-6580-28b0-0f80-a5c497f8cef7@linaro.org>
+ <ed864d57-0de3-a169-ebde-628eb84b8a21@socionext.com>
+ <0c6dc673-7e11-eec5-ec2d-e00fb2060bf3@linaro.org>
+ <c6b86d56-a8a4-825d-ac34-7a9f00e43b42@socionext.com>
+ <2e5a17c2-f0fa-e82e-65ed-fea3637b7e62@linaro.org>
+Content-Language: en-US
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <2e5a17c2-f0fa-e82e-65ed-fea3637b7e62@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,41 +56,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the DSI autodetection is bound to work correctly on 6115 now,
-switch to using the correct per-SoC + generic fallback compatible
-combo.
+On 2023/02/17 17:42, Krzysztof Kozlowski wrote:
+> On 16/02/2023 18:23, Kunihiko Hayashi wrote:
+>> On 2023/02/14 18:42, Krzysztof Kozlowski wrote:
+>>> On 14/02/2023 10:33, Kunihiko Hayashi wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On 2023/02/13 18:10, Krzysztof Kozlowski wrote:
+>>>>> On 13/02/2023 05:54, Kunihiko Hayashi wrote:
+>>>>>> Add UniPhier SATA controller compatible string to the platform
+>>>>>> binding.
+>>>>>> This controller needs maximum three reset controls.
+>>>>>>
+>>>>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>>>>> ---
+>>>>>>     .../devicetree/bindings/ata/ahci-platform.yaml  | 17
+>>>>>> +++++++++++++++++
+>>>>>>     1 file changed, 17 insertions(+)
+>>>>>>
+>>>>>> Changes since v1:
+>>>>>> - Restrict resets property changes with compatible strings
+>>>>>> - Fix maxItems from two to three
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>>>> b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>>>> index 7dc2a2e8f598..25dd5ffaa517 100644
+>>>>>> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>>>>> @@ -45,6 +45,9 @@ properties:
+>>>>>>                   - marvell,armada-8k-ahci
+>>>>>>                   - marvell,berlin2-ahci
+>>>>>>                   - marvell,berlin2q-ahci
+>>>>>> +              - socionext,uniphier-pro4-ahci
+>>>>>> +              - socionext,uniphier-pxs2-ahci
+>>>>>> +              - socionext,uniphier-pxs3-ahci
+>>>>>>               - const: generic-ahci
+>>>>>>           - enum:
+>>>>>
+>>>>> Top level is saying reset=1, so did you test your bindings?
+>>>>
+>>>> Umm, I didn't see any errors on dt_binding_check, anyway I'll add
+>>>> initial minItems:1 and maxItems:3 on top level first.
+>>>
+>>> You need to test also all DTS using these bindings. Yours and others.
+>>> If you tested the DTS (with proper binding, not one which is basically
+>>> noop):
+>>>
+>>> uniphier-pro4-ace.dtb: sata@65600000: resets: [[27, 12], [27, 28], [37,
+>>> 3]] is too long
+>>
+>> I've tried updating tools and doing dtbs_check, but I couldn't find this
+>> error. It seems that this error can't be detected unless there is the
+>> specified compatible in "select:".
+>>
+>>> BTW, the patch has other errors - just look at the beginning of the
+>>> file. I cannot see it here in the diff, but when you open the file you
+>>> should notice it.
+>>
+>> Sorry, but I cannot see anything wrong.
+>> I'll check the header or something...
+> 
+> If you open the file, you will notice the same compatibles in two
+> places. In select and in properties. You added your compatibles only to
+> one place, so not symmetrically.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+OK, I understand. I'll add them in both.
+
+Thank you,
+
 ---
-Depends on (and should have been a part of):
-
-https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
-
-v1 -> v2:
-- Deprecate the old compatible instead of removing it (Krzysztof)
-
- .../devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-index 2491cb100b33..6fd1703e415f 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-@@ -40,7 +40,13 @@ patternProperties:
-     type: object
-     properties:
-       compatible:
--        const: qcom,dsi-ctrl-6g-qcm2290
-+        oneOf:
-+          - items:
-+              - const: qcom,sm6115-dsi-ctrl
-+              - const: qcom,mdss-dsi-ctrl
-+          - description: Old binding with separate driver logic, please don't use
-+            deprecated: true
-+            const: qcom,dsi-ctrl-6g-qcm2290
- 
-   "^phy@[0-9a-f]+$":
-     type: object
--- 
-2.39.1
-
+Best Regards
+Kunihiko Hayashi
