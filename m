@@ -2,378 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E38A69A5DB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 07:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D66669A5EC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 08:07:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbjBQG5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 01:57:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55654 "EHLO
+        id S229787AbjBQHHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 02:07:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjBQG5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 01:57:41 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3911893C5;
-        Thu, 16 Feb 2023 22:57:39 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 473252D8;
-        Fri, 17 Feb 2023 07:57:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1676617056;
-        bh=cppCOQZKoeslhFwvQz/NppDJENZu7/1sL8a90IxssXc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dYDGBY0xX5bDJ//gXOYrkwHYDjUjVRUt3JoiVtnFm7Dzl0x5y2gPtKDzrJeFkjcbe
-         dFPrDOvK42er9dXWJSHccW114Eci5Ajzf4AQxoJmuf0qYaQvvlHpBo7PYNVVIxL30w
-         Colok0VN53FrAA5iFYIfEtsCjF/8M32D6smuA4rA=
-Message-ID: <e4141652-53c0-fce1-dac7-5da5368e2240@ideasonboard.com>
-Date:   Fri, 17 Feb 2023 08:57:32 +0200
+        with ESMTP id S229783AbjBQHHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 02:07:54 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EF41EFC1
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 23:07:47 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id y14so127178ljq.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Feb 2023 23:07:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DSwBYjZrNmln+ctA3/m+T2GVcsFUCJyV9W5bCg8FwVk=;
+        b=WDYC5mLgBgby4IkaIx/erhiX6pHvAGJfn8AJ4Fg/PsJDfzV1FccE5bSHlt/k0neWN+
+         5qavbew9Z52SAlMUJ96LibXdf5m1sH5ZOkRocvtrbl0TH3Xrmt/+XPkVPM59vvG1r+hn
+         HbDNb/N+2xr7ig+uN972FTzu6d3SEDZyRlEFzAp6pA2US89GZjl/hBOEG/IEJWigdGPt
+         Lst25/ZCiiIBlMlLrvVQVm+sR9pDzrACptLz81ApuVfu/gf+8sw7lo47LQefw6+eHJuV
+         yD5/EGCJghbXSuVjvEL6I2t+czet84cYRS2HZBLOMylaDln80DXMzGttG3vaQR6V8971
+         PI7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DSwBYjZrNmln+ctA3/m+T2GVcsFUCJyV9W5bCg8FwVk=;
+        b=IvEYbeJQD/daLoGWhy3BURJhfth5iAal5Ljbw1iDw8vhuDfA62yOlhXH48yTmXwztF
+         iM7Y0sUXkBkSAUIDZmZQXDIN1O2g5tIIHfwDZaqLXD+d/jNMt2dwXqDde66d4ZF93m1S
+         J1zb7Qzq6LkqMH5NNZU1DwS/4o7jaB919WxEiL9KB7+RJ3z9NcNpnThiF+o3k4yrd59Y
+         hTUZBUJv0LzfpmZyX62dKJb80s+vgkawhjBKp5ftZZ3zBzeXMSOMSPHFsQVv6yS6/Q+f
+         GlXcAdqq5pYfUYTHGhz2lrQIMT5nH2YjGIaYeYKwR2c5tqkstpUbH6Ft6hP+LNM1HaHv
+         ao5w==
+X-Gm-Message-State: AO0yUKXk45e9jvu8mPqMKcM5J4DoV02HFZ2sNQrijyXmcK1xk9Atm6sM
+        8cjtrQGQAblBD0nE3vO56aR55Q==
+X-Google-Smtp-Source: AK7set/tAqwu8sxy4AE7vnmKG3xqNcDOKRCF7xpzyi9Ted3sLXbDrbOLyQwAqOQnLDHo62Xv/Vt9tQ==
+X-Received: by 2002:a05:651c:b29:b0:290:7d15:464a with SMTP id b41-20020a05651c0b2900b002907d15464amr134730ljr.5.1676617665835;
+        Thu, 16 Feb 2023 23:07:45 -0800 (PST)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id f2-20020a2e1f02000000b00294619d902dsm471489ljf.112.2023.02.16.23.07.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Feb 2023 23:07:44 -0800 (PST)
+Message-ID: <767e4d8d-b691-1849-71ac-5d6cefbb8d6a@linaro.org>
+Date:   Fri, 17 Feb 2023 09:07:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v9 0/8] i2c-atr and FPDLink
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>
-References: <20230216140747.445477-1-tomi.valkeinen@ideasonboard.com>
- <Y+5Rb17FTG4IxcE0@smile.fi.intel.com>
+ Thunderbird/102.0.2
+Subject: Re: [PATCH v7 1/1] dma: qcom: bam_dma: Add support to initialize
+ interconnect path
 Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y+5Rb17FTG4IxcE0@smile.fi.intel.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     dmaengine@vger.kernel.org, agross@kernel.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
+        devicetree@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, vkoul@kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20220921030649.1436434-1-bhupesh.sharma@linaro.org>
+ <20220921030649.1436434-2-bhupesh.sharma@linaro.org>
+ <a5b6255c-7282-32ed-8031-a4b841a78db7@linaro.org>
+ <CAH=2Ntw6XcyB2zy-cs35z3eOf8iTa28hGerhLndOgARrG05gJw@mail.gmail.com>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <CAH=2Ntw6XcyB2zy-cs35z3eOf8iTa28hGerhLndOgARrG05gJw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2/17/23 06:00, Bhupesh Sharma wrote:
+> On Thu, 16 Feb 2023 at 19:49, Vladimir Zapolskiy
+> <vladimir.zapolskiy@linaro.org> wrote:
+>>
+>> On 9/21/22 06:06, Bhupesh Sharma wrote:
+>>> From: Thara Gopinath <thara.gopinath@gmail.com>
+>>>
+>>> BAM dma engine associated with certain hardware blocks could require
+>>> relevant interconnect pieces be initialized prior to the dma engine
+>>> initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
+>>
+>> Apparently it's proven that the change description is incorrect, Qualcomm
+>> crypto engine is working fine on SM8250 and even more recent platforms,
+>> so far there is no obvious necessity in this change.
+> 
+> Since your v9 patchset produces no entry in $ cat /proc/crypto on
+> either RB5 (qrb5165) or (with an additional patch) on sm8150-mtp or
+> sa8115p-adp with the default arm64 defconfig with linux-next, I am not
+> sure we can conclude QCE is working with these changes.
 
-On 16/02/2023 17:53, Andy Shevchenko wrote:
-> On Thu, Feb 16, 2023 at 04:07:39PM +0200, Tomi Valkeinen wrote:
-> 
-> ...
-> 
->> +	if (!c2a)
-> 
-> I would expect here dev_warn() to let user know about "shouldn't happened, but
-> have happened" situation.
+Hopefully someone else can conclude it independently.
 
-Sure, I'll add.
+You may notice that v9 patchset series does not contain sm8150 specific
+changes, but sm8250 one (v9 11/14) is present, testing on RB5 is valid.
 
->> +		return; /* This shouldn't happen */
-> 
-> ...
-> 
->> -	static const struct v4l2_mbus_framefmt format = {
->> +	static const struct v4l2_mbus_framefmt informat = {
-> 
-> Naming a bit confusing. Is it "information" that cut or what?
-> 
-> in_format
+> Please share more details on how you tested this.
 
-Indeed, that's better.
+I do compile linux-next with v9 QCE series applied on top of it and run the
+kernel on RB5 board, there is nothing really complicated about it.
 
->> +	static const struct v4l2_mbus_framefmt outformat = {
-> 
-> out_format
-> 
-> ...
-> 
->> -out_unlock:
->> +out:
-> 
-> Why?
+If you missed it, the 'cryptobench benchmark' test etc. have been already
+described, please find it here:
 
-I think this was a mistake, I'll change it back.
+   https://lore.kernel.org/linux-crypto/731af3cf-6f18-caf9-ef65-ec73b0744ad9@linaro.org/
 
-> ...
-> 
->> +/*
->> + * (Possible) TODOs
-> 
-> TODOs:
+--
+Best wishes,
+Vladimir
 
-Ok...
-
->> + *
->> + * - PM for serializer and remote peripherals. We need to manage:
->> + *   - VPOC
->> + *     - Power domain? Regulator? Somehow any remote device should be able to
->> + *       cause the VPOC to be turned on.
->> + *   - Link between the deserializer and the serializer
->> + *     - Related to VPOC management. We probably always want to turn on the VPOC
->> + *       and then enable the link.
->> + *   - Serializer's services: i2c, gpios, power
->> + *     - The serializer needs to resume before the remote peripherals can
->> + *       e.g. use the i2c.
->> + *     - How to handle gpios? Reserving a gpio essentially keeps the provider
->> + *       (serializer) always powered on.
->> + * - Do we need a new bus for the FPD-Link? At the moment the serializers
->> + *   are children of the same i2c-adapter where the deserializer resides.
->> + * - i2c-atr could be made embeddable instead of allocatable.
->> + */
-> 
-> ...
-> 
->>   struct atr_alias_table_entry {
->>   	u16 alias_id;	/* Alias ID from DT */
->>   
->> -	bool reserved;
->> +	bool in_use;
->>   	u8 nport;
->>   	u8 slave_id;	/* i2c client's local i2c address */
->>   	u8 port_reg_idx;
-> 
-> Wouldn't be wiser to move boolean at the end so if any obscure
-> architecture/compiler makes it longer than a byte it won't increase the memory
-> footprint. (Actually wouldn't it be aligned to u16 followed by u8 as well as
-> they are different types?)
-
-Sure, I can move it.
-
->>   };
-> 
-> ...
-> 
->> +static int ub960_read16(struct ub960_data *priv, u8 reg, u16 *val)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +	unsigned int v1, v2;
->> +	int ret;
->> +
->> +	mutex_lock(&priv->reg_lock);
->> +
->> +	ret = regmap_read(priv->regmap, reg, &v1);
->> +	if (ret) {
->> +		dev_err(dev, "%s: cannot read register 0x%02x (%d)!\n",
->> +			__func__, reg, ret);
->> +		goto out_unlock;
->> +	}
->> +
->> +	ret = regmap_read(priv->regmap, reg + 1, &v2);
->> +	if (ret) {
->> +		dev_err(dev, "%s: cannot read register 0x%02x (%d)!\n",
->> +			__func__, reg + 1, ret);
->> +		goto out_unlock;
->> +	}
-> 
-> Wondering why bulk read can't be used against properly typed __be16 variable?
-
-I'll do that.
-
->> +	*val = (v1 << 8) | v2;
-> 
-> + be16_to_cpu() here.
-
-Yep.
-
->> +out_unlock:
->> +	mutex_unlock(&priv->reg_lock);
->> +
->> +	return ret;
->> +}
-> 
-> ...
-> 
->> +static int ub960_rxport_read16(struct ub960_data *priv, u8 nport, u8 reg,
->> +			       u16 *val)
->>   {
-> 
-> Ditto.
-> 
->> +}
-> 
-> ...
-> 
->>   	struct i2c_board_info ser_info = {
->> -		.of_node = to_of_node(rxport->remote_fwnode),
->> -		.fwnode = rxport->remote_fwnode,
-> 
->> +		.of_node = to_of_node(rxport->ser.fwnode),
->> +		.fwnode = rxport->ser.fwnode,
-> 
-> Why do you need to have both?!
-
-I didn't debug it, but having only fwnode there will break the probing 
-(no match).
-
->>   		.platform_data = ser_pdata,
->>   	};
-> 
-> ...
-> 
->> +	for (nport = 0; nport < priv->hw_data->num_rxports; ++nport) {
-> 
-> Pre-increment is non-standard in the kernel.
-> 
->> +		struct ub960_rxport *rxport = priv->rxports[nport];
->> +		struct v4l2_mbus_frame_desc desc;
->> +		int ret;
->> +		u8 cur_vc;
->> +
->> +		if (!rxport)
->> +			continue;
->> +
->> +		ret = v4l2_subdev_call(rxport->source.sd, pad, get_frame_desc,
->> +				       rxport->source.pad, &desc);
->> +		if (ret)
->> +			return ret;
->> +
->> +		if (desc.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
->> +			continue;
-> 
-> 		cur_vc = desc.entry[0].bus.csi2.vc;
-> 
->> +		for (i = 0; i < desc.num_entries; ++i) {
->> +			u8 vc = desc.entry[i].bus.csi2.vc;
-> 
->> +			if (i == 0) {
->> +				cur_vc = vc;
->> +				continue;
->> +			}
-> 
-> This is an invariant to the loop, see above.
-
-Well, the current code handles the case of num_entries == 0. I can 
-change it as you suggest, and first check if num_entries == 0 and also 
-start the loop from 1.
-
->> +			if (vc == cur_vc)
->> +				continue;
->> +
->> +			dev_err(&priv->client->dev,
->> +				"rx%u: source with multiple virtual-channels is not supported\n",
->> +				nport);
->> +			return -ENODEV;
->> +		}
->> +	}
-> 
-> ...
-> 
->> +	for (i = 0; i < 6; ++i)
->>   		ub960_read(priv, UB960_SR_FPD3_RX_ID(i), &id[i]);
->>   	id[6] = 0;
-> 
-> Wondering if this magic can be defined.
-
-The number of ID registers? Yes, I can add a define.
-
-> ...
-> 
->> +	priv->atr.aliases = devm_kcalloc(dev, table_size,
->> +					 sizeof(struct atr_alias_table_entry),
-> 
-> 	sizeof(*priv->atr.aliases) ?
-
-Sure.
-
->> +					 GFP_KERNEL);
->> +	if (!priv->atr.aliases)
->>   		return -ENOMEM;
-> 
-> ...
-> 
->>   	if (ret) {
->>   		if (ret != -EINVAL) {
->> -			dev_err(dev,
->> -				"rx%u: failed to read 'ti,strobe-pos': %d\n",
->> -				nport, ret);
->> +			dev_err(dev, "rx%u: failed to read '%s': %d\n", nport,
->> +				"ti,strobe-pos", ret);
->>   			return ret;
->>   		}
->>   	} else if (strobe_pos < UB960_MIN_MANUAL_STROBE_POS ||
->> @@ -3512,8 +3403,8 @@ ub960_parse_dt_rxport_link_properties(struct ub960_data *priv,
->>   	ret = fwnode_property_read_u32(link_fwnode, "ti,eq-level", &eq_level);
->>   	if (ret) {
->>   		if (ret != -EINVAL) {
->> -			dev_err(dev, "rx%u: failed to read 'ti,eq-level': %d\n",
->> -				nport, ret);
->> +			dev_err(dev, "rx%u: failed to read '%s': %d\n", nport,
->> +				"ti,eq-level", ret);
->>   			return ret;
->>   		}
->>   	} else if (eq_level > UB960_MAX_EQ_LEVEL) {
-> 
-
-Hmm, I noticed this one (and the one above) was missing return -EINVAL.
-
-> Seems like you may do (in both cases) similar to the above:
-> 
-> 	var = 0;
-> 	ret = read_u32();
-> 	if (ret && ret != -EINVAL) {
-> 		// error handling
-> 	}
-> 	if (var > limit) {
-> 		// another error handling
-> 	}
-
-That's not the same. You'd also need to do:
-
-if (!ret) {
-	// handle the retrieved value
-}
-
-which, I think, is not any clearer (perhaps more unclear).
-
-What I could do is:
-
-if (ret) {
-	if (ret != -EINVAL) {
-		dev_err(dev, "rx%u: failed to read '%s': %d\n", nport,
-			"ti,eq-level", ret);
-		return ret;
-	}
-} else {
-	if (eq_level > UB960_MAX_EQ_LEVEL) {
-		dev_err(dev, "rx%u: illegal 'ti,eq-level' value: %d\n",
-			nport, eq_level);
-		return -EINVAL;
-	}
-
-	rxport->eq.manual_eq = true;
-	rxport->eq.manual.eq_level = eq_level;
-}
-
-Maybe the above style makes it clearer, as it clearly splits the "don't 
-have value" and "have value" branches.
-
-> ...
-> 
->> +	static const char *vpoc_names[UB960_MAX_RX_NPORTS] = { "vpoc0", "vpoc1",
->> +							       "vpoc2", "vpoc3" };
-> 
-> Wouldn't be better to format it as
-> 
-> 	static const char *vpoc_names[UB960_MAX_RX_NPORTS] = {
-> 		"vpoc0", "vpoc1", "vpoc2", "vpoc3",
-> 	};
-> 
-> ?
-
-Clang-format disagrees, but I agree with you ;).
-
-  Tomi
-
+>>> is passed on to the bam dma driver from dt via the "interconnects"
+>>> property. Add support in bam_dma driver to check whether the interconnect
+>>> path is accessible/enabled prior to attempting driver intializations.
+>>>
+>>> If interconnects are not yet setup, defer the BAM DMA driver probe().
+>>>
+>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> [Bhupesh: Make header file inclusion alphabetical and use 'devm_of_icc_get()']
+>>> ---
+>>>    drivers/dma/qcom/bam_dma.c | 10 ++++++++++
+>>>    1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+>>> index 2ff787df513e..a5b0cf28ffb7 100644
+>>> --- a/drivers/dma/qcom/bam_dma.c
+>>> +++ b/drivers/dma/qcom/bam_dma.c
+>>> @@ -26,6 +26,7 @@
+>>>    #include <linux/kernel.h>
+>>>    #include <linux/io.h>
+>>>    #include <linux/init.h>
+>>> +#include <linux/interconnect.h>
+>>>    #include <linux/slab.h>
+>>>    #include <linux/module.h>
+>>>    #include <linux/interrupt.h>
+>>> @@ -394,6 +395,7 @@ struct bam_device {
+>>>        const struct reg_offset_data *layout;
+>>>
+>>>        struct clk *bamclk;
+>>> +     struct icc_path *mem_path;
+>>>        int irq;
+>>>
+>>>        /* dma start transaction tasklet */
+>>> @@ -1294,6 +1296,14 @@ static int bam_dma_probe(struct platform_device *pdev)
+>>>        if (IS_ERR(bdev->bamclk))
+>>>                return PTR_ERR(bdev->bamclk);
+>>>
+>>> +     /* Ensure that interconnects are initialized */
+>>> +     bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
+>>> +     if (IS_ERR(bdev->mem_path)) {
+>>> +             ret = dev_err_probe(bdev->dev, PTR_ERR(bdev->mem_path),
+>>> +                                 "failed to acquire icc path\n");
+>>> +             return ret;
+>>> +     }
+>>> +
+>>>        ret = clk_prepare_enable(bdev->bamclk);
+>>>        if (ret) {
+>>>                dev_err(bdev->dev, "failed to prepare/enable clock\n");
+>>
+>> I'm resurrecting the comments on this change to emphasize the observation
+>> that the change is not needed at all to run QCE.
+>>
+>> --
+>> Best wishes,
+>> Vladimir
