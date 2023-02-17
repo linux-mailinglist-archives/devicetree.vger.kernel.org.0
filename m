@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5636069AFF9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FAAE69AFFD
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 16:58:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbjBQP6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 10:58:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54642 "EHLO
+        id S229883AbjBQP6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 10:58:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbjBQP6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:58:16 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6ABF53804
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:06 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id eg30so5751189edb.7
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:06 -0800 (PST)
+        with ESMTP id S229926AbjBQP6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 10:58:48 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677D75D3EC
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:46 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id i28so5481731eda.8
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 07:58:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+vqrvv9VlZHyrCsyoCeOFdO8NAfEt4LpoGi0UcB/DA4=;
-        b=Kn/d/3llbE2Kj1AKwHL+A4Nmc6QITBB0SMmumpZuknJYCUNrIT6PqZ9zNID37PkcS3
-         LS/IN3CvpDYnQc0RoA76sPtibM4MqODdh/6woS2obIGh/fUhMhF/MGHQSO8OqH7xBBhv
-         FnvEDiVMxzgcQLgDf9p8Vlx3syOhEmYNIKWgx9t3IttKRg/yI/TdbMh6lkKJebL47MAH
-         8jnvvJxdrfmZqUjdi9SjXWdbg0reYE4+BRZdcej9NQnfFFYzhPseqdGucOvf4vzouSjv
-         T2ItHIiYP38IS/ZtM8O+XJqJgtTHAzlhNRmYLT0kmDhbeaTAYYb1MJ1daaRWRRtWxckf
-         mXhA==
+        bh=CYkwCuqigGfCoKLWcMDTYElj0W4J5moHrJOlJcxcQqo=;
+        b=Cy5xpdNu8jAGyMXKMw3pmI3Hl887D2GB5iBSBv4klpb/X79+4aCl+UyrY5aXkE7jxB
+         08blWIZpGSuvoBZhvG2VtFCv/cKz3j5htB3McpbBCareoy1un2gWkk848fwlUthfnf4/
+         LuVXpCEWkjxreVdc57pZxBZ+Fd3DRdhfIkMlvH4fniN1EhGdj7/JrDRXV0Yqw17s5LfI
+         1ViOaiS1PWBdJlSOu5F+qc2DFiWy/pEVCtmwJAzGccsxmcQtnJ0VYvxEfzh+a71n8t/l
+         RUQ8PfyPYSvBYQTxtiyv5ahl9mcggirbkvpwMve14frGI6kOJO/cTwjSMejwSzqCu4hR
+         QyZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+vqrvv9VlZHyrCsyoCeOFdO8NAfEt4LpoGi0UcB/DA4=;
-        b=tJ95QIiptmYECyYXRZ8A3GiJDwQkPlfXLw+pMnSfDxDA8up6oeHLbz3hmZpUIFrzux
-         JOIpVxRa3mE3+vhu50Xm96ZWc5tqzocKkZrZXcuz/+dOeSpq/jmb+f6ecm9TvreKl0DO
-         k7yOGjWK5Bm870sTPON174TF3nL1KiN79web9GcnnQyFGjg62x4bZhMQwRq0V4NpdxbP
-         aDlJiOK23x7Mf4iqU6AMOqOOFFUvJnybl4tjFIQPSu09+9lpknK1S50Msia72RyLVzjx
-         kWVKr+kCWGOWuN152MAaK9qVVplKrhyypvMDZVH0039jJQE4D7lnpzH4/SV4X0Ovb9ik
-         IyvA==
-X-Gm-Message-State: AO0yUKWojpIjM70Nv4MbgPvdI3j8Zj48Qt9h/xINLaaPEdHvr2J3dL5H
-        ANeeq7s0XEEMcv6r5Kkh/8H27Q==
-X-Google-Smtp-Source: AK7set9WNW70/b2x1GCtNKIB7bBWNldXcCEndeMsTwO2enq32+28T+x4QwqdR3zni0PJeOEoUboK9g==
-X-Received: by 2002:a17:906:6454:b0:86f:ae1f:9234 with SMTP id l20-20020a170906645400b0086fae1f9234mr1064383ejn.7.1676649485201;
-        Fri, 17 Feb 2023 07:58:05 -0800 (PST)
+        bh=CYkwCuqigGfCoKLWcMDTYElj0W4J5moHrJOlJcxcQqo=;
+        b=e6MO2710eqPtPPOfQT51CqJSDAPbnPIBZiXyzZhgauJkSl+KZJBgMPk5M3YiujVxUC
+         DTAfLYaqK6Qx3hU7fpMs4mtZWsPOwSQ9R1YZ5xEUN+4a09KEQ3xeGFVWOD33pvppuh0m
+         YCXyuMlJC0WRgdwUMdPHEagU6Tl3MlWj/txo4jA9mrwidCpp5+00wUj7fgfEBN0gM7nA
+         3QPaBYPsOtuVKxeQnhuOHAcH4Ne1evurRgnL0zjmxWxbphndNm22BzYfQdrIWNDvIq94
+         AJBv0AEUKSp/+4MWpfu/OZpzey+LXnliAfKFDP/pmkt1atYzB61qe9AGQn5PG5De/+7P
+         8tZQ==
+X-Gm-Message-State: AO0yUKVRa+bzDXeht/1M39Go9Qxm3rlncT2IT0x5LdSYunJTMN6h3kr5
+        DQOQQT7MyVQm22bbCOg+DymQdA==
+X-Google-Smtp-Source: AK7set8sTy6QcLCsFDFZbGkcAunox6kJ4vp/Xj1tVQsgXo2ftR5DkhQIJTc8kUk8n5DMgr5OXMM/mQ==
+X-Received: by 2002:a17:906:4a58:b0:884:930:b014 with SMTP id a24-20020a1709064a5800b008840930b014mr9887865ejv.6.1676649524887;
+        Fri, 17 Feb 2023 07:58:44 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w7-20020a17090649c700b0073d796a1043sm2255907ejv.123.2023.02.17.07.58.03
+        by smtp.gmail.com with ESMTPSA id i15-20020a17090685cf00b008b1435bd1cbsm2290068ejy.105.2023.02.17.07.58.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 07:58:04 -0800 (PST)
+        Fri, 17 Feb 2023 07:58:44 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] spi: dt-bindings: qcom,spi-qcom-qspi: document OPP and power-domains
-Date:   Fri, 17 Feb 2023 16:58:02 +0100
-Message-Id: <20230217155802.848178-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] arm64: dts: qcom: sc7180-trogdor-pazquel360: drop incorrect RT5682S VBAT-supply
+Date:   Fri, 17 Feb 2023 16:58:36 +0100
+Message-Id: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -73,33 +72,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QSPI on Qualcomm SDM845, SC7180 and SC7280 SoCs uses OPP table (both in
-DTS and Linux driver) and is suuplied by CX power domain.  Document
-missing properties to fix:
+It seems that the RT5682S codec does not use VBAT-supply:
 
-  sc7280-idp2.dtb: spi@88dc000: Unevaluated properties are not allowed ('operating-points-v2', 'power-domains' were unexpected)
+  sc7180-trogdor-pazquel360-lte.dtb: codec@1a: Unevaluated properties are not allowed ('VBAT-supply' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml          | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-index e94d915e28c8..ee8f7ea907b0 100644
---- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-@@ -52,6 +52,11 @@ properties:
-       - const: qspi-config
-       - const: qspi-memory
+---
+
+I don't have access to datasheet. Driver still requests VBAT-supply but
+other boards simply remove this property for RT5682S.
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+index bc4f3b6c6634..273e2249f018 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+@@ -12,6 +12,7 @@ &alc5682 {
+ 	compatible = "realtek,rt5682s";
+ 	realtek,dmic1-clk-pin = <2>;
+ 	realtek,dmic-clk-rate-hz = <2048000>;
++	/delete-property/ VBAT-supply;
+ };
  
-+  operating-points-v2: true
-+
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
+ ap_ts_pen_1v8: &i2c4 {
 -- 
 2.34.1
 
