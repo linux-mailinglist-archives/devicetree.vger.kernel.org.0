@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC14669AA20
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:16:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 891E369AA24
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 12:16:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbjBQLQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 06:16:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60328 "EHLO
+        id S230018AbjBQLQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 06:16:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjBQLQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:16:47 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9343B85A
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:26 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id e30so756642ljb.8
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:26 -0800 (PST)
+        with ESMTP id S230025AbjBQLQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 06:16:48 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC7A3C07
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:28 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id f22so630391lja.6
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 03:16:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0e01nddNNggomilaOmguOcFx036Ua8m431JWLUtouH8=;
-        b=CFjALJfnxDN/Vkk/EMv9EpN+uCLAJekJSpOmCzBM9HXaRJ1JDo7s2RCA5W9MOFiU4O
-         LSz8x1NWXU/in4bBl5bfF+OzpMaO0it5JqnthD7bg3demWpykgfsjuLvr9zKwHciV5wm
-         ntBwFtaAAlAt3gNjbBxObFbRG1Mw+QvPpogE+FebZvekkA1XJuhO4OwosATUot/pcB39
-         CdXW73vyWq+1LejmEunqRaXoQdvoAvZS653gC2SD1x+g4TwVsANDagPpvF42OqrznDVj
-         6TUy8oUbhmODSfsNDQLct/ogTWOGCZMbxm8pCozighMcbny1GUQ1RQQ9uf+t7CHnHjXG
-         jNUA==
+        bh=HmoMqnRP5kZAiXq2v7CNcctUC+zodegcmF76bZvlIAw=;
+        b=c9ZZv4rfZBZFzWEA/W4nxzpP5BhRgY9jBI02O6onfHggcezzcuWXJYJqtcWCHbm0mT
+         8znT6eB/RftHt6F5swPqmxl/ow+oPAX+ATKuAIWxQ+dbIZ8/154bCTfi8ccf7yFAVEfk
+         89qRZKPexUTswZ3Uc/WpUy0jPV8Gvf6/YcG5UV7yMPgBlsj/tKja6DNIwal3/nkLZD8W
+         pHqLuWe3ctTNUHjyBby4nO5DRH3/I75JCS1yL1I4Rbzhhhz0bGIedRXkHlkVGoKQKiAs
+         7f6itx6ijSPdMoMVVMavTvdjc3s5LMwGyeSfYJqAyCOg3/LUBokSI+AHWypbR+kjS7ls
+         KF6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0e01nddNNggomilaOmguOcFx036Ua8m431JWLUtouH8=;
-        b=syqu3AI2uIZLIec/zYCbIgTzLf3roAYzDcDro3PMdZnIoMKLS2cUqT8CLe7eAewU/e
-         U3L5p59OFtt+9Kh9ScboRxDrbaE3rqyXSsxtaX5E0rOVKz34RWYd8WS2iU9I4b1LAHMP
-         IXYbywn7sPkPSRk0vZoC3dFr9WyJia0srsyH4zvxJTkOp1A4fS6IRVTJ2lk3YfjH7M6e
-         H4XoYypCMRm1fqN4Uryyc19GoTIgwqm5LpWw76gPd5D+CAkRpAeTUeHuIfFW1vsXl3Lt
-         2MfzLibkjeVdiXI/gureE9eL36wZnhqZ8gae5g76HjFv4zx5J8FERXtMd/LnsZzp0gzd
-         ydpg==
-X-Gm-Message-State: AO0yUKWspuZxCdNnphSPSoZsU5Nxp4555HvcSzw+xOqMLYeUYOqi2KSf
-        bAOLgKiJAdJ3mLRwJ8HEWk7WkQ==
-X-Google-Smtp-Source: AK7set8UZtt/gDomOxIqtofjuy2wALx/F9R2DtKLK8ThMjlMdmnvCx7zhJ+vQFPf9RFthPrvueUFsA==
-X-Received: by 2002:a2e:574b:0:b0:294:712a:5190 with SMTP id r11-20020a2e574b000000b00294712a5190mr739293ljd.28.1676632584963;
-        Fri, 17 Feb 2023 03:16:24 -0800 (PST)
+        bh=HmoMqnRP5kZAiXq2v7CNcctUC+zodegcmF76bZvlIAw=;
+        b=tuYjAz+Qsfi7hCw3eRthL+fjgYNYi40085g1KCnYgYlcYaG8c6hiPhITPeCY66xyVp
+         taolEoLVB6PTB9hTrSpqH7YFznTwHdOIi0R1Xsyy9a/Btb7ZAaVri1hzHsPOGLrr1+55
+         JMelydPemIWty8o0ZvAsC2GqlM1PIvGcEOvKgFx5prg3agqTGRJOLV+WXUJ5aFRPX9/a
+         hOgrUQtG9r8CfvfguHmj7YpMqd0XKjzNkGHcJNI4566Vl9CCp9WOKgnvpgj2Isdonogc
+         4N5eoMbTgmMnFUH9VOweYnIep38tBL0GeIehTwxOw4pcIpKS/avDsnIHFER8YbyfYIlS
+         pQTQ==
+X-Gm-Message-State: AO0yUKUPDcslmS9fybSMAP2xQafzQ+l/3/sem81lmdorIzIu98cs1/3i
+        5VVsqNlRTup575Bhq7cpkqB6/w==
+X-Google-Smtp-Source: AK7set95lmN1eG8L+WqSsDgz3Maqx82n55DwsLlhEGEwttIK1QfQtsLZabqbklItAavuPKe3Mak4tQ==
+X-Received: by 2002:a05:651c:1a06:b0:293:4e4b:bf5a with SMTP id by6-20020a05651c1a0600b002934e4bbf5amr1795039ljb.1.1676632586440;
+        Fri, 17 Feb 2023 03:16:26 -0800 (PST)
 Received: from localhost.localdomain (abxh117.neoplus.adsl.tpnet.pl. [83.9.1.117])
-        by smtp.gmail.com with ESMTPSA id u21-20020a2e9b15000000b002935899fe3fsm554818lji.116.2023.02.17.03.16.23
+        by smtp.gmail.com with ESMTPSA id u21-20020a2e9b15000000b002935899fe3fsm554818lji.116.2023.02.17.03.16.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 03:16:24 -0800 (PST)
+        Fri, 17 Feb 2023 03:16:26 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
@@ -61,9 +61,9 @@ Cc:     marijn.suijten@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/6] arm64: dts: qcom: sm8150: Add qcom,smmu-500 to Adreno SMMU
-Date:   Fri, 17 Feb 2023 12:16:11 +0100
-Message-Id: <20230217111613.306978-4-konrad.dybcio@linaro.org>
+Subject: [PATCH v2 5/6] arm64: dts: qcom: sm8250: Add qcom,smmu-500 to Adreno SMMU
+Date:   Fri, 17 Feb 2023 12:16:12 +0100
+Message-Id: <20230217111613.306978-5-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230217111613.306978-1-konrad.dybcio@linaro.org>
 References: <20230217111613.306978-1-konrad.dybcio@linaro.org>
@@ -71,8 +71,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,23 +85,23 @@ Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 v1 -> v2:
 No changes
 
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index d94171f9b73d..3da77141a164 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -2287,7 +2287,8 @@ gpucc: clock-controller@2c90000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 6a0100822d3d..13f5526d97b4 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -2701,7 +2701,8 @@ gpucc: clock-controller@3d90000 {
  		};
  
- 		adreno_smmu: iommu@2ca0000 {
--			compatible = "qcom,sm8150-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
-+			compatible = "qcom,sm8150-smmu-500", "qcom,adreno-smmu",
+ 		adreno_smmu: iommu@3da0000 {
+-			compatible = "qcom,sm8250-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
++			compatible = "qcom,sm8250-smmu-500", "qcom,adreno-smmu",
 +				     "qcom,smmu-500", "arm,mmu-500";
- 			reg = <0 0x02ca0000 0 0x10000>;
+ 			reg = <0 0x03da0000 0 0x10000>;
  			#iommu-cells = <2>;
- 			#global-interrupts = <1>;
+ 			#global-interrupts = <2>;
 -- 
 2.39.1
 
