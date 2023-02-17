@@ -2,96 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B4F69A781
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C40769A788
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 09:55:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbjBQIxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 03:53:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57346 "EHLO
+        id S229951AbjBQIzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 03:55:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjBQIxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:53:45 -0500
+        with ESMTP id S229954AbjBQIzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 03:55:10 -0500
 Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D41A74233
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:53:44 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id eg30so1384840edb.7
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:53:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C22E5A3B3
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:55:04 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id cn2so1648746edb.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 00:55:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fdMyS5kj05k5hIY10/lELprESJHEF14WiGNZ270Kdvs=;
-        b=l/EGS20kE8i7iyjzvY44HVL0uoaFTmKRNv4FUkPdV+Ml8oQtc6chcUO1mIvZnk89kV
-         niqdoadjpXEsREo47u2Ps71s0Rvz4YPj2qvr6gsMdusSFpcFhz1o+h4oGvjejX2OfKY3
-         PgiW4V8wisheTZCIONVABxjI0IkducieuEEDxVJyG1igMt2KFgCWa5Km3mjqYMnP8Blk
-         EKmL4mSG0GIesfF5to+qMJpvkHbOohFjo0PDhKUwC6BH8JUF0wNjmnKVwsF1Um8EqnlN
-         mvn6yN3a9lTS3CKt19JPF5DOe3bB7SO6NcT7Q5NQVMi94oms01Nc1bu3n8wNVvM4CHhl
-         j5ig==
+        bh=ms/iLQOf6WZ9kdAbvZ5kczj2Q3S8/Va+SZXQUp0aFpI=;
+        b=kyzKIEWzCOJNIjmoYP09ulmEIikLSDcsMAPktcU/zWhA8o+CjPafc5vCUetue3nzNw
+         yZJajUL3OKiOn4cPunKJmdk6bY8dn/9B/wqP/ak4CccyAwha4eEfTZIFRto1eQHfZR5T
+         hbmWXWAAUNSa2k987EgtNHckC0Uk5yEaGLndg17UBttAMDoSLQZN0Z3NpEbY6U+6qyiS
+         RQ9cuKe0Nys02eKGay+6fVitO/IfdcfyZJeKiqELcsQW6jUD5c03QeweZNTK3qNNvjby
+         QRbDy/hBo5yJT8Lo5l6ouL05JQEk4g3y03z2phQE7necbjVx6yWeXzvgZDGkjwwiuMLj
+         Ok1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fdMyS5kj05k5hIY10/lELprESJHEF14WiGNZ270Kdvs=;
-        b=eXtTP8Cj3h0642KdGQdPKwUd9P5ylKdpzB4eUyNETDCxEDmpcdy8p0b+PMVwdIkjCg
-         pXRYDqmJw+sVWcCT+FsNaV27whpjMBRfI77RnDd+kjT4NfQKBiQpkxstveX6oJ4rnUSv
-         epgQAYF184e7L/lWV7yhjj6SdOYuCePv8EIm7zYrS4czqpNKPxLQG/6kbD4e+iT1Q65S
-         w+CRZLbL9m8+kd1xXf8zmdEEmo0GkFvd+ubyke9mBcGgodcBmaJ0pVT8OXVY/ZCtwInB
-         QltXji6469KP99/AwP2oOc+NJ03hOzubjUvsE6So+jxf45WRjwp0+9tVWkA7QDoUDZAU
-         oxtg==
-X-Gm-Message-State: AO0yUKW3qNYI8IyjFbWGbdvH+wJ1l3kDRvKwlDgt3vwZU/L18fbqFTyP
-        pvtQykOeqa2a2kHrAwkccL1JVQ==
-X-Google-Smtp-Source: AK7set/jSw1YzksewYyFFLYa8kRzbh7z8MvwBIzJ1GMMm5Hn/lb3n0dU3vBFcjktl8xK/fNgc9egWg==
-X-Received: by 2002:a05:6402:f03:b0:4ac:d2cd:cba9 with SMTP id i3-20020a0564020f0300b004acd2cdcba9mr4413829eda.9.1676624023482;
-        Fri, 17 Feb 2023 00:53:43 -0800 (PST)
+        bh=ms/iLQOf6WZ9kdAbvZ5kczj2Q3S8/Va+SZXQUp0aFpI=;
+        b=cN9em+Ztq4JQ5qhka6w85AiU4jp7UGRz23qA0GMrO5Sjpb6aod0mI13vvtCzt8c3cU
+         Wp1YFuNrZv76WdmRlMpYjnGOStnMEQumf3EfDVrfX/w+3XjGp5sBO2Zh8elfe/GqFyRj
+         k2bubsTi+7ttNtcxgih49BbaYq0C1A4CgKMnDxdMVOj41ueJV+7FFKCt00wZ+EiNu2BC
+         xDrwQau4zkzc0zK97vXnjWZwmO0wfVEZDHeBQOv5+7sBuK6NWCheaJkf5JlvAiPw3JtL
+         XcXegjbdu+P30oI1wTXPp77b7C2B0CcWggseLtvsLjMKcP0JMC9YpBakSk+PWJ7oAmFg
+         YCQA==
+X-Gm-Message-State: AO0yUKUZWvVnT7tmnr41bewD5WRXnCOZqJ/Modn8Mw1vVzxdRJM2gsUG
+        g8P4ChsBmTzWXN2TPvcfcXFOdA==
+X-Google-Smtp-Source: AK7set+IEv2TbISTklidgD6uq9zlJmbOrq7lhiGovewXGe1Rb+O6Stn+ccGdmM+r+kEvUce/0FYZYg==
+X-Received: by 2002:a05:6402:784:b0:4ab:4411:2f71 with SMTP id d4-20020a056402078400b004ab44112f71mr156745edy.37.1676624102715;
+        Fri, 17 Feb 2023 00:55:02 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k2-20020a50ce42000000b004acbecf091esm1959010edj.17.2023.02.17.00.53.42
+        by smtp.gmail.com with ESMTPSA id a36-20020a509ea7000000b004a7e9ec2087sm1964054edf.76.2023.02.17.00.55.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 00:53:43 -0800 (PST)
-Message-ID: <96ab36f1-5b74-1df1-c344-0936516fbf7d@linaro.org>
-Date:   Fri, 17 Feb 2023 09:53:41 +0100
+        Fri, 17 Feb 2023 00:55:02 -0800 (PST)
+Message-ID: <2d2290c3-e4ac-aee3-f2cf-496c6d29a188@linaro.org>
+Date:   Fri, 17 Feb 2023 09:55:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v3 2/2][next] dt-bindings: power: supply: Rename the file
- name of RT9467 charger yaml
+Subject: Re: [PATCH 1/5] dt-bindings: arm-smmu: Add SM8350 Adreno SMMU
 Content-Language: en-US
-To:     ChiaEn Wu <chiaen_wu@richtek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sre@kernel.org
-Cc:     cy_huang@richtek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        peterwu.pub@gmail.com
-References: <cover.1676648773.git.chiaen_wu@richtek.com>
- <ec1a341d5731977f3188997f3655e777becb881c.1676648773.git.chiaen_wu@richtek.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ec1a341d5731977f3188997f3655e777becb881c.1676648773.git.chiaen_wu@richtek.com>
+In-Reply-To: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 09:06, ChiaEn Wu wrote:
-> Rename the file name from "richtek,rt9467-charger.yaml" to
-> "richtek,rt9467.yaml" to match the "compatible name".
+On 16/02/2023 15:56, Konrad Dybcio wrote:
+> Document the Adreno SMMU present on SM8350.
 > 
-> Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467 battery charger")
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../power/supply/richtek,rt9467-charger.yaml       | 82 ----------------------
->  .../bindings/power/supply/richtek,rt9467.yaml      | 82 ++++++++++++++++++++++
->  2 files changed, 82 insertions(+), 82 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9467-charger.yaml
->  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
 
-No improvements here. Please use standard Git tools or fix your
-patch-handling-setup.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
