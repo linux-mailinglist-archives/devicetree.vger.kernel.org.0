@@ -2,143 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F141469B226
-	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 19:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13BC669B288
+	for <lists+devicetree@lfdr.de>; Fri, 17 Feb 2023 19:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbjBQSBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 13:01:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54940 "EHLO
+        id S229607AbjBQStJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 13:49:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjBQSBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 13:01:19 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FD029E3A;
-        Fri, 17 Feb 2023 10:01:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F0C9D61F1E;
-        Fri, 17 Feb 2023 18:01:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74A06C433D2;
-        Fri, 17 Feb 2023 18:01:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676656876;
-        bh=9IlSeuq9CAxECTILWyWm/AaYhbpQX8KMl7DQW/S45fw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=TtYfXVs6f4cTXtZTzgxFox8eqLBulwVarNzV1junGS9C2DGYyVh0Hz53t+jB1QyQ3
-         sRAU4BxlcMiG/9LYJNWVvMK9mAletuA2L0ilRmtd2xBEKCAlBHtYhJRxUlMY9/8s4N
-         Z9TORfvYJ/D4SZlOuk+5mRk6ysWMc4kCsdREvV6hwTnl9UzGaQyBAAvcvksIgQkIt2
-         gUBtaK33ITjlLRX0yMpcz/fvNMdfF4t1cBe5d0UjsNn41uIBFqP4vLmNSDDQqR9t2/
-         YXbkb+Ixqk3ReB98w6Jb9Qgr1y4wSlnPRfEvDSj9+EikmGiuoUTy58OPYuHaVLRLs8
-         c9QIsfgtfJAgQ==
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     conor@kernel.org, Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Sagar Kadam <sagar.kadam@openfive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>
-Subject: [PATCH] dt-bindings: drop Sagar Kadam from SiFive binding maintainership
-Date:   Fri, 17 Feb 2023 18:00:36 +0000
-Message-Id: <20230217180035.39658-1-conor@kernel.org>
-X-Mailer: git-send-email 2.39.1
+        with ESMTP id S229574AbjBQStI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 13:49:08 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B8E2BF17;
+        Fri, 17 Feb 2023 10:49:07 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id bg20so1650016oib.9;
+        Fri, 17 Feb 2023 10:49:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2R5BouqDUnzY018CGf0maQsVNpuPP/EQMpL3MVfNkpE=;
+        b=BT+mVUL9ZxnQ7zUCYoDPXJqiIMKBZdUfV1aSaI07PY96VtS0Lj94wx32PudSTZnGr8
+         a6qH2i/ajLhL4lK23BaVxJrfwgL5M+brXN1NN7qxHfj2jFbG+aN4mt/n/Ai82+neuKDi
+         IFi7+l7NAwr/1m/tUvDyyGobCXSOA0g/UrmsM+FwULGFGoCDW9kO/Hi2Fdtg81wI3Bre
+         SXYuh7nwPbuP1mbJB8DBgMzi1YbgaGDFOX3KsmeDBmDH8WpLkkgyyoLq0AjQXupB0VbT
+         bNK9vX0MXVxGtN09EzV5VcF0XAy/hPIiYqCJA8ooMjo5W8gZHSYTGvPfMc9/U1v24iz/
+         7TQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2R5BouqDUnzY018CGf0maQsVNpuPP/EQMpL3MVfNkpE=;
+        b=ZvYQTJqVrRka3EsmovV9b0V4DYIoELgZBSuVcPeeD+cLZtnkI+nFrQtX37jGYiflET
+         Qg9CiXHTe0uTIlwXMRRPCdmuDoAxEPbuzwu3j1naPuR1ZltRHxG+07ynH6N4cCu/J90z
+         VSqWBym/GmJUhbT9si4RrATSHHZ+5NBQFlkqLpukykunzHaDU067Sut3qRWSsXuaa69p
+         YGfrippiyd8H/rDTODcsccDNsqy7Ku6xAqS2eV0oMkBWMOePvZAO/7OuuSjHrUAU+soW
+         M/T99zmpwSy0QA3mWcbWltLg6vrJfr7z1UConRpQvdREGbqk6LBuVgi2Fo3odeUDq0a6
+         g7OQ==
+X-Gm-Message-State: AO0yUKWCQCm9r1I6zFjJRotU5YaMnegOrd3dTVXOaLmp9HyrWPA6BTEH
+        7bR90/ynrlvpDgYELSeTwWI=
+X-Google-Smtp-Source: AK7set/ruCpvBTql1zrsBXT2gnK2VAEnVOkBfYEEDzWlDNNGsEMgjB0C45IWrCOqL+aePx5CgQme4A==
+X-Received: by 2002:a05:6808:87:b0:378:3ab3:5a0b with SMTP id s7-20020a056808008700b003783ab35a0bmr892674oic.40.1676659746194;
+        Fri, 17 Feb 2023 10:49:06 -0800 (PST)
+Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
+        by smtp.gmail.com with ESMTPSA id s22-20020acaa916000000b0037fa61eb1dasm1198521oie.47.2023.02.17.10.49.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Feb 2023 10:49:05 -0800 (PST)
+From:   Danny Kaehn <kaehndan@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com
+Cc:     bartosz.golaszewski@linaro.org, andriy.shevchenko@linux.intel.com,
+        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, ethan.twardy@plexus.com
+Subject: [PATCH v6 0/3] Firmware Support for USB-HID Devices and CP2112
+Date:   Fri, 17 Feb 2023 12:49:01 -0600
+Message-Id: <20230217184904.1290-1-kaehndan@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3439; i=conor.dooley@microchip.com; h=from:subject; bh=nhdSMpAMHcDxZQ/G9fKc2bxint/gSH+fhiDQTwTY+dM=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDMnvDxxet0Qq9OYUtjIF+YPbTy3dWHe3ct2aXeseJXkoXMuv PK43p6OUhUGMg0FWTJEl8XZfi9T6Py47nHvewsxhZQIZwsDFKQATmanO8M8w4umr3fe2nJj14Cj37f ZaJhuGY/fWH3z9stbvZJ76XuvLDP/rJrNI3zpvpvzw3kyDnHedXx5O3uehJr2z9fcau0/51Tl8AA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+This patchset allows USB-HID devices to have DeviceTree bindings through sharing
+the USB of_node with the HID driver, and adds such a binding and driver
+implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+USB-HID change). This change allows a CP2112 permanently attached in hardware to
+be described in DT and interoperate with other drivers.
 
-Sagar's email listed in maintainers is bouncing as his division was sold
-off by the company. I attempted to contact him some days ago on what the
-bounce email told me was his new contact information, but am yet to
-receive a response.
+Changes in v6:
+- Fix fwnode_handle reference leaks in hid-cp21112.c
+- Simplify hog node pattern in silabs,cp2112.yaml
 
-Paul and Palmer are listed on each of the bindings, both of whom were
-alive & well as of Wednesday so the bindings remain maintained.
+Changes in v5:
+ - Use fwnode API instead of of_node api in hid-core.c and hid-cp2112.c
+ - Include sda-gpios and scl-gpios in silabs,cp2112.yaml
+ - Additional fixups to silabs,cp2112.yaml to address comments
+ - Submit threaded interrupt bugfix separately from this patchset, as requested
 
-CC: Sagar Kadam <sagar.kadam@openfive.com>
-CC: Sagar Kadam <sagar.kadam@sifive.com>
-Link: https://lore.kernel.org/all/785425ca-4000-a7e4-16d6-4d68c91b158d@kernel.org/
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-Palmer/Paul, as mentioned Wednesday, here you go!
----
- Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml | 1 -
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml       | 1 -
- Documentation/devicetree/bindings/pwm/pwm-sifive.yaml          | 1 -
- Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml    | 3 +--
- 4 files changed, 1 insertion(+), 5 deletions(-)
+Changes in v4:
+ - Moved silabs,cp2112.yaml to /Documentation/devicetree/bindings/i2c
 
-diff --git a/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml b/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
-index c3be1b600007..c79e752283aa 100644
---- a/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
-+++ b/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
-@@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: SiFive FU540 Power Reset Clock Interrupt Controller (PRCI)
- 
- maintainers:
--  - Sagar Kadam <sagar.kadam@sifive.com>
-   - Paul Walmsley  <paul.walmsley@sifive.com>
- 
- description:
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index 99e01f4d0a69..63bc89e13480 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -45,7 +45,6 @@ description:
-   from S-mode. So add thead,c900-plic to distinguish them.
- 
- maintainers:
--  - Sagar Kadam <sagar.kadam@sifive.com>
-   - Paul Walmsley  <paul.walmsley@sifive.com>
-   - Palmer Dabbelt <palmer@dabbelt.com>
- 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-index 605c1766dba8..bae993128981 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-+++ b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-@@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: SiFive PWM controller
- 
- maintainers:
--  - Sagar Kadam <sagar.kadam@sifive.com>
-   - Paul Walmsley <paul.walmsley@sifive.com>
- 
- description:
-diff --git a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-index bf3f07421f7e..0551a0d1b3df 100644
---- a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-+++ b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-@@ -8,8 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: SiFive Composable Cache Controller
- 
- maintainers:
--  - Sagar Kadam <sagar.kadam@sifive.com>
--  - Paul Walmsley  <paul.walmsley@sifive.com>
-+  - Paul Walmsley <paul.walmsley@sifive.com>
- 
- description:
-   The SiFive Composable Cache Controller is used to provide access to fast copies
+Changes in v3:
+ - Additional fixups to silabs,cp2112.yaml to address comments
+
+Changes in v2:
+ - Added more detail to silabs,cp2112.yaml dt-binding
+ - Moved silabs,cp2112.yaml to /Documentation/devicetree/bindings/input
+ - Added support for setting smbus clock-frequency from DT in hid-cp2112.c
+ - Added freeing of of_nodes on error paths of _probe in hid-cp2112.c
+
+Danny Kaehn (3):
+  dt-bindings: i2c: Add CP2112 HID USB to SMBus Bridge
+  HID: usbhid: Share USB device firmware node with child HID device
+  HID: cp2112: Fwnode Support
+
+ .../bindings/i2c/silabs,cp2112.yaml           | 113 ++++++++++++++++++
+ drivers/hid/hid-cp2112.c                      |  15 ++-
+ drivers/hid/usbhid/hid-core.c                 |   2 +
+ 3 files changed, 128 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
+
 -- 
-2.39.1
+2.25.1
 
