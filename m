@@ -2,159 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4997D69BB6B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 19:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E3269BB89
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 20:12:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjBRSdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 13:33:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39972 "EHLO
+        id S229568AbjBRTMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 14:12:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbjBRSdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 13:33:38 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29EDCDFF
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 10:33:35 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id s22-20020a17090a075600b0023127b2d602so1251448pje.2
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 10:33:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tdSlOABUXDOnyk+meHLPkKnSRDvSQB5azUWlVg5K0Ws=;
-        b=WR4G9LwTNYw3FsVROmx2f2szhqt+aMI/Fh0pXJqQjv95Cg9jGxtYHlWhp1CYy2rS3O
-         S++5vWov8xo0SYE1crAyxDqHnolbaCMzpWTVH9JIE/b0jkC7U73XIsWrzedZp43x8kLu
-         Y8Tho4N0wwsSRVAl3b+ejPhqzUDMYRAI7hVrDSHr8HGSIXQjH1m5/0iy3L5dWT1JcBqq
-         ypQQpO0zdqMOc1YDmP6qjFphv8031UpYLwBQAry59Oms6Xn6SYF5VFbwx+lk/p+Ag93P
-         W4Myo/pt8q8LFBMTIXGHgRIzCCi384i19yboiyWhCBJhg4LbCRTa7iK9v281/DfDX18A
-         3Ndg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tdSlOABUXDOnyk+meHLPkKnSRDvSQB5azUWlVg5K0Ws=;
-        b=nCnPaqrX+DZP7LFZhNj3j7mHONV+dcLfZFYMUv4AHI6p4hf7Z8eDkRySvcwJ2CmkED
-         5mRlxfXbaV/yRUgNUcP8ByimjaEyX6/8QKwWCOyuoTAk8pBwrPF2xz+ZDk1j4ho+YOMe
-         21uIujknOQfsbtec4F1fcgrGBa/P1/F61kVI9S5/hpPSJOypyYG94XlBxUp0NB6R7mNv
-         gdvu2t8n3FByfdCMCHaeakQv//ihuMFFkAyo9okJzltKGBRvek0DJWaYrOp3OJqPnpbB
-         yvdaMbsxoRjSRYDrZr93YEZAtvWwXgLthjpzu8MeT+cJ93E5/XRok9INPIv+YAqbO+5t
-         EoCw==
-X-Gm-Message-State: AO0yUKU6CoNODjgzNhYQPsrJWds/hg5gDNHo+UTuQoV95f459+MBFJjw
-        hfItA31lUn5+T75XwhcGBAnOZw==
-X-Google-Smtp-Source: AK7set8mks9ATRjJPpov69mSHOUoLOQ6En2xElAg1qfskRkaUzRjvcvpky66JqrPGHFAvJ/KAvpztg==
-X-Received: by 2002:a17:902:f544:b0:196:6577:5a96 with SMTP id h4-20020a170902f54400b0019665775a96mr470313plf.30.1676745215107;
-        Sat, 18 Feb 2023 10:33:35 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id u4-20020a170902b28400b00199481ac72fsm4939269plr.225.2023.02.18.10.33.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Feb 2023 10:33:34 -0800 (PST)
-Date:   Sat, 18 Feb 2023 10:33:34 -0800 (PST)
-X-Google-Original-Date: Sat, 18 Feb 2023 10:32:53 PST (-0800)
-Subject:     Re: [PATCH] dt-bindings: drop Sagar Kadam from SiFive binding maintainership
-In-Reply-To: <20230217180035.39658-1-conor@kernel.org>
-CC:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
-        sboyd@kernel.org, tglx@linutronix.de,
-        Marc Zyngier <maz@kernel.org>, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, aou@eecs.berkeley.edu,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        sagar.kadam@openfive.com, sagar.kadam@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-5af14e38-3a1b-480b-be9f-922acbcad914@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229522AbjBRTMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 14:12:22 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B19F1554F;
+        Sat, 18 Feb 2023 11:12:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1676747514; i=frank-w@public-files.de;
+        bh=/QZ2fVJALgFIPWveyjrrfx0RBUL3rkYxN4JPK2ftSxA=;
+        h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+         References;
+        b=L2a7gkVuLS97ixj247xxmtCGYy3+BslW99Wt7EUch9uWYl4y8gw/7DN//IIJoeYLR
+         Fg84wpeI/+J/uTZiMCUVjANuuTQGyInz43PxrhlAOOTDi8kVt0iWb1F6V5BYpBA9Em
+         SRzH09sho8cwAg0LS9HJ/oq5yBWCVEoipJ0Fw/jkCSi/beY7bKgLIWU7QYxH/Bt6cw
+         kU91v/uXdrBkSpQeWSAZ1IdBrMwbwfFKRvL/eY4GVzqOMsa42Nog8CfPYEcXzEAw9O
+         h+5SLqfGAwskSdooW6yT/EK1RKlbOp/pSd5TSZllp5HyvmEFKC70lRPVQ9X85oGGet
+         Ksgafslzcmbaw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.153.5]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mplbx-1okDpf1YgH-00qBFk; Sat, 18
+ Feb 2023 20:11:54 +0100
+Date:   Sat, 18 Feb 2023 20:11:51 +0100
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
+Subject: =?US-ASCII?Q?Re=3A_Aw=3A_Re=3A_Re=3A_=5BPATCH_?= =?US-ASCII?Q?v3_0/5=5D_arm=3A_dts=3A_mt7623?= =?US-ASCII?Q?=3A_relocate_gmacs=2C_mt7530_switch=2C_and_add_port=405?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
+References: <20230210182505.24597-1-arinc.unal@arinc9.com> <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com> <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53> <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com> <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53> <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
+Message-ID: <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:QkIJERgTOV6K5peDe7Uvtup9DMZrZ91YUhhhYpp++nESLk1s8WT
+ zzm0qdEB7CHcuBUSAFS+G56kcEnpxEgDMNlgYrJcZQgCnBHqRNs3CJox2SGoZtPm3UYKJQz
+ QuLwrw0MjN77pEwWDIPzpNSvxPZd0ohDQr4a4s4NGlqcm1AMf1A8n/0hzqSpLic+dnfmmkr
+ yX2IbGETdnkoUoQnc/heg==
+UI-OutboundReport: notjunk:1;M01:P0:HEGI1U7DpUc=;VqS3r+XbJ2c4sxoSwspnPMdxuoa
+ 5IWzCb/RsFQwtsZat8Kf1f0VZ/vQWMjPiRPLh1WP17q6NKGI/3rIZmTeHczkyU39VUyvFdPTS
+ Dw20kgSQr4v851Ew+ieeUaPGJuVldNZlAGE1ZYZUjzGxll+B2uAACAmo0epLW6kY/1tx+IuNO
+ k6xow7pYUfWFLoUkQ95uF4hJB0kGYmMNMGrANLxUHq7te8UbRSIuFDDDW+s3HVkTUirmMsZLj
+ CokU8WIUgR1Khtumm9fzH+k2E0zjGM0jxAs+armAa4ip6yiJEAbiO0wSvudgjywFouP2tUdtf
+ mSfW+yuAkRWAGIJEiCC94M2/a4Fr0zpC3rmebNd7iXamUDOpXJYo0Qh3jA2xD7EOILHfpMXS3
+ JUVH+4to1WuMUrXn0M9l2UUWiK+pFB9RQsxlmdKP7yNwvnvyBgUfKuuhR3b00tpANw5A/rpDy
+ yuVvzcCXb2BBCj2IAvAmVCFhgLJEy1DkPuJugo6KoBBzAtCy1pzwAkNKyPTYXuOa6Qini9wnz
+ 4lOu1RCUyj/yOjMa0dNaWZO63C6kP4NSZ9kwZl2Ae0KtLAz1fLnKx5Ac4Up9c9fkaqcyNIvJ/
+ u2cMKfuwoluYN5LawnqFQoCZ1GiuIdm0CaX/ZgSgmAA3HUeqwnUyKvkdX/D+PofYqxANqhMUG
+ lyzESEZfNcwNrs/cop5RdkoL5ba1jAfDUX+9W74ThdqZmup2eWWbpH+uwYWHYXAp/h5Iqjqcy
+ LSJeGLTtq3TX37czmcj3PF5Kx+fQM2BrenkhjHVxky9gYwN8XMv1jDeYz/TkOdzvV3pahXqA4
+ aJIXJHydBrDaUZ4ux+JuyL9ct12ukhpfS3BN9wCq96PL/5a5V5NS0v0UXQm48axwp/GgXICHd
+ uS6e2VqVY+fg2+u3C4KKuOqwqYpioPVWOqBxRtxhot8pqIfEPKFnjCCvU2+qW4oKapYFVlTTV
+ iXbA1w==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Feb 2023 10:00:36 PST (-0800), Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Sagar's email listed in maintainers is bouncing as his division was sold
-> off by the company. I attempted to contact him some days ago on what the
-> bounce email told me was his new contact information, but am yet to
-> receive a response.
->
-> Paul and Palmer are listed on each of the bindings, both of whom were
-> alive & well as of Wednesday so the bindings remain maintained.
->
-> CC: Sagar Kadam <sagar.kadam@openfive.com>
-> CC: Sagar Kadam <sagar.kadam@sifive.com>
-> Link: https://lore.kernel.org/all/785425ca-4000-a7e4-16d6-4d68c91b158d@kernel.org/
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Palmer/Paul, as mentioned Wednesday, here you go!
+Am 18=2E Februar 2023 18:02:11 MEZ schrieb "Ar=C4=B1n=C3=A7 =C3=9CNAL" <ari=
+nc=2Eunal@arinc9=2Ecom>:
+>On 18=2E02=2E2023 15:18, Frank Wunderlich wrote:
+>> Hi,
+>>=20
+>>> Gesendet: Samstag, 18=2E Februar 2023 um 11:49 Uhr
+>>> Von: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
+>>> An: "Frank Wunderlich" <frank-w@public-files=2Ede>
+>>=20
+>>> On 18=2E02=2E2023 13:24, Frank Wunderlich wrote:
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>Ok, so according to your tests, traffic through gmac1 is not very good=2E=
+ gmac0 should be the default DSA master=2E
 
-Thanks!
+>By the way, did you make a bug report of this, by sending a mail to netde=
+v mailing list or some other way?
 
-> ---
->  Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml | 1 -
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml       | 1 -
->  Documentation/devicetree/bindings/pwm/pwm-sifive.yaml          | 1 -
->  Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml    | 3 +--
->  4 files changed, 1 insertion(+), 5 deletions(-)
+No,not yet, because gmac1 is not yet used and i had very limited time=2E I=
+'m not sure it is an issue in mt7530 driver or mtk_soc_eth, not idea how to=
+ figure this out=2E Maybe it can be fixed with a delayed rgmii phy-mode (rg=
+mii-rx-id i guess as traffic affected is rx on switch,tx on gmac)=2E=20
+
+>> isn't there a way to leave ports by default on the the better gmac (gma=
+c0=3Dtrgmii)?
+>> maybe moving port5 below port6=2E=2E=2Enot nice, but then port6 is the =
+first cpu found=2E
 >
-> diff --git a/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml b/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
-> index c3be1b600007..c79e752283aa 100644
-> --- a/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
-> +++ b/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
-> @@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: SiFive FU540 Power Reset Clock Interrupt Controller (PRCI)
+>This could be done but it comes off as an improper way to me=2E
+
+Just thought about a way without the need of changing driver or adding a n=
+ew dt property which can be wrongly used (who prevents anybody set the "def=
+ault-cpu" property on more than 1 cpu-port?), Or define it at switch node l=
+evel not port level (e=2Eg=2E via phandle)=2E
+
+If the 5-below-6 way is not the right one i would prefer a driver solution=
+, e=2Eg=2E let driver choose the best cpu based on fixed value (constant vi=
+a define) or on highest throughput (trgmii > rgmii),but last may fail if bo=
+th cpu-ports have same speed like mt7531=2E
+
+These are the possible solutions i see atm=2E Maybe dsa people can share t=
+heir opinion=2E
+
+>> set master in userspace-config? i remember you've sent a patch adding c=
+allback for it=2E
 >
->  maintainers:
-> -  - Sagar Kadam <sagar.kadam@sifive.com>
->    - Paul Walmsley  <paul.walmsley@sifive.com>
+>You can change the DSA master using iproute2-6=2E1=2E0 and above with thi=
+s patch which should be in your inbox as well=2E
 >
->  description:
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> index 99e01f4d0a69..63bc89e13480 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> @@ -45,7 +45,6 @@ description:
->    from S-mode. So add thead,c900-plic to distinguish them.
+>https://lore=2Ekernel=2Eorg/netdev/20230211184101=2E651462-1-richard@rout=
+erhints=2Ecom/
+
+I try to test it=2E
+
+>The only issue I see here is that, with this patch series, port5 becomes =
+the default CPU port which is not preferred for the reasons you explained=
+=2E
 >
->  maintainers:
-> -  - Sagar Kadam <sagar.kadam@sifive.com>
->    - Paul Walmsley  <paul.walmsley@sifive.com>
->    - Palmer Dabbelt <palmer@dabbelt.com>
->
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-> index 605c1766dba8..bae993128981 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-> @@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: SiFive PWM controller
->
->  maintainers:
-> -  - Sagar Kadam <sagar.kadam@sifive.com>
->    - Paul Walmsley <paul.walmsley@sifive.com>
->
->  description:
-> diff --git a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-> index bf3f07421f7e..0551a0d1b3df 100644
-> --- a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-> @@ -8,8 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: SiFive Composable Cache Controller
->
->  maintainers:
-> -  - Sagar Kadam <sagar.kadam@sifive.com>
-> -  - Paul Walmsley  <paul.walmsley@sifive.com>
-> +  - Paul Walmsley <paul.walmsley@sifive.com>
->
->  description:
->    The SiFive Composable Cache Controller is used to provide access to fast copies
+>So once we can have port6 to be the default CPU port of the DSA slaves, t=
+here's no issues left=2E
+
+For me this would be ok if the current configuration does not change, righ=
+t :)
+
+Thx for your work=2E
+
+regards Frank
