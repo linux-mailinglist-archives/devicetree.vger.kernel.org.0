@@ -2,136 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CEBE69BA78
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 15:49:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EC9469BA82
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 15:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbjBROtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 09:49:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41862 "EHLO
+        id S229606AbjBROzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 09:55:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjBROtm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 09:49:42 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8817318B2B
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 06:49:40 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id fd2so3319234edb.2
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 06:49:40 -0800 (PST)
+        with ESMTP id S229461AbjBROzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 09:55:31 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD36F18AB8
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 06:55:29 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id ez14so3114043edb.1
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 06:55:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kpH6WR+bqKoWno46gRZZ6t8aFUv5+bs2I4awyRCR6FA=;
-        b=rEaYZ4lEtjWFBOCo6fKV5jfcQmxL9WR2+GrQ5KF3TotfUhraLpaDLMRbQJWksd56d9
-         vZ3BLN81AjCGswmWZJFs7GRJI7sW1RZgbgRPtuGaYVjM5JFoD8k/Q/g58h5I4BFjfIe/
-         A3cM8iWglxOQJcxB8TmEmmZnWQpSMAkhG3PYE5nBtbWF0h1+jNVwFU9VeaZ/7o8Cfjk4
-         Rz4E32JFDsyqklYYoDOTumGrRVBBF8jvNUPI/kgbscrXWc/7+ZnZwpnhHbIWZDfXCc8U
-         PyYr+Cfwu2MOCQFcwLCbfW02wLNcQ0N1w0OOPHjnFH2HKzXy1zGV4GKYk/pW2BlWomQU
-         siZQ==
+        bh=iVLRzXREQ+19fFs4Pc7mcjHjxtT7x8ggG7HENOjDxNg=;
+        b=J/tvudzLLml7HurgL4Skxujt0BfWSAZikHpxyEzg/oLlKbA/7VrefQN0zhtzRtDRjM
+         s7waRZc5aqFiLJ8X+8vN9JYZdYJDGPjP6SlsDwK9F5f67RZsbA52Ro6sG/vaFZmDND86
+         j12TsRgfN6rcd6YqkzsmjT5m33l22siYXjYlEPzQ8QtfXA5kZdOnlirO0toGRTts/s6D
+         EpWSa1EaOm0h4bbjf8qu6fIitg4maKVxmj2NGyTKVs/LIT6GgFRlWefbRq8p0X68Hv78
+         XZ+4Uo4yDbuYYtrtEVmwywWtZKsXT2OYPyc+GkJAUI3YEWxQxr85H5oY89BGRCtRyAMU
+         M3Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kpH6WR+bqKoWno46gRZZ6t8aFUv5+bs2I4awyRCR6FA=;
-        b=QIhxZxgynTWBGLpSNNYD6xmH+KKHwy/SX/eye0S3Es911qTqezh8qtpl9fkS8RKtal
-         Q8cY1/HD9TnDr0NjF41c7wnB+vZ9piIUuOcGdWa6C/KoQKxKJW2QEH/pa3Iq3YpJQLuf
-         85mDlcBWRRlm/hqi7OCpfsoAWPWuCXkO5stLPnRuJNLTDZSUj5aSM8CZWQZ0SDEp02YF
-         grT0yMZwthdGHKvMUOg8rzE+VQQEGH6N4Yr/YzlCu0t/f6EdVheX8LfQ7nbtBARDRq2U
-         AqhQXllAoi/pH9JOxghV1MvYCyLMJ4Uf2iGDthPWo1UdJk215mK3Rkw1gx9cmcaEAFXT
-         WMrw==
-X-Gm-Message-State: AO0yUKUla1HD9WlH15VM7P1Sy8+cmQ/NCLJMD4SQFeXH3W46U0LahC6l
-        vfvZVlOHOtxA1+lni/K8NcrKTA==
-X-Google-Smtp-Source: AK7set8fMukTd3S6JPnHsMQuo0S3kewjm1iq6LSD9WPiST+l1GpD6Xw8+bBakt04PTvD+qgtgvjSGQ==
-X-Received: by 2002:a17:906:d925:b0:8b1:78b6:4b3c with SMTP id rn5-20020a170906d92500b008b178b64b3cmr6966704ejb.73.1676731779047;
-        Sat, 18 Feb 2023 06:49:39 -0800 (PST)
+        bh=iVLRzXREQ+19fFs4Pc7mcjHjxtT7x8ggG7HENOjDxNg=;
+        b=diC7TBYt9Wrt43YFA+RtZ6d2w7L/g1j+UGZQ0ED0G56VhtbBFqr/8pEQ4lIBFhPG74
+         ix9vH5+FwWCeFIKUkU7YGgr9dlxDXaDqBwXLmm9Up1IiM/4CU8QvphhxmX0F+c729fhw
+         Zwn1bIy5yFJLeMkk9kPUahV/fI0UqMmI/1LwfcigdEn1WgAkTQqRTxaUwM8gDW+DRnTh
+         xnKGzqgNu0v0SjfCg6Dqi7lsSpwa4RVCN+el254Z14wniVMdCeNUe7pK5sHYIIb+5gYz
+         ukCORD0KXlIG7Sa5D8hJhmNn67BrpCPmqz/62csUTGPum3rI/tOpCFTp1bstJ9brcbYw
+         7mcg==
+X-Gm-Message-State: AO0yUKWySxAzlC6YmS6mhvSU7JsKj9Tn1b7USyUrrv+Mdyw7fevzHNOL
+        TlRNDphHyaMC+VhSbE1Dy1EMag==
+X-Google-Smtp-Source: AK7set+o+3+5itFIzexy/ZcNCze7tMCBX9222/c9vkPLuQ7XzbbxCzFEcxKBDAOO5XZYry+Sq1kOWw==
+X-Received: by 2002:a17:907:98d2:b0:8b2:3eb6:8661 with SMTP id kd18-20020a17090798d200b008b23eb68661mr5633482ejc.8.1676732128340;
+        Sat, 18 Feb 2023 06:55:28 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v30-20020a50d09e000000b004acdef7baaesm3661310edd.96.2023.02.18.06.49.37
+        by smtp.gmail.com with ESMTPSA id lo10-20020a170906fa0a00b008b1550a289fsm3461187ejb.34.2023.02.18.06.55.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Feb 2023 06:49:38 -0800 (PST)
-Message-ID: <9a0245af-b7f3-0874-385b-47c86d6e6a60@linaro.org>
-Date:   Sat, 18 Feb 2023 15:49:36 +0100
+        Sat, 18 Feb 2023 06:55:27 -0800 (PST)
+Message-ID: <a3217699-7b23-35e6-84b2-fe9e52158481@linaro.org>
+Date:   Sat, 18 Feb 2023 15:55:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated QCM2290 compatible
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
- <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
- <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
- <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
- <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
- <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
- <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
- <e6d397bb-dd5d-8308-eb07-3aeb2589115c@linaro.org>
- <fbece9d6-2204-2534-e44f-29c29cc56413@linaro.org>
-Content-Language: en-US
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <Y6tSWB2+98a8k9Qw@spud>
+ <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
+ <Y+5z8skN2DuvxDEL@spud>
+ <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
+ <Y+8x/KSujhgNLAd6@wendy>
+ <d3b06d0b-ff17-ebab-bae5-e1ec836fe667@starfivetech.com>
+ <Y++B43uCnPQlRYFi@wendy> <dcba75b5-7b62-35aa-6836-5d5edd785002@linaro.org>
+ <Y++q9ln8P3XegqfN@spud> <41e4f293-99eb-f157-b4a9-3d00b15f4652@linaro.org>
+ <Y/CztNs6laTzttrI@spud>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fbece9d6-2204-2534-e44f-29c29cc56413@linaro.org>
+In-Reply-To: <Y/CztNs6laTzttrI@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/02/2023 12:23, Konrad Dybcio wrote:
+On 18/02/2023 12:17, Conor Dooley wrote:
+> Hey Krzysztof,
 > 
+> On Sat, Feb 18, 2023 at 11:20:30AM +0100, Krzysztof Kozlowski wrote:
+>> On 17/02/2023 17:27, Conor Dooley wrote:
+>>> On Fri, Feb 17, 2023 at 04:47:48PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 17/02/2023 14:32, Conor Dooley wrote:
+>>>>>>>> Yes, it is.
+>>>>>>>
+>>>>>>> Which would then make GMAC1 RGMII RX optional, rather than required?
+>>>>>>
+>>>>>> If thinking in this way, I must say yes, it is optional. But actually
+>>>>>> GMAC1 RGMII RX feeds gmac1_rx by default. 
+>>>>>> For a mux, it usually works if you populate only one input to it.
+>>>>>> Does it mean all the other inputs are optional? And how can we define
+>>>>>> which input is required?
+>>>>>
+>>>>> I'm not sure, that is a question for Krzysztof and/or Rob.
+>>>>
+>>>> That's a long thread, please summarize what you ask. Otherwise I have no
+>>>> clue what is the question.
+>>>
+>>> Sorry. I tried to preserve the context of the conversation the last time
+>>> I cropped it so that things would be contained on one email.
+>>>
+>>> For me at least, I am wondering how you convey that out of a list of
+>>> clock inputs (for example a, b, c, d) that two of the clocks are inputs
+>>> to a mux and it is only required to provide one of the two (say b & c).
 > 
-> On 18.02.2023 11:14, Krzysztof Kozlowski wrote:
->> On 17/02/2023 22:13, Bryan O'Donoghue wrote:
->>> On 17/02/2023 12:24, Krzysztof Kozlowski wrote:
->>>> First, it would be nice to know what was the intention of Bryan's commit?
+> You skipped this part which was what I was trying to ask you about.
+
+Yeah, I skipped a lot because there was one big thread with a question:
+what do you think? Sorry, I will not dig 8 emails thread to figure out
+which question is to me and which is not...
+
+> Do you know how to convey this situation, or is it even possible to
+> express those rules?
+
+oneOf:
+ - clock-names:
+     minItems: 3
+     items:
+       - a
+       - b
+       - c
+       - d
+ - clock-names:
+     items:
+       - a
+       - b
+       - d
+
+or maybe:
+ - clock-names:
+     minItems: 3
+     items:
+       - a
+       - b
+       - enum: [c, d]
+       - d
+
+
+> 
+>>>> Does the mux works correctly if clock input is not connected? I mean,
+>>>> are you now talking about real hardware or some simplification from SW
+>>>> point of view?
 >>>
->>> Sorry I've been grazing this thread but, not responding.
->>>
->>> - qcom,dsi-ctrl-6g-qcm2290
->>>
->>> is non-compliant with qcom,socid-dsi-ctrl which is our desired naming 
->>> convention, so that's what the deprecation is about i.e. moving this 
->>> compat to "qcom,qcm2290-dsi-ctrl"
+>>> I'm coming at this from an angle of "is a StarFive customer going to show
+>>> up with a devicetree containing dummy fixed-clocks to satisfy dtbs_check
+>>> because they opted to only populate one input to the mux".
+>>> I don't really care about implications for the driver, just about
+>>> whether the hardware allows for inputs to the mux to be left
+>>> un-populated.
 >>
->> OK, then there was no intention to deprecate qcom,mdss-dsi-ctrl and it
->> should be left as allowed compatible.
-> Not sure if we're on the same page.
-
-We are.
-
+>> Whether hardware allows - not a question to me.
 > 
-> It wasn't intended to deprecate [1] "qcom,qcm2290-dsi-ctrl", "qcom-mdss-dsi-ctrl";
-> (newly-introduced in Bryan's cleanup patchset) but it was intended to deprecate
-> [2] "qcom,dsi-ctrl-6g-qcm2290"; which was introduced long before that *and* used in
-> the 6115 dt (and it still is in linux-next today, as my cleanup hasn't landed yet).
+>> BTW, this is rather question coming from me...
 > 
-> [3] "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl" was never used (and should never
-> be, considering there's a proper compatible [1] now) so adding it to bindings
-> didn't solve the undocumented-ness issue. Plus the fallback would have never
-> worked back then, as the DSI hw revision check would spit out 2.4.1 or 2.4.
-> which is SC7180 or SDM845 and then it would never match the base register, as
-> they're waay different.
+> I don't understand what you mean by this, sorry.
 
-All these were known. I was asking about "qcom,mdss-dsi-ctrl", because
-the original intention also affects the way we want to keep it now
-(unless there are other reasons).
+You said to a letter addressed to me "whether the hardware allows for
+...". Why would you ask me about hardware I know nothing about? That was
+my question - I am asking - whether hardware allows it or not. Then
+write bindings depending on that.
 
 Best regards,
 Krzysztof
