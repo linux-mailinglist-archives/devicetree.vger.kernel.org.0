@@ -2,139 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6E469BB9F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 20:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C1369BD26
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 22:51:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjBRTfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 14:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60420 "EHLO
+        id S229954AbjBRVvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 16:51:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbjBRTfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 14:35:09 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BF8812BC1;
-        Sat, 18 Feb 2023 11:35:05 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676748888; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=nbuJT5N13TeH0s2uDVBN6q6J4EfA+cZHyG2lPNsFevcwE1RTdf7THNiramRmxJgyMeAgeFMhbV4pt1cOsBiKN/2JQMyfypnox9cf5qFKmkENphyYEgAJGEYz+a4uXsEj21XX/LwC4au9OY2B/XP+GIAQb2adu5wy+Iz/fs4HPGs=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1676748888; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=tZV+QS57xsYCZFRjiUvfqscADao5AlRSJDkNzJS67Jo=; 
-        b=ZzVeOw9NfZ49XetplJ7gErWVHkh+k8IITZl6KV8bYn/jSFPgZaA0EQIOYYkIwZO/Wqf/ZEDZKFdKXnpF68yfjDuEF3rdhXAIwRiwcb8ebgsK/sgOeAxZHv+PD6eMaJJ5YQ2/2AZGAFfhMwKEZSyxCiq8Fuzt1MZDO6PQbRiumYg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676748888;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=tZV+QS57xsYCZFRjiUvfqscADao5AlRSJDkNzJS67Jo=;
-        b=Ju//1x+hgPkzxOici3o4d7jc820tjW2rZjFC0noy+s7BVa2d8vWdMxNVZ5q8V6nl
-        vSGGmmO/ie9Q7I+WtLxQQvhjbFZ/uuOQTWUdjFbVw0BRS3sdwwl6J/tqWmd6EzuHCCr
-        7s9joq8ZR5EvUa0uhddKOj+HxrpszwuFNFq6Vl04=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1676748886869326.9651514920499; Sat, 18 Feb 2023 11:34:46 -0800 (PST)
-Message-ID: <fb96d8eb-2eb7-db19-1135-1a833294dd67@arinc9.com>
-Date:   Sat, 18 Feb 2023 22:34:43 +0300
-MIME-Version: 1.0
+        with ESMTP id S229751AbjBRVvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 16:51:13 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2060.outbound.protection.outlook.com [40.107.22.60])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7491B13538;
+        Sat, 18 Feb 2023 13:51:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZDrvuBbRRk5IfQHCLp3XYIMuY55C9dBdYx+2oDEgrRb3dHaxAJi3WOnDyFL1k5jUFMnupYXheHo/Ca2Xjk29Hb8vttToB79utYRuwJzp6VTsk5IYtwxrd8sVLNM2RLqyqZm+/Hlm/MJCKzfVSrXlRyS7Mo8Bl973McVxyOly3CgzT6DypDUGilUq1/v1QP3D0A+U8Z6H3tg7HSK1w617DsyHXB19vD5BfXLCy1eLxifhYRe5vvwTCk11O/7aVBtDvAVXfKl26Gs5c4Itzcj8qXIfUvxdDY2jeZ0t17YyWsM4jC7kBVFbN9VVc132X2+J08C+9mKMsj/cpHrSUBl9dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LwZ6ym/Ynwbo0O4hQVnCMDocwjmGE9tQnh6QCUxHl+U=;
+ b=QAw4ckmskEZNX24MmcBZyZLE9qcF2RxFzeDsg40UlquJS/vapVmjLhtxwhGOAPaXewdVdQXZpkOynCVnCOX8i4KhMk/hAKDZFBqtNTyrXOUR6yGy13SRhhqNbtGITsDM3reo70aesPXP/q67xNGhhBHknotIceCKZ1Iy75wj0bnCoSNBt6ViopdjiBsNAdidVXnUOQ7ADbdrXD34ViWN9/9AW6jHi5oUKRpTjL4P+6rGflVmre6zWSCfmXCMdH3dAgOa5DTeAtyN+YiZEG/1SCFZ2OLCzLvvqS4z025EIsQh5oedRB/8yJonzDznBA3RUOnHLsW/iz8Xor2TN7P+sA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LwZ6ym/Ynwbo0O4hQVnCMDocwjmGE9tQnh6QCUxHl+U=;
+ b=A2zXHQXQBSRcQ4ih1ni5BJbSZvW9G1Kxih0UoOQk6dRy5nEwAGKOI96oh/jQ34RU5BWvx9l84Ypttp+IjX5yCiTMuyTlaBB0RpKCq9aWSgkJyFVgMpjbim0517bXcMNmupZByhfNjsBCYzxR5OYLgiVp9Sm9eyAOlMrUNzKJs0M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS4PR04MB9244.eurprd04.prod.outlook.com (2603:10a6:20b:4e3::9)
+ by PA4PR04MB7695.eurprd04.prod.outlook.com (2603:10a6:102:e3::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.18; Sat, 18 Feb
+ 2023 21:51:07 +0000
+Received: from AS4PR04MB9244.eurprd04.prod.outlook.com
+ ([fe80::d71c:fd55:d8cf:4fc0]) by AS4PR04MB9244.eurprd04.prod.outlook.com
+ ([fe80::d71c:fd55:d8cf:4fc0%3]) with mapi id 15.20.6111.013; Sat, 18 Feb 2023
+ 21:51:06 +0000
+Message-ID: <44dda824-c18a-afb6-d802-bfb87f069f04@oss.nxp.com>
+Date:   Sat, 18 Feb 2023 23:50:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: Aw: Re: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs,
- mt7530 switch, and add port@5
-To:     frank-w@public-files.de
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
-References: <20230210182505.24597-1-arinc.unal@arinc9.com>
- <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
- <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
- <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
- <trinity-dd260791-3637-4193-8f93-a9fcdb013dcb-1676722705920@3c-app-gmx-bap53>
- <2dc2fc39-b0d5-c872-36bf-fde851debe4b@arinc9.com>
- <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
+Subject: Re: [PATCH] media: v4l2-jpeg: ignore the unknown APP14 marker
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221216090844.27262-1-ming.qian@nxp.com>
 Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <A329B2DF-04B7-40FA-BBCE-1F1012A6DBBD@public-files.de>
+From:   "mirela.rabulea@oss.nxp.com" <mirela.rabulea@oss.nxp.com>
+In-Reply-To: <20221216090844.27262-1-ming.qian@nxp.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM3PR03CA0060.eurprd03.prod.outlook.com
+ (2603:10a6:207:5::18) To AS4PR04MB9244.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4e3::9)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9244:EE_|PA4PR04MB7695:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d33fe03-9cb8-41b4-1737-08db11fa3c93
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: w195hlJlv6UGmQIkLx4mvoMDa2BHQvstUHqH41Jewpp063NBLJ7BgF3/UJzFSj0kw/4SjeRWiLM22yvS/zpG3qmky2rUEKZqxBxqVZScxKn/lx+aDOM8NTqcBtdp18w5wFOBCGUNjjZhH1jWWN7duTTrRq0LHnw25I2nJ467+f5U+nKKl69csju5IEYSqfTvY2g1IsOiB3/cnI4VnMZzDv9V0sUEqzYGnW7bILRTVUWtMNXjZbIkr6ON+FkoyJs6+BnzaUYGkOknl25TQA7eYvOg6vkv2mD6pXpx1SmcP9rFE1aWdbyt+wOl/cTBNFXMM3ypRgWNEPrsY4XE5c5iGgP4cqxE1ylqsFwvA4fXJy1BqAcYAKaaBxymonOy47/UEvyiKohrMYuR0ORBNvJnpd7vYzRZ9rJ1fJt+61qe6C/sFXsrmXr7ytYHy+LPcEXEDUMzFkSMZygz5CVBkYoqJeBEhxAopvKBYUvCPjRUJuI+899OB+IFKzbHz/7XKyRCuCqmaxCH80VafQ1wL4QANO8Zk5wTUVQ04V4xMTmaetzOfKEGRcx34VCpsDLxWtmq844bpwESDSayio36tJrehFhzTRsg69GOSKOYN1KGF3W+VJ/OzkyGtF18Tw/wGsmbJ4PPyrMYJjcY1rrVwQWttue8qkS4vvQU5qBdEYFFzmyq92a6QfrMUczZtUHUmS539iCKuN6j0v1PG+GfwPG6RhZ0WBjJ0seLY/kK7kjAJttxBVSQvWgWSd8Ev2XwaxZAqBQNDhy7ug1ByX2Ybg5Vaw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9244.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(39860400002)(366004)(136003)(346002)(396003)(451199018)(52116002)(31686004)(31696002)(6486002)(86362001)(316002)(6666004)(4326008)(8676002)(66556008)(66946007)(66476007)(6512007)(6506007)(186003)(26005)(478600001)(53546011)(41300700001)(8936002)(7416002)(5660300002)(2906002)(38100700002)(2616005)(83380400001)(38350700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUlhQzVwbEtTRytlWFZ0M3pKZTBGa1UrK1F1aGxTenVsTzBqTzNodXRGM25r?=
+ =?utf-8?B?ajJMQ0NkVzBBN0p1RE9nYlNWNm14TWhTQkZCRkp5U0RhUFhabFFSc0JRek9E?=
+ =?utf-8?B?SzVPM0ZRSGRaU2pnSzhXbFNaWXpLQmpKME53UEdrR3JXMExITVRycnZaMURF?=
+ =?utf-8?B?bERTUlNLUDRRKzh5TWhESXRtS2swQ1ZVakd0THhOQ3ZFcFFrUTRqWHlVNnFr?=
+ =?utf-8?B?YlNzMk5yMDhVYkNuVHBQZW1BczFGOXNjQmVYMDR3REc1dXNlZysyL0hiczRC?=
+ =?utf-8?B?WWd0a20rMXV1SFFHcEY0QnVXZUFSdTYycU9lMUhqN2ZvYzliNHpIQ1pFd3Na?=
+ =?utf-8?B?b3I3N3l1LzlUcW00YTFwTDZYQzRaaHZGc095YWtjeGRYckJwQWdxWjM5UFVQ?=
+ =?utf-8?B?N3BNbDFmWmVxMG00SjlSRmxuV1dLZFNSU1loMHlyQVg2Mjh1OGZNTkRLWVhP?=
+ =?utf-8?B?V2VRZWluWkZrdG41RWh0Y0ZPbDN6ZnN0LzkxWnJYMWpneDhVR2FnazdUVElu?=
+ =?utf-8?B?d1YwZDNvZE9NRkdqazZ6SFpSenYySXk0VDZsdkhlbXpORXBuV2l2QVJ4c3ZZ?=
+ =?utf-8?B?N1V0SXVCdkw1cE5lR2JFbk1WZGJBNERpQjM4MDZqbE50dUtiK2xTbXdGc21z?=
+ =?utf-8?B?eWF3dnl4eHArUmttRG4yUExLVUFFalZoaENteFRGQ3RFbkVBTncvdzlNTU1V?=
+ =?utf-8?B?NUpycnhRWmV5L3RRcWpMVHFqTUFuK1hzNlIrd0tJTnJvWWlQMk0xZG9SU1d3?=
+ =?utf-8?B?TkorMm5JQk43cG5RZFplU0tNZlRiNEljUnJySkJaWHpCdGVDTU1vcDZva3By?=
+ =?utf-8?B?TkwwejJBc0VWdXVoVndzalltTVd2UHczQktFb2l2NDVyalRJUUNPWHRwR1ha?=
+ =?utf-8?B?bXRDUHh0T0V2eDJjRTEwZnF6bnN3dHhvUzU4L1lBd2p2ZUV0RG9CQmZ5WC9r?=
+ =?utf-8?B?SEk5bjJBWWRneFBqZnZLOWRBYk1QY29HQ1I3ZERDR09rTm50dkEvc0RtME9k?=
+ =?utf-8?B?RnJjck95WnBUTzAxZUxQZHJxNU9xSWZROFVpVy9YeTJ3d0xPR1lVZWFjdW5P?=
+ =?utf-8?B?QWNOd0llcmNFcnJ0VGcxNFM0WFZlekZ0dGhwb2pVSk5GZ1IzbjJ1cm9vVlpr?=
+ =?utf-8?B?TGVXU2ZpMkI5eHkyWU5lREVweWpyNkpiUmdiU29mZS9FTXplTEtCK3JIV0ZT?=
+ =?utf-8?B?SmZhNUxHRGNqVlZoanJ2bVFwNHFmMURaOTVTVU1RcjdXem9Jc3p6SzJvM3hX?=
+ =?utf-8?B?UzVkV3E5a05XU0ZMK2w5OWxOWG1lR3FUYVNHN0Z5eGpCNGY1dUFUb1d5a0xr?=
+ =?utf-8?B?TVJDcHJwVkxOcllFaTBDZ1hRS0E2SzBDR0tYcDF6NitxbXNncTByVDhnTU9a?=
+ =?utf-8?B?QUp2TndCb2VVTWZhc0MzM2Rua2tManRvR0FEQ3k0UTZnT09LZVlOWkdMcEcw?=
+ =?utf-8?B?ZGxlMTZjSHFEdVpYUm4wZk15ODZXMzZFUm4vRCtJYm12cTA2SHBMaUFzMURT?=
+ =?utf-8?B?ZEI3enNZWjZ1RFpPK0hTUFVPeVNzcWdJMnJQZzZJRm1WSDlGWHg5amNCcnpv?=
+ =?utf-8?B?N3pTTUNRQy9hMzFUb2lQcnVVWFFTNzlQWHloeEJ3UGdnQ1hIdFJ0SFpLU29a?=
+ =?utf-8?B?eEh3WXdRNi94SzRjeUdFa0tEajFsbForU2dMUXZqV2hoeWw2MUc5RVU1Q01m?=
+ =?utf-8?B?QXRwT2psTlhoaHRkZjVHUS9oVEdjNW1jSzlSZ1VEcUV3cmxDZ0YycEp5WDV2?=
+ =?utf-8?B?anhsaDloZnpyZU9sdW5rWDc0bWVhMERaem9GSWNDRmE5Q1hhRk9nWXIxSXFM?=
+ =?utf-8?B?UzFlU1Y3Ky9mNlFPSFR5RG9sdHpWc0p0SXBxS28vRWw2TGVhWTV2RFErVUdq?=
+ =?utf-8?B?emdqbk4yQmI3YUFPL2doYkVpY3M1QXlXZnFQMVdtTkIzWkZiT0Z4ZDh3aXFM?=
+ =?utf-8?B?WlR6Z2x6WFd5eFV2azNpckZ5NmJBYUVVa2lVQ1YwU0lKdWJ3NENJTm1OT2Rp?=
+ =?utf-8?B?MkVQeHB1MWdpRFR4TUgzWWptdDlCbVFHMm9tbDBQZXN3ZENzb2NpdWU1RSth?=
+ =?utf-8?B?dktTTkxQRjQ1ZXBuc0ZVcS9qaktuWWpLaTkvS0tTNEtwb2dERWwzc3A3cVdO?=
+ =?utf-8?B?TThYRHA4dlV1eTdxSVVmYk9UOHBQQWVTTEFaaUZHb3NkdHBKTkw5a1VDZnkr?=
+ =?utf-8?B?U1E9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d33fe03-9cb8-41b4-1737-08db11fa3c93
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9244.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2023 21:51:06.3200
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qc6Nlmu/M/cPMtao2gdNMHX4WFvZVWLpnVIBET3Pd+Ds97JjiNkWXJNQDrbGCJwo/onIj+Mey7oXK7/CLavLRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7695
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.02.2023 22:11, Frank Wunderlich wrote:
-> Am 18. Februar 2023 18:02:11 MEZ schrieb "Arınç ÜNAL" <arinc.unal@arinc9.com>:
->> On 18.02.2023 15:18, Frank Wunderlich wrote:
->>> Hi,
->>>
->>>> Gesendet: Samstag, 18. Februar 2023 um 11:49 Uhr
->>>> Von: "Arınç ÜNAL" <arinc.unal@arinc9.com>
->>>> An: "Frank Wunderlich" <frank-w@public-files.de>
->>>
->>>> On 18.02.2023 13:24, Frank Wunderlich wrote:
-> 
->> Ok, so according to your tests, traffic through gmac1 is not very good. gmac0 should be the default DSA master.
-> 
->> By the way, did you make a bug report of this, by sending a mail to netdev mailing list or some other way?
-> 
-> No,not yet, because gmac1 is not yet used and i had very limited time. I'm not sure it is an issue in mt7530 driver or mtk_soc_eth, not idea how to figure this out. Maybe it can be fixed with a delayed rgmii phy-mode (rgmii-rx-id i guess as traffic affected is rx on switch,tx on gmac).
+Hi,
 
-My experience with rgmii delays is that if the correct delay is not set 
-for tx or rx, that tx or rx will just not work at all. But testing it 
-anyway won't hurt.
+On 16.12.2022 11:08, Ming Qian wrote:
+> The legal identifier of APP14 is "Adobe\0",
+> but sometimes it may be
+> "This is an unknown APP marker . Compliant decoders must ignore it."
+> In this case, just ignore it.
+> It won't affect the decode result.
 
-Can you also remove this from mt7530.c and do the test again? See if the 
-performance changes at all.
+I'm not sure, based on the specs only, what the decoders should do if 
+the segment does not follow the definition.
 
-         /* Set core clock into 500Mhz */
-         core_write(priv, CORE_GSWPLL_GRP2,
-                    RG_GSWPLL_POSDIV_500M(1) |
-                    RG_GSWPLL_FBKDIV_500M(25));
+I only found this in T.81:
+"The APPn (Application) segments are reserved for application use. Since 
+these segments may be defined differently for
+different applications, they should be removed when the data are 
+exchanged between application environments."
+
+And in T.872, the mention about "Adobe\0".
+
+But, I agree ignoring it is more robust, and I confirm imx-jpeg can 
+decode such jpegs.
+
+Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
 
 > 
->>> isn't there a way to leave ports by default on the the better gmac (gmac0=trgmii)?
->>> maybe moving port5 below port6...not nice, but then port6 is the first cpu found.
->>
->> This could be done but it comes off as an improper way to me.
+> Fixes: b8035f7988a8 ("media: Add parsing for APP14 data segment in jpeg helpers")
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> ---
+>   drivers/media/v4l2-core/v4l2-jpeg.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Just thought about a way without the need of changing driver or adding a new dt property which can be wrongly used (who prevents anybody set the "default-cpu" property on more than 1 cpu-port?), Or define it at switch node level not port level (e.g. via phandle).
-
-This is why we write json-schema documentation.
-
-> 
-> If the 5-below-6 way is not the right one i would prefer a driver solution, e.g. let driver choose the best cpu based on fixed value (constant via define) or on highest throughput (trgmii > rgmii),but last may fail if both cpu-ports have same speed like mt7531.
-> 
-> These are the possible solutions i see atm. Maybe dsa people can share their opinion.
-
-You should share your opinion on my mail to netdev mailing list I 
-recently CC'd you.
-
-> 
->>> set master in userspace-config? i remember you've sent a patch adding callback for it.
->>
->> You can change the DSA master using iproute2-6.1.0 and above with this patch which should be in your inbox as well.
->>
->> https://lore.kernel.org/netdev/20230211184101.651462-1-richard@routerhints.com/
-> 
-> I try to test it.
-> 
->> The only issue I see here is that, with this patch series, port5 becomes the default CPU port which is not preferred for the reasons you explained.
->>
->> So once we can have port6 to be the default CPU port of the DSA slaves, there's no issues left.
-> 
-> For me this would be ok if the current configuration does not change, right :)
-
-Userspace configuration won't change, not with the current patch, not ever.
-
-Arınç
+> diff --git a/drivers/media/v4l2-core/v4l2-jpeg.c b/drivers/media/v4l2-core/v4l2-jpeg.c
+> index 75c2af763d55..94435a7b6816 100644
+> --- a/drivers/media/v4l2-core/v4l2-jpeg.c
+> +++ b/drivers/media/v4l2-core/v4l2-jpeg.c
+> @@ -460,7 +460,7 @@ static int jpeg_parse_app14_data(struct jpeg_stream *stream,
+>   	/* Check for "Adobe\0" in Ap1..6 */
+>   	if (stream->curr + 6 > stream->end ||
+>   	    strncmp(stream->curr, "Adobe\0", 6))
+> -		return -EINVAL;
+> +		return jpeg_skip(stream, lp - 2);
+>   
+>   	/* get to Ap12 */
+>   	ret = jpeg_skip(stream, 11);
