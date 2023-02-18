@@ -2,108 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D8969B97F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 11:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B11E569B9A1
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 12:17:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbjBRKtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 05:49:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43152 "EHLO
+        id S229436AbjBRLRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 06:17:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbjBRKtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 05:49:45 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C639920567;
-        Sat, 18 Feb 2023 02:49:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676717364; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=DsffZtaWvZuCbaZE5EHJ1vFswNstU37dTPw6i3RIq9xufQXDTJw1TPliygnNW+4X0diwWvdgonV2JvzNiMzMKz8JL+MxiOwnDADAsQwZT51g4MaqTKMaZPJg8QqOrYkpQ8+hzwgOPNXrIPikh7zogmluD0efw3ZIjpY0mSGnpWw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1676717364; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=bjWvJA7jye8dKxGeIaACDeBj5ieOquYarDMgtwo/Pgc=; 
-        b=MIWFN+x7mBIZh5b+dAG0WC4DSuDmuFYhUnH1nLQijjm8jnO4g0Qp+HKhwg0QmH1cTBzlCngJfHFJ1UgC3o8NEfQ9vnHIrfTagsTRi8P3P/HYRkqKr8wNoCnHi4lXFGd/R8LzRC6yBbD/ZlDrVFGyZFQFGO79yNkLP/AdmlE+aA8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676717364;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=bjWvJA7jye8dKxGeIaACDeBj5ieOquYarDMgtwo/Pgc=;
-        b=AN2iUkq6iC19pz4UBX2M5jGu37WIRJY+mJXpBYTD7hHatDjFHUUU12YJSO1q34UF
-        HOhZZemPJRVTcTNEBuydB7oe/g0YLcg+RxZ67YZQOIDip9j5M9XSoYbeQpFm9LTCm+V
-        kHm4FIz17yqNjM1w9WkCTjfnfsOYnNomWj71xOEA=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1676717363028260.89467269078705; Sat, 18 Feb 2023 02:49:23 -0800 (PST)
-Message-ID: <27a26da8-8297-5327-7493-54d8359b6970@arinc9.com>
-Date:   Sat, 18 Feb 2023 13:49:13 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: Aw: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs, mt7530
- switch, and add port@5
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229520AbjBRLRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 06:17:23 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D0F1BAD2
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 03:17:21 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id j1so191873pfu.5
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 03:17:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEF8FEuNLVayQdE5QI9MaMd8Q/7gQJSqUO9M+81Oa5M=;
+        b=IaruHdGy8cyFLDUGIOX5pZOCfDLvKQZpLOUwXva2yFbitViwuTKQidiLFpOtPWhzcu
+         suiJ6uJgAz2TngEijk5zQdejLa23H2xeo9jIswDVjTdRDMV/LGUV9eYlX3+ou4kJqg+8
+         Pi9/8dmPnYdds+GD+VqOdlM6LCxjqZ45E1Hbo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gEF8FEuNLVayQdE5QI9MaMd8Q/7gQJSqUO9M+81Oa5M=;
+        b=qYkfDjSlWOd1ahwLScXFADqzchGMsoZDfPmCcqTvPIW4qgskM0qBxyXxXKhUNUVXwi
+         RjH93kpuEMoPDJVNdsqHaQYyIhsBQ2DYXZuxtDTQZzWCiunf5AyGpPLyLtvc2DcXUfX+
+         6pAhrbD0UE1q1zudec3a4L04gIxlv0TIvXp94aWtzXOJM04oV5rt9dmSBQtG9QKvZj8e
+         30B9bkWMkc5Ufm22qGIR4+wqTs8KfX2Wqhs7/REm6VB+QE9zx1LZD3WwxBfMsHlroxN8
+         SNFfv3pP+UoSi04xT2Pkg3Q48PjykVG2pV5gBzRbHdYjlu5nzPHYVLuQKlddNw+O4FAJ
+         m/ug==
+X-Gm-Message-State: AO0yUKUUnjzBsTU/YEvhACSPSBaJ02+hs1KXd2N5dgZlvuaKgUmyYiXP
+        2d6g3ESK58e6n0Q2lhGaH1qJGQ==
+X-Google-Smtp-Source: AK7set+WyXQ3bNUcWSBc3Z7xIjr8Et8u/2+vAwZMWp1xbM5SWXK9wjjgnemRxkn9IVSvnVIBAgswew==
+X-Received: by 2002:a62:1b48:0:b0:5ab:bf5d:a0d1 with SMTP id b69-20020a621b48000000b005abbf5da0d1mr2435384pfb.7.1676719041279;
+        Sat, 18 Feb 2023 03:17:21 -0800 (PST)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:88dd:be84:8f65:fec2])
+        by smtp.gmail.com with ESMTPSA id 23-20020aa79157000000b005a8686b72fcsm4457829pfi.75.2023.02.18.03.17.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Feb 2023 03:17:20 -0800 (PST)
+From:   Pin-yen Lin <treapking@chromium.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Benson Leung <bleung@chromium.org>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Guenter Roeck <groeck@chromium.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
-References: <20230210182505.24597-1-arinc.unal@arinc9.com>
- <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
- <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <trinity-dab715b9-3953-40da-bc25-c4c2a5e9b7c3-1676715866453@3c-app-gmx-bap53>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Pin-yen Lin <treapking@chromium.org>
+Subject: [PATCH v3 0/5] Add generic-display-mux driver and bindings
+Date:   Sat, 18 Feb 2023 19:17:07 +0800
+Message-Id: <20230218111712.2380225-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.39.2.637.g21b0678d19-goog
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.02.2023 13:24, Frank Wunderlich wrote:
-> Hi,
-> 
-> finally get some time to bootup with this series on my r2.
-> 
-> I see that inserting the port@5 as cpu-port maps this as default-cpu because dsa-core uses first found cpu-port as
-> default (dsa_tree_setup_cpu_ports in dsa.c) and because of lower bandwidth (rgmii instead of trgmii) not the best choice.
-> 
-> But it look worse...network is currently broken (set both gmacs up).
-> I see arp-packets reaching remote side, but reponse is not received by r2
-> 
-> I have tested it on 6.2-rc8 (wan-port), maybe additional patches are needed?...userspace setup should be right.
-> 
-> so i added series on top of net-next (no additional patches except some basic like build-script,defconfig and such)...same result...
-> 
-> i'm not sure if i change the mapping from userspace back to eth0, so disabled port@5 in switch, now port6 is
-> cpu-port again and it works...so something is wrong with port5 of switch or gmac1.
+This series is developed for and tested on MT8173 board, and the layout is:
 
-That's a driver issue and will be fixed once an accepted version of 
-these patches [0] [1] [2] are applied to net-next. You should have them 
-on your inbox, I specifically told Richard to CC you.
+                                  /-- anx7688
+-- MT8173 HDMI bridge -- GPIO mux
+                                  \-- native HDMI
 
-This is devicetree bindings. We're here to describe the hardware. The 
-way a driver works should not affect describing the hardware.
+v2: https://lore.kernel.org/all/20230116110820.2615650-1-treapking@chromium.org/
+v1: https://patchwork.kernel.org/project/dri-devel/cover/20191211061911.238393-1-hsinyi@chromium.org/
 
-To address the lower bandwidth situation you mentioned, a devicetree 
-property to designate a CPU port as the default CPU port could be 
-introduced. I'm not aware of a similar conversation so I'll send a mail 
-to netdev to discuss this. Will CC you.
+Changes in v3:
+- Removed ddc-i2c-bus in the gpio-mux bridge bindings
+- Added .get_edid callback in generic-gpio-mux driver
+- Removed .get_edid callback in mtk_hdmi.c
+- Modified anx7688 driver and binding to add a .get_edid callback
 
-[0] 
-https://lore.kernel.org/netdev/20230212213949.672443-1-richard@routerhints.com/
-[1] 
-https://lore.kernel.org/netdev/20230212214027.672501-1-richard@routerhints.com/
-[2] 
-https://lore.kernel.org/netdev/20230212215152.673221-1-richard@routerhints.com/
+Changes in v2:
+- Referenced existing dt-binding schemas from graph.yaml
+- Added ddc-i2c-bus into the bindings
+- Dropped attach/mode_set/enable/disable callbacks
+- Fixed style issues
+- Removed the special case for the HDMI connector
+- Made the driver only read the GPIO status in IRQ handler
+- Rebased to drm-misc-next
+- Update the license: "GPL v2" --> "GPL"
 
-Arınç
+Nicolas Boichat (2):
+  dt-bindings: display: bridge: Add GPIO display mux binding
+  drm: bridge: Generic GPIO mux driver
+
+Pin-yen Lin (3):
+  dt-bindings: display: bridge: Add ddc-i2c-bus for anx7688
+  drm/bridge: Add .get_edid callback for anx7688 driver
+  drm/mediatek: Remove .get_edid callback
+
+ .../bridge/google,cros-ec-anx7688.yaml        |   5 +
+ .../bindings/display/bridge/gpio-mux.yaml     |  90 +++++++
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/cros-ec-anx7688.c      |  24 ++
+ drivers/gpu/drm/bridge/generic-gpio-mux.c     | 222 ++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_hdmi.c           |  53 +----
+ 7 files changed, 365 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+ create mode 100644 drivers/gpu/drm/bridge/generic-gpio-mux.c
+
+-- 
+2.39.2.637.g21b0678d19-goog
+
