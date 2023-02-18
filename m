@@ -2,160 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 890F569B6AD
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 01:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4639569B79A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 02:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjBRA0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 19:26:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40016 "EHLO
+        id S229599AbjBRByp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 20:54:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjBRA0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 19:26:39 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4775668AC9
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 16:26:36 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id be32so3507795lfb.10
-        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 16:26:36 -0800 (PST)
+        with ESMTP id S229445AbjBRByo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 20:54:44 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975444E5DD;
+        Fri, 17 Feb 2023 17:54:42 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id eg30so10710758edb.7;
+        Fri, 17 Feb 2023 17:54:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Iz+PpBCaN2eTF1bAhZ+2tgpCk6bNWDrT4b3aQDTLjn4=;
-        b=C0d26VB/UL384OGHWCA1AXRo89XPr0JW09Y0bUgWGjPuT4pq2OCCGxWpqr9sDJiUkY
-         MSB5QRvHJSGSDGrk/vlfxhtQCValpz9gpXANpLcU+p5H2Oc9VdszeuPZHz6MedQpKxIX
-         eSXaDx5BLPhyMcKa854KKFdJjLpJxjvPMVCnCwO+Y0bl7TWn/TObzR7eYfwnYjku0U9N
-         DAceDkHWSuiL+nvkuaHmkizuhe2PfiQ1lO+Xd42kKC3RV3J9mEE8mQ6bmGbEOECGX8mc
-         XphU8SljyARdlMtk6jEg/5I4zBdHwKkCy30J+L9l/LUqaMgj1EELHqpcSvNxHs/YJogP
-         d1OA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jA/ugla+5i3dvnVJILyKOQpQ6/ozSYeGNQWjzA1fUcA=;
+        b=Jl7E5N3V1vg5Xe2YqsP/thAqBUxWlyKbRgU6XLTJmBlNxmKf2N39tTCplYEkCYpEDW
+         a4qPuwdhu8FXMD6azl6e4eiKhd+XL/pAzh/4FsdstR4OaaxCQrGn+Ay+Ldp4yeFW+eFR
+         PH+QvNqcNsBa2fIGML33zFJkOlcvpH4XoZbAksyiaEIxlzIEKxBYZKi1Iv2lf4AJwAmh
+         GDqrAYkeL2zj/2cdb+7VzrIl9wK45GsV0zQwu/ogyKQalVMXJwohivT1KSCAohJX6XLk
+         sKElerHEsgQxP7Sx553FIi+QMLkZHBwgV76rSkvGUrPGg9/JgMjIjgrTN3uppgp7LRY/
+         4gJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iz+PpBCaN2eTF1bAhZ+2tgpCk6bNWDrT4b3aQDTLjn4=;
-        b=W7Zl/crX2zx027kfcnmpohvtSicDKnC5R6HkAtKF/4FXEsdLubNnm0TWkk8IrIib/V
-         7t0sdKus6cgTltp08De0aXLJoTMhrvKT2ERCZQJ/4qVb1Mjg8j/gtBy3ClKLoPmsy6lX
-         cTvUNBbUL1AdEeTHbYcWZzqJAkQ/doZQBXFsmwZnh2s0/p0pCXBu7p70BZ9E1ZPwN3Nn
-         GaRIQG8EkDybrQs5dIcCeRB+2WnCiniXZ2Qoanyt4oZEOT2UDM99MRVrQE6Jk3G+cEHR
-         HHi49DHeflvfM74Lwe3G9k+i+w2rcKoycAp6mMbhaXY4V/JRDzANVX3w5K5fHE2/vXkQ
-         vs5g==
-X-Gm-Message-State: AO0yUKVKxva8WlrvR71GKJa++3QiHVxF2RgK/448bZZGcYTFBb+/UOw7
-        845pL8J3HHVuC2k8pYcl5BVOpQ==
-X-Google-Smtp-Source: AK7set/blEr5tuwakVvUBgDfcxlFT/0GmnlBbcRkf7FavIpGqWDHjeJsNPnY+VrSOFq8PpELXzUChg==
-X-Received: by 2002:ac2:4a87:0:b0:4db:2a28:6453 with SMTP id l7-20020ac24a87000000b004db2a286453mr745429lfp.25.1676679994477;
-        Fri, 17 Feb 2023 16:26:34 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id e1-20020a05651c038100b002950ce0ecd0sm143976ljp.114.2023.02.17.16.26.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 16:26:34 -0800 (PST)
-Message-ID: <c2bfa6b0-edee-b492-d40e-cf43291b90d4@linaro.org>
-Date:   Sat, 18 Feb 2023 01:26:32 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jA/ugla+5i3dvnVJILyKOQpQ6/ozSYeGNQWjzA1fUcA=;
+        b=VmY0Am+YN8ScOwra05oe4CuNikvvrvAUDNDXsHd7ApMkY1jJLqVe+dp/qtCI+RDQAI
+         +N+grKjfPHEz6TZAfAeAkJKFU27/0oELhiHTSrB9PtzOxtWyEzOm68tlBIuEkJFhVyW6
+         MOIgz6eaxcjgz3gqurVv66u/MG1MAu9ps/4+x6fq0zirgGYNtiQcLpwe5gr88f378gHu
+         A0trSpto6TCm8roHmXve+1xTzvKXGdR67XSot2giDBwu/VVK63zJtI5TD1X0pTkR+QwK
+         ekTIdEy+ERg31LCAMXBxOG3koO7uTNsT8mzVebdDPD8b9cnqhJ0DjYD8aBTav/+vjboJ
+         9SoA==
+X-Gm-Message-State: AO0yUKWjEzHWT+kjJQMenmIcNEAmKwRH7Lj2pAnoUlAups7ZWPPA/Du/
+        5IEiVbtVsjBZgz1VlTWb37C0HsP5o9bAj8e1hf4=
+X-Google-Smtp-Source: AK7set/WC7LwCEzh+T+AtiNzLawBQqjdCYYN4L2e9XBfPS0ry61w+AaRFfsW28sFUqOCoj/H0XltNn8biQDp4J5EdnU=
+X-Received: by 2002:a50:9f4f:0:b0:4ac:b618:7fb1 with SMTP id
+ b73-20020a509f4f000000b004acb6187fb1mr1779765edf.6.1676685280999; Fri, 17 Feb
+ 2023 17:54:40 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v10 2/6] dt-bindings: opp: v2-qcom-level: Document CPR3
- open/closed loop volt adjustment
-To:     Rob Herring <robh@kernel.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
- <20230217-topic-cpr3h-v10-2-67aed8fdfa61@linaro.org>
- <20230217231330.GA2238521-robh@kernel.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230217231330.GA2238521-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230214121333.1837-1-shradha.t@samsung.com> <CGME20230214121404epcas5p3bfa6af0151b7f319d418f7c0dbed7c5a@epcas5p3.samsung.com>
+ <20230214121333.1837-2-shradha.t@samsung.com> <b40cafa1-396f-e6cd-3240-bc879d5f2c8b@linaro.org>
+In-Reply-To: <b40cafa1-396f-e6cd-3240-bc879d5f2c8b@linaro.org>
+From:   Han Jingoo <jingoohan1@gmail.com>
+Date:   Fri, 17 Feb 2023 17:54:29 -0800
+Message-ID: <CAPOBaE7d7Bf5zU7-fROqT9YvG1cQDqaV+aiiZRfrq=Xr4=8gYA@mail.gmail.com>
+Subject: Re: [PATCH 01/16] dt-bindings: PCI: Rename Exynos PCIe binding to
+ Samsung PCIe
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Shradha Todi <shradha.t@samsung.com>, lpieralisi@kernel.org,
+        kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
+        Sergey.Semin@baikalelectronics.ru, lukas.bulwahn@gmail.com,
+        hongxing.zhu@nxp.com, tglx@linutronix.de, m.szyprowski@samsung.com,
+        jh80.chung@samsung.co, pankaj.dubey@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Feb 16, 2023 Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 14/02/2023 13:13, Shradha Todi wrote:
+> > The current DT bindings is being used for Exynos5433 SoC only.
+> > In order to extend this binding for all SoCs manufactured by
+> > Samsung using DWC PCIe controller, renaming this file to a more
+> > generic name.
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> >
+> > Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> > ---
+> >  .../pci/{samsung,exynos-pcie.yaml => samsung,pcie.yaml}     | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >  rename Documentation/devicetree/bindings/pci/{samsung,exynos-pcie.yaml => samsung,pcie.yaml} (93%)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml b/Documentation/devicetree/bindings/pci/samsung,pcie.yaml
+> > similarity index 93%
+> > rename from Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+> > rename to Documentation/devicetree/bindings/pci/samsung,pcie.yaml
+> > index f20ed7e709f7..6cd36d9ccba0 100644
+> > --- a/Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/samsung,pcie.yaml
+>
+> We keep the name rather tied to compatible, not generic. There are no
+> other compatibles here, so I don't think we should rename it.
 
+I also agree with Krzysztof Kozlowski's opinion. For renaming, we should have
+strong valid reasons.
 
-On 18.02.2023 00:13, Rob Herring wrote:
-> On Fri, Feb 17, 2023 at 12:08:25PM +0100, Konrad Dybcio wrote:
->> CPR3 and newer can be fed per-OPP voltage adjustment values for both
->> open- and closed-loop paths to make better decisions about settling
->> on the final voltage offset target. Document these properties.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../devicetree/bindings/opp/opp-v2-qcom-level.yaml         | 14 ++++++++++++++
->>  1 file changed, 14 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->> index a30ef93213c0..93cc88434dfe 100644
->> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->> @@ -34,6 +34,20 @@ patternProperties:
->>          minItems: 1
->>          maxItems: 2
->>  
->> +      qcom,opp-cloop-vadj:
->> +        description: |
->> +          A value representing the closed-loop voltage adjustment value
-> 
-> A value?
-> 
->> +          associated with this OPP node.
->> +        $ref: /schemas/types.yaml#/definitions/int32-array
->> +        maxItems: 2
-> 
-> Or 2 values?
-Right, this description doesn't make any sense if you're just
-looking at the documentation without looking at the driver..
+Best regards,
+Jingoo Han
 
-Generally, each CPR3 instance can have multiple "threads"
-(each one of which regulates voltage for some on-SoC IP or
-part of it). The nth entry in the qcom,opp-[co]loop-vadj
-array corresponds to a voltage offset for the nth thread.
-
-If the nth entry in the array is missing, the driver assumes
-the arr[0] one is "global" to this CPR3 instance at this OPP
-level and applies it to all threads. ...and looking at it
-again, this is sorta just bad design, especially if you
-take into account that there's no known user of CPR3 that
-employs more than 2 threads.
-
-I'll remove that from the driver and make the description clearer.
-
-
-Also, only noticed now.. "qcom,sdm630-cprh" was not documented,
-so that's to be fixed for the next submission as well!
-
-
-Konrad
-> 
->> +
->> +      qcom,opp-oloop-vadj:
->> +        description: |
->> +          A value representing the open-loop voltage adjustment value
->> +          associated with this OPP node.
->> +        $ref: /schemas/types.yaml#/definitions/int32-array
->> +        maxItems: 2
->> +
->>      required:
->>        - opp-level
->>        - qcom,opp-fuse-level
->>
->> -- 
->> 2.39.1
->>
+>
+> Best regards,
+> Krzysztof
+>
