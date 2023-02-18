@@ -2,64 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F145A69B86C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 08:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7CC69B87E
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 08:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbjBRHAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 02:00:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52452 "EHLO
+        id S229436AbjBRHYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 02:24:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjBRHAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 02:00:55 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FAF2CFC9;
-        Fri, 17 Feb 2023 23:00:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676703627; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=ibn/e0SI9GQh4lDLBhxqdlonSElsEuFMrplZzm3M/PffVKWad+sAvv+NUK1+YEjCyqE/+UW3K4R1ZIYlHW62TSvJ3bliQWSuLQm8nnMDvhwTe3yb67rn4/CceEg0BtAkXF4e+Bmxe6Gqt34BQam7Uqz48XJiffQTge0mPiE67S8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1676703627; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=m/+NU3Tk03Wf0ez3AouViIcqSIg7JKhumDA5hc0v7rI=; 
-        b=AVAke2H7pJiYPOxLOOMh/x2vc00xvWnUWifJTj72x6JwVXv2JogcbVfMkQHigQ1ejWaO69rt7dQPDn+OqSZPLSGwxKEP+Y9PzhmPdtubph1c3ayr7tlcC0mewRhKLXvr76PwVNfUKEg+fauOY6bR5cGKFAd9FlEncwOw0JHOyG0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676703627;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=m/+NU3Tk03Wf0ez3AouViIcqSIg7JKhumDA5hc0v7rI=;
-        b=WS8aq3V/y75+JmBMJQbdrCOF7ESRzQjdb2LOiBU8iACugWUvW6k2tbmMI3ajHr5O
-        Gw59JbBcWkggLNHoF6iuIoxZgQUiHdjNZtPRALFLEP2nbxGxZHUstl1gfpC6peYWxy1
-        PhUmmRYM0RAlykVskLKodL0MUbv0uAA6ntIkGgAA=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1676703625115619.8764980966916; Fri, 17 Feb 2023 23:00:25 -0800 (PST)
-Message-ID: <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
-Date:   Sat, 18 Feb 2023 10:00:19 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs, mt7530 switch,
- and add port@5
-To:     Frank Wunderlich <frank-w@public-files.de>,
+        with ESMTP id S229763AbjBRHYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 02:24:23 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB88A4FA9F;
+        Fri, 17 Feb 2023 23:24:21 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id eq13so793379edb.11;
+        Fri, 17 Feb 2023 23:24:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yAD1DxvAYMRKEHrkkSuKbgeC08TTOx9gNI3h2o70G54=;
+        b=R0RlR19heuvvC52611xkEkfa8RQ5ZjtJsn9GwQWeN/fzEEEf8jW5GDKSQUlIarCyIO
+         cpT4PS1qOXQhUmbucngge08OiXT2rM6F9SWhKtBMVUrJFowwcTYe53+dosEBpIf21kpx
+         1xtw7CRM7uD6WAyfR6H9WgzIpxXWZfh5Qlla2DmADPOKAy93T9tszBtABHgxeXDb/xw/
+         ehTe9+PjY2Y+DjK7r3Dk/oNKfJXLfQca1QaQ5qOqdjdrSAZHbCm9mwO8ELbc7CD2ku1o
+         tvcIfXzghxWWDGotSqEpg3k500FeiJAi9+BMtM7Tmx5TVeIs/R4WZxRVHS5k0mS9JwOz
+         /jhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yAD1DxvAYMRKEHrkkSuKbgeC08TTOx9gNI3h2o70G54=;
+        b=4ZWigyvfQTAnfZNdDbjanA3r3QMtc5byGraU5+UWlxU7ye6UbUOfsBqcaFBX6H+erM
+         jidhkodAVifC7yMnXMWCXRdMtc7XhqYQCY4st/Js7v14h3Pef24kUbFiyoI1Zkpzd+6N
+         qSD82/tjcREhVCLyNPT733G+34in5mfjYlZPvN33CkRvl4BMWaexl9D0nTJb1pm72La8
+         mi8e+8hdit3v4RyaMIuUcmZi1kNK/rGW8oBE3Sk6AlPJvOIvsBbHT5rVfiK1DAAHu56J
+         tVj6QIBSZCOZbSIHEZX+K8/xwFzzJmRBSfsT543Wree7k/8Nl7iOBzd8r2q05e1YnKLa
+         GEBQ==
+X-Gm-Message-State: AO0yUKVlYGJFS4HSv35Nj/WJ52ndt/G220WUQcxLPsX2eV+kSmeOBX57
+        EwaIlK0xHj+dlX5AV/W7UoLtwhuBGhU7NGjPJZk=
+X-Google-Smtp-Source: AK7set8XPgEIrp2vK5mCbMOHZUOzh1DHe8UKj5u++Uf314ibQLpn6ofnSQjkMsbCj8yiPfIows8UkQ==
+X-Received: by 2002:aa7:d552:0:b0:4ad:5950:3f49 with SMTP id u18-20020aa7d552000000b004ad59503f49mr7842961edr.7.1676705060321;
+        Fri, 17 Feb 2023 23:24:20 -0800 (PST)
+Received: from arinc9-PC.lan ([37.120.152.236])
+        by smtp.gmail.com with ESMTPSA id k7-20020a50ce47000000b004acb38eea1csm3179536edj.28.2023.02.17.23.24.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Feb 2023 23:24:19 -0800 (PST)
+From:   arinc9.unal@gmail.com
+X-Google-Original-From: arinc.unal@arinc9.com
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        <angelogioacchino.delregno@collabora.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
-References: <20230210182505.24597-1-arinc.unal@arinc9.com>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230210182505.24597-1-arinc.unal@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: change some descriptions to literal
+Date:   Sat, 18 Feb 2023 10:23:48 +0300
+Message-Id: <20230218072348.13089-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,7 +86,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Frank, I think Matthias is waiting for your approval on this patch 
-series. Is this series fine by you?
+From: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Arınç
+The line endings must be preserved on gpio-controller, io-supply, and
+reset-gpios properties to look proper when the YAML file is parsed.
+
+Currently it's interpreted as a single line when parsed. Change the style
+of the description of these properties to literal style to preserve the
+line endings.
+
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+ .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml        | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+index 449ee0735012..5ae9cd8f99a2 100644
+--- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+@@ -93,7 +93,7 @@ properties:
+ 
+   gpio-controller:
+     type: boolean
+-    description:
++    description: |
+       If defined, LED controller of the MT7530 switch will run on GPIO mode.
+ 
+       There are 15 controllable pins.
+@@ -112,7 +112,7 @@ properties:
+     maxItems: 1
+ 
+   io-supply:
+-    description:
++    description: |
+       Phandle to the regulator node necessary for the I/O power.
+       See Documentation/devicetree/bindings/regulator/mt6323-regulator.txt for
+       details for the regulator setup on these boards.
+@@ -124,7 +124,7 @@ properties:
+       switch is a part of the multi-chip module.
+ 
+   reset-gpios:
+-    description:
++    description: |
+       GPIO to reset the switch. Use this if mediatek,mcm is not used.
+       This property is optional because some boards share the reset line with
+       other components which makes it impossible to probe the switch if the
+-- 
+2.37.2
+
