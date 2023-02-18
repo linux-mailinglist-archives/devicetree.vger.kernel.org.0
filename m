@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B48FB69B9F6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 13:22:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AF169BA25
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 14:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjBRMWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 07:22:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52826 "EHLO
+        id S229731AbjBRNL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 08:11:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbjBRMWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 07:22:53 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9049C199FA;
-        Sat, 18 Feb 2023 04:22:47 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id b6so285192pff.2;
-        Sat, 18 Feb 2023 04:22:47 -0800 (PST)
+        with ESMTP id S229606AbjBRNL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 08:11:58 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4CF416AF1
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 05:11:55 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id f6so833686lfs.2
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 05:11:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AwTSqQb3wjPt6eNO90ccFFM1V4xy3OiFS52of0iH9l8=;
-        b=aC85b7fvrlsjWF4tk2mJ+nIV/NQ118Bm3jHMBli98saai5JsnLpKn6ZphYdRCXdZgb
-         OGEpSdta7SXtZcdNnKrCc6sRTsESzIl2I738JCnbTCSxCngeJ9SOlocCVvMuEMS5+B0h
-         wsIPecN4cdCe2Fq0E/GFTc496lwToxl23bP6SKgnfRDlrK2oWRId2ae+v3V+f8clGSeb
-         aKCvdt/y+1P/vqQ2hTAujYSS89TgFQnpflqGt7sUixN7qlGmm3Mr8ONJwmqMhfhJZGjs
-         hRdHmYu6yiveu0rL+biv7trM8BtzHwuzRU5Ldxwdn7wLy4R+VpocJ/HcRD26WbGvZGz9
-         7tQw==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sFZb+KyGAfqdWcVh2QTgnXaoGg7pVVta8DL5jcjkaHA=;
+        b=CD+nZ/SzGoNOMg8Mk2mopOlJfDYIRF3XlRUaULLdQYrYb0b/mc9ZIUbVbcb4QCrILP
+         Ji7C1kzakqozOxnD+TQo2pwU9X4rm/BOxVQzd7zhTKjTdPjMswvaEDCjTNOua2xxV/EZ
+         usY0cN5OWy+Q0XdeVmpy7+K+L1rtwbeG6W/jzd1IcqCnbVjgtdgz6Ctj0D20Us3acuWS
+         1IkuJskkTpghq7CVu83wKyHAw5zcmCxvRu/QNKVWxdZS7zj5rYXOURQcVB8zzlMAxW8I
+         YLj2ZMnLSTh5jJZdLd85/H3weSF9OZ0Tr6SngDt4oarVlcd7W7U+kAuZER3VSfNF3yeH
+         xYtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AwTSqQb3wjPt6eNO90ccFFM1V4xy3OiFS52of0iH9l8=;
-        b=bY+nlmvguOtpCWNyLVjHz7Vxy7a45ZvZlEfTRV8lVtu6p6jOEOdxmfHa6i5BNYAj+L
-         53EB9oQ1yDaPJfIs98Dv4A9C+JtY4z1lFCfsPmITIEUUHfEOq1n8Ds7PaNUK9tBo3utC
-         EBZXAa3To2ByI0Vjx6glfvstat+T1YRKezd0u+6+qRizDixHZqm57WMYuiXT+Y+Rp6SP
-         KmD82853t/24QdCI+HPzHa4lkJgAILWne32+/YvodzLunKSZckM5zNgeUwccVoL3FM/7
-         Iu0cbDqevQMJhSNfiP6S3d/fjqEiNz4MvFqMcvqgRSIje1XQ1rtiPA/mKQMPMqGOf7O/
-         aoeg==
-X-Gm-Message-State: AO0yUKXEZGk6vEBw8xDolJNN8viwafyW38IgQ8GhKU6nd2SCew1frE1S
-        UOaqLb7SlmOkXM9W836sJj8nF2gQebEqgdrN
-X-Google-Smtp-Source: AK7set+MhnHfv0oMsca/LdCR9oO5HwnkYdn/MDvzxZD/ofOMr1UP9mLNTHncgbKoY0VqFhsztpOufQ==
-X-Received: by 2002:a62:7b4b:0:b0:5a9:b910:6d98 with SMTP id w72-20020a627b4b000000b005a9b9106d98mr5966352pfc.13.1676722966646;
-        Sat, 18 Feb 2023 04:22:46 -0800 (PST)
-Received: from kelvin-ThinkPad-L14-Gen-1.. ([223.85.203.147])
-        by smtp.gmail.com with ESMTPSA id c16-20020aa78810000000b005a8dcd32851sm4714732pfo.11.2023.02.18.04.22.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Feb 2023 04:22:46 -0800 (PST)
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Keguang Zhang <keguang.zhang@gmail.com>
-Subject: [PATCH] dt-bindings: interrupt-controller: convert loongson,ls1x-intc.txt to json-schema
-Date:   Sat, 18 Feb 2023 20:22:36 +0800
-Message-Id: <20230218122236.1919465-1-keguang.zhang@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        bh=sFZb+KyGAfqdWcVh2QTgnXaoGg7pVVta8DL5jcjkaHA=;
+        b=nRRqp4oIeCqoidPVxippRlnD1hU3FGr8fkpq16TmSlbIr6A3ymv0/ngCuD4DPnWSJ4
+         H1J77+3E3eXLwyEJQI8vz1R3ij6z6JnRYaSBUpdxpDwvbbQplDgOVHmUiX9WtJVpqWlJ
+         Ha0xNR2kQHbfTYgjs3tFZnFEXHSq/MFPSM9/MObcFaL2+Ulns4vQ87OD2Hw5G8vnwKaI
+         6msLobzNZNxoFIWNfPdHxTxRLgl7gDQj6LbFGEBpFQ0O5ScP/3W3WEwqyyTsBDjFhgC3
+         8Kcxb38lLRdhjvuC5XpviS0Jc6RzJJZtJs4w5mz31PQJC48/lWGZrVVSwrV/aoX7v5bY
+         qGGA==
+X-Gm-Message-State: AO0yUKV+AB1h5mV2uwxbZq5vjdlYtMQ72giqAZKk3K42vNHy2bWIWIZT
+        s6LhsE6/7HeEZZPNgiMiOAhDAGGPEHRy3pUgG/dNtA==
+X-Google-Smtp-Source: AK7set+eHOfizBIwI1T3DsyV1863LifcB+yOBYdN4HyMZXw04IZPDsu/+QgX/HoCnpfPWQYxjvnFFjkbay+ekbeNW8E=
+X-Received: by 2002:ac2:4439:0:b0:4d5:ca43:703e with SMTP id
+ w25-20020ac24439000000b004d5ca43703emr1311163lfl.1.1676725913903; Sat, 18 Feb
+ 2023 05:11:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230214140557.537984-1-benjamin.gaignard@collabora.com> <20230214140557.537984-7-benjamin.gaignard@collabora.com>
+In-Reply-To: <20230214140557.537984-7-benjamin.gaignard@collabora.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Sat, 18 Feb 2023 10:11:41 -0300
+Message-ID: <CAAEAJfDihZND+1FSzFxT86j9u6h-wH6uMMNh7BiaEWQWtSpk=Q@mail.gmail.com>
+Subject: Re: [PATCH v4 06/12] media: verisilicon: Check AV1 bitstreams bit depth
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        hverkuil@xs4all.nl, nicolas.dufresne@collabora.com,
+        jernej.skrabec@gmail.com, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,105 +70,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Loongson1 interrupt controller dt-bindings to json-schema.
+On Tue, Feb 14, 2023 at 11:06 AM Benjamin Gaignard
+<benjamin.gaignard@collabora.com> wrote:
+>
+> The driver supports 8 and 10 bits bitstreams, make sure to discard
+> other cases.
+> It could happens that userland test if V4L2_CID_STATELESS_AV1_SEQUENCE
+> exists without setting bit_depth field in this case use
+> HANTRO_DEFAULT_BIT_DEPTH value.
+>
 
-Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
----
- .../loongson,ls1x-intc.txt                    | 24 ---------
- .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+This shouldn't happen.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-deleted file mode 100644
-index a63ed9fcb535..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Loongson ls1x Interrupt Controller
--
--Required properties:
--
--- compatible : should be "loongson,ls1x-intc". Valid strings are:
--
--- reg : Specifies base physical address and size of the registers.
--- interrupt-controller : Identifies the node as an interrupt controller
--- #interrupt-cells : Specifies the number of cells needed to encode an
--  interrupt source. The value shall be 2.
--- interrupts : Specifies the CPU interrupt the controller is connected to.
--
--Example:
--
--intc: interrupt-controller@1fd01040 {
--	compatible = "loongson,ls1x-intc";
--	reg = <0x1fd01040 0x18>;
--
--	interrupt-controller;
--	#interrupt-cells = <2>;
--
--	interrupt-parent = <&cpu_intc>;
--	interrupts = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-new file mode 100644
-index 000000000000..4cea3ee9fbb1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-1 Interrupt Controller
-+
-+maintainers:
-+  - Keguang Zhang <keguang.zhang@gmail.com>
-+
-+description: |
-+  Loongson-1 interrupt controller is connected to the MIPS core interrupt
-+  controller, which controls several groups of interrupts.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls1x-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    intc0: interrupt-controller@1fd01040 {
-+        compatible = "loongson,ls1x-intc";
-+        reg = <0x1fd01040 0x18>;
-+
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+
-+        interrupt-parent = <&cpu_intc>;
-+        interrupts = <2>;
-+    };
+If the bit_depth argument in hantro_check_depth_match()
+can be set unchecked by userspace, we have done something wrong!!
 
-base-commit: 25eba1598c8e1e804c02e3a0da50782c50c11c41
--- 
-2.34.1
+Are you sure that userspace can do a S_CTRL with an invalid bit-depth?
+The try_or_set_cluster() function seems to always call try_ctrl before s_ctrl.
 
+Thanks,
+Ezequiel
+
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> version 4:
+> - This patch is the result of squashing "Save bit depth for AV1 decoder"
+>   and "Check AV1 bitstreams bit depth" of version 3 + adapation to
+>   "[PATCH v8 0/6] media: verisilicon: HEVC: fix 10bits handling" series.
+>
+>  .../media/platform/verisilicon/hantro_drv.c   | 36 +++++++++++++++++++
+>  .../media/platform/verisilicon/hantro_v4l2.c  |  4 +++
+>  2 files changed, 40 insertions(+)
+>
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+> index bc1a85456142..666cd46902da 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -275,7 +275,13 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
+>                 /* We only support profile 0 */
+>                 if (dec_params->profile != 0)
+>                         return -EINVAL;
+> +       } else if (ctrl->id == V4L2_CID_STATELESS_AV1_SEQUENCE) {
+> +               const struct v4l2_ctrl_av1_sequence *sequence = ctrl->p_new.p_av1_sequence;
+> +
+> +               if (sequence->bit_depth != 8 && sequence->bit_depth != 10)
+> +                       return -EINVAL;
+>         }
+> +
+>         return 0;
+>  }
+>
+> @@ -348,6 +354,30 @@ static int hantro_hevc_s_ctrl(struct v4l2_ctrl *ctrl)
+>         return 0;
+>  }
+>
+> +static int hantro_av1_s_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +       struct hantro_ctx *ctx;
+> +
+> +       ctx = container_of(ctrl->handler,
+> +                          struct hantro_ctx, ctrl_handler);
+> +
+> +       switch (ctrl->id) {
+> +       case V4L2_CID_STATELESS_AV1_SEQUENCE:
+> +       {
+> +               int bit_depth = ctrl->p_new.p_av1_sequence->bit_depth;
+> +
+> +               if (ctx->bit_depth == bit_depth)
+> +                       return 0;
+> +
+> +               return hantro_reset_raw_fmt(ctx, bit_depth);
+> +       }
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static const struct v4l2_ctrl_ops hantro_ctrl_ops = {
+>         .try_ctrl = hantro_try_ctrl,
+>  };
+> @@ -365,6 +395,11 @@ static const struct v4l2_ctrl_ops hantro_hevc_ctrl_ops = {
+>         .s_ctrl = hantro_hevc_s_ctrl,
+>  };
+>
+> +static const struct v4l2_ctrl_ops hantro_av1_ctrl_ops = {
+> +       .try_ctrl = hantro_try_ctrl,
+> +       .s_ctrl = hantro_av1_s_ctrl,
+> +};
+> +
+>  #define HANTRO_JPEG_ACTIVE_MARKERS     (V4L2_JPEG_ACTIVE_MARKER_APP0 | \
+>                                          V4L2_JPEG_ACTIVE_MARKER_COM | \
+>                                          V4L2_JPEG_ACTIVE_MARKER_DQT | \
+> @@ -542,6 +577,7 @@ static const struct hantro_ctrl controls[] = {
+>                 .codec = HANTRO_AV1_DECODER,
+>                 .cfg = {
+>                         .id = V4L2_CID_STATELESS_AV1_SEQUENCE,
+> +                       .ops = &hantro_av1_ctrl_ops,
+>                 },
+>         }, {
+>                 .codec = HANTRO_AV1_DECODER,
+> diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
+> index 992c5baa929f..7e74e47c9a89 100644
+> --- a/drivers/media/platform/verisilicon/hantro_v4l2.c
+> +++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
+> @@ -86,6 +86,10 @@ hantro_check_depth_match(const struct hantro_fmt *fmt, int bit_depth)
+>         if (!fmt->match_depth && !fmt->postprocessed)
+>                 return true;
+>
+> +       /* 0 means default depth, which is 8 */
+> +       if (!bit_depth)
+> +               bit_depth = HANTRO_DEFAULT_BIT_DEPTH;
+> +
+>         fmt_depth = hantro_get_format_depth(fmt->fourcc);
+>
+>         /*
+> --
+> 2.34.1
+>
