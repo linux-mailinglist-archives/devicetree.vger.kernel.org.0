@@ -2,180 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC9469BA82
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 15:55:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F61469BB1B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 18:00:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjBROzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 09:55:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
+        id S229699AbjBRRAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 12:00:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjBROzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 09:55:31 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD36F18AB8
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 06:55:29 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id ez14so3114043edb.1
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 06:55:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iVLRzXREQ+19fFs4Pc7mcjHjxtT7x8ggG7HENOjDxNg=;
-        b=J/tvudzLLml7HurgL4Skxujt0BfWSAZikHpxyEzg/oLlKbA/7VrefQN0zhtzRtDRjM
-         s7waRZc5aqFiLJ8X+8vN9JYZdYJDGPjP6SlsDwK9F5f67RZsbA52Ro6sG/vaFZmDND86
-         j12TsRgfN6rcd6YqkzsmjT5m33l22siYXjYlEPzQ8QtfXA5kZdOnlirO0toGRTts/s6D
-         EpWSa1EaOm0h4bbjf8qu6fIitg4maKVxmj2NGyTKVs/LIT6GgFRlWefbRq8p0X68Hv78
-         XZ+4Uo4yDbuYYtrtEVmwywWtZKsXT2OYPyc+GkJAUI3YEWxQxr85H5oY89BGRCtRyAMU
-         M3Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iVLRzXREQ+19fFs4Pc7mcjHjxtT7x8ggG7HENOjDxNg=;
-        b=diC7TBYt9Wrt43YFA+RtZ6d2w7L/g1j+UGZQ0ED0G56VhtbBFqr/8pEQ4lIBFhPG74
-         ix9vH5+FwWCeFIKUkU7YGgr9dlxDXaDqBwXLmm9Up1IiM/4CU8QvphhxmX0F+c729fhw
-         Zwn1bIy5yFJLeMkk9kPUahV/fI0UqMmI/1LwfcigdEn1WgAkTQqRTxaUwM8gDW+DRnTh
-         xnKGzqgNu0v0SjfCg6Dqi7lsSpwa4RVCN+el254Z14wniVMdCeNUe7pK5sHYIIb+5gYz
-         ukCORD0KXlIG7Sa5D8hJhmNn67BrpCPmqz/62csUTGPum3rI/tOpCFTp1bstJ9brcbYw
-         7mcg==
-X-Gm-Message-State: AO0yUKWySxAzlC6YmS6mhvSU7JsKj9Tn1b7USyUrrv+Mdyw7fevzHNOL
-        TlRNDphHyaMC+VhSbE1Dy1EMag==
-X-Google-Smtp-Source: AK7set+o+3+5itFIzexy/ZcNCze7tMCBX9222/c9vkPLuQ7XzbbxCzFEcxKBDAOO5XZYry+Sq1kOWw==
-X-Received: by 2002:a17:907:98d2:b0:8b2:3eb6:8661 with SMTP id kd18-20020a17090798d200b008b23eb68661mr5633482ejc.8.1676732128340;
-        Sat, 18 Feb 2023 06:55:28 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id lo10-20020a170906fa0a00b008b1550a289fsm3461187ejb.34.2023.02.18.06.55.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Feb 2023 06:55:27 -0800 (PST)
-Message-ID: <a3217699-7b23-35e6-84b2-fe9e52158481@linaro.org>
-Date:   Sat, 18 Feb 2023 15:55:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        with ESMTP id S229478AbjBRRAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 12:00:43 -0500
+X-Greylist: delayed 594 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 18 Feb 2023 09:00:40 PST
+Received: from www.linux-watchdog.org (www.linux-watchdog.org [185.87.125.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8949217155;
+        Sat, 18 Feb 2023 09:00:40 -0800 (PST)
+Received: by www.linux-watchdog.org (Postfix, from userid 500)
+        id 00136409E9; Sat, 18 Feb 2023 16:00:05 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org 00136409E9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
+        s=odk20180602; t=1676732406;
+        bh=mmrzvLbJt44h+Sq+aFCdJK1Dkf8hdq69aQcSosm2/hw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SMI46vBIMOYhEAux/gfW3FNlGhqhgsf8pQXggsAGD9CyO48K+gmfh3SVeFB3Q5POU
+         tHaEnWEqB3p2hxaeD9r8BcnTt/7zT4WeWje89J5P+NbKj6MeLdlkdBQ+RZUM7giV2q
+         fASL9HQCNXkTbB9xfyqoXM6jvRYbcBllwvDlii9Y=
+Date:   Sat, 18 Feb 2023 16:00:05 +0100
+From:   Wim Van Sebroeck <wim@linux-watchdog.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-References: <Y6tSWB2+98a8k9Qw@spud>
- <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
- <Y+5z8skN2DuvxDEL@spud>
- <68e61f28-daec-ce72-726a-1fffe8e94829@starfivetech.com>
- <Y+8x/KSujhgNLAd6@wendy>
- <d3b06d0b-ff17-ebab-bae5-e1ec836fe667@starfivetech.com>
- <Y++B43uCnPQlRYFi@wendy> <dcba75b5-7b62-35aa-6836-5d5edd785002@linaro.org>
- <Y++q9ln8P3XegqfN@spud> <41e4f293-99eb-f157-b4a9-3d00b15f4652@linaro.org>
- <Y/CztNs6laTzttrI@spud>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y/CztNs6laTzttrI@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: watchdog: Add MSM8994 watchdog timer
+Message-ID: <20230218150005.GA30362@www.linux-watchdog.org>
+References: <20221117105845.13644-1-konrad.dybcio@linaro.org>
+ <20221117105845.13644-2-konrad.dybcio@linaro.org>
+ <07defd1c-2cbd-f25b-d1f4-824023d27135@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <07defd1c-2cbd-f25b-d1f4-824023d27135@linaro.org>
+User-Agent: Mutt/1.5.20 (2009-12-10)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/02/2023 12:17, Conor Dooley wrote:
-> Hey Krzysztof,
-> 
-> On Sat, Feb 18, 2023 at 11:20:30AM +0100, Krzysztof Kozlowski wrote:
->> On 17/02/2023 17:27, Conor Dooley wrote:
->>> On Fri, Feb 17, 2023 at 04:47:48PM +0100, Krzysztof Kozlowski wrote:
->>>> On 17/02/2023 14:32, Conor Dooley wrote:
->>>>>>>> Yes, it is.
->>>>>>>
->>>>>>> Which would then make GMAC1 RGMII RX optional, rather than required?
->>>>>>
->>>>>> If thinking in this way, I must say yes, it is optional. But actually
->>>>>> GMAC1 RGMII RX feeds gmac1_rx by default. 
->>>>>> For a mux, it usually works if you populate only one input to it.
->>>>>> Does it mean all the other inputs are optional? And how can we define
->>>>>> which input is required?
->>>>>
->>>>> I'm not sure, that is a question for Krzysztof and/or Rob.
->>>>
->>>> That's a long thread, please summarize what you ask. Otherwise I have no
->>>> clue what is the question.
->>>
->>> Sorry. I tried to preserve the context of the conversation the last time
->>> I cropped it so that things would be contained on one email.
->>>
->>> For me at least, I am wondering how you convey that out of a list of
->>> clock inputs (for example a, b, c, d) that two of the clocks are inputs
->>> to a mux and it is only required to provide one of the two (say b & c).
-> 
-> You skipped this part which was what I was trying to ask you about.
+Hi Konrad,
 
-Yeah, I skipped a lot because there was one big thread with a question:
-what do you think? Sorry, I will not dig 8 emails thread to figure out
-which question is to me and which is not...
+> On 17.11.2022 11:58, Konrad Dybcio wrote:
+> > Document the MSM8994 watchdog timer which is already used in DT.
+> > 
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > ---
+> Looks like this never got applied?
 
-> Do you know how to convey this situation, or is it even possible to
-> express those rules?
+Patience is a beautiful virtue.
+Since Guenter reviewed it and since it is in Guenter's tree, I picked it up.
 
-oneOf:
- - clock-names:
-     minItems: 3
-     items:
-       - a
-       - b
-       - c
-       - d
- - clock-names:
-     items:
-       - a
-       - b
-       - d
+> Konrad
+> >  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> > index d8ac0be36e6c..a1f17c9e02db 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> > @@ -17,6 +17,7 @@ properties:
+> >      oneOf:
+> >        - items:
+> >            - enum:
+> > +              - qcom,apss-wdt-msm8994
+> >                - qcom,apss-wdt-qcs404
+> >                - qcom,apss-wdt-sc7180
+> >                - qcom,apss-wdt-sc7280
 
-or maybe:
- - clock-names:
-     minItems: 3
-     items:
-       - a
-       - b
-       - enum: [c, d]
-       - d
-
-
-> 
->>>> Does the mux works correctly if clock input is not connected? I mean,
->>>> are you now talking about real hardware or some simplification from SW
->>>> point of view?
->>>
->>> I'm coming at this from an angle of "is a StarFive customer going to show
->>> up with a devicetree containing dummy fixed-clocks to satisfy dtbs_check
->>> because they opted to only populate one input to the mux".
->>> I don't really care about implications for the driver, just about
->>> whether the hardware allows for inputs to the mux to be left
->>> un-populated.
->>
->> Whether hardware allows - not a question to me.
-> 
->> BTW, this is rather question coming from me...
-> 
-> I don't understand what you mean by this, sorry.
-
-You said to a letter addressed to me "whether the hardware allows for
-...". Why would you ask me about hardware I know nothing about? That was
-my question - I am asking - whether hardware allows it or not. Then
-write bindings depending on that.
-
-Best regards,
-Krzysztof
+Kind regards,
+Wim.
 
