@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3A7969B940
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 11:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECB3F69B944
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 11:14:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbjBRKLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Feb 2023 05:11:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54730 "EHLO
+        id S229669AbjBRKOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 05:14:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbjBRKLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 05:11:39 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1173367E0
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 02:11:38 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id ek11so1901929edb.9
-        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 02:11:38 -0800 (PST)
+        with ESMTP id S229586AbjBRKOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 05:14:10 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3777238B77
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 02:14:09 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id cz7so10017840edb.12
+        for <devicetree@vger.kernel.org>; Sat, 18 Feb 2023 02:14:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dTrZlM/1j34PmNemq7d5HYpo1rmgNzw7BezUEBROqsY=;
-        b=GV1pVXEHTU3KwzBKiZmlxiL54Wv26ipKjZ7O0pei0QV8W/TvzR5zSbbvM8TQzq6p+9
-         uo+R/o+KLvFeygL4CC8eLWB2Y6wKqfzg6mdHaAYMsF3Y78+MBJiwae8qos+Iz+U5ReTw
-         i0hqLEngqwYwvnrpgipCN/g3VsT0Ocbb6aaFqMwICxo7oOq+TgkWVWvRXaueMSSmWQtm
-         XCgbjdkXPQkmPx0/bdblYUi3AyobQ6gfRoPFEy12lTJr4HKOg0iKyHI1tvBtVduSulYM
-         Tf2FLhyxnmgjU9X5dIX8RXeMLtxudEt/Ou/JqO2vs0LECEt9+faLxnJKjmlPXc0R7WP9
-         fdgg==
+        bh=XlYpUpe2mvgMM93e/W7QPf63bpnY6+x3AWjdp9vVuto=;
+        b=vHc8eWnXv559cPUvTjAwx4fjMkcCMs3PZaTCVmo9y2AIJhUH/Mp2yT8Pl2aIjne5Hm
+         KM5BtTCbsjyE1g6mTFetLELJG5SuG2FcFLlfDE5lmVnZ9t1KhJ2sisOUBxAjaTFdBE/1
+         3+SLrC/KB4z3DqbF8ibLbezZrcFMTxC86DohLdKexLBV9EpJ8UQliQ5S4Biqy1/ffceD
+         B5kgjXdVmJpXyFY8lzfVNuzm3X8y+gTKXD1MR1RxR+5cFrSwBalH5q0OblIADiPaNM/E
+         xSvsyeoqlLkWo4YTSQcM5VIzUyz2fqIH/S/h4hfwP+5/O6wx+dCtKD1n05e1WBaORrEF
+         6klA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dTrZlM/1j34PmNemq7d5HYpo1rmgNzw7BezUEBROqsY=;
-        b=5TlzrHaz4WU6OqeMqTUp7mz2fScDD2ESo186ghklT1ZheIcwapS0A7OdEK7bHtWQPL
-         k120nE3B2QyV+e0FKIADg9W4gMEZZ3lKFa2dDeMpzNLHr0zjKXS2HnusXpCpsp+RWknC
-         xnVHp3UuJrEihyW6QHFlR1OI31cUd7HiKYLGPxjWRFGEOJk4L6aWf+cRZqtqly5Kkkhy
-         ZQj6CsGVvfFZL6gzpoqBJeL0E+kadsEE5z60UiC50nOQrYi5XGMWrIBZIurTHDaI2+tC
-         6k59bjh2pBeAoigwNM07hAgsYMGIw71V/Smh1z180H3SAshs/g0Mv1w9iE0xzTogqeFW
-         7g6w==
-X-Gm-Message-State: AO0yUKW0NDzyFg/ENZySOE8+IrZPbRNpio3J35bLZpVHZH8XHgXNh0pF
-        +jvvZaga08QGnewfSgWXwdowGw==
-X-Google-Smtp-Source: AK7set9DV1fZtUekvagyuUQrTVveo/fbiaq0+hMrloLoKRYw7+NmcQbHmPPzdZcK10xee5YHOtLL9A==
-X-Received: by 2002:a17:906:5a42:b0:8b1:7ac6:3186 with SMTP id my2-20020a1709065a4200b008b17ac63186mr6106770ejc.68.1676715097203;
-        Sat, 18 Feb 2023 02:11:37 -0800 (PST)
+        bh=XlYpUpe2mvgMM93e/W7QPf63bpnY6+x3AWjdp9vVuto=;
+        b=6CsVdWXUIpFTe09KZ60ZMn2qRX64lSUhsgcxdSnlZZSZgS0WcotilGc6brOf3SLaH8
+         zpyzV6jFWZQlVQMQ1rvrrMvvzY1TIIKksimDTY3h4E8OV1Isk7q/SVo0yTpRtGbcvHPU
+         7GeEbCUxrZkvzyqm+nxM+qohXmGVGNYxIMQSQVpGvh2kmhMK9hWjwekLD5YllhI2nY6H
+         qklb+i9WP7X8ND849Ch4eeb+Hq/1HX2esGRiD/hNOIRQgf1HVXkf/J1InkMlaxMbhuFz
+         zAr88qhIKNhzDIxBq20UvFieb5lkgVHF7Dr5qqfLDXONlInsx1PjfWa069Fb0Vd7FLYP
+         5Grw==
+X-Gm-Message-State: AO0yUKXLZH18/KnqAXU2wP8zot3lJV+l3XkiC1JuhhnhBtVCWobmiPnL
+        00+ykklf8BxK7flyx5hQr45DFw==
+X-Google-Smtp-Source: AK7set+3xynx3gDPCY9sAfEctMu3DjKAusUU/V/7HxqiREWds9wQjauq9fvyl47NEeCBkmqS4EqKcw==
+X-Received: by 2002:a05:6402:d2:b0:4ab:4ad1:a37e with SMTP id i18-20020a05640200d200b004ab4ad1a37emr98905edu.16.1676715247702;
+        Sat, 18 Feb 2023 02:14:07 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id sa14-20020a170906edae00b008b176df2899sm2638876ejb.160.2023.02.18.02.11.35
+        by smtp.gmail.com with ESMTPSA id r23-20020a50c017000000b004a233e03afdsm3381118edb.46.2023.02.18.02.14.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Feb 2023 02:11:36 -0800 (PST)
-Message-ID: <0771a2db-53b8-20c0-eb28-f254f2eb6b25@linaro.org>
-Date:   Sat, 18 Feb 2023 11:11:34 +0100
+        Sat, 18 Feb 2023 02:14:07 -0800 (PST)
+Message-ID: <e6d397bb-dd5d-8308-eb07-3aeb2589115c@linaro.org>
+Date:   Sat, 18 Feb 2023 11:14:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: renesas,rz-ssi: Update interrupts
- and interrupt-names properties
+Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
+ deprecated QCM2290 compatible
 Content-Language: en-US
-To:     Prabhakar <prabhakar.csengg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230217185225.43310-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
+ <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
+ <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
+ <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
+ <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
+ <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
+ <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230217185225.43310-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,19 +91,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 19:52, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 17/02/2023 22:13, Bryan O'Donoghue wrote:
+> On 17/02/2023 12:24, Krzysztof Kozlowski wrote:
+>> First, it would be nice to know what was the intention of Bryan's commit?
 > 
-> From R01UH0914EJ0120 Rev.1.20 HW manual, for full duplex channels
-> (SSI0/1/3) dma_rt interrupt has now being marked as reserved and similarly
-> for half duplex channel (SSI2) dma_rx and dma_tx interrupts have now being
-> marked as reserved (this applies to RZ/G2L and alike SoC's). This patch
-> updates the binding doc to match the same.
+> Sorry I've been grazing this thread but, not responding.
+> 
+> - qcom,dsi-ctrl-6g-qcm2290
+> 
+> is non-compliant with qcom,socid-dsi-ctrl which is our desired naming 
+> convention, so that's what the deprecation is about i.e. moving this 
+> compat to "qcom,qcm2290-dsi-ctrl"
 
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+OK, then there was no intention to deprecate qcom,mdss-dsi-ctrl and it
+should be left as allowed compatible.
 
 Best regards,
 Krzysztof
