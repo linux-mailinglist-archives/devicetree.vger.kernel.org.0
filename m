@@ -2,132 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DC9A69B675
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 00:27:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 890F569B6AD
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 01:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjBQX1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 18:27:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
+        id S229744AbjBRA0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Feb 2023 19:26:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbjBQX1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 18:27:07 -0500
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE20460BE;
-        Fri, 17 Feb 2023 15:27:04 -0800 (PST)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1718a49f834so2724692fac.8;
-        Fri, 17 Feb 2023 15:27:04 -0800 (PST)
+        with ESMTP id S229677AbjBRA0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 19:26:39 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4775668AC9
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 16:26:36 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id be32so3507795lfb.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Feb 2023 16:26:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Iz+PpBCaN2eTF1bAhZ+2tgpCk6bNWDrT4b3aQDTLjn4=;
+        b=C0d26VB/UL384OGHWCA1AXRo89XPr0JW09Y0bUgWGjPuT4pq2OCCGxWpqr9sDJiUkY
+         MSB5QRvHJSGSDGrk/vlfxhtQCValpz9gpXANpLcU+p5H2Oc9VdszeuPZHz6MedQpKxIX
+         eSXaDx5BLPhyMcKa854KKFdJjLpJxjvPMVCnCwO+Y0bl7TWn/TObzR7eYfwnYjku0U9N
+         DAceDkHWSuiL+nvkuaHmkizuhe2PfiQ1lO+Xd42kKC3RV3J9mEE8mQ6bmGbEOECGX8mc
+         XphU8SljyARdlMtk6jEg/5I4zBdHwKkCy30J+L9l/LUqaMgj1EELHqpcSvNxHs/YJogP
+         d1OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LKUc5pbw1yazGVhBpNKjeMy/4FeHfZzgptlXZ0pQics=;
-        b=sZM34XTQS+7Kp96zIzNUHm572rCcUUbxxsYYN/+nBR79O8g8Z6RGHjPLGz6obIqDoh
-         62PN3PKPDNKnS/YkWpluv8QJmqr3ItBbUNH4XvoTxmiZ3E/eQ7JJT4B7rEcwPrNcn1wy
-         OloUn+A6Yz686cm9YJ02R1TwfKnzNvMSzqS4V6CaBaUpT6B2RKVXOWPYjNl/aZZWXkoa
-         MmesgOO2iczagrAzgEewzR87pFbJ7rIFPEKIme6JXrwhGaiPcTnWbY9W4AykoAvLIbki
-         +nhtTiJY7Gwc+bjQUEOAb6JGes5IK8Bqeuh8zKm4m1gHfoO4ES6HOnf7lQMULQEG33WI
-         UGyg==
-X-Gm-Message-State: AO0yUKVK7YBBKZ/5RviQvLOXs0FJ1z+l/XMGjbSvOI62EhZMGhWhOlrP
-        aEH6yoBH2u4pEsd6NEfwRA==
-X-Google-Smtp-Source: AK7set+mj3tCBmniQ4Vc/uuMNYw3VzuxafpQVmLbG/0nKq0jLJoNNkhvc7DvBjP86Zs2XAxRPe2WTA==
-X-Received: by 2002:a05:6870:b150:b0:169:dcba:1ec9 with SMTP id a16-20020a056870b15000b00169dcba1ec9mr1615221oal.41.1676676423521;
-        Fri, 17 Feb 2023 15:27:03 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056870e28100b0015f4d1b195bsm2194520oad.36.2023.02.17.15.27.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Feb 2023 15:27:03 -0800 (PST)
-Received: (nullmailer pid 2260551 invoked by uid 1000);
-        Fri, 17 Feb 2023 23:27:02 -0000
-Date:   Fri, 17 Feb 2023 17:27:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document CPOL/CPHA
- support
-Message-ID: <20230217232702.GA2257281-robh@kernel.org>
-References: <afe470603028db9374930b0c57464b1f6d52bdd3.1676384304.git.geert+renesas@glider.be>
- <20230214154433.6a421c51@xps-13>
- <CAMuHMdVK7vOTNMF53SvHn8LtiHX7MSN-Fp80jngSsosYBhhrHQ@mail.gmail.com>
- <20230214165637.56102b18@xps-13>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iz+PpBCaN2eTF1bAhZ+2tgpCk6bNWDrT4b3aQDTLjn4=;
+        b=W7Zl/crX2zx027kfcnmpohvtSicDKnC5R6HkAtKF/4FXEsdLubNnm0TWkk8IrIib/V
+         7t0sdKus6cgTltp08De0aXLJoTMhrvKT2ERCZQJ/4qVb1Mjg8j/gtBy3ClKLoPmsy6lX
+         cTvUNBbUL1AdEeTHbYcWZzqJAkQ/doZQBXFsmwZnh2s0/p0pCXBu7p70BZ9E1ZPwN3Nn
+         GaRIQG8EkDybrQs5dIcCeRB+2WnCiniXZ2Qoanyt4oZEOT2UDM99MRVrQE6Jk3G+cEHR
+         HHi49DHeflvfM74Lwe3G9k+i+w2rcKoycAp6mMbhaXY4V/JRDzANVX3w5K5fHE2/vXkQ
+         vs5g==
+X-Gm-Message-State: AO0yUKVKxva8WlrvR71GKJa++3QiHVxF2RgK/448bZZGcYTFBb+/UOw7
+        845pL8J3HHVuC2k8pYcl5BVOpQ==
+X-Google-Smtp-Source: AK7set/blEr5tuwakVvUBgDfcxlFT/0GmnlBbcRkf7FavIpGqWDHjeJsNPnY+VrSOFq8PpELXzUChg==
+X-Received: by 2002:ac2:4a87:0:b0:4db:2a28:6453 with SMTP id l7-20020ac24a87000000b004db2a286453mr745429lfp.25.1676679994477;
+        Fri, 17 Feb 2023 16:26:34 -0800 (PST)
+Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
+        by smtp.gmail.com with ESMTPSA id e1-20020a05651c038100b002950ce0ecd0sm143976ljp.114.2023.02.17.16.26.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Feb 2023 16:26:34 -0800 (PST)
+Message-ID: <c2bfa6b0-edee-b492-d40e-cf43291b90d4@linaro.org>
+Date:   Sat, 18 Feb 2023 01:26:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214165637.56102b18@xps-13>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v10 2/6] dt-bindings: opp: v2-qcom-level: Document CPR3
+ open/closed loop volt adjustment
+To:     Rob Herring <robh@kernel.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
+ <20230217-topic-cpr3h-v10-2-67aed8fdfa61@linaro.org>
+ <20230217231330.GA2238521-robh@kernel.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230217231330.GA2238521-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 14, 2023 at 04:56:37PM +0100, Miquel Raynal wrote:
-> Hi Geert,
-> 
-> geert@linux-m68k.org wrote on Tue, 14 Feb 2023 16:22:15 +0100:
-> 
-> > Hi Miquel,
-> > 
-> > On Tue, Feb 14, 2023 at 3:44 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> > > geert+renesas@glider.be wrote on Tue, 14 Feb 2023 15:26:43 +0100:  
-> > > > SPI EEPROMs typically support both SPI Mode 0 (CPOL=CPHA=0) and Mode 3
-> > > > (CPOL=CPHA=1).  However, using the latter is currently flagged as an
-> > > > error by "make dtbs_check", e.g.:
-> > > >
-> > > >     arch/arm/boot/dts/r8a7791-koelsch.dtb: flash@0: Unevaluated properties are not allowed ('spi-cpha', 'spi-cpol' were unexpected)
-> > > >           From schema: Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > >
-> > > > Fix this by documenting support for CPOL=CPHA=1.
-> > > >
-> > > > Fixes: 233363aba72ac638 ("spi/panel: dt-bindings: drop CPHA and CPOL from common properties")
-> > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 7 +++++++
-> > > >  1 file changed, 7 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > > index f86255ce13af0871..bb62ac4585822982 100644
-> > > > --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > > @@ -76,6 +76,13 @@ properties:
-> > > >        If "broken-flash-reset" is present then having this property does not
-> > > >        make any difference.
-> > > >
-> > > > +  spi-cpol: true
-> > > > +  spi-cpha: true  
-> > >
-> > > I see that spi-cpol and spi-cpha are described in spi-controller.yaml
-> > > which references spi-peripheral-props.yaml, but jedec,spi-nor.yaml
-> > > only references spi-peripheral-props.yaml leading to spi-cpol and
-> > > spi-cpha not being recognized as valid properties.
-> > >
-> > > Wouldn't it be cleaner to to have these two properties defined in
-> > > spi-peripheral-props.yaml instead?  
-> > 
-> > They were moved out of that file by the commit referenced in the
-> > Fixes: tag above, because they are not supported by all SPI targets.
-> > It's the responsibility of the SPI target bindings to list what is supported.
-> 
-> Oops, I overlooked that line.
-> 
-> I actually see no point in constraining device trees on that regard,
-> but, well, Krzysztof is the author, I believe he knows his stuff, so
-> let's go for it.
 
-It's a feature of the specific device as to what modes it supports. For 
-most cases where there is only one choice it should be implied from the 
-compatible, but there's some exceptions like this one. 
 
-Rob
+On 18.02.2023 00:13, Rob Herring wrote:
+> On Fri, Feb 17, 2023 at 12:08:25PM +0100, Konrad Dybcio wrote:
+>> CPR3 and newer can be fed per-OPP voltage adjustment values for both
+>> open- and closed-loop paths to make better decisions about settling
+>> on the final voltage offset target. Document these properties.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  .../devicetree/bindings/opp/opp-v2-qcom-level.yaml         | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+>> index a30ef93213c0..93cc88434dfe 100644
+>> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+>> @@ -34,6 +34,20 @@ patternProperties:
+>>          minItems: 1
+>>          maxItems: 2
+>>  
+>> +      qcom,opp-cloop-vadj:
+>> +        description: |
+>> +          A value representing the closed-loop voltage adjustment value
+> 
+> A value?
+> 
+>> +          associated with this OPP node.
+>> +        $ref: /schemas/types.yaml#/definitions/int32-array
+>> +        maxItems: 2
+> 
+> Or 2 values?
+Right, this description doesn't make any sense if you're just
+looking at the documentation without looking at the driver..
+
+Generally, each CPR3 instance can have multiple "threads"
+(each one of which regulates voltage for some on-SoC IP or
+part of it). The nth entry in the qcom,opp-[co]loop-vadj
+array corresponds to a voltage offset for the nth thread.
+
+If the nth entry in the array is missing, the driver assumes
+the arr[0] one is "global" to this CPR3 instance at this OPP
+level and applies it to all threads. ...and looking at it
+again, this is sorta just bad design, especially if you
+take into account that there's no known user of CPR3 that
+employs more than 2 threads.
+
+I'll remove that from the driver and make the description clearer.
+
+
+Also, only noticed now.. "qcom,sdm630-cprh" was not documented,
+so that's to be fixed for the next submission as well!
+
+
+Konrad
+> 
+>> +
+>> +      qcom,opp-oloop-vadj:
+>> +        description: |
+>> +          A value representing the open-loop voltage adjustment value
+>> +          associated with this OPP node.
+>> +        $ref: /schemas/types.yaml#/definitions/int32-array
+>> +        maxItems: 2
+>> +
+>>      required:
+>>        - opp-level
+>>        - qcom,opp-fuse-level
+>>
+>> -- 
+>> 2.39.1
+>>
