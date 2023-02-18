@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84D5E69B7A4
-	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 03:06:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F145A69B86C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Feb 2023 08:00:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjBRCGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Feb 2023 21:06:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56894 "EHLO
+        id S229496AbjBRHAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Feb 2023 02:00:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjBRCGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Feb 2023 21:06:21 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 207CF5F242;
-        Fri, 17 Feb 2023 18:06:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B73F6B82D75;
-        Sat, 18 Feb 2023 02:06:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B5E7C433D2;
-        Sat, 18 Feb 2023 02:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676685977;
-        bh=5xIQ2dHhiBWicvk4sy4hb4AODy+qsSgLqKodHuCFD+M=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=XczH8us6N2O/a4kQ00+R5STZqwpXbgzsZFhXpjsCkPnMhG7BTsRmR9SRi3eGz6X0m
-         sGzmltNIuo3un6GgNTsFrr5YhS0MQvwN6losC8vL4bAWIVgtIMbajdmIXklxKjECn6
-         7lFDBs+AUqY3f1vclm7nyZzAXyqANI99vvwClkYekhlwqOmDAMqpPSdTM06H1sIgXi
-         JxrxxAJxt4bRtC+uIgRTJEGQTFOxrgNxi2TQ6Tq6oglaMminiz/xWnVhTeX3Ct4LVH
-         6okSBjAkcbHsK0XCdzSnOJVJC+BuHCR9XO7v9Utf/tsdMGXFU5VtQuhfZnPTn0/izv
-         YKF1C0jQx/Peg==
-Message-ID: <734ae9592bfaef54223f74d17fb9dfd8.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229481AbjBRHAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Feb 2023 02:00:55 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FAF2CFC9;
+        Fri, 17 Feb 2023 23:00:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1676703627; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=ibn/e0SI9GQh4lDLBhxqdlonSElsEuFMrplZzm3M/PffVKWad+sAvv+NUK1+YEjCyqE/+UW3K4R1ZIYlHW62TSvJ3bliQWSuLQm8nnMDvhwTe3yb67rn4/CceEg0BtAkXF4e+Bmxe6Gqt34BQam7Uqz48XJiffQTge0mPiE67S8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1676703627; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=m/+NU3Tk03Wf0ez3AouViIcqSIg7JKhumDA5hc0v7rI=; 
+        b=AVAke2H7pJiYPOxLOOMh/x2vc00xvWnUWifJTj72x6JwVXv2JogcbVfMkQHigQ1ejWaO69rt7dQPDn+OqSZPLSGwxKEP+Y9PzhmPdtubph1c3ayr7tlcC0mewRhKLXvr76PwVNfUKEg+fauOY6bR5cGKFAd9FlEncwOw0JHOyG0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1676703627;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=m/+NU3Tk03Wf0ez3AouViIcqSIg7JKhumDA5hc0v7rI=;
+        b=WS8aq3V/y75+JmBMJQbdrCOF7ESRzQjdb2LOiBU8iACugWUvW6k2tbmMI3ajHr5O
+        Gw59JbBcWkggLNHoF6iuIoxZgQUiHdjNZtPRALFLEP2nbxGxZHUstl1gfpC6peYWxy1
+        PhUmmRYM0RAlykVskLKodL0MUbv0uAA6ntIkGgAA=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1676703625115619.8764980966916; Fri, 17 Feb 2023 23:00:25 -0800 (PST)
+Message-ID: <c3ab9a9b-3eb2-8fb0-d5d7-c0b7c684d3a7@arinc9.com>
+Date:   Sat, 18 Feb 2023 10:00:19 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230202-asahi-t8112-dt-v1-13-cb5442d1c229@jannau.net>
-References: <20230202-asahi-t8112-dt-v1-0-cb5442d1c229@jannau.net> <20230202-asahi-t8112-dt-v1-13-cb5442d1c229@jannau.net>
-Subject: Re: [PATCH 13/17] dt-bindings: clock: apple,nco: Add t8112-nco compatible
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-To:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>, Janne Grunau <j@jannau.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 0/5] arm: dts: mt7623: relocate gmacs, mt7530 switch,
+ and add port@5
+To:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        =?utf-8?q?=EF=BF=BDer?= <povik+lin@cutebit.org>
-Date:   Fri, 17 Feb 2023 18:06:14 -0800
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, erkin.bozoglu@xeront.com
+References: <20230210182505.24597-1-arinc.unal@arinc9.com>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230210182505.24597-1-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Janne Grunau (2023-02-12 07:41:23)
-> The block found on Apple's M2 SoC is compatible with the existing driver
-> so add its per-SoC compatible.
->=20
-> Signed-off-by: Janne Grunau <j@jannau.net>
->=20
-> ---
+Frank, I think Matthias is waiting for your approval on this patch 
+series. Is this series fine by you?
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Arınç
