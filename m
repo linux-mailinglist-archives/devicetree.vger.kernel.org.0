@@ -2,82 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3F569C0A0
-	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 15:20:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C364D69C0A7
+	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 15:23:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjBSOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 09:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60836 "EHLO
+        id S229973AbjBSOXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 09:23:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjBSOU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 09:20:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 516B8EF8D;
-        Sun, 19 Feb 2023 06:20:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229729AbjBSOXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 09:23:18 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00090F773;
+        Sun, 19 Feb 2023 06:23:16 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0223FB802C8;
-        Sun, 19 Feb 2023 14:20:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F2BAC433D2;
-        Sun, 19 Feb 2023 14:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676816422;
-        bh=FB3Y/kfHLJ/r2h8QI0rWOOJJsPc/twutba2eFYVvvT8=;
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 09DED830E9;
+        Sun, 19 Feb 2023 15:23:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1676816593;
+        bh=YwYuJ4THKrUqwaPaod5OY9KB6nlV+P65S9SXqydHM2I=;
         h=From:To:Cc:Subject:Date:From;
-        b=a5jEy1stwoReIxzO1ESQUvYgyztINiIvV+tbGS+B5I5c4Et2ODKf1+EHFDwpg1rJw
-         SN5ORhEQnqEW7ww4ylr6cAAoKxMjbB5cEevDUKejq54IcwZSdBYQ02S7Nl0Lu2S7FX
-         rNGxMoX+AMTLpaOOTnd+HTDZY/q9MpKhw2NL4JBmPrrW4FvrPWqqmGwwKcHt9ZWQI6
-         nApsnYw+85eOn1PQF2CiZcfRNPjIakg18IzaxrRax2xSaCCrBMJWO1tK/0BvuS96UL
-         2nCFnQFmyt79bUX8oLQ+RABBwju3mes16uCVdDOITAlIzreQRfPs3RTiFchNcLLX5O
-         lQu2SQvgf+tOQ==
-From:   Masahiro Yamada <masahiroy@kernel.org>
-To:     linux-kbuild@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH v2] .gitattributes: use 'dts' diff driver for *.dtso files
-Date:   Sun, 19 Feb 2023 23:20:11 +0900
-Message-Id: <20230219142011.2309026-1-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        b=QSkdYOWGMWwyCR1RiN85cJs9tCPNhqeanVHlsAPaYQ99w8crYwuBdEpZxBPtSNnYb
+         ZCcX0L1XAiDXmNNhKekDgGAGYZwrm2wFdv6xRmbrUBE6R5d86aNV5jfqjOaHYV9lQo
+         04Ke/d3mI+6uBmc9gLh+E/4qbbeDX9KdwNb1Kd/5THePtGZBi6l+d2tFMlxbq7/5lS
+         mP2QYcTL0hst5ayJxcrS91UonOhsnr6/PSm8A6tkGTuy+/qDRXwoGQATwUJq7zc9vZ
+         4cIuPqWm4XIu58xyQd5ADXY5dhTENIP/noAxjvGcMCHfZXZmnR4z9o6UYsppXep8xf
+         /QSqLJjgaSoNw==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: serial: imx: Document optional DMA properties
+Date:   Sun, 19 Feb 2023 15:22:49 +0100
+Message-Id: <20230219142250.10176-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now we have the third extension for DT source files (overlay).
-Give the diff=dts attribute to *.dtso as well.
+The UART IP can be connected to DMA engine, document the properties in DT bindings.
+Update example to match Linux arch/arm/boot/dts/imx51.dtsi .
 
-While I was here, I merged *.c and *.o into *.[ch].
-
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-serial@vger.kernel.org
+---
+V2: Add AB from Krzysztof
+---
+ .../devicetree/bindings/serial/fsl-imx-uart.yaml     | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Changes in v2:
-  - Slightly shorten the code
-
- .gitattributes | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/.gitattributes b/.gitattributes
-index 4b32eaa9571e..3471356b2387 100644
---- a/.gitattributes
-+++ b/.gitattributes
-@@ -1,4 +1,3 @@
--*.c   diff=cpp
--*.h   diff=cpp
--*.dtsi diff=dts
--*.dts  diff=dts
-+*.[ch] diff=cpp
-+*.dts diff=dts
-+*.dts[io] diff=dts
+diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+index 4cbe76e1715b7..c22aab8c55f83 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+@@ -49,6 +49,16 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  dmas:
++    items:
++      - description: DMA controller phandle and request line for RX
++      - description: DMA controller phandle and request line for TX
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
+   interrupts:
+     maxItems: 1
+ 
+@@ -100,6 +110,8 @@ examples:
+         compatible = "fsl,imx51-uart", "fsl,imx21-uart";
+         reg = <0x73fbc000 0x4000>;
+         interrupts = <31>;
++        dmas = <&sdma 18 4 1>, <&sdma 19 4 2>;
++        dma-names = "rx", "tx";
+         uart-has-rtscts;
+         fsl,dte-mode;
+     };
 -- 
-2.34.1
+2.39.1
 
