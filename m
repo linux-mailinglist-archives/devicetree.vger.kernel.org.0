@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D4F69C00E
-	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 12:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BCC069C019
+	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 12:48:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjBSL04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 06:26:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53848 "EHLO
+        id S229757AbjBSLsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 06:48:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjBSL0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 06:26:55 -0500
-X-Greylist: delayed 531 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 19 Feb 2023 03:26:53 PST
+        with ESMTP id S229676AbjBSLsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 06:48:42 -0500
 Received: from kuriko.dram.page (kuriko.dram.page [65.108.252.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0CE910409;
-        Sun, 19 Feb 2023 03:26:53 -0800 (PST)
-Message-ID: <81b03d13-a1d6-91ee-9867-48e960f0549d@dram.page>
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BAFDCC1C;
+        Sun, 19 Feb 2023 03:48:41 -0800 (PST)
+Message-ID: <4bd8c6da-6ad4-5e1a-169c-48f48560b36b@dram.page>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dram.page; s=mail;
-        t=1676805479; bh=1nxpGy6MS2o8HwQfGYJeWTTEYcPBkHZ07OBzzY3N5NU=;
+        t=1676807318; bh=IJFps8QiPqsxtkm8bbGRrhgiLRq/rPGQKvISbNPd8i4=;
         h=Date:To:Cc:References:From:Subject:In-Reply-To;
-        b=XU7bqj+Na6ART26G1bBybn3NWB01QI6wJe6S/GY0wLOBH3YWWGIdGNCQdkllY44OS
-         DL0iCyUDtGY24a/y0VeSc77kng/O8QKlvnspOBFF90aZDPQRfqMUoH9iRsaD2P2umv
-         BQwxwlFKtLSt/JvUmpNaXXIIZ2zDBYmA6pKEeo+w=
-Date:   Sun, 19 Feb 2023 19:17:48 +0800
+        b=NNRikU8qtdtoR2Z2vRLJNpcLFZ/r1A7KpOQc5C8tuONVpqWi/KjOoNX1+hlr8RbnT
+         6642eA05ALzSAjOkzbgUGXqGWhgVEmMG+nVesVABXBhD0jnQTLD95EitxuRhb+aIvw
+         w0o2R1e3c7QtmPO6DeL4jpv3gR5cBwNb3Y2rqsAw=
+Date:   Sun, 19 Feb 2023 19:48:27 +0800
 MIME-Version: 1.0
+Content-Language: en-US
 To:     Anup Patel <apatel@ventanamicro.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -37,12 +37,11 @@ Cc:     Atish Patra <atishp@atishpatra.org>,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230103141409.772298-1-apatel@ventanamicro.com>
- <20230103141409.772298-5-apatel@ventanamicro.com>
-Content-Language: en-US
+ <20230103141409.772298-7-apatel@ventanamicro.com>
 From:   Vivian Wang <uwu@dram.page>
-Subject: Re: [PATCH v2 4/9] dt-bindings: interrupt-controller: Add RISC-V
- incoming MSI controller
-In-Reply-To: <20230103141409.772298-5-apatel@ventanamicro.com>
+Subject: Re: [PATCH v2 6/9] dt-bindings: interrupt-controller: Add RISC-V
+ advanced PLIC
+In-Reply-To: <20230103141409.772298-7-apatel@ventanamicro.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -55,64 +54,83 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 1/3/23 22:14, Anup Patel wrote:
-> We add DT bindings document for the RISC-V incoming MSI controller
-> (IMSIC) defined by the RISC-V advanced interrupt architecture (AIA)
-> specification.
+> We add DT bindings document for RISC-V advanced platform level
+> interrupt controller (APLIC) defined by the RISC-V advanced
+> interrupt architecture (AIA) specification.
 >
 > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->  .../interrupt-controller/riscv,imsics.yaml    | 168 ++++++++++++++++++
->  1 file changed, 168 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+>  .../interrupt-controller/riscv,aplic.yaml     | 159 ++++++++++++++++++
+>  1 file changed, 159 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
 > new file mode 100644
-> index 000000000000..b9db03b6e95f
+> index 000000000000..b7f20aad72c2
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> @@ -0,0 +1,159 @@
+>
 > <snip>
-> +
-> +  interrupts-extended:
+>
+> +  riscv,children:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 > +    minItems: 1
-> +    maxItems: 16384
+> +    maxItems: 1024
+> +    items:
+> +      maxItems: 1
 > +    description:
-> +      This property represents the set of CPUs (or HARTs) for which given
-> +      device tree node describes the IMSIC interrupt files. Each node pointed
-> +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
-> +      HART) as parent.
+> +      A list of child APLIC domains for the given APLIC domain. Each child
+> +      APLIC domain is assigned child index in increasing order with the
+> +      first child APLIC domain assigned child index 0. The APLIC domain
+> +      child index is used by firmware to delegate interrupts from the
+> +      given APLIC domain to a particular child APLIC domain.
+> +
+> +  riscv,delegate:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    minItems: 1
+> +    maxItems: 1024
+> +    items:
+> +      items:
+> +        - description: child APLIC domain phandle
+> +        - description: first interrupt number (inclusive)
+> +        - description: last interrupt number (inclusive)
+> +    description:
+> +      A interrupt delegation list where each entry is a triple consisting
+> +      of child APLIC domain phandle, first interrupt number, and last
+> +      interrupt number. The firmware will configure interrupt delegation
+> +      registers based on interrupt delegation list.
 > +
 
-This property doesn't seem to describe guest external interrupts. Should
-we add a reference to e.g. <&cpuN_intc 12> to indicate that IMSIC can
-send a 'Supervisor guest external interrupt'? Or just an idea, maybe we
-can add an additional interrupt controller to the CPU nodes to handle
-SGEI: (Various properties omitted)
+I'm not sure if this is the right place to ask, since it could be more
+of a OpenSBI/QEMU problem, but I think a more detailed description about
+what 'the firmware' does is appropriate here.
 
-cpu0: cpu@N {
-	compatible = "riscv";
+My main confusion is how to describe wired interrupts connected to
+APLICs. Say we have two APLIC nodes with labels aplic_m and aplic_s that
+are the APLIC domains for M-mode and S-mode respectively. IIUC, wired
+interrupts are connected directly to aplic_m. So how do I refer to it in
+the device nodes?
 
-	cpu0_intc: interrupt-controller {
-		compatible = "riscv,cpu-intc";
+ 1. <&aplic_s num IRQ_TYPE_foo>, but it would be a lie to M-mode
+    software, which could be a problem. QEMU 7.2.0 seems to take this
+    approach. (I could also be misunderstanding QEMU and it actually
+    does connect wired interrupts to the S-mode APLIC, but then
+    riscv,children and riscv,delegate would be lies.)
+ 2. <&aplic_m ...>, and when M-mode software gives S-mode software
+    access to devices, it delegates relevant interrupts and patches it
+    into <&aplic_s num IRQ_TYPE_foo>. Seems to be the 'correct'
+    approach, but pretty complicated.
+ 3. <&aplic_m ...>, S-mode software sees this, and sees that aplic_m has
+    num in riscv,delegate, so goes to find the child it's been delegated
+    to, which is (should be) aplic_s. A bit annoyingly abstraction
+    breaking, since S-mode shouldn't even need to know about aplic_m.
 
-		cpu0_gei: interrupt-controller {
-			/* intc for hart-local hgeie/hgeip */
-			compatible = "riscv,..."; /* Something here */
-			interrupt-parent = <&cpu0_intc>;
-			interrupts = <12>; /* SGEI */
-			interrupt-controller;
-			#interrupt-cells = <1>;
-		}
-	}
-}
+I see that others are also confused by riscv,delegate and riscv,children
+properties. It would be great if we could clarify the expected behavior
+here rather than just saying 'the firmware will do the thing'.
 
-interrupt-controller@... {
-	compatible = "riscv,imsics";
-	interrupts-extended = <&cpu0_intc 11>, <&cpu0_gei 1>, <&cpu0_gei 2> /* ... */;
-}
-
-I feel that this would be more appropriate, since the guest external
-interrupts are defined in the privileged architecture specification and
-are not specific to AIA. Though please do suggest more appropriate ways
-to formulate it.
 > <snip>
 > +...
+Thanks,
+Vivian
