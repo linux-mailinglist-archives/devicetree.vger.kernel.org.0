@@ -2,122 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5DD769C139
-	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 16:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A9E69C171
+	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 18:00:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbjBSPaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 10:30:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
+        id S230376AbjBSRAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 12:00:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjBSPaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 10:30:08 -0500
-Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B614CEF8A;
-        Sun, 19 Feb 2023 07:30:07 -0800 (PST)
-Date:   Sun, 19 Feb 2023 15:30:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1676820605; x=1677079805;
-        bh=ucl/nUvzkNkdPDWvkaASa6MWLaX46zxlHKTO/1V4RKU=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=goDUvpW53D4mdq1g+VaJDFpGQeJybPvKJEcVXlBTW0uERq8xwOrrAToaoWbXx1swG
-         OymG/2k/6PbS0AODQ1dt2FKsEu7k2qOGVOlmlVy9bP0NsztaRpHYJWeySPGycuBlyP
-         lWbPJfTArnYbdY75Mkuli4p24Uwjyjms2HLxa+hE=
-To:     Gergo Koteles <soyer@irl.hu>, Pavel Machek <pavel@ucw.cz>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230346AbjBSRAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 12:00:14 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C9F113C7;
+        Sun, 19 Feb 2023 09:00:13 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id g7so574861wrd.3;
+        Sun, 19 Feb 2023 09:00:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qgZZTiL8OE5qA01DYT9WBSfQOurPUqR3I7v32yZEImQ=;
+        b=ibGnr6Y3K8ev6t0zRn1AGQr23wKZ/vXEc73eeyf0TUo8CNb/3FnZeLVTNk5gj4Q/B2
+         kqipjH+IFIDXsq/NzFytIyI6puSR2X+nvR7KncsayC5tOWO0/XkOuPidRiwplXe8zA87
+         UEdefl/WxWrG03k6gYZutLItlKE6sWbpMQpu//Wqym2Gvr+uggoPaVhfmAnsuAnfd9BO
+         /KwUL3nlSHwn/jazogpiUEdUZsJxfM0UnM2u4kvexuDkmk+obAXQSEZJj7pGixFsv/ej
+         DDokcrDx38CmZKvOc0EKOpJDTZy0Xx76nXuVmLahrt+CI2vJIX+1Hd009PaXKjekdXU/
+         HsLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qgZZTiL8OE5qA01DYT9WBSfQOurPUqR3I7v32yZEImQ=;
+        b=hQ1l2rAP5Lvjb3BWaPlIo2VFY9R9PkKPJwZ/XYRq9ZVZNds2bZvj0e9dJtxOwKk4Nc
+         W/uRzBhFW3kjmW+ZlAn2SFRv0w3ioRhjTW8xmnhJ/Q8iYGoCvRU4/8fapc8jOoba63o7
+         R9icLDelRuinVlC+SXtcBzcqYMLO51Hxds3j9uql2VM7VVFXPu3+eJCR45uungMsMwcR
+         gnrpzU+GTcMfTUzP5ohRSKk734Z5t3/vaSUdDzkkxkVC48B0hguxtHiEGWc/QWxU9E53
+         FxObfdweo+avehqvJ4j0xuEMPnMZP7LXivOVnuCuxUsLB843aDSy8WfMymyxoftRKMx6
+         D6cw==
+X-Gm-Message-State: AO0yUKUkm6nfQpvGhWrozL6t9PWkKC7MyhJ0suVi5ItZ865DFWkoBRL/
+        /ABhXr9JnwrYZ9ld+nB+X1Pn/Tc2mlY=
+X-Google-Smtp-Source: AK7set85GYX7QZ3z8wiFcVP+I/oyZO176oogg7KLPzCorzwg1PahNL92MdFa0CMi4WdkhXkQVZNOpQ==
+X-Received: by 2002:a5d:4c50:0:b0:2c5:4cd0:4b86 with SMTP id n16-20020a5d4c50000000b002c54cd04b86mr1604127wrt.68.1676826011443;
+        Sun, 19 Feb 2023 09:00:11 -0800 (PST)
+Received: from localhost.localdomain (6.red-83-37-22.dynamicip.rima-tde.net. [83.37.22.6])
+        by smtp.gmail.com with ESMTPSA id v20-20020a5d5914000000b002c552c6c8c2sm366427wrd.87.2023.02.19.09.00.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Feb 2023 09:00:11 -0800 (PST)
+From:   Angel Iglesias <ang.iglesiasg@gmail.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm845-oneplus: add tri-state-key
-Message-ID: <b2becbcf-fd9c-69b5-b208-17f4d0339684@connolly.tech>
-In-Reply-To: <007239f0-1b13-77b9-0d9c-d68747e20331@irl.hu>
-References: <20230209232556.91554-1-soyer@irl.hu> <Y+fE7gIMD4BDCffy@duo.ucw.cz> <d1959211-bf33-f4fd-01a8-91dcd247aa70@connolly.tech> <007239f0-1b13-77b9-0d9c-d68747e20331@irl.hu>
-Feedback-ID: 10753939:user:proton
+        Alexandru Lazar <alazar@startmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/7] Add support for pressure sensor Bosch BMP580
+Date:   Sun, 19 Feb 2023 17:57:58 +0100
+Message-Id: <cover.1676823250.git.ang.iglesiasg@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds support for the new pressure sensors BMP580 extending
+the bmp280 driver.
+
+Patch 1 introduces a minor refactor of the driver structure to change how
+the device matching and driver initialization is performed. In place of
+the chips ids, the driver_data now contains a pointer to its chip_info.
+To perform this change, a series of declarations previously on the core
+file were migrated to the shared header file, to allow access to specific
+fields on the chip_info on the I2C and SPI drivers. This change is
+required because BMP380 and BMP580 have the same chip_id and values would
+collide using the chip_id as the driver_data value.
+Patch 2 introduces new preinit callback and unifies init logic across all
+supported variants.
+Patch 3 made calibration callback function optional.
+Patch 4 deletes misleading i2c reference on bmp280 Kconfig entry.
+Patch 5 extends the bmp280 driver with the new logic to read measurements
+and configure the operation parameters for the BMP580 sensors.
+Patch 6 updates the devicetree binding docs with the new sensor id.
+Patch 7 adds the NVMEM operations to read and program the NVM user range
+contained in the non-volatile memory of the BMP580 sensors.
+
+Changes in v4:
+* Dropped redundant and excessive verbose comments.
+* Change BMP580 temp IIO return type to IIO_VAL_FRACTIONAL_LOG2
+* Dropped loop waiting for NVM operation completion and use
+  regmap_read_poll_timeout instead.
+* Fix various sizeof calls on NVMEM handling codepath.
+
+Changes in v3:
+* Refactor driver structure to use chip_info structs as driver_data and
+  updated i2c and spi implementations device match codepaths.
+* Deleted Kconfig driver title misleading i2c reference.
+* Made calibration reading optional as a prerequisite patch in preparation
+  for the bmp580 built in compensation.
+* Break command helper function in soft-reset helper function and NVM
+  operation helper.
+* Fixed minor styling issues thorough patches.
+
+Changes in v2:
+* For patch 3, fixed missing retcodes reported by the kernel test robot.
+* For patch 5, fixed logic paths that left the sensor mutex locked
+  reported by the kernel test robot.
+
+Angel Iglesias (7):
+  iio: pressure: bmp280: Use chip_info pointers for each chip as driver
+    data
+  iio: pressure: bmp280: Add preinit callback
+  iio: pressure: bmp280: Make read calibration callback optional
+  iio: pressure: Kconfig: Delete misleading I2C reference on bmp280
+    title
+  iio: pressure: bmp280: Add support for new sensor BMP580
+  dt-bindings: iio: pressure: bmp085: Add BMP580 compatible string
+  iio: pressure: bmp280: Add nvmem operations for BMP580
+
+ .../bindings/iio/pressure/bmp085.yaml         |   2 +
+ drivers/iio/pressure/Kconfig                  |   6 +-
+ drivers/iio/pressure/bmp280-core.c            | 765 +++++++++++++-----
+ drivers/iio/pressure/bmp280-i2c.c             |  45 +-
+ drivers/iio/pressure/bmp280-regmap.c          |  60 ++
+ drivers/iio/pressure/bmp280-spi.c             |  47 +-
+ drivers/iio/pressure/bmp280.h                 | 273 ++++++-
+ 7 files changed, 953 insertions(+), 245 deletions(-)
 
 
-On 16/02/2023 03:32, Gergo Koteles wrote:
-> Hi,
->
->>
->>
->> On 11/02/2023 16:40, Pavel Machek wrote:
->>> Hi!
->>>
->>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->>>> @@ -52,6 +52,43 @@ key-vol-up {
->>>>   =09=09};
->>>>   =09};
->>>>
->>>> +=09tri-state-key {
->>>> +=09=09compatible =3D "gpio-keys";
->>>> +=09=09label =3D "Tri-state key";
->>>> +=09=09pinctrl-names =3D "default";
->>>> +=09=09pinctrl-0 =3D <&tri_state_key_default>;
->>>> +=09=09state-top {
->>>> +=09=09=09label =3D "Tri-state key top";
->>>
->>> "top/middle" is not too useful. Do we need the label at all? If so,
->>> should it say "loud/vibrations only/mute"?
->>
->> "mute", "vibrate" and "ring" sound good to me.
->>
->
-> OnePlus uses the silent/vibrate/ring, iPhone the silent/ring names.
-> Maybe silent/vibrate/ring are more familiar.
->
-> Adding labels can document these modes here.
-> Should we also document these in input-event-codes.h?
-
-Maybe it would be best to define macros for these rather than leave them
-as magic numbers
-> #define ABS_SND_PROFILE=09=090x22 /* 0 =3D silent; 1 =3D vibrate; 2 =3D r=
-ing */
-
-#define ABS_SND_PROFILE_SILENT=090
-#define ABS_SND_PROFILE_VIBRATE=091
-#define ABS_SND_PROFILE_RING=092
-
->
->
-> Thanks,
-> Gergo
->
->> Although it would be nice if users can easily map the physical key
->> position to the action when viewing the input device or remapping the
->> key in userspace.
->>
->> Do you have any ideas or recommendations on how to do this?
->>>
->>> BR,
->>> =09=09=09=09=09=09=09=09Pavel
->>
->> --
->> Kind Regards,
->> Caleb
->>
->
-
---
-Kind Regards,
-Caleb
+base-commit: 91ba2700aa75859957613aedf307a04a83010cee
+-- 
+2.39.2
 
