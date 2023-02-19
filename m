@@ -2,96 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F3A469BFD4
-	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 10:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D4F69C00E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 12:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbjBSJqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 04:46:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41714 "EHLO
+        id S229597AbjBSL04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 06:26:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbjBSJqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 04:46:51 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98939EB41
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 01:46:10 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id dk16so820068edb.6
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 01:46:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EJntxz4d8bIHPiBQgUEYlKd1uQSFWcfmni6Frb9jtyc=;
-        b=N/2XDyiDAGlKgc3TaLq6KMju7SZX9eEOoRTxfStQuvL3wKrYIO3Nj7Tn59TqcUUNKu
-         54BtUE99hMbv4KVdMm4NqZ4w35ALd2eJW5XLuTTf9/f6eWTwet93ZZLjAlf9W39gM0Zz
-         yR6MZeTrqz8sl9hFR4ndLQLWy1s/hsqgd1sju39oxGVRTzD6aK8qNTiZHHXmGWp/cejL
-         Q4TYdi40igr+oL5OJHz9l8NpKOD43ZDaR1GAVTGIb4duy97o2fRe0wPI0HgMwG0z+8wc
-         7Q0VKHZ4/SYRkfa9ClVhCLqyO93695DwcbwMv9vDSz81u7xoGYZQpGwgmiwZiHVcnpgk
-         MeUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EJntxz4d8bIHPiBQgUEYlKd1uQSFWcfmni6Frb9jtyc=;
-        b=M+5MtMQlgFEsHHhjS1IOz7/xonNTy/5+c/WlCQCXqC+HrK5FfN5xRH4pIrklc2Zy75
-         R4zfY4AvpsZG4iYaIOzyw8za/JHeL6VCyke3ePDi4yrxrZai3kqzBBq4isstVl1J4ZOz
-         2kyG0TglPb00xAeliKX07zlW6IVSYMdfkMCNuNeenKWr1K5eB08eqGex1SRWZcxy3l9a
-         9zYTf8DF+IEDLhv7/CLN6SrhETzIRNyiP+P5aZNL/wTort+N+sQMhTHu0jkIBDvdqjyX
-         JOp061ZJTuBHrZH6yM6a8mlDkBGv4wuyXasEP0iRxnqa6Jak5P3xR2CpSmPhhvPUT1+t
-         eftA==
-X-Gm-Message-State: AO0yUKVBdwZhdkiDx0f5yacfbqIKLj6U/18juTWDi/SZSaMGWq1LDHF1
-        af7y1L/ZfPUosSqkhnbO06uxtQ==
-X-Google-Smtp-Source: AK7set+/2plUttzZDp75JGZ7GVwRhhqqjohq/sBAYcfGQoYHobm18Ehjwa/hC8zBO98Lb5s0Pooq7A==
-X-Received: by 2002:a17:906:2894:b0:8a0:7158:15dc with SMTP id o20-20020a170906289400b008a0715815dcmr6745616ejd.74.1676799879212;
-        Sun, 19 Feb 2023 01:44:39 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s21-20020a1709060c1500b00887f6c39ac0sm4315263ejf.98.2023.02.19.01.44.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Feb 2023 01:44:38 -0800 (PST)
-Message-ID: <dfbb244b-576b-a664-3d2b-996aadc39175@linaro.org>
-Date:   Sun, 19 Feb 2023 10:44:36 +0100
+        with ESMTP id S229459AbjBSL0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 06:26:55 -0500
+X-Greylist: delayed 531 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 19 Feb 2023 03:26:53 PST
+Received: from kuriko.dram.page (kuriko.dram.page [65.108.252.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0CE910409;
+        Sun, 19 Feb 2023 03:26:53 -0800 (PST)
+Message-ID: <81b03d13-a1d6-91ee-9867-48e960f0549d@dram.page>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dram.page; s=mail;
+        t=1676805479; bh=1nxpGy6MS2o8HwQfGYJeWTTEYcPBkHZ07OBzzY3N5NU=;
+        h=Date:To:Cc:References:From:Subject:In-Reply-To;
+        b=XU7bqj+Na6ART26G1bBybn3NWB01QI6wJe6S/GY0wLOBH3YWWGIdGNCQdkllY44OS
+         DL0iCyUDtGY24a/y0VeSc77kng/O8QKlvnspOBFF90aZDPQRfqMUoH9iRsaD2P2umv
+         BQwxwlFKtLSt/JvUmpNaXXIIZ2zDBYmA6pKEeo+w=
+Date:   Sun, 19 Feb 2023 19:17:48 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: serial: imx: Document optional DMA
- properties
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-References: <20230218223959.116358-1-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230218223959.116358-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230103141409.772298-1-apatel@ventanamicro.com>
+ <20230103141409.772298-5-apatel@ventanamicro.com>
+Content-Language: en-US
+From:   Vivian Wang <uwu@dram.page>
+Subject: Re: [PATCH v2 4/9] dt-bindings: interrupt-controller: Add RISC-V
+ incoming MSI controller
+In-Reply-To: <20230103141409.772298-5-apatel@ventanamicro.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/02/2023 23:39, Marek Vasut wrote:
-> The UART IP can be connected to DMA engine, document the properties in DT bindings.
-> Update example to match Linux arch/arm/boot/dts/imx51.dtsi .
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On 1/3/23 22:14, Anup Patel wrote:
+> We add DT bindings document for the RISC-V incoming MSI controller
+> (IMSIC) defined by the RISC-V advanced interrupt architecture (AIA)
+> specification.
+>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
-> Cc: Fabio Estevam <festevam@gmail.com>
+>  .../interrupt-controller/riscv,imsics.yaml    | 168 ++++++++++++++++++
+>  1 file changed, 168 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+> new file mode 100644
+> index 000000000000..b9db03b6e95f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+> <snip>
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 16384
+> +    description:
+> +      This property represents the set of CPUs (or HARTs) for which given
+> +      device tree node describes the IMSIC interrupt files. Each node pointed
+> +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
+> +      HART) as parent.
+> +
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This property doesn't seem to describe guest external interrupts. Should
+we add a reference to e.g. <&cpuN_intc 12> to indicate that IMSIC can
+send a 'Supervisor guest external interrupt'? Or just an idea, maybe we
+can add an additional interrupt controller to the CPU nodes to handle
+SGEI: (Various properties omitted)
 
-Best regards,
-Krzysztof
+cpu0: cpu@N {
+	compatible = "riscv";
 
+	cpu0_intc: interrupt-controller {
+		compatible = "riscv,cpu-intc";
+
+		cpu0_gei: interrupt-controller {
+			/* intc for hart-local hgeie/hgeip */
+			compatible = "riscv,..."; /* Something here */
+			interrupt-parent = <&cpu0_intc>;
+			interrupts = <12>; /* SGEI */
+			interrupt-controller;
+			#interrupt-cells = <1>;
+		}
+	}
+}
+
+interrupt-controller@... {
+	compatible = "riscv,imsics";
+	interrupts-extended = <&cpu0_intc 11>, <&cpu0_gei 1>, <&cpu0_gei 2> /* ... */;
+}
+
+I feel that this would be more appropriate, since the guest external
+interrupts are defined in the privileged architecture specification and
+are not specific to AIA. Though please do suggest more appropriate ways
+to formulate it.
+> <snip>
+> +...
