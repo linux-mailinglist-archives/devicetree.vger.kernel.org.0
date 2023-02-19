@@ -2,132 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2398569C0A5
-	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 15:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7EB69C0AA
+	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 15:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbjBSOXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 09:23:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33612 "EHLO
+        id S229975AbjBSOXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 09:23:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjBSOXS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 09:23:18 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DA9CF778;
-        Sun, 19 Feb 2023 06:23:17 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S229729AbjBSOXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 09:23:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E33F77E;
+        Sun, 19 Feb 2023 06:23:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id CB20285131;
-        Sun, 19 Feb 2023 15:23:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1676816594;
-        bh=xqUsQHaWM0qX+ei7lkSB1cjJ4zw6XOWlTC6EWJiXAQQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RpVs0b2D4a+/yys3PxAyHDlualGzidPIjpSbJGVVf7V8ejlGibz3F9OhK+cpXJGNv
-         CRMXLhwyhS34iMi9TPJGtzHXcbqmRElccHnZpVaA6hmtVkLfKNSTKCj++rfQvrc4tz
-         giAdsJ0c3dzrlYevrgg2sCZqLy7Wkady7yWqfbSjDB3P1Wm78bAg6H8pgCNEiMpCiI
-         SmtP1nNX4HDL5Y8IJzyBOiu/j4fQUNDMeMjDow7AG9QlDcPmPF52MIMzYrs4CLV0TF
-         EnYZnV/QaP5kS6C5c2CTdIP9X9yEosTWRSB/D7vwt9MejnyBFtxH7s/y0WE0b/LFhg
-         qcJU0Zj/jVWZA==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: serial: imx: Document mandatory clock properties
-Date:   Sun, 19 Feb 2023 15:22:50 +0100
-Message-Id: <20230219142250.10176-2-marex@denx.de>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230219142250.10176-1-marex@denx.de>
-References: <20230219142250.10176-1-marex@denx.de>
+        by ams.source.kernel.org (Postfix) with ESMTPS id 92579B802C8;
+        Sun, 19 Feb 2023 14:23:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF97C433D2;
+        Sun, 19 Feb 2023 14:23:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676816616;
+        bh=MQPwLhQVlXZ/PebjafzmyOvJjnheR6D1KuR0ACQ0rxk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=s5BJIbDwA5J+JFyS47jPSi7CbHebEdAKQ12u8E9ZQGWz8ZmSZ0E+qMmvOrU2aYEmZ
+         Lck6bXxANmiip5OroBi2/rfbi7XE9VmipVE0k6bnc8tobv0KzWbUNx/BDrG6oBNIVJ
+         QQUicV4iBv0E87eUn+7buB9/OLPmWGQdSYBjT+TW8tJlfm9QCZpXpJR7BBrMlrSAD/
+         6d0FZawAoOYhkLZuwc8PIcOo5UskUPNDp2uWZgz4lwpP/bKd74yrb/JwDGSG0SIzYh
+         2EV4VAVmmpeBgpUBD6FudVJxU9S4xoNUpWf6j49FzY4oppU5sd2HadZR805hx/ALpb
+         ug+dxKHspI6oQ==
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: [PATCH v3] .gitattributes: use 'dts' diff driver for *.dtso files
+Date:   Sun, 19 Feb 2023 23:23:27 +0900
+Message-Id: <20230219142327.2309518-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UART IP must be connected to clock, document the properties in DT bindings.
-Update example to match Linux arch/arm/boot/dts/imx51.dtsi .
+Now we have the third extension for DT source files (overlay).
+Give the diff=dts attribute to *.dtso as well.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-serial@vger.kernel.org
----
-V2: Drop the assigned-clock-*
----
- .../devicetree/bindings/serial/fsl-imx-uart.yaml  | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+While I was here, I merged *.c and *.o into *.[ch] and added the
+SPDX-License-Identifier.
 
-diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-index c22aab8c55f83..40414247d61a3 100644
---- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-@@ -49,6 +49,14 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: ipg
-+      - const: per
-+
-   dmas:
-     items:
-       - description: DMA controller phandle and request line for RX
-@@ -96,12 +104,16 @@ properties:
- required:
-   - compatible
-   - reg
-+  - clocks
-+  - clock-names
-   - interrupts
- 
- unevaluatedProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/imx5-clock.h>
-+
-     aliases {
-         serial0 = &uart1;
-     };
-@@ -110,6 +122,9 @@ examples:
-         compatible = "fsl,imx51-uart", "fsl,imx21-uart";
-         reg = <0x73fbc000 0x4000>;
-         interrupts = <31>;
-+        clocks = <&clks IMX5_CLK_UART1_IPG_GATE>,
-+                 <&clks IMX5_CLK_UART1_PER_GATE>;
-+        clock-names = "ipg", "per";
-         dmas = <&sdma 18 4 1>, <&sdma 19 4 2>;
-         dma-names = "rx", "tx";
-         uart-has-rtscts;
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
+
+Changes in v3:
+  - Add SPDX-License-Identifier
+
+Changes in v2:
+  - Slightly shorten the code
+
+ .gitattributes | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.gitattributes b/.gitattributes
+index 4b32eaa9571e..c9ba5bfc4036 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -1,4 +1,4 @@
+-*.c   diff=cpp
+-*.h   diff=cpp
+-*.dtsi diff=dts
+-*.dts  diff=dts
++# SPDX-License-Identifier: GPL-2.0-only
++*.[ch] diff=cpp
++*.dts diff=dts
++*.dts[io] diff=dts
 -- 
-2.39.1
+2.34.1
 
