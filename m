@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C5A69BFD1
-	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 10:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3A469BFD4
+	for <lists+devicetree@lfdr.de>; Sun, 19 Feb 2023 10:46:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbjBSJqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 04:46:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41062 "EHLO
+        id S230119AbjBSJqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 04:46:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbjBSJqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 04:46:11 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B8910A84
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 01:45:32 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id fd2so812096edb.8
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 01:45:32 -0800 (PST)
+        with ESMTP id S230131AbjBSJqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 04:46:51 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98939EB41
+        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 01:46:10 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id dk16so820068edb.6
+        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 01:46:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JneDP0bDgvfKWdaW0KK9oGWtetqft4yeKn5WzSIp1ys=;
-        b=mbHq3fnGOuobcYacSXEe+X6xgkxM6tuv6Vqygv+5nZxzU6MbeSPDdQ2DcV8Hby0gCb
-         Sf4+5fJBWqJA+rocfWIWdm5RACDdwltZ7C+GcAzbAG/DkL1PwDnlqy8P0byIELTzdqh3
-         DV0VMD+WvL7p13tMWPT2YJxeP4+SYr3qW76EHctuEviKchVFQbQISXYNlWguTDZS+Dj1
-         aWJMVMVXnKKeuL28aphGNBOW7MVLlDccDUx50FegwSS7uc1AHoghgON4U5Mf9ccQ+abt
-         SZVd2PwMaHdqWuKBDzCODpFYBk4nOpFAt6vp+0x04zRMz9AMJCmyfq1NKY727E+B5ON+
-         dKCA==
+        bh=EJntxz4d8bIHPiBQgUEYlKd1uQSFWcfmni6Frb9jtyc=;
+        b=N/2XDyiDAGlKgc3TaLq6KMju7SZX9eEOoRTxfStQuvL3wKrYIO3Nj7Tn59TqcUUNKu
+         54BtUE99hMbv4KVdMm4NqZ4w35ALd2eJW5XLuTTf9/f6eWTwet93ZZLjAlf9W39gM0Zz
+         yR6MZeTrqz8sl9hFR4ndLQLWy1s/hsqgd1sju39oxGVRTzD6aK8qNTiZHHXmGWp/cejL
+         Q4TYdi40igr+oL5OJHz9l8NpKOD43ZDaR1GAVTGIb4duy97o2fRe0wPI0HgMwG0z+8wc
+         7Q0VKHZ4/SYRkfa9ClVhCLqyO93695DwcbwMv9vDSz81u7xoGYZQpGwgmiwZiHVcnpgk
+         MeUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JneDP0bDgvfKWdaW0KK9oGWtetqft4yeKn5WzSIp1ys=;
-        b=ps59rX8VL7oxDHlkb3YbVmG0x2ztain41mjRcff6OQzUERZ5SxfRtfCCQNPNd0yjL7
-         /w9qiYHVbBdzv5dgMRo9Q5IotQLXkH9+JoGjc9YmeaB+7aW8uBGyZ/fQmGfabRgcxyFk
-         +Lt5H+z8gLmt600hBnDC/cjdt12iVqwAzxW3cz56MFE/GCu1MvniAU2t6nn+cVVecQYb
-         nXsKyy4nwXdu8Prob6Qi7xcHH1VEhTstogV64sA4CBt74n5ateZUNoKZwl0O4XlrlYNF
-         KimPw4/q705ITfw9An5C2S9adhP5enX8nUdlA5/cufsitli/wxPdVxosbNTjMNLagHHe
-         DZQQ==
-X-Gm-Message-State: AO0yUKXLy1qaYMJgDE6LftQfN6LR90l06GI38cTwgie10M8V/ulGODNr
-        naMnieDU7DvETMxHCvTFdKA3Iw==
-X-Google-Smtp-Source: AK7set/QSoNWU/UHpK7LD0UqpZO7pjmUjbX5gc7W0yLGyo9zGmZqOsphF3gvtb9jYAiTpTj3ot7ZuA==
-X-Received: by 2002:a17:906:35d5:b0:8b1:e791:faef with SMTP id p21-20020a17090635d500b008b1e791faefmr7015856ejb.67.1676799844361;
-        Sun, 19 Feb 2023 01:44:04 -0800 (PST)
+        bh=EJntxz4d8bIHPiBQgUEYlKd1uQSFWcfmni6Frb9jtyc=;
+        b=M+5MtMQlgFEsHHhjS1IOz7/xonNTy/5+c/WlCQCXqC+HrK5FfN5xRH4pIrklc2Zy75
+         R4zfY4AvpsZG4iYaIOzyw8za/JHeL6VCyke3ePDi4yrxrZai3kqzBBq4isstVl1J4ZOz
+         2kyG0TglPb00xAeliKX07zlW6IVSYMdfkMCNuNeenKWr1K5eB08eqGex1SRWZcxy3l9a
+         9zYTf8DF+IEDLhv7/CLN6SrhETzIRNyiP+P5aZNL/wTort+N+sQMhTHu0jkIBDvdqjyX
+         JOp061ZJTuBHrZH6yM6a8mlDkBGv4wuyXasEP0iRxnqa6Jak5P3xR2CpSmPhhvPUT1+t
+         eftA==
+X-Gm-Message-State: AO0yUKVBdwZhdkiDx0f5yacfbqIKLj6U/18juTWDi/SZSaMGWq1LDHF1
+        af7y1L/ZfPUosSqkhnbO06uxtQ==
+X-Google-Smtp-Source: AK7set+/2plUttzZDp75JGZ7GVwRhhqqjohq/sBAYcfGQoYHobm18Ehjwa/hC8zBO98Lb5s0Pooq7A==
+X-Received: by 2002:a17:906:2894:b0:8a0:7158:15dc with SMTP id o20-20020a170906289400b008a0715815dcmr6745616ejd.74.1676799879212;
+        Sun, 19 Feb 2023 01:44:39 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i1-20020a17090671c100b0087bdae9a1ebsm4316472ejk.94.2023.02.19.01.44.02
+        by smtp.gmail.com with ESMTPSA id s21-20020a1709060c1500b00887f6c39ac0sm4315263ejf.98.2023.02.19.01.44.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Feb 2023 01:44:03 -0800 (PST)
-Message-ID: <cc771b27-cc59-de1f-02da-a2818c12e8b8@linaro.org>
-Date:   Sun, 19 Feb 2023 10:44:01 +0100
+        Sun, 19 Feb 2023 01:44:38 -0800 (PST)
+Message-ID: <dfbb244b-576b-a664-3d2b-996aadc39175@linaro.org>
+Date:   Sun, 19 Feb 2023 10:44:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] dt-bindings: serial: imx: Document mandatory clock
+Subject: Re: [PATCH 1/2] dt-bindings: serial: imx: Document optional DMA
  properties
 Content-Language: en-US
 To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
@@ -68,9 +68,8 @@ Cc:     Fabio Estevam <festevam@gmail.com>,
         Shawn Guo <shawnguo@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
 References: <20230218223959.116358-1-marex@denx.de>
- <20230218223959.116358-2-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230218223959.116358-2-marex@denx.de>
+In-Reply-To: <20230218223959.116358-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,45 +83,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/02/2023 23:39, Marek Vasut wrote:
-> The UART IP must be connected to clock, document the properties in DT bindings.
+> The UART IP can be connected to DMA engine, document the properties in DT bindings.
 > Update example to match Linux arch/arm/boot/dts/imx51.dtsi .
 > 
 > Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
 > Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-serial@vger.kernel.org
-> ---
->  .../bindings/serial/fsl-imx-uart.yaml         | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-> index c22aab8c55f83..d42061331aba3 100644
-> --- a/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-> @@ -49,6 +49,18 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  assigned-clocks: true
-> +  assigned-clock-rates: true
-> +  assigned-clock-parents: true
 
-You shouldn't need these three.
-
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
