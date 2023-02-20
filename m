@@ -2,151 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F323A69C481
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 04:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E16569C497
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 04:51:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbjBTDb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 22:31:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
+        id S229479AbjBTDvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 22:51:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbjBTDbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 22:31:55 -0500
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E94D52E
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 19:31:53 -0800 (PST)
-Received: by mail-vk1-xa35.google.com with SMTP id o27so1054459vkn.7
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 19:31:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1zm8xJuaotm6vpzvHnpvokhYNz8wvFB8VkvBsqrPPrE=;
-        b=XfOq/srI+PG5S3tIsdmDRgmwdsMQ+ZClbAz7T6USak/qOBTNy7W1gC6UP7/w29oxbE
-         6iiGXn4GNQ6AtD83L4a1y1z3FFyz7AE1WrJmvJZ44qFUUH6e0dIfI9Mh6ljJivgskrUw
-         /3sbkjEgoBSFRMK6t9WxS/xPOYYQVCkJj/MsN7NmcnRNRdrGC5vm1Rrd2hAknDdecrcJ
-         zIMq4BCx6AretQvyByKBd/2v2LvxKeJnIoHsv7B5gckjF3nwcOwqrEc3lcNasxKFqpM7
-         sDf7a++9fBZx/tpgPhwkKtWrYh+Tauk/SM5Z8Ue+RvsXoxwyu59CYJxwSq1ohAwLXkZM
-         tAvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1zm8xJuaotm6vpzvHnpvokhYNz8wvFB8VkvBsqrPPrE=;
-        b=cLrk9rwyGNufs+opr6HMd+RKl+jgAyJsUffgCDThY85KvEtjHFviYt8A273+YAKi/V
-         cOXypSDeCS29t8DZ6FYVgTck1Tg0rHnRX7d6OYhSPprbElO2jMN7Fske3gBvnsXzVsjn
-         q5UZ0O2Jf19g3QO84VNSjJl2T/wQNYstT3ghODUyi0vxJxqllGd7knUMG9HMwPWgQuUG
-         /TBgpSirZyCgyvpLyyJthDG0FaKJSnYWK7NBVxFdJJOV1ZQPySdjYWnToi6pl6SSmOBd
-         fvH81pBZLTipZzpvYo4tvLyXv9SwrPv3YrWpbWFjF7alUgVnjMi2ynrjSoXZ3DoJS0sc
-         0BTQ==
-X-Gm-Message-State: AO0yUKW+XNwuAiE7+58fDXuQw+A+CfXrOV2dro1ALvxkE9dmu4+zHPyH
-        c03YEZtOYRCadpVh+65s7B5kEOJwfbtb2bhKUo7aCw==
-X-Google-Smtp-Source: AK7set+D/gfVObR9SAgy5ZREo1wjRmgPl77pMBQmiXiEGzPyPFqKzCXsWSuVmTTX+jGxzmk5yK7IUvlUFUAsXEB6Jsk=
-X-Received: by 2002:a1f:a682:0:b0:3d5:9b32:7ba4 with SMTP id
- p124-20020a1fa682000000b003d59b327ba4mr90534vke.15.1676863912532; Sun, 19 Feb
- 2023 19:31:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
- <20230103141409.772298-5-apatel@ventanamicro.com> <81b03d13-a1d6-91ee-9867-48e960f0549d@dram.page>
-In-Reply-To: <81b03d13-a1d6-91ee-9867-48e960f0549d@dram.page>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Mon, 20 Feb 2023 09:01:40 +0530
-Message-ID: <CAK9=C2WOBKt9FNVNtkVsUMGeMxB7awBgbi_WN+TwiUx4OwTBoQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/9] dt-bindings: interrupt-controller: Add RISC-V
- incoming MSI controller
-To:     Vivian Wang <uwu@dram.page>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229869AbjBTDvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 22:51:10 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D90C64F
+        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 19:51:07 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4048885735;
+        Mon, 20 Feb 2023 04:51:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1676865066;
+        bh=ngl75POfXoaFr0DsU7ilq1+ZyIVn5Y5fhueodP/P8M4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tcKVG/erB1j3RluroiluFV60Lhnr0jGjI/1rzShh0pMVB3OfVyHYS6JkEmtWU33lP
+         4VznQU3aLdFEQhcyq6GXjkfCa3BSVFvCHZI9UDJLuzDgQH+okqZReoBUXzPu7/EgOf
+         mFs/wsdmVDDF/jAgl1LfHF5TpvZLgUOE438Lb/ftrHTEhAwl3B+ASNN6fj/pLCq0J6
+         5IM61Ftk/pY7MXqHj2GRVkxVrzel9acD+MQBVROrmIJ3YU34sgZ0RM/QfUasrGTu1x
+         7cbXxlxfXtaFkn+e9PGip5yPOqY9s9C3AEqmWMQkygQysozquzaG9WAXioma8rGUO6
+         H7ZzbKOnY/OFA==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/4] dt-bindings: soc: imx8mp-media-blk-ctrl: Align block controller example name
+Date:   Mon, 20 Feb 2023 04:50:48 +0100
+Message-Id: <20230220035051.327847-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 19, 2023 at 4:48 PM Vivian Wang <uwu@dram.page> wrote:
->
-> On 1/3/23 22:14, Anup Patel wrote:
-> > We add DT bindings document for the RISC-V incoming MSI controller
-> > (IMSIC) defined by the RISC-V advanced interrupt architecture (AIA)
-> > specification.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  .../interrupt-controller/riscv,imsics.yaml    | 168 ++++++++++++++++++
-> >  1 file changed, 168 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
-> > new file mode 100644
-> > index 000000000000..b9db03b6e95f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
-> > <snip>
-> > +
-> > +  interrupts-extended:
-> > +    minItems: 1
-> > +    maxItems: 16384
-> > +    description:
-> > +      This property represents the set of CPUs (or HARTs) for which given
-> > +      device tree node describes the IMSIC interrupt files. Each node pointed
-> > +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
-> > +      HART) as parent.
-> > +
->
-> This property doesn't seem to describe guest external interrupts. Should
-> we add a reference to e.g. <&cpuN_intc 12> to indicate that IMSIC can
-> send a 'Supervisor guest external interrupt'? Or just an idea, maybe we
-> can add an additional interrupt controller to the CPU nodes to handle
-> SGEI: (Various properties omitted)
->
-> cpu0: cpu@N {
->         compatible = "riscv";
->
->         cpu0_intc: interrupt-controller {
->                 compatible = "riscv,cpu-intc";
->
->                 cpu0_gei: interrupt-controller {
->                         /* intc for hart-local hgeie/hgeip */
->                         compatible = "riscv,..."; /* Something here */
->                         interrupt-parent = <&cpu0_intc>;
->                         interrupts = <12>; /* SGEI */
->                         interrupt-controller;
->                         #interrupt-cells = <1>;
->                 }
->         }
-> }
->
-> interrupt-controller@... {
->         compatible = "riscv,imsics";
->         interrupts-extended = <&cpu0_intc 11>, <&cpu0_gei 1>, <&cpu0_gei 2> /* ... */;
-> }
->
-> I feel that this would be more appropriate, since the guest external
-> interrupts are defined in the privileged architecture specification and
-> are not specific to AIA. Though please do suggest more appropriate ways
-> to formulate it.
+Align the block controller example node name with Linux imx8mp.dtsi .
+No functional change.
 
-This is unnecessary because GEILEN can be detected by init time
-writes to hgeie CSR. Please look at KVM RISC-V AIA implementation
-for more details. We only need "riscv,guest-index-bits" DT property
-for address space holes.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Paul Elder <paul.elder@ideasonboard.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Richard Cochran <richardcochran@gmail.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+V2: Adjust the label too
+---
+ .../devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-In fact, we have tested these DT bindings with a variety of NUMA
-configurations containing different numbers of IMISC guest files
-per-HART.
+diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+index dadb6108e3213..71deebe902d52 100644
+--- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
++++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+@@ -94,7 +94,7 @@ examples:
+     #include <dt-bindings/clock/imx8mp-clock.h>
+     #include <dt-bindings/power/imx8mp-power.h>
+ 
+-    media_blk_ctl: blk-ctl@32ec0000 {
++    media_blk_ctrl: blk-ctrl@32ec0000 {
+         compatible = "fsl,imx8mp-media-blk-ctrl", "syscon";
+         reg = <0x32ec0000 0x138>;
+         power-domains = <&mediamix_pd>, <&mipi_phy1_pd>, <&mipi_phy1_pd>,
+-- 
+2.39.1
 
-Regards,
-Anup
