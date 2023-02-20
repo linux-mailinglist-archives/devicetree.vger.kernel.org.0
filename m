@@ -2,105 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F2869C7E6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 10:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 546C069C802
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 10:54:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231540AbjBTJpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 04:45:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49336 "EHLO
+        id S229604AbjBTJyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 04:54:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231533AbjBTJpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 04:45:54 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D186213D64
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:45:52 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id y22so702787lfa.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:45:52 -0800 (PST)
+        with ESMTP id S230138AbjBTJyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 04:54:08 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C14A5C1
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:54:06 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id i31so7640618eda.12
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:54:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IVZVTrISVfToJ38Ubz2se/iuQvK1/cb+dyYHoraOOD4=;
-        b=dbJbqIrojKHSpY4zAPnffHOiT5FaaFmzu+Gt6V/dTg+RyNshLG4xkfHP4M55HhZZrP
-         1NoJbDaFUZlkzh2yymeFTJbSDgkdXJdp1DNv1kTgf5cRLUUdDZrcbJOZ1eETCnt/EsFC
-         2iLlpVjaKe9xw6tVk3qXm5JUs+w43Ni7ZSHvxmuSqOWljBiyQDbWoE4K6fnVBbSGGSO+
-         AxY+ZFTZKN3Sf+RkuQhYdFseQWdMc5aiEKRz+zZUOGgT6deprHB8pGRzl5tA0NohOzt2
-         gQchXy32BzbVA6IxwrWFLaqcvK3yJ4eAILQtvlqglSY8Bbs3KEbT3b/gHr6hkQ7RoGut
-         8g5Q==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0r6evuuX2LogY7v1aaZb5aDQHyHFxjAE901T9VWuy7Y=;
+        b=lR3W42+SAwfBhlIZlChAdmwEEbnC+K1Ajh0pfzFnI09f5QEjI6XM/owwu49X4B6hF/
+         EhJOJh9ntKDsoaVs9Tn1m+Me5+7EEf0yXztIVa/+FaqtsJU93jIE/ZDWj4bPvz33Hx+n
+         Qi0X6yawWLmp/oI5hdw8jMPxEOjzYRcO8pP4z/whO9Jg7FBC2AfJf/dRHLv4kmvfVvKE
+         TAHW3/zerX/Lmi7jHeIbQsMx1jkMtwTNDzjTMWXa2QE+MF7J6qugSl4sgltBvxHczOdK
+         7MaBrCqOv677tzdVddqpRag0KYrxaKVib9tM+Fxx8S0MgsF5xVuhKI3+/Xt/97pRSjNQ
+         lc6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IVZVTrISVfToJ38Ubz2se/iuQvK1/cb+dyYHoraOOD4=;
-        b=P+aQ2khYqk1sEW1tXntIs4L90rjG2Zap2oSZXNbYwE9u7KK1Iri0QpPPExrP5i9XEa
-         AuC7qjnDfnkEK4EqU31m6xtT8jWX17M/Y3JxsQaHXL1TWGAmYYZNLI9KC1451I248vMZ
-         0jsWVjpYn/o04paQZESb8wMV0KncvCpu97cmRBsrtWtfHSpziVAkwUdGOH5iBdUog5Ck
-         7mNe5QbMXJP4a2OO5viZB0bPCwYjexEpQk6hv3wGm/pQzHASD20haQKW85dZa1dyDO7u
-         L7jU/rwiTUNwLBB0koN7G46FvAcffKHTRMYqaMABe6+btg2MTQpax7NQV6oMpJHSHGoU
-         aXmg==
-X-Gm-Message-State: AO0yUKXAxWw2nan3Kl5W1jcT7uj3LE8DS6pXqN53EqZWZXyRf81UoX5T
-        utDeGbg5Y/7ehHkmdniEJ0pvfw==
-X-Google-Smtp-Source: AK7set+qhWV9WJNSt4Qa+5pNppVI75lSFA9WYHiZ7tIo3UbICi2RPJtEuG/EHdgrS9DxJdK4CUMrxg==
-X-Received: by 2002:a19:740f:0:b0:4b5:7762:5df2 with SMTP id v15-20020a19740f000000b004b577625df2mr373657lfe.36.1676886351246;
-        Mon, 20 Feb 2023 01:45:51 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id f14-20020ac251ae000000b004db3eff4b12sm1471522lfk.171.2023.02.20.01.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 01:45:50 -0800 (PST)
-Message-ID: <149b32d8-515d-2e9d-c3be-5ec10f47a432@linaro.org>
-Date:   Mon, 20 Feb 2023 10:45:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: apq8096-db820c: fix indentation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0r6evuuX2LogY7v1aaZb5aDQHyHFxjAE901T9VWuy7Y=;
+        b=RjsBH2W/Dh6LrsDnjatOdIm3LNc4RukB+Mv8c4DEUVKCSFaZmT3yuP0c9ZKk1P5Kdf
+         caqVSeS1xMNxOa2o5eqUerwE66QPUXKuvAQkOihnEfC8M0wZv2eWSXrqVNV9dSF4UGL1
+         Qh6YPM4ViyjKoV8OAl8Of3CCzl5EI80meAAJjvDiFxbCyots7TiSw8kqFDN5tVrCpNJF
+         MbGO/UFuosFk9YpZj83tZh0pKTIm2R30huksJQjFqUuXl39KxteWk4l2xQYSzz26Vfwn
+         cYGyrPSAozs4WAdk/USqBJHmIP/LRBqEa60iKxcJA9WxvD5xwnrVvf6HMPlnlZ60tjJR
+         Hazg==
+X-Gm-Message-State: AO0yUKUs/XHFbFvtPd49GFAvrpEu2gfhW1mUECxFWXFqX64bjBS7mmT4
+        a6Va+bcQzV8qpMXwNUou/byMzA==
+X-Google-Smtp-Source: AK7set8bLN+H8LkFYqZxXMIHpQPWdN46X4dylYWUEdeUvyOlKl4XoEFpl5KhgdTgLf/FaKk6StBzUA==
+X-Received: by 2002:a17:907:76ad:b0:8b1:749f:b2c0 with SMTP id jw13-20020a17090776ad00b008b1749fb2c0mr13309805ejc.74.1676886845183;
+        Mon, 20 Feb 2023 01:54:05 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id b11-20020a1709062b4b00b008b147ad0ad1sm5499236ejg.200.2023.02.20.01.54.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Feb 2023 01:54:04 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230220094339.47370-1-krzysztof.kozlowski@linaro.org>
- <20230220094339.47370-2-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230220094339.47370-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sc7280-idp: drop incorrect dai-cells from WCD938x SDW
+Date:   Mon, 20 Feb 2023 10:54:00 +0100
+Message-Id: <20230220095401.64196-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The WCD938x audio codec Soundwire interface part is not a DAI and does
+not allow sound-dai-cells:
 
+  sc7280-idp.dtb: codec@0,4: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-On 20.02.2023 10:43, Krzysztof Kozlowski wrote:
-> Correct indentation.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-Konrad
->  arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> index ce189dea2760..eb18811b2676 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> @@ -1070,7 +1070,7 @@ cpu {
->  
->  		platform {
->  			sound-dai = <&q6routing>;
-> -	};
-> +		};
->  
->  		codec {
->  			sound-dai = <&wcd9335 AIF4_PB>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index 8ebcf763b3c7..cff0e0d31c15 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -480,7 +480,6 @@ &swr0 {
+ 	wcd_rx: codec@0,4 {
+ 		compatible = "sdw20217010d00";
+ 		reg = <0 4>;
+-		#sound-dai-cells = <1>;
+ 		qcom,rx-port-mapping = <1 2 3 4 5>;
+ 	};
+ };
+@@ -491,7 +490,6 @@ &swr1 {
+ 	wcd_tx: codec@0,3 {
+ 		compatible = "sdw20217010d00";
+ 		reg = <0 3>;
+-		#sound-dai-cells = <1>;
+ 		qcom,tx-port-mapping = <1 2 3 4>;
+ 	};
+ };
+-- 
+2.34.1
+
