@@ -2,73 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 034B169D617
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 23:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C71E69D623
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 23:10:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232022AbjBTWC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 17:02:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56172 "EHLO
+        id S232561AbjBTWKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 17:10:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232342AbjBTWCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 17:02:25 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B5AE222F5;
-        Mon, 20 Feb 2023 14:02:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AB83DB80DCB;
-        Mon, 20 Feb 2023 22:02:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2C2AC433D2;
-        Mon, 20 Feb 2023 22:02:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676930523;
-        bh=fQRoiH/vfT+YhxHdQBo3IjRJtBv45VLnzgTpqQ2GMnY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ktZMNexkwbQT7SSP4qmLKo8Uvlirzq4lFcth9KK5SGKvDKCcvZDxPyAWicz0jb+qp
-         2Xs1MYD2YHUHUvHDDxuYSrbKfvvz0baUTb/A51kevnKuvdUw/HMTT8UspZVONCOAEK
-         M1vEVzt/sJ7RZ5/w/SEKo02Z9sdhqRT3C7TmNhWX6ScUwa/8+bPuva1AXSLLtb9YDl
-         Zezp7qA6+jG2r2Ml1zOA6ENCb1Qe+T1yM80YYHmjnEVhdhypUJd+SzJkJThC8+qaBr
-         KMxMrLjO51IH3JsJUtWJ2FKSTY0nglSR9vbNaVvvgjvk+lXVSBHFooFxgFrjEpQp4P
-         qrI242eJkucqA==
-Date:   Mon, 20 Feb 2023 14:02:01 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Janne Grunau <j@jannau.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mailing List <devicetree-spec@vger.kernel.org>,
-        Kalle Valo <kvalo@kernel.org>, van Spriel <arend@broadcom.com>,
-        =?UTF-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Ley Foon Tan <lftan@altera.com>,
-        Chee Nouk Phoon <cnphoon@altera.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] dt-bindings: net: Add network-class.yaml schema
-Message-ID: <20230220140201.20450889@kernel.org>
-In-Reply-To: <CAL_Jsq+2_gQzAjAZQVux1GOff5ocdSz5qQMhjRzvtyD+9C-TQQ@mail.gmail.com>
-References: <20230203-dt-bindings-network-class-v2-0-499686795073@jannau.net>
-        <20230220114016.71628270@kernel.org>
-        <CAL_Jsq+2_gQzAjAZQVux1GOff5ocdSz5qQMhjRzvtyD+9C-TQQ@mail.gmail.com>
+        with ESMTP id S232428AbjBTWKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 17:10:44 -0500
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34CA0BDC7
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 14:10:42 -0800 (PST)
+Received: by mail-qv1-xf31.google.com with SMTP id y12so2681140qvt.8
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 14:10:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5rUU2/WZPr1JSZcAGB+y8Up7AbNA2zdWucg2WvW8jfg=;
+        b=ndmMC5E2WlVJtkOA7NBSDcv+bwnm+YJCJpv9A0s0b7bSZlCm/158TU2tdJw2Ere1y/
+         pRnqb0dIqn9dkyO89wFGFocwSxfz9+w//ql+ElqVlBjKZpA7Gb6+EPHTFzLcdN53faah
+         +WOeD9QVcXNR8E2WRVSef7tP8K+wvfcDAKMm9i4TdaKgzjlrkZa8Ntnt8atmwxxdTOZx
+         QBTSKDZyPaoimeJzhmJUnxWKuNzSo7JRcEXmay09aJdg+lUYdpgcVz1rIdZkelEG8BKh
+         nwXmsHNVfVoNL2WVUW1naJasMPy7cGlGW8b2NTU9rOB+ErFrWV3kLMfPN2Mwoa4gWfXd
+         Bw5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5rUU2/WZPr1JSZcAGB+y8Up7AbNA2zdWucg2WvW8jfg=;
+        b=LZyCt/MJKMj4GGz+TOtEk3uj/b25n/dc2wrKumZE3C5mWytTbGfDyLU7s91uh24Fu8
+         naJQHR1l98T5cBblPLogmKeuwtVZhl+RuZgAZO9/Gwc2hkaWaBFqfgapKqgtBHF4HXb8
+         HZc7M44ZYsszeG6mPzht3KrcWyN70P/Pn47qAYzReq1oPXaUoKRgwS4RcM21gwDxYCbC
+         ppoOZmbtzkr7Pw2uaRKemEcEopfhFvqLtDi7x5yR/Dkc5ThPucCWjEI50pph2C15jK5p
+         iqV1wvr3IfDKr3S5jYLVWBTfk12yX7Vzgpapmq95HstEk0/EHR4SMXCG/faGpg+bIq8a
+         D6lg==
+X-Gm-Message-State: AO0yUKWXUqwpQCmVMQIvj3oica1zebIhiw6beVOm5HqiWyuOhFFGNq1R
+        PWmp4MR0R4BNRO3+jrWGVODmpA==
+X-Google-Smtp-Source: AK7set9SpTOHwG3ln7LMUjQ7Kgg+kixZ9alJTQWygn2FivXxoL8RZDAN6fAmeLdThIpI5DNSqTF/ew==
+X-Received: by 2002:a05:6214:240d:b0:56e:96bf:9d57 with SMTP id fv13-20020a056214240d00b0056e96bf9d57mr3736930qvb.41.1676931041264;
+        Mon, 20 Feb 2023 14:10:41 -0800 (PST)
+Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
+        by smtp.gmail.com with ESMTPSA id q13-20020a05620a024d00b006f9ddaaf01esm9766986qkn.102.2023.02.20.14.10.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Feb 2023 14:10:40 -0800 (PST)
+From:   Jonathan Cormier <jcormier@criticallink.com>
+Subject: [PATCH v3 0/3] drm/bridge: tfp410: Add i2c support
+Date:   Mon, 20 Feb 2023 17:10:32 -0500
+Message-Id: <20230125-tfp410_i2c-v3-0-a85d5f0f50f1@criticallink.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIANjv82MC/3WOQQ6CMBBFr0K6tqZMK0RX3sMY0papTEQgLTYYw
+ t0tuMXl/5n3/swsoCcM7JLNzGOkQH2XgjxkzDa6eyCnOmUGAqTI4cRHN6hcVASWSwOlMMI4iYI
+ lwOiA3Hjd2WZFWureU/XSYURf/bD1avDoaNomb/eUGwpj7z/bBzFf292xmHPBi0KrWqE8C1Ner
+ aeRrG7TzvNo+xdbbRH+GyAZjANwqrbGot4xLMvyBTt2W8UTAQAA
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Williamson <michael.williamson@criticallink.com>,
+        Bob Duke <bduke@criticallink.com>,
+        Jonathan Cormier <jcormier@criticallink.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1463;
+ i=jcormier@criticallink.com; h=from:subject:message-id;
+ bh=F4ePDp9YQlDEPYMwJJxpcbg51wbahBLtQAl5HlBYoro=;
+ b=owEBbQKS/ZANAwAKAdzX/S4LNuuqAcsmYgBj8+/foopW0wA1O42qAG7Zp+D4ICNsSp7resI12r28
+ H9NYMGGJAjMEAAEKAB0WIQT/MozqCeZtYxNnVN/c1/0uCzbrqgUCY/Pv3wAKCRDc1/0uCzbrqhzsD/
+ 0Q9eJEEV/igPPF+WONF9jTbpcj7hdIGDyln5FjGZZHNDTsYpzts9rt26k34cb8KudXJSr8jsn9HzNw
+ aV1c9+DzjrXXe5DXNQTIa5tzdrKSzUdM9tP9BpS/BAp5Cx56HNwTymcQkZ/1VtPyOis4Ea7l0Cq2bg
+ wZpdke7cAhuXBh7lvaFsjuAo+wFVx5pFasRcev6A4WvG9Ydzvmw5FHmUq6S0Sod1HTe5S0Na3MqvtO
+ ZEJP/vRYAnEOraA9HZVaF0W0UgUVohe/ijlPJ+oAr7uARX4Ru4IzP+7eL5ncW4ZRzTgHzM3suvZuv3
+ OPDkC7Jsb5m4Rx8MRe6XSvSCG6Rq2BkJ9q2pM4Rc6ki2b/BDHeHuzZo4GCEbiQWyYe3ho+r7dtD4pF
+ +dRS+N+2doef3iuqX2Jt0Kcc+QjBMHuvQauzZi3qQ0EQwqs2tRewn0p1UcZjygk3Oj0fym7ztx0lU/
+ H0ZNP3vfStA0Vh7uje01v/Zm36Jjkx9m1fC2+Kym0Rg4EcF+8Aqsy0w4m9dm4sGpxs9Wu9VNzigTMD
+ ReIv88GOsHfGDhrE02QqbfZJiPhc8fBHFmnoYgQ/8cw3hDe0qBH4h7kg7Nyk1fJPOtNvWmtkOHXdVr
+ fJdvYJibg35Nf+pezTCFOgGiIjDRrjl6ewnEmEVMFZfWxzgQk3+bwk5jwUfw==
+X-Developer-Key: i=jcormier@criticallink.com; a=openpgp;
+ fpr=FF328CEA09E66D63136754DFDCD7FD2E0B36EBAA
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Feb 2023 15:49:44 -0600 Rob Herring wrote:
-> > Rob, Krzysztof - is this one on your todo list? It's been hanging
-> > around in my queue, I'm worried I missed some related conversation.  
-> 
-> Andrew suggested changes on 1 and 2 which seem reasonable to me.
+The TFP410 driver does not support I2C.  As such, the device remains in
+Power Down if the I2C is enabled by the bootstrap pins.
 
-Ah, thank you! I see them in lore but not in my MUA.
+Add basic support for the I2C interface, and provide support to take
+the device out of power down when enabled.  Also read the bootstrap mode
+pins via the CTL_1_MODE register when using the I2C bus.
+
+Also allow polling device to support hdmi/dvi hotplug detection.
+
+Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+---
+Changes in v3:
+- Drop dt-bindings i2c example
+- Link to v2: https://lore.kernel.org/r/20230125-tfp410_i2c-v2-0-bf22f4dcbcea@criticallink.com
+
+Changes in v2:
+- Fix dt_binding_check errors
+- Remove hdmi connector from binding example
+- Fix compile warning. Unused variable and unsigned int instead of int for ret
+- Fix commit titles
+- Drop of_match_ptr change
+- Link to v1: https://lore.kernel.org/r/20230125-tfp410_i2c-v1-0-66a4d4e390b7@criticallink.com
+
+---
+Michael Williamson (3):
+      drm/bridge: tfp410: Support basic I2C interface
+      drm/bridge: tfp410: Fix logic to configured polled HPD
+      drm/bridge: tfp410: If connected, use I2C for polled HPD status.
+
+ drivers/gpu/drm/bridge/ti-tfp410.c | 107 +++++++++++++++++++++++++++----------
+ 1 file changed, 80 insertions(+), 27 deletions(-)
+---
+base-commit: 93f875a8526a291005e7f38478079526c843cbec
+change-id: 20230125-tfp410_i2c-3b270b0bf3e0
+
+Best regards,
+-- 
+Jonathan Cormier <jcormier@criticallink.com>
+
