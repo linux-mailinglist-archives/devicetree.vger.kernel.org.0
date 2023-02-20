@@ -2,183 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6404F69D476
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 21:10:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF6369D47C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 21:11:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232422AbjBTUK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 15:10:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57542 "EHLO
+        id S232461AbjBTULd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 15:11:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232421AbjBTUK1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 15:10:27 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D06F1F4A6
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 12:10:26 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id o4-20020a05600c4fc400b003e1f5f2a29cso1974832wmq.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 12:10:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l9CBXqz5Ym6vyKdYB/UcZABuHubzocvDFl1/6+aRGTU=;
-        b=Ip9paFpl6CVybhOZXCupqpnDcguBljmABnOUP73mVxYqpP6Jq3V+3J3KfDf2VdP2u4
-         /epbDB4GhTlDBSPLK/1Ng6PPJ3k4c8MPA/mvPhyMiPD0pK1xLxllykKdHNARsgWcrhrp
-         T48mUQ8SuUh5NfBFzeLhLlObbDmvmBqcSqy8bexYf2EDrJxB4+E/Us7NNWD6UQnWB8DO
-         w1aqMkRilpmKd0ahPO5rEYPrPVLkSVG1rN4jLgVym1svqJGumVsfLpEYYQb1et5C607I
-         ghdbaaFG31NMT9nCScHJHLddvoHraFT99FWVoXzAtrsOasTZ7d8K96GGzegtODDCdMBc
-         /bEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l9CBXqz5Ym6vyKdYB/UcZABuHubzocvDFl1/6+aRGTU=;
-        b=UrYSwar3U8uaFoWRzbl30Nx7CakGvr9gGrmfnXoNZc7eFUeOXmlTpegbo2jSr1L13A
-         ZqYvqe81yCRa+XhF9A8W2B61/EOBo53qfzOzCaDbnUH6T/rPgwKv0WCFoybHApvIBoLT
-         nhFT60w9yVGPs6F19NyCcojvNKGo/OfL/YKQHCqyEQJxSRNDu+SOxyVrNzeKqAMYlakL
-         ttuktPOWjX8eWpfwjAbvfM5j1pmyntHSXyy36a3KoWVuw3IU7IziCnGxsHW5Wjrx1jKO
-         d1yiuR3yjcr7HOWoeWSLHCoxQxNvyBpIMhPc++3wL6glTjtCV1wY4e7XnIbHq5jhHjoC
-         At7w==
-X-Gm-Message-State: AO0yUKW2IDMUUEegIFrlT9PG4X1nwQGhYMbRQzLZcbM4vUe/ssg1L3cr
-        6SJ5fgHrhAOqkvJT02qviV0wZA==
-X-Google-Smtp-Source: AK7set9o9hcBk+G3Tqr5Nkg+e2vlF9zQ3Wr5OIKk5DsSQPAxZy/Zd7AkwhlX4VeT6HeBWiDhEe4vBw==
-X-Received: by 2002:a05:600c:1e12:b0:3df:9858:c033 with SMTP id ay18-20020a05600c1e1200b003df9858c033mr1564082wmb.8.1676923824413;
-        Mon, 20 Feb 2023 12:10:24 -0800 (PST)
-Received: from blmsp ([2001:4090:a247:8056:be7d:83e:a6a5:4659])
-        by smtp.gmail.com with ESMTPSA id p8-20020a05600c468800b003e2232d0960sm2954068wmo.23.2023.02.20.12.10.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Feb 2023 12:10:23 -0800 (PST)
-Date:   Mon, 20 Feb 2023 21:10:23 +0100
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH 1/8] dt-bindings: power: Add MT8365 power domains
-Message-ID: <20230220201023.ozy6ogdumhf35nwm@blmsp>
-References: <20230105170735.1637416-1-msp@baylibre.com>
- <20230105170735.1637416-2-msp@baylibre.com>
- <6f6f1be3-358d-d062-31e1-c307dca56907@gmail.com>
+        with ESMTP id S232442AbjBTULd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 15:11:33 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC931EFF4;
+        Mon, 20 Feb 2023 12:11:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676923891; x=1708459891;
+  h=date:from:to:cc:subject:message-id:mime-version:
+   content-transfer-encoding;
+  bh=kn4pld7IQxDxYFj1OkmASNOLxEzb1abPukEUl/1gRJc=;
+  b=a/7NBj7rdfg6+FvAzm/CLwh/WM0KfDvJbgi6qln692frvIlgtcwN/0d+
+   mTMZvjMVXN3BlgsjUbUJiTXg595D1HxciJaATO5FrntPjT4yV5to5HNX9
+   JMONrgcNpBibQBbx6iTjEved3GtWMOyx48LZ02ciXlkuwJMrZPiYes3H7
+   iosekel4XttkQONaLij90XEfQ5duyiZebgnKLfaXztYfsivENqjw1wzYW
+   uM/W1EK4SN1llc/HBYKvqyw7iE63/b3MrKhFBMC/lEV3M8DN2w7VEZ6mR
+   s/B1XLxLlgUVSR9WvyBItXjyYGU+6R0sOPjKo7388+j+OrZ757kshABq9
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="418706419"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; 
+   d="scan'208";a="418706419"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2023 12:11:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="760282644"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; 
+   d="scan'208";a="760282644"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 20 Feb 2023 12:11:28 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pUCVT-000E9N-2U;
+        Mon, 20 Feb 2023 20:11:27 +0000
+Date:   Tue, 21 Feb 2023 04:11:12 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     virtualization@lists.linux-foundation.org, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-rdma@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arch@vger.kernel.org,
+        devicetree@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+        Linux Memory Management List <linux-mm@kvack.org>
+Subject: [linux-next:master] BUILD REGRESSION
+ d2af0fa4bfa4ec29d03b449ccd43fee39501112d
+Message-ID: <63f3d3e0.jVwHKeaSAe5ASSpD%lkp@intel.com>
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6f6f1be3-358d-d062-31e1-c307dca56907@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: d2af0fa4bfa4ec29d03b449ccd43fee39501112d  Add linux-next specific files for 20230220
 
-On Fri, Feb 03, 2023 at 01:31:58PM +0100, Matthias Brugger wrote:
-> 
-> 
-> On 05/01/2023 18:07, Markus Schneider-Pargmann wrote:
-> > From: Fabien Parent <fparent@baylibre.com>
-> > 
-> > Add power domains dt-bindings for MT8365.
-> > 
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> > 
-> > Notes:
-> >      Changes in v4:
-> >      - Add infracfg_nao as it is used by mt8365
-> >      Changes in v3:
-> >      - Renamed mt8365-power.h to mediatek,mt8365-power.h
-> >      Changes in v2:
-> >      - Made include/dt-bindings/power/mt8365-power.h dual-license.
-> > 
-> >   .../power/mediatek,power-controller.yaml      |  6 ++++++
-> >   .../dt-bindings/power/mediatek,mt8365-power.h | 19 +++++++++++++++++++
-> >   2 files changed, 25 insertions(+)
-> >   create mode 100644 include/dt-bindings/power/mediatek,mt8365-power.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> > index 605ec7ab5f63..a496c43cfa16 100644
-> > --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> > @@ -30,6 +30,7 @@ properties:
-> >         - mediatek,mt8186-power-controller
-> >         - mediatek,mt8192-power-controller
-> >         - mediatek,mt8195-power-controller
-> > +      - mediatek,mt8365-power-controller
-> >     '#power-domain-cells':
-> >       const: 1
-> > @@ -86,6 +87,7 @@ $defs:
-> >                 "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
-> >                 "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
-> >                 "include/dt-bindings/power/mt8195-power.h" - for MT8195 type power domain.
-> > +              "include/dt-bindings/power/mediatek,mt8365-power.h" - for MT8365 type power domain.
-> >           maxItems: 1
-> >         clocks:
-> > @@ -113,6 +115,10 @@ $defs:
-> >           $ref: /schemas/types.yaml#/definitions/phandle
-> >           description: phandle to the device containing the INFRACFG register range.
-> > +      mediatek,infracfg-nao:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > +        description: phandle to the device containing the INFRACFG-NAO register range.
-> > +
-> 
-> 
-> Hm, so we have mediatek,mt8365-infracfg defined in mt8365-sys-clock. Also
-> the description talks about infracfg_ao. You now introduce INFRACFG-NAO. Is
-> that just another system clock block, or is this covered with the
-> mediatek,mt8365-infracfg binding?
-> 
-> We would need to clean that up.
+Error/Warning reports:
 
-Looking through the datasheet I don't see any clock related registers
-for infracfg-nao. So I don't think it is another system clock block. It
-seems to be a lot of status registers and debug registers, but not all
-of them. It really doesn't seem to have a specific topic here. So from
-my point of view it is just a syscon block. Should I add a
-mediatek,mt8365-infracfg-nao compatible to the syscon binding
-documentation?
+https://lore.kernel.org/oe-kbuild-all/202302062224.ByzeTXh1-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302092211.54EYDhYH-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302111601.jtY4lKrA-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302170355.Ljqlzucu-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302210017.XT59WvsM-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202302210350.lynWcL4t-lkp@intel.com
 
-Thanks,
-Markus
+Error/Warning: (recently discovered and may have been fixed)
 
-> 
-> Regards,
-> Matthias
-> 
-> >         mediatek,smi:
-> >           $ref: /schemas/types.yaml#/definitions/phandle
-> >           description: phandle to the device containing the SMI register range.
-> > diff --git a/include/dt-bindings/power/mediatek,mt8365-power.h b/include/dt-bindings/power/mediatek,mt8365-power.h
-> > new file mode 100644
-> > index 000000000000..e6cfd0ec7871
-> > --- /dev/null
-> > +++ b/include/dt-bindings/power/mediatek,mt8365-power.h
-> > @@ -0,0 +1,19 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> > +/*
-> > + * Copyright (c) 2022 MediaTek Inc.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_POWER_MT8365_POWER_H
-> > +#define _DT_BINDINGS_POWER_MT8365_POWER_H
-> > +
-> > +#define MT8365_POWER_DOMAIN_MM		0
-> > +#define MT8365_POWER_DOMAIN_CONN	1
-> > +#define MT8365_POWER_DOMAIN_MFG		2
-> > +#define MT8365_POWER_DOMAIN_AUDIO	3
-> > +#define MT8365_POWER_DOMAIN_CAM		4
-> > +#define MT8365_POWER_DOMAIN_DSP		5
-> > +#define MT8365_POWER_DOMAIN_VDEC	6
-> > +#define MT8365_POWER_DOMAIN_VENC	7
-> > +#define MT8365_POWER_DOMAIN_APU		8
-> > +
-> > +#endif /* _DT_BINDINGS_POWER_MT8365_POWER_H */
+Documentation/sphinx/templates/kernel-toc.html: 1:36 Invalid token: #}
+ERROR: modpost: "__umoddi3" [fs/btrfs/btrfs.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
+FAILED: load BTF from vmlinux: No data available
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.c:294:6: warning: no previous prototype for 'optc3_wait_drr_doublebuffer_pending_clear' [-Wmissing-prototypes]
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource_helpers.c:62:18: warning: variable 'cursor_bpp' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_detection.c:1199: warning: expecting prototype for dc_link_detect_connection_type(). Prototype was for link_detect_connection_type() instead
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:1292:32: warning: variable 'result_write_min_hblank' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_training.c:1586:38: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+drivers/net/ethernet/sfc/ef100_nic.c:1197:9: warning: variable 'rc' is uninitialized when used here [-Wuninitialized]
+drivers/net/ethernet/sfc/efx_devlink.c:326:58: error: expected ')' before 'build_id'
+drivers/net/ethernet/sfc/efx_devlink.c:338:55: error: expected ';' before '}' token
+drivers/of/unittest.c:3042:41: error: 'struct device_node' has no member named 'kobj'
+drivers/pwm/pwm-dwc.c:314:1: error: type defaults to 'int' in declaration of 'module_pci_driver' [-Werror=implicit-int]
+include/asm-generic/div64.h:238:36: error: passing argument 1 of '__div64_32' from incompatible pointer type [-Werror=incompatible-pointer-types]
+
+Unverified Error/Warning (likely false positive, please contact us if interested):
+
+drivers/infiniband/hw/hfi1/verbs.c:1661 hfi1_alloc_hw_device_stats() error: we previously assumed 'dev_cntr_descs' could be null (see line 1650)
+drivers/net/phy/phy-c45.c:712 genphy_c45_write_eee_adv() error: uninitialized symbol 'changed'.
+drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu_8188e.c:1678 rtl8188e_handle_ra_tx_report2() warn: ignoring unreachable code.
+drivers/usb/gadget/composite.c:2082:33: sparse: sparse: restricted __le16 degrades to integer
+drivers/virtio/virtio_ring.c:1585 virtqueue_add_packed_vring() error: uninitialized symbol 'prev'.
+drivers/virtio/virtio_ring.c:1593 virtqueue_add_packed_vring() error: uninitialized symbol 'head_flags'.
+drivers/virtio/virtio_ring.c:697 virtqueue_add_split_vring() error: uninitialized symbol 'prev'.
+pahole: .tmp_vmlinux.btf: No such file or directory
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- alpha-buildonly-randconfig-r006-20230219
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- arc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- arc-randconfig-r001-20230219
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|-- arc-randconfig-r043-20230219
+|   `-- drivers-of-unittest.c:error:struct-device_node-has-no-member-named-kobj
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
+|-- arm64-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- csky-randconfig-s041-20230219
+|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
+|-- csky-randconfig-s042-20230219
+|   |-- include-asm-generic-cmpxchg-local.h:sparse:sparse:cast-truncates-bits-from-constant-value-(-becomes-)
+|   `-- include-asm-generic-cmpxchg-local.h:sparse:sparse:cast-truncates-bits-from-constant-value-(aaa31337-becomes-)
+|-- i386-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn32-dcn32_resource_helpers.c:warning:variable-cursor_bpp-set-but-not-used
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-link_detection.c:warning:expecting-prototype-for-dc_link_detect_connection_type().-Prototype-was-for-link_detect_connection_type()-instead
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
+|-- i386-randconfig-m021
+|   |-- drivers-virtio-virtio_ring.c-virtqueue_add_packed_vring()-error:uninitialized-symbol-head_flags-.
+|   |-- drivers-virtio-virtio_ring.c-virtqueue_add_packed_vring()-error:uninitialized-symbol-prev-.
+|   `-- drivers-virtio-virtio_ring.c-virtqueue_add_split_vring()-error:uninitialized-symbol-prev-.
+|-- ia64-randconfig-r025-20230220
+clang_recent_errors
+|-- i386-randconfig-a001-20230213
+|   `-- ERROR:__umoddi3-fs-btrfs-btrfs.ko-undefined
+`-- powerpc-skiroot_defconfig
+    `-- drivers-net-ethernet-sfc-ef100_nic.c:warning:variable-rc-is-uninitialized-when-used-here
+
+elapsed time: 843m
+
+configs tested: 96
+configs skipped: 6
+
+gcc tested configs:
+alpha                            allyesconfig
+alpha                               defconfig
+arc                              alldefconfig
+arc                              allyesconfig
+arc                          axs103_defconfig
+arc                                 defconfig
+arc                  randconfig-r043-20230219
+arc                  randconfig-r043-20230220
+arc                        vdk_hs38_defconfig
+arm                              allmodconfig
+arm                              allyesconfig
+arm                         axm55xx_defconfig
+arm                                 defconfig
+arm                  randconfig-r046-20230220
+arm64                            allyesconfig
+arm64                               defconfig
+csky                                defconfig
+i386                             allyesconfig
+i386                              debian-10.3
+i386                                defconfig
+i386                 randconfig-a001-20230220
+i386                 randconfig-a002-20230220
+i386                 randconfig-a003-20230220
+i386                 randconfig-a004-20230220
+i386                 randconfig-a005-20230220
+i386                 randconfig-a006-20230220
+i386                          randconfig-c001
+ia64                             allmodconfig
+ia64                                defconfig
+loongarch                        allmodconfig
+loongarch                         allnoconfig
+loongarch                           defconfig
+m68k                             allmodconfig
+m68k                                defconfig
+mips                             allmodconfig
+mips                             allyesconfig
+mips                     decstation_defconfig
+mips                            gpr_defconfig
+nios2                               defconfig
+parisc                              defconfig
+parisc64                            defconfig
+powerpc                          allmodconfig
+powerpc                           allnoconfig
+powerpc                     ep8248e_defconfig
+powerpc                 linkstation_defconfig
+powerpc                      makalu_defconfig
+powerpc                     taishan_defconfig
+riscv                            allmodconfig
+riscv                             allnoconfig
+riscv                               defconfig
+riscv                randconfig-r042-20230219
+riscv                          rv32_defconfig
+s390                             allmodconfig
+s390                             allyesconfig
+s390                                defconfig
+s390                 randconfig-r044-20230219
+sh                               allmodconfig
+sh                        apsh4ad0a_defconfig
+sh                             espt_defconfig
+sh                     magicpanelr2_defconfig
+sh                     sh7710voipgw_defconfig
+sparc                               defconfig
+sparc                       sparc32_defconfig
+um                             i386_defconfig
+um                           x86_64_defconfig
+x86_64                           alldefconfig
+x86_64                            allnoconfig
+x86_64                           allyesconfig
+x86_64                              defconfig
+x86_64                                  kexec
+x86_64                               rhel-8.3
+xtensa                  cadence_csp_defconfig
+
+clang tested configs:
+arm                     davinci_all_defconfig
+arm                  randconfig-r046-20230219
+arm                       spear13xx_defconfig
+hexagon              randconfig-r041-20230219
+hexagon              randconfig-r041-20230220
+hexagon              randconfig-r045-20230219
+hexagon              randconfig-r045-20230220
+i386                 randconfig-a011-20230220
+i386                 randconfig-a012-20230220
+i386                 randconfig-a013-20230220
+i386                 randconfig-a014-20230220
+i386                 randconfig-a015-20230220
+i386                 randconfig-a016-20230220
+mips                          ath25_defconfig
+powerpc                    ge_imp3a_defconfig
+powerpc                     skiroot_defconfig
+riscv                randconfig-r042-20230220
+s390                 randconfig-r044-20230220
+x86_64               randconfig-a011-20230220
+x86_64               randconfig-a012-20230220
+x86_64               randconfig-a013-20230220
+x86_64               randconfig-a014-20230220
+x86_64               randconfig-a015-20230220
+x86_64               randconfig-a016-20230220
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
