@@ -2,160 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F17B69C509
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 06:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 069DB69C512
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 06:47:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbjBTFo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 00:44:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56300 "EHLO
+        id S229635AbjBTFrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 00:47:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbjBTFo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 00:44:57 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 33E14BDFA;
-        Sun, 19 Feb 2023 21:44:54 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxJPzUCPNjh68CAA--.34S3;
-        Mon, 20 Feb 2023 13:44:52 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxjb7TCPNj1_I2AA--.39054S3;
-        Mon, 20 Feb 2023 13:44:51 +0800 (CST)
-Subject: Re: [PATCH v10 2/4] clk: clk-loongson2: add clock controller driver
- support
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S229652AbjBTFrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 00:47:48 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 06300E055;
+        Sun, 19 Feb 2023 21:47:17 -0800 (PST)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 20 Feb 2023 14:47:16 +0900
+Received: from mail.mfilter.local (mail-arc01.css.socionext.com [10.213.46.36])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id A5D662012096;
+        Mon, 20 Feb 2023 14:47:16 +0900 (JST)
+Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Mon, 20 Feb 2023 14:47:16 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 353EFA855A;
+        Mon, 20 Feb 2023 14:47:16 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, liupeibao@loongson.cn,
-        loongarch@lists.linux.dev, wanghongliang@loongson.cn
-References: <20221129034157.15036-1-zhuyinbo@loongson.cn>
- <20221129034157.15036-2-zhuyinbo@loongson.cn>
- <31c690a347f858a477bbba9c838984ed.sboyd@kernel.org>
- <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn>
- <8332a1cf44b01f06bdd5db9dc5d7f387.sboyd@kernel.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <01ee3dc6-a868-fd2b-93aa-11e6bdfcc9df@loongson.cn>
-Date:   Mon, 20 Feb 2023 13:44:51 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH v3] dt-bindings: ata: Add UniPhier controller binding
+Date:   Mon, 20 Feb 2023 14:47:11 +0900
+Message-Id: <20230220054711.4584-1-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <8332a1cf44b01f06bdd5db9dc5d7f387.sboyd@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID: AQAAf8Bxjb7TCPNj1_I2AA--.39054S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxArykCF15Xw18GFWkKrWktFb_yoW5Gr1Dpr
-        y3Zay7KF4Dtr4qvrnF934UZ3ZIvr43tF17XF4fG3WDC34qk343Zr4UXFyrCas3Aw13J3y0
-        vryvgF47CF98ZFDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8FAp5UUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add UniPhier SATA controller compatible string to the platform binding.
+This controller needs two or three reset controls.
 
-在 2023/2/18 上午6:15, Stephen Boyd 写道:
-> Quoting zhuyinbo (2023-02-14 23:35:22)
->> 在 2023/2/11 上午7:42, Stephen Boyd 写道:
->>> Quoting Yinbo Zhu (2022-11-28 19:41:55)
->>>
->>>> +
->>>> +       mult = (val >> LOONGSON2_USB_FREQSCALE_SHIFT) &
->>>> +                       clk_div_mask(LOONGSON2_USB_FREQSCALE_WIDTH);
->>>> +
->>>> +       rate = parent_rate * (mult + 1);
->>>> +       do_div(rate, 8);
->>> Why is do_div() being used?
->> no expecial reason, I only want to get a result that rate divide 8.
-> Ok, you can use div_u64() here and simplify.
-okay, I got it.
->
->> you meaning is to use clk_parent_data to rework
->> loongson2_clk_pll_register  and drop
->>
->> loongson2_obtain_fixed_clk_hw ?
-> Yes
->
->>>> +}
->>>> +
->>>> +static void __init loongson2_clocks_init(struct device_node *np)
->>>> +{
->>>> +       struct clk_hw **hws;
->>>> +       struct clk_hw_onecell_data *clk_hw_data;
->>>> +       spinlock_t loongson2_clk_lock;
->>>> +
->>>> +       loongson2_pll_base = of_iomap(np, 0);
->>>> +
->>>> +       if (!loongson2_pll_base) {
->>>> +               pr_err("clk: unable to map loongson2 clk registers\n");
->>>> +               goto err;
->>> return?
->> sorry, I don't get it.  you meaning is that  remove "goto err". Instead,
->> add a "return".
-> Yes.
->
->>>> +       }
->>>> +
->>>> +       clk_hw_data = kzalloc(struct_size(clk_hw_data, hws, LOONGSON2_CLK_END),
->>>> +                                       GFP_KERNEL);
->>>> +       if (WARN_ON(!clk_hw_data))
->>>> +               goto err;
-> [...]
->>>> +
->>>> +err:
->>>> +       iounmap(loongson2_pll_base);
->>>> +}
->>>> +
->>>> +CLK_OF_DECLARE(loongson2_clk, "loongson,ls2k-clk", loongson2_clocks_init);
->>> Any reason this can't be a platform driver?
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+---
+ .../bindings/ata/ahci-platform.yaml           | 32 ++++++++++++++++---
+ 1 file changed, 27 insertions(+), 5 deletions(-)
 
-Your question is that  why I don't use the platform_driver_register to 
-register  clk and use CLK_OF_DECLARE ?
+Changes since v2:
+- Add compatible strings to select property
+- Add minItems and change maxItems for resets
+- Move condition schema under allOf property
+- Change resets to "required" for uniphier-*-ahci
 
-I was  consider other clock controllers of Loongson-2 series may be 
-different with 2k1000 and I can add a line
+Changes since v1:
+- Restrict resets property changes with compatible strings
+- Fix maxItems from two to three
 
-CLK_OF_DECLARE() for compatible other platform in the future. eg.
-
-CLK_OF_DECLARE(loongson2_clk, "loongson,ls2k-clk", loongson2_clocks_init);
-
-+  CLK_OF_DECLARE(xxx1, xxx2,  xxx3);  // for other clock controllers of 
-Loongson-2 series
-
->> For the compatible consideration of other clock controllers of
->> Loongson-2 series in the future, the way of using dts can be
->>
->> better compatible.
->>
-> Sorry that sentence doesn't make sense to me. The use of dts doesn't
-> require the use of CLK_OF_DECLARE.
-
-yes, the use of dts doesn't require the use of CLK_OF_DECLARE and can 
-use platform_driver_register
-
-but my drvier not use platform_driver_register to register  clk and use 
-CLK_OF_DECLARE to match of_clk_init.
+diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+index 7dc2a2e8f598..4b2ee68097b8 100644
+--- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
++++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+@@ -30,12 +30,12 @@ select:
+           - marvell,armada-3700-ahci
+           - marvell,armada-8k-ahci
+           - marvell,berlin2q-ahci
++          - socionext,uniphier-pro4-ahci
++          - socionext,uniphier-pxs2-ahci
++          - socionext,uniphier-pxs3-ahci
+   required:
+     - compatible
+ 
+-allOf:
+-  - $ref: "ahci-common.yaml#"
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -45,6 +45,9 @@ properties:
+               - marvell,armada-8k-ahci
+               - marvell,berlin2-ahci
+               - marvell,berlin2q-ahci
++              - socionext,uniphier-pro4-ahci
++              - socionext,uniphier-pxs2-ahci
++              - socionext,uniphier-pxs3-ahci
+           - const: generic-ahci
+       - enum:
+           - cavium,octeon-7130-ahci
+@@ -67,14 +70,33 @@ properties:
+     minItems: 1
+     maxItems: 3
+ 
++  resets:
++    minItems: 1
++    maxItems: 3
++
+   interrupts:
+     maxItems: 1
+ 
+   power-domains:
+     maxItems: 1
+ 
+-  resets:
+-    maxItems: 1
++allOf:
++  - $ref: ahci-common.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - socionext,uniphier-pro4-ahci
++              - socionext,uniphier-pxs2-ahci
++              - socionext,uniphier-pxs3-ahci
++    then:
++      properties:
++        resets:
++          minItems: 2
++          maxItems: 3
++      required:
++        - resets
+ 
+ patternProperties:
+   "^sata-port@[0-9a-f]+$":
+-- 
+2.25.1
 
