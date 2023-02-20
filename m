@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 064CA69C826
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B01469C861
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:16:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbjBTKBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 05:01:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33544 "EHLO
+        id S231379AbjBTKQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 05:16:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbjBTKBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:01:35 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3722715CAE
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:01:31 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id k14so11989lfj.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:01:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vBEZvAjX93RycLXsAWqWLohrTp8jq3ubVbqPFKfLzbc=;
-        b=vUJGmgC/qJ1hDB631DmR499TOBB6+1XRceb2+zwS9CHH6FUACrLqIK3FMomZdvYqHR
-         PAKOjDR/Gd9OqsBlA7xU0ePBWZqlorxMmcLXrn5tlK253e/vUeE71H5XbW1MFnc+s51R
-         TELqrbQwSdeJuNBD4LfJXw9WRI69iRYUN7HnwR2BDxlQL3txXgveqacqPfaZP80T/GTT
-         IHCB1Lf4aIjPYi1anEYs1GdSYE7UQHYVjBGE5jWF7ufLDN1DlK0uYFT5uTB11zrFsJEg
-         aGWsU8469zWvkdmU6cxDcpMdqk78eGnwyie7C2pTxSbFmF0BL4go2fGba5crcMkOyT2O
-         EmrA==
+        with ESMTP id S231163AbjBTKQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:16:07 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8952F16ACD
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:16:03 -0800 (PST)
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id ACF6A3F71C
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 10:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1676888161;
+        bh=fKd9fxybT9+hFfyTDDr2Mtw7ZX+21Hd2dT0jDnkibYM=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=tRLcIaWxDCXwruIFB/pF04r4bvV/4oy8w/TsPsD9Ijd2oJTnkKEwyoKst2TayaiDr
+         KQXCkpLvVl15Z3b+Yuu8XYA7S0ETBth6ZxrXSpbiC7ugTjElm8bH2g41d7xqdfnrb3
+         mYt0LotLWDCwKv365VpewV1YCVbFnT8NsYloMEO723uAwvgOCGsIsmzMAbijeDcWld
+         7EEFfs4MUM4xt855p8ojj9Kl4RqM3FuWtaJOF6o2YrqfNlt5NYa1vb21NfOg7zOAVS
+         QZcERLcpISKslJUVCSQ0VborlhchrYRBPL4dgqASfO5iYzn0J/ed2y+KsFa0sXpXru
+         EjwVnKRq5o83A==
+Received: by mail-qk1-f200.google.com with SMTP id q12-20020a05620a0c8c00b0072fcbe20069so899424qki.22
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:16:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vBEZvAjX93RycLXsAWqWLohrTp8jq3ubVbqPFKfLzbc=;
-        b=EqBMANfzUabwx41Baev3WnUk60ZnaxnB6X20z671T11ufoDQF50DHDGkDSpP3L9zur
-         anrDIc/d2PD2DNzWheIgaeGqnHdPEIeO4jF+A2SphZBq4fEQ7nkJV5V0wEOv6mF0HM+A
-         Z7CKjPWW+ktdFhYTBr6ihJGxhwgRrYW51szEfDFBQqL+zy6YrU65tRRFf7nB5obJqEpu
-         +Bt/zmHyWslx2MGMhwK4LpdmmDV5iOnPzIpeyA0ubUO91SWloQrlLtJTxjKoWyxzI5ch
-         LL5OJY09GnBK1B5KbSi8lHXeTLZD6Ux7XxN3/6fbmzZDo3oEeeGQsNXqrjfXTGmTk80l
-         hH6g==
-X-Gm-Message-State: AO0yUKVpfybgo8ZTuvEuVi3X2iKoKvgHqxJD1ZEDb7xSzT+nLjtFCIK4
-        D+0Pl3pk68+Aji+Z1geyY1CNUw==
-X-Google-Smtp-Source: AK7set/RLED7POxANEjawWCZd9y0DhL7+H+vwPHf4ZhZvIDfUCF8oyOn5KWO/fdxk86dYuLaO/POiw==
-X-Received: by 2002:ac2:48bc:0:b0:4dc:4b70:a723 with SMTP id u28-20020ac248bc000000b004dc4b70a723mr270817lfg.30.1676887289426;
-        Mon, 20 Feb 2023 02:01:29 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id l13-20020a19c20d000000b004b550c26949sm1481452lfc.290.2023.02.20.02.01.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 02:01:29 -0800 (PST)
-Message-ID: <357f475a-e8e2-2e99-5250-0d63578e3b0f@linaro.org>
-Date:   Mon, 20 Feb 2023 11:01:27 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fKd9fxybT9+hFfyTDDr2Mtw7ZX+21Hd2dT0jDnkibYM=;
+        b=lelSltJnwnafXTYRqblQHi9PBSxNvkI5nDHVfiIVWbvPsOdSTFMQt1xC7fvp32T2Zs
+         nMR5keqQAqTQByPabseG83h2496hrjHbWxyZX05I2mql4Az77m0nfM0XKZ4U30IPQck2
+         PAf50Axa/gAGAM+gRrFsfrh6wWF2igL6HApyJ26YayfKQk58IIiW4RSwJB/cW++kFU98
+         RSlUQa3FmYEbs8frUmj/Hf5jHGr01Y5RVwrO2kur8ZUSUVFYx324BAFHApL4AVamfcjj
+         IxGxXFTJXpZDXE24ci+lE45Ha/Y0hLnkAzer6q0AkiD1EMK5y9A06n/GPK0I5ZQs8he+
+         SLRw==
+X-Gm-Message-State: AO0yUKXSqwSQK9fd2Api5w7WwqvVD9SYzmqPzcVVv45gmpBFyTU7aXOm
+        rfjsX2bua1cuxKkh4QIjFkPUFcQ0fnpRlHJVq5ZZJ6KyE3uG3aLpuw62yDZ0SFCvcjypot92x9e
+        hzJPUa78YAfU6pjKJHDSnpqDFtfk0Opv1g+ptwjPw4JJHa8nf9T9QrIg=
+X-Received: by 2002:a0c:d990:0:b0:570:fc87:4f2c with SMTP id y16-20020a0cd990000000b00570fc874f2cmr203797qvj.83.1676888160751;
+        Mon, 20 Feb 2023 02:16:00 -0800 (PST)
+X-Google-Smtp-Source: AK7set/YEwtnCc0MdoLEDmbY+Jh+bhbVGYGL0//BwQFePHm998lWNjLRhslfWc3fYUt397bZwhY8xJy7wcjRn5Bnl4Y=
+X-Received: by 2002:a0c:d990:0:b0:570:fc87:4f2c with SMTP id
+ y16-20020a0cd990000000b00570fc874f2cmr203789qvj.83.1676888160500; Mon, 20 Feb
+ 2023 02:16:00 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280-qcard: drop incorrect
- dai-cells from WCD938x SDW
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230209143702.44408-1-hal.feng@starfivetech.com>
+ <CACRpkdbao9M5dMHFO_QE8z4_E6DZLZsMUW1OnUNjKSfQc59=ew@mail.gmail.com> <4211d93d-702c-6759-6f25-f86160c0be5d@starfivetech.com>
+In-Reply-To: <4211d93d-702c-6759-6f25-f86160c0be5d@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Mon, 20 Feb 2023 11:15:44 +0100
+Message-ID: <CAJM55Z-+Cxdebcn4MLXfQdOVhx4c2SQ+zMH8cjn-Yq35xO8g0A@mail.gmail.com>
+Subject: Re: [PATCH v5 0/4] Basic pinctrl support for StarFive JH7110 RISC-V SoC
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Andreas Schwab <schwab@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
         linux-kernel@vger.kernel.org
-References: <20230220095401.64196-1-krzysztof.kozlowski@linaro.org>
- <20230220095401.64196-2-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230220095401.64196-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,39 +82,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 11 Feb 2023 at 09:25, Hal Feng <hal.feng@starfivetech.com> wrote:
+> On Fri, 10 Feb 2023 23:45:05 +0100, Linus Walleij wrote:
+> > On Thu, Feb 9, 2023 at 3:37 PM Hal Feng <hal.feng@starfivetech.com> wrote:
+> >
+> > > This patch series adds basic pinctrl support for StarFive JH7110 SoC.
+> >
+> > This v4 version applied, the driver is in good shape and all bindings ACKed,
+> > nice work on this driver!
+>
+> v4? Is this a typo? This series is v5.
+> Anyway, thank you so much!
 
+Hi Hal and Linus
 
-On 20.02.2023 10:54, Krzysztof Kozlowski wrote:
-> The WCD938x audio codec Soundwire interface part is not a DAI and does
-> not allow sound-dai-cells:
-> 
->   sc7280-herobrine-crd.dtb: codec@0,4: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I'm curious if there is a plan to address Icenowy's concerns here:
+https://lore.kernel.org/linux-gpio/52dcbe48dbf5f2561713a9642943353216fef15a.camel@icenowy.me/
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> index cb0cc2ba2fa3..95d9e4a19d76 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> @@ -419,7 +419,6 @@ &swr0 {
->  	wcd_rx: codec@0,4 {
->  		compatible = "sdw20217010d00";
->  		reg = <0 4>;
-> -		#sound-dai-cells = <1>;
->  		qcom,rx-port-mapping = <1 2 3 4 5>;
->  	};
->  };
-> @@ -428,7 +427,6 @@ &swr1 {
->  	wcd_tx: codec@0,3 {
->  		compatible = "sdw20217010d00";
->  		reg = <0 3>;
-> -		#sound-dai-cells = <1>;
->  		qcom,tx-port-mapping = <1 2 3 4>;
->  	};
->  };
+The problem is that input from "GPIO" pins is configured a little
+differently on the StarFive SoCs. Instead of having a register pr.
+pin(grroup) there is a register pr. control line to the peripherals,
+and into these you write the pin number + 2 of the pin you want the
+peripheral to react to. Why +2? That's because 0 is a special "always
+low" signal and similarly 1 is a special "always high" signal.
+
+With the current bindings one hacky way to solve this is to treat
+those two special values as kind of "virtual pins" that will always be
+high or low. So that would be something like
+
+pinmux = <GPIOMUX(GPIO_ALWAYS_LOW, GPOUT_IGNORED, GPOEN_DISABLE,
+GPI_SYS_USB_OVERCURRENT)>;
+
+..but this means we might need to mux these two virtual pins to
+multiple peripherals. I'm not sure the pinmux framework is prepared
+for that.
+
+/Emil
+
+> Best regards,
+> Hal
