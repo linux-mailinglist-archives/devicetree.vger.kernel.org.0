@@ -2,223 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6486569CF06
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 15:10:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 359C669CF42
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 15:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbjBTOKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 09:10:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35280 "EHLO
+        id S231783AbjBTOWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 09:22:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbjBTOKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 09:10:08 -0500
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648321E9EF;
-        Mon, 20 Feb 2023 06:09:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NvTGhxEKEXv6vwfIBdc5C7FQIeN2TXqpXrmzn8lbb7goyFQ5zIgyRPIgHG5P3Bb839lFu6lf+Drz2qdU1Ry+2YzyxY144qC3FwgWu7Bgfp9kxLXN1LvqxeAVIzA8uB+5TBcw9TSlg5Ycpl+Mp+IQ/jsKTuW/Ymp0Ni2xYh0RvYEgJDctXX1YKdgaTw9l6WHmDJGU/c54lM4+WFrBJpwYvD+Z0UGSVRvONEZTt3NVLDV0vnf9yrM69oMPhsZuPVo25bHLcaXJOYLU+t3KfW9O4mwKAXNnncGg/u1NdYy5a6p9Q6f5lKwfGdYLgNQQoDAUIShHHVBPLOqqFFXBPo6XmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zl/Zq3udnXoPPmPhp/uzEpbABsNB15gy+KqjcHFYdzA=;
- b=EWm9U1o79tyWz/YgutfkwXCnYZ0x6ZNQ5cD66UcRBaYQG4bRpciwwo9xKYEocUu21PUuISrOK99ykVXJi8CYCrVvwUiVjoIy6nTsPUZcfh+yIDKAY2OXou6+UKvcVsgTMbiUo+ZJRHrsAJmmeUnjz9b6AhzXSuj7yncphqB4JYulPCI9/YcGbzK/hja3MgSjzI+OQ65VkK4CiY0Sd/Ea6VzHVGgfdSqLewy9Kc+eMn8wmNlCNX9VsXwSgvZDshuTKv4OhjMJEPGlyE8PfKUH7GEDxN0tKYABIHh0p39XS6hq+Qb0AdECEbva7okp8r28dCxNbeXQSqCZo5tb54ABNQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zl/Zq3udnXoPPmPhp/uzEpbABsNB15gy+KqjcHFYdzA=;
- b=TxGnZjBmyrsY1wtwmOyTGNoWYYolKTDzWzQZD/JwFRDDIxmRZC/6+fAq0u4Wd1dSENdLhGE89SOKZvZ3KdE6gK843WqLunNa1k8nrdTYE+fRjF+KobTN2zuCYiXjyNSfcffNE1YqzVbTvurJMzkZKZyb/BfM5OU4R1PCb70CcNKvxftspfJRRDOemxxcw1st6AvFzQEHZvhoMxU4yjVKQgx2rXGeNAjT/xhvS1fC+W6GEE0+RWMC6Iw3zEK3n2RLRfJw9Tj3fjNkoxfRnv8evMZ3TLrP4Frg1m0KZSWRj2U4rdJUtVOQr4ufP5emLDQtNyXF07MA38ONn50yPHjNaQ==
-Received: from MN2PR03CA0003.namprd03.prod.outlook.com (2603:10b6:208:23a::8)
- by CH0PR12MB5252.namprd12.prod.outlook.com (2603:10b6:610:d3::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.20; Mon, 20 Feb
- 2023 14:08:58 +0000
-Received: from BL02EPF0000C404.namprd05.prod.outlook.com
- (2603:10b6:208:23a:cafe::48) by MN2PR03CA0003.outlook.office365.com
- (2603:10b6:208:23a::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.20 via Frontend
- Transport; Mon, 20 Feb 2023 14:08:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL02EPF0000C404.mail.protection.outlook.com (10.167.241.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6134.14 via Frontend Transport; Mon, 20 Feb 2023 14:08:57 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 20 Feb
- 2023 06:08:44 -0800
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 20 Feb
- 2023 06:08:43 -0800
-Received: from sumitg-l4t.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Mon, 20 Feb 2023 06:08:38 -0800
-From:   Sumit Gupta <sumitg@nvidia.com>
-To:     <treding@nvidia.com>, <krzysztof.kozlowski@linaro.org>,
-        <dmitry.osipenko@collabora.com>, <viresh.kumar@linaro.org>,
-        <rafael@kernel.org>, <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
-        <lpieralisi@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <mmaddireddy@nvidia.com>,
-        <kw@linux.com>, <bhelgaas@google.com>, <vidyas@nvidia.com>,
-        <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
-        <bbasu@nvidia.com>, <sumitg@nvidia.com>
-Subject: [Patch v2 9/9] PCI: tegra194: add interconnect support in Tegra234
-Date:   Mon, 20 Feb 2023 19:35:59 +0530
-Message-ID: <20230220140559.28289-10-sumitg@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230220140559.28289-1-sumitg@nvidia.com>
-References: <20230220140559.28289-1-sumitg@nvidia.com>
-X-NVConfidentiality: public
+        with ESMTP id S231208AbjBTOWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 09:22:39 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 977AD1EFD9
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:22:37 -0800 (PST)
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4F57B3F588
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 14:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1676902956;
+        bh=15KdzNFX7MaKLfDAFP/yezApxH/xR6DxYD9Z1QEyvxM=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=aw+CJ6efsksFvrIUuatebjN+9htiQN2MZRX/+RhPfSWIPUlrYuBJFGUZcDgQ3Yz8r
+         pjjDES4obX6kk5Z4uWue0qFQheuQxxfR078kToEhuu/v36y2elQ/VLcaAJCRmb+7Ux
+         wmpVCiTNoQ2nfMbmZmBKFR/x6pbaJD4hDTnTKlMmEvRXo4MpuiPg8NXWNg7vg7SEkL
+         DBlhUV4eTXCGjI9w5KyVqWa73acfy7Z/9NesuKSUaOYefXmtzJSUmwFZJWh4Pa5ejC
+         qmZVeZTEF9d8pwACDvpO54dCElrREYoYmKrMVoMynqqoKe1bPGTeqQxEUi3PS4lGFK
+         BzARUkrx7JF5A==
+Received: by mail-qk1-f200.google.com with SMTP id x4-20020a05620a448400b007283b33bfb3so163689qkp.4
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:22:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=15KdzNFX7MaKLfDAFP/yezApxH/xR6DxYD9Z1QEyvxM=;
+        b=Ri9zG3DLHNN8/em1Ni0xUQ5ETurQBi+bDEj3bzZJ40TCxyjdyKn8+4Zfma3CvSWGb1
+         Y6PhR3Q5uYEy6Vce5QRuRmxkzFY/RZgSgaeEQP/nK+bE8h6s4yuSUaIjCuB+58o4nwq/
+         qf2vL/pT+QhUPEwlGItvSGA8vol5Ayzw1HT5z1ffV3e8pWaO2JTD7VTNpFKTZJT0eQIM
+         3dDYvIfMJ4Jv2QGzRl7858UZlLfCff0SKalp0Yg7nYqwXi7o7XFZO4sUZGIzHmVXAdVM
+         MhR4og9ESi/mjrcFtDUJxK8BgToFG5XE4Vi1tNw73U2fKr5D0apU2uG8XbtG8lZACnjA
+         FZPw==
+X-Gm-Message-State: AO0yUKUveAvSJpfIwbJ53ZLdvPlcFnrQ9XS74UYVAQCEFW0duZKfvsra
+        Eg6XpBdIhvo23r+/Dvfldy5uCV/xYYYlOiK/eTueC4rGd9iu2KkduN4nR2a4cdhgXkpUWYOznPV
+        fWUglOlwHnfR8lUre7vlkaUQOWNygP/Dl+OavbFlP9PaU+3THPkcId4NxelNkZVM=
+X-Received: by 2002:ac8:701b:0:b0:3b7:fda5:1cbc with SMTP id x27-20020ac8701b000000b003b7fda51cbcmr213070qtm.5.1676902954914;
+        Mon, 20 Feb 2023 06:22:34 -0800 (PST)
+X-Google-Smtp-Source: AK7set+dV6jlM0TuskfDPI955wHdR3MIsyp4aZm7ZGrdR5YGZR5IqoJRIZac7YadjSfeXQ/9C9c1FhXN+okz8gNXcw4=
+X-Received: by 2002:ac8:701b:0:b0:3b7:fda5:1cbc with SMTP id
+ x27-20020ac8701b000000b003b7fda51cbcmr213061qtm.5.1676902954624; Mon, 20 Feb
+ 2023 06:22:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000C404:EE_|CH0PR12MB5252:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1aa3a2a0-6350-4c8f-557c-08db134c0268
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IxAmTWWS0zyN63XqIqEJM5rtubWOPO/c2Yr6ONvnoNkfcBTOYHy2CeIw0HgK+MB2wAN3kFr8YcmXA86Hj1NklYBAxSnz+N2w/UsKXZ57LaDcxjs+Wdwy0Duse159fxOC2SSysBU79dJf8zwcgYagblQXLdo+2+6aKjOrtxj8xAm8JLQPEfNKkOdAKqXhz4N/0u1Lj5S+vciSetXYyFPnzBvE2qAfgg5sGxKiv+5+zZl0hW64qcJVT6kAz/0NIjzaal34bIODO4Uwfa5+xilzzOECGGwWKjgwM8GZzxXrvltvoYr7Cg/Z6h0uimH6uRru9BozK8Y8Bcs5trl1x05bGmSJZfUmWxVDnlB8H4cKEHtXsH60HScdUrpH0rnJiTQBWczSCWMclH8gfXdzbNEm0hki59e1xISzp42VnXNk+8R0KZlyvU082lrzgV9JL/2gOaYzLz3CqxC4GOgrsqSeuZtb/FkbfmwrF1OnK329FXC6/5ghkW/hpv6BOCleB/LwW+IY450gIad0Z+mpx25FAD5AMkXw+9C7o1JDixdDyCsj/pHvrYkfaikBYna/dkSEXN7ofZa0L7+AHWwPHgNuypBLkxuBp1xA5DhMBoRDMcvuKDrnC8kd4UdXgt1b5G6LKnwV0c/UusOHDziWgN1dEzhm0VK3C/BSaX7URmr2PzY8n0r4dzXPFyxqf/xt1M6eQjnfDX6hhYovlamjQ7iz8Q==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(376002)(346002)(396003)(136003)(451199018)(46966006)(36840700001)(40470700004)(40480700001)(40460700003)(7696005)(8936002)(83380400001)(5660300002)(7416002)(47076005)(41300700001)(426003)(86362001)(6666004)(186003)(26005)(54906003)(1076003)(107886003)(70206006)(2906002)(4326008)(8676002)(70586007)(336012)(316002)(2616005)(478600001)(110136005)(356005)(36860700001)(36756003)(82310400005)(7636003)(82740400003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2023 14:08:57.9860
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1aa3a2a0-6350-4c8f-557c-08db134c0268
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C404.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5252
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com> <20230118061701.30047-7-yanhong.wang@starfivetech.com>
+In-Reply-To: <20230118061701.30047-7-yanhong.wang@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Mon, 20 Feb 2023 15:22:18 +0100
+Message-ID: <CAJM55Z9=wXxHXLHhLK1H2H2PnLv4Z+FiQPVd_+gtPss+P01MRg@mail.gmail.com>
+Subject: Re: [PATCH v4 6/7] riscv: dts: starfive: jh7110: Add ethernet device node
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to request DRAM bandwidth with Memory Interconnect
-in Tegra234 SoC. The DRAM BW required for different modes depends
-on speed (Gen-1/2/3/4) and width/lanes (x1/x2/x4/x8).
+On Wed, 18 Jan 2023 at 07:19, Yanhong Wang
+<yanhong.wang@starfivetech.com> wrote:
+> Add JH7110 ethernet device node to support gmac driver for the JH7110
+> RISC-V SoC.
+>
+> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 93 ++++++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index c22e8f1d2640..c6de6e3b1a25 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -433,5 +433,98 @@
+>                         reg-shift = <2>;
+>                         status = "disabled";
+>                 };
+> +
+> +               stmmac_axi_setup: stmmac-axi-config {
+> +                       snps,lpi_en;
+> +                       snps,wr_osr_lmt = <4>;
+> +                       snps,rd_osr_lmt = <4>;
+> +                       snps,blen = <256 128 64 32 0 0 0>;
+> +               };
+> +
+> +               gmac0: ethernet@16030000 {
+> +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
+> +                       reg = <0x0 0x16030000 0x0 0x10000>;
+> +                       clocks = <&aoncrg JH7110_AONCLK_GMAC0_AXI>,
+> +                                <&aoncrg JH7110_AONCLK_GMAC0_AHB>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC0_PTP>,
+> +                                <&aoncrg JH7110_AONCLK_GMAC0_TX>,
 
-Suggested-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
----
- drivers/pci/controller/dwc/pcie-tegra194.c | 40 +++++++++++++++++-----
- 1 file changed, 32 insertions(+), 8 deletions(-)
+The gmac0_tx clock is a mux that takes either the gmac0_gtxclk or
+rmii_rtx as parent. However it is then followed by an inverter that
+optionally inverts the clock, gmac0_tx_inv. I'm guessing this
+optionally inverted signal is what is actually used (otherwise why
+would the inverter exist), so I think this clock is what should be
+claimed here. Eg.
+    <&aoncrg JH7110_AONCLK_GMAC0_TX_INV>,
 
-diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-index 09825b4a075e..d2513c9d3feb 100644
---- a/drivers/pci/controller/dwc/pcie-tegra194.c
-+++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-@@ -15,6 +15,7 @@
- #include <linux/gpio.h>
- #include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
-+#include <linux/interconnect.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -287,6 +288,7 @@ struct tegra_pcie_dw {
- 	unsigned int pex_rst_irq;
- 	int ep_state;
- 	long link_status;
-+	struct icc_path *icc_path;
- };
- 
- static inline struct tegra_pcie_dw *to_tegra_pcie(struct dw_pcie *pci)
-@@ -309,6 +311,24 @@ struct tegra_pcie_soc {
- 	enum dw_pcie_device_mode mode;
- };
- 
-+static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
-+{
-+	struct dw_pcie *pci = &pcie->pci;
-+	u32 val, speed, width;
-+
-+	val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
-+
-+	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
-+	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
-+
-+	val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / BITS_PER_BYTE);
-+
-+	if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
-+		dev_err(pcie->dev, "can't set bw[%u]\n", val);
-+
-+	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-+}
-+
- static void apply_bad_link_workaround(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-@@ -452,14 +472,12 @@ static irqreturn_t tegra_pcie_ep_irq_thread(int irq, void *arg)
- 	struct tegra_pcie_dw *pcie = arg;
- 	struct dw_pcie_ep *ep = &pcie->pci.ep;
- 	struct dw_pcie *pci = &pcie->pci;
--	u32 val, speed;
-+	u32 val;
- 
- 	if (test_and_clear_bit(0, &pcie->link_status))
- 		dw_pcie_ep_linkup(ep);
- 
--	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
--		PCI_EXP_LNKSTA_CLS;
--	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-+	tegra_pcie_icc_set(pcie);
- 
- 	if (pcie->of_data->has_ltr_req_fix)
- 		return IRQ_HANDLED;
-@@ -945,9 +963,9 @@ static int tegra_pcie_dw_host_init(struct dw_pcie_rp *pp)
- 
- static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
- {
--	u32 val, offset, speed, tmp;
- 	struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
- 	struct dw_pcie_rp *pp = &pci->pp;
-+	u32 val, offset, tmp;
- 	bool retry = true;
- 
- 	if (pcie->of_data->mode == DW_PCIE_EP_TYPE) {
-@@ -1018,9 +1036,7 @@ static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
- 		goto retry_link;
- 	}
- 
--	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
--		PCI_EXP_LNKSTA_CLS;
--	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-+	tegra_pcie_icc_set(pcie);
- 
- 	tegra_pcie_enable_interrupts(pp);
- 
-@@ -2224,6 +2240,14 @@ static int tegra_pcie_dw_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, pcie);
- 
-+	pcie->icc_path = devm_of_icc_get(&pdev->dev, "write");
-+	ret = PTR_ERR_OR_ZERO(pcie->icc_path);
-+	if (ret) {
-+		tegra_bpmp_put(pcie->bpmp);
-+		dev_err_probe(&pdev->dev, ret, "failed to get write interconnect\n");
-+		return ret;
-+	}
-+
- 	switch (pcie->of_data->mode) {
- 	case DW_PCIE_RC_TYPE:
- 		ret = devm_request_irq(dev, pp->irq, tegra_pcie_rp_irq_handler,
--- 
-2.17.1
+Right now it works only because the inverted signal can't be gated
+(turned off) even when it's not claimed by any driver.
 
+> +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXC>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXCLK>;
+
+Here the gmac0_gtxclk clock is the parent of the gmac0_gtxc, so
+claiming the gmac0_gtxc should be enough. Since the gmac0_gtxc is just
+a gate it should have the CLK_SET_RATE_PARENT flag set, so the driver
+can just change the rate of the child and it should propagate to the
+parent. In short I think claiming only the gmac0_gtxc clock should be
+enough here.
+
+> +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
+> +                                               "tx", "gtxc", "gtx";
+> +                       resets = <&aoncrg JH7110_AONRST_GMAC0_AXI>,
+> +                                <&aoncrg JH7110_AONRST_GMAC0_AHB>;
+> +                       reset-names = "stmmaceth", "ahb";
+> +                       interrupts = <7>, <6>, <5>;
+> +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
+> +                       phy-mode = "rgmii-id";
+> +                       snps,multicast-filter-bins = <64>;
+> +                       snps,perfect-filter-entries = <8>;
+> +                       rx-fifo-depth = <2048>;
+> +                       tx-fifo-depth = <2048>;
+> +                       snps,fixed-burst;
+> +                       snps,no-pbl-x8;
+> +                       snps,force_thresh_dma_mode;
+> +                       snps,axi-config = <&stmmac_axi_setup>;
+> +                       snps,tso;
+> +                       snps,en-tx-lpi-clockgating;
+> +                       snps,txpbl = <16>;
+> +                       snps,rxpbl = <16>;
+> +                       status = "disabled";
+> +                       phy-handle = <&phy0>;
+> +
+> +                       mdio0: mdio {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                               compatible = "snps,dwmac-mdio";
+> +
+> +                               phy0: ethernet-phy@0 {
+> +                                       reg = <0>;
+> +                               };
+> +                       };
+> +               };
+> +
+> +               gmac1: ethernet@16040000 {
+> +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
+> +                       reg = <0x0 0x16040000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_GMAC1_AXI>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC1_AHB>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC1_PTP>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC1_TX>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXC>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXCLK>;
+> +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
+> +                                       "tx", "gtxc", "gtx";
+> +                       resets = <&syscrg JH7110_SYSRST_GMAC1_AXI>,
+> +                                <&syscrg JH7110_SYSRST_GMAC1_AHB>;
+> +                       reset-names = "stmmaceth", "ahb";
+> +                       interrupts = <78>, <77>, <76>;
+> +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
+> +                       phy-mode = "rgmii-id";
+> +                       snps,multicast-filter-bins = <64>;
+> +                       snps,perfect-filter-entries = <8>;
+> +                       rx-fifo-depth = <2048>;
+> +                       tx-fifo-depth = <2048>;
+> +                       snps,fixed-burst;
+> +                       snps,no-pbl-x8;
+> +                       snps,force_thresh_dma_mode;
+> +                       snps,axi-config = <&stmmac_axi_setup>;
+> +                       snps,tso;
+> +                       snps,en-tx-lpi-clockgating;
+> +                       snps,txpbl = <16>;
+> +                       snps,rxpbl = <16>;
+> +                       status = "disabled";
+> +                       phy-handle = <&phy1>;
+> +
+> +                       mdio1: mdio {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                               compatible = "snps,dwmac-mdio";
+> +
+> +                               phy1: ethernet-phy@1 {
+> +                                       reg = <1>;
+> +                               };
+> +                       };
+> +               };
+>         };
+>  };
+> --
+> 2.17.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
