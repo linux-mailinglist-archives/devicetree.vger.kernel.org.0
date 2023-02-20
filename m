@@ -2,101 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 105D469D682
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 23:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0565D69D6F1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 00:15:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231534AbjBTW4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 17:56:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59410 "EHLO
+        id S232005AbjBTXO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 18:14:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbjBTW4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 17:56:08 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7241F91D;
-        Mon, 20 Feb 2023 14:56:03 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id c11so3173585oiw.2;
-        Mon, 20 Feb 2023 14:56:03 -0800 (PST)
+        with ESMTP id S229560AbjBTXO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 18:14:57 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D539D149B5;
+        Mon, 20 Feb 2023 15:14:55 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-172129e9cf1so2649481fac.8;
+        Mon, 20 Feb 2023 15:14:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wYGFpd9GU+JENPbJLudnhXGQHElorftzXREixJ5gOhw=;
-        b=PcxmUvVG4ngfbdyiWt94mHnUTlyKIRk/kewRHy0BMRQRzwPfU7TMG5Vtw2xFZvCZWT
-         OalCjchncH+7V26kFMFI5mPse8on8IxfwibTawr2pdypGlrtsxGNepNoNx+I86fQKvgp
-         z+vgqW/UCAiuXyZHwugN0DVhZvKWde9rJ4+YJ98t3WPVYcvYrDxzinACQtVYKmy7MYIU
-         K0g5ocwJEJNrvyjqdhamyUl2EBcNvA8zJgcJL04U+InMLRdR15F+A959SCuU6HhmhEUP
-         stwXxSGoaGTEgGUj/QDVJmRwVhOdmNbZ1acegMQgu2Ss/JhL/DXm4VW7WIq3WhayS2i8
-         OHpw==
-X-Gm-Message-State: AO0yUKWqN48TA+LDzBBzMbPh/+BpNWsl55QHmREEuu7Cz2OVy0jRvd4O
-        5JFQX7ePqSTETa5BU7RQKoC9T+DONw==
-X-Google-Smtp-Source: AK7set9Q1vDIBcq1JTQXLqThjuKC6KcYB16w6rpvFlIrUVN587KknWRoNx9iYitO8c5mHuJfPQqe2Q==
-X-Received: by 2002:a05:6808:3c8:b0:378:5987:6dc9 with SMTP id o8-20020a05680803c800b0037859876dc9mr5134784oie.9.1676933763064;
-        Mon, 20 Feb 2023 14:56:03 -0800 (PST)
+        bh=fjN/qxKsAOys/WyOvZ7MZbuaJXdobrZBn255f9v/bD8=;
+        b=TmCE18hToXpoGmt1Lt+ZKV1rLBMlxrq/wZD3zB7X2AtmxcRJCKVHjGWdZCtsVzH1X9
+         GNBUALnlcCHMmIAklaCHdOQazO1jkOXcbfp7jV8Y1cIZOFRatDFojc6GIaL7jEhu08Mb
+         VJ9ca8hilbx+7TEuhQrjR7IlshCWMb/HQP9mgLsVNVdVpkcEe3loPIXi6W2OUi/ViihQ
+         EzvSjyB27Lm5OcOsT3Z/TKBZ1hs5znbxJJN4rVllFRwasoXcQRgutUR1Cpui1G46H1d4
+         oumjQTBA0u0fh3v505xKz3QmpxWN3teOxdbNO+WSMG8TlNoHuelSTttPj2y/OSserp6D
+         rROA==
+X-Gm-Message-State: AO0yUKUb088xIcGeJzZXZ7V4F4pYTgaUiiSmXXSllFYJ3SaxlFxdynI8
+        4AWTT7YpHB/uihjE2aO4bQ==
+X-Google-Smtp-Source: AK7set+ZuQ+YjT0UD2NOVFxqHoxa1z9b7IEhcFcBTCuJmVjPnO7t2TPR+FRXPiN4JDZPcYJ2wt/m7A==
+X-Received: by 2002:a05:6870:b312:b0:172:1457:64d7 with SMTP id a18-20020a056870b31200b00172145764d7mr1434124oao.0.1676934895040;
+        Mon, 20 Feb 2023 15:14:55 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p84-20020acad857000000b00378ce4197casm5382660oig.8.2023.02.20.14.56.02
+        by smtp.gmail.com with ESMTPSA id ef5-20020a0568701a8500b00152c52608dbsm3894587oab.34.2023.02.20.15.14.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Feb 2023 14:56:02 -0800 (PST)
-Received: (nullmailer pid 548521 invoked by uid 1000);
-        Mon, 20 Feb 2023 22:56:01 -0000
-Date:   Mon, 20 Feb 2023 16:56:01 -0600
+        Mon, 20 Feb 2023 15:14:54 -0800 (PST)
+Received: (nullmailer pid 578839 invoked by uid 1000);
+        Mon, 20 Feb 2023 23:14:53 -0000
+Date:   Mon, 20 Feb 2023 17:14:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: sama7g5-pdmc: add
- microchip,startup-delay-us binding
-Message-ID: <20230220225601.GA545317-robh@kernel.org>
-References: <20230217124151.236216-1-claudiu.beznea@microchip.com>
- <20230217124151.236216-3-claudiu.beznea@microchip.com>
+To:     Danny Kaehn <kaehndan@gmail.com>
+Cc:     robh+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        krzysztof.kozlowski+dt@linaro.org, ethan.twardy@plexus.com,
+        bartosz.golaszewski@linaro.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com
+Subject: Re: [PATCH v6 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Message-ID: <167693489048.578739.5434769948663222612.robh@kernel.org>
+References: <20230217184904.1290-1-kaehndan@gmail.com>
+ <20230217184904.1290-2-kaehndan@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230217124151.236216-3-claudiu.beznea@microchip.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20230217184904.1290-2-kaehndan@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 17, 2023 at 02:41:50PM +0200, Claudiu Beznea wrote:
-> Add microchip,startup-delay-us binding to let PDMC users to specify
-> startup delay.
 
-The diff tells me all this. Why does this need to be per platform?
-
+On Fri, 17 Feb 2023 12:49:02 -0600, Danny Kaehn wrote:
+> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The binding allows describing the chip's gpio and i2c controller in DT
+> using the subnodes named "gpio" and "i2c", respectively. This is
+> intended to be used in configurations where the CP2112 is permanently
+> connected in hardware.
+> 
+> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
 > ---
->  .../devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml   | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/i2c/silabs,cp2112.yaml           | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml b/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
-> index c4cf1e5ab84b..9b40268537cb 100644
-> --- a/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
-> +++ b/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
-> @@ -67,6 +67,12 @@ properties:
->      maxItems: 4
->      uniqueItems: true
->  
-> +  microchip,startup-delay-us:
-> +    description: |
-> +      Specifies the delay in microseconds that needs to be applied after
-> +      enabling the PDMC microphones to avoid unwanted noise due to microphones
-> +      not being ready.
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.34.1
-> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
