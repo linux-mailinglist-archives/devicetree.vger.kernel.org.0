@@ -2,58 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78EC469D45B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 20:56:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A8769D468
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 21:05:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231602AbjBTT4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 14:56:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
+        id S231706AbjBTUFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 15:05:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231340AbjBTT4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 14:56:12 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BA61DB9F;
-        Mon, 20 Feb 2023 11:56:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=C8wxn5zU9hrSXYKgcJgtYOni4ihYgf3wye9qtJ+vVco=; b=dTDX2o8o0EWBaAUGfT1/WY9n4r
-        xmJ0bBnheU6Imcy4h54K6XdCqll3yOJEbuOfZsVPYPcD/u0eD+NiRwbJUy0/DAfdvXIVnRmQ5AcTF
-        HQ+Eg0c7TBYivVrcndaLLOATBj5tGFzuxRRcIxobkpFwpjs6NyUCC0UqAFWqHJnVlzokYhfu6gnTE
-        rznLXbtw9ni4PqM2OLs2TrTTTqmcjrJ+P7I2FqnhUaw+kn3z+/+VQIyYpUCfu6ewvfSFp3CT+K1Q2
-        tbtnYRK0cdwk3DRjUpBt6+sgBkPSlls4IGBImxgTH2jLlBYxNeLLTbCoXeRwJ6HMNTwrxb6zbqlca
-        u2XVmnvg==;
-Received: from [2601:1c2:980:9ec0::df2f]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1pUCGY-005QkH-MB; Mon, 20 Feb 2023 19:56:02 +0000
-Message-ID: <2f9aa86e-40e1-91f6-06b2-c79d62f7a136@infradead.org>
-Date:   Mon, 20 Feb 2023 11:55:58 -0800
+        with ESMTP id S230062AbjBTUFc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 15:05:32 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC7A1E1F2;
+        Mon, 20 Feb 2023 12:05:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676923531; x=1708459531;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0JjseAxJv1MQ5aoMkYPcofLggUQw/63rn0ahWH1W61w=;
+  b=BB69Rsf1g0h+6bWorBoCcj/3dTauqDAGVnWFQ3d+SCBTyd79Pk3HxbuA
+   XgidkXCkF7O6IoCEY3rS3I08Qs4IvR/W9LTKfoJfHDa0wOQ8p7px9z7Tx
+   Qi9UV1sS7VqMMq5UTqiyT5GNuZeBY84ooRrQwr1M8knB/2ojGRlIQVl9Y
+   HVSmo5VpFPXWNOk/JY5E0p3vd4k2GoV1PELIuBn1lTUESAEr8cwCXVvjr
+   Jvfj4jDTyaXKJPdnI4LfXzzf9mKXuG6e0CU5FBHG/Jyltxq8zJYtuVQda
+   BIB0M6LJcfGbbeIhxEnxiUp9rLWgq5FgLZ/panATjBX4/uq977gqLFJ4O
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="331145105"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; 
+   d="scan'208";a="331145105"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2023 12:05:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="1000368307"
+X-IronPort-AV: E=Sophos;i="5.97,313,1669104000"; 
+   d="scan'208";a="1000368307"
+Received: from lkp-server01.sh.intel.com (HELO 4455601a8d94) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 20 Feb 2023 12:05:28 -0800
+Received: from kbuild by 4455601a8d94 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pUCPf-000E9J-2I;
+        Mon, 20 Feb 2023 20:05:27 +0000
+Date:   Tue, 21 Feb 2023 04:04:46 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     marius.cristea@microchip.com, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        marius.cristea@microchip.com
+Subject: Re: [PATCH v1 2/2] iio: adc: adding support for pac193x
+Message-ID: <202302210331.iKaMm4co-lkp@intel.com>
+References: <20230220123232.413029-3-marius.cristea@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH V3 2/2] nvmem: add generic driver for devices with MMIO
- access
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230220174930.7440-1-zajec5@gmail.com>
- <20230220174930.7440-3-zajec5@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230220174930.7440-3-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230220123232.413029-3-marius.cristea@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,32 +67,60 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 2/20/23 09:49, Rafał Miłecki wrote:
-> +static int mmio_nvmem_write(void *context, unsigned int offset, void *val, size_t bytes)
-> +{
-> +	struct mmio_nvmem *priv = context;
-> +
-> +	switch (priv->io_width) {
-> +	case 1:
-> +	case 2:
-> +	case 4:
-> +		return -EOPNOTSUPP;
+I love your patch! Perhaps something to improve:
 
-I'm just curious: (since read supports those cases)
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.2 next-20230220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-what size writes are typically used here?
-And what value for priv->io_width?
+url:    https://github.com/intel-lab-lkp/linux/commits/marius-cristea-microchip-com/dt-bindings-iio-adc-adding-dt-bindings-for-PAC193X/20230220-203540
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20230220123232.413029-3-marius.cristea%40microchip.com
+patch subject: [PATCH v1 2/2] iio: adc: adding support for pac193x
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20230221/202302210331.iKaMm4co-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/fd3be916ffe18735a98bdc55ccc0cb5f3097582c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review marius-cristea-microchip-com/dt-bindings-iio-adc-adding-dt-bindings-for-PAC193X/20230220-203540
+        git checkout fd3be916ffe18735a98bdc55ccc0cb5f3097582c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/iio/adc/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202302210331.iKaMm4co-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/adc/pac193x.c: In function 'pac193x_acpi_get_acpi_match_entry':
+>> drivers/iio/adc/pac193x.c:1402:21: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+    1402 |         acpi_status status;
+         |                     ^~~~~~
 
 
+vim +/status +1402 drivers/iio/adc/pac193x.c
 
-Thanks.
-
-> +	default:
-> +		memcpy_toio(priv->base + offset, val, bytes);
-> +	}
-> +
-> +	return 0;
-> +}
+  1399	
+  1400	static char *pac193x_acpi_get_acpi_match_entry(acpi_handle handle)
+  1401	{
+> 1402		acpi_status status;
+  1403		union acpi_object *name_object;
+  1404		struct acpi_buffer buffer = {ACPI_ALLOCATE_BUFFER, NULL};
+  1405	
+  1406		status = acpi_evaluate_object(handle, "_HID", NULL, &buffer);
+  1407		name_object = buffer.pointer;
+  1408	
+  1409		return name_object->string.pointer;
+  1410	}
+  1411	
 
 -- 
-~Randy
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
