@@ -2,245 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B37569CBDE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 14:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 427BF69CBEF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 14:23:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231764AbjBTNSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 08:18:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60336 "EHLO
+        id S231500AbjBTNXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 08:23:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjBTNSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 08:18:17 -0500
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2103.outbound.protection.outlook.com [40.107.114.103])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F4ABDF2;
-        Mon, 20 Feb 2023 05:18:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BpH+dGVitcezQ032gAnJm+IRDgDLr1+hYdkGpB22ZDuzFFF7V6Iib48ly/n/jkL1ZeSkS0uUOzGlTRhQ3OXw425+YMZrLQSpwFLGgSRHwb9g5AXWpl3PZxMtUijcLqK1O+YWcERrgGfUH2uq15Zgb2d3Zg8Ka80JWdycB3bZqZthYs3DWbw7VeG8dEmtaKqo/NNTZcJ9mWjp/Y+7U7OJGh5Nk3aoai/uGoIY46egjHKtiX3zKroR6n3qlIzLi/Dp4S+g7XaUJ4VQ3SuzGDVb12vcaW/dgIczXS+kd2hDkse8KRQxH3zszRDwDVXd1kOornqSFHBA0roRqWYVUG8+KA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t36J5Qtqjgt6Pp3RXMF7UBl3KTE6kdf2GcBjL0VOHII=;
- b=jbZ/tLS4oxyJNbh+5eLpFKDoYdk/atgLtTq9k7M6YR5OVRv57OwqNMBl6AkxpWAbLmEImJmiH7Eh5rGsVGUAzb4nlAD9w4kljfVAwKm5wXSRRs/3Uet6wGv7eQ64q2WoW9GWSzrZ1cl3YddJgb/k4r80fwOuEkScPs/4RPSb2SqQOtiA+pAStg3qElNS+8mfX531cgmTsU/gHeFf4DHEEVFuInKWkUM0L3nQWAMTMmSIRWMP3PCxsYXUvUF7hyst7Fa5RJt3MVFmz8Y0r+xcpF6LDyFsq5vZcEwVsMUAF5QUrSbGrfgOft+oDPDqF3V6WAhrQzz6dhmdwonzm+xzEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t36J5Qtqjgt6Pp3RXMF7UBl3KTE6kdf2GcBjL0VOHII=;
- b=ffKADlrXmcpxVs6OOkU+Ba96pXR5lrFELQjhDtmX9CQdgHsnya2Flb4asm3TdhC+G6q0++ganMnKIrAognFC+GWpzRbcNWf6VVhzsHCP9wgY8Gi37ID8aLKyigmZjrWFVgeI2o/qQH+eUB9uzNXzCf1vkiAVntrmI5GyK9n4iGo=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYCPR01MB10760.jpnprd01.prod.outlook.com (2603:1096:400:294::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.18; Mon, 20 Feb
- 2023 13:18:10 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::343d:7339:78e5:a46e]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::343d:7339:78e5:a46e%8]) with mapi id 15.20.6111.020; Mon, 20 Feb 2023
- 13:18:08 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.de>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH RFC 0/3] Add Versa3 clock generator support
-Thread-Topic: [PATCH RFC 0/3] Add Versa3 clock generator support
-Thread-Index: AQHZRS0b8JYC5www50CVHBoCQPQrMK7X0LvQ
-Date:   Mon, 20 Feb 2023 13:18:08 +0000
-Message-ID: <OS0PR01MB592217664FC7D09EB968947486A49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYCPR01MB10760:EE_
-x-ms-office365-filtering-correlation-id: 58ee151a-ae7a-4f55-fdd1-08db1344e87f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WyIyJozhWHkrZ6fmdQHJghTVTgY0nIvptTZeaYMknJPbGe4a7A9V4jVdK3vEz0SBRjlUy/94aAlewiYf+1+dCcIpZexSyMwiU0j22ugJg/eZ618vAGRr7TGn7K7ruwo0MqtWcX6jd24CIajkBWbvdEJXQWCZqQxlfkMv7UG70ZETDeWfYjVhO27nLx04N4Jvl44OZaUUJYe0cLwRiPqG0vGaK/grqPeNcPcsflfqC3ZrgAvolKjlO0GQm8zaV9LDvSIhMWwZ7j1+k9vMnC5NtZ/7GTmV7Iz5F5KhJ8Mu3QgLGo9gAEuUCMzrVTNbuoafARm99i4FFzTfPUdcndrt1Marol5FSmnY0YYw9LwlYwrGnkPEiaoNz6iwWeyBdSxYS7qELPFZR/4w6Z8bO8q0zRKW7iLQZwhA4nLJQrouc05EQxUwm13V4ssHD40uDMlT7Uo8DJK0ln8/dCcVBBACRWHQQIH/dtmlaObZGoc5a5ONLFYt4r4RHk/NLas6NXEL2VDDdktTKBsFp63Ltb0h/ZbWSCNCpbQnFprr8zb6tcAvV1Opcv9pqIbIj83ZYm2YQbqckVSwxR8Tk7HYfxM91X7Tky5VWygpqQ/YWMJMiyTLz2OAbwDhSo8SNZdAh+ZEQkwqS/68ENXKSYzggRh0YJE5MVLw77H+Ls0UHE08Dt8bmFgSIsGJowrEQkzAhtf7
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(136003)(396003)(366004)(376002)(39860400002)(451199018)(38100700002)(7696005)(54906003)(110136005)(316002)(122000001)(38070700005)(76116006)(2906002)(966005)(83380400001)(64756008)(66556008)(5660300002)(66476007)(66946007)(478600001)(71200400001)(86362001)(52536014)(6506007)(55016003)(8936002)(7416002)(53546011)(66446008)(8676002)(4326008)(41300700001)(33656002)(26005)(9686003)(186003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?OavH7Zgn9O1zlUqHe9s4nre3Qkrdaor8d3etIh0UkwYDUycZJ+GIUgd/MkSM?=
- =?us-ascii?Q?kqAtM4SGnhADBzoN85w+rTGYx6OZSB/YmwFsXuJkzhMPlaNxJRfHWgWVXfoi?=
- =?us-ascii?Q?79VHXXHBwD6L58I4awxf+B8k58PUNEJJh7jh4l2X6wHVikyfPaVdfGhDJ1Vo?=
- =?us-ascii?Q?cUOw9/glvkrK493rfmgHg06YVZ+ndfsGrv9J4Iy28kj9l4WLZ5o4u67TEfjp?=
- =?us-ascii?Q?XcRtqKHlHmmxsHjLA7rXvWtY4O2wadIWx6AHbUE/Fmn7XOGeLA5iWmCrqMC3?=
- =?us-ascii?Q?mCrECNDErdQucpxsIrjmpglKCd7YB8X1id2R6tlXz8+Fk5evyJ1EJoM5m8FL?=
- =?us-ascii?Q?sUnz71buUh/pSVyb0SE0QXDzbxa4rPuEblMrmqmQ1BFtxafxDqQzsy6Er99c?=
- =?us-ascii?Q?6wJy9TDppt/JdiatqpNX2wl/+hWsJzDZWl/oZxrarvPoLvc9y0jsvQ2EX3qO?=
- =?us-ascii?Q?bbN7EOD8jgld8bta5+pI/JYyfoL9TkWHW7gV2Exs+xzpX+2f4Y6OKolbT9rR?=
- =?us-ascii?Q?44h4HutcB3/8Ys3Qw8NgIPvTMf6XZ0uxsDinHO65YbE5cF4O04XYEkYCYvlx?=
- =?us-ascii?Q?RWhcdOMclWw4YsWsdqzwzpc2IkpofJVI3pfmzGhIaaN/FADSQEeqmF3qc0Rg?=
- =?us-ascii?Q?lpe0JZMmdZIccDGkX5g4s+2PPqRpyqWWyBWheMjM+6viF5YoKCYPCRfZcKoK?=
- =?us-ascii?Q?MDOTnGvD0rgdQRyOxedqvpGa1PFyn/kxOd+3idnHWvCvlJ9iAioR2XKoZsTU?=
- =?us-ascii?Q?BPCwyABoxxdBrJGGW7nAlcHIFEvSc+qeoAosTDnOuMfm/FtHPBTDC+y7oOtG?=
- =?us-ascii?Q?9auMJQ0umzj7nBBLyz+AP2dcCbdsLYw6+d4Pg7qCCu7toq58F2Y57r8L06PD?=
- =?us-ascii?Q?t8+isuyvbDV25DqiEjCtPUElA102gHbxKC9AqpLkYs8WWOH5r6UmkmP0WbUD?=
- =?us-ascii?Q?9OMBI5/TLXjg9zXXK+Qnom4EFzPpOzesFV4UJHNPhpmunX5lBoyfmcy5ppNQ?=
- =?us-ascii?Q?QM++pN9l0/6nAIb8d2ZIrbsABfYk09I1QFAhiSnQL+356bx6IqoVnUkiC5bB?=
- =?us-ascii?Q?vhum6XwmZAoOx2m+JTxDNbqdKc1ocSt0bIkTwnHiiypWFjN8UfT8nXx1/JBA?=
- =?us-ascii?Q?ES5Xzi0iGhOyCGtVUii1BNjci476Fnwt4uoap0HLkPMGX1Q05SXr+oakRLob?=
- =?us-ascii?Q?6JizPkTWgpvbhz62S3Q4vCTR6jXVxAa+2fDM82n8Fvw1ySeQvwpZHkV1/knB?=
- =?us-ascii?Q?13PWCSiiN92RavQFrYMisl7xp2zljhGvl7myvGg3DD1rGCBLc9XzihYCP4Rz?=
- =?us-ascii?Q?Xa2W7wtYJIZnv4uN9Z1cR4B5SbKOz6iwqnvVtzm9LXN3u4UejBqY1GpxwOuL?=
- =?us-ascii?Q?VU6G38v0Xbmh+LoVlZ2j/nuVwUip4fDECLvsq4Pj/TTgA2we1r1Hobm5tVC8?=
- =?us-ascii?Q?A4tw297i5OBywKQisY0hX/angac7yoK+OZcNDif2lCl9VsRRMSPDPD1Dn8p3?=
- =?us-ascii?Q?FMHpsj6IOoOkISvxt3VbNymFeD3uRcj+Qi/URUJCI6tV6Zl6PgATCKmqf3lv?=
- =?us-ascii?Q?7u457UK+9wPRpK6/cNQ/yCHUgvKN90LGBp1TmuCUTgzZpAXccs0OesuJJIwh?=
- =?us-ascii?Q?3Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230122AbjBTNWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 08:22:32 -0500
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4661A646;
+        Mon, 20 Feb 2023 05:22:30 -0800 (PST)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31KCRDP6007741;
+        Mon, 20 Feb 2023 05:22:17 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=pfpt0220; bh=dhKelfLH8aJy1+bLl4u6+viGj8jNiDdLf7QWa3W/h7M=;
+ b=QcBLBbnZ3QxONV9Cf5tKUiK/wiG9gG4UpzVbUJelFMGyGffaiErfbAZNVloTzw5YZpvN
+ BXDxpTvtnZUT8l3Qnvayns4lEOehmxwdyAbMqsciEPniawfVe79rffDYXROAarQ/du7l
+ 7wunEGUEoW7aFIys7pUdyhYrUVErX1AsR6/ESEnUtsL7N6MRjof4hkGalMnJFT3xMESE
+ Qo++nsPMuEefPbyaXOF5wN2dg+nYfvwuvb8OoQX2Zuw/K0slJtTdOjfdE1TJPCXB+Caa
+ aPULn7p2Ixuo3HfFOeis/dK0DMVQQCKvJkYCEcCODycwMn1ClAUQayGINSMCEBIuN3ON rQ== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3nty2yy8kw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 20 Feb 2023 05:22:17 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Feb
+ 2023 05:22:14 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Mon, 20 Feb 2023 05:22:14 -0800
+Received: from Dell2s-9 (unknown [10.110.150.250])
+        by maili.marvell.com (Postfix) with ESMTP id 795D93F7073;
+        Mon, 20 Feb 2023 05:22:14 -0800 (PST)
+Date:   Mon, 20 Feb 2023 05:22:14 -0800
+From:   Piyush Malgujar <pmalgujar@marvell.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
+        <jannadurai@marvell.com>, <cchavva@marvell.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: mmc: sdhci-cadence: SD6 support
+Message-ID: <20230220132214.GA24729@Dell2s-9>
+References: <20230123192735.21136-1-pmalgujar@marvell.com>
+ <20230123192735.21136-5-pmalgujar@marvell.com>
+ <d05161ed-eb30-2d4d-e9bc-4b40e8ae09e7@linaro.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58ee151a-ae7a-4f55-fdd1-08db1344e87f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2023 13:18:08.2150
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YhY2AEyP5kEIbM1hm4O9WX7c0Cc87BlGVhQXrW/ydHENktbcH4QBpp8+niElODXTp53z39Plhj1gdzmE9aAVOkQxkRdFya+Bbn2JCtwx4hQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB10760
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <d05161ed-eb30-2d4d-e9bc-4b40e8ae09e7@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-GUID: tBUWEJSQod4CqVY50BpMJx56NXMKGx1i
+X-Proofpoint-ORIG-GUID: tBUWEJSQod4CqVY50BpMJx56NXMKGx1i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-20_11,2023-02-20_02,2023-02-09_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Rob , Krzysztof Kozlowski
+Hi Krzysztof,
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: Monday, February 20, 2023 1:13 PM
-> To: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
-> <sboyd@kernel.org>
-> Cc: Biju Das <biju.das.jz@bp.renesas.com>; linux-clk@vger.kernel.org; Gee=
-rt
-> Uytterhoeven <geert+renesas@glider.be>; Kuninori Morimoto
-> <kuninori.morimoto.gx@renesas.com>; Prabhakar Mahadev Lad
-> <prabhakar.mahadev-lad.rj@bp.renesas.com>; Fabrizio Castro
-> <fabrizio.castro.jz@renesas.com>; Mark Brown <broonie@kernel.org>; Takash=
-i
-> Iwai <tiwai@suse.de>; alsa-devel@alsa-project.org; linux-renesas-
-> soc@vger.kernel.org
-> Subject: [PATCH RFC 0/3] Add Versa3 clock generator support
->=20
-> The 5P35023 is a VersaClock programmable clock generator and it provides =
-6
-> clk outputs {diff2, diff1, se3, se2, se1 and refin}.
->=20
-> It has an internal OTP memory allows the user to store the configuration =
-in
-> the device. After power up, the user can change the device register setti=
-ngs
-> through the I2C interface when I2C mode is selected.
->=20
-> This driver is for overriding OTP default values during boot based on a f=
-ull
-> register map from DT, and also minimal support to change the parent of a
-> output clock.
->=20
-> The motivation for developing this driver is for supporting 48KHz
-> playback/record with audio codec on RZ/G2L SMARC EVK.
->=20
-> On RZ/G2L SMARC EVK, By default audio mclk is connected to
-> 11.2896 MHz clk which is multiple of 44.1KHz.
->=20
-> Please see the below default OTP configuration of Dividers connected to
-> output clocks.
->=20
-> DIV3 12.2880 MHz   DIFF2--> Audio clk2
-> DIV5 11.2896 MHz   SE1  --> Audio clk1
-> DIV5 11.2896 MHz   SE2  --> Audio mck
-> DIV4 12      MHz   SE3  --> This clk Not used
-> DIV1 25 MHz        DIFF1-->Ethernet clk
-> Ref1-> 24MHz
->=20
-> With this setup, we won't be able to do 48KHz playback/record on audio
-> codec, as mck is always connected to 11.2896MHz clk.
->=20
-> But by programming the i2c, we can make use of DIV4 to generate 12.2880 M=
-Hz
-> and make that as parent of SE2 and there by supporting 48KHz
-> playback/record.
->=20
-> A block diagram with modification can be find here[1]
-> [1] https://paste.pics/a253ce7cdc8720c3b5eb6953b97b25ff=20
->=20
-> DIV3 12.2880 MHz   DIFF2--> Audio clk2
-> DIV5 11.2896 MHz   SE1  --> Audio clk1
-> DIV5 11.2896 MHz | SE2  --> Audio mck
-> DIV4 12.2880 MHz |
-> DIV2 12      MHz   SE3  --> This clk Not used
-> DIV1 25 MHz        DIFF1--> Ethernet clk
-> Ref1-> 24MHz
->=20
-> The driver can read a full register map from the DT, and will use that
-> register map to initialize the clk generator when the system boots.
-> and later, based on sampling rate, it switches the parent of SE2 and supp=
-ort
-> both 44.1 and 48 KHz playback/record at run time.
->=20
-> 48KHz playback
-> 1f: f6 --> setting Div4 as clock source for se2 Read at address  0x10049C=
-00
-> : 0x300B4022 --> Setting Audio clk2 in SSI
->        pfd2                           1        1        0    24000000
->           pll2                        1        1        0   491519897
->              div4_mux                 1        1        0   491519897
->                 div4                  1        1        0    12287998
->                    se2_mux            1        1        0    12287998
->                       se2             1        1        0    12287998
->=20
-> 44.1KHz playback
-> 1f: b6 --> setting Div5 as clock source for se2 Read at address  0x10049C=
-00:
-> 0x700B4022--> Setting Audio clk1 in SSI
->     pfd3_mux                          1        1        0    24000000
->        pfd3                           1        1        0      960000
->           pll3                        1        1        0   564480000
->              div5                     1        1        0    11289600
->                 se2_mux               1        1        0    11289600
->                    se2                1        1        0    11289600
->=20
-> Please provide your valuable comment for this patch series.
->=20
-> Biju Das (3):
->   dt-bindings: clock: Add Renesas versa3 clock generator bindings
->   drivers: clk: Add support for versa3 clock driver
->   arm64: dts: renesas: rzg2l-smarc: Use versa3 clk for audio mclk
->=20
->  .../bindings/clock/renesas,versaclock3.yaml   |  135 ++
->  .../boot/dts/renesas/rz-smarc-common.dtsi     |    7 -
->  arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  |   35 +
->  drivers/clk/Kconfig                           |    9 +
->  drivers/clk/Makefile                          |    1 +
->  drivers/clk/clk-versaclock3.c                 | 1134 +++++++++++++++++
->  6 files changed, 1314 insertions(+), 7 deletions(-)  create mode 100644
-> Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
->  create mode 100644 drivers/clk/clk-versaclock3.c
->=20
-> --
-> 2.25.1
+Thank you for your review comments.
+
+On Mon, Jan 23, 2023 at 08:42:54PM +0100, Krzysztof Kozlowski wrote:
+> On 23/01/2023 20:27, Piyush Malgujar wrote:
+> > From: Jayanthi Annadurai <jannadurai@marvell.com>
+> > 
+> > Add support for SD6 controller support.
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+> 
+> Thank you.
+> 
+> > 
+> > Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> > ---
+> >  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 34 +++++++++++++++++--
+> >  1 file changed, 32 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..26ef2804aa9e17c583adaa906338ec7af8c4990b 100644
+> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > @@ -4,7 +4,7 @@
+> >  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> > -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+> > +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
+> >  
+> >  maintainers:
+> >    - Masahiro Yamada <yamada.masahiro@socionext.com>
+> > @@ -18,7 +18,9 @@ properties:
+> >        - enum:
+> >            - microchip,mpfs-sd4hc
+> >            - socionext,uniphier-sd4hc
+> > -      - const: cdns,sd4hc
+> > +      - enum:
+> > +          - cdns,sd4hc
+> > +          - cdns,sd6hc
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -111,6 +113,34 @@ properties:
+> >      minimum: 0
+> >      maximum: 0x7f
+> >  
+> > +  cdns,iocell-input-delay:
+> > +    description: Delay in ps across the input IO cells
+> 
+> Use proper unit suffix -ps, so ref wont' be needed.
+> 
+> This comment was also ignored.
+> 
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,iocell-output-delay:
+> > +    description: Delay in ps across the output IO cells
+> 
+> Ditto
+> 
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,delay-element:
+> > +    description: Delay element in ps used for calculating phy timings
+> 
+> Ditto
+> 
+
+Yes, will add -ps and remove the $ref.
+
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,read-dqs-cmd-delay:
+> > +    description: Command delay used in HS200 tuning
+> 
+> What are the units?
+> 
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> 
+> Drop quotes (everywhere)
+> 
+> > +
+> > +  cdns,tune-val-start:
+> > +    description: Staring value of data delay used in HS200 tuning
+> 
+> Same problem - missing units.
+> 
+
+These are integer values, will add in the description that these units are integer used
+in tuning. Also, will remove the $ref.
+
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> 
+> 
+> I don't get why the feedback has to be repeated. It's a bit a waste of
+> time, isn't it?
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Please let me know if with above changes, it will be good and acceptable for V3.
+
+Thanks,
+Piyush
 
