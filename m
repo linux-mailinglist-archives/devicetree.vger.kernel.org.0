@@ -2,160 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927B269C9D3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 12:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7DD469C9E1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 12:30:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbjBTL1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 06:27:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52428 "EHLO
+        id S231613AbjBTLap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 06:30:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231674AbjBTL1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 06:27:30 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C27365AD;
-        Mon, 20 Feb 2023 03:27:23 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 66272660213E;
-        Mon, 20 Feb 2023 11:27:21 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1676892442;
-        bh=Ccrr/t4+V0OVhZ8gqGibkB/KOTRPiWU2u1jxcFC3QY8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=iqKdIru32vHfY8IikTkBuOYDwm/PEvVwiXXTbSEEM6JQDSYhqkM0QEXpgXnx2EVHT
-         V4Ht1juoMp41IRJT6k+gTQm76I6uniiisL4G6kTAMjqKuziOR/HzqxjEfrG5P8D56z
-         /7ayqtpWo4zi7MzafWXd2aw1AlXNWjwJXqYV6UKFbvPiCadkc2IHwEru/Tiq6GOKoz
-         /54259VsZUrtEN7xgd9Ak2uOz7nt1vlkR+tp5j2BbhwZ4FV2jwnJpXLBFU7q5I0TUz
-         U4oiPXXOB3SmvnSA5QmhQKj2Uc6XlARftU3qBu4BYyCugEI96PbWjo/r3uHsip92nf
-         s6bS6JuQRrI1g==
-Message-ID: <1274e18b-e35e-7997-68ea-22aa11592720@collabora.com>
-Date:   Mon, 20 Feb 2023 12:27:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v10 2/6] dt-bindings: opp: v2-qcom-level: Document CPR3
- open/closed loop volt adjustment
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229741AbjBTLao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 06:30:44 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F1216338;
+        Mon, 20 Feb 2023 03:30:42 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id ei9-20020a17090ae54900b002349a303ca5so983919pjb.4;
+        Mon, 20 Feb 2023 03:30:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1P9/6aReNdXAKar49I2nURKgXArBVnKjo9gr/F/R4YM=;
+        b=OheKix9MsQGFeo1ke3nrz6jBnbxh3nUNpiYiEqKwuQq6pQuo4ir+OzmfKqciNCqpSB
+         y8884pqAmNE51J6fxXdkmlXcKkqEm4tjrInY3rkpD7VbQREdpjM2ZZbU6OxdZQRnEVWV
+         TYGFGN4GivnCDeWVV1Y+eOYuiwDqjeP4or9MNBXKU/hKPZ7tdLCY6BLR21HOn9c9h9Vf
+         DFM+EQaVmK0HWzAk0Y5C12piqXmfqKGJtbcCgqNxxP7h8kmw8yOTFXadO/QaB34GP2vY
+         TdkucHj+aCQE3B9VAZEGJHKjwuh1yR4g4ZLB4xGwGYeo6BLJoJAuGJOwdQbGCx6pjhd9
+         Uuqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1P9/6aReNdXAKar49I2nURKgXArBVnKjo9gr/F/R4YM=;
+        b=n+MLk35d+sCTmosdVNEtcNVzgIx3WcmnRhrNwRBpv6yyX/V/89OshTIkNeROnT2qMy
+         uZr66bhDrvzlLxE4jdxIuiykzXWQq3IvCcuUrlOSunu0qrjbDSXijUd2GRgmj0/6USpP
+         eLA7uBkNSMGJbpHdBT70GKAaHlsetpy6EOV8ODQUuZOgXEW+sAAPVoB0kRvUYVrhYh3f
+         +pva3/NT7ZMDUjqEDP+Z26FFNP0hm2h5cNMyUYoWJOUYRixdBC9i9ZgpiRnmFc+YaAn2
+         cgZePUOSUQoQTrRWllDhfWrPltW2s2NkwX8Oo4SFJ5CdiojZQQ3Y/wt9Cv8lz2Ef3DoY
+         Zmzg==
+X-Gm-Message-State: AO0yUKXvFYPRShnzFnC24dwNG6uMobU3k/DVm4FNSq4j3QLzpdEmswRc
+        XQt6stu41cEzE9DfupvzGt6TE8ZQHn2+YQ==
+X-Google-Smtp-Source: AK7set8wGeIaO0DDGtCgyjja7YMqKByomt9SfIQRgGs7K7+3mw/nhFvObj2bfvD0dvFOGLC4hOn/HA==
+X-Received: by 2002:a17:90b:1b03:b0:233:d3ac:5dc2 with SMTP id nu3-20020a17090b1b0300b00233d3ac5dc2mr277633pjb.18.1676892641968;
+        Mon, 20 Feb 2023 03:30:41 -0800 (PST)
+Received: from kelvin-ThinkPad-L14-Gen-1.. (94.130.220.35.bc.googleusercontent.com. [35.220.130.94])
+        by smtp.gmail.com with ESMTPSA id c26-20020a6566da000000b004fb171df68fsm1525527pgw.7.2023.02.20.03.30.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Feb 2023 03:30:41 -0800 (PST)
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
- <20230217-topic-cpr3h-v10-2-67aed8fdfa61@linaro.org>
- <20230217231330.GA2238521-robh@kernel.org>
- <c2bfa6b0-edee-b492-d40e-cf43291b90d4@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <c2bfa6b0-edee-b492-d40e-cf43291b90d4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Keguang Zhang <keguang.zhang@gmail.com>
+Subject: [PATCH] dt-bindings: mips: loongson: Add Loongson-1 based boards
+Date:   Mon, 20 Feb 2023 19:30:07 +0800
+Message-Id: <20230220113007.2037750-1-keguang.zhang@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/02/23 01:26, Konrad Dybcio ha scritto:
-> 
-> 
-> On 18.02.2023 00:13, Rob Herring wrote:
->> On Fri, Feb 17, 2023 at 12:08:25PM +0100, Konrad Dybcio wrote:
->>> CPR3 and newer can be fed per-OPP voltage adjustment values for both
->>> open- and closed-loop paths to make better decisions about settling
->>> on the final voltage offset target. Document these properties.
->>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>>   .../devicetree/bindings/opp/opp-v2-qcom-level.yaml         | 14 ++++++++++++++
->>>   1 file changed, 14 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->>> index a30ef93213c0..93cc88434dfe 100644
->>> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->>> @@ -34,6 +34,20 @@ patternProperties:
->>>           minItems: 1
->>>           maxItems: 2
->>>   
->>> +      qcom,opp-cloop-vadj:
->>> +        description: |
->>> +          A value representing the closed-loop voltage adjustment value
->>
->> A value?
->>
->>> +          associated with this OPP node.
->>> +        $ref: /schemas/types.yaml#/definitions/int32-array
->>> +        maxItems: 2
->>
->> Or 2 values?
-> Right, this description doesn't make any sense if you're just
-> looking at the documentation without looking at the driver..
-> 
-> Generally, each CPR3 instance can have multiple "threads"
-> (each one of which regulates voltage for some on-SoC IP or
-> part of it). The nth entry in the qcom,opp-[co]loop-vadj
-> array corresponds to a voltage offset for the nth thread.
-> 
-> If the nth entry in the array is missing, the driver assumes
-> the arr[0] one is "global" to this CPR3 instance at this OPP
-> level and applies it to all threads. ...and looking at it
-> again, this is sorta just bad design, especially if you
-> take into account that there's no known user of CPR3 that
-> employs more than 2 threads.
-> 
-> I'll remove that from the driver and make the description clearer.
-> 
+Add two Loongson-1 based boards: LSGZ 1B and Smartloongson 1C.
 
-description:
-   Represents the closed-loop voltage adjustment associated with
-   this OPP node.
+Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+---
+ .../devicetree/bindings/mips/loongson/devices.yaml     | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-P.S.: Drop '|' here and on oloop!
+diff --git a/Documentation/devicetree/bindings/mips/loongson/devices.yaml b/Documentation/devicetree/bindings/mips/loongson/devices.yaml
+index f13ce386f42c..6ed6e8d1c0a6 100644
+--- a/Documentation/devicetree/bindings/mips/loongson/devices.yaml
++++ b/Documentation/devicetree/bindings/mips/loongson/devices.yaml
+@@ -37,6 +37,16 @@ properties:
+         items:
+           - const: loongson,loongson64v-4core-virtio
+ 
++      - description: LSGZ 1B Development Board
++        items:
++          - const: lsgz,1b
++          - const: loongson,ls1b
++
++      - description: Smart Loongson 1C Board
++        items:
++          - const: smartloongson,1c
++          - const: loongson,ls1c
++
+ additionalProperties: true
+ 
+ ...
 
-This binding is intended to support either single or multiple CPR threads;
-the driver's behavior is unimportant as bindings describe the hardware,
-not the driver.
-
-Regards,
-Angelo
-
-> 
-> Also, only noticed now.. "qcom,sdm630-cprh" was not documented,
-> so that's to be fixed for the next submission as well!
-> 
-> 
-> Konrad
->>
->>> +
->>> +      qcom,opp-oloop-vadj:
->>> +        description: |
->>> +          A value representing the open-loop voltage adjustment value
->>> +          associated with this OPP node.
->>> +        $ref: /schemas/types.yaml#/definitions/int32-array
->>> +        maxItems: 2
->>> +
->>>       required:
->>>         - opp-level
->>>         - qcom,opp-fuse-level
->>>
->>> -- 
->>> 2.39.1
->>>
-
-
+base-commit: 39459ce717b863556d7d75466fcbd904a6fbbbd8
+-- 
+2.34.1
 
