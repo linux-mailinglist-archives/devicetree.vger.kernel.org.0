@@ -2,80 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E4C69D2EB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 19:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8B669D331
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 19:49:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232555AbjBTSn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 13:43:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52232 "EHLO
+        id S231722AbjBTSty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 13:49:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231496AbjBTSn5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 13:43:57 -0500
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9D8CDEA
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 10:43:46 -0800 (PST)
-Received: from [167.98.27.226] (helo=[10.35.4.184])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1pUB8X-0067cf-QG; Mon, 20 Feb 2023 18:43:41 +0000
-Message-ID: <ff11ad0f-7ea0-1dd3-32ce-5a28c8816397@codethink.co.uk>
-Date:   Mon, 20 Feb 2023 18:43:40 +0000
+        with ESMTP id S232689AbjBTStg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 13:49:36 -0500
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99AF91E9F9;
+        Mon, 20 Feb 2023 10:49:00 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id bh19-20020a056830381300b00690bf2011b2so321637otb.6;
+        Mon, 20 Feb 2023 10:49:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dp9FA0RvdgxvVZhfm9R2KGLFsqWa4RXhCmE9KXcq+cs=;
+        b=CPicpEjuNiPzLxDIkzhnkE1I5W9ZZP3oBvECpcvd+X+0jnurW4jKG1R/pnA59+QIUk
+         km3NMqnjsGkEDCzl6Ke3REvKnOB3vongF5sRv+ANxQa5QV/xfPn7kdP6hu/Kl+nq0jLn
+         T7sx0BbE8lLMpbARkG/84/UPp2KvAb9EdM+tckWM3lYaQFyd/RVJAzN5UcERoBXkeTPm
+         xPtNabn0cFnMEIkRw6ZImwYTV1iaV1++tFFtRfPn3u6d3eM8pgL9iTy1mI9Q6dH6TAYV
+         wrjYfkuLGfeiJMsHCcsoAJttuI2HI87wBaSgnvMpRyT/v20hABBdJkik9MGztdsrLgtk
+         W5gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dp9FA0RvdgxvVZhfm9R2KGLFsqWa4RXhCmE9KXcq+cs=;
+        b=qcwleeucLqhmrtS4nSvtSoPICryAARZl0SeZLq+jMzh+NzDPCGanP1mVPaeNTJJoKp
+         17wOUTbRHIfYLsOD47gbX3RkOo97EaN5ibi7o3etIxL0gvf9KAxS90DJ1GHAwE/7S+b7
+         b86J2oMU6G2bUsXslS4YcHKHQdoZ9jQM0nUOB6rSvmcWC9K2A0EokLbbyU+c5kgJEcQR
+         wrlG1byIjQ3zqTxzDb7ltY/PyYzB7sAAfOwQyHxjUkMB5Wzj4EZatG5ZUjvIyYKaNTD8
+         ccgXudfGyUdlk4KTHPhVL0I5GtILX3UZKgZq9cQ2mUOZFh1nZ583HFSFNq4BP+Mb/R/S
+         p7Ng==
+X-Gm-Message-State: AO0yUKVbZSs8PkYLWcGvObVP+FKnBy7Q1mpm9FJPp5hM0GlxQyZHyur5
+        8ZwLFOdixDP4A36l2jPYvfM=
+X-Google-Smtp-Source: AK7set/1HBaSRcuvDF94MEmuuDb4BY1XA0yEYH480iBvBiMnJBbHcZ/hQE8hMs0Fj83hj9msF5bOpg==
+X-Received: by 2002:a05:6830:3101:b0:68b:cdd3:3b93 with SMTP id b1-20020a056830310100b0068bcdd33b93mr6960472ots.26.1676918933968;
+        Mon, 20 Feb 2023 10:48:53 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:e458:3986:a974:9501? ([2600:1700:2442:6db0:e458:3986:a974:9501])
+        by smtp.gmail.com with ESMTPSA id n4-20020acabd04000000b003645b64d7b3sm5218893oif.4.2023.02.20.10.48.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Feb 2023 10:48:53 -0800 (PST)
+Message-ID: <ac009137-dcc3-849a-cc97-96268d692c68@gmail.com>
+Date:   Mon, 20 Feb 2023 12:48:52 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v4 6/8] RISC-V: Use Zicboz in clear_page when available
-Content-Language: en-GB
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Rob Herring ' <robh@kernel.org>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Conor Dooley ' <conor.dooley@microchip.com>
-References: <20230209152628.129914-1-ajones@ventanamicro.com>
- <20230209152628.129914-7-ajones@ventanamicro.com>
- <4a25cf89-bcf0-e78c-a8ab-7ba0c4f8e2bf@codethink.co.uk>
- <b348f0cc-4868-2924-9935-00ec18b36da9@codethink.co.uk>
- <20230217122943.24caosketyvfcc4f@orel>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20230217122943.24caosketyvfcc4f@orel>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.7.1
+Subject: Re: [PATCH][next] of: dynamic: Fix spelling mistake "kojbect" ->
+ "kobject"
+Content-Language: en-US
+To:     Colin Ian King <colin.i.king@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230220144422.873356-1-colin.i.king@gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20230220144422.873356-1-colin.i.king@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 12:29, Andrew Jones wrote:
-> On Fri, Feb 17, 2023 at 10:50:07AM +0000, Ben Dooks wrote:
->> On 17/02/2023 10:18, Ben Dooks wrote:
->>> On 09/02/2023 15:26, Andrew Jones wrote:
->
-
-[snip]
-
-> Hi Ben,
+On 2/20/23 08:44, Colin Ian King wrote:
+> There is a spelling mistake in a pr_err message. Fix it.
 > 
-> I'll be sending a new version where I don't touch vendor-id anymore, but
-> rather break errata_id into two parts: id and application-data.
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> ---
+>  drivers/of/dynamic.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 12aa99018969..07d93753b12f 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -350,7 +350,7 @@ void of_node_release(struct kobject *kobj)
+>  		if (!IS_ENABLED(CONFIG_OF_UNITTEST) ||
+>  		    strcmp(node->parent->full_name, "testcase-data")) {
+>  			dump_stack();
+> -			pr_err("ERROR: next of_node_put() on this node will result in a kboject warning 'refcount_t: underflow; use-after-free.'\n");
+> +			pr_err("ERROR: next of_node_put() on this node will result in a kobject warning 'refcount_t: underflow; use-after-free.'\n");
+>  		}
+>  
+>  		return;
 
-Do you have an idea when v5 will be out, if it is this week I will
-hold-off our internal tree rebase to change to v5.
-
-Thanks!
-
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
-
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
