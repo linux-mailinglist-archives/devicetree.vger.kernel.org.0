@@ -2,145 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A16EE69D446
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 20:44:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78EC469D45B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 20:56:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbjBTToq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 14:44:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
+        id S231602AbjBTT4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 14:56:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231393AbjBTTop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 14:44:45 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E64CDE2
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 11:44:43 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id l7-20020a05600c1d0700b003dc4050c94aso1676711wms.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 11:44:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fx6Cy3cfwtLc2tIkcYv2b/6D80WxggLsKcXv+WH52kA=;
-        b=Yzr32MycoFefeV/s5hGlruGe4mCnnO/LjwL2l8oZAJaeg9M+kOHt1A9JP6b1LjIyJi
-         ZBD3GzBYVzqpXOzA3eq3W8nKGr2ZmAInCdp7lNPsuDhiFIj36DJQwsxsKpXid7dL/CrC
-         q20SDqdEx6TDdM9x0EiMagmv4/BH/htFIVWRX+1T43WRniojzL/kkSmMdIMFFL5L3Zsi
-         SBLziUP+GmnAbXFaUGfaERO3oS000f9I5alU8bLG13OlhF+YHbL+RHuY42AB711IPh5k
-         2AUqcRNZ6kXtZcAB40EMv2yQGV/OiOpU97JgraWxzEGL+CSDxP+1SrMlSf4q2/vggpXy
-         vXrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fx6Cy3cfwtLc2tIkcYv2b/6D80WxggLsKcXv+WH52kA=;
-        b=arL3GvXkdimLUBHK1Fplo75UXCjchLFDWfIn0JFYjbz84XnZp+oPN9QBoU9C3mntw/
-         j9U6R65Pfjxgm03FrduMWKIBoBT4WPDcd7Wm7Fc4nxh9LmkETMiL+1hkKKX/EEkr1MOQ
-         Kpv8+FRyiJgheYGZkW8b6YJMNglhqSsmkkB1Upj/T9OXzFC2/KAB2DBm4cObX84bBDGJ
-         cDRzZ9oi20OJa2WGbo4goLjIGo1hz3MSTwnOJQzPQoIIBtNdOp7f4Oq6krLkqcrfQ7DU
-         5lcsWZ4tJwJ3i2n676BdlZr6DllskhAcsdOI+0B75KKwEnVGPBxFmtObC+IOyLd+Diul
-         eeyQ==
-X-Gm-Message-State: AO0yUKWH/6p89EgeWbaoyA6bzhNkUI7DqToXJtYgZAIidgV7s2qC4b+o
-        abbbX3BgZqSZQA/7OgLKlmlC3g==
-X-Google-Smtp-Source: AK7set81wWp/nPh3uqn5YDsno1xkj3omzQM9DY1JIhAnX8EuPDIa6IJRQOWOHx81vBlsHWmBpa7Bkw==
-X-Received: by 2002:a05:600c:4f44:b0:3e1:df8d:e022 with SMTP id m4-20020a05600c4f4400b003e1df8de022mr1754669wmq.9.1676922282285;
-        Mon, 20 Feb 2023 11:44:42 -0800 (PST)
-Received: from blmsp ([2001:4090:a247:8056:be7d:83e:a6a5:4659])
-        by smtp.gmail.com with ESMTPSA id s10-20020a7bc38a000000b003dc1a525f22sm14871414wmj.25.2023.02.20.11.44.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Feb 2023 11:44:41 -0800 (PST)
-Date:   Mon, 20 Feb 2023 20:44:41 +0100
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH 8/8] soc: mediatek: pm-domains: Add support for MT8365
-Message-ID: <20230220194441.2564ct25qsxvvvic@blmsp>
-References: <20230105170735.1637416-1-msp@baylibre.com>
- <20230105170735.1637416-9-msp@baylibre.com>
- <07a16be1-3f96-374c-3a9b-e3920bb4b437@gmail.com>
+        with ESMTP id S231340AbjBTT4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 14:56:12 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BA61DB9F;
+        Mon, 20 Feb 2023 11:56:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=C8wxn5zU9hrSXYKgcJgtYOni4ihYgf3wye9qtJ+vVco=; b=dTDX2o8o0EWBaAUGfT1/WY9n4r
+        xmJ0bBnheU6Imcy4h54K6XdCqll3yOJEbuOfZsVPYPcD/u0eD+NiRwbJUy0/DAfdvXIVnRmQ5AcTF
+        HQ+Eg0c7TBYivVrcndaLLOATBj5tGFzuxRRcIxobkpFwpjs6NyUCC0UqAFWqHJnVlzokYhfu6gnTE
+        rznLXbtw9ni4PqM2OLs2TrTTTqmcjrJ+P7I2FqnhUaw+kn3z+/+VQIyYpUCfu6ewvfSFp3CT+K1Q2
+        tbtnYRK0cdwk3DRjUpBt6+sgBkPSlls4IGBImxgTH2jLlBYxNeLLTbCoXeRwJ6HMNTwrxb6zbqlca
+        u2XVmnvg==;
+Received: from [2601:1c2:980:9ec0::df2f]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1pUCGY-005QkH-MB; Mon, 20 Feb 2023 19:56:02 +0000
+Message-ID: <2f9aa86e-40e1-91f6-06b2-c79d62f7a136@infradead.org>
+Date:   Mon, 20 Feb 2023 11:55:58 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <07a16be1-3f96-374c-3a9b-e3920bb4b437@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH V3 2/2] nvmem: add generic driver for devices with MMIO
+ access
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230220174930.7440-1-zajec5@gmail.com>
+ <20230220174930.7440-3-zajec5@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20230220174930.7440-3-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hi,
 
-On Fri, Feb 03, 2023 at 01:22:38PM +0100, Matthias Brugger wrote:
-> 
-> 
-> On 05/01/2023 18:07, Markus Schneider-Pargmann wrote:
-> > From: Fabien Parent <fparent@baylibre.com>
-> > 
-> > Add the needed board data to support MT8365 SoC.
-> > 
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >   drivers/soc/mediatek/mt8365-pm-domains.h | 147 +++++++++++++++++++++++
-> >   drivers/soc/mediatek/mtk-pm-domains.c    |   5 +
-> >   2 files changed, 152 insertions(+)
-> >   create mode 100644 drivers/soc/mediatek/mt8365-pm-domains.h
-> > 
-> > diff --git a/drivers/soc/mediatek/mt8365-pm-domains.h b/drivers/soc/mediatek/mt8365-pm-domains.h
-> > new file mode 100644
-> > index 000000000000..8735e833b15b
-> > --- /dev/null
-> > +++ b/drivers/soc/mediatek/mt8365-pm-domains.h
-> > @@ -0,0 +1,147 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +
-> > +#ifndef __SOC_MEDIATEK_MT8365_PM_DOMAINS_H
-> > +#define __SOC_MEDIATEK_MT8365_PM_DOMAINS_H
-> > +
-> > +#include "mtk-pm-domains.h"
-> > +#include <dt-bindings/power/mediatek,mt8365-power.h>
-> > +
-> > +/*
-> > + * MT8365 power domain support
-> > + */
-> > +
-> > +static const struct scpsys_domain_data scpsys_domain_data_mt8365[] = {
-> > +	[MT8365_POWER_DOMAIN_MM] = {
-> > +		.name = "mm",
-> > +		.sta_mask = PWR_STATUS_DISP,
-> > +		.ctl_offs = 0x30c,
-> > +		.pwr_sta_offs = 0x0180,
-> > +		.pwr_sta2nd_offs = 0x0184,
-> > +		.sram_pdn_bits = GENMASK(8, 8),
-> > +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> > +		.caps = MTK_SCPD_STRICT_BUS_PROTECTION | MTK_SCPD_HAS_WAY_EN,
-> > +		.bp_infracfg = {
-> > +			BUS_PROT_WR(BIT(16) | BIT(17), 0x2a8, 0x2ac, 0x258),
-> > +			BUS_PROT_WR(BIT(1) | BIT(2) | BIT(10) | BIT(11), 0x2a0, 0x2a4, 0x228),
-> > +			BUS_PROT_WAY_EN(BIT(6), 0x200, BIT(24), 0x0),
-> > +			BUS_PROT_WAY_EN(BIT(5), 0x234, BIT(14), 0x28),
-> > +			BUS_PROT_WR(BIT(6), 0x2a0, 0x2a4, 0x228),
-> 
-> 
-> BUS_PROT_WR(BIT(6), 0x2a0, 0x2a4, 0x228) repeates several times in the
-> definition. Would it make sense to create a new define like we did with
-> BUS_PROT_UPDATE_TOPAXI()? Are this offests are used in other SoCs.
-> 
-> In any case instead of magic numbers the values should be defined in
-> include/linux/soc/mediatek/infracfg.h or appropiate header files.
+On 2/20/23 09:49, Rafał Miłecki wrote:
+> +static int mmio_nvmem_write(void *context, unsigned int offset, void *val, size_t bytes)
+> +{
+> +	struct mmio_nvmem *priv = context;
+> +
+> +	switch (priv->io_width) {
+> +	case 1:
+> +	case 2:
+> +	case 4:
+> +		return -EOPNOTSUPP;
 
-Thanks, you are right, I got rid of all the magic numbers and introduced
-some helper defines as well.
+I'm just curious: (since read supports those cases)
 
-Thank you,
-Markus
+what size writes are typically used here?
+And what value for priv->io_width?
+
+
+
+Thanks.
+
+> +	default:
+> +		memcpy_toio(priv->base + offset, val, bytes);
+> +	}
+> +
+> +	return 0;
+> +}
+
+-- 
+~Randy
