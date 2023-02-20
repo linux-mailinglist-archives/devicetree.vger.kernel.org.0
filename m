@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34D3269C869
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:17:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAF169C87A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbjBTKRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 05:17:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45822 "EHLO
+        id S231566AbjBTKYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 05:24:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231433AbjBTKRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:17:36 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE161555B
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:17:34 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id e9so579079ljn.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:17:34 -0800 (PST)
+        with ESMTP id S231504AbjBTKYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:24:24 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A057A9744
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:24:22 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id s22so968794lfi.9
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:24:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j/mBL/s9w+zymmQfyS3pY3QfWP8+AdeFf5eGjucm2qQ=;
-        b=K0DJ6JGrVOuibpGD9yC40OezN6wlr46KLSXOAhJ/xQXV4yUZSsxz+ErlGrfaYJ7C18
-         SMZwk+EkgOJQuLyOGio2KcqOMwJ01JsCf3eCHlZ1bpyEZm+/JTes23QciSGvEixNtxEs
-         FSGwouwqpkoGnM0RDBoEaZyHKRrKKNIWl/A/jMDxdSruvWRRqO9S6fZAAOCdqXNgHFHH
-         a7O9cLMVOEJTCRDPY+IOSflkkjhCLtuIY4pVk35KBOarD8YAFpddKbZR4KBmrTTnvAKZ
-         PPl5Jf2jKzb8M2E9dJChb23I5v3U+p9ZAxry8qYu4JUY6am0be+j7wDk543sqvGml6xe
-         aVRQ==
+        bh=e4VbNHQrOu9ybISC4/mWj8LiqMpeLrJa5tqtRupc92k=;
+        b=SdCJPDxs3CvxMeEjKC1jOG8vZ2SSqpBbHMY5fFiJxZyG+Ub32EsZOM6Ibw3EGMGfH/
+         qXxn+/e+vli6X6lGkngRgi5TfeLAgPWozO33DyZWiCGMTPJs08SloRzrC3T51V3XsR1B
+         juuCAMg49DVYibdw0ecpxv++AepBJLY+EZMwyVG2rQ/ePTnp2wbpZvR5c5fnJhPG8g27
+         NNUu92wDnqgleG9fIBYenlLBvnB2iMAm5zOlgV5Rwk6/X3CN12tVKHARt003srlOi0hQ
+         6WMLzJTRySmN3oc9PIluKKoMn0h903vCmeSd3W0aSd4SEsx1ivgHZnSWzUDSCbWw28yz
+         ECvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j/mBL/s9w+zymmQfyS3pY3QfWP8+AdeFf5eGjucm2qQ=;
-        b=VeTcb28f5To6gcUPvrrMOghgU0mQQhUpmDXf6IuDUlQhyGxpas8+9+yLSNfot9rIyY
-         GnavZNCEdjLg7HC4Wdkr0LtqOAvRI+w3duWT3qtbd832vWlccw0RFaKkxR+ZCba63E31
-         tKt8Sq3NYMB9NNjX1/IEMyF4Yf3r1BzXItevwxhHMo5+bhKk38nI37HPkAwGvcyVxZvN
-         TZkH+5kGNInPbKl3CAcAwR/lwdhjNANOoW6VVv2R+GubM4BoIaDT2waOY2Pht4K+Y8nI
-         q13ike7as1DYx3mhGup6rj43Ns7XAaRmjddVUqLCVHuG76InY0cUv4hRgrvvboeNmGr+
-         jw0A==
-X-Gm-Message-State: AO0yUKWRhAeNUU58kT6XksHplgNKoqgK/mU0hHn2rIZDVeXKql2edNzj
-        9uecs5efy0VetP5WLUziVBjCYg==
-X-Google-Smtp-Source: AK7set9te5orsT1nxfrNdKCa9pXCN/rIlq+CkslRUZs+CTQaSpFhy3Q0sLXDHcGtEax3mF2k8OS84Q==
-X-Received: by 2002:a05:651c:1508:b0:28f:890b:c5fd with SMTP id e8-20020a05651c150800b0028f890bc5fdmr259549ljf.39.1676888252419;
-        Mon, 20 Feb 2023 02:17:32 -0800 (PST)
+        bh=e4VbNHQrOu9ybISC4/mWj8LiqMpeLrJa5tqtRupc92k=;
+        b=4RgSIoGUKuYWeveYWZ+rWuaVhKrTKLlrEwZvz6QGE7F2tXAbr81GFkxQKv5gNepCOI
+         mYzZMZoe9361LsTK7HYK6EEW7jLVBJpDIJTBze/NChHJN9b8uEDxtvNzfKo4ac1cktWc
+         33gubG/OLOZGR0/rh9o6DlF/QPOYhIwQLQESY2LnH4r+cjXS9GTfIHA4X4IEzKlHQWtA
+         CekU9bO5UAB+k6XzZCGmEPMvbJ3ArVmvulNR/9VipHYbD/8G0Z2vWn+qwSj3e8e5PS3Y
+         Hkj2Il1CmrFcwQVtOTPJCroWPxmHHtaL8+gVfFGOEMHN9AT7Yj/m4qyoZLYH9iKVPlLK
+         8aqw==
+X-Gm-Message-State: AO0yUKW1V0SIhrkHAuS4bU1OpVgqqUgeqFZKcLxnvjDAz6YmHsWre+i7
+        XrwQ9rQ0vEjZikKBr/D8YyIkQg==
+X-Google-Smtp-Source: AK7set+RjsnQil+2UlBqrRTdxjm5Q0FKhxaCLdglUFvzLdjXZ+vfm4bdrBiYRGmhQvqEstvJWIx5nw==
+X-Received: by 2002:ac2:4f10:0:b0:4dd:840d:462 with SMTP id k16-20020ac24f10000000b004dd840d0462mr60626lfr.21.1676888660919;
+        Mon, 20 Feb 2023 02:24:20 -0800 (PST)
 Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id i62-20020a2e2241000000b002934d0ff439sm1472769lji.104.2023.02.20.02.17.31
+        by smtp.gmail.com with ESMTPSA id c16-20020a197610000000b004d545f1e0ccsm278586lff.187.2023.02.20.02.24.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 02:17:32 -0800 (PST)
-Message-ID: <be1201a5-f315-9125-8768-4719a92f07f9@linaro.org>
-Date:   Mon, 20 Feb 2023 11:17:30 +0100
+        Mon, 20 Feb 2023 02:24:20 -0800 (PST)
+Message-ID: <3d2e681b-0cc0-5d86-7d40-63022a5358c9@linaro.org>
+Date:   Mon, 20 Feb 2023 11:24:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sdm845-oneplus: add alert-slider
+Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
+ deprecated QCM2290 compatible
 Content-Language: en-US
-To:     Gergo Koteles <soyer@irl.hu>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>
-References: <cover.1676850819.git.soyer@irl.hu>
- <16e6c00389bf0ee881a055f81a3dbfd5bfc9c469.1676850819.git.soyer@irl.hu>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
+ <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
+ <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
+ <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
+ <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
+ <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
+ <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
+ <e6d397bb-dd5d-8308-eb07-3aeb2589115c@linaro.org>
+ <fbece9d6-2204-2534-e44f-29c29cc56413@linaro.org>
+ <9a0245af-b7f3-0874-385b-47c86d6e6a60@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <16e6c00389bf0ee881a055f81a3dbfd5bfc9c469.1676850819.git.soyer@irl.hu>
+In-Reply-To: <9a0245af-b7f3-0874-385b-47c86d6e6a60@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,88 +97,71 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 20.02.2023 01:13, Gergo Koteles wrote:
-> The alert-slider is a tri-state sound profile switch found on the OnePlus 6,
-> Android maps the states to "silent", "vibrate" and "ring". Expose them as
-> ABS_SND_PROFILE events.
-> The previous GPIO numbers were wrong. Update them to the correct
-> ones.
+On 18.02.2023 15:49, Krzysztof Kozlowski wrote:
+> On 18/02/2023 12:23, Konrad Dybcio wrote:
+>>
+>>
+>> On 18.02.2023 11:14, Krzysztof Kozlowski wrote:
+>>> On 17/02/2023 22:13, Bryan O'Donoghue wrote:
+>>>> On 17/02/2023 12:24, Krzysztof Kozlowski wrote:
+>>>>> First, it would be nice to know what was the intention of Bryan's commit?
+>>>>
+>>>> Sorry I've been grazing this thread but, not responding.
+>>>>
+>>>> - qcom,dsi-ctrl-6g-qcm2290
+>>>>
+>>>> is non-compliant with qcom,socid-dsi-ctrl which is our desired naming 
+>>>> convention, so that's what the deprecation is about i.e. moving this 
+>>>> compat to "qcom,qcm2290-dsi-ctrl"
+>>>
+>>> OK, then there was no intention to deprecate qcom,mdss-dsi-ctrl and it
+>>> should be left as allowed compatible.
+>> Not sure if we're on the same page.
 > 
-> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> ---
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 43 ++++++++++++++++++-
->  1 file changed, 41 insertions(+), 2 deletions(-)
+> We are.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 64638ea94db7..ff982dd853a9 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -52,6 +52,45 @@ key-vol-up {
->  		};
->  	};
->  
-> +	alert-slider {
-This is out of order, alphabetically.
+>>
+>> It wasn't intended to deprecate [1] "qcom,qcm2290-dsi-ctrl", "qcom-mdss-dsi-ctrl";
+>> (newly-introduced in Bryan's cleanup patchset) but it was intended to deprecate
+>> [2] "qcom,dsi-ctrl-6g-qcm2290"; which was introduced long before that *and* used in
+>> the 6115 dt (and it still is in linux-next today, as my cleanup hasn't landed yet).
+>>
+>> [3] "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl" was never used (and should never
+>> be, considering there's a proper compatible [1] now) so adding it to bindings
+>> didn't solve the undocumented-ness issue. Plus the fallback would have never
+>> worked back then, as the DSI hw revision check would spit out 2.4.1 or 2.4.
+>> which is SC7180 or SDM845 and then it would never match the base register, as
+>> they're waay different.
+> 
+> All these were known. I was asking about "qcom,mdss-dsi-ctrl", because
+> the original intention also affects the way we want to keep it now
+> (unless there are other reasons).
+Okay, so we want to deprecate:
 
-> +		compatible = "gpio-keys";
-> +		label = "Alert slider";
-> +
-> +		pinctrl-0 = <&alert_slider_default>;
-> +		pinctrl-names = "default";
-> +
-> +		switch-top {
-> +			label = "Silent";
-> +			linux,input-type = <EV_ABS>;
-> +			linux,code = <ABS_SND_PROFILE>;
-> +			linux,input-value = <SND_PROFILE_SILENT>;
-> +			gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <50>;
-Is there a reason it can't be the default 5ms, since it should
-more or less be a simple input ping to the userspace?
+"qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl"
 
-Other than that:
+because it is:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+1) non-compliant with the qcom,socname-hwblock formula
+2) replaceable since we rely on the fallback compatible
+3) "qcom,dsi-ctrl-6g-qcm2290" alone would have been expected to
+   be fixed in the DTSI similar to other SoCs
+
+Is that correct?
+
+Because 2) doesn't hold, as - at the time of the introduction
+of Bryan's patchset - the fallback compatible would not have
+been sufficient from the Linux POV [1], though it would have been
+sufficient from the hardware description POV, as the hardware
+on the SoC *is* essentially what qcom,mdss-dsi-ctrl refers to.
+
+[1] The driver would simply not probe. It *would be* Linux-correct
+after my code-fixing series was applied, but I think I'm just failing
+to comprehend what sort of ABI we're trying to preserve here :/
 
 Konrad
-> +			linux,can-disable;
-> +		};
-> +
-> +		switch-middle {
-> +			label = "Vibrate";
-> +			linux,input-type = <EV_ABS>;
-> +			linux,code = <ABS_SND_PROFILE>;
-> +			linux,input-value = <SND_PROFILE_VIBRATE>;
-> +			gpios = <&tlmm 52 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <50>;
-> +			linux,can-disable;
-> +
-> +		};
-> +
-> +		switch-bottom {
-> +			label = "Ring";
-> +			linux,input-type = <EV_ABS>;
-> +			linux,code = <ABS_SND_PROFILE>;
-> +			linux,input-value = <SND_PROFILE_RING>;
-> +			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <50>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
->  	reserved-memory {
->  		/*
->  		 * The rmtfs_mem needs to be guarded due to "XPU limitations"
-> @@ -753,8 +792,8 @@ &usb_1_hsphy {
->  &tlmm {
->  	gpio-reserved-ranges = <0 4>, <81 4>;
->  
-> -	tri_state_key_default: tri-state-key-default-state {
-> -		pins = "gpio40", "gpio42", "gpio26";
-> +	alert_slider_default: alert-slider-default-state {
-> +		pins = "gpio126", "gpio52", "gpio24";
->  		function = "gpio";
->  		drive-strength = <2>;
->  		bias-disable;
+
+> 
+> Best regards,
+> Krzysztof
+> 
