@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 696FA69CFCE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 16:01:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB82569D07D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 16:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbjBTPBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 10:01:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46532 "EHLO
+        id S231366AbjBTPWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 10:22:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbjBTPBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 10:01:23 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BBFC157
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 07:01:15 -0800 (PST)
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 596D13F71B
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 15:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1676905274;
-        bh=FT9bNaBG4upzki3OCtwoWOzdZmQXAWEHWUJEPV0NZh4=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=PICAWkZSgZqAUQrzCzwD9jxs5vOGYUH9n5fBtJwM27a78x68smh1Tn6EWRBgsVOUj
-         OzJ0bF45x9i1V8whEMoDZfbS3jFtlZTwVWsytmOFmkVym7a9/nhl5Em4sA5awVXthU
-         zjNJs6W1HYS67qpRFgVOBo9OgaJ1YtUnMgO47oIPvhdlcyG78zmCSRfzndavgZE193
-         5eYR/wUNQMbzmtyu4udpfVokiY8V+i0aPbd22zGYq5ewXPhGe/qBTnLhDmYbiW+Pu6
-         Zpddxhng0Bnj7/Y83H8sqo3qS4HCiYUp+VG6hP/gdmBs7/G6qjhK7hTdGL6zLlqF5b
-         jr7+9LwN358CA==
-Received: by mail-qk1-f198.google.com with SMTP id d72-20020ae9ef4b000000b0072db6346c39so360084qkg.16
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 07:01:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FT9bNaBG4upzki3OCtwoWOzdZmQXAWEHWUJEPV0NZh4=;
-        b=SAYjFdsroQdY65iE/pcVf0DWZoglbORscTG7ClfZ7P0KeRncteoHti76zVLu/HUOvp
-         Wy7qRKDp8LcIBtMyfkIKi4YzIjTpybu7ZVgBIZc3IrxXrXYExOnvrgT8ic+1w91LZZsq
-         G83YHromqSdY0owa/+De3/G1Z+uWgdU9uN2gjt1mukVAGAcjG65v+5AmDWWhQZj72OxT
-         61lkByD3hlJzzr8k/BSA/c2gdaRdUBYDi+aqr7rtYsyRkuBrx+JYq+fLtD/FJc+PE45m
-         ErfJ6tbDGjUnGvtWD5N0Z/D8xCYGXG9zEjiBiOQj8I/MJ+MjOlh7LU65jEanVpf9KjEK
-         kSVA==
-X-Gm-Message-State: AO0yUKW7MrzADg5yeYSYxKRPld+K+pqA9hjqbwUn/SrO4gG1rJn/hmDr
-        kayWP40Yz05CWpb/6BJLH6p//npOAPmiORA6OJf3pjsBtBeIvHNCvruIxisHcXYnyE+egdmpR0m
-        6fyb9EG9/RGegliHhYrMjwn4GTFq4VgwIeR0sRmhQUIG7uUJZGsqwD0E=
-X-Received: by 2002:a0c:d990:0:b0:570:fc87:4f2c with SMTP id y16-20020a0cd990000000b00570fc874f2cmr314935qvj.83.1676905273197;
-        Mon, 20 Feb 2023 07:01:13 -0800 (PST)
-X-Google-Smtp-Source: AK7set/ki7cw9SdzzVoTwUxjlP1pm1QijDiLAHbAwflTeRbXjJrLDJeGCNKMi/5l97KZWeWCaRZi6y7UTcBie4q0g1E=
-X-Received: by 2002:a0c:d990:0:b0:570:fc87:4f2c with SMTP id
- y16-20020a0cd990000000b00570fc874f2cmr314932qvj.83.1676905272886; Mon, 20 Feb
- 2023 07:01:12 -0800 (PST)
+        with ESMTP id S229579AbjBTPWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 10:22:40 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B09CDF;
+        Mon, 20 Feb 2023 07:22:38 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31KBp51G007275;
+        Mon, 20 Feb 2023 15:22:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=uOENAIxz3dv64fn0074xIalZSxlWY7KUxw26Na4aTcQ=;
+ b=XWeeSxcEdqCrbgwJs6jO+qW+ewkSv0/gU2Waw0DoGzGhqJnjPWYnwYggyhz5MVo4n5CN
+ AIpjscucvyZ4xIJzI9jlBdNacWaNKVemOgeik5l4HTUy220Lf/vj/c4PTE53gkclCdIr
+ DAjNUoJYrtLFmWrVh4/ix+fUKIbieXjjdgljrvqY3W0hi39pseuiIUiIAwQVxZBy7TDH
+ N+N7hemPWmCjwnRSTrL7iz0sbUkqx21VwMWID+CAXKJmBsKIB8KkKlTuUr0hrujVqvMU
+ Jx9DRKSMwMY5uejBRza2slwe0gqwAFXXgeCv1At8qdJr44s8AEMWvk8syYjASVC2VPmD +w== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ntmcm5ddt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Feb 2023 15:22:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31KFMX4o026698
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Feb 2023 15:22:33 GMT
+Received: from [10.216.11.20] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 20 Feb
+ 2023 07:22:27 -0800
+Message-ID: <ba4854dd-2e6c-1fd7-8914-a5a22bd8890a@quicinc.com>
+Date:   Mon, 20 Feb 2023 20:52:24 +0530
 MIME-Version: 1.0
-References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
- <20230118061701.30047-7-yanhong.wang@starfivetech.com> <CAJM55Z9=wXxHXLHhLK1H2H2PnLv4Z+FiQPVd_+gtPss+P01MRg@mail.gmail.com>
-In-Reply-To: <CAJM55Z9=wXxHXLHhLK1H2H2PnLv4Z+FiQPVd_+gtPss+P01MRg@mail.gmail.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 20 Feb 2023 16:00:57 +0100
-Message-ID: <CAJM55Z91Z277FB8O_P9VSEqjcPykvhrPOcvx6k05X5veNOo3Lw@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] riscv: dts: starfive: jh7110: Add ethernet device node
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V2 5/6] arm64: dts: qcom: ipq9574: Add RPM related nodes
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_ipkumar@quicinc.com>
+References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
+ <20230217142030.16012-6-quic_devipriy@quicinc.com>
+ <12d23d88-6f42-09ea-3f26-e1b7a0878767@linaro.org>
+ <fb576665-7983-d09a-06a6-bfde5793816e@quicinc.com>
+ <07342311-33e3-cf7e-38ed-5d54d83b43a3@linaro.org>
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <07342311-33e3-cf7e-38ed-5d54d83b43a3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -WpnjPLkYLpBnh6pDg6h6arN1RpFrsnN
+X-Proofpoint-GUID: -WpnjPLkYLpBnh6pDg6h6arN1RpFrsnN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-20_12,2023-02-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ phishscore=0 clxscore=1015 bulkscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 mlxlogscore=943 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302200140
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,149 +88,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Feb 2023 at 15:22, Emil Renner Berthing
-<emil.renner.berthing@canonical.com> wrote:
-> On Wed, 18 Jan 2023 at 07:19, Yanhong Wang
-> <yanhong.wang@starfivetech.com> wrote:
-> > Add JH7110 ethernet device node to support gmac driver for the JH7110
-> > RISC-V SoC.
-> >
-> > Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> > ---
-> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 93 ++++++++++++++++++++++++
-> >  1 file changed, 93 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > index c22e8f1d2640..c6de6e3b1a25 100644
-> > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > @@ -433,5 +433,98 @@
-> >                         reg-shift = <2>;
-> >                         status = "disabled";
-> >                 };
-> > +
-> > +               stmmac_axi_setup: stmmac-axi-config {
-> > +                       snps,lpi_en;
-> > +                       snps,wr_osr_lmt = <4>;
-> > +                       snps,rd_osr_lmt = <4>;
-> > +                       snps,blen = <256 128 64 32 0 0 0>;
-> > +               };
-> > +
-> > +               gmac0: ethernet@16030000 {
-> > +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
-> > +                       reg = <0x0 0x16030000 0x0 0x10000>;
-> > +                       clocks = <&aoncrg JH7110_AONCLK_GMAC0_AXI>,
-> > +                                <&aoncrg JH7110_AONCLK_GMAC0_AHB>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC0_PTP>,
-> > +                                <&aoncrg JH7110_AONCLK_GMAC0_TX>,
->
-> The gmac0_tx clock is a mux that takes either the gmac0_gtxclk or
-> rmii_rtx as parent. However it is then followed by an inverter that
-> optionally inverts the clock, gmac0_tx_inv. I'm guessing this
-> optionally inverted signal is what is actually used (otherwise why
-> would the inverter exist), so I think this clock is what should be
-> claimed here. Eg.
->     <&aoncrg JH7110_AONCLK_GMAC0_TX_INV>,
->
-> Right now it works only because the inverted signal can't be gated
-> (turned off) even when it's not claimed by any driver.
->
-> > +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXC>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXCLK>;
->
-> Here the gmac0_gtxclk clock is the parent of the gmac0_gtxc, so
-> claiming the gmac0_gtxc should be enough. Since the gmac0_gtxc is just
-> a gate it should have the CLK_SET_RATE_PARENT flag set, so the driver
-> can just change the rate of the child and it should propagate to the
-> parent. In short I think claiming only the gmac0_gtxc clock should be
-> enough here.
 
-Oh and just for completeness. This also goes for gmac1 below, and
-don't forget to update the yaml binding doc accordingly.
 
-> > +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
-> > +                                               "tx", "gtxc", "gtx";
-> > +                       resets = <&aoncrg JH7110_AONRST_GMAC0_AXI>,
-> > +                                <&aoncrg JH7110_AONRST_GMAC0_AHB>;
-> > +                       reset-names = "stmmaceth", "ahb";
-> > +                       interrupts = <7>, <6>, <5>;
-> > +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> > +                       phy-mode = "rgmii-id";
-> > +                       snps,multicast-filter-bins = <64>;
-> > +                       snps,perfect-filter-entries = <8>;
-> > +                       rx-fifo-depth = <2048>;
-> > +                       tx-fifo-depth = <2048>;
-> > +                       snps,fixed-burst;
-> > +                       snps,no-pbl-x8;
-> > +                       snps,force_thresh_dma_mode;
-> > +                       snps,axi-config = <&stmmac_axi_setup>;
-> > +                       snps,tso;
-> > +                       snps,en-tx-lpi-clockgating;
-> > +                       snps,txpbl = <16>;
-> > +                       snps,rxpbl = <16>;
-> > +                       status = "disabled";
-> > +                       phy-handle = <&phy0>;
-> > +
-> > +                       mdio0: mdio {
-> > +                               #address-cells = <1>;
-> > +                               #size-cells = <0>;
-> > +                               compatible = "snps,dwmac-mdio";
-> > +
-> > +                               phy0: ethernet-phy@0 {
-> > +                                       reg = <0>;
-> > +                               };
-> > +                       };
-> > +               };
-> > +
-> > +               gmac1: ethernet@16040000 {
-> > +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
-> > +                       reg = <0x0 0x16040000 0x0 0x10000>;
-> > +                       clocks = <&syscrg JH7110_SYSCLK_GMAC1_AXI>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC1_AHB>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC1_PTP>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC1_TX>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXC>,
-> > +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXCLK>;
-> > +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
-> > +                                       "tx", "gtxc", "gtx";
-> > +                       resets = <&syscrg JH7110_SYSRST_GMAC1_AXI>,
-> > +                                <&syscrg JH7110_SYSRST_GMAC1_AHB>;
-> > +                       reset-names = "stmmaceth", "ahb";
-> > +                       interrupts = <78>, <77>, <76>;
-> > +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> > +                       phy-mode = "rgmii-id";
-> > +                       snps,multicast-filter-bins = <64>;
-> > +                       snps,perfect-filter-entries = <8>;
-> > +                       rx-fifo-depth = <2048>;
-> > +                       tx-fifo-depth = <2048>;
-> > +                       snps,fixed-burst;
-> > +                       snps,no-pbl-x8;
-> > +                       snps,force_thresh_dma_mode;
-> > +                       snps,axi-config = <&stmmac_axi_setup>;
-> > +                       snps,tso;
-> > +                       snps,en-tx-lpi-clockgating;
-> > +                       snps,txpbl = <16>;
-> > +                       snps,rxpbl = <16>;
-> > +                       status = "disabled";
-> > +                       phy-handle = <&phy1>;
-> > +
-> > +                       mdio1: mdio {
-> > +                               #address-cells = <1>;
-> > +                               #size-cells = <0>;
-> > +                               compatible = "snps,dwmac-mdio";
-> > +
-> > +                               phy1: ethernet-phy@1 {
-> > +                                       reg = <1>;
-> > +                               };
-> > +                       };
-> > +               };
-> >         };
-> >  };
-> > --
-> > 2.17.1
-> >
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+On 2/20/2023 8:06 PM, Konrad Dybcio wrote:
+> 
+> 
+> On 20.02.2023 14:53, Devi Priya wrote:
+>> Hi Konrad,
+>>
+>> Thanks for taking time to review the patch!
+> I appreciate your gratitude, but please don't toppost (a.k.a
+> don't reply in the first lines of the email), that's rather
+> frowned upon on LKML.
+> 
+Sure, understood!
+>>
+>> On 2/17/2023 8:20 PM, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 17.02.2023 15:20, Devi Priya wrote:
+>>>> Add RPM Glink, RPM message RAM and SMPA1 regulator
+>>>> nodes to support frequency scaling on IPQ9574
+>>>>
+>>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>>>> ---
+>>>>    Changes in V2:
+>>>>      - Splitted the RPM and CPU Freq changes to individual patches
+>>>>      - Moved the regulators node to Board DT
+>>>>      - Dropped the regulator-always-on property
+>>>>      - Updated the compatible in regulators node with the existing
+>>>>        mp5496 compatible
+>>>>
+>>>>    arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts | 11 +++++++++++
+>>>>    arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 17 +++++++++++++++++
+>>>>    2 files changed, 28 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+>>>> index 21b53f34ce84..8a6caaeb0c4b 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+>>>> @@ -57,6 +57,17 @@
+>>>>        status = "okay";
+>>>>    };
+>>>>    +&rpm_requests {
+>>>> +    regulators {
+>>>> +        compatible = "qcom,rpm-mp5496-regulators";
+>>>> +
+>>>> +        ipq9574_s1: s1 {
+>>>> +            regulator-min-microvolt = <587500>;
+>>>> +            regulator-max-microvolt = <1075000>;
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>> This belongs in a separate patch.
+>>>
+>> Do you recommend to move this change to the below patch in the next spin?
+>> [PATCH V2 6/6]arm64: dts: qcom: ipq9574: Add cpufreq support
+> Sounds good
+> 
+> Also, I think you missed a newline before &rpm_requests now that
+> I look at it.
+Sure, will take care of that in V3
+> 
+> Konrad
+>>>> +
+>>>>    &sdhc_1 {
+>>>>        pinctrl-0 = <&sdc_default_state>;
+>>>>        pinctrl-names = "default";
+>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>>> index d20f3c7383f5..2f300cbab93e 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>>> @@ -133,6 +133,11 @@
+>>>>            #size-cells = <2>;
+>>>>            ranges;
+>>>>    +        rpm_msg_ram: rpm@60000 {
+>>> Since this is a part of the MMIO region and not a part of DRAM,
+>>> we generally put this node under /soc with the compatible of
+>>> qcom,rpm-msg-ram and without no-map.
+>>>
+>>> And the node name then should be sram@.
+>> Sure, okay. Will update this in V3
+>>>
+>>>> +            reg = <0x0 0x00060000 0x0 0x6000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>>            tz_region: tz@4a600000 {
+>>>>                reg = <0x0 0x4a600000 0x0 0x400000>;
+>>>>                no-map;
+>>>> @@ -768,6 +773,18 @@
+>>>>            };
+>>>>        };
+>>>>    +    rpm-glink {
+>>> Alphabetically this should come before /soc.
+>> Okay
+>>>
+>>> Konrad
+>>>> +        compatible = "qcom,glink-rpm";
+>>>> +        interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+>>>> +        qcom,rpm-msg-ram = <&rpm_msg_ram>;
+>>>> +        mboxes = <&apcs_glb 0>;
+>>>> +
+>>>> +        rpm_requests: glink-channel {
+>>>> +            compatible = "qcom,rpm-ipq9574";
+>>>> +            qcom,glink-channels = "rpm_requests";
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>>        timer {
+>>>>            compatible = "arm,armv8-timer";
+>>>>            interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>> Best Regards,
+>> Devi Priya
