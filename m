@@ -2,114 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FA869C65D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B1BE69C66C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:19:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbjBTIQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 03:16:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60814 "EHLO
+        id S230264AbjBTITH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Feb 2023 03:19:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjBTIQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:16:06 -0500
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570D411EAC;
-        Mon, 20 Feb 2023 00:16:03 -0800 (PST)
-Received: by mail-qv1-f51.google.com with SMTP id nv15so439034qvb.7;
-        Mon, 20 Feb 2023 00:16:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GhdeujqRrZ30kHbfp+IOG4sWxnU1RJIBCIHIcK/nUfw=;
-        b=mAch6/WxRQr30734M+PlFZ3k0wulvkDnwQFLSC2jlmX2e0I00OYTTeuTaDdFeudzwa
-         W1FE72smK4l+pfFctloub379nzNQX7xOPOD03B7pepH7VIAhE4DfWz1Nq1aIACD4xTdr
-         unp4WR5Kqv4kp1lTg3jz44FCX5nLihaEMQGDMFYzxz4ZLHkvmvObpL5T7oEXDIivT73+
-         JGUnvhOGQURx7uPFENLmVya8acElpg7gkzieam+GYJMFqzJLQ6uJoMrijFk7VjQjrhTI
-         HKYVVTV19ndXCD5mEETfSiloREGLA6wBErEKsEFDB8bDDkcQCChVDJlyBhW+x3rV6tpE
-         QM3g==
-X-Gm-Message-State: AO0yUKU6stAy/L/RDACa6xO4YDKSG83EkVjOkL62Zf+MaopmMSLyn3by
-        5sWxehk4LyRTPDfzIXg/AXRk27kT7H5oRw==
-X-Google-Smtp-Source: AK7set+AaLu2GD+WsctcxcZEACYu/N/F6+7DGzFBzKu5gbg3+yDzec078nZ56mhtr560D7zesC6aIA==
-X-Received: by 2002:a05:6214:2a86:b0:56f:5466:20d8 with SMTP id jr6-20020a0562142a8600b0056f546620d8mr801341qvb.3.1676880961801;
-        Mon, 20 Feb 2023 00:16:01 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id q188-20020a378ec5000000b0073d82a8113bsm3510028qkd.126.2023.02.20.00.16.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 00:16:01 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id v78so392255ybe.3;
-        Mon, 20 Feb 2023 00:16:01 -0800 (PST)
-X-Received: by 2002:a5b:f06:0:b0:95e:613:ca4c with SMTP id x6-20020a5b0f06000000b0095e0613ca4cmr125776ybr.12.1676880960980;
- Mon, 20 Feb 2023 00:16:00 -0800 (PST)
+        with ESMTP id S229638AbjBTITG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:19:06 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE53FF24;
+        Mon, 20 Feb 2023 00:19:02 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 1832C24E2BC;
+        Mon, 20 Feb 2023 16:19:01 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Feb
+ 2023 16:19:01 +0800
+Received: from localhost.localdomain (183.27.98.67) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Feb
+ 2023 16:18:59 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+Subject: [PATCH v3 0/2] Add watchdog driver for StarFive JH7110 RISC-V SoC
+Date:   Mon, 20 Feb 2023 16:19:24 +0800
+Message-ID: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230217185225.43310-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230217185225.43310-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Feb 2023 09:15:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVW-rBR43QCuaBDJD407wUUZ4=nJP_+UvXUrJ4+BsXRbA@mail.gmail.com>
-Message-ID: <CAMuHMdVW-rBR43QCuaBDJD407wUUZ4=nJP_+UvXUrJ4+BsXRbA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: renesas: r9a07g044: Update IRQ numbers
- for SSI channels
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [183.27.98.67]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+This patch serises are to add watchdog driver for the StarFive JH7110
+RISC-V SoC. The first patch adds docunmentation to describe device
+tree bindings. The subsequent patch adds watchdog driver and support
+JH7110 SoC. And the addition of device tree node will be submitted
+after the JH7110 dts merge. This patchset is based on 6.2.
 
-On Fri, Feb 17, 2023 at 7:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> From R01UH0914EJ0120 Rev.1.20 HW manual the interrupt numbers for SSI
-> channels have been updated,
->
-> SPI 329 - SSIF0 is now marked as reserved
-> SPI 333 - SSIF1 is now marked as reserved
-> SPI 335 - SSIF2 is now marked as reserved
-> SPI 336 - SSIF2 is now marked as reserved
-> SPI 341 - SSIF3 is now marked as reserved
->
-> This patch drops the above IRQs from SoC DTSI.
->
-> Fixes: 92a341315afc9 ("arm64: dts: renesas: r9a07g044: Add SSI support")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> Hi Geert,
->
-> As this is is a fixes patch and we are still waiting for [0] to be merged
-> shall do the same for V2L SoC?
+The watchdog driver has been tested on the VisionFive 2 boards which
+equip with JH7110 SoC and works normally.
 
-Yes please. Thank you!
+Changes since v2: 
+- Added watchdog.yaml and unevaluatedProperties in the dt-binding.
+- Removed some unnecessary include files.
+- Changed the 'module_param' name and dropped 'soft_noboot'.
+- Rrmoved 'CONFIG_OF'.
+- Added a check if clock rate is 0.
+- Modified the max_timeout calculation formula.
+- Removed restart function.
+- Removed duplicate checks on the upper and lower bounds of 'count'.
+- Removed 'started' variable.
+- Added pm_runtime_get_sync() and pm_runtime_put_sync().
+- Removed 'firmware_version = 0' variable.
+- Drop the device tree node commit.
 
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+Changes since v1:
+- Renamed the dt-binding 'starfive,wdt.yaml' to 'starfive,jh7110-wdt.yaml'.
+- Dropped the '_clk' and 'rst_' about the 'clock-names' and 'reset-names'
+  in the dt-binding.
+- Updated the example context in the dt-binding 'starfive,jh7110-wdt.yaml'
+  to be independent of other patchset.
+- Deleted unused macros like 'JH7110_WDOG_INT_EN'.
+- Changed the type of 'freq' in the struct from u64 to u32.
+- Used 'devm_clk_get_enabled()' instead of 'devm_clk_get()' and
+  'clk_prepare_enable()'.
+- Removed the operation to get the frequency from the device tree.
+- Added watchdog_stop_on_unregister() and watchdog_stop_on_reboot().
+- Removed any operations about interrupt.
 
-Gr{oetje,eeting}s,
+v2: https://lore.kernel.org/all/20221219094233.179153-1-xingyu.wu@starfivetech.com/
+v1: https://lore.kernel.org/all/20221202093943.149674-1-xingyu.wu@starfivetech.com/
 
-                        Geert
+Xingyu Wu (2):
+  dt-bindings: watchdog: Add watchdog for StarFive JH7110
+  drivers: watchdog: Add StarFive Watchdog driver
 
+ .../watchdog/starfive,jh7110-wdt.yaml         |  74 ++
+ MAINTAINERS                                   |   7 +
+ drivers/watchdog/Kconfig                      |   9 +
+ drivers/watchdog/Makefile                     |   2 +
+ drivers/watchdog/starfive-wdt.c               | 651 ++++++++++++++++++
+ 5 files changed, 743 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/starfive,jh7110-wdt.yaml
+ create mode 100644 drivers/watchdog/starfive-wdt.c
+
+
+base-commit: c9c3395d5e3dcc6daee66c6908354d47bf98cb0c
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
