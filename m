@@ -2,91 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4F169CB25
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 13:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C96A169CAEB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 13:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231803AbjBTMkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 07:40:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58958 "EHLO
+        id S232103AbjBTM0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 07:26:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232126AbjBTMj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 07:39:59 -0500
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D24FDDBC5;
-        Mon, 20 Feb 2023 04:39:53 -0800 (PST)
-Received: from [10.0.0.182] (unknown [10.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 138721600E5;
-        Mon, 20 Feb 2023 13:25:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1676895941;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=H4264FLxyABbFkLYLtX4Tn1z8cOx769b0SJ6QlJBzWI=;
-        b=v3HuHaoMIdRLKX+fDb8Mi0Z2WQDy4lpt+UgClwwYWReKremy6ifZAFeQ+sFigLLVCt1SCo
-        VWGkwKqJqA2Lwkq5Lmx9oX2pz5Uk9WsyqFeZfHwZ7XBU7ZhHACnCbHxgvNceDQlDQCJw1W
-        211hefUDRBa2eXcBOBJj6pe1YPDibA4=
-Message-ID: <6db2461e-249e-c181-4e14-48b792207a18@ixit.cz>
-Date:   Mon, 20 Feb 2023 13:25:40 +0100
+        with ESMTP id S231666AbjBTM0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 07:26:45 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C2D19F2E
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 04:26:09 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pU5Ex-0003EE-3q; Mon, 20 Feb 2023 13:25:55 +0100
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pU5Eu-006GFZ-Vm; Mon, 20 Feb 2023 13:25:54 +0100
+Received: from mfe by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pU5Eu-003sjy-Se; Mon, 20 Feb 2023 13:25:52 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     puranjay12@gmail.com, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH v4 0/5] Add TI TMP116 Support
+Date:   Mon, 20 Feb 2023 13:25:47 +0100
+Message-Id: <20230220122552.925216-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101
- Thunderbird/104.0
-Subject: Re: [PATCH] ARM: dts: qcom-apq8064: Fix opp table child name
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230220120831.1591820-1-konrad.dybcio@linaro.org>
-Content-Language: en-US
-From:   David Heidelberg <david@ixit.cz>
-In-Reply-To: <20230220120831.1591820-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you!
+Hi,
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
+this small series adds the support for the TI TMP116 temperature sensor
+which is predecessor of the TMP117 but still in production.
 
-On 20/02/2023 13:08, Konrad Dybcio wrote:
-> The opp-320000000 name is rather misleading with the opp-hz value
-> of 450 MHz. Fix it!
->
-> Fixes: 8db0b6c7b636 ("ARM: dts: qcom: apq8064: Convert adreno from legacy gpu-pwrlevels to opp-v2")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm/boot/dts/qcom-apq8064.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-> index 92aa2b081901..3aeac0cabb28 100644
-> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-> @@ -1260,7 +1260,7 @@ &gfx3d1 30
->   			gpu_opp_table: opp-table {
->   				compatible = "operating-points-v2";
->   
-> -				opp-320000000 {
-> +				opp-450000000 {
->   					opp-hz = /bits/ 64 <450000000>;
->   				};
->   
+Marco Felsch (5):
+  dt-bindings: iio: ti,tmp117: fix documentation link
+  iio: temperature: tmp117: improve fallback capabilities
+  dt-bindings: iio: ti,tmp117: add binding for the TMP116
+  iio: temperature: tmp117: add TI TMP116 support
+  iio: temperature: tmp117: cosmetic alignment cleanup
+
+ .../bindings/iio/temperature/ti,tmp117.yaml   |   8 +-
+ drivers/iio/temperature/tmp117.c              | 103 ++++++++++++------
+ 2 files changed, 76 insertions(+), 35 deletions(-)
 
 -- 
-David Heidelberg
-Consultant Software Engineer
+2.30.2
 
