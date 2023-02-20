@@ -2,187 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F45469CB9B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 14:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DDD269CBCF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 14:14:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbjBTNKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 08:10:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54404 "EHLO
+        id S231504AbjBTNN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 08:13:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbjBTNKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 08:10:06 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE399DBD9
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 05:10:04 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id x41so1285609ljq.13
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 05:10:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TXPP8v5Me9ivNoHQ306aXdAuISsblqiSjG1puCpj0yQ=;
-        b=R84wIUvdDXaOchL9oK69XjlSdwtT1eJGbkMutWTGmyGgOFMn+1/F2qxZBDj4gH8QcR
-         Zx5M97qEXj2qZ1qk299LPooHL5gW/BccECBM+69IIhWCCQBAoTD4um34lv2SNbGQUZjJ
-         ibYe4mSvY50GvzHjwqJ0ToxD8kqEd5sGCJW8Hyxm3gb8vMUgBgo6Bn2IL0+y6aOyDOlx
-         4iAtGB4nf9td+arSNz6hCW/I6odo1GzR7VsPrg35mo2LHZt+42R1fp66c6CAlobE66zI
-         d1lRYrHDXrEFu+D6NRzddEUaudMScskhvo0sF2xM6IKbbOyK2lUQjAeExQ8z/RJ7+rsV
-         adyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TXPP8v5Me9ivNoHQ306aXdAuISsblqiSjG1puCpj0yQ=;
-        b=KaNnvtqYbQ0k8d3eSoNkC9uEUsouI1DBgCdNl7pzIXblVEodXjL692mY+M5e58T3vt
-         J2UJliyikgWQulskS8Lbys3METj/WXfFy9HkqCHGrHmfasXXO/r4wV057Lz+ZsopCVzg
-         TdkF9kaHBnS+u8/nfnSoV/KuxvLSENRwlTAnWUvMdSMuQN07sAq4WYeE6Agaq7A8X7lR
-         crM8//QYMAhurrSXDGFjth8L2LvXoHe5WI45F9QgsV1AgRszwZ0n9TnrdER6DF9EmwNq
-         M6ufIwoOK0nhoH0ru+EiJIhjffFJaUl2QxVM0JUX2HU1ReqBLLqsYvZWl/bfWJFcAjkI
-         u7KQ==
-X-Gm-Message-State: AO0yUKVHnplsxmP3mRMG6okdicvqVx5gH8/Xl2rO9NpKpV72ZC8pTg9w
-        NSyRTGuf37+jSG+NpnwZ0Vtmjw==
-X-Google-Smtp-Source: AK7set/5hkcbqDQjuszf4v7bV6XAO+pNUKVXF/eLSFcvADD1XSYN5HZGhYOgH/zB9LAx1JZo9yuaPQ==
-X-Received: by 2002:a2e:a4a9:0:b0:294:66bc:7605 with SMTP id g9-20020a2ea4a9000000b0029466bc7605mr435943ljm.30.1676898602985;
-        Mon, 20 Feb 2023 05:10:02 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id t28-20020a2e8e7c000000b002946be8475esm341419ljk.135.2023.02.20.05.10.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 05:10:02 -0800 (PST)
-Message-ID: <22c180ed-0ef9-7ef5-9c13-31fd658e5fa8@linaro.org>
-Date:   Mon, 20 Feb 2023 14:10:00 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 2/6] dt-bindings: opp: v2-qcom-level: Document CPR3
- open/closed loop volt adjustment
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        with ESMTP id S231160AbjBTNNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 08:13:21 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 36515B467;
+        Mon, 20 Feb 2023 05:13:19 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.97,312,1669042800"; 
+   d="scan'208";a="153478098"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 20 Feb 2023 22:13:18 +0900
+Received: from localhost.localdomain (unknown [10.226.92.229])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 668334004BDC;
+        Mon, 20 Feb 2023 22:13:15 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
- <20230217-topic-cpr3h-v10-2-67aed8fdfa61@linaro.org>
- <20230217231330.GA2238521-robh@kernel.org>
- <c2bfa6b0-edee-b492-d40e-cf43291b90d4@linaro.org>
- <1274e18b-e35e-7997-68ea-22aa11592720@collabora.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1274e18b-e35e-7997-68ea-22aa11592720@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock generator bindings
+Date:   Mon, 20 Feb 2023 13:13:05 +0000
+Message-Id: <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document Renesas versa3 clock generator(5P35023) bindings.
 
+The 5P35023 is a VersaClock programmable clock generator and
+is designed for low-power, consumer, and high-performance PCI
+Express applications. The 5P35023 device is a three PLL
+architecture design, and each PLL is individually programmable
+and allowing for up to 6 unique frequency outputs.
 
-On 20.02.2023 12:27, AngeloGioacchino Del Regno wrote:
-> Il 18/02/23 01:26, Konrad Dybcio ha scritto:
->>
->>
->> On 18.02.2023 00:13, Rob Herring wrote:
->>> On Fri, Feb 17, 2023 at 12:08:25PM +0100, Konrad Dybcio wrote:
->>>> CPR3 and newer can be fed per-OPP voltage adjustment values for both
->>>> open- and closed-loop paths to make better decisions about settling
->>>> on the final voltage offset target. Document these properties.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>   .../devicetree/bindings/opp/opp-v2-qcom-level.yaml         | 14 ++++++++++++++
->>>>   1 file changed, 14 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->>>> index a30ef93213c0..93cc88434dfe 100644
->>>> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->>>> @@ -34,6 +34,20 @@ patternProperties:
->>>>           minItems: 1
->>>>           maxItems: 2
->>>>   +      qcom,opp-cloop-vadj:
->>>> +        description: |
->>>> +          A value representing the closed-loop voltage adjustment value
->>>
->>> A value?
->>>
->>>> +          associated with this OPP node.
->>>> +        $ref: /schemas/types.yaml#/definitions/int32-array
->>>> +        maxItems: 2
->>>
->>> Or 2 values?
->> Right, this description doesn't make any sense if you're just
->> looking at the documentation without looking at the driver..
->>
->> Generally, each CPR3 instance can have multiple "threads"
->> (each one of which regulates voltage for some on-SoC IP or
->> part of it). The nth entry in the qcom,opp-[co]loop-vadj
->> array corresponds to a voltage offset for the nth thread.
->>
->> If the nth entry in the array is missing, the driver assumes
->> the arr[0] one is "global" to this CPR3 instance at this OPP
->> level and applies it to all threads. ...and looking at it
->> again, this is sorta just bad design, especially if you
->> take into account that there's no known user of CPR3 that
->> employs more than 2 threads.
->>
->> I'll remove that from the driver and make the description clearer.
->>
-> 
-> description:
->   Represents the closed-loop voltage adjustment associated with
->   this OPP node.
-> 
-> P.S.: Drop '|' here and on oloop!
-> 
-> This binding is intended to support either single or multiple CPR threads;
-> the driver's behavior is unimportant as bindings describe the hardware,
-> not the driver.
-Correct, but specifying just one value regardless of the number of threads
-is not in the spirit of representing things clearly. These properties do
-not describe the hardware. They let us pass configuration values that are
-specific to the SoC hosting the CPR, not to the CPR itself.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ .../bindings/clock/renesas,versaclock3.yaml   | 135 ++++++++++++++++++
+ 1 file changed, 135 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
 
-Konrad
-> 
-> Regards,
-> Angelo
-> 
->>
->> Also, only noticed now.. "qcom,sdm630-cprh" was not documented,
->> so that's to be fixed for the next submission as well!
->>
->>
->> Konrad
->>>
->>>> +
->>>> +      qcom,opp-oloop-vadj:
->>>> +        description: |
->>>> +          A value representing the open-loop voltage adjustment value
->>>> +          associated with this OPP node.
->>>> +        $ref: /schemas/types.yaml#/definitions/int32-array
->>>> +        maxItems: 2
->>>> +
->>>>       required:
->>>>         - opp-level
->>>>         - qcom,opp-fuse-level
->>>>
->>>> -- 
->>>> 2.39.1
->>>>
-> 
-> 
-> 
+diff --git a/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml b/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
+new file mode 100644
+index 000000000000..f45b8da73ec3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
+@@ -0,0 +1,135 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/renesas,versaclock3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas VersaClock 3 programmable I2C clock generators
++
++description: |
++  The 5P35023 is a VersaClock programmable clock generator and
++  is designed for low-power, consumer, and high-performance PCI
++  express applications. The 5P35023 device is a three PLL
++  architecture design, and each PLL is individually programmable
++  and allowing for up to 6 unique frequency outputs.
++
++  An internal OTP memory allows the user to store the configuration
++  in the device. After power up, the user can change the device register
++  settings through the I2C interface when I2C mode is selected.
++
++  The driver can read a full register map from the DT, and will use that
++  register map to initialize the attached part (via I2C) when the system
++  boots. Any configuration not supported by the common clock framework
++  must be done via the full register map, including optimized settings.
++
++  Link to datasheet: https://www.renesas.com/us/en/products/clocks-timing/
++                     clock-generation/programmable-clocks/
++                     5p35023-versaclock-3s-programmable-clock-generator
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++
++properties:
++  compatible:
++    enum:
++      - renesas,5p35023
++
++  reg:
++    description: I2C device address
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  clock-names:
++    oneOf:
++      - items:
++          - const: x1
++      - items:
++          - const: clkin
++
++  clocks:
++    maxItems: 1
++
++  renesas,settings:
++    description: Optional, complete register map of the device.
++      Optimized settings for the device must be provided in full
++      and are written during initialization.
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 37
++
++  assigned-clocks:
++    minItems: 6
++
++  assigned-clock-rates:
++    minItems: 6
++
++  renesas,clock-divider-read-only:
++    description: Flag for setting divider in read only mode.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 5
++
++  renesas,clock-flags:
++    description: Flags used in common clock frame work for configuring
++      clk outputs. See include/linux/clk-provider.h
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 6
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    /* 24MHz crystal */
++    x1_x2: xtal {
++      compatible = "fixed-clock";
++      #clock-cells = <0>;
++      clock-frequency = <24000000>;
++    };
++
++    i2c@0 {
++        reg = <0x0 0x100>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        versa3: clock-generator@68 {
++            compatible = "renesas,5p35023";
++            reg = <0x68>;
++            #clock-cells = <1>;
++
++            clocks = <&x1_x2>;
++            clock-names = "x1";
++
++            renesas,settings = [
++                80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
++                00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
++                80 b0 45 c4 95
++            ];
++
++            assigned-clocks = <&versa3 0>,
++                              <&versa3 1>,
++                              <&versa3 2>,
++                              <&versa3 3>,
++                              <&versa3 4>,
++                              <&versa3 5>;
++            assigned-clock-rates = <12288000>, <25000000>,
++                                   <12000000>, <11289600>,
++                                   <11289600>, <24000000>;
++            renesas,clock-divider-read-only = <1>, <1>, <1>, <1>, <1>;
++            renesas,clock-flags = <2176>, <2176>, <2176>, <2052>,
++                                  <2176>, <2048>;
++        };
++    };
++
++    /* Consumer referencing the versa 3 */
++    consumer {
++        /* ... */
++        clocks = <&versa3 3>;
++        /* ... */
++    };
+-- 
+2.25.1
+
