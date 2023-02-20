@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 359C669CF42
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 15:22:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF0669CF83
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 15:37:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231783AbjBTOWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 09:22:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46262 "EHLO
+        id S231817AbjBTOhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 09:37:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231208AbjBTOWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 09:22:39 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 977AD1EFD9
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:22:37 -0800 (PST)
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4F57B3F588
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 14:22:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1676902956;
-        bh=15KdzNFX7MaKLfDAFP/yezApxH/xR6DxYD9Z1QEyvxM=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=aw+CJ6efsksFvrIUuatebjN+9htiQN2MZRX/+RhPfSWIPUlrYuBJFGUZcDgQ3Yz8r
-         pjjDES4obX6kk5Z4uWue0qFQheuQxxfR078kToEhuu/v36y2elQ/VLcaAJCRmb+7Ux
-         wmpVCiTNoQ2nfMbmZmBKFR/x6pbaJD4hDTnTKlMmEvRXo4MpuiPg8NXWNg7vg7SEkL
-         DBlhUV4eTXCGjI9w5KyVqWa73acfy7Z/9NesuKSUaOYefXmtzJSUmwFZJWh4Pa5ejC
-         qmZVeZTEF9d8pwACDvpO54dCElrREYoYmKrMVoMynqqoKe1bPGTeqQxEUi3PS4lGFK
-         BzARUkrx7JF5A==
-Received: by mail-qk1-f200.google.com with SMTP id x4-20020a05620a448400b007283b33bfb3so163689qkp.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:22:36 -0800 (PST)
+        with ESMTP id S231567AbjBTOg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 09:36:59 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF071A49B
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:36:58 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id f41so1926483lfv.13
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:36:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6vhlUf4V//EucpeTUzass2zWDgLFr6HdC5bKhDHOf1Y=;
+        b=OBGrR5BqSNtEZQM2urjlOlaH1nXZyXQ47IZg0lF9rt5wQqW4Q98NZGvwbZNA+61qz9
+         6aU2ev0bXVxpk+9FiZZGYk2ZrG5tGs3Rg8zfLoMxKq0czUtZoY5cul/ECPIsR3FP2a4I
+         2Q2vxiSeUP0gfZRTOSPHv8/6ocY8rMx1D5z7TEKaRH4B5ZiLj11rud1u6K/Xr3xrPeBG
+         wyjbDuHvneR1ZG6Tv+HUxYPTm/dWMa3j7iqcIpj1/T0JyrCbBkTxQO9oyGqHee5mA5xF
+         qpkm/35SQsnPu8uT4s8VC8eWppF9ptD9zlneZ5NcECCaabiUZZYXAYcemCLrmsugsg2w
+         hVBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=15KdzNFX7MaKLfDAFP/yezApxH/xR6DxYD9Z1QEyvxM=;
-        b=Ri9zG3DLHNN8/em1Ni0xUQ5ETurQBi+bDEj3bzZJ40TCxyjdyKn8+4Zfma3CvSWGb1
-         Y6PhR3Q5uYEy6Vce5QRuRmxkzFY/RZgSgaeEQP/nK+bE8h6s4yuSUaIjCuB+58o4nwq/
-         qf2vL/pT+QhUPEwlGItvSGA8vol5Ayzw1HT5z1ffV3e8pWaO2JTD7VTNpFKTZJT0eQIM
-         3dDYvIfMJ4Jv2QGzRl7858UZlLfCff0SKalp0Yg7nYqwXi7o7XFZO4sUZGIzHmVXAdVM
-         MhR4og9ESi/mjrcFtDUJxK8BgToFG5XE4Vi1tNw73U2fKr5D0apU2uG8XbtG8lZACnjA
-         FZPw==
-X-Gm-Message-State: AO0yUKUveAvSJpfIwbJ53ZLdvPlcFnrQ9XS74UYVAQCEFW0duZKfvsra
-        Eg6XpBdIhvo23r+/Dvfldy5uCV/xYYYlOiK/eTueC4rGd9iu2KkduN4nR2a4cdhgXkpUWYOznPV
-        fWUglOlwHnfR8lUre7vlkaUQOWNygP/Dl+OavbFlP9PaU+3THPkcId4NxelNkZVM=
-X-Received: by 2002:ac8:701b:0:b0:3b7:fda5:1cbc with SMTP id x27-20020ac8701b000000b003b7fda51cbcmr213070qtm.5.1676902954914;
-        Mon, 20 Feb 2023 06:22:34 -0800 (PST)
-X-Google-Smtp-Source: AK7set+dV6jlM0TuskfDPI955wHdR3MIsyp4aZm7ZGrdR5YGZR5IqoJRIZac7YadjSfeXQ/9C9c1FhXN+okz8gNXcw4=
-X-Received: by 2002:ac8:701b:0:b0:3b7:fda5:1cbc with SMTP id
- x27-20020ac8701b000000b003b7fda51cbcmr213061qtm.5.1676902954624; Mon, 20 Feb
- 2023 06:22:34 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6vhlUf4V//EucpeTUzass2zWDgLFr6HdC5bKhDHOf1Y=;
+        b=phhmw9w3wgjqXZ9PImaGLC57EnyDmEmyt2BJHzanjJEADiDsBJZpG/lee4iCoRhic7
+         fW2QaWRCIw98UrLDyz4WsDw0VjuFeQxSvjOk5btj+45CMGmiBYvb0Vqgm4X+JuYK/MWG
+         REGVG6GFDS33mx1+0pbv/PampD+TJ7Ss34XU2oXDjuP3+rqmP/VPxVmY8n40N91i4f6+
+         wuY7rGr294FQNDefXXRQbyBS1PXbov3xQ2wPGPX93eYYvZP0HJ6iOYK4yz3Qk11RTLYc
+         eGyPVQ8c8myp57ROkRAGwlaJASOC/hUAokq7JIAlN5C3lHdGk6ibKob+Izd2XK9xeWu0
+         3ojg==
+X-Gm-Message-State: AO0yUKWkmnaW0vYVp0LcZpTLXLLgrl53WEoM0jg9pIrVoMUYUlyx5h7S
+        VgsiyxX7qbhkW7dplw76MolNoI4jn3SBn5HP
+X-Google-Smtp-Source: AK7set9Q2QTfNHI8HJ1IzZNKZTNtqZJBo5WDw+FA5rdYPWKoDAvgoATDJjdXykT21cEn90yayQJ4rA==
+X-Received: by 2002:a05:6512:1284:b0:4d8:86c1:4782 with SMTP id u4-20020a056512128400b004d886c14782mr837059lfs.23.1676903816529;
+        Mon, 20 Feb 2023 06:36:56 -0800 (PST)
+Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
+        by smtp.gmail.com with ESMTPSA id g21-20020a19ee15000000b004dc4b00a1eesm216242lfb.261.2023.02.20.06.36.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Feb 2023 06:36:56 -0800 (PST)
+Message-ID: <07342311-33e3-cf7e-38ed-5d54d83b43a3@linaro.org>
+Date:   Mon, 20 Feb 2023 15:36:54 +0100
 MIME-Version: 1.0
-References: <20230118061701.30047-1-yanhong.wang@starfivetech.com> <20230118061701.30047-7-yanhong.wang@starfivetech.com>
-In-Reply-To: <20230118061701.30047-7-yanhong.wang@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 20 Feb 2023 15:22:18 +0100
-Message-ID: <CAJM55Z9=wXxHXLHhLK1H2H2PnLv4Z+FiQPVd_+gtPss+P01MRg@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] riscv: dts: starfive: jh7110: Add ethernet device node
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V2 5/6] arm64: dts: qcom: ipq9574: Add RPM related nodes
+Content-Language: en-US
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_ipkumar@quicinc.com
+References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
+ <20230217142030.16012-6-quic_devipriy@quicinc.com>
+ <12d23d88-6f42-09ea-3f26-e1b7a0878767@linaro.org>
+ <fb576665-7983-d09a-06a6-bfde5793816e@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <fb576665-7983-d09a-06a6-bfde5793816e@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,144 +82,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Jan 2023 at 07:19, Yanhong Wang
-<yanhong.wang@starfivetech.com> wrote:
-> Add JH7110 ethernet device node to support gmac driver for the JH7110
-> RISC-V SoC.
->
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 93 ++++++++++++++++++++++++
->  1 file changed, 93 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index c22e8f1d2640..c6de6e3b1a25 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -433,5 +433,98 @@
->                         reg-shift = <2>;
->                         status = "disabled";
->                 };
-> +
-> +               stmmac_axi_setup: stmmac-axi-config {
-> +                       snps,lpi_en;
-> +                       snps,wr_osr_lmt = <4>;
-> +                       snps,rd_osr_lmt = <4>;
-> +                       snps,blen = <256 128 64 32 0 0 0>;
-> +               };
-> +
-> +               gmac0: ethernet@16030000 {
-> +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
-> +                       reg = <0x0 0x16030000 0x0 0x10000>;
-> +                       clocks = <&aoncrg JH7110_AONCLK_GMAC0_AXI>,
-> +                                <&aoncrg JH7110_AONCLK_GMAC0_AHB>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC0_PTP>,
-> +                                <&aoncrg JH7110_AONCLK_GMAC0_TX>,
 
-The gmac0_tx clock is a mux that takes either the gmac0_gtxclk or
-rmii_rtx as parent. However it is then followed by an inverter that
-optionally inverts the clock, gmac0_tx_inv. I'm guessing this
-optionally inverted signal is what is actually used (otherwise why
-would the inverter exist), so I think this clock is what should be
-claimed here. Eg.
-    <&aoncrg JH7110_AONCLK_GMAC0_TX_INV>,
 
-Right now it works only because the inverted signal can't be gated
-(turned off) even when it's not claimed by any driver.
+On 20.02.2023 14:53, Devi Priya wrote:
+> Hi Konrad,
+> 
+> Thanks for taking time to review the patch!
+I appreciate your gratitude, but please don't toppost (a.k.a
+don't reply in the first lines of the email), that's rather
+frowned upon on LKML.
 
-> +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXC>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXCLK>;
+> 
+> On 2/17/2023 8:20 PM, Konrad Dybcio wrote:
+>>
+>>
+>> On 17.02.2023 15:20, Devi Priya wrote:
+>>> Add RPM Glink, RPM message RAM and SMPA1 regulator
+>>> nodes to support frequency scaling on IPQ9574
+>>>
+>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>>> ---
+>>>   Changes in V2:
+>>>     - Splitted the RPM and CPU Freq changes to individual patches
+>>>     - Moved the regulators node to Board DT
+>>>     - Dropped the regulator-always-on property
+>>>     - Updated the compatible in regulators node with the existing
+>>>       mp5496 compatible
+>>>
+>>>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts | 11 +++++++++++
+>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 17 +++++++++++++++++
+>>>   2 files changed, 28 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+>>> index 21b53f34ce84..8a6caaeb0c4b 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+>>> @@ -57,6 +57,17 @@
+>>>       status = "okay";
+>>>   };
+>>>   +&rpm_requests {
+>>> +    regulators {
+>>> +        compatible = "qcom,rpm-mp5496-regulators";
+>>> +
+>>> +        ipq9574_s1: s1 {
+>>> +            regulator-min-microvolt = <587500>;
+>>> +            regulator-max-microvolt = <1075000>;
+>>> +        };
+>>> +    };
+>>> +};
+>> This belongs in a separate patch.
+>>
+> Do you recommend to move this change to the below patch in the next spin?
+> [PATCH V2 6/6]arm64: dts: qcom: ipq9574: Add cpufreq support
+Sounds good
 
-Here the gmac0_gtxclk clock is the parent of the gmac0_gtxc, so
-claiming the gmac0_gtxc should be enough. Since the gmac0_gtxc is just
-a gate it should have the CLK_SET_RATE_PARENT flag set, so the driver
-can just change the rate of the child and it should propagate to the
-parent. In short I think claiming only the gmac0_gtxc clock should be
-enough here.
+Also, I think you missed a newline before &rpm_requests now that
+I look at it.
 
-> +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
-> +                                               "tx", "gtxc", "gtx";
-> +                       resets = <&aoncrg JH7110_AONRST_GMAC0_AXI>,
-> +                                <&aoncrg JH7110_AONRST_GMAC0_AHB>;
-> +                       reset-names = "stmmaceth", "ahb";
-> +                       interrupts = <7>, <6>, <5>;
-> +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> +                       phy-mode = "rgmii-id";
-> +                       snps,multicast-filter-bins = <64>;
-> +                       snps,perfect-filter-entries = <8>;
-> +                       rx-fifo-depth = <2048>;
-> +                       tx-fifo-depth = <2048>;
-> +                       snps,fixed-burst;
-> +                       snps,no-pbl-x8;
-> +                       snps,force_thresh_dma_mode;
-> +                       snps,axi-config = <&stmmac_axi_setup>;
-> +                       snps,tso;
-> +                       snps,en-tx-lpi-clockgating;
-> +                       snps,txpbl = <16>;
-> +                       snps,rxpbl = <16>;
-> +                       status = "disabled";
-> +                       phy-handle = <&phy0>;
-> +
-> +                       mdio0: mdio {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               compatible = "snps,dwmac-mdio";
-> +
-> +                               phy0: ethernet-phy@0 {
-> +                                       reg = <0>;
-> +                               };
-> +                       };
-> +               };
-> +
-> +               gmac1: ethernet@16040000 {
-> +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
-> +                       reg = <0x0 0x16040000 0x0 0x10000>;
-> +                       clocks = <&syscrg JH7110_SYSCLK_GMAC1_AXI>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_AHB>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_PTP>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_TX>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXC>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXCLK>;
-> +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
-> +                                       "tx", "gtxc", "gtx";
-> +                       resets = <&syscrg JH7110_SYSRST_GMAC1_AXI>,
-> +                                <&syscrg JH7110_SYSRST_GMAC1_AHB>;
-> +                       reset-names = "stmmaceth", "ahb";
-> +                       interrupts = <78>, <77>, <76>;
-> +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> +                       phy-mode = "rgmii-id";
-> +                       snps,multicast-filter-bins = <64>;
-> +                       snps,perfect-filter-entries = <8>;
-> +                       rx-fifo-depth = <2048>;
-> +                       tx-fifo-depth = <2048>;
-> +                       snps,fixed-burst;
-> +                       snps,no-pbl-x8;
-> +                       snps,force_thresh_dma_mode;
-> +                       snps,axi-config = <&stmmac_axi_setup>;
-> +                       snps,tso;
-> +                       snps,en-tx-lpi-clockgating;
-> +                       snps,txpbl = <16>;
-> +                       snps,rxpbl = <16>;
-> +                       status = "disabled";
-> +                       phy-handle = <&phy1>;
-> +
-> +                       mdio1: mdio {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               compatible = "snps,dwmac-mdio";
-> +
-> +                               phy1: ethernet-phy@1 {
-> +                                       reg = <1>;
-> +                               };
-> +                       };
-> +               };
->         };
->  };
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Konrad
+>>> +
+>>>   &sdhc_1 {
+>>>       pinctrl-0 = <&sdc_default_state>;
+>>>       pinctrl-names = "default";
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> index d20f3c7383f5..2f300cbab93e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> @@ -133,6 +133,11 @@
+>>>           #size-cells = <2>;
+>>>           ranges;
+>>>   +        rpm_msg_ram: rpm@60000 {
+>> Since this is a part of the MMIO region and not a part of DRAM,
+>> we generally put this node under /soc with the compatible of
+>> qcom,rpm-msg-ram and without no-map.
+>>
+>> And the node name then should be sram@.
+> Sure, okay. Will update this in V3
+>>
+>>> +            reg = <0x0 0x00060000 0x0 0x6000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>>           tz_region: tz@4a600000 {
+>>>               reg = <0x0 0x4a600000 0x0 0x400000>;
+>>>               no-map;
+>>> @@ -768,6 +773,18 @@
+>>>           };
+>>>       };
+>>>   +    rpm-glink {
+>> Alphabetically this should come before /soc.
+> Okay
+>>
+>> Konrad
+>>> +        compatible = "qcom,glink-rpm";
+>>> +        interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+>>> +        qcom,rpm-msg-ram = <&rpm_msg_ram>;
+>>> +        mboxes = <&apcs_glb 0>;
+>>> +
+>>> +        rpm_requests: glink-channel {
+>>> +            compatible = "qcom,rpm-ipq9574";
+>>> +            qcom,glink-channels = "rpm_requests";
+>>> +        };
+>>> +    };
+>>> +
+>>>       timer {
+>>>           compatible = "arm,armv8-timer";
+>>>           interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> Best Regards,
+> Devi Priya
