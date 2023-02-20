@@ -2,120 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C594569C63D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24BBA69C641
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:04:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbjBTICt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 03:02:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
+        id S230190AbjBTIEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 03:04:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbjBTICs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:02:48 -0500
+        with ESMTP id S229581AbjBTIEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:04:12 -0500
 Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D88DBEB
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 00:02:46 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id cq23so901286edb.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 00:02:46 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2003ACA31
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 00:04:11 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id h16so1385016edz.10
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 00:04:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pW3SF2TfTTc/IbsBO77I3ErLxlmWr32PfAVbSQweI+I=;
-        b=lSGbS0wInFSN2/r2egsNZ+QR770N08v+vcd085+mgOEcZbGV4/XZwLI83f293OEQeP
-         uDYpMpA1XnNngRC32S2KTxobmdzkAKqal0zQqTv6XCC5zgUlNkiceRfuqD3mGlfsEi2K
-         xld1pxZrX3Z1Su+o7uKWGxxNuL3Q1UsBqmtS/9SjFVzVi3UlTiujk25jTShgfrQppTXP
-         DU3ocV/5pzFC5Vkt3cspZZrs+1+TrK/hplObeeSYIcnarjexIlHbq4Hb5xKRXUSvD40o
-         AL4DU5qykPbpOEltNfNZGEkFH5aoZs9lmvOjuGew8NQ6m2HxuenasQnr07TKbeE+xMAq
-         +8hA==
+        bh=88lumBnapMN7Ps8Hk/t0fPR3JUqopUiwWmOnEOlc2Ws=;
+        b=iv2wsbD8ixRzECtunIA135V2n+ioaO7wEObmSzYZhRFZTPB0DtI+Pa5Y8yG5Zgc2Ul
+         pReND9ioKG44Zifqoiu3zKe4IEPn2R27mkdfHdnyF1ZsAoTW0flND5qUAisZNKKMLKl2
+         pBo0mQYsaG7QCLvxkYJ8TR+aaeABws3PD9ZW/Y5clAuLETFr5DrMWbyn5SNuc7zDVN4A
+         rOobs03cbKom8XT4A0d3kgsbs+E6fEAAxclBogri63fXpwca5NqyA3+vThBT/77oSfpQ
+         9BX8kikm6xHsLg36zzmGdWw4VKr4D+aMGAWkNg3d45QYVYXx1uTo4pL/JKj4hppItDTv
+         pJYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pW3SF2TfTTc/IbsBO77I3ErLxlmWr32PfAVbSQweI+I=;
-        b=jyXOzr4vapqklng1WRxctRWkL2/cXlhMejzr6pKDIUnWCTvNy1OKvk4nF1icWTyIUJ
-         uMMc0bSJtYl8Ef+GrTeTKZsVdyxmnQ5u/dD3KGv74WZJ5GqlwAtP+DHQqiwEt2eEj8lk
-         klffJZDE2CqdtElQrcazgK3PcnhDrRs5VXl5PGLw5/yfyNt7Ztr2MBGmoxa2MslNaw0z
-         jYy1z9hp6LrIjWGpOhUjruiqDNwRts0TG8YOf/QyJtl5abvlJecOQ4DfrdY50zM6uvXl
-         7IAFkiK7SpNbH9qkfxTgufXlSsM5Tchpnljn0WsLHd7YzjVnJv2c+OoLM1IGPbbcOYhl
-         aqqQ==
-X-Gm-Message-State: AO0yUKVQy7kpBTTlK1ZAH0JBHrEneilZpUESEof1FPgQy6ofbcQVEExB
-        grlAUr7tshSh37ZiQbY4YdgZFA==
-X-Google-Smtp-Source: AK7set8GOobu8rWcq+OsrseIMRuJ83TxxGOrl9DfLH9W5Mrddkj7Qu19rjdgNoMgK2BzaeEnsVeQag==
-X-Received: by 2002:a17:906:6956:b0:88c:a43d:81bc with SMTP id c22-20020a170906695600b0088ca43d81bcmr6267775ejs.58.1676880165256;
-        Mon, 20 Feb 2023 00:02:45 -0800 (PST)
+        bh=88lumBnapMN7Ps8Hk/t0fPR3JUqopUiwWmOnEOlc2Ws=;
+        b=cJNZdATLDOVex5rweJdGfOGZ73lZEFlYVTRAqsSjj49Q98KM+GhdMVqAdyamgXw2GP
+         xh9znKRrLCIyYUY7LL8M5+ZaZV1vpzzltwWqDVc6woeohvlFHZxVZAH1EIQRNJHYxw7k
+         nEXuWur7U+pHc5hME6NdLvPykQwLsG5Oc9pSE7EoyqnwRF08hmLBbS1+kJYwyGzJaV5k
+         ADdcq0o1HCb+hF+7DmBCnLE5cH5EIDQuUdzEHiqUqbVRd0Z0XwNFnBeXq6YyE+CUOzHx
+         I865D/SoDtN+UwwiJTiGu3/61Qn8y3NTHt6PyPFMrm2uUj+LSlOBl5V128JdfZ6UzfQ7
+         JiDw==
+X-Gm-Message-State: AO0yUKXUmkiFsjJd8XAL4+OeOSgzeqhQ4vqTkuVTsIU5rfAtYTIySLyE
+        4QMISQzh/VW8lnGHmx7EGEJogw==
+X-Google-Smtp-Source: AK7set9Hivfdi5qmCapoh8XxH5/JBmdwusVTUbOJ1qWsWjyJy8ITtqKPhFZuTlU28cbY75K6X/ZwKg==
+X-Received: by 2002:a17:906:a87:b0:878:955e:b4a4 with SMTP id y7-20020a1709060a8700b00878955eb4a4mr8105935ejf.33.1676880249568;
+        Mon, 20 Feb 2023 00:04:09 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j24-20020a1709062a1800b0087223b8d6efsm5502545eje.16.2023.02.20.00.02.43
+        by smtp.gmail.com with ESMTPSA id y6-20020a17090668c600b008874c903ec5sm5416739ejr.43.2023.02.20.00.04.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 00:02:44 -0800 (PST)
-Message-ID: <56826d1d-50c9-4bce-3197-6ecc3efbe51e@linaro.org>
-Date:   Mon, 20 Feb 2023 09:02:43 +0100
+        Mon, 20 Feb 2023 00:04:09 -0800 (PST)
+Message-ID: <646cc26f-ed98-10fc-217b-5dc4416670a6@linaro.org>
+Date:   Mon, 20 Feb 2023 09:04:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/4] dt-bindings: iio: ti,tmp117: add binding for the
- TMP116
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: convert
+ loongson,ls1x-intc.txt to json-schema
 Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>, puranjay12@gmail.com,
-        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-References: <20230217093711.1891564-1-m.felsch@pengutronix.de>
- <20230217093711.1891564-3-m.felsch@pengutronix.de>
+To:     Keguang Zhang <keguang.zhang@gmail.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+References: <20230218122236.1919465-1-keguang.zhang@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230217093711.1891564-3-m.felsch@pengutronix.de>
+In-Reply-To: <20230218122236.1919465-1-keguang.zhang@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2023 10:37, Marco Felsch wrote:
-> The TMP116 is the predecessor of the TMP117.
+On 18/02/2023 13:22, Keguang Zhang wrote:
+> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 > ---
-> v3:
-> - don't use tmp117 as fallback, therefore I didn't add Krzysztof
->   rb.
-> v2:
-> - drop items from single enum
+>  .../loongson,ls1x-intc.txt                    | 24 ---------
+>  .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
+>  2 files changed, 51 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
 > 
->  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml      | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> index 8d1ec4d39b28c..a2f647fe0760c 100644
-> --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> @@ -7,8 +7,9 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
->  title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
->  
->  description: |
-> -    TI TMP117 - Digital temperature sensor with integrated NV memory that supports
-> -    I2C interface.
-> +    TI TMP116/117 - Digital temperature sensor with integrated NV memory that
-> +    supports I2C interface.
-> +      https://www.ti.com/lit/gpn/tmp116
->        https://www.ti.com/lit/gpn/tmp117
->  
->  maintainers:
-> @@ -18,6 +19,7 @@ properties:
->    compatible:
->      enum:
->        - ti,tmp117
-> +      - ti,tmp116
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+> deleted file mode 100644
+> index a63ed9fcb535..000000000000
+> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -Loongson ls1x Interrupt Controller
+> -
+> -Required properties:
+> -
+> -- compatible : should be "loongson,ls1x-intc". Valid strings are:
+> -
+> -- reg : Specifies base physical address and size of the registers.
+> -- interrupt-controller : Identifies the node as an interrupt controller
+> -- #interrupt-cells : Specifies the number of cells needed to encode an
+> -  interrupt source. The value shall be 2.
+> -- interrupts : Specifies the CPU interrupt the controller is connected to.
+> -
+> -Example:
+> -
+> -intc: interrupt-controller@1fd01040 {
+> -	compatible = "loongson,ls1x-intc";
+> -	reg = <0x1fd01040 0x18>;
+> -
+> -	interrupt-controller;
+> -	#interrupt-cells = <2>;
+> -
+> -	interrupt-parent = <&cpu_intc>;
+> -	interrupts = <2>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> new file mode 100644
+> index 000000000000..4cea3ee9fbb1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson-1 Interrupt Controller
 
-Don't add entries to the end, but keep some order. Less conflicts.
+You changed the title, so this binding now will cover all Loonson-1
+interrupt controllers?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +maintainers:
+> +  - Keguang Zhang <keguang.zhang@gmail.com>
+> +
+> +description: |
+
+Drop |
+
+> +  Loongson-1 interrupt controller is connected to the MIPS core interrupt
+> +  controller, which controls several groups of interrupts.
+> +
+
 
 Best regards,
 Krzysztof
