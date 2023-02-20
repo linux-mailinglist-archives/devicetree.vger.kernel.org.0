@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0565D69D6F1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 00:15:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1745069D728
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 00:40:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232005AbjBTXO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 18:14:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S231350AbjBTXkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 18:40:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbjBTXO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 18:14:57 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D539D149B5;
-        Mon, 20 Feb 2023 15:14:55 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-172129e9cf1so2649481fac.8;
-        Mon, 20 Feb 2023 15:14:55 -0800 (PST)
+        with ESMTP id S230516AbjBTXku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 18:40:50 -0500
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8CB1E1E1;
+        Mon, 20 Feb 2023 15:40:42 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id e18-20020a0568301e5200b00690e6abbf3fso739251otj.13;
+        Mon, 20 Feb 2023 15:40:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fjN/qxKsAOys/WyOvZ7MZbuaJXdobrZBn255f9v/bD8=;
-        b=TmCE18hToXpoGmt1Lt+ZKV1rLBMlxrq/wZD3zB7X2AtmxcRJCKVHjGWdZCtsVzH1X9
-         GNBUALnlcCHMmIAklaCHdOQazO1jkOXcbfp7jV8Y1cIZOFRatDFojc6GIaL7jEhu08Mb
-         VJ9ca8hilbx+7TEuhQrjR7IlshCWMb/HQP9mgLsVNVdVpkcEe3loPIXi6W2OUi/ViihQ
-         EzvSjyB27Lm5OcOsT3Z/TKBZ1hs5znbxJJN4rVllFRwasoXcQRgutUR1Cpui1G46H1d4
-         oumjQTBA0u0fh3v505xKz3QmpxWN3teOxdbNO+WSMG8TlNoHuelSTttPj2y/OSserp6D
-         rROA==
-X-Gm-Message-State: AO0yUKUb088xIcGeJzZXZ7V4F4pYTgaUiiSmXXSllFYJ3SaxlFxdynI8
-        4AWTT7YpHB/uihjE2aO4bQ==
-X-Google-Smtp-Source: AK7set+ZuQ+YjT0UD2NOVFxqHoxa1z9b7IEhcFcBTCuJmVjPnO7t2TPR+FRXPiN4JDZPcYJ2wt/m7A==
-X-Received: by 2002:a05:6870:b312:b0:172:1457:64d7 with SMTP id a18-20020a056870b31200b00172145764d7mr1434124oao.0.1676934895040;
-        Mon, 20 Feb 2023 15:14:55 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ekp/l7dS7L5c5Y/xNxbb/NDW4G4Mm3+q7ub7U8gNFqI=;
+        b=MjazdspAOr0/z49kDqzWByPuKBxAjcsWhohx7bnRbuW+6cd8xuNTSh2j/2eVZUuBUs
+         33i14KXWcMOxbOyIppYbF+p3lct0uqUNJV83TDEkJWMY424puFptpo+j2PX7OVD3TxMq
+         QOyxfogTtTehY1GC5+CMhFTqLR4FVqBzgRrK3LrCVT1dW3/Pcih4a4MEywvHHqG22HC5
+         Je/QLyKDyeQEdN6NXmXnYe5HFfu3MulkYHmceWJF9IfGJoqv2Rkq6OGhzNWo5Be7pIlG
+         HOHbok/pdM5hVOGiEECsx+NcV9Sdd/AYNEB+cCjyf7G6Y5ID0vLQ8fBzsNPOMo6vT0qt
+         eM+w==
+X-Gm-Message-State: AO0yUKWJ3Pbl6WkAXvqGXrRKCKhYfxxB8HCyXWDAfV1mtRm736pv1Ziw
+        EoYqvZkmzEZ6Gnp4MATDiA==
+X-Google-Smtp-Source: AK7set+WhIJJXW3KarE7h76hVttihFyNtPia99NTQYAWUZQR15okea5lUnoGuYWWkVtOk7sWd61lBw==
+X-Received: by 2002:a9d:19a2:0:b0:68c:1c0d:ab6a with SMTP id k31-20020a9d19a2000000b0068c1c0dab6amr908337otk.13.1676936441767;
+        Mon, 20 Feb 2023 15:40:41 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ef5-20020a0568701a8500b00152c52608dbsm3894587oab.34.2023.02.20.15.14.54
+        by smtp.gmail.com with ESMTPSA id d2-20020a9d51c2000000b006864816ecd9sm726939oth.59.2023.02.20.15.40.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Feb 2023 15:14:54 -0800 (PST)
-Received: (nullmailer pid 578839 invoked by uid 1000);
-        Mon, 20 Feb 2023 23:14:53 -0000
-Date:   Mon, 20 Feb 2023 17:14:53 -0600
+        Mon, 20 Feb 2023 15:40:41 -0800 (PST)
+Received: (nullmailer pid 614054 invoked by uid 1000);
+        Mon, 20 Feb 2023 23:40:40 -0000
+Date:   Mon, 20 Feb 2023 17:40:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     robh+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, ethan.twardy@plexus.com,
-        bartosz.golaszewski@linaro.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com
-Subject: Re: [PATCH v6 1/3] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
-Message-ID: <167693489048.578739.5434769948663222612.robh@kernel.org>
-References: <20230217184904.1290-1-kaehndan@gmail.com>
- <20230217184904.1290-2-kaehndan@gmail.com>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Janne Grunau <j@jannau.net>, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, asahi@lists.linux.dev,
+        dmaengine@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [RFC PATCH v2] dt-bindings: dma: apple,sio: Add schema
+Message-ID: <167693643966.613996.10372170526471864080.robh@kernel.org>
+References: <20230214203637.43630-1-povik+lin@cutebit.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230217184904.1290-2-kaehndan@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230214203637.43630-1-povik+lin@cutebit.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,19 +69,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 17 Feb 2023 12:49:02 -0600, Danny Kaehn wrote:
-> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+On Tue, 14 Feb 2023 21:36:37 +0100, Martin Povišer wrote:
+> Describe the SIO coprocessor which serves as pretend DMA controller on
+> recent Apple platforms.
 > 
-> The binding allows describing the chip's gpio and i2c controller in DT
-> using the subnodes named "gpio" and "i2c", respectively. This is
-> intended to be used in configurations where the CP2112 is permanently
-> connected in hardware.
-> 
-> Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
+> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
 > ---
->  .../bindings/i2c/silabs,cp2112.yaml           | 113 ++++++++++++++++++
->  1 file changed, 113 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
+> Since v1:
+>  - formatting fixes requested by Rob
+>  - dropped provider nodes from example
+>  - added 'memory-region' items range
+>  - tweaked 'apple,sio-firmware-params' description
+> 
+> Since the schema mentions a loader preparing the binding appropriately,
+> here's a PR with the relevant (WIP) loader code, if anyone wants to look:
+> https://github.com/AsahiLinux/m1n1/pull/286
+> 
+> 
+>  .../devicetree/bindings/dma/apple,sio.yaml    | 111 ++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/apple,sio.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
