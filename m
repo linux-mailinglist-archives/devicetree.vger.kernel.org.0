@@ -2,155 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BBA69C641
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14FA869C65D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:16:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbjBTIEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 03:04:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55576 "EHLO
+        id S229930AbjBTIQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 03:16:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjBTIEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:04:12 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2003ACA31
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 00:04:11 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id h16so1385016edz.10
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 00:04:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=88lumBnapMN7Ps8Hk/t0fPR3JUqopUiwWmOnEOlc2Ws=;
-        b=iv2wsbD8ixRzECtunIA135V2n+ioaO7wEObmSzYZhRFZTPB0DtI+Pa5Y8yG5Zgc2Ul
-         pReND9ioKG44Zifqoiu3zKe4IEPn2R27mkdfHdnyF1ZsAoTW0flND5qUAisZNKKMLKl2
-         pBo0mQYsaG7QCLvxkYJ8TR+aaeABws3PD9ZW/Y5clAuLETFr5DrMWbyn5SNuc7zDVN4A
-         rOobs03cbKom8XT4A0d3kgsbs+E6fEAAxclBogri63fXpwca5NqyA3+vThBT/77oSfpQ
-         9BX8kikm6xHsLg36zzmGdWw4VKr4D+aMGAWkNg3d45QYVYXx1uTo4pL/JKj4hppItDTv
-         pJYg==
+        with ESMTP id S229451AbjBTIQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:16:06 -0500
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570D411EAC;
+        Mon, 20 Feb 2023 00:16:03 -0800 (PST)
+Received: by mail-qv1-f51.google.com with SMTP id nv15so439034qvb.7;
+        Mon, 20 Feb 2023 00:16:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=88lumBnapMN7Ps8Hk/t0fPR3JUqopUiwWmOnEOlc2Ws=;
-        b=cJNZdATLDOVex5rweJdGfOGZ73lZEFlYVTRAqsSjj49Q98KM+GhdMVqAdyamgXw2GP
-         xh9znKRrLCIyYUY7LL8M5+ZaZV1vpzzltwWqDVc6woeohvlFHZxVZAH1EIQRNJHYxw7k
-         nEXuWur7U+pHc5hME6NdLvPykQwLsG5Oc9pSE7EoyqnwRF08hmLBbS1+kJYwyGzJaV5k
-         ADdcq0o1HCb+hF+7DmBCnLE5cH5EIDQuUdzEHiqUqbVRd0Z0XwNFnBeXq6YyE+CUOzHx
-         I865D/SoDtN+UwwiJTiGu3/61Qn8y3NTHt6PyPFMrm2uUj+LSlOBl5V128JdfZ6UzfQ7
-         JiDw==
-X-Gm-Message-State: AO0yUKXUmkiFsjJd8XAL4+OeOSgzeqhQ4vqTkuVTsIU5rfAtYTIySLyE
-        4QMISQzh/VW8lnGHmx7EGEJogw==
-X-Google-Smtp-Source: AK7set9Hivfdi5qmCapoh8XxH5/JBmdwusVTUbOJ1qWsWjyJy8ITtqKPhFZuTlU28cbY75K6X/ZwKg==
-X-Received: by 2002:a17:906:a87:b0:878:955e:b4a4 with SMTP id y7-20020a1709060a8700b00878955eb4a4mr8105935ejf.33.1676880249568;
-        Mon, 20 Feb 2023 00:04:09 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y6-20020a17090668c600b008874c903ec5sm5416739ejr.43.2023.02.20.00.04.08
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GhdeujqRrZ30kHbfp+IOG4sWxnU1RJIBCIHIcK/nUfw=;
+        b=mAch6/WxRQr30734M+PlFZ3k0wulvkDnwQFLSC2jlmX2e0I00OYTTeuTaDdFeudzwa
+         W1FE72smK4l+pfFctloub379nzNQX7xOPOD03B7pepH7VIAhE4DfWz1Nq1aIACD4xTdr
+         unp4WR5Kqv4kp1lTg3jz44FCX5nLihaEMQGDMFYzxz4ZLHkvmvObpL5T7oEXDIivT73+
+         JGUnvhOGQURx7uPFENLmVya8acElpg7gkzieam+GYJMFqzJLQ6uJoMrijFk7VjQjrhTI
+         HKYVVTV19ndXCD5mEETfSiloREGLA6wBErEKsEFDB8bDDkcQCChVDJlyBhW+x3rV6tpE
+         QM3g==
+X-Gm-Message-State: AO0yUKU6stAy/L/RDACa6xO4YDKSG83EkVjOkL62Zf+MaopmMSLyn3by
+        5sWxehk4LyRTPDfzIXg/AXRk27kT7H5oRw==
+X-Google-Smtp-Source: AK7set+AaLu2GD+WsctcxcZEACYu/N/F6+7DGzFBzKu5gbg3+yDzec078nZ56mhtr560D7zesC6aIA==
+X-Received: by 2002:a05:6214:2a86:b0:56f:5466:20d8 with SMTP id jr6-20020a0562142a8600b0056f546620d8mr801341qvb.3.1676880961801;
+        Mon, 20 Feb 2023 00:16:01 -0800 (PST)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id q188-20020a378ec5000000b0073d82a8113bsm3510028qkd.126.2023.02.20.00.16.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 00:04:09 -0800 (PST)
-Message-ID: <646cc26f-ed98-10fc-217b-5dc4416670a6@linaro.org>
-Date:   Mon, 20 Feb 2023 09:04:07 +0100
+        Mon, 20 Feb 2023 00:16:01 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id v78so392255ybe.3;
+        Mon, 20 Feb 2023 00:16:01 -0800 (PST)
+X-Received: by 2002:a5b:f06:0:b0:95e:613:ca4c with SMTP id x6-20020a5b0f06000000b0095e0613ca4cmr125776ybr.12.1676880960980;
+ Mon, 20 Feb 2023 00:16:00 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: convert
- loongson,ls1x-intc.txt to json-schema
-Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230217185225.43310-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230217185225.43310-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 20 Feb 2023 09:15:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVW-rBR43QCuaBDJD407wUUZ4=nJP_+UvXUrJ4+BsXRbA@mail.gmail.com>
+Message-ID: <CAMuHMdVW-rBR43QCuaBDJD407wUUZ4=nJP_+UvXUrJ4+BsXRbA@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: renesas: r9a07g044: Update IRQ numbers
+ for SSI channels
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-References: <20230218122236.1919465-1-keguang.zhang@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230218122236.1919465-1-keguang.zhang@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/02/2023 13:22, Keguang Zhang wrote:
-> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+Hi Prabhakar,
+
+On Fri, Feb 17, 2023 at 7:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> From R01UH0914EJ0120 Rev.1.20 HW manual the interrupt numbers for SSI
+> channels have been updated,
+>
+> SPI 329 - SSIF0 is now marked as reserved
+> SPI 333 - SSIF1 is now marked as reserved
+> SPI 335 - SSIF2 is now marked as reserved
+> SPI 336 - SSIF2 is now marked as reserved
+> SPI 341 - SSIF3 is now marked as reserved
+>
+> This patch drops the above IRQs from SoC DTSI.
+>
+> Fixes: 92a341315afc9 ("arm64: dts: renesas: r9a07g044: Add SSI support")
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  .../loongson,ls1x-intc.txt                    | 24 ---------
->  .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
->  2 files changed, 51 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> deleted file mode 100644
-> index a63ed9fcb535..000000000000
-> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -Loongson ls1x Interrupt Controller
-> -
-> -Required properties:
-> -
-> -- compatible : should be "loongson,ls1x-intc". Valid strings are:
-> -
-> -- reg : Specifies base physical address and size of the registers.
-> -- interrupt-controller : Identifies the node as an interrupt controller
-> -- #interrupt-cells : Specifies the number of cells needed to encode an
-> -  interrupt source. The value shall be 2.
-> -- interrupts : Specifies the CPU interrupt the controller is connected to.
-> -
-> -Example:
-> -
-> -intc: interrupt-controller@1fd01040 {
-> -	compatible = "loongson,ls1x-intc";
-> -	reg = <0x1fd01040 0x18>;
-> -
-> -	interrupt-controller;
-> -	#interrupt-cells = <2>;
-> -
-> -	interrupt-parent = <&cpu_intc>;
-> -	interrupts = <2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> new file mode 100644
-> index 000000000000..4cea3ee9fbb1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-1 Interrupt Controller
+> Hi Geert,
+>
+> As this is is a fixes patch and we are still waiting for [0] to be merged
+> shall do the same for V2L SoC?
 
-You changed the title, so this binding now will cover all Loonson-1
-interrupt controllers?
+Yes please. Thank you!
 
-> +
-> +maintainers:
-> +  - Keguang Zhang <keguang.zhang@gmail.com>
-> +
-> +description: |
+> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Drop |
+Gr{oetje,eeting}s,
 
-> +  Loongson-1 interrupt controller is connected to the MIPS core interrupt
-> +  controller, which controls several groups of interrupts.
-> +
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
