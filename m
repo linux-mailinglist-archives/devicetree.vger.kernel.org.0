@@ -2,47 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 656CF69C387
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 01:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E03769C3C1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 01:55:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbjBTAOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 19:14:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43696 "EHLO
+        id S229636AbjBTAzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 19:55:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbjBTAOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 19:14:38 -0500
-Received: from irl.hu (irl.hu [95.85.9.111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA65C650;
-        Sun, 19 Feb 2023 16:14:35 -0800 (PST)
-Received: from fedori.lan (bc065635.dsl.pool.telekom.hu [::ffff:188.6.86.53])
-  (AUTH: CRAM-MD5 soyer@irl.hu, )
-  by irl.hu with ESMTPSA
-  id 000000000006F9B3.0000000063F2BB6B.002C6C1F; Mon, 20 Feb 2023 01:14:33 +0100
-From:   Gergo Koteles <soyer@irl.hu>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229567AbjBTAzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 19:55:37 -0500
+Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B92C662;
+        Sun, 19 Feb 2023 16:55:36 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4PKkVZ0LWxz4x7y;
+        Mon, 20 Feb 2023 11:55:34 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1676854534;
+        bh=wxqOjIm9/rnhk0pS41BKLly/M/tr+p6ZjiKfnuxgXX4=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=hASHGpraEGVm1pbs2YxrgdCHJmBkRxLZE04kXhblwxeU26unJMQrUr/wTLRkDiQE3
+         ar48nDqIlr11/lMClSplUY99AYwMfD8ND/tvgG3+NZepWy7kFQKDt0Et7dM5rhHdbx
+         jh1b4myf3hFibcDyVRnP/eR5fufZoq+lsuCW5Q8wZhnBKtsO1WD2GmZAgDwgs39pY8
+         BnEXJeDHbIZFiZDOS5kHsVBEbqVGeSGud76Zz4k22VzoSxAdeySkCtpcP8xgWK4Muq
+         k6bp51hxRQDLFGfNq4rqLY30bSnr/IaUreM57mVtEaIlA9chO0wlfGw8jDd5LVUuJ6
+         PJPEnRt1CCtEg==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>,
-        Gergo Koteles <soyer@irl.hu>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sdm845-oneplus: add alert-slider
-Date:   Mon, 20 Feb 2023 01:13:04 +0100
-Message-Id: <16e6c00389bf0ee881a055f81a3dbfd5bfc9c469.1676850819.git.soyer@irl.hu>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1676850819.git.soyer@irl.hu>
-References: <cover.1676850819.git.soyer@irl.hu>
-Mime-Version: 1.0
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v4 3/3] powerpc: dts: turris1x.dts: Set lower priority
+ for CPLD syscon-reboot
+In-Reply-To: <20230218120525.7zplk5zdg5qmkmaz@pali>
+References: <20220820102925.29476-1-pali@kernel.org>
+ <20221226114513.4569-1-pali@kernel.org>
+ <20221226114513.4569-3-pali@kernel.org>
+ <20230209001021.oitnv6x7ilwvy4it@pali>
+ <20230218120525.7zplk5zdg5qmkmaz@pali>
+Date:   Mon, 20 Feb 2023 11:55:33 +1100
+Message-ID: <878rgtyx2y.fsf@mpe.ellerman.id.au>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mime-Autoconverted: from 8bit to 7bit by courier 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,80 +60,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The alert-slider is a tri-state sound profile switch found on the OnePlus 6,
-Android maps the states to "silent", "vibrate" and "ring". Expose them as
-ABS_SND_PROFILE events.
-The previous GPIO numbers were wrong. Update them to the correct
-ones.
+Pali Roh=C3=A1r <pali@kernel.org> writes:
+> On Thursday 09 February 2023 01:10:21 Pali Roh=C3=A1r wrote:
+>> On Monday 26 December 2022 12:45:13 Pali Roh=C3=A1r wrote:
+>> > Due to CPLD firmware bugs, set CPLD syscon-reboot priority level to 64
+>> > (between rstcr and watchdog) to ensure that rstcr's global-utilities r=
+eset
+>> > method which is preferred stay as default one, and to ensure that CPLD
+>> > syscon-reboot is more preferred than watchdog reset method.
+>> >=20
+>> > Fixes: 0531a4abd1c6 ("powerpc: dts: turris1x.dts: Add CPLD reboot node=
+")
+>> > Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
+>>=20
+>> May I ask who can take this 3/3 patch? powersupply or powerpc tree?
 
-Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-Signed-off-by: Gergo Koteles <soyer@irl.hu>
----
- .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 43 ++++++++++++++++++-
- 1 file changed, 41 insertions(+), 2 deletions(-)
+I assume the fact that Sebastian applied patches 1 & 2 means he didn't
+want to take this one.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 64638ea94db7..ff982dd853a9 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -52,6 +52,45 @@ key-vol-up {
- 		};
- 	};
- 
-+	alert-slider {
-+		compatible = "gpio-keys";
-+		label = "Alert slider";
-+
-+		pinctrl-0 = <&alert_slider_default>;
-+		pinctrl-names = "default";
-+
-+		switch-top {
-+			label = "Silent";
-+			linux,input-type = <EV_ABS>;
-+			linux,code = <ABS_SND_PROFILE>;
-+			linux,input-value = <SND_PROFILE_SILENT>;
-+			gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+			linux,can-disable;
-+		};
-+
-+		switch-middle {
-+			label = "Vibrate";
-+			linux,input-type = <EV_ABS>;
-+			linux,code = <ABS_SND_PROFILE>;
-+			linux,input-value = <SND_PROFILE_VIBRATE>;
-+			gpios = <&tlmm 52 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+			linux,can-disable;
-+
-+		};
-+
-+		switch-bottom {
-+			label = "Ring";
-+			linux,input-type = <EV_ABS>;
-+			linux,code = <ABS_SND_PROFILE>;
-+			linux,input-value = <SND_PROFILE_RING>;
-+			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <50>;
-+			linux,can-disable;
-+		};
-+	};
-+
- 	reserved-memory {
- 		/*
- 		 * The rmtfs_mem needs to be guarded due to "XPU limitations"
-@@ -753,8 +792,8 @@ &usb_1_hsphy {
- &tlmm {
- 	gpio-reserved-ranges = <0 4>, <81 4>;
- 
--	tri_state_key_default: tri-state-key-default-state {
--		pins = "gpio40", "gpio42", "gpio26";
-+	alert_slider_default: alert-slider-default-state {
-+		pins = "gpio126", "gpio52", "gpio24";
- 		function = "gpio";
- 		drive-strength = <2>;
- 		bias-disable;
--- 
-2.39.2
+So the best way to get it applied by me is to send a new version with
+just patch 3, with the changelog explaining that commit xxxyyy
+implements the property and this patch is just wiring it up.
 
+cheers
