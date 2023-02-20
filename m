@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA16369C895
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:33:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7F769C8B0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:37:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbjBTKda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 05:33:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
+        id S231472AbjBTKhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 05:37:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjBTKd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:33:29 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9173914483;
-        Mon, 20 Feb 2023 02:33:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1676889208; x=1708425208;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gMmZ0r6hf7TDjajRLymz5GG8FbL+fuZU7Rc97O5DCnI=;
-  b=SqBPgVOfX6ftLnXWrl5IYYfLaUgwRI3kja5loREuRnbBmfQymBxsRP9f
-   pCVDonyD4+rkfsdBHBQBj2uTE93ZKZ4iAbYBAHc47v2+KOKiPjMIc+i/u
-   xoYyzSS3DueyCQRM0+SnKLzj7R/RRBrUqwm+QUDdknZcrSIFSEPgycWhd
-   A6pBoEPqlOLOUaSfM+qYPbtokCVYwPk8A9JFEGB2zgoCiC0eyljk5UcK+
-   iuUZCRF0mQK6AzW010aBmHr6NK23BnpgZ7dRIa3Yj63WDdgyLlAOpTcuu
-   ie06cbDXNzJq8S2YGwfFngvMBm4E8Rf/5Enou4QjOupDTGkxDx+7/4aNV
-   w==;
-X-IronPort-AV: E=Sophos;i="5.97,312,1669100400"; 
-   d="asc'?scan'208";a="201712956"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Feb 2023 03:33:26 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 20 Feb 2023 03:33:25 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Mon, 20 Feb 2023 03:33:23 -0700
-Date:   Mon, 20 Feb 2023 10:32:57 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Anup Patel <apatel@ventanamicro.com>
-CC:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S231445AbjBTKhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:37:32 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE6619F28;
+        Mon, 20 Feb 2023 02:37:04 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id h16so2980493edz.10;
+        Mon, 20 Feb 2023 02:37:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o18cessp6dJwK0nMBBUb6S+dtQdinOyZDu+pZzBVc24=;
+        b=OkXFgkBCWiT+V6Rpb8pld5tCj5NLmRDheW7hWxhU3K3ZObZhiE4FRTJRJOhwoWLEFq
+         Ytz/3GoxHFKVrkjpXRCzSIYDrTuPY89vvJeuO12hVk5ir6bNpo3XDnXGcQVhb7eZPS2r
+         gt3xxZAALG2YoRP1VSBJtxWaUzY9y+vbke6nh7+MpR3mZCvbkuU1EoFBssisVyD5AN8q
+         kxZRqef9Yfg5HNbfVutDwuAF8fIZUaRKlFAtyU3Uk+AVLnL5LjSQaEc4wFh/BDRp8K3u
+         CKf6oYn7J2leBNx2DgaV6SGwyeVnyGXYElExfPV/+vc31kJK9PjUMGxvLTxH/VHbsX5T
+         dDTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o18cessp6dJwK0nMBBUb6S+dtQdinOyZDu+pZzBVc24=;
+        b=2/Im9MKjDTmM4lQENsv/HgGhsXybKFPQE4WZPbnl13TNKz1KrUmpYkRpQtdp9npGij
+         Te9FqBUHKQp9coSPAwWueT7TgQ5wVve6EmTKO4jmmqkPEm10ixdXeuDz+TT9HF9fkkvb
+         pDA1f4SlWCwvic0uElKKUBY4ev5EQyW4dzA7hZ18LDEokVpxiME7oesnXwgH6zfHQ7Ls
+         is8ACFX0Q0a687U8QRK+D3g8l170ZvfAURO9FB3rV33P5U1n/+t0idah6KDV/tt0LlpK
+         RZfEmtQhN3VdKn0/R9RCRAwSgrxaAGOvjRVbwJbUklR2IiOtTGW6H5EZ/nDMtWuMrnw6
+         x2ww==
+X-Gm-Message-State: AO0yUKU8nI+iwva/T7oSyLeAMewPW0KwPfY8tkrscN1SKJi3MJIPulDg
+        4ARqYHM4mPjVM7CwEJhsQtyGUl1lWx9xNMod3n67UVDz+IT75g==
+X-Google-Smtp-Source: AK7set8C2ovFbu5XsmSt8Y2751Ugx3alLIaGhADo5OpsryHngZuGShpr5zOxR1nlwnKkzz1SjiUzNSgf/hlEyXzWKBI=
+X-Received: by 2002:a05:6402:3216:b0:4ad:7bb2:eefb with SMTP id
+ g22-20020a056402321600b004ad7bb2eefbmr1600504eda.3.1676889423185; Mon, 20 Feb
+ 2023 02:37:03 -0800 (PST)
+MIME-Version: 1.0
+References: <20230218122236.1919465-1-keguang.zhang@gmail.com>
+ <646cc26f-ed98-10fc-217b-5dc4416670a6@linaro.org> <CAJhJPsU7KmR1Z1uGsKUDW_=wUwr_Bg_7DwqsMD7tKWrZYQMPhw@mail.gmail.com>
+ <4cd266d0-0555-e1a3-f9d1-35d4179ccfd1@linaro.org>
+In-Reply-To: <4cd266d0-0555-e1a3-f9d1-35d4179ccfd1@linaro.org>
+From:   Kelvin Cheung <keguang.zhang@gmail.com>
+Date:   Mon, 20 Feb 2023 18:36:46 +0800
+Message-ID: <CAJhJPsVhCKW6qgTm30wS_NhxF5cgrGg=vvj+v--FH+pg=JAKbg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: convert
+ loongson,ls1x-intc.txt to json-schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 6/9] dt-bindings: interrupt-controller: Add RISC-V
- advanced PLIC
-Message-ID: <Y/NMWZAW4KAqKXEs@wendy>
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
- <20230103141409.772298-7-apatel@ventanamicro.com>
- <Y7X62v5Zp6+thx5A@spud>
- <CAK9=C2UPa5SATTG1pJdckqaoJxh-8EBz8xsENirZQ-vbaHTgjg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="oq5et5R3KJ6LBPlj"
-Content-Disposition: inline
-In-Reply-To: <CAK9=C2UPa5SATTG1pJdckqaoJxh-8EBz8xsENirZQ-vbaHTgjg@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,64 +73,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---oq5et5R3KJ6LBPlj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Feb 20, 2023 at 6:28 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/02/2023 11:25, Kelvin Cheung wrote:
+> > On Mon, Feb 20, 2023 at 4:04 PM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 18/02/2023 13:22, Keguang Zhang wrote:
+> >>> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
+> >>>
+> >>> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> >>> ---
+> >>>  .../loongson,ls1x-intc.txt                    | 24 ---------
+> >>>  .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
+> >>>  2 files changed, 51 insertions(+), 24 deletions(-)
+> >>>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+> >>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+> >>> deleted file mode 100644
+> >>> index a63ed9fcb535..000000000000
+> >>> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+> >>> +++ /dev/null
+> >>> @@ -1,24 +0,0 @@
+> >>> -Loongson ls1x Interrupt Controller
+> >>> -
+> >>> -Required properties:
+> >>> -
+> >>> -- compatible : should be "loongson,ls1x-intc". Valid strings are:
+> >>> -
+> >>> -- reg : Specifies base physical address and size of the registers.
+> >>> -- interrupt-controller : Identifies the node as an interrupt controller
+> >>> -- #interrupt-cells : Specifies the number of cells needed to encode an
+> >>> -  interrupt source. The value shall be 2.
+> >>> -- interrupts : Specifies the CPU interrupt the controller is connected to.
+> >>> -
+> >>> -Example:
+> >>> -
+> >>> -intc: interrupt-controller@1fd01040 {
+> >>> -     compatible = "loongson,ls1x-intc";
+> >>> -     reg = <0x1fd01040 0x18>;
+> >>> -
+> >>> -     interrupt-controller;
+> >>> -     #interrupt-cells = <2>;
+> >>> -
+> >>> -     interrupt-parent = <&cpu_intc>;
+> >>> -     interrupts = <2>;
+> >>> -};
+> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..4cea3ee9fbb1
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> >>> @@ -0,0 +1,51 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Loongson-1 Interrupt Controller
+> >>
+> >> You changed the title, so this binding now will cover all Loonson-1
+> >> interrupt controllers?
+> >>
+> > Yes.
+>
+> OK, then with the dropped |
+>
+Sorry.
+Should I send the patch V2 to drop the description part?
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
 
-Hey Anup,
 
-On Mon, Feb 20, 2023 at 10:06:49AM +0530, Anup Patel wrote:
-> On Thu, Jan 5, 2023 at 3:47 AM Conor Dooley <conor@kernel.org> wrote:
-> > On Tue, Jan 03, 2023 at 07:44:06PM +0530, Anup Patel wrote:
-> > > We add DT bindings document for RISC-V advanced platform level
-> > > interrupt controller (APLIC) defined by the RISC-V advanced
-> > > interrupt architecture (AIA) specification.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > ---
-> > >  .../interrupt-controller/riscv,aplic.yaml     | 159 ++++++++++++++++=
-++
-> > >  1 file changed, 159 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/interrupt-contr=
-oller/riscv,aplic.yaml
+-- 
+Best regards,
 
-> > I'm sorry Anup, but this child versus delegate thing is still not clear
-> > to me binding wise. See below.
->=20
-> There are two different information in-context of APLIC domain:
->=20
-> 1) HW child domain numbering: If an APLIC domain has N children
->     then HW will have a fixed child index for each of the N children
->     in the range 0 to N-1. This HW child index is required at the time
->     of setting up interrupt delegation in sourcecfgX registers. The
->     "riscv,children" DT property helps firmware (or bootloader) find
->     the total number of child APLIC domains and corresponding
->     HW child index number.
->=20
-> 2) IRQ delegation to child domains: An APLIC domain can delegate
->    any IRQ range(s) to a particular APLIC child domain. The
->    "riscv,delegate" DT property is simply a table where we have
->    one row for each IRQ range which is delegated to some child
->    APLIC domain. This property is more of a system setting fixed
->    by the RISC-V platform vendor.
-
-Thanks for the explanations. It's been a while since my brain swapped
-this stuff out, but I think delegate/child makes sense to me now.
-Just don't ask me to write the dt entry as proof...
-
-Thanks,
-Conor.
-
---oq5et5R3KJ6LBPlj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/NMWQAKCRB4tDGHoIJi
-0sA5AQCb+6M/fBkWGw999APet2trx8vgEFPEqNrYEq/4Ao54SQEA2x1nyqApHLMa
-7qdYK/TB1TlgBDnZ0TvxpDcYLBPaiAI=
-=VmEP
------END PGP SIGNATURE-----
-
---oq5et5R3KJ6LBPlj--
+Kelvin Cheung
