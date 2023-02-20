@@ -2,159 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7F769C8B0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FD8369C8CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231472AbjBTKhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 05:37:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
+        id S231379AbjBTKk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 05:40:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231445AbjBTKhc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:37:32 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE6619F28;
-        Mon, 20 Feb 2023 02:37:04 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id h16so2980493edz.10;
-        Mon, 20 Feb 2023 02:37:04 -0800 (PST)
+        with ESMTP id S231446AbjBTKkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:40:19 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EDC84ECD
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:39:54 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id a10so759456ljq.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:39:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=o18cessp6dJwK0nMBBUb6S+dtQdinOyZDu+pZzBVc24=;
-        b=OkXFgkBCWiT+V6Rpb8pld5tCj5NLmRDheW7hWxhU3K3ZObZhiE4FRTJRJOhwoWLEFq
-         Ytz/3GoxHFKVrkjpXRCzSIYDrTuPY89vvJeuO12hVk5ir6bNpo3XDnXGcQVhb7eZPS2r
-         gt3xxZAALG2YoRP1VSBJtxWaUzY9y+vbke6nh7+MpR3mZCvbkuU1EoFBssisVyD5AN8q
-         kxZRqef9Yfg5HNbfVutDwuAF8fIZUaRKlFAtyU3Uk+AVLnL5LjSQaEc4wFh/BDRp8K3u
-         CKf6oYn7J2leBNx2DgaV6SGwyeVnyGXYElExfPV/+vc31kJK9PjUMGxvLTxH/VHbsX5T
-         dDTg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S6Q9np3PlT9xBPEoHB5V+taQW+z2g86H0Y4pVQ3/u+Y=;
+        b=d6uwQSAIOMO9CzZOgQ9E1G65YuC8MXyKXoiIdlEf1zKWUb9nGgYBHnXLoY9yIEtlj4
+         85f0X2XRtn+eCVI0q36sIiqspPhvvTNduci0Xr7BLZmXEjfW+nr1ZDKixLgIeECvcMJq
+         4A/1wL5b1F7vOcg6vhtpon8nm1gwDAXprdjiLcmVMg5digDMLf6u/auCxZCo4JSdJsya
+         OG82r39oiqXD6vnep/Z3fLPVWOAuS0OzN6VyuB3vyk4huWRmGHaJZqIYjf+mTfgapFvh
+         DGgC0+PpNvptwWG0RBCwbFhqPV0QKuMywFygDFnvn7c5UC0+58bLE5xDPcfVdO8+Pe/H
+         DONA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o18cessp6dJwK0nMBBUb6S+dtQdinOyZDu+pZzBVc24=;
-        b=2/Im9MKjDTmM4lQENsv/HgGhsXybKFPQE4WZPbnl13TNKz1KrUmpYkRpQtdp9npGij
-         Te9FqBUHKQp9coSPAwWueT7TgQ5wVve6EmTKO4jmmqkPEm10ixdXeuDz+TT9HF9fkkvb
-         pDA1f4SlWCwvic0uElKKUBY4ev5EQyW4dzA7hZ18LDEokVpxiME7oesnXwgH6zfHQ7Ls
-         is8ACFX0Q0a687U8QRK+D3g8l170ZvfAURO9FB3rV33P5U1n/+t0idah6KDV/tt0LlpK
-         RZfEmtQhN3VdKn0/R9RCRAwSgrxaAGOvjRVbwJbUklR2IiOtTGW6H5EZ/nDMtWuMrnw6
-         x2ww==
-X-Gm-Message-State: AO0yUKU8nI+iwva/T7oSyLeAMewPW0KwPfY8tkrscN1SKJi3MJIPulDg
-        4ARqYHM4mPjVM7CwEJhsQtyGUl1lWx9xNMod3n67UVDz+IT75g==
-X-Google-Smtp-Source: AK7set8C2ovFbu5XsmSt8Y2751Ugx3alLIaGhADo5OpsryHngZuGShpr5zOxR1nlwnKkzz1SjiUzNSgf/hlEyXzWKBI=
-X-Received: by 2002:a05:6402:3216:b0:4ad:7bb2:eefb with SMTP id
- g22-20020a056402321600b004ad7bb2eefbmr1600504eda.3.1676889423185; Mon, 20 Feb
- 2023 02:37:03 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S6Q9np3PlT9xBPEoHB5V+taQW+z2g86H0Y4pVQ3/u+Y=;
+        b=YzOwtPzwp5Z6OP/U8sMYn/donpyJ9ATe068ZPG69JigUau4522X6qR8jdmeWtDbavJ
+         OrNYst9QmWKkYf/WCsTj3TFFOVmlVO++YGv04KfFKG/PU+86g3y1twfiNKhrDsXqTzTh
+         6MGoZtc+9EYT0EbHtB52YVeS+ZdxKxdlKG7+LocUrhzIW5lOT3ufur5kURalVAVe0Tw0
+         4qr0/j9n8hX/paGJewe40HXYboCfP+RRGKDLBstKg1HYBCSTHcJWS1bdGIKvHHa1qUSN
+         48rLOf1Q/NZbt5H3heLs9IE5eYKqxmowUeMPrtbMn7EugK7U4Wjzs7Ao54fmONkEGCHZ
+         dzPw==
+X-Gm-Message-State: AO0yUKX21iNwYun+rlNKCmDHQXmTwFRc7S4ueFrTjAhBKq3bmG8BfPFF
+        z2FmbjYQZuGAfJ49Pzx2HCiBOg==
+X-Google-Smtp-Source: AK7set+BvCGgGzmrHlgIq2C9OebhbTPyYMxFFPa+pyEIneAtPfANrPbmNYsGVLBize5NHjOU7A3ocQ==
+X-Received: by 2002:a2e:b894:0:b0:290:6484:1930 with SMTP id r20-20020a2eb894000000b0029064841930mr506600ljp.39.1676889592417;
+        Mon, 20 Feb 2023 02:39:52 -0800 (PST)
+Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
+        by smtp.gmail.com with ESMTPSA id d16-20020a2eb050000000b002935c78b371sm178333ljl.64.2023.02.20.02.39.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Feb 2023 02:39:52 -0800 (PST)
+Message-ID: <92b6aa73-caef-85bb-6656-5e159ef7d237@linaro.org>
+Date:   Mon, 20 Feb 2023 11:39:50 +0100
 MIME-Version: 1.0
-References: <20230218122236.1919465-1-keguang.zhang@gmail.com>
- <646cc26f-ed98-10fc-217b-5dc4416670a6@linaro.org> <CAJhJPsU7KmR1Z1uGsKUDW_=wUwr_Bg_7DwqsMD7tKWrZYQMPhw@mail.gmail.com>
- <4cd266d0-0555-e1a3-f9d1-35d4179ccfd1@linaro.org>
-In-Reply-To: <4cd266d0-0555-e1a3-f9d1-35d4179ccfd1@linaro.org>
-From:   Kelvin Cheung <keguang.zhang@gmail.com>
-Date:   Mon, 20 Feb 2023 18:36:46 +0800
-Message-ID: <CAJhJPsVhCKW6qgTm30wS_NhxF5cgrGg=vvj+v--FH+pg=JAKbg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: convert
- loongson,ls1x-intc.txt to json-schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
+ deprecated QCM2290 compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
+ <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
+ <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
+ <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
+ <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
+ <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
+ <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
+ <e6d397bb-dd5d-8308-eb07-3aeb2589115c@linaro.org>
+ <fbece9d6-2204-2534-e44f-29c29cc56413@linaro.org>
+ <9a0245af-b7f3-0874-385b-47c86d6e6a60@linaro.org>
+ <3d2e681b-0cc0-5d86-7d40-63022a5358c9@linaro.org>
+ <761f1f4b-6f47-83a3-1e55-9e5dfccbaab8@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <761f1f4b-6f47-83a3-1e55-9e5dfccbaab8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 20, 2023 at 6:28 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/02/2023 11:25, Kelvin Cheung wrote:
-> > On Mon, Feb 20, 2023 at 4:04 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 18/02/2023 13:22, Keguang Zhang wrote:
-> >>> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
-> >>>
-> >>> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> >>> ---
-> >>>  .../loongson,ls1x-intc.txt                    | 24 ---------
-> >>>  .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
-> >>>  2 files changed, 51 insertions(+), 24 deletions(-)
-> >>>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> >>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> >>> deleted file mode 100644
-> >>> index a63ed9fcb535..000000000000
-> >>> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> >>> +++ /dev/null
-> >>> @@ -1,24 +0,0 @@
-> >>> -Loongson ls1x Interrupt Controller
-> >>> -
-> >>> -Required properties:
-> >>> -
-> >>> -- compatible : should be "loongson,ls1x-intc". Valid strings are:
-> >>> -
-> >>> -- reg : Specifies base physical address and size of the registers.
-> >>> -- interrupt-controller : Identifies the node as an interrupt controller
-> >>> -- #interrupt-cells : Specifies the number of cells needed to encode an
-> >>> -  interrupt source. The value shall be 2.
-> >>> -- interrupts : Specifies the CPU interrupt the controller is connected to.
-> >>> -
-> >>> -Example:
-> >>> -
-> >>> -intc: interrupt-controller@1fd01040 {
-> >>> -     compatible = "loongson,ls1x-intc";
-> >>> -     reg = <0x1fd01040 0x18>;
-> >>> -
-> >>> -     interrupt-controller;
-> >>> -     #interrupt-cells = <2>;
-> >>> -
-> >>> -     interrupt-parent = <&cpu_intc>;
-> >>> -     interrupts = <2>;
-> >>> -};
-> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..4cea3ee9fbb1
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> >>> @@ -0,0 +1,51 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Loongson-1 Interrupt Controller
-> >>
-> >> You changed the title, so this binding now will cover all Loonson-1
-> >> interrupt controllers?
-> >>
-> > Yes.
->
-> OK, then with the dropped |
->
-Sorry.
-Should I send the patch V2 to drop the description part?
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
->
->
+
+
+On 20.02.2023 11:31, Krzysztof Kozlowski wrote:
+> On 20/02/2023 11:24, Konrad Dybcio wrote:
+>>
+>>
+>> On 18.02.2023 15:49, Krzysztof Kozlowski wrote:
+>>> On 18/02/2023 12:23, Konrad Dybcio wrote:
+>>>>
+>>>>
+>>>> On 18.02.2023 11:14, Krzysztof Kozlowski wrote:
+>>>>> On 17/02/2023 22:13, Bryan O'Donoghue wrote:
+>>>>>> On 17/02/2023 12:24, Krzysztof Kozlowski wrote:
+>>>>>>> First, it would be nice to know what was the intention of Bryan's commit?
+>>>>>>
+>>>>>> Sorry I've been grazing this thread but, not responding.
+>>>>>>
+>>>>>> - qcom,dsi-ctrl-6g-qcm2290
+>>>>>>
+>>>>>> is non-compliant with qcom,socid-dsi-ctrl which is our desired naming 
+>>>>>> convention, so that's what the deprecation is about i.e. moving this 
+>>>>>> compat to "qcom,qcm2290-dsi-ctrl"
+>>>>>
+>>>>> OK, then there was no intention to deprecate qcom,mdss-dsi-ctrl and it
+>>>>> should be left as allowed compatible.
+>>>> Not sure if we're on the same page.
+>>>
+>>> We are.
+>>>
+>>>>
+>>>> It wasn't intended to deprecate [1] "qcom,qcm2290-dsi-ctrl", "qcom-mdss-dsi-ctrl";
+>>>> (newly-introduced in Bryan's cleanup patchset) but it was intended to deprecate
+>>>> [2] "qcom,dsi-ctrl-6g-qcm2290"; which was introduced long before that *and* used in
+>>>> the 6115 dt (and it still is in linux-next today, as my cleanup hasn't landed yet).
+>>>>
+>>>> [3] "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl" was never used (and should never
+>>>> be, considering there's a proper compatible [1] now) so adding it to bindings
+>>>> didn't solve the undocumented-ness issue. Plus the fallback would have never
+>>>> worked back then, as the DSI hw revision check would spit out 2.4.1 or 2.4.
+>>>> which is SC7180 or SDM845 and then it would never match the base register, as
+>>>> they're waay different.
+>>>
+>>> All these were known. I was asking about "qcom,mdss-dsi-ctrl", because
+>>> the original intention also affects the way we want to keep it now
+>>> (unless there are other reasons).
+>> Okay, so we want to deprecate:
+>>
+>> "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl"
+> 
+> No, we don't want to deprecate it. Such compatible was never existing
+> originally and was only introduced by mistake. We want to correct the
+> mistake, but we don't want to deprecate such list.
+> 
+>>
+>> because it is:
+>>
+>> 1) non-compliant with the qcom,socname-hwblock formula
+>> 2) replaceable since we rely on the fallback compatible
+>> 3) "qcom,dsi-ctrl-6g-qcm2290" alone would have been expected to
+>>    be fixed in the DTSI similar to other SoCs
+>>
+>> Is that correct?
+> 
+> No. So again, I am talking only about qcom,mdss-dsi-ctrl. Since
+> beginning of this thread:
+> 
+> "Wasn't then intention to deprecate both - qcm2290 and mdss - when used
+> alone?"
+> 
+> Why do you bring the list to the topic? The list was created by mistake
+> and Bryan confirmed that it was never his intention.
+Ugh.. I think I just misread your message in your second reply
+counting from the beginning of the thread.. Things are much
+clearer now that I re-read it..
+
+So, just to confirm..
+
+This patch, with the items: level dropped, is fine?
+
+Konrad
+> 
+>>
+>> Because 2) doesn't hold, as - at the time of the introduction
+>> of Bryan's patchset - the fallback compatible would not have
+>> been sufficient from the Linux POV [1]
+> 
+> There was no fallback compatible at that time.
+> 
+>> , though it would have been
+>> sufficient from the hardware description POV, as the hardware
+>> on the SoC *is* essentially what qcom,mdss-dsi-ctrl refers to.
+>>
+>> [1] The driver would simply not probe. It *would be* Linux-correct
+>> after my code-fixing series was applied, but I think I'm just failing
+>> to comprehend what sort of ABI we're trying to preserve here :/
+> 
 > Best regards,
 > Krzysztof
->
-
-
--- 
-Best regards,
-
-Kelvin Cheung
+> 
