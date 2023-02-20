@@ -2,148 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8774269CA96
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 13:16:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA03A69CAAE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 13:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231696AbjBTMQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 07:16:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34664 "EHLO
+        id S231663AbjBTMTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 07:19:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbjBTMQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 07:16:15 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B641ABED
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 04:16:13 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id ec43so3342054edb.8
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 04:16:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LHyp+RhnNJ4rQeNCga7DI+gNbDU1iW82DBR66hSxJQs=;
-        b=yYvehGyXo/xNEtVKAN3WK20otIHJYscpdSFSkfMfe8BDhSGHfH5Cbi7mhgagOcZCBU
-         vFBMQC0QZDW+6IAcKVKBZ5yDkKEFtN2diivnp/t4JVJ7iGEVDGbn0YiswQPz75S4MMtL
-         Xf10e0fVaz3iIVRU0FUGFIxJYv9JCQ9zR8kmR3Ge3UMuVTwZI5REiwC0esbF6C1R1bce
-         KGZtrrCFg1SC6MGDB8LYKBjxIraWtVj57QdI3CpZDJ5RGkd8cViby1PjBeSYZjjcZ0Fc
-         TtsZfkdohdA6Q4vSuJ1AwLY8a2kErOn6GNfweKEKqI2GS1hwFz3HiHEtCMymin3dXa3/
-         5r1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LHyp+RhnNJ4rQeNCga7DI+gNbDU1iW82DBR66hSxJQs=;
-        b=jkxaBw6dSSvR6Dg3C671M7ckIuX8jQ1iBsXT6qlpx1po/c1PrGn4JR4U4o50O+lbCW
-         iJg0JwAW75DSDkmK1dj+5pIHr4XqN5EINJW6rDtaIxdsz2qU9NwYPjujIiBr413wZbRz
-         PHlhbV56TKdkjbwzVfnOxF+vO2c8nHdyV7e5daKlpaxro+LLYD1MUMfoO9rOCFcchkW7
-         l0L+jSu5hhXqBC0iHQRZo3HOvUmdSfwNZ2mefFj86qAG16klDa66kcO+ZEp6narNX/3u
-         K7MUQwi0q2SfkGPlhL3ZRByCTRrY6DW9UbYhZqi1Tlbh/CNlfV0a/Mn5iJ/uql5oEwMP
-         zi3w==
-X-Gm-Message-State: AO0yUKWAluu79x6j4SxJFzvKZRoi+oXdFgz/49VQHwdQahHOA1Tbb3Yt
-        1cGMr0HjsiqjUrx8kGdO63oEsQ==
-X-Google-Smtp-Source: AK7set/t6K32u2z1BLg1HeBcMdr2hrDETMCWhZYxfozHEWlVt/Bm3H8f0csxt5PtKnGrXTZJESoQYw==
-X-Received: by 2002:a17:907:a4c2:b0:8ae:3200:a107 with SMTP id vq2-20020a170907a4c200b008ae3200a107mr5965243ejc.23.1676895372368;
-        Mon, 20 Feb 2023 04:16:12 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j26-20020a170906831a00b008d1dc5f5692sm1344081ejx.76.2023.02.20.04.16.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 04:16:11 -0800 (PST)
-Message-ID: <4512df34-c2ea-cf00-1d2d-54ff961fd871@linaro.org>
-Date:   Mon, 20 Feb 2023 13:16:09 +0100
-MIME-Version: 1.0
+        with ESMTP id S231756AbjBTMTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 07:19:08 -0500
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2117.outbound.protection.outlook.com [40.107.104.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7511AB748;
+        Mon, 20 Feb 2023 04:19:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FR3/C/Iw+rXVwGUrVdCj3riig1oru79OBLtV17tMQhhKpzuTKZ/I8l/Rgd5xuPXV3ekDKs3c6CF0dCZyaM3Qh3QF89eS1quMgFkKlevONCCZQWIAkho8b4jsD0VlDY4LHkVQlPfgQyQIy5GzyvI3m3M46JVgG1j3IaVPg0F7GO6CLoORjhEsaS3NutZ53InmAiYxZwiR+Yx6lBE68XgBk1Oox/xq4T3gKgPHoWx5H4R9iDNztNTHYyTGvAuZQ0ljNAACvhAp3xAdp7rjU+GqDR2eXR7yz2+micgwSYvT7X+nBvh1IlDQFxPKGqTH/uG6zJzHE+yajZ0OTVGDscd2YA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eLWF4mUUX/uYrKCDT3DTXOnUh8TmBt/3lwzvU08sQnw=;
+ b=jKRiIwI976mTfQ7b9xkyzaj1lUSqD/P35TvLUm3AILr4H7yxwqdKPeOabLiwwwTXxaQJlDL2f/M5i0LegC20YvmXfQ2Jma/DXTUI8by/JCpf/f+pGPOfKAavPEF9fzhvMffocflX4v5aDZ8ZidUqc5vxTcWtX5Z9+t0cIk2LnRXgrW+Nhk/mAzybDw4xB29IyoyvjYP1G2u51B0YM0TNixvAi82WjasVXwMH/2rrpVQPadVT+u9DEAU680NWKUxJksZg/3KmzVHV4WU/sXAXtcSzIeB3wD84TfLr97rhfPtKeTmUNYkRfwU+PRJXxJbq2v1VLgQSrxeHhBbYSfUL2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
+ dkim=pass header.d=prevas.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eLWF4mUUX/uYrKCDT3DTXOnUh8TmBt/3lwzvU08sQnw=;
+ b=dgdZqutL3ndIn672e/Q8tX+lCb+zqvlc935Ct3Jcs2h0au96pz5dIt8Nj73m49sO9JQmClMk15BR4PFKbpJEyxf/y+WnFX8VnWhHUfXkZH4PdQ8g9TmBIp/w/bBUPWXb6wu2kIQBoTaAsfF0o8axwaYJSAu0BsdEToOIyqmalls=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=prevas.dk;
+Received: from DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:34a::22)
+ by DU2PR10MB7861.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:497::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.19; Mon, 20 Feb
+ 2023 12:19:02 +0000
+Received: from DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::d067:93ef:f184:668a]) by DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::d067:93ef:f184:668a%4]) with mapi id 15.20.6111.019; Mon, 20 Feb 2023
+ 12:19:02 +0000
+Message-ID: <ed28bbda-16b6-043b-5310-8ac0e8ebd900@prevas.dk>
+Date:   Mon, 20 Feb 2023 13:18:59 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: convert
- loongson,ls1x-intc.txt to json-schema
-Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-References: <20230220111801.2037164-1-keguang.zhang@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230220111801.2037164-1-keguang.zhang@gmail.com>
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 0/6] drm: lcdif: Add i.MX93 LCDIF support
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Liu Ying <victor.liu@nxp.com>
+Cc:     marex@denx.de, stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        krzysztof.kozlowski@linaro.org, LW@karo-electronics.de
+References: <20230217065407.2259731-1-victor.liu@nxp.com>
+ <13207614.uLZWGnKmhe@steina-w>
+Content-Language: en-US, da
+From:   Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+In-Reply-To: <13207614.uLZWGnKmhe@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MM0P280CA0091.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:190:9::29) To DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:10:34a::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR10MB5266:EE_|DU2PR10MB7861:EE_
+X-MS-Office365-Filtering-Correlation-Id: c591d00e-f284-4610-5ee5-08db133ca6e5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Pb7eCiP5OTGm6ZU2pqUEzpP3VovgSPyXGVgkcwFpt8gU9cTbe9HLlpirhqBTb9ZtksFPFtb5Uu42NbscGy5rH1kfla4EkJrigm7sBZ77VofmsXrrv8BXDyRQ+apAWZeEFW0IKowQRvELL3OImjPJoe43wEk43akSbi9JwK07sJhDpg5aMVZSkyW6yHwBdzzbs5KPzdyznaRTgnvr1xX06RKSY6W+IcgaAo6cebhpSlrmwHgsbpCKRLUeHhBKg1N8l0O8ywcBTbzBn7Yc88hvwnpZfr7eyyiORM73N70a3hyZC6UD/qko5cLs1orO+WXNK5OfNjkRaJBhRq1SCJrigxkUnjx/MrW0QJA81tfDdSdaLjBQjzGX/3znkIpYUpET+I33d6YnQ4YbUcvHmm25kAZidq0bd5XrVDu/gmDjazBs3ILPIATSVPebbXmlDGP3Ea2Fih6bpph7llJEI7BzWBlnUCOo7HlEcN0VVGC9c76fWo9l95lInUC2pDzZX5i7JNRvxiKd1rzbFsnMmUrWVh5mNd0XzcTzBaas3S/VMFHbj+aAvFr1k0vfCAGDpl4Wn3+rwif+7pOXvESBfUZMoea2OQu58EUOAkJxU3BvlLrQ6w43XCfcqGb37IOk3JVpQZodP0lJIWsM+gT7d3PIGrlorRNluPq8OJ4zLAGUeufocjk0LXzNrA19W5wWMsR5RJE1qlz/+hEUycrCWKFnh3FzPsNnH/xcsBrgmoNrMGuYrcTqImUXmjm6bMckjSeM
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(39850400004)(376002)(136003)(366004)(396003)(346002)(451199018)(83380400001)(66476007)(66556008)(66946007)(8676002)(52116002)(478600001)(110136005)(316002)(19627235002)(6512007)(6506007)(31686004)(186003)(26005)(8936002)(8976002)(2616005)(7416002)(6486002)(36756003)(4326008)(966005)(41300700001)(5660300002)(6666004)(38350700002)(38100700002)(86362001)(31696002)(44832011)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RWczRDVsYmJya2RjV3g0Q1lkbThVVWhnZUNtVEVvbjNHNUczdXdOenc5QVBN?=
+ =?utf-8?B?NDFYWFJFMy81M1k5dENvSFpBMmRicXQ0ci9LYlp2M29KREVjZWRTdU9ENzc4?=
+ =?utf-8?B?RlZhWnNRMDlmS0N4bEppQ25NUFhYVEVRWno2Szl3blFVYUpXQ1VON2ZPcmFs?=
+ =?utf-8?B?T0JzZjVSa0NueE45SDNRbGk0VUd2b0RHUGlhT0dWWjN2QnZNNkQ0VWpkTVkv?=
+ =?utf-8?B?V3drcHlYMnUyQWVCamVoc1llNGJaWXlNQUxxYmlLSTNJYWZqT2RyRzE5eHNu?=
+ =?utf-8?B?U0k4aHpRc2x4alZEaDNiYnI0ME8rOFVNR2hzTHB4ZzBKMEZ3RmNtekorM0Mw?=
+ =?utf-8?B?ZVp2Y0tyUFhFZWtzaXVZbkRsMTgwUW12UmtLRnFGZVh0cFV4cGRvZlo2dWI2?=
+ =?utf-8?B?azg4eDk5UnM2bXlTSkVJUHVXbnJKdzRSZjA2RzVXb0NzczljN1VOaTF6NXFZ?=
+ =?utf-8?B?SmR4S3RkVTRVNlRYcDhPV1VnZkZNK01WVWYrSVNHK2NjQUk5dnBWUnVPeERz?=
+ =?utf-8?B?cDhoUnMyN25SSjEwekFEbTdpWWJmYjgxTUNBR3RMb0g2NFc5SVZxc3lGMHVI?=
+ =?utf-8?B?dTd3YTJ4MGpGUUZPd1VFUUNGN2pOVkZsREo1aE05V3JxVk9xMlJ0L0p3eDRC?=
+ =?utf-8?B?SUhxSjFKS1loandsL2I0TGhqWDQvZkNPRlR3ckNIRW9wTFA4M09jQjZSNkQv?=
+ =?utf-8?B?NXFLUWRLMjAxb21uYmxBbEExTzhSeXJvUWx2U1dQNVBzd1oxNlJrbThHZ2lt?=
+ =?utf-8?B?QnR3VWJmZVdDbFppeDl4UXFqZVpSRnR0SGpzL0Fmc3JlaE0wQkV1OHd3ZVNp?=
+ =?utf-8?B?aVIxZG5UWEtkZTRCUFpKWHlDWG1ER01XYytZcWlSQkh5dVdsV0Nya2toUkd4?=
+ =?utf-8?B?YXREUUZTYkRreUpHVzI5dUZORDhnNElta0RySGJaV2Jya0VLcUFLQmFsNm1o?=
+ =?utf-8?B?eFRRcU00TDYzQ3dUaFJjVkV4cnZ6UFkzUDRPeTBFK1VyZFFQRHJlRVRhSFE0?=
+ =?utf-8?B?dGFXUnlKRmsxQldEVEFvQ1hKTmNFL1kzaXdtR3JtWG1FQmNZc2ovMWJtUVVl?=
+ =?utf-8?B?Qm5jUWV2Z0Fjc05vSFUwTm4xWWZWWVlHSzYxOHBvWkFjdEJxWGIraStqS3BY?=
+ =?utf-8?B?SE9MSXNZdjg2UHRjbUlPdCtOcnpxTm9VWEhIUEN0ZzZ4SEtxNVFaVGRjaW5m?=
+ =?utf-8?B?cjdqbHROeFVHc2hTS29aOUpRbHNzcVFMY2FFVXR6KzVVYXJ4a0QzdjcwNUQz?=
+ =?utf-8?B?Zi9PNDc0Y2JnSXF5clY3aS8xL05xV010dkJqcVQrMC9HNE9ZYUpHVCtrRjVP?=
+ =?utf-8?B?dFZwVjNPcWszSHJmb2JjcW5tYzBmakVRL0gvSDVQNUdHTHAySVl2N0VMbWl0?=
+ =?utf-8?B?L3N1MGM5NmZnK2pnRVlscFR2c2g0OHRUSjdOQXY5VnVEVGFtUjM3dmNuS1RC?=
+ =?utf-8?B?eUtBcHUrYnh3OGlPL09CSGNxU3dBcXBzMGNndy95ak5EWVhralplUkhVZFlt?=
+ =?utf-8?B?TGZRMS9PbHc3NnE0TytlVzk3STV6R3ZRZ0s5eE9RYVhYU3NFVnJMdnVKcnZY?=
+ =?utf-8?B?SEVFQjVvRFlpZUxIWERucTBrRStpNmtpbW95NjJYMUw3a09INkM2SWRxQ3pM?=
+ =?utf-8?B?M3lnWHRIWnZNcHd2WjAvM2dnZmJmem1Ka201NDkxaFhUMW0yaHZHQkF5V3Vw?=
+ =?utf-8?B?TzVmRXh4YUZ4alViOUdMcldxbnBRRUxUZTVLek13UlJaTDRJYXBSRWhLL0dp?=
+ =?utf-8?B?aVVYcnQ1RERSbXQvTFJjaWFNRW81VzdyWEJDOStpdkRVM1M2Uk9RQlNDNVdG?=
+ =?utf-8?B?SVpsMkw0eVBJWnBxbWFucDJOWkRwNXpSUnIxTW5ySDlrU0lWWmtnTWVPVldS?=
+ =?utf-8?B?eFYxeSt2L2tGZ2xZWUdLTGlrQ3hTUUU0OWwveG51ZzZRMVNSWFZ1VTBhR2s1?=
+ =?utf-8?B?Yzd3ZURHV1dTcXdyQXM2WTNTbXByR3RyVGJyMFk3Mms1L1BkdU8wb21pOFh3?=
+ =?utf-8?B?Mm9rTTZpRU5VWENhUTF4WTZKOU95T2VWb1NvZDBwNnoyZi9DcGMrYXIzdnF6?=
+ =?utf-8?B?SnVONWJTRGZGY2NZbmZuVXduUHhDaFVpM3VNUFdoNXRwOWhnWFZOQ3hpK0FT?=
+ =?utf-8?B?WDR3VkVDWmVIQ0VqZHgvK2ZhYVh2c2lsVGg4aEEzOEJxdUhVSkd6YnNyWTRU?=
+ =?utf-8?B?REE9PQ==?=
+X-OriginatorOrg: prevas.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: c591d00e-f284-4610-5ee5-08db133ca6e5
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR10MB5266.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2023 12:19:02.3947
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9FdsN97l+3LI5ROGUag83FkP+HWM+Vb32pQQDujuFv3sG8+CKmGn+vQTjBqA0iv1Zn7Tf0B03n6jwxSlnjLQqvSvQ9rzJZKr8PPYTvEFv6o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR10MB7861
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 12:18, Keguang Zhang wrote:
-> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
+On 17/02/2023 09.18, Alexander Stein wrote:
+> Hi Liu,
 > 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Unreviewed.
-
-> ---
-> V1 -> V2: Drop the description part
-> ---
->  .../loongson,ls1x-intc.txt                    | 24 ----------
->  .../loongson,ls1x-intc.yaml                   | 47 +++++++++++++++++++
->  2 files changed, 47 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> Am Freitag, 17. Februar 2023, 07:54:01 CET schrieb Liu Ying:
+>> Hi,
+>>
+>> This patch set aims to add i.MX93 LCDIF display controller support
+>> in the existing LCDIF DRM driver.  The LCDIF embedded in i.MX93 SoC
+>> is essentially the same to those embedded in i.MX8mp SoC.  Through
+>> internal bridges, i.MX93 LCDIF may drive a MIPI DSI display or a LVDS
+>> display or a parallel display.
+>>
+>> Patch 1/6 adds device tree binding support for i.MX93 LCDIF in the
+>> existing fsl,lcdif.yaml.
+>>
+>> Patch 2/6 drops lcdif->bridge NULL pointer check as a cleanup patch.
+>>
+>> Patch 3/6~5/6 prepare for adding i.MX93 LCDIF support step by step.
+>>
+>> Patch 6/6 adds i.MX93 LCDIF compatible string as the last step of
+>> adding i.MX93 LCDIF support.
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> deleted file mode 100644
-> index a63ed9fcb535..000000000000
-> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -Loongson ls1x Interrupt Controller
-> -
-> -Required properties:
-> -
-> -- compatible : should be "loongson,ls1x-intc". Valid strings are:
-> -
-> -- reg : Specifies base physical address and size of the registers.
-> -- interrupt-controller : Identifies the node as an interrupt controller
-> -- #interrupt-cells : Specifies the number of cells needed to encode an
-> -  interrupt source. The value shall be 2.
-> -- interrupts : Specifies the CPU interrupt the controller is connected to.
-> -
-> -Example:
-> -
-> -intc: interrupt-controller@1fd01040 {
-> -	compatible = "loongson,ls1x-intc";
-> -	reg = <0x1fd01040 0x18>;
-> -
-> -	interrupt-controller;
-> -	#interrupt-cells = <2>;
-> -
-> -	interrupt-parent = <&cpu_intc>;
-> -	interrupts = <2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> new file mode 100644
-> index 000000000000..48dd071ceeea
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-1 Interrupt Controller
-> +
+> Thanks for the series. I could test this on my TQMa93xxLA/MBa93xxCA with a 
+> single LVDS display attached, so no DSI or parallel display. Hence I could not 
+> test the bus format and flags checks, but they look okay.
+> So you can add
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> to the whole series as well.
+> 
+> One thing I noticed is that, sometimes it seems that before probing lcdif my 
+> system completely freezes. Adding some debug output it seems that's during 
+> powering up the IMX93_MEDIABLK_PD_LCDIF power domain there is some race 
+> condition. But adding more more detailed output made the problem go away.
+> Did you notice something similar? It might be a red hering though.
 
-What happened to description? Why did you remove it?
+Interesting. Sounds similar to what I encountered on several
+imx8mp-based boards, both the NXP EVK and our custom design, running a
+mainline U-Boot and downstream NXP kernel:
 
-Best regards,
-Krzysztof
+https://lore.kernel.org/u-boot/20220823133645.4046432-1-rasmus.villemoes@prevas.dk/
+
+I never really found a real solution, but as the hack I ended up
+applying in U-Boot does involve some clock settings, and you apparently
+now figured out some connection to "overclocking", I do think these
+issues are related.
+
+Rasmus
 
