@@ -2,196 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A213769D1E6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 18:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D2B969D1FB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 18:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231783AbjBTRLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 12:11:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
+        id S232211AbjBTRP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 12:15:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231734AbjBTRLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 12:11:17 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E395B2055B
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 09:11:15 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id t16so1133456iom.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 09:11:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nEOyqyX16+a0s8LVg/pF7pxqSztYrWWhg38vHHBi3tk=;
-        b=Es+PiD554nf4b0lw9BenSHvyrbUQvjUaddCdjlFQzviROGfsy+bH6ztbIzUJj8HN3D
-         kPFalkX9vL9YMjqz+RQVaezLe3n/aWJABu/mKRnRsZo/vKgmoFbWvroh6JVpowJoBHGr
-         ouIETH64oNwmqNZtENWIe7zqF1yBoI9U+pI2+rgWa0wIwTubNonQomcCnOuI+qJ1Bgyb
-         c5z1Hq8/EpN92SQK6JIMTTvJqi37WvromkSXSCfimYdo4Cphf5I8fw2JhNUTYXlvXl1y
-         1ylrOYnpce4/fJktTg6YdKuj1QoRl2oV/CPtP27vQ5fjr4KMO/oZ0fCrGc1WANg5I610
-         tb5A==
+        with ESMTP id S231783AbjBTRP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 12:15:57 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A05199D9;
+        Mon, 20 Feb 2023 09:15:56 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-17211366c6aso1748733fac.13;
+        Mon, 20 Feb 2023 09:15:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nEOyqyX16+a0s8LVg/pF7pxqSztYrWWhg38vHHBi3tk=;
-        b=acxUGdEbyEmpU9POXu8RbWo+zIPmg2kWarK7DxPVuRgIyBGkuuL2OX3paQ0k6xaes/
-         PJPqvS6Sx6gj6wfodKFcfee6wWRTpBkhoCG37MCK3cGdUGpf0JCFXZTIjH/ot2Omaydm
-         ch2NsV5ZU0wMBmItrXT34L6/Ar+YYI+/j0rhmhICr20+SU3v9hvWsOdxVAw3wJ6pkOT5
-         zHKTt/HmukSABTILHWGtZwTj0wgQogRk8LfUtmWrSci9LSPJWlL5SwSDhMna6GPvHisw
-         4sObYP6audzkXhsf/GYCWx4Y+TZ54p3JyXQ4LCuL8H6CPPqR7VC/dH1S82u4fvQNYA90
-         t4sg==
-X-Gm-Message-State: AO0yUKUn6bMX53ZIlsd4eOox+oGJXZTe/abmstLq2YmUCFuY9nx0IogV
-        VVmaCN0FeqmKLBAIhEMyy/XshXuK6g0rYCq+n4NWdA==
-X-Google-Smtp-Source: AK7set+503zOSFCrMzUFKu9VpHP1CxTcABe7Y2qzNdRVr4GS9RE0Nr+Aep7G/9QRg/X7y9lOZcCc6YFmXuu71RYiegk=
-X-Received: by 2002:a6b:6207:0:b0:71c:479d:741a with SMTP id
- f7-20020a6b6207000000b0071c479d741amr2462205iog.38.1676913075061; Mon, 20 Feb
- 2023 09:11:15 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=03mvMv3OBvjG3ElAvQ4qRAwM8DjYRN7O/uLbM3eCM4s=;
+        b=Cs0ta0mbFWAmPKoH4bLZGhY3+H4zBC4Gjjju24QvsftIqM4KBmMVg0tPMvnhi8PGBQ
+         ckzoezy6BJe8j0EHfJJY0k5liuFEYGvj2V/r+joWjSQYLV41ZEElr2G0wNNyyH1PZx28
+         93uQPv5CQqv/e0DqO3ciAa7rHCBRcCpHq32TvHpIZdZxBri1TUV8oWDyW5N5jDI1MLPg
+         JKblSoC0XSWMmFwuTSaBvVWP7He0F3mEEJgo9Z33WztgdumsBS+iA6T35PkDxLhEtSMq
+         UgweP3CzRKu+EFOroPpLsUC+aoqhyLQ03eaOF3p+KwOR05tGQ1EAwN/AOIrG8WvGTB0t
+         93Xg==
+X-Gm-Message-State: AO0yUKX9PQQsJI4F6zpT7UQHgy4MR30cyzn5UiReluZM3j52EWzNFwcw
+        pnw4qjZOkWj5VBxwuaZTo46JVV5+rw==
+X-Google-Smtp-Source: AK7set8/7ONpY57pYHX9q0jBRtphSUDrp2r2g2sZBQkEX8p9zdLPkp5DBfMT0w2yng2j+2hTBvaInA==
+X-Received: by 2002:a05:6870:d1d4:b0:16f:389a:d97b with SMTP id b20-20020a056870d1d400b0016f389ad97bmr6347136oac.46.1676913355649;
+        Mon, 20 Feb 2023 09:15:55 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ec21-20020a0568708c1500b00143824af059sm4587738oab.7.2023.02.20.09.15.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Feb 2023 09:15:55 -0800 (PST)
+Received: (nullmailer pid 3973202 invoked by uid 1000);
+        Mon, 20 Feb 2023 17:15:54 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230126031424.14582-1-quic_wcheng@quicinc.com> <20230126031424.14582-13-quic_wcheng@quicinc.com>
-In-Reply-To: <20230126031424.14582-13-quic_wcheng@quicinc.com>
-From:   Albert Wang <albertccwang@google.com>
-Date:   Tue, 21 Feb 2023 01:11:04 +0800
-Message-ID: <CANqn-rhAWKVrSGKkoDCC+Jy6qdceSqo22KYb-5k+haHpcgQJaA@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 12/22] sound: usb: card: Introduce USB SND platform
- op callbacks
-To:     Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        quic_jackp@quicinc.com, quic_plai@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-16.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jianhui Zhao <zhaojh329@gmail.com>, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        =?UTF-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Felix Fietkau <nbd@nbd.name>,
+        Russell King <linux@armlinux.org.uk>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org
+In-Reply-To: <03f9d40849dd2d563a93b27732a7b5d7dd1defc5.1676910958.git.daniel@makrotopia.org>
+References: <cover.1676910958.git.daniel@makrotopia.org>
+ <03f9d40849dd2d563a93b27732a7b5d7dd1defc5.1676910958.git.daniel@makrotopia.org>
+Message-Id: <167691325732.3971281.4378006887073697625.robh@kernel.org>
+Subject: Re: [PATCH v9 03/12] dt-bindings: arm: mediatek: sgmiisys: Convert
+ to DT schema
+Date:   Mon, 20 Feb 2023 11:15:53 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wesley,
 
-It looks like your audio offload driver will fetch the required
-resources for a stream enable request. But we have different designs.
-In the integration with your patch set, we found we still need a call
-back function in card.c when the usb set interface is done, in which
-we would call the new API, xhci_get_xfer_resource(), to get the EP
-transfer ring address. Of course, we will try the
-platform_ops->connect_cb() first to see if it is able to cover what we
-need or not.
-
-
-Thanks,
-Albert Wang
-
-Albert Wang | Pixel USB Software  | albertccwang@google.com | +886-918-695-245
-
-
-On Thu, Jan 26, 2023 at 11:16 AM Wesley Cheng <quic_wcheng@quicinc.com> wrote:
->
-> Allow for different platforms to be notified on USB SND connect/disconnect
-> seqeunces.  This allows for platform USB SND modules to properly initialize
-> and populate internal structures with references to the USB SND chip
-> device.
->
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+On Mon, 20 Feb 2023 16:41:16 +0000, Daniel Golle wrote:
+> Convert mediatek,sgmiiisys bindings to DT schema format.
+> Add maintainer Matthias Brugger, no maintainers were listed in the
+> original documentation.
+> As this node is also referenced by the Ethernet controller and used
+> as SGMII PCS add this fact to the description.
+> Move the file to Documentation/devicetree/bindings/pcs/ which seems more
+> appropriate given that the great majority of registers are related to
+> SGMII PCS functionality and only one register represents clock bits.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->  sound/usb/card.c | 28 ++++++++++++++++++++++++++++
->  sound/usb/card.h | 20 ++++++++++++++++++++
->  2 files changed, 48 insertions(+)
->
-> diff --git a/sound/usb/card.c b/sound/usb/card.c
-> index 26268ffb8274..803230343c16 100644
-> --- a/sound/usb/card.c
-> +++ b/sound/usb/card.c
-> @@ -117,6 +117,24 @@ MODULE_PARM_DESC(skip_validation, "Skip unit descriptor validation (default: no)
->  static DEFINE_MUTEX(register_mutex);
->  static struct snd_usb_audio *usb_chip[SNDRV_CARDS];
->  static struct usb_driver usb_audio_driver;
-> +static struct snd_usb_platform_ops *platform_ops;
-> +
-> +int snd_usb_register_platform_ops(struct snd_usb_platform_ops *ops)
-> +{
-> +       if (platform_ops)
-> +               return -EEXIST;
-> +
-> +       platform_ops = ops;
-> +       return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(snd_usb_register_platform_ops);
-> +
-> +int snd_usb_unregister_platform_ops(void)
-> +{
-> +       platform_ops = NULL;
-> +       return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(snd_usb_unregister_platform_ops);
->
->  /*
->   * disconnect streams
-> @@ -910,6 +928,10 @@ static int usb_audio_probe(struct usb_interface *intf,
->         usb_set_intfdata(intf, chip);
->         atomic_dec(&chip->active);
->         mutex_unlock(&register_mutex);
-> +
-> +       if (platform_ops->connect_cb)
-> +               platform_ops->connect_cb(intf, chip);
-> +
->         return 0;
->
->   __error:
-> @@ -943,6 +965,9 @@ static void usb_audio_disconnect(struct usb_interface *intf)
->         if (chip == USB_AUDIO_IFACE_UNUSED)
->                 return;
->
-> +       if (platform_ops->disconnect_cb)
-> +               platform_ops->disconnect_cb(intf);
-> +
->         card = chip->card;
->
->         mutex_lock(&register_mutex);
-> @@ -1087,6 +1112,9 @@ static int usb_audio_suspend(struct usb_interface *intf, pm_message_t message)
->                 chip->system_suspend = chip->num_suspended_intf;
->         }
->
-> +       if (platform_ops->suspend_cb)
-> +               platform_ops->suspend_cb(intf, message);
-> +
->         return 0;
->  }
->
-> diff --git a/sound/usb/card.h b/sound/usb/card.h
-> index 40061550105a..2249c411c3a1 100644
-> --- a/sound/usb/card.h
-> +++ b/sound/usb/card.h
-> @@ -206,4 +206,24 @@ struct snd_usb_stream {
->         struct list_head list;
->  };
->
-> +struct snd_usb_platform_ops {
-> +       void (*connect_cb)(struct usb_interface *intf, struct snd_usb_audio *chip);
-> +       void (*disconnect_cb)(struct usb_interface *intf);
-> +       void (*suspend_cb)(struct usb_interface *intf, pm_message_t message);
-> +};
-> +
-> +#if IS_ENABLED(CONFIG_SND_USB_AUDIO)
-> +int snd_usb_register_platform_ops(struct snd_usb_platform_ops *ops);
-> +int snd_usb_unregister_platform_ops(void);
-> +#else
-> +int snd_usb_register_platform_ops(struct snd_usb_platform_ops *ops)
-> +{
-> +       return -EOPNOTSUPP;
-> +}
-> +
-> +int snd_usb_unregister_platform_ops(void)
-> +{
-> +       return -EOPNOTSUPP;
-> +}
-> +#endif /* IS_ENABLED(CONFIG_SND_USB_AUDIO) */
->  #endif /* __USBAUDIO_CARD_H */
+>  .../arm/mediatek/mediatek,sgmiisys.txt        | 25 ----------
+>  .../bindings/net/pcs/mediatek,sgmiisys.yaml   | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/net/pcs/mediatek,sgmiisys.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/03f9d40849dd2d563a93b27732a7b5d7dd1defc5.1676910958.git.daniel@makrotopia.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
