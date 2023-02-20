@@ -2,301 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D6469C70D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 09:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF38669C738
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 10:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjBTIza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 03:55:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38638 "EHLO
+        id S231422AbjBTJDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 04:03:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231311AbjBTIz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 03:55:27 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02918FF1A;
-        Mon, 20 Feb 2023 00:55:24 -0800 (PST)
+        with ESMTP id S231396AbjBTJDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 04:03:30 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D88B47E
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:03:02 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id t16so247558iom.12
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:03:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1676883325; x=1708419325;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0kopjGlyME28slR69d18cD6VZBx6S7ruIoq4XuO/ldc=;
-  b=npw+8OmeihYWqw//hAPPPnrZs+mmXX9fB49JKAEyto2Y2FEGZHjGR69p
-   V1J2aYMxhDUb5j8klsPr6PdPRQKdasZZx6BqEunt3VgmEjRCIKCiEZJ9b
-   WIrt81FZa2Re9rtmWZCdVJdOfnzUoN5ZCKOdJieuM1oSNpjuyANYyMbVS
-   jy6ErrhEZHTpDyOqTxyJUdNQDmD+L3QfATlkbDlxZZEIsyeqru5qGp0Oj
-   nmrSm2vObqe9tHeVz9mOLP3jyS6YAkbMUDDtC0kDcbY1/cOwj/n78k3tc
-   qOcb94CnWarumYancarccyl1mLJmcioax8E0qYXL/Ey3xcAzGnjk82K0H
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,312,1669071600"; 
-   d="scan'208";a="29182153"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Feb 2023 09:55:22 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 20 Feb 2023 09:55:22 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 20 Feb 2023 09:55:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1676883323; x=1708419323;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0kopjGlyME28slR69d18cD6VZBx6S7ruIoq4XuO/ldc=;
-  b=p0IqWZ2c0FLi4zp+tMwwJCU9w1Rxgi0HwpFw1WkYOzDThqYY0/yV35hV
-   ZiXzhD3nBGIlLyCPKGhi2ZyoQM0NlsEnmvcFNefF0NEhtOheQFjc8w7AJ
-   sfD1E90Qo/Rs/l0yY5+wWZN6LCIRHljffGsPg9KkxWM9JeG8033adjLZo
-   FllKD4KCwTNiuqzCcPEu3R8L0IpEDAOIumxq3L8oCKBl3cZaJiErsitk9
-   EvyXvFZT+fxY1MHj5WUx7TdsSY1g2jEpbrq4+5OCiwAHjtBpR5VtNUuwh
-   UF7NAQEW9SzIgxtH5TMZwqWaScwy7WUWnIGPp2H5Pzq9lO9ZgvSyoUXRB
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,312,1669071600"; 
-   d="scan'208";a="29182150"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Feb 2023 09:55:22 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 71EDC280056;
-        Mon, 20 Feb 2023 09:55:21 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        marex@denx.de, stefan@agner.ch, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        krzysztof.kozlowski@linaro.org, LW@karo-electronics.de
-Subject: Re: [PATCH v4 0/6] drm: lcdif: Add i.MX93 LCDIF support
-Date:   Mon, 20 Feb 2023 09:55:19 +0100
-Message-ID: <2135575.irdbgypaU6@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <52b8025ee9b71dfb147127bd1cb2c532d222df3c.camel@nxp.com>
-References: <20230217065407.2259731-1-victor.liu@nxp.com> <13207614.uLZWGnKmhe@steina-w> <52b8025ee9b71dfb147127bd1cb2c532d222df3c.camel@nxp.com>
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6vK8cWtmG3hyaLbDRLFgpGqrS4p5hCk6+ikOOD3341A=;
+        b=BT2ud7sxoolXPSVz5YqHI7AD9RUl8N77zxnGMFNIRbnYZ5NkGNX9t15jb4JPaWA0gx
+         RjgNyOP62hyyw3LtDM51WRaeDbSW+gmOyX365JR1nV/4MS/DGuN+CxjtV2S82wMFZDkJ
+         APJfi8WJHRCCVh7BpaS6YJFgaYSTVJLIbJWYU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6vK8cWtmG3hyaLbDRLFgpGqrS4p5hCk6+ikOOD3341A=;
+        b=WS/VR4zFFh2JjhDgOKwr/m1YFteKC0Axhn5NeJwKGobr15xdozEO107qvQFra94CSc
+         hDaeDntFI3jjFJvpllvgNGToD48jDZbZUjOiLGHWC47Xt7Sj/59rTE4iqQct4ojZMx4N
+         F+ICx+2PwhM6RnYUHbJhmolvU161jW9pD5tFY/LzHVJ3kcPbeXKOPJpMwUTk2SSTC5/J
+         KDErhwNMNY/NXK2iCh0Vdl7Pl71+uM35IAjwl//RHru+u/y2hKvhIwZKshpryYwddCsh
+         fRipgpUvX8TgDvt4Knp6zXjNtBO1MORAIPMl8kA3kZ/Bc6uze3TaRgyYpYbjPuSfP5F6
+         Hmzg==
+X-Gm-Message-State: AO0yUKUfMOUyv6PcwX9GOFLoGBu2Cl0rBZ+Bf8Bpd0AR1lC3jTGg8NqD
+        QY5ehrBX97W1uiFdiJCVK17BrSH1WQUQsExOvCQWBw==
+X-Google-Smtp-Source: AK7set/kfz8hhDABr4DJ+44LUPCJEAg1cYsDPb4PwPecz9RynTAejbvde/9b9DWWLC1U8dNQIeThAlbfMv3O8bnKttg=
+X-Received: by 2002:a05:6638:1342:b0:3c2:c1c9:8bca with SMTP id
+ u2-20020a056638134200b003c2c1c98bcamr1153386jad.2.1676883781590; Mon, 20 Feb
+ 2023 01:03:01 -0800 (PST)
 MIME-Version: 1.0
+References: <20230204133040.1236799-1-treapking@chromium.org>
+ <20230204133040.1236799-4-treapking@chromium.org> <Y+LBzkP+/j6RQ5Jy@ashyti-mobl2.lan>
+ <CAEXTbpfxJVyL_TT7j1J0tbEjWnzj6JYOrEJZLa14OdHZQhYopg@mail.gmail.com>
+In-Reply-To: <CAEXTbpfxJVyL_TT7j1J0tbEjWnzj6JYOrEJZLa14OdHZQhYopg@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Mon, 20 Feb 2023 17:02:50 +0800
+Message-ID: <CAEXTbpe_DGzF+M6Cm041Qkec-FZTXn5G8oCa_P-1cU355MA0JA@mail.gmail.com>
+Subject: Re: [PATCH v11 3/9] drm/display: Add Type-C switch helpers
+To:     Andi Shyti <andi.shyti@linux.intel.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+        devicetree@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        Lyude Paul <lyude@redhat.com>, linux-acpi@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        chrome-platform@lists.linux.dev,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Kees Cook <keescook@chromium.org>,
+        Thierry Reding <treding@nvidia.com>,
+        Robert Foss <rfoss@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu,
+I think I accidentally used HTML mode for the previous email. Sorry about t=
+hat.
 
-Am Freitag, 17. Februar 2023, 09:59:14 CET schrieb Liu Ying:
-> On Fri, 2023-02-17 at 09:18 +0100, Alexander Stein wrote:
-> > Hi Liu,
->=20
-> Hi Alexander,
->=20
-> > Am Freitag, 17. Februar 2023, 07:54:01 CET schrieb Liu Ying:
-> > > Hi,
-> > >=20
-> > > This patch set aims to add i.MX93 LCDIF display controller support
-> > > in the existing LCDIF DRM driver.  The LCDIF embedded in i.MX93 SoC
-> > > is essentially the same to those embedded in i.MX8mp SoC.  Through
-> > > internal bridges, i.MX93 LCDIF may drive a MIPI DSI display or a LVDS
-> > > display or a parallel display.
-> > >=20
-> > > Patch 1/6 adds device tree binding support for i.MX93 LCDIF in the
-> > > existing fsl,lcdif.yaml.
-> > >=20
-> > > Patch 2/6 drops lcdif->bridge NULL pointer check as a cleanup patch.
-> > >=20
-> > > Patch 3/6~5/6 prepare for adding i.MX93 LCDIF support step by step.
-> > >=20
-> > > Patch 6/6 adds i.MX93 LCDIF compatible string as the last step of
-> > > adding i.MX93 LCDIF support.
-> >=20
-> > Thanks for the series. I could test this on my TQMa93xxLA/MBa93xxCA wit=
-h a
-> > single LVDS display attached, so no DSI or parallel display. Hence I co=
-uld
-> > not test the bus format and flags checks, but they look okay.
-> > So you can add
-> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > to the whole series as well.
->=20
-> Thanks for your test.
->=20
-> > One thing I noticed is that, sometimes it seems that before probing lcd=
-if
-> > my system completely freezes. Adding some debug output it seems that's
-> > during powering up the IMX93_MEDIABLK_PD_LCDIF power domain there is so=
-me
-> > race condition. But adding more more detailed output made the problem go
-> > away. Did you notice something similar? It might be a red hering though.
-> I don't see system freezing with my i.MX93 11x11 EVK when probing
-> lcdif. I did try to boot the system several times. All look ok. This is
-> a snippet of dmesg when lcdif probes:
->=20
-> --------------------------8<------------------------------------------
-> [    0.753083] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
-> [    0.761669] SuperH (H)SCI(F) driver initialized
-> [    0.766523] msm_serial: driver initialized
-> [    0.780523] printk: console [ttyLP0] enabled0x44380010 (irq =3D 16,
-> base_baud =3D 1500000) is a FSL_LPUART
-> [    0.780523] printk: console [ttyLP0] enabled
-> [    0.788928] printk: bootconsole [lpuart32] disabled
-> [    0.788928] printk: bootconsole [lpuart32] disabled
-> [    0.804632] panel-simple lvds_panel: supply power not found, using
-> dummy regulator
-> [    0.814741] [drm] Initialized imx-lcdif 1.0.0 20220417 for
-> 4ae30000.lcd-controller on minor 0
-> [    1.195930] Console: switching to colour frame buffer device 160x50
-> [    1.218385] imx-lcdif 4ae30000.lcd-controller: [drm] fb0: imx-
-> lcdifdrmfb frame buffer device
-> [    1.227099] cacheinfo: Unable to detect cache hierarchy for CPU 0
-> [    1.236725] loop: module loaded
-> --------------------------8<------------------------------------------
->=20
-> ~300 milliseconds are consumed by the enablement delay required by the
-> "boe,ev121wxm-n10-1850" LVDS panel I use.
+On Mon, Feb 20, 2023 at 4:41 PM Pin-yen Lin <treapking@chromium.org> wrote:
+>
+> Hi Andi,
+>
+> Thanks for the review.
+>
+> On Wed, Feb 8, 2023 at 5:25 AM Andi Shyti <andi.shyti@linux.intel.com> wr=
+ote:
+>>
+>> Hi Pin-yen,
+>>
+>> [...]
+>>
+>> > +static int drm_dp_register_mode_switch(struct device *dev,
+>> > +                                    struct fwnode_handle *fwnode,
+>> > +                                    struct drm_dp_typec_switch_desc *=
+switch_desc,
+>> > +                                    void *data, typec_mux_set_fn_t mu=
+x_set)
+>> > +{
+>> > +     struct drm_dp_typec_port_data *port_data;
+>> > +     struct typec_mux_desc mux_desc =3D {};
+>> > +     char name[32];
+>> > +     u32 port_num;
+>> > +     int ret;
+>> > +
+>> > +     ret =3D fwnode_property_read_u32(fwnode, "reg", &port_num);
+>> > +     if (ret) {
+>> > +             dev_err(dev, "Failed to read reg property: %d\n", ret);
+>> > +             return ret;
+>> > +     }
+>> > +
+>> > +     port_data =3D &switch_desc->typec_ports[port_num];
+>> > +     port_data->data =3D data;
+>> > +     port_data->port_num =3D port_num;
+>> > +     port_data->fwnode =3D fwnode;
+>> > +     mux_desc.fwnode =3D fwnode;
+>> > +     mux_desc.drvdata =3D port_data;
+>> > +     snprintf(name, sizeof(name), "%pfwP-%u", fwnode, port_num);
+>> > +     mux_desc.name =3D name;
+>> > +     mux_desc.set =3D mux_set;
+>> > +
+>> > +     port_data->typec_mux =3D typec_mux_register(dev, &mux_desc);
+>> > +     if (IS_ERR(port_data->typec_mux)) {
+>> > +             ret =3D PTR_ERR(port_data->typec_mux);
+>> > +             dev_err(dev, "Mode switch register for port %d failed: %=
+d\n",
+>> > +                     port_num, ret);
+>> > +
+>> > +             return ret;
+>>
+>> you don't need this return here...
+>>
+>> > +     }
+>> > +
+>> > +     return 0;
+>>
+>> Just "return ret;" here.
 
-It seems you have the drivers compiled in. I use modules in my case and=20
-simple-panel as well. But this is unrelated, because lcdif_probe() is yet t=
-o=20
-be called. Using the debug diff from below I get the following output:
+This was actually suggested by Angelo in [1]. I personally don't have
+a strong opinion on either approach.
 
-[   16.111197] imx93-blk-ctrl 4ac10000.system-controller:=20
-imx93_blk_ctrl_power_on: 1
-[   16.122491] imx93-blk-ctrl 4ac10000.system-controller:=20
-imx93_blk_ctrl_power_on: 2
-[   16.137766] imx93-blk-ctrl 4ac10000.system-controller:=20
-imx93_blk_ctrl_power_on: 3
-[   16.154905] imx93-blk-ctrl 4ac10000.system-controller:=20
-imx93_blk_ctrl_power_on: 4
+[1]https://lore.kernel.org/all/023519eb-0adb-3b08-71b9-afb92a6cceaf@collabo=
+ra.com/
 
-It seems setting BLK_CLK_EN blocks the whole system, even reading is not=20
-possible. I don't have any details on the hardware, but it seems that eithe=
-r=20
-some clock or power domain is not enabled. This can also happen if I'm load=
-ing=20
-the lcdif module manually after boot. But I can't detect any differences in=
- /
-sys/kernel/debug/clk/clk_summary.
-
-=2D--8<---
-diff --git a/drivers/soc/imx/imx93-blk-ctrl.c b/drivers/soc/imx/imx93-blk-
-ctrl.c
-index 2c600329436cf..50aeb20ce90dc 100644
-=2D-- a/drivers/soc/imx/imx93-blk-ctrl.c
-+++ b/drivers/soc/imx/imx93-blk-ctrl.c
-@@ -129,12 +129,14 @@ static int imx93_blk_ctrl_power_on(struct=20
-generic_pm_domain *genpd)
- 	struct imx93_blk_ctrl *bc =3D domain->bc;
- 	int ret;
-=20
-+	dev_info(bc->dev, "%s: 1\n", __func__);
- 	ret =3D clk_bulk_prepare_enable(bc->num_clks, bc->clks);
- 	if (ret) {
- 		dev_err(bc->dev, "failed to enable bus clocks\n");
- 		return ret;
- 	}
-=20
-+	dev_info(bc->dev, "%s: 2\n", __func__);
- 	ret =3D clk_bulk_prepare_enable(data->num_clks, domain->clks);
- 	if (ret) {
- 		clk_bulk_disable_unprepare(bc->num_clks, bc->clks);
-@@ -142,6 +144,7 @@ static int imx93_blk_ctrl_power_on(struct=20
-generic_pm_domain *genpd)
- 		return ret;
- 	}
-=20
-+	dev_info(bc->dev, "%s: 3\n", __func__);
- 	ret =3D pm_runtime_get_sync(bc->dev);
- 	if (ret < 0) {
- 		pm_runtime_put_noidle(bc->dev);
-@@ -149,11 +152,15 @@ static int imx93_blk_ctrl_power_on(struct=20
-generic_pm_domain *genpd)
- 		goto disable_clk;
- 	}
-=20
-+	dev_info(bc->dev, "%s: 4\n", __func__);
-+
- 	/* ungate clk */
- 	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
-+	dev_info(bc->dev, "%s: 5\n", __func__);
-=20
- 	/* release reset */
- 	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-+	dev_info(bc->dev, "%s: 6\n", __func__);
-=20
- 	dev_dbg(bc->dev, "pd_on: name: %s\n", genpd->name);
-=20
-
-=2D--8<---
-
-Best regards,
-Alexander
-
-> Regards,
-> Liu Ying
->=20
-> > Best regards,
-> > Alexander
-> >=20
-> > > v3->v4:
-> > > * Improve warning message when ignoring invalid LCDIF OF endpoint ids=
- in
-> > >=20
-> > >   patch 5/6. (Alexander)
-> > >=20
-> > > * Use 'new_{c,p}state' instead of 'new_{crtc,plane}_state' in patch 3=
-/6.
-> > >=20
-> > >   (Alexander)
-> > >=20
-> > > * Simplify lcdif_crtc_reset() by calling
-> > > lcdif_crtc_atomic_destroy_state()
-> > >=20
-> > >   in patch 3/6. (Alexander)
-> > >=20
-> > > * Add '!crtc->state' check in lcdif_crtc_atomic_duplicate_state() in
-> > > patch
-> > > 3/6. (Alexander)
-> > > * Collect Alexander's R-b tags on patch 1/6, 2/6 and 6/6.
-> > >=20
-> > > v2->v3:
-> > > * Fix a trivial typo in patch 6/6's commit message.
-> > >=20
-> > > v1->v2:
-> > > * Add Krzysztof's A-b and Marek's R-b tags on patch 1/6.
-> > > * Split patch 2/2 in v1 into patch 2/6~6/6 in v2. (Marek, Alexander)
-> > > * Drop '!remote ||' from lcdif_attach_bridge(). (Lothar)
-> > > * Add comment on the 'base' member of lcdif_crtc_state structure to
-> > >=20
-> > >   note it should always be the first member. (Lothar)
-> > >=20
-> > > * Drop unneeded 'bridges' member from lcdif_drm_private structure.
-> > > * Drop a comment about bridge input bus format from
-> > > lcdif_crtc_atomic_check().
-> > >=20
-> > > Liu Ying (6):
-> > >   dt-bindings: lcdif: Add i.MX93 LCDIF support
-> > >   drm: lcdif: Drop unnecessary NULL pointer check on lcdif->bridge
-> > >   drm: lcdif: Determine bus format and flags in ->atomic_check()
-> > >   drm: lcdif: Check consistent bus format and flags across first brid=
-ges
-> > >   drm: lcdif: Add multiple encoders and first bridges support
-> > >   drm: lcdif: Add i.MX93 LCDIF compatible string
-> > > =20
-> > >  .../bindings/display/fsl,lcdif.yaml           |   7 +-
-> > >  drivers/gpu/drm/mxsfb/lcdif_drv.c             |  71 ++++++-
-> > >  drivers/gpu/drm/mxsfb/lcdif_drv.h             |   5 +-
-> > >  drivers/gpu/drm/mxsfb/lcdif_kms.c             | 198 ++++++++++++----=
-=2D-
-> > >  4 files changed, 206 insertions(+), 75 deletions(-)
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Pin-yen
+>>
+>>
+>> > +}
+>> > +
+>> > +/**
+>> > + * drm_dp_register_typec_switches() - register Type-C switches
+>> > + * @dev: Device that registers Type-C switches
+>> > + * @port: Device node for the switch
+>> > + * @switch_desc: A Type-C switch descriptor
+>> > + * @data: Private data for the switches
+>> > + * @mux_set: Callback function for typec_mux_set
+>> > + *
+>> > + * This function registers USB Type-C switches for DP bridges that ca=
+n switch
+>> > + * the output signal between their output pins.
+>> > + *
+>> > + * Currently only mode switches are implemented, and the function ass=
+umes the
+>> > + * given @port device node has endpoints with "mode-switch" property.
+>> > + * The port number is determined by the "reg" property of the endpoin=
+t.
+>> > + */
+>> > +int drm_dp_register_typec_switches(struct device *dev, struct fwnode_=
+handle *port,
+>> > +                                struct drm_dp_typec_switch_desc *swit=
+ch_desc,
+>> > +                                void *data, typec_mux_set_fn_t mux_se=
+t)
+>> > +{
+>> > +     struct fwnode_handle *sw;
+>> > +     int ret;
+>> > +
+>> > +     fwnode_for_each_child_node(port, sw) {
+>> > +             if (fwnode_property_present(sw, "mode-switch"))
+>> > +                     switch_desc->num_typec_switches++;
+>> > +     }
+>>
+>> no need for brackets here
+>>
+>> > +
+>> > +     if (!switch_desc->num_typec_switches) {
+>> > +             dev_dbg(dev, "No Type-C switches node found\n");
+>>
+>> dev_warn()?
+>
+>
+> I used dev_dbg here because the users might call this without checking if=
+ there are mode switch endpoints present, and this is the case for the curr=
+ent users (it6505 and anx7625). If we use dev_warn here, there will be warn=
+ings every time even on use cases without Type-C switches.
+>
+> Thanks and regards,
+> Pin-yen
+>>
+>>
+>> > +             return 0;
+>> > +     }
+>> > +
+>> > +     switch_desc->typec_ports =3D devm_kcalloc(
+>> > +             dev, switch_desc->num_typec_switches,
+>> > +             sizeof(struct drm_dp_typec_port_data), GFP_KERNEL);
+>> > +
+>> > +     if (!switch_desc->typec_ports)
+>> > +             return -ENOMEM;
+>> > +
+>> > +     /* Register switches for each connector. */
+>> > +     fwnode_for_each_child_node(port, sw) {
+>> > +             if (!fwnode_property_present(sw, "mode-switch"))
+>> > +                     continue;
+>> > +             ret =3D drm_dp_register_mode_switch(dev, sw, switch_desc=
+, data, mux_set);
+>> > +             if (ret)
+>> > +                     goto err_unregister_typec_switches;
+>> > +     }
+>> > +
+>> > +     return 0;
+>> > +
+>> > +err_unregister_typec_switches:
+>> > +     fwnode_handle_put(sw);
+>> > +     drm_dp_unregister_typec_switches(switch_desc);
+>> > +     dev_err(dev, "Failed to register mode switch: %d\n", ret);
+>>
+>> there is a bit of dmesg spamming. Please choose where you want to
+>> print the error, either in this function or in
+>> drm_dp_register_mode_switch().
+>>
+>> Andi
+>>
+>> > +     return ret;
+>> > +}
+>> > +EXPORT_SYMBOL(drm_dp_register_typec_switches);
+>>
+>> [...]
