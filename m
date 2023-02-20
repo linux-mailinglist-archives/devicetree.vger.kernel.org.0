@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D810269CA20
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 12:47:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E518369CA2A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 12:48:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbjBTLq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 06:46:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39298 "EHLO
+        id S231889AbjBTLse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 06:48:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231243AbjBTLq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 06:46:58 -0500
+        with ESMTP id S231708AbjBTLs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 06:48:29 -0500
 Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F65B1B331
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 03:46:53 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id o12so3972754edb.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 03:46:53 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6896D1BF5
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 03:48:28 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id ck15so4812298edb.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 03:48:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Xtcw3cDdSwHWJsQr0w82blGJclKYlsVnzTEgCTc4ZU=;
-        b=KMEEkRJDmcIgKA/eO/YzoO4mA/CdX3ncGdw8UBkQ5iyUeBsWnewXfYV3l+fosJCQMJ
-         AcMJzyD0e0kE6vVLH5mP2hOBmwGv3shrzGY4ywEtsXdCd+Tt8s3X0FQGlVsVhSQ2S4v6
-         srYM/S9Mx290t23KC8QJuMqzc0oYB+01OAO0wVhPamT3s8m3vWcKHICbfZhg5GLsiK49
-         X65TLdCj2/jgZ9CxiKA2W9lJDbAFQHuk6iW3Rl1Fom5JxqoP5qvIX63vQhCvgh1OXauv
-         eaD1KMRTQo/YC31AhlmypJ/ZhMrdJEzq5ULrxZfBikwLnasIGREm+Aet7Fe8gQ2hP8wp
-         yERw==
+        bh=onVDiy96v825/uJ1iMb7Bbjnmgpcg/nz9khxi7KW7is=;
+        b=AuhcG2m5ZIgATkxaASn3sSsvo2bCz5hOnqDW7kbirbXW5fYyLsc8LFQxq6nHRErYv3
+         Klf5aMfFFADf/m058vg9KxNT+Vnuki4Wo7sqquWrRVXaeK2l1BeYK0QzP+lXDntMNR23
+         H29rNTIgI0WwP4i4zvGWMuTns2slSKRIffU5jU8kHXqYbrvPy64le8909HN8tOkfEOkS
+         SvXkWVg6HoVrwpiPt/6eRM9GAzydz1ijwrqGHEW389/2C+Pnf9fJh63ui5Ra5bCADJaU
+         VInnzxJfAzaX1UvsDEsX93ZuTJBnP/8/qV68/VtKGlHaRgxMEsLVdCnmlP4Rj2CSwej8
+         s5hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Xtcw3cDdSwHWJsQr0w82blGJclKYlsVnzTEgCTc4ZU=;
-        b=x7vddl6l326pXwXY4lxtcuCHR3LzF3ZIvabKRFIygQ/d0l983cGlxtG4moE1Voaz6j
-         cb11I1tu/9Cq7unPC8eudFkAgbSuMb76Ndq6vUHtplFBBex5VCoab/hrev/Ft0AqEdv9
-         EpoeCcThacra/Yh9HfjBvkL77zS25ILzg/jJXB75ZpNCCZZF+PeEFd1Rl5jEeyb8S1MB
-         QgAiNsVBt5PR5hDuspYWorAFSScUWrmdEHdR0elhHE6UdJKdHJr6ynP3ZIshoXwPsNfu
-         EVNqnsn3eYC2Nyxu/CjSR36Uw0iUPeg/qjNTzacD6hzVx1C9KPG7UU/jlltWdtbY6wvE
-         jySw==
-X-Gm-Message-State: AO0yUKUWuMlIPlMG+vC+a8rHsU0WazedV5JkgBrzXAGjrTydUhLwkDbj
-        hcGY7eEjygBxV0EEBWmV2c4KPIZ/sN453Prj
-X-Google-Smtp-Source: AK7set9OGjT1DLWk0N96S7ZehgjTcX/3x85oE+fS4eeSmIwvBB/N/82doxF58xBruvWA5sE1HVUQjA==
-X-Received: by 2002:a17:906:13d7:b0:88d:f759:15ae with SMTP id g23-20020a17090613d700b0088df75915aemr9627155ejc.42.1676893611640;
-        Mon, 20 Feb 2023 03:46:51 -0800 (PST)
+        bh=onVDiy96v825/uJ1iMb7Bbjnmgpcg/nz9khxi7KW7is=;
+        b=kyGt2wFyhDEGv89hDs0exNQibPV9uZ6F4QS3H1QgmSqdzhlLn2tnr+SVFSYwQC0MHs
+         V8SqAW7r4wFBTgLc5veZ+PR91ZaneU2dRHJOpDlBZl+56GQtVR+xQ/Ug6U9jQcr16VKs
+         wAb9CNtDjRNi786d5ULy7WJE2j6HMMoUtU3Vi0RWnlZMFfH/qOCR4PkRt9DatDOxtp8D
+         WuVMdIY4Qb6Yh07ptJKNGEjXFP9j4GsT8cwXOmod8dh/UXgdcn793IBq4g1hY5IFxA+L
+         AXPLol0jEHLn6d6VSR8pCCg4DzmPshHHpx7sJe4gwZY3fLQenAm5IcSboEHjbvBvpJmT
+         lA5Q==
+X-Gm-Message-State: AO0yUKWZCXxWx9jmQxljfvtK/ffn8jM64vCCU9XMctQR6Gf0XbogmNeZ
+        XTHhYwSssuFKARBLBv4lv/9klg==
+X-Google-Smtp-Source: AK7set+4sJwBOTSX5AqToqDhUHako8Ac7flMPeiZuxUAxQtDd7OpNAwGlthKCHsfHtRSxnTh1nuu7Q==
+X-Received: by 2002:a05:6402:5156:b0:4ad:7205:8427 with SMTP id n22-20020a056402515600b004ad72058427mr1160950edd.27.1676893706949;
+        Mon, 20 Feb 2023 03:48:26 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id md1-20020a170906ae8100b008b174ef3cdesm5214062ejb.27.2023.02.20.03.46.49
+        by smtp.gmail.com with ESMTPSA id v11-20020a50c40b000000b004acaa4d51bdsm963808edf.32.2023.02.20.03.48.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 03:46:50 -0800 (PST)
-Message-ID: <817c2d94-12b9-b5e4-764b-d221811a7317@linaro.org>
-Date:   Mon, 20 Feb 2023 12:46:47 +0100
+        Mon, 20 Feb 2023 03:48:26 -0800 (PST)
+Message-ID: <8a4042fd-02a3-261e-4126-7a3090850fda@linaro.org>
+Date:   Mon, 20 Feb 2023 12:48:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: Add watchdog for StarFive
- JH7110
+Subject: Re: [PATCH v3] dt-bindings: ata: Add UniPhier controller binding
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-2-xingyu.wu@starfivetech.com>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230220054711.4584-1-hayashi.kunihiko@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230220081926.267695-2-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230220054711.4584-1-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,18 +79,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 09:19, Xingyu Wu wrote:
-> Add bindings to describe the watchdog for the StarFive JH7110 SoC.
+On 20/02/2023 06:47, Kunihiko Hayashi wrote:
+> Add UniPhier SATA controller compatible string to the platform binding.
+> This controller needs two or three reset controls.
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  .../watchdog/starfive,jh7110-wdt.yaml         | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/starfive,jh7110-wdt.yaml
+>  .../bindings/ata/ahci-platform.yaml           | 32 ++++++++++++++++---
+>  1 file changed, 27 insertions(+), 5 deletions(-)
 > 
+> Changes since v2:
+> - Add compatible strings to select property
+> - Add minItems and change maxItems for resets
+> - Move condition schema under allOf property
+> - Change resets to "required" for uniphier-*-ahci
+> 
+> Changes since v1:
+> - Restrict resets property changes with compatible strings
+> - Fix maxItems from two to three
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> index 7dc2a2e8f598..4b2ee68097b8 100644
+> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> @@ -30,12 +30,12 @@ select:
+>            - marvell,armada-3700-ahci
+>            - marvell,armada-8k-ahci
+>            - marvell,berlin2q-ahci
+> +          - socionext,uniphier-pro4-ahci
+> +          - socionext,uniphier-pxs2-ahci
+> +          - socionext,uniphier-pxs3-ahci
+>    required:
+>      - compatible
+>  
+> -allOf:
+> -  - $ref: "ahci-common.yaml#"
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -45,6 +45,9 @@ properties:
+>                - marvell,armada-8k-ahci
+>                - marvell,berlin2-ahci
+>                - marvell,berlin2q-ahci
+> +              - socionext,uniphier-pro4-ahci
+> +              - socionext,uniphier-pxs2-ahci
+> +              - socionext,uniphier-pxs3-ahci
+>            - const: generic-ahci
+>        - enum:
+>            - cavium,octeon-7130-ahci
+> @@ -67,14 +70,33 @@ properties:
+>      minItems: 1
+>      maxItems: 3
+>  
+> +  resets:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+>    interrupts:
+>      maxItems: 1
+>  
+>    power-domains:
+>      maxItems: 1
+>  
+> -  resets:
+> -    maxItems: 1
 
+Why moving it?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +allOf:
+
+This goes to the same place as in example-schema.
+
+> +  - $ref: ahci-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pro4-ahci
+> +              - socionext,uniphier-pxs2-ahci
+> +              - socionext,uniphier-pxs3-ahci
+> +    then:
+> +      properties:
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 3
+
+You need to describe the items, what's expected here.
+
+> +      required:
+> +        - resets
+
+The entire point was to add:
+
+else - maxItems: 1
+
+>  
+>  patternProperties:
+>    "^sata-port@[0-9a-f]+$":
 
 Best regards,
 Krzysztof
