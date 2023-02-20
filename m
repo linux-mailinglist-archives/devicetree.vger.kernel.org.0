@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F156569D291
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 19:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6AB69D2C5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 19:34:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232523AbjBTSKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 13:10:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60696 "EHLO
+        id S231872AbjBTSd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 13:33:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230428AbjBTSKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 13:10:38 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C93A61F929
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 10:10:32 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id bg28so1548510wmb.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 10:10:32 -0800 (PST)
+        with ESMTP id S229468AbjBTSd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 13:33:58 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21E01ADD6
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 10:33:56 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id s22so2671258lfi.9
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 10:33:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9GlS6iRAPGewPPTLsqOHq1XDB6gJgmlrzwf0UNpx6Qs=;
-        b=qoNzJzfW3af4kC20aBc+Dn1KV4n9Ak2AsXgNUJALX227vUqBGkyYHmr/fAn52hl6dz
-         SB+UT0P0qTg+DFUe+kU7v2U1WgSNcEuYSw4HCU+f2rJccslH06HCWbPhbTqsjCRYIgj0
-         VttNk42mLehiHDs4Bs42NirXKglhm/Q3QvrT9BK+9WtPPCk3CFTPlhlAzaO6rI35noHU
-         ctgsQYgYocW/71V1uyVEvV8khW8Qm27XMPma6czqnvMyX0/AetFE/vtApTxLpNuk0WO5
-         /ihyqkOFHKC5jsAAJxdlAYWrpQGPWrsB/9hzUGq18TIMqzB8RI+NdC2j6qido5lzA5Mz
-         X1ig==
+        d=gmail.com; s=20210112;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uARU6d2UYgKWA1MDEd1rDVVcVD9BDqu4b2PSDXjGykM=;
+        b=VXZ97HBCOdJY5oRhjuAg87/bVGdJ5wGEDzhNUKGbaYW7kGlw9DdEpldwjvA+taxZw/
+         cghNLcGvpGz8DyF6AXojjikLk2J1/PVdizpCCSOoKp86OaMhS1qfedY/3jM2Qfkp6uiZ
+         tnAL778H7BtlIqNOz/VPp8b4PZCntk6ZZ2frmQ81bWY2zX/h6bTUqFv2Ko0OR1biWsng
+         igcr4+mkfZ/eYmsqxK67JcmWzqENpo6XBP5fqU2OFBPGccQe0CN1kshLVRK64yXJRiop
+         j2L17eKS8BZWv6DQceH7icVfgGB2C70l+6T+x1muXEp6bKX19UOzljudPnwIwTadLMJ+
+         eF2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9GlS6iRAPGewPPTLsqOHq1XDB6gJgmlrzwf0UNpx6Qs=;
-        b=u634mnDAjajtqXpIX+sllexUi+Z6mGfHXCo8ToHU6s0Xo9bsF4rb/lltFIxhT/wxir
-         2nZuWJSKXfbkXjZbXJCE5GhfYxXgSwN9iHFZ3/tawCDTJR3Sjnvsxwo15HuNh7eZpCf+
-         xEq1JqVJxGvpAhPTPdr7mKarB3U/L4W3OgjZZx3zmwIdadxEQ/oSj7nGVqwpkQkv0Brg
-         YekucT6LLf+hwke2tIK0iR239QGwlu8mBTz5YMPah9SuGhZpxvuqng+zUfVvEupmfaLl
-         AKNofyvVmX6AeyerZGkiLaW41Q3+vt1+QeN0eK/qAYYjck05B9e5w0LSBp4NP3I02vkR
-         XaFg==
-X-Gm-Message-State: AO0yUKWqmqdnAnjC/GxXuzAtAQ4U0esLNF5G9ytw+rjIovlMgK/cIRfg
-        vxttuaNOwpEyAD1MIyraZf8cew==
-X-Google-Smtp-Source: AK7set+EQ05Wv4rLLHeXmtOVn71t0uDBFVHe0aAlPsuL7fwM5sxNpbhWEeO2m/hB4m29WNWCcmPyAg==
-X-Received: by 2002:a05:600c:2ed2:b0:3df:eda1:43b9 with SMTP id q18-20020a05600c2ed200b003dfeda143b9mr907889wmn.4.1676916631143;
-        Mon, 20 Feb 2023 10:10:31 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id i21-20020a1c5415000000b003e208cec49bsm2116531wmb.3.2023.02.20.10.10.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 10:10:30 -0800 (PST)
-Message-ID: <d69f9699-b4d9-7a3a-71b1-7e6fe72c4f82@linaro.org>
-Date:   Mon, 20 Feb 2023 18:10:27 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 08/26] gunyah: rsc_mgr: Add resource manager RPC core
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212327.3310128-1-quic_eberman@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230214212327.3310128-1-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uARU6d2UYgKWA1MDEd1rDVVcVD9BDqu4b2PSDXjGykM=;
+        b=Y4dOahMoyr86PeLulRYFAB+EQzkM9pwgEMKPzRXoHooQroYdgftWQk/DBz0VygKGyP
+         aYo8PbPxsDzICdF93NFRzuWs/n4jLlDtJZL0Bv9L74wtrJfJREFzBuePtCWEIygt1WxO
+         2ilgu7OFE9xHpaCAJA0SFa4aMqlINIqIny6u4xYA0hBnLCjligDwNIslCAggSDe8aJWg
+         x3eV9VIm+oBE7WycRnGV9ve1Yn0lBT7CNrT92KPLsZqK8+DlVUI7FR9LR8cXMYPxJ9EO
+         8XMbbjXUHdpThVH3y4a9rM4D45oDtCE5u+HbBdj+fa0fVB9xcDhxUzbI6lg+YMIE7ynF
+         MqRg==
+X-Gm-Message-State: AO0yUKU1MDY/9WkIfuAJmzkXAuXAKIBopyBZBfq4pgWJYLVbcFhnmGI1
+        XSXvBgDiMOrh9BgrC2TSTP8=
+X-Google-Smtp-Source: AK7set96PCVVkHC4UgVSrKzk/3BUIpcUBl9AiGrw0hcuPDkI+a4mn4fdBfhH9mXlevIKFnPNoz4I7g==
+X-Received: by 2002:a05:6512:21d:b0:4cc:85e5:2f68 with SMTP id a29-20020a056512021d00b004cc85e52f68mr591526lfo.2.1676918034678;
+        Mon, 20 Feb 2023 10:33:54 -0800 (PST)
+Received: from smtpclient.apple (84-10-103-47.static.chello.pl. [84.10.103.47])
+        by smtp.gmail.com with ESMTPSA id p6-20020ac246c6000000b004d57ca1c96csm1593262lfo.172.2023.02.20.10.33.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Feb 2023 10:33:54 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.14\))
+Subject: Re: [PATCH RFC 0/5] arm64: rockchip: enable PCIE3 controller and its
+ phy for Rock5B boards
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <cover.1675498628.git.wqu@suse.com>
+Date:   Mon, 20 Feb 2023 19:33:52 +0100
+Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        sebastian.reichel@collabora.com, heiko@sntech.de
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <66CA7D39-F7E0-428F-966A-D99768CD7A16@gmail.com>
+References: <cover.1675498628.git.wqu@suse.com>
+To:     Qu Wenruo <wqu@suse.com>
+X-Mailer: Apple Mail (2.3654.120.0.1.14)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,597 +77,216 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14/02/2023 21:23, Elliot Berman wrote:
-> 
-> The resource manager is a special virtual machine which is always
-> running on a Gunyah system. It provides APIs for creating and destroying
-> VMs, secure memory management, sharing/lending of memory between VMs,
-> and setup of inter-VM communication. Calls to the resource manager are
-> made via message queues.
-> 
-> This patch implements the basic probing and RPC mechanism to make those
-> API calls. Request/response calls can be made with gh_rm_call.
-> Drivers can also register to notifications pushed by RM via
-> gh_rm_register_notifier
-> 
-> Specific API calls that resource manager supports will be implemented in
-> subsequent patches.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   drivers/virt/gunyah/Makefile   |   3 +
->   drivers/virt/gunyah/rsc_mgr.c  | 604 +++++++++++++++++++++++++++++++++
->   drivers/virt/gunyah/rsc_mgr.h  |  77 +++++
->   include/linux/gunyah_rsc_mgr.h |  24 ++
->   4 files changed, 708 insertions(+)
->   create mode 100644 drivers/virt/gunyah/rsc_mgr.c
->   create mode 100644 drivers/virt/gunyah/rsc_mgr.h
->   create mode 100644 include/linux/gunyah_rsc_mgr.h
-> 
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> index 34f32110faf9..cc864ff5abbb 100644
-> --- a/drivers/virt/gunyah/Makefile
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -1,3 +1,6 @@
->   # SPDX-License-Identifier: GPL-2.0
->   
->   obj-$(CONFIG_GUNYAH) += gunyah.o
-> +
-> +gunyah_rsc_mgr-y += rsc_mgr.o
-> +obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
-> diff --git a/drivers/virt/gunyah/rsc_mgr.c b/drivers/virt/gunyah/rsc_mgr.c
-> new file mode 100644
-> index 000000000000..2a47139873a8
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/rsc_mgr.c
-> @@ -0,0 +1,604 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/slab.h>
-> +#include <linux/mutex.h>
-> +#include <linux/sched.h>
-> +#include <linux/gunyah.h>
-> +#include <linux/module.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/kthread.h>
-why do we need this?
+> Wiadomo=C5=9B=C4=87 napisana przez Qu Wenruo <wqu@suse.com> w dniu =
+04.02.2023, o godz. 09:47:
+>=20
+> This series is based on the existing upstream work from Sebastian
+> Reichel:
+> =
+https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-misc.git/log/?h=3D=
+rk3588
+>=20
+> And I'm a completely newbie to arm64 world, thus if there is something
+> wrong, feel free to point out and I'm pretty happy to learn from the
+> failure.
+>=20
+> [BACKGROUND]
+> RK3588S and RK3588 have PCIE supports, it's done by the following 3
+> controllers:
+>=20
+> - PCIE2.0x1 lane @fe180000 (both RK3588S and RK3588)
+> - PCIE2.0x1 lane @fe190000 (both RK3588S and RK3588)
+>  Thes two are all connected to a naneng combo phy each, normally =
+shared
+>  with SATA or USB.
+>=20
+> - PCIE2.0x1 lane @fe170000 (RK3588 exlusive)
+>  This one is also connected to a naneng combo phy, normally shared
+>  with SATA or USB.
+>=20
+> - PCIE3.0x4 lanes @fe15000 (RK3588 exclusive)
+>=20
+> And unlike other boards, ROCK5B is utilizing PCIE extensively, its
+> network controller (RTL8125 2.5Gbps Ethernet) is connected to the
+> PCIE2.0 lane at fe190000, and an M.2 slot is attached to the PCIE3.0x4
+> lanes.
+>=20
+> [WORKING]
+> Currently the series is able to bring up the PCIE3.0x4 lanes and
+> properly boot from an NVME at that M.2 slot of Rock5B boards.
+>=20
+> [NOT WORKING]
+> All PCIE2.0 lanes connected to naneng combo phy are not working.
+> I tried forward porting the extra handling from downstream, but it =
+only
+> results hanging at probing (causing RCU stall).
+>=20
+> [EXTRA WANRING]
+> - PCI MSI initialization warning
+>  WARNING: CPU: 7 PID: 1 at drivers/pci/msi/msi.h:121 =
+pci_msi_setup_msi_irqs+0x38/0x4c
+>=20
+>  This seems to be caused by the fact that we are still using legcacy
+>  msi irqs?
+>=20
+>  I checked up the gic and its dts, can not figure out why (all pretty
+>  the same just like rk3399 and rk3568).
+>  Any help would be appreciated.
+>=20
+> - pci_bus 0000:01: busn_res: can not insert [bus 01-ff] under [bus =
+00-0f] (conflicts with (null) [bus 00-0f])
+>  The vendoer kernel also has this problem, but my RK3399 board with
+>  upstream kernel didn't trigger this at all, but something else like:
+>=20
+>    pci 0000:00:00.0: bridge configuration invalid ([bus 00-00]), =
+reconfiguring
+>=20
+>  Then:
+>=20
+>    pci_bus 0000:01: busn_res: [bus 01-1f] end is updated to 01
+>=20
+>  Not sure if it's something missing or can be just ignored.
+>=20
+> [PCI DMESG]
+> With this patchset, the PCI initialization and nvme would look like =
+this:
+>=20
+> [    0.142984] rockchip-dw-pcie fe150000.pcie: host bridge =
+/pcie@fe150000 ranges:
+> [    0.143653] rockchip-dw-pcie fe150000.pcie:       IO =
+0x00f0100000..0x00f01fffff -> 0x00f0100000
+> [    0.144463] rockchip-dw-pcie fe150000.pcie:      MEM =
+0x00f0200000..0x00f0ffffff -> 0x00f0200000
+> [    0.145261] rockchip-dw-pcie fe150000.pcie:      MEM =
+0x0900000000..0x093fffffff -> 0x0900000000
+> [    0.154022] rockchip-dw-pcie fe150000.pcie: iATU: unroll T, 8 ob, 8 =
+ib, align 64K, limit 8G
+> [    0.360415] rockchip-dw-pcie fe150000.pcie: PCIe Gen.3 x4 link up
+> [    0.361099] rockchip-dw-pcie fe150000.pcie: PCI host bridge to bus =
+0000:00
+> [    0.361731] pci_bus 0000:00: root bus resource [bus 00-0f]
+> [    0.362236] pci_bus 0000:00: root bus resource [io  0x0000-0xfffff] =
+(bus address [0xf0100000-0xf01fffff])
+> [    0.363113] pci_bus 0000:00: root bus resource [mem =
+0xf0200000-0xf0ffffff]
+> [    0.363744] pci_bus 0000:00: root bus resource [mem =
+0x900000000-0x93fffffff pref]
+> [    0.364450] pci 0000:00:00.0: [1d87:3588] type 01 class 0x060400
+> [    0.365005] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x3fffffff]
+> [    0.365583] pci 0000:00:00.0: reg 0x14: [mem 0x00000000-0x3fffffff]
+> [    0.366159] pci 0000:00:00.0: reg 0x38: [mem 0x00000000-0x0000ffff =
+pref]
+> [    0.366801] pci 0000:00:00.0: supports D1 D2
+> [    0.367193] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
+> [    0.368647] pci_bus 0000:01: busn_res: can not insert [bus 01-ff] =
+under [bus 00-0f] (conflicts with (null) [bus 00-0f])
+> [    0.369681] pci 0000:01:00.0: [1d97:5216] type 00 class 0x010802
+> [    0.370277] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x0000ffff =
+64bit]
+> [    0.370975] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0001ffff =
+pref]
+> [    0.372130] pci 0000:00:00.0: BAR 0: no space for [mem size =
+0x40000000]
+> [    0.372742] pci 0000:00:00.0: BAR 0: failed to assign [mem size =
+0x40000000]
+> [    0.373381] pci 0000:00:00.0: BAR 1: no space for [mem size =
+0x40000000]
+> [    0.373988] pci 0000:00:00.0: BAR 1: failed to assign [mem size =
+0x40000000]
+> [    0.374628] pci 0000:00:00.0: BAR 14: assigned [mem =
+0xf0200000-0xf02fffff]
+> [    0.375259] pci 0000:00:00.0: BAR 6: assigned [mem =
+0xf0300000-0xf030ffff pref]
+> [    0.375923] pci 0000:01:00.0: BAR 6: assigned [mem =
+0xf0200000-0xf021ffff pref]
+> [    0.376590] pci 0000:01:00.0: BAR 0: assigned [mem =
+0xf0220000-0xf022ffff 64bit]
+> [    0.377281] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+> [    0.377762] pci 0000:00:00.0:   bridge window [mem =
+0xf0200000-0xf02fffff]
+> [    0.426841] pcieport 0000:00:00.0: PME: Signaling with IRQ 33
+> [    0.427487] pcieport 0000:00:00.0: AER: enabled with IRQ 33
+> [    0.625353] nvme nvme0: pci function 0000:01:00.0
+> [    0.625774] nvme 0000:01:00.0: enabling device (0000 -> 0002)
+> [    0.717069] nvme nvme0: Shutdown timeout set to 8 seconds
+> [    0.723025] nvme nvme0: allocated 64 MiB host memory buffer.
+> [    0.816820] nvme nvme0: 1/0/0 default/read/poll queues
+> [    0.818079] sdhci-pltfm: SDHCI platform and OF driver helper
+> [    0.820678]  nvme0n1: p1 p2
+>=20
+>=20
 
-> +#include <linux/notifier.h>
-> +#include <linux/workqueue.h>
-> +#include <linux/completion.h>
-> +#include <linux/gunyah_rsc_mgr.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "rsc_mgr.h"
-> +
+(resend as plain TXT. Sorry for previous RTF!)
 
-...
+Qu, all
 
-> +struct gh_rm {
-> +	struct device *dev;
-> +	struct gunyah_resource tx_ghrsc, rx_ghrsc;
-> +	struct gh_msgq msgq;
-> +	struct mbox_client msgq_client;
-> +	struct gh_rm_connection *active_rx_connection;
-> +	int last_tx_ret;
-> +
+I=E2=80=99m playing with your work on my rock5b as I want to have =
+working Eth on rock5b.
 
-> +	struct idr call_idr;
-> +	struct mutex call_idr_lock;
+My code is from =
+https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-misc.git/log/?h=3D=
+rk3588 + your=E2=80=99s PCIE3 patches.=20
 
-IDR interface is deprecated you should use Xarrays instead here,
+SBC boots from sd card, I see PCIE related logs in dmesg. but no rtl8125 =
+is detected.
+PCIE logs are like this:
 
-Other good thing about Xarrays is that you need not worry about locking 
-it uses RCU and internal spinlock, that should simiply code a bit here.
+    8.207810] rockchip-dw-pcie fe150000.pcie: host bridge /pcie@fe150000 =
+ranges:
+[    8.208501] rockchip-dw-pcie fe150000.pcie: Parsing ranges =
+property...
+[    8.209089] rockchip-dw-pcie fe150000.pcie:       IO =
+0x00f0100000..0x00f01fffff -> 0x00f0100000
+[    8.209944] rockchip-dw-pcie fe150000.pcie:      MEM =
+0x00f0200000..0x00f0ffffff -> 0x00f0200000
+[    8.210740] rockchip-dw-pcie fe150000.pcie:      MEM =
+0x0900000000..0x093fffffff -> 0x0900000000
+[    8.218918] rockchip-dw-pcie fe150000.pcie: iATU: unroll T, 8 ob, 8 =
+ib, align 64K, limit 8G
+[    9.324473] rockchip-dw-pcie fe150000.pcie: Phy link never came up
+[    9.325186] rockchip-dw-pcie fe150000.pcie: PCI host bridge to bus =
+0000:00
+[    9.325786] pci_bus 0000:00: root bus resource [bus 00-0f]
+[    9.326266] pci_bus 0000:00: root bus resource [io  0x0000-0xfffff] =
+(bus address [0xf0100000-0xf01fffff])
+[    9.327097] pci_bus 0000:00: root bus resource [mem =
+0xf0200000-0xf0ffffff]
+[    9.327713] pci_bus 0000:00: root bus resource [mem =
+0x900000000-0x93fffffff pref]
+[    9.328364] pci_bus 0000:00: scanning bus
+[    9.328729] pci 0000:00:00.0: [1d87:3588] type 01 class 0x060400
+[    9.329258] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x3fffffff]
+[    9.329807] pci 0000:00:00.0: reg 0x14: [mem 0x00000000-0x3fffffff]
+[    9.330354] pci 0000:00:00.0: reg 0x38: [mem 0x00000000-0x0000ffff =
+pref]
+[    9.330984] pci 0000:00:00.0: supports D1 D2
+[    9.331356] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
+[    9.331858] pci 0000:00:00.0: PME# disabled
+[    9.332309] pci 0000:00:00.0: vgaarb: pci_notify
+[    9.333735] pci_bus 0000:00: fixups for bus
+[    9.334106] pci 0000:00:00.0: scanning [bus 01-ff] behind bridge, =
+pass 0
+[    9.334731] pci_bus 0000:01: busn_res: can not insert [bus 01-ff] =
+under [bus 00-0f] (conflicts with (null) [bus 00-0f])
+[    9.335668] pci_bus 0000:01: scanning bus
+[    9.336052] pci_bus 0000:01: fixups for bus
+[    9.336416] pci_bus 0000:01: bus scan returning with max=3D01
+[    9.336903] pci 0000:00:00.0: scanning [bus 01-ff] behind bridge, =
+pass 1
+[    9.337503] pci_bus 0000:00: bus scan returning with max=3Dff
+[    9.337994] pci 0000:00:00.0: BAR 0: no space for [mem size =
+0x40000000]
+[    9.338570] pci 0000:00:00.0: BAR 0: failed to assign [mem size =
+0x40000000]
+[    9.339175] pci 0000:00:00.0: BAR 1: no space for [mem size =
+0x40000000]
+[    9.339749] pci 0000:00:00.0: BAR 1: failed to assign [mem size =
+0x40000000]
+[    9.340356] pci 0000:00:00.0: BAR 6: assigned [mem =
+0xf0200000-0xf020ffff pref]
+[    9.340991] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
 
-more info at
-Documentation/core-api/xarray.rst
+and nothing more :-(
 
-> +
-> +	struct kmem_cache *cache;
-> +	struct mutex send_lock;
-> +	struct blocking_notifier_head nh;
-> +};
-> +
-> +static struct gh_rm_connection *gh_rm_alloc_connection(__le32 msg_id, u8 type)
-> +{
-> +	struct gh_rm_connection *connection;
-> +
-> +	connection = kzalloc(sizeof(*connection), GFP_KERNEL);
-> +	if (!connection)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	connection->type = type;
-> +	connection->msg_id = msg_id;
-> +
-> +	return connection;
-> +}
-> +
-> +static int gh_rm_init_connection_payload(struct gh_rm_connection *connection, void *msg,
-> +					size_t hdr_size, size_t msg_size)
-> +{
-> +	size_t max_buf_size, payload_size;
-> +	struct gh_rm_rpc_hdr *hdr = msg;
-> +
-> +	if (hdr_size > msg_size)
-> +		return -EINVAL;
-> +
-> +	payload_size = msg_size - hdr_size;
-> +
-> +	connection->num_fragments = FIELD_GET(RM_RPC_FRAGMENTS_MASK, hdr->type);
-> +	connection->fragments_received = 0;
-> +
-> +	/* There's not going to be any payload, no need to allocate buffer. */
-> +	if (!payload_size && !connection->num_fragments)
-> +		return 0;
-> +
-> +	if (connection->num_fragments > GH_RM_MAX_NUM_FRAGMENTS)
-> +		return -EINVAL;
-> +
-> +	max_buf_size = payload_size + (connection->num_fragments * GH_RM_MAX_MSG_SIZE);
-> +
-> +	connection->payload = kzalloc(max_buf_size, GFP_KERNEL);
-> +	if (!connection->payload)
-> +		return -ENOMEM;
-> +
-> +	memcpy(connection->payload, msg + hdr_size, payload_size);
-> +	connection->size = payload_size;
-> +	return 0;
-> +}
-> +
-> +static void gh_rm_notif_work(struct work_struct *work)
-> +{
-> +	struct gh_rm_connection *connection = container_of(work, struct gh_rm_connection,
-> +								notification.work);
-> +	struct gh_rm *rm = connection->notification.rm;
-> +
-> +	blocking_notifier_call_chain(&rm->nh, connection->msg_id, connection->payload);
-> +
-> +	put_gh_rm(rm);
-> +	kfree(connection->payload);
-if (connection->size)
-	kfree(connection->payload);
+Are you progressing maybe with pcie on rock5b?
 
-should we check for payload size before freeing this, Normally kfree 
-NULL should be safe, unless connection object is allocated uninitialized.
-
-> +	kfree(connection);
-> +}
-> +
-> +static struct gh_rm_connection *gh_rm_process_notif(struct gh_rm *rm, void *msg, size_t msg_size)
-> +{
-> +	struct gh_rm_connection *connection;
-> +	struct gh_rm_rpc_hdr *hdr = msg;
-> +	int ret;
-> +
-> +	connection = gh_rm_alloc_connection(hdr->msg_id, RM_RPC_TYPE_NOTIF);
-> +	if (IS_ERR(connection)) {
-> +		dev_err(rm->dev, "Failed to alloc connection for notification: %ld, dropping.\n",
-> +			PTR_ERR(connection));
-> +		return NULL;
-> +	}
-> +
-> +	get_gh_rm(rm);
-> +	connection->notification.rm = rm;
-> +	INIT_WORK(&connection->notification.work, gh_rm_notif_work);
-> +
-> +	ret = gh_rm_init_connection_payload(connection, msg, sizeof(*hdr), msg_size);
-> +	if (ret) {
-> +		dev_err(rm->dev, "Failed to initialize connection buffer for notification: %d\n",
-> +			ret);
-put_gh_rm(rm);
-
-is missing.
-or move the get and other lines after this check
-
-> +		kfree(connection);
-> +		return NULL;
-> +	}
-> +
-> +	return connection;
-> +}
-> +
-
-> +static int gh_rm_send_request(struct gh_rm *rm, u32 message_id,
-> +			      const void *req_buff, size_t req_buff_size,
-> +			      struct gh_rm_connection *connection)
-> +{
-> +	u8 msg_type = FIELD_PREP(RM_RPC_TYPE_MASK, RM_RPC_TYPE_REQUEST);
-> +	size_t buff_size_remaining = req_buff_size;
-> +	const void *req_buff_curr = req_buff;
-> +	struct gh_msgq_tx_data *msg;
-> +	struct gh_rm_rpc_hdr *hdr;
-> +	u32 cont_fragments = 0;
-> +	size_t payload_size;
-> +	void *payload;
-> +	int ret;
-> +
-> +	if (req_buff_size)
-> +		cont_fragments = (req_buff_size - 1) / GH_RM_MAX_MSG_SIZE;
-> +
-> +	if (req_buff_size > GH_RM_MAX_NUM_FRAGMENTS * GH_RM_MAX_MSG_SIZE) {
-> +		pr_warn("Limit exceeded for the number of fragments: %u\n", cont_fragments);
-> +		dump_stack();
-> +		return -E2BIG;
-> +	}
-> +
-> +	ret = mutex_lock_interruptible(&rm->send_lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Consider also the 'request' packet for the loop count */
-> +	do {
-> +		msg = kmem_cache_zalloc(rm->cache, GFP_KERNEL);
-> +		if (!msg) {
-> +			ret = -ENOMEM;
-> +			goto out;
-> +		}
-> +
-> +		/* Fill header */
-> +		hdr = (struct gh_rm_rpc_hdr *)msg->data;
-> +		hdr->api = RM_RPC_API;
-> +		hdr->type = msg_type | FIELD_PREP(RM_RPC_FRAGMENTS_MASK, cont_fragments);
-> +		hdr->seq = cpu_to_le16(connection->reply.seq);
-> +		hdr->msg_id = cpu_to_le32(message_id);
-> +
-> +		/* Copy payload */
-> +		payload = hdr + 1;
-> +		payload_size = min(buff_size_remaining, GH_RM_MAX_MSG_SIZE);
-> +		memcpy(payload, req_buff_curr, payload_size);
-> +		req_buff_curr += payload_size;
-> +		buff_size_remaining -= payload_size;
-> +
-> +		/* Force the last fragment to immediately alert the receiver */
-> +		msg->push = !buff_size_remaining;
-> +		msg->length = sizeof(*hdr) + payload_size;
-> +
-> +		ret = mbox_send_message(gh_msgq_chan(&rm->msgq), msg);
-> +		if (ret < 0) {
-> +			kmem_cache_free(rm->cache, msg);
-> +			break;
-> +		}
-> +
-> +		if (rm->last_tx_ret) {
-> +			ret = rm->last_tx_ret;
-> +			break;
-> +		}
-> +
-> +		msg_type = FIELD_PREP(RM_RPC_TYPE_MASK, RM_RPC_TYPE_CONTINUATION);
-> +	} while (buff_size_remaining);
-> +
-> +out:
-> +	mutex_unlock(&rm->send_lock);
-> +	return ret < 0 ? ret : 0;
-> +}
-> +
-> +/**
-> + * gh_rm_call: Achieve request-response type communication with RPC
-> + * @rm: Pointer to Gunyah resource manager internal data
-> + * @message_id: The RM RPC message-id
-> + * @req_buff: Request buffer that contains the payload
-> + * @req_buff_size: Total size of the payload
-> + * @resp_buf: Pointer to a response buffer
-> + * @resp_buff_size: Size of the response buffer
-> + *
-> + * Make a request to the RM-VM and wait for reply back. For a successful
-> + * response, the function returns the payload. The size of the payload is set in
-> + * resp_buff_size. The resp_buf should be freed by the caller.
-> + *
-> + * req_buff should be not NULL for req_buff_size >0. If req_buff_size == 0,
-> + * req_buff *can* be NULL and no additional payload is sent.
-> + *
-> + * Context: Process context. Will sleep waiting for reply.
-> + * Return: 0 on success. <0 if error.
-> + */
-> +int gh_rm_call(struct gh_rm *rm, u32 message_id, void *req_buff, size_t req_buff_size,
-> +		void **resp_buf, size_t *resp_buff_size)
-> +{
-> +	struct gh_rm_connection *connection;
-> +	int ret;
-> +
-> +	/* message_id 0 is reserved. req_buff_size implies req_buf is not NULL */
-> +	if (!message_id || (!req_buff && req_buff_size) || !rm)
-> +		return -EINVAL;
-> +
-> +	connection = gh_rm_alloc_connection(cpu_to_le32(message_id), RM_RPC_TYPE_REPLY);
-> +	if (IS_ERR(connection))
-> +		return PTR_ERR(connection);
-> +
-> +	init_completion(&connection->reply.seq_done);
-> +
-> +	/* Allocate a new seq number for this connection */
-> +	mutex_lock(&rm->call_idr_lock);
-> +	ret = idr_alloc_cyclic(&rm->call_idr, connection, 0, U16_MAX,
-> +						GFP_KERNEL);
-> +	mutex_unlock(&rm->call_idr_lock);
-> +	if (ret < 0)
-> +		goto out;
-
-new line.
-
-> +	connection->reply.seq = ret;
-> +
-> +	/* Send the request to the Resource Manager */
-> +	ret = gh_rm_send_request(rm, message_id, req_buff, req_buff_size, connection);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	/* Wait for response */
-> +	ret = wait_for_completion_interruptible(&connection->reply.seq_done);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Check for internal (kernel) error waiting for the response */
-> +	if (connection->reply.ret) {
-> +		ret = connection->reply.ret;
-> +		if (ret != -ENOMEM)
-> +			kfree(connection->payload);
-> +		goto out;
-> +	}
-> +
-> +	/* Got a response, did resource manager give us an error? */
-> +	if (connection->reply.rm_error != GH_RM_ERROR_OK) {
-> +		pr_warn("RM rejected message %08x. Error: %d\n", message_id,
-> +			connection->reply.rm_error);
-> +		dump_stack();
-> +		ret = gh_rm_remap_error(connection->reply.rm_error);
-> +		kfree(connection->payload);
-> +		goto out;
-> +	}
-> +
-> +	/* Everything looks good, return the payload */
-> +	*resp_buff_size = connection->size;
-> +	if (connection->size)
-> +		*resp_buf = connection->payload;
-> +	else {
-> +		/* kfree in case RM sent us multiple fragments but never any data in
-> +		 * those fragments. We would've allocated memory for it, but connection->size == 0
-> +		 */
-> +		kfree(connection->payload);
-> +	}
-> +
-> +out:
-> +	mutex_lock(&rm->call_idr_lock);
-> +	idr_remove(&rm->call_idr, connection->reply.seq);
-> +	mutex_unlock(&rm->call_idr_lock);
-> +	kfree(connection);
-> +	return ret;
-> +}
-> +
-> +
-> +int gh_rm_notifier_register(struct gh_rm *rm, struct notifier_block *nb)
-> +{
-> +	return blocking_notifier_chain_register(&rm->nh, nb);
-> +}
-> +EXPORT_SYMBOL_GPL(gh_rm_notifier_register);
-> +
-> +int gh_rm_notifier_unregister(struct gh_rm *rm, struct notifier_block *nb)
-> +{
-> +	return blocking_notifier_chain_unregister(&rm->nh, nb);
-> +}
-> +EXPORT_SYMBOL_GPL(gh_rm_notifier_unregister);
-> +
-> +void get_gh_rm(struct gh_rm *rm)
-> +{
-> +	get_device(rm->dev);
-> +}
-> +EXPORT_SYMBOL_GPL(get_gh_rm);
-
-Can we have some consistency in the exported symbol naming,
-we have two combinations now.
-
-EXPORT_SYMBOL_GPL(gh_rm_notifier_register);
-EXPORT_SYMBOL_GPL(get_gh_rm);
-
-lets stick to one.
-> +
-> +void put_gh_rm(struct gh_rm *rm)
-> +{
-> +	put_device(rm->dev);
-> +}
-> +EXPORT_SYMBOL_GPL(put_gh_rm);
-> 
-...
-
-> +
-> +static int gh_rm_drv_probe(struct platform_device *pdev)
-> +{
-> +	struct gh_msgq_tx_data *msg;
-> +	struct gh_rm *rm;
-> +	int ret;
-> +
-How are we ensuring that gunyah driver is probed before this driver?
-
-
-> +	rm = devm_kzalloc(&pdev->dev, sizeof(*rm), GFP_KERNEL);
-> +	if (!rm)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, rm);
-> +	rm->dev = &pdev->dev;
-> +
-> +	mutex_init(&rm->call_idr_lock);
-> +	idr_init(&rm->call_idr);
-> +	rm->cache = kmem_cache_create("gh_rm", struct_size(msg, data, GH_MSGQ_MAX_MSG_SIZE), 0,
-> +		SLAB_HWCACHE_ALIGN, NULL);
-> +	if (!rm->cache)
-> +		return -ENOMEM;
-new line here would be nice.
-
-> +	mutex_init(&rm->send_lock);
-> +	BLOCKING_INIT_NOTIFIER_HEAD(&rm->nh);
-> +
-> +	ret = gh_msgq_platform_probe_direction(pdev, true, 0, &rm->tx_ghrsc);
-> +	if (ret)
-> +		goto err_cache;
-> +
-> +	ret = gh_msgq_platform_probe_direction(pdev, false, 1, &rm->rx_ghrsc);
-> +	if (ret)
-> +		goto err_cache;
-> +
-> +	rm->msgq_client.dev = &pdev->dev;
-> +	rm->msgq_client.tx_block = true;
-> +	rm->msgq_client.rx_callback = gh_rm_msgq_rx_data;
-> +	rm->msgq_client.tx_done = gh_rm_msgq_tx_done;
-> +
-> +	return gh_msgq_init(&pdev->dev, &rm->msgq, &rm->msgq_client, &rm->tx_ghrsc, &rm->rx_ghrsc);
-> +err_cache:
-> +	kmem_cache_destroy(rm->cache);
-> +	return ret;
-> +}
-> +
-> +static int gh_rm_drv_remove(struct platform_device *pdev)
-> +{
-> +	struct gh_rm *rm = platform_get_drvdata(pdev);
-> +
-> +	mbox_free_channel(gh_msgq_chan(&rm->msgq));
-> +	gh_msgq_remove(&rm->msgq);
-> +	kmem_cache_destroy(rm->cache);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id gh_rm_of_match[] = {
-> +	{ .compatible = "gunyah-resource-manager" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, gh_rm_of_match);
-> +
-> +static struct platform_driver gh_rm_driver = {
-> +	.probe = gh_rm_drv_probe,
-> +	.remove = gh_rm_drv_remove,
-> +	.driver = {
-> +		.name = "gh_rsc_mgr",
-> +		.of_match_table = gh_rm_of_match,
-> +	},
-> +};
-> +module_platform_driver(gh_rm_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Gunyah Resource Manager Driver");
-> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
-> new file mode 100644
-> index 000000000000..d4e799a7526f
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/rsc_mgr.h
-> @@ -0,0 +1,77 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +#ifndef __GH_RSC_MGR_PRIV_H
-> +#define __GH_RSC_MGR_PRIV_H
-> +
-> +#include <linux/gunyah.h>
-> +#include <linux/gunyah_rsc_mgr.h>
-> +#include <linux/types.h>
-> +
-<------------------
-> +/* RM Error codes */
-> +enum gh_rm_error {
-> +	GH_RM_ERROR_OK			= 0x0,
-> +	GH_RM_ERROR_UNIMPLEMENTED	= 0xFFFFFFFF,
-> +	GH_RM_ERROR_NOMEM		= 0x1,
-> +	GH_RM_ERROR_NORESOURCE		= 0x2,
-> +	GH_RM_ERROR_DENIED		= 0x3,
-> +	GH_RM_ERROR_INVALID		= 0x4,
-> +	GH_RM_ERROR_BUSY		= 0x5,
-> +	GH_RM_ERROR_ARGUMENT_INVALID	= 0x6,
-> +	GH_RM_ERROR_HANDLE_INVALID	= 0x7,
-> +	GH_RM_ERROR_VALIDATE_FAILED	= 0x8,
-> +	GH_RM_ERROR_MAP_FAILED		= 0x9,
-> +	GH_RM_ERROR_MEM_INVALID		= 0xA,
-> +	GH_RM_ERROR_MEM_INUSE		= 0xB,
-> +	GH_RM_ERROR_MEM_RELEASED	= 0xC,
-> +	GH_RM_ERROR_VMID_INVALID	= 0xD,
-> +	GH_RM_ERROR_LOOKUP_FAILED	= 0xE,
-> +	GH_RM_ERROR_IRQ_INVALID		= 0xF,
-> +	GH_RM_ERROR_IRQ_INUSE		= 0x10,
-> +	GH_RM_ERROR_IRQ_RELEASED	= 0x11,
-> +};
-> +
-> +/**
-> + * gh_rm_remap_error() - Remap Gunyah resource manager errors into a Linux error code
-> + * @gh_error: "Standard" return value from Gunyah resource manager
-> + */
-> +static inline int gh_rm_remap_error(enum gh_rm_error rm_error)
-> +{
-> +	switch (rm_error) {
-> +	case GH_RM_ERROR_OK:
-> +		return 0;
-> +	case GH_RM_ERROR_UNIMPLEMENTED:
-> +		return -EOPNOTSUPP;
-> +	case GH_RM_ERROR_NOMEM:
-> +		return -ENOMEM;
-> +	case GH_RM_ERROR_NORESOURCE:
-> +		return -ENODEV;
-> +	case GH_RM_ERROR_DENIED:
-> +		return -EPERM;
-> +	case GH_RM_ERROR_BUSY:
-> +		return -EBUSY;
-> +	case GH_RM_ERROR_INVALID:
-> +	case GH_RM_ERROR_ARGUMENT_INVALID:
-> +	case GH_RM_ERROR_HANDLE_INVALID:
-> +	case GH_RM_ERROR_VALIDATE_FAILED:
-> +	case GH_RM_ERROR_MAP_FAILED:
-> +	case GH_RM_ERROR_MEM_INVALID:
-> +	case GH_RM_ERROR_MEM_INUSE:
-> +	case GH_RM_ERROR_MEM_RELEASED:
-> +	case GH_RM_ERROR_VMID_INVALID:
-> +	case GH_RM_ERROR_LOOKUP_FAILED:
-> +	case GH_RM_ERROR_IRQ_INVALID:
-> +	case GH_RM_ERROR_IRQ_INUSE:
-> +	case GH_RM_ERROR_IRQ_RELEASED:
-> +		return -EINVAL;
-> +	default:
-> +		return -EBADMSG;
-> +	}
-> +}
-> +
----------------->
-
-Only user for the error code coversion is within the rm driver, you 
-should just move this to the .c file, I see no value of this in .h 
-unless there are some other users for this.
-
-
-
-> +struct gh_rm;
-> +int gh_rm_call(struct gh_rm *rsc_mgr, u32 message_id, void *req_buff, size_t req_buff_size,
-> +		void **resp_buf, size_t *resp_buff_size);
-> +
-> +#endif
-> diff --git a/include/linux/gunyah_rsc_mgr.h b/include/linux/gunyah_rsc_mgr.h
-> new file mode 100644
-> index 000000000000..c992b3188c8d
-> --- /dev/null
-> +++ b/include/linux/gunyah_rsc_mgr.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _GUNYAH_RSC_MGR_H
-> +#define _GUNYAH_RSC_MGR_H
-> +
-> +#include <linux/list.h>
-> +#include <linux/notifier.h>
-> +#include <linux/gunyah.h>
-> +
-> +#define GH_VMID_INVAL	U16_MAX
-> +
-> +/* Gunyah recognizes VMID0 as an alias to the current VM's ID */
-> +#define GH_VMID_SELF			0
-> +
-> +struct gh_rm;
-> +int gh_rm_notifier_register(struct gh_rm *rm, struct notifier_block *nb);
-> +int gh_rm_notifier_unregister(struct gh_rm *rm, struct notifier_block *nb);
-> +void get_gh_rm(struct gh_rm *rm);
-> +void put_gh_rm(struct gh_rm *rm);
-> +
-> +#endif
