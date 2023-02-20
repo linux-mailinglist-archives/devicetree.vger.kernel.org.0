@@ -2,74 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C8269D7A3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 01:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4253469D906
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 03:54:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbjBUApO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 19:45:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32906 "EHLO
+        id S232588AbjBUCyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 21:54:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbjBUApN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 19:45:13 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE6A01C7E3;
-        Mon, 20 Feb 2023 16:45:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7164E60F63;
-        Tue, 21 Feb 2023 00:45:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C2FC433D2;
-        Tue, 21 Feb 2023 00:45:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676940311;
-        bh=js365+NNX7eRxBHYfPJgI3NbMTtPK9v4tu2hoT2fVVw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=J75vK2WKJVlxaaxbG+V/3je7BYzeaLLPH2+zUbiiaKbNpJOCJYiLEnJm1Vc7sDE4h
-         aI1iAZwo01JkXK15/D9cezxTKKI0c4eRjQVQtBKqxNjqeZrk3qieY1uZd2AuCoq5Qn
-         S0IgPL8+HQQQEB/Gc8zeKdMN8tsyuFYPvzw8G10OKCf2FtL5qbycM9xvD1CB22pX/l
-         6YEja7lSGWRzVt41+itUjcnUTdenQX8ZkExwo32sBAlSlQZH5cDKLZrnqkJN5uT7MJ
-         Cw+PVP2FsxY5++beFg3ffMFFejsKELiMk5ZEf3S8ODkr1fYrH5hgYSyFXMrZEy2vxB
-         zkOmlsVjGTCJw==
-Date:   Mon, 20 Feb 2023 16:45:10 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-Cc:     <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <michal.simek@xilinx.com>, <radhey.shyam.pandey@xilinx.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <anirudha.sarangi@amd.com>,
-        <harini.katakam@amd.com>, <git@amd.com>
-Subject: Re: [PATCH net-next V6] dt-bindings: net: xlnx,axi-ethernet:
- convert bindings document to yaml
-Message-ID: <20230220164510.14b14139@kernel.org>
-In-Reply-To: <20230220122252.3575380-1-sarath.babu.naidu.gaddam@amd.com>
-References: <20230220122252.3575380-1-sarath.babu.naidu.gaddam@amd.com>
+        with ESMTP id S233195AbjBUCyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 21:54:39 -0500
+X-Greylist: delayed 15060 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 20 Feb 2023 18:54:12 PST
+Received: from 5.mo550.mail-out.ovh.net (5.mo550.mail-out.ovh.net [178.33.45.107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A6C51B300
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 18:54:12 -0800 (PST)
+Received: from director5.ghost.mail-out.ovh.net (unknown [10.109.143.201])
+        by mo550.mail-out.ovh.net (Postfix) with ESMTP id 6211A22EEE
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 22:05:03 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-kgbzl (unknown [10.110.171.164])
+        by director5.ghost.mail-out.ovh.net (Postfix) with ESMTPS id A846A1FDED;
+        Mon, 20 Feb 2023 22:05:01 +0000 (UTC)
+Received: from RCM-web1.webmail.mail.ovh.net ([176.31.238.120])
+        by ghost-submission-6684bf9d7b-kgbzl with ESMTPSA
+        id +fnGJo3u82PxBzoAs5WIMg
+        (envelope-from <rafal@milecki.pl>); Mon, 20 Feb 2023 22:05:01 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Mon, 20 Feb 2023 23:05:01 +0100
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 2/2] nvmem: add generic driver for devices with MMIO
+ access
+In-Reply-To: <2f9aa86e-40e1-91f6-06b2-c79d62f7a136@infradead.org>
+References: <20230220174930.7440-1-zajec5@gmail.com>
+ <20230220174930.7440-3-zajec5@gmail.com>
+ <2f9aa86e-40e1-91f6-06b2-c79d62f7a136@infradead.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <c4fd4ca4e550bd7de909269e8eedd5f6@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 17189958306374331355
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudejhedgudehudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjedvlefguedthfefleehgeeftdeludeluedvgfeffeevhfevtdehteejteefheegnecukfhppeduvdejrddtrddtrddupdduleegrddukeejrdejgedrvdeffedpudejiedrfedurddvfeekrdduvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheehtddpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Feb 2023 17:52:52 +0530 Sarath Babu Naidu Gaddam wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+On 2023-02-20 20:55, Randy Dunlap wrote:
+> On 2/20/23 09:49, Rafał Miłecki wrote:
+>> +static int mmio_nvmem_write(void *context, unsigned int offset, void 
+>> *val, size_t bytes)
+>> +{
+>> +	struct mmio_nvmem *priv = context;
+>> +
+>> +	switch (priv->io_width) {
+>> +	case 1:
+>> +	case 2:
+>> +	case 4:
+>> +		return -EOPNOTSUPP;
 > 
-> Convert the bindings document for Xilinx AXI Ethernet Subsystem
-> from txt to yaml. No changes to existing binding description.
+> I'm just curious: (since read supports those cases)
+> 
+> what size writes are typically used here?
+> And what value for priv->io_width?
 
-# Form letter - net-next is closed
-
-The merge window for v6.3 has begun and therefore net-next is closed
-for new drivers, features, code refactoring and optimizations.
-We are currently accepting bug fixes only.
-
-Please repost when net-next reopens after Mar 6th.
-
-RFC patches sent for review only are obviously welcome at any time.
+Sorry, I really don't have any statistics on this or any real overview
+of hardware that supports MMIO writes. It's probably a minority of
+devices that allows it.
