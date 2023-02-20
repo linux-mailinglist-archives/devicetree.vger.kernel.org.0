@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0D169C498
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 04:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF0369C49A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 04:51:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbjBTDvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Feb 2023 22:51:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43900 "EHLO
+        id S230081AbjBTDvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Feb 2023 22:51:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbjBTDvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 22:51:11 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774F7CC19
-        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 19:51:08 -0800 (PST)
+        with ESMTP id S230086AbjBTDvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Feb 2023 22:51:14 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34EC1CA27
+        for <devicetree@vger.kernel.org>; Sun, 19 Feb 2023 19:51:10 -0800 (PST)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1E4C3857B1;
+        by phobos.denx.de (Postfix) with ESMTPSA id E72DA857DC;
         Mon, 20 Feb 2023 04:51:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1676865066;
-        bh=W03K4gdbkWC48LtOWeUAO3hYBdWo+YsosS1rO3v6flU=;
+        s=phobos-20191101; t=1676865067;
+        bh=BPUiVJ+7yinQifTeus3/lXFO6uiCyUkEUgB/v5vyxz8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aWv53R5l7X/HxZN72qj6CYZlyFIqsu/+x63I8L12lU8oNijepnpMQyAqg0RD5NWJn
-         4H7LU2axz7z5NFCGjGA7gz48jE76g1YDoz3dJm8ZAA5xI4PBWVqaKyO27tMZ9IStfp
-         ur2ivXSZrIW5brKCVRGg2wvLXBbm9F9g+eECgMyDh4tBU/Ppf6IFOABnov4U8bB89I
-         k9hxRysbqcHuUpnlyBG3sR+n4v6Rr+r5QYa0JbeBXGIkznNBGoV9e4c2gjDYtrfFiy
-         nmrYTN7UMi84QarZ6OcL/2EaMf1h2bP4sE5Ieao5uiiExHYpI6yo+zCP0Z2Julyf5K
-         aGH9Vi5Dumq7w==
+        b=GS3FTU2yHEo+PpX6OUYgMtMHclPUWiC5zKwqbcGhtFn9jJfGKLUorX6zTTh7CfWSN
+         mCblQl8BIoTuGpmAJMSprGVqa2nXF0VLXcXbofMLxMc1nwEXNhI+lHqkjaR3lL9MN/
+         h7H0QSpSCta2GvMQacD4/ET6Pu91pS+CWGPODejJGU3UCga/8NCza0yqJy8l2cGNSS
+         4rcn4ksY2Iq2yz/cVCnYZN+ySuAM1ut9phCK1zYz4NQH7CfGaN4RtsG/pjaVgZ9OU7
+         bNI8J/pdsmZ+GY/UFEPeC64QkkUNYQ6mKGC1+0LJWgKApPyok42la+e2LRz2TpJbNt
+         yKl+GIp+QF4og==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Liu Ying <victor.liu@nxp.com>,
+Cc:     Marek Vasut <marex@denx.de>,
         Alexander Stein <alexander.stein@ew.tq-group.com>,
         Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -47,9 +47,9 @@ Cc:     Marek Vasut <marex@denx.de>, Liu Ying <victor.liu@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/4] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB into DT example
-Date:   Mon, 20 Feb 2023 04:50:49 +0100
-Message-Id: <20230220035051.327847-2-marex@denx.de>
+Subject: [PATCH v2 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind drivers to them
+Date:   Mon, 20 Feb 2023 04:50:50 +0100
+Message-Id: <20230220035051.327847-3-marex@denx.de>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230220035051.327847-1-marex@denx.de>
 References: <20230220035051.327847-1-marex@denx.de>
@@ -66,12 +66,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the LDB bridge subnode and add the subnode into the example.
-For the subnode to work, the block control must scan its subnodes and
-bind drivers to them, do not misuse either simple-bus or simple-mfd
-here .
+This particular block can have DT subnodes describing the LVDS LDB
+bridge. Instead of misusing simple-bus to scan for those nodes, do
+the scan within the driver.
 
-Reviewed-by: Liu Ying <victor.liu@nxp.com>
+Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
@@ -91,89 +90,40 @@ Cc: Shawn Guo <shawnguo@kernel.org>
 Cc: devicetree@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org
 ---
-V2: Add RB from Liu
+V2: - Turn this into 3/4
+    - Warn and continue in case of error
 ---
- .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
+ drivers/soc/imx/imx8m-blk-ctrl.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-index 71deebe902d52..61e6bc731bbb5 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-@@ -23,6 +23,12 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+index 399cb85105a18..4f5736e612fb0 100644
+--- a/drivers/soc/imx/imx8m-blk-ctrl.c
++++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+@@ -169,7 +169,9 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+ {
+ 	const struct imx8m_blk_ctrl_data *bc_data;
+ 	struct device *dev = &pdev->dev;
++	struct platform_device *child;
+ 	struct imx8m_blk_ctrl *bc;
++	struct device_node *np;
+ 	void __iomem *base;
+ 	int i, ret;
  
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-   '#power-domain-cells':
-     const: 1
+@@ -310,6 +312,13 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
  
-@@ -78,9 +84,16 @@ properties:
-       - const: isp1
-       - const: dwe
+ 	dev_set_drvdata(dev, bc);
  
-+  bridge@5c:
-+    type: object
-+    $ref: /schemas/display/bridge/fsl,ldb.yaml#
-+    unevaluatedProperties: false
++	for_each_child_of_node(dev->of_node, np) {
++		child = of_platform_device_create(np, NULL, dev);
++		if (child)
++			continue;
++		dev_warn(dev, "failed to create device for %pOF\n", np);
++	}
 +
- required:
-   - compatible
-   - reg
-+  - '#address-cells'
-+  - '#size-cells'
-   - '#power-domain-cells'
-   - power-domains
-   - power-domain-names
-@@ -114,5 +127,43 @@ examples:
-         clock-names = "apb", "axi", "cam1", "cam2", "disp1", "disp2",
-                       "isp", "phy";
-         #power-domain-cells = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        bridge@5c {
-+            compatible = "fsl,imx8mp-ldb";
-+            clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-+            clock-names = "ldb";
-+            reg = <0x5c 0x4>, <0x128 0x4>;
-+            reg-names = "ldb", "lvds";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+
-+                    ldb_from_lcdif2: endpoint {
-+                        remote-endpoint = <&lcdif2_to_ldb>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+
-+                    ldb_lvds_ch0: endpoint {
-+                        remote-endpoint = <&ldb_to_lvdsx4panel>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+
-+                    ldb_lvds_ch1: endpoint {
-+                    };
-+                };
-+            };
-+        };
-     };
- ...
+ 	return 0;
+ 
+ cleanup_provider:
 -- 
 2.39.1
 
