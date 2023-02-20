@@ -2,184 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BEDB69C88F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA16369C895
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:33:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231603AbjBTKcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 05:32:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52800 "EHLO
+        id S230291AbjBTKda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 05:33:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231598AbjBTKcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:32:05 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8095A1421A
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:32:03 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id s26so2696880edw.11
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:32:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=paV6BTyDbDK8lLzQOpiKyOjr8c2QWDAG5Sx7tYMnMf0=;
-        b=sUqfx2GkQWW0/mkbayKMOts6wK8b0GxH1Wx6kW57PAX6jgwV5mRUPRISdjJ3is/FYv
-         MWTXjdznl9W4rXCYpVlk4kLil0FT7CGJV9PSvsE/3CEeGIuX6ixxGGKWa1oke4nZpOSE
-         wl9mVPIQGcOpYSYwjcSQ/mdyGoiefeUvXK8ujVnPHUwN/gIwDoL1WoCfEwdfiyZ6tdvE
-         okeTXmUrXQ2NNGDat1+RKZaUI1KKSlgN2Mv5cpeStWkN9Mv1B+D9+UfS4+OHQtAWbgqr
-         qrYn80u3pYIeJ2ZLti0clGlD8yWlGi+6V3BUtgfgZ+7/m8bHDagi73HBdNiB4doVUs7h
-         WDJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=paV6BTyDbDK8lLzQOpiKyOjr8c2QWDAG5Sx7tYMnMf0=;
-        b=ZwLTHPhuPeDoVbZ6x+189Oj6jO9SiXk6gdnHTgVcuqMXR7HYy/LqJcfO3dXyv3M5z3
-         Ylwj9Tqk189eXKjJSnzk985z4Uq/NwpWo5J5UvpGzgpfH1X3XsrqlvLGURGkHQBM+etK
-         pDRKxGU6qgt73if4dIpJm+JdodHV31D20i3hAnwj/JiVSGm1jtDrC167PEcD61fSjjAG
-         OXcydmbOfDRPTE2FNrax6db3EQCb23eeJhvaITI6nOHF6KVotxCnm7711T94R3IswViq
-         b/Zl/6MMxRdvHZBLNVUaLn4KNV5hxwaXF0X6Zu7w2x0SCisq8OxNP2pCAIsiPzNzjexv
-         Drlg==
-X-Gm-Message-State: AO0yUKWnAbbG6ULJKg31ldwSKW2BErLjAYTnXlQ4JLxe5CbfznR340qo
-        juuQ5K5NeGzmO4rv+8CCq4dJNQ==
-X-Google-Smtp-Source: AK7set/vIPmDHCiFPf7406PxS4ywTJP3gluEz3K1IoOEEfYdwk4lcG5idx/OXz/rBTLLLjfWKSxprQ==
-X-Received: by 2002:a17:906:edd2:b0:8b1:7e1e:7756 with SMTP id sb18-20020a170906edd200b008b17e1e7756mr10873066ejb.73.1676889122026;
-        Mon, 20 Feb 2023 02:32:02 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id qn19-20020a170907211300b008baeb5c9bdbsm3335412ejb.141.2023.02.20.02.32.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 02:32:01 -0800 (PST)
-Message-ID: <761f1f4b-6f47-83a3-1e55-9e5dfccbaab8@linaro.org>
-Date:   Mon, 20 Feb 2023 11:31:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated QCM2290 compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229492AbjBTKd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:33:29 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9173914483;
+        Mon, 20 Feb 2023 02:33:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1676889208; x=1708425208;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gMmZ0r6hf7TDjajRLymz5GG8FbL+fuZU7Rc97O5DCnI=;
+  b=SqBPgVOfX6ftLnXWrl5IYYfLaUgwRI3kja5loREuRnbBmfQymBxsRP9f
+   pCVDonyD4+rkfsdBHBQBj2uTE93ZKZ4iAbYBAHc47v2+KOKiPjMIc+i/u
+   xoYyzSS3DueyCQRM0+SnKLzj7R/RRBrUqwm+QUDdknZcrSIFSEPgycWhd
+   A6pBoEPqlOLOUaSfM+qYPbtokCVYwPk8A9JFEGB2zgoCiC0eyljk5UcK+
+   iuUZCRF0mQK6AzW010aBmHr6NK23BnpgZ7dRIa3Yj63WDdgyLlAOpTcuu
+   ie06cbDXNzJq8S2YGwfFngvMBm4E8Rf/5Enou4QjOupDTGkxDx+7/4aNV
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,312,1669100400"; 
+   d="asc'?scan'208";a="201712956"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Feb 2023 03:33:26 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 20 Feb 2023 03:33:25 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Mon, 20 Feb 2023 03:33:23 -0700
+Date:   Mon, 20 Feb 2023 10:32:57 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Anup Patel <apatel@ventanamicro.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230217111316.306241-1-konrad.dybcio@linaro.org>
- <c49904be-d842-fc12-a443-17f229d53166@linaro.org>
- <a4eaccfd-34ba-15f3-033f-165b46c43317@linaro.org>
- <a158bca2-78bf-5b38-60fe-88118e8b4ad7@linaro.org>
- <ab35cdcf-53ae-a3f2-fc08-d0f58c51a0ae@linaro.org>
- <48cb00cd-961c-b72f-fba8-1842d658e289@linaro.org>
- <d4ffa9f0-797e-7a32-147e-64aa46d7e197@linaro.org>
- <e6d397bb-dd5d-8308-eb07-3aeb2589115c@linaro.org>
- <fbece9d6-2204-2534-e44f-29c29cc56413@linaro.org>
- <9a0245af-b7f3-0874-385b-47c86d6e6a60@linaro.org>
- <3d2e681b-0cc0-5d86-7d40-63022a5358c9@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3d2e681b-0cc0-5d86-7d40-63022a5358c9@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 6/9] dt-bindings: interrupt-controller: Add RISC-V
+ advanced PLIC
+Message-ID: <Y/NMWZAW4KAqKXEs@wendy>
+References: <20230103141409.772298-1-apatel@ventanamicro.com>
+ <20230103141409.772298-7-apatel@ventanamicro.com>
+ <Y7X62v5Zp6+thx5A@spud>
+ <CAK9=C2UPa5SATTG1pJdckqaoJxh-8EBz8xsENirZQ-vbaHTgjg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="oq5et5R3KJ6LBPlj"
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2UPa5SATTG1pJdckqaoJxh-8EBz8xsENirZQ-vbaHTgjg@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 11:24, Konrad Dybcio wrote:
-> 
-> 
-> On 18.02.2023 15:49, Krzysztof Kozlowski wrote:
->> On 18/02/2023 12:23, Konrad Dybcio wrote:
->>>
->>>
->>> On 18.02.2023 11:14, Krzysztof Kozlowski wrote:
->>>> On 17/02/2023 22:13, Bryan O'Donoghue wrote:
->>>>> On 17/02/2023 12:24, Krzysztof Kozlowski wrote:
->>>>>> First, it would be nice to know what was the intention of Bryan's commit?
->>>>>
->>>>> Sorry I've been grazing this thread but, not responding.
->>>>>
->>>>> - qcom,dsi-ctrl-6g-qcm2290
->>>>>
->>>>> is non-compliant with qcom,socid-dsi-ctrl which is our desired naming 
->>>>> convention, so that's what the deprecation is about i.e. moving this 
->>>>> compat to "qcom,qcm2290-dsi-ctrl"
->>>>
->>>> OK, then there was no intention to deprecate qcom,mdss-dsi-ctrl and it
->>>> should be left as allowed compatible.
->>> Not sure if we're on the same page.
->>
->> We are.
->>
->>>
->>> It wasn't intended to deprecate [1] "qcom,qcm2290-dsi-ctrl", "qcom-mdss-dsi-ctrl";
->>> (newly-introduced in Bryan's cleanup patchset) but it was intended to deprecate
->>> [2] "qcom,dsi-ctrl-6g-qcm2290"; which was introduced long before that *and* used in
->>> the 6115 dt (and it still is in linux-next today, as my cleanup hasn't landed yet).
->>>
->>> [3] "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl" was never used (and should never
->>> be, considering there's a proper compatible [1] now) so adding it to bindings
->>> didn't solve the undocumented-ness issue. Plus the fallback would have never
->>> worked back then, as the DSI hw revision check would spit out 2.4.1 or 2.4.
->>> which is SC7180 or SDM845 and then it would never match the base register, as
->>> they're waay different.
->>
->> All these were known. I was asking about "qcom,mdss-dsi-ctrl", because
->> the original intention also affects the way we want to keep it now
->> (unless there are other reasons).
-> Okay, so we want to deprecate:
-> 
-> "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl"
+--oq5et5R3KJ6LBPlj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No, we don't want to deprecate it. Such compatible was never existing
-originally and was only introduced by mistake. We want to correct the
-mistake, but we don't want to deprecate such list.
+Hey Anup,
 
-> 
-> because it is:
-> 
-> 1) non-compliant with the qcom,socname-hwblock formula
-> 2) replaceable since we rely on the fallback compatible
-> 3) "qcom,dsi-ctrl-6g-qcm2290" alone would have been expected to
->    be fixed in the DTSI similar to other SoCs
-> 
-> Is that correct?
+On Mon, Feb 20, 2023 at 10:06:49AM +0530, Anup Patel wrote:
+> On Thu, Jan 5, 2023 at 3:47 AM Conor Dooley <conor@kernel.org> wrote:
+> > On Tue, Jan 03, 2023 at 07:44:06PM +0530, Anup Patel wrote:
+> > > We add DT bindings document for RISC-V advanced platform level
+> > > interrupt controller (APLIC) defined by the RISC-V advanced
+> > > interrupt architecture (AIA) specification.
+> > >
+> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > ---
+> > >  .../interrupt-controller/riscv,aplic.yaml     | 159 ++++++++++++++++=
+++
+> > >  1 file changed, 159 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/interrupt-contr=
+oller/riscv,aplic.yaml
 
-No. So again, I am talking only about qcom,mdss-dsi-ctrl. Since
-beginning of this thread:
+> > I'm sorry Anup, but this child versus delegate thing is still not clear
+> > to me binding wise. See below.
+>=20
+> There are two different information in-context of APLIC domain:
+>=20
+> 1) HW child domain numbering: If an APLIC domain has N children
+>     then HW will have a fixed child index for each of the N children
+>     in the range 0 to N-1. This HW child index is required at the time
+>     of setting up interrupt delegation in sourcecfgX registers. The
+>     "riscv,children" DT property helps firmware (or bootloader) find
+>     the total number of child APLIC domains and corresponding
+>     HW child index number.
+>=20
+> 2) IRQ delegation to child domains: An APLIC domain can delegate
+>    any IRQ range(s) to a particular APLIC child domain. The
+>    "riscv,delegate" DT property is simply a table where we have
+>    one row for each IRQ range which is delegated to some child
+>    APLIC domain. This property is more of a system setting fixed
+>    by the RISC-V platform vendor.
 
-"Wasn't then intention to deprecate both - qcm2290 and mdss - when used
-alone?"
+Thanks for the explanations. It's been a while since my brain swapped
+this stuff out, but I think delegate/child makes sense to me now.
+Just don't ask me to write the dt entry as proof...
 
-Why do you bring the list to the topic? The list was created by mistake
-and Bryan confirmed that it was never his intention.
+Thanks,
+Conor.
 
-> 
-> Because 2) doesn't hold, as - at the time of the introduction
-> of Bryan's patchset - the fallback compatible would not have
-> been sufficient from the Linux POV [1]
+--oq5et5R3KJ6LBPlj
+Content-Type: application/pgp-signature; name="signature.asc"
 
-There was no fallback compatible at that time.
+-----BEGIN PGP SIGNATURE-----
 
-> , though it would have been
-> sufficient from the hardware description POV, as the hardware
-> on the SoC *is* essentially what qcom,mdss-dsi-ctrl refers to.
-> 
-> [1] The driver would simply not probe. It *would be* Linux-correct
-> after my code-fixing series was applied, but I think I'm just failing
-> to comprehend what sort of ABI we're trying to preserve here :/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/NMWQAKCRB4tDGHoIJi
+0sA5AQCb+6M/fBkWGw999APet2trx8vgEFPEqNrYEq/4Ao54SQEA2x1nyqApHLMa
+7qdYK/TB1TlgBDnZ0TvxpDcYLBPaiAI=
+=VmEP
+-----END PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
-
+--oq5et5R3KJ6LBPlj--
