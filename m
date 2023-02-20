@@ -2,394 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E218569C817
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 10:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CFB69C823
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 11:01:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231273AbjBTJ4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 04:56:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58430 "EHLO
+        id S230423AbjBTKBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 05:01:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231261AbjBTJ4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 04:56:53 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2867DCDC9
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:56:51 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id da10so3549294edb.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 01:56:51 -0800 (PST)
+        with ESMTP id S229646AbjBTKBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 05:01:17 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728A715CAE
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:01:16 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id x24so1103040lfr.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 02:01:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5JxyzZLWqH4CmIH4TH2Vy9MuCCxUIYLIZaOnWZ1UUbw=;
-        b=pgUcemSNzWrbFTBSg5vIkS/KJ19DqW6lzGGnd/9EwVvdHmuUQ6fluJAajuerUXNle1
-         HXLL4lz+A+3fIxpNfDmhWR3wvIZbjrpvKOVW3/rEwCCli8QDHHCquLbAGcpWJrsZVS1P
-         FvR+AKpENnJa9r7GCFa7+ZQHVylqiLuKe3qunECPpZbJWWCreVS9NlqPhkmJmQOrP2ov
-         StJgwck25ycP8owa5+xBILR72WdjJb07ckBQZcwJARh/5v2dWKu38hwLmJI91LYMcoYv
-         Uc+6ZqwFrR0VfFkaCyLwJCOBafZtYZougWKBZFUTPye7H7ZdQbeLuqWDIev2EZ4GlTiK
-         4EvA==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=45k+CD+Uy7+abBCEx58jWxzQEaKGn29fB3PlpjHhQ+s=;
+        b=lEA5YajUKNw5qFYvkX/CfuSVbDSVU8t1/W1gCufcGb2rc9MUAWBH1Z08TuvjGe6s9o
+         qa46Im/Ewwf6xrb2nREddFZu0uXHg8VWe72HWDl60cfVdjxtK6iPW87sjYPKxS1eXimP
+         R3V1983SwEHIzdZ4lngYPbI0PsqtA2ZCuO166ZberZun71NbxOgAvQG9wr4GiA6u06/L
+         xGOY7DW/dhYEOjNcBJNv4OgpWa3GwdEemrw4aGDe/vDow0Ay1WTTNMl1054Zz2TjaBiY
+         Jztnjgl9SlRCAbgnb62kgdtAh+ATH8q205s9MUp3IUEdZT2B4Zc1W+nhaEAY7xG8Mjuu
+         VCTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5JxyzZLWqH4CmIH4TH2Vy9MuCCxUIYLIZaOnWZ1UUbw=;
-        b=HJwUy+2xOahCRvUGtdDTHeWeWnu0wGuTtXwME7kNwQ46oESNNAUeezPKKHhtskh/fy
-         uCyH6j+J6N+qMLDbV2k8folW3V6jNJ1P38eH2BUQfefv+MHPHTek1OtuDs30CUwdGCoh
-         qe4DN/rlbxSVqFyd4MZXldNmbe572ryrpxF9FN6oCyE3jSY9tBcyGKHUcEglkicBzyDl
-         atyAwpyYRBV19Qf8a3nhQvvRwF8km48P94GpQ+s3nJ9lIq1FSUNcLWTKiepyZH/+wpdo
-         DGMCAlQlEEC78uWi4bSFtDTQzhtD0/qts9rEjmKvBIdCaC6PVEKl1Tay3gqR4+rhjrK8
-         JvLA==
-X-Gm-Message-State: AO0yUKUsnex85LZx734MMMYzn81rDoJ25zqZ5x/SOIEdudJNbcoFULmF
-        rZdeOP1bwZkUCvhCe9rOlVS+qQ==
-X-Google-Smtp-Source: AK7set80VzeP05Tf00cqGKyKOMUVYdyTqbqPyH6ydENKRVs7GrKbjY72bowMpNFv8iFRAf2JGwPdPA==
-X-Received: by 2002:a17:906:2491:b0:878:7471:6da7 with SMTP id e17-20020a170906249100b0087874716da7mr7846678ejb.66.1676887009189;
-        Mon, 20 Feb 2023 01:56:49 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b25-20020a17090636d900b008b129b7f4e4sm5513120ejc.167.2023.02.20.01.56.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Feb 2023 01:56:48 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=45k+CD+Uy7+abBCEx58jWxzQEaKGn29fB3PlpjHhQ+s=;
+        b=jRFtMELJeaPMkjL4ECg3RgHSpxD/peoGYKplAq/QM2wQwLwUvrjqhBZR/Wckz1quit
+         1FsyrL3UfYnTI3RxJ91LTpgUKXs4BdfTZxKe2PcUnVztptp36mbMqX9ysAwWVLUn5B/7
+         pDy7XiuAWyM2bqeeBDrFzpBZKi4zcXBSNKGjQLDkOv8yZWNrVYi5B4OUQCmH5OdvXVJ2
+         BnzOMB5o7XkdI3fYPSzF26iTXFFfv6Dch4E8d3rKdbthi03yVwMmZ03cxG9dG+Xy8APU
+         b6AbsBITiymOixah+0bJPWatt63jAoerQ/f9EBFJD+YaDMoQEJI15BaCDrk66xdUN4nD
+         1ypw==
+X-Gm-Message-State: AO0yUKXq6+bc+uIykoe5u9oROxzxDF8dDD7FlcD2J7i3n5jk9bfIi6aU
+        UF1cr7owRSV5kDMRsxEiVn7Lnw==
+X-Google-Smtp-Source: AK7set+2sE1Uars+rQC0n5eK5gZU4WLr3m5tVxdT+ymFTGTfXdnFDIofDYayU1L6D8KcxmN/H+qwRA==
+X-Received: by 2002:ac2:51a6:0:b0:4d2:c1c7:b38b with SMTP id f6-20020ac251a6000000b004d2c1c7b38bmr243961lfk.3.1676887274737;
+        Mon, 20 Feb 2023 02:01:14 -0800 (PST)
+Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
+        by smtp.gmail.com with ESMTPSA id n25-20020a195519000000b004cc8196a308sm1473398lfe.98.2023.02.20.02.01.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Feb 2023 02:01:14 -0800 (PST)
+Message-ID: <c17aa0aa-cd94-7a7a-44b3-1e8d033cd3d7@linaro.org>
+Date:   Mon, 20 Feb 2023 11:01:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280-idp: drop incorrect
+ dai-cells from WCD938x SDW
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ASoC: dt-bindings: qcom,wcd9335: Convert to dtschema
-Date:   Mon, 20 Feb 2023 10:56:43 +0100
-Message-Id: <20230220095643.64898-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230220095643.64898-1-krzysztof.kozlowski@linaro.org>
-References: <20230220095643.64898-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230220095401.64196-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230220095401.64196-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm WCD9335 audio codec binding to DT schema.
 
-Changes against original binding:
-1. Drop "mclk2" from clocks as neither Linux driver nor DTS uses it.
-2. Do not require vdd-micbias-supply as several DTS do not provide it.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 20.02.2023 10:54, Krzysztof Kozlowski wrote:
+> The WCD938x audio codec Soundwire interface part is not a DAI and does
+> not allow sound-dai-cells:
+> 
+>   sc7280-idp.dtb: codec@0,4: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
----
-
-Few DTS boards have incomplete WCD9335 node causing dtbs_check warnings.
-These are fixed here:
-https://lore.kernel.org/linux-arm-msm/42f7d53b-a922-760a-4be2-7498ea0d560a@linaro.org/T/#t
----
- .../bindings/sound/qcom,wcd9335.txt           | 123 --------------
- .../bindings/sound/qcom,wcd9335.yaml          | 156 ++++++++++++++++++
- 2 files changed, 156 insertions(+), 123 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd9335.txt
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd9335.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd9335.txt b/Documentation/devicetree/bindings/sound/qcom,wcd9335.txt
-deleted file mode 100644
-index 1f75feec3dec..000000000000
---- a/Documentation/devicetree/bindings/sound/qcom,wcd9335.txt
-+++ /dev/null
-@@ -1,123 +0,0 @@
--QCOM WCD9335 Codec
--
--Qualcomm WCD9335 Codec is a standalone Hi-Fi audio codec IC, supports
--Qualcomm Technologies, Inc. (QTI) multimedia solutions, including
--the MSM8996, MSM8976, and MSM8956 chipsets. It has in-built
--Soundwire controller, interrupt mux. It supports both I2S/I2C and
--SLIMbus audio interfaces.
--
--Required properties with SLIMbus Interface:
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: For SLIMbus interface it should be "slimMID,PID",
--		    textual representation of Manufacturer ID, Product Code,
--		    shall be in lower case hexadecimal with leading zeroes
--		    suppressed.  Refer to slimbus/bus.txt for details.
--		    Should be:
--		    "slim217,1a0" for MSM8996 and APQ8096 SoCs with SLIMbus.
--
--- reg
--	Usage: required
--	Value type: <u32 u32>
--	Definition: Should be ('Device index', 'Instance ID')
--
--- interrupts
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: Interrupts via WCD INTR1 and INTR2 pins
--
--- interrupt-names:
--	Usage: required
--	Value type: <String array>
--	Definition: Interrupt names of WCD INTR1 and INTR2
--	Should be: "intr1", "intr2"
--
--- reset-gpios:
--	Usage: required
--	Value type: <String Array>
--	Definition: Reset gpio line
--
--- slim-ifc-dev:
--	Usage: required
--	Value type: <phandle>
--	Definition: SLIM interface device
--
--- clocks:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: See clock-bindings.txt section "consumers". List of
--                three clock specifiers for mclk, mclk2 and slimbus clock.
--
--- clock-names:
--	Usage: required
--	Value type: <string>
--	Definition: Must contain "mclk", "mclk2" and "slimbus" strings.
--
--- vdd-buck-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: Should contain a reference to the 1.8V buck supply
--
--- vdd-buck-sido-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: Should contain a reference to the 1.8V SIDO buck supply
--
--- vdd-rx-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: Should contain a reference to the 1.8V rx supply
--
--- vdd-tx-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: Should contain a reference to the 1.8V tx supply
--
--- vdd-vbat-supply:
--	Usage: Optional
--	Value type: <phandle>
--	Definition: Should contain a reference to the vbat supply
--
--- vdd-micbias-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: Should contain a reference to the micbias supply
--
--- vdd-io-supply:
--	Usage: required
--	Value type: <phandle>
--	Definition: Should contain a reference to the 1.8V io supply
--
--- interrupt-controller:
--	Usage: required
--	Definition: Indicating that this is a interrupt controller
--
--- #interrupt-cells:
--	Usage: required
--	Value type: <int>
--	Definition: should be 1
--
--#sound-dai-cells
--	Usage: required
--	Value type: <u32>
--	Definition: Must be 1
--
--audio-codec@1{
--	compatible = "slim217,1a0";
--	reg  = <1 0>;
--	interrupts = <&msmgpio 54 IRQ_TYPE_LEVEL_HIGH>;
--	interrupt-names = "intr2"
--	reset-gpios = <&msmgpio 64 GPIO_ACTIVE_LOW>;
--	slim-ifc-dev  = <&wc9335_ifd>;
--	clock-names = "mclk", "native";
--	clocks = <&rpmcc RPM_SMD_DIV_CLK1>,
--		 <&rpmcc RPM_SMD_BB_CLK1>;
--	vdd-buck-supply = <&pm8994_s4>;
--	vdd-rx-supply = <&pm8994_s4>;
--	vdd-buck-sido-supply = <&pm8994_s4>;
--	vdd-tx-supply = <&pm8994_s4>;
--	vdd-io-supply = <&pm8994_s4>;
--	#sound-dai-cells = <1>;
--}
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd9335.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd9335.yaml
-new file mode 100644
-index 000000000000..34f8fe4da9d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/qcom,wcd9335.yaml
-@@ -0,0 +1,156 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/qcom,wcd9335.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm WCD9335 Audio Codec
-+
-+maintainers:
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+description:
-+  Qualcomm WCD9335 Codec is a standalone Hi-Fi audio codec IC with in-built
-+  Soundwire controller and interrupt mux. It supports both I2S/I2C and SLIMbus
-+  audio interfaces.
-+
-+properties:
-+  compatible:
-+    const: slim217,1a0
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+      - const: slimbus
-+
-+  interrupts:
-+    maxItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: intr1
-+      - const: intr2
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  slim-ifc-dev:
-+    description: SLIM IFC device interface
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  '#sound-dai-cells':
-+    const: 1
-+
-+  vdd-buck-supply:
-+    description: 1.8V buck supply
-+
-+  vdd-buck-sido-supply:
-+    description: 1.8V SIDO buck supply
-+
-+  vdd-io-supply:
-+    description: 1.8V I/O supply
-+
-+  vdd-micbias-supply:
-+    description: micbias supply
-+
-+  vdd-rx-supply:
-+    description: 1.8V rx supply
-+
-+  vdd-tx-supply:
-+    description: 1.8V tx supply
-+
-+  vdd-vbat-supply:
-+    description: vbat supply
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      required:
-+        - slim-ifc-dev
-+    then:
-+      required:
-+        - clocks
-+        - clock-names
-+        - interrupts
-+        - interrupt-names
-+        - interrupt-controller
-+        - '#interrupt-cells'
-+        - reset-gpios
-+        - slim-ifc-dev
-+        - '#sound-dai-cells'
-+        - vdd-buck-supply
-+        - vdd-buck-sido-supply
-+        - vdd-io-supply
-+        - vdd-rx-supply
-+        - vdd-tx-supply
-+    else:
-+      properties:
-+        clocks: false
-+        clock-names: false
-+        interrupts: false
-+        interrupt-names: false
-+        interrupt-controller: false
-+        '#interrupt-cells': false
-+        reset-gpios: false
-+        slim-ifc-dev: false
-+        '#sound-dai-cells': false
-+        vdd-buck-supply: false
-+        vdd-buck-sido-supply: false
-+        vdd-io-supply: false
-+        vdd-micbias-supply: false
-+        vdd-rx-supply: false
-+        vdd-tx-supply: false
-+        vdd-vbat-supply: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    tasha_ifd: codec@0,0 {
-+        compatible = "slim217,1a0";
-+        reg = <0 0>;
-+    };
-+
-+    codec@1,0 {
-+        compatible = "slim217,1a0";
-+        reg = <1 0>;
-+
-+        clock-names = "mclk", "slimbus";
-+        clocks = <&div1_mclk>, <&rpmcc RPM_SMD_BB_CLK1>;
-+
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <54 IRQ_TYPE_LEVEL_HIGH>,
-+                     <53 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "intr1", "intr2";
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+        slim-ifc-dev = <&tasha_ifd>;
-+        #sound-dai-cells = <1>;
-+
-+        vdd-buck-supply = <&vreg_s4a_1p8>;
-+        vdd-buck-sido-supply = <&vreg_s4a_1p8>;
-+        vdd-tx-supply = <&vreg_s4a_1p8>;
-+        vdd-rx-supply = <&vreg_s4a_1p8>;
-+        vdd-io-supply = <&vreg_s4a_1p8>;
-+    };
--- 
-2.34.1
-
+Konrad
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 8ebcf763b3c7..cff0e0d31c15 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -480,7 +480,6 @@ &swr0 {
+>  	wcd_rx: codec@0,4 {
+>  		compatible = "sdw20217010d00";
+>  		reg = <0 4>;
+> -		#sound-dai-cells = <1>;
+>  		qcom,rx-port-mapping = <1 2 3 4 5>;
+>  	};
+>  };
+> @@ -491,7 +490,6 @@ &swr1 {
+>  	wcd_tx: codec@0,3 {
+>  		compatible = "sdw20217010d00";
+>  		reg = <0 3>;
+> -		#sound-dai-cells = <1>;
+>  		qcom,tx-port-mapping = <1 2 3 4>;
+>  	};
+>  };
