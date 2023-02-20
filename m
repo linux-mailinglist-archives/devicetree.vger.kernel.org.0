@@ -2,112 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ADA269CD5F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 14:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7DB69CD6D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 14:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232356AbjBTNs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 08:48:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35032 "EHLO
+        id S232374AbjBTNtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 08:49:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232360AbjBTNs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 08:48:56 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CFAF40C4;
-        Mon, 20 Feb 2023 05:48:44 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31KCEMj2006715;
-        Mon, 20 Feb 2023 13:48:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ORSU/Kgrr5YXCnp8lyw5sWPwL7mXbpJ3GoH/DEN7i44=;
- b=p3qOn7D/rpccX+D2Qv2gOgr2XXdtpcSFzBTGi6gTa1/Tz5BN7ZYnE/yKhBMuJ1QjY0Hb
- CXxikNM0i54V2SOq2XHhzphBiFWrgEWyw9+99ZSPPyKN2NGl5NLTrNo3P3OcuZcmDnBW
- LSgAzzCfCzG9S74ey0RCmfCiJg/lkHVC03jnR99i24zlZ6jIamNu7Fv7O8/aqOiQjUil
- 3T0O2PpKtplWxiZPhMVfOui0kU68I8EOcDsp4a5pTkx/fVYJbMp6VXY44Fb8JVlZdJot
- VNC5nTmscRuHo6uXCeFXYoqfA7M09z802f8QrOLz6t5gT0gZ8K6jutCAzXgnD1RoxT2Q mQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ntp98d916-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 20 Feb 2023 13:48:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31KDmWXQ014742
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 20 Feb 2023 13:48:32 GMT
-Received: from [10.216.11.20] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 20 Feb
- 2023 05:48:24 -0800
-Message-ID: <989e460a-b92c-e056-75e5-4e2d36885ac3@quicinc.com>
-Date:   Mon, 20 Feb 2023 19:18:21 +0530
+        with ESMTP id S232373AbjBTNtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 08:49:13 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218F81E2B3
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 05:49:01 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id da10so6152791edb.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 05:49:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=49HWWb3cc/HZxywIb9uNzaTa/ku4Ssf3WpC18ssUqdM=;
+        b=ASOr3MPofKHL4lTrFztPVZ8pYYkUihrtwv+jTcH3fIcIeAs8ABsKBTzL8f9ngHjeUb
+         U6gCplTJOBDvXMTwk1lzJbAFFKEX2f3Pb56QFVyZ+ZEjZIa01FcuDR/2vVITDMjN08Ft
+         Rg2lR00FSUpJTiBsnspJeDkinc25kFMmonYuKV3gTWOBO6qy4GDW1uLeoR9Qarnex70A
+         plYYTdiATA4MgHqjb9TbXQb/Y36XejAZdjecpHxMZfl/0qRu+tmeR7QzrX9iU9sm9prk
+         m5CNw0zF72qan+4DRUvJOWVnuV1E4wZdmYCE6RtutFBoEwKscppIpxmDDDv5YNmNBYgY
+         yrNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=49HWWb3cc/HZxywIb9uNzaTa/ku4Ssf3WpC18ssUqdM=;
+        b=E+oikt23og7i0N+ofKIbFXqMVVTI2gZFsGhkR9y/TpE9z/YGOTzGyyzaW61sIZKesT
+         QSHIN5u/sV/2W1/VEjBnN80uArlFnipPXpGG7/XkIlTerpY+Zd7ezzoFqOsOlxJ8zfye
+         wN/BDEu/RxQHHEzuD8/eXgQ5c2tJ9/8weVFdLlRBozbVCSfkvX3rU3uoxaXUIXQXZLXC
+         b7gbmghXZ1DeGnbQHu5/hG0tFmkcjqe1S6KN0OBLMXJSVQp+akB01H4tTSzQEVNClBRh
+         XbdEzaEWgXLAV319gQPkL8IhuF1SPUHl2hmy2U+klKIRiQVI3a7txHXSLTRVBaDMuAu1
+         yhJg==
+X-Gm-Message-State: AO0yUKU2NZkFzhisg9+EReyHST9gZ2I3CIFfsrq5gTJ6hlAAvxHCUfPV
+        Rny76LM6G+lDoZPqAlMmt4eRMoJbNsK1OGob
+X-Google-Smtp-Source: AK7set8oqq9/YhAz+OGjQTF/zubGQ1QoCjgs2EU78K7J4oztgSo+kTDoPZezNu1KMlJmBBXskLceXw==
+X-Received: by 2002:a17:906:ad82:b0:8b1:7eb4:6bea with SMTP id la2-20020a170906ad8200b008b17eb46beamr10504743ejb.38.1676900939396;
+        Mon, 20 Feb 2023 05:48:59 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t18-20020a170906949200b008bfe95c46c3sm3124624ejx.220.2023.02.20.05.48.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Feb 2023 05:48:59 -0800 (PST)
+Message-ID: <1d8b225e-19ed-f828-91b0-0cbc0a9e53a3@linaro.org>
+Date:   Mon, 20 Feb 2023 14:48:57 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 0/7] Add PCIe support for IPQ9574
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 4/5] dt-bindings: mmc: sdhci-cadence: SD6 support
 Content-Language: en-US
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lpieralisi@kernel.org>,
-        <kw@linux.com>, <robh@kernel.org>, <bhelgaas@google.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <mani@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-clk@vger.kernel.org>
-CC:     <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>
-References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
- <a987fc17-3924-7ece-59e2-3fa1d000afc1@quicinc.com>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <a987fc17-3924-7ece-59e2-3fa1d000afc1@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RcJZbM2r-nlb2Q96w9jR_KwfenFL0kh4
-X-Proofpoint-ORIG-GUID: RcJZbM2r-nlb2Q96w9jR_KwfenFL0kh4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-20_11,2023-02-20_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=755 mlxscore=0
- adultscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 impostorscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302200125
+To:     Piyush Malgujar <pmalgujar@marvell.com>
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        yamada.masahiro@socionext.com, devicetree@vger.kernel.org,
+        jannadurai@marvell.com, cchavva@marvell.com
+References: <20230123192735.21136-1-pmalgujar@marvell.com>
+ <20230123192735.21136-5-pmalgujar@marvell.com>
+ <d05161ed-eb30-2d4d-e9bc-4b40e8ae09e7@linaro.org>
+ <20230220132214.GA24729@Dell2s-9>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230220132214.GA24729@Dell2s-9>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/02/2023 14:22, Piyush Malgujar wrote:
 
-
-On 2/17/2023 2:18 PM, Sricharan Ramabadhran wrote:
-> 
-> 
-> On 2/14/2023 10:11 PM, Devi Priya wrote:
->> PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
->> are found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane
->> Gen3 host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+>>> +
+>>> +  cdns,read-dqs-cmd-delay:
+>>> +    description: Command delay used in HS200 tuning
 >>
->> This series adds support for enabling the same
+>> What are the units?
+>>
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>
+>> Drop quotes (everywhere)
+>>
+>>> +
+>>> +  cdns,tune-val-start:
+>>> +    description: Staring value of data delay used in HS200 tuning
+>>
+>> Same problem - missing units.
 >>
 > 
-> 
-> <svarbanov@mm-sol.com>  --> This is bouncing, please remove it
-> 
-Sure, okay
+> These are integer values, will add in the description that these units are integer used
+> in tuning. Also, will remove the $ref.
 
-> Regards,
->   Sricharan
+All units are integer values. We don't talk about this. Delay is usually
+in time, thus I would assume here proper unit suffix.
 
-Best Regards,
-Devi Priya
+
+Best regards,
+Krzysztof
+
