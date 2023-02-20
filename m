@@ -2,191 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF0669CF83
-	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 15:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F3069CF9C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Feb 2023 15:44:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231817AbjBTOhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 09:37:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58864 "EHLO
+        id S231366AbjBTOo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 09:44:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbjBTOg7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 09:36:59 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF071A49B
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:36:58 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id f41so1926483lfv.13
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 06:36:58 -0800 (PST)
+        with ESMTP id S229514AbjBTOo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 09:44:26 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816211555D;
+        Mon, 20 Feb 2023 06:44:25 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id bg37-20020a05600c3ca500b003e21e018039so2075249wmb.3;
+        Mon, 20 Feb 2023 06:44:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6vhlUf4V//EucpeTUzass2zWDgLFr6HdC5bKhDHOf1Y=;
-        b=OBGrR5BqSNtEZQM2urjlOlaH1nXZyXQ47IZg0lF9rt5wQqW4Q98NZGvwbZNA+61qz9
-         6aU2ev0bXVxpk+9FiZZGYk2ZrG5tGs3Rg8zfLoMxKq0czUtZoY5cul/ECPIsR3FP2a4I
-         2Q2vxiSeUP0gfZRTOSPHv8/6ocY8rMx1D5z7TEKaRH4B5ZiLj11rud1u6K/Xr3xrPeBG
-         wyjbDuHvneR1ZG6Tv+HUxYPTm/dWMa3j7iqcIpj1/T0JyrCbBkTxQO9oyGqHee5mA5xF
-         qpkm/35SQsnPu8uT4s8VC8eWppF9ptD9zlneZ5NcECCaabiUZZYXAYcemCLrmsugsg2w
-         hVBg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GoVGloOBZkw+ZVyAnbX/LJByXhmIlf+jL2epYX5xU4w=;
+        b=hYs7rM8UbOBWW4+Ml0n9QHWF2Jr1aO+fwKAQ/Oge7K740EcTNzWOkbSWX4CJ2rM1lg
+         dU/oYDQLhNs7B5WF8M7+VNWdWVFWDinFUHzYs/PHYr0yUd/mOMq8ZL1QLMsTzaVmh+TU
+         iFD8vUx9YyspA0O7Ufcl3rubUo71ay4NApKqrRenPWnX1C/hbhzuUZE8adbIoiUyOrAs
+         0t8uxMlMqKQBdNjGsHyHMW+2Y2J3ckGT8XKqv3paORf9Q3FQzbeCYu0dXrGsdcKr1eRE
+         8RQqIz0qwxr0Wt/vkrDcJxOsXRQK2Yol/90/F6cywOoHrS/scG+4bmhoaNQnaekR6m41
+         TkeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6vhlUf4V//EucpeTUzass2zWDgLFr6HdC5bKhDHOf1Y=;
-        b=phhmw9w3wgjqXZ9PImaGLC57EnyDmEmyt2BJHzanjJEADiDsBJZpG/lee4iCoRhic7
-         fW2QaWRCIw98UrLDyz4WsDw0VjuFeQxSvjOk5btj+45CMGmiBYvb0Vqgm4X+JuYK/MWG
-         REGVG6GFDS33mx1+0pbv/PampD+TJ7Ss34XU2oXDjuP3+rqmP/VPxVmY8n40N91i4f6+
-         wuY7rGr294FQNDefXXRQbyBS1PXbov3xQ2wPGPX93eYYvZP0HJ6iOYK4yz3Qk11RTLYc
-         eGyPVQ8c8myp57ROkRAGwlaJASOC/hUAokq7JIAlN5C3lHdGk6ibKob+Izd2XK9xeWu0
-         3ojg==
-X-Gm-Message-State: AO0yUKWkmnaW0vYVp0LcZpTLXLLgrl53WEoM0jg9pIrVoMUYUlyx5h7S
-        VgsiyxX7qbhkW7dplw76MolNoI4jn3SBn5HP
-X-Google-Smtp-Source: AK7set9Q2QTfNHI8HJ1IzZNKZTNtqZJBo5WDw+FA5rdYPWKoDAvgoATDJjdXykT21cEn90yayQJ4rA==
-X-Received: by 2002:a05:6512:1284:b0:4d8:86c1:4782 with SMTP id u4-20020a056512128400b004d886c14782mr837059lfs.23.1676903816529;
-        Mon, 20 Feb 2023 06:36:56 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id g21-20020a19ee15000000b004dc4b00a1eesm216242lfb.261.2023.02.20.06.36.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 06:36:56 -0800 (PST)
-Message-ID: <07342311-33e3-cf7e-38ed-5d54d83b43a3@linaro.org>
-Date:   Mon, 20 Feb 2023 15:36:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 5/6] arm64: dts: qcom: ipq9574: Add RPM related nodes
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GoVGloOBZkw+ZVyAnbX/LJByXhmIlf+jL2epYX5xU4w=;
+        b=CBlqHYPZRCw+XFwk98FLgKQrbIG81g2DY8vBjmbzOWlAK09F/COptp9xearcrdNUmD
+         RHmVGEyhR2JoI+jM61SVMvvkkd+mFbRAdUOlPdX9j6XJTRbPFpjxDPRUv5ztj8kDXqpD
+         i17PL0w9FzbEP+w29WEoxBFEYzl8P4hLXsn5VWRN1WfKKT4jPjJaGCYtlBIuLIOOuPn5
+         JGiDtZ+xYySwlPla+L5W/wUXyYqB2b3xQ3h8CwFh2VGqYTGLkmLy6nEnyAXKMs1t+3as
+         LrfIPhAajJJ4Rq6POBWVuUposQ8o8pd96d8aVGyrYhAS+QQjpksIHZ9XnzVPczK/Au7R
+         ipwg==
+X-Gm-Message-State: AO0yUKU97tGMzNL7mjErMHT2KX5BUMTHZ+GRL6mymCivsfGjx7kLisjn
+        0qsj71fYgtPfDvlqY1D74B8=
+X-Google-Smtp-Source: AK7set9IE7HOSZDZgMmccuHfWHe65GIO0gQQEpfT9G+zufqe0IBsuL7NA0ndfQe6bju3HPRc5qJeww==
+X-Received: by 2002:a05:600c:198e:b0:3e2:1f00:bff7 with SMTP id t14-20020a05600c198e00b003e21f00bff7mr1069910wmq.12.1676904263882;
+        Mon, 20 Feb 2023 06:44:23 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net. [80.193.200.194])
+        by smtp.gmail.com with ESMTPSA id r5-20020a1c2b05000000b003ddf2865aeasm1339840wmr.41.2023.02.20.06.44.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Feb 2023 06:44:23 -0800 (PST)
+From:   Colin Ian King <colin.i.king@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
- <20230217142030.16012-6-quic_devipriy@quicinc.com>
- <12d23d88-6f42-09ea-3f26-e1b7a0878767@linaro.org>
- <fb576665-7983-d09a-06a6-bfde5793816e@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <fb576665-7983-d09a-06a6-bfde5793816e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH][next] of: dynamic: Fix spelling mistake "kojbect" -> "kobject"
+Date:   Mon, 20 Feb 2023 14:44:22 +0000
+Message-Id: <20230220144422.873356-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There is a spelling mistake in a pr_err message. Fix it.
 
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/of/dynamic.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 20.02.2023 14:53, Devi Priya wrote:
-> Hi Konrad,
-> 
-> Thanks for taking time to review the patch!
-I appreciate your gratitude, but please don't toppost (a.k.a
-don't reply in the first lines of the email), that's rather
-frowned upon on LKML.
+diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+index 12aa99018969..07d93753b12f 100644
+--- a/drivers/of/dynamic.c
++++ b/drivers/of/dynamic.c
+@@ -350,7 +350,7 @@ void of_node_release(struct kobject *kobj)
+ 		if (!IS_ENABLED(CONFIG_OF_UNITTEST) ||
+ 		    strcmp(node->parent->full_name, "testcase-data")) {
+ 			dump_stack();
+-			pr_err("ERROR: next of_node_put() on this node will result in a kboject warning 'refcount_t: underflow; use-after-free.'\n");
++			pr_err("ERROR: next of_node_put() on this node will result in a kobject warning 'refcount_t: underflow; use-after-free.'\n");
+ 		}
+ 
+ 		return;
+-- 
+2.30.2
 
-> 
-> On 2/17/2023 8:20 PM, Konrad Dybcio wrote:
->>
->>
->> On 17.02.2023 15:20, Devi Priya wrote:
->>> Add RPM Glink, RPM message RAM and SMPA1 regulator
->>> nodes to support frequency scaling on IPQ9574
->>>
->>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->>> ---
->>>   Changes in V2:
->>>     - Splitted the RPM and CPU Freq changes to individual patches
->>>     - Moved the regulators node to Board DT
->>>     - Dropped the regulator-always-on property
->>>     - Updated the compatible in regulators node with the existing
->>>       mp5496 compatible
->>>
->>>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts | 11 +++++++++++
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 17 +++++++++++++++++
->>>   2 files changed, 28 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->>> index 21b53f34ce84..8a6caaeb0c4b 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->>> @@ -57,6 +57,17 @@
->>>       status = "okay";
->>>   };
->>>   +&rpm_requests {
->>> +    regulators {
->>> +        compatible = "qcom,rpm-mp5496-regulators";
->>> +
->>> +        ipq9574_s1: s1 {
->>> +            regulator-min-microvolt = <587500>;
->>> +            regulator-max-microvolt = <1075000>;
->>> +        };
->>> +    };
->>> +};
->> This belongs in a separate patch.
->>
-> Do you recommend to move this change to the below patch in the next spin?
-> [PATCH V2 6/6]arm64: dts: qcom: ipq9574: Add cpufreq support
-Sounds good
-
-Also, I think you missed a newline before &rpm_requests now that
-I look at it.
-
-Konrad
->>> +
->>>   &sdhc_1 {
->>>       pinctrl-0 = <&sdc_default_state>;
->>>       pinctrl-names = "default";
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> index d20f3c7383f5..2f300cbab93e 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> @@ -133,6 +133,11 @@
->>>           #size-cells = <2>;
->>>           ranges;
->>>   +        rpm_msg_ram: rpm@60000 {
->> Since this is a part of the MMIO region and not a part of DRAM,
->> we generally put this node under /soc with the compatible of
->> qcom,rpm-msg-ram and without no-map.
->>
->> And the node name then should be sram@.
-> Sure, okay. Will update this in V3
->>
->>> +            reg = <0x0 0x00060000 0x0 0x6000>;
->>> +            no-map;
->>> +        };
->>> +
->>>           tz_region: tz@4a600000 {
->>>               reg = <0x0 0x4a600000 0x0 0x400000>;
->>>               no-map;
->>> @@ -768,6 +773,18 @@
->>>           };
->>>       };
->>>   +    rpm-glink {
->> Alphabetically this should come before /soc.
-> Okay
->>
->> Konrad
->>> +        compatible = "qcom,glink-rpm";
->>> +        interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
->>> +        qcom,rpm-msg-ram = <&rpm_msg_ram>;
->>> +        mboxes = <&apcs_glb 0>;
->>> +
->>> +        rpm_requests: glink-channel {
->>> +            compatible = "qcom,rpm-ipq9574";
->>> +            qcom,glink-channels = "rpm_requests";
->>> +        };
->>> +    };
->>> +
->>>       timer {
->>>           compatible = "arm,armv8-timer";
->>>           interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> Best Regards,
-> Devi Priya
