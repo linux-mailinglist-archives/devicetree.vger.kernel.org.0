@@ -2,55 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64CD769E595
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:10:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B7769E592
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233675AbjBURKP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Feb 2023 12:10:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49010 "EHLO
+        id S233810AbjBURKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 12:10:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233749AbjBURKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:10:15 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3AC16321
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:10:11 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1pUW9M-0003uJ-BB; Tue, 21 Feb 2023 18:09:56 +0100
-Message-ID: <6181434024ae29aafe1da2088be0f48c377e303b.camel@pengutronix.de>
-Subject: Re: [PATCH v3 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
- drivers to them
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Liu Ying <victor.liu@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
+        with ESMTP id S233749AbjBURKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:10:03 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2B7C658
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:10:00 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id x10so19199592edd.13
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:10:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zk1effhT0EXQ9+RxXUxGqQreCCRNF9GeDiBMBfy/NeA=;
+        b=XAwkATaMHWEzAGgMy8wnXA4HZjDoflGyrXST0eyyeMcgM4YXZ2pefECK8lB8S4cEBw
+         bkbGf4eGf6xh1c80fIMpJCXnjEK5vsHklhQ6Qlb5dV22KfWPkuSidXZp4eFrnfxmCk4L
+         ToW9A/i4ncBJtRTb+UPXy0h/3KeAXEjSvcB1Fa/3PI9X7ecNeMji2iF4fzXaEMSgoohm
+         lDINowSKVRUQJlzx69r7icUia5MsgXBsJcMJ0b1V38ltlbo9kDzO4Qj0s/y/7anyGRzs
+         UW/nPCuSD1ttsVww7ExTj8FHQxor78JrfjbTuknVy7Xs56NYLGsa0QSZOoAvuMLHVMRq
+         egcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zk1effhT0EXQ9+RxXUxGqQreCCRNF9GeDiBMBfy/NeA=;
+        b=fRAU+V3wIhmjwGSbo9Mbr6/QBDkgpsnYDvkBijj9y2lnaUyVdv23C6FkI2x4yFsp9i
+         ttN5TFUZ1DuGbQRas2mLbKdcMOcyPqOXFxU4vu7iSNlhgL0MdyPjJP/leL2oDt87O0ez
+         X2rCqqj84FSKbgih1PoQiL1J4QSXrAR6Zd4MCRmMb5NfoHZHMGrMEl34RkI3E+w+X1SP
+         OsiL3qROdpo4e5NjiksoQHocfeaIDr2TUEFJGXipZlo6TRDXu/J0e08lEKTOReJ+er2L
+         Gp0mEluEZvn6xD9dYo/G1irv/Ro65dDH3ibVQ48NKpmH4LxPl+r56wJK63sP6iD+bANB
+         0HbA==
+X-Gm-Message-State: AO0yUKVf4nVU+Ip6fGvdJL5NwpIyFSz65ahT+Zn+yDLQH+2jETuoehuG
+        aJ9jKYU+7miRrQ4q/fcJxiIIig==
+X-Google-Smtp-Source: AK7set9Q4/MUZHnyOtXbFC1Yu2FeinPg9/TzEfhRznYkpmJY5CzLj9XluOqEYpWqWF2Eu0CKs0QoCA==
+X-Received: by 2002:a17:906:71c2:b0:8b1:3225:66f0 with SMTP id i2-20020a17090671c200b008b1322566f0mr11879621ejk.68.1676999399204;
+        Tue, 21 Feb 2023 09:09:59 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id bj4-20020a170906b04400b008c78fb7206dsm4054416ejb.68.2023.02.21.09.09.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Feb 2023 09:09:58 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Date:   Tue, 21 Feb 2023 18:09:54 +0100
-In-Reply-To: <20230221152804.6061-3-marex@denx.de>
-References: <20230221152804.6061-1-marex@denx.de>
-         <20230221152804.6061-3-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: display: bridge: parade,ps8622: convert to dtschema
+Date:   Tue, 21 Feb 2023 18:09:55 +0100
+Message-Id: <20230221170955.62448-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,73 +77,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Convert the Parade PS8622/PS8625 DisplayPort to LVDS Converter bindings
+to DT schema.  Changes during conversion: add missing vdd12-supply, used
+by Linux driver.
 
-Am Dienstag, dem 21.02.2023 um 16:28 +0100 schrieb Marek Vasut:
-> This particular block can have DT subnodes describing the LVDS LDB
-> bridge. Instead of misusing simple-bus to scan for those nodes, do
-> the scan within the driver.
-> 
-> Reviewed-by: Liu Ying <victor.liu@nxp.com>
-> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Richard Zhu <hongxing.zhu@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: - Turn this into 3/4
->     - Warn and continue in case of error
-> V3: Add RB from Liu
-> ---
->  drivers/soc/imx/imx8m-blk-ctrl.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> index 399cb85105a18..4f5736e612fb0 100644
-> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -169,7 +169,9 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
->  {
->  	const struct imx8m_blk_ctrl_data *bc_data;
->  	struct device *dev = &pdev->dev;
-> +	struct platform_device *child;
->  	struct imx8m_blk_ctrl *bc;
-> +	struct device_node *np;
->  	void __iomem *base;
->  	int i, ret;
->  
-> @@ -310,6 +312,13 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
->  
->  	dev_set_drvdata(dev, bc);
->  
-> +	for_each_child_of_node(dev->of_node, np) {
-> +		child = of_platform_device_create(np, NULL, dev);
-> +		if (child)
-> +			continue;
-> +		dev_warn(dev, "failed to create device for %pOF\n", np);
-> +	}
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../display/bridge/parade,ps8622.yaml         | 115 ++++++++++++++++++
+ .../bindings/display/bridge/ps8622.txt        |  31 -----
+ 2 files changed, 115 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/parade,ps8622.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/ps8622.txt
 
-Any reason for not using devm_of_platform_populate() instead?
-
-Regards,
-Lucas
-
-> +
->  	return 0;
->  
->  cleanup_provider:
+diff --git a/Documentation/devicetree/bindings/display/bridge/parade,ps8622.yaml b/Documentation/devicetree/bindings/display/bridge/parade,ps8622.yaml
+new file mode 100644
+index 000000000000..e6397ac2048b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/parade,ps8622.yaml
+@@ -0,0 +1,115 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/parade,ps8622.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Parade PS8622/PS8625 DisplayPort to LVDS Converter
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - parade,ps8622
++      - parade,ps8625
++
++  reg:
++    maxItems: 1
++
++  lane-count:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2]
++    description: Number of DP lanes to use.
++
++  use-external-pwm:
++    type: boolean
++    description: Backlight will be controlled by an external PWM.
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to RST_ pin.
++
++  sleep-gpios:
++    maxItems: 1
++    description: GPIO connected to PD_ pin.
++
++  vdd12-supply: true
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for LVDS output.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for DisplayPort input.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - sleep-gpios
++  - ports
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          const: parade,ps8622
++    then:
++      properties:
++        lane-count:
++          const: 1
++    else:
++      properties:
++        lane-count:
++          const: 2
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        lvds-bridge@48 {
++            compatible = "parade,ps8625";
++            reg = <0x48>;
++            sleep-gpios = <&gpx3 5 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&gpy7 7 GPIO_ACTIVE_HIGH>;
++            lane-count = <2>;
++            use-external-pwm;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++
++                    bridge_out: endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++
++                    bridge_in: endpoint {
++                        remote-endpoint = <&dp_out>;
++                    };
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/display/bridge/ps8622.txt b/Documentation/devicetree/bindings/display/bridge/ps8622.txt
+deleted file mode 100644
+index c989c3807f2b..000000000000
+--- a/Documentation/devicetree/bindings/display/bridge/ps8622.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-ps8622-bridge bindings
+-
+-Required properties:
+-	- compatible: "parade,ps8622" or "parade,ps8625"
+-	- reg: first i2c address of the bridge
+-	- sleep-gpios: OF device-tree gpio specification for PD_ pin.
+-	- reset-gpios: OF device-tree gpio specification for RST_ pin.
+-
+-Optional properties:
+-	- lane-count: number of DP lanes to use
+-	- use-external-pwm: backlight will be controlled by an external PWM
+-	- video interfaces: Device node can contain video interface port
+-			    nodes for panel according to [1].
+-
+-[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-Example:
+-	lvds-bridge@48 {
+-		compatible = "parade,ps8622";
+-		reg = <0x48>;
+-		sleep-gpios = <&gpc3 6 1 0 0>;
+-		reset-gpios = <&gpc3 1 1 0 0>;
+-		lane-count = <1>;
+-		ports {
+-			port@0 {
+-				bridge_out: endpoint {
+-					remote-endpoint = <&panel_in>;
+-				};
+-			};
+-		};
+-	};
+-- 
+2.34.1
 
