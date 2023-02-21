@@ -2,79 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8AD69E4FC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 17:43:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A68369E512
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 17:48:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234117AbjBUQn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 11:43:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
+        id S234859AbjBUQsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 11:48:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233461AbjBUQn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 11:43:56 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6E086AE
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:43:21 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id f13so19115429edz.6
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:43:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PpEmpYa7NtKgPsFlP0Y6MM1AQQfm9C0TmFOoa/imtIg=;
-        b=PuiqbfcAXb8ybC6bJCg+wkSVtoMafoqhZ02cRb/YbMf1Ag+ULqesAg5KX9kQavfXJz
-         i2J/6EHcSuSOBgP2nu1rXCCQkcHAyP4vYGEoH9HBCxok2mmDMZ/I6/N43n0H4wLT8dN2
-         Ol8R+wwqOXsbgwNetsCRo0ycosQBnfYopaJc5wOcPQrUmqMXoHiq3fhv0xd7MIKUauDY
-         OeZXR0NvcFJ99Ox4EhLUK1jPKXLV/FV4Z5EzH8ifWDss/4v7DGZ64QHsLod5fC1zmfMe
-         AtVDapAUrCiUKOJrPtY4E+eMv/TvMKpm+BYApWhGE41jUjkYewmNlRAtZcKLaGCzMfrX
-         oSmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PpEmpYa7NtKgPsFlP0Y6MM1AQQfm9C0TmFOoa/imtIg=;
-        b=E5cUHCgi9xCLnappeVkuT6zJwwSwMqHRlLbMmuQv6+tfZI2Mgug8G4vP0boUcxVKoB
-         CWx1qTjawmluJsPS9W4IUxKp3bpYM+Fi2KR1uG/8tPxNbqZxOzioIJzY6ooBeDrLd19A
-         KXXW/Y8lhU3qCRa8tMDP9sIzKDVVmqttRNZLb9GD8cFb/Dx25NlbISESn2Uv7u/VuTTi
-         EGhXioBj5yTBRM0lFZflpAcW32DE7C3u2uaq7Hz2pLDvm6OUo6J8Ze134umRV3wFj+WK
-         qMHwHr3PbZUfz4aLn4x1k9TnYXn3oP4heTuVEAxruxcVSniw83tXawRjLQtmt08aRwo9
-         5h0g==
-X-Gm-Message-State: AO0yUKXIofpUoSwNQT6/Ot6Hmmmk9BRG9LeNiTqIjY2m5VPCuouzppdS
-        28pX8EuaCnFTS9vvykvIMhs8wXnLAdpC13D5AJI=
-X-Google-Smtp-Source: AK7set9SXVnVH5YJGNxJ5TzWBLeukR48wks3zegqt78CM301pa+bRD7bcntIn75rciHJv9J/KQSh9xa+VWoo7ZNhBn0=
-X-Received: by 2002:a17:906:db04:b0:88d:ba79:4317 with SMTP id
- xj4-20020a170906db0400b0088dba794317mr6686853ejb.7.1676997797926; Tue, 21 Feb
- 2023 08:43:17 -0800 (PST)
+        with ESMTP id S234841AbjBUQr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 11:47:59 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA4B1BFF;
+        Tue, 21 Feb 2023 08:47:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4E658B80FA8;
+        Tue, 21 Feb 2023 16:47:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 868B6C433D2;
+        Tue, 21 Feb 2023 16:47:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1676998075;
+        bh=fZ7QbnFNb2SmsiwjDZpljpEV7ataQ6s54HSJhzUKGSY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q8ptiBQSITwFOmEIfsiabNBy03LzOsmq9Vo+g2cFjeNsrQVKexJi3Vq5qB/eKiYyf
+         ICEiDA7w54IBPqGSGE9XCFAMsn1pGl/SRFQn0OhpV/Z5ZSpc97WYlDvI+7UvruIhQq
+         seWx+7lTTl1hgBIZGDSa8bXw/sS+nWIw3GoCPcEk=
+Date:   Tue, 21 Feb 2023 17:47:52 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        jirislaby@kernel.org, alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+Subject: Re: [PATCH v4 3/3] Bluetooth: NXP: Add protocol support for NXP
+ Bluetooth chipsets
+Message-ID: <Y/T1uMqUeW67tgzX@kroah.com>
+References: <20230221162541.3039992-1-neeraj.sanjaykale@nxp.com>
+ <20230221162541.3039992-4-neeraj.sanjaykale@nxp.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6f02:c84d:b0:46:2ccb:4b0a with HTTP; Tue, 21 Feb 2023
- 08:43:17 -0800 (PST)
-Reply-To: Advocate@tptlegalfirm.com
-From:   Larry Aaron Riteman <lotamiri2016@gmail.com>
-Date:   Tue, 21 Feb 2023 16:43:17 +0000
-Message-ID: <CALPYr+ujS4AE1EEzkMO6NUHJQV_HU+m0m9E2FgAU5J_nGNpbbQ@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=3.1 required=5.0 tests=BAYES_95,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230221162541.3039992-4-neeraj.sanjaykale@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hola.
+On Tue, Feb 21, 2023 at 09:55:41PM +0530, Neeraj Sanjay Kale wrote:
+> +		bt_dev_info(hdev, "Set UART break: %s, status=%d",
+> +			    ps_state == PS_STATE_AWAKE ? "off" : "on", status);
 
-Este es mi segundo mensaje para usted con respecto a la herencia de su
-difunto pariente. Por favor, p=C3=B3ngase en contacto conmigo a trav=C3=A9s=
- de
-mi correo electr=C3=B3nico lo antes posible, para obtener m=C3=A1s detalles=
-.
+You have a lot of "noise" in this driver, remove all "info" messages, as
+if a driver is working properly, it is quiet.
 
-Saludos,
+> +		break;
+> +	}
+> +	psdata->ps_state = ps_state;
+> +	if (ps_state == PS_STATE_AWAKE)
+> +		btnxpuart_tx_wakeup(nxpdev);
+> +}
+> +
+> +static void ps_work_func(struct work_struct *work)
+> +{
+> +	struct ps_data *data = container_of(work, struct ps_data, work);
+> +
+> +	if (!data)
+> +		return;
 
-larry
+You did not test this, that check can never happen, please do not do
+pointless checks.
+
+
+
+> +
+> +	if (data->ps_cmd == PS_CMD_ENTER_PS && data->cur_psmode == PS_MODE_ENABLE)
+> +		ps_control(data->hdev, PS_STATE_SLEEP);
+> +	else if (data->ps_cmd == PS_CMD_EXIT_PS)
+> +		ps_control(data->hdev, PS_STATE_AWAKE);
+> +}
+> +
+> +static void ps_timeout_func(struct timer_list *t)
+> +{
+> +	struct ps_data *data = from_timer(data, t, ps_timer);
+> +	struct hci_dev *hdev = data->hdev;
+> +	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
+> +
+> +	data->timer_on = false;
+> +	if (test_bit(BTNXPUART_TX_STATE_ACTIVE, &nxpdev->tx_state)) {
+> +		ps_start_timer(nxpdev);
+> +	} else {
+> +		data->ps_cmd = PS_CMD_ENTER_PS;
+> +		schedule_work(&data->work);
+> +	}
+> +}
+> +
+> +static int ps_init_work(struct hci_dev *hdev)
+> +{
+> +	struct ps_data *psdata = kzalloc(sizeof(*psdata), GFP_KERNEL);
+
+Don't do allocations in variable declarations :(
+
+> +	} else if (req_len == sizeof(uart_config)) {
+> +		uart_config.clkdiv.address = __cpu_to_le32(CLKDIVADDR);
+> +		uart_config.clkdiv.value = __cpu_to_le32(0x00c00000);
+> +		uart_config.uartdiv.address = __cpu_to_le32(UARTDIVADDR);
+> +		uart_config.uartdiv.value = __cpu_to_le32(1);
+> +		uart_config.mcr.address = __cpu_to_le32(UARTMCRADDR);
+> +		uart_config.mcr.value = __cpu_to_le32(MCR);
+> +		uart_config.re_init.address = __cpu_to_le32(UARTREINITADDR);
+> +		uart_config.re_init.value = __cpu_to_le32(INIT);
+> +		uart_config.icr.address = __cpu_to_le32(UARTICRADDR);
+> +		uart_config.icr.value = __cpu_to_le32(ICR);
+> +		uart_config.fcr.address = __cpu_to_le32(UARTFCRADDR);
+> +		uart_config.fcr.value = __cpu_to_le32(FCR);
+> +		uart_config.crc = swab32(nxp_fw_dnld_update_crc(0UL,
+> +								(char *)&uart_config,
+> +								sizeof(uart_config) - 4));
+> +		serdev_device_write_buf(nxpdev->serdev, (u8 *)&uart_config, req_len);
+> +		serdev_device_wait_until_sent(nxpdev->serdev, 0);
+
+You are sending magic commands over the serial connection, are you sure
+that is ok?
+
+> +	if (requested_len & 0x01) {
+> +		/* The CRC did not match at the other end.
+> +		 * Simply send the same bytes again.
+> +		 */
+> +		requested_len = nxpdev->fw_v1_sent_bytes;
+> +		bt_dev_err(hdev, "CRC error. Resend %d bytes of FW.", requested_len);
+
+Why is this an error sent to the kernel log?
+
+Again, be quiet if there is nothing that a user can do.
+
+thanks,
+
+greg k-h
