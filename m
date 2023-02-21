@@ -2,136 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ADDB69E189
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 14:42:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CED4F69E105
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 14:06:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233226AbjBUNmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 08:42:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60502 "EHLO
+        id S233733AbjBUNGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 08:06:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233032AbjBUNmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 08:42:35 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F2A0298E4;
-        Tue, 21 Feb 2023 05:42:33 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31LC6Vw7020280;
-        Tue, 21 Feb 2023 06:06:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1676981191;
-        bh=JA31+o79aoRTpPnIzNT5dbG0WqplPar2Vl+yLOC/gfo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=jeKEx2k+KJmM3VfW1nLVxaef9Jsm/dOrhkMvGzhLy0BaaNgC7rHeCe1zLa1FNNPBz
-         /vuxhSQcxGgGerxpFHq3CQ4CWBzEzE3mZ5RGAG8xjx7BarGb8wap6c/EjrORGY4fPA
-         HCK/0zQIM9YEcmZyahc78fDMip7fEWPH6qQkI868=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31LC6VZm006288
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Feb 2023 06:06:31 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Feb 2023 06:06:31 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Feb 2023 06:06:31 -0600
-Received: from uda0500640.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31LC6CbR030829;
-        Tue, 21 Feb 2023 06:06:28 -0600
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-To:     <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v10 4/9] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
-Date:   Tue, 21 Feb 2023 17:36:07 +0530
-Message-ID: <20230221120612.27366-5-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230221120612.27366-1-r-gunasekaran@ti.com>
-References: <20230221120612.27366-1-r-gunasekaran@ti.com>
+        with ESMTP id S233481AbjBUNGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 08:06:42 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A361826CFF;
+        Tue, 21 Feb 2023 05:06:41 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31LCbFbR015942;
+        Tue, 21 Feb 2023 13:06:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : reply-to : references : mime-version :
+ content-type : in-reply-to; s=qcppdkim1;
+ bh=g1P63C+a580kYDfcdmzQvxGNzrNC04RSAQ2tEvn68zk=;
+ b=Q7OK7LMoLOgTp1KJe7muKbm086Q1tbKWe4m549VWQv0gAbd6DixXjBHMQ7tiAj8UVYps
+ zeRmvt4KDc2tOVJ3uytQCqOPOgGo927I0WYOnOBc0xNEq0rKpuQ4YQUG+OUx8s14yVwp
+ Xe43JnGI5zwVijib2wC2sHaCKx/zw5viCWZel2JUT6aRsQMTmZ09sZgjtwggt/PHRIgX
+ h/HphD0KpPfCzvNfqzeFZEGFmh9EN7vfmqzx0amEwgJFfYFbCOyqMaXOk0OzXdoZP2KA
+ ZXqfNo5H3s7EUbrWjB2M2DnYWAHtMTEdHXBSFfmzHrBTMsk9OJwq5T1XsAdkSw0ZIl3q tA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nvnbt97xh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Feb 2023 13:06:29 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31LD6SeT019399
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Feb 2023 13:06:28 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 21 Feb
+ 2023 05:06:21 -0800
+Date:   Tue, 21 Feb 2023 18:36:18 +0530
+From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v10 13/26] gunyah: vm_mgr: Add ioctls to support basic
+ non-proxy VM boot
+Message-ID: <20230221130618.GB787573@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212427.3316544-1-quic_eberman@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20230214212427.3316544-1-quic_eberman@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8D9JSBLljUsyWQQyWmRSmhsM8u3vA7SX
+X-Proofpoint-ORIG-GUID: 8D9JSBLljUsyWQQyWmRSmhsM8u3vA7SX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-21_07,2023-02-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ priorityscore=1501 mlxlogscore=774 bulkscore=0 malwarescore=0 adultscore=0
+ impostorscore=0 clxscore=1015 mlxscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302210111
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+* Elliot Berman <quic_eberman@quicinc.com> [2023-02-14 13:24:26]:
 
-Add support for two instance of OSPI in J721S2 SoC.
+> +static int gh_vm_start(struct gh_vm *ghvm)
+> +{
+> +	struct gh_vm_mem *mapping;
+> +	u64 dtb_offset;
+> +	u32 mem_handle;
+> +	int ret;
+> +
+> +	down_write(&ghvm->status_lock);
+> +	if (ghvm->vm_status != GH_RM_VM_STATUS_LOAD) {
+> +		up_write(&ghvm->status_lock);
+> +		return 0;
+> +	}
+> +
+> +	ghvm->vm_status = GH_RM_VM_STATUS_RESET;
+> +
+> +	list_for_each_entry(mapping, &ghvm->memory_mappings, list) {
+> +		switch (mapping->share_type) {
+> +		case VM_MEM_LEND:
+> +			ret = gh_rm_mem_lend(ghvm->rm, &mapping->parcel);
+> +			break;
+> +		case VM_MEM_SHARE:
+> +			ret = gh_rm_mem_share(ghvm->rm, &mapping->parcel);
+> +			break;
+> +		}
+> +		if (ret) {
+> +			pr_warn("Failed to %s parcel %d: %d\n",
+> +				mapping->share_type == VM_MEM_LEND ? "lend" : "share",
+> +				mapping->parcel.label,
+> +				ret);
+> +			goto err;
+> +		}
+> +	}
+> +
+> +	mapping = gh_vm_mem_find_mapping(ghvm, ghvm->dtb_config.gpa, ghvm->dtb_config.size);
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
-Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
-Link: https://lore.kernel.org/r/20221122101616.770050-4-mranostay@ti.com
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
----
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+It may be some optimization to derive DTB 'mapping' in the first loop you have
+above (that lends/shares all mappings)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 0af242aa9816..7e0e608578e1 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -306,4 +306,51 @@
- 			ti,cpts-periodic-outputs = <2>;
- 		};
- 	};
-+
-+	fss: bus@47000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
-+			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
-+			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
-+
-+		status = "disabled";
-+
-+		ospi0: spi@47040000 {
-+			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-+			reg = <0x00 0x47040000 0x00 0x100>,
-+			      <0x05 0x00000000 0x01 0x00000000>;
-+			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+			clocks = <&k3_clks 109 5>;
-+			assigned-clocks = <&k3_clks 109 5>;
-+			assigned-clock-parents = <&k3_clks 109 7>;
-+			assigned-clock-rates = <166666666>;
-+			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			status = "disabled";
-+		};
-+
-+		ospi1: spi@47050000 {
-+			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-+			reg = <0x00 0x47050000 0x00 0x100>,
-+			      <0x07 0x00000000 0x01 0x00000000>;
-+			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+			clocks = <&k3_clks 110 5>;
-+			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			status = "disabled";
-+		};
-+
-+	};
- };
--- 
-2.17.1
 
+> +	if (!mapping) {
+> +		pr_warn("Failed to find the memory_handle for DTB\n");
+> +		ret = -EINVAL;
+> +		goto err;
+> +	}
