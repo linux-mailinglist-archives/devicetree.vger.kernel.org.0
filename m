@@ -2,105 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD3A69DECD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 12:27:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF70269DEE1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 12:34:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233854AbjBUL1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 06:27:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
+        id S233284AbjBULei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 06:34:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233861AbjBUL1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 06:27:38 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A15279A1
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 03:27:13 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id h16so15975384edz.10
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 03:27:13 -0800 (PST)
+        with ESMTP id S232613AbjBULei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 06:34:38 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B22F233E9
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 03:34:36 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id ec43so15366282edb.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 03:34:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ETq34b+8/4BiKKBj54uxKBTL+zouxa+WZyrIv2vhc4=;
-        b=d7lROgunoVvoE0v+39bzYr3dX2eNRLypRPfua5vQqf0uyVkgiCHdKSgSwmSjjfST/f
-         ne4omh5LS9UUUR4zoZdD7GtghFwntlo9r4ZRdXIihSRm1kwSb204j8gVsL9hDoS19hDx
-         QqJ/d95Uqho7+SfE6n45R8/acVE5V409dNsYTV5GsEklz89eSbcP9oxprDB3uPpFOskd
-         inLd4wP2b8jZybpFN3OHXbuyYgmM8PU1s2tXuRRVCIrWN3QWLbl1lWV3lO533/SkroGK
-         kQSLyhXqNVUvYhOcF6kqSY4zlLss5ck/8lwRRDTwXlt9DU9fKcnvWDfdQ6qv0xhA7JBj
-         ruxw==
+        bh=gRhJ3F3EMXBCZsjf514m9mlmqgmDF0q/BU3nFTSvTME=;
+        b=cws8YytRXYsU3GAB62vN5Nw/iLyHOmZRCNS8f2dd69tKffdun6npWzCuiK0PSlugoP
+         v7jnr+R2KFBXNY4nVvGsq5lAplQAx77Vrgx9X9J+mPfc+vWTbJCHaBII4XfInhdRo3vZ
+         MDTgixUgxmdRe2vy/VXsezeAP/4KfH7fqcGejDke9wvgNSChBDsVCvSgQbnJf7uqRaVm
+         hCsGTReFtC8Q1DGvCANAp6jr7ObqyMahFEnKPBvr5akviq2AVKTiCOWca2PtaD52ixTT
+         mwG/xshTWaeW7cgqbjo18l6DBmZCY+NXaCOLtLFxAw7pLNJFMk6GkveF5fRaq6yerb6Z
+         4Ogg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ETq34b+8/4BiKKBj54uxKBTL+zouxa+WZyrIv2vhc4=;
-        b=f58m0WvH1QOrByKQPXRjg/Z6E1lY+X50EbP26J1/q5oNs5BoDPy+s2+nyN7B0ZidGV
-         AmaRUl/0ASm3Mec2mTsvA6MFgYUpolRbTM/vcai32duoAtOfz/sYcmXMzvipksK7jcf4
-         5WapwgpGLjw+KqSmdmn0ytnay9km0jvv3VxFK9jIHuh6jIujqD1FTl1hGaaF7WQ6EROP
-         YKAONYBodN9Z2gc+xVQ7/ttIop1FQLRXgvGNVgebr7EP88IDysSQuU4a6IC2LwE4GfMq
-         J1TJZ/Y2Nhi0enqqARMWUBb8Jqz8iP4nYS3dKhpdO/eO7jWdjVMZeqhXyd6bufjCPsyI
-         WOqQ==
-X-Gm-Message-State: AO0yUKWatVCXqYFS6eJEeWQ35WpSlxGYHwdDpqvz2aSzp0SEJRAhJPGt
-        E/H8CWgobTm42uft/I72uB2QGw==
-X-Google-Smtp-Source: AK7set9Zkid+Zm3lzIDo8TDy9R/cdO+SwqsnhDqTyk4yhEQW4BIqgECPIrajKiHdtjkWj+oSarHJgA==
-X-Received: by 2002:a17:907:7288:b0:8bd:dc0:3834 with SMTP id dt8-20020a170907728800b008bd0dc03834mr13639700ejc.34.1676978829402;
-        Tue, 21 Feb 2023 03:27:09 -0800 (PST)
+        bh=gRhJ3F3EMXBCZsjf514m9mlmqgmDF0q/BU3nFTSvTME=;
+        b=WbnEH3zsj99mpee9SydZJB5m3M4kZE5KSBpGUYworyD7JELOcqUrrYKoN9OV7EhLnu
+         +JWbYd13PDrI56FID7BVSRXrtdmxal45a60mbJ6lgYvF85JE/TxVLPQyl+9tyuDxfgTa
+         /j3093NbNqbHP7mLbTPuJ0lxYdjUTblSIbFfj9JcYCnpxj0gXJdg8KdmjmsKMW2S34GF
+         NVOxdhgJfguPYLfRftgRlCPc5roHO16HVdLBlnps+Kj328QCu+0uYJ6jn7nbvze4W+fz
+         WRfQlNIL1odjsboeosbeR1Fw/KQDFsZD/6WeFSt4vymoRwVqCqVXLY5rsujpoXZ+DvsX
+         WrdA==
+X-Gm-Message-State: AO0yUKXuhby2G8A5gYKo2gXCao32bFAc/gDpdwzd7/k93R+JqV8HogVz
+        DBC5q9EYmeH9LmlS/eQqbNHZhA==
+X-Google-Smtp-Source: AK7set+onev3LQzFX53s1LDkEuu+edxDeZQEjA8zAGtB/EMQLk0XSVGOEV3VzoJdK61Pz+Km02y6DA==
+X-Received: by 2002:a17:906:fad4:b0:8b1:7fa:ba22 with SMTP id lu20-20020a170906fad400b008b107faba22mr12406319ejb.27.1676979274817;
+        Tue, 21 Feb 2023 03:34:34 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t14-20020a1709066bce00b008cff300cf47sm2818085ejs.72.2023.02.21.03.27.07
+        by smtp.gmail.com with ESMTPSA id n4-20020a170906724400b008df97fae83dsm662852ejk.91.2023.02.21.03.34.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Feb 2023 03:27:09 -0800 (PST)
-Message-ID: <ef4437e4-6f88-2f4a-6af2-7cee0b402fea@linaro.org>
-Date:   Tue, 21 Feb 2023 12:27:07 +0100
+        Tue, 21 Feb 2023 03:34:34 -0800 (PST)
+Message-ID: <081f1335-bbd2-4e61-f3c2-f43ad353fcf6@linaro.org>
+Date:   Tue, 21 Feb 2023 12:34:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 07/11] dt-bindings: clock: Add StarFive JH7110
- Video-Output clock and reset generator
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: imx8mp-media-blk-ctrl: Align
+ block controller example name
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230221083323.302471-1-xingyu.wu@starfivetech.com>
- <20230221083323.302471-8-xingyu.wu@starfivetech.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+References: <20230220035051.327847-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230221083323.302471-8-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230220035051.327847-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 09:33, Xingyu Wu wrote:
-> Add bindings for the Video-Output clock and reset generator (VOUTCRG)
-> on the JH7110 RISC-V SoC by StarFive Ltd.
+On 20/02/2023 04:50, Marek Vasut wrote:
+> Align the block controller example node name with Linux imx8mp.dtsi .
+> No functional change.
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../clock/starfive,jh7110-voutcrg.yaml        | 96 +++++++++++++++++++
->  .../dt-bindings/clock/starfive,jh7110-crg.h   | 22 +++++
->  .../dt-bindings/reset/starfive,jh7110-crg.h   | 16 ++++
->  3 files changed, 134 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Paul Elder <paul.elder@ideasonboard.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: Adjust the label too
+> ---
+>  .../devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml  | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> index dadb6108e3213..71deebe902d52 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> @@ -94,7 +94,7 @@ examples:
+>      #include <dt-bindings/clock/imx8mp-clock.h>
+>      #include <dt-bindings/power/imx8mp-power.h>
+>  
+> -    media_blk_ctl: blk-ctl@32ec0000 {
+> +    media_blk_ctrl: blk-ctrl@32ec0000 {
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No, because the label is unused. Instead you can just drop it. Unused
+labels should not be in DT binding examples, although we rarely comment
+about it.
 
 Best regards,
 Krzysztof
