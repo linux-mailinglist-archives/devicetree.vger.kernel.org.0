@@ -2,66 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59BF769E094
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 13:42:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E769369E09D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 13:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234681AbjBUMmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 07:42:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38644 "EHLO
+        id S234780AbjBUMo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 07:44:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233901AbjBUMmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 07:42:37 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC50166CB;
-        Tue, 21 Feb 2023 04:42:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676983356; x=1708519356;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qdSAFaUWp6AvhtEnnIj1yeelAd4itBgU8TC7d7tUjeI=;
-  b=gQ+9VuhWDnTarRLQ76/+M3IZna57jk2dVOgkyEGmnMrBSX83E/b1Ki5y
-   2CLqFkKPg4RgTO5/gHepmdDHKXybBFWF2CHUFAVEYZ79MTyLaHrfxRAc0
-   RpbF7+sYUYO8bgVC0z0ai1xxFFW8NUFThWjndDXPLr3bZw7Wqv/P8kBVR
-   qn02ynHO9zngSzMFe9QE8pvtHwbE48Q9+2D7bTOMI5gn/P08CyYRSpipl
-   tDJKwTHC7igLnyRvPhqmpef/OR9S0jTVj2cQebXCuZRMSqumKvGKxfOmS
-   wnDi2qFF7gD6LFtF6XkN6+SolmxPWewo0oBZIvd6BMDh5t5QtZP+fHbZA
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="320751456"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
-   d="scan'208";a="320751456"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2023 04:42:35 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="649165040"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
-   d="scan'208";a="649165040"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2023 04:42:34 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-        by kekkonen.fi.intel.com (Postfix) with SMTP id 505861202B1;
-        Tue, 21 Feb 2023 14:42:31 +0200 (EET)
-Date:   Tue, 21 Feb 2023 14:42:31 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
- camera sensor binding
-Message-ID: <Y/S8N0c8W/qQtjOj@kekkonen.localdomain>
-References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
- <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
- <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
- <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
- <YggZqM81nCJcv4vZ@paasikivi.fi.intel.com>
- <YggwuBlEmjzhxYt1@pendragon.ideasonboard.com>
- <Y/QHzsYzwDG2uclC@pendragon.ideasonboard.com>
+        with ESMTP id S234786AbjBUMo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 07:44:27 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06662685E;
+        Tue, 21 Feb 2023 04:44:24 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31L6sKh8015495;
+        Tue, 21 Feb 2023 12:44:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : reply-to : references : mime-version :
+ content-type : in-reply-to; s=qcppdkim1;
+ bh=ZI8D5K709Bj5PQ8gtOgpfiSKxnJV6eRTY/NXPIqUoRI=;
+ b=KrJHg0V1vYg1lS5aa4pf2m4uHK0/5Ma9nEJJHo+TAX9+IClJEcq1JWDZIgxmO+5hmtxx
+ gxrfPlguhYIc2siG7cY1sn6259HqEQsfh1H/fLy2cZlK6dAbwH4TQPn6QZNPqyfEMwoH
+ ku9Aa1HvF8ylSLKNv85FnTp6VpNF+WquLMR4Fl+IMNFfCj++EhiyAYXEC7oWQpWIg7/7
+ 18OzX/aqraNx2kLHl2YK4zNvR2fyj16V9tyxQKWOrEwMStUC1liDWtrra9pYkR3MT2x4
+ otNixMqdhGpeJP/PtSnH036zuGnbl0bryDtr4ay4L3AkCvgbQxmGC2Jz0T0rhBwD2Ecq Og== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nvprgs2j6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Feb 2023 12:44:07 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31LCi6Vx024049
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Feb 2023 12:44:06 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 21 Feb
+ 2023 04:43:59 -0800
+Date:   Tue, 21 Feb 2023 18:13:55 +0530
+From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v10 12/26] gunyah: vm_mgr: Add/remove user memory regions
+Message-ID: <20230221124355.GA1437176@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212417.3315422-1-quic_eberman@quicinc.com>
+ <db397198-d079-faa5-691f-c4b06822d2f3@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <Y/QHzsYzwDG2uclC@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+In-Reply-To: <db397198-d079-faa5-691f-c4b06822d2f3@linaro.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QiGmVfkHlvR8lgLkQ7NFZOeUOPGU4RRv
+X-Proofpoint-ORIG-GUID: QiGmVfkHlvR8lgLkQ7NFZOeUOPGU4RRv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-21_06,2023-02-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ mlxlogscore=390 lowpriorityscore=0 spamscore=0 priorityscore=1501
+ impostorscore=0 adultscore=0 phishscore=0 mlxscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302210107
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,57 +95,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+* Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2023-02-21 12:28:53]:
 
-On Tue, Feb 21, 2023 at 01:52:46AM +0200, Laurent Pinchart wrote:
-> > > > > > +        properties:
-> > > > > > +          bus-type:
-> > > > > > +            enum: [4, 5, 6]
-> > > > > 
-> > > > > With bus-type 5, shouldn't you have the parallel interface sync signal
-> > > > > polarity properties? Possibly also others if the hardware supports them.
-> > > > 
-> > > > As far as I can tell, the hardware has fixed polarities for all signals.
-> > > > Both hsync and vsync (called LINE_VALID and FRAME_VALID here) are active
-> > > > high.
-> > > 
-> > > Right, then you won't need these.
-> > > 
-> > > What about the link-frequencies property?
-> > 
-> > That's something I've meant to ask, should the link-frequencies property
-> > be specified for parallel buses too, or only CSI-2 ?
+> > +void gh_vm_mem_reclaim(struct gh_vm *ghvm, struct gh_vm_mem *mapping)
+> > +	__must_hold(&ghvm->mm_lock)
+> > +{
+> > +	int i, ret = 0;
+> > +
+> > +	if (mapping->parcel.mem_handle != GH_MEM_HANDLE_INVAL) {
+> > +		ret = gh_rm_mem_reclaim(ghvm->rm, &mapping->parcel);
+> > +		if (ret)
+> > +			pr_warn("Failed to reclaim memory parcel for label %d: %d\n",
+> > +				mapping->parcel.label, ret);
 > 
-> Any feedback on this ?
-
-Yes.
-
-It very likely matters there as well but probably less so than on CSI-2.
-
-link-frequencies isn't specific to CSI-2 either.
-
+> what the behavoir of hypervisor if we failed to reclaim the pages?
 > 
-> > We also need to document how a DT writer should select the link
-> > frequencies. The process is complicated, saying that the property is
-> > required without explaining how the values can be computed (EMC
-> > constraints aside, just from a functional point of view) isn't nice. If
-> > you explain this to me, I can put it in a patch :-)
-> 
-> Or on this ? :-)
+> > +	}
+> > +
+> > +	if (!ret)
+> So we will leave the user pages pinned if hypervisor call fails, but further
+> down we free the mapping all together.
 
-Generally the hardware people will tell you this when it matters. :-) But
-on a development board you can probably have anything the hardware
-supports.
+I think we should cleanup and bail out here, rather than try continuing past the
+error. For ex: imagine userspace were to reclaim with VM still running. We would
+leave the pages pinned AFAICS (even after VM terminates later) and also not
+return any error to userspace indicating failure to reclaim.
 
-I guess we could add a few words on this to e.g.
-Documentation/driver-api/media/camera-sensor.rst .
-
-Most drivers will support a few frequencies only and sometimes the vendor,
-due to someone needing it, provides another configuration with a different
-frequency. Many sensors also have datasheets that are precise enough to
-calculate this yourself.
-
--- 
-Regards,
-
-Sakari Ailus
