@@ -2,115 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DBFD69E0BA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 13:48:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 963C769E0F4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 14:01:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233887AbjBUMsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 07:48:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47266 "EHLO
+        id S233534AbjBUNBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 08:01:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233489AbjBUMsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 07:48:40 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C895C3595;
-        Tue, 21 Feb 2023 04:48:22 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 140E2519;
-        Tue, 21 Feb 2023 13:48:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1676983701;
-        bh=92SGzzXXowAiCNzfDsVMTyZZXu8ho+adWw8J/+Bd3OA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TqtbnfQ96LQYY5FGsxqNrA7Hf75DXhBIEy6+afsrA0UzoPzYNs5oed4CHs1Wx37Nj
-         YeeIbjp6IQkeGW04rIRWPmPoNgVUtAVdDqypaM7rVjYjJWZKsMqwy7qE+vMREylPjP
-         8XUpHhc7oyZdzjksNMejXvam2iJ9xNAAoG3AZxDM=
-Date:   Tue, 21 Feb 2023 14:48:19 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
- camera sensor binding
-Message-ID: <Y/S9kx33unHSQpfl@pendragon.ideasonboard.com>
-References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
- <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
- <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
- <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
- <YggZqM81nCJcv4vZ@paasikivi.fi.intel.com>
- <YggwuBlEmjzhxYt1@pendragon.ideasonboard.com>
- <Y/QHzsYzwDG2uclC@pendragon.ideasonboard.com>
- <Y/S8N0c8W/qQtjOj@kekkonen.localdomain>
+        with ESMTP id S230155AbjBUNBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 08:01:30 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF9D17CE9;
+        Tue, 21 Feb 2023 05:01:27 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9CEF624E2AE;
+        Tue, 21 Feb 2023 21:01:19 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
+ 2023 21:01:19 +0800
+Received: from [192.168.125.128] (183.27.98.67) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
+ 2023 21:01:18 +0800
+Message-ID: <43d00fd9-ab24-442e-3f82-208edaf399d0@starfivetech.com>
+Date:   Tue, 21 Feb 2023 21:01:40 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Y/S8N0c8W/qQtjOj@kekkonen.localdomain>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 01/11] dt-bindings: clock: Add StarFive JH7110
+ System-Top-Group clock and reset generator
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230221083323.302471-1-xingyu.wu@starfivetech.com>
+ <20230221083323.302471-2-xingyu.wu@starfivetech.com>
+ <430318ed-5b30-e549-a5ce-df83aa18adf9@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <430318ed-5b30-e549-a5ce-df83aa18adf9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.67]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+On 2023/2/21 19:25, Krzysztof Kozlowski wrote:
+> On 21/02/2023 09:33, Xingyu Wu wrote:
+>> Add bindings for the System-Top-Group clock and reset generator (STGCRG)
+>> on the JH7110 RISC-V SoC by StarFive Ltd.
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> 
+> 
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 93eb504c3b21..2e70c9f21989 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -19914,6 +19914,7 @@ F:	arch/riscv/boot/dts/starfive/
+>>  STARFIVE JH71X0 CLOCK DRIVERS
+>>  M:	Emil Renner Berthing <kernel@esmil.dk>
+>>  M:	Hal Feng <hal.feng@starfivetech.com>
+>> +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
+> 
+> No improvements here. You add here new bindings for one device and then
+> - without explanation - add yourself to all Starfive clock bindings.
+> Either explain it or drop it or move it to separate patch.
+> 
+> You already got comment for this.
+> 
 
-On Tue, Feb 21, 2023 at 02:42:31PM +0200, Sakari Ailus wrote:
-> On Tue, Feb 21, 2023 at 01:52:46AM +0200, Laurent Pinchart wrote:
-> > > > > > > +        properties:
-> > > > > > > +          bus-type:
-> > > > > > > +            enum: [4, 5, 6]
-> > > > > > 
-> > > > > > With bus-type 5, shouldn't you have the parallel interface sync signal
-> > > > > > polarity properties? Possibly also others if the hardware supports them.
-> > > > > 
-> > > > > As far as I can tell, the hardware has fixed polarities for all signals.
-> > > > > Both hsync and vsync (called LINE_VALID and FRAME_VALID here) are active
-> > > > > high.
-> > > > 
-> > > > Right, then you won't need these.
-> > > > 
-> > > > What about the link-frequencies property?
-> > > 
-> > > That's something I've meant to ask, should the link-frequencies property
-> > > be specified for parallel buses too, or only CSI-2 ?
-> > 
-> > Any feedback on this ?
-> 
-> Yes.
-> 
-> It very likely matters there as well but probably less so than on CSI-2.
-> 
-> link-frequencies isn't specific to CSI-2 either.
-> 
-> > > We also need to document how a DT writer should select the link
-> > > frequencies. The process is complicated, saying that the property is
-> > > required without explaining how the values can be computed (EMC
-> > > constraints aside, just from a functional point of view) isn't nice. If
-> > > you explain this to me, I can put it in a patch :-)
-> > 
-> > Or on this ? :-)
-> 
-> Generally the hardware people will tell you this when it matters. :-) But
-> on a development board you can probably have anything the hardware
-> supports.
-> 
-> I guess we could add a few words on this to e.g.
-> Documentation/driver-api/media/camera-sensor.rst .
+Sorry, I didn't understand what you meant before. Now my understanding is that, 
+If I improvements JH71X0 driver no JH7110 driver, I could add this here. Right?
 
-Please :-) When the sensor driver supports multiple link frequencies,
-and in particular a continuous range of frequencies, I want a document I
-can point people to precisely answer the "I have no idea about those
-stuff, what value do I put in my device tree?" question. It should
-include a clear procedure to calculate a value, not just a generic
-statement along the lines of "pick a value that is suitable for you".
+Is it OK if I do it this way to move it to separate patch like this?:
++STARFIVE JH7110 STG CLOCK DRIVERS
++M:	Xingyu Wu <xingyu.wu@starfivetech.com>
 
-> Most drivers will support a few frequencies only and sometimes the vendor,
-> due to someone needing it, provides another configuration with a different
-> frequency. Many sensors also have datasheets that are precise enough to
-> calculate this yourself.
 
--- 
-Regards,
-
-Laurent Pinchart
+Best Regards,
+Xingyu Wu
