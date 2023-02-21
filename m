@@ -2,55 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBFA69E9F3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 23:17:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA5B69EA04
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 23:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjBUWRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 17:17:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44122 "EHLO
+        id S229944AbjBUWXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 17:23:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjBUWRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 17:17:23 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6600730B25;
-        Tue, 21 Feb 2023 14:17:22 -0800 (PST)
+        with ESMTP id S229561AbjBUWXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 17:23:18 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25461EBD1;
+        Tue, 21 Feb 2023 14:23:17 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 18FA8B80EF7;
-        Tue, 21 Feb 2023 22:17:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABDBFC433EF;
-        Tue, 21 Feb 2023 22:17:19 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 69674611EA;
+        Tue, 21 Feb 2023 22:23:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57AF7C433EF;
+        Tue, 21 Feb 2023 22:23:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677017839;
-        bh=bs1akhKjv3J4NmgD6apUPLidQ9TEW782FUgeyLThyxA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=C+6QWIYGa1uLXRUxWQg7WY9brhFOOPrRR8c9ih5Y6tzBubrze2OOYnpKlCp45vK4d
-         kFhnNQqNod0heMGMtlamwIfY1Q33DssADqtXcAOYAc/O7iyaaRmwZIb/Fxvi0utuy1
-         DkE2dL29TGy9GA80R9+GfHrQNeviPT8NQBNYrh1iWissJtOgff5AMtLpGsUl/sXZch
-         HRJz51hvEv0wqVF+gTuD/lrmw/z/eCLzNLt7BFxJD5r5TncYdKrgfNG2tyi2Re2SIz
-         ytkMmDBiJx62wHzB6DFj6r0ptT+huSMbu370vRq6dqKcZadSpCVaD/ChCte0A4ivVE
-         4tuolzr56XuJw==
-Message-ID: <72953dc9371b87da8d03c63633d7d9dd.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <Y+5z8skN2DuvxDEL@spud>
-References: <20221220005054.34518-1-hal.feng@starfivetech.com> <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud> <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com> <Y6tSWB2+98a8k9Qw@spud> <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com> <Y+5z8skN2DuvxDEL@spud>
-Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system clock and reset generator
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1677018196;
+        bh=m4xd55FJZ2TFrfhomdp1xq42bgvOVIIPvxwzKIFHpqc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sCoMWGucPwXtiWdo75mO0tuuTUAqauh3L7tVCTsdGBJFuFB0dUV62jsLgSirb42GP
+         QLSVWSCbNXE7HRdneHZj73PltQIr4NxcpIEKre2V9us7O4YNdhnQorIfGIlOSATfBt
+         pins3t/rfECz9Pk+IACulJ7DhTEfwbWFa+HJAhQCNV92YzSRlchDaATmvQyK2wKslC
+         XBDrVpsgHPYxPsF9p8njDWhYA16Lu8YZY1sG/kgr6t6W6HC0dh6aLMPobyCtKJaa0W
+         DhO+vOO9SLFWl42jsr+KtF25bxQLjzH90vvyW4mJ4FP6IODXxd1zyttNxIF0UsUEFA
+         JpZyb1/BB97AA==
+Date:   Tue, 21 Feb 2023 22:23:13 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-To:     Conor Dooley <conor@kernel.org>,
-        Hal Feng <hal.feng@starfivetech.com>
-Date:   Tue, 21 Feb 2023 14:17:17 -0800
-User-Agent: alot/0.10
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v1 04/10] ASoC: tegra: Support RT5631 by machine driver
+Message-ID: <Y/VEUaOIE1mk1utt@sirena.org.uk>
+References: <20230221183211.21964-1-clamor95@gmail.com>
+ <20230221183211.21964-5-clamor95@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tOijhv7Qqz92bCVE"
+Content-Disposition: inline
+In-Reply-To: <20230221183211.21964-5-clamor95@gmail.com>
+X-Cookie: Serving suggestion.
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,120 +65,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Conor Dooley (2023-02-16 10:20:34)
-> Hey Hal!
->=20
-> On Thu, Feb 16, 2023 at 10:42:20PM +0800, Hal Feng wrote:
-> > On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
-> > > On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
-> > >> On Tue, 20 Dec 2022 23:14:39 +0000, Conor Dooley wrote:
-> > >> > On Tue, Dec 20, 2022 at 08:50:50AM +0800, Hal Feng wrote:
-> > >> > > From: Emil Renner Berthing <kernel@esmil.dk>
-> > >> > >=20
-> > >> > > Add bindings for the system clock and reset generator (SYSCRG) o=
-n the
-> > >> > > JH7110 RISC-V SoC by StarFive Ltd.
-> > >> > >=20
-> > >> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > >> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > >=20
-> > >> > > +  clocks:
-> > >> > > +    items:
-> > >> > > +      - description: Main Oscillator (24 MHz)
-> > >> > > +      - description: GMAC1 RMII reference
-> > >> > > +      - description: GMAC1 RGMII RX
-> > >> > > +      - description: External I2S TX bit clock
-> > >> > > +      - description: External I2S TX left/right channel clock
-> > >> > > +      - description: External I2S RX bit clock
-> > >> > > +      - description: External I2S RX left/right channel clock
-> > >> > > +      - description: External TDM clock
-> > >> > > +      - description: External audio master clock
-> > >> >=20
-> > >> > So, from peeking at the clock driver & the dt - it looks like a bu=
-nch of
-> > >> > these are not actually required?
-> > >>=20
-> > >> These clocks are used as root clocks or optional parent clocks in cl=
-ock tree.
-> > >> Some of them are optional, but they are required if we want to descr=
-ibe the
-> > >> complete clock tree of JH7110 SoC.
-> > >=20
-> > > Perhaps I have a misunderstand of what required means. To me, required
-> > > means "you must provide this clock for the SoC to operate in all
-> > > configurations".
-> > > Optional therefore would be for things that are needed only for some
-> > > configurations and may be omitted if not required.
-> > >=20
-> > > From your comment below, boards with a JH7110 may choose not to popul=
-ate
-> > > both external clock inputs to a mux. In that case, "dummy" clocks sho=
-uld
-> > > not have to be provided in the DT of such boards to satisfy this bind=
-ing
-> > > which seems wrong to me..
 
-I agree. We don't want there to be "dummy" clks in DT. It should never
-be required.
+--tOijhv7Qqz92bCVE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> >=20
-> > Please see the picture of these external clocks in clock tree.
-> >=20
-> > # mount -t debugfs none /mnt
-> > # cat /mnt/clk/clk_summary
-> >                                  enable  prepare  protect              =
-                  duty  hardware
-> >    clock                          count    count    count        rate  =
- accuracy phase  cycle    enable
-> > -----------------------------------------------------------------------=
---------------------------------
-> >  *mclk_ext*                             0        0        0    12288000=
-          0     0  50000         Y
-> >  *tdm_ext*                              0        0        0    49152000=
-          0     0  50000         Y
-> >  *i2srx_lrck_ext*                       0        0        0      192000=
-          0     0  50000         Y
-> >  *i2srx_bclk_ext*                       0        0        0    12288000=
-          0     0  50000         Y
-> >  *i2stx_lrck_ext*                       0        0        0      192000=
-          0     0  50000         Y
-> >  *i2stx_bclk_ext*                       0        0        0    12288000=
-          0     0  50000         Y
-> >  *gmac1_rgmii_rxin*                     0        0        0   125000000=
-          0     0  50000         Y
-> >     gmac1_rx                          0        0        0   125000000  =
-        0     0  50000         Y
-> >        gmac1_rx_inv                   0        0        0   125000000  =
-        0   180  50000         Y
-> >  *gmac1_rmii_refin*                     0        0        0    50000000=
-          0     0  50000         Y
-> >     gmac1_rmii_rtx                    0        0        0    50000000  =
-        0     0  50000         Y
-> >        gmac1_tx                       0        0        0    50000000  =
-        0     0  50000         N
-> >           gmac1_tx_inv                0        0        0    50000000  =
-        0   180  50000         Y
-> >  *osc*                                  4        4        0    24000000=
-          0     0  50000         Y
-> >     apb_func                          0        0        0    24000000  =
-        0     0  50000         Y
-> >  ...
-> >=20
-> > The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
-> > actually used as the parent of other clocks.
->=20
-> > The "dummy" clocks
-> > you said are all internal clocks.
->=20
-> No, what I meant by "dummy" clocks is that if you make clocks "required"
-> in the binding that are not needed by the hardware for operation a
-> customer of yours might have to add "dummy" clocks to their devicetree
-> to pass dtbs_check.
+On Tue, Feb 21, 2023 at 08:32:05PM +0200, Svyatoslav Ryhel wrote:
 
-They can set the phandle specifier to '<0>' to fill in the required
-property when there isn't anything there. If this is inside an SoC, it
-is always connected because silicon can't change after it is made
-(unless this is an FPGA). Therefore, any and all input clocks should be
-listed as required. If the clk controller has inputs that are
-pads/balls/pins on the SoC then they can be optional if a valid design
-can leave those pins not connected.
+> Add Realtek ALC5631/RT5631 codec support to the Tegra ASoC machine driver.
+> The RT5631 codec is found on devices like ASUS Transformer TF201, TF700T
+> and other Tegra-based Android tablets.
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Ion Agorria <ion@agorria.com>
+
+Your signoff should be last if you're the one sending this.
+
+> +static unsigned int tegra_machine_mclk_rate_6mhz(unsigned int srate)
+> +{
+> +	unsigned int mclk;
+> +
+> +	switch (srate) {
+> +	case 64000:
+> +	case 88200:
+> +	case 96000:
+> +		mclk =3D 128 * srate;
+> +		break;
+> +	default:
+> +		mclk =3D 256 * srate;
+> +		break;
+> +	}
+> +	/* FIXME: Codec only requires >=3D 3MHz if OSR=3D=3D0 */
+> +	while (mclk < 6000000)
+> +		mclk *=3D 2;
+
+It feels like this is complicated enough and looks like the
+clocking is flexible enough that it might be easier to just have
+a table of values or otherwise enumerate standard rates, seeing
+the code I feel like I need to worry about what happens if we
+pick a clock rate over 6MHz (the loop could give a value over
+that), and it's not clear why we have the switch statement rather
+than just starting at a multiple of 128 and looping an extra time.
+
+I suspect there's going to be no meaningful downside for having
+the clock held at over 3MHz on a tablet form factor, the usual
+issue would be power consumption but between the larger battery
+size you tend to have on a tablet and the power draw of the
+screen if that's on it's likely to be into the noise practially
+speaking.
+
+--tOijhv7Qqz92bCVE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmP1RFEACgkQJNaLcl1U
+h9DpVAf+M2ffAYNVaX4PwMJKysdDwMn46T5Tf1y5pjJ3FoZjeN7IGuqSZ3iXo1WT
+ms1bDTeUvHNIIUkUj90R9j5az1vTLboWFwsQRSQmkPkhkE/pD/R9skhgEh0Z0Kb0
+zkXVEjEjtPddDwC8enKFqDqvNrcegZV9pOna2z21aG+Ao66HPQtayfuC8FblBS3m
+2vFLIM5zMvuBgyeuSB++5pqcCZAdli4nDxijZT7+wlqesNVsjqDX+V0kClN3lfoK
+nEpUH6u4MMmtcude37chUrPP0KKW/+h0dfgh3QG5C956xi8D9zo86q9q7B95MMPO
+v4a40jcUysWb/dQcogit1e2we4NNYw==
+=sbPL
+-----END PGP SIGNATURE-----
+
+--tOijhv7Qqz92bCVE--
