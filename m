@@ -2,57 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B6F69DC92
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 10:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 996DA69DCD0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 10:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233466AbjBUJKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 04:10:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50888 "EHLO
+        id S233760AbjBUJXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 04:23:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233202AbjBUJKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 04:10:34 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6FF23858;
-        Tue, 21 Feb 2023 01:10:33 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1E94DB80E8D;
-        Tue, 21 Feb 2023 09:10:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFE21C433D2;
-        Tue, 21 Feb 2023 09:10:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676970630;
-        bh=Hn9TPpjqKTRxQ6qlSumVmg6aQMvan7+ZcCq/+AA0Ifs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=reFQHf2gyUmC0ij5RjwLjdTvtcAjlrCEazW1AQk2LEODnxp6vAWdxZXUxyNFoq60C
-         t/g5SwiOWaRDZqd3clBkgxcP/0icu1K9N1KDIdVjSVhzs5mm1qDxNzaaiBNX8ILL5d
-         Fdtt+kgp6bdNue7DVjxVzp4VwzzIiFWiSxDA4ijU/cSdVesBrSMaEamksTcwW06EVf
-         qcFlyud1ZzhoQtyq1acmR9WCklUOIwE0ZRW84t0ksSj5KIso3CeW4x5v1pOpWhZB57
-         DT8xaoJY8/Td/W0J/6PROT+sAd2yv6Wra6bGMsxWaO2RZp6gxDdyfTZOlL3zJvB1l7
-         LFnPWbOwxHkhg==
-Date:   Tue, 21 Feb 2023 09:10:25 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>
-Subject: Re: [PATCH v3] dt-bindings: arm-smmu: Add compatible for SM8550 SoC
-Message-ID: <20230221091024.GA26703@willie-the-truck>
-References: <20230207-topic-sm8550-upstream-smmu-bindings-v3-1-cb15a7123cfe@linaro.org>
- <bb6f65a0-a4af-c9e6-ddc8-6ff06452c9dc@linaro.org>
+        with ESMTP id S233744AbjBUJXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 04:23:41 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9323901D
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 01:23:39 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id h32so14557669eda.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 01:23:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fbTzQmBbVkw2WG9RX4zaVnIA7NHcDhVJSDn4uazMha8=;
+        b=WcNxXJgOyoqCc67id0lYZ4CTspgI/DMh4vHE66IHil5A1QL/Sws+BnpfRV8jnxR9Ix
+         HK1DyCxKbxDj3p/MPxe0HIHIElhmfM9FClpRwSk8aLLoHV7oL0H+2xqa0mUaaf964fB/
+         +VcavxxMzJaSWGpXxpyABv2JYSLsr8mItxmRGKfSybSiFENIP6xIbQLGQQzeWw6DzP4t
+         RqOJLhdxMEYBZf34IhVkppik8aRYEyzDm7cr4jOjS4tbK6gM8JRCyD7EWR3OdqfSq1Nd
+         WZ40bXgSeB35rPZq7T5g3SlA4q3d2jc1AoTcoOlIZcfbh12J2jbDKkfk0tXb4J1JmlQS
+         AJFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fbTzQmBbVkw2WG9RX4zaVnIA7NHcDhVJSDn4uazMha8=;
+        b=TLjTdAUw0Umi89Ev8WBGQvjDmu9+xm20zW7eGcmme7L5BUmGa4tZJhMZ2RlU4lnww2
+         CnCyX7CXMch9gPJrdrRThsxm0JJGTLkhooyIS4LI6YWF24BkFZjlqISJLKBAbeVKGHxZ
+         NXB/RKQkO7azFGkCq/TYWjocot31E/w0JT9EbS/DMyqwXUrEodH5KsOnWy7Y54m8s3xR
+         +GyA2GlwKkmaOTfXyDZbvy2OtUS1oONDSI22kB84oKe+25dNsGp8GiIBgPQL7Od5LWmu
+         Q3fIpg3aF798CM3qOzoeGg24LgAHfiB72KMYLqzDmqDUFQdaxmvb2a78BOIaaXIe/ZgE
+         CySQ==
+X-Gm-Message-State: AO0yUKWzpW8VecR0b3XGrTAI0bJzc7CfEOLAlebPVmwPET9mXs4KZW/x
+        6kdHNiiz8/mBVq0Sfuh2sbrGGQ==
+X-Google-Smtp-Source: AK7set8KQ6AMSa9DTyyfQ/QxgDiwki3JQ/hgmlwOWKJPZgURwegSKc0oEy44DyZ6U98clGYb22w9bQ==
+X-Received: by 2002:aa7:c552:0:b0:4a0:e305:a0de with SMTP id s18-20020aa7c552000000b004a0e305a0demr4899297edr.19.1676971418212;
+        Tue, 21 Feb 2023 01:23:38 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t21-20020a50ab55000000b004acce817ab7sm1624262edc.2.2023.02.21.01.23.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Feb 2023 01:23:37 -0800 (PST)
+Message-ID: <cbe2e397-7044-277d-08a8-93010de339ad@linaro.org>
+Date:   Tue, 21 Feb 2023 10:23:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bb6f65a0-a4af-c9e6-ddc8-6ff06452c9dc@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: sama7g5-pdmc: add
+ microchip,startup-delay-us binding
+To:     Claudiu.Beznea@microchip.com, robh@kernel.org
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230217124151.236216-1-claudiu.beznea@microchip.com>
+ <20230217124151.236216-3-claudiu.beznea@microchip.com>
+ <20230220225601.GA545317-robh@kernel.org>
+ <69c4eccd-9d81-ac0b-802a-8e4e0d57589a@microchip.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <69c4eccd-9d81-ac0b-802a-8e4e0d57589a@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,33 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 10:26:39AM +0100, Neil Armstrong wrote:
-> On 08/02/2023 10:13, neil.armstrong@linaro.org wrote:
-> > From: Abel Vesa <abel.vesa@linaro.org>
-> > 
-> > Add the SoC specific compatible for SM8550 implementing
-> > arm,mmu-500.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > ---
-> > Changes in v3:
-> > - update allOf:if: for disallowing clocks
-> > - Link to v2: https://lore.kernel.org/r/20230207-topic-sm8550-upstream-smmu-bindings-v2-1-680cbfae6dac@linaro.org
-> > 
-> > Changes in v2:
-> > - Rebased on new bindings using qcom,smmu-500 & arm,mmu-500
-> > - Dropped driver changes since we rely on qcom,smmu-500 fallback
-> > - Link to v1: https://lore.kernel.org/all/20221116114001.2669003-1-abel.vesa@linaro.org/
-> > ---
-> >   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 2 ++
-> >   1 file changed, 2 insertions(+)
+On 21/02/2023 09:10, Claudiu.Beznea@microchip.com wrote:
+> On 21.02.2023 00:56, Rob Herring wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On Fri, Feb 17, 2023 at 02:41:50PM +0200, Claudiu Beznea wrote:
+>>> Add microchip,startup-delay-us binding to let PDMC users to specify
+>>> startup delay.
+>>
+>> The diff tells me all this. Why does this need to be per platform?
 > 
-> Do you think you can pick this patch for v6.3 ?
+> PDMC can work with different kind of microphones, thus different boards
+> could have different microphones. Depending on microphone type the PDMC
+> would need to wait longer or shorter period than the default chosen period
+> to filter unwanted noise. Thus the need of having this specified though
+> device tree. Would you prefer to have this in commit message?
 
-This is 6.4 material now (I sent my SMMU pull request for 6.3 weeks ago
-[1]).
+I believe you also had explain it to me, thus as you can see having it
+in commit msg would spare you two questions...
 
-Will
+Best regards,
+Krzysztof
 
-[1] https://lore.kernel.org/linux-iommu/20230124142957.GA26873@willie-the-truck/
