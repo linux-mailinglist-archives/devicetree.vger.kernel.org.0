@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED8169E3B7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FC5E69E3C4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:42:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234050AbjBUPk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 10:40:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34966 "EHLO
+        id S233313AbjBUPmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 10:42:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234726AbjBUPkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:40:15 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BEF2BF35;
-        Tue, 21 Feb 2023 07:39:56 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id e18-20020a0568301e5200b00690e6abbf3fso1108105otj.13;
-        Tue, 21 Feb 2023 07:39:56 -0800 (PST)
+        with ESMTP id S234645AbjBUPlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:41:46 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DC793EC;
+        Tue, 21 Feb 2023 07:41:27 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id r34-20020a4a9665000000b0051abd9835d4so472034ooi.1;
+        Tue, 21 Feb 2023 07:41:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S5/tMfieURLcBSj5dsmqN62a4IUK2Eg+XakNMC0OKXU=;
-        b=tBE8PtcUvet0yKWNVPnMeE3WHwgesYUinGDfCZn3pzhMIFm23LUtXUWlUfOqY2S8Dn
-         Wv33p11ivH3fcQFI+01DjgzNRwJLL15h6Np3RfYEKlGQHOJqs7t5DSrVmnuYiNiTHhV9
-         f/ewEygFGE8f7DCez3Rd8gFjXRN1qhsyDQFOoZ/CLrFp0NAZyCfwqirDg7RnmbWWjkR3
-         lc2G2j09ELX5987Tzi/RXN9hJDFsWen/C9yeL2VIXqeBlBAbloyjimyEOq0J8lASmFpC
-         O+dI63cHOTHbnjhlMrI6PXoVr6oQOC/DOEKasdT+gCr3LDKnMCDPg7Z05vsj7pweEyKr
-         ijsA==
-X-Gm-Message-State: AO0yUKW069gLwmvlcV38a3a9dXd3OfmDdWCRPkGzLaYk+QPcj18oownp
-        ezDGuE8C3wdTnD8eUfUiiw==
-X-Google-Smtp-Source: AK7set+5D9u532a/FkmP73W9cjxPme9PnhFyfhuayG1zE0gSufgX9Q0AFXayW6atHjKU2bJCTj4bXA==
-X-Received: by 2002:a9d:1d0:0:b0:68d:41b2:5b75 with SMTP id e74-20020a9d01d0000000b0068d41b25b75mr7462876ote.11.1676993969090;
-        Tue, 21 Feb 2023 07:39:29 -0800 (PST)
+        bh=yAmFGspOZMSPZfnaoWYmVR2MjZajqXp66cfwHSIQL14=;
+        b=cKR6OCPXE1mHANDV7mSCN1O2DpE54R56M3ldb70/ej4Z6tmRe7bhfV2CsmBG1FzRtO
+         2XqOypGCfT5mCs6obivqusneMqxxdqvYHT57MOypYXZHaf+xGiOz10aP9TjKWZIldTp0
+         0pz8j4RSw2HAEQrzOH1PVFWFZ424yI90sMifKoISRK8sEe10PrHOSbQK8/Jx8U5JfE1D
+         jOQv1+3If/vzUQjoTK5pQjMUOgNjZQa5l9Avzsw+dGs0G+EQo3i0C2TznoEy7p+TEuzQ
+         W2CHmVAWRYJw8JO9D03t1fYmHoKPmKogshrNR2dtQtvAYhT37NXA99qYXg3fxmalxU3R
+         1tJg==
+X-Gm-Message-State: AO0yUKWKoNsdRymbG4K42OMu+aQMeJ2SpcwBEiUKqEOEb4JMwkpYjQa9
+        41Xi2ZSHkXQcumkYxAQk1A==
+X-Google-Smtp-Source: AK7set85VAFntiNHIDjGtfCC2oOT1/ixiwDzGmV6KZlRV3vcVPs11dYw0ZIvaGYFHStwN8BXxG0AZg==
+X-Received: by 2002:a4a:b6c3:0:b0:51f:e966:e3b7 with SMTP id w3-20020a4ab6c3000000b0051fe966e3b7mr1792287ooo.3.1676994086229;
+        Tue, 21 Feb 2023 07:41:26 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q7-20020a9d57c7000000b00690f7c779ebsm1218195oti.7.2023.02.21.07.39.28
+        by smtp.gmail.com with ESMTPSA id bf7-20020a056820174700b0051ff746e2b2sm293867oob.8.2023.02.21.07.41.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 07:39:28 -0800 (PST)
-Received: (nullmailer pid 2584244 invoked by uid 1000);
-        Tue, 21 Feb 2023 15:39:27 -0000
-Date:   Tue, 21 Feb 2023 09:39:27 -0600
+        Tue, 21 Feb 2023 07:41:25 -0800 (PST)
+Received: (nullmailer pid 2586813 invoked by uid 1000);
+        Tue, 21 Feb 2023 15:41:24 -0000
+Date:   Tue, 21 Feb 2023 09:41:24 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>,
-        Sagar Kadam <sagar.kadam@openfive.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org,
-        Sagar Kadam <sagar.kadam@sifive.com>
-Subject: Re: [PATCH] dt-bindings: drop Sagar Kadam from SiFive binding
- maintainership
-Message-ID: <167699396496.2584137.12786082916323503594.robh@kernel.org>
-References: <20230217180035.39658-1-conor@kernel.org>
+        Benson Leung <bleung@chromium.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Guenter Roeck <groeck@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: display: bridge: Add ddc-i2c-bus for
+ anx7688
+Message-ID: <20230221154124.GA2584323-robh@kernel.org>
+References: <20230218111712.2380225-1-treapking@chromium.org>
+ <20230218111712.2380225-2-treapking@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230217180035.39658-1-conor@kernel.org>
+In-Reply-To: <20230218111712.2380225-2-treapking@chromium.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -78,31 +82,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Feb 18, 2023 at 07:17:08PM +0800, Pin-yen Lin wrote:
+> Introduce a optional "ddc-i2c-bus" property for anx7688 bridge. This
+> allows the bridge to register a .get_edid callback.
 
-On Fri, 17 Feb 2023 18:00:36 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+What's .get_edid? This is a binding and is independent of Linux.
+
 > 
-> Sagar's email listed in maintainers is bouncing as his division was sold
-> off by the company. I attempted to contact him some days ago on what the
-> bounce email told me was his new contact information, but am yet to
-> receive a response.
-> 
-> Paul and Palmer are listed on each of the bindings, both of whom were
-> alive & well as of Wednesday so the bindings remain maintained.
-> 
-> CC: Sagar Kadam <sagar.kadam@openfive.com>
-> CC: Sagar Kadam <sagar.kadam@sifive.com>
-> Link: https://lore.kernel.org/all/785425ca-4000-a7e4-16d6-4d68c91b158d@kernel.org/
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 > ---
-> Palmer/Paul, as mentioned Wednesday, here you go!
-> ---
->  Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml | 1 -
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml       | 1 -
->  Documentation/devicetree/bindings/pwm/pwm-sifive.yaml          | 1 -
->  Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml    | 3 +--
->  4 files changed, 1 insertion(+), 5 deletions(-)
 > 
+> Changes in v3:
+> - New in v3
+> 
+>  .../bindings/display/bridge/google,cros-ec-anx7688.yaml      | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+> index a44d025d33bd..9d5ce8172e88 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+> @@ -25,6 +25,10 @@ properties:
+>      maxItems: 1
+>      description: I2C address of the device.
+>  
+> +  ddc-i2c-bus:
+> +    description: phandle link to the I2C controller used for DDC EDID probing
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
 
-Applied, thanks!
+No, this belongs in the connector node. The DDC signals are routed to 
+the connector, not the bridge chip.
 
+Rob
