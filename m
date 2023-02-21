@@ -2,208 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8A269E623
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:42:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E3469E62D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:45:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233880AbjBURmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 12:42:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55554 "EHLO
+        id S234069AbjBURpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 12:45:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233564AbjBURmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:42:37 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F462D14C;
-        Tue, 21 Feb 2023 09:42:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677001355; x=1708537355;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kBBoBZu1FD2rTBEFA0gVprbFv3kOigQKo3h0nWRaWas=;
-  b=KhIkTaDcYBT9+GpneMVNXU5+ZjF7kVksUuBPAsWJhY9enhTdgzYVzO4V
-   bTNnqSK4mYd0lY5kwRovdAA0jWRNe9xynHg74p2cD7Rox+MWJGMV5dMj8
-   kOdwBULFCS5VkgLDW02AuW4EXDr9Nwx5bDmrzV6jIQ16L8Urzha/i4rbc
-   554o69dkgl4PMFMd9auHzHtt+2pbMSYHNYyiHXD7GsZJgv6d0qcC+HtYH
-   oKiRrrLwtnkxwiqWGnLx/aoyRpwLh+ivyxha6Bj35zdoF2/JJ06u0T83h
-   zurbMlUIsDKQ25A1syMBjaiPO/Ly0qUoA0aADjzzoOPJlu3qbXGvJk5ej
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="320839368"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
-   d="scan'208";a="320839368"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2023 09:42:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="1000689706"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
-   d="scan'208";a="1000689706"
-Received: from lkp-server01.sh.intel.com (HELO eac18b5d7d93) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 21 Feb 2023 09:42:31 -0800
-Received: from kbuild by eac18b5d7d93 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pUWes-00005l-2S;
-        Tue, 21 Feb 2023 17:42:30 +0000
-Date:   Wed, 22 Feb 2023 01:41:56 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Akhil R <akhilrajeev@nvidia.com>, christian.koenig@amd.com,
-        digetx@gmail.com, jonathanh@nvidia.com, ldewangan@nvidia.com,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, sumit.semwal@linaro.org,
-        thierry.reding@gmail.com, wsa@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, akhilrajeev@nvidia.com
-Subject: Re: [PATCH] i2c: tegra: Share same DMA channel for Rx and Tx
-Message-ID: <202302220130.flKenlan-lkp@intel.com>
-References: <20230221135726.40720-1-akhilrajeev@nvidia.com>
+        with ESMTP id S234705AbjBURpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:45:04 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A424C2798F
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:44:59 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id bx43so5053702ljb.12
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:44:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SbC5sP3V4tvxg8poITPffqeiBSYf5mTki8iUVO0MfTU=;
+        b=YTuHJO/cT2gzfESi8zNm1cF+ovCWeN4ypblfk5i+cUWaymjSHjwTVGENfflTPwgw/T
+         2jCWWzKseuNBuyC/Tk9vhGo1dUvXleGiFQ95CIiy6BnFeEvyWHFAJRycHFVRIr4Y6JsI
+         AHsKo6s8kWq/nYKntu4cod1qq2zjgp+OEW1IJBPaRIycWp1M+iPr7edsvTf5ZYkj8onV
+         eaQK3aMZ+FlgS/E9/ixd/Hn/2fS8tI7Vz4vaHoX9Vl9pVW3XR/WF64sF8YnyJd+TJRHo
+         jSOERGvg8xMKmHWzB+xmBmQJoIAOaC0P92nl51T18x7P0XfK3jsXExOBFmc5Ske5Gt+Y
+         YaEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SbC5sP3V4tvxg8poITPffqeiBSYf5mTki8iUVO0MfTU=;
+        b=AKc1R+VvpQL5tf2Lau+Rs0urDsfzlNrebJzpgnzg1fzhn57/1AI6K/pTIWAtenLYAV
+         fB4N5i3y/XaNIqGkdYdRuvM5gyZHvtsaUxtFKY+JgMiWZTlFLrdOmx69MT9t6idwGqcK
+         PQpA1PfLgja9Pz6XTcEMFVPZ8Jdga38Y5reViI3A5lWew1lNzihKU5njq48BfR8L9xim
+         uIaRBISUIWlyUYs2jqyEvPkzxOBndYDI8UbCMsAN60si0HnfUESJXdjmaxkMMQCFwfzW
+         wyr62a+Tpd2Tb4jj/GRsFc3+JVu3pnT3FejIxOhk9rJmyc/I6EoTir1t9YPT3URCW/XA
+         JoVg==
+X-Gm-Message-State: AO0yUKXgH9+qjLSrQU1shK7IT93bQyIAAIiHA5kg5rswZpOLSV7bXgdb
+        fh+I+Yy7Xobwt3gUmq4qz6My7A==
+X-Google-Smtp-Source: AK7set879K1Vi+y3/+uZVasOTDhk1xxr/cHP8DNMLeLPuEKpxk6lQ/H0S5WhJxZ4r3G8sI0qOtKB7g==
+X-Received: by 2002:a05:651c:b0d:b0:293:7bce:2374 with SMTP id b13-20020a05651c0b0d00b002937bce2374mr2608864ljr.33.1677001497854;
+        Tue, 21 Feb 2023 09:44:57 -0800 (PST)
+Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
+        by smtp.gmail.com with ESMTPSA id k16-20020a05651c10b000b00290517c661asm203301ljn.40.2023.02.21.09.44.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Feb 2023 09:44:57 -0800 (PST)
+Message-ID: <9a3e9c76-ba70-6ccc-3ade-fa08cdff571e@linaro.org>
+Date:   Tue, 21 Feb 2023 18:44:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230221135726.40720-1-akhilrajeev@nvidia.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: add cpufreq node
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230221150543.283487-1-brgl@bgdev.pl>
+ <20230221150543.283487-3-brgl@bgdev.pl>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230221150543.283487-3-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Akhil,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on tegra/for-next]
-[also build test ERROR on linus/master v6.2 next-20230221]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Akhil-R/i2c-tegra-Share-same-DMA-channel-for-Rx-and-Tx/20230221-215924
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tegra/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230221135726.40720-1-akhilrajeev%40nvidia.com
-patch subject: [PATCH] i2c: tegra: Share same DMA channel for Rx and Tx
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20230222/202302220130.flKenlan-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/643ca30fdac50b54b2ee65f97e6e2eda9974dd3c
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Akhil-R/i2c-tegra-Share-same-DMA-channel-for-Rx-and-Tx/20230221-215924
-        git checkout 643ca30fdac50b54b2ee65f97e6e2eda9974dd3c
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/i2c/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302220130.flKenlan-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/m68k/include/asm/bug.h:32,
-                    from include/linux/bug.h:5,
-                    from include/linux/thread_info.h:13,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/m68k/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:78,
-                    from arch/m68k/include/asm/irqflags.h:6,
-                    from include/linux/irqflags.h:16,
-                    from arch/m68k/include/asm/atomic.h:6,
-                    from include/linux/atomic.h:7,
-                    from include/linux/cpumask.h:13,
-                    from include/linux/smp.h:13,
-                    from include/linux/lockdep.h:14,
-                    from include/linux/mutex.h:17,
-                    from include/linux/kernfs.h:11,
-                    from include/linux/sysfs.h:16,
-                    from include/linux/kobject.h:20,
-                    from include/linux/of.h:17,
-                    from include/linux/irqdomain.h:36,
-                    from include/linux/acpi.h:13,
-                    from drivers/i2c/busses/i2c-tegra.c:9:
-   drivers/i2c/busses/i2c-tegra.c: In function 'tegra_i2c_init_dma':
->> drivers/i2c/busses/i2c-tegra.c:465:26: error: 'struct tegra_i2c_dev' has no member named 'tx_dma_chan'; did you mean 'dma_chan'?
-     465 |         WARN_ON(i2c_dev->tx_dma_chan->device != i2c_dev->rx_dma_chan->device);
-         |                          ^~~~~~~~~~~
-   include/asm-generic/bug.h:122:32: note: in definition of macro 'WARN_ON'
-     122 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
->> drivers/i2c/busses/i2c-tegra.c:465:58: error: 'struct tegra_i2c_dev' has no member named 'rx_dma_chan'; did you mean 'dma_chan'?
-     465 |         WARN_ON(i2c_dev->tx_dma_chan->device != i2c_dev->rx_dma_chan->device);
-         |                                                          ^~~~~~~~~~~
-   include/asm-generic/bug.h:122:32: note: in definition of macro 'WARN_ON'
-     122 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
 
 
-vim +465 drivers/i2c/busses/i2c-tegra.c
+On 21.02.2023 16:05, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Add a node for the cpufreq engine and specify the frequency domains for
+> all CPUs.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index ce5976e36aee..5e2bc67b3178 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -37,6 +37,7 @@ CPU0: cpu@0 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x0>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			next-level-cache = <&L2_0>;
+>  			L2_0: l2-cache {
+>  				compatible = "cache";
+> @@ -52,6 +53,7 @@ CPU1: cpu@100 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x100>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			next-level-cache = <&L2_1>;
+>  			L2_1: l2-cache {
+>  				compatible = "cache";
+> @@ -64,6 +66,7 @@ CPU2: cpu@200 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x200>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			next-level-cache = <&L2_2>;
+>  			L2_2: l2-cache {
+>  				compatible = "cache";
+> @@ -76,6 +79,7 @@ CPU3: cpu@300 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x300>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			next-level-cache = <&L2_3>;
+>  			L2_3: l2-cache {
+>  				compatible = "cache";
+> @@ -88,6 +92,7 @@ CPU4: cpu@10000 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x10000>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			next-level-cache = <&L2_4>;
+>  			L2_4: l2-cache {
+>  				compatible = "cache";
+> @@ -104,6 +109,7 @@ CPU5: cpu@10100 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x10100>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			next-level-cache = <&L2_5>;
+>  			L2_5: l2-cache {
+>  				compatible = "cache";
+> @@ -116,6 +122,7 @@ CPU6: cpu@10200 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x10200>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			next-level-cache = <&L2_6>;
+>  			L2_6: l2-cache {
+>  				compatible = "cache";
+> @@ -128,6 +135,7 @@ CPU7: cpu@10300 {
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x10300>;
+>  			enable-method = "psci";
+> +			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			next-level-cache = <&L2_7>;
+>  			L2_7: l2-cache {
+>  				compatible = "cache";
+> @@ -731,6 +739,19 @@ tcsr_mutex: hwlock@1f40000 {
+>  			#hwlock-cells = <1>;
+>  		};
+>  
+> +		cpufreq_hw: cpufreq@18591000 {
+> +			compatible = "qcom,sa8775p-cpufreq-epss",
+> +				     "qcom,cpufreq-epss";
+That's some very aggressive wrapping! :P
 
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  432  
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  433  static int tegra_i2c_init_dma(struct tegra_i2c_dev *i2c_dev)
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  434  {
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  435  	struct dma_chan *chan;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  436  	dma_addr_t dma_phys;
-89e3748acd0bf6 Dmitry Osipenko     2020-09-30  437  	u32 *dma_buf;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  438  	int err;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  439  
-48cb6356fae125 Akhil R             2022-09-06  440  	if (i2c_dev->is_vi)
-89328b1b81858f Jonathan Hunter     2019-02-21  441  		return 0;
-89328b1b81858f Jonathan Hunter     2019-02-21  442  
-48cb6356fae125 Akhil R             2022-09-06  443  	if (!i2c_dev->hw->has_apb_dma) {
-89328b1b81858f Jonathan Hunter     2019-02-21  444  		if (!IS_ENABLED(CONFIG_TEGRA20_APB_DMA)) {
-48cb6356fae125 Akhil R             2022-09-06  445  			dev_dbg(i2c_dev->dev, "APB DMA support not enabled\n");
-48cb6356fae125 Akhil R             2022-09-06  446  			return 0;
-48cb6356fae125 Akhil R             2022-09-06  447  		}
-48cb6356fae125 Akhil R             2022-09-06  448  	} else if (!IS_ENABLED(CONFIG_TEGRA186_GPC_DMA)) {
-48cb6356fae125 Akhil R             2022-09-06  449  		dev_dbg(i2c_dev->dev, "GPC DMA support not enabled\n");
-89328b1b81858f Jonathan Hunter     2019-02-21  450  		return 0;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  451  	}
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  452  
-643ca30fdac50b Akhil R             2023-02-21  453  	/* The same channel will be used for both Rx and Tx.
-643ca30fdac50b Akhil R             2023-02-21  454  	 * Keeping the name as tx for backward compatibility with
-643ca30fdac50b Akhil R             2023-02-21  455  	 * existing devicetrees.
-643ca30fdac50b Akhil R             2023-02-21  456  	 */
-79e4be2c08bbbf Peter Ujfalusi      2019-11-13  457  	chan = dma_request_chan(i2c_dev->dev, "tx");
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  458  	if (IS_ERR(chan)) {
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  459  		err = PTR_ERR(chan);
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  460  		goto err_out;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  461  	}
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  462  
-643ca30fdac50b Akhil R             2023-02-21  463  	i2c_dev->dma_chan = chan;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  464  
-cdbf26251d3b35 Thierry Reding      2022-10-20 @465  	WARN_ON(i2c_dev->tx_dma_chan->device != i2c_dev->rx_dma_chan->device);
-cdbf26251d3b35 Thierry Reding      2022-10-20  466  	i2c_dev->dma_dev = chan->device->dev;
-cdbf26251d3b35 Thierry Reding      2022-10-20  467  
-55c52f16a017ca Dmitry Osipenko     2020-09-30  468  	i2c_dev->dma_buf_size = i2c_dev->hw->quirks->max_write_len +
-55c52f16a017ca Dmitry Osipenko     2020-09-30  469  				I2C_PACKET_HEADER_SIZE;
-55c52f16a017ca Dmitry Osipenko     2020-09-30  470  
-cdbf26251d3b35 Thierry Reding      2022-10-20  471  	dma_buf = dma_alloc_coherent(i2c_dev->dma_dev, i2c_dev->dma_buf_size,
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  472  				     &dma_phys, GFP_KERNEL | __GFP_NOWARN);
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  473  	if (!dma_buf) {
-76d06443cc5b37 Dmitry Osipenko     2020-09-30  474  		dev_err(i2c_dev->dev, "failed to allocate DMA buffer\n");
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  475  		err = -ENOMEM;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  476  		goto err_out;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  477  	}
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  478  
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  479  	i2c_dev->dma_buf = dma_buf;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  480  	i2c_dev->dma_phys = dma_phys;
-c886a4a03a0155 Dmitry Osipenko     2020-09-30  481  
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  482  	return 0;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  483  
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  484  err_out:
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  485  	tegra_i2c_release_dma(i2c_dev);
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  486  	if (err != -EPROBE_DEFER) {
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  487  		dev_err(i2c_dev->dev, "cannot use DMA: %d\n", err);
-bb0e9b1d2a1f93 Colin Ian King      2019-02-15  488  		dev_err(i2c_dev->dev, "falling back to PIO\n");
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  489  		return 0;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  490  	}
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  491  
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  492  	return err;
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  493  }
-86c92b9965ff17 Sowjanya Komatineni 2019-02-12  494  
+Nevertheless,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+> +			reg = <0x0 0x18591000 0x0 0x1000>,
+> +			      <0x0 0x18593000 0x0 0x1000>;
+> +			reg-names = "freq-domain0", "freq-domain1";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+> +			clock-names = "xo", "alternate";
+> +
+> +			#freq-domain-cells = <1>;
+> +		};
+> +
+>  		tlmm: pinctrl@f000000 {
+>  			compatible = "qcom,sa8775p-tlmm";
+>  			reg = <0x0 0xf000000 0x0 0x1000000>;
