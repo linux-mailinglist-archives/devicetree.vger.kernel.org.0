@@ -2,62 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D845969E1DD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 15:02:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D04969E1E8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 15:04:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234222AbjBUOCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 09:02:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52570 "EHLO
+        id S234270AbjBUOEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 09:04:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234187AbjBUOCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 09:02:09 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06F52A6C9;
-        Tue, 21 Feb 2023 06:02:08 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31LE1uZ9076966;
-        Tue, 21 Feb 2023 08:01:56 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1676988116;
-        bh=5HIcBVXU+K8mmgkfAM3rrTSW8a4UTl8+daYL2j36OY0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=QmJoE5ymGJJN8cIxtkm+pyIh8GGn6fRU8dpHzcqkY2EJjVFMYbCNymn6NPprTliO0
-         4v0AORyavJ9BNyqw4zjuapWQaRgSoTTfrsOhvfntol6g31VVSdtsQujbNpMAhjt5rt
-         zOB0fUPFBglQ7ctmWmJkDxDGAtbbysjDt56gX3i0=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31LE1usp077379
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Feb 2023 08:01:56 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Feb 2023 08:01:56 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Feb 2023 08:01:56 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31LE1u9p017874;
-        Tue, 21 Feb 2023 08:01:56 -0600
-Date:   Tue, 21 Feb 2023 08:01:56 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Ravi Gunasekaran <r-gunasekaran@ti.com>
-CC:     <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v10 3/9] arm64: dts: ti: k3-j721s2-main: Add SERDES and
- WIZ device tree node
-Message-ID: <20230221140156.ml6dlhqg3a7cxvac@squishy>
-References: <20230221120612.27366-1-r-gunasekaran@ti.com>
- <20230221120612.27366-4-r-gunasekaran@ti.com>
+        with ESMTP id S234187AbjBUOEl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 09:04:41 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D0E24108;
+        Tue, 21 Feb 2023 06:04:38 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 757EC24E13F;
+        Tue, 21 Feb 2023 22:04:35 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
+ 2023 22:04:35 +0800
+Received: from localhost.localdomain (183.27.98.67) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
+ 2023 22:04:34 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
+CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v2 0/3] Add DMA driver for StarFive JH7110 SoC
+Date:   Tue, 21 Feb 2023 22:04:21 +0800
+Message-ID: <20230221140424.719-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230221120612.27366-4-r-gunasekaran@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain
+X-Originating-IP: [183.27.98.67]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
         SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,31 +54,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:36-20230221, Ravi Gunasekaran wrote:
-> From: Matt Ranostay <mranostay@ti.com>
-> 
-> Add dt node for the single instance of WIZ (SERDES wrapper) and
-> SERDES module shared by PCIe, eDP and USB.
+This patch series adds dma support for the StarFive JH7110 RISC-V SoC.
+The first patch adds device tree binding. The second patch includes dma
+driver. The last patch adds device node of dma to JH7110 dts.
 
-[...]
+The series has been tested on the VisionFive 2 board which equip with
+JH7110 SoC and works normally.
 
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index 84e5689fff9f..af6c93f0a055 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-[...]
-> @@ -33,11 +44,18 @@
->  		#size-cells = <1>;
->  		ranges = <0x00 0x00 0x00104000 0x18000>;
->  
-> -		usb_serdes_mux: mux-controller@0 {
-> +		usb_serdes_mux: mux-controller-0 {
+The last patch should be applied after the following patchset:
+https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
 
-was'nt this just introduced in the patch just prior, if so, NAK,
-do the changes where they are introduced.
+Changes since v1:
+- Rebased on Linux 6.2.
+- Changed the compatible string to SoC specific and dropped '-rst' from
+  reset-names in the dt-binding.
+- Dropped 'snps,num-hs-if' in the dt-binding.
+- Use different configuration on CH_CFG registers according to the compatible string.
 
->  			compatible = "mmio-mux";
->  			#mux-control-cells = <1>;
->  			mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
->  		};
+v1: https://lore.kernel.org/all/20230206113811.23133-1-walker.chen@starfivetech.com/
+
+Walker Chen (3):
+  dt-bindings: dma: snps,dw-axi-dmac: Add reset items
+  dmaengine: dw-axi-dmac: Add support for StarFive JH7110 DMA
+  riscv: dts: starfive: add dma controller node
+
+ .../bindings/dma/snps,dw-axi-dmac.yaml        |  8 +++++++-
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 19 +++++++++++++++++++
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 19 +++++++++++++++++--
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  3 +++
+ 4 files changed, 46 insertions(+), 3 deletions(-)
+
+
+base-commit: c9c3395d5e3dcc6daee66c6908354d47bf98cb0c
+prerequisite-patch-id: 54ce870d6ea747466474b5d4105cfbc05e1b01ab
+prerequisite-patch-id: ac150a8c622e858e088df8121093d448df49c245
+prerequisite-patch-id: 044263ef2fb9f1e5a586edbf85d5f67814a28430
+prerequisite-patch-id: 057fa35870d8d7d22a57c13362588ffb9e9df316
+prerequisite-patch-id: 848332ca483b026a755639b9eefb0bf8f3fcf8be
+prerequisite-patch-id: 1b2d0982b18da060c82134f05bf3ce16425bac8d
+prerequisite-patch-id: 090ba4b78d47bc19204916e76fdbc70021785388
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 87cb528acd9a7f1ffe7475d7261553f6a4de5753
+prerequisite-patch-id: 417736eb958e1158c60a5ed74bc2350394321a80
+prerequisite-patch-id: ff9fe0b043a5f7f74a1f6af5cebc4793c6f14ce7
+prerequisite-patch-id: 290602062703e666191c20ca02f2840471a6bf4f
+prerequisite-patch-id: f0b29adbb18edffbfeec7292c5f33e2bbeb30945
+prerequisite-patch-id: fccfad539d8455777988b709171ad97729e1a97c
+prerequisite-patch-id: 929ebaffab0df158ea801661d0da74e8b5ef138c
+prerequisite-patch-id: 0d9ddcaa8a867fcbc790b41d6d0349796e0c44b0
+prerequisite-patch-id: 5f539ac7c96023b36489c6da7c70c31eaf64a25b
+prerequisite-patch-id: 65f2aed865d88e6fa468d2923527b523d4313857
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
+prerequisite-patch-id: 2e03eeb766aefd5d38f132d091618e9fa19a37b6
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: ea9a6d0313dd3936c8de0239dc2072c3360a2f6b
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 602c3cf8f42c8c88125defa0a8a301da51f8af49
+prerequisite-patch-id: 82d2d2bc302045505a51f4ab2bf607a904d4b2d1
+prerequisite-patch-id: a6df0f7d8fc2d534c06d85f17578c9134913d01b
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: b9b8fda5e8cd2dd4c9101ec03f4c8fb8e8caa573
+prerequisite-patch-id: 7acbc9c924e802712d3574dd74a6b3576089f78c
+prerequisite-patch-id: f9ce88e490c2473c3c94ad63fa26bc91829ce2cc
+prerequisite-patch-id: ce8a6557564ba04bd90bb41d34f520347f399887
+prerequisite-patch-id: 9f71c539a241baf1e73c7e7dfde5b0b04c66a502
+prerequisite-patch-id: 378a6ccc643a8bf51918cdd61876af813564c638
+prerequisite-patch-id: bb8e071ed43998874b9d98292c0dcdeedc0760ca
+prerequisite-patch-id: 0c04762f1d20f09cd2a1356334a86e520907d111
+prerequisite-patch-id: 8867ef35e4d555491a97106db7834149309426b7
+prerequisite-patch-id: e5a319ba557c8165f7620e574c79ff2ad3be1f65
+prerequisite-patch-id: 2bc43b375b470f7e8bbe937b78678ba3856e3b8f
+-- 
+2.17.1
+
