@@ -2,246 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5229069E86F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 20:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A39C69E8CB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 21:04:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbjBUTjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 14:39:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59134 "EHLO
+        id S229984AbjBUUEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 15:04:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjBUTjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 14:39:09 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB301CF4C;
-        Tue, 21 Feb 2023 11:39:07 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id v3so5564452wrp.2;
-        Tue, 21 Feb 2023 11:39:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gEmwPFIQot2qDs+RW9A8Pn7ziBUNXIBkfPkKLs2AKrw=;
-        b=RhuORwFULuibFKIvtWAFtiCYPBFD7lkDjRV999aQCFlmIM94QG8QVEieuK6HziL36m
-         TQLQYBGcPa4Q4/S1njKGzn8tk6hKPUmVKiPGx1E0j2twTrFkl7gh7vq4VjTdCrX4otqu
-         CJSbD2KFGEug9/L9wWqdnA3uatgVVhWOnylkm9XWiA2hpELeVTtdudz9IkYzvubuyWCm
-         cG3rscLhzPTnRFKuznVCRMzq/3L5HEFellEl6EdwkuH3tdnKJ6TQvwMuXZEYpl3j1XBZ
-         hTLxvFu+4lxQfT8d6jamtmg4ZIJY/jA9Kmgqqsca7UvvLsuWa31/iG+BeTd+AyJ3AQ1R
-         mYUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gEmwPFIQot2qDs+RW9A8Pn7ziBUNXIBkfPkKLs2AKrw=;
-        b=BYKEGLd4pTnfdw3tFjI6OFpa0YJ+E15zDJclKiVtJec8VRHiYqDu6WTQOoMYApxql8
-         3Fy4yFPgCLR2ZJ5noDW6sVwm2p9nUSf39KqvyEC+XG99Y5JqMAHANsVat9pi8qCJFK7Q
-         256GoRfhDA4+l+bApMvnHsbC+p9k7tjJut2naUyFhk1xR2qHl3QYpj2bNCpiO8bKA65l
-         SUtoXDVdHbRqkP1wYbd+nlKUKaGvK82fD687PgcmEoYSGq9DIHN/K96kQ6h7xvgGOAby
-         Zpu4XHuWW3PArLEY1eMR9ixr1FvYDYOcKJpw207U9icRMhFpCm+9oepnTi2a0Wz3ndVt
-         8tRg==
-X-Gm-Message-State: AO0yUKUEuMuJqMjZ35saJi0g9o3s2U4QoaL/F4SBt+I2QOjoT4tIyx/E
-        AKW50BEUIk+SJ0zXEKlVqfcOtI8+L9E=
-X-Google-Smtp-Source: AK7set8MZVhmD5Hw1W2pxlgQWVAPYLn8N3NynNc7gUQSaxrmYg20IYsUAtutcCUJe9O8ov6SlNJbUA==
-X-Received: by 2002:a5d:4208:0:b0:2c3:db4f:f336 with SMTP id n8-20020a5d4208000000b002c3db4ff336mr5482843wrq.39.1677008345700;
-        Tue, 21 Feb 2023 11:39:05 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id d18-20020a5d6452000000b002c54f4d0f71sm6688939wrw.38.2023.02.21.11.39.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 11:39:05 -0800 (PST)
-Date:   Tue, 21 Feb 2023 22:39:01 +0300
-From:   Dan Carpenter <error27@gmail.com>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229576AbjBUUEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 15:04:22 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6343A1284B
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 12:04:19 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 07DE485917;
+        Tue, 21 Feb 2023 21:04:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1677009857;
+        bh=1qr5cvYf8jeOiYzdXUoMig1VLxMb60u49LInU9530xQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=D2exX44nDxfOuN+Y1ESq02iroyC4DQVMjBiyngjBceTpWiAvM4jSz+wm0P3ow1VoW
+         LtJNH1dnoQ73s68SxAqEbFqVG6mcFNPlIatHwKBqtNDeDOR9W0Uf3LOAs+dwmgBQV4
+         r0o54v7u2DgruiWSs3Wo4shsaqqPyjVSUWV76gG9ThCqcFdZNFPEtOM+ZmYZxLoSSv
+         nThMzdcwy7moSLn7wjJp6+sSf69DPkbd2+jHYIIGArMj/Zw5HSQFVTVpYDmMTZFddb
+         ZfFg1x0pcB1S9A8GVvEAcjfHrcbAKdU45fQAuOQcKG88s7iq9f69ziHyFo9CFUDbVW
+         t0xd1aEG9mO3Q==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v1 09/10] staging: dsp: add support for Fortemedia FM34NE
- DSP
-Message-ID: <Y/Ud1bn+LExxLb/Q@kadam>
-References: <20230221183211.21964-1-clamor95@gmail.com>
- <20230221183211.21964-10-clamor95@gmail.com>
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: Start the info graphics with HS/VS change
+Date:   Tue, 21 Feb 2023 21:04:07 +0100
+Message-Id: <20230221200407.16531-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230221183211.21964-10-clamor95@gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 21, 2023 at 08:32:10PM +0200, Svyatoslav Ryhel wrote:
-> +static int fm34ne_dsp_set_config(struct fm34ne_dsp_data *fm34, int state)
-> +{
-> +	struct device *dev = &fm34->client->dev;
-> +
-> +	const u8 *enable_ns_parameter = fm34->data->enable_noise_suppression;
-> +	int enable_ns_length = fm34->data->enable_ns_length;
-> +
-> +	const u8 *disable_ns_parameter = fm34->data->disable_noise_suppression;
-> +	int disable_ns_length = fm34->data->disable_ns_length;
-> +
-> +	int ret;
-> +
-> +	gpiod_set_value_cansleep(fm34->bypass_gpio, 1);
-> +	msleep(20);
-> +
-> +	switch (state) {
-> +	case FM34NE_NS_ENABLE:
-> +		ret = fm34ne_dsp_write_config(fm34->client, enable_parameter,
-> +					      sizeof(enable_parameter));
-> +		if (ret < 0) {
-> +			dev_err(dev, "failed to set DSP enable with %d\n", ret);
-> +			goto exit;
-> +		}
-> +
-> +		ret = fm34ne_dsp_write_config(fm34->client, enable_ns_parameter,
-> +					      enable_ns_length);
-> +		if (ret < 0) {
-> +			dev_err(dev, "failed to enable DSP noise suppression with %d\n", ret);
-> +			goto exit;
-> +		}
-> +
-> +		dev_info(dev, "noise suppression enable DSP parameter written\n");
+The VS signal change is synchronized to HS signal change, start the
+info graphics with that event, instead of having that event occur in
+the middle of it.
 
-Delete this type of debug code.
+Scope trace of DPI bus with HS/VS active HIGH looks as follows:
+         ________________...__
+VS...___/__         __        \______...
+HS...___/  \_______/  \__...__/  \___...
+        ^                        ^
+	|                        |
+        |    Used to start here -'
+	|
+	'--- Start info graphics here
 
-> +		break;
-> +
-> +	case FM34NE_NS_DISABLE:
-> +		ret = fm34ne_dsp_write_config(fm34->client, enable_parameter,
-> +					      sizeof(enable_parameter));
-> +		if (ret < 0) {
-> +			dev_err(dev, "failed to set DSP enable with %d\n", ret);
-> +			goto exit;
-> +		}
-> +
-> +		ret = fm34ne_dsp_write_config(fm34->client, disable_ns_parameter,
-> +					      disable_ns_length);
-> +		if (ret < 0) {
-> +			dev_err(dev, "failed to disable DSP noise suppression with %d\n", ret);
-> +			goto exit;
-> +		}
-> +
-> +		dev_info(dev, "noise suppression disable DSP parameter written\n");
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+---
+ .../bindings/display/panel/panel-timing.yaml  | 46 +++++++++----------
+ 1 file changed, 23 insertions(+), 23 deletions(-)
 
-Same etc.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-timing.yaml b/Documentation/devicetree/bindings/display/panel/panel-timing.yaml
+index 0d317e61edd8f..aea69b84ca5d8 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-timing.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-timing.yaml
+@@ -17,29 +17,29 @@ description: |
+ 
+   The parameters are defined as seen in the following illustration.
+ 
+-  +----------+-------------------------------------+----------+-------+
+-  |          |        ^                            |          |       |
+-  |          |        |vback_porch                 |          |       |
+-  |          |        v                            |          |       |
+-  +----------#######################################----------+-------+
+-  |          #        ^                            #          |       |
+-  |          #        |                            #          |       |
+-  |  hback   #        |                            #  hfront  | hsync |
+-  |   porch  #        |       hactive              #  porch   |  len  |
+-  |<-------->#<-------+--------------------------->#<-------->|<----->|
+-  |          #        |                            #          |       |
+-  |          #        |vactive                     #          |       |
+-  |          #        |                            #          |       |
+-  |          #        v                            #          |       |
+-  +----------#######################################----------+-------+
+-  |          |        ^                            |          |       |
+-  |          |        |vfront_porch                |          |       |
+-  |          |        v                            |          |       |
+-  +----------+-------------------------------------+----------+-------+
+-  |          |        ^                            |          |       |
+-  |          |        |vsync_len                   |          |       |
+-  |          |        v                            |          |       |
+-  +----------+-------------------------------------+----------+-------+
++  +-------+----------+-------------------------------------+----------+
++  |       |          |        ^                            |          |
++  |       |          |        |vsync_len                   |          |
++  |       |          |        v                            |          |
++  +-------+----------+-------------------------------------+----------+
++  |       |          |        ^                            |          |
++  |       |          |        |vback_porch                 |          |
++  |       |          |        v                            |          |
++  +-------+----------#######################################----------+
++  |       |          #        ^                            #          |
++  |       |          #        |                            #          |
++  | hsync |  hback   #        |                            #  hfront  |
++  |  len  |   porch  #        |       hactive              #  porch   |
++  |<----->|<-------->#<-------+--------------------------->#<-------->|
++  |       |          #        |                            #          |
++  |       |          #        |vactive                     #          |
++  |       |          #        |                            #          |
++  |       |          #        v                            #          |
++  +-------+----------#######################################----------+
++  |       |          |        ^                            |          |
++  |       |          |        |vfront_porch                |          |
++  |       |          |        v                            |          |
++  +-------+----------+-------------------------------------+----------+
+ 
+ 
+   The following is the panel timings shown with time on the x-axis.
+-- 
+2.39.1
 
-> +		break;
-> +
-> +	case FM34NE_BYPASS:
-> +	default:
-> +		ret = fm34ne_dsp_write_config(fm34->client, bypass_parameter,
-> +					      sizeof(bypass_parameter));
-> +		if (ret < 0) {
-> +			dev_err(dev, "failed to set DSP bypass with %d\n", ret);
-> +			goto exit;
-> +		}
-> +
-> +		dev_info(dev, "bypass DSP parameter written\n");
-> +		break;
-> +	}
-> +
-> +exit:
-> +	gpiod_set_value_cansleep(fm34->bypass_gpio, 0);
-> +
-> +	return ret;
-> +}
-> +
-> +static int fm34ne_dsp_set_hw(struct fm34ne_dsp_data *fm34)
-> +{
-> +	struct device *dev = &fm34->client->dev;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(fm34->dap_mclk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable the DSP MCLK: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regulator_enable(fm34->vdd_supply);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to enable vdd power supply\n");
-
-clk_disable_unprepare(fm34->dap_mclk);
-
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void fm34ne_dsp_reset(struct fm34ne_dsp_data *fm34)
-> +{
-> +	gpiod_set_value_cansleep(fm34->reset_gpio, 1);
-> +	msleep(20);
-> +
-> +	gpiod_set_value_cansleep(fm34->reset_gpio, 0);
-> +	msleep(100);
-> +}
-> +
-> +static int fm34ne_dsp_init_chip(struct fm34ne_dsp_data *fm34)
-> +{
-> +	const u8 *input_parameter = fm34->data->input_parameter;
-> +	int input_parameter_length = fm34->data->input_parameter_length;
-> +	int ret;
-> +
-> +	ret = fm34ne_dsp_set_hw(fm34);
-> +	if (ret)
-> +		return ret;
-> +
-> +	fm34ne_dsp_reset(fm34);
-> +
-> +	gpiod_set_value_cansleep(fm34->bypass_gpio, 1);
-> +	msleep(20);
-> +
-> +	ret = i2c_smbus_write_byte(fm34->client, FM34NE_I2C_CHECK);
-> +	if (ret < 0) {
-> +		dev_info(&fm34->client->dev, "initial write failed\n");
-
-dev_warn()?
-
-> +		msleep(50);
-> +
-> +		fm34ne_dsp_reset(fm34);
-> +		gpiod_set_value_cansleep(fm34->bypass_gpio, 0);
-> +
-> +		return ret;
-> +	}
-> +
-> +	ret = fm34ne_dsp_write_config(fm34->client, input_parameter,
-> +				      input_parameter_length);
-> +	if (ret < 0)
-> +		return -EINVAL;
-
-Why not propagate the error code from fm34ne_dsp_write_config()?
-
-> +
-> +	msleep(100);
-> +	gpiod_set_value_cansleep(fm34->bypass_gpio, 0);
-> +
-> +	dev_info(&fm34->client->dev, "%s detected\n", fm34->data->model);
-> +
-> +	/* Constantly set DSP to bypass mode for now */
-> +	ret = fm34ne_dsp_set_config(fm34, FM34NE_BYPASS);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-
-regards,
-dan carpenter
