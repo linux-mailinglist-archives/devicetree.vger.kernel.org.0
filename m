@@ -2,67 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0A569E45C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 17:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE4E69E476
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 17:25:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234407AbjBUQRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 11:17:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41194 "EHLO
+        id S233777AbjBUQZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 11:25:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234428AbjBUQRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 11:17:15 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F032BEC3
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:17:11 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id ec43so18825408edb.8
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:17:11 -0800 (PST)
+        with ESMTP id S233587AbjBUQZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 11:25:42 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2354F23C56
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:25:40 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id b12so19415992edd.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:25:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oUsSFf+8W788BHVLSjZQlyYufSpAGNHgM/qoly2HN38=;
-        b=f3K9AFBQPqvqHmcWC4asopLazx00fE6HDs7dk9hl/fwrLUG5EE6WzGxzELNFpV1tgT
-         Smc4kuJqFCcV/9dOX+H6+7ErJUid79PFmfp82f+zgetQHRVgZ58SJAb+fvSKjvOel0Ru
-         r+13TcHXHMVVnyliXqq7iVPgRG5lh0NOUf4bx0Ujsg6x7WwSlEvQ95pWMibG/Y6XEwjx
-         GGtwZXpc79kfOF3mMKRy5mesv1S+7Ni1SrZHLP9hlcnWIvwDxHWiieOkrdEiZN8LOwfq
-         KfZopNNzg8yymVdRetqF+1uCZj5evdS0fI1TLCOmA4DkzUc+qgt4QbNXf61VyRD7AFGV
-         Ldsw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EmtAropobHH5jGpYqAHqkULaNt2W7gxQm/IEh3Ch+0Y=;
+        b=ymFAFLnesLHd3HEddgDcOcWsL0flQAAZA4gDciZdrxtkrcefcGweSrVJ4qhYOcwOeZ
+         MVCLVkipshGbYLo/4KYCTNIfk7ZDN9iy+EtCP3r5XAQD5lvORlFfNLgLLXeA2Ef8FHwH
+         IuuU/7AceKQUboT1MBCoYwRga7Yjx3Z3aNbQ+hL25XWv6A16GoEaPoUdKUon6w7rAmgq
+         hOgEzc/S7Lcm1tj1nCNdrCRWMN5g0qVmOAAZmBlJqP0OizXVzLjJqgnxpkaSZkhxJoIw
+         qp20qb71pTnS2wcIDpQdsO3LQAtrmK3WT5JMj+en1hDA0VYPNXbFhJmppQizoDSBL5sv
+         8aEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oUsSFf+8W788BHVLSjZQlyYufSpAGNHgM/qoly2HN38=;
-        b=CWtnclfQK36kFymoKtuC+OU/PYFrYMvq2WBAHeZ0i6kanmYJSqTQsNOjnxjla1RH1G
-         tcQ9YLlaKRL6TfNgtKnyb58A1dOemYASMiSRB+IrysUDCTgaUv9l7rO20L+rpRfutNln
-         0LUzNmQf9F+lr8zn/2K1axkt1yHrPHGzegKTImAwTZtqIKqWV1weEvREKQfxVcQCiTyt
-         nWV6abwPYnCUSP2OeTza9JhgY/d9AilvmcW8yU8KG1/De3ZdDvi+UvQgwRQVcLGSP99t
-         z9oq6dxH2S+ZCw0XtZHu+6c2viwBCxyJmfVFqTE5CLfEsfCllT/166WDQME96SbVaFt6
-         4aKQ==
-X-Gm-Message-State: AO0yUKVC6YEuQOEwCi/Di994/x23OU65wFRNW0gxadONdp1f7QaNWDS9
-        J+ygkVd9PSDxexiUFre5dYbWCZ1BOtyboEsa
-X-Google-Smtp-Source: AK7set+beYuq0Q1tCpnZkYHGSnCiJOVatL4InDipprorqkYEsxyiEh/SZ+aaqS4hVMmwCpyXk+tPaA==
-X-Received: by 2002:a50:ed0e:0:b0:4ac:bab1:feee with SMTP id j14-20020a50ed0e000000b004acbab1feeemr6195879eds.24.1676996229352;
-        Tue, 21 Feb 2023 08:17:09 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u13-20020aa7d88d000000b004ab4c28a967sm2112142edq.44.2023.02.21.08.17.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 08:17:09 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: input: cypress,cyapa: convert to dtschema
-Date:   Tue, 21 Feb 2023 17:17:06 +0100
-Message-Id: <20230221161706.56639-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EmtAropobHH5jGpYqAHqkULaNt2W7gxQm/IEh3Ch+0Y=;
+        b=v2qiKvsortfG6rex9QHAPBJuoRe+Sv7h/1CRDeyvjW3afCegOlc4CKmIKkhuPmGLYQ
+         AvN6Yky3pDAcSK/cPBGxSfPNwhqXNjvXIOCm01YfLwA8Qcenhcm37k/MEIbAqGReCXD9
+         hwM7Qap3SFjPdwPiGp4xKvyk4efbZpvrQcfIQC7FEkGs4su3SY6P+23uurJakavj3YfA
+         b3D7htX82GswacipDuupbKKVleDafsTfnQupmizUptDP6q1fhC+VN1/sNtycD8v85OrA
+         29wNW4K3bpXoMWGHQjHr2zYhn0feBnbb0gb/wZZCk3cOkSjHE0wb8107FrYTHXQmgBFH
+         e7Mw==
+X-Gm-Message-State: AO0yUKWAvtpCp244/z5yZO48LJQDHUezTUqEDIA765xCyJa/1/2kIUZa
+        mMKSsg6kiJXzrQaPsK/OZ2x0rw==
+X-Google-Smtp-Source: AK7set/mkLPXdZ5zUCcZhfGhJur4lYeYl9s3OmjcVyHcjZbvltRDLZAFJc+mDfFL8V3WjDaEXgdVpw==
+X-Received: by 2002:aa7:d88f:0:b0:4ac:cb71:42c with SMTP id u15-20020aa7d88f000000b004accb71042cmr6004659edq.37.1676996738520;
+        Tue, 21 Feb 2023 08:25:38 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t21-20020a50ab55000000b004acce817ab7sm2119014edc.2.2023.02.21.08.25.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Feb 2023 08:25:38 -0800 (PST)
+Message-ID: <1c5eae73-04fa-722c-b6b2-8a39576ad1c5@linaro.org>
+Date:   Tue, 21 Feb 2023 17:25:36 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [Patch v3 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
+ for MFC
+Content-Language: en-US
+To:     aakarsh jain <aakarsh.jain@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com, smitha.t@samsung.com
+References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
+ <CGME20221011125142epcas5p13c858a5f27830fb1de50fa51e9730eca@epcas5p1.samsung.com>
+ <20221011122516.32135-2-aakarsh.jain@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221011122516.32135-2-aakarsh.jain@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,120 +86,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Cypress All Points Addressable (APA) I2C Touchpad / Trackpad
-bindings to DT schema.
+On 11/10/2022 14:25, aakarsh jain wrote:
+> From: Smitha T Murthy <smitha.t@samsung.com>
+> 
+> Convert DT schema for s5p-mfc in yaml format
+> 
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+>  .../devicetree/bindings/media/s5p-mfc.txt     |  75 --------
+>  .../bindings/media/samsung,s5p-mfc.yaml       | 163 ++++++++++++++++++
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/input/cypress,cyapa.txt          | 42 ----------------
- .../bindings/input/cypress,cyapa.yaml         | 49 +++++++++++++++++++
- 2 files changed, 49 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/cypress,cyapa.txt
- create mode 100644 Documentation/devicetree/bindings/input/cypress,cyapa.yaml
+Hi Aakarsh,
 
-diff --git a/Documentation/devicetree/bindings/input/cypress,cyapa.txt b/Documentation/devicetree/bindings/input/cypress,cyapa.txt
-deleted file mode 100644
-index d3db65916a36..000000000000
---- a/Documentation/devicetree/bindings/input/cypress,cyapa.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Cypress I2C Touchpad
--
--Required properties:
--- compatible: must be "cypress,cyapa".
--- reg: I2C address of the chip.
--- interrupts: interrupt to which the chip is connected (see interrupt
--	binding[0]).
--
--Optional properties:
--- wakeup-source: touchpad can be used as a wakeup source.
--- pinctrl-names: should be "default" (see pinctrl binding [1]).
--- pinctrl-0: a phandle pointing to the pin settings for the device (see
--	pinctrl binding [1]).
--- vcc-supply: a phandle for the regulator supplying 3.3V power.
--
--[0]: Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
--[1]: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
--Example:
--	&i2c0 {
--		/* ... */
--
--		/* Cypress Gen3 touchpad */
--		touchpad@67 {
--			compatible = "cypress,cyapa";
--			reg = <0x67>;
--			interrupt-parent = <&gpio>;
--			interrupts = <2 IRQ_TYPE_EDGE_FALLING>;	/* GPIO 2 */
--			wakeup-source;
--		};
--
--		/* Cypress Gen5 and later touchpad */
--		touchpad@24 {
--			compatible = "cypress,cyapa";
--			reg = <0x24>;
--			interrupt-parent = <&gpio>;
--			interrupts = <2 IRQ_TYPE_EDGE_FALLING>;	/* GPIO 2 */
--			wakeup-source;
--		};
--
--		/* ... */
--	};
-diff --git a/Documentation/devicetree/bindings/input/cypress,cyapa.yaml b/Documentation/devicetree/bindings/input/cypress,cyapa.yaml
-new file mode 100644
-index 000000000000..29515151abe9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/cypress,cyapa.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/cypress,cyapa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cypress All Points Addressable (APA) I2C Touchpad / Trackpad
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: cypress,cyapa
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  wakeup-source: true
-+
-+  vcc-supply:
-+    description: 3.3V power
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        trackpad@67 {
-+            reg = <0x67>;
-+            compatible = "cypress,cyapa";
-+            interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-parent = <&gpx1>;
-+            wakeup-source;
-+        };
-+    };
--- 
-2.34.1
+Any plans for new version of this DT schema conversion? The Samsung MFC
+is one of last remaining bigger pieces for conversion. We already have
+100% bindings compliance for ARM64 but the MFC is missing for ARMv7:
+
+https://pastebin.com/D8jXnjEe
+(that's on my pending branch with all patches from LKML collected).
+
+Best regards,
+Krzysztof
 
