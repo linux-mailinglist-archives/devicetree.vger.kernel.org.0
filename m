@@ -2,90 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CC8C69DB75
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 08:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1255C69DBAF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 09:11:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233538AbjBUHuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 02:50:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44312 "EHLO
+        id S232873AbjBUILy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 03:11:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233454AbjBUHuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 02:50:52 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694871D937
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 23:50:50 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id 6so2968924wrb.11
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 23:50:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hjfg64gDGO7h14TEC4RS/AXyVKIdDfjATSF2lUKEAMk=;
-        b=MnJqfF8saYIdGPGzzEZegsn2Vhtv4zmyjBE0K3UA2uzL9Pd5fyWiDkZf0nqrhUxBAA
-         T+AISA+Sl3+s7/EcuvPHrI42jRxu7ag3EwRMMbfPDyx54fepvx8ILyc/79eyW2PMf0p7
-         PRIcqJv0DXCGnHaN0lLKfqu8+Ex1X34vNF4vH+Y89l39JDcHFQ8Ojvh9z+XkEYhxIQv9
-         4xhWxDJtpQ624+jpMntoSPNgOIWiiXBZ48UpYETNNCL7wawrCBjF7UIhudtt7ZwHLtJS
-         /1SwzmbJfWZJE0/SXaiL8YRltkcYPQRH54FMtoawjJj7eQJ1mmMmt/bRVUORDjiZ/SjS
-         7dMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hjfg64gDGO7h14TEC4RS/AXyVKIdDfjATSF2lUKEAMk=;
-        b=anpIbI8HV4WLasy/vlHq/5e5ubmly5tyAOiQH+j5nKure/J6TawN0Um9Z8vyiODArs
-         gBzw/A43fayLpw+c3HVowk/J5SwTFXWqHXEu5Pv3lJv5rI2AJs6lI5R2j8BVItYNEDC6
-         xZoADwCyi8PSvKdK4oBlzrMJUSg7S0uc6qEgWskN8CywF/SgFgjoNF/B2VHWcNnTAhNg
-         h/TlgFGrdDdvY1F+uHJvdP64sM9uEemg8fMlzqQbirWt9vQEtKNgQP2c+H5g4JbVM1kX
-         Eos1NN88NKkWM+gmrmno9OtLF38tKPubsQOiip/O4UGsCfl0ueXRyA/ji4gEkWRiSRP2
-         yX5A==
-X-Gm-Message-State: AO0yUKUHOyYMkWutERORfZtbEwjFns20iQtG/B/9zkNC+kAhoB1wa1Jm
-        DdvfwpGLPu96BHYkzDHoVdWE7A==
-X-Google-Smtp-Source: AK7set97tfEfb+9jEmaIbBvjUjYHM1C/RcXs0xI1hR9WFaCJoLbuEO79GObcuG1M2I6FlEJKYM/nSA==
-X-Received: by 2002:adf:e242:0:b0:2c5:8c04:c6a8 with SMTP id bl2-20020adfe242000000b002c58c04c6a8mr3548223wrb.51.1676965848828;
-        Mon, 20 Feb 2023 23:50:48 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id j16-20020a056000125000b002c5706f7c6dsm711101wrx.94.2023.02.20.23.50.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 23:50:48 -0800 (PST)
-Message-ID: <78f841f1-1e1a-9eb9-940d-6e11dd18d86f@linaro.org>
-Date:   Tue, 21 Feb 2023 07:50:46 +0000
+        with ESMTP id S229697AbjBUILx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 03:11:53 -0500
+X-Greylist: delayed 356 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 21 Feb 2023 00:11:51 PST
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5F61E5F5;
+        Tue, 21 Feb 2023 00:11:51 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 774F1EC2E4;
+        Tue, 21 Feb 2023 00:05:25 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id Q0nct-RgHC_R; Tue, 21 Feb 2023 00:05:24 -0800 (PST)
+From:   Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1676966724; bh=Se6F2YYJAtfbSGMooDyWStbwzcGMZ2eMxI1WSnKB1CA=;
+        h=From:Date:Subject:To:Cc:From;
+        b=kvRhYjRHtGOak/iUWEzUAkJFm3o1zeiiDzpIqcUJkHOsvGvELWxqC7N1mUhcfkgcV
+         yHnVd0KWfHKkrsZtkipyrnd6QCPaDqQWVPnDh/ucXrsDjlFCLX9rYq+4aYOR65ecSM
+         vPnsvRMWtW14DZifSMYJGWddPPDntgdjlAqs+U64b5sawIsyZRVH4rsCj4Pt9ghmIp
+         6x7/9syDHQd+TzOPgaKVS3Jx+sN+lFpSOSu1Qh9Un2gYSZWpgPxmooVBxIYV2f+Td5
+         fx/jI2w6MpuNSA95S39sLItFPG88GAXQEM5/fMnMzJW++iOxsyLjNrARmH7hqK36bA
+         1BfYgS/n7g/BA==
+Date:   Tue, 21 Feb 2023 09:04:08 +0100
+Subject: [PATCH] arm64: dts: imx8mq: Add UART DMA support
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 09/26] gunyah: rsc_mgr: Add VM lifecycle RPC
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212343.3311875-1-quic_eberman@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230214212343.3311875-1-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Message-Id: <20230221-uart-dma-v1-1-d20483bbd49d@puri.sm>
+X-B4-Tracking: v=1; b=H4sIAPd69GMC/x2MQQqDQAxFryJZN6DTOq29iriIM1EDOi0ZLQXx7
+ gaX7/P+2yGzCmd4Fzso/yTLJxlUtwLCRGlklGgMrnT30rkKN9IV40IYh9fD+zp4ap5gek+ZsVd
+ KYbJD2ubZxq/yIP+r33bHcQIRojjebwAAAA==
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@puri.sm,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1804;
+ i=sebastian.krzyszkowiak@puri.sm; h=from:subject:message-id;
+ bh=Se6F2YYJAtfbSGMooDyWStbwzcGMZ2eMxI1WSnKB1CA=;
+ b=owEBbQKS/ZANAwAIAejyNc8728P/AcsmYgBj9HtAbFL8kqhRhjJB746FxPa/Rj8cmeBTkcxvv
+ 054XRHXIy6JAjMEAAEIAB0WIQQi3Z+uAGoRQ1g2YXzo8jXPO9vD/wUCY/R7QAAKCRDo8jXPO9vD
+ //rcD/9IsO3DwKBbrUAyfUH0VdPnDH3WcLPz+zCIL0FX3NkHkFyBcGAzijfBe+f75mVUFcjQzhp
+ bDFUUJUNLIdX/rZsXFD0D1j8tzdoNp+qVPCaaT+6/i8vHkEu+z6i32EoC0v1lxB4K/B1V0QOuhe
+ Z4euA1z1wvyYPYeilublNcjxNbOTHPv4J8ioh81KJ/yuhZ5hl8zGe18G9hFMAiSworsuqqb7laW
+ HPoxi3VAm3qrBYY6qlIcIpyP9CiyhVG60Np1/DA2DzWJA/qmPLxxYZc6z3KBkV0CcJk9mtriXm5
+ aciCAgo0Rwkut+Z9Gu92sxlxXr2zAR3You59Illc9zfZANbHVzCEGS1LCeMQvepopgGvMRdLCvk
+ Fb9z8H1eVAuadEVclmFLtvsRkD+zHMEFbIQEHVjzAy7wKwf+Any2nvWx+J4DOeXfnMuR9hpyEZf
+ 3NUT53OLGwbYdBYIMhBIzEmTGYuxEoD8gBAI2XavOJBShuDrH7OiVMgE30q282deule0dxIjceX
+ JDd8ByKjA/g3NxXACUP2zo6yunOiqjqspIUKlSphc5wOUtMJ5dYcJJ/JHVsJTivV2DZDVfIYJuQ
+ jaCQ3gx/NavlWHfCCqmK77GPtO3wmNlDrIMDrkWKJq6JerSkCcMX6M59p3Afv6g2125nFjmlhC8
+ yL4LojDT7lO52rQ==
+X-Developer-Key: i=sebastian.krzyszkowiak@puri.sm; a=openpgp;
+ fpr=22DD9FAE006A11435836617CE8F235CF3BDBC3FF
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,141 +76,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+UART ports have DMA capability. Describe the UART DMA properties.
 
+Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-On 14/02/2023 21:23, Elliot Berman wrote:
-> 
-> Add Gunyah Resource Manager RPC to launch an unauthenticated VM.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   drivers/virt/gunyah/Makefile      |   2 +-
->   drivers/virt/gunyah/rsc_mgr.h     |  45 ++++++
->   drivers/virt/gunyah/rsc_mgr_rpc.c | 226 ++++++++++++++++++++++++++++++
->   include/linux/gunyah_rsc_mgr.h    |  73 ++++++++++
->   4 files changed, 345 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
-> 
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> index cc864ff5abbb..de29769f2f3f 100644
-> --- a/drivers/virt/gunyah/Makefile
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -2,5 +2,5 @@
->   
->   obj-$(CONFIG_GUNYAH) += gunyah.o
->   
-> -gunyah_rsc_mgr-y += rsc_mgr.o
-> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
->   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
-> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
-> index d4e799a7526f..7406237bc66d 100644
-> --- a/drivers/virt/gunyah/rsc_mgr.h
-> +++ b/drivers/virt/gunyah/rsc_mgr.h
-> @@ -74,4 +74,49 @@ struct gh_rm;
->   int gh_rm_call(struct gh_rm *rsc_mgr, u32 message_id, void *req_buff, size_t req_buff_size,
->   		void **resp_buf, size_t *resp_buff_size);
->   
-<----------------------------
-> +/* Message IDs: VM Management */
-> +#define GH_RM_RPC_VM_ALLOC_VMID			0x56000001
-> +#define GH_RM_RPC_VM_DEALLOC_VMID		0x56000002
-> +#define GH_RM_RPC_VM_START			0x56000004
-> +#define GH_RM_RPC_VM_STOP			0x56000005
-> +#define GH_RM_RPC_VM_RESET			0x56000006
-> +#define GH_RM_RPC_VM_CONFIG_IMAGE		0x56000009
-> +#define GH_RM_RPC_VM_INIT			0x5600000B
-> +#define GH_RM_RPC_VM_GET_HYP_RESOURCES		0x56000020
-> +#define GH_RM_RPC_VM_GET_VMID			0x56000024
-> +
-> +struct gh_rm_vm_common_vmid_req {
-> +	__le16 vmid;
-> +	__le16 reserved0;
-> +} __packed;
-> +
-> +/* Call: VM_ALLOC */
-> +struct gh_rm_vm_alloc_vmid_resp {
-> +	__le16 vmid;
-> +	__le16 reserved0;
-> +} __packed;
-> +
-> +/* Call: VM_STOP */
-> +struct gh_rm_vm_stop_req {
-> +	__le16 vmid;
-> +#define GH_RM_VM_STOP_FLAG_FORCE_STOP	BIT(0)
-> +	u8 flags;
-> +	u8 reserved;
-> +#define GH_RM_VM_STOP_REASON_FORCE_STOP		3
-> +	__le32 stop_reason;
-> +} __packed;
-> +
-> +/* Call: VM_CONFIG_IMAGE */
-> +struct gh_rm_vm_config_image_req {
-> +	__le16 vmid;
-> +	__le16 auth_mech;
-> +	__le32 mem_handle;
-> +	__le64 image_offset;
-> +	__le64 image_size;
-> +	__le64 dtb_offset;
-> +	__le64 dtb_size;
-> +} __packed;
-> +
-> +/* Call: GET_HYP_RESOURCES */
-> +
--------------------------------->
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 98fbba4c99a9..142a5c894e1e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -940,6 +940,8 @@ uart1: serial@30860000 {
+ 				clocks = <&clk IMX8MQ_CLK_UART1_ROOT>,
+ 				         <&clk IMX8MQ_CLK_UART1_ROOT>;
+ 				clock-names = "ipg", "per";
++				dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
++				dma-names = "rx", "tx";
+ 				status = "disabled";
+ 			};
+ 
+@@ -951,6 +953,8 @@ uart3: serial@30880000 {
+ 				clocks = <&clk IMX8MQ_CLK_UART3_ROOT>,
+ 				         <&clk IMX8MQ_CLK_UART3_ROOT>;
+ 				clock-names = "ipg", "per";
++				dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
++				dma-names = "rx", "tx";
+ 				status = "disabled";
+ 			};
+ 
+@@ -962,6 +966,8 @@ uart2: serial@30890000 {
+ 				clocks = <&clk IMX8MQ_CLK_UART2_ROOT>,
+ 				         <&clk IMX8MQ_CLK_UART2_ROOT>;
+ 				clock-names = "ipg", "per";
++				dmas = <&sdma1 24 4 0>, <&sdma1 25 4 0>;
++				dma-names = "rx", "tx";
+ 				status = "disabled";
+ 			};
+ 
+@@ -1157,6 +1163,8 @@ uart4: serial@30a60000 {
+ 				clocks = <&clk IMX8MQ_CLK_UART4_ROOT>,
+ 				         <&clk IMX8MQ_CLK_UART4_ROOT>;
+ 				clock-names = "ipg", "per";
++				dmas = <&sdma1 28 4 0>, <&sdma1 29 4 0>;
++				dma-names = "rx", "tx";
+ 				status = "disabled";
+ 			};
+ 
 
-All the above structures are very much internal to rsc_mgr_rpc.c and 
-interface to the rsc_mgr_rpc is already abstracted with function arguments
+---
+base-commit: 89f5349e0673322857bd432fa23113af56673739
+change-id: 20230221-uart-dma-df84665c6a97
 
-ex:
+Best regards,
+-- 
+Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 
-int gh_rm_vm_configure(struct gh_rm *rm, u16 vmid, enum 
-gh_rm_vm_auth_mechanism auth_mechanism, u32 mem_handle, u64 
-image_offset, u64 image_size, u64 dtb_offset, u64 dtb_size)
-
-So why do we need these structs and defines in header file at all?
-you should proabably consider moving them to the .c file.
-
-
->   #endif
-> diff --git a/drivers/virt/gunyah/rsc_mgr_rpc.c b/drivers/virt/gunyah/rsc_mgr_rpc.c
-> new file mode 100644
-> index 000000000000..4515cdd80106
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/rsc_mgr_rpc.c
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/gunyah_rsc_mgr.h>
-> +
-
-Why new line here?
-
-> +#include "rsc_mgr.h"
-> +
-> +/*
-...
-
-> +int gh_rm_vm_configure(struct gh_rm *rm, u16 vmid, enum gh_rm_vm_auth_mechanism auth_mechanism,
-> +		u32 mem_handle, u64 image_offset, u64 image_size, u64 dtb_offset, u64 dtb_size)
-> +{
-> +	struct gh_rm_vm_config_image_req req_payload = { 0 };
-> +	size_t resp_size;
-> +	void *resp;
-> +
-> +	req_payload.vmid = cpu_to_le16(vmid);
-> +	req_payload.auth_mech = cpu_to_le16(auth_mechanism);
-> +	req_payload.mem_handle = cpu_to_le32(mem_handle);
-> +	req_payload.image_offset = cpu_to_le64(image_offset);
-> +	req_payload.image_size = cpu_to_le64(image_size);
-> +	req_payload.dtb_offset = cpu_to_le64(dtb_offset);
-> +	req_payload.dtb_size = cpu_to_le64(dtb_size);
-> +
-> +	return gh_rm_call(rm, GH_RM_RPC_VM_CONFIG_IMAGE, &req_payload, sizeof(req_payload),
-> +			&resp, &resp_size);
-> +}
-> +
-
---srini
