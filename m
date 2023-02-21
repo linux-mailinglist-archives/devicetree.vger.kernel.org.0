@@ -2,168 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B69E469DF5D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 12:55:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C5369DF88
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 12:58:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233882AbjBULzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 06:55:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60262 "EHLO
+        id S233931AbjBUL6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 06:58:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234431AbjBULz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 06:55:29 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DD6227981;
-        Tue, 21 Feb 2023 03:55:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1676980509; x=1708516509;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QCQCaIZW5z5pVDWUHNmY/rYFh3F6mLZ18lRrmfZVXQI=;
-  b=MIs9sfRNw7TqSMAU2tdsUW2iYp91/h/bW/HIxgelsjkZQtrfMsi+sX0L
-   08dzTFhbZWTIGQtqibs0cm5+4g60lt0hWjW/vYLGrmRs+gcpShuj66fPt
-   wWSWTutEXY9dKm4eiEgwhVOuRqWlFEYBp2mZEhHVOy5GK3b/JgPix0DMK
-   UVTKe9+yM11FDj3hE+4pitGnNe7ck8mOVoTEzA9T+IoFUkqJ66K5OiNf9
-   9HXNnRfafni2tgF+fgXTfpwIZlxfS62PKiIt0Bq84NndeE1QZ5Ipfj5ab
-   FTmxDmzq+idRbcorR0DlQaGtGeX5Bprfjyj9ZFf9UN259YYCOU0nRXHQ9
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="418835404"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
-   d="scan'208";a="418835404"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2023 03:55:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="845656952"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
-   d="scan'208";a="845656952"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga005.jf.intel.com with ESMTP; 21 Feb 2023 03:55:00 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pUREW-009wQN-25;
-        Tue, 21 Feb 2023 13:54:56 +0200
-Date:   Tue, 21 Feb 2023 13:54:56 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Marek Vasut <marex@denx.de>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org, Xin Ji <xji@analogixsemi.com>,
-        Lyude Paul <lyude@redhat.com>,
-        Allen Chen <allen.chen@ite.com.tw>, devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
-        <nfraprado@collabora.com>, chrome-platform@lists.linux.dev,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-acpi@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v12 10/10] drm/bridge: it6505: Register Type C mode
- switches
-Message-ID: <Y/SxEEwDFI2CWMv3@smile.fi.intel.com>
-References: <20230221095054.1868277-1-treapking@chromium.org>
- <20230221095054.1868277-11-treapking@chromium.org>
+        with ESMTP id S234581AbjBUL5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 06:57:45 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B92F02915D;
+        Tue, 21 Feb 2023 03:57:18 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 54A3BFEC;
+        Tue, 21 Feb 2023 03:57:24 -0800 (PST)
+Received: from [10.57.13.181] (unknown [10.57.13.181])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 833D73F703;
+        Tue, 21 Feb 2023 03:56:36 -0800 (PST)
+Message-ID: <4cc935e2-8b24-8060-5070-fd6eb85f07b6@arm.com>
+Date:   Tue, 21 Feb 2023 11:56:30 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230221095054.1868277-11-treapking@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v8 2/7] iommu/arm-smmu-v3: support ops registration for
+ CDX bus
+Content-Language: en-GB
+To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, eric.auger@redhat.com,
+        alex.williamson@redhat.com, cohuck@redhat.com,
+        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
+        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
+        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
+        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com, will@kernel.org,
+        joro@8bytes.org, masahiroy@kernel.org, ndesaulniers@google.com,
+        rdunlap@infradead.org, linux-arm-kernel@lists.infradead.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
+        michal.simek@amd.com, git@amd.com
+References: <20230217132830.3140439-1-nipun.gupta@amd.com>
+ <20230217132830.3140439-3-nipun.gupta@amd.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20230217132830.3140439-3-nipun.gupta@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 21, 2023 at 05:50:54PM +0800, Pin-yen Lin wrote:
-> Register USB Type-C mode switches when the "mode-switch" property and
-> relevant port are available in Device Tree. Configure the "lane_swap"
-> state based on the entered alternate mode for a specific Type-C
-> connector, which ends up updating the lane swap registers of the it6505
-> chip.
+On 2023-02-17 13:28, Nipun Gupta wrote:
 
-...
+Nit: subject should be "iommu: Support ops registration for CDX bus", 
+since this is no longer a driver-specific thing.
 
-> +static void it6505_typec_ports_update(struct it6505 *it6505)
-> +{
-> +	int i;
+Thanks,
+Robin.
 
-unsigned?
-
-(and just note that here you have already blank line which is good)
-
-> +	/* Check if both ports available and do nothing to retain the current one */
-> +	if (it6505->port_data[0].dp_connected && it6505->port_data[1].dp_connected)
-> +		return;
-> +
-> +	for (i = 0; i < 2; i++) {
-> +		if (it6505->port_data[i].dp_connected)
-> +			it6505->lane_swap = it6505->port_data[i].lane_swap;
-> +	}
-> +}
-
-
-,,,
-
-> +	it6505->port_data[port->port_num].dp_connected =
-> +		state->alt && state->alt->svid == USB_TYPEC_DP_SID &&
-> +		state->alt->mode == USB_TYPEC_DP_MODE;
-
-Split first parameter?
-
-...
-
-> +	it6505->port_data = devm_kcalloc(
-> +		dev, switch_desc->num_typec_switches,
-
-Strange indentation.
-
-> +		sizeof(struct it6505_typec_port_data), GFP_KERNEL);
-
-> +
-
-Redundant blank line.
-
-> +	if (!it6505->port_data) {
-> +		ret = -ENOMEM;
-> +		goto unregister_mux;
-> +	}
-
-...
-
-> +		num_lanes = fwnode_property_count_u32(fwnode, "data-lanes");
-> +
-> +		if (num_lanes < 0) {
-> +			dev_err(dev,
-> +				"Error on getting data lanes count from %pfwP: %d\n",
-> +				fwnode, num_lanes);
-> +			ret = num_lanes;
-> +			goto unregister_mux;
-> +		}
-
-Same two comments as per previous patch of similar semantics.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> With new CDX bus supported for AMD FPGA devices on ARM
+> platform, the bus requires registration for the SMMU v3
+> driver.
+> 
+> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
+> Tested-by: Nikhil Agarwal <nikhil.agarwal@amd.com>
+> ---
+>   drivers/iommu/iommu.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+> index 1fbe53354532..c2ff7754a4b3 100644
+> --- a/drivers/iommu/iommu.c
+> +++ b/drivers/iommu/iommu.c
+> @@ -28,6 +28,7 @@
+>   #include <linux/fsl/mc.h>
+>   #include <linux/module.h>
+>   #include <linux/cc_platform.h>
+> +#include <linux/cdx/cdx_bus.h>
+>   #include <trace/events/iommu.h>
+>   #include <linux/sched/mm.h>
+>   #include <linux/msi.h>
+> @@ -129,6 +130,9 @@ static struct bus_type * const iommu_buses[] = {
+>   #ifdef CONFIG_TEGRA_HOST1X_CONTEXT_BUS
+>   	&host1x_context_device_bus_type,
+>   #endif
+> +#ifdef CONFIG_CDX_BUS
+> +	&cdx_bus_type,
+> +#endif
+>   };
+>   
+>   /*
