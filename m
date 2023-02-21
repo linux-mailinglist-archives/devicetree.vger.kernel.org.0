@@ -2,131 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A5A69DB32
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 08:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC8C69DB75
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 08:50:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232613AbjBUH3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 02:29:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
+        id S233538AbjBUHuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 02:50:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjBUH3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 02:29:39 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2137.outbound.protection.outlook.com [40.107.223.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C7A23848;
-        Mon, 20 Feb 2023 23:29:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tto2bts6o5ms8gYu+8e+7YVvBqjBEOsZGFGU3v9Prl0B9auzJadiAeKOXQfQ6wMaxxy6JaOJmZuyTjLBt5ctH5uRgDLjZcS2VVh2xrV0cxaVS1wvMtMo1htMBHh8ZNpMdKKbDXra9oG0IiXofmlttg9kdQJ7fAyoWvFwXHGU8wWtpoUnofKYiPTEM5UUq8aJkwfUuGhf0wbtlsa/Z1bWUZWuTsFAt7xfznTpsmqrd2QBRvCLzeNTUlVuOBcLeSClXvzprixt98xlgZTccWl56KjVCAWkF7/Sq0xDwo249ypzZKpQmYF9Y6YWhsc4Yv6y70Dowbnv0Hhe885Xq9tmWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y2Qu/wSNXeuPm9/bHol5AssrAA5SL7zdnI3Smsyfy1A=;
- b=Ir7j9k9Pgo6G5azTjOoDnVHKLXM/aNi4e0iWn/6Ml+cCjt0On4tSiLlH7RLUfFY7Ij4you6oum5Rh7hfq0qWVrXZpUYvjU5Ogc7fK8NYpWXetLLCxifqyeRFqUqLuVpBWCFPJMnw6PQvpPVnmDkpKA+4djn7NTJxwrrsvlaXzci/eOF9PuJg6d5Iuaxl92xbUO4PIopTEpBWnP1yN0V04ag+z8Rrli5IsqvRKGEtu8gtsiEBcHADoVy99eOU1vAc04l4Crvu9uG9El5Ap6/i5dhqHngL/2PuX8GhjZ5pEWdHyqOYKTPWo7ROIbX4HXNoksX7tGN4/tUxwTzbwNGz1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
+        with ESMTP id S233454AbjBUHuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 02:50:52 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694871D937
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 23:50:50 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id 6so2968924wrb.11
+        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 23:50:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y2Qu/wSNXeuPm9/bHol5AssrAA5SL7zdnI3Smsyfy1A=;
- b=RVrhafs2pGUzutu/+O0P8myL4dyDiud1BIJ8ZgnxnD7eHkwBIbieWJ+L0MmciF5JLJBvajfULeZo/8KKIO93at/t+Z11p+xdbND7pss9oaAOMKK/PhDO2OB5jgpLZpLZvxyPaAJlqTENc49Tu6oUhieagALf2jvWyFIyjmyYtEw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
-Received: from SN6PR01MB4973.prod.exchangelabs.com (2603:10b6:805:c4::13) by
- CH2PR01MB6104.prod.exchangelabs.com (2603:10b6:610:16::32) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6111.21; Tue, 21 Feb 2023 07:29:32 +0000
-Received: from SN6PR01MB4973.prod.exchangelabs.com
- ([fe80::a807:4f38:56ee:b079]) by SN6PR01MB4973.prod.exchangelabs.com
- ([fe80::a807:4f38:56ee:b079%4]) with mapi id 15.20.6111.019; Tue, 21 Feb 2023
- 07:29:32 +0000
-Message-ID: <8980c1b2-e7ae-e1b4-9f22-ac374bead4ef@amperemail.onmicrosoft.com>
-Date:   Tue, 21 Feb 2023 14:29:20 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.7.2
-Subject: Re: [PATCH] ARM: dts: aspeed: mtmitchell: Enable NCSI
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chanh Nguyen <chanh@os.amperecomputing.com>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hjfg64gDGO7h14TEC4RS/AXyVKIdDfjATSF2lUKEAMk=;
+        b=MnJqfF8saYIdGPGzzEZegsn2Vhtv4zmyjBE0K3UA2uzL9Pd5fyWiDkZf0nqrhUxBAA
+         T+AISA+Sl3+s7/EcuvPHrI42jRxu7ag3EwRMMbfPDyx54fepvx8ILyc/79eyW2PMf0p7
+         PRIcqJv0DXCGnHaN0lLKfqu8+Ex1X34vNF4vH+Y89l39JDcHFQ8Ojvh9z+XkEYhxIQv9
+         4xhWxDJtpQ624+jpMntoSPNgOIWiiXBZ48UpYETNNCL7wawrCBjF7UIhudtt7ZwHLtJS
+         /1SwzmbJfWZJE0/SXaiL8YRltkcYPQRH54FMtoawjJj7eQJ1mmMmt/bRVUORDjiZ/SjS
+         7dMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hjfg64gDGO7h14TEC4RS/AXyVKIdDfjATSF2lUKEAMk=;
+        b=anpIbI8HV4WLasy/vlHq/5e5ubmly5tyAOiQH+j5nKure/J6TawN0Um9Z8vyiODArs
+         gBzw/A43fayLpw+c3HVowk/J5SwTFXWqHXEu5Pv3lJv5rI2AJs6lI5R2j8BVItYNEDC6
+         xZoADwCyi8PSvKdK4oBlzrMJUSg7S0uc6qEgWskN8CywF/SgFgjoNF/B2VHWcNnTAhNg
+         h/TlgFGrdDdvY1F+uHJvdP64sM9uEemg8fMlzqQbirWt9vQEtKNgQP2c+H5g4JbVM1kX
+         Eos1NN88NKkWM+gmrmno9OtLF38tKPubsQOiip/O4UGsCfl0ueXRyA/ji4gEkWRiSRP2
+         yX5A==
+X-Gm-Message-State: AO0yUKUHOyYMkWutERORfZtbEwjFns20iQtG/B/9zkNC+kAhoB1wa1Jm
+        DdvfwpGLPu96BHYkzDHoVdWE7A==
+X-Google-Smtp-Source: AK7set97tfEfb+9jEmaIbBvjUjYHM1C/RcXs0xI1hR9WFaCJoLbuEO79GObcuG1M2I6FlEJKYM/nSA==
+X-Received: by 2002:adf:e242:0:b0:2c5:8c04:c6a8 with SMTP id bl2-20020adfe242000000b002c58c04c6a8mr3548223wrb.51.1676965848828;
+        Mon, 20 Feb 2023 23:50:48 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id j16-20020a056000125000b002c5706f7c6dsm711101wrx.94.2023.02.20.23.50.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Feb 2023 23:50:48 -0800 (PST)
+Message-ID: <78f841f1-1e1a-9eb9-940d-6e11dd18d86f@linaro.org>
+Date:   Tue, 21 Feb 2023 07:50:46 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v10 09/26] gunyah: rsc_mgr: Add VM lifecycle RPC
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230217102122.16547-1-chanh@os.amperecomputing.com>
- <c594a426-9ad3-1f67-8261-4d2d68272870@linaro.org>
-Content-Language: en-US
-From:   Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-In-Reply-To: <c594a426-9ad3-1f67-8261-4d2d68272870@linaro.org>
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212343.3311875-1-quic_eberman@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230214212343.3311875-1-quic_eberman@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0001.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::15) To SN6PR01MB4973.prod.exchangelabs.com
- (2603:10b6:805:c4::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR01MB4973:EE_|CH2PR01MB6104:EE_
-X-MS-Office365-Filtering-Correlation-Id: db852e33-9d9e-45f8-7e7b-08db13dd5f7d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QSqk23sAP4sKlkP0fgC7Z9Ui24ov7x3z8hvdSSCV9BNwlXcTSQOkrcoAtWsOX/rOFpiSi5dwtvHYzgfP7qslhnV2Ft7YEGlMZHdvRGuIFf97EHwFGWvJPKbu4c9RhZftpw1T3H1kS84bidPZbYQ24BAq0RRMtmoA9n6EFF6/9JjYELPEPCPOizDvVGnaGlWy+uy4SpXL4aoEh/ecKEH+iG6eaAUY/OB1Mes1GQSI+eIAypnJsOp0k3AjCp+luZEYYnjV4uOyj9XUWDQKaWPH2/0rdi8ZrmyLn0O0bD/lxEe3ne1jl6mE6BkOuYhX2hSEEtR8nyLmw1BZlIZmxeSZqvKNyEVk9iecXTERGdGIuD75dTICT+rtX2PZBLYoRMtrsUKZTvoQJyDO0jTwsyQW0wFxfmYtIKkCMMhAdLzbiKb7JAdr2NRG13pC6iV6lV4w07C4JkVmiwD7QOcNnGaNVChZjp+Xu5arNuFS01jVuUbrgfgvv6i5gK6zUCLVotGqJPxanILs0YIqCe2vMOYRt8ADYq1jFb4oaZZmglKedpaBzcyZlHlhxh+gZlBh3//KxzufpN6CnrBAGVlqJOzX3CQvWEXYeTUcvf1XXwjP2qHKUtKgDBEmc5jB8A/82O1QKniNydIEReLq21O5HKuQE+7HxEPCXwz9gVfe2UH4V7M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR01MB4973.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(346002)(396003)(136003)(366004)(39850400004)(451199018)(31686004)(38100700002)(2906002)(8936002)(5660300002)(7416002)(186003)(6512007)(26005)(83380400001)(41300700001)(83170400001)(42882007)(2616005)(921005)(66556008)(66946007)(66476007)(8676002)(966005)(6486002)(6506007)(478600001)(6666004)(31696002)(110136005)(316002)(53546011)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzN5aG9QdUdFVVVTd0FNZzRSUGNwdHlYUUlqZXpFbHlyeG1FckUzRTZ0Ymlv?=
- =?utf-8?B?c0RvdStwYmVCN2E4UjhObWNHUE12dHNuR0tTMDdUQ3BCbGdZRUJNSklHYWR3?=
- =?utf-8?B?VjdPUGRQaENtRlUvTHprTjEwREMrMDlTWU9vTEJhc1dyWEtCc0h5RjYxZlNy?=
- =?utf-8?B?Vm1pUFpFY2hyY3RnaHU1MTIzUnZIeTk5enNRZm1GL0NKVWFnUmN2V210c3lj?=
- =?utf-8?B?ZGhuMC9lTG5Ob3RVR0hyaGlrUmVydjkxaU1iQnhrcS9CTklKM1pwRGlGUFNT?=
- =?utf-8?B?Q2dKMDNJek40REFOK3ZwcWg5ZEhVeDRmYzlPaE8zREZRektZb3RVN25YSlZH?=
- =?utf-8?B?TUNRWHJTNlgyREpObUZ4ZUZUZGhPdHVnSHNWdGlaQXYwVG5TRitKSDFSWUEz?=
- =?utf-8?B?QzdnbWttZ21YMjhta00yWkIyVUhWaFY0TGx5VCtVYk5NTUs4QWtEcXZJR3Rx?=
- =?utf-8?B?S05FOWVSWjBRUUFuaDZxdWhCeVRNRFFTZDhDbmZySlMvOXFPRkF3L3RoRkk4?=
- =?utf-8?B?NWE5K1REeDhKVjFINUdkVWVDZXJnNnhlNmJpdFpPaTdCZ3kvTWk5WDRlanF6?=
- =?utf-8?B?dmNtbkJQdHhTUFpZaU1Gamlsc2doMUZUWG1ZSFo3a1RVSEhhSWszMUVZUEVN?=
- =?utf-8?B?NXQzVmtPOTdSRVlURU82a3lEZEN2YW5mdFdnNnRKck9pVU9QS2JTWCtHc1NZ?=
- =?utf-8?B?MUZjVXNudlZDamFpeUhGb3lYWnB1QlljYjErdHJBbXYvUlBkVHBXWjZ3R1V3?=
- =?utf-8?B?cHZNWG9yK1lsdVpwNyt4VFJoYXZqeVEwWjdQdnV3S291MFRxTWE5QXgvYXhl?=
- =?utf-8?B?N3FoeHBMV0tReHBraXFwZ2diREU1TWkxUFhtSjFoMDRMek1PeVNLMGQ3QjdG?=
- =?utf-8?B?dWIzSmRvNWxIVTlRV1VzNUg0WjM2VHE0bVJ6SUptWmxXR29yOSttZE01SFIy?=
- =?utf-8?B?Ni9hTzl3anYzMWhRMFVNeFVIRjlqWkdyc2M3WGdvL3h2S2JtVkFCRmkwS2Jz?=
- =?utf-8?B?YWNmcXIxYXdnakNXUERTQ3QwZHc5bVc1RnhRek1qZDJvMXI3MTZoeFNpTmgx?=
- =?utf-8?B?N2lwNFYrSk11enF6WGNTRHA2K0xuVSt1VnJFNmZodmxpREg3TDE5Q29WZTN6?=
- =?utf-8?B?bjJmZis5ajJ3d21pZUJWMU8wbnZmMG95aWg1MmNmTzBjR3kvODJWUUE2N05q?=
- =?utf-8?B?WDNGa05GcUNIWFpIUVYwekpZc3d4aFdqaGE0cFI0Mm9GbGRXYXd6dlVJbzBR?=
- =?utf-8?B?ZXRxbnMzdzArRnpZS0VMRGNzK3AyU1hCZXYyL2FpSHd6NEtMNjRuNTd4OUl5?=
- =?utf-8?B?WEZtUlg2dUVWenFBYTZqekk1Q0FsR0FhRFhIUkpjK1BsV1Qzd1NLMHFvMCs5?=
- =?utf-8?B?L2tjY1R0V1V6Vm1WRCt1bHgxSkcreTZpRjNUazRpVVBwemlpblpBZ29OS0c1?=
- =?utf-8?B?ekJYbkJWcmNRUi85VVNmeGFVNGM3cmhMaW4wOXJjTkkySUtGUGRPLzVod1V1?=
- =?utf-8?B?TThpcXZZV0lnZXRnMWRBUkJWc0lSM3FvbDUzOHoxYlBFMkhvbSt0VmNGTGQw?=
- =?utf-8?B?R3FiNjlnNFBCaC85cTd1UUNRWGJlSVFwK0tGVWdMTEtFMnppK1dRelUrTUw3?=
- =?utf-8?B?OEpja1g5djU3QURGU0szaXdTcUJ5TDgvWGQ0dURkaDkvcEJ5aVd3endpMXZw?=
- =?utf-8?B?cldUN3lvcmZGeXFFUDRrSmY4dTFZejhQYnRWcGdxUjFnSnBrbXBsWHkyTmpF?=
- =?utf-8?B?NFNxajJxM3czNkYxZ1h3VHhZS2JOVDh5cWlxTnF1S3NtQkhUd1FrQld4d0Na?=
- =?utf-8?B?Vm1peTBRWDNPQXhiYVRZLzN3dWQ2ZURsUjZ0Uk5tZ2YwdG95ZUtnWDdKK0J1?=
- =?utf-8?B?OGdYdVZOR2x5eDJpUDdQUWdSZlBNWVpRY2J2bm44NVVpUGN4L3NsOTdMdzdQ?=
- =?utf-8?B?a0dUN2ltU0ZDd2ZYVlVLdlFvOVhZSUg1RXd3dW85VXJucjB2UUw4NlhrVzYz?=
- =?utf-8?B?QnZZWjVickN5YmZoR3dhQ3Q1bXJQaEs5dHdFQU55c0ZUNVVKR2FMUGE3NVFU?=
- =?utf-8?B?bnVERThFMTc0eE02cWRiZFozalN4aE1DZE4wSWpEejBFZDVya1l5cFhzM0tw?=
- =?utf-8?B?eGg3dFJNbjNVMHh3d0dkRUZIemphVGc1b0tJY05FWlFWMFh6dWFaM2pwQ0ZP?=
- =?utf-8?Q?helyH4psQVH6RyVjQKK1oN0=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db852e33-9d9e-45f8-7e7b-08db13dd5f7d
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR01MB4973.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2023 07:29:31.8191
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ww6ApubmUyxncIFFRRcibLgv5A8laMLKIYRiX2KnGgCcfcP7lhBK/Q0YqyqwI3LhPHxV4dFjZZFPcjTL5g46SlIM7p0guYiLqK05BlXPe0pp/z/wo10n9OQ0A8ltqu1I
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR01MB6104
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -135,57 +95,139 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 17/02/2023 18:32, Krzysztof Kozlowski wrote:
-> On 17/02/2023 11:21, Chanh Nguyen wrote:
->> Support the mac3 (RGMII4) as an NC-SI stack instead of an MDIO PHY.
->>
->> The OCP slot #0 and OCP slot #1 use a common the BMC_NCSI signal,
->> so we use only one of them at the same time. The OCP slot #0 will
->> be enabled by PCA9539's setting by default.
->>
->> Also, enable the OCP Auxiliary Power during booting.
->>
->> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
->> ---
->>   .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 37 ++++++++++++++++++-
->>   1 file changed, 36 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
->> index 4b91600eaf62..e8a6b1f08d6a 100644
->> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
->> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
->> @@ -251,6 +251,14 @@
->>   	pinctrl-0 = <&pinctrl_rgmii1_default>;
->>   };
->>   
->> +&mac3 {
->> +	status = "okay";
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_rmii4_default>;
->> +	clock-names = "MACCLK", "RCLK";
->> +	use-ncsi;
->> +};
->> +
->>   &fmc {
->>   	status = "okay";
->>   	flash@0 {
->> @@ -439,6 +447,26 @@
->>   	status = "okay";
->>   };
->>   
->> +&i2c8 {
->> +	status = "okay";
->> +
->> +	pca9539@77 {
+On 14/02/2023 21:23, Elliot Berman wrote:
 > 
-> Node names should be generic, so I believe this is "gpio".
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> Add Gunyah Resource Manager RPC to launch an unauthenticated VM.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>   drivers/virt/gunyah/Makefile      |   2 +-
+>   drivers/virt/gunyah/rsc_mgr.h     |  45 ++++++
+>   drivers/virt/gunyah/rsc_mgr_rpc.c | 226 ++++++++++++++++++++++++++++++
+>   include/linux/gunyah_rsc_mgr.h    |  73 ++++++++++
+>   4 files changed, 345 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
 > 
+> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+> index cc864ff5abbb..de29769f2f3f 100644
+> --- a/drivers/virt/gunyah/Makefile
+> +++ b/drivers/virt/gunyah/Makefile
+> @@ -2,5 +2,5 @@
+>   
+>   obj-$(CONFIG_GUNYAH) += gunyah.o
+>   
+> -gunyah_rsc_mgr-y += rsc_mgr.o
+> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
+>   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
+> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
+> index d4e799a7526f..7406237bc66d 100644
+> --- a/drivers/virt/gunyah/rsc_mgr.h
+> +++ b/drivers/virt/gunyah/rsc_mgr.h
+> @@ -74,4 +74,49 @@ struct gh_rm;
+>   int gh_rm_call(struct gh_rm *rsc_mgr, u32 message_id, void *req_buff, size_t req_buff_size,
+>   		void **resp_buf, size_t *resp_buff_size);
+>   
+<----------------------------
+> +/* Message IDs: VM Management */
+> +#define GH_RM_RPC_VM_ALLOC_VMID			0x56000001
+> +#define GH_RM_RPC_VM_DEALLOC_VMID		0x56000002
+> +#define GH_RM_RPC_VM_START			0x56000004
+> +#define GH_RM_RPC_VM_STOP			0x56000005
+> +#define GH_RM_RPC_VM_RESET			0x56000006
+> +#define GH_RM_RPC_VM_CONFIG_IMAGE		0x56000009
+> +#define GH_RM_RPC_VM_INIT			0x5600000B
+> +#define GH_RM_RPC_VM_GET_HYP_RESOURCES		0x56000020
+> +#define GH_RM_RPC_VM_GET_VMID			0x56000024
+> +
+> +struct gh_rm_vm_common_vmid_req {
+> +	__le16 vmid;
+> +	__le16 reserved0;
+> +} __packed;
+> +
+> +/* Call: VM_ALLOC */
+> +struct gh_rm_vm_alloc_vmid_resp {
+> +	__le16 vmid;
+> +	__le16 reserved0;
+> +} __packed;
+> +
+> +/* Call: VM_STOP */
+> +struct gh_rm_vm_stop_req {
+> +	__le16 vmid;
+> +#define GH_RM_VM_STOP_FLAG_FORCE_STOP	BIT(0)
+> +	u8 flags;
+> +	u8 reserved;
+> +#define GH_RM_VM_STOP_REASON_FORCE_STOP		3
+> +	__le32 stop_reason;
+> +} __packed;
+> +
+> +/* Call: VM_CONFIG_IMAGE */
+> +struct gh_rm_vm_config_image_req {
+> +	__le16 vmid;
+> +	__le16 auth_mech;
+> +	__le32 mem_handle;
+> +	__le64 image_offset;
+> +	__le64 image_size;
+> +	__le64 dtb_offset;
+> +	__le64 dtb_size;
+> +} __packed;
+> +
+> +/* Call: GET_HYP_RESOURCES */
+> +
+-------------------------------->
 
-Thank Krzysztof,
+All the above structures are very much internal to rsc_mgr_rpc.c and 
+interface to the rsc_mgr_rpc is already abstracted with function arguments
 
-The PCA9539APW is a GPIO expander via I2C. For a generic name, I think 
-the "gpio" is suitable.
+ex:
+
+int gh_rm_vm_configure(struct gh_rm *rm, u16 vmid, enum 
+gh_rm_vm_auth_mechanism auth_mechanism, u32 mem_handle, u64 
+image_offset, u64 image_size, u64 dtb_offset, u64 dtb_size)
+
+So why do we need these structs and defines in header file at all?
+you should proabably consider moving them to the .c file.
+
+
+>   #endif
+> diff --git a/drivers/virt/gunyah/rsc_mgr_rpc.c b/drivers/virt/gunyah/rsc_mgr_rpc.c
+> new file mode 100644
+> index 000000000000..4515cdd80106
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/rsc_mgr_rpc.c
+> @@ -0,0 +1,226 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/gunyah_rsc_mgr.h>
+> +
+
+Why new line here?
+
+> +#include "rsc_mgr.h"
+> +
+> +/*
+...
+
+> +int gh_rm_vm_configure(struct gh_rm *rm, u16 vmid, enum gh_rm_vm_auth_mechanism auth_mechanism,
+> +		u32 mem_handle, u64 image_offset, u64 image_size, u64 dtb_offset, u64 dtb_size)
+> +{
+> +	struct gh_rm_vm_config_image_req req_payload = { 0 };
+> +	size_t resp_size;
+> +	void *resp;
+> +
+> +	req_payload.vmid = cpu_to_le16(vmid);
+> +	req_payload.auth_mech = cpu_to_le16(auth_mechanism);
+> +	req_payload.mem_handle = cpu_to_le32(mem_handle);
+> +	req_payload.image_offset = cpu_to_le64(image_offset);
+> +	req_payload.image_size = cpu_to_le64(image_size);
+> +	req_payload.dtb_offset = cpu_to_le64(dtb_offset);
+> +	req_payload.dtb_size = cpu_to_le64(dtb_size);
+> +
+> +	return gh_rm_call(rm, GH_RM_RPC_VM_CONFIG_IMAGE, &req_payload, sizeof(req_payload),
+> +			&resp, &resp_size);
+> +}
+> +
+
+--srini
