@@ -2,499 +2,450 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2350E69DE1B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 11:43:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D59169DE22
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 11:46:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbjBUKnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 05:43:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
+        id S233085AbjBUKqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 05:46:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233512AbjBUKnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 05:43:08 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F099265A4;
-        Tue, 21 Feb 2023 02:42:47 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31L8es1W002476;
-        Tue, 21 Feb 2023 05:42:16 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3nvdcm4n0e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Feb 2023 05:42:15 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 31LAgEqV023126
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Feb 2023 05:42:14 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 21 Feb
- 2023 05:42:13 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 21 Feb 2023 05:42:13 -0500
-Received: from okan.localdomain (IST-LT-43126.ad.analog.com [10.25.36.24])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 31LAdbH1012847;
-        Tue, 21 Feb 2023 05:42:02 -0500
-From:   Okan Sahin <okan.sahin@analog.com>
-To:     <okan.sahin@analog.com>
-CC:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>
-Subject: [PATCH v5 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC Support
-Date:   Tue, 21 Feb 2023 13:39:13 +0300
-Message-ID: <20230221103926.49597-6-okan.sahin@analog.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230221103926.49597-1-okan.sahin@analog.com>
-References: <20230221103926.49597-1-okan.sahin@analog.com>
+        with ESMTP id S231546AbjBUKqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 05:46:10 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8815A22028
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 02:46:05 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id c12so3902188wrw.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 02:46:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sd64Vl/ocLQAKFinJVHc0nnXpTzTz1sxrsjUhCW8XzU=;
+        b=L9N2sMfCDxEftxrKDhPF1D+ULhkKs4Q2AAWmqm7xYVnceALrJIzy71bPm8Ez6au2Xc
+         9AAbIWDRAzGurAkO2p6OVW+rFbWjbkYf/icgXJrAYJPY79VYkbf5rQkT19zU7ISzecU5
+         XTGTUN1wx+v5rTmaZu2YFxOTqebZm5otCOmzrqhTYduAQD/FTNuxOcDQgz3i+Zvw/Hmo
+         sLiUIqIYM+q+3J6LYvVB9fAQyXlccBglUfhzrGZjYeI4l+150gPwfVnX4ts+x6vD97qX
+         dcouc+qNsXSAkVtrDlAJMSyxYBv2e2X5TrYQHQrQ5og/hGfC/hv6Qy8iy02/cp9rSIC4
+         U9ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sd64Vl/ocLQAKFinJVHc0nnXpTzTz1sxrsjUhCW8XzU=;
+        b=K+19qfuPcRnOV9sgyZdQjiITZjcu0uJ2GgOw2XkDC248bY85g8oe6btCgb9D2p4+lS
+         bi551s1Nk9qb0O6qMvLMUIanzXmYugZCgL3h9+k3h3C3AQdC1WkfG2v8Z0tTTvLneuqo
+         Fp70d/m7wJGDI7Mkj9FWiBWUBvKvmVoyHphbHAjC8NlVWzx5zUJfzMjymMAtvwTvrcux
+         yWga1/Vl0baajpO6Mh4Qco2Cslmcr/TT6BSXYu2dv+FFFEHUtIy/WR4SlnxU+5wYTpHA
+         C3EaKLoX/VRW0XrkU854BBmx9hI+Z3AYIgdjXXOHJjy9zwj1OrsNCMlekkUbIUQyOlK7
+         Q0tw==
+X-Gm-Message-State: AO0yUKVJ9EQSbXAjRw8EjHXw9QWuoQrw9j0RZdJTV16Bp+3gR6W2Hx3H
+        qO6sfL4AO2kVcAPssRvz3afSzg==
+X-Google-Smtp-Source: AK7set+XHFJ83YZICxtjlFusD5HvFybIf677VpyIxQOkl2dZpiT7JLj7dxAXtacAQ+SLTQkTXaiE9w==
+X-Received: by 2002:a5d:4905:0:b0:2c6:e7f6:49af with SMTP id x5-20020a5d4905000000b002c6e7f649afmr2302205wrq.27.1676976363941;
+        Tue, 21 Feb 2023 02:46:03 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id q2-20020adff942000000b002c573778432sm7898257wrr.102.2023.02.21.02.46.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Feb 2023 02:46:03 -0800 (PST)
+Message-ID: <dbcfa4e9-a1ad-0f24-77bf-05934ca26bb2@linaro.org>
+Date:   Tue, 21 Feb 2023 10:46:00 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: K6MFZeP7kQHk3rgkBrKfeE2X65YA_KW8
-X-Proofpoint-ORIG-GUID: K6MFZeP7kQHk3rgkBrKfeE2X65YA_KW8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-21_06,2023-02-20_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 spamscore=0
- phishscore=0 impostorscore=0 mlxscore=0 malwarescore=0 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302210092
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v10 10/26] gunyah: vm_mgr: Introduce basic VM Manager
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212356.3313181-1-quic_eberman@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230214212356.3313181-1-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MFD driver for MAX77541/MAX77540 to enable its sub
-devices.
 
-The MAX77541 is a multi-function devices. It includes
-buck converter and ADC.
 
-The MAX77540 is a high-efficiency buck converter
-with two 3A switching phases.
+On 14/02/2023 21:23, Elliot Berman wrote:
+> 
+> Gunyah VM manager is a kernel moduel which exposes an interface to
+> Gunyah userspace to load, run, and interact with other Gunyah virtual
+> machines. The interface is a character device at /dev/gunyah.
+> 
+> Add a basic VM manager driver. Upcoming patches will add more ioctls
+> into this driver.
+> 
+> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>   .../userspace-api/ioctl/ioctl-number.rst      |   1 +
+>   drivers/virt/gunyah/Makefile                  |   2 +-
+>   drivers/virt/gunyah/rsc_mgr.c                 |  37 +++++-
+>   drivers/virt/gunyah/vm_mgr.c                  | 118 ++++++++++++++++++
+>   drivers/virt/gunyah/vm_mgr.h                  |  22 ++++
+>   include/uapi/linux/gunyah.h                   |  23 ++++
+>   6 files changed, 201 insertions(+), 2 deletions(-)
+>   create mode 100644 drivers/virt/gunyah/vm_mgr.c
+>   create mode 100644 drivers/virt/gunyah/vm_mgr.h
+>   create mode 100644 include/uapi/linux/gunyah.h
+> 
+> diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
+> index 0a1882e296ae..2513324ae7be 100644
+> --- a/Documentation/userspace-api/ioctl/ioctl-number.rst
+> +++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
+> @@ -137,6 +137,7 @@ Code  Seq#    Include File                                           Comments
+>   'F'   DD     video/sstfb.h                                           conflict!
+>   'G'   00-3F  drivers/misc/sgi-gru/grulib.h                           conflict!
+>   'G'   00-0F  xen/gntalloc.h, xen/gntdev.h                            conflict!
+> +'G'   00-0f  linux/gunyah.h                                          conflict!
+>   'H'   00-7F  linux/hiddev.h                                          conflict!
+>   'H'   00-0F  linux/hidraw.h                                          conflict!
+>   'H'   01     linux/mei.h                                             conflict!
+> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+> index de29769f2f3f..03951cf82023 100644
+> --- a/drivers/virt/gunyah/Makefile
+> +++ b/drivers/virt/gunyah/Makefile
+> @@ -2,5 +2,5 @@
+>   
+>   obj-$(CONFIG_GUNYAH) += gunyah.o
+>   
+> -gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
+> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o vm_mgr.o
+>   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
+> diff --git a/drivers/virt/gunyah/rsc_mgr.c b/drivers/virt/gunyah/rsc_mgr.c
+> index 2a47139873a8..73c5a6b7cbbc 100644
+> --- a/drivers/virt/gunyah/rsc_mgr.c
+> +++ b/drivers/virt/gunyah/rsc_mgr.c
+> @@ -16,8 +16,10 @@
+>   #include <linux/completion.h>
+>   #include <linux/gunyah_rsc_mgr.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/miscdevice.h>
+>   
+>   #include "rsc_mgr.h"
+> +#include "vm_mgr.h"
+>   
+>   #define RM_RPC_API_VERSION_MASK		GENMASK(3, 0)
+>   #define RM_RPC_HEADER_WORDS_MASK	GENMASK(7, 4)
+> @@ -103,6 +105,8 @@ struct gh_rm {
+>   	struct kmem_cache *cache;
+>   	struct mutex send_lock;
+>   	struct blocking_notifier_head nh;
+> +
+> +	struct miscdevice miscdev;
+>   };
+>   
+>   static struct gh_rm_connection *gh_rm_alloc_connection(__le32 msg_id, u8 type)
+> @@ -509,6 +513,21 @@ void put_gh_rm(struct gh_rm *rm)
+>   }
+>   EXPORT_SYMBOL_GPL(put_gh_rm);
+>   
+> +static long gh_dev_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+> +{
+> +	struct miscdevice *miscdev = filp->private_data;
+> +	struct gh_rm *rm = container_of(miscdev, struct gh_rm, miscdev);
+> +
+> +	return gh_dev_vm_mgr_ioctl(rm, cmd, arg);
+> +}
+> +
+> +static const struct file_operations gh_dev_fops = {
+> +	.owner		= THIS_MODULE,
+> +	.unlocked_ioctl	= gh_dev_ioctl,
+> +	.compat_ioctl	= compat_ptr_ioctl,
+> +	.llseek		= noop_llseek,
+> +};
+> +
+>   static int gh_msgq_platform_probe_direction(struct platform_device *pdev,
+>   					bool tx, int idx, struct gunyah_resource *ghrsc)
+>   {
+> @@ -567,7 +586,22 @@ static int gh_rm_drv_probe(struct platform_device *pdev)
+>   	rm->msgq_client.rx_callback = gh_rm_msgq_rx_data;
+>   	rm->msgq_client.tx_done = gh_rm_msgq_tx_done;
+>   
+> -	return gh_msgq_init(&pdev->dev, &rm->msgq, &rm->msgq_client, &rm->tx_ghrsc, &rm->rx_ghrsc);
+> +	ret = gh_msgq_init(&pdev->dev, &rm->msgq, &rm->msgq_client, &rm->tx_ghrsc, &rm->rx_ghrsc);
+> +	if (ret)
+> +		goto err_cache;
+> +
+> +	rm->miscdev.name = "gunyah";
+> +	rm->miscdev.minor = MISC_DYNAMIC_MINOR;
+> +	rm->miscdev.fops = &gh_dev_fops;
+> +
+> +	ret = misc_register(&rm->miscdev);
+> +	if (ret)
+> +		goto err_msgq;
+> +
+> +	return 0;
+> +err_msgq:
+> +	mbox_free_channel(gh_msgq_chan(&rm->msgq));
+> +	gh_msgq_remove(&rm->msgq);
+>   err_cache:
+>   	kmem_cache_destroy(rm->cache);
+>   	return ret;
+> @@ -577,6 +611,7 @@ static int gh_rm_drv_remove(struct platform_device *pdev)
+>   {
+>   	struct gh_rm *rm = platform_get_drvdata(pdev);
+>   
+> +	misc_deregister(&rm->miscdev);
+>   	mbox_free_channel(gh_msgq_chan(&rm->msgq));
+>   	gh_msgq_remove(&rm->msgq);
+>   	kmem_cache_destroy(rm->cache);
+> diff --git a/drivers/virt/gunyah/vm_mgr.c b/drivers/virt/gunyah/vm_mgr.c
+> new file mode 100644
+> index 000000000000..fd890a57172e
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/vm_mgr.c
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#define pr_fmt(fmt) "gh_vm_mgr: " fmt
+> +
+> +#include <linux/anon_inodes.h>
+> +#include <linux/file.h>
+> +#include <linux/gunyah_rsc_mgr.h>
+> +#include <linux/miscdevice.h>
+> +#include <linux/module.h>
+> +
+> +#include <uapi/linux/gunyah.h>
+> +
+> +#include "vm_mgr.h"
+> +
+> +static void gh_vm_free(struct work_struct *work)
+> +{
+> +	struct gh_vm *ghvm = container_of(work, struct gh_vm, free_work);
+> +	int ret;
+> +
+> +	ret = gh_rm_dealloc_vmid(ghvm->rm, ghvm->vmid);
+> +	if (ret)
+> +		pr_warn("Failed to deallocate vmid: %d\n", ret);
+> +
+> +	put_gh_rm(ghvm->rm);
+> +	kfree(ghvm);
+> +}
+> +
+> +static __must_check struct gh_vm *gh_vm_alloc(struct gh_rm *rm)
+> +{
+> +	struct gh_vm *ghvm;
+> +	int vmid;
+> +
+> +	vmid = gh_rm_alloc_vmid(rm, 0);
+> +	if (vmid < 0)
+> +		return ERR_PTR(vmid);
+> +
+> +	ghvm = kzalloc(sizeof(*ghvm), GFP_KERNEL);
+> +	if (!ghvm) {
+> +		gh_rm_dealloc_vmid(rm, vmid);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
+> +
+> +	get_gh_rm(rm);
+> +
+> +	ghvm->vmid = vmid;
+> +	ghvm->rm = rm;
+> +
+> +	INIT_WORK(&ghvm->free_work, gh_vm_free);
+> +
+> +	return ghvm;
+> +}
+> +
+> +static int gh_vm_release(struct inode *inode, struct file *filp)
+> +{
+> +	struct gh_vm *ghvm = filp->private_data;
+> +
+> +	/* VM will be reset and make RM calls which can interruptible sleep.
+> +	 * Defer to a work so this thread can receive signal.
+> +	 */
+> +	schedule_work(&ghvm->free_work);
+> +	return 0;
+> +}
+> +
+> +static const struct file_operations gh_vm_fops = {
+> +	.release = gh_vm_release,
 
-They have same regmap except for ADC part of MAX77541.
+> +	.compat_ioctl	= compat_ptr_ioctl,
 
-Signed-off-by: Okan Sahin <okan.sahin@analog.com>
----
- drivers/mfd/Kconfig          |  13 ++
- drivers/mfd/Makefile         |   1 +
- drivers/mfd/max77541.c       | 243 +++++++++++++++++++++++++++++++++++
- include/linux/mfd/max77541.h | 102 +++++++++++++++
- 4 files changed, 359 insertions(+)
- create mode 100644 drivers/mfd/max77541.c
- create mode 100644 include/linux/mfd/max77541.h
+This line should go with the patch that adds real ioctl
 
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 8b93856de432..e6bf621cbc8e 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -791,6 +791,19 @@ config MFD_MAX14577
- 	  additional drivers must be enabled in order to use the functionality
- 	  of the device.
- 
-+config MFD_MAX77541
-+	tristate "Analog Devices MAX77541/77540 PMIC Support"
-+	depends on I2C=y
-+	select MFD_CORE
-+	select REGMAP_I2C
-+	select REGMAP_IRQ
-+	help
-+	  Say yes here to add support for Analog Devices
-+	  MAX77541 and MAX77540 Power Management ICs.This
-+	  driver provides common support for accessing the
-+	  device;additional drivers must be enabled in order
-+	  to use the functionality of the device.
-+
- config MFD_MAX77620
- 	bool "Maxim Semiconductor MAX77620 and MAX20024 PMIC Support"
- 	depends on I2C=y
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 7ed3ef4a698c..bf21228f5742 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -161,6 +161,7 @@ obj-$(CONFIG_MFD_DA9063)	+= da9063.o
- obj-$(CONFIG_MFD_DA9150)	+= da9150-core.o
- 
- obj-$(CONFIG_MFD_MAX14577)	+= max14577.o
-+obj-$(CONFIG_MFD_MAX77541)	+= max77541.o
- obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
- obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
- obj-$(CONFIG_MFD_MAX77686)	+= max77686.o
-diff --git a/drivers/mfd/max77541.c b/drivers/mfd/max77541.c
-new file mode 100644
-index 000000000000..1452a51aa32c
---- /dev/null
-+++ b/drivers/mfd/max77541.c
-@@ -0,0 +1,243 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2022 Analog Devices, Inc.
-+ * Driver for the MAX77540 and MAX77541
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/mfd/core.h>
-+#include <linux/mfd/max77541.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+
-+static const struct regmap_config max77541_regmap_config = {
-+	.reg_bits   = 8,
-+	.val_bits   = 8,
-+};
-+
-+static const struct regmap_irq max77541_src_irqs[] = {
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_INT_SRC_TOPSYS),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_INT_SRC_BUCK),
-+};
-+
-+static const struct regmap_irq_chip max77541_src_irq_chip = {
-+	.name		= "max77541-src",
-+	.status_base	= MAX77541_REG_INT_SRC,
-+	.mask_base	= MAX77541_REG_INT_SRC,
-+	.num_regs	= 1,
-+	.irqs		= max77541_src_irqs,
-+	.num_irqs       = ARRAY_SIZE(max77541_src_irqs),
-+};
-+
-+static const struct regmap_irq max77541_topsys_irqs[] = {
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_TOPSYS_INT_TJ_120C),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_TOPSYS_INT_TJ_140C),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_TOPSYS_INT_TSHDN),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_TOPSYS_INT_UVLO),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_TOPSYS_INT_ALT_SWO),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_TOPSYS_INT_EXT_FREQ_DET),
-+};
-+
-+static const struct regmap_irq_chip max77541_topsys_irq_chip = {
-+	.name		= "max77541-topsys",
-+	.status_base	= MAX77541_REG_TOPSYS_INT,
-+	.mask_base	= MAX77541_REG_TOPSYS_INT_M,
-+	.num_regs	= 1,
-+	.irqs		= max77541_topsys_irqs,
-+	.num_irqs	= ARRAY_SIZE(max77541_topsys_irqs),
-+};
-+
-+static const struct regmap_irq max77541_buck_irqs[] = {
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_BUCK_INT_M1_POK_FLT),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_BUCK_INT_M2_POK_FLT),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_BUCK_INT_M1_SCFLT),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_BUCK_INT_M2_SCFLT),
-+};
-+
-+static const struct regmap_irq_chip max77541_buck_irq_chip = {
-+	.name		= "max77541-buck",
-+	.status_base	= MAX77541_REG_BUCK_INT,
-+	.mask_base	= MAX77541_REG_BUCK_INT_M,
-+	.num_regs	= 1,
-+	.irqs		= max77541_buck_irqs,
-+	.num_irqs	= ARRAY_SIZE(max77541_buck_irqs),
-+};
-+
-+static const struct regmap_irq max77541_adc_irqs[] = {
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_ADC_INT_CH1_I),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_ADC_INT_CH2_I),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_ADC_INT_CH3_I),
-+	MAX77541_REGMAP_IRQ_REG(MAX77541_BIT_ADC_INT_CH6_I),
-+};
-+
-+static const struct regmap_irq_chip max77541_adc_irq_chip = {
-+	.name		= "max77541-adc",
-+	.status_base	= MAX77541_REG_ADC_INT,
-+	.mask_base	= MAX77541_REG_ADC_MSK,
-+	.num_regs	= 1,
-+	.irqs		= max77541_adc_irqs,
-+	.num_irqs	= ARRAY_SIZE(max77541_adc_irqs),
-+};
-+
-+static const struct mfd_cell max77540_devs[] = {
-+	MFD_CELL_OF("max77540-regulator", NULL, NULL, 0, 0,
-+		    NULL),
-+};
-+
-+static const struct mfd_cell max77541_devs[] = {
-+	MFD_CELL_OF("max77541-regulator", NULL, NULL, 0, 0,
-+		    NULL),
-+	MFD_CELL_OF("max77541-adc", NULL, NULL, 0, 0,
-+		    NULL),
-+};
-+
-+static const struct chip_info chip[] = {
-+	[MAX77540] = {
-+		.id = MAX77540,
-+		.n_devs = ARRAY_SIZE(max77540_devs),
-+		.devs = max77540_devs,
-+	},
-+	[MAX77541] = {
-+		.id = MAX77541,
-+		.n_devs = ARRAY_SIZE(max77541_devs),
-+		.devs = max77541_devs,
-+	},
-+};
-+
-+static int max77541_pmic_irq_init(struct device *dev)
-+{
-+	struct max77541 *max77541 = dev_get_drvdata(dev);
-+	int irq = max77541->i2c->irq;
-+	int ret;
-+
-+	ret = devm_regmap_add_irq_chip(dev, max77541->regmap, irq,
-+				       IRQF_ONESHOT | IRQF_SHARED, 0,
-+				       &max77541_src_irq_chip,
-+				       &max77541->irq_data);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_regmap_add_irq_chip(dev, max77541->regmap, irq,
-+				       IRQF_ONESHOT | IRQF_SHARED, 0,
-+				       &max77541_topsys_irq_chip,
-+				       &max77541->irq_topsys);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_regmap_add_irq_chip(dev, max77541->regmap, irq,
-+				       IRQF_ONESHOT | IRQF_SHARED, 0,
-+				       &max77541_buck_irq_chip,
-+				       &max77541->irq_buck);
-+	if (ret)
-+		return ret;
-+
-+	if (max77541->chip->id == MAX77541) {
-+		ret = devm_regmap_add_irq_chip(dev, max77541->regmap, irq,
-+					       IRQF_ONESHOT | IRQF_SHARED, 0,
-+					       &max77541_adc_irq_chip,
-+					       &max77541->irq_adc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int max77541_pmic_setup(struct device *dev)
-+{
-+	struct max77541 *max77541 = dev_get_drvdata(dev);
-+	unsigned int val;
-+	int ret;
-+
-+	ret = max77541_pmic_irq_init(dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to initialize IRQ\n");
-+
-+	ret = regmap_read(max77541->regmap, MAX77541_REG_INT_SRC, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(max77541->regmap, MAX77541_REG_TOPSYS_INT, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(max77541->regmap, MAX77541_REG_BUCK_INT, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = device_init_wakeup(dev, true);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Unable to init wakeup\n");
-+
-+	return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
-+				    max77541->chip->devs,
-+				    max77541->chip->n_devs,
-+				    NULL, 0, NULL);
-+}
-+
-+static const struct i2c_device_id max77541_i2c_id[];
-+
-+static int max77541_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct max77541 *max77541;
-+
-+	max77541 = devm_kzalloc(dev, sizeof(*max77541), GFP_KERNEL);
-+	if (!max77541)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, max77541);
-+	max77541->i2c = client;
-+
-+	if (dev->of_node)
-+		max77541->chip  = of_device_get_match_data(dev);
-+	else
-+		max77541->chip  = (struct chip_info *)
-+					i2c_match_id(max77541_i2c_id,
-+						     client)->driver_data;
-+	if (!max77541->chip)
-+		return -EINVAL;
-+
-+	max77541->regmap = devm_regmap_init_i2c(client,
-+						&max77541_regmap_config);
-+	if (IS_ERR(max77541->regmap))
-+		return dev_err_probe(dev, PTR_ERR(max77541->regmap),
-+				     "Failed to allocate register map\n");
-+
-+	return max77541_pmic_setup(dev);
-+}
-+
-+static const struct of_device_id max77541_of_id[] = {
-+	{
-+		.compatible = "adi,max77540",
-+		.data = &chip[MAX77540],
-+	},
-+	{
-+		.compatible = "adi,max77541",
-+		.data = &chip[MAX77541],
-+	},
-+	{ /* sentinel */  }
-+};
-+MODULE_DEVICE_TABLE(of, max77541_of_id);
-+
-+static const struct i2c_device_id max77541_i2c_id[] = {
-+	{ "max77540", (kernel_ulong_t)&chip[MAX77540] },
-+	{ "max77541", (kernel_ulong_t)&chip[MAX77541] },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max77541_i2c_id);
-+
-+static struct i2c_driver max77541_i2c_driver = {
-+	.driver = {
-+		.name = "max77541",
-+		.of_match_table = max77541_of_id,
-+	},
-+	.probe_new = max77541_i2c_probe,
-+	.id_table = max77541_i2c_id,
-+};
-+module_i2c_driver(max77541_i2c_driver);
-+
-+MODULE_DESCRIPTION("MAX7740/MAX7741 MFD Driver");
-+MODULE_AUTHOR("Okan Sahin <okan.sahin@analog.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/include/linux/mfd/max77541.h b/include/linux/mfd/max77541.h
-new file mode 100644
-index 000000000000..e1ed0aed823d
---- /dev/null
-+++ b/include/linux/mfd/max77541.h
-@@ -0,0 +1,102 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
-+#ifndef __MAX77541_MFD_H__
-+#define __MAX77541_MFD_H__
-+
-+#include <linux/bits.h>
-+#include <linux/types.h>
-+
-+/*      REGISTERS       */
-+
-+/*      GLOBAL CONFIG1       */
-+#define MAX77541_REG_INT_SRC                    0x00
-+#define MAX77541_REG_INT_SRC_M                  0x01
-+#define MAX77541_REG_TOPSYS_INT                 0x02
-+#define MAX77541_REG_TOPSYS_INT_M               0x03
-+
-+#define MAX77541_REG_EN_CTRL                    0x0B
-+
-+/*      BUCK CONFIG       */
-+#define MAX77541_REG_BUCK_INT                   0x20
-+#define MAX77541_REG_BUCK_INT_M                 0x21
-+
-+#define MAX77541_REG_M1_VOUT                    0x23
-+#define MAX77541_REG_M1_CFG1                    0x25
-+
-+#define MAX77541_REG_M2_VOUT                    0x33
-+#define MAX77541_REG_M2_CFG1                    0x35
-+
-+/* INTERRUPT MASKS*/
-+#define MAX77541_REG_INT_SRC_MASK               0x00
-+#define MAX77541_REG_TOPSYS_INT_MASK            0x00
-+#define MAX77541_REG_BUCK_INT_MASK              0x00
-+
-+/*BITS OF REGISTERS*/
-+#define MAX77541_BIT_INT_SRC_TOPSYS             BIT(0)
-+#define MAX77541_BIT_INT_SRC_BUCK               BIT(1)
-+
-+#define MAX77541_BIT_TOPSYS_INT_TJ_120C         BIT(0)
-+#define MAX77541_BIT_TOPSYS_INT_TJ_140C         BIT(1)
-+#define MAX77541_BIT_TOPSYS_INT_TSHDN           BIT(2)
-+#define MAX77541_BIT_TOPSYS_INT_UVLO            BIT(3)
-+#define MAX77541_BIT_TOPSYS_INT_ALT_SWO         BIT(4)
-+#define MAX77541_BIT_TOPSYS_INT_EXT_FREQ_DET    BIT(5)
-+
-+#define MAX77541_BIT_BUCK_INT_M1_POK_FLT        BIT(0)
-+#define MAX77541_BIT_BUCK_INT_M2_POK_FLT        BIT(1)
-+#define MAX77541_BIT_BUCK_INT_M1_SCFLT          BIT(4)
-+#define MAX77541_BIT_BUCK_INT_M2_SCFLT          BIT(5)
-+
-+#define MAX77541_BIT_M1_EN                      BIT(0)
-+#define MAX77541_BIT_M2_EN                      BIT(1)
-+
-+#define MAX77541_BITS_MX_VOUT                   GENMASK(7, 0)
-+#define MAX77541_BITS_MX_CFG1_RNG               GENMASK(7, 6)
-+
-+/*      ADC       */
-+#define MAX77541_REG_ADC_INT                    0x70
-+#define MAX77541_REG_ADC_MSK                    0x71
-+
-+#define MAX77541_REG_ADC_DATA_CH1               0x72
-+#define MAX77541_REG_ADC_DATA_CH2               0x73
-+#define MAX77541_REG_ADC_DATA_CH3               0x74
-+#define MAX77541_REG_ADC_DATA_CH6               0x77
-+
-+#define MAX77541_BIT_ADC_INT_CH1_I              BIT(0)
-+#define MAX77541_BIT_ADC_INT_CH2_I              BIT(1)
-+#define MAX77541_BIT_ADC_INT_CH3_I              BIT(2)
-+#define MAX77541_BIT_ADC_INT_CH6_I              BIT(5)
-+
-+#define MAX77541_MAX_REGULATORS 2
-+
-+#define MAX77541_REGMAP_IRQ_REG(_mask)	\
-+	{ .mask = (_mask) }
-+
-+enum max7754x_ids {
-+	MAX77540,
-+	MAX77541,
-+};
-+
-+struct chip_info {
-+	enum max7754x_ids id;
-+	int n_devs;
-+	const struct mfd_cell *devs;
-+};
-+
-+struct regmap;
-+struct regmap_irq_chip_data;
-+struct i2c_client;
-+
-+struct max77541 {
-+	const struct chip_info *chip;
-+
-+	struct regmap_irq_chip_data *irq_data;
-+	struct regmap_irq_chip_data *irq_buck;
-+	struct regmap_irq_chip_data *irq_topsys;
-+	struct regmap_irq_chip_data *irq_adc;
-+
-+	struct i2c_client *i2c;
-+	struct regmap *regmap;
-+};
-+
-+#endif /* __MAX77541_MFD_H__ */
--- 
-2.30.2
+> +	.llseek = noop_llseek,
+> +};
+> +
+> +static long gh_dev_ioctl_create_vm(struct gh_rm *rm, unsigned long arg)
+Not sure what is the gain of this multiple levels of redirection.
 
+How about
+
+long gh_dev_create_vm(struct gh_rm *rm, unsigned long arg)
+{
+...
+}
+
+and rsc_mgr just call it as part of its ioctl call
+
+static long gh_dev_ioctl(struct file *filp, unsigned int cmd, unsigned 
+long arg)
+{
+	struct miscdevice *miscdev = filp->private_data;
+	struct gh_rm *rm = container_of(miscdev, struct gh_rm, miscdev);
+
+	switch (cmd) {
+	case GH_CREATE_VM:
+		return gh_dev_create_vm(rm, arg);
+	default:
+		return -ENOIOCTLCMD;
+	}
+}
+
+
+> +{
+> +	struct gh_vm *ghvm;
+> +	struct file *file;
+> +	int fd, err;
+> +
+> +	/* arg reserved for future use. */
+> +	if (arg)
+> +		return -EINVAL;
+
+The only code path I see here is via GH_CREATE_VM ioctl which obviously 
+does not take any arguments, so if you are thinking of using the 
+argument for architecture-specific VM flags.  Then this needs to be 
+properly done by making the ABI aware of this.
+
+As you mentioned zero value arg imply an "unauthenticated VM" type, but 
+this was not properly encoded in the userspace ABI. Why not make it 
+future compatible. How about adding arguments to GH_CREATE_VM and pass 
+the required information correctly.
+Note that once the ABI is accepted then you will not be able to change 
+it, other than adding a new one.
+
+> +
+> +	ghvm = gh_vm_alloc(rm);
+> +	if (IS_ERR(ghvm))
+> +		return PTR_ERR(ghvm);
+> +
+> +	fd = get_unused_fd_flags(O_CLOEXEC);
+> +	if (fd < 0) {
+> +		err = fd;
+> +		goto err_destroy_vm;
+> +	}
+> +
+> +	file = anon_inode_getfile("gunyah-vm", &gh_vm_fops, ghvm, O_RDWR);
+> +	if (IS_ERR(file)) {
+> +		err = PTR_ERR(file);
+> +		goto err_put_fd;
+> +	}
+> +
+> +	fd_install(fd, file);
+> +
+> +	return fd;
+> +
+> +err_put_fd:
+> +	put_unused_fd(fd);
+> +err_destroy_vm:
+> +	kfree(ghvm);
+> +	return err;
+> +}
+> +
+> +long gh_dev_vm_mgr_ioctl(struct gh_rm *rm, unsigned int cmd, unsigned long arg)
+> +{
+> +	switch (cmd) {
+> +	case GH_CREATE_VM:
+> +		return gh_dev_ioctl_create_vm(rm, arg);
+> +	default:
+> +		return -ENOIOCTLCMD;
+> +	}
+> +}
+> diff --git a/drivers/virt/gunyah/vm_mgr.h b/drivers/virt/gunyah/vm_mgr.h
+> new file mode 100644
+> index 000000000000..76954da706e9
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/vm_mgr.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef _GH_PRIV_VM_MGR_H
+> +#define _GH_PRIV_VM_MGR_H
+> +
+> +#include <linux/gunyah_rsc_mgr.h>
+> +
+> +#include <uapi/linux/gunyah.h>
+> +
+> +long gh_dev_vm_mgr_ioctl(struct gh_rm *rm, unsigned int cmd, unsigned long arg);
+> +
+> +struct gh_vm {
+> +	u16 vmid;
+> +	struct gh_rm *rm;
+> +
+> +	struct work_struct free_work;
+> +};
+> +
+> +#endif
+> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
+> new file mode 100644
+> index 000000000000..10ba32d2b0a6
+> --- /dev/null
+> +++ b/include/uapi/linux/gunyah.h
+> @@ -0,0 +1,23 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef _UAPI_LINUX_GUNYAH
+> +#define _UAPI_LINUX_GUNYAH
+> +
+> +/*
+> + * Userspace interface for /dev/gunyah - gunyah based virtual machine
+> + */
+> +
+> +#include <linux/types.h>
+> +#include <linux/ioctl.h>
+> +
+> +#define GH_IOCTL_TYPE			'G'
+> +
+> +/*
+> + * ioctls for /dev/gunyah fds:
+> + */
+> +#define GH_CREATE_VM			_IO(GH_IOCTL_TYPE, 0x0) /* Returns a Gunyah VM fd */
+
+Can HLOS forcefully destroy a VM?
+If so should we have a corresponding DESTROY IOCTL?
+
+--srini
+
+> +
+> +#endif
