@@ -2,323 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B78E69E790
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 19:33:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D828B69E7DF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 19:49:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230476AbjBUSdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 13:33:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
+        id S229945AbjBUStd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 13:49:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbjBUSc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 13:32:56 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF94303D0;
-        Tue, 21 Feb 2023 10:32:36 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id ck15so22233637edb.0;
-        Tue, 21 Feb 2023 10:32:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pQSmh32OKE33I5420mu9+Fe2dybwDMzPyqZp98Es5A0=;
-        b=NWW0loock5oBID3QFLzVq8K9EpVNYl+ZYmsU652aRgHtxBKeNfj8DPn7GmSYs/ttfZ
-         sewS3t7yAWMaLsrLFpM20K9bzEbiga0bMCN6Q1YEmbwN0DCnD4VYXFRhq0Bf22glKT3j
-         9ehzd27SMlkUawFEBbW1dlxeCo9EH52YqwvgwEjhMURX18dliuMncwqZStFByf6z9OA7
-         6aUSJy1Kfwi2nwHPIG21i5UQo4g2uyHqY012/k1DuJVB57C2RAMteAafi9GTxvY8YmgD
-         cMuLN9PWNsYrvyaNfhFkaE/89jEpoSXltkVWUB0ugYGreMFxCMpS62PuwvebAs3GujFe
-         +8Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pQSmh32OKE33I5420mu9+Fe2dybwDMzPyqZp98Es5A0=;
-        b=aJmSe1d2OlSDkbPq+f5hQwHC/yoBPktAcQ/6fHZ/DI5C1VrkAdiLq71KoXm1l29qQ6
-         +QcXi/zzfGaLoJRXk1tLNPrgGVc0fst59nXnPH2cTgsXEgsSZzLl1c8OAuZWWYxo/fhV
-         9lNc785E2P9L680jSsUSkIAjMq8INChahj/YshI84DlBHcRzhisfKQkHjqqYHLoyOoZf
-         T2GceXGLeXHPI92WDS5KP9w4QQUPd/kcZQSEieOSIFqJdmiKTavK23CWyeaAXhFqgqXq
-         AhGg7M6Oh1nYXN7e7wjeZ4s7mUZJZYnVld40Ey2eSpM0Z6MyPhgziEOO1TW4e+TAFPZq
-         Z9Mg==
-X-Gm-Message-State: AO0yUKUh4G72iS9wQHzHyX5Ms1QzFJ0Vdu9XRAJb4npvVDLmMd+XiCPt
-        p4s8xFdYN8hOXWXcvBuOLQc=
-X-Google-Smtp-Source: AK7set+fSmOPE7HCxYwmGeNARvkMtewnxLHluxAnobePLwdWIIZgbTWFuCdB66FrKtK6B5zRmhBjXg==
-X-Received: by 2002:a05:6402:516e:b0:474:a583:2e1a with SMTP id d14-20020a056402516e00b00474a5832e1amr5711519ede.12.1677004355491;
-        Tue, 21 Feb 2023 10:32:35 -0800 (PST)
-Received: from xeon.. ([188.163.112.76])
-        by smtp.gmail.com with ESMTPSA id i3-20020a50c3c3000000b004af5aa16fcasm169102edf.66.2023.02.21.10.32.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 10:32:35 -0800 (PST)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-tegra@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: [PATCH v1 10/10] ARM: tegra: transformers: bind FM34NE DSP on supported devices
-Date:   Tue, 21 Feb 2023 20:32:11 +0200
-Message-Id: <20230221183211.21964-11-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230221183211.21964-1-clamor95@gmail.com>
-References: <20230221183211.21964-1-clamor95@gmail.com>
+        with ESMTP id S230030AbjBUStc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 13:49:32 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1DD52A6DB;
+        Tue, 21 Feb 2023 10:49:29 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31LHHMac001982;
+        Tue, 21 Feb 2023 12:49:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=2yIT5sQ3F8uH9sOOaYmVBC+bo+0d0nFSg4rXQhVBuT8=;
+ b=joYQ8WL637xlEGwSS/ZtKncTOn59Hg+pltTOUSJ2WA8bi1w4tMu+J5gatQU7/DvPvyw9
+ CtVqOfGOf/NK9gJ3TpBGEHlOaGG/HQUwvTgjk/iwK33pwZImOK3TybVc6xoTJUOF4zuu
+ tPSmkLkD2Qo6IAlGAQLw1NmgLygCTE3eZtoSp0dIyOTtM/G+NTAvqBf3saMBHPglNJHi
+ 0mUvweLcFuk2aHWXsbSxIcC8C8AECgv1hNyzjVvlz4CBARIbWMZUDDH644N35h/m3qsm
+ 1Omv+mYDjjQtjjCFXtAeqZYAFNN81szJqTdqioU7i0Fb5kZzxBXcaTJ6KNu/tmrT9X7B wQ== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3nvmnqs1xb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Feb 2023 12:49:18 -0600
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.21; Tue, 21 Feb
+ 2023 12:49:16 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.21 via Frontend Transport; Tue, 21 Feb 2023 12:49:16 -0600
+Received: from [141.131.215.58] (david-linux.ad.cirrus.com [141.131.215.58])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id B77EFB0E;
+        Tue, 21 Feb 2023 18:49:14 +0000 (UTC)
+Message-ID: <c09675da-5259-d8f3-77de-da54aef939d4@opensource.cirrus.com>
+Date:   Tue, 21 Feb 2023 12:49:14 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v5 3/4] ALSA: cs35l41: Add shared boost feature
+Content-Language: en-US
+To:     Lucas Tanure <lucas.tanure@collabora.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>
+CC:     David Rhodes <david.rhodes@cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>, <linux-kernel@vger.kernel.org>,
+        <kernel@collabora.com>
+References: <20230210091942.10866-1-lucas.tanure@collabora.com>
+ <20230210091942.10866-4-lucas.tanure@collabora.com>
+ <20230210134341.GF68926@ediswmail.ad.cirrus.com>
+ <cfacc3d6-2daa-6aa3-ba19-281b7e48bb47@collabora.com>
+ <20230211170638.GG68926@ediswmail.ad.cirrus.com>
+ <1e3ef067-9b39-dc19-5fbc-75436c67f206@collabora.com>
+ <d86d989b-0d82-74b3-a5da-9972324e9477@opensource.cirrus.com>
+ <09bf8e07-6275-654f-4a70-d46b54e9b853@collabora.com>
+From:   David Rhodes <drhodes@opensource.cirrus.com>
+In-Reply-To: <09bf8e07-6275-654f-4a70-d46b54e9b853@collabora.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: lW4awi_3iOB0bT4v7fYDunC_lLoNfel_
+X-Proofpoint-GUID: lW4awi_3iOB0bT4v7fYDunC_lLoNfel_
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-FM34NE is mandatory for correct sound work on ASUS Transformers.
+On 2/21/23 02:28, Lucas Tanure wrote:
+> David can you confirm that both sides should use MDSYNC for boost 
+> control source?
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- arch/arm/boot/dts/tegra20-asus-tf101.dts      | 14 +++++++++
- arch/arm/boot/dts/tegra30-asus-tf201.dts      | 29 +++++++++++++++++++
- arch/arm/boot/dts/tegra30-asus-tf300t.dts     | 29 +++++++++++++++++++
- arch/arm/boot/dts/tegra30-asus-tf300tg.dts    | 19 ++++++++++++
- arch/arm/boot/dts/tegra30-asus-tf700t.dts     | 19 ++++++++++++
- .../arm/boot/dts/tegra30-pegatron-chagall.dts | 27 +++++++++++++++++
- 6 files changed, 137 insertions(+)
+Both amps can use the value 'MDSYNC' for BST_CTL_SEL.
+The value for the passive amp does not affect the behavior because BST_EN=0.
 
-diff --git a/arch/arm/boot/dts/tegra20-asus-tf101.dts b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-index 8d0613567e82..8a51a4c53014 100644
---- a/arch/arm/boot/dts/tegra20-asus-tf101.dts
-+++ b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-@@ -493,6 +493,20 @@ i2c@7000c000 {
- 		status = "okay";
- 		clock-frequency = <400000>;
- 
-+		/* Fortemedia FM34NE voice processor */
-+		dsp@60 {
-+			compatible = "asus,tf101-dsp", "fortemedia,fm34";
-+			reg = <0x60>;
-+
-+			bypass-gpios = <&gpio TEGRA_GPIO(H, 3) GPIO_ACTIVE_HIGH>;
-+			reset-gpios = <&gpio TEGRA_GPIO(H, 2) GPIO_ACTIVE_LOW>;
-+
-+			vdd-supply = <&vdd_1v8_sys>;
-+
-+			clocks = <&tegra_car TEGRA20_CLK_CDEV1>;
-+			clock-names = "mclk";
-+		};
-+
- 		/* Aichi AMI306 digital compass */
- 		magnetometer@e {
- 			compatible = "asahi-kasei,ak8974";
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf201.dts b/arch/arm/boot/dts/tegra30-asus-tf201.dts
-index 47865deeb88a..e214fc23609e 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf201.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf201.dts
-@@ -60,6 +60,25 @@ bluetooth {
- 		};
- 	};
- 
-+	i2c@7000c000 {
-+		/* Fortemedia FM34NE voice processor */
-+		dsp@60 {
-+			compatible = "asus,tf201-dsp", "fortemedia,fm34";
-+			reg = <0x60>;
-+
-+			bypass-gpios = <&gpio TEGRA_GPIO(BB, 6) GPIO_ACTIVE_HIGH>;
-+			reset-gpios = <&gpio TEGRA_GPIO(O, 3) GPIO_ACTIVE_LOW>;
-+
-+			vdd-supply = <&vdd_1v8_dsp>;
-+
-+			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			clock-names = "mclk";
-+
-+			assigned-clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			assigned-clock-parents = <&tegra_car TEGRA30_CLK_EXTERN1>;
-+		};
-+	};
-+
- 	i2c@7000c400 {
- 		/* Atmel MXT768E touchscreen */
- 		touchscreen@4d {
-@@ -606,6 +625,16 @@ haptic-feedback {
- 		vcc-supply = <&vdd_3v3_sys>;
- 	};
- 
-+	vdd_1v8_dsp: regulator-dsp {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_1v8_dsp";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&gpio TEGRA_GPIO(U, 5) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&vdd_1v8_vio>;
-+	};
-+
- 	sound {
- 		compatible = "asus,tegra-audio-rt5631-tf201",
- 			     "nvidia,tegra-audio-rt5631";
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf300t.dts b/arch/arm/boot/dts/tegra30-asus-tf300t.dts
-index 78f78cca337a..2dcf0e1f6ca2 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf300t.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf300t.dts
-@@ -68,6 +68,25 @@ bluetooth {
- 		};
- 	};
- 
-+	i2c@7000c000 {
-+		/* Fortemedia FM34NE voice processor */
-+		dsp@60 {
-+			compatible = "asus,tf300t-dsp", "fortemedia,fm34";
-+			reg = <0x60>;
-+
-+			bypass-gpios = <&gpio TEGRA_GPIO(BB, 6) GPIO_ACTIVE_HIGH>;
-+			reset-gpios = <&gpio TEGRA_GPIO(O, 3) GPIO_ACTIVE_LOW>;
-+
-+			vdd-supply = <&vdd_1v8_dsp>;
-+
-+			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			clock-names = "mclk";
-+
-+			assigned-clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			assigned-clock-parents = <&tegra_car TEGRA30_CLK_EXTERN1>;
-+		};
-+	};
-+
- 	i2c@7000c400 {
- 		/* Elantech EKTH1036 touchscreen */
- 		touchscreen@10 {
-@@ -999,6 +1018,16 @@ display-panel {
- 		compatible = "innolux,g101ice-l01";
- 	};
- 
-+	vdd_1v8_dsp: regulator-dsp {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_1v8_dsp";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&gpio TEGRA_GPIO(P, 3) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&vdd_1v8_vio>;
-+	};
-+
- 	sound {
- 		compatible = "asus,tegra-audio-wm8903-tf300t",
- 			     "nvidia,tegra-audio-wm8903";
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf300tg.dts b/arch/arm/boot/dts/tegra30-asus-tf300tg.dts
-index 82c51e177a70..7f23021611a4 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf300tg.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf300tg.dts
-@@ -164,6 +164,25 @@ bluetooth {
- 		};
- 	};
- 
-+	i2c@7000c000 {
-+		/* Fortemedia FM34NE voice processor */
-+		dsp@60 {
-+			compatible = "asus,tf300t-dsp", "fortemedia,fm34";
-+			reg = <0x60>;
-+
-+			bypass-gpios = <&gpio TEGRA_GPIO(BB, 6) GPIO_ACTIVE_HIGH>;
-+			reset-gpios = <&gpio TEGRA_GPIO(O, 3) GPIO_ACTIVE_LOW>;
-+
-+			vdd-supply = <&vdd_1v8_vio>;
-+
-+			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			clock-names = "mclk";
-+
-+			assigned-clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			assigned-clock-parents = <&tegra_car TEGRA30_CLK_EXTERN1>;
-+		};
-+	};
-+
- 	i2c@7000c400 {
- 		/* Elantech EKTH1036 touchscreen */
- 		touchscreen@10 {
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf700t.dts b/arch/arm/boot/dts/tegra30-asus-tf700t.dts
-index 766225ebdeab..bbb33119780e 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf700t.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf700t.dts
-@@ -85,6 +85,25 @@ bluetooth {
- 		};
- 	};
- 
-+	i2c@7000c000 {
-+		/* Fortemedia FM34NE voice processor */
-+		dsp@60 {
-+			compatible = "asus,tf700t-dsp", "fortemedia,fm34";
-+			reg = <0x60>;
-+
-+			bypass-gpios = <&gpio TEGRA_GPIO(BB, 6) GPIO_ACTIVE_HIGH>;
-+			reset-gpios = <&gpio TEGRA_GPIO(O, 3) GPIO_ACTIVE_LOW>;
-+
-+			vdd-supply = <&vdd_1v8_vio>;
-+
-+			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			clock-names = "mclk";
-+
-+			assigned-clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			assigned-clock-parents = <&tegra_car TEGRA30_CLK_EXTERN1>;
-+		};
-+	};
-+
- 	i2c@7000c400 {
- 		/* Elantech ELAN-3024-7053 or 5184N FPC-1 REV: 2/3 touchscreen */
- 		touchscreen@10 {
-diff --git a/arch/arm/boot/dts/tegra30-pegatron-chagall.dts b/arch/arm/boot/dts/tegra30-pegatron-chagall.dts
-index 6e24b095713b..007ba3f3e95e 100644
---- a/arch/arm/boot/dts/tegra30-pegatron-chagall.dts
-+++ b/arch/arm/boot/dts/tegra30-pegatron-chagall.dts
-@@ -1145,6 +1145,23 @@ lcd_ddc: i2c@7000c000 {
- 		status = "okay";
- 		clock-frequency = <400000>;
- 
-+		/* Fortemedia FM34NE voice processor */
-+		dsp@60 {
-+			compatible = "pegatron,chagall-dsp", "fortemedia,fm34";
-+			reg = <0x60>;
-+
-+			bypass-gpios = <&gpio TEGRA_GPIO(N, 3) GPIO_ACTIVE_HIGH>;
-+			reset-gpios = <&gpio TEGRA_GPIO(N, 0) GPIO_ACTIVE_LOW>;
-+
-+			vdd-supply = <&vdd_1v8_dsp>;
-+
-+			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			clock-names = "mclk";
-+
-+			assigned-clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			assigned-clock-parents = <&tegra_car TEGRA30_CLK_EXTERN1>;
-+		};
-+
- 		/* Wolfson Microelectronics WM8903 audio codec */
- 		wm8903: audio-codec@1a {
- 			compatible = "wlf,wm8903";
-@@ -1500,6 +1517,16 @@ vdd_vbus_usb3: regulator-usb3 {
- 		vin-supply = <&vdd_5v0_sys>;
- 	};
- 
-+	vdd_1v8_dsp: regulator-dsp {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_1v8_dsp";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&gpio TEGRA_GPIO(N, 1) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&vdd_1v8_vio>;
-+	};
-+
- 	pmc@7000e400 {
- 		status = "okay";
- 		nvidia,invert-interrupt;
--- 
-2.37.2
 
+On 2/21/23 02:28, Lucas Tanure wrote:
+ >> I believe there is another change needed for the Deck, to handle the
+ >> 'legacy' property names instead of bst-type?
+ > I am working with valve to update their bios.
+
+Great, I think that's a better solution.
+
+Thanks,
+David
