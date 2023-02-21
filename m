@@ -2,398 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2FB69E2FD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:03:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD8269E305
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:05:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234660AbjBUPDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 10:03:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56018 "EHLO
+        id S234252AbjBUPFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 10:05:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234669AbjBUPDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:03:44 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615875FF8
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:03:28 -0800 (PST)
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AC10E3F721
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 15:03:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1676991806;
-        bh=X/mzpDBLu5Cirwbxmvc9vBOwAaTmB1dijULzrWfVudE=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=eKIIEwY3KAvLalCz0nQxiO3P2KpoaKMARZhpyMhY353TDThyk7Y0VWljgXI/Az93n
-         k5E/UO8CMNEZcWBgNGLaf8UTESrs7JZupWSUsjH2gLzOFmnjX4vHxNNON9Le2P81HB
-         wh5sMrc9Z8ekfIPG8P0bYMYfwQ39+ifdGb0Gd3VSj17TfoEtWq8TNugTCn1KMgxqtL
-         7UY43xZIi2vPLieNgskvpYfmIIriM1CxAXu0eZUe4jMAuUt37mo7fFS+F5HHUZAdQE
-         MTH9XkMABjAB7/ifMwHDGUPYJ+Xu4ICWLTAJice19XkqSo7XJo20InPDb84Fy0IywJ
-         ykZGeAklGeNtg==
-Received: by mail-qt1-f200.google.com with SMTP id r3-20020ac84243000000b003b9a3ab9153so1891871qtm.8
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:03:26 -0800 (PST)
+        with ESMTP id S234122AbjBUPFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:05:53 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036D8269C
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:51 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id l6so3445082wms.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HDtAjKV2duI8aK39M5yuWp8bTPWDmPz63VxbaKpJyaU=;
+        b=mxPXxnRgZbP4sgi3fRh1A+8DfgE14IuMc+uQhc3HfBC6JvkSQEK9MyWyjSOk70uOJC
+         3YUppkPlJl2b7kmXkN0te4IMeuQn0L6y7a16uQB1teNNDjeQE7syu2ORY99hIEt0Fgj/
+         M8sPx66WsTYdF6v2ikIRMJbt99h92qPQEZ0Gj1VUcnS5UydtdQ1mT5uPBjfORdxjqbQF
+         uct4vuP/zYDnTpohSZTugLb1etyOzuTKLDWJ07bRKd1LaokdOTH+lHN9c/fBbDyJoDWI
+         r+pWjUkOk4wdr9fg0xXB7r6QI4Aib8eSJ8pneX6MrUITfTwg4OjaZAZ60UpMG9uhBvaD
+         zYqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=X/mzpDBLu5Cirwbxmvc9vBOwAaTmB1dijULzrWfVudE=;
-        b=zXqUsaKrU8mgYGZDafB1WXe9TtQcFo7a8yLudjcZZT8qvVNcaIY10Whdh1EjsWDRES
-         8IGWblofX2UQ+Lx3ZmkK3598qAg8mfwtZRrvm1AH1rRV6LNeQJSvwi6Hqg6tZBocze7e
-         Y8AJ1BzWQ/vs467nmB5ZRq+NYztP71VyrZXfV/qWjf8xojir48CMZo9JLOTdzkLuQLKE
-         XpsjxA8s4054ykJWQeGkj8SCOSof6+BuiD3ipHyn8kXJNbjT49ALttc244V38LtCfM1H
-         X6NAlCkpmbogqObR/1+wlIPbt4jwimanGnsN2cGa05ai0qaVZ14H5vleQAXzWqodMaDM
-         blzw==
-X-Gm-Message-State: AO0yUKWNoaxwEUL4X5s6GYFT60pLyOfH8qLeEePpVF8z8KnrHjRTAHDS
-        5Tn2tovElZTqKeIewm6EsqjEqj4DyF0mJEyVjnQPKfBcBPk8jjaLVe5OmxzKpClca/spjK9Ik8F
-        2wc93y+v8X14XQP6deMuT4ZU8SC32EzgLRdyGECUO2LtwDov2mlpoR2k=
-X-Received: by 2002:a05:6214:4c06:b0:537:7476:41f7 with SMTP id qh6-20020a0562144c0600b00537747641f7mr489811qvb.3.1676991805132;
-        Tue, 21 Feb 2023 07:03:25 -0800 (PST)
-X-Google-Smtp-Source: AK7set8tdVC/CvHcq+B16ppA2OxmMPd0WLiKNwYp4nhRXa62HYo33dKV6a5JgCIulRThDvWu4redVfoA4NUjnXW3XJg=
-X-Received: by 2002:a05:6214:4c06:b0:537:7476:41f7 with SMTP id
- qh6-20020a0562144c0600b00537747641f7mr489800qvb.3.1676991804577; Tue, 21 Feb
- 2023 07:03:24 -0800 (PST)
-MIME-Version: 1.0
-References: <20230221024645.127922-1-hal.feng@starfivetech.com> <20230221024645.127922-20-hal.feng@starfivetech.com>
-In-Reply-To: <20230221024645.127922-20-hal.feng@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Tue, 21 Feb 2023 16:03:08 +0100
-Message-ID: <CAJM55Z_QMtzKeRFN1iGf498z4+vga6RBgwybCQi6aOUYCr_P-Q@mail.gmail.com>
-Subject: Re: [PATCH v4 19/19] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        bh=HDtAjKV2duI8aK39M5yuWp8bTPWDmPz63VxbaKpJyaU=;
+        b=OQ8klHb0H66VSw9vEAsz+PNOZfD6JcC2YFNYvg/za+XSfKjAqDvz16QxRvQF5GKUXt
+         CIE4oI4hICmdbV6yalkgWuUcMtpMTl7hhA3wZIthRXXnf2IV8BoELA8QaNyKlCOTxuaf
+         uqiDj9CRUNOTd9EbAa/mQj0C0mNVKjYb8jY0+p8oVIacsk3PlCPtoAfuz0CEHsPAwR3r
+         pHDVeOsSFT1T2FilwjUAisV958AQw9CAYNFNg/N8UUdtB6vZKm2yhVKr92ITEcfOHYP7
+         gdchvDAaKXFjmozHuLOqgSv9qv6ANnmE9A8OK2Y6r8fz+VHBzDgri3c+np/Nd5nqCOGQ
+         5kLg==
+X-Gm-Message-State: AO0yUKUIU25ZRk7pedEhculSg0nH4W/CBM5jQoqOfcFSvYVoFjiFJnWH
+        u7/Xttrsai8BtHyU/97orcBujg==
+X-Google-Smtp-Source: AK7set+T90fi3mhrfQgkbcCGizsm63S6+3QdA6P15+Pm2WdZCuRMEGRomXni96sDgrifOTCwGEGj3g==
+X-Received: by 2002:a05:600c:600a:b0:3e1:e149:b67b with SMTP id az10-20020a05600c600a00b003e1e149b67bmr4736506wmb.18.1676991950469;
+        Tue, 21 Feb 2023 07:05:50 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:4c24:722f:312a:76c4])
+        by smtp.gmail.com with ESMTPSA id n30-20020a05600c3b9e00b003e206cc7237sm5331687wms.24.2023.02.21.07.05.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Feb 2023 07:05:50 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 0/2] arm64: qcom: sa8775p: enable cpufreq
+Date:   Tue, 21 Feb 2023 16:05:41 +0100
+Message-Id: <20230221150543.283487-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Feb 2023 at 03:47, Hal Feng <hal.feng@starfivetech.com> wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
->
-> Add a minimal device tree for StarFive JH7110 VisionFive 2 board
-> which has version A and version B. Support booting and basic
-> clock/reset/pinctrl/uart drivers.
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |   6 +-
->  .../jh7110-starfive-visionfive-2-v1.2a.dts    |  13 ++
->  .../jh7110-starfive-visionfive-2-v1.3b.dts    |  13 ++
->  .../jh7110-starfive-visionfive-2.dtsi         | 215 ++++++++++++++++++
->  4 files changed, 246 insertions(+), 1 deletion(-)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> index 039c143cba33..cd73519b907b 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -1,2 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb jh7100-starfive-visionfive-v1.dtb
-> +dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
-> +dtb-$(CONFIG_SOC_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
-> +
-> +dtb-$(CONFIG_SOC_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
-> +dtb-$(CONFIG_SOC_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts
-> new file mode 100644
-> index 000000000000..4af3300f3cf3
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-starfive-visionfive-2.dtsi"
-> +
-> +/ {
-> +       model = "StarFive VisionFive 2 v1.2A";
-> +       compatible = "starfive,visionfive-2-v1.2a", "starfive,jh7110";
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
-> new file mode 100644
-> index 000000000000..9230cc3d8946
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-starfive-visionfive-2.dtsi"
-> +
-> +/ {
-> +       model = "StarFive VisionFive 2 v1.3B";
-> +       compatible = "starfive,visionfive-2-v1.3b", "starfive,jh7110";
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> new file mode 100644
-> index 000000000000..c2aa8946a0f1
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -0,0 +1,215 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110.dtsi"
-> +#include "jh7110-pinfunc.h"
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +       aliases {
-> +               serial0 = &uart0;
-> +               i2c0 = &i2c0;
-> +               i2c2 = &i2c2;
-> +               i2c5 = &i2c5;
-> +               i2c6 = &i2c6;
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Let's keep these sorted alphabetically.
+Add the new compatible for the cpufreq engine on the sa8775p SoC and
+enable it in the .dtsi.
 
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial0:115200n8";
-> +       };
-> +
-> +       cpus {
-> +               timebase-frequency = <4000000>;
-> +       };
-> +
-> +       memory@40000000 {
-> +               device_type = "memory";
-> +               reg = <0x0 0x40000000 0x1 0x0>;
-> +       };
-> +
-> +       gpio-restart {
-> +               compatible = "gpio-restart";
-> +               gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
-> +               priority = <224>;
-> +       };
-> +};
-> +
-> +&osc {
-> +       clock-frequency = <24000000>;
-> +};
-> +
-> +&rtc_osc {
-> +       clock-frequency = <32768>;
-> +};
-> +
-> +&gmac0_rmii_refin {
-> +       clock-frequency = <50000000>;
-> +};
-> +
-> +&gmac0_rgmii_rxin {
-> +       clock-frequency = <125000000>;
-> +};
-> +
-> +&gmac1_rmii_refin {
-> +       clock-frequency = <50000000>;
-> +};
-> +
-> +&gmac1_rgmii_rxin {
-> +       clock-frequency = <125000000>;
-> +};
-> +
-> +&i2stx_bclk_ext {
-> +       clock-frequency = <12288000>;
-> +};
-> +
-> +&i2stx_lrck_ext {
-> +       clock-frequency = <192000>;
-> +};
-> +
-> +&i2srx_bclk_ext {
-> +       clock-frequency = <12288000>;
-> +};
-> +
-> +&i2srx_lrck_ext {
-> +       clock-frequency = <192000>;
-> +};
-> +
-> +&tdm_ext {
-> +       clock-frequency = <49152000>;
-> +};
-> +
-> +&mclk_ext {
-> +       clock-frequency = <12288000>;
-> +};
-> +
-> +&uart0 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&uart0_pins>;
-> +       status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +       clock-frequency = <100000>;
-> +       i2c-sda-hold-time-ns = <300>;
-> +       i2c-sda-falling-time-ns = <510>;
-> +       i2c-scl-falling-time-ns = <510>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&i2c0_pins>;
-> +       status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +       clock-frequency = <100000>;
-> +       i2c-sda-hold-time-ns = <300>;
-> +       i2c-sda-falling-time-ns = <510>;
-> +       i2c-scl-falling-time-ns = <510>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&i2c2_pins>;
-> +       status = "okay";
-> +};
-> +
-> +&i2c5 {
-> +       clock-frequency = <100000>;
-> +       i2c-sda-hold-time-ns = <300>;
-> +       i2c-sda-falling-time-ns = <510>;
-> +       i2c-scl-falling-time-ns = <510>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&i2c5_pins>;
-> +       status = "okay";
-> +};
-> +
-> +&i2c6 {
-> +       clock-frequency = <100000>;
-> +       i2c-sda-hold-time-ns = <300>;
-> +       i2c-sda-falling-time-ns = <510>;
-> +       i2c-scl-falling-time-ns = <510>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&i2c6_pins>;
-> +       status = "okay";
-> +};
-> +
-> +&sysgpio {
-> +       uart0_pins: uart0-0 {
-> +               tx-pins {
-> +                       pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
-> +                                            GPOEN_ENABLE,
-> +                                            GPI_NONE)>;
-> +                       bias-disable;
-> +                       drive-strength = <12>;
-> +                       input-disable;
-> +                       input-schmitt-disable;
-> +                       slew-rate = <0>;
-> +               };
-> +
-> +               rx-pins {
-> +                       pinmux = <GPIOMUX(6, GPOUT_LOW,
-> +                                            GPOEN_DISABLE,
-> +                                            GPI_SYS_UART0_RX)>;
-> +                       bias-disable; /* external pull-up */
-> +                       drive-strength = <2>;
-> +                       input-enable;
-> +                       input-schmitt-enable;
-> +                       slew-rate = <0>;
-> +               };
-> +       };
-> +
-> +       i2c0_pins: i2c0-0 {
-> +               i2c-pins {
-> +                       pinmux = <GPIOMUX(57, GPOUT_LOW,
-> +                                             GPOEN_SYS_I2C0_CLK,
-> +                                             GPI_SYS_I2C0_CLK)>,
-> +                                <GPIOMUX(58, GPOUT_LOW,
-> +                                             GPOEN_SYS_I2C0_DATA,
-> +                                             GPI_SYS_I2C0_DATA)>;
-> +                       bias-disable; /* external pull-up */
-> +                       input-enable;
-> +                       input-schmitt-enable;
-> +               };
-> +       };
-> +
-> +       i2c2_pins: i2c2-0 {
-> +               i2c-pins {
-> +                       pinmux = <GPIOMUX(3, GPOUT_LOW,
-> +                                            GPOEN_SYS_I2C2_CLK,
-> +                                            GPI_SYS_I2C2_CLK)>,
-> +                                <GPIOMUX(2, GPOUT_LOW,
-> +                                            GPOEN_SYS_I2C2_DATA,
-> +                                            GPI_SYS_I2C2_DATA)>;
-> +                       bias-disable; /* external pull-up */
-> +                       input-enable;
-> +                       input-schmitt-enable;
-> +               };
-> +       };
-> +
-> +       i2c5_pins: i2c5-0 {
-> +               i2c-pins {
-> +                       pinmux = <GPIOMUX(19, GPOUT_LOW,
-> +                                             GPOEN_SYS_I2C5_CLK,
-> +                                             GPI_SYS_I2C5_CLK)>,
-> +                                <GPIOMUX(20, GPOUT_LOW,
-> +                                             GPOEN_SYS_I2C5_DATA,
-> +                                             GPI_SYS_I2C5_DATA)>;
-> +                       bias-disable; /* external pull-up */
-> +                       input-enable;
-> +                       input-schmitt-enable;
-> +               };
-> +       };
-> +
-> +       i2c6_pins: i2c6-0 {
-> +               i2c-pins {
-> +                       pinmux = <GPIOMUX(16, GPOUT_LOW,
-> +                                             GPOEN_SYS_I2C6_CLK,
-> +                                             GPI_SYS_I2C6_CLK)>,
-> +                                <GPIOMUX(17, GPOUT_LOW,
-> +                                             GPOEN_SYS_I2C6_DATA,
-> +                                             GPI_SYS_I2C6_DATA)>;
-> +                       bias-disable; /* external pull-up */
-> +                       input-enable;
-> +                       input-schmitt-enable;
-> +               };
-> +       };
-> +};
+Bartosz Golaszewski (2):
+  dt-bindings: cpufreq: qcom-hw: add a compatible for sa8775p
+  arm64: dts: qcom: sa8775p: add cpufreq node
 
-It would be great to have some sort of order to this file so it's
-obvious where to add new nodes. I suggest we do
-- root node
-- external clocks
-- other node references in alphabetical order
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml     |  1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 21 +++++++++++++++++++
+ 2 files changed, 22 insertions(+)
 
-You're almost there with this patch except the uart0 node is out of place.
+-- 
+2.37.2
 
-/Emil
-
-> 2.38.1
->
