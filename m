@@ -2,196 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7D2B69DBAB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 09:10:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 112F569DBC6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 09:18:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232954AbjBUIKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 03:10:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56718 "EHLO
+        id S233706AbjBUISz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 03:18:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbjBUIKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 03:10:15 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ABF11E5C1;
-        Tue, 21 Feb 2023 00:10:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1676967010; x=1708503010;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=dSp77IrOtLKPhVZc2rI79L0ZE4Jd8PMstunqaRKumOM=;
-  b=R0YDNzqQ9LP2cvv4PMpwRMJt/0NsFwoMAJZ3IZWls6rvyHZ/uXOCqnjS
-   ZTsqtp/Ig1JTp9TsCO9S2aTo+oilNLyQVEIN6oD6fXB11s0njVAvybCki
-   LEuK8eX0TRghbyDdFu9EQn1h16oiyKX2SaiirUbFhRt8yH6JOLDMzMO8N
-   6FN7wt1PBnVfDr4CQwcBUbL7m9BK09pfMDO7EjMP3UXlSYiKhofnVlYCM
-   E5BBqgkN24w3PicMpjrgJoklQc6G5cYmjQxsAVkhL2nYbFElC0twdIfDX
-   yoCLvsNyht2glVoCyv9XcoMCkg5QLlYyuVpxyf9sZ6T+KmpM4xyQQYiM1
-   w==;
-X-IronPort-AV: E=Sophos;i="5.97,315,1669100400"; 
-   d="scan'208";a="138234722"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Feb 2023 01:10:09 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 21 Feb 2023 01:10:04 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Tue, 21 Feb 2023 01:10:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mzku0P04dt8RV+8BwhcEmXM+aiq9phZsdnoSPOsx7PuBUXSoYZFj6o9lfSVnvHu3YHjcmZp3fr2cBRMbdX/WU2rVpilP7Uu/QwAQcqwhNYqBGYbUkXfaHaabM8MNxS1lpVTtHvme750cVB/uY0dUoD5rq+ND4jKMrWPX01ipJXQ8y+REkeNZXJhQKQktx252nD83EgFW5hxDREyWieTjC9++DnZZIwgWxsWgvzblgRylRNrioGEDcmM9S5NaeXy5oaNMNBgDfRjsw+RmT7YrftT6E02jbZFusfCImf0pYLT+/TU1koJzRcCz2wmWwCZnzqlZbUS6RyCwSNefhYeUhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dSp77IrOtLKPhVZc2rI79L0ZE4Jd8PMstunqaRKumOM=;
- b=CzDHLR29RTYpuvMmJFRnJ6P5/Kvu4adZYkdj9Kfkutx/Tb2WkyfKcbLshXL0ER6CO3bshPOBbUJlofNO0bAbsXQr+Zvj5wIyElcx5r/mHBvzXJL5adVAhZhjUbbCJIYFn8VP6n3njZNIubvoCrZDNXeAOT8tnayGEXUxDeNP7G33eLovareBAETWuA6Vwq2F95iHNvxcypigobtxAgYCROey06MZkBT8FN9wDBjLKTOox8SbmrFGgtsdU0k+NRYsk2Dzwc11o7amwtK8UD/ZMWE+EnQTo82INy9qH8DPtLRvpWoURG7hYWdAhDsFl6KC6/xOriMjG08v3BiODJRefQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dSp77IrOtLKPhVZc2rI79L0ZE4Jd8PMstunqaRKumOM=;
- b=NfmeoW9H0u7ha0I7J/Batz29xR3WprJ6PGRMBpehKP5nZmcH+Lfh8Tg9H+gOjS5y6gXVc7hwp5vuNHkoGHRGk9su8fWXVbKEseTvlt06mhGvFGtfe3OibcDuQnGtflXUZac7A9VOjb+5F5KWBsC0gpEC9ihVpCh9DPl6FGkGqLU=
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
- by CH0PR11MB5538.namprd11.prod.outlook.com (2603:10b6:610:d5::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.21; Tue, 21 Feb
- 2023 08:10:03 +0000
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::6eb8:36cd:3f97:ab32]) by BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::6eb8:36cd:3f97:ab32%5]) with mapi id 15.20.6111.020; Tue, 21 Feb 2023
- 08:10:02 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <robh@kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: sama7g5-pdmc: add
- microchip,startup-delay-us binding
-Thread-Topic: [PATCH v2 2/3] ASoC: dt-bindings: sama7g5-pdmc: add
- microchip,startup-delay-us binding
-Thread-Index: AQHZRcvmK4ii/DZHHEqD7R/0B9uoxQ==
-Date:   Tue, 21 Feb 2023 08:10:02 +0000
-Message-ID: <69c4eccd-9d81-ac0b-802a-8e4e0d57589a@microchip.com>
-References: <20230217124151.236216-1-claudiu.beznea@microchip.com>
- <20230217124151.236216-3-claudiu.beznea@microchip.com>
- <20230220225601.GA545317-robh@kernel.org>
-In-Reply-To: <20230220225601.GA545317-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN6PR11MB1953:EE_|CH0PR11MB5538:EE_
-x-ms-office365-filtering-correlation-id: f16a28bf-d153-40fe-32e7-08db13e30893
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iVpkddOgSy+TRZaYFkbUMnE0RlgUWsuTd9UQdowhlNXDe+aDttsE9WBoriYhPhhxed4451dkWH3F5cQ/zUfdf4mT9uYoeuDFu9/x7hIfXtry8KJ1NgzAS6EXX8E1tr/1PGYLJhniEc7rvQaL7Y/73St3Ib2LOM36COq0da7J/bDwecRiQrnm+yqQY50mH797Sgjdl9gEOxy3gWpE6jFOuQyQJVFFRc1SW5kRtnQUnJaiqgHCcPnaWllQ8SNMMtrEum72izZ2zcSrjkJONVsCnqK46ZDcdu608ofDw2TKb0RE3d44WtzdEJ50/QTXNyvFnVKUB2w683zT/KxWqu6BRToZGd8iu7r3DH52pvxVpvZ7cVEr7Jt4YevHscEfxTpjD3oAX75b+ULOIaLYUPK0E7JT3rQGbkTjVkl81ZhVjKx0SCi7w+LYlJKxPXoHfCpoWRqazdWtr7959M3JaC0D4zJeaaW5taix02VeQBOMt7eUXY3doljjITyMs/4fEg5i25gPF00xzmEDTeb5L/socDGfMqXrFt/31ewRNuGieo6GlY3RNXpYARBebW2HsDYOBa2JGn4+tEaLKue6terzkxV4/QKCbPpGF6K4rwCEOk9jPFof1Xp+02vifgZ4xOnuWElvkgDUhWUyF6OOLQ3poOOHYKvNYag3UPzbc5qEA2B6jnppowO7zaq7yqO1Dg++JWC0Qj3887MfgOX70sO3YVn/naT+MIHAfqbqL08NRlyQoJTpuNRAVjmbCdLng+vYsO1MpdUkrHpNNg/Wm+9BVw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(366004)(346002)(136003)(396003)(376002)(39860400002)(451199018)(36756003)(71200400001)(54906003)(83380400001)(316002)(6486002)(478600001)(76116006)(2616005)(53546011)(6506007)(6512007)(186003)(26005)(41300700001)(38070700005)(86362001)(8936002)(2906002)(5660300002)(7416002)(4326008)(31696002)(6916009)(91956017)(66476007)(64756008)(66556008)(66446008)(8676002)(122000001)(38100700002)(66946007)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UFJiMGcvaGFydGhFRGdZWUMrNnQvK2RFVUVaLys3OUVjWkV2VHppUmFCZFk5?=
- =?utf-8?B?UDA4ZlJYVjhTRmNzM0pNdE5TaFZYTlJwTVIyR00xSFlNOURmYS9OSFRXTXNM?=
- =?utf-8?B?S2tpRUZncnFBN3Q0TnVjM1l6bjBaQWJpeWJIV2hRZE13QzRMeDBKK1JlY0Zp?=
- =?utf-8?B?YnR1WFNXV1pGdHpxZHFYc2w3ZFlhZDM5K3gwdExSOVpiMTJjM1NWUzg1Y3By?=
- =?utf-8?B?aUVRdVFHQStyVVU3alkycytOZEdrRm5WYkMzUUNoS0VDcmh4Mmp5QlBUZmhR?=
- =?utf-8?B?WWZRcWVYSExvMWMzT0hyTmFHamJNT3d3S2pLeGNiYTJrcmY1VzBYUThRWnh1?=
- =?utf-8?B?cFV5NEtrOWxPamtrYlJYYXhqV0VrUGcwZmxmV0JMa09sbzZuU3VmbDdQMjVr?=
- =?utf-8?B?ZklaMEkrUDl0dnF1cTJxNGUzTzV5NlVaZzBEOE9QS3RFT1ZpMXFwL2lPVVVI?=
- =?utf-8?B?UWtaQzIvUjR3amlETlVkSEtuZlcwaHVwdmRLSGlIS1J0ZEdYbTBZR1RiUnJu?=
- =?utf-8?B?NWtiUWpJL2MxSk5pUUxRR1d5Z3lkenJXTUxKcTFxdVJhb0p3bEl3VmpDZURt?=
- =?utf-8?B?eWU3NzZCeGxoNWVzZEc1dU1NUER4U2R5Z0R2MzZBWlQyOWJDb0d2NWhuMmI4?=
- =?utf-8?B?MXYyb1VZTUpvK3RoTC9TbUxXYzJ5QVpOK3NlTW1veEF0ZS82UEtmeXNBb3l0?=
- =?utf-8?B?RzZRRWthbzEvcFgvWml0Q1pTTXpxd2RZR1NRUXUxSWJOWEwyVU1FUVpKNVVU?=
- =?utf-8?B?NjRyc1Q2bFVnV2tOcWpQZmJ3SG9mWGxubHNBak1NZENxTGxHdWxWREV4and3?=
- =?utf-8?B?RWQ4UXlHRzh4U1ozWmJSdHpOUDF1WFVLdUJxUENEWEN2MzJpRWI3czFiUGVi?=
- =?utf-8?B?K2RCUmFBMVlnSFFvb0xjSHRueWVveFJVeWhwQ3BnL0pYMk41aG9hMHhGbXpV?=
- =?utf-8?B?Y3Y0UGlVOFpxUUV1R0RFYUZLK1FVT1VqOVY3ZXJIVkZFMHdpUmFGTUQzc3BQ?=
- =?utf-8?B?VitFNEFxaGkyYVFCb0hzSDJIMTVobU5pMmoxZmlEaENUUmpJWjRyNWlWZjFa?=
- =?utf-8?B?OUFYaU5kQzNLaEJSRnRQSTdtVlNiT0NoZ1lEbjMyRkdBSm4yb1BJN2VaWXht?=
- =?utf-8?B?cGUzbXVhejVNd0JtRWsyK0JYbkc4eDdsY2t2ZThWV01JVExWUEdNK1dOUUJk?=
- =?utf-8?B?cnJjdm5FSGpsNXplYXFYOHRFL3RkNWhIT05PQ0FzczFGcis5VCtPdHpqUmVV?=
- =?utf-8?B?dVRBTldhaXZpV2w2V2MwMFJpYmxxeEhOUWp2SmVkWXJkOE9LUEpYYXptYUJk?=
- =?utf-8?B?ODMvbU02Wk9YUWtFSVh4MUZpWENMQkM0MFo0ZVhYV1RwblU5MzdpS1FTRUNG?=
- =?utf-8?B?aGVjcXhSeUg5RTNxdTFkQUJjVmdpUloxejI1eHowVGR3VGFQWG9wc08wWGV3?=
- =?utf-8?B?VmFjMWFlaG8vRXlpc2xWanpWZDJxcWtqQnJ1RW1aK3J1SzhqbTJPNjVQRVJ4?=
- =?utf-8?B?aVd2bk9ic3luODBVd2FEMFV2TDN3YnhBa2E3bGdiQjBkcVJMbUZRTXBULzdE?=
- =?utf-8?B?RTdETFgzUDZMR0NtL0hWbnRIWkxKRWxsQ2d0TUpsZUU2cGF3SE9taklESHV4?=
- =?utf-8?B?T0dLeHRWaW9GbG9heGZEZzUxaG1zYVNRL282a2ZMeWk2NDhnTXhjUW1FVXpR?=
- =?utf-8?B?U0FxQzJpMXQxSnVFQzE3MDREMy8weUtVWWZLTnc2bGJKekhNblhZQW8xTFI4?=
- =?utf-8?B?cGMxUGhEbkxmOGpJWWJUVENybWo0aEsrZXFrcDc0WTF3NWhmQ1lOdHNKbEk3?=
- =?utf-8?B?WWFLbGQ2QmFFL3BVdnByeTJ5U2FJM3lBQUFSeTlkc1JnV00rZWM3TURhMUQr?=
- =?utf-8?B?dERzcC94UTZFNElseGQ3M3psS1dReXExOTgreWV1OXVjOEc0cnhnbFhzRkJm?=
- =?utf-8?B?UThvRk5OOFlnWDNyS3M2elB2R0FMb3VnQmllUll1ZFZLcHorTXljY1FHRDE0?=
- =?utf-8?B?b3BXREs1T1hYd0JvU1JFa2l1RWlPRGx5SnpvR1UyZ1RaK01tNmZGMDJseTE4?=
- =?utf-8?B?VFF6bU81N0RaaHgySkZKM3NtLy9nWUFjZjdSSEs4Vm1tZDZsU2FTR1RtRlQ5?=
- =?utf-8?B?K1RnSGNpVGtnb1g0MlNtZUlZMm1mOGI0R2xVQ2grK1JLYW9CaHNUNGlWa3hX?=
- =?utf-8?B?TkE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7BC461C4F44AED45A212F3A9883F7E4A@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S233685AbjBUISy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 03:18:54 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DC1A5C5;
+        Tue, 21 Feb 2023 00:18:48 -0800 (PST)
+Received: from [IPV6:2a01:e0a:120:3210:5bf1:85e7:c290:7d2f] (unknown [IPv6:2a01:e0a:120:3210:5bf1:85e7:c290:7d2f])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 135A166021C4;
+        Tue, 21 Feb 2023 08:18:46 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1676967526;
+        bh=VL8H78+sZVJfJRLBdoM9mZC6818cM0JqQgnY2sYTasY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mKZTFibTyi8wSSWgu9OcDdYKiDKhA9svv69EnAopMqYQHnHd2qqX+LQYsoVbnnCkn
+         3lLDtXMX6uy66c9AxYt76+DeZpYwAezdiT7Mlg0bgppqp6WxywoV+ysuAqXx8X7VpF
+         VFWxDXUduy8GtpURk3rKfnjY/sA2tnbA4LDA4Mf/NAi28abN/27g9IeuWajwGQifrE
+         WHB/vCPNwzv3M24yxUuo8hd+OeNsOfMVQa0KoIk+stTYkhIJ26EnJ7qiIy46iqs7f5
+         qNAYhHU5DdZ9vy3Y+C0HSxhk8ft2iLfiBdfjA4+5RSUsFiAb9ShlMZB9a3s2/fjPLO
+         rmXP8aC+1DOMg==
+Message-ID: <a5e8a6c5-531a-1c4c-4235-e8cf7a68d96d@collabora.com>
+Date:   Tue, 21 Feb 2023 09:18:43 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f16a28bf-d153-40fe-32e7-08db13e30893
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Feb 2023 08:10:02.4800
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: w7BaY3zOEjH2QRJKgwo/Rq44buxaww8d6Gp0GJbrn4MQ5Lg5IBX0K5rh/kmK9FpDRoXxqn07ER9wX/bwQg5FjIuH2C4jB1yHo7Ir/vix4T0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5538
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 06/12] media: verisilicon: Check AV1 bitstreams bit
+ depth
+To:     Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        hverkuil@xs4all.nl, jernej.skrabec@gmail.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20230214140557.537984-1-benjamin.gaignard@collabora.com>
+ <20230214140557.537984-7-benjamin.gaignard@collabora.com>
+ <CAAEAJfDihZND+1FSzFxT86j9u6h-wH6uMMNh7BiaEWQWtSpk=Q@mail.gmail.com>
+ <c4d355d5-5e14-8eba-1944-fc26b1050cf5@collabora.com>
+ <6997fe5cbcfef626340ce4d85095eadb7bc63067.camel@collabora.com>
+Content-Language: en-US
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <6997fe5cbcfef626340ce4d85095eadb7bc63067.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjEuMDIuMjAyMyAwMDo1NiwgUm9iIEhlcnJpbmcgd3JvdGU6DQo+IEVYVEVSTkFMIEVNQUlM
-OiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtub3cg
-dGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gT24gRnJpLCBGZWIgMTcsIDIwMjMgYXQgMDI6NDE6
-NTBQTSArMDIwMCwgQ2xhdWRpdSBCZXpuZWEgd3JvdGU6DQo+PiBBZGQgbWljcm9jaGlwLHN0YXJ0
-dXAtZGVsYXktdXMgYmluZGluZyB0byBsZXQgUERNQyB1c2VycyB0byBzcGVjaWZ5DQo+PiBzdGFy
-dHVwIGRlbGF5Lg0KPiANCj4gVGhlIGRpZmYgdGVsbHMgbWUgYWxsIHRoaXMuIFdoeSBkb2VzIHRo
-aXMgbmVlZCB0byBiZSBwZXIgcGxhdGZvcm0/DQoNClBETUMgY2FuIHdvcmsgd2l0aCBkaWZmZXJl
-bnQga2luZCBvZiBtaWNyb3Bob25lcywgdGh1cyBkaWZmZXJlbnQgYm9hcmRzDQpjb3VsZCBoYXZl
-IGRpZmZlcmVudCBtaWNyb3Bob25lcy4gRGVwZW5kaW5nIG9uIG1pY3JvcGhvbmUgdHlwZSB0aGUg
-UERNQw0Kd291bGQgbmVlZCB0byB3YWl0IGxvbmdlciBvciBzaG9ydGVyIHBlcmlvZCB0aGFuIHRo
-ZSBkZWZhdWx0IGNob3NlbiBwZXJpb2QNCnRvIGZpbHRlciB1bndhbnRlZCBub2lzZS4gVGh1cyB0
-aGUgbmVlZCBvZiBoYXZpbmcgdGhpcyBzcGVjaWZpZWQgdGhvdWdoDQpkZXZpY2UgdHJlZS4gV291
-bGQgeW91IHByZWZlciB0byBoYXZlIHRoaXMgaW4gY29tbWl0IG1lc3NhZ2U/DQoNClRoYW5rIHlv
-dSwNCkNsYXVkaXUNCg0KPiANCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDbGF1ZGl1IEJlem5lYSA8
-Y2xhdWRpdS5iZXpuZWFAbWljcm9jaGlwLmNvbT4NCj4+IFJldmlld2VkLWJ5OiBLcnp5c3p0b2Yg
-S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+PiAtLS0NCj4+ICAu
-Li4vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9taWNyb2NoaXAsc2FtYTdnNS1wZG1jLnlhbWwg
-ICB8IDYgKysrKysrDQo+PiAgMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQ0KPj4NCj4+
-IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvbWlj
-cm9jaGlwLHNhbWE3ZzUtcGRtYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL3NvdW5kL21pY3JvY2hpcCxzYW1hN2c1LXBkbWMueWFtbA0KPj4gaW5kZXggYzRjZjFlNWFi
-ODRiLi45YjQwMjY4NTM3Y2IgMTAwNjQ0DQo+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3Mvc291bmQvbWljcm9jaGlwLHNhbWE3ZzUtcGRtYy55YW1sDQo+PiArKysgYi9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvbWljcm9jaGlwLHNhbWE3ZzUt
-cGRtYy55YW1sDQo+PiBAQCAtNjcsNiArNjcsMTIgQEAgcHJvcGVydGllczoNCj4+ICAgICAgbWF4
-SXRlbXM6IDQNCj4+ICAgICAgdW5pcXVlSXRlbXM6IHRydWUNCj4+DQo+PiArICBtaWNyb2NoaXAs
-c3RhcnR1cC1kZWxheS11czoNCj4+ICsgICAgZGVzY3JpcHRpb246IHwNCj4+ICsgICAgICBTcGVj
-aWZpZXMgdGhlIGRlbGF5IGluIG1pY3Jvc2Vjb25kcyB0aGF0IG5lZWRzIHRvIGJlIGFwcGxpZWQg
-YWZ0ZXINCj4+ICsgICAgICBlbmFibGluZyB0aGUgUERNQyBtaWNyb3Bob25lcyB0byBhdm9pZCB1
-bndhbnRlZCBub2lzZSBkdWUgdG8gbWljcm9waG9uZXMNCj4+ICsgICAgICBub3QgYmVpbmcgcmVh
-ZHkuDQo+PiArDQo+PiAgcmVxdWlyZWQ6DQo+PiAgICAtIGNvbXBhdGlibGUNCj4+ICAgIC0gcmVn
-DQo+PiAtLQ0KPj4gMi4zNC4xDQo+Pg0KDQo=
+
+Le 20/02/2023 à 20:00, Nicolas Dufresne a écrit :
+> Le lundi 20 février 2023 à 17:24 +0100, Benjamin Gaignard a écrit :
+>> Le 18/02/2023 à 14:11, Ezequiel Garcia a écrit :
+>>> On Tue, Feb 14, 2023 at 11:06 AM Benjamin Gaignard
+>>> <benjamin.gaignard@collabora.com> wrote:
+>>>> The driver supports 8 and 10 bits bitstreams, make sure to discard
+>>>> other cases.
+>>>> It could happens that userland test if V4L2_CID_STATELESS_AV1_SEQUENCE
+>>>> exists without setting bit_depth field in this case use
+>>>> HANTRO_DEFAULT_BIT_DEPTH value.
+>>>>
+>>> This shouldn't happen.
+>>>
+>>> If the bit_depth argument in hantro_check_depth_match()
+>>> can be set unchecked by userspace, we have done something wrong!!
+>>>
+>>> Are you sure that userspace can do a S_CTRL with an invalid bit-depth?
+>>> The try_or_set_cluster() function seems to always call try_ctrl before s_ctrl.
+>> I have dump the stack when AV1 sequence bit depth = 0 in s_ctrl.
+>> It is happening when opening the driver, v4l2 setup the ctrls by calling __v4l2_ctrl_handler_setup()
+>> this led to call hantro_av1_s_ctrl() with empty structure.
+>>
+>> For other codecs isn't a problem because bit depth is coded with a minus 8 value (ie: 8 bits = 0)
+>> while for AV1 it is the real value (ie: 8 bits = 8).
+> Shouldn't this be fixed in v4l2-ctrls-core.c / std_init_compound() ? This is
+> what we do for VP9:
+>
+>
+> 	case V4L2_CTRL_TYPE_VP9_FRAME:
+> 		p_vp9_frame = p;
+> 		p_vp9_frame->profile = 0;
+> 		p_vp9_frame->bit_depth = 8;
+> 		p_vp9_frame->flags |= V4L2_VP9_FRAME_FLAG_X_SUBSAMPLING |
+> 			V4L2_VP9_FRAME_FLAG_Y_SUBSAMPLING;
+> 		break;
+
+That is indeed a better solution.
+I will add in my series has a fix of Daniel's series about AV1 uAPI.
+
+Thanks,
+Benjamin
+
+>
+>
+>> [   88.478751] Hardware name: Radxa Rock 5A Board (DT)
+>> [   88.479184] Call trace:
+>> [   88.479406]  dump_backtrace.part.0+0xdc/0xf0
+>> [   88.479796]  show_stack+0x18/0x30
+>> [   88.480099]  dump_stack_lvl+0x68/0x84
+>> [   88.480431]  dump_stack+0x18/0x34
+>> [   88.480732]  hantro_av1_s_ctrl+0x7c/0xcc [hantro_vpu]
+>> [   88.481211]  __v4l2_ctrl_handler_setup+0x120/0x154
+>> [   88.481643]  v4l2_ctrl_handler_setup+0x2c/0x50
+>> [   88.482043]  hantro_open+0x138/0x204 [hantro_vpu]
+>> [   88.482490]  v4l2_open+0xa8/0x124
+>> [   88.482794]  chrdev_open+0xc0/0x22c
+>> [   88.483114]  do_dentry_open+0x13c/0x490
+>> [   88.483464]  vfs_open+0x2c/0x40
+>> [   88.483749]  path_openat+0x878/0xe50
+>> [   88.484074]  do_filp_open+0x80/0x130
+>> [   88.484399]  do_sys_openat2+0xb4/0x170
+>> [   88.484736]  __arm64_sys_openat+0x60/0xb0
+>> [   88.485097]  invoke_syscall+0x48/0x114
+>> [   88.485437]  el0_svc_common.constprop.0+0x44/0xfc
+>> [   88.485860]  do_el0_svc+0x3c/0xc0
+>> [   88.486163]  el0_svc+0x2c/0x84
+>> [   88.486441]  el0t_64_sync_handler+0xbc/0x140
+>> [   88.486826]  el0t_64_sync+0x190/0x194
+>>
+>> Regards,
+>> Benjamin
+>>
+>>> Thanks,
+>>> Ezequiel
+>>>
+>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>> ---
+>>>> version 4:
+>>>> - This patch is the result of squashing "Save bit depth for AV1 decoder"
+>>>>     and "Check AV1 bitstreams bit depth" of version 3 + adapation to
+>>>>     "[PATCH v8 0/6] media: verisilicon: HEVC: fix 10bits handling" series.
+>>>>
+>>>>    .../media/platform/verisilicon/hantro_drv.c   | 36 +++++++++++++++++++
+>>>>    .../media/platform/verisilicon/hantro_v4l2.c  |  4 +++
+>>>>    2 files changed, 40 insertions(+)
+>>>>
+>>>> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+>>>> index bc1a85456142..666cd46902da 100644
+>>>> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+>>>> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+>>>> @@ -275,7 +275,13 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
+>>>>                   /* We only support profile 0 */
+>>>>                   if (dec_params->profile != 0)
+>>>>                           return -EINVAL;
+>>>> +       } else if (ctrl->id == V4L2_CID_STATELESS_AV1_SEQUENCE) {
+>>>> +               const struct v4l2_ctrl_av1_sequence *sequence = ctrl->p_new.p_av1_sequence;
+>>>> +
+>>>> +               if (sequence->bit_depth != 8 && sequence->bit_depth != 10)
+>>>> +                       return -EINVAL;
+>>>>           }
+>>>> +
+>>>>           return 0;
+>>>>    }
+>>>>
+>>>> @@ -348,6 +354,30 @@ static int hantro_hevc_s_ctrl(struct v4l2_ctrl *ctrl)
+>>>>           return 0;
+>>>>    }
+>>>>
+>>>> +static int hantro_av1_s_ctrl(struct v4l2_ctrl *ctrl)
+>>>> +{
+>>>> +       struct hantro_ctx *ctx;
+>>>> +
+>>>> +       ctx = container_of(ctrl->handler,
+>>>> +                          struct hantro_ctx, ctrl_handler);
+>>>> +
+>>>> +       switch (ctrl->id) {
+>>>> +       case V4L2_CID_STATELESS_AV1_SEQUENCE:
+>>>> +       {
+>>>> +               int bit_depth = ctrl->p_new.p_av1_sequence->bit_depth;
+>>>> +
+>>>> +               if (ctx->bit_depth == bit_depth)
+>>>> +                       return 0;
+>>>> +
+>>>> +               return hantro_reset_raw_fmt(ctx, bit_depth);
+>>>> +       }
+>>>> +       default:
+>>>> +               return -EINVAL;
+>>>> +       }
+>>>> +
+>>>> +       return 0;
+>>>> +}
+>>>> +
+>>>>    static const struct v4l2_ctrl_ops hantro_ctrl_ops = {
+>>>>           .try_ctrl = hantro_try_ctrl,
+>>>>    };
+>>>> @@ -365,6 +395,11 @@ static const struct v4l2_ctrl_ops hantro_hevc_ctrl_ops = {
+>>>>           .s_ctrl = hantro_hevc_s_ctrl,
+>>>>    };
+>>>>
+>>>> +static const struct v4l2_ctrl_ops hantro_av1_ctrl_ops = {
+>>>> +       .try_ctrl = hantro_try_ctrl,
+>>>> +       .s_ctrl = hantro_av1_s_ctrl,
+>>>> +};
+>>>> +
+>>>>    #define HANTRO_JPEG_ACTIVE_MARKERS     (V4L2_JPEG_ACTIVE_MARKER_APP0 | \
+>>>>                                            V4L2_JPEG_ACTIVE_MARKER_COM | \
+>>>>                                            V4L2_JPEG_ACTIVE_MARKER_DQT | \
+>>>> @@ -542,6 +577,7 @@ static const struct hantro_ctrl controls[] = {
+>>>>                   .codec = HANTRO_AV1_DECODER,
+>>>>                   .cfg = {
+>>>>                           .id = V4L2_CID_STATELESS_AV1_SEQUENCE,
+>>>> +                       .ops = &hantro_av1_ctrl_ops,
+>>>>                   },
+>>>>           }, {
+>>>>                   .codec = HANTRO_AV1_DECODER,
+>>>> diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
+>>>> index 992c5baa929f..7e74e47c9a89 100644
+>>>> --- a/drivers/media/platform/verisilicon/hantro_v4l2.c
+>>>> +++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
+>>>> @@ -86,6 +86,10 @@ hantro_check_depth_match(const struct hantro_fmt *fmt, int bit_depth)
+>>>>           if (!fmt->match_depth && !fmt->postprocessed)
+>>>>                   return true;
+>>>>
+>>>> +       /* 0 means default depth, which is 8 */
+>>>> +       if (!bit_depth)
+>>>> +               bit_depth = HANTRO_DEFAULT_BIT_DEPTH;
+>>>> +
+>>>>           fmt_depth = hantro_get_format_depth(fmt->fourcc);
+>>>>
+>>>>           /*
+>>>> --
+>>>> 2.34.1
+>>>>
