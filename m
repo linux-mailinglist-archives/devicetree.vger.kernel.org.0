@@ -2,179 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A58169E30B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D48A269E321
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:11:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234229AbjBUPF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 10:05:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58270 "EHLO
+        id S234226AbjBUPLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 10:11:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234475AbjBUPFz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:05:55 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4FA1BBA1
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:53 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id p3-20020a05600c358300b003e206711347so3296211wmq.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l1i149aTLNTOLkmkyvTEcAaXgMJdiI2YD/KUpWRXaaA=;
-        b=nZImdhglNUEScK1GjzBwIFIncyE6SLWbEYg5kAfxR5dt/o6o3T53UL11KPwyLmN1Bs
-         ebCn35FX8cxCiSk8xT7aSiaL+r2C3tY2si8M+bLoP7Pjrx042y/pFpAMj00Kyzi9dLIr
-         N/V3qjYZTmP7jEO8Jyxb/Zvvsb3Hkz0bM/yGP/tuO3vldxIrUmONOBO5CSZY19CbdzBo
-         zGyZDidXxOmxH2DVSG56Lf4G7bD3oudCYtJtR8yql76sQOWET1YsUIdKzeE4nzIVR56n
-         WLLNElor9meGT8lXFAzeCP/1oWTNeXJ70lmNoU2JzogbX/hZDx/qyUT6MBdMO5H+rqfE
-         eTUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l1i149aTLNTOLkmkyvTEcAaXgMJdiI2YD/KUpWRXaaA=;
-        b=vJUoqO+vygKGsxmz2RIswwV4MP0rNnMZF/NEd5Rid7ovIyVDOIa6ZrP6IV5yn2lGSj
-         aj/TeI4AIkRlon9jNdHbeeNO7TL2jyTQQ/4Ba+Huh9bOxr67EcVmx2Sdv/eXdWEccgug
-         NE8tEo038VWemy/3bfqCaOlcorjPeckdAHXVomM/ThEYRoCz5Amii1+tEwTBGClUZ4Vg
-         JfHMw8Fm5Of61rdZOoRgjRganKTyoyZ8wpSlrlCbq1/v5L4+X31JvO/ffSzFf7KMrGTa
-         ZTmeaXzELVzohbczqJ/xsMR8Sx6IZBmZ++2FaNab2yYXnV+u4mmdahp8+uEmgeA22+Zw
-         sihg==
-X-Gm-Message-State: AO0yUKVfdtFnQzxZqEs6hKIZ3Ay16Jiom+MWZqtc8vlMZ+LRtFPKBg2j
-        WLJABd0TXQc6Srhj1BoZocuJEQ==
-X-Google-Smtp-Source: AK7set8Ntvu4HilU/sI4URZx0iaMNEdxXnAvFGiSMkOuQcwlad5ePdFRr1QT6eVqPEY8Zy7uXc4BjQ==
-X-Received: by 2002:a05:600c:448a:b0:3e1:97d:612e with SMTP id e10-20020a05600c448a00b003e1097d612emr9154458wmo.29.1676991952314;
-        Tue, 21 Feb 2023 07:05:52 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:4c24:722f:312a:76c4])
-        by smtp.gmail.com with ESMTPSA id n30-20020a05600c3b9e00b003e206cc7237sm5331687wms.24.2023.02.21.07.05.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 07:05:51 -0800 (PST)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        with ESMTP id S229909AbjBUPLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:11:33 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3616722DFF;
+        Tue, 21 Feb 2023 07:11:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1676992289; x=1708528289;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8ZW2Q3KtQe8Z07sQgq1qV6g5TesF3qQIYfp8f8ljU50=;
+  b=op0Z8CYHSHNSd9ffbA1O0Se05j/aKGvAkcK/d21MX0F9lXbtonQrc/5k
+   Y2miNxg7ZAKEQEfIgK75lCfKcNxuqp8hIms+3dnrJhM6WqkJUDehJ4jKK
+   TXBnM3h63/CQCX/csIUDAEK8vIf/Kl79rhHQvfSP/c5b8IveTbLa8CkWX
+   4DLY8eTzdQVGBxLDBQxDdqD0yuBIoA/0uPh9+JjG7gsD4hWhbSIWDeh/s
+   +y9GBRnrZGGQTDItSAoGMiPb3hq2qpgaHuhyInt+YfMS7buQCVWsNk41u
+   gAx3LBS1UlKMOVltYg4msay9zk5m6bSMuCIjLSz2kvSd94rK0O+jshxRd
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,315,1669100400"; 
+   d="asc'?scan'208";a="212990992"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Feb 2023 08:11:04 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 21 Feb 2023 08:11:04 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Tue, 21 Feb 2023 08:11:01 -0700
+Date:   Tue, 21 Feb 2023 15:10:35 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sa8775p: add cpufreq node
-Date:   Tue, 21 Feb 2023 16:05:43 +0100
-Message-Id: <20230221150543.283487-3-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230221150543.283487-1-brgl@bgdev.pl>
-References: <20230221150543.283487-1-brgl@bgdev.pl>
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 16/19] dt-bindings: riscv: Add SiFive S7 compatible
+Message-ID: <Y/Te66AZYjBXMxpO@wendy>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <20230221024645.127922-17-hal.feng@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="r8mdfKzrJCh2QVlz"
+Content-Disposition: inline
+In-Reply-To: <20230221024645.127922-17-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+--r8mdfKzrJCh2QVlz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add a node for the cpufreq engine and specify the frequency domains for
-all CPUs.
+On Tue, Feb 21, 2023 at 10:46:42AM +0800, Hal Feng wrote:
+> Add a new compatible string in cpu.yaml for SiFive S7 CPU
+> core which is used on SiFive U74-MC core complex etc.
+>=20
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index ce5976e36aee..5e2bc67b3178 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -37,6 +37,7 @@ CPU0: cpu@0 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			next-level-cache = <&L2_0>;
- 			L2_0: l2-cache {
- 				compatible = "cache";
-@@ -52,6 +53,7 @@ CPU1: cpu@100 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			next-level-cache = <&L2_1>;
- 			L2_1: l2-cache {
- 				compatible = "cache";
-@@ -64,6 +66,7 @@ CPU2: cpu@200 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			next-level-cache = <&L2_2>;
- 			L2_2: l2-cache {
- 				compatible = "cache";
-@@ -76,6 +79,7 @@ CPU3: cpu@300 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			next-level-cache = <&L2_3>;
- 			L2_3: l2-cache {
- 				compatible = "cache";
-@@ -88,6 +92,7 @@ CPU4: cpu@10000 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 1>;
- 			next-level-cache = <&L2_4>;
- 			L2_4: l2-cache {
- 				compatible = "cache";
-@@ -104,6 +109,7 @@ CPU5: cpu@10100 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 1>;
- 			next-level-cache = <&L2_5>;
- 			L2_5: l2-cache {
- 				compatible = "cache";
-@@ -116,6 +122,7 @@ CPU6: cpu@10200 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x10200>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 1>;
- 			next-level-cache = <&L2_6>;
- 			L2_6: l2-cache {
- 				compatible = "cache";
-@@ -128,6 +135,7 @@ CPU7: cpu@10300 {
- 			compatible = "qcom,kryo";
- 			reg = <0x0 0x10300>;
- 			enable-method = "psci";
-+			qcom,freq-domain = <&cpufreq_hw 1>;
- 			next-level-cache = <&L2_7>;
- 			L2_7: l2-cache {
- 				compatible = "cache";
-@@ -731,6 +739,19 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		cpufreq_hw: cpufreq@18591000 {
-+			compatible = "qcom,sa8775p-cpufreq-epss",
-+				     "qcom,cpufreq-epss";
-+			reg = <0x0 0x18591000 0x0 0x1000>,
-+			      <0x0 0x18593000 0x0 0x1000>;
-+			reg-names = "freq-domain0", "freq-domain1";
-+
-+			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-+			clock-names = "xo", "alternate";
-+
-+			#freq-domain-cells = <1>;
-+		};
-+
- 		tlmm: pinctrl@f000000 {
- 			compatible = "qcom,sa8775p-tlmm";
- 			reg = <0x0 0xf000000 0x0 0x1000000>;
--- 
-2.37.2
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
+ation/devicetree/bindings/riscv/cpus.yaml
+> index a2884e3113da..54bfe24a436b 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -35,6 +35,7 @@ properties:
+>                - sifive,e7
+>                - sifive,e71
+>                - sifive,rocket0
+> +              - sifive,s7
+>                - sifive,u5
+>                - sifive,u54
+>                - sifive,u7
+> --=20
+> 2.38.1
+>=20
+>=20
 
+--r8mdfKzrJCh2QVlz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/Te6wAKCRB4tDGHoIJi
+0jRLAQCLxbjzKZxF5kXJAN0YbHDLPfmmtWsh1g2Ra+4w1YSTPAD+PRiyh0QABaP+
+6N6Sl0W0ikTZ40hz6WDViUfRfs5KrwA=
+=J3rH
+-----END PGP SIGNATURE-----
+
+--r8mdfKzrJCh2QVlz--
