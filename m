@@ -2,235 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EED6C69E37D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9767469E387
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:34:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234453AbjBUPdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 10:33:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
+        id S233938AbjBUPek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 10:34:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234422AbjBUPde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:33:34 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3BF810253
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:33:28 -0800 (PST)
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 934C73F586
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 15:33:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1676993606;
-        bh=L4Qq5cpBFpgwagp9AE1jw12RMdS+BYeFZ1I210i8/Rk=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=tIn4P7WfzB0P9PQ6E14pCgKRJfLZQf046YMb9vPEMDvYYOS9DpQKPVlpsxwxfUpAj
-         N2XHrF1nBqJpYVsnvUl6I94qOY2I6Lon4CiQRi97ZxnXWbYmcccE1YvS7jws4JQaP3
-         /LoitP73GZ+NP6vaqQZmckXTKppUMbYZ/XtU+mrfv79z6XAUXzwUf+wXatspbTv2Q2
-         KG1scrl0mSjOQ7L4hTkd5GTea6rTVQLvbmgiS/VCVIUuSNFYYf1KsYRP7xqHg/LkBa
-         bbvlMeYStUwjUKzRwnHdeQQaFYkdZCPcfRKAaa2w24aJI8/uqEjQ9F2vTh8x+vsz7C
-         s7VO/DZq24ErQ==
-Received: by mail-qv1-f72.google.com with SMTP id pm5-20020ad446c5000000b0056eb3830243so2129704qvb.16
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:33:26 -0800 (PST)
+        with ESMTP id S233346AbjBUPej (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:34:39 -0500
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C612330F;
+        Tue, 21 Feb 2023 07:34:38 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id y8so4836322oiy.6;
+        Tue, 21 Feb 2023 07:34:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L4Qq5cpBFpgwagp9AE1jw12RMdS+BYeFZ1I210i8/Rk=;
-        b=sVxC/MtNbNWyzmpVxIPFnU1w8iv9i5lbvZUW/eUaQSyq1RVXCEJ26BGelW3/PVciOA
-         H8ybIDZFhv74sKhCJOCL0vh5jgzKlY7+tWzkW75zDSot1KKezIQ4tCbQ6IigixJuyyfu
-         rSMQVmlwkdHmM8o7qp/HKChWYay4gdDkzEX9xgES7VxegY2/E3DYASw2dRaOmKc5HXC0
-         Dose0bafZ42HWFXi19GYjnEYl4x5HSSjssYi7rY07CPGmDKQ4gPadF4PJki5TBHhs7lt
-         MoPAg+V+xewY4aimthvXJrVkQGGRsC94uVAZWaWAmK8QCAV831/DKxrMAETh4kClo1rW
-         P+Ug==
-X-Gm-Message-State: AO0yUKUoNCfc0McjqylxCa6iaLFAi+viidt8IKxBiObqWSbXHDu9Khoc
-        2pMkjUIgVkGU/tHc424a0MlOtrqSV7eLvLBKjHqzLwFTh9sm+0FR7LFJOQ3A9VUnRk+xL3mAvmk
-        s9gb6RaJegbwozdYxI6SJtU5qU0KSXujEH0B+U2ct1WcgHTrVLaop42k=
-X-Received: by 2002:a0c:d990:0:b0:570:fc87:4f2c with SMTP id y16-20020a0cd990000000b00570fc874f2cmr844732qvj.83.1676993605488;
-        Tue, 21 Feb 2023 07:33:25 -0800 (PST)
-X-Google-Smtp-Source: AK7set+eeC9t2mpELInJfxD7Yobd/u+LgOJZpX5mua0EuSfRFqXwkek8mhoYknpGc56WgnZGZ/ArALCDKxPQQlhlND4=
-X-Received: by 2002:a0c:d990:0:b0:570:fc87:4f2c with SMTP id
- y16-20020a0cd990000000b00570fc874f2cmr844729qvj.83.1676993605220; Tue, 21 Feb
- 2023 07:33:25 -0800 (PST)
-MIME-Version: 1.0
-References: <20230221024645.127922-1-hal.feng@starfivetech.com> <20230221024645.127922-14-hal.feng@starfivetech.com>
-In-Reply-To: <20230221024645.127922-14-hal.feng@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Tue, 21 Feb 2023 16:33:09 +0100
-Message-ID: <CAJM55Z_O9K=sCRXga9pMOXk9YjXc1v_V0e5S-8xN9Mi8gvHzvg@mail.gmail.com>
-Subject: Re: [PATCH v4 13/19] reset: starfive: Add StarFive JH7110 reset driver
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pPZ9w/mJMwHQADuar36Ew6+bDf4d5LulJH0xzYxETUI=;
+        b=zj/7J2/BPbNKZ8o+w+NFl1zjB6w2ijimPglYWZuF73tTvwmo8CKyY96wvIpK+uWMKo
+         rIWpTYWB/jRIzMh7c026rQ/ZZV5S8aKQJeJqO+7qjRUgfwQWlzlJeT77P1FQjuf7IlY+
+         BhGrP8dtzly5Zp9K7JNpnPxXSYsLG1K8j+85jxjpM/utN8dRREZapxwNwyjO/8OXOdDa
+         GjzncnYyrVJiCnblsZ1llQxIjYkuYztqd2yZysHZNT949ad+aLIcTMHAArgmww0Jl93g
+         F0IU7d/9nQcHsHQl70iCUucD7XWOTz/0kevwUVtIgvn0h2gQh+9d1kSpNuF9kGsjkfI5
+         KgYQ==
+X-Gm-Message-State: AO0yUKVBfll9vUWQBI6VkBYAW7oHnBluRWibVEoRU8X1r9gp5sUqINQJ
+        vebrE7pF/fFeiPkgsW5hBg==
+X-Google-Smtp-Source: AK7set/sStOZzxCPbndd6bmxqW6CaEtYI6tI8MD8HAnORp0pSLDH0sYTVFLYbT2dKnGO9vdpFnCEzg==
+X-Received: by 2002:a54:4412:0:b0:37f:a534:3de9 with SMTP id k18-20020a544412000000b0037fa5343de9mr183834oiw.4.1676993678016;
+        Tue, 21 Feb 2023 07:34:38 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q127-20020acac085000000b0037d813cd612sm316937oif.43.2023.02.21.07.34.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Feb 2023 07:34:37 -0800 (PST)
+Received: (nullmailer pid 2576524 invoked by uid 1000);
+        Tue, 21 Feb 2023 15:34:37 -0000
+Date:   Tue, 21 Feb 2023 09:34:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     linux-mips@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: convert
+ loongson,ls1x-intc.txt to json-schema
+Message-ID: <167699367567.2576443.8351931302556927937.robh@kernel.org>
+References: <20230221102545.2103632-1-keguang.zhang@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230221102545.2103632-1-keguang.zhang@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Feb 2023 at 03:47, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> Add auxiliary driver to support StarFive JH7110 system
-> and always-on resets.
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+
+On Tue, 21 Feb 2023 18:25:45 +0800, Keguang Zhang wrote:
+> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
+> 
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/reset/starfive/Kconfig                |  8 +++
->  drivers/reset/starfive/Makefile               |  1 +
->  .../reset/starfive/reset-starfive-jh7110.c    | 64 +++++++++++++++++++
->  .../reset/starfive/reset-starfive-jh71x0.h    |  6 ++
->  4 files changed, 79 insertions(+)
->  create mode 100644 drivers/reset/starfive/reset-starfive-jh7110.c
->
-> diff --git a/drivers/reset/starfive/Kconfig b/drivers/reset/starfive/Kconfig
-> index 9d15c4110e40..fab1a081af17 100644
-> --- a/drivers/reset/starfive/Kconfig
-> +++ b/drivers/reset/starfive/Kconfig
-> @@ -10,3 +10,11 @@ config RESET_STARFIVE_JH7100
->         default SOC_STARFIVE
->         help
->           This enables the reset controller driver for the StarFive JH7100 SoC.
-> +
-> +config RESET_STARFIVE_JH7110
-> +       bool "StarFive JH7110 Reset Driver"
-> +       depends on AUXILIARY_BUS && CLK_STARFIVE_JH7110_SYS
-> +       select RESET_STARFIVE_JH71X0
-> +       default CLK_STARFIVE_JH7110_SYS
-> +       help
-> +         This enables the reset controller driver for the StarFive JH7110 SoC.
-> diff --git a/drivers/reset/starfive/Makefile b/drivers/reset/starfive/Makefile
-> index f6aa12466fad..7a44b66fb9d5 100644
-> --- a/drivers/reset/starfive/Makefile
-> +++ b/drivers/reset/starfive/Makefile
-> @@ -2,3 +2,4 @@
->  obj-$(CONFIG_RESET_STARFIVE_JH71X0)            += reset-starfive-jh71x0.o
->
->  obj-$(CONFIG_RESET_STARFIVE_JH7100)            += reset-starfive-jh7100.o
-> +obj-$(CONFIG_RESET_STARFIVE_JH7110)            += reset-starfive-jh7110.o
-> diff --git a/drivers/reset/starfive/reset-starfive-jh7110.c b/drivers/reset/starfive/reset-starfive-jh7110.c
-> new file mode 100644
-> index 000000000000..83577d1b7fc6
-> --- /dev/null
-> +++ b/drivers/reset/starfive/reset-starfive-jh7110.c
-> @@ -0,0 +1,64 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Reset driver for the StarFive JH7110 SoC
-> + *
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + */
-> +
-> +#include <linux/auxiliary_bus.h>
-> +
-> +#include "reset-starfive-jh71x0.h"
-> +
-> +#include <dt-bindings/reset/starfive,jh7110-crg.h>
-> +
-> +static int jh7110_reset_probe(struct auxiliary_device *adev,
-> +                             const struct auxiliary_device_id *id)
-> +{
-> +       struct reset_info *info = (struct reset_info *)(id->driver_data);
-> +       void __iomem **base = (void __iomem **)dev_get_drvdata(adev->dev.parent);
+> V2 -> V3: Fix the description
+> V1 -> V2: Drop the description part
+> ---
+>  .../loongson,ls1x-intc.txt                    | 24 ---------
+>  .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
+>  2 files changed, 51 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> 
 
-Hi Hal,
+Applied, thanks!
 
-I saw the kernel test robot complain about this, but I still wonder if
-the extra level of indirection is really needed. Isn't it enough to
-just add the explicit casts, so
-
-dev_set_drvdata(priv->dev, (void *)priv->base);
-
-in the clock drivers and here just
-
-void __iomem *base = (void __iomem *)dev_get_drvdata(adev->dev.parent);
-
-> +
-> +       if (!info || !base)
-> +               return -ENODEV;
-> +
-> +       return reset_starfive_jh71x0_register(&adev->dev, adev->dev.parent->of_node,
-> +                                             *base + info->assert_offset,
-> +                                             *base + info->status_offset,
-> +                                             NULL,
-> +                                             info->nr_resets,
-> +                                             NULL);
-> +}
-> +
-> +static const struct reset_info jh7110_sys_info = {
-> +       .nr_resets = JH7110_SYSRST_END,
-> +       .assert_offset = 0x2F8,
-> +       .status_offset = 0x308,
-> +};
-> +
-> +static const struct reset_info jh7110_aon_info = {
-> +       .nr_resets = JH7110_AONRST_END,
-> +       .assert_offset = 0x38,
-> +       .status_offset = 0x3C,
-> +};
-> +
-> +static const struct auxiliary_device_id jh7110_reset_ids[] = {
-> +       {
-> +               .name = "clk_starfive_jh71x0.reset-sys",
-> +               .driver_data = (kernel_ulong_t)&jh7110_sys_info,
-> +       },
-> +       {
-> +               .name = "clk_starfive_jh71x0.reset-aon",
-> +               .driver_data = (kernel_ulong_t)&jh7110_aon_info,
-> +       },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(auxiliary, jh7110_reset_ids);
-> +
-> +static struct auxiliary_driver jh7110_reset_driver = {
-> +       .probe          = jh7110_reset_probe,
-> +       .id_table       = jh7110_reset_ids,
-> +};
-> +module_auxiliary_driver(jh7110_reset_driver);
-> +
-> +MODULE_AUTHOR("Hal Feng <hal.feng@starfivetech.com>");
-> +MODULE_DESCRIPTION("StarFive JH7110 reset driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/reset/starfive/reset-starfive-jh71x0.h b/drivers/reset/starfive/reset-starfive-jh71x0.h
-> index db7d39a87f87..e485472e1adc 100644
-> --- a/drivers/reset/starfive/reset-starfive-jh71x0.h
-> +++ b/drivers/reset/starfive/reset-starfive-jh71x0.h
-> @@ -6,6 +6,12 @@
->  #ifndef __RESET_STARFIVE_JH71X0_H
->  #define __RESET_STARFIVE_JH71X0_H
->
-> +struct reset_info {
-> +       unsigned int nr_resets;
-> +       unsigned int assert_offset;
-> +       unsigned int status_offset;
-> +};
-
-As far as I can tell this struct isn't used anywhere but in
-reset-starfive-jh7110.c. If so just move it there, and in any case
-please call it something less generic like struct jh7110_reset_info.
-
-> +
->  int reset_starfive_jh71x0_register(struct device *dev, struct device_node *of_node,
->                                    void __iomem *assert, void __iomem *status,
->                                    const u32 *asserted, unsigned int nr_resets,
-> --
-> 2.38.1
->
