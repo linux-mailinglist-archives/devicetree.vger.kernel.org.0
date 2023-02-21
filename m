@@ -2,189 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A6669E832
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 20:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD70B69E83D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 20:27:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjBUTZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 14:25:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44736 "EHLO
+        id S229514AbjBUT1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 14:27:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjBUTZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 14:25:53 -0500
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696002FCF0
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 11:25:51 -0800 (PST)
-Received: by mail-vs1-xe31.google.com with SMTP id u14so5408248vsp.8
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 11:25:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1677007550;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qIumhXVptDGaCBlNxNpJonBcbHAUubqeifjNAqK+SpU=;
-        b=UUimMBx65rs4EgYnP4JSdQZpO27fYhKT8ksV+feyk+W0a+e7v4yo9PUJ5gK05wvGqz
-         1xpPPQUc9V9sPuNL/GOm6oL3QSCblAUQqIaGWHGfpL/gmrTc4CoiqwlGquEEIB/Rbac9
-         lb9QLJoGPABu8Z5nralY7l99l8xEm+7T3oPw91AyK0iD68t40Rwwf98tRBXP2+MvmMZT
-         rlk7irZBawdElh0084INE7qUiNOt8ait/mX4VqyQrfcs7pnl6jNRNEgmtRREAZ1Ks2mp
-         qKP1GuVjrjRic9zgDKl7/0lHSnjIPkNDvqlPDraSLlOns276V28YWz9KGpOUpXUOu9tP
-         LSyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677007550;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qIumhXVptDGaCBlNxNpJonBcbHAUubqeifjNAqK+SpU=;
-        b=KGNG5hHawS22lfSdb+au9RSQaUxL/JdSFCnIZHEWEd1bu1ohFj3NmZaz1SI/es5216
-         LQ68vis8txV4ItEEwxqcBQHcrkmg1PUK5RY523RS7XuqFUzLsmPcx+dhPlQs/xbuDSln
-         xNzaDeu8RDimZPZjigEYOQQtEJ4DDq8ePKvRrda0C3NP9mDmDhycD4XHl3lbRqUgcioC
-         D1GMZpGrEpFONT0SM6Uv/aEDHVi9pWCB9QCEAnnMqxBqvXaq0tFoaX6UBmKNmzx6GtAY
-         nWdrY1A4yTCXNsErkY6mnAv6pRpAs3EEbJgCy0msKpiaUJG6Vt8D1ZD/voyoDn4WoYtf
-         Wazg==
-X-Gm-Message-State: AO0yUKVhEGedMqu6CjKgzZZn0LSQDhL03s9xLVmGHgKbwn3A/K0sRYis
-        6EDgDDXJLXWmmqvl4I/FT2q6HcyNJIHgeipY/zzUTw==
-X-Google-Smtp-Source: AK7set+7iHFS/iorUX3sKwtwOxCp5CG/iAxYxwKP+qJHKKmKYSgJ0ayVog03ErDwVkCN6T4iZ+EsshDbaAfP/B7b/w4=
-X-Received: by 2002:a67:e1cc:0:b0:3ea:5896:84b9 with SMTP id
- p12-20020a67e1cc000000b003ea589684b9mr897651vsl.75.1677007550472; Tue, 21 Feb
- 2023 11:25:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20230221150543.283487-1-brgl@bgdev.pl> <20230221150543.283487-3-brgl@bgdev.pl>
- <9a3e9c76-ba70-6ccc-3ade-fa08cdff571e@linaro.org>
-In-Reply-To: <9a3e9c76-ba70-6ccc-3ade-fa08cdff571e@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 21 Feb 2023 20:25:39 +0100
-Message-ID: <CAMRc=McMGnzz09SG_QaKWNLSyLbR=QbFvfiYgewYMnAeESRgQQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: add cpufreq node
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229441AbjBUT1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 14:27:51 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57EE23ABA;
+        Tue, 21 Feb 2023 11:27:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 182A7B810A1;
+        Tue, 21 Feb 2023 19:27:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD5BC433EF;
+        Tue, 21 Feb 2023 19:27:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1677007666;
+        bh=CW0TrnVYPmqzjtnakRU/aIYasnOG7MQ3x8BrFO+nk5E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=q7O14rMgHPWK3ZL38sH6QN80+YfXUDY2bDXIlMYF0KJDtmtgzZg8jBegZT0X1wjc2
+         WPmb+F3Hn/55y/CyX/z+nSiTTXc+bjOjWjvGE422HatRrB1X93br7LSuJeGW7kGsqC
+         z6DsevUunCbLnOIrR7W2jMDDz8w8Maex76wL2SKo=
+Date:   Tue, 21 Feb 2023 20:27:44 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v1 09/10] staging: dsp: add support for Fortemedia FM34NE
+ DSP
+Message-ID: <Y/UbMH5tXDgsvSbD@kroah.com>
+References: <20230221183211.21964-1-clamor95@gmail.com>
+ <20230221183211.21964-10-clamor95@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230221183211.21964-10-clamor95@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 21, 2023 at 6:44 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 21.02.2023 16:05, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add a node for the cpufreq engine and specify the frequency domains for
-> > all CPUs.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 21 +++++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > index ce5976e36aee..5e2bc67b3178 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > @@ -37,6 +37,7 @@ CPU0: cpu@0 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x0>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       next-level-cache = <&L2_0>;
-> >                       L2_0: l2-cache {
-> >                               compatible = "cache";
-> > @@ -52,6 +53,7 @@ CPU1: cpu@100 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x100>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       next-level-cache = <&L2_1>;
-> >                       L2_1: l2-cache {
-> >                               compatible = "cache";
-> > @@ -64,6 +66,7 @@ CPU2: cpu@200 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x200>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       next-level-cache = <&L2_2>;
-> >                       L2_2: l2-cache {
-> >                               compatible = "cache";
-> > @@ -76,6 +79,7 @@ CPU3: cpu@300 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x300>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       next-level-cache = <&L2_3>;
-> >                       L2_3: l2-cache {
-> >                               compatible = "cache";
-> > @@ -88,6 +92,7 @@ CPU4: cpu@10000 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x10000>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       next-level-cache = <&L2_4>;
-> >                       L2_4: l2-cache {
-> >                               compatible = "cache";
-> > @@ -104,6 +109,7 @@ CPU5: cpu@10100 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x10100>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       next-level-cache = <&L2_5>;
-> >                       L2_5: l2-cache {
-> >                               compatible = "cache";
-> > @@ -116,6 +122,7 @@ CPU6: cpu@10200 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x10200>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       next-level-cache = <&L2_6>;
-> >                       L2_6: l2-cache {
-> >                               compatible = "cache";
-> > @@ -128,6 +135,7 @@ CPU7: cpu@10300 {
-> >                       compatible = "qcom,kryo";
-> >                       reg = <0x0 0x10300>;
-> >                       enable-method = "psci";
-> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
-> >                       next-level-cache = <&L2_7>;
-> >                       L2_7: l2-cache {
-> >                               compatible = "cache";
-> > @@ -731,6 +739,19 @@ tcsr_mutex: hwlock@1f40000 {
-> >                       #hwlock-cells = <1>;
-> >               };
-> >
-> > +             cpufreq_hw: cpufreq@18591000 {
-> > +                     compatible = "qcom,sa8775p-cpufreq-epss",
-> > +                                  "qcom,cpufreq-epss";
-> That's some very aggressive wrapping! :P
->
+On Tue, Feb 21, 2023 at 08:32:10PM +0200, Svyatoslav Ryhel wrote:
+> FM34NE is digital sound processing chip used for active
+> noise suppression mainly on ASUS Transformers.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/staging/Kconfig          |   2 +
+>  drivers/staging/Makefile         |   1 +
+>  drivers/staging/dsp/Kconfig      |   7 +
+>  drivers/staging/dsp/Makefile     |   2 +
+>  drivers/staging/dsp/dsp-fm34ne.c | 364 +++++++++++++
+>  drivers/staging/dsp/dsp-fm34ne.h | 845 +++++++++++++++++++++++++++++++
+>  6 files changed, 1221 insertions(+)
+>  create mode 100644 drivers/staging/dsp/Kconfig
+>  create mode 100644 drivers/staging/dsp/Makefile
+>  create mode 100644 drivers/staging/dsp/dsp-fm34ne.c
+>  create mode 100644 drivers/staging/dsp/dsp-fm34ne.h
 
-For when all you have is vi on a 80-char wide terminal :D
 
-Bartosz
+Sorry, but why is this going into drivers/staging/ at all?  What is
+needed to be done to get this out of staging?  Why not do that work
+right now?  At the least, we need a TODO file in the directory that
+lists what needs to be done and who is responsible for it.
 
-> Nevertheless,
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->
-> Konrad
-> > +                     reg = <0x0 0x18591000 0x0 0x1000>,
-> > +                           <0x0 0x18593000 0x0 0x1000>;
-> > +                     reg-names = "freq-domain0", "freq-domain1";
-> > +
-> > +                     clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-> > +                     clock-names = "xo", "alternate";
-> > +
-> > +                     #freq-domain-cells = <1>;
-> > +             };
-> > +
-> >               tlmm: pinctrl@f000000 {
-> >                       compatible = "qcom,sa8775p-tlmm";
-> >                       reg = <0x0 0xf000000 0x0 0x1000000>;
+But again, just do the work now, it's faster and simpler to do it before
+you submit it instead of waiting until after it is merged.
+
+Also, no need for a .h file when you only have one .c file.  Just put
+them all together into one file please.
+
+thanks,
+
+greg k-h
