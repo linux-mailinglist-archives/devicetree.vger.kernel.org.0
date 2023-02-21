@@ -2,134 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A92B69E815
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 20:09:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A6669E832
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 20:25:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbjBUTJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 14:09:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60914 "EHLO
+        id S229641AbjBUTZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 14:25:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbjBUTJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 14:09:34 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA512D15D
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 11:09:30 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id ck15so22613450edb.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 11:09:30 -0800 (PST)
+        with ESMTP id S229535AbjBUTZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 14:25:53 -0500
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696002FCF0
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 11:25:51 -0800 (PST)
+Received: by mail-vs1-xe31.google.com with SMTP id u14so5408248vsp.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 11:25:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LQSbWzdXITTUFGVPTFXHGgENmDgXWQs7cxb8n6vTRIg=;
-        b=XxAMGoWv73/z3O/e/TZW7W5m5IwiXjtoyA8bp8jFz2NakB5O/GfUjsIl0WUiN4hiHj
-         hT08h5nj9m91jxSsVJsUj0snKdPrmvVIaSWuTXH69EzEDhIdn01F3CIv0gB+Di+ujQSI
-         ykJramzQDCwLJsz7xkD4kE9DynwJPGqICZ5eklWmscYOhJJHW2Rzeka87dKEsNDmmn4b
-         S7GszEz7Rb3BA3LJKpQSrOeWS447OCGp1Kts6pk5VkMTv7FpB77YxEDAnyVyVGW2VNuH
-         NnjQ85WrQjzepoicZrIYWxDwtFTJTcIu4ckqoGJmq/z6qCMMzP7eEmTnITiFyeE5tVt1
-         ASAQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1677007550;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qIumhXVptDGaCBlNxNpJonBcbHAUubqeifjNAqK+SpU=;
+        b=UUimMBx65rs4EgYnP4JSdQZpO27fYhKT8ksV+feyk+W0a+e7v4yo9PUJ5gK05wvGqz
+         1xpPPQUc9V9sPuNL/GOm6oL3QSCblAUQqIaGWHGfpL/gmrTc4CoiqwlGquEEIB/Rbac9
+         lb9QLJoGPABu8Z5nralY7l99l8xEm+7T3oPw91AyK0iD68t40Rwwf98tRBXP2+MvmMZT
+         rlk7irZBawdElh0084INE7qUiNOt8ait/mX4VqyQrfcs7pnl6jNRNEgmtRREAZ1Ks2mp
+         qKP1GuVjrjRic9zgDKl7/0lHSnjIPkNDvqlPDraSLlOns276V28YWz9KGpOUpXUOu9tP
+         LSyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LQSbWzdXITTUFGVPTFXHGgENmDgXWQs7cxb8n6vTRIg=;
-        b=x78yWNIGKpiYOiT6j/by7WJIby5Uxj7fkV2WQSwcn2nfHr4ttU1BJeVEM9pVztUGi3
-         TqtjpG5AIxFFv0Xn0LCFJ3YYUPBRTZ2C+2MIsHaeQ5lBT3z0Lhz/Gre7+2C4XPspWPI5
-         EVRJo8pEatmWJrnM7BhrgO2f4qYsAMUD8teRuQIZe4vU9WrDNGnMsBRiXG0FfmWiDbLA
-         OF8qlEqD96C6SMAQG+SoE3Tvx2UQB35/DTbJ/1TbSeQwwy+ev7Lw4CLmB01ylEGzYbb4
-         +4Uylb7eR67dqRhA2I5+bcA1+Sjp0UrRdlBYiwugp0n1dnw0fm3ool6fX+cguEW9vORK
-         z7Mg==
-X-Gm-Message-State: AO0yUKUvxAkmI7OQ0Wn8j64SuOFW3n1OQEfCoJ2DWgqzgNIGKgq2r9u1
-        /TC8tCPq/Q8XM/SHhiRvijZb3L3551CIpRF0
-X-Google-Smtp-Source: AK7set+QxS6Nf/kPSQ9yU93mzJ3Mgta9VHeTQonMkPjJqw/qXdCPEq+ZiHN80rpKxC+OtcbK+or3wA==
-X-Received: by 2002:a17:907:a42a:b0:8b1:730b:a296 with SMTP id sg42-20020a170907a42a00b008b1730ba296mr23303956ejc.15.1677006569859;
-        Tue, 21 Feb 2023 11:09:29 -0800 (PST)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id ck20-20020a170906c45400b008c95f0ce32esm3967120ejb.3.2023.02.21.11.09.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 11:09:29 -0800 (PST)
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        kvm-riscv@lists.infradead.org
-Cc:     'Rob Herring ' <robh@kernel.org>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Conor Dooley ' <conor.dooley@microchip.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Ben Dooks ' <ben.dooks@codethink.co.uk>,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        Anup Patel <anup@brainfault.org>
-Subject: [PATCH v5 8/8] RISC-V: KVM: Expose Zicboz to the guest
-Date:   Tue, 21 Feb 2023 20:09:16 +0100
-Message-Id: <20230221190916.572454-9-ajones@ventanamicro.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230221190916.572454-1-ajones@ventanamicro.com>
-References: <20230221190916.572454-1-ajones@ventanamicro.com>
+        d=1e100.net; s=20210112; t=1677007550;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qIumhXVptDGaCBlNxNpJonBcbHAUubqeifjNAqK+SpU=;
+        b=KGNG5hHawS22lfSdb+au9RSQaUxL/JdSFCnIZHEWEd1bu1ohFj3NmZaz1SI/es5216
+         LQ68vis8txV4ItEEwxqcBQHcrkmg1PUK5RY523RS7XuqFUzLsmPcx+dhPlQs/xbuDSln
+         xNzaDeu8RDimZPZjigEYOQQtEJ4DDq8ePKvRrda0C3NP9mDmDhycD4XHl3lbRqUgcioC
+         D1GMZpGrEpFONT0SM6Uv/aEDHVi9pWCB9QCEAnnMqxBqvXaq0tFoaX6UBmKNmzx6GtAY
+         nWdrY1A4yTCXNsErkY6mnAv6pRpAs3EEbJgCy0msKpiaUJG6Vt8D1ZD/voyoDn4WoYtf
+         Wazg==
+X-Gm-Message-State: AO0yUKVhEGedMqu6CjKgzZZn0LSQDhL03s9xLVmGHgKbwn3A/K0sRYis
+        6EDgDDXJLXWmmqvl4I/FT2q6HcyNJIHgeipY/zzUTw==
+X-Google-Smtp-Source: AK7set+7iHFS/iorUX3sKwtwOxCp5CG/iAxYxwKP+qJHKKmKYSgJ0ayVog03ErDwVkCN6T4iZ+EsshDbaAfP/B7b/w4=
+X-Received: by 2002:a67:e1cc:0:b0:3ea:5896:84b9 with SMTP id
+ p12-20020a67e1cc000000b003ea589684b9mr897651vsl.75.1677007550472; Tue, 21 Feb
+ 2023 11:25:50 -0800 (PST)
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230221150543.283487-1-brgl@bgdev.pl> <20230221150543.283487-3-brgl@bgdev.pl>
+ <9a3e9c76-ba70-6ccc-3ade-fa08cdff571e@linaro.org>
+In-Reply-To: <9a3e9c76-ba70-6ccc-3ade-fa08cdff571e@linaro.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 21 Feb 2023 20:25:39 +0100
+Message-ID: <CAMRc=McMGnzz09SG_QaKWNLSyLbR=QbFvfiYgewYMnAeESRgQQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: add cpufreq node
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guests may use the cbo.zero instruction when the CPU has the Zicboz
-extension and the hypervisor sets henvcfg.CBZE.
+On Tue, Feb 21, 2023 at 6:44 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 21.02.2023 16:05, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add a node for the cpufreq engine and specify the frequency domains for
+> > all CPUs.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 21 +++++++++++++++++++++
+> >  1 file changed, 21 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> > index ce5976e36aee..5e2bc67b3178 100644
+> > --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> > @@ -37,6 +37,7 @@ CPU0: cpu@0 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x0>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       next-level-cache = <&L2_0>;
+> >                       L2_0: l2-cache {
+> >                               compatible = "cache";
+> > @@ -52,6 +53,7 @@ CPU1: cpu@100 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x100>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       next-level-cache = <&L2_1>;
+> >                       L2_1: l2-cache {
+> >                               compatible = "cache";
+> > @@ -64,6 +66,7 @@ CPU2: cpu@200 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x200>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       next-level-cache = <&L2_2>;
+> >                       L2_2: l2-cache {
+> >                               compatible = "cache";
+> > @@ -76,6 +79,7 @@ CPU3: cpu@300 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x300>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       next-level-cache = <&L2_3>;
+> >                       L2_3: l2-cache {
+> >                               compatible = "cache";
+> > @@ -88,6 +92,7 @@ CPU4: cpu@10000 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x10000>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
+> >                       next-level-cache = <&L2_4>;
+> >                       L2_4: l2-cache {
+> >                               compatible = "cache";
+> > @@ -104,6 +109,7 @@ CPU5: cpu@10100 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x10100>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
+> >                       next-level-cache = <&L2_5>;
+> >                       L2_5: l2-cache {
+> >                               compatible = "cache";
+> > @@ -116,6 +122,7 @@ CPU6: cpu@10200 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x10200>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
+> >                       next-level-cache = <&L2_6>;
+> >                       L2_6: l2-cache {
+> >                               compatible = "cache";
+> > @@ -128,6 +135,7 @@ CPU7: cpu@10300 {
+> >                       compatible = "qcom,kryo";
+> >                       reg = <0x0 0x10300>;
+> >                       enable-method = "psci";
+> > +                     qcom,freq-domain = <&cpufreq_hw 1>;
+> >                       next-level-cache = <&L2_7>;
+> >                       L2_7: l2-cache {
+> >                               compatible = "cache";
+> > @@ -731,6 +739,19 @@ tcsr_mutex: hwlock@1f40000 {
+> >                       #hwlock-cells = <1>;
+> >               };
+> >
+> > +             cpufreq_hw: cpufreq@18591000 {
+> > +                     compatible = "qcom,sa8775p-cpufreq-epss",
+> > +                                  "qcom,cpufreq-epss";
+> That's some very aggressive wrapping! :P
+>
 
-Add Zicboz support for KVM guests which may be enabled and
-disabled from KVM userspace using the ISA extension ONE_REG API.
+For when all you have is vi on a 80-char wide terminal :D
 
-Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
----
- arch/riscv/include/uapi/asm/kvm.h | 1 +
- arch/riscv/kvm/vcpu.c             | 4 ++++
- 2 files changed, 5 insertions(+)
+Bartosz
 
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index c1a1bb0fa91c..e44c1e90eaa7 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -106,6 +106,7 @@ enum KVM_RISCV_ISA_EXT_ID {
- 	KVM_RISCV_ISA_EXT_SVINVAL,
- 	KVM_RISCV_ISA_EXT_ZIHINTPAUSE,
- 	KVM_RISCV_ISA_EXT_ZICBOM,
-+	KVM_RISCV_ISA_EXT_ZICBOZ,
- 	KVM_RISCV_ISA_EXT_MAX,
- };
- 
-diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index e5126cefbc87..198ee86cad38 100644
---- a/arch/riscv/kvm/vcpu.c
-+++ b/arch/riscv/kvm/vcpu.c
-@@ -63,6 +63,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
- 	KVM_ISA_EXT_ARR(SVPBMT),
- 	KVM_ISA_EXT_ARR(ZIHINTPAUSE),
- 	KVM_ISA_EXT_ARR(ZICBOM),
-+	KVM_ISA_EXT_ARR(ZICBOZ),
- };
- 
- static unsigned long kvm_riscv_vcpu_base2isa_ext(unsigned long base_ext)
-@@ -865,6 +866,9 @@ static void kvm_riscv_vcpu_update_config(const unsigned long *isa)
- 	if (riscv_isa_extension_available(isa, ZICBOM))
- 		henvcfg |= (ENVCFG_CBIE | ENVCFG_CBCFE);
- 
-+	if (riscv_isa_extension_available(isa, ZICBOZ))
-+		henvcfg |= ENVCFG_CBZE;
-+
- 	csr_write(CSR_HENVCFG, henvcfg);
- #ifdef CONFIG_32BIT
- 	csr_write(CSR_HENVCFGH, henvcfg >> 32);
--- 
-2.39.1
-
+> Nevertheless,
+>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>
+> Konrad
+> > +                     reg = <0x0 0x18591000 0x0 0x1000>,
+> > +                           <0x0 0x18593000 0x0 0x1000>;
+> > +                     reg-names = "freq-domain0", "freq-domain1";
+> > +
+> > +                     clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+> > +                     clock-names = "xo", "alternate";
+> > +
+> > +                     #freq-domain-cells = <1>;
+> > +             };
+> > +
+> >               tlmm: pinctrl@f000000 {
+> >                       compatible = "qcom,sa8775p-tlmm";
+> >                       reg = <0x0 0xf000000 0x0 0x1000000>;
