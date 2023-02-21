@@ -2,98 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A4669E086
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 13:36:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BF769E094
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 13:42:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233945AbjBUMgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 07:36:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34332 "EHLO
+        id S234681AbjBUMmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 07:42:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232317AbjBUMgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 07:36:50 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B1C233D1;
-        Tue, 21 Feb 2023 04:36:49 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id g14so4690610pjb.2;
-        Tue, 21 Feb 2023 04:36:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5L3dF0JAJgBcduePLIvYCGmEEesF6lNT+h6CRgkwaQo=;
-        b=h/tOHFqk90X4NN1IPLfzidjqDpYazUZbvc7olKGdQb0DrlHH3KDj/GfgQbKuBpe5ZM
-         aHpFX1mwNg7ggmf34CFyOZgTXzmVAS8XrrIcCQQV4laUeg3Fkt2JGCiFI50QWYvbwgty
-         pA1lX/F47AN6VQ0qWZkX3MRD4xyc9SB5WqO/QyaA1bOkI/mdpo3F+L4ACEyGAlDtGySX
-         WoaPiDwvRr/7kpn1TVEfag0fPrvg/jhevaJJQg/R2KCAZ8xInewaZj/eOEbYImy0vcCr
-         Tea0w/LrQbgr2MBJKIM7cr96W4Q/lTZZQ/dU1MSVwqWNU7rg9NpB0h1n+BMoQI5Ax5xp
-         2UtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5L3dF0JAJgBcduePLIvYCGmEEesF6lNT+h6CRgkwaQo=;
-        b=LraeIrcq+RhXT+bDVhEQS58bJyyjIdzDJKU8JtaBoleQzdyyYFUHZYBf/TC7yYFkpS
-         Ow992IfsLYr0FZridNpSONfQgWc8InOhqTfDJE3lgvAhXTzk95MHnmrOsk7W48IhtCOw
-         mp/KGfMHh+VYrOiok3U4eIvTIX6oSez+ESzAUxV7hoQAM9A1bScHZWxXJ3ftCXCyS4/i
-         U1NAG+oz8iIsgCyZTO0s5botHZF1yBGMwE5WtquBTyuz/ngr2momecVEOr1+z+Fj8rwQ
-         s0WTIymZmZiIam5+/YrgQtlk/OR7Vunq0tWJPx251BcDrXQ/AINGbs0XvKK61OcLAVVR
-         ii8Q==
-X-Gm-Message-State: AO0yUKV3JQ9XS+gsVp/cXnPYCx8eae5ah82HzCoVZo8N5gfWYyhsXBGf
-        AjGMnRyo05q0QNkmXuGeSuyhXyiSbGf/zg==
-X-Google-Smtp-Source: AK7set929D4rdR6a3m0KR51+bCeLnOUOt0c95DWoOQbQcmYKwxoUEPNln6hcTz7Aw/ppGEy0brIzwQ==
-X-Received: by 2002:a17:902:d4ca:b0:19a:9880:175f with SMTP id o10-20020a170902d4ca00b0019a9880175fmr6088717plg.51.1676983009033;
-        Tue, 21 Feb 2023 04:36:49 -0800 (PST)
-Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id jd7-20020a170903260700b00194a297cb8esm9822879plb.191.2023.02.21.04.36.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 04:36:48 -0800 (PST)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: sm8250-xiaomi-elish: Correct venus firmware path
-Date:   Tue, 21 Feb 2023 20:36:33 +0800
-Message-Id: <20230221123633.25145-1-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S233901AbjBUMmh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 07:42:37 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC50166CB;
+        Tue, 21 Feb 2023 04:42:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1676983356; x=1708519356;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qdSAFaUWp6AvhtEnnIj1yeelAd4itBgU8TC7d7tUjeI=;
+  b=gQ+9VuhWDnTarRLQ76/+M3IZna57jk2dVOgkyEGmnMrBSX83E/b1Ki5y
+   2CLqFkKPg4RgTO5/gHepmdDHKXybBFWF2CHUFAVEYZ79MTyLaHrfxRAc0
+   RpbF7+sYUYO8bgVC0z0ai1xxFFW8NUFThWjndDXPLr3bZw7Wqv/P8kBVR
+   qn02ynHO9zngSzMFe9QE8pvtHwbE48Q9+2D7bTOMI5gn/P08CyYRSpipl
+   tDJKwTHC7igLnyRvPhqmpef/OR9S0jTVj2cQebXCuZRMSqumKvGKxfOmS
+   wnDi2qFF7gD6LFtF6XkN6+SolmxPWewo0oBZIvd6BMDh5t5QtZP+fHbZA
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="320751456"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
+   d="scan'208";a="320751456"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2023 04:42:35 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="649165040"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; 
+   d="scan'208";a="649165040"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2023 04:42:34 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+        by kekkonen.fi.intel.com (Postfix) with SMTP id 505861202B1;
+        Tue, 21 Feb 2023 14:42:31 +0200 (EET)
+Date:   Tue, 21 Feb 2023 14:42:31 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
+ camera sensor binding
+Message-ID: <Y/S8N0c8W/qQtjOj@kekkonen.localdomain>
+References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
+ <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
+ <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
+ <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
+ <YggZqM81nCJcv4vZ@paasikivi.fi.intel.com>
+ <YggwuBlEmjzhxYt1@pendragon.ideasonboard.com>
+ <Y/QHzsYzwDG2uclC@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y/QHzsYzwDG2uclC@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Missing vendor name for venus firmware path. Add it.
+Hi Laurent,
 
-Fixes: a41b617530bf ("arm64: dts: qcom: sm8250: Add device tree for Xiaomi Mi Pad 5 Pro")
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, Feb 21, 2023 at 01:52:46AM +0200, Laurent Pinchart wrote:
+> > > > > > +        properties:
+> > > > > > +          bus-type:
+> > > > > > +            enum: [4, 5, 6]
+> > > > > 
+> > > > > With bus-type 5, shouldn't you have the parallel interface sync signal
+> > > > > polarity properties? Possibly also others if the hardware supports them.
+> > > > 
+> > > > As far as I can tell, the hardware has fixed polarities for all signals.
+> > > > Both hsync and vsync (called LINE_VALID and FRAME_VALID here) are active
+> > > > high.
+> > > 
+> > > Right, then you won't need these.
+> > > 
+> > > What about the link-frequencies property?
+> > 
+> > That's something I've meant to ask, should the link-frequencies property
+> > be specified for parallel buses too, or only CSI-2 ?
+> 
+> Any feedback on this ?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-index acaa99c5ff8b..a85d47f7a9e8 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-@@ -625,6 +625,6 @@ &ufs_mem_phy {
- };
- 
- &venus {
--	firmware-name = "qcom/sm8250/elish/venus.mbn";
-+	firmware-name = "qcom/sm8250/xiaomi/elish/venus.mbn";
- 	status = "okay";
- };
+Yes.
+
+It very likely matters there as well but probably less so than on CSI-2.
+
+link-frequencies isn't specific to CSI-2 either.
+
+> 
+> > We also need to document how a DT writer should select the link
+> > frequencies. The process is complicated, saying that the property is
+> > required without explaining how the values can be computed (EMC
+> > constraints aside, just from a functional point of view) isn't nice. If
+> > you explain this to me, I can put it in a patch :-)
+> 
+> Or on this ? :-)
+
+Generally the hardware people will tell you this when it matters. :-) But
+on a development board you can probably have anything the hardware
+supports.
+
+I guess we could add a few words on this to e.g.
+Documentation/driver-api/media/camera-sensor.rst .
+
+Most drivers will support a few frequencies only and sometimes the vendor,
+due to someone needing it, provides another configuration with a different
+frequency. Many sensors also have datasheets that are precise enough to
+calculate this yourself.
+
 -- 
-2.39.2
+Regards,
 
+Sakari Ailus
