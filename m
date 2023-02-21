@@ -2,383 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9777869DD63
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 10:53:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3961F69DD6D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 10:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234138AbjBUJxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 04:53:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60534 "EHLO
+        id S234087AbjBUJzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 04:55:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234136AbjBUJwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 04:52:47 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4681426585
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 01:52:18 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id nw10-20020a17090b254a00b00233d7314c1cso4360436pjb.5
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 01:52:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qOVS7be5PeTmqlkIgQy4lZY4jj4cH9UG9ymPku1NXy0=;
-        b=MTGd/5LVgOfnSBNvrNaxwXc3X2e0AWy9e5kAhIOTq/fLBdHYj8a9GT1Z+R2nnSBgFC
-         XCYZxKc0eUjjQwDMEA9wwD01RS7cmemh2CQr23AvuynXQWzTQqK4zefUBfddrXL+gAW2
-         34wEZ29pfKGPsdYRJm2FaoTySdpx7tm//mx7k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qOVS7be5PeTmqlkIgQy4lZY4jj4cH9UG9ymPku1NXy0=;
-        b=w6hs9gJ2nh/noBOPj8EU9t6rXIL/hBUgAa0CRQ3CtebUh0Rp/Rqkpg6yInddgqW5Hl
-         2CygloccT7A92Wluadqnw+SmDI3XVqucV2dmEO7yjvI8+whuvbTG1bROyxIzju6obfBb
-         pW2HC8z7ySI2f0muYwPL+2yy2U4Wf0Ww4eF3o2NlwTVUVczFYeGbBca5npRJwg4TRg1b
-         lIE8pabACi5hQpFL9FazbtBDo494WiuRUg6rX34E5BNRqL++H3z/KdlTSPYQfyiNFLQs
-         ow6674sq+rB39hqy4bBQBxfpg+WzKSLXmQ/EbNKogPpZHW+liFmibj8uqu+rDMS+gfac
-         aBqA==
-X-Gm-Message-State: AO0yUKWkaR+mOCls0iX/nb3MA/8EnCoS4hCqVx1N7voaG0vEJ/P/Dws8
-        180OSEidko7Xye3FdkfAsrIuXg==
-X-Google-Smtp-Source: AK7set/EbSNzRINcBtxw5SFVkSJ8Yx8FU4QsJZsVoOcJeZ9H6soiBkpUpw8gewjJyFyDk7R5wUZwqQ==
-X-Received: by 2002:a05:6a20:b707:b0:c7:13be:6dec with SMTP id fg7-20020a056a20b70700b000c713be6decmr1707171pzb.15.1676973137904;
-        Tue, 21 Feb 2023 01:52:17 -0800 (PST)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:a1f5:f58d:584e:5906])
-        by smtp.gmail.com with ESMTPSA id t25-20020a656099000000b004eca54eab50sm3524918pgu.28.2023.02.21.01.52.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 01:52:17 -0800 (PST)
-From:   Pin-yen Lin <treapking@chromium.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S234039AbjBUJzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 04:55:20 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ED4DE93FE;
+        Tue, 21 Feb 2023 01:54:43 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxJEy7lPRj3BwDAA--.935S3;
+        Tue, 21 Feb 2023 17:54:03 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxX+SzlPRj96g3AA--.1894S2;
+        Tue, 21 Feb 2023 17:54:02 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Pin-yen Lin <treapking@chromium.org>, linux-kernel@vger.kernel.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Marek Vasut <marex@denx.de>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org, Xin Ji <xji@analogixsemi.com>,
-        Lyude Paul <lyude@redhat.com>,
-        Allen Chen <allen.chen@ite.com.tw>, devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, chrome-platform@lists.linux.dev,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-acpi@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>
-Subject: [PATCH v12 10/10] drm/bridge: it6505: Register Type C mode switches
-Date:   Tue, 21 Feb 2023 17:50:54 +0800
-Message-Id: <20230221095054.1868277-11-treapking@chromium.org>
-X-Mailer: git-send-email 2.39.2.637.g21b0678d19-goog
-In-Reply-To: <20230221095054.1868277-1-treapking@chromium.org>
-References: <20230221095054.1868277-1-treapking@chromium.org>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v13 1/2] thermal: loongson-2: add thermal management support
+Date:   Tue, 21 Feb 2023 17:53:54 +0800
+Message-Id: <20230221095355.9799-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8AxX+SzlPRj96g3AA--.1894S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3Zr1xur1DXr4xKr45ZFyrJFb_yoWDXF48pF
+        W3Ca98GrsrJFsruan8ArW8AFs0y3WayFy7ZFWxCw1Y9rZ8J343WryktFy8Ar97CFyUJF43
+        ZF98KrWUCFWDZ3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b78Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l
+        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+        vE14v26r1Y6r17McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+        r2IYc2Ij64vIr41l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026x
+        CaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_
+        JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r
+        1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_
+        Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8Jr
+        UvcSsGvfC2KfnxnUUI43ZEXa7IU8c_-PUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register USB Type-C mode switches when the "mode-switch" property and
-relevant port are available in Device Tree. Configure the "lane_swap"
-state based on the entered alternate mode for a specific Type-C
-connector, which ends up updating the lane swap registers of the it6505
-chip.
+This patch adds the support for Loongson-2 thermal sensor controller,
+which can support maximum 4 sensors, each sensor contains a sampling
+register and a control register. The sampling register is used to obtain
+the temperature in real time, the control register GATE field is used to
+set the threshold of high or low temperature, when the input temperature
+is higher than the high temperature threshold or lower than the low
+temperature threshold, an interrupt will occur.
 
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-
+Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 ---
+Change in v13:
+		1. Add a description about that how works the sensor.
+		2. Drop the COMPILE_TEST.
+		3. Rework the help prograph in LOONGSON2_THERMAL Kconfig.
+		4. Drop the 'tzd' 'irq' and 'pdev' element in loongson2_thermal_data.
+		5. Drop the reset of variable in loongson2_thermal_set.
+		6. Drop the function loongson2_thermal_get_sensor_id.
+		7. Drop the function loongson2_thermal_alarm_irq.
+		8. Rework the devm_thermal_of_zone_register.
+		9. Pass 'tzd' instead of 'data' in devm_request_threaded_irq.
+		10. Drop the "data->tzd->tzp->no_hwmon = false".
+		11. Drop the loongson2_thermal_remove.
+		12. Add the sensor id in the of_device_id data field.
+		13. Drop the save and restore function.
+Change in v12:
+		1. Fixup it about min and max.
+		2. Use dev_err_probe replace dev_err in devm_request_threaded_irq context.
+Change in v11:
+		1. Add min() and max() to replace related code in function
+		   loongson2_thermal_set.
+		2. Add dev_err_probe to to replace related code for function
+		   return value use devm_thermal_of_zone_register.
+		3. Replace thermal_add_hwmon_sysfs with devm_thermal_add_hwmon_sysfs
+		   and use dev_warn replace dev_err in this context.
+Change in v10:
+		1. Add all history change log information.
+Change in v9:
+		1. Switch new API that use devm_thermal_of_zone_register
+		   to replace previous interfaces.
+		2. Add depend on LOONGARCH || COMPILE_TEST.
+Change in v8:
+                1. Replace string loongson2/Loongson2/LOONGSON2 with loongson-2/
+                   Loongson-2/LOONGSON-2 in Kconfig and commit log and MAINTAINERS
+		   files.
+Change in v7:
+		1. Split the modification of patch 3 and merge it into this patch.
+		2. Remove the unless code annotation to fix the compile warning
+		   when compile C code with W=1.
+Change in v6:
+		1. NO change, but other patch in this series of patches set has
+		   changes.
+Change in v5:
+		1. NO change, but other patch in this series of patches set has
+		   changes.
+Change in v4:
+		1. Fixup the compatible.
+Change in v3:
+		1. Add a function to gain sensor id an remove dts id.
+Change in v2:
+		1. Remove error msg printing when addr ioremap has error.
+		2. Make loongson2 thermal driver was built-in by default.
+		3. Replace ls2k with loongson2.
+		4. Remove CONFIG_PM_SLEEP and set pm function type was
+		   __maybe_unused.
 
-Changes in v12:
-- Fixes style issues in it6505 driver
-- Replaced &it6505->client->dev with it6505->dev
-- Updated the error logs when parsing data-lanes property
+ MAINTAINERS                         |   7 ++
+ drivers/thermal/Kconfig             |  11 ++
+ drivers/thermal/Makefile            |   1 +
+ drivers/thermal/loongson2_thermal.c | 167 ++++++++++++++++++++++++++++
+ 4 files changed, 186 insertions(+)
+ create mode 100644 drivers/thermal/loongson2_thermal.c
 
-Changes in v11:
-- Added back "data-lanes" parsing logics
-- Removed Kconfig dependency
-- Updated the usage of the private data
-
-Changes in v7:
-- Fixed style issues in it6505 driver
-- Removed the redundant sleep in it6505 driver
-- Removed DT property validation in it6505 driver
-- Rebased to drm-misc-next
-- Extracted common codes to another commit
-
-Changes in v6:
-- Changed it6505_typec_mux_set callback function to accommodate with
-  the latest drm-misc patches
-- Changed the driver implementation to accommodate with the new binding
-- Squashed to a single patch
-
- drivers/gpu/drm/bridge/ite-it6505.c | 186 +++++++++++++++++++++++++++-
- 1 file changed, 182 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/ite-it6505.c b/drivers/gpu/drm/bridge/ite-it6505.c
-index d4bc388b68ac..6c03a853a876 100644
---- a/drivers/gpu/drm/bridge/ite-it6505.c
-+++ b/drivers/gpu/drm/bridge/ite-it6505.c
-@@ -17,6 +17,8 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/types.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
- #include <linux/wait.h>
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 57d1d6ecb33d..54e63f51ae6d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12086,6 +12086,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+ F:	drivers/pinctrl/pinctrl-loongson2.c
  
- #include <crypto/hash.h>
-@@ -27,6 +29,7 @@
- #include <drm/drm_bridge.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_of.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
++LOONGSON-2 SOC SERIES THERMAL DRIVER
++M:	zhanghongchen <zhanghongchen@loongson.cn>
++M:	Yinbo Zhu <zhuyinbo@loongson.cn>
++L:	linux-pm@vger.kernel.org
++S:	Maintained
++F:	drivers/thermal/loongson2_thermal.c
++
+ LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+ M:	Sathya Prakash <sathya.prakash@broadcom.com>
+ M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+index eaeb2b2ee6e9..d4b5ecead80e 100644
+--- a/drivers/thermal/Kconfig
++++ b/drivers/thermal/Kconfig
+@@ -508,4 +508,15 @@ config KHADAS_MCU_FAN_THERMAL
+ 	  If you say yes here you get support for the FAN controlled
+ 	  by the Microcontroller found on the Khadas VIM boards.
  
-@@ -401,6 +404,11 @@ struct debugfs_entries {
- 	const struct file_operations *fops;
- };
- 
-+struct it6505_typec_port_data {
-+	bool dp_connected;
-+	bool lane_swap;
++config LOONGSON2_THERMAL
++	tristate "Loongson-2 SoC series thermal driver"
++	depends on LOONGARCH && OF
++	help
++	  Support for Thermal driver found on Loongson-2 SoC series platforms.
++	  The thermal driver realizes get_temp and set_trips function, which
++	  are used to obtain the temperature of the current node and set the
++	  temperature range to trigger the interrupt. When the input temperature
++	  is higher than the high temperature threshold or lower than the low
++	  temperature threshold, the interrupt will occur.
++
+ endif
+diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+index b9b5dc86f5fd..bfc928f70f6d 100644
+--- a/drivers/thermal/Makefile
++++ b/drivers/thermal/Makefile
+@@ -62,3 +62,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+ obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+ obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
+ obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
++obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
+diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
+new file mode 100644
+index 000000000000..7d5f32f50c0c
+--- /dev/null
++++ b/drivers/thermal/loongson2_thermal.c
+@@ -0,0 +1,167 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Author: zhanghongchen <zhanghongchen@loongson.cn>
++ *         Yinbo Zhu <zhuyinbo@loongson.cn>
++ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
++ */
++
++#include <linux/cpufreq.h>
++#include <linux/delay.h>
++#include <linux/interrupt.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/io.h>
++#include <linux/of_device.h>
++#include <linux/thermal.h>
++#include "thermal_hwmon.h"
++
++#define LOONGSON2_SOC_MAX_SENSOR_NUM			4
++
++#define LOONGSON2_TSENSOR_CTRL_HI			0x0
++#define LOONGSON2_TSENSOR_CTRL_LO			0x8
++#define LOONGSON2_TSENSOR_STATUS			0x10
++#define LOONGSON2_TSENSOR_OUT				0x14
++
++struct loongson2_thermal_data {
++	int id;
++	void __iomem *regs;
 +};
 +
- struct it6505 {
- 	struct drm_dp_aux aux;
- 	struct drm_bridge bridge;
-@@ -454,6 +462,9 @@ struct it6505 {
- 	struct delayed_work delayed_audio;
- 	struct it6505_audio_data audio;
- 	struct dentry *debugfs;
-+	struct completion mux_register;
-+	struct drm_dp_typec_switch_desc switch_desc;
-+	struct it6505_typec_port_data *port_data;
- 
- 	/* it6505 driver hold option */
- 	bool enable_drv_hold;
-@@ -3345,12 +3356,164 @@ static void it6505_shutdown(struct i2c_client *client)
- 		it6505_lane_off(it6505);
- }
- 
-+static void it6505_typec_ports_update(struct it6505 *it6505)
++static int loongson2_thermal_set(struct loongson2_thermal_data *data,
++					int low, int high, bool enable)
 +{
-+	int i;
++	u64 reg_ctrl = 0;
++	int reg_off = data->id * 2;
 +
-+	/* Check if both ports available and do nothing to retain the current one */
-+	if (it6505->port_data[0].dp_connected && it6505->port_data[1].dp_connected)
-+		return;
++	if (low > high)
++		return -EINVAL;
 +
-+	for (i = 0; i < 2; i++) {
-+		if (it6505->port_data[i].dp_connected)
-+			it6505->lane_swap = it6505->port_data[i].lane_swap;
-+	}
-+}
++	low = max(low, -40);
++	high = min(high, 125);
 +
-+static int it6505_typec_mux_set(struct typec_mux_dev *mux,
-+				struct typec_mux_state *state)
-+{
-+	struct drm_dp_typec_port_data *port = typec_mux_get_drvdata(mux);
-+	struct it6505 *it6505 = port->data;
-+	struct device *dev = it6505->dev;
-+	struct drm_dp_typec_switch_desc switch_desc = it6505->switch_desc;
-+	bool old_dp_connected, new_dp_connected;
++	low += 100;
++	high += 100;
 +
-+	if (switch_desc.num_typec_switches == 1)
-+		return 0;
++	reg_ctrl = low;
++	reg_ctrl |= enable ? 0x100 : 0;
++	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
 +
-+	mutex_lock(&it6505->extcon_lock);
-+	wait_for_completion(&it6505->mux_register);
++	reg_ctrl = high;
++	reg_ctrl |= enable ? 0x100 : 0;
++	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
 +
-+	old_dp_connected = it6505->port_data[0].dp_connected ||
-+			   it6505->port_data[1].dp_connected;
-+
-+	it6505->port_data[port->port_num].dp_connected =
-+		state->alt && state->alt->svid == USB_TYPEC_DP_SID &&
-+		state->alt->mode == USB_TYPEC_DP_MODE;
-+
-+	dev_dbg(dev, "mux_set dp_connected: c0=%d, c1=%d\n",
-+		it6505->port_data[0].dp_connected, it6505->port_data[1].dp_connected);
-+
-+	new_dp_connected = it6505->port_data[0].dp_connected ||
-+			   it6505->port_data[1].dp_connected;
-+
-+	if (it6505->enable_drv_hold) {
-+		dev_dbg(dev, "enable driver hold\n");
-+		goto unlock;
-+	}
-+
-+	it6505_typec_ports_update(it6505);
-+
-+	if (!old_dp_connected && new_dp_connected) {
-+		int ret = pm_runtime_get_sync(dev);
-+
-+		/*
-+		 * pm_runtime_force_suspend() disables runtime PM when the
-+		 * system enters suspend state. But on system resume, mux_set
-+		 * can be triggered before pm_runtime_force_resume() re-enables
-+		 * runtime PM. This makes the bridge stay powered off if the
-+		 * downstream display is connected when the system is suspended.
-+		 * Handling the error here to make sure the bridge is powered
-+		 * on, and leave the PM runtime usage count incremented so
-+		 * the future runtime PM calls is balanced.
-+		 */
-+		if (ret < 0)
-+			it6505_poweron(it6505);
-+
-+		complete_all(&it6505->extcon_completion);
-+	}
-+
-+	if (old_dp_connected && !new_dp_connected) {
-+		reinit_completion(&it6505->extcon_completion);
-+		pm_runtime_put_sync(dev);
-+		if (it6505->bridge.dev)
-+			drm_helper_hpd_irq_event(it6505->bridge.dev);
-+		memset(it6505->dpcd, 0, sizeof(it6505->dpcd));
-+	}
-+
-+unlock:
-+	mutex_unlock(&it6505->extcon_lock);
 +	return 0;
 +}
 +
-+static void it6505_unregister_typec_switches(struct it6505 *it6505)
++static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
 +{
-+	drm_dp_unregister_typec_switches(&it6505->switch_desc);
-+}
++	u32 reg_val;
++	struct loongson2_thermal_data *data = tz->devdata;
 +
-+static int it6505_register_typec_switches(struct device *dev, struct it6505 *it6505)
-+{
-+	struct device_node *port_node = of_graph_get_port_by_id(dev->of_node, 1);
-+	struct drm_dp_typec_switch_desc *switch_desc = &it6505->switch_desc;
-+	int ret;
-+	u32 dp_lanes[4];
-+	unsigned int i, num_lanes;
-+
-+	ret = drm_dp_register_typec_switches(dev, &port_node->fwnode,
-+					     &it6505->switch_desc, it6505,
-+					     it6505_typec_mux_set);
-+	if (ret)
-+		return ret;
-+
-+	it6505->port_data = devm_kcalloc(
-+		dev, switch_desc->num_typec_switches,
-+		sizeof(struct it6505_typec_port_data), GFP_KERNEL);
-+
-+	if (!it6505->port_data) {
-+		ret = -ENOMEM;
-+		goto unregister_mux;
-+	}
-+
-+	for (i = 0; i < switch_desc->num_typec_switches; i++) {
-+		struct drm_dp_typec_port_data *port = &switch_desc->typec_ports[i];
-+		struct fwnode_handle *fwnode = port->fwnode;
-+
-+		num_lanes = fwnode_property_count_u32(fwnode, "data-lanes");
-+
-+		if (num_lanes < 0) {
-+			dev_err(dev,
-+				"Error on getting data lanes count from %pfwP: %d\n",
-+				fwnode, num_lanes);
-+			ret = num_lanes;
-+			goto unregister_mux;
-+		}
-+
-+		if (num_lanes > 2) {
-+			dev_err(dev,
-+				"Invalid data lanes count for mode switches from %pfwP: %d\n",
-+				fwnode, num_lanes);
-+			ret = -EINVAL;
-+			goto unregister_mux;
-+		}
-+
-+		ret = fwnode_property_read_u32_array(fwnode, "data-lanes",
-+						     dp_lanes, num_lanes);
-+		if (ret) {
-+			dev_err(dev,
-+				"Failed to read the data-lanes variable: %d\n",
-+				ret);
-+			goto unregister_mux;
-+		}
-+
-+		it6505->port_data[i].lane_swap = (dp_lanes[0] / 2 == 1);
-+	}
-+	complete_all(&it6505->mux_register);
++	reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
++	*temp = ((reg_val & 0xff) - 100) * 1000;
 +
 +	return 0;
-+
-+unregister_mux:
-+	complete_all(&it6505->mux_register);
-+	it6505_unregister_typec_switches(it6505);
-+	return ret;
 +}
 +
- static int it6505_i2c_probe(struct i2c_client *client)
- {
- 	struct it6505 *it6505;
- 	struct device *dev = &client->dev;
- 	struct extcon_dev *extcon;
--	int err, intp_irq;
-+	int err, intp_irq, ret;
- 
- 	it6505 = devm_kzalloc(&client->dev, sizeof(*it6505), GFP_KERNEL);
- 	if (!it6505)
-@@ -3370,11 +3533,25 @@ static int it6505_i2c_probe(struct i2c_client *client)
- 	if (PTR_ERR(extcon) == -EPROBE_DEFER)
- 		return -EPROBE_DEFER;
- 	if (IS_ERR(extcon)) {
--		dev_err(dev, "can not get extcon device!");
--		return PTR_ERR(extcon);
-+		if (PTR_ERR(extcon) != -ENODEV)
-+			dev_warn(dev, "Cannot get extcon device: %ld\n",
-+				 PTR_ERR(extcon));
-+		it6505->extcon = NULL;
-+	} else {
-+		it6505->extcon = extcon;
- 	}
- 
--	it6505->extcon = extcon;
-+	init_completion(&it6505->mux_register);
-+	ret = it6505_register_typec_switches(dev, it6505);
-+	if (ret) {
-+		if (ret != -ENODEV)
-+			dev_warn(dev, "Didn't register Type-C switches, err: %d\n",
-+				 ret);
-+		if (!it6505->extcon) {
-+			dev_err(dev, "Both extcon and typec-switch are not registered.\n");
-+			return -EINVAL;
-+		}
++static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
++{
++	struct thermal_zone_device *tzd = dev;
++	struct loongson2_thermal_data *data = tzd->devdata;
++
++	/* clear interrupt */
++	writeb(0x3, data->regs + LOONGSON2_TSENSOR_STATUS);
++
++	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
++
++	return IRQ_HANDLED;
++}
++
++static int loongson2_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
++{
++	struct loongson2_thermal_data *data = tz->devdata;
++
++	return loongson2_thermal_set(data, low/1000, high/1000, true);
++}
++
++static const struct thermal_zone_device_ops loongson2_of_thermal_ops = {
++	.get_temp = loongson2_thermal_get_temp,
++	.set_trips = loongson2_thermal_set_trips,
++};
++
++static int loongson2_thermal_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	struct loongson2_thermal_data *data;
++	struct thermal_zone_device *tzd;
++	int ret, irq, i;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->id = (uintptr_t)device_get_match_data(dev);
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	data->regs = devm_ioremap(dev, res->start, resource_size(res));
++	if (IS_ERR(data->regs))
++		return PTR_ERR(data->regs);
++
++	/* get irq */
++	irq = platform_get_irq(pdev, 0);
++	if (irq < 0)
++		return irq;
++
++	if (data->id > LOONGSON2_SOC_MAX_SENSOR_NUM - 1 || data->id < 0) {
++		dev_err(dev, "sensor id error,must be in <0 ~ %d>\n",
++				LOONGSON2_SOC_MAX_SENSOR_NUM - 1);
++		return -EINVAL;
 +	}
- 
- 	it6505->regmap = devm_regmap_init_i2c(client, &it6505_regmap_config);
- 	if (IS_ERR(it6505->regmap)) {
-@@ -3446,6 +3623,7 @@ static void it6505_i2c_remove(struct i2c_client *client)
- 	it6505_debugfs_remove(it6505);
- 	it6505_poweroff(it6505);
- 	it6505_remove_edid(it6505);
-+	it6505_unregister_typec_switches(it6505);
- }
- 
- static const struct i2c_device_id it6505_id[] = {
++
++	writeb(0xff, data->regs + LOONGSON2_TSENSOR_STATUS);
++
++	loongson2_thermal_set(data, 0, 0, false);
++
++	for (i = 0; i < LOONGSON2_SOC_MAX_SENSOR_NUM; i++) {
++		tzd = devm_thermal_of_zone_register(&pdev->dev, i,
++		    data, &loongson2_of_thermal_ops);
++
++		if (!IS_ERR(tzd))
++			break;
++
++		if (PTR_ERR(tzd) != ENODEV)
++			continue;
++
++		return dev_err_probe(&pdev->dev, PTR_ERR(tzd),
++				     "failed to register");
++	}
++
++	ret = devm_request_threaded_irq(dev, irq, NULL, loongson2_thermal_irq_thread,
++			IRQF_ONESHOT, "loongson2_thermal", tzd);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
++
++	if (devm_thermal_add_hwmon_sysfs(tzd))
++		dev_warn(&pdev->dev, "Failed to add hwmon sysfs attributes\n");
++
++	return 0;
++}
++
++static const struct of_device_id of_loongson2_thermal_match[] = {
++	{ .compatible = "loongson,ls2k-thermal", .data = (const void *)0},
++	{ /* end */ }
++};
++MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
++
++static struct platform_driver loongson2_thermal_driver = {
++	.driver = {
++		.name		= "loongson2_thermal",
++		.of_match_table = of_loongson2_thermal_match,
++	},
++	.probe	= loongson2_thermal_probe,
++};
++module_platform_driver(loongson2_thermal_driver);
++
++MODULE_DESCRIPTION("Loongson2 thermal driver");
++MODULE_LICENSE("GPL");
 -- 
-2.39.2.637.g21b0678d19-goog
+2.31.1
 
