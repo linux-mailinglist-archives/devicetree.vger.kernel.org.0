@@ -2,137 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0449869D856
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 03:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C63D69D876
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 03:27:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232353AbjBUCNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Feb 2023 21:13:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52390 "EHLO
+        id S232659AbjBUC15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Feb 2023 21:27:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232246AbjBUCNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 21:13:37 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C47B1A649
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 18:13:35 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id b18so2938925ljr.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Feb 2023 18:13:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AiW1Ta6IBbAqhmcXMDuesOeKjslnZyHw8cj0RcHsMpM=;
-        b=q2n3pOcNSff0lmLUH6TzkO4y2Wbwsgs7VVt5p4KOyIs0+e00UIkUexaic4YPCWLnII
-         QKdsQo0BQmEhQzFa1qX+A3zCO/El+bSe6gviIsJMUBJgsrNYhfQ55tsDYxt/iSgY3co3
-         2sFb4wrYsu5UkgyaR1PC+OrvNduvWQM4kPY9v8zXoZAxQH7Gxeq+c2Rb59P0QVSdGfha
-         DH8iOrM2WPmuazOee6skUPCkYk7zLrzTWL2Qt00M1/rJMWqdRkSmFsOCgbVSnrsmAyZD
-         X99DVVLFvrGkFt8hbjjn2faV+BbxoiOqDtANNkWPW4w/R2OYzlQkkavOv1m4vyBtCv15
-         27FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AiW1Ta6IBbAqhmcXMDuesOeKjslnZyHw8cj0RcHsMpM=;
-        b=grMM5+XWGgmYBffjaaombUSTmK91YEBlsfCURAgBx3J7RRn5m4AV0GnT8XUD2zU40E
-         7p1AONuDzsCXMFCLH1W5M60XrEO+Yb4coAVYmINgDm/ew/MCEBMNfIkhf0XHzZ2+CROe
-         P+Jp0FQpx3ZtjuBTQ/n0FI5WR54buHyPRX/6q9YfS1fs4pKgW9FLErDN6q3h4hv/WBhs
-         ZZJ2O2K1mlL7IkD4CY77bT9E8fBweKL52OzS5EJRCZ7ElzoHycQsAFwLxoNiIhNuL286
-         rb1CVE4J6NGjpE8WhLdFN4JsDuzGDrENy72QGTP4ub0AOBk6QsmAsOEJ6uDpFae4Q+ZT
-         xOdQ==
-X-Gm-Message-State: AO0yUKWnip0bzoxMCwlsmLHt+ZBxFaT4euvekkNiBsX8llEv2xeusJmK
-        kQ2HrAoEZRyOi7hc6PAwkWv/MA==
-X-Google-Smtp-Source: AK7set8WttfIXgREx/DW//8k7URrt/2t6ghhms3MAPdLGVDin45jZVDbJmSbypfK9cYXpJfSL7m1WA==
-X-Received: by 2002:a2e:be07:0:b0:293:4bab:39c6 with SMTP id z7-20020a2ebe07000000b002934bab39c6mr1533436ljq.47.1676945613642;
-        Mon, 20 Feb 2023 18:13:33 -0800 (PST)
-Received: from [192.168.1.101] (abxh184.neoplus.adsl.tpnet.pl. [83.9.1.184])
-        by smtp.gmail.com with ESMTPSA id e18-20020a2eb1d2000000b002934abfb109sm170466lja.45.2023.02.20.18.13.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 18:13:33 -0800 (PST)
-Message-ID: <d9173dbe-8cf4-c6e6-d37e-878219631333@linaro.org>
-Date:   Tue, 21 Feb 2023 03:13:31 +0100
+        with ESMTP id S231806AbjBUC14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Feb 2023 21:27:56 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B99B922013;
+        Mon, 20 Feb 2023 18:27:47 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 338E624E202;
+        Tue, 21 Feb 2023 10:27:18 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
+ 2023 10:27:07 +0800
+Received: from [192.168.120.49] (171.223.208.138) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
+ 2023 10:27:06 +0800
+Message-ID: <dfddde90-ddce-d0e5-d31c-bbbbecaf7323@starfivetech.com>
+Date:   Tue, 21 Feb 2023 10:27:05 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: display/panel: Add Lenovo NT36523W BOE
- panel
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230217-topic-lenovo-panel-v1-0-9d7ee1602089@linaro.org>
- <20230217-topic-lenovo-panel-v1-1-9d7ee1602089@linaro.org>
- <20230221020859.GA818929-robh@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v4 5/7] net: stmmac: Add glue layer for StarFive JH7110
+ SoCs
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230221020859.GA818929-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, <samin.guo@starfivetech.com>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <20230118061701.30047-6-yanhong.wang@starfivetech.com>
+ <CAJM55Z-zvb5CJq4PU4c=YKvY0xPY216MAALFsmWTcVFjSd=wEA@mail.gmail.com>
+From:   yanhong wang <yanhong.wang@starfivetech.com>
+In-Reply-To: <CAJM55Z-zvb5CJq4PU4c=YKvY0xPY216MAALFsmWTcVFjSd=wEA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+add  samin.guo@starfivetech.com  to loop.
 
-
-On 21.02.2023 03:08, Rob Herring wrote:
-> On Fri, Feb 17, 2023 at 12:29:07PM +0100, Konrad Dybcio wrote:
->> Add bindings for the 2000x1200px IPS panel found on Lenovo Tab P11/
->> XiaoXin Pad devices.
+On 2023/2/16 18:53, Emil Renner Berthing wrote:
+> On Wed, 18 Jan 2023 at 07:20, Yanhong Wang
+> <yanhong.wang@starfivetech.com> wrote:
 >>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> This adds StarFive dwmac driver support on the StarFive JH7110 SoCs.
+>>
+>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
 >> ---
->>  .../display/panel/lenovo,nt36523w-boe-j606.yaml    | 60 ++++++++++++++++++++++
->>  1 file changed, 60 insertions(+)
+>>  MAINTAINERS                                   |   1 +
+>>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+>>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>>  .../stmicro/stmmac/dwmac-starfive-plat.c      | 118 ++++++++++++++++++
+>>  4 files changed, 132 insertions(+)
+>>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
 >>
->> diff --git a/Documentation/devicetree/bindings/display/panel/lenovo,nt36523w-boe-j606.yaml b/Documentation/devicetree/bindings/display/panel/lenovo,nt36523w-boe-j606.yaml
->> new file mode 100644
->> index 000000000000..43dcbe3f9f30
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/panel/lenovo,nt36523w-boe-j606.yaml
->> @@ -0,0 +1,60 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/panel/lenovo,nt36523w-boe-j606.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 56be59bb09f7..5b50b52d3dbb 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -19609,6 +19609,7 @@ F:      include/dt-bindings/clock/starfive*
+>>  STARFIVE DWMAC GLUE LAYER
+>>  M:     Yanhong Wang <yanhong.wang@starfivetech.com>
+>>  S:     Maintained
+>> +F:     Documentation/devicetree/bindings/net/dwmac-starfive-plat.c
+>>  F:     Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>>
+>>  STARFIVE PINCTRL DRIVER
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+>> index 31ff35174034..f9a4ad4abd54 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+>> @@ -235,6 +235,18 @@ config DWMAC_INTEL_PLAT
+>>           the stmmac device driver. This driver is used for the Intel Keem Bay
+>>           SoC.
+>>
+>> +config DWMAC_STARFIVE_PLAT
+>> +       tristate "StarFive dwmac support"
+>> +       depends on OF && COMMON_CLK
+>> +       depends on STMMAC_ETH
+>> +       default SOC_STARFIVE
+>> +       help
+>> +         Support for ethernet controllers on StarFive RISC-V SoCs
 >> +
->> +title: NT36523W BOE panel found on Lenovo J606 devices
+>> +         This selects the StarFive platform specific glue layer support for
+>> +         the stmmac device driver. This driver is used for StarFive JH7110
+>> +         ethernet controller.
 >> +
->> +maintainers:
->> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
->> +
->> +allOf:
->> +  - $ref: panel-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: lenovo,nt36523w-boe-j606
->> +
->> +  reg:
->> +    maxItems: 1
->> +    description: DSI virtual channel
->> +
->> +  vddio-supply: true
+>>  config DWMAC_VISCONTI
+>>         tristate "Toshiba Visconti DWMAC support"
+>>         default ARCH_VISCONTI
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+>> index d4e12e9ace4f..a63ab0ab5071 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+>> @@ -31,6 +31,7 @@ obj-$(CONFIG_DWMAC_DWC_QOS_ETH)       += dwmac-dwc-qos-eth.o
+>>  obj-$(CONFIG_DWMAC_INTEL_PLAT) += dwmac-intel-plat.o
+>>  obj-$(CONFIG_DWMAC_GENERIC)    += dwmac-generic.o
+>>  obj-$(CONFIG_DWMAC_IMX8)       += dwmac-imx.o
+>> +obj-$(CONFIG_DWMAC_STARFIVE_PLAT)      += dwmac-starfive-plat.o
 > 
-> If only one supply, why not use panel-simple-dsi.yaml? Though probably 
-> there's more than just an IO supply?
-Display regulators (AB/IBB/AMOLEDB, not to be confused with LAB/IBB)
-on modern Qualcomm platforms are controlled by the secure firmware
-layer (yes, you read that correctly). Some panels require additional
-supplies, but this one just has one positive, one negative and one
-I/O regulator.
+> Hi Yanhong,
+> 
+> For the next version could you please drop the _PLAT from the config
+> symbol and -plat from filename. I know the intel wrapper does the
+> same, but it's the only one, so lets do like the majority of other
+> wrappers and not add more different ways of doing things.
+> 
 
-Konrad
+Thanks. I will fix.
+
+>>  obj-$(CONFIG_DWMAC_VISCONTI)   += dwmac-visconti.o
+>>  stmmac-platform-objs:= stmmac_platform.o
+>>  dwmac-altr-socfpga-objs := altr_tse_pcs.o dwmac-socfpga.o
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+>> new file mode 100644
+>> index 000000000000..e441d920933a
+>> --- /dev/null
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+>> @@ -0,0 +1,118 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * StarFive DWMAC platform driver
+>> + *
+>> + * Copyright(C) 2022 StarFive Technology Co., Ltd.
+>> + *
+>> + */
+>> +
+>> +#include <linux/of_device.h>
+>> +
+>> +#include "stmmac_platform.h"
+>> +
+>> +struct starfive_dwmac {
+>> +       struct device *dev;
+>> +       struct clk *clk_tx;
+>> +       struct clk *clk_gtx;
+>> +       struct clk *clk_gtxc;
+>> +};
 > 
-> Rob
+> I like this name. For the next version could you also
+> s/starfive_eth_plat_/starfive_dwmac_/ on the function/struct names
+> below for consistency.
+> 
+
+I will fix.
+
+>> +
+>> +static void starfive_eth_plat_fix_mac_speed(void *priv, unsigned int speed)
+>> +{
+>> +       struct starfive_dwmac *dwmac = priv;
+>> +       unsigned long rate;
+>> +       int err;
+>> +
+>> +       rate = clk_get_rate(dwmac->clk_gtx);
+>> +
+>> +       switch (speed) {
+>> +       case SPEED_1000:
+>> +               rate = 125000000;
+>> +               break;
+>> +       case SPEED_100:
+>> +               rate = 25000000;
+>> +               break;
+>> +       case SPEED_10:
+>> +               rate = 2500000;
+>> +               break;
+>> +       default:
+>> +               dev_err(dwmac->dev, "invalid speed %u\n", speed);
+>> +               break;
+>> +       }
+>> +
+>> +       err = clk_set_rate(dwmac->clk_gtx, rate);
+>> +       if (err)
+>> +               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>> +}
+>> +
+>> +static int starfive_eth_plat_probe(struct platform_device *pdev)
+>> +{
+>> +       struct plat_stmmacenet_data *plat_dat;
+>> +       struct stmmac_resources stmmac_res;
+>> +       struct starfive_dwmac *dwmac;
+>> +       int err;
+>> +
+>> +       err = stmmac_get_platform_resources(pdev, &stmmac_res);
+>> +       if (err)
+>> +               return err;
+>> +
+>> +       plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
+>> +       if (IS_ERR(plat_dat)) {
+>> +               dev_err(&pdev->dev, "dt configuration failed\n");
+>> +               return PTR_ERR(plat_dat);
+>> +       }
+>> +
+>> +       dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
+>> +       if (!dwmac)
+>> +               return -ENOMEM;
+>> +
+>> +       dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
+>> +       if (IS_ERR(dwmac->clk_tx))
+>> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
+>> +                                               "error getting tx clock\n");
+>> +
+>> +       dwmac->clk_gtx = devm_clk_get_enabled(&pdev->dev, "gtx");
+>> +       if (IS_ERR(dwmac->clk_gtx))
+>> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtx),
+>> +                                               "error getting gtx clock\n");
+>> +
+>> +       dwmac->clk_gtxc = devm_clk_get_enabled(&pdev->dev, "gtxc");
+>> +       if (IS_ERR(dwmac->clk_gtxc))
+>> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtxc),
+>> +                                               "error getting gtxc clock\n");
+>> +
+>> +       dwmac->dev = &pdev->dev;
+>> +       plat_dat->fix_mac_speed = starfive_eth_plat_fix_mac_speed;
+>> +       plat_dat->init = NULL;
+>> +       plat_dat->bsp_priv = dwmac;
+>> +       plat_dat->dma_cfg->dche = true;
+>> +
+>> +       err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+>> +       if (err) {
+>> +               stmmac_remove_config_dt(pdev, plat_dat);
+>> +               return err;
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static const struct of_device_id starfive_eth_plat_match[] = {
+>> +       { .compatible = "starfive,jh7110-dwmac" },
+>> +       { }
+>> +};
+>> +
+>> +static struct platform_driver starfive_eth_plat_driver = {
+>> +       .probe  = starfive_eth_plat_probe,
+>> +       .remove = stmmac_pltfr_remove,
+>> +       .driver = {
+>> +               .name = "starfive-eth-plat",
+>> +               .pm = &stmmac_pltfr_pm_ops,
+>> +               .of_match_table = starfive_eth_plat_match,
+>> +       },
+>> +};
+>> +
+>> +module_platform_driver(starfive_eth_plat_driver);
+>> +
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("StarFive DWMAC platform driver");
+>> +MODULE_AUTHOR("Yanhong Wang <yanhong.wang@starfivetech.com>");
+>> --
+>> 2.17.1
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
