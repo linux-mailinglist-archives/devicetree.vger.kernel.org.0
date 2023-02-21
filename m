@@ -2,143 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ED6669E694
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:58:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC7C69E6B4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 19:01:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbjBUR6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 12:58:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
+        id S229926AbjBUSBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 13:01:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231418AbjBUR6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:58:37 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C39298CB
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:58:35 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id l25so4983704wrb.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:58:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S9iW/ZoFwA+vNVbz0hgRVCmhSYJ67As/r6GQ/C1MS14=;
-        b=kkmL3bkoMHa3rpgJXIU9fm2m/Fc9fjZpTR1+czz9opAjVjbwio3hmu13RUzThMYSXr
-         dAX9XP9ZETJTtBG/QfX7MLtnF0j7iNoZ+6VR48IL6eY1Uw/Rb2J3XMlPIbrCbU7JbcJm
-         5sE1pZjBk+SnC1hEpL2huMoX5Okevrj7K/cC8lPGfxtmEFmCVIJDnloBCXlpxCBZPGQD
-         eEyXAU8spQI6HN5l7w6WeCddUq9Hfo3j+p2R/paxWwsuumVe1yo+tgc+axra5TILoAEa
-         z/nbx6Ycfgg1nU3Zd1TPZpREwMdRh1wGGq5ltq59Q/PgXdHcnvnLjZX2fUdWRvnsBDF9
-         3iHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S9iW/ZoFwA+vNVbz0hgRVCmhSYJ67As/r6GQ/C1MS14=;
-        b=lWQrUbcm3AXqVMHGj/8aaCcLoD6Do8DuVtxHyN7fagIBFCOa2KcCFHnhtQR8pTG2jx
-         WpnoF7saGibj9QzDnQQXghccO69wXkBVEmjG3mbst7Nd1vBaC0lBYC30pztp1XV73Y4T
-         o5pmrJ71hqcf/y53I/drn4VJtVT0grpc77dglI9E+fbo/JpWyfXbgMI/2ENrYvAWtEEm
-         BPAqXBy/OIuc5ZcS7LB07MxKTbePvsRt1uXyJcpeuvLMUJRk+hMCr+1ITF5PwvzLZKrv
-         6h2hTqiTlDEPOpZZKSjBHqi3tdOnK5ty7JdlN3iuxtUNEZOoEVLXpRfWRaUqrkeOQ/Mc
-         GRQQ==
-X-Gm-Message-State: AO0yUKViWgG8XFF7Fc00ZZxwwSd6U2yNk7MxCPfonx9eN7Uq2OMRnRZo
-        yCBt5l/Vz+dHVZ0kpQo9Fzr4ag==
-X-Google-Smtp-Source: AK7set+2VYBIviYYpXRgHb6iWH4/F+lDyppvQ+R3fLX/zzCucj88ZsetqCFcBEokjGqacqiFHlxYlQ==
-X-Received: by 2002:adf:d081:0:b0:2c5:9a0d:70a2 with SMTP id y1-20020adfd081000000b002c59a0d70a2mr4778164wrh.16.1677002313874;
-        Tue, 21 Feb 2023 09:58:33 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id z8-20020a056000110800b002c3dc4131f5sm6101436wrw.18.2023.02.21.09.58.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Feb 2023 09:58:33 -0800 (PST)
-Message-ID: <51b57a36-a1e0-45c4-7300-6d2a85f30f6d@linaro.org>
-Date:   Tue, 21 Feb 2023 17:58:31 +0000
+        with ESMTP id S229647AbjBUSBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 13:01:24 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95ED32C64C;
+        Tue, 21 Feb 2023 10:01:21 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7AEC54000A;
+        Tue, 21 Feb 2023 18:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1677002479;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Dl/vHzsChoRqURGkFf3UDkzsWYJfRyvJJaZzJSZYqoQ=;
+        b=PMGa1G918k2xKC5oHsniJ3R27Sw2TLgPKt2QohT6f9QBB/FLLtG9/6y+5uIaStrAoyI0pI
+        9eLkvDFFNilMUk0/amdPVYPkhCFV16/2Nbo61mByNbMklUsTJE/QIfjyaPXGnJZG/IM4+Y
+        MSoPM7jS/PvHXxmudBzAWhcy2zRt+urlXiDaOu3jwvTtPqOEu4uNVrNf+3s5VFaq9YXecv
+        3ihm49kaq6sMeEiB7yVQxGTKpn30DPaNLo+KzRE/2Y/NRd7w/m92SySr/SB79GRX/lYrPC
+        bnlv4P2km6sFon8aXVjKKFGYGU12D4yu+zRpn6eIJTfjWJDlU9gh3VYjMsQRtg==
+Date:   Tue, 21 Feb 2023 19:01:16 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        a.zummo@towertech.it, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, festevam@gmail.com
+Subject: Re: [PATCH v5 2/3] rtc: bbnsm: Add the bbnsm rtc support
+Message-ID: <Y/UG7LT6e7+UySRs@mail.local>
+References: <20230215024117.3357341-1-ping.bai@nxp.com>
+ <20230215024117.3357341-3-ping.bai@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 19/26] gunyah: vm_mgr: Add framework to add VM
- Functions
-Content-Language: en-US
-To:     Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212531.3323284-1-quic_eberman@quicinc.com>
- <20230221130759.GD787573@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230221130759.GD787573@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230215024117.3357341-3-ping.bai@nxp.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 21/02/2023 13:07, Srivatsa Vaddagiri wrote:
-> * Elliot Berman <quic_eberman@quicinc.com> [2023-02-14 13:25:30]:
+On 15/02/2023 10:41:16+0800, Jacky Bai wrote:
+> The BBNSM module includes a real time counter with alarm.
+> Add a RTC driver for this function.
 > 
->> +int __must_check gh_vm_get(struct gh_vm *ghvm)
-> 
-> Minor comment:
-> 
-> get_gh_rm vs gh_vm_get -> can follow some consistent convention I think.
-> 
-> Perhaps get_gh_vm()?
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-it should be other way around
+> +static int bbnsm_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct bbnsm_rtc *bbnsm;
+> +	int ret;
+> +
+> +	bbnsm = devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
+> +	if (!bbnsm)
+> +		return -ENOMEM;
+> +
+> +	bbnsm->rtc = devm_rtc_allocate_device(&pdev->dev);
+> +	if (IS_ERR(bbnsm->rtc))
+> +		return PTR_ERR(bbnsm->rtc);
+> +
+> +	bbnsm->regmap = syscon_node_to_regmap(np->parent);
+> +	if (IS_ERR(bbnsm->regmap)) {
+> +		dev_dbg(&pdev->dev, "bbnsm get regmap failed\n");
+> +		return PTR_ERR(bbnsm->regmap);
+> +	}
+> +
+> +	bbnsm->irq = platform_get_irq(pdev, 0);
+> +	if (bbnsm->irq < 0)
+> +		return bbnsm->irq;
+> +
+> +	platform_set_drvdata(pdev, bbnsm);
+> +
+> +	/* clear all the pending events */
+> +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, 0x7A);
+> +
+> +	device_init_wakeup(&pdev->dev, true);
+> +	dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
+> +
+> +	ret = devm_request_irq(&pdev->dev, bbnsm->irq, bbnsm_rtc_irq_handler,
+> +			IRQF_SHARED, "rtc alarm", &pdev->dev);
 
-currently we have combinations of gh_vm and some other pattern, we 
-should stick with one, in this case gh_vm_* or gh_rm_* makes more sense
+This is not properly aligned, you can fix that if you ever have to
+resend.
 
-here are all the exported symbols in gunyah.
 
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_function_register);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_function_unregister);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_add_resource_ticket);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_remove_resource_ticket);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_mmio_write);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_add_io_handler);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_remove_io_handler);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_get);
-./drivers/virt/gunyah/vm_mgr.c:EXPORT_SYMBOL_GPL(gh_vm_put);
-./drivers/virt/gunyah/rsc_mgr.c:EXPORT_SYMBOL_GPL(gh_rm_notifier_register);
-./drivers/virt/gunyah/rsc_mgr.c:EXPORT_SYMBOL_GPL(gh_rm_notifier_unregister);
-./drivers/virt/gunyah/rsc_mgr.c:EXPORT_SYMBOL_GPL(get_gh_rm);
-./drivers/virt/gunyah/rsc_mgr.c:EXPORT_SYMBOL_GPL(put_gh_rm);
-./drivers/virt/gunyah/gunyah.c:EXPORT_SYMBOL_GPL(gh_api_version);
-./drivers/virt/gunyah/gunyah.c:EXPORT_SYMBOL_GPL(gh_api_has_feature);
-./drivers/virt/gunyah/rsc_mgr_rpc.c:EXPORT_SYMBOL_GPL(gh_rm_get_vmid);
-./drivers/virt/gunyah/gunyah_platform_hooks.c:EXPORT_SYMBOL_GPL(gh_rm_platform_pre_mem_share);
-./drivers/virt/gunyah/gunyah_platform_hooks.c:EXPORT_SYMBOL_GPL(gh_rm_platform_post_mem_reclaim);
-./drivers/virt/gunyah/gunyah_platform_hooks.c:EXPORT_SYMBOL_GPL(gh_rm_register_platform_ops);
-./drivers/virt/gunyah/gunyah_platform_hooks.c:EXPORT_SYMBOL_GPL(gh_rm_unregister_platform_ops);
-./drivers/virt/gunyah/gunyah_platform_hooks.c:EXPORT_SYMBOL_GPL(devm_gh_rm_register_platform_ops);
-
-> 
-> 
->> +{
->> +	return kref_get_unless_zero(&ghvm->kref);
->> +}
->> +EXPORT_SYMBOL_GPL(gh_vm_get);
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
