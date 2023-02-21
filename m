@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3849F69E57C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6C9B69E57F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:04:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233989AbjBUREe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 12:04:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41726 "EHLO
+        id S233889AbjBUREk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 12:04:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233889AbjBUREd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:04:33 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091AA469B;
-        Tue, 21 Feb 2023 09:04:00 -0800 (PST)
+        with ESMTP id S234069AbjBUREi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:04:38 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1DA326A3;
+        Tue, 21 Feb 2023 09:04:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 66A41B80E96;
-        Tue, 21 Feb 2023 17:03:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF9B2C433EF;
-        Tue, 21 Feb 2023 17:03:54 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6DBF8B80F9E;
+        Tue, 21 Feb 2023 17:04:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35B04C433EF;
+        Tue, 21 Feb 2023 17:04:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676999038;
-        bh=Qnh0EERUxpKQwR06nwCqwR4x3GBsbnbkgHVMUazIAAA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NqqMNO1k/8gwXWzWHds8Y5Po1S3dNJqT9piZAYj/t3hMItxadAHciBBsvngEh8wfF
-         K4zdR070NAa0r5sMuo4yZmbGwoMz5T25KrNJZQzpZ0FaG1NhsuzkrWA9IvlVz3c8+w
-         YO6SwRMYwu52FkDDaoj4P06YI9dPtnqgO89sxQw4SDO4p8fUWxBLPYGV5RfxWVn1ju
-         I+JHmtzqn4x2qjpiauoG4yDJnVoLOVv49Yln7YYYC4NCLoK3i+JPceMY1F3xAjiRyd
-         70hCQVYEcXSxyNKQ2xND2n5eCo6olbo6+ubQq21e3VB9hIHk+vg2PE530SxdHHR41Q
-         zrH/8dRfRbmOQ==
-Date:   Tue, 21 Feb 2023 17:03:52 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 17/19] riscv: dts: starfive: Add initial StarFive
- JH7110 device tree
-Message-ID: <Y/T5eL4s8FSlbgQh@spud>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
- <20230221024645.127922-18-hal.feng@starfivetech.com>
+        s=k20201202; t=1676999067;
+        bh=9GGa3LfIZFLMfyC93YamuPJ+m0MPY0JXS8yoYYlRNcw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oj40XnSwOXRCPsxVHExRWHuzJ0nTqBUJid+xyEKffs5V5m4NV6yX0jdysXLJ5tbo1
+         HS3alv74qAEOVzlOjPSzhL72l34bSyJBt3VYCkYhTUpfe+trW4VhZrszS78SIAmbjj
+         GNiyhXbANzSUOZubhVyfS2NCDQgn3IoV9VC89hDwe1dQt2ii+0obXC5/Vfu61NMkeM
+         on10EQXMnq63fTaxFXMD92am7fCY2O2zJw974K59P8Vkz1tF01dqqvwKGy2iJ60u4r
+         aVkua3U3foDPH0AsWmC5eRGC/3aL+8zqmAAkGkmtS08fO4w2uGZr3wWyJQ9BgSryoM
+         HEAr+BDPN9rRA==
+Received: by mail-vs1-f45.google.com with SMTP id v3so4998773vse.0;
+        Tue, 21 Feb 2023 09:04:27 -0800 (PST)
+X-Gm-Message-State: AO0yUKVrtW3Sk52LIOYzAhN/Yn/M07No8m7DyxcZMxIphWGFDvpqc7L6
+        N5GAdyXmzTi3hp9IaaSHqOwikLQ3746yirz5pw==
+X-Google-Smtp-Source: AK7set8RExnAumdfrmnLc73JH0r49w5gketyb+VaMFd10K+FqxZ4TgZPrnaat/PrIDrRENGFveQK8OSCvev++hvJ4Ag=
+X-Received: by 2002:a05:6102:1270:b0:414:cd37:4da8 with SMTP id
+ q16-20020a056102127000b00414cd374da8mr952787vsg.83.1676999066215; Tue, 21 Feb
+ 2023 09:04:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zV97GbCkITlnNHaF"
-Content-Disposition: inline
-In-Reply-To: <20230221024645.127922-18-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20230221120612.27366-1-r-gunasekaran@ti.com> <20230221120612.27366-2-r-gunasekaran@ti.com>
+ <fa789c44-d9b9-92a6-00f4-7bc2410c7642@ti.com>
+In-Reply-To: <fa789c44-d9b9-92a6-00f4-7bc2410c7642@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 21 Feb 2023 11:04:13 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKcktHkexxPaneZjaUt=XwLA_5ypZxSZKnX5TozdgJ+Kg@mail.gmail.com>
+Message-ID: <CAL_JsqKcktHkexxPaneZjaUt=XwLA_5ypZxSZKnX5TozdgJ+Kg@mail.gmail.com>
+Subject: Re: [PATCH v10 1/9] dt-bindings: mfd: ti,j721e-system-controller: Fix
+ mux node regex
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Ravi Gunasekaran <r-gunasekaran@ti.com>
+Cc:     nm@ti.com, afd@ti.com, kristo@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s-vadapalli@ti.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,57 +65,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Feb 21, 2023 at 8:00 AM Vignesh Raghavendra <vigneshr@ti.com> wrote:
+> On 21/02/23 5:36 pm, Ravi Gunasekaran wrote:
+> > mux-controller nodes may not have "reg" property. Update the regex
+> > for such nodes to resolve the dtbs warnings
+> >
+> > Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> > ---
 
---zV97GbCkITlnNHaF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Where's the change history? I doubt I ignored the last 9 versions...
 
-On Tue, Feb 21, 2023 at 10:46:43AM +0800, Hal Feng wrote:
+> >  .../bindings/mfd/ti,j721e-system-controller.yaml          | 8 +++++++-
+> >  1 file changed, 7 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> > index 76ef4352e13c..532bfa45e6a0 100644
+> > --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> > @@ -45,7 +45,7 @@ properties:
+> >
+> >  patternProperties:
+> >    # Optional children
+> > -  "^mux-controller@[0-9a-f]+$":
+> > +  "^mux-controller(@|-)[0-9a-f]+$":
+>
+> Hmm. mmio-mux bindings allow reg property. Why can't we add the same to
+> mux-controller node in 2/9 ?
 
-> +		S7_0: cpu@0 {
-> +			compatible = "sifive,s7", "riscv";
-> +			reg = <0>;
-> +			d-cache-block-size = <64>;
-> +			d-cache-sets = <64>;
-> +			d-cache-size = <8192>;
-> +			d-tlb-sets = <1>;
-> +			d-tlb-size = <40>;
-> +			device_type = "cpu";
-> +			i-cache-block-size = <64>;
-> +			i-cache-sets = <64>;
-> +			i-cache-size = <16384>;
-> +			i-tlb-sets = <1>;
-> +			i-tlb-size = <40>;
-> +			mmu-type = "riscv,sv39";
-> +			next-level-cache = <&ccache>;
-> +			riscv,isa = "rv64imac_zicsr_zba_zbb";
+Yes, do that.
 
-I still think that adding just zicsr here is pointless. If you're going
-to be specific, why not also mention that you have zifencei too?
-
-> +			tlb-split;
-> +			status = "disabled";
-> +
-> +			cpu0_intc: interrupt-controller {
-> +				compatible = "riscv,cpu-intc";
-> +				interrupt-controller;
-> +				#interrupt-cells = <1>;
-> +			};
-> +		};
-
-Rest of this looks fine to me though, thanks for adding the s7
-compatible and zba/zbb :)
-
-
---zV97GbCkITlnNHaF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/T5eAAKCRB4tDGHoIJi
-0krCAP0WvomVWVTumjltZETdZGiWXtffg+jVhmIVSy7BtSwvZAD/erv0jRnX/bvF
-4+QnC46U7EwjU++x1eOoHA1kJnAbNgE=
-=k2Zd
------END PGP SIGNATURE-----
-
---zV97GbCkITlnNHaF--
+Rob
