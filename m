@@ -2,119 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E15E69E6CC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 19:05:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52FEB69E729
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 19:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231875AbjBUSFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 13:05:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55288 "EHLO
+        id S229566AbjBUSMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 13:12:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231500AbjBUSE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 13:04:58 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C352FCC7;
-        Tue, 21 Feb 2023 10:04:56 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 712B260005;
-        Tue, 21 Feb 2023 18:04:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1677002694;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=th5oVun89F1CjoNpW3raiplVH4YZiPGNROtimdr74Ys=;
-        b=PU9cgx04rXx10Nt5B3tiF7EtxoCsmUJanG451qwj5Od76mF928b3PAwxcM4FqeGKnaPLhJ
-        jkhHHpTb6PDw+QFOcR1n7f9SpMJJ6zbG7FMreUMf/xN0peoVs3uGTMJA7OH5DzphbG4heW
-        XEw3ZLmLdmi2omm5HbDj4tTsU/xbjNsXiTWCXqGtXMIN6gkjYDbCDOIYiF507ZqHeJAK9A
-        T1p6zq7m1jZ2NKnJ2X0wTvmQw+ywN82wG1tHiSuIsOppy9RU+0v8DDAbeRs4TlOtY5MPjd
-        HkTtjuY1KU5zFYGBUYE8NWdWtJrG6zgkJonzIcmUUXFfsGVu3UddvpbgZqqPwA==
-Date:   Tue, 21 Feb 2023 19:04:51 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
-        a.zummo@towertech.it, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, festevam@gmail.com
-Subject: Re: [PATCH v5 2/3] rtc: bbnsm: Add the bbnsm rtc support
-Message-ID: <Y/UHw2Q0FL9zlfFk@mail.local>
-References: <20230215024117.3357341-1-ping.bai@nxp.com>
- <20230215024117.3357341-3-ping.bai@nxp.com>
- <Y/UG7LT6e7+UySRs@mail.local>
+        with ESMTP id S229550AbjBUSMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 13:12:02 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF2E196BE
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 10:11:32 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id f41so6831460lfv.13
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 10:11:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g9l35INoDfUDk0IuqXZaCgRGRY7dxuPgfajlmx6iWoY=;
+        b=bBlJkYc52rUmJbh9l+/+eL8BPRA/Tcf60XxsFxAPreABYRbwngQHk4HJOMZxaPW6B3
+         O+r9sc1CAdUOZ4RztHgwf3/mHI619zen+4HgxmYdyKdYe3UIbfCBlc+YiTKgrBoYtkT8
+         8279ZDo5JeFgYrhWoKmuavX+md3lCFrXS6L7whPNWzFtGQOiCWo7OWZQY/uIMi+qxY6A
+         MD8dclBXLOIA3VBs/T5gQFqYgX/IN4uXNaXnmD+yILR6PLXF621K7FotjmXSUJFAqH+c
+         Lth/c8XTVvX9a+ggYlBtLWeE93bxHGtKRv0o8co5AbkyVvqSTdV70KNLjMHs4+opV59w
+         382w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g9l35INoDfUDk0IuqXZaCgRGRY7dxuPgfajlmx6iWoY=;
+        b=ia4hmLnHD7UzEr5yyjs08dz733MGTjXboDAvJYB1sqLYJI2EJFlNqsrB25y76X8Xgm
+         vT+Fc4cC7UrRvzUZqHXYHOcMJgMoH+ObIFVbDb7yDVXR6Po/2a6HJoPaQxM5Iskrnreb
+         3+qJwQKNRTmu5xXDwl5shyQCBU0PRoCXHVyoKAsvdIk7FqkRq6qeU2OEfy9k997rdAO/
+         LxwS5iQH68KohggljLVRVzK4Yoy238dRCvneCTTk6vhmELNbUCraHs643hAONutvAo25
+         QVtFnyZpFcfZqp+U4ecLNKWeuW1RDGDe3UT/WmPdlVK225+9vuTmvwUEtNSBuLTIMn+s
+         Pu7g==
+X-Gm-Message-State: AO0yUKVtBWIVmaURCyGN9vkTIiTMyNDtTC4C5zzEYmNz69zswbA0Fmqh
+        eQn17xaavzgbBGCbqAg5ca3weA==
+X-Google-Smtp-Source: AK7set/lYk44gi0NBjJmIAUFh1HMRhdisJ6K6VhAs2zjAHruCJj30THCA2nJGiGge5kAsIQHxmNXHA==
+X-Received: by 2002:a05:6512:203:b0:4d7:b818:788d with SMTP id a3-20020a056512020300b004d7b818788dmr2095444lfo.23.1677003065980;
+        Tue, 21 Feb 2023 10:11:05 -0800 (PST)
+Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
+        by smtp.gmail.com with ESMTPSA id b17-20020ac25e91000000b004b6f00832cesm1899856lfq.166.2023.02.21.10.11.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Feb 2023 10:11:05 -0800 (PST)
+Message-ID: <98ee82b3-ff8f-b21d-8cc3-169b62e50ebf@linaro.org>
+Date:   Tue, 21 Feb 2023 19:11:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y/UG7LT6e7+UySRs@mail.local>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/4] clk: qcom: Add global clock controller driver for
+ MSM8917
+Content-Language: en-US
+To:     =?UTF-8?Q?Otto_Pfl=c3=bcger?= <otto.pflueger@abscue.de>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230221174909.164029-1-otto.pflueger@abscue.de>
+ <20230221174909.164029-3-otto.pflueger@abscue.de>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230221174909.164029-3-otto.pflueger@abscue.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 19:01:16+0100, Alexandre Belloni wrote:
-> On 15/02/2023 10:41:16+0800, Jacky Bai wrote:
-> > The BBNSM module includes a real time counter with alarm.
-> > Add a RTC driver for this function.
-> > 
-> > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> 
 
-Actually, as there is no dependency anymore, I'm going to apply that
-directly.
 
-> > +static int bbnsm_rtc_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device_node *np = pdev->dev.of_node;
-> > +	struct bbnsm_rtc *bbnsm;
-> > +	int ret;
-> > +
-> > +	bbnsm = devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
-> > +	if (!bbnsm)
-> > +		return -ENOMEM;
-> > +
-> > +	bbnsm->rtc = devm_rtc_allocate_device(&pdev->dev);
-> > +	if (IS_ERR(bbnsm->rtc))
-> > +		return PTR_ERR(bbnsm->rtc);
-> > +
-> > +	bbnsm->regmap = syscon_node_to_regmap(np->parent);
-> > +	if (IS_ERR(bbnsm->regmap)) {
-> > +		dev_dbg(&pdev->dev, "bbnsm get regmap failed\n");
-> > +		return PTR_ERR(bbnsm->regmap);
-> > +	}
-> > +
-> > +	bbnsm->irq = platform_get_irq(pdev, 0);
-> > +	if (bbnsm->irq < 0)
-> > +		return bbnsm->irq;
-> > +
-> > +	platform_set_drvdata(pdev, bbnsm);
-> > +
-> > +	/* clear all the pending events */
-> > +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, 0x7A);
-> > +
-> > +	device_init_wakeup(&pdev->dev, true);
-> > +	dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
-> > +
-> > +	ret = devm_request_irq(&pdev->dev, bbnsm->irq, bbnsm_rtc_irq_handler,
-> > +			IRQF_SHARED, "rtc alarm", &pdev->dev);
+On 21.02.2023 18:49, Otto Pflüger wrote:
+> This driver provides clocks, resets and power domains needed for various
+> components of the MSM8917 SoC and the very similar QM215 SoC.
 > 
-> This is not properly aligned, you can fix that if you ever have to
-> resend.
+> According to [1] in the downstream kernel, the GPU clock has a different
+> source mapping on QM215 (gcc_gfx3d_map vs gcc_gfx3d_map_qm215).
+> 
+> [1]: https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LF.UM.8.6.2-28000-89xx.0/include/dt-bindings/clock/msm-clocks-hwio-8952.h#L298
+> 
+> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> ---
+Thanks for working on reviving old and affordable devices!
 
+>  drivers/clk/qcom/Kconfig       |    8 +
+>  drivers/clk/qcom/Makefile      |    1 +
+>  drivers/clk/qcom/gcc-msm8917.c | 3283 ++++++++++++++++++++++++++++++++
+>  3 files changed, 3292 insertions(+)
+>  create mode 100644 drivers/clk/qcom/gcc-msm8917.c
 > 
-> 
-> -- 
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 70d43f0a8919..3ef58b09385a 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -196,6 +196,14 @@ config MSM_GCC_8916
+>  	  Say Y if you want to use devices such as UART, SPI i2c, USB,
+>  	  SD/eMMC, display, graphics, camera etc.
+>  
+> +config MSM_GCC_8917
+> +	tristate "MSM8917 Global Clock Controller"
+Please also mention QM215
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +	select QCOM_GDSC
+> +	help
+> +	  Support for the global clock controller on msm8917 devices.
+> +	  Say Y if you want to use devices such as UART, SPI i2c, USB,
+> +	  SD/eMMC, display, graphics, camera etc.
+> +
+>  config MSM_GCC_8939
+>  	tristate "MSM8939 Global Clock Controller"
+>  	select QCOM_GDSC
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index f18c446a97ea..ff5f2c4127a9 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -34,6 +34,7 @@ obj-$(CONFIG_MDM_LCC_9615) += lcc-mdm9615.o
+>  obj-$(CONFIG_MSM_GCC_8660) += gcc-msm8660.o
+>  obj-$(CONFIG_MSM_GCC_8909) += gcc-msm8909.o
+>  obj-$(CONFIG_MSM_GCC_8916) += gcc-msm8916.o
+> +obj-$(CONFIG_MSM_GCC_8917) += gcc-msm8917.o
+>  obj-$(CONFIG_MSM_GCC_8939) += gcc-msm8939.o
+>  obj-$(CONFIG_MSM_GCC_8953) += gcc-msm8953.o
+>  obj-$(CONFIG_MSM_GCC_8960) += gcc-msm8960.o
+> diff --git a/drivers/clk/qcom/gcc-msm8917.c b/drivers/clk/qcom/gcc-msm8917.c
+> new file mode 100644
+> index 000000000000..a2f4ffca18dc
+> --- /dev/null
+> +++ b/drivers/clk/qcom/gcc-msm8917.c
+> @@ -0,0 +1,3283 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2023 Otto Pflüger
+> + *
+> + * Based on gcc-msm8953.c:
+> + *   Copyright 2021, The Linux Foundation. All rights reserved.
+> + * with parts taken from gcc-qcs404.c:
+> + *   Copyright 2018, The Linux Foundation. All rights reserved.
+> + * and gcc-msm8939.c:
+> + *   Copyright 2020 Linaro Limited
+> + * adapted with data from clock-gcc-8952.c in Qualcomm's msm-4.9 release:
+> + *   Copyright (c) 2014-2020, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/bitops.h>
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset-controller.h>
+Please sort these
+> +
+> +#include <dt-bindings/clock/qcom,gcc-msm8917.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-pll.h"
+> +#include "clk-rcg.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+
+> +
+> +enum {
+> +	P_XO,
+> +	P_SLEEP_CLK,
+> +	P_GPLL0,
+> +	P_GPLL3,
+> +	P_GPLL4,
+> +	P_GPLL6,
+> +	P_DSI0PLL,
+> +	P_DSI0PLL_BYTE,
+> +};
+> +
+> +static struct clk_alpha_pll gpll0_sleep_clk_src = {
+> +	.offset = 0x21000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x45008,
+> +		.enable_mask = BIT(23),
+> +		.enable_is_inverted = true,
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "gpll0_sleep_clk_src",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.fw_name = "xo",
+Please switch to .index (check sm8550 drivers for reference)
+
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+[...]
+
+> +
+> +static struct clk_pll gpll6_early = {
+> +	.l_reg = 0x37004,
+> +	.m_reg = 0x37008,
+> +	.n_reg = 0x3700C,
+> +	.config_reg = 0x37014,
+> +	.mode_reg = 0x37000,
+> +	.status_reg = 0x3701C,
+Please use lowercase hex everywhere except for preprocessor
+defines.
+
+> +	.status_bit = 17,
+> +	.clkr.hw.init = &(struct clk_init_data){
+> +		.name = "gpll6_early",
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xo",
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_pll_ops,
+> +	},
+> +};
+> +
+[...]
+
+> +
+> +static const struct clk_parent_data gcc_pclk_data[] = {
+> +	{ .fw_name = "xo" },
+> +	{ .fw_name = "dsi0pll", .name = "dsi0pll" },
+Since this is a new driver with no legacy leftovers, one
+lookup method is enough.
+
+(and .index would be preferred)
+
+
+Konrad
