@@ -2,130 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68CC369E53C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 17:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3849F69E57C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234896AbjBUQ45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 11:56:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57900 "EHLO
+        id S233989AbjBUREe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 12:04:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234795AbjBUQ44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 11:56:56 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914792BF3F
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:56:53 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id ee7so4773562edb.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 08:56:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aCU6SPAFZVv6VrbiMY/N7BZbYYEaRXFZQb7KA4W8RVo=;
-        b=lKw4QodbdDMkDON5+34Zsg2fW6BQUEa2d+bZoarpRELg92X9u9882K/pe/HdFj3huM
-         6Lc1FGAQOGl2+g2eNBp4hLPPUc159jfqYetPDRRGOx+PfHrpa75zdoZOVko23d+DNsx7
-         bJMjyXLEHWXAgpH4l9oLRg+9/Nyyfdqn8Bf03IQaFqlL24+BjhWhC8oDFC9XznL3Zj6B
-         ProL6idqXQw/7zoq4/44IhfKpGd2J22IMD7LU9BKwvIKO27RiActjOIBqzuJGyhivbAh
-         moM2bqoVWcHjGqcVn78k7heXQSuKtbmvJWLati5vrlghaIxvtYV8SNZQqt8wkYhjz+PD
-         kj6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aCU6SPAFZVv6VrbiMY/N7BZbYYEaRXFZQb7KA4W8RVo=;
-        b=3a8rF2v4aoBF7YyHlPvY/HlLyBJD40qoppxJ61CPDdOqR/0oB/Wvwc10kxFv+lG9/I
-         rXChvNZOkh65hXSQCctWMs3U2U/z2M3+RNk75yGiNX1ywxAkPwG4IxoyoQpGmHxgpT57
-         CgNob+0tl4MqMajCQk4GK+j/lVl7DDq2LgsyENOZE533imMxs+R3c2BTnM8RosZfHMUO
-         nqpUA4/tGMbxAz5qSvvzyppiWdyOobwKD5VODYWz5n0D593NpAbWfk6MG5ig7eCqPsCt
-         GSSZ7kZ9W9S/BlUrttWLIX58+9uUmV/4L6CWqXSlJac+U8k0pTP5AZHTs6nguJ14KhjY
-         sEPA==
-X-Gm-Message-State: AO0yUKVF+FeVMnowW3qtaZ6no5PY+vmE6i6g9IfJbuX4D2SGUxD5+MEV
-        flC4p5IEJgqsQ/k17c34T1O6ag==
-X-Google-Smtp-Source: AK7set/vywrHZuTi6XuUog062h/Qf6hzYttHgoOMW0LLI9sVJlPsm0rv0sXGCDZ0eASaCbRg2wq0Iw==
-X-Received: by 2002:a17:907:2128:b0:8af:54d0:181d with SMTP id qo8-20020a170907212800b008af54d0181dmr12541426ejb.35.1676998612081;
-        Tue, 21 Feb 2023 08:56:52 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id me19-20020a170906aed300b008b17662e1f7sm6816234ejb.53.2023.02.21.08.56.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Feb 2023 08:56:51 -0800 (PST)
-Message-ID: <764cf3a6-abcc-5c43-606f-10248c6fd0bf@linaro.org>
-Date:   Tue, 21 Feb 2023 17:56:49 +0100
+        with ESMTP id S233889AbjBUREd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:04:33 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091AA469B;
+        Tue, 21 Feb 2023 09:04:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 66A41B80E96;
+        Tue, 21 Feb 2023 17:03:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF9B2C433EF;
+        Tue, 21 Feb 2023 17:03:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1676999038;
+        bh=Qnh0EERUxpKQwR06nwCqwR4x3GBsbnbkgHVMUazIAAA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NqqMNO1k/8gwXWzWHds8Y5Po1S3dNJqT9piZAYj/t3hMItxadAHciBBsvngEh8wfF
+         K4zdR070NAa0r5sMuo4yZmbGwoMz5T25KrNJZQzpZ0FaG1NhsuzkrWA9IvlVz3c8+w
+         YO6SwRMYwu52FkDDaoj4P06YI9dPtnqgO89sxQw4SDO4p8fUWxBLPYGV5RfxWVn1ju
+         I+JHmtzqn4x2qjpiauoG4yDJnVoLOVv49Yln7YYYC4NCLoK3i+JPceMY1F3xAjiRyd
+         70hCQVYEcXSxyNKQ2xND2n5eCo6olbo6+ubQq21e3VB9hIHk+vg2PE530SxdHHR41Q
+         zrH/8dRfRbmOQ==
+Date:   Tue, 21 Feb 2023 17:03:52 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 17/19] riscv: dts: starfive: Add initial StarFive
+ JH7110 device tree
+Message-ID: <Y/T5eL4s8FSlbgQh@spud>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <20230221024645.127922-18-hal.feng@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
- support
-Content-Language: en-US
-To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcel@holtmann.org" <marcel@holtmann.org>,
-        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
-        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
-        "hdanton@sina.com" <hdanton@sina.com>,
-        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
-        "leon@kernel.org" <leon@kernel.org>
-Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Rohit Fule <rohit.fule@nxp.com>,
-        Sherry Sun <sherry.sun@nxp.com>
-References: <20230213145432.1192911-1-neeraj.sanjaykale@nxp.com>
- <20230213145432.1192911-3-neeraj.sanjaykale@nxp.com>
- <60928656-c565-773d-52e6-2142e997eee4@linaro.org>
- <DU2PR04MB8600F997FCED520DCBAB2330E7A59@DU2PR04MB8600.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU2PR04MB8600F997FCED520DCBAB2330E7A59@DU2PR04MB8600.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zV97GbCkITlnNHaF"
+Content-Disposition: inline
+In-Reply-To: <20230221024645.127922-18-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 17:40, Neeraj sanjay kale wrote:
-> Hi Krzysztof,
-> 
-> Thank you for reviewing this patch. I have fixed all the review comments in this document.
-> Please let me know if you have any more comments or suggestions on the new v4 patch.
-> 
->>>  .../bindings/net/bluetooth/nxp,w8xxx-bt.yaml  | 44
->>> +++++++++++++++++++
->>
->> I don't think I proposed such filename.
-> Renamed file to nxp,w8987-bt.yaml
-> 
-> 
->>> +examples:
->>> +  - |
->>> +    uart2 {
->>
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my
->> feedback got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all requested
->> changes or keep discussing them.
 
-And how did you fix this one?
+--zV97GbCkITlnNHaF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+On Tue, Feb 21, 2023 at 10:46:43AM +0800, Hal Feng wrote:
 
+> +		S7_0: cpu@0 {
+> +			compatible = "sifive,s7", "riscv";
+> +			reg = <0>;
+> +			d-cache-block-size = <64>;
+> +			d-cache-sets = <64>;
+> +			d-cache-size = <8192>;
+> +			d-tlb-sets = <1>;
+> +			d-tlb-size = <40>;
+> +			device_type = "cpu";
+> +			i-cache-block-size = <64>;
+> +			i-cache-sets = <64>;
+> +			i-cache-size = <16384>;
+> +			i-tlb-sets = <1>;
+> +			i-tlb-size = <40>;
+> +			mmu-type = "riscv,sv39";
+> +			next-level-cache = <&ccache>;
+> +			riscv,isa = "rv64imac_zicsr_zba_zbb";
+
+I still think that adding just zicsr here is pointless. If you're going
+to be specific, why not also mention that you have zifencei too?
+
+> +			tlb-split;
+> +			status = "disabled";
+> +
+> +			cpu0_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+
+Rest of this looks fine to me though, thanks for adding the s7
+compatible and zba/zbb :)
+
+
+--zV97GbCkITlnNHaF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/T5eAAKCRB4tDGHoIJi
+0krCAP0WvomVWVTumjltZETdZGiWXtffg+jVhmIVSy7BtSwvZAD/erv0jRnX/bvF
+4+QnC46U7EwjU++x1eOoHA1kJnAbNgE=
+=k2Zd
+-----END PGP SIGNATURE-----
+
+--zV97GbCkITlnNHaF--
