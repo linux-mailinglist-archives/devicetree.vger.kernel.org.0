@@ -2,104 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 963C769E0F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 14:01:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ADDB69E189
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 14:42:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233534AbjBUNBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 08:01:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58158 "EHLO
+        id S233226AbjBUNmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 08:42:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbjBUNBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 08:01:30 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF9D17CE9;
-        Tue, 21 Feb 2023 05:01:27 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9CEF624E2AE;
-        Tue, 21 Feb 2023 21:01:19 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
- 2023 21:01:19 +0800
-Received: from [192.168.125.128] (183.27.98.67) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
- 2023 21:01:18 +0800
-Message-ID: <43d00fd9-ab24-442e-3f82-208edaf399d0@starfivetech.com>
-Date:   Tue, 21 Feb 2023 21:01:40 +0800
+        with ESMTP id S233032AbjBUNmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 08:42:35 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F2A0298E4;
+        Tue, 21 Feb 2023 05:42:33 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31LC6Vw7020280;
+        Tue, 21 Feb 2023 06:06:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1676981191;
+        bh=JA31+o79aoRTpPnIzNT5dbG0WqplPar2Vl+yLOC/gfo=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=jeKEx2k+KJmM3VfW1nLVxaef9Jsm/dOrhkMvGzhLy0BaaNgC7rHeCe1zLa1FNNPBz
+         /vuxhSQcxGgGerxpFHq3CQ4CWBzEzE3mZ5RGAG8xjx7BarGb8wap6c/EjrORGY4fPA
+         HCK/0zQIM9YEcmZyahc78fDMip7fEWPH6qQkI868=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31LC6VZm006288
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 21 Feb 2023 06:06:31 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
+ Feb 2023 06:06:31 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 21 Feb 2023 06:06:31 -0600
+Received: from uda0500640.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31LC6CbR030829;
+        Tue, 21 Feb 2023 06:06:28 -0600
+From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
+To:     <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v10 4/9] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
+Date:   Tue, 21 Feb 2023 17:36:07 +0530
+Message-ID: <20230221120612.27366-5-r-gunasekaran@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230221120612.27366-1-r-gunasekaran@ti.com>
+References: <20230221120612.27366-1-r-gunasekaran@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 01/11] dt-bindings: clock: Add StarFive JH7110
- System-Top-Group clock and reset generator
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230221083323.302471-1-xingyu.wu@starfivetech.com>
- <20230221083323.302471-2-xingyu.wu@starfivetech.com>
- <430318ed-5b30-e549-a5ce-df83aa18adf9@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <430318ed-5b30-e549-a5ce-df83aa18adf9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.67]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/2/21 19:25, Krzysztof Kozlowski wrote:
-> On 21/02/2023 09:33, Xingyu Wu wrote:
->> Add bindings for the System-Top-Group clock and reset generator (STGCRG)
->> on the JH7110 RISC-V SoC by StarFive Ltd.
->> 
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> 
-> 
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 93eb504c3b21..2e70c9f21989 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19914,6 +19914,7 @@ F:	arch/riscv/boot/dts/starfive/
->>  STARFIVE JH71X0 CLOCK DRIVERS
->>  M:	Emil Renner Berthing <kernel@esmil.dk>
->>  M:	Hal Feng <hal.feng@starfivetech.com>
->> +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
-> 
-> No improvements here. You add here new bindings for one device and then
-> - without explanation - add yourself to all Starfive clock bindings.
-> Either explain it or drop it or move it to separate patch.
-> 
-> You already got comment for this.
-> 
+From: Aswath Govindraju <a-govindraju@ti.com>
 
-Sorry, I didn't understand what you meant before. Now my understanding is that, 
-If I improvements JH71X0 driver no JH7110 driver, I could add this here. Right?
+Add support for two instance of OSPI in J721S2 SoC.
 
-Is it OK if I do it this way to move it to separate patch like this?:
-+STARFIVE JH7110 STG CLOCK DRIVERS
-+M:	Xingyu Wu <xingyu.wu@starfivetech.com>
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
+Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+Link: https://lore.kernel.org/r/20221122101616.770050-4-mranostay@ti.com
+Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+---
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+index 0af242aa9816..7e0e608578e1 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+@@ -306,4 +306,51 @@
+ 			ti,cpts-periodic-outputs = <2>;
+ 		};
+ 	};
++
++	fss: bus@47000000 {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges = <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
++			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
++			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
++
++		status = "disabled";
++
++		ospi0: spi@47040000 {
++			compatible = "ti,am654-ospi", "cdns,qspi-nor";
++			reg = <0x00 0x47040000 0x00 0x100>,
++			      <0x05 0x00000000 0x01 0x00000000>;
++			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
++			cdns,fifo-depth = <256>;
++			cdns,fifo-width = <4>;
++			cdns,trigger-address = <0x0>;
++			clocks = <&k3_clks 109 5>;
++			assigned-clocks = <&k3_clks 109 5>;
++			assigned-clock-parents = <&k3_clks 109 7>;
++			assigned-clock-rates = <166666666>;
++			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			status = "disabled";
++		};
++
++		ospi1: spi@47050000 {
++			compatible = "ti,am654-ospi", "cdns,qspi-nor";
++			reg = <0x00 0x47050000 0x00 0x100>,
++			      <0x07 0x00000000 0x01 0x00000000>;
++			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
++			cdns,fifo-depth = <256>;
++			cdns,fifo-width = <4>;
++			cdns,trigger-address = <0x0>;
++			clocks = <&k3_clks 110 5>;
++			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			status = "disabled";
++		};
++
++	};
+ };
+-- 
+2.17.1
 
-Best Regards,
-Xingyu Wu
