@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD8269E305
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31BFD69E309
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:05:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234252AbjBUPFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 10:05:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58226 "EHLO
+        id S234122AbjBUPF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 10:05:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234122AbjBUPFx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:05:53 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036D8269C
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:51 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id l6so3445082wms.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:51 -0800 (PST)
+        with ESMTP id S234572AbjBUPFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:05:55 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D50417286
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:52 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id z8so4497100wrm.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 07:05:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HDtAjKV2duI8aK39M5yuWp8bTPWDmPz63VxbaKpJyaU=;
-        b=mxPXxnRgZbP4sgi3fRh1A+8DfgE14IuMc+uQhc3HfBC6JvkSQEK9MyWyjSOk70uOJC
-         3YUppkPlJl2b7kmXkN0te4IMeuQn0L6y7a16uQB1teNNDjeQE7syu2ORY99hIEt0Fgj/
-         M8sPx66WsTYdF6v2ikIRMJbt99h92qPQEZ0Gj1VUcnS5UydtdQ1mT5uPBjfORdxjqbQF
-         uct4vuP/zYDnTpohSZTugLb1etyOzuTKLDWJ07bRKd1LaokdOTH+lHN9c/fBbDyJoDWI
-         r+pWjUkOk4wdr9fg0xXB7r6QI4Aib8eSJ8pneX6MrUITfTwg4OjaZAZ60UpMG9uhBvaD
-         zYqg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5hU12FqArPVLmpEr900EkmsHffMDqv7keP7H+/lbE0o=;
+        b=0xwDX21OfpDIWBxbMXF/G+PdhB7KUalmzgO2jn0xC1tG72WJyjfR8nnlqH9MFVr5XU
+         9nIUR00btwcTqieGpa8v8b8aJJju3M+KgbPco+1YFYOvI6OzXmoPkmyRrm3uekWk1Tj5
+         RHv8kojqJTYHCxADJbOVU1qhwX9q2KlGvOk/WbTStzMfhWjg/1uaG0z1vs9kpUfcRXjh
+         3DGb5vCNjiMRSitTUwRCWjGWeEkwY/z1JBOsKhZwevEJLNJ/MapPBG0Dyy8CdjiknEDn
+         OCHdhHu/IJnyge15SuyCSmJOiWEi0u8MOhGr06TkCIpZ2LSra6giFRhAlB1vQTVj304y
+         IvYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HDtAjKV2duI8aK39M5yuWp8bTPWDmPz63VxbaKpJyaU=;
-        b=OQ8klHb0H66VSw9vEAsz+PNOZfD6JcC2YFNYvg/za+XSfKjAqDvz16QxRvQF5GKUXt
-         CIE4oI4hICmdbV6yalkgWuUcMtpMTl7hhA3wZIthRXXnf2IV8BoELA8QaNyKlCOTxuaf
-         uqiDj9CRUNOTd9EbAa/mQj0C0mNVKjYb8jY0+p8oVIacsk3PlCPtoAfuz0CEHsPAwR3r
-         pHDVeOsSFT1T2FilwjUAisV958AQw9CAYNFNg/N8UUdtB6vZKm2yhVKr92ITEcfOHYP7
-         gdchvDAaKXFjmozHuLOqgSv9qv6ANnmE9A8OK2Y6r8fz+VHBzDgri3c+np/Nd5nqCOGQ
-         5kLg==
-X-Gm-Message-State: AO0yUKUIU25ZRk7pedEhculSg0nH4W/CBM5jQoqOfcFSvYVoFjiFJnWH
-        u7/Xttrsai8BtHyU/97orcBujg==
-X-Google-Smtp-Source: AK7set+T90fi3mhrfQgkbcCGizsm63S6+3QdA6P15+Pm2WdZCuRMEGRomXni96sDgrifOTCwGEGj3g==
-X-Received: by 2002:a05:600c:600a:b0:3e1:e149:b67b with SMTP id az10-20020a05600c600a00b003e1e149b67bmr4736506wmb.18.1676991950469;
-        Tue, 21 Feb 2023 07:05:50 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5hU12FqArPVLmpEr900EkmsHffMDqv7keP7H+/lbE0o=;
+        b=msFIYvadDIQJGYWlJ3zscyU/PwexBw8MdugzY/lzSO4tDYsL1st0JYCZ6z4Z0aCooQ
+         5Tn7rTzU3nk+xx8jPJdQ/NlHhohEelWWC7YjS6brFHMscCYD6zUPQnqpGn6E1lhNySXd
+         TtFrqtGIzut+b4lMs4ne+jl1KsDIk4yhXep1pMGKXkZWkI5+8vmPuDZx6HXJDWnYFSw+
+         ag2d/6wfc8MCr1jQjdnrS5Qn24Admmvb1gYaFRqN8m2zMehXEqNFXsY2Za5QWRtPfb02
+         XnpHq0xrlLc2yjlhG2Azjb757vrcYa+2tTfTwgYXqqUF1JtjWCM8Hveg+KkAIMltWuUn
+         QY3w==
+X-Gm-Message-State: AO0yUKUAmjlVuFnFlGdZWEbGcWutiWwxcmwPa9Jh+rlLo7yQPHA3gqjm
+        MJjWFv+nPSmLDlnxOZ21KRbS5os7ACJiW1kB
+X-Google-Smtp-Source: AK7set+vmrTR7zH0FX7OMl6Gb7mK6qabSOlJP7BIzOxfl4ndccToH4qGXYEbkhKNFfwEhoOXsi76XQ==
+X-Received: by 2002:adf:e505:0:b0:2c3:dc42:5252 with SMTP id j5-20020adfe505000000b002c3dc425252mr4610327wrm.70.1676991951427;
+        Tue, 21 Feb 2023 07:05:51 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:4c24:722f:312a:76c4])
-        by smtp.gmail.com with ESMTPSA id n30-20020a05600c3b9e00b003e206cc7237sm5331687wms.24.2023.02.21.07.05.49
+        by smtp.gmail.com with ESMTPSA id n30-20020a05600c3b9e00b003e206cc7237sm5331687wms.24.2023.02.21.07.05.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 07:05:50 -0800 (PST)
+        Tue, 21 Feb 2023 07:05:51 -0800 (PST)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     "Rafael J . Wysocki" <rafael@kernel.org>,
         Viresh Kumar <viresh.kumar@linaro.org>,
@@ -59,15 +60,17 @@ To:     "Rafael J . Wysocki" <rafael@kernel.org>,
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 0/2] arm64: qcom: sa8775p: enable cpufreq
-Date:   Tue, 21 Feb 2023 16:05:41 +0100
-Message-Id: <20230221150543.283487-1-brgl@bgdev.pl>
+Subject: [PATCH 1/2] dt-bindings: cpufreq: qcom-hw: add a compatible for sa8775p
+Date:   Tue, 21 Feb 2023 16:05:42 +0100
+Message-Id: <20230221150543.283487-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230221150543.283487-1-brgl@bgdev.pl>
+References: <20230221150543.283487-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,17 +79,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add the new compatible for the cpufreq engine on the sa8775p SoC and
-enable it in the .dtsi.
+Add the compatible for the cpufreq engine present on sa8775p platforms.
 
-Bartosz Golaszewski (2):
-  dt-bindings: cpufreq: qcom-hw: add a compatible for sa8775p
-  arm64: dts: qcom: sa8775p: add cpufreq node
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../bindings/cpufreq/cpufreq-qcom-hw.yaml     |  1 +
- arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 21 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+index e4aa8c67d532..92693c33edf9 100644
+--- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
++++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+@@ -26,6 +26,7 @@ properties:
+         items:
+           - enum:
+               - qcom,qdu1000-cpufreq-epss
++              - qcom,sa8775p-cpufreq-epss
+               - qcom,sc7280-cpufreq-epss
+               - qcom,sc8280xp-cpufreq-epss
+               - qcom,sm6375-cpufreq-epss
 -- 
 2.37.2
 
