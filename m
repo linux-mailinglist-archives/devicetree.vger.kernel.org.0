@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9767469E387
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:34:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D5269E38B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 16:35:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233938AbjBUPek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 10:34:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
+        id S234431AbjBUPfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 10:35:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233346AbjBUPej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:34:39 -0500
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C612330F;
-        Tue, 21 Feb 2023 07:34:38 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id y8so4836322oiy.6;
-        Tue, 21 Feb 2023 07:34:38 -0800 (PST)
+        with ESMTP id S234527AbjBUPfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 10:35:11 -0500
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB56128848;
+        Tue, 21 Feb 2023 07:35:09 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id t7-20020a9d5907000000b00690ecb95d46so1004153oth.2;
+        Tue, 21 Feb 2023 07:35:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pPZ9w/mJMwHQADuar36Ew6+bDf4d5LulJH0xzYxETUI=;
-        b=zj/7J2/BPbNKZ8o+w+NFl1zjB6w2ijimPglYWZuF73tTvwmo8CKyY96wvIpK+uWMKo
-         rIWpTYWB/jRIzMh7c026rQ/ZZV5S8aKQJeJqO+7qjRUgfwQWlzlJeT77P1FQjuf7IlY+
-         BhGrP8dtzly5Zp9K7JNpnPxXSYsLG1K8j+85jxjpM/utN8dRREZapxwNwyjO/8OXOdDa
-         GjzncnYyrVJiCnblsZ1llQxIjYkuYztqd2yZysHZNT949ad+aLIcTMHAArgmww0Jl93g
-         F0IU7d/9nQcHsHQl70iCUucD7XWOTz/0kevwUVtIgvn0h2gQh+9d1kSpNuF9kGsjkfI5
-         KgYQ==
-X-Gm-Message-State: AO0yUKVBfll9vUWQBI6VkBYAW7oHnBluRWibVEoRU8X1r9gp5sUqINQJ
-        vebrE7pF/fFeiPkgsW5hBg==
-X-Google-Smtp-Source: AK7set/sStOZzxCPbndd6bmxqW6CaEtYI6tI8MD8HAnORp0pSLDH0sYTVFLYbT2dKnGO9vdpFnCEzg==
-X-Received: by 2002:a54:4412:0:b0:37f:a534:3de9 with SMTP id k18-20020a544412000000b0037fa5343de9mr183834oiw.4.1676993678016;
-        Tue, 21 Feb 2023 07:34:38 -0800 (PST)
+        bh=W1ol6n8KiK81clbhIizUnjR9mgA3r+k3AJ/gUsCsOrU=;
+        b=seHfsPJtBtkWGKkD4bclhm9B2qdpY3n/59gje3cTxr2+AwXSWsFnWvuLcsh20iR0b1
+         UG1cKTkTQsZL3i5c/7kOtcU9stE+9qZI4SOOaIVeX9MDiWRhJm09u3ZLFSI5jrO729io
+         jlZyrWb5etAYMvJCRi0RPJCVp4kKKtvzWHK0U6JM3wnPpQc8ddBPmvo6gI3t0SSviGMY
+         2rhWxxOb7v4mmihamKG1ReltRsyL227My9gHdYPg7XHg9plH5i100siCFEeSo47T/P+A
+         X/moFuU2mKoCg1eY7+EGURp1ARMqf9UBkjWG3FB5JrHnhtnG0QqJS3UgQQPLy2DZG7GE
+         sMmg==
+X-Gm-Message-State: AO0yUKW0epFs/+UeIIEgT8tuY830GEwKPIcpK6fwSetBowKYohiCZ5E7
+        /29ExsGLgZTUhGIMreFXzi5HOiMDFg==
+X-Google-Smtp-Source: AK7set+pBSRFlVEy/A1a21lw8ttuMeCVASSm8SLedmylfmZTZ2YQAv6uLda0VPwfPVhinMQ7Gai/CQ==
+X-Received: by 2002:a05:6830:349a:b0:68b:e391:324d with SMTP id c26-20020a056830349a00b0068be391324dmr8290256otu.0.1676993708960;
+        Tue, 21 Feb 2023 07:35:08 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q127-20020acac085000000b0037d813cd612sm316937oif.43.2023.02.21.07.34.37
+        by smtp.gmail.com with ESMTPSA id t13-20020a9d728d000000b0067781a9292asm254944otj.2.2023.02.21.07.35.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 07:34:37 -0800 (PST)
-Received: (nullmailer pid 2576524 invoked by uid 1000);
-        Tue, 21 Feb 2023 15:34:37 -0000
-Date:   Tue, 21 Feb 2023 09:34:37 -0600
+        Tue, 21 Feb 2023 07:35:02 -0800 (PST)
+Received: (nullmailer pid 2577237 invoked by uid 1000);
+        Tue, 21 Feb 2023 15:35:00 -0000
+Date:   Tue, 21 Feb 2023 09:35:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     linux-mips@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: convert
- loongson,ls1x-intc.txt to json-schema
-Message-ID: <167699367567.2576443.8351931302556927937.robh@kernel.org>
-References: <20230221102545.2103632-1-keguang.zhang@gmail.com>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        agross@kernel.org, elder@linaro.org, konrad.dybcio@linaro.org,
+        andersson@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: sram: qcom,imem: document sm8450
+Message-ID: <167699369715.2577137.10776654438962526300.robh@kernel.org>
+References: <1676986616-21378-1-git-send-email-quic_mojha@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230221102545.2103632-1-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <1676986616-21378-1-git-send-email-quic_mojha@quicinc.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,20 +65,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 21 Feb 2023 18:25:45 +0800, Keguang Zhang wrote:
-> Convert the Loongson1 interrupt controller dt-bindings to json-schema.
+On Tue, 21 Feb 2023 19:06:55 +0530, Mukesh Ojha wrote:
+> Add compatible for sm8450 IMEM.
 > 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> V2 -> V3: Fix the description
-> V1 -> V2: Drop the description part
-> ---
->  .../loongson,ls1x-intc.txt                    | 24 ---------
->  .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
->  2 files changed, 51 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+> Changes in v2:
+>   - Added Acked-by .
+> 
+>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
