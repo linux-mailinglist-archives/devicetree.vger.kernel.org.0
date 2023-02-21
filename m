@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4908869DE2F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 11:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D4769DE31
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 11:50:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233828AbjBUKut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 05:50:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50486 "EHLO
+        id S233842AbjBUKuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 05:50:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233812AbjBUKus (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 05:50:48 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F1F25E17
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 02:50:45 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id cy6so9868762edb.5
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 02:50:45 -0800 (PST)
+        with ESMTP id S233836AbjBUKuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 05:50:50 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE92522DEF
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 02:50:46 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id b12so15329280edd.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 02:50:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura.hr; s=sartura;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ApMcsU4SYE3sBKMbTvqLq1Sm/IwL/ogI22P3eYaAobA=;
-        b=nJjAKok+QWjwzqcccLIOmTbIbYB7wJCQ3D4e0bzfmx4InfttIlr0yypLruxx/+4TBN
-         BAjbEUZrs9H2PfZWhEgfN5NWdPLdpGNMWpeS+FQEouQKqZEQOkdQTHOLjfocyJTQLae4
-         dHwsK+bTdn1ds5WVdfsuIpV31GXbgKBnmIRLe6l9eUBsS41hFJzc8zxwTXdSehlw/H1r
-         WAKBKUd/1ur1Rvq/uZxgTH9qPFOCCXcXynLucOvaU92XYzNs+Y0yTzonOK5h6E87PH2j
-         /mlN8FyMW25orWMqoP6XMJ4ri64t5ELg/8hkZkWwSQieKMyqD8etdJMNRC/7ipoL0IFk
-         L2Bw==
+        bh=0gk2DSmgvASQ5V9ePr4xMv7HQyGXDamFtmo/+7H0H7Q=;
+        b=z6QrFp/Krt2zgU4roCx/tRFt9FnkDlEc8AOluIPbFpZzT/A/IB2zZiuh8MulzCnAgi
+         Sd50gCC86ozaK7xkP1UFO3Wz0vOZxDo/RDTKjmmV52tUsiuXE6BasomSPjWwmNj6NVJc
+         tPJajapj7D1Y3dPhQDI9SyPSgCLYvy01oSwgr4T3RlITMT2i76EEQMRwCruEsWzFPPDi
+         afhbSbVjO7IzBMnWErmwWAgvcjkhLyPx4MMjD0MbUQ/e/8zv2tTKKQwQSfUH6xyr76Oz
+         h+bnoIH5do3PEjNSm6vUX/Oce8OVjcG/Un0suI8PY2sFvSHfTVJ2aV81VECSNfBYMz8+
+         ze0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ApMcsU4SYE3sBKMbTvqLq1Sm/IwL/ogI22P3eYaAobA=;
-        b=3LDvV1LpFt/SCd3hM5KOrUA5c4XaEhQXbTSebI+II7DvlgJEidemsgrAgJQD/CTuuu
-         LGgq0mglS1ssseuXvxWCi2i7rfB0T7x5VxPLuPpfKgTZHOeSzcdocTGG11sbJaPo08kc
-         FMmCV9nqNRBhKyJl9FcDvCz9U25C9L5uCnRLoPP+Dkea8wC5+qrGOwNw/rn4GRL5DQWx
-         mcByXdXVflcWxF8xQHAC4e+PWmpiO4/+kLFtpafLNSX/3z6A6mNb3gvhljR3IeEK2OlU
-         VuQosZd23ACOo1TnZ3gFN0J0sYWh89J80zICofdZZMsHa7UGRVwWMMX1gePSWDx6roct
-         Hz8A==
-X-Gm-Message-State: AO0yUKVc7mWl2Pz/4zTqQihhf0ohGX3rksbXgXBV0pBLLiieus3lYdnx
-        3zG5qm5w24Z1+R7VR1LCco7Yvg==
-X-Google-Smtp-Source: AK7set+j0uiYd+nc5Eev9K2O5LttZtylg7DcBJhMz47XtJ2xRc+wNr3o7Q7QoDVUb89hIiYpT/WZGQ==
-X-Received: by 2002:a17:906:9750:b0:8b3:946d:51c8 with SMTP id o16-20020a170906975000b008b3946d51c8mr17519162ejy.29.1676976644132;
-        Tue, 21 Feb 2023 02:50:44 -0800 (PST)
+        bh=0gk2DSmgvASQ5V9ePr4xMv7HQyGXDamFtmo/+7H0H7Q=;
+        b=oBtv7XrqZsXbSk7V8By4XQRMfoXhooTcDGhVxhqB5u7G9a0MOHTcELYBrZ3N9leTkN
+         HbuxM4J0ch05dRZuJfg0rxHTD4seC+l4mN1H2Y7lgs/6jUdpykFWv5FIJBG7NUHf7i6q
+         6D/BP3n9fGyPd05PzeezHceeIFI2M8SE1lTM974PFuM1h6z8kXlugeL01MWDj8qskT4t
+         68jYG3YxtW/yEL2rYhqfbRe59qqMpfphQxBbzDt3mr+cKbnKjWLu1fBni0fgSeGev1VC
+         A9H8DnIZ424Bx9DszngZWeRfY+eKEjwY5xukV0X/H2HtnGC3cnqRrRzGkR7/rYq9NSN0
+         NP6g==
+X-Gm-Message-State: AO0yUKW5X8H05OP6PMmLmGkgIFD7sx1933FWaptv+sBN5pPVQDkM9wKb
+        eBkKDwoNu5OGQUppc3cNZmI0Dw==
+X-Google-Smtp-Source: AK7set/x+xrpGP3FABf85L02cSovpPeNu1WquJ0oYlJzMGgDuyd4gj7BOgNrzBcofGxfp1/Yzv0rHw==
+X-Received: by 2002:a17:906:ad82:b0:8af:40b0:3dd1 with SMTP id la2-20020a170906ad8200b008af40b03dd1mr11760401ejb.27.1676976645348;
+        Tue, 21 Feb 2023 02:50:45 -0800 (PST)
 Received: from fedora.. (dh207-97-58.xnet.hr. [88.207.97.58])
-        by smtp.googlemail.com with ESMTPSA id bk26-20020a170906b0da00b0089d5aaf85besm6955802ejb.219.2023.02.21.02.50.43
+        by smtp.googlemail.com with ESMTPSA id bk26-20020a170906b0da00b0089d5aaf85besm6955802ejb.219.2023.02.21.02.50.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 02:50:43 -0800 (PST)
+        Tue, 21 Feb 2023 02:50:44 -0800 (PST)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
@@ -57,9 +57,9 @@ To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v2 2/3] arm64: dts: microchip: sparx5: correct CPU address-cells
-Date:   Tue, 21 Feb 2023 11:50:38 +0100
-Message-Id: <20230221105039.316819-2-robert.marko@sartura.hr>
+Subject: [PATCH v2 3/3] arm64: dts: microchip: sparx5: add missing L1/L2 cache information
+Date:   Tue, 21 Feb 2023 11:50:39 +0100
+Message-Id: <20230221105039.316819-3-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230221105039.316819-1-robert.marko@sartura.hr>
 References: <20230221105039.316819-1-robert.marko@sartura.hr>
@@ -74,44 +74,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no reason for CPU node #address-cells to be set at 2, so lets
-change them to 1 and update the reg property accordingly.
+Currently, when booting on SparX-5 you will get the following error:
+[    0.050132] Early cacheinfo failed, ret = -22
 
+This is due to L2 cache node missing cache-level property to indicate its
+level, so populate it to let the kernel know its L2 cache.
+
+However, that alone is enough to get rid of the error, but then the
+following warnings appear:
+[    0.050162] cacheinfo: Unable to detect cache hierarchy for CPU 0
+[    0.093256] cacheinfo: Unable to detect cache hierarchy for CPU 1
+
+So, lets completely populate both the L1 and L2 cache info based off the
+SoC datasheet[1] and ARM A53 technical reference manual[2].
+
+Now "lscpu -C" provides:
+NAME ONE-SIZE ALL-SIZE WAYS TYPE        LEVEL SETS PHY-LINE COHERENCY-SIZE
+L1d       32K      64K    4 Data            1  128                      64
+L1i       32K      64K    2 Instruction     1  256                      64
+L2       256K     256K   16 Unified         2  256                      64
+
+Tested on PCB134 (eMMC).
+
+[1] https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/SparX-5_Family_L2L3_Enterprise_25G_Ethernet_Switches_Datasheet_00003823D.pdf
+[2] https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System/About-the-L1-memory-system?lang=en
+
+Fixes: 6694aee00a4b ("arm64: dts: sparx5: Add basic cpu support")
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/microchip/sparx5.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 5eae6e7fd248e..a4fabacf5c2f7 100644
+index a4fabacf5c2f7..950ba78bf73f3 100644
 --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
 +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -24,7 +24,7 @@ chosen {
- 	};
- 
- 	cpus {
--		#address-cells = <2>;
-+		#address-cells = <1>;
- 		#size-cells = <0>;
- 		cpu-map {
- 			cluster0 {
-@@ -39,14 +39,14 @@ core1 {
- 		cpu0: cpu@0 {
- 			compatible = "arm,cortex-a53";
+@@ -41,6 +41,12 @@ cpu0: cpu@0 {
  			device_type = "cpu";
--			reg = <0x0 0x0>;
-+			reg = <0x0>;
+ 			reg = <0x0>;
  			enable-method = "psci";
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>; // 32KiB(size)/64(line-size)=512ways/4-way set
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
  			next-level-cache = <&L2_0>;
  		};
  		cpu1: cpu@1 {
- 			compatible = "arm,cortex-a53";
+@@ -48,10 +54,21 @@ cpu1: cpu@1 {
  			device_type = "cpu";
--			reg = <0x0 0x1>;
-+			reg = <0x1>;
+ 			reg = <0x1>;
  			enable-method = "psci";
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>; // 32KiB(size)/64(line-size)=512ways/4-way set
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
  			next-level-cache = <&L2_0>;
  		};
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
++			cache-unified;
++			cache-size = <0x40000>;
++			cache-line-size = <64>;
++			cache-sets = <256>; // 256KB(size)/64(line-size)=4096ways/16-way set
++			cache-level = <2>;
+ 		};
+ 	};
+ 
 -- 
 2.39.2
 
