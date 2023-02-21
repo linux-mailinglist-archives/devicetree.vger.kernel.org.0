@@ -2,60 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF9C69DAB4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 07:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74A5A69DB32
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 08:29:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233227AbjBUGo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 01:44:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50448 "EHLO
+        id S232613AbjBUH3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 02:29:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233134AbjBUGo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 01:44:28 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7661C7FA;
-        Mon, 20 Feb 2023 22:44:19 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 4757F24E31E;
-        Tue, 21 Feb 2023 14:44:12 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
- 2023 14:44:12 +0800
-Received: from [192.168.125.82] (183.27.98.67) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Feb
- 2023 14:44:11 +0800
-Message-ID: <d7880fbb-ee6a-751b-4372-9d3154257c6c@starfivetech.com>
-Date:   Tue, 21 Feb 2023 14:44:10 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 09/11] clk: starfive: Add StarFive JH7110 system clock
- driver
-Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        with ESMTP id S229545AbjBUH3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 02:29:39 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2137.outbound.protection.outlook.com [40.107.223.137])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C7A23848;
+        Mon, 20 Feb 2023 23:29:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Tto2bts6o5ms8gYu+8e+7YVvBqjBEOsZGFGU3v9Prl0B9auzJadiAeKOXQfQ6wMaxxy6JaOJmZuyTjLBt5ctH5uRgDLjZcS2VVh2xrV0cxaVS1wvMtMo1htMBHh8ZNpMdKKbDXra9oG0IiXofmlttg9kdQJ7fAyoWvFwXHGU8wWtpoUnofKYiPTEM5UUq8aJkwfUuGhf0wbtlsa/Z1bWUZWuTsFAt7xfznTpsmqrd2QBRvCLzeNTUlVuOBcLeSClXvzprixt98xlgZTccWl56KjVCAWkF7/Sq0xDwo249ypzZKpQmYF9Y6YWhsc4Yv6y70Dowbnv0Hhe885Xq9tmWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y2Qu/wSNXeuPm9/bHol5AssrAA5SL7zdnI3Smsyfy1A=;
+ b=Ir7j9k9Pgo6G5azTjOoDnVHKLXM/aNi4e0iWn/6Ml+cCjt0On4tSiLlH7RLUfFY7Ij4you6oum5Rh7hfq0qWVrXZpUYvjU5Ogc7fK8NYpWXetLLCxifqyeRFqUqLuVpBWCFPJMnw6PQvpPVnmDkpKA+4djn7NTJxwrrsvlaXzci/eOF9PuJg6d5Iuaxl92xbUO4PIopTEpBWnP1yN0V04ag+z8Rrli5IsqvRKGEtu8gtsiEBcHADoVy99eOU1vAc04l4Crvu9uG9El5Ap6/i5dhqHngL/2PuX8GhjZ5pEWdHyqOYKTPWo7ROIbX4HXNoksX7tGN4/tUxwTzbwNGz1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y2Qu/wSNXeuPm9/bHol5AssrAA5SL7zdnI3Smsyfy1A=;
+ b=RVrhafs2pGUzutu/+O0P8myL4dyDiud1BIJ8ZgnxnD7eHkwBIbieWJ+L0MmciF5JLJBvajfULeZo/8KKIO93at/t+Z11p+xdbND7pss9oaAOMKK/PhDO2OB5jgpLZpLZvxyPaAJlqTENc49Tu6oUhieagALf2jvWyFIyjmyYtEw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from SN6PR01MB4973.prod.exchangelabs.com (2603:10b6:805:c4::13) by
+ CH2PR01MB6104.prod.exchangelabs.com (2603:10b6:610:16::32) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6111.21; Tue, 21 Feb 2023 07:29:32 +0000
+Received: from SN6PR01MB4973.prod.exchangelabs.com
+ ([fe80::a807:4f38:56ee:b079]) by SN6PR01MB4973.prod.exchangelabs.com
+ ([fe80::a807:4f38:56ee:b079%4]) with mapi id 15.20.6111.019; Tue, 21 Feb 2023
+ 07:29:32 +0000
+Message-ID: <8980c1b2-e7ae-e1b4-9f22-ac374bead4ef@amperemail.onmicrosoft.com>
+Date:   Tue, 21 Feb 2023 14:29:20 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.7.2
+Subject: Re: [PATCH] ARM: dts: aspeed: mtmitchell: Enable NCSI
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chanh Nguyen <chanh@os.amperecomputing.com>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220005054.34518-1-hal.feng@starfivetech.com>
- <20221220005054.34518-10-hal.feng@starfivetech.com>
- <CAJM55Z-qpQkLjSFN33ELGE8DtoygY+vL6zi2raPh6POJ69pjbg@mail.gmail.com>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <CAJM55Z-qpQkLjSFN33ELGE8DtoygY+vL6zi2raPh6POJ69pjbg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20230217102122.16547-1-chanh@os.amperecomputing.com>
+ <c594a426-9ad3-1f67-8261-4d2d68272870@linaro.org>
+Content-Language: en-US
+From:   Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <c594a426-9ad3-1f67-8261-4d2d68272870@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.67]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-ClientProxiedBy: SI1PR02CA0001.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::15) To SN6PR01MB4973.prod.exchangelabs.com
+ (2603:10b6:805:c4::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR01MB4973:EE_|CH2PR01MB6104:EE_
+X-MS-Office365-Filtering-Correlation-Id: db852e33-9d9e-45f8-7e7b-08db13dd5f7d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QSqk23sAP4sKlkP0fgC7Z9Ui24ov7x3z8hvdSSCV9BNwlXcTSQOkrcoAtWsOX/rOFpiSi5dwtvHYzgfP7qslhnV2Ft7YEGlMZHdvRGuIFf97EHwFGWvJPKbu4c9RhZftpw1T3H1kS84bidPZbYQ24BAq0RRMtmoA9n6EFF6/9JjYELPEPCPOizDvVGnaGlWy+uy4SpXL4aoEh/ecKEH+iG6eaAUY/OB1Mes1GQSI+eIAypnJsOp0k3AjCp+luZEYYnjV4uOyj9XUWDQKaWPH2/0rdi8ZrmyLn0O0bD/lxEe3ne1jl6mE6BkOuYhX2hSEEtR8nyLmw1BZlIZmxeSZqvKNyEVk9iecXTERGdGIuD75dTICT+rtX2PZBLYoRMtrsUKZTvoQJyDO0jTwsyQW0wFxfmYtIKkCMMhAdLzbiKb7JAdr2NRG13pC6iV6lV4w07C4JkVmiwD7QOcNnGaNVChZjp+Xu5arNuFS01jVuUbrgfgvv6i5gK6zUCLVotGqJPxanILs0YIqCe2vMOYRt8ADYq1jFb4oaZZmglKedpaBzcyZlHlhxh+gZlBh3//KxzufpN6CnrBAGVlqJOzX3CQvWEXYeTUcvf1XXwjP2qHKUtKgDBEmc5jB8A/82O1QKniNydIEReLq21O5HKuQE+7HxEPCXwz9gVfe2UH4V7M=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR01MB4973.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(346002)(396003)(136003)(366004)(39850400004)(451199018)(31686004)(38100700002)(2906002)(8936002)(5660300002)(7416002)(186003)(6512007)(26005)(83380400001)(41300700001)(83170400001)(42882007)(2616005)(921005)(66556008)(66946007)(66476007)(8676002)(966005)(6486002)(6506007)(478600001)(6666004)(31696002)(110136005)(316002)(53546011)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzN5aG9QdUdFVVVTd0FNZzRSUGNwdHlYUUlqZXpFbHlyeG1FckUzRTZ0Ymlv?=
+ =?utf-8?B?c0RvdStwYmVCN2E4UjhObWNHUE12dHNuR0tTMDdUQ3BCbGdZRUJNSklHYWR3?=
+ =?utf-8?B?VjdPUGRQaENtRlUvTHprTjEwREMrMDlTWU9vTEJhc1dyWEtCc0h5RjYxZlNy?=
+ =?utf-8?B?Vm1pUFpFY2hyY3RnaHU1MTIzUnZIeTk5enNRZm1GL0NKVWFnUmN2V210c3lj?=
+ =?utf-8?B?ZGhuMC9lTG5Ob3RVR0hyaGlrUmVydjkxaU1iQnhrcS9CTklKM1pwRGlGUFNT?=
+ =?utf-8?B?Q2dKMDNJek40REFOK3ZwcWg5ZEhVeDRmYzlPaE8zREZRektZb3RVN25YSlZH?=
+ =?utf-8?B?TUNRWHJTNlgyREpObUZ4ZUZUZGhPdHVnSHNWdGlaQXYwVG5TRitKSDFSWUEz?=
+ =?utf-8?B?QzdnbWttZ21YMjhta00yWkIyVUhWaFY0TGx5VCtVYk5NTUs4QWtEcXZJR3Rx?=
+ =?utf-8?B?S05FOWVSWjBRUUFuaDZxdWhCeVRNRFFTZDhDbmZySlMvOXFPRkF3L3RoRkk4?=
+ =?utf-8?B?NWE5K1REeDhKVjFINUdkVWVDZXJnNnhlNmJpdFpPaTdCZ3kvTWk5WDRlanF6?=
+ =?utf-8?B?dmNtbkJQdHhTUFpZaU1Gamlsc2doMUZUWG1ZSFo3a1RVSEhhSWszMUVZUEVN?=
+ =?utf-8?B?NXQzVmtPOTdSRVlURU82a3lEZEN2YW5mdFdnNnRKck9pVU9QS2JTWCtHc1NZ?=
+ =?utf-8?B?MUZjVXNudlZDamFpeUhGb3lYWnB1QlljYjErdHJBbXYvUlBkVHBXWjZ3R1V3?=
+ =?utf-8?B?cHZNWG9yK1lsdVpwNyt4VFJoYXZqeVEwWjdQdnV3S291MFRxTWE5QXgvYXhl?=
+ =?utf-8?B?N3FoeHBMV0tReHBraXFwZ2diREU1TWkxUFhtSjFoMDRMek1PeVNLMGQ3QjdG?=
+ =?utf-8?B?dWIzSmRvNWxIVTlRV1VzNUg0WjM2VHE0bVJ6SUptWmxXR29yOSttZE01SFIy?=
+ =?utf-8?B?Ni9hTzl3anYzMWhRMFVNeFVIRjlqWkdyc2M3WGdvL3h2S2JtVkFCRmkwS2Jz?=
+ =?utf-8?B?YWNmcXIxYXdnakNXUERTQ3QwZHc5bVc1RnhRek1qZDJvMXI3MTZoeFNpTmgx?=
+ =?utf-8?B?N2lwNFYrSk11enF6WGNTRHA2K0xuVSt1VnJFNmZodmxpREg3TDE5Q29WZTN6?=
+ =?utf-8?B?bjJmZis5ajJ3d21pZUJWMU8wbnZmMG95aWg1MmNmTzBjR3kvODJWUUE2N05q?=
+ =?utf-8?B?WDNGa05GcUNIWFpIUVYwekpZc3d4aFdqaGE0cFI0Mm9GbGRXYXd6dlVJbzBR?=
+ =?utf-8?B?ZXRxbnMzdzArRnpZS0VMRGNzK3AyU1hCZXYyL2FpSHd6NEtMNjRuNTd4OUl5?=
+ =?utf-8?B?WEZtUlg2dUVWenFBYTZqekk1Q0FsR0FhRFhIUkpjK1BsV1Qzd1NLMHFvMCs5?=
+ =?utf-8?B?L2tjY1R0V1V6Vm1WRCt1bHgxSkcreTZpRjNUazRpVVBwemlpblpBZ29OS0c1?=
+ =?utf-8?B?ekJYbkJWcmNRUi85VVNmeGFVNGM3cmhMaW4wOXJjTkkySUtGUGRPLzVod1V1?=
+ =?utf-8?B?TThpcXZZV0lnZXRnMWRBUkJWc0lSM3FvbDUzOHoxYlBFMkhvbSt0VmNGTGQw?=
+ =?utf-8?B?R3FiNjlnNFBCaC85cTd1UUNRWGJlSVFwK0tGVWdMTEtFMnppK1dRelUrTUw3?=
+ =?utf-8?B?OEpja1g5djU3QURGU0szaXdTcUJ5TDgvWGQ0dURkaDkvcEJ5aVd3endpMXZw?=
+ =?utf-8?B?cldUN3lvcmZGeXFFUDRrSmY4dTFZejhQYnRWcGdxUjFnSnBrbXBsWHkyTmpF?=
+ =?utf-8?B?NFNxajJxM3czNkYxZ1h3VHhZS2JOVDh5cWlxTnF1S3NtQkhUd1FrQld4d0Na?=
+ =?utf-8?B?Vm1peTBRWDNPQXhiYVRZLzN3dWQ2ZURsUjZ0Uk5tZ2YwdG95ZUtnWDdKK0J1?=
+ =?utf-8?B?OGdYdVZOR2x5eDJpUDdQUWdSZlBNWVpRY2J2bm44NVVpUGN4L3NsOTdMdzdQ?=
+ =?utf-8?B?a0dUN2ltU0ZDd2ZYVlVLdlFvOVhZSUg1RXd3dW85VXJucjB2UUw4NlhrVzYz?=
+ =?utf-8?B?QnZZWjVickN5YmZoR3dhQ3Q1bXJQaEs5dHdFQU55c0ZUNVVKR2FMUGE3NVFU?=
+ =?utf-8?B?bnVERThFMTc0eE02cWRiZFozalN4aE1DZE4wSWpEejBFZDVya1l5cFhzM0tw?=
+ =?utf-8?B?eGg3dFJNbjNVMHh3d0dkRUZIemphVGc1b0tJY05FWlFWMFh6dWFaM2pwQ0ZP?=
+ =?utf-8?Q?helyH4psQVH6RyVjQKK1oN0=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db852e33-9d9e-45f8-7e7b-08db13dd5f7d
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR01MB4973.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2023 07:29:31.8191
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ww6ApubmUyxncIFFRRcibLgv5A8laMLKIYRiX2KnGgCcfcP7lhBK/Q0YqyqwI3LhPHxV4dFjZZFPcjTL5g46SlIM7p0guYiLqK05BlXPe0pp/z/wo10n9OQ0A8ltqu1I
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR01MB6104
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,80 +133,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 19 Feb 2023 22:23:39 +0100, Emil Renner Berthing wrote:
-> On Tue, 20 Dec 2022 at 01:51, Hal Feng <hal.feng@starfivetech.com> wrote:
->> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> new file mode 100644
->> index 000000000000..abc1c280bbe3
->> --- /dev/null
->> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> @@ -0,0 +1,448 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * StarFive JH7110 System Clock Driver
-[...]
->> +static int __init jh7110_syscrg_probe(struct platform_device *pdev)
->> +{
->> +       struct jh71x0_clk_priv *priv;
->> +       unsigned int idx;
->> +       int ret;
->> +
->> +       priv = devm_kzalloc(&pdev->dev,
->> +                           struct_size(priv, reg, JH7110_SYSCLK_PLL0_OUT),
->> +                           GFP_KERNEL);
->> +       if (!priv)
->> +               return -ENOMEM;
->> +
->> +       spin_lock_init(&priv->rmw_lock);
->> +       priv->dev = &pdev->dev;
->> +       priv->base = devm_platform_ioremap_resource(pdev, 0);
->> +       if (IS_ERR(priv->base))
->> +               return PTR_ERR(priv->base);
->> +
->> +       dev_set_drvdata(priv->dev, priv->base);
->> +
->> +       /* 24MHz -> 1250.0MHz */
->> +       priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
->> +                                                        "osc", 0, 625, 12);
->> +       if (IS_ERR(priv->pll[0]))
->> +               return PTR_ERR(priv->pll[0]);
-> 
-> Hi Hal,
-> 
-> Are you sure this should be 1.25GHz and not 1GHz? I can't seem to make
-> the ethernet driver work unless I set it to 1GHz. This also makes
-> other derived clocks that should be 125MHz show up as such in the
-> clock tree. Eg. "usb_125m".
-> 
-> Perhaps it's because I updated my board to the latest u-boot
-> release[1]. I know these PLLs are just placeholders until you add
-> proper code to control them, but until then it's important that these
-> values match the defaults or whatever the latest u-boot sets them to.
-> Please check the PLLs below with the latest u-boot too.
-> 
-> /Emil
-> 
-> [1]: https://github.com/starfive-tech/VisionFive2/releases
 
-After this series sent out, we found a bug in the u-boot when cpu
-running at 1.25 GHz, so now the cpu runs at 1GHz in the latest
-u-boot. I have updated it in v4. Thanks for reminding.
-What's more, we will support adjusting the cpu frequency in the
-future, so the cpu can run at a higher frequency.
 
-Best regards,
-Hal
-
-> 
->> +       /* 24MHz -> 1066.0MHz */
->> +       priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
->> +                                                        "osc", 0, 533, 12);
->> +       if (IS_ERR(priv->pll[1]))
->> +               return PTR_ERR(priv->pll[1]);
+On 17/02/2023 18:32, Krzysztof Kozlowski wrote:
+> On 17/02/2023 11:21, Chanh Nguyen wrote:
+>> Support the mac3 (RGMII4) as an NC-SI stack instead of an MDIO PHY.
+>>
+>> The OCP slot #0 and OCP slot #1 use a common the BMC_NCSI signal,
+>> so we use only one of them at the same time. The OCP slot #0 will
+>> be enabled by PCA9539's setting by default.
+>>
+>> Also, enable the OCP Auxiliary Power during booting.
+>>
+>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+>> ---
+>>   .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 37 ++++++++++++++++++-
+>>   1 file changed, 36 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+>> index 4b91600eaf62..e8a6b1f08d6a 100644
+>> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+>> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+>> @@ -251,6 +251,14 @@
+>>   	pinctrl-0 = <&pinctrl_rgmii1_default>;
+>>   };
+>>   
+>> +&mac3 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_rmii4_default>;
+>> +	clock-names = "MACCLK", "RCLK";
+>> +	use-ncsi;
+>> +};
 >> +
->> +       /* 24MHz -> 1188.0MHz */
->> +       priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
->> +                                                        "osc", 0, 99, 2);
->> +       if (IS_ERR(priv->pll[2]))
->> +               return PTR_ERR(priv->pll[2]);
+>>   &fmc {
+>>   	status = "okay";
+>>   	flash@0 {
+>> @@ -439,6 +447,26 @@
+>>   	status = "okay";
+>>   };
+>>   
+>> +&i2c8 {
+>> +	status = "okay";
+>> +
+>> +	pca9539@77 {
+> 
+> Node names should be generic, so I believe this is "gpio".
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> Best regards,
+> Krzysztof
+> 
 
+Thank Krzysztof,
+
+The PCA9539APW is a GPIO expander via I2C. For a generic name, I think 
+the "gpio" is suitable.
