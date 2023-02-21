@@ -2,66 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68B0E69EB56
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 00:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE78C69EB53
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 00:39:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbjBUXkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 18:40:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54976 "EHLO
+        id S230430AbjBUXj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 18:39:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231171AbjBUXkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 18:40:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DEF3400F;
-        Tue, 21 Feb 2023 15:40:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B748B61298;
-        Tue, 21 Feb 2023 23:39:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 305F4C433D2;
-        Tue, 21 Feb 2023 23:39:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677022777;
-        bh=ie0GAExwZPpmXLWLkpfA8sVNwYvYbybeiZNOj6h8WEI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tTbwBBUEzXr2PONY2NQhckcJSZb82zbvfiyxjZ989wicvTS9uHXoL9n7squ+tJaFi
-         Rouxs8i5zSa0M1wYR92LiOH5C6E9wC4iK/ghvVBJTdGrEwM6TO8ODO9MUrCtqy0j7x
-         c/4fwKmmUVG7w7uqupmuclAqb1eKDGoaBnQ8xOAtgrKM9Q3WXGI65AviknIZe99KZg
-         KJVDEnwkYoUYrpbt5/o9fr84D6a3Q2ETfDQILnspFjB1FwYJedXAvtQvLFffhms53q
-         UAnpaPrXmOf9gpsekw7ZkA7NYRE//ho1Y2Pdwx8GzGOAt4kYPP9m35PfOzPOamTTa5
-         8ZzXBju3bxPig==
-Date:   Tue, 21 Feb 2023 23:39:32 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Message-ID: <Y/VWNPfApsfm3/UD@spud>
-References: <20221220005054.34518-1-hal.feng@starfivetech.com>
- <20221220005054.34518-8-hal.feng@starfivetech.com>
- <Y6JB37Pd5TZoGMy4@spud>
- <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
- <Y6tSWB2+98a8k9Qw@spud>
- <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
- <Y+5z8skN2DuvxDEL@spud>
- <72953dc9371b87da8d03c63633d7d9dd.sboyd@kernel.org>
+        with ESMTP id S230397AbjBUXj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 18:39:57 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2062.outbound.protection.outlook.com [40.107.20.62])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3422A174
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 15:39:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QdB2Mv0t9H0sDBGHwqgRXpQ30sFo4dg4mlCGnB0vR2Jb6Gfhtp48NI6NEar70UDaFsZcc4TADLgjVH7pa36sM19/X1d1dLEcVaSKJhY5RVexdb2rTc0Lw6vbd+yTxBeeeC+X9qS+PHlAxv1Sp4X8Nlu+6OV4jY25jq4rwVVAay5ZM8VXCVBTsY+5xQA11/d5CJFcFIes/g1dZGlFQa79l5TdE81Q4zK0HD3Ju8CTJ1kQEX1L5+xx0dA2sYE9DRWWtIxYRKdxPto3LcbZt/u0jJYSnQtHxwQRcE8LCWZo6EVeNexNf3RQJN8wZChI5ZRgulnLBP53K8IMq8iqlQqqGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2t7xbNj1VdILgxeh+ZXSUeaTAcEhKRQidSUbx/uht/A=;
+ b=FaB2V2Hylzp9DaeA4Dbf6Icd61QklT3RPc6N6epOQrIQW64N3n9l3mFA4sWl0zyGf9yL//uzwaEYYMoZMnspkblpv04ZD9ZMb5NTjVq+/sjNcjd1bikZ7K2TdFmPqq9H5MvH28hac3TAMdyQdnq/U9JBl4nB9N8e5Khu4fUfiRsAcC46D8laxYAreKbM0588Ui3DJj3viGwW6Rqp1uj4EqfOZb56GsqF7qcTlQFy5wPoTjOGyWhbsejl9q5m2KMs3UOWNhkFocoVBSNLm5q7zPT95VsW2NgmZMSpPexRl4nsFOf/W9IsGOecmPHrVBq/+vUEfpyETSw6EtJ+AQVmvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2t7xbNj1VdILgxeh+ZXSUeaTAcEhKRQidSUbx/uht/A=;
+ b=YQeSIxeSlTYFJ08jurN8NGRr19B5NsCRTy+F6kQI4MzJQGdPwYqU90AiutqhZg/4UwGeSJjnx2R8aV+2m3ZmBuF7SPee5zaWGS6M8imV0gdcokKsC7979eiGwQlZI5+NT+IfEmRY2snO0wP3ySCjjXzKR1EbMeAPcUo+tditpxBuuzUeno7gEkjB8OqbGxyT+ydDJ5YPeR87GwMI+eR6yZ0ibVxAZ7bcLaImoJWuldOM7HIxA6CVn2aKLEyZM6XFhjoZdCibaN5EnWi2bdgZLCxApRaJKWp0O7alO82D1jGq473HE4wZAl6hFKCYmSW20YvxGKqLEbQTAlaVCh++YA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from AS8PR04MB8465.eurprd04.prod.outlook.com (2603:10a6:20b:348::19)
+ by AM9PR04MB7713.eurprd04.prod.outlook.com (2603:10a6:20b:2d4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.21; Tue, 21 Feb
+ 2023 23:39:41 +0000
+Received: from AS8PR04MB8465.eurprd04.prod.outlook.com
+ ([fe80::7bca:4b0c:401e:e1bb]) by AS8PR04MB8465.eurprd04.prod.outlook.com
+ ([fe80::7bca:4b0c:401e:e1bb%3]) with mapi id 15.20.6111.021; Tue, 21 Feb 2023
+ 23:39:41 +0000
+Message-ID: <b5953c8e-1796-2ce2-9a63-7dc06ec83f3d@suse.com>
+Date:   Wed, 22 Feb 2023 07:39:32 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH RFC 0/5] arm64: rockchip: enable PCIE3 controller and its
+ phy for Rock5B boards
+Content-Language: en-US
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        heiko@sntech.de, lucas.tanure@collabora.com
+References: <cover.1675498628.git.wqu@suse.com>
+ <583D2908-ECED-4226-A6CD-683F0D5BEA71@gmail.com>
+ <4b28da3e-9126-8409-dd9c-3899762e28bb@suse.com>
+ <7A70CB52-1892-4455-B419-AD00298DE7B5@gmail.com>
+ <CAMdYzYovDsiw5zwMvPbLaVcfpryX6K7r2zuVUVkAtYxiwzKGUQ@mail.gmail.com>
+ <20230221214517.5rjtwpftcj5dugdl@mercury.elektranox.org>
+From:   Qu Wenruo <wqu@suse.com>
+In-Reply-To: <20230221214517.5rjtwpftcj5dugdl@mercury.elektranox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR01CA0051.prod.exchangelabs.com (2603:10b6:208:23f::20)
+ To AS8PR04MB8465.eurprd04.prod.outlook.com (2603:10a6:20b:348::19)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="VknuSA68ljcWlQyJ"
-Content-Disposition: inline
-In-Reply-To: <72953dc9371b87da8d03c63633d7d9dd.sboyd@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8465:EE_|AM9PR04MB7713:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0ccdbb1-02fa-4de6-d5ef-08db1464e757
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +eGkaTsh4zd71Hfn80x0gMWI8v3WnbGlMj5REJFg6cfo/wOR6aeGJM325tdZ5NjogMlhUYI9rlxKN2m1fVLn73Vo3XP/DBn5UidSEWhRBAp/q8gXaIw+OKofb/3yMd9dzMh1ghszSkvYJ5ORstrAIL6tYb4Eri4acFam7a9aBg5nEB/2aWK5Zu04OyYbyBF0ym3+Lfw2/D+h8ppcihk8Q46UrpUS5wenDYFPfnFSFBMkP+ucSOgg9iqqvTAE2DNIFOcCye+ilM47itzJ50DqMP8uUyhUdvhVqxo+GtcKX7yuXUnKSuJvFwoXmDQUmZhHTs/7DRP5xtnzA8dVJDiiR1z1Ac6rus5L5sX9gI5v102a12gwC96eHuDaSqUzicm0+MBGQos0+S4tuoJcqd3HcMulCUjBucuJOWwpBayjzU8ztPk9LwDo0rGVNuddd3T7RTk2ZlRtopaZpXcJrwOGivw+wUSq47gRKK4DJr1mwMlQL1NY4kNOhcIOqW4X1boYvdTdrHIgi4T6mCCT0lDD+x1Htr8opHgRbG6XOuzNRJB0U/jlIKlE3q2CMfPVN4i0n7AQ/Y8UYDyZ8Rxmdg50PfW/deuwKI5zpBRP1MH6sQB5T09ohjVLpzCLOPUx0AFWFJABmSb0kA29iGH8/bkLP+TkaT2rrXEyJM2dokz1KvoBcBbGBVDIA8gOvLbDX7rU9e9n0tEph05dB4CC5/G0eUQO6M73P/fJNOmYQKMwT19Bx0/ZBeilFsOYrwv44Nqp4kKEy+1qfJJJe5V/4DpLexX4uIpRZqQyV2RVQdS+NIU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8465.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(376002)(366004)(396003)(39860400002)(136003)(451199018)(83380400001)(31686004)(966005)(6486002)(2906002)(2616005)(66899018)(478600001)(38100700002)(5660300002)(110136005)(53546011)(66476007)(186003)(8676002)(8936002)(4326008)(316002)(54906003)(6506007)(6666004)(66946007)(6512007)(31696002)(66556008)(41300700001)(86362001)(36756003)(32563001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dXVncVFzcEFVYWxtSU5MOXF1NCsxZG9XdHdiUDI0Z0V2SzRuOEFNQmgyUUtN?=
+ =?utf-8?B?WGxXVjUzMGh4VCtPM2p5M241Vmp2Y2tRUnpyTDV4ZWxFbTVmN3MwOGthMXhn?=
+ =?utf-8?B?UVdBR2RyMFRmZFhmaWIrUjJocjkwZitocFc2cXF2VmhjZnFpTEsyQmhmOHJa?=
+ =?utf-8?B?ekozR2dCSkxZMWdSMjRNcCthWEpiZkd0WXZYNDNvYzRYUzN0aDFNcjYzWHdp?=
+ =?utf-8?B?YklZZVJPb2wyR0VuY1hNQ2tlZExiS05MSU5BRGhFMHBmNmE1QitOM3FtMlFH?=
+ =?utf-8?B?WGVZMTNjanFTTzJJOUVpU2dRQkdTQnVnYk0yYlVYS21FRjNGRVF5ZDhnRFZH?=
+ =?utf-8?B?UUNYZGdudU84d25hdnVvVC90cmVadXNWTnU4ckM1V0padERtRkRFSWtSTm13?=
+ =?utf-8?B?dnF3QVQwT3pmWFVmVDZZeERNSHBNQzc2bm5kYmRQTzY3RjY3V2t0TThobklM?=
+ =?utf-8?B?aVRFUmJhb0Z4bGQ5WGFBTE9KMkR4cTZKaTczaEZCSjVuMWJCRzBCcC9QbnRh?=
+ =?utf-8?B?Z3g4ZktGYWpOTnVNclRVZ1h1anlDdWhva3ova2g3VzVqVzM4YUU4dGlZUE9l?=
+ =?utf-8?B?Rm0zQkM1Z3YyVUdmcVJ6ejl4VzV6ZEtHM29abjVNUkZiTjREUXlVUE5DcVdS?=
+ =?utf-8?B?QW8rVWNXWHBxeWRHWWcxUlhRcUxIaWJUcGRvRjVoTmtsbkRocDQ3bGFqT0xo?=
+ =?utf-8?B?cjBGQnNMRE1Zell5a0V5SXNscmUwVnlxL3FZSTl6cDlMS3VJTFZhWk9ZS2xl?=
+ =?utf-8?B?Z2RUQjB0eFNUY1c0bWJocENEbUJUODFTTkNkNHA2VzBPeUhZWE9TU2NySDRo?=
+ =?utf-8?B?Z1BQalMwcXI1eWhxeENrTXFjK3o0NHJXYnVlUzJwNnQ0TTNlMk9YdjRySTFW?=
+ =?utf-8?B?eU5Sb3BsVXNwV29ZemwyYlRQVDlGRkYydHl3ZkQrb2JEK0p6NlJmY1B1RDhu?=
+ =?utf-8?B?Z3JrV1hRR20yZUZRVzBJc2EvMGIvK3htVEFweGh1akJVSk13UUkvQUYzQnJJ?=
+ =?utf-8?B?NnJ2Q1hnWXQ5Uy9wajlGUFFLZTFiOXI2VW9XT1ByalVyTTh6NUQvemdzdTd5?=
+ =?utf-8?B?WXhKMS9VV1pUOU03ZlArK2FPQ1ZwQ2FYbElwTGFVU2EwNmU1cEFyWUwyLzBz?=
+ =?utf-8?B?WmNCV2lCcldUVXAzOW56c0NmZHNheTJPQ1BBNUl6V3VTcEFmS2xwd08xWFh5?=
+ =?utf-8?B?NFdsT1ZHVHFHTDFPQUx3b2M4anFZYUgzNDNQcTlGek1DNFAyNFNPb1kybW1u?=
+ =?utf-8?B?TDBCK3N0d2lEekxxc0RwYjZsTmhraWVhVVlwQmNsdFU1UndyOUp1UUJXb0hO?=
+ =?utf-8?B?dkg0eS9xOWdEcGhoV09ETXU1cm9hS2JPNFQzcU1TT3F1RVBZdEZsVFZCTDNm?=
+ =?utf-8?B?eGJjNTFtRlRvWnVpMFh3em00YzlDM2dkK2RTZTdCSDQ1WWg2UzlZQlBzN1Z4?=
+ =?utf-8?B?RGhWMVB4OWN5c1lkemFZUFlBb2Naa1JnMWdCV3J2RlIwVEVVOGxQamdPNnJU?=
+ =?utf-8?B?Ylh1bmVFRmJKc3lKTktCanZQNXpmT2hHQkM2YWxhZlRDWTRuOFZ4MCtrdlJ3?=
+ =?utf-8?B?MXJ0bE9xK1o5TFhTaG5LUWV4U0M1ZERSa1FveWdjbWNGYWgyb0xyTk9xNENW?=
+ =?utf-8?B?N1d1d3JvUDhjZ2MyeTB1emVpeDFSWUFXQUcyL2QxRFczU05qUDZmbEVrd3Ix?=
+ =?utf-8?B?aGVHaVMyRGxEbXpVaFJIcTg3d2JvRm9UeHpUQ1hvVkRac3dlTXpTZzhrTnVE?=
+ =?utf-8?B?Q2xKTjdqejlmVk9CTFB0VVlQUERyOENCeUdIcmkxdk93OGVqc2tJYVhYU0lN?=
+ =?utf-8?B?Qi9XSUZKVU04c3QyYlBGNXNzTXRLK1VPcTk4QjNLMERIZmNqbFc3MDM3NHha?=
+ =?utf-8?B?aVJHSXEyVDhNdEVGUVpSMFdPdEI1L0luZE1JL2J6QmhibXJkUWg3MCt6UE1w?=
+ =?utf-8?B?aWtldTNyVnBhS2I5YklhMmcrclIyRmZaUU5JVW5zdU5JbTYyWlZsKzRXNzJV?=
+ =?utf-8?B?OWNhR1djYWtiUTlQVm5MWTR1eXRad21FK0o1UHBYdUs4MytmODAwUCtDTndi?=
+ =?utf-8?B?eHNJYnZSeFB4WFRyenFGL2ZKcDIxMWZiMWc5MkNKYmovQmJETkNBaFRuWDZC?=
+ =?utf-8?B?YTNQQjkvdlI5c3pMSStUamxEK09meUJKcjk1M09mbHVjajJ6Y1BnbDgvOTV5?=
+ =?utf-8?Q?Yviw5emSJlGdixl44odfiY0=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0ccdbb1-02fa-4de6-d5ef-08db1464e757
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8465.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2023 23:39:41.5197
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dtIZxDIbrxQyIhFJ7P5BHDpCjeZByTeczPMadScSH8gnFi2Gi/kC6iMDGZpCYk/f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7713
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,103 +133,83 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---VknuSA68ljcWlQyJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 21, 2023 at 02:17:17PM -0800, Stephen Boyd wrote:
-> Quoting Conor Dooley (2023-02-16 10:20:34)
-> > On Thu, Feb 16, 2023 at 10:42:20PM +0800, Hal Feng wrote:
-> > > On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
-> > > > On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
-> > > Please see the picture of these external clocks in clock tree.
-> > >=20
-> > > # mount -t debugfs none /mnt
-> > > # cat /mnt/clk/clk_summary
-> > >                                  enable  prepare  protect            =
-                    duty  hardware
-> > >    clock                          count    count    count        rate=
-   accuracy phase  cycle    enable
-> > > ---------------------------------------------------------------------=
-----------------------------------
-> > >  *mclk_ext*                             0        0        0    122880=
-00          0     0  50000         Y
-> > >  *tdm_ext*                              0        0        0    491520=
-00          0     0  50000         Y
-> > >  *i2srx_lrck_ext*                       0        0        0      1920=
-00          0     0  50000         Y
-> > >  *i2srx_bclk_ext*                       0        0        0    122880=
-00          0     0  50000         Y
-> > >  *i2stx_lrck_ext*                       0        0        0      1920=
-00          0     0  50000         Y
-> > >  *i2stx_bclk_ext*                       0        0        0    122880=
-00          0     0  50000         Y
-> > >  *gmac1_rgmii_rxin*                     0        0        0   1250000=
-00          0     0  50000         Y
-> > >     gmac1_rx                          0        0        0   125000000=
-          0     0  50000         Y
-> > >        gmac1_rx_inv                   0        0        0   125000000=
-          0   180  50000         Y
-> > >  *gmac1_rmii_refin*                     0        0        0    500000=
-00          0     0  50000         Y
-> > >     gmac1_rmii_rtx                    0        0        0    50000000=
-          0     0  50000         Y
-> > >        gmac1_tx                       0        0        0    50000000=
-          0     0  50000         N
-> > >           gmac1_tx_inv                0        0        0    50000000=
-          0   180  50000         Y
-> > >  *osc*                                  4        4        0    240000=
-00          0     0  50000         Y
-> > >     apb_func                          0        0        0    24000000=
-          0     0  50000         Y
-> > >  ...
-> > >=20
-> > > The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
-> > > actually used as the parent of other clocks.
-> >=20
-> > > The "dummy" clocks
-> > > you said are all internal clocks.
-> >=20
-> > No, what I meant by "dummy" clocks is that if you make clocks "required"
-> > in the binding that are not needed by the hardware for operation a
-> > customer of yours might have to add "dummy" clocks to their devicetree
-> > to pass dtbs_check.
->=20
-> They can set the phandle specifier to '<0>' to fill in the required
-> property when there isn't anything there. If this is inside an SoC, it
-> is always connected because silicon can't change after it is made
-> (unless this is an FPGA). Therefore, any and all input clocks should be
-> listed as required.
+On 2023/2/22 05:45, Sebastian Reichel wrote:
+> Hi everyone,
+> 
+[...]
+>>
+>> If the phy is misconfigured, not powered, or the clocks aren't going
+>> active, you'll hang when the controller tries to touch it. Unless
+>> someone has completed the combophy rk3588 bits the driver is not
+>> functional yet for rk3588.
+>>
+>> Looking at the current 6.2 release, I only see the rk3568 compatible,
+>> so you'll need to add support for rk3588 before it will work.
+>>
+>> Very Respectfully,
+>> Peter Geis
+> 
+> Sorry for being late to the game. Life is busy right now :)
 
-> If the clk controller has inputs that are
-> pads/balls/pins on the SoC then they can be optional if a valid design
-> can leave those pins not connected.
+Welcome back!
 
-=46rom the discussion on the dts patches, where the clocks have been put
-(intentionally) into board.dts, I've been under the impression that we
-are in this situation.
-Up to Hal to tell us if the hardware is capable of having those inputs
-left unfilled!
+> 
+> I haven't looked into PCIe myself so far, but some of my colleagues
+> are looking into native network support on Rock 5B (and thus PCIe2
+> controller).
+> 
+> Apart from the obvious (missing rk3588 support in the combophy driver),
+> the clocks will need some work. The clock tree implementation I upstreamed
+> is different from the downstream implementation. Downstream has some
+> clocks that have two parent clocks using a hacked implementation
+> that's obviously not upstreamable as is. The upstream implementation
+> currently only describes the first parent. More details are in the
+> following comment:
 
-FWIW, there's a v4 [1] of this series - but the question has yet to be
-resolved.
+Thanks for the details!
+
+No wonder why the combo phy doesn't work.
+
+I tried checking the downstream driver, and can only find trivial 
+differences between rk3588 and rk3568 naneng combo drivers.
+
+But didn't notice the clock problems.
+
+BTW, is there any docs on all the registers?
+For the combo phy drivers, there are some registers only utilized by 
+3588 but not 356x, thus docs on this would be very helpful.
 
 Thanks,
-Conor.
+Qu
 
-1 - https://lore.kernel.org/all/20230221024645.127922-1-hal.feng@starfivete=
-ch.com/
-
---VknuSA68ljcWlQyJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/VWMAAKCRB4tDGHoIJi
-0vMnAP9+HziqXbEJ1GX8HIr5jD+lzSjYpeu8k3IfZk1pte1WdAEAwNfSAKDpB2Sz
-rYa+dCvHzPRG/YzqUU8wOHnRfqNDxQw=
-=9xTC
------END PGP SIGNATURE-----
-
---VknuSA68ljcWlQyJ--
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/rockchip/clk-rk3588.c#n16
+> 
+> Back than I wrote that I do not understand the exact need (the TRM
+> does not describe the clock tree unfortuantely), I found this
+> explanation:
+> 
+> https://lore.kernel.org/dri-devel/20220309094139198367142@rock-chips.com/
+> 
+> To get the advanced blocks properly running upstream this needs a
+> solution for this. Note that trying to access registers that are
+> not clocked properly will result in a hang (as Peter already wrote).
+> 
+> Apart from that the power-domain controller might need some of the
+> extra bits downstream has.
+> 
+> Last but not least the GIC controller is handled differently in
+> downstream. For that following the workaround that has been used for
+> rk356x should also work for rk3588.
+> 
+> TLDR: This is not trivial. It's really unfortunate, that the board
+> is not just using the native ethernet :(
+> 
+> P.S.: We try to keep a rk3588 / Rock 5 status matrix maintained here:
+> 
+> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3588/-/blob/main/mainline-status.md
+> 
+> Greetings,
+> 
+> -- Sebastian
