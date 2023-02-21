@@ -2,54 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C5369DF88
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 12:58:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E9C169DFD6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 13:02:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233931AbjBUL6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 06:58:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34576 "EHLO
+        id S234689AbjBUMCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 07:02:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234581AbjBUL5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 06:57:45 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B92F02915D;
-        Tue, 21 Feb 2023 03:57:18 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 54A3BFEC;
-        Tue, 21 Feb 2023 03:57:24 -0800 (PST)
-Received: from [10.57.13.181] (unknown [10.57.13.181])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 833D73F703;
-        Tue, 21 Feb 2023 03:56:36 -0800 (PST)
-Message-ID: <4cc935e2-8b24-8060-5070-fd6eb85f07b6@arm.com>
-Date:   Tue, 21 Feb 2023 11:56:30 +0000
+        with ESMTP id S234701AbjBUMBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 07:01:50 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60FC9298C9
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 04:00:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1676980770;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ueMcPyVImz9cpfurZM9ATdM8rr4FlZ3uotbL1JWr8HM=;
+        b=T+dE/oZGROIvceaK+3Wp3m2YOCUYx62kx8k/umImu7NwAlnA1T/chQEGPy1xqw9DhZaKqn
+        AHsaMyQEgQATFjjyW2zg67YDGsTa700W0bjm9HgRaHqORE8nu2pF5w899cvDr/SoILkjVV
+        8mGrsm6RahTl951nW+wk1TRirtCwUn4=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-433-S1FSstBHO7W2MQXDqYfKrQ-1; Tue, 21 Feb 2023 06:59:29 -0500
+X-MC-Unique: S1FSstBHO7W2MQXDqYfKrQ-1
+Received: by mail-wr1-f69.google.com with SMTP id r3-20020a5d6c63000000b002bff57fc7fcso907341wrz.19
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 03:59:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ueMcPyVImz9cpfurZM9ATdM8rr4FlZ3uotbL1JWr8HM=;
+        b=ztWo45Da++GcmhiDptM0Co+ArifEld6Bfvm6hh/EpJInfRjy+zw8gW8/ER3ZWHjvYC
+         1qrDXhUmg6QVnw5zNEFZmOywhOTBshc/DHmWM7mSOu2+EsC49SQ17k3a2WKdZinWYExY
+         BQ6cD8QsxJ6TNxNqKy7f6mkjt0NH7P7gFuAXvX61g1ozyP2JcdLbDPdK850BYjv4Dd1v
+         5ge/Dg2q20SnG+hnMV9lmTWpAg/g0d5rHOamFxPZfq+cDcQmztnVwslEFmpVozymFsSp
+         V3F3Qv/YGsAY/aHXRFAiGGjfNR5z2q+ZaebjZCfNbyl9q/6smgMQ57TU8XLqDK1YOclg
+         x2Qg==
+X-Gm-Message-State: AO0yUKWvRXi/dUAiK3zED9wZursJT9Tj8qvohqj355hY+YaFCB08ZiZA
+        6Fs45dlPN3Dcc2Eo9phYhYE3X78KyWxm4I1gxk1ewimlQQmA83auVCZByzXiewW+35579Le3Mfz
+        kMx7A6SEj+jXLxzKkM4ZrAA==
+X-Received: by 2002:a05:600c:319a:b0:3dc:5b88:e706 with SMTP id s26-20020a05600c319a00b003dc5b88e706mr3432736wmp.1.1676980768038;
+        Tue, 21 Feb 2023 03:59:28 -0800 (PST)
+X-Google-Smtp-Source: AK7set9/y3GWYFDjk83DDi2agWds5UsLqjyHuOZHo4YSWP+L1MT5uBLFjcUtMLjAIHbcdUqV8+nX8w==
+X-Received: by 2002:a05:600c:319a:b0:3dc:5b88:e706 with SMTP id s26-20020a05600c319a00b003dc5b88e706mr3432713wmp.1.1676980767741;
+        Tue, 21 Feb 2023 03:59:27 -0800 (PST)
+Received: from gerbillo.redhat.com (146-241-121-8.dyn.eolo.it. [146.241.121.8])
+        by smtp.gmail.com with ESMTPSA id ay14-20020a05600c1e0e00b003e20cf0408esm5177202wmb.40.2023.02.21.03.59.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Feb 2023 03:59:27 -0800 (PST)
+Message-ID: <3cf5c962768651adb2c1a7fa95aff7517d821bd6.camel@redhat.com>
+Subject: Re: [PATCH net-next v10 00/12] net: ethernet: mtk_eth_soc: various
+ enhancements
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Jianhui Zhao <zhaojh329@gmail.com>,
+        =?ISO-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>
+Date:   Tue, 21 Feb 2023 12:59:25 +0100
+In-Reply-To: <cover.1676933805.git.daniel@makrotopia.org>
+References: <cover.1676933805.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v8 2/7] iommu/arm-smmu-v3: support ops registration for
- CDX bus
-Content-Language: en-GB
-To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
-        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
-        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
-        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com, will@kernel.org,
-        joro@8bytes.org, masahiroy@kernel.org, ndesaulniers@google.com,
-        rdunlap@infradead.org, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, git@amd.com
-References: <20230217132830.3140439-1-nipun.gupta@amd.com>
- <20230217132830.3140439-3-nipun.gupta@amd.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230217132830.3140439-3-nipun.gupta@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,43 +100,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-17 13:28, Nipun Gupta wrote:
+On Tue, 2023-02-21 at 11:39 +0000, Daniel Golle wrote:
+> This series brings a variety of fixes and enhancements for mtk_eth_soc,
+> adds support for the MT7981 SoC and facilitates sharing the SGMII PCS
+> code between mtk_eth_soc and mt7530.
+>=20
+> Note that this series depends on commit 697c3892d825
+> ("regmap: apply reg_base and reg_downshift for single register ops") to
+> not break mt7530 pcs register access.
+>=20
+> The whole series has been tested on MT7622+MT7531 (BPi-R64),
+> MT7623+MT7530 (BPi-R2) and MT7981+GPY211 (GL.iNet GL-MT3000).
+>=20
+> Changes since v9:
+>  * fix path in mediatek,sgmiisys dt-binding
+>=20
+> Changes since v8:
+>  * move mediatek,sgmiisys dt-bindings to correct net/pcs folder
+>  * rebase on top of net-next/main so series applies cleanly again
+>=20
+> Changes since v7:
+>  * move mediatek,sgmiisys.yaml to more appropriate folder
+>  * don't include <linux/phylink.h> twice in PCS driver, sort includes
+>=20
+> Changes since v6:
+>  * label MAC MCR bit 12 in 08/12, MediaTek replied explaining its functio=
+n
+>=20
+> Changes since v5:
+>  * drop dev pointer also from struct mtk_sgmii, pass it as function
+>    parameter instead
+>  * address comments left for dt-bindings
+>  * minor improvements to commit messages
+>=20
+> Changes since v4:
+>  * remove unused dev pointer in struct pcs_mtk_lynxi
+>  * squash link timer check into correct follow-up patch
+>=20
+> Changes since v3:
+>  * remove unused #define's
+>  * use BMCR_* instead of #define'ing our own constants
+>  * return before changing registers in case of invalid link timer
+>=20
+> Changes since v2:
+>  * improve dt-bindings, convert sgmisys bindings to dt-schema yaml
+>  * fix typo
+>=20
+> Changes since v1:
+>  * apply reverse xmas tree everywhere
+>  * improve commit descriptions
+>  * add dt binding documentation
+>  * various small changes addressing all comments received for v1
+>=20
+>=20
+> Daniel Golle (12):
+>   net: ethernet: mtk_eth_soc: add support for MT7981 SoC
+>   dt-bindings: net: mediatek,net: add mt7981-eth binding
+>   dt-bindings: arm: mediatek: sgmiisys: Convert to DT schema
+>   dt-bindings: arm: mediatek: sgmiisys: add MT7981 SoC
+>   net: ethernet: mtk_eth_soc: set MDIO bus clock frequency
+>   net: ethernet: mtk_eth_soc: reset PCS state
+>   net: ethernet: mtk_eth_soc: only write values if needed
+>   net: ethernet: mtk_eth_soc: fix RX data corruption issue
+>   net: ethernet: mtk_eth_soc: ppe: add support for flow accounting
+>   net: pcs: add driver for MediaTek SGMII PCS
+>   net: ethernet: mtk_eth_soc: switch to external PCS driver
+>   net: dsa: mt7530: use external PCS driver
+>=20
+>  .../arm/mediatek/mediatek,sgmiisys.txt        |  25 --
+>  .../devicetree/bindings/net/mediatek,net.yaml |  52 ++-
+>  .../bindings/net/pcs/mediatek,sgmiisys.yaml   |  55 ++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/net/dsa/Kconfig                       |   1 +
+>  drivers/net/dsa/mt7530.c                      | 277 ++++------------
+>  drivers/net/dsa/mt7530.h                      |  47 +--
+>  drivers/net/ethernet/mediatek/Kconfig         |   2 +
+>  drivers/net/ethernet/mediatek/mtk_eth_path.c  |  14 +-
+>  drivers/net/ethernet/mediatek/mtk_eth_soc.c   |  67 +++-
+>  drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 105 +++---
+>  drivers/net/ethernet/mediatek/mtk_ppe.c       | 114 ++++++-
+>  drivers/net/ethernet/mediatek/mtk_ppe.h       |  25 +-
+>  .../net/ethernet/mediatek/mtk_ppe_debugfs.c   |   9 +-
+>  .../net/ethernet/mediatek/mtk_ppe_offload.c   |   8 +
+>  drivers/net/ethernet/mediatek/mtk_ppe_regs.h  |  14 +
+>  drivers/net/ethernet/mediatek/mtk_sgmii.c     | 192 ++---------
+>  drivers/net/pcs/Kconfig                       |   7 +
+>  drivers/net/pcs/Makefile                      |   1 +
+>  drivers/net/pcs/pcs-mtk-lynxi.c               | 302 ++++++++++++++++++
+>  include/linux/pcs/pcs-mtk-lynxi.h             |  13 +
+>  21 files changed, 801 insertions(+), 536 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediat=
+ek,sgmiisys.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/pcs/mediatek,sg=
+miisys.yaml
+>  create mode 100644 drivers/net/pcs/pcs-mtk-lynxi.c
+>  create mode 100644 include/linux/pcs/pcs-mtk-lynxi.h
+>=20
+>=20
+> base-commit: 3fcdf2dfefb6313ea0395519d1784808c0b6559b
 
-Nit: subject should be "iommu: Support ops registration for CDX bus", 
-since this is no longer a driver-specific thing.
+# Form letter - net-next is closed
 
-Thanks,
-Robin.
+The merge window for v6.3 has begun and therefore net-next is closed
+for new drivers, features, code refactoring and optimizations.
+We are currently accepting bug fixes only.
 
-> With new CDX bus supported for AMD FPGA devices on ARM
-> platform, the bus requires registration for the SMMU v3
-> driver.
-> 
-> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> Tested-by: Nikhil Agarwal <nikhil.agarwal@amd.com>
-> ---
->   drivers/iommu/iommu.c | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 1fbe53354532..c2ff7754a4b3 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -28,6 +28,7 @@
->   #include <linux/fsl/mc.h>
->   #include <linux/module.h>
->   #include <linux/cc_platform.h>
-> +#include <linux/cdx/cdx_bus.h>
->   #include <trace/events/iommu.h>
->   #include <linux/sched/mm.h>
->   #include <linux/msi.h>
-> @@ -129,6 +130,9 @@ static struct bus_type * const iommu_buses[] = {
->   #ifdef CONFIG_TEGRA_HOST1X_CONTEXT_BUS
->   	&host1x_context_device_bus_type,
->   #endif
-> +#ifdef CONFIG_CDX_BUS
-> +	&cdx_bus_type,
-> +#endif
->   };
->   
->   /*
+Please repost when net-next reopens after Mar 6th.
+
+RFC patches sent for review only are obviously welcome at any time.
+
