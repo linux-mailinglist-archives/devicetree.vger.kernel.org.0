@@ -2,143 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5987D69DD7A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 10:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A642169DDCC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 11:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234010AbjBUJ5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 04:57:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        id S233175AbjBUKZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 05:25:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234058AbjBUJ5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 04:57:04 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C0BF1BF4;
-        Tue, 21 Feb 2023 01:57:02 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Bxedm9lPRj4BwDAA--.914S3;
-        Tue, 21 Feb 2023 17:54:05 +0800 (CST)
-Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxX+SzlPRj96g3AA--.1894S3;
-        Tue, 21 Feb 2023 17:54:03 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S232682AbjBUKZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 05:25:57 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D2F2234E2;
+        Tue, 21 Feb 2023 02:25:56 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id f11so2195400pfe.2;
+        Tue, 21 Feb 2023 02:25:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cdo1TKxpnar0eDh6W/ITmg9ZF6u597rrhRp3aGtHgvM=;
+        b=c44hfkTeZKC0LorwOQZXu0DwX1hFgI8Z7XtDx2l3FdBVYOBXvZmQqdC13YVhzGosuK
+         S+kN8IuAGyMGl4gIkDpu1kAmT74s9l4icI8ANo4OiNq+hVUCA7SSvReaBsKJ/71QvjCJ
+         yBTqNAEK0p2EdBTs7TwO81RjY6elrzwwmwU5tiDspeihP9USFbxaP8UUaUN4tetnxlx4
+         REZ28F/QyAOatJRVssqWUHK6cBNjIUHV39xb/1OzpNEcxAAFEhdKILFTVxk3t9Aadx1p
+         Q3AFtF9TBn/E6sRRPs8Hm3WqNNrRBgLcc/RJHBmkqqrbClaDUlcapXgnDROnAFKp3gf5
+         7keA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cdo1TKxpnar0eDh6W/ITmg9ZF6u597rrhRp3aGtHgvM=;
+        b=5UR8RNHsFwNZe/bczuq/zXdflwZz9pxb+EwG7zgDAGMeu4EFFy2rTTtHzKgr/NOsJQ
+         g8CVf6JpPFizn2GX+eSoUQDqjK4Wqqn+RcAuKUxeQsxSNPmL3Ia6yJm5v2N9JyiF4D3y
+         AXQyAs+al25jhkYYpy2lR1toMv46tJZd5U0pMr5qy8ZxUvYW3enb0o3rWOE7SNZthoye
+         U3LgszoYr9TEfPiBhWqjM/kulYrbd3Bw1u/Q0lngSHkf3Yd/5DVkIrhOttTTSCBhff0j
+         e1Ky8l0HJ3lDdpkpJ7jp8o5c7J4TfnAvKbWTqTABar6rUEcUIJAk5QI/AqmJpQaspOJv
+         7qzQ==
+X-Gm-Message-State: AO0yUKWafb6WnPHablb0VP1M/qo0cEnTh+hIdQytEEfv4A5C8xqmbnqO
+        EIqISXumBgXv+19rb8SaQmS0ZK79+BmpiA==
+X-Google-Smtp-Source: AK7set9uUETlDgoDpGfVQo9Kg75+1R/evX0Scz2Xn0VKJv52fGav1qtGcY2C3/0E+BKcQcuUpUMSZA==
+X-Received: by 2002:a62:17c6:0:b0:5a8:b6cf:1a74 with SMTP id 189-20020a6217c6000000b005a8b6cf1a74mr4554096pfx.18.1676975155155;
+        Tue, 21 Feb 2023 02:25:55 -0800 (PST)
+Received: from kelvin-ThinkPad-L14-Gen-1.. (94.130.220.35.bc.googleusercontent.com. [35.220.130.94])
+        by smtp.gmail.com with ESMTPSA id t22-20020aa79396000000b00580e3917af7sm7745786pfe.117.2023.02.21.02.25.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Feb 2023 02:25:54 -0800 (PST)
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        zhanghongchen <zhanghongchen@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Keguang Zhang <keguang.zhang@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v13 2/2] dt-bindings: thermal: add loongson-2 thermal
-Date:   Tue, 21 Feb 2023 17:53:55 +0800
-Message-Id: <20230221095355.9799-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230221095355.9799-1-zhuyinbo@loongson.cn>
-References: <20230221095355.9799-1-zhuyinbo@loongson.cn>
+Subject: [PATCH v3] dt-bindings: interrupt-controller: convert loongson,ls1x-intc.txt to json-schema
+Date:   Tue, 21 Feb 2023 18:25:45 +0800
+Message-Id: <20230221102545.2103632-1-keguang.zhang@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxX+SzlPRj96g3AA--.1894S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4DGrW5XF45Kw18uFg_yoW5Zry5pF
-        47Cas5GrWvv3W7uanIkFyIyrsYvFnayFZrXr4xKw15tr98W34aqrW7K3WDu393Gr4jgFWU
-        uFySkr4UCF1DArJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
-        c4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7V
-        AKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C2
-        67AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
-        8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8
-        JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
-        1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBI
-        daVFxhVjvjDU0xZFpf9x07joKZXUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 thermal binding with DT schema format using
-json-schema.
+Convert the Loongson1 interrupt controller dt-bindings to json-schema.
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Change in v13:
-		1. Drop the sensor id.
-Change in v12:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v11:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v10:
-		1. Add all history change log information.
-Change in v9:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v8:
-                1. Replace string Loongson2/loongson2 with Loongson-2/loongson-2.
-Change in v7:
-		1. Split the modification of patch 3 and merge it into this patch.
-Change in v6:
-		1. Fix the warning "reg: [[0, 534779136], [0, 48]] is too long"
-		   when compile the yaml.
-Change in v5:
-		1. Keep use same quotes "'" in all places. 
-Change in v4:
-		1. Fixup the compatible.
-		2. Update the binding file name.
-		3. Include irq.h to fix compile issue.
-Change in v3:
-		1. Remove the sensor id.
-		2. Remove the interrupt-parent in thermal required property.
-		3. Update the thermal binding file name.
-		4. Fixup the commit log information.
-Change in v2:
-		1. Add description and type about the "id".	
-		2. Make the filename was based on compatible.
+V2 -> V3: Fix the description
+V1 -> V2: Drop the description part
+---
+ .../loongson,ls1x-intc.txt                    | 24 ---------
+ .../loongson,ls1x-intc.yaml                   | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
 
- .../thermal/loongson,ls2k-thermal.yaml        | 38 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-
-diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
+deleted file mode 100644
+index a63ed9fcb535..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-Loongson ls1x Interrupt Controller
+-
+-Required properties:
+-
+-- compatible : should be "loongson,ls1x-intc". Valid strings are:
+-
+-- reg : Specifies base physical address and size of the registers.
+-- interrupt-controller : Identifies the node as an interrupt controller
+-- #interrupt-cells : Specifies the number of cells needed to encode an
+-  interrupt source. The value shall be 2.
+-- interrupts : Specifies the CPU interrupt the controller is connected to.
+-
+-Example:
+-
+-intc: interrupt-controller@1fd01040 {
+-	compatible = "loongson,ls1x-intc";
+-	reg = <0x1fd01040 0x18>;
+-
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-
+-	interrupt-parent = <&cpu_intc>;
+-	interrupts = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
 new file mode 100644
-index 000000000000..258046383179
+index 000000000000..c60125fb1cbf
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-@@ -0,0 +1,38 @@
++++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,ls1x-intc.yaml
+@@ -0,0 +1,51 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/thermal/loongson,ls2k-thermal.yaml#
++$id: http://devicetree.org/schemas/interrupt-controller/loongson,ls1x-intc.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Thermal sensors on Loongson-2 SoCs
++title: Loongson-1 Interrupt Controller
 +
 +maintainers:
-+  - zhanghongchen <zhanghongchen@loongson.cn>
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
++  - Keguang Zhang <keguang.zhang@gmail.com>
++
++description:
++  Loongson-1 interrupt controller is connected to the MIPS core interrupt
++  controller, which controls several groups of interrupts.
 +
 +properties:
 +  compatible:
-+    const: loongson,ls2k-thermal
++    const: loongson,ls1x-intc
 +
 +  reg:
 +    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
 +
 +  interrupts:
 +    maxItems: 1
@@ -146,31 +158,26 @@ index 000000000000..258046383179
 +required:
 +  - compatible
 +  - reg
++  - interrupt-controller
++  - '#interrupt-cells'
 +  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    thermal: thermal-sensor@1fe01500 {
-+        compatible = "loongson,ls2k-thermal";
-+        reg = <0x1fe01500 0x30>;
-+        interrupt-parent = <&liointc0>;
-+        interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++    intc0: interrupt-controller@1fd01040 {
++        compatible = "loongson,ls1x-intc";
++        reg = <0x1fd01040 0x18>;
++
++        interrupt-controller;
++        #interrupt-cells = <2>;
++
++        interrupt-parent = <&cpu_intc>;
++        interrupts = <2>;
 +    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 54e63f51ae6d..91ce05110f04 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12091,6 +12091,7 @@ M:	zhanghongchen <zhanghongchen@loongson.cn>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
- F:	drivers/thermal/loongson2_thermal.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+
+base-commit: 39459ce717b863556d7d75466fcbd904a6fbbbd8
 -- 
-2.31.1
+2.34.1
 
