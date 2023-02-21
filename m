@@ -2,62 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6C9B69E57F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64CD769E595
+	for <lists+devicetree@lfdr.de>; Tue, 21 Feb 2023 18:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233889AbjBUREk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 12:04:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41744 "EHLO
+        id S233675AbjBURKP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Feb 2023 12:10:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234069AbjBUREi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:04:38 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1DA326A3;
-        Tue, 21 Feb 2023 09:04:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6DBF8B80F9E;
-        Tue, 21 Feb 2023 17:04:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35B04C433EF;
-        Tue, 21 Feb 2023 17:04:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1676999067;
-        bh=9GGa3LfIZFLMfyC93YamuPJ+m0MPY0JXS8yoYYlRNcw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oj40XnSwOXRCPsxVHExRWHuzJ0nTqBUJid+xyEKffs5V5m4NV6yX0jdysXLJ5tbo1
-         HS3alv74qAEOVzlOjPSzhL72l34bSyJBt3VYCkYhTUpfe+trW4VhZrszS78SIAmbjj
-         GNiyhXbANzSUOZubhVyfS2NCDQgn3IoV9VC89hDwe1dQt2ii+0obXC5/Vfu61NMkeM
-         on10EQXMnq63fTaxFXMD92am7fCY2O2zJw974K59P8Vkz1tF01dqqvwKGy2iJ60u4r
-         aVkua3U3foDPH0AsWmC5eRGC/3aL+8zqmAAkGkmtS08fO4w2uGZr3wWyJQ9BgSryoM
-         HEAr+BDPN9rRA==
-Received: by mail-vs1-f45.google.com with SMTP id v3so4998773vse.0;
-        Tue, 21 Feb 2023 09:04:27 -0800 (PST)
-X-Gm-Message-State: AO0yUKVrtW3Sk52LIOYzAhN/Yn/M07No8m7DyxcZMxIphWGFDvpqc7L6
-        N5GAdyXmzTi3hp9IaaSHqOwikLQ3746yirz5pw==
-X-Google-Smtp-Source: AK7set8RExnAumdfrmnLc73JH0r49w5gketyb+VaMFd10K+FqxZ4TgZPrnaat/PrIDrRENGFveQK8OSCvev++hvJ4Ag=
-X-Received: by 2002:a05:6102:1270:b0:414:cd37:4da8 with SMTP id
- q16-20020a056102127000b00414cd374da8mr952787vsg.83.1676999066215; Tue, 21 Feb
- 2023 09:04:26 -0800 (PST)
-MIME-Version: 1.0
-References: <20230221120612.27366-1-r-gunasekaran@ti.com> <20230221120612.27366-2-r-gunasekaran@ti.com>
- <fa789c44-d9b9-92a6-00f4-7bc2410c7642@ti.com>
-In-Reply-To: <fa789c44-d9b9-92a6-00f4-7bc2410c7642@ti.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 21 Feb 2023 11:04:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKcktHkexxPaneZjaUt=XwLA_5ypZxSZKnX5TozdgJ+Kg@mail.gmail.com>
-Message-ID: <CAL_JsqKcktHkexxPaneZjaUt=XwLA_5ypZxSZKnX5TozdgJ+Kg@mail.gmail.com>
-Subject: Re: [PATCH v10 1/9] dt-bindings: mfd: ti,j721e-system-controller: Fix
- mux node regex
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Ravi Gunasekaran <r-gunasekaran@ti.com>
-Cc:     nm@ti.com, afd@ti.com, kristo@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s-vadapalli@ti.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        with ESMTP id S233749AbjBURKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 12:10:15 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3AC16321
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 09:10:11 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1pUW9M-0003uJ-BB; Tue, 21 Feb 2023 18:09:56 +0100
+Message-ID: <6181434024ae29aafe1da2088be0f48c377e303b.camel@pengutronix.de>
+Subject: Re: [PATCH v3 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
+ drivers to them
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Liu Ying <victor.liu@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Date:   Tue, 21 Feb 2023 18:09:54 +0100
+In-Reply-To: <20230221152804.6061-3-marex@denx.de>
+References: <20230221152804.6061-1-marex@denx.de>
+         <20230221152804.6061-3-marex@denx.de>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,33 +58,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 21, 2023 at 8:00 AM Vignesh Raghavendra <vigneshr@ti.com> wrote:
-> On 21/02/23 5:36 pm, Ravi Gunasekaran wrote:
-> > mux-controller nodes may not have "reg" property. Update the regex
-> > for such nodes to resolve the dtbs warnings
-> >
-> > Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> > ---
+Hi Marek,
 
-Where's the change history? I doubt I ignored the last 9 versions...
+Am Dienstag, dem 21.02.2023 um 16:28 +0100 schrieb Marek Vasut:
+> This particular block can have DT subnodes describing the LVDS LDB
+> bridge. Instead of misusing simple-bus to scan for those nodes, do
+> the scan within the driver.
+> 
+> Reviewed-by: Liu Ying <victor.liu@nxp.com>
+> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Paul Elder <paul.elder@ideasonboard.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Turn this into 3/4
+>     - Warn and continue in case of error
+> V3: Add RB from Liu
+> ---
+>  drivers/soc/imx/imx8m-blk-ctrl.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> index 399cb85105a18..4f5736e612fb0 100644
+> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> @@ -169,7 +169,9 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  {
+>  	const struct imx8m_blk_ctrl_data *bc_data;
+>  	struct device *dev = &pdev->dev;
+> +	struct platform_device *child;
+>  	struct imx8m_blk_ctrl *bc;
+> +	struct device_node *np;
+>  	void __iomem *base;
+>  	int i, ret;
+>  
+> @@ -310,6 +312,13 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  
+>  	dev_set_drvdata(dev, bc);
+>  
+> +	for_each_child_of_node(dev->of_node, np) {
+> +		child = of_platform_device_create(np, NULL, dev);
+> +		if (child)
+> +			continue;
+> +		dev_warn(dev, "failed to create device for %pOF\n", np);
+> +	}
 
-> >  .../bindings/mfd/ti,j721e-system-controller.yaml          | 8 +++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > index 76ef4352e13c..532bfa45e6a0 100644
-> > --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > @@ -45,7 +45,7 @@ properties:
-> >
-> >  patternProperties:
-> >    # Optional children
-> > -  "^mux-controller@[0-9a-f]+$":
-> > +  "^mux-controller(@|-)[0-9a-f]+$":
->
-> Hmm. mmio-mux bindings allow reg property. Why can't we add the same to
-> mux-controller node in 2/9 ?
+Any reason for not using devm_of_platform_populate() instead?
 
-Yes, do that.
+Regards,
+Lucas
 
-Rob
+> +
+>  	return 0;
+>  
+>  cleanup_provider:
+
