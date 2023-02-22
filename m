@@ -2,80 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69BA169F11E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:17:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 979C669F127
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:21:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbjBVJRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 04:17:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35470 "EHLO
+        id S231255AbjBVJU7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Feb 2023 04:20:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbjBVJRi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:17:38 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA0437B57
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:17:37 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id ee7so12476569edb.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:17:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZYNjYpqa0bbdp+1kEQD5S997SVtcSN1lChO27iPiDpw=;
-        b=TtNO99vDyF+FOnem7oAHDn6G30PaKs+x4inAVoGOhs7iEdKofnLJfFq/AkS8dPiEwx
-         /PkhPY4UXDKdVYirGGfovlv5KC+4uNDt8VlWMt8t28weTC2EwAACd1RRywYBV+dIEM6n
-         9ZzSCRJsx+pZfNOh1Q9JysagGFcfD619jHXGFC6gPZU6+udyEAM+vA45x74asaho3lRy
-         20tcPipMSNmQ9b6PftCcoMC9rqL5/JMAuffUr2g3l2URHjozHwBM+NcqlP1f6zNHOEXr
-         TUZGXy+2yhIR8C3ryg3A/WVW3XEIyCeUKxhLqQ62iKpRdLBLOgNkcF9L4ZOjmUE3aZjm
-         NcQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZYNjYpqa0bbdp+1kEQD5S997SVtcSN1lChO27iPiDpw=;
-        b=jbXggEn5evk1JS+R/ggd87UclryW6BYqUAq2+Up7GHUso36yYyCHGeXMdytNZroMyR
-         3xyJ6gkLqd8by52eoGLwofgBR4lvdPg/yaFBOdp1wJUFaIa3nKt1qjXtliXqWNnBH7c9
-         a9SCnhWmwZAu6GZWoeXBlDOLN/1kKRAoZOMFg3Cmwx3rt/NBPnzYWmJlHzIGfygAutYN
-         AbBnHQ6Ao/HJVm59zYAcgAMQUAxwxAdGNTuV/GjG6FZkzRRCqkWa5XnhIo6CNaeceQwN
-         0Xu7dZ9q8hks2uiFqUzsLXS14enj14Ze/UNY9SH0WyLmpA1YVK/d4xAAHlhXS3q8N4sy
-         xnqA==
-X-Gm-Message-State: AO0yUKUy0mo4yWSQYoMrOvQEwSQJCskr3ayO0j/Ts+zhQtnrBhtkS00U
-        49jo5BPlF1E+JGR4WQNSA+XzeN3oBkBcAXRi
-X-Google-Smtp-Source: AK7set+CzHz42sMYy4A1TLOMRmQ4V5WpNodweBdRk+BFWC+9HSDi+OuobpSTPV5LkXlKNQH7omU9/g==
-X-Received: by 2002:a05:6402:1850:b0:4ac:c5c1:e1ed with SMTP id v16-20020a056402185000b004acc5c1e1edmr8412849edy.12.1677057455723;
-        Wed, 22 Feb 2023 01:17:35 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g16-20020a50d0d0000000b004ad1d3cf195sm3031904edf.95.2023.02.22.01.17.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 01:17:35 -0800 (PST)
-Message-ID: <1467f7c5-07eb-97db-c6f2-573a4208cc28@linaro.org>
-Date:   Wed, 22 Feb 2023 10:17:34 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: dma: snps,dw-axi-dmac: Add reset
- items
-Content-Language: en-US
-To:     Walker Chen <walker.chen@starfivetech.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229935AbjBVJU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:20:58 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A15A24120
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:20:57 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1pUlIo-0006oY-Lj; Wed, 22 Feb 2023 10:20:42 +0100
+Message-ID: <ccd2961a86759197c0d101123a1132a92dfa0003.camel@pengutronix.de>
+Subject: Re: [PATCH v3 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
+ drivers to them
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Liu Ying <victor.liu@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20230221140424.719-1-walker.chen@starfivetech.com>
- <20230221140424.719-2-walker.chen@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230221140424.719-2-walker.chen@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Date:   Wed, 22 Feb 2023 10:20:40 +0100
+In-Reply-To: <e2adc02b-5e6a-3b78-cac2-e67ecc820231@denx.de>
+References: <20230221152804.6061-1-marex@denx.de>
+         <20230221152804.6061-3-marex@denx.de>
+         <6181434024ae29aafe1da2088be0f48c377e303b.camel@pengutronix.de>
+         <e2adc02b-5e6a-3b78-cac2-e67ecc820231@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,40 +60,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 15:04, Walker Chen wrote:
-> This DMA controller needs to be reset before being used on JH7110 SoC,
-> so add reset items to support this chip.
-
-There is reset already. The DMA controller is reset already. Your commit
-msg and commit subject do not match commit at all.
-
+Am Dienstag, dem 21.02.2023 um 19:57 +0100 schrieb Marek Vasut:
+> On 2/21/23 18:09, Lucas Stach wrote:
 > 
-> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-> ---
->  .../devicetree/bindings/dma/snps,dw-axi-dmac.yaml         | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+> [...]
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index ad107a4d3b33..c2247c65a22f 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -20,6 +20,7 @@ properties:
->      enum:
->        - snps,axi-dma-1.01a
->        - intel,kmb-axi-dma
-> +      - starfive,jh7110-axi-dma
->  
->    reg:
->      minItems: 1
-> @@ -58,7 +59,12 @@ properties:
->      maximum: 8
->  
->    resets:
-> -    maxItems: 1
-> +    maxItems: 2
+> > > @@ -310,6 +312,13 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+> > >   
+> > >   	dev_set_drvdata(dev, bc);
+> > >   
+> > > +	for_each_child_of_node(dev->of_node, np) {
+> > > +		child = of_platform_device_create(np, NULL, dev);
+> > > +		if (child)
+> > > +			continue;
+> > > +		dev_warn(dev, "failed to create device for %pOF\n", np);
+> > > +	}
+> > 
+> > Any reason for not using devm_of_platform_populate() instead?
+> 
+> Yes, lack of awareness of that option.
+> 
+> Do I read it right that this gets rid of the whole loop implementation 
+> here and replaces it with single function call ?
 
-This breaks ABI and all other users. Test your changes before sending.
+That's right. And it will also do the necessary
+of_platform_device_destroy() to clean things up when the parent device
+is removed.
 
-Best regards,
-Krzysztof
-
+Regards,
+Lucas
