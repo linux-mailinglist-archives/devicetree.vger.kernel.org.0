@@ -2,134 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA5E69FC98
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 20:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081F169FCFC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 21:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbjBVT6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 14:58:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38842 "EHLO
+        id S232549AbjBVU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 15:29:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232744AbjBVT6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 14:58:02 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5295F3589;
-        Wed, 22 Feb 2023 11:57:49 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 67E3960009;
-        Wed, 22 Feb 2023 19:57:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1677095868;
+        with ESMTP id S232540AbjBVU34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 15:29:56 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E55F301B6
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 12:29:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1677097750;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=+GyCKi7Gn2sca9/TPHpNzjTIGusAZSY/AcvcFqjKOHg=;
-        b=lljQ6PD9Ho5Uzv25Z2J2OZg5LmfKl+mjuFNXp39hjZ/SDdtjuGFtLoa98XT8qAtSctMu2R
-        YvjLZasHH1ZmIWA3ZaRfbBVq2RGmiHJzujRomd4L3BSIhAbmGEJlYBFhlYSQoqQVk0LSeq
-        CN1Zds6CD+2lBsYBJS/uPfvMlNj98aRBnAFpxeYeoc1BEyXFg7w3BiIeyZ9Z+1Acv8sA+C
-        in8wzhDuYzR2HUNd3VZqKTQyGQZqOSK5/u1VEncw+VWPCbCenrunDfUWXKHE17XyV9a6Dv
-        eHU6a3+LwH3rvst1nvWlXCPYXQLiShBK0stqXtxvhiOZ3MjvBxK5539v5AaH5g==
-Date:   Wed, 22 Feb 2023 20:57:42 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        Abel Vesa <abel.vesa@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
-Message-ID: <20230222205742.505016e4@booty>
-In-Reply-To: <20230222175941.7pdi7yg5am3ws4gp@pengutronix.de>
-References: <20230222182252.2ad6d82b@booty>
-        <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
-        <20230222175941.7pdi7yg5am3ws4gp@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        bh=31LxPJZI3zdBsKK5tpOvW3uyU2wcbBKh3h1QoBUrRCs=;
+        b=OPW/GlvmdPHANmW5zQs+laP1fWsTmbSmiZ2F40X1q3YTuu7TusK7HLUexz4vOwCpJudzeE
+        x1JeGAWucGp9XvEcBD5TiCKVLF32zWumVwGf3+8/oSX4gMDZPV0PUWtx04Z0OYw9jTR7+H
+        jnNxFfYG1wbYh46bOl67IM5pOoRUGm4=
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
+ [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-39-aWeFSrT4NH-Ng3nlDiHspw-1; Wed, 22 Feb 2023 15:29:09 -0500
+X-MC-Unique: aWeFSrT4NH-Ng3nlDiHspw-1
+Received: by mail-ot1-f72.google.com with SMTP id k5-20020a056830168500b00690d1e0d27dso2708612otr.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 12:29:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=31LxPJZI3zdBsKK5tpOvW3uyU2wcbBKh3h1QoBUrRCs=;
+        b=l/7/ZHkWUEHH5s9Ati8TGzoNm7xF2FaqH/AdbZq+L+JTsV4cjKiPsJhHuL6pJ0Fqt1
+         CGjHPWsPCYf+YZp/5tOC34IVmnXwZGaz1DuVYw5CjNwpuUpEY7lhcO/jjHuBX+7sIDH8
+         PbYfb/vokZT6i1rMjc9406yZ5iHy+be54AT9/zl5vj28kJ+W+6110REYo27oPKvDOpNl
+         N8E4/wZqEXMJ1BtegC42/Vo6toKF2zY6t87emDwV9KUaI6c9yJtGi9uu9EkZCim6xTmN
+         H7WhhdSzkD18KRBct9TX97LCUATeFG51/I5OawMJItXzhpMCzwAIEP89RFlK8EP+jNYi
+         w5ng==
+X-Gm-Message-State: AO0yUKXj0VM9L3cuFtfhWyYV6vQQf+281HL1AiOUc8Spbly3nvb+6XAR
+        /eZCfXCN+cDitRlHVqnU9UxX/zD4TszyG2/glYytgOBy7iGn5hqp89Tq1akGK9MxHmLQ23ux12V
+        IU8btNX/dqdoF5gxq1ZKhFBoY6pQ=
+X-Received: by 2002:a05:6830:1f48:b0:68b:d7c1:d095 with SMTP id u8-20020a0568301f4800b0068bd7c1d095mr4561575oth.25.1677097748113;
+        Wed, 22 Feb 2023 12:29:08 -0800 (PST)
+X-Google-Smtp-Source: AK7set+FnnF0bFHokIgYSx+T9xokiJqO8a2z1YkPriDlHMjDry+p841GTCxY+dup1Y6SZvIxGvvB7A==
+X-Received: by 2002:a05:6830:1f48:b0:68b:d7c1:d095 with SMTP id u8-20020a0568301f4800b0068bd7c1d095mr4561560oth.25.1677097747836;
+        Wed, 22 Feb 2023 12:29:07 -0800 (PST)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
+        by smtp.gmail.com with ESMTPSA id a10-20020a9d470a000000b0068bce0cd4e1sm1362519otf.9.2023.02.22.12.29.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Feb 2023 12:29:07 -0800 (PST)
+Date:   Wed, 22 Feb 2023 14:29:04 -0600
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Miller <davem@davemloft.net>
+Subject: Re: [PATCH v2 3/4] dt-bindings: net: qcom,ethqos: Convert bindings
+ to yaml
+Message-ID: <20230222202904.mhsbxnaxt3psmwr7@halaney-x13s>
+References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
+ <20220929060405.2445745-4-bhupesh.sharma@linaro.org>
+ <4e896382-c666-55c6-f50b-5c442e428a2b@linaro.org>
+ <1163e862-d36a-9b5e-2019-c69be41cc220@linaro.org>
+ <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
+ <0aeb2c5e-9a5e-90c6-a974-f2a0b866d64f@linaro.org>
+ <ca62fc03-8acc-73fc-3b15-bd95fe8e05a4@linaro.org>
+ <CAH=2Nty1BfaTWbE-PZQPiRtAco=5xhvJT3QbpqYsABxZxBzF3w@mail.gmail.com>
+ <2e68d64f-766c-0a52-9df8-74f0681a5973@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e68d64f-766c-0a52-9df8-74f0681a5973@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+On Mon, Oct 03, 2022 at 11:32:58AM +0200, Krzysztof Kozlowski wrote:
+> On 03/10/2022 10:29, Bhupesh Sharma wrote:
+> > On Sun, 2 Oct 2022 at 13:24, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 01/10/2022 14:51, Bhupesh Sharma wrote:
+> >>>>> Right, most of them are to avoid the make dtbs_check errors / warnings
+> >>>>> like the one mentioned above.
+> >>>>
+> >>>> All of them should not be here.
+> >>>
+> >>> I guess only 'snps,reset-gpio' need not be replicated here, as for
+> >>> others I still see 'dtbs_check' error, if they are not replicated here:
+> >>>
+> >>>
+> >>> arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated
+> >>> properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth',
+> >>> 'tx-fifo-depth' were unexpected)
+> >>>       From schema: /Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> >>>
+> >>> Am I missing something here?
+> >>
+> >> Probably the snps,dwmac schema failed. It is then considered
+> >> unevaluated, so such properties are unknown for qcom,ethqos schema. Run
+> >> check with snps,dwmac and fix all errors first.
+> >
+> > Running dt_binding_check DT_SCHEMA_FILES=net/snps,dwmac.yaml
+> > reports no error currently.
+>
+> Then it's something in your commits. I don't know what you wrote, as you
+> did not sent a commit. I cannot reproduce your errors after removing
+> unneeded power-domains.
+>
+> Just to clarify - I am testing only the dt_binding_check (so only the
+> examples - I assume they are meaningful).
 
-On Wed, 22 Feb 2023 18:59:41 +0100
-Marco Felsch <m.felsch@pengutronix.de> wrote:
+Just a little note before I forget..
 
-> Hi Luca,
-> 
-> On 23-02-22, Luca Ceresoli wrote:
-> > The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
-> > NXPP SGTL5000 audio codec connected to I2S-0 (sai2).
-> > 
-> > This requires to:
-> > 
-> >  * add the power supplies (always on)
-> >  * enable sai2 with pinmuxes
-> >  * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
-> >    IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
-> > 
-> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > ---
-> >  .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> > index 470ff8e31e32..894d9809f76d 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> > @@ -14,6 +14,57 @@ / {
-> >  	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
-> >  		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
-> >  		     "fsl,imx8mp";  
-> 
-> ...
-> 
-> > +/* I2S-0 = sai2 */
-> > +&sai2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_sai2>;
-> > +
-> > +	assigned-clocks = <&clk IMX8MP_CLK_SAI2>;
-> > +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-> > +	assigned-clock-rates = <12288000>;
-> > +
-> > +	fsl,sai-mclk-direction-output;
-> > +	status = "okay";
-> >  };  
-> 
-> Do you have some downstream patches for the sai interfaces? AFAIR Marek
-> worked on this but the patches are not mainlien yet.
+I picked this up yesterday (in prep for adding sa8540p support here),
+and noticed the same thing as Bhupesh when validating dtbs with
+the requested changes (not duplicating snsp,dwmac.yaml). I ended up
+tracking it down to a (fixed) bug in dtschema:
 
-Right, my patch is based on the v3 series by Marek, and it should be
-threaded accordingly
-(https://lore.kernel.org/linux-arm-kernel/20230222172552.1545519-1-luca.ceresoli@bootlin.com/),
-but I realize I haven't made it 100% clear -- sorry about this.
+    https://github.com/devicetree-org/dt-schema/commit/e503ec1115345bdfa06b96c9d6c4496457cbd75b
 
-I guess I should just resend separately with a clarifying cover letter
-next time.
+And a little test output showing before and after (fix is in the 2022.12
+release):
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+    (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sm8150-hdk.dtb
+      LINT    Documentation/devicetree/bindings
+      CHKDT   Documentation/devicetree/bindings/processed-schema.json
+      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+      DTC_CHK arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
+    /home/ahalaney/git/redhat/stmmac/arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth', 'snps,tso', 'tx-fifo-depth' were unexpected)
+        From schema: /home/ahalaney/git/redhat/stmmac/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+    (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % pip3 list | grep dtschema
+    dtschema         2022.11
+    (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
+
+    dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % pip3 list | grep dtschema
+    dtschema         2023.1
+    (dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sm8150-hdk.dtb
+      LINT    Documentation/devicetree/bindings
+      CHKDT   Documentation/devicetree/bindings/processed-schema.json
+      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+      DTC_CHK arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
+    (dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
+
+
+I'll go ahead and make the adjustments and pull this series into mine
+adding sa8540p support, thanks for starting it!
+
+- Andrew
+
