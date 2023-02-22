@@ -2,165 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 081F169FCFC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 21:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 777F969FD16
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 21:39:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbjBVU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 15:29:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
+        id S232732AbjBVUjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 15:39:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232540AbjBVU34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 15:29:56 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E55F301B6
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 12:29:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1677097750;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=31LxPJZI3zdBsKK5tpOvW3uyU2wcbBKh3h1QoBUrRCs=;
-        b=OPW/GlvmdPHANmW5zQs+laP1fWsTmbSmiZ2F40X1q3YTuu7TusK7HLUexz4vOwCpJudzeE
-        x1JeGAWucGp9XvEcBD5TiCKVLF32zWumVwGf3+8/oSX4gMDZPV0PUWtx04Z0OYw9jTR7+H
-        jnNxFfYG1wbYh46bOl67IM5pOoRUGm4=
-Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
- [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-39-aWeFSrT4NH-Ng3nlDiHspw-1; Wed, 22 Feb 2023 15:29:09 -0500
-X-MC-Unique: aWeFSrT4NH-Ng3nlDiHspw-1
-Received: by mail-ot1-f72.google.com with SMTP id k5-20020a056830168500b00690d1e0d27dso2708612otr.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 12:29:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=31LxPJZI3zdBsKK5tpOvW3uyU2wcbBKh3h1QoBUrRCs=;
-        b=l/7/ZHkWUEHH5s9Ati8TGzoNm7xF2FaqH/AdbZq+L+JTsV4cjKiPsJhHuL6pJ0Fqt1
-         CGjHPWsPCYf+YZp/5tOC34IVmnXwZGaz1DuVYw5CjNwpuUpEY7lhcO/jjHuBX+7sIDH8
-         PbYfb/vokZT6i1rMjc9406yZ5iHy+be54AT9/zl5vj28kJ+W+6110REYo27oPKvDOpNl
-         N8E4/wZqEXMJ1BtegC42/Vo6toKF2zY6t87emDwV9KUaI6c9yJtGi9uu9EkZCim6xTmN
-         H7WhhdSzkD18KRBct9TX97LCUATeFG51/I5OawMJItXzhpMCzwAIEP89RFlK8EP+jNYi
-         w5ng==
-X-Gm-Message-State: AO0yUKXj0VM9L3cuFtfhWyYV6vQQf+281HL1AiOUc8Spbly3nvb+6XAR
-        /eZCfXCN+cDitRlHVqnU9UxX/zD4TszyG2/glYytgOBy7iGn5hqp89Tq1akGK9MxHmLQ23ux12V
-        IU8btNX/dqdoF5gxq1ZKhFBoY6pQ=
-X-Received: by 2002:a05:6830:1f48:b0:68b:d7c1:d095 with SMTP id u8-20020a0568301f4800b0068bd7c1d095mr4561575oth.25.1677097748113;
-        Wed, 22 Feb 2023 12:29:08 -0800 (PST)
-X-Google-Smtp-Source: AK7set+FnnF0bFHokIgYSx+T9xokiJqO8a2z1YkPriDlHMjDry+p841GTCxY+dup1Y6SZvIxGvvB7A==
-X-Received: by 2002:a05:6830:1f48:b0:68b:d7c1:d095 with SMTP id u8-20020a0568301f4800b0068bd7c1d095mr4561560oth.25.1677097747836;
-        Wed, 22 Feb 2023 12:29:07 -0800 (PST)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
-        by smtp.gmail.com with ESMTPSA id a10-20020a9d470a000000b0068bce0cd4e1sm1362519otf.9.2023.02.22.12.29.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 12:29:07 -0800 (PST)
-Date:   Wed, 22 Feb 2023 14:29:04 -0600
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-Subject: Re: [PATCH v2 3/4] dt-bindings: net: qcom,ethqos: Convert bindings
- to yaml
-Message-ID: <20230222202904.mhsbxnaxt3psmwr7@halaney-x13s>
-References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
- <20220929060405.2445745-4-bhupesh.sharma@linaro.org>
- <4e896382-c666-55c6-f50b-5c442e428a2b@linaro.org>
- <1163e862-d36a-9b5e-2019-c69be41cc220@linaro.org>
- <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
- <0aeb2c5e-9a5e-90c6-a974-f2a0b866d64f@linaro.org>
- <ca62fc03-8acc-73fc-3b15-bd95fe8e05a4@linaro.org>
- <CAH=2Nty1BfaTWbE-PZQPiRtAco=5xhvJT3QbpqYsABxZxBzF3w@mail.gmail.com>
- <2e68d64f-766c-0a52-9df8-74f0681a5973@linaro.org>
+        with ESMTP id S232701AbjBVUjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 15:39:12 -0500
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2091.outbound.protection.outlook.com [40.107.237.91])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBE138658;
+        Wed, 22 Feb 2023 12:39:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aBuxrH1p46+UsUtbPnviY3/tHe1mbxx57caVXUrfIiE9oOLgBeP6zUvoI85dZ/Bz7CtWp5XUhow2xTn9ejTo+tvpqeZg3ZpnozNuGbzLTmG9VlB2iKFR3/XWkbHvyLvdRrcQmll2pNAj1vu+C0xsbyDZMvqXPgWAkjLJbp9hJgq3mTQPxsTb58JXMmUeF2BWdTqv5esqBP40Krjx5WHuP4EncdGOP8nUHYkeRJ9wfC2katUHSU3OU+33u0gf2GTD18N6oTwKRqo4JBd+AvvORqyoKayIemRcvrdO2WnaX183fI7rZNY5aBcXPAFDrHbUtX3NlXg+th/H3iGPCC+Nnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RkTx4cHQjuRWhXhLahAxIk5wncsfmsph6laianD1e78=;
+ b=Bau8lbOUdarACJdT53ZG78Z1pBlGrWLTLhLiulBwb4F+aIILhzCaUvpYKlzh4hujI4u98h1lvvZX05NGZDyL9gEJG4bgs4JtDpQQ1CoBY7XIcBrqTKt5VX6O3hr9E4Rr+g3wkyVegFam09ioT9M+HoQKRz/AF+p2B8vFWVKZLQw3Y4ORxBlxUHWxNAuEltflnrDdR/luNVtCXcvkLUlx75xVbIPhM7yzci6PTSBm8Acm5KI+hrhLugrH4fU6cZ08mQlPfv6c6RfnR2SD8HCdf/aK2mzy44uIs1q6yoo5rRZg6Pi9DSjav6UyjHBW4zjB5DihZiFJ9HQngoYAvkGTWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RkTx4cHQjuRWhXhLahAxIk5wncsfmsph6laianD1e78=;
+ b=smcxLoceM7njTFfBLlG0MpU9+DlAfUCQTBs1CaUa9tmPfV0CbcklmGNNzkX9mV+2KRjr/u9ywYVz3ihjTxTdRPg0MCFnEqxD9MVBXbF7KuRoJL2vVJNSAte1BOVygP1KSZ8mLu59s/12UGK/BR2B6EpMyAmsrDBADe6eRGSvBSc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by PH7PR10MB6033.namprd10.prod.outlook.com
+ (2603:10b6:510:1ff::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Wed, 22 Feb
+ 2023 20:39:06 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::1897:6663:87ba:c8fa]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::1897:6663:87ba:c8fa%4]) with mapi id 15.20.6111.010; Wed, 22 Feb 2023
+ 20:39:05 +0000
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Tony Lindgren <tony@atomide.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        soc@kernel.org, Olof Johansson <olof@lixom.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH v4 0/2] add support for Phytec PCM-049 and PCM-959
+Date:   Wed, 22 Feb 2023 12:38:45 -0800
+Message-Id: <20230222203847.2664903-1-colin.foster@in-advantage.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR02CA0042.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::19) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e68d64f-766c-0a52-9df8-74f0681a5973@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|PH7PR10MB6033:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02e879b0-c7d6-4269-5af7-08db1514d724
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ++WUTLGlciiI9eh0RctBw6clrzNQXVWPl74d+r/rhNuaz0cA4KiYXdEb2CpvQz3MzlYqNyi5ISrtPBxJPQedhvVNuSZXJaA23d3TKBUo5i4foxLP+aGecwd95B691a7gD++3tEzL+DzPF6r+NW+JD4dskcTi0YJ8WGa3/ceSst3kpvXZQy6doxbzqMy9uaX32FmqnlfuSqU8yBYpck6k++lnpy0jCfCvBXat0W1Cjb9eSSptInUMt/XqXvaNSYoOfi6Bt6GdcOmctJRVJWI2wLwAmWEcM+BeK59bmQEBolc12rJ8QTlXkMIjPR8c53Rf/p7ZCyHhhdole8B+DPUsl24osA4Xf36e2lEHX2itR/WM5yvATEGWIO8V7D09KAsjA1IiS0rEC6K62SApI7lIaLx2eeCi/drk8hdkeJQhQ4pGU9jNN/l4Co0so+o45nQMMpj90iuiV4aa/cZLpFtMGWxLtdKCni4U34Ke6YEp4LNZDBT+qPk1LTA9sEKkkKzPZxsNgMbMefALHW5tis/zyqdyqJYgTcypu3k+E3XpNks9ldB3NF7Z3yS7XdTyt8hAJuTwOlKLkTTQncA/5q0t3xd8q8yohBZhZs55RempNSJJJdrnmsxLrUogmxwvADUdSStqo3y8PLZj+Q5MFBpJNgID2NylSD3SbQsekQQ9zpJx9aUffjV7mBurUK4K+VHj
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(39830400003)(366004)(376002)(136003)(451199018)(478600001)(38100700002)(38350700002)(86362001)(2906002)(44832011)(316002)(54906003)(41300700001)(36756003)(8936002)(7416002)(4326008)(66556008)(8676002)(66946007)(66476007)(83380400001)(5660300002)(966005)(26005)(66899018)(6486002)(186003)(1076003)(6506007)(6666004)(2616005)(6512007)(52116002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QYV4EATQi1AKM0L8MaGQ9mGKjrZlTbeYcYbM/u+yi5KZqe/Z7iQHUotRDg/m?=
+ =?us-ascii?Q?xDasEnfk3p/UaJaw44h0T1WHTCJ3eXZWdB5TpF8qI/bF90PuMok8K75o0Qyi?=
+ =?us-ascii?Q?/7yt2DdheVzmtPpMwONLAFZl2ugK5lz88S0VbMNg0laKGNB9hprYPPzmRES8?=
+ =?us-ascii?Q?tTS4dCmgluK7vGutAkreSReZYjalSVT5r89bD0JF31kFuMcZfu0Cg0EUHAF+?=
+ =?us-ascii?Q?OhuJtvH4chQQEuJbAdBnx5uDzdPDUjWIP+v6aX1SdhZ7W5/VCCYLL79esNpz?=
+ =?us-ascii?Q?05nT8TQSBo0FGST2ByNSdLnej6wA2aQDTlcfTA4dPl4Cx/kFO1fVyUiiFWmy?=
+ =?us-ascii?Q?Nbz8siq88JMa+/WXC6tboOii5cMTjOjoiwh/mNf/KbV8fxmlGD3Fq2PKliPG?=
+ =?us-ascii?Q?Zd+H1DmyMTIOaoZ9fqzjk8D2Oh0QFR0lrARUk8tdRPjU0ZoHypZVUP+jV8R1?=
+ =?us-ascii?Q?7hviiB5C4sSMB7O92sKzIZIcp2LG4fhhl81oETlbm4o0sMi3UE37CvTTxhvq?=
+ =?us-ascii?Q?pStxLBkqspObu2wDcPySknItz13oP9qKCltFoRlf3/y0/9g2BNjlUbdv803k?=
+ =?us-ascii?Q?Z5cg+On2yT+N9Ye16xbhBwhCmRh3N5qp2YdEZxFfESJTSQysdC3/yg1znF2U?=
+ =?us-ascii?Q?4UWd3/9gzecOaMH0aOjmFGvx/IdH3dvMSMwSDHo59bVg5cG2wD5aiJn61ZD3?=
+ =?us-ascii?Q?U0ZJezX+fBeJEZJF/RO/0i5ttDTQj+S3tXoZS8y9hgxHdS/4nxGxBhyhw7Pk?=
+ =?us-ascii?Q?bhV5O9TxZAe1RfmmmMyFKWTvWetjEB+OzgPXjbTe6JYiY398+wOLOnS7k/S3?=
+ =?us-ascii?Q?Xxn0tvNRuIbW5RbHbsGRC+qr+UtdopWwNvg2lKeSkheufj+TdIEaMB/WGQwC?=
+ =?us-ascii?Q?FRdUNnpu09ZKTxNvKec8z4D4SRn6u6cqk5D3YEFK2F5IdIrzwgzvIm8C0xIW?=
+ =?us-ascii?Q?2C/SkNpLR5QN7L8LbwSbGH0IF5KpyE84TuVhgMDL11alqA6WJgx4NZ9lmg4y?=
+ =?us-ascii?Q?uGuXR5McZNr7TRKccsZ7VxGDzCK7TyigNYr3GDT7jo1TLeLCfRJlE24Kzy3y?=
+ =?us-ascii?Q?okHOgSvuz5kjKzIfv2Wb3x/lAO3jnuAq4ncfAhdr7wEXBvjQjq+H9pBeMu+b?=
+ =?us-ascii?Q?G8ThtjYz5HdcGe8o0zliKiFglp1gg9atN/khht18tMkNzE8D+IV23n+ra4u1?=
+ =?us-ascii?Q?iRPimUp9zhmfPXC8WS01PHeNuketi7NczEAuS3V52k1NjHGI//DjNeFxPFOL?=
+ =?us-ascii?Q?9H8x/gT49CFvq/Obe6PftERodMiacRDhRjyYLQD1nR2oyWTNfA6DZcVDreBH?=
+ =?us-ascii?Q?J+MRM/nHG0zhtjn4WYT71nuGwzO1aLAACiMIac2seAzdmnzmzBp61bHmPdlo?=
+ =?us-ascii?Q?u9soAWa2JBv7hbxVue339ZR7fak8mRpg9kWGulWNuB6C2e/kcPSuIfLrRt09?=
+ =?us-ascii?Q?8dtlccCUy7zf2H5GYdH4W0/vuvalPO7HP8PAbkWc9lZIn/t5OV4o+beQ0+YA?=
+ =?us-ascii?Q?hiIVTWdd9SZiv2dGKd3e8LMcmslNL/Z43VCEEqGPIaLboeh+bKOe5pH5LnUe?=
+ =?us-ascii?Q?LQqt6gffIXK/Y2Amip+P7xgSOOJ2cM7ZZIZOEqMiZPfvRiL9lHLNeaRdFzUS?=
+ =?us-ascii?Q?dIy/ZfnxUhS5PNB6LLtPnjA=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02e879b0-c7d6-4269-5af7-08db1514d724
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2023 20:39:05.9351
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N8l0A8PgFiTLLGkFA5XqUHjbmwDHt/why35nCIZpwioNSGt/3us+C1gsB2zklRRQAfgTuQhHZlH357pw/nDzFY5vFyaGCq2eNoPVYdAW9w0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6033
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 03, 2022 at 11:32:58AM +0200, Krzysztof Kozlowski wrote:
-> On 03/10/2022 10:29, Bhupesh Sharma wrote:
-> > On Sun, 2 Oct 2022 at 13:24, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 01/10/2022 14:51, Bhupesh Sharma wrote:
-> >>>>> Right, most of them are to avoid the make dtbs_check errors / warnings
-> >>>>> like the one mentioned above.
-> >>>>
-> >>>> All of them should not be here.
-> >>>
-> >>> I guess only 'snps,reset-gpio' need not be replicated here, as for
-> >>> others I still see 'dtbs_check' error, if they are not replicated here:
-> >>>
-> >>>
-> >>> arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated
-> >>> properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth',
-> >>> 'tx-fifo-depth' were unexpected)
-> >>>       From schema: /Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> >>>
-> >>> Am I missing something here?
-> >>
-> >> Probably the snps,dwmac schema failed. It is then considered
-> >> unevaluated, so such properties are unknown for qcom,ethqos schema. Run
-> >> check with snps,dwmac and fix all errors first.
-> >
-> > Running dt_binding_check DT_SCHEMA_FILES=net/snps,dwmac.yaml
-> > reports no error currently.
->
-> Then it's something in your commits. I don't know what you wrote, as you
-> did not sent a commit. I cannot reproduce your errors after removing
-> unneeded power-domains.
->
-> Just to clarify - I am testing only the dt_binding_check (so only the
-> examples - I assume they are meaningful).
+As should be clear for the title and patch title, this is adding initial
+support for the OMAP 4460 SOM and dev kit for Phytec's PCM959 evaluation
+kit.
 
-Just a little note before I forget..
+The PCM049 is a legacy SOM offered by Phytec:
+https://www.phytec.com/legacy-soms/
+There was a vendor BSP offered by Phytec, but that never entered the
+Device Tree era. This patch is meant to change that.
 
-I picked this up yesterday (in prep for adding sa8540p support here),
-and noticed the same thing as Bhupesh when validating dtbs with
-the requested changes (not duplicating snsp,dwmac.yaml). I ended up
-tracking it down to a (fixed) bug in dtschema:
+My development bootloader has moved to U-Boot, but I have verified
+Barebox works in the past. When booting from SD card, either bootloader
+should work. When booting from Barebox, the NAND OOB layout is
+incompatible between the bootloader and the kernel.
 
-    https://github.com/devicetree-org/dt-schema/commit/e503ec1115345bdfa06b96c9d6c4496457cbd75b
-
-And a little test output showing before and after (fix is in the 2022.12
-release):
-
-    (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sm8150-hdk.dtb
-      LINT    Documentation/devicetree/bindings
-      CHKDT   Documentation/devicetree/bindings/processed-schema.json
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-      DTC_CHK arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-    /home/ahalaney/git/redhat/stmmac/arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth', 'snps,tso', 'tx-fifo-depth' were unexpected)
-        From schema: /home/ahalaney/git/redhat/stmmac/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-    (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % pip3 list | grep dtschema
-    dtschema         2022.11
-    (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
-
-    dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % pip3 list | grep dtschema
-    dtschema         2023.1
-    (dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sm8150-hdk.dtb
-      LINT    Documentation/devicetree/bindings
-      CHKDT   Documentation/devicetree/bindings/processed-schema.json
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-      DTC_CHK arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-    (dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
+I haven't had any OOB / ECC errors in the NAND at all, which was my
+main concern. Due to that, I'm submitting this as a patch instead of
+an RFC. Hardware ECC correction seems to be fully functional.
 
 
-I'll go ahead and make the adjustments and pull this series into mine
-adding sa8540p support, thanks for starting it!
 
-- Andrew
+v3->v4
+    * Add initial .yaml documentation instead of omap.txt
+      Thanks to Andrew Davis <afd@ti.com> for posting their WIP patch
+      set, which was the basis for patch 1, with Rob's feedback.
+    * Removed Rob's "Acked-by" because the patch is completely different
+    * Removed unnecessary "omap-4430" from compatible in .dts
+
+v2->v3
+    * Acked-by on patch 1
+    * Code review changes (see patch 2 for details)
+    * Fix intermittent NAND failures (patch 2)
+
+v1->v2
+    * Almost everything moved into the SOM (PCM-049) .dtsi. Only the
+      LED chip is dev-board specific.
+    * Fix pinmux associations (*pmx_core was applying *pmx_wkup
+      entries... I'm surprised that didn't cause more issues)
+    * Documentation added
+
+    * Updates from review:
+    *   Board compatible strings added
+    *   Hyphen / underscore changes
+    *   Remove unnecessary status="okay" entries
+    *   Generic names used (regulator, led-1, etc.)
+
+
+Colin Foster (2):
+  dt-bindings: arm: omap: add phytec pcm-049 som and pcm-959 dev board
+  arm: dts: omap4: pcm959: add initial support for phytec pcm959
+
+ .../devicetree/bindings/arm/ti,omap.yaml      |  29 ++
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/omap4-phytec-pcm-049.dtsi   | 400 ++++++++++++++++++
+ arch/arm/boot/dts/omap4-phytec-pcm-959.dts    |  48 +++
+ 4 files changed, 478 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/ti,omap.yaml
+ create mode 100644 arch/arm/boot/dts/omap4-phytec-pcm-049.dtsi
+ create mode 100644 arch/arm/boot/dts/omap4-phytec-pcm-959.dts
+
+-- 
+2.25.1
 
