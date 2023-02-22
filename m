@@ -2,98 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B68CE69F1E2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0566D69F1F5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:39:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231933AbjBVJhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 04:37:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54662 "EHLO
+        id S231311AbjBVJja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 04:39:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231856AbjBVJgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:36:23 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 158853B67C;
-        Wed, 22 Feb 2023 01:34:15 -0800 (PST)
-Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DB06366021E0;
-        Wed, 22 Feb 2023 09:32:52 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677058373;
-        bh=ULUS8juqT9D663UOmoNu1JrQcrXe/fPV+74I8cFGkeE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RrUk0TBxvnA0BpQ4L31srmAgbzC/CyhcBvigVXojG8MA5WLRzvN4S64739nI5CcXb
-         dxHYkNp9AXhtef7qzSgCc2qAso5TySgCu7R7jZNUH/WgUKuISRytvcMgGC80cMVcHv
-         p8g468XO6djB8ErYQUQiuCgzOC9k4BHfkdvqzev6qNRTko3GdGZVFIviUcgrf3Csrv
-         Ptnryjg74q2lRRh/8wg4NwDBuU9cVTPKg3KjER7SuBMtE7QhIACqCq6KDnr574As2m
-         cgSq2bHHxmiDzs1DlTZuUpDETv3n30Vw8iwFWTj8qJwHYik4THh/58uH7H7WZ7GBbb
-         EySbKuc/BbYmA==
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-To:     David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 4/4] ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
-Date:   Wed, 22 Feb 2023 09:32:44 +0000
-Message-Id: <20230222093244.938156-5-lucas.tanure@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230222093244.938156-1-lucas.tanure@collabora.com>
-References: <20230222093244.938156-1-lucas.tanure@collabora.com>
+        with ESMTP id S231994AbjBVJjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:39:07 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E35533BD9C
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:36:05 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id t13so6983103wrv.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:36:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QYSBNjZMUqqg3o3xKcoCzAQfKFWE704AcgxDUXOHQ9Y=;
+        b=lQ5ofJgulmki2D9dnrA9jEH4OTkQLUfJCFm3Jtj9oGwkFgOqzEKaQidbQSjDy/gywt
+         18NNq6yXLW0EvwBwQDf2A42UW7TjNh0T57dl4c3aAHMSjzYyMLCg4Z+KF5pB6f2xDAVz
+         NDWmmfHkialfRI2CZb1vYGx5q8F8GR80bAzu5iI3va3oiecWe3kFVmSgZRYBqH3VqnRq
+         gp0E4XGhuR3Tu20Gb3mRfb6ZxzAGHBQjyM4SqIQriMDnRHcxE8OPaV4WwlJJSFXzfyfm
+         jhmkTcghutcNWHPwn1xwXkVbjEX/vD1g5ByC3xJzbmnBnufEW6DrNVwhZCuZvf92WBJ5
+         HSnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QYSBNjZMUqqg3o3xKcoCzAQfKFWE704AcgxDUXOHQ9Y=;
+        b=aJ5uslzVZvVGCG3Ya6FDBZDV1yS7QIRMFtApUuoXM/VU4/RlnXsqxeF2rd8ARwdXLF
+         PtCbbiBc//0lwtvT9BmIJ4glxVxDrGB5+BGx7a0ZELo9PzuRect2kbnrH5Y+ReqB8dsp
+         /Gka+7e0AYtzFlvXTyuwR0NbyspL8ce04ZwUISSMeACmtRSBhKS/YVRg4LJ0T0SomdEY
+         0KmGhUXkZNu0oYSvPNz192fkAHEvm/+a6GGoGV+zxVfQN24L9suSMM3C3DlCF/KLj80u
+         +Sjvc7nxJDpBMSnCR2gYc6tYQGpQNMlWuVBivichUZXgcReSKuNntT9bOU42V+d25aYg
+         DEng==
+X-Gm-Message-State: AO0yUKV484YYZrcCgvGLqK/6vW6xFwYTec+GYfRYtxMXBmPikkb3dwlB
+        zMlo2QqzmzaBoEYrgAG65HhYxw==
+X-Google-Smtp-Source: AK7set/E4R6V6MKYdreloJzvGIbISJCF04gsNrCaalEmNNxojDMfP5ElNc2fg0ejzT6oCgNmOoEFcw==
+X-Received: by 2002:adf:ea92:0:b0:2c7:b51:65ce with SMTP id s18-20020adfea92000000b002c70b5165cemr1448134wrm.12.1677058511923;
+        Wed, 22 Feb 2023 01:35:11 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e6-20020a5d5006000000b002c57384dfe0sm9006229wrt.113.2023.02.22.01.34.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 01:34:10 -0800 (PST)
+Message-ID: <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
+Date:   Wed, 22 Feb 2023 10:34:09 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+ <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the properties used for shared boost configuration.
-Based on David Rhodes shared boost patches.
+On 20/02/2023 14:13, Biju Das wrote:
+> Document Renesas versa3 clock generator(5P35023) bindings.
+> 
+> The 5P35023 is a VersaClock programmable clock generator and
+> is designed for low-power, consumer, and high-performance PCI
+> Express applications. The 5P35023 device is a three PLL
+> architecture design, and each PLL is individually programmable
+> and allowing for up to 6 unique frequency outputs.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../bindings/clock/renesas,versaclock3.yaml   | 135 ++++++++++++++++++
+>  1 file changed, 135 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml b/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
+> new file mode 100644
+> index 000000000000..f45b8da73ec3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
 
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/sound/cirrus,cs35l41.yaml      | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Filename usually is based on the compatible. Why these two are so different?
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-index 18fb471aa891..14dea1feefc5 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-@@ -85,11 +85,19 @@ properties:
-       boost-cap-microfarad.
-       External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
-       enable boost voltage.
-+      Shared boost allows two amplifiers to share a single boost circuit by
-+      communicating on the MDSYNC bus. The active amplifier controls the boost
-+      circuit using combined data from both amplifiers. GPIO1 should be
-+      configured for Sync when shared boost is used. Shared boost is not
-+      compatible with External boost. Active amplifier requires
-+      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
-       0 = Internal Boost
-       1 = External Boost
-+      2 = Shared Boost Active
-+      3 = Shared Boost Passive
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
--    maximum: 1
-+    maximum: 3
- 
-   cirrus,gpio1-polarity-invert:
-     description:
--- 
-2.39.2
+
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/renesas,versaclock3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas VersaClock 3 programmable I2C clock generators
+> +
+> +description: |
+> +  The 5P35023 is a VersaClock programmable clock generator and
+> +  is designed for low-power, consumer, and high-performance PCI
+> +  express applications. The 5P35023 device is a three PLL
+> +  architecture design, and each PLL is individually programmable
+> +  and allowing for up to 6 unique frequency outputs.
+> +
+> +  An internal OTP memory allows the user to store the configuration
+> +  in the device. After power up, the user can change the device register
+> +  settings through the I2C interface when I2C mode is selected.
+> +
+> +  The driver can read a full register map from the DT, and will use that
+> +  register map to initialize the attached part (via I2C) when the system
+> +  boots. Any configuration not supported by the common clock framework
+> +  must be done via the full register map, including optimized settings.
+> +
+> +  Link to datasheet: https://www.renesas.com/us/en/products/clocks-timing/
+> +                     clock-generation/programmable-clocks/
+> +                     5p35023-versaclock-3s-programmable-clock-generator
+
+I think link should not be wrapped. Start in next line and just make it
+long.
+
+While touching this, please keep the same order of entries as in
+example-schema, so maintainers go after title.
+
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,5p35023
+> +
+> +  reg:
+> +    description: I2C device address
+
+Drop description, it's obvious.
+
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clock-names:
+> +    oneOf:
+> +      - items:
+> +          - const: x1
+> +      - items:
+> +          - const: clkin
+
+This should be specific, not one or another. Why do you have two
+entirely different clock inputs?
+
+(and if this stays, then just items: - enum: [])
+
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  renesas,settings:
+> +    description: Optional, complete register map of the device.
+> +      Optimized settings for the device must be provided in full
+> +      and are written during initialization.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 37
+
+maxItems instead... but I am not sure that we allow register settings in
+DT in general.
+
+> +
+> +  assigned-clocks:
+> +    minItems: 6
+
+Drop.
+
+> +
+> +  assigned-clock-rates:
+> +    minItems: 6
+
+Drop.
+
+> +
+> +  renesas,clock-divider-read-only:
+> +    description: Flag for setting divider in read only mode.
+
+Flag? Then type: boolean.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 5
+
+This is broken...
+
+> +
+> +  renesas,clock-flags:
+> +    description: Flags used in common clock frame work for configuring
+> +      clk outputs. See include/linux/clk-provider.h
+
+These are not bindings, so why do you non-bindings constants as
+bindings? They can change anytime. Choose one:
+1. Drop entire property,
+2. Make it a proper binding property, so an ABI and explain why this is
+DT specific. None of clock providers have to do it, so you need here
+good explanation.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 6
+
+maxItems instead
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    /* 24MHz crystal */
+> +    x1_x2: xtal {
+> +      compatible = "fixed-clock";
+> +      #clock-cells = <0>;
+> +      clock-frequency = <24000000>;
+> +    };
+
+Drop this part, obvious.
+
+> +
+> +    i2c@0 {
+> +        reg = <0x0 0x100>;
+
+Just i2c { and drop reg
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        versa3: clock-generator@68 {
+> +            compatible = "renesas,5p35023";
+> +            reg = <0x68>;
+> +            #clock-cells = <1>;
+> +
+> +            clocks = <&x1_x2>;
+> +            clock-names = "x1";
+> +
+> +            renesas,settings = [
+> +                80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
+> +                00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
+> +                80 b0 45 c4 95
+> +            ];
+> +
+> +            assigned-clocks = <&versa3 0>,
+> +                              <&versa3 1>,
+> +                              <&versa3 2>,
+> +                              <&versa3 3>,
+> +                              <&versa3 4>,
+> +                              <&versa3 5>;
+> +            assigned-clock-rates = <12288000>, <25000000>,
+> +                                   <12000000>, <11289600>,
+> +                                   <11289600>, <24000000>;
+> +            renesas,clock-divider-read-only = <1>, <1>, <1>, <1>, <1>;
+> +            renesas,clock-flags = <2176>, <2176>, <2176>, <2052>,
+> +                                  <2176>, <2048>;
+> +        };
+> +    };
+> +
+> +    /* Consumer referencing the versa 3 */
+> +    consumer {
+> +        /* ... */
+> +        clocks = <&versa3 3>;
+> +        /* ... */
+
+Drop consumer. Do you see it anywhere else?
+
+Best regards,
+Krzysztof
 
