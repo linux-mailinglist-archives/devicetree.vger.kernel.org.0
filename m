@@ -2,142 +2,561 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2BD69F966
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 17:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D0EF69F9A1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:08:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231567AbjBVQzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 11:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43836 "EHLO
+        id S232580AbjBVRId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 12:08:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbjBVQzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 11:55:23 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1432D12BCA;
-        Wed, 22 Feb 2023 08:55:18 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.133])
-        by gateway (Coremail) with SMTP id _____8CxC9r0SPZjf6YDAA--.7811S3;
-        Thu, 23 Feb 2023 00:55:16 +0800 (CST)
-Received: from openarena.loongson.cn (unknown [10.20.42.133])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxTL7ySPZjRes4AA--.38394S3;
-        Thu, 23 Feb 2023 00:55:15 +0800 (CST)
-From:   suijingfeng <suijingfeng@loongson.cn>
-To:     Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        suijingfeng <suijingfeng@loongson.cn>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/2] dt-bindings: display: Add Loongson display controller
-Date:   Thu, 23 Feb 2023 00:55:14 +0800
-Message-Id: <20230222165514.684729-2-suijingfeng@loongson.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230222165514.684729-1-suijingfeng@loongson.cn>
-References: <20230222165514.684729-1-suijingfeng@loongson.cn>
+        with ESMTP id S232575AbjBVRIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:08:32 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E221B31B
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:08:30 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id y14so1426170ljq.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:08:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uZb8L4QDDdkYPXU8SkBkrJ6UxbW+D93NO8jg40+5d7s=;
+        b=QRCaO1sUeso18Xtjg133IWSlskZ5TSvlznqwRk0juzcr4mFVM+rtaxODeJFoU8/Y/K
+         FTwbR4bvF7UubYsn3+UrMed39zW1sQstJg2uK8YCScnvNkcYXYBRJZBx9Hlh/UoVXMf7
+         B1gk6RrgosO8DZzo+mr4devZrMGcxoAtZCYqqmu3sD4Fbpx95AvQoxKjaTb4E7bcIwCF
+         kcUaLSu4AiMluEY4yQOaHymRmDZIXzTpimeFDSoZgIgnvKMOfRnMHyCmSEAkiabgZ2cJ
+         CSj9LOf3KumCfmX1ujkV/PqvjAuv/vWMBEg4gp0ZE3VOPcamRYsIysogXqHaH32K/zFR
+         5sig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uZb8L4QDDdkYPXU8SkBkrJ6UxbW+D93NO8jg40+5d7s=;
+        b=ZC0O68mXn/tQ2MtkwUEfwRg46gL97MIa3pT9Th3dpSPvnYSELfblNCdEWAmXaZKLXr
+         oP0+SQOHng81DVmhkG7BDc7SyBHzgYdnyL734F4IfP4+ctv0tMi0ZDAhgDo5DL8rUMMh
+         rmzqYfd01BgksY9RdtuxGtn+trMEoHPBBFJmpBgzWicE0+cQk+MCw3u1PiXY0gRFBGHB
+         pulDfZlw5RbRYEnMReS96s9dMwxYDJJhxFno+WhWbkBbetn9uYJzKw/HKonuzQTqbl2O
+         ngziAFmqp9KmEwoZPSU7wjjeKUIdBjSEWsGVr/7CEuu9iDVVDYvtAXmhrO94wQzlPgdS
+         9Xug==
+X-Gm-Message-State: AO0yUKWYZVYY7ejtkGT2JBSYMTFKNvmu+ueyJ2kTlgRAc6HpAIMR6NUL
+        K61LE77LhTLWvF4SRP6u2aTZlw==
+X-Google-Smtp-Source: AK7set8lPGUeg0zgDxPOykEW0LdHZj1RveJyxVsZxemxEUYbtbBzeRtOxtzUy8r4CyXnM0cf77TmNw==
+X-Received: by 2002:a2e:9c43:0:b0:28b:6f21:d929 with SMTP id t3-20020a2e9c43000000b0028b6f21d929mr2935765ljj.32.1677085708249;
+        Wed, 22 Feb 2023 09:08:28 -0800 (PST)
+Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
+        by smtp.gmail.com with ESMTPSA id h23-20020a2ea497000000b0029599744c02sm196635lji.75.2023.02.22.09.08.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 09:08:27 -0800 (PST)
+Message-ID: <56ed6a30-9815-002f-8174-95e7e9fc0954@linaro.org>
+Date:   Wed, 22 Feb 2023 18:08:25 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxTL7ySPZjRes4AA--.38394S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7tF48ur1DKF45Gw47XF4xWFg_yoW8uFW5pa
-        nxCan7Gr4jqFnFy3yfta48Wr45Zr95AFn7GFsrJw17K3srWayFvw15KF1kXF47GF9rZa4j
-        vFy0gF4xK3Z7Cw7anT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1ln4kS
-        14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
-        1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv
-        67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2
-        AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_
-        Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
-        CTnIWIevJa73UjIFyTuYvjxU4Xo7DUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 2/5] arm64: dts: qcom: Add msm8939 SoC
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
+        stephan@gerhold.net, Jun Nie <jun.nie@linaro.org>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+References: <20230222120411.55197-1-bryan.odonoghue@linaro.org>
+ <20230222120411.55197-3-bryan.odonoghue@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230222120411.55197-3-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add a trival DT usages for loongson display controller found
-in LS2k1000 SoC.
 
-Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
----
- .../loongson/loongson,display-controller.yaml | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
-new file mode 100644
-index 000000000000..98b78f449a80
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/loongson/loongson,display-controller.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson Display Controller Device Tree Bindings
-+
-+maintainers:
-+  - Sui Jingfeng <suijingfeng@loongson.cn>
-+
-+description: |+
-+
-+  The display controller is a PCI device, it has two display pipe.
-+  For the DC in LS2K1000 each way has a DVO output interface which
-+  provide RGB888 signals, vertical & horizontal synchronisations
-+  and the pixel clock. Each CRTC is able to support 1920x1080@60Hz,
-+  the maximum resolution is 2048x2048 according to the hardware spec.
-+
-+properties:
-+  $nodename:
-+    pattern: "^display-controller@[0-9a-f],[0-9a-f]$"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - loongson,ls2k1000-dc
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    bus {
-+
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        #interrupt-cells = <2>;
-+
-+        display-controller@6,0 {
-+            compatible = "loongson,ls2k1000-dc";
-+            reg = <0x3000 0x0 0x0 0x0 0x0>;
-+            interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
-+        };
-+    };
-+
-+...
--- 
-2.34.1
+On 22.02.2023 13:04, Bryan O'Donoghue wrote:
+> Add msm8939 a derivative SoC of msm8916. This SoC contains a number of key
+> differences to msm8916.
+> 
+> - big.LITTLE Octa Core - quad 1.5GHz + quad 1.0GHz
+> - DRAM 1x800 LPDDR3
+> - Camera 4+4 lane CSI
+> - Venus @ 1080p60 HEVC
+> - DSI x 2
+> - Adreno A405
+> - WiFi wcn3660/wcn3680b 802.11ac
+> 
+> Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> Co-developed-by: Jun Nie <jun.nie@linaro.org>
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> Co-developed-by: Benjamin Li <benl@squareup.com>
+> Signed-off-by: Benjamin Li <benl@squareup.com>
+> Co-developed-by: James Willcox <jwillcox@squareup.com>
+> Signed-off-by: James Willcox <jwillcox@squareup.com>
+> Co-developed-by: Leo Yan <leo.yan@linaro.org>
+> Signed-off-by: Leo Yan <leo.yan@linaro.org>
+> Co-developed-by: Joseph Gates <jgates@squareup.com>
+> Signed-off-by: Joseph Gates <jgates@squareup.com>
+> Co-developed-by: Max Chen <mchen@squareup.com>
+> Signed-off-by: Max Chen <mchen@squareup.com>
+> Co-developed-by: Zac Crosby <zac@squareup.com>
+> Signed-off-by: Zac Crosby <zac@squareup.com>
+> Co-developed-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+Couple of nits below
 
+>  arch/arm64/boot/dts/qcom/msm8939.dtsi | 2454 +++++++++++++++++++++++++
+>  1 file changed, 2454 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8939.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+[...]
+
+
+> +		mpss: remoteproc@4080000 {
+> +			compatible = "qcom,msm8916-mss-pil";
+> +			reg = <0x04080000 0x100>,
+> +			      <0x04020000 0x040>;
+I see veeery aggressive line wrapping in reg/compatible :P
+
+> +
+Unnecessary newline
+> +			reg-names = "qdsp6", "rmb";
+> +
+> +			interrupts-extended = <&intc GIC_SPI 24 IRQ_TYPE_EDGE_RISING>,
+> +					      <&hexagon_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&hexagon_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&hexagon_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&hexagon_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +					  "handover", "stop-ack";
+This should be a vertical list
+
+> +
+> +			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
+> +				 <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
+> +				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
+> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+> +			clock-names = "iface", "bus", "mem", "xo";
+This could also be one
+
+> +
+> +			power-domains = <&rpmpd MSM8939_VDDMDCX>,
+> +					<&rpmpd MSM8939_VDDMX>;
+> +			power-domain-names = "cx", "mx";
+> +
+> +			qcom,smem-states = <&hexagon_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			resets = <&scm 0>;
+> +			reset-names = "mss_restart";
+> +
+> +			qcom,halt-regs = <&tcsr 0x18000 0x19000 0x1a000>;
+> +
+> +			status = "disabled";
+> +
+> +			mba {
+> +				memory-region = <&mba_mem>;
+> +			};
+> +
+> +			mpss {
+> +				memory-region = <&mpss_mem>;
+> +			};
+> +
+> +			smd-edge {
+> +				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+> +
+> +				qcom,smd-edge = <0>;
+> +				mboxes = <&apcs1_mbox 12>;
+> +				qcom,remote-pid = <1>;
+> +
+> +				label = "hexagon";
+> +			};
+> +		};
+> +
+[...]
+
+> +
+> +		blsp1_uart1: serial@78af000 {
+> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+> +			reg = <0x078af000 0x200>;
+> +			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			dmas = <&blsp_dma 0>, <&blsp_dma 1>;
+> +			dma-names = "tx", "rx";
+> +			pinctrl-names = "default", "sleep";
+> +			pinctrl-0 = <&blsp1_uart1_default>;
+> +			pinctrl-1 = <&blsp1_uart1_sleep>;
+property
+property-names
+
+
+> +			status = "disabled";
+> +		};
+> +
+[...]
+
+> +		usb: usb@78d9000 {
+> +			compatible = "qcom,ci-hdrc";
+> +			reg = <0x078d9000 0x200>,
+> +			      <0x078d9200 0x200>;
+> +			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_USB_HS_AHB_CLK>,
+> +				 <&gcc GCC_USB_HS_SYSTEM_CLK>;
+> +			clock-names = "iface", "core";
+> +			assigned-clocks = <&gcc GCC_USB_HS_SYSTEM_CLK>;
+> +			assigned-clock-rates = <80000000>;
+> +			resets = <&gcc GCC_USB_HS_BCR>;
+> +			reset-names = "core";
+> +			#reset-cells = <1>;
+> +			phy_type = "ulpi";
+> +			dr_mode = "otg";
+> +			ahb-burst-config = <0>;
+> +			phy-names = "usb-phy";
+> +			phys = <&usb_hs_phy>;
+> +			status = "disabled";
+> +
+> +			ulpi {
+> +				usb_hs_phy: phy {
+> +					compatible = "qcom,usb-hs-phy-msm8916",
+> +						     "qcom,usb-hs-phy";
+> +					clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
+This could be wrapped
+
+> +					clock-names = "ref", "sleep";
+> +					resets = <&gcc GCC_USB2A_PHY_BCR>, <&usb 0>;
+> +					reset-names = "phy", "por";
+> +					#phy-cells = <0>;
+> +					qcom,init-seq = /bits/ 8 <0x0 0x44>,
+> +								 <0x1 0x6b>,
+> +								 <0x2 0x24>,
+> +								 <0x3 0x13>;
+> +				};
+> +			};
+> +		};
+[...]
+
+> +
+> +		pronto: remoteproc@a204000 {
+> +			compatible = "qcom,pronto-v2-pil", "qcom,pronto";
+> +			reg = <0x0a204000 0x2000>,
+> +			      <0x0a202000 0x1000>,
+> +			      <0x0a21b000 0x3000>;
+> +			reg-names = "ccu", "dxe", "pmu";
+> +
+> +			interrupts-extended = <&intc GIC_SPI 149 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wcnss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wcnss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wcnss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wcnss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready", "handover", "stop-ack";
+Long enough to be a vertical list
+
+
+Konrad
+> +
+> +			memory-region = <&wcnss_mem>;
+> +
+> +			power-domains = <&rpmpd MSM8939_VDDCX>,
+> +					<&rpmpd MSM8939_VDDMX>;
+> +			power-domain-names = "cx", "mx";
+> +
+> +			qcom,smem-states = <&wcnss_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&wcnss_pin_a>;
+> +
+> +			status = "disabled";
+> +
+> +			iris {
+> +				compatible = "qcom,wcn3620";
+> +				clocks = <&rpmcc RPM_SMD_RF_CLK2>;
+> +				clock-names = "xo";
+> +			};
+> +
+> +			smd-edge {
+> +				interrupts = <GIC_SPI 142 1>;
+> +				qcom,ipc = <&apcs1_mbox 8 17>;
+> +				qcom,smd-edge = <6>;
+> +				qcom,remote-pid = <4>;
+> +
+> +				label = "pronto";
+> +
+> +				wcnss {
+> +					compatible = "qcom,wcnss";
+> +					qcom,smd-channels = "WCNSS_CTRL";
+> +
+> +					qcom,mmio = <&pronto>;
+> +
+> +					bluetooth {
+> +						compatible = "qcom,wcnss-bt";
+> +					};
+> +
+> +					wifi {
+> +						compatible = "qcom,wcnss-wlan";
+> +
+> +						interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +							     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+> +						interrupt-names = "tx", "rx";
+> +
+> +						qcom,smem-states = <&apps_smsm 10>,
+> +								   <&apps_smsm 9>;
+> +						qcom,smem-state-names = "tx-enable",
+> +									"tx-rings-empty";
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	thermal_zones: thermal-zones {
+> +		cpu0-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 5>;
+> +
+> +			trips {
+> +				cpu0_alert: trip0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu0_crit: trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu0_alert>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu1-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 6>;
+> +
+> +			trips {
+> +				cpu1_alert: trip0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu1_crit: trip1 {
+> +					temperature = <110000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu1_alert>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu2-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 7>;
+> +
+> +			trips {
+> +				cpu2_alert: trip0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu2_crit: trip1 {
+> +					temperature = <110000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu2_alert>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu3-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 8>;
+> +
+> +			trips {
+> +				cpu3_alert: trip0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu3_crit: trip1 {
+> +					temperature = <110000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu3_alert>;
+> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu4567-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 9>;
+> +
+> +			trips {
+> +				cpu4567_alert: trip0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu4567_crit: trip1 {
+> +					temperature = <110000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu4567_alert>;
+> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		gpu-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 3>;
+> +
+> +			trips {
+> +				gpu_alert0: trip-point0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				gpu_crit: gpu_crit {
+> +					temperature = <95000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		modem1-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 0>;
+> +
+> +			trips {
+> +				modem1_alert0: trip-point0 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		modem2-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 2>;
+> +
+> +			trips {
+> +				modem2_alert0: trip-point0 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		camera-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsens 1>;
+> +
+> +			trips {
+> +				cam_alert0: trip-point0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +};
