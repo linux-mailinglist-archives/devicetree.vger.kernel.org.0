@@ -2,83 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7080269F6A9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 15:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1A569F6CE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 15:41:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbjBVOgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 09:36:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45508 "EHLO
+        id S230454AbjBVOlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 09:41:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231562AbjBVOgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 09:36:12 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9577EC4;
-        Wed, 22 Feb 2023 06:36:10 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A78EBFF803;
-        Wed, 22 Feb 2023 14:36:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1677076569;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Jfv631A7z7opi86ckRp4p4jIxNAotG1HsdzHjt+sXa0=;
-        b=QasKyJ/9HWrhNan4N8JLlknOpecbnWj+nt6fBNPApK30ZIOcDCgZsziUxRwMYxXxdxDzmg
-        69NfID8TEMzbz7AegduMWOhdC51U5QnM74BuiUS0GdCl9Sg9OrFSoPjoFx3i0wwDhHrSlJ
-        29oonPeJXfGBfE2YX9S1eOiwcaEoi2rIrkrzI3etp9PBl83SykGwk+FfcTfoSFJe552qlr
-        G1kCIKAwCwj1kZlFeKM1TAdT1pMi3r1qrqeBvmAJ9iDiJGRAIjJOYT2TyQhW8nFtqS4nyV
-        BbWNgR2jsEmgXLniZpS2Go/iKOi5VsKqNSr8cOTt7yxcPyfr2AQueM+vk82I7Q==
-Date:   Wed, 22 Feb 2023 15:36:07 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v2 0/2] pcf85363: support for quartz-load-femtofarads
-Message-ID: <167707630224.29068.14526797617173488842.b4-ty@bootlin.com>
-References: <20230215081815.3141776-1-javier.carrasco@wolfvision.net>
+        with ESMTP id S229887AbjBVOle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 09:41:34 -0500
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D8637B65;
+        Wed, 22 Feb 2023 06:41:32 -0800 (PST)
+Received: by mail-qt1-f169.google.com with SMTP id l12so7659642qtr.0;
+        Wed, 22 Feb 2023 06:41:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lyg7tFXKKjj8PrnUvFEvHIekvmZr7jdKTCzqqNpQ8t4=;
+        b=p5mExyw1yIvrgSC/dLz49+AS1jcItTLT6qadDsCFEZUfGMOobv2mcwbqKUYauz4vcS
+         wGDnMIEjiTmWlLEI+x86O1BIBhkxhr/kN7o6L6b572yXYag0xduTcPddHdNftfd8gv5z
+         8AGeeeGaypiqI5KUNmwgTYMgSJ0apPBAK+9E/t4azQNw58HS+ueFQdloYu0st1Yr1ilh
+         H0Y5htnWosot0uDYFxaIyRhNuAinKXHFm9txzXirITYhkrO5QzKE+INzzB+VcuwTUqDu
+         7G0Go1MQVpABsx+5W2ncKmqD8SuMuwuJcGpWecq7t13gPkhWvjK5XbDJtl54xYopEhoJ
+         Rfug==
+X-Gm-Message-State: AO0yUKXFuQM1GWxT98iRMow0Q7+M9N09zcwkb9noJBYs7e5sGkElndOE
+        QJWBDtJBTKMatGNQh4ZAqZz0DGY/TieOCw==
+X-Google-Smtp-Source: AK7set/soV7qmOCZlWD7VTPeXURUe0DStM3tQPUpr6Y85feozQtnp+dRa4RN5p2FX6apfnQq9pjiyg==
+X-Received: by 2002:a05:622a:198d:b0:3ba:1c07:e472 with SMTP id u13-20020a05622a198d00b003ba1c07e472mr2496249qtc.51.1677076891323;
+        Wed, 22 Feb 2023 06:41:31 -0800 (PST)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id d17-20020ac800d1000000b003bd0719cf20sm1889863qtg.39.2023.02.22.06.41.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 06:41:30 -0800 (PST)
+Received: by mail-yb1-f176.google.com with SMTP id z95so8563256ybh.0;
+        Wed, 22 Feb 2023 06:41:30 -0800 (PST)
+X-Received: by 2002:a25:fb0e:0:b0:890:ac61:3ed9 with SMTP id
+ j14-20020a25fb0e000000b00890ac613ed9mr850231ybe.540.1677076890300; Wed, 22
+ Feb 2023 06:41:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230215081815.3141776-1-javier.carrasco@wolfvision.net>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230104013436.203427-1-neal_liu@aspeedtech.com> <20230104013436.203427-2-neal_liu@aspeedtech.com>
+In-Reply-To: <20230104013436.203427-2-neal_liu@aspeedtech.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 22 Feb 2023 15:41:18 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVS_JF0+5CyNM6ivxqRLKkMte9=Xw5E-fc-OTHibwc5vw@mail.gmail.com>
+Message-ID: <CAMuHMdVS_JF0+5CyNM6ivxqRLKkMte9=Xw5E-fc-OTHibwc5vw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] crypto: aspeed: Add ACRY RSA driver
+To:     Neal Liu <neal_liu@aspeedtech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chia-Wei Wang <chiawei_wang@aspeedtech.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Neal,
 
-On Wed, 15 Feb 2023 09:18:13 +0100, Javier Carrasco wrote:
-> These patches add support for the quartz-load-femtofarads property in
-> the pcf85363 device driver and new bindings for the pcf85263 and
-> pcf85363 Real Time Clocks.
-> 
-> The driver has been tested with a PCF85263ATT RTC and a CTS3-32.768-12.5-20
-> oscillator that needs a 12.5 pF load capacitor. With no property
-> support the 7 pF default value leads to at least 2 Hz output frequency
-> deviations, while setting the right value the deviation decreased to
-> 0.15 Hz. These measurements were made with a high precision oscilloscope
-> (SIGLENT SDS5104X).
-> 
-> [...]
+On Wed, Jan 4, 2023 at 2:37 AM Neal Liu <neal_liu@aspeedtech.com> wrote:
+> ACRY Engine is designed to accelerate the throughput of
+> ECDSA/RSA signature and verification.
+>
+> This patch aims to add ACRY RSA engine driver for hardware
+> acceleration.
+>
+> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
 
-Applied, thanks!
+Thanks for your patch, which is now commit 2f1cf4e50c956f88 ("crypto:
+aspeed - Add ACRY RSA driver").
 
-[1/2] dt-bindings: rtc: nxp,pcf8563: move pcf85263/pcf85363 to a dedicated binding
-      commit: 1b2f85a8bac67b9909f2ee4be1bc11548a7aeaf3
-[2/2] rtc: pcf85363: add support for the quartz-load-femtofarads property
-      commit: fd9a6a13949af81062f4cd04f2c1b28ca5311e71
+> --- /dev/null
+> +++ b/drivers/crypto/aspeed/aspeed-acry.c
 
-Best regards,
+> +static int aspeed_acry_probe(struct platform_device *pdev)
+> +{
+> +       struct aspeed_acry_dev *acry_dev;
+> +       struct device *dev = &pdev->dev;
+> +       struct resource *res;
+> +       int rc;
+> +
+> +       acry_dev = devm_kzalloc(dev, sizeof(struct aspeed_acry_dev),
+> +                               GFP_KERNEL);
+> +       if (!acry_dev)
+> +               return -ENOMEM;
+> +
+> +       acry_dev->dev = dev;
+> +
+> +       platform_set_drvdata(pdev, acry_dev);
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       acry_dev->regs = devm_ioremap_resource(dev, res);
+> +       if (IS_ERR(acry_dev->regs))
+> +               return PTR_ERR(acry_dev->regs);
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +       acry_dev->acry_sram = devm_ioremap_resource(dev, res);
+> +       if (IS_ERR(acry_dev->acry_sram))
+> +               return PTR_ERR(acry_dev->acry_sram);
+> +
+> +       /* Get irq number and register it */
+> +       acry_dev->irq = platform_get_irq(pdev, 0);
+> +       if (acry_dev->irq < 0)
+> +               return -ENXIO;
+> +
+> +       rc = devm_request_irq(dev, acry_dev->irq, aspeed_acry_irq, 0,
+> +                             dev_name(dev), acry_dev);
+> +       if (rc) {
+> +               dev_err(dev, "Failed to request irq.\n");
+> +               return rc;
+> +       }
+> +
+> +       acry_dev->clk = devm_clk_get_enabled(dev, NULL);
+> +       if (IS_ERR(acry_dev->clk)) {
+> +               dev_err(dev, "Failed to get acry clk\n");
+> +               return PTR_ERR(acry_dev->clk);
+> +       }
+> +
+> +       acry_dev->ahbc = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +                                                        "aspeed,ahbc");
+> +       if (IS_ERR(acry_dev->ahbc)) {
+> +               dev_err(dev, "Failed to get AHBC regmap\n");
+> +               return -ENODEV;
+> +       }
+> +
+> +       /* Initialize crypto hardware engine structure for RSA */
+> +       acry_dev->crypt_engine_rsa = crypto_engine_alloc_init(dev, true);
+> +       if (!acry_dev->crypt_engine_rsa) {
+> +               rc = -ENOMEM;
+> +               goto clk_exit;
+> +       }
+> +
+> +       rc = crypto_engine_start(acry_dev->crypt_engine_rsa);
+> +       if (rc)
+> +               goto err_engine_rsa_start;
+> +
+> +       tasklet_init(&acry_dev->done_task, aspeed_acry_done_task,
+> +                    (unsigned long)acry_dev);
+> +
+> +       /* Set Data Memory to AHB(CPU) Access Mode */
+> +       ast_acry_write(acry_dev, ACRY_CMD_DMEM_AHB, ASPEED_ACRY_DMA_CMD);
+> +
+> +       /* Initialize ACRY SRAM index */
+> +       aspeed_acry_sram_mapping(acry_dev);
+> +
+> +       acry_dev->buf_addr = dmam_alloc_coherent(dev, ASPEED_ACRY_BUFF_SIZE,
+> +                                                &acry_dev->buf_dma_addr,
+> +                                                GFP_KERNEL);
+> +       memzero_explicit(acry_dev->buf_addr, ASPEED_ACRY_BUFF_SIZE);
+
+When compile-testing with CONFIG_HAS_DMA=n:
+
+    error: argument 1 null where non-null expected [-Werror=nonnull]
+
+The call to dmam_alloc_coherent() lacks error handling, as the returned
+address may be NULL.
+
+Moreover, is it safe to allocate this buffer only after the call to
+crypto_engine_start()? I.e. could acry_dev->buf_addr be accessed
+before, causing a NULL pointer dereference?
+Is there any other initialization that should be done earlier?
+
+> +
+> +       aspeed_acry_register(acry_dev);
+> +
+> +       dev_info(dev, "Aspeed ACRY Accelerator successfully registered\n");
+> +
+> +       return 0;
+> +
+> +err_engine_rsa_start:
+> +       crypto_engine_exit(acry_dev->crypt_engine_rsa);
+> +clk_exit:
+> +       clk_disable_unprepare(acry_dev->clk);
+> +
+> +       return rc;
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
