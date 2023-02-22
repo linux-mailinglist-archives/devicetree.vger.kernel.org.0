@@ -2,140 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC43769F93E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 17:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FBCC69F967
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 17:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231660AbjBVQpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 11:45:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35240 "EHLO
+        id S232408AbjBVQz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 11:55:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231562AbjBVQpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 11:45:49 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8451C3B67C
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 08:45:47 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id bp25so10992454lfb.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 08:45:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xf8IY83kNm9ZLdtrAMlzH0BWdysIJ0EtE4QkPWoDYMs=;
-        b=iR9IHWtk+Ko+B/NToRrxElbe2NzAzxbQd3SlLe4qK4hFAoa91S/pZ0irPFW0tY0cQ1
-         NqT1a8fELf4fKaC2XwpZN6Urq8yodxAkRfDE5e4hQa3tyP74cM6tOGqICfP0k491XO6E
-         YeTUzilnoBUE2kPANVC0WyKX6hAwFNor1PGHNxn/J9SKveFZRj/TOwKlqo2JsLEbqTRG
-         DWSwP8JBxhSm2yxzzerqHLVlMLvVpV7VymvkiY4Gg2spZd5CMGRqyL76OCQxBVJw5I1M
-         p94XNvZ6FkuYBAs+xuGfy6piCQwPcuqnwJVVO+CM2ibczsv0j4hQ8WQdI0gtiOkCww42
-         2RNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xf8IY83kNm9ZLdtrAMlzH0BWdysIJ0EtE4QkPWoDYMs=;
-        b=r41XvqhrdngQX+Lrk2YhzHY7zvLD4sPALmkvnTwPLbzUUNLU/X2gM502wodNhItzBB
-         CS1zd1Jmqo+D/0CXuFIxvgEwqe3tYqgkfAlwY3BZOYw/GXN6ZumOqeTVhOydZzxmk/h+
-         uUJ1J6oBU/S6P4NtPIFiFVov+iOm74AiBEV1ls5jspGTzwm5VMpOkPrHiCIKRNBPxZ8P
-         68LCqlHLPhTKIQ9VcBls2I406lkwIuan6Nb1zX3qd+KX10gQLML29M/rP6ZtKm7nJdUK
-         tQk7hYeUJvjxZgjfYDdsHNW6rkdNvbCy+uR9nU3sleiUFt5cOByfdD/l85KwMqveRCWb
-         Rnkg==
-X-Gm-Message-State: AO0yUKVWzqwIDtTVXmGEKIbWtGZkogvp4xwYHDruXtmomUvRjUkwrfbG
-        GRjJTv0WvPsGnaE7Do0gDV/YGw==
-X-Google-Smtp-Source: AK7set9t/nSuuaKdA16dsR+NcfmJqnzDAcj0o9WtZkAkWK3/yNkQ5lBR2aCr8By5catJHiIdFRk8wg==
-X-Received: by 2002:ac2:5582:0:b0:4db:2978:e32c with SMTP id v2-20020ac25582000000b004db2978e32cmr3141176lfg.11.1677084345809;
-        Wed, 22 Feb 2023 08:45:45 -0800 (PST)
-Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id w7-20020ac24427000000b004db3e03e201sm1013276lfl.6.2023.02.22.08.45.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 08:45:45 -0800 (PST)
-Message-ID: <69259bca-5618-7590-07b0-494041d83823@linaro.org>
-Date:   Wed, 22 Feb 2023 17:45:43 +0100
+        with ESMTP id S232410AbjBVQzX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 11:55:23 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 14B7634016;
+        Wed, 22 Feb 2023 08:55:18 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.133])
+        by gateway (Coremail) with SMTP id _____8CxC9r0SPZjeKYDAA--.7809S3;
+        Thu, 23 Feb 2023 00:55:16 +0800 (CST)
+Received: from openarena.loongson.cn (unknown [10.20.42.133])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxTL7ySPZjRes4AA--.38394S2;
+        Thu, 23 Feb 2023 00:55:14 +0800 (CST)
+From:   suijingfeng <suijingfeng@loongson.cn>
+To:     Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller device node
+Date:   Thu, 23 Feb 2023 00:55:13 +0800
+Message-Id: <20230222165514.684729-1-suijingfeng@loongson.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 06/11] ARM: dts: qcom: sdx55: Rename pcie0_{phy/lane} to
- pcie_{phy/lane}
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org, lpieralisi@kernel.org, robh@kernel.org,
-        kw@linux.com, krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org
-Cc:     bhelgaas@google.com, kishon@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230222153251.254492-1-manivannan.sadhasivam@linaro.org>
- <20230222153251.254492-7-manivannan.sadhasivam@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230222153251.254492-7-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxTL7ySPZjRes4AA--.38394S2
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7ZrW5Kw47Gr1UWrykKryxGrg_yoW8GF4Up3
+        WDAay7Kr4rWF1Iqws5JFy8Jr4fZF95AF97GrsFyr1UWwn2v3Wqvr4fJF1ftF4aqrWUJa4j
+        vF18GrWxKF1xCw7anT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1ln4kS
+        14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+        1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E87Iv
+        67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2
+        AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
+        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
+        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_
+        Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
+        WUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBI
+        daVFxhVjvjDU0xZFpf9x07j5o7tUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The display controller is a pci device, it's pci vendor id is
+0x0014, it's pci device id is 0x7a06.
 
+Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+---
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-On 22.02.2023 16:32, Manivannan Sadhasivam wrote:
-> There is only one PCIe PHY in this SoC, so there is no need to add an
-> index to the suffix. This also matches the naming convention of the PCIe
-> controller.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+index 8143a61111e3..a528af3977d9 100644
+--- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
++++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+@@ -31,6 +31,18 @@ memory@200000 {
+ 			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		display_reserved: framebuffer@30000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
++			linux,cma-default;
++		};
++	};
++
+ 	cpu_clk: cpu_clk {
+ 		#clock-cells = <0>;
+ 		compatible = "fixed-clock";
+@@ -198,6 +210,15 @@ sata@8,0 {
+ 				interrupt-parent = <&liointc0>;
+ 			};
+ 
++			display-controller@6,0 {
++				compatible = "loongson,ls2k1000-dc";
++
++				reg = <0x3000 0x0 0x0 0x0 0x0>;
++				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
++				interrupt-parent = <&liointc0>;
++				memory-region = <&display_reserved>;
++			};
++
+ 			pci_bridge@9,0 {
+ 				compatible = "pci0014,7a19.0",
+ 						   "pci0014,7a19",
+-- 
+2.34.1
 
-Konrad
->  arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts | 2 +-
->  arch/arm/boot/dts/qcom-sdx55.dtsi                | 6 +++---
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-> index ac8b4626ae9a..b7ee0237608f 100644
-> --- a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-> +++ b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-> @@ -242,7 +242,7 @@ &ipa {
->  	memory-region = <&ipa_fw_mem>;
->  };
->  
-> -&pcie0_phy {
-> +&pcie_phy {
->  	status = "okay";
->  
->  	vdda-phy-supply = <&vreg_l1e_bb_1p2>;
-> diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> index e84ca795cae6..a1f4a7b0904a 100644
-> --- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> @@ -334,7 +334,7 @@ pcie_ep: pcie-ep@1c00000 {
->  			resets = <&gcc GCC_PCIE_BCR>;
->  			reset-names = "core";
->  			power-domains = <&gcc PCIE_GDSC>;
-> -			phys = <&pcie0_lane>;
-> +			phys = <&pcie_lane>;
->  			phy-names = "pciephy";
->  			max-link-speed = <3>;
->  			num-lanes = <2>;
-> @@ -342,7 +342,7 @@ pcie_ep: pcie-ep@1c00000 {
->  			status = "disabled";
->  		};
->  
-> -		pcie0_phy: phy@1c07000 {
-> +		pcie_phy: phy@1c07000 {
->  			compatible = "qcom,sdx55-qmp-pcie-phy";
->  			reg = <0x01c07000 0x1c4>;
->  			#address-cells = <1>;
-> @@ -362,7 +362,7 @@ pcie0_phy: phy@1c07000 {
->  
->  			status = "disabled";
->  
-> -			pcie0_lane: lanes@1c06000 {
-> +			pcie_lane: lanes@1c06000 {
->  				reg = <0x01c06000 0x104>, /* tx0 */
->  				      <0x01c06200 0x328>, /* rx0 */
->  				      <0x01c07200 0x1e8>, /* pcs */
