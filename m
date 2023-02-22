@@ -2,231 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8237E69F14F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBD369F1DF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbjBVJYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 04:24:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
+        id S230086AbjBVJgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 04:36:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjBVJYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:24:22 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B55637F11
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:24:08 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id o14so5499993wms.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 01:24:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sTaaRe/E/+knc/ZOJd8lQkzuYDsta684+WarNPI7Vrs=;
-        b=tk718+tUffNlmJA0hYjuR0RbAd9tJ/gmKYFf5y0xhF6qxgnHnsYrblsIDdLOctdan+
-         N4nWveueUkEOzX3d7nvUd30EsbWzg99D3D8LjwO5E0WB3MJ+8Lnej84Rhz+V6qqRWVHO
-         frlVGBvCvuivRQwXZtFwe8ao0XQVMvdxC1qdjnS9raLLNZ6laIXX/bEw8+uQeEDu3Omh
-         fGyggUtmJWQzQcMWOCQaOcsm2VbUU+DLrFLqamjFhDsO3TN9h74CeOIu0ZOtYYCk2K3H
-         Q3Qjg4O7Ypound17GjbMFzozim3JiVurs6nzRSvaT3ORjc6N7fFighZi9lApoWJniBD4
-         ITmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sTaaRe/E/+knc/ZOJd8lQkzuYDsta684+WarNPI7Vrs=;
-        b=sUzVdPxIiEIoDMlWjWdZjDr1kpDQtWBn1Nix/02WIwwsDQgoagn1TylkHDM/+XaBKB
-         VTOHKpIGIUfKigu0nf+G3wayFM7V+AvnJym6aUXt/LXjYN+Y6Nn2/HhlOmvLDPE1umoa
-         Nr4SWg3+9s06AAClslwcfWrFA7lBGvLC8xYkPW5UWdw3jXJmWVW3xGQSX5ftflsp2UGj
-         67ngAwvZ2iVzfHrmT27G65bSPXusqlzFc9AQiu2Pkxix40FYFpe9bynJ/YRa5tSDMJwB
-         xFiwdayDA4cPwlla+GbBd6Q17FVbJtp62G4VNLvMypkAwr5LfC+xAbuYv2xafGBmXlmU
-         f0pQ==
-X-Gm-Message-State: AO0yUKUywULGT2QFnQLcmYaH3tqrmLReHCRbympMp0jh2i1Mqph4P+t8
-        7rXaxS+iqDGdzz1jPNeVlAnW2g==
-X-Google-Smtp-Source: AK7set/e6MoaKe5anwN9nUyHZ3KwQMSrSgfz4cJRifcgmweVwSqwvoChZcu/UyVV+zWrcDok+BN9tw==
-X-Received: by 2002:a05:600c:907:b0:3e2:636:24ac with SMTP id m7-20020a05600c090700b003e2063624acmr4898836wmp.14.1677057846858;
-        Wed, 22 Feb 2023 01:24:06 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bd9-20020a05600c1f0900b003e1202744f2sm15978800wmb.31.2023.02.22.01.24.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 01:24:06 -0800 (PST)
-Message-ID: <4ce186aa-2cf3-a36c-a5c5-923029b12a29@linaro.org>
-Date:   Wed, 22 Feb 2023 10:24:05 +0100
+        with ESMTP id S231474AbjBVJgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:36:19 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859A32C647;
+        Wed, 22 Feb 2023 01:34:06 -0800 (PST)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8944C66021B8;
+        Wed, 22 Feb 2023 09:32:51 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677058371;
+        bh=Ku18ycB9XTTA4rTLVx3riq+NXKwahcrPj/ekIBMCZI4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PVzlRLwRnJzkGqqLf2KD0nsVgOfRNGV+hCyuSu/7N85X4ZY1BFZzmlgyQPrpOp84R
+         LiILtcq2/+r1SRgWXqNLedEToNSRzRqZWd4wupunqcN1N1ShWBjgHTEYwvtIp3BmB/
+         p973GhLt2j1ClkSMNS+ywuBmf8rUc9g33Sxo+3MJSgWE/dpojbAkQIxZo5WDjIOs0h
+         rJlAND0Ff77egRKxW3zpYb4Zvtcpbfbb1l0B0XMyAe3xNnfSnu7FsYwrQF8qo9mHIu
+         v3ppBIEgz9JbZZFMC/Ln0rKVafF8F6y1ix/SsJHY+hCisuE/iC0GqEnr23MVsbeH6p
+         HwPud9o1wxzmA==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
+Subject: [PATCH v6 0/4] Add CS35L41 shared boost feature
+Date:   Wed, 22 Feb 2023 09:32:40 +0000
+Message-Id: <20230222093244.938156-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2] dt-bindings: fpga: xilinx-pr-decoupler: convert
- bindings to json-schema
-Content-Language: en-US
-To:     Nava kishore Manne <nava.kishore.manne@amd.com>, mdf@kernel.org,
-        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230221115012.3468798-1-nava.kishore.manne@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230221115012.3468798-1-nava.kishore.manne@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 12:50, Nava kishore Manne wrote:
-> Convert xilinx-pr-decoupler bindings to DT schema format using json-schema
-> 
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> ---
-> Changes for v2:
->               - Updated the description and addressed some minor comments
->                 as suggested by Krzysztof.
-> 
->  .../bindings/fpga/xilinx-pr-decoupler.txt     | 54 --------------
->  .../bindings/fpga/xlnx,pr-decoupler.yaml      | 71 +++++++++++++++++++
->  2 files changed, 71 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
->  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt b/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> deleted file mode 100644
-> index 0acdfa6d62a4..000000000000
-> --- a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> +++ /dev/null
-> @@ -1,54 +0,0 @@
-> -Xilinx LogiCORE Partial Reconfig Decoupler Softcore
-> -
-> -The Xilinx LogiCORE Partial Reconfig Decoupler manages one or more
-> -decouplers / fpga bridges.
-> -The controller can decouple/disable the bridges which prevents signal
-> -changes from passing through the bridge.  The controller can also
-> -couple / enable the bridges which allows traffic to pass through the
-> -bridge normally.
-> -
-> -Xilinx LogiCORE Dynamic Function eXchange(DFX) AXI shutdown manager
-> -Softcore is compatible with the Xilinx LogiCORE pr-decoupler.
-> -
-> -The Dynamic Function eXchange AXI shutdown manager prevents AXI traffic
-> -from passing through the bridge. The controller safely handles AXI4MM
-> -and AXI4-Lite interfaces on a Reconfigurable Partition when it is
-> -undergoing dynamic reconfiguration, preventing the system deadlock
-> -that can occur if AXI transactions are interrupted by DFX
-> -
-> -The Driver supports only MMIO handling. A PR region can have multiple
-> -PR Decouplers which can be handled independently or chained via decouple/
-> -decouple_status signals.
-> -
-> -Required properties:
-> -- compatible		: Should contain "xlnx,pr-decoupler-1.00" followed by
-> -                          "xlnx,pr-decoupler" or
-> -                          "xlnx,dfx-axi-shutdown-manager-1.00" followed by
-> -                          "xlnx,dfx-axi-shutdown-manager"
-> -- regs			: base address and size for decoupler module
-> -- clocks		: input clock to IP
-> -- clock-names		: should contain "aclk"
-> -
-> -See Documentation/devicetree/bindings/fpga/fpga-region.txt and
-> -Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
-> -
-> -Example:
-> -Partial Reconfig Decoupler:
-> -	fpga-bridge@100000450 {
-> -		compatible = "xlnx,pr-decoupler-1.00",
-> -			     "xlnx-pr-decoupler";
-> -		regs = <0x10000045 0x10>;
-> -		clocks = <&clkc 15>;
-> -		clock-names = "aclk";
-> -		bridge-enable = <0>;
-> -	};
-> -
-> -Dynamic Function eXchange AXI shutdown manager:
-> -	fpga-bridge@100000450 {
-> -		compatible = "xlnx,dfx-axi-shutdown-manager-1.00",
-> -			     "xlnx,dfx-axi-shutdown-manager";
-> -		regs = <0x10000045 0x10>;
-> -		clocks = <&clkc 15>;
-> -		clock-names = "aclk";
-> -		bridge-enable = <0>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml b/Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml
-> new file mode 100644
-> index 000000000000..4a08d4bfa20d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fpga/xlnx,pr-decoupler.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fpga/xlnx,pr-decoupler.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx LogiCORE Partial Reconfig Decoupler/AXI shutdown manager Softcore
-> +
-> +maintainers:
-> +  - Nava kishore Manne <nava.kishore.manne@amd.com>
-> +
-> +description: The Xilinx LogiCORE Partial Reconfig Decoupler manages one or more
+Valve's Steam Deck uses CS35L41 in shared boost mode, where both speakers
+share the boost circuit.
+Add this support in the shared lib, but for now, shared boost is not
+supported in HDA systems as would require BIOS changes.
 
-Blank line before text... don't use your own style. Use style consistent
-with the project.
+Based on David Rhodes shared boost patches.
 
-> +  decouplers / fpga bridges. The controller can decouple/disable the bridges
-> +  which prevents signal changes from passing through the bridge.  The controller
-> +  can also couple / enable the bridges which allows traffic to pass through the
-> +  bridge normally.
-> +  Xilinx LogiCORE Dynamic Function eXchange(DFX) AXI shutdown manager Softcore
-> +  is compatible with the Xilinx LogiCORE pr-decoupler. The Dynamic Function
-> +  eXchange AXI shutdown manager prevents AXI traffic from passing through the
-> +  bridge. The controller safely handles AXI4MM and AXI4-Lite interfaces on a
-> +  Reconfigurable Partition when it is undergoing dynamic reconfiguration,
-> +  preventing the system deadlock that can occur if AXI transactions are
-> +  interrupted by DFX.
-> +  Please refer to fpga-region.txt and fpga-bridge.txt in this directory for
-> +  common binding part and usage.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: xlnx,pr-decoupler-1.00 #For PR-Decoupler.
+Also, fix boost config overwriting in IRQ found in the review and do a
+small refactor of the code.
 
-Drop the comment, it duplicates the compatible. There is no point in it.
+Changes from V5:
+ - Improved documentation from Cirrrus
+ - All amps use MDSCYN for boost source
+ - Active amp has TX and RX enabled
 
-> +          - const: xlnx,pr-decoupler
-> +      - items:
-> +          - const: xlnx,dfx-axi-shutdown-manager-1.00 #For AXI shutdown manager.
+Changes from V4:
+ - Fix Document subject
 
-Ditto
+Changes from V3:
+ - Fix wrong code sent
+ - Fix ISO C90 mixed declarations and code 
 
-> +          - const: xlnx,dfx-axi-shutdown-manager
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +
-> +  bridge-enable:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    description:
-> +      Zero if driver should disable bridge at startup. One if driver should
-> +      enable bridge at startup. Default is to leave bridge in current state.
+Changes from V2:
+ - Drop External boost without VSPK Documentation
+ - Move Shared boost to use values 2 and 3
+ - Revert back to reg_sequence but reading the value first and only update
+the necessary bits
+ - Fix bug found by Intel kernel Test Robot
 
-This property wasn't in original binding. Even though it is
-fpga-bridge.txt, why do you need it? It's not used. Also, do not
-describe driver but rather hardware.
+Changes from V1:
+ - Fix Documentation patch subject
+ - New patch for External boost without VSPK Documentation
+ - New patch to fix boost IRQ overwriting issue
+ - New patch to refactor IRQ release error code
+ - reinit_completion on pcm_startup
+ - fix DRE switch overwriting
+ - return IRQ_HANDLED in PLL_LOCK case
 
+Lucas Tanure (4):
+  ASoC: cs35l41: Only disable internal boost
+  ASoC: cs35l41: Refactor error release code
+  ALSA: cs35l41: Add shared boost feature
+  ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
 
-Best regards,
-Krzysztof
+ .../bindings/sound/cirrus,cs35l41.yaml        |  10 +-
+ include/sound/cs35l41.h                       |  13 +-
+ sound/pci/hda/cs35l41_hda.c                   |   6 +-
+ sound/soc/codecs/cs35l41-lib.c                |  73 +++++++++-
+ sound/soc/codecs/cs35l41.c                    | 125 +++++++++---------
+ sound/soc/codecs/cs35l41.h                    |   1 +
+ 6 files changed, 157 insertions(+), 71 deletions(-)
+
+-- 
+2.39.2
 
