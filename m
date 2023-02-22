@@ -2,103 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD64D69EDBE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 05:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EB0269EDCF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 05:11:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjBVEDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 23:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48598 "EHLO
+        id S229641AbjBVELd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 23:11:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjBVEDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 23:03:21 -0500
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCC4B758
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 20:03:20 -0800 (PST)
-Received: by mail-pg1-x529.google.com with SMTP id s18so3396162pgq.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 20:03:20 -0800 (PST)
+        with ESMTP id S229674AbjBVELc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 23:11:32 -0500
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2398F34C36
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 20:11:30 -0800 (PST)
+Received: by mail-ua1-x930.google.com with SMTP id g11so2041318uae.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 20:11:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QuI/VvwDNYNNazJWSsosiKrPGXGOzC0MjV/AUA+0Y18=;
-        b=nCQyd6hFnx68A0tFIWYPEgBjsOibWoTXo/smz+3gYmBRuFPBPE4pSywkfCdKUgkvpA
-         2hEWf1fS6sHfJJXEu8DWcYvgIJnpq7iCy2lvMkzx+HoVbnLXGhDO3iOZBooeJGtaR0Pd
-         PIZdAXgjwX/QLrf6b4kb2lhJNJ1j/mPGS3Ik1K0eu/3Wy4urzl1+NUghMtTwh0O3P7VO
-         XwlRUrcPNrxw9hmttzjw+mE8ECx7oXM2WAMltKMJ6Ph5wzLKVBrlFjqFfJs7uN86eaQv
-         wJJXhF1XzUfKegtHqxyQWMa88wL+GMAeFpaouHVUjOmGIQMWTqRQH3o2TN5f/VRX0YMW
-         7WDA==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SVCtOFAQeCdlxuy/+5enfIE1//lIAo1ZANgQnvIFVR8=;
+        b=Uk4/+eknl4RG+uywnGzIfuqQmgRvVQ+nJ72nRpvWVpw8DycQ7PGaOKHAAhTCWQrWIk
+         PwjsgquqnSsQUM8hoP5yXC0oMtEi8Mo1blXigVQ4Zv+xKW9wHEQKmG/yKjz/N1uIkg5+
+         S4V5VONmU8s2dmp/j6W48Hkq+OGx+t5gqRJSA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QuI/VvwDNYNNazJWSsosiKrPGXGOzC0MjV/AUA+0Y18=;
-        b=vU1s671oog9M94V/Qn7mMGfz9QQLZ3TMCJx10fynSH7mGbRlx+ky1+cFIC5xiFWf0f
-         BIuPrypPzpq9F4akYV+MdGYoE8Dzwo181RZ1sUiIU0z4gqb8smITuvNh9byLHXdJxrDE
-         gfsu+vLGuIjFGqZmpFaSY8qCffRB62dskrwW/L/wbyUzZKtjvyXmO7cVWL3QDUrHC+OO
-         wwgcieuCqwqhx/ojIaEAOhP/FtpqDw8lt4NmaN0O3vlSUj0ADMKfCEZBNqSxpznkFTgU
-         8zAe5ywQ4I9InvGeDSbLxDLvwmSlGTUaPXRlRyqeFmsczD5wmZ7PxlQawSoUnGw/QTiw
-         uujw==
-X-Gm-Message-State: AO0yUKWKmUDihbrex7iA+Ec0hJ1VyWNMMGsBThHw90jSjuV8fXuKrljH
-        KHnwk4gksY5t/UpZ8st5bC67WQ==
-X-Google-Smtp-Source: AK7set+j5AzguT+wPMqJTKHp23ybKVMqcUGOXK1UT3NyydZuoWzKn02WTplOAHKPGXm8wetjgNETZA==
-X-Received: by 2002:aa7:96d0:0:b0:5a8:515a:eba4 with SMTP id h16-20020aa796d0000000b005a8515aeba4mr6768719pfq.10.1677038600006;
-        Tue, 21 Feb 2023 20:03:20 -0800 (PST)
-Received: from localhost ([122.172.83.155])
-        by smtp.gmail.com with ESMTPSA id h5-20020a62b405000000b005ae8e94b0d5sm6764079pfn.107.2023.02.21.20.03.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 20:03:19 -0800 (PST)
-Date:   Wed, 22 Feb 2023 09:33:17 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
-        dmitry.osipenko@collabora.com, rafael@kernel.org,
-        jonathanh@nvidia.com, robh+dt@kernel.org, lpieralisi@kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
-        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v2 7/9] cpufreq: tegra194: add OPP support and set
- bandwidth
-Message-ID: <20230222040317.r2p6zlbumazymluc@vireshk-i7>
-References: <20230220140559.28289-1-sumitg@nvidia.com>
- <20230220140559.28289-8-sumitg@nvidia.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SVCtOFAQeCdlxuy/+5enfIE1//lIAo1ZANgQnvIFVR8=;
+        b=LaksubN8PDXpKiNi00M/qNLXWoVUta0oYOCIyjY5nHn5qzXGwg7fPgfx3xBPacekMo
+         e4w70uu03vf86z16Gokdpl2IDw7kPmeBj47k+RpQOqn2yky5vRDGBlOe0onus5fjl3Co
+         BoQPu6kZkF8OHp7sADN9sc3odH1Miph6aYguKG2zuP62xzpqsv3bA2mRZUabqUtCHLzS
+         ZHJgxVci6Dyoq3V5FLqD+Gzv0ETsRXhrwk8+mVO9yeM3+wkFq8lW4k6xXuHOhubuTHMy
+         fPwyYFW56Eh4u4Xh0lD2dL1jLoQOl78p+zBnlCXGvn43h5ClNPDHWCrKttVna2MhvsrT
+         EFlA==
+X-Gm-Message-State: AO0yUKWiuOw22i9naScdhcdkYh9wwN8ADhUPO/gMBbFsfpAqWCUIrkTO
+        7V0I/EaDSvAcYExu6kUpCSdoeVC0Fd8UHqQBUcmvvv4p9aDpfWwq
+X-Google-Smtp-Source: AK7set/nftjCq1OYuGKOwe46GNxAufRZH/wve/epWZydqSAOCAqd5GxdqmmuSkjxHSKOqAw+INE+gEreuCXBaRsdDs0=
+X-Received: by 2002:a1f:208d:0:b0:3e8:66ce:a639 with SMTP id
+ g135-20020a1f208d000000b003e866cea639mr1230544vkg.2.1677039089247; Tue, 21
+ Feb 2023 20:11:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230220140559.28289-8-sumitg@nvidia.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com> <20230221153740.1620529-9-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230221153740.1620529-9-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 22 Feb 2023 12:11:18 +0800
+Message-ID: <CAGXv+5Hc0qceN3Cr89ZF8K9-EwqF7v26qsdRS2mE_FE_nr7OiA@mail.gmail.com>
+Subject: Re: [PATCH v2 08/10] drm/panfrost: Add the MT8192 GPU ID
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-02-23, 19:35, Sumit Gupta wrote:
-> +static int tegra_cpufreq_set_bw(struct cpufreq_policy *policy, unsigned long freq_khz)
-> +{
-> +	struct dev_pm_opp *opp;
-> +	struct device *dev;
-> +	int ret;
-> +
-> +	dev = get_cpu_device(policy->cpu);
-> +	if (!dev)
-> +		return -ENODEV;
-> +
-> +	opp = dev_pm_opp_find_freq_exact(dev, freq_khz * KHZ, true);
-> +	if (IS_ERR(opp))
-> +		return PTR_ERR(opp);
-> +
-> +	ret = dev_pm_opp_set_opp(dev, opp);
-> +	dev_pm_opp_put(opp);
+On Tue, Feb 21, 2023 at 11:37 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+>
+> MediaTek MT8192 has a Mali-G57 with a special GPU ID. Add its GPU ID,
+> but treat it as otherwise identical to a standard Mali-G57.
+>
+> We do _not_ fix up the GPU ID here -- userspace needs to be aware of the
+> special GPU ID, in case we find functional differences between
+> MediaTek's implementation and the standard Mali-G57 down the line.
 
-What about dev_pm_opp_set_rate() instead ?
+> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Steven Price <steven.price@arm.com>
 
-> +	return ret;
-> +}
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
--- 
-viresh
+FYI MT8195 has a minor revision for Mali-G57. See https://crrev.com/c/2834981
+The commit doesn't say what issues were resolved or still linger though.
+
+> ---
+>  drivers/gpu/drm/panfrost/panfrost_gpu.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.c b/drivers/gpu/drm/panfrost/panfrost_gpu.c
+> index 6452e4e900dd..d28b99732dde 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_gpu.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_gpu.c
+> @@ -204,6 +204,14 @@ static const struct panfrost_model gpu_models[] = {
+>
+>         GPU_MODEL(g57, 0x9001,
+>                 GPU_REV(g57, 0, 0)),
+> +
+> +       /* MediaTek MT8192 has a Mali-G57 with a different GPU ID from the
+> +        * standard. Arm's driver does not appear to handle this model.
+> +        * ChromeOS has a hack downstream for it. Treat it as equivalent to
+> +        * standard Mali-G57 for now.
+> +        */
+> +       GPU_MODEL(g57, 0x9003,
+> +               GPU_REV(g57, 0, 0)),
+>  };
+>
+>  static void panfrost_gpu_init_features(struct panfrost_device *pfdev)
+> --
+> 2.39.2
+>
