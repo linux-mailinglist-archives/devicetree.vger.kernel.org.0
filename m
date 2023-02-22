@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5064469F7E6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:33:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B844669F7EA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbjBVPdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 10:33:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51938 "EHLO
+        id S232558AbjBVPdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 10:33:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232533AbjBVPdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:33:13 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0A53772B
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 07:33:11 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id g14so9369071pjb.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 07:33:11 -0800 (PST)
+        with ESMTP id S232525AbjBVPdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:33:23 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5317D37B66
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 07:33:16 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id q11so9481161plx.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 07:33:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Gl2oK6m3W4idoG0++YXdR0eH/S7JB1Clcx3ixNJBnNA=;
-        b=nX0UqMMW/E/UxVR2q2VD0VyQdZv/U42NNCRZwdTFx0DjM8Qyqtsg7ufdwoour0UicS
-         wq1ZzUObu+TF5PHoVoH5zuoCj+k+M6DRqLhhkkmn11eyzeyNegyeA3TmxNu/ogBgVA7/
-         TF6RzsorxQ8e8lMsigtdFHwEpXi4mTgucncArvai3O1Lug3RECeqg3q1w+2xQxjjTM08
-         teK5+it+Nt0pXvwNWzSSGnmX4jp+A2iKSt2gOCmG4oEctC65y5rN8zZXxifQ/K7yhbDd
-         ph25MXMBSO8ZE6ZiZljWEha52/6TxAARJJRyadNQgbnrkgBwtnt4RH+jiGVf5rh+jEGs
-         ckbA==
+        bh=uGDet0K+1/m01Mue6GMZv5iNZBwdpYi4DRLEmHhKT40=;
+        b=e8OzNJHBrUsax0QZ5vhaNQNApDvVLjnLbFaw8uXDvLGnHcdn9gchb+57K1RNfkr+XD
+         3qtDxULa5bde2YfYUzyND9T6izfeYbws9/drjyvPyb2xZYkCmvr2MLAsZPkPJwVOLjP3
+         inJqdZUf1SbRVuiPucZ3F7ErIHzRCPusMF0sGLJ/bWZCl+hcmR9rHcvOg8+idRRCeli5
+         z5rHI/74PQ5bdXQWYUhgueYan02m4X74cJSKh52YobomLJggUEQDq/KwH5L2nCiaQH+J
+         PaBLY0iR8sDOh0Iudx7GjVWdWixLfkmk9y3xx5IKK5uuhrN/ETsEniCNrzuQbQBFgxy/
+         8HVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Gl2oK6m3W4idoG0++YXdR0eH/S7JB1Clcx3ixNJBnNA=;
-        b=EIDyLW2kNmIdnKTJywoA5a8VT9ixrOA2Vqrse4B9XswEyqXxuQy3R/izlmL3JCqgZH
-         OYKZ1jX1YiU0xcl1Y3dwdOF6fHtj94LFUd/5pvkxUzkO0v8By5xCR4r3rkllMBh54ZD6
-         54eBdPCqN4UZjt2e/lGo61Q6N0K8AXz6DsCNsyOptypfCBTSzFmVnRarEQvXiALWPtTo
-         c2AePyVT7ZpeGZVQTdWrhU9Hcg+H/VZJbTKuo4H66m5hjiLt3t8sopIJSuvPXLZbw2zn
-         b4+jjyuNj+qhT055+52TJgRr28UMHE5+fSsK9IU67KjGqHeWGX1UiDJfOa7Bngd2Lk8N
-         G2jw==
-X-Gm-Message-State: AO0yUKVYBydzYJhwtqoGgvfnlCMWmG9+JEtb7yEuu1YyU9Bx+dLg7jA2
-        etDT0/VIOeetfwSvUfE75mK5
-X-Google-Smtp-Source: AK7set9WVD42hOyS9N9jO61XZ88ae5caQzTdmddlRBoTHPQZ+QttHFEtj2SdZp7EPHxzDn9YD9Gb/Q==
-X-Received: by 2002:a05:6a20:671a:b0:cb:7ae6:b42f with SMTP id q26-20020a056a20671a00b000cb7ae6b42fmr5975151pzh.62.1677079990532;
-        Wed, 22 Feb 2023 07:33:10 -0800 (PST)
+        bh=uGDet0K+1/m01Mue6GMZv5iNZBwdpYi4DRLEmHhKT40=;
+        b=1ilyG2m1zE1X2MF/RQSPRjMZIdti3WAKpGcHQpmOTVG05vl/FHlAb7TdjSujQMqcSE
+         TQmWU2u2mp8NQlqBppThUHlvme2ctqLzbBVsfmAMgiZ6NACU/jLfDZAFMw+ev9/GfVMM
+         OQ07TgeFIBx8XQMYiePRSreYu0hjOQTYzI8e1G+7ZCyqyeqem0tIV7CcQlNVWii7KeHG
+         rIPeOvDMzuCiLu/w1oOVxjBH6phcqJcrSPIC6Za9rWmUV0YvUi1sIuY13qTm6iksMzBs
+         Bc764OgJ6O2KTbqHcW8QOHqOnKnOHt6l1UQrhmWB01WNmbN0njxgCtgrMiCpk9lYFPpi
+         b5Sg==
+X-Gm-Message-State: AO0yUKWg7LKi5CIX58DsoVttI8K0o0mDkbJkIjfSM3SmBKWjlSIe+3sM
+        +0ycMUQgnqtSQqaSASMo/RcY
+X-Google-Smtp-Source: AK7set85fOda6NNHVt4rOXQqxDXgbFFt1j3cqkh0/SrhLRDeQeJPSHDWGBhyu2q20Bbo+vf9uURHhA==
+X-Received: by 2002:a05:6a20:8e0c:b0:cb:c276:588d with SMTP id y12-20020a056a208e0c00b000cbc276588dmr2906445pzj.22.1677079995590;
+        Wed, 22 Feb 2023 07:33:15 -0800 (PST)
 Received: from localhost.localdomain ([117.216.123.15])
-        by smtp.gmail.com with ESMTPSA id f15-20020aa78b0f000000b005ac419804d3sm5222482pfd.186.2023.02.22.07.33.06
+        by smtp.gmail.com with ESMTPSA id f15-20020aa78b0f000000b005ac419804d3sm5222482pfd.186.2023.02.22.07.33.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 07:33:10 -0800 (PST)
+        Wed, 22 Feb 2023 07:33:15 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org, lpieralisi@kernel.org, robh@kernel.org,
         kw@linux.com, krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org
@@ -57,9 +57,9 @@ Cc:     konrad.dybcio@linaro.org, bhelgaas@google.com, kishon@kernel.org,
         linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 01/11] dt-bindings: PCI: qcom: Update maintainers entry
-Date:   Wed, 22 Feb 2023 21:02:41 +0530
-Message-Id: <20230222153251.254492-2-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 02/11] dt-bindings: PCI: qcom: Add iommu properties
+Date:   Wed, 22 Feb 2023 21:02:42 +0530
+Message-Id: <20230222153251.254492-3-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230222153251.254492-1-manivannan.sadhasivam@linaro.org>
 References: <20230222153251.254492-1-manivannan.sadhasivam@linaro.org>
@@ -75,28 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Stan is no longer working with MMSOL and expressed his interest to not
-continue maintaining Qcom PCIe driver. Since I took over the driver
-maintainership, I'm stepping in to maintain the binding also.
+Most of the PCIe controllers require iommu support to function properly.
+So let's add them to the binding.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index a5859bb3dc28..a3639920fcbb 100644
+index a3639920fcbb..f48d0792aa57 100644
 --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
 +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -8,7 +8,7 @@ title: Qualcomm PCI express root complex
+@@ -64,6 +64,11 @@ properties:
  
- maintainers:
-   - Bjorn Andersson <bjorn.andersson@linaro.org>
--  - Stanimir Varbanov <svarbanov@mm-sol.com>
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+   dma-coherent: true
  
- description: |
-   Qualcomm PCIe root complex controller is based on the Synopsys DesignWare
++  iommus:
++    maxItems: 1
++
++  iommu-map: true
++
+   interconnects:
+     maxItems: 2
+ 
 -- 
 2.25.1
 
