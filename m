@@ -2,148 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 164A469FE32
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 23:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EEE169FE38
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 23:13:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232238AbjBVWMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 17:12:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35110 "EHLO
+        id S229446AbjBVWNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 17:13:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232457AbjBVWMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 17:12:01 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A737846141
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 14:11:46 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f18so11963437lfa.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 14:11:46 -0800 (PST)
+        with ESMTP id S232217AbjBVWN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 17:13:29 -0500
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA922D176;
+        Wed, 22 Feb 2023 14:12:59 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id v1-20020a9d6041000000b0068d4a8a8d2dso1843743otj.12;
+        Wed, 22 Feb 2023 14:12:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2M/okC0ikS9uDwZLSlit4bWXZfj2iKqcWmr+GvGYOvs=;
-        b=MOSTb+TlyzknQi1Pu6dI3l3bIngMQLG5b8Vfyl3M9fHUqa+N6PZHWpCAX+MszvkN4l
-         Du7u/M0jey4cb/DirqsZ06dSrs8ABDgnUk3c//Qae0iWlkIKpIjPTshY1CfMVHXdjcSI
-         2/somtLmtlCrfBGUCNwhP1C8Z2fJMaue5Hl0w/uQqFg0ISum5Es3XVF5bIdO70TTGdm2
-         oB76ATz5DWg+V/M2oy6thr0hFKjyb1KiHcXMKNZRlClFQIQNRzlsjlIz3FsoTs+qlTac
-         /1pyxEftQm1aLsxXeWfKAZ21L5rQsTebbTphBleBDBqYLCgMXKVOtAdppB7CuCjaFRqu
-         VNZA==
+        bh=adprV6tEj+TovGrXWEy89UTylRMHMYVXMFhKg7qo/Fo=;
+        b=QEU8n9ZE0dM2OFOYGeOuEkzpYN1G8AEx/lVIt0TuCuc0zcWgREiOrDie5z+kxY8SgI
+         xgysWpV6ZDVC1RpoFzKG3wNvUyRn/CdAkKrCFJhs7vZXH6LOr8bJa9AwO4W/e5/n6ZQc
+         yruEM3iH7diF4FEURgHs+rkvMh5CO2Y+BpGYv5lTZfOT18GA7dxt5WwHYXFJh149X3yZ
+         PK3i72ZbN6o7pPbGnPmvBhqLGViswIbARsXGZfwBXzHHOwukvo61ZGKZJZ4+9HGMHXSv
+         F9+U+Msbn6XMQLoXc5mgDxUn24pF/bRbJOMs+LqLCEDsXFhxM9NS0ZGix9VHrg0pewD5
+         +jqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2M/okC0ikS9uDwZLSlit4bWXZfj2iKqcWmr+GvGYOvs=;
-        b=AjZBWN3dt6yKtQ7UwuTLBqYk2KCOOSqJ7sO5X2hyME6eBMeXlH6fmLYyWOx/ZNVm4k
-         0M2Tl75XvevHZVUs15BsbqEZ30A6yBI4vtnoM9V/u4VWMXg/JMnzk4JMGo2LJojikyG0
-         1gVghwKCBHLsaWG7VZWL/T5OpSJtauYJXBU0SrL1ARjc8QCFNww2v6p7fwjESkv1ADec
-         PGspMHTxF1zotIn2BU9uXSNeMsZBsNb0/DcNMiRs8QeUwD5ic4aiTKjW46rNT5rZRxqk
-         g3EPnIzjgBuxNQ5nwPCjLitVXYBVJphJ0/7aW2UEi3IC0GhWPTTaQoCQsAnqdpBN9aQp
-         gSwg==
-X-Gm-Message-State: AO0yUKXe1YHH8QA+ERXaXbnH2dFCL2u5u4f3Xv4CvuJmbPGH8eJrNWE/
-        DmnQ+IWjPUfhy4VUErFFZeJ76w==
-X-Google-Smtp-Source: AK7set8S6Lw1AvpZQ6hKQcPF8ONbxTN/08nxsClBKMYdoGLZ7+WIdP+5+S0V+wjw4aIJVaxR3Q1T0Q==
-X-Received: by 2002:a05:6512:10c2:b0:4ca:ffe0:e754 with SMTP id k2-20020a05651210c200b004caffe0e754mr4411168lfg.18.1677103904923;
-        Wed, 22 Feb 2023 14:11:44 -0800 (PST)
-Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id z18-20020ac24f92000000b004d51b590772sm909349lfs.255.2023.02.22.14.11.43
+        bh=adprV6tEj+TovGrXWEy89UTylRMHMYVXMFhKg7qo/Fo=;
+        b=SUw1yIOY7+q+ejoTET+7P+g7HtHzCFSG3hl4SkBlJHhJLVtjyjkUzy+lQNEJzyA7uZ
+         yTna1soLy7MD32+QabhzDwYIV375hfkS1vS7ixfUe5dNKSHf0+R2eG+HtwwBdhUhrJyU
+         U7+90mvlIn+hZUXxqwapA2HkzllXg7Be+i2sMw56yIEANiALtVeHS8NKJ2phxZcFEqkT
+         GBpw4iBA0goMoh5r0HfTJPMmS05+054M+yWSaSoRlEbekH8pSjUTlkUM4CiDoQExTsOW
+         G75+ZIuil30Yh+l/dOieTJy4ZO4bHEcP6LMaDA1c5Iti1yU8nTx4msx2YzXUmBW8bVcq
+         7laA==
+X-Gm-Message-State: AO0yUKW4CRzher5ypdmGwjv7rQNvWSVDLXp7WhqO1XM+LjladgFTsVtg
+        RldnhYgKdg9wxUgb5q2QKqI1Dmaq23c=
+X-Google-Smtp-Source: AK7set9YJHuhFilf/KVSqse3uwpPRC/5CBRLxt2U4xG69Vkqi0o8q0i7yKTjqK5DPJ2H76lcSY8SwQ==
+X-Received: by 2002:a9d:86f:0:b0:690:e457:a69 with SMTP id 102-20020a9d086f000000b00690e4570a69mr5159384oty.0.1677103978579;
+        Wed, 22 Feb 2023 14:12:58 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:456:5512:fbf3:df92? ([2600:1700:2442:6db0:456:5512:fbf3:df92])
+        by smtp.gmail.com with ESMTPSA id z15-20020a9d468f000000b0068bbc9e7cc9sm1720641ote.53.2023.02.22.14.12.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 14:11:44 -0800 (PST)
-Message-ID: <907628d1-b88d-5ac6-ed9d-7f63e2875738@linaro.org>
-Date:   Wed, 22 Feb 2023 23:11:42 +0100
+        Wed, 22 Feb 2023 14:12:58 -0800 (PST)
+Message-ID: <db732d8a-b90b-ccf9-ad9b-a9a6455ed841@gmail.com>
+Date:   Wed, 22 Feb 2023 16:12:57 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
- bootup voltage
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 0/2] of: populate of_root_node if not set (alternate)
 Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
- <20230217142030.16012-5-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230217142030.16012-5-quic_devipriy@quicinc.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230222035452.803375-1-frowand.list@gmail.com>
+In-Reply-To: <20230222035452.803375-1-frowand.list@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/21/23 21:54, Frank Rowand wrote:
+> This series is a different implementation to achieve the goals of
+> https://lore.kernel.org/r/20220623105044.152832-1-clement.leger@bootlin.com
+> 
+> In order to apply overlays or create new nodes under the root node, the
+> kernel expects of_root to be set. On some system where a device-tree was
+> not provided by firmware (x86 for instance) if CONFIG_OF is enabled,
+> then we will end up with a null of_root. This series adds support to
+> create this root node using a builtin dtb and removes the manual
+> creation of the root node done in unittests.c.
+> 
+> Changes since version 1: (patch 1/2)
 
+Email subject lines should have said "v2".  I resent the series with the "v2".
 
-On 17.02.2023 15:20, Devi Priya wrote:
-> Kernel does not know the initial voltage set by the bootloaders.
-> During regulator registration, the voltage variable is just declared
-> and it is zero. Based on that, the regulator framework considers current
-> the voltage as zero and tries to bring up each regulator to minimum
-> the supported voltage.
-> 
-> This introduces a dip in the voltage during kernel boot and gets
-> stabilized once the voltage scaling comes into picture.
-> 
-> To avoid the voltage dip, adding support to define the
-> bootup voltage set by the boodloaders and based on it, regulator
-> framework understands that proper voltage is already set
-> 
-> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
-Thinking about it again, this seems like something that could be
-generalized and introduced into regulator core.. Hardcoding this
-will not end well.. Not to mention it'll affect all mp5496-using
-boards that are already upstream.
+-Frank
 
-WDYT about regulator-init-microvolts Mark?
+>   - refresh for 6.2-rc1
+>   - update Signed-off-by
+>   - fix typo in of_fdt.h: s/of_setup/setup_of
+>   - unflatten_device_tree(): validate size in header field dtb_empty_root
+>     that will be used to copy dtb_empty_root
+>   - add Kconfig option to manually select CONFIG_OF_EARLY_FLATTREE
+> 
+> Changes since version 1: (patch 2/2)
+>   - refresh for 6.2-rc1
+>   - update Signed-off-by
+>   - fix formatting error (leading space) in patch comment
+> 
+> Frank Rowand (2):
+>   of: create of_root if no dtb provided
+>   of: unittest: treat missing of_root as error instead of fixing up
+> 
+>  drivers/of/Kconfig        |  7 ++++++-
+>  drivers/of/Makefile       |  2 +-
+>  drivers/of/empty_root.dts |  6 ++++++
+>  drivers/of/fdt.c          | 27 ++++++++++++++++++++++++++-
+>  drivers/of/unittest.c     | 16 ++++++----------
+>  include/linux/of_fdt.h    |  2 ++
+>  init/main.c               |  2 ++
+>  7 files changed, 49 insertions(+), 13 deletions(-)
+>  create mode 100644 drivers/of/empty_root.dts
+> 
 
-Konrad
->  Changes in V2:
-> 	- Added the bootup voltages to s2 and l2 regulators
-> 
->  drivers/regulator/qcom_smd-regulator.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
-> index a40e66cea7e7..5f9fe6b9d368 100644
-> --- a/drivers/regulator/qcom_smd-regulator.c
-> +++ b/drivers/regulator/qcom_smd-regulator.c
-> @@ -800,12 +800,13 @@ struct rpm_regulator_data {
->  	u32 id;
->  	const struct regulator_desc *desc;
->  	const char *supply;
-> +	int boot_uV; /* To store the bootup voltage set by bootloaders */
->  };
->  
->  static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
-> -	{ "s1", QCOM_SMD_RPM_SMPA, 1, &mp5496_smpa1, "s1" },
-> -	{ "s2", QCOM_SMD_RPM_SMPA, 2, &mp5496_smpa2, "s2" },
-> -	{ "l2", QCOM_SMD_RPM_LDOA, 2, &mp5496_ldoa2, "l2" },
-> +	{ "s1", QCOM_SMD_RPM_SMPA, 1, &mp5496_smpa1, "s1", 875000  },
-> +	{ "s2", QCOM_SMD_RPM_SMPA, 2, &mp5496_smpa2, "s2", 875000  },
-> +	{ "l2", QCOM_SMD_RPM_LDOA, 2, &mp5496_ldoa2, "l2", 2950000 },
->  	{}
->  };
->  
-> @@ -1388,6 +1389,9 @@ static int rpm_regulator_init_vreg(struct qcom_rpm_reg *vreg, struct device *dev
->  	vreg->type	= rpm_data->type;
->  	vreg->id	= rpm_data->id;
->  
-> +	if (rpm_data->boot_uV)
-> +		vreg->uV = rpm_data->boot_uV;
-> +
->  	memcpy(&vreg->desc, rpm_data->desc, sizeof(vreg->desc));
->  	vreg->desc.name = rpm_data->name;
->  	vreg->desc.supply_name = rpm_data->supply;
