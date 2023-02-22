@@ -2,161 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 630E469FA23
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E35A69FA25
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:27:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231852AbjBVR0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 12:26:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42766 "EHLO
+        id S229515AbjBVR14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 12:27:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjBVR0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:26:38 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33BF541B56;
-        Wed, 22 Feb 2023 09:26:02 -0800 (PST)
-Received: from booty.fritz.box (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 9323A4000B;
-        Wed, 22 Feb 2023 17:25:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1677086759;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=liyc04uOfojNPzcXlOkF1rgtORQMcNRHYaWkiDbA6a0=;
-        b=mvjWs1Z5miVuBFhQ2lrmffWQEUftHKgpfdmtOtiNOKutAM7No18k/KwnwSTsSxOXe2aUms
-        XNs3u/bdFz07d8XJFz4Mf1mNL8e+7xXuH+D7aWyN/p4UdW9i9FIEB+Fe34Zd9g1y3d5ES7
-        0tyava2uy+oe6FI+3Id5/4DEcCgSvbj8R4DnJQjD1Ur6KNaVw0kbNZ6xiG+eoHhg9Xz0ap
-        JE18X0lYrp9C5qHwspz3T3h1JfBl8A9pM1tDRiP6MIr2/qVdKh3TTeQhtozxzs1SidYIAJ
-        J2PVlp6SBl7i8ex/TODZ2wV1tzELjcC/S+f/Ha/y+g6UMaDKy42WH8csXWp65A==
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Martyn Welch <martyn.welch@collabora.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
-Date:   Wed, 22 Feb 2023 18:25:52 +0100
-Message-Id: <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230222182252.2ad6d82b@booty>
-References: <20230222182252.2ad6d82b@booty>
+        with ESMTP id S229705AbjBVR14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:27:56 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26DA86A43
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:27:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AAA50604EF
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 17:27:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B058C433D2;
+        Wed, 22 Feb 2023 17:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677086873;
+        bh=GaQWt87pfqWhihgkWvN8V4jqdum+gGbBj2QXnN43Xco=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qmGVZmNf6jMCxbIEVKkOfdRYDWfmYRNqQJzVKPfG9rfKn3VOryXgjnJhTnGslNMdC
+         RRf/KvBODyLsWBHMMqhO3VwsjMi/Hm9gafrXRZzPSRrBMxc+Kl5tvIMw4V9VFiQFP8
+         rHSXXnfzO+dQsj01XYlOpdW63MNr1vZgIh9qrNa7nm06hA9TekwcIvkauuinyLt/RM
+         ko4QAisxGK276tPWrc7ASm07tGuVxlsgmDbV8+YWMbuJp6K0tQRUnO+kqglPwuWLd9
+         CWjRDeV6tpa34aHZY0qNDv7zJR6w0wRZJ6LQLPll6sewq+2emPNeDsIIxDvS+kjoNH
+         yYOXOsgNx+n/g==
+Date:   Wed, 22 Feb 2023 17:27:47 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Andrew Jones <ajones@ventanamicro.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        kvm-riscv@lists.infradead.org, 'Rob Herring ' <robh@kernel.org>,
+        'Jisheng Zhang ' <jszhang@kernel.org>,
+        'Anup Patel ' <apatel@ventanamicro.com>,
+        'Conor Dooley ' <conor.dooley@microchip.com>,
+        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
+        'Heiko Stuebner ' <heiko@sntech.de>,
+        'Paul Walmsley ' <paul.walmsley@sifive.com>,
+        'Palmer Dabbelt ' <palmer@dabbelt.com>,
+        'Albert Ou ' <aou@eecs.berkeley.edu>,
+        'Ben Dooks ' <ben.dooks@codethink.co.uk>,
+        'Atish Patra ' <atishp@rivosinc.com>
+Subject: Re: [PATCH v5 5/8] riscv: cpufeatures: Put the upper 16 bits of
+ patch ID to work
+Message-ID: <Y/ZQk0ifXPEnenoe@spud>
+References: <20230221190916.572454-1-ajones@ventanamicro.com>
+ <20230221190916.572454-6-ajones@ventanamicro.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GqMNVKB/GCgclQiO"
+Content-Disposition: inline
+In-Reply-To: <20230221190916.572454-6-ajones@ventanamicro.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
-NXPP SGTL5000 audio codec connected to I2S-0 (sai2).
 
-This requires to:
+--GqMNVKB/GCgclQiO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- * add the power supplies (always on)
- * enable sai2 with pinmuxes
- * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
-   IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
+On Tue, Feb 21, 2023 at 08:09:13PM +0100, Andrew Jones wrote:
+> cpufeature IDs are consecutive integers starting at 26, so a 32-bit
+> patch ID allows an aircraft carrier load of feature IDs. Repurposing
+> the upper 16 bits still leaves a boat load of feature IDs and gains
+> 16 bits which may be used to control patching on a per patch-site
+> basis.
+>=20
+> This will be initially used in Zicboz's application to clear_page(),
+> as Zicboz's block size must also be considered. In that case, the
+> upper 16-bit value's role will be to convey the maximum block size
+> which the Zicboz clear_page() implementation supports.
+>=20
+> cpufeature patch sites which need to check for the existence or
+> absence of other cpufeatures may also be able to make use of this.
+>=20
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> ---
+>  arch/riscv/include/asm/alternative.h |  3 +++
+>  arch/riscv/kernel/cpufeature.c       | 37 +++++++++++++++++++++++++---
+>  2 files changed, 36 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/as=
+m/alternative.h
+> index 8f39d4e8598d..f2cb543b0bd2 100644
+> --- a/arch/riscv/include/asm/alternative.h
+> +++ b/arch/riscv/include/asm/alternative.h
+> @@ -17,6 +17,9 @@
+>  #include <linux/stddef.h>
+>  #include <asm/hwcap.h>
+> =20
+> +#define PATCH_ID_CPUFEATURE_ID(p)		((u16)((u32)(p) & 0xffff))
+> +#define PATCH_ID_CPUFEATURE_VALUE(p)		((u16)(((u32)(p) >> 16) & 0xffff))
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
----
- .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+I was just fiddling around a bit with macros, I think these do the same
+thing:
+#define PATCH_ID_CPUFEATURE_ID(p)		((p) & GENMASK(15, 0))
+#define PATCH_ID_CPUFEATURE_VALUE(p)		FIELD_GET(GENMASK(31, 16), (p))
+Although without the same care about types - is there a specific reason
+you were casting like that?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-index 470ff8e31e32..894d9809f76d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-@@ -14,6 +14,57 @@ / {
- 	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
- 		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
- 		     "fsl,imx8mp";
-+
-+	reg_vcc_3v3_audio: 3v3_audio_regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3_AUD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_vcc_1v8_audio: 1v8_audio_regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8_AUD";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	sgtl5000-sound {
-+		compatible = "fsl,imx-audio-sgtl5000";
-+		model = "imx-sgtl5000";
-+		audio-cpu = <&sai2>;
-+		audio-codec = <&sgtl5000_codec>;
-+	};
-+};
-+
-+&i2c1 {
-+	sgtl5000_codec: sgtl5000@a {
-+		compatible = "fsl,sgtl5000";
-+		reg = <0x0a>;
-+
-+		assigned-clocks = <&clk IMX8MP_CLK_CLKOUT1_SEL>;
-+		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-+		assigned-clock-rates = <24000000>;
-+		clocks = <&clk IMX8MP_CLK_CLKOUT1>;
-+		clock-names = "mclk";
-+
-+		VDDA-supply  = <&reg_vcc_3v3_audio>;
-+		VDDD-supply  = <&reg_vcc_1v8_audio>;
-+		VDDIO-supply = <&reg_vcc_1v8_audio>;
-+	};
-+};
-+
-+/* I2S-0 = sai2 */
-+&sai2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai2>;
-+
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI2>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
-+
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
- };
- 
- &flexcan1 {
-@@ -49,4 +100,13 @@ pinctrl_smarc_gpio: smarcgpiosgrp {
- 			<MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19	0x19>, /* GPIO12 */
- 			<MX8MP_IOMUXC_SAI1_RXFS__GPIO4_IO00	0x19>; /* GPIO13 */
- 	};
-+
-+	pinctrl_sai2: sai2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC   0xd6
-+			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK    0xd6
-+			MX8MP_IOMUXC_SAI2_RXD0__AUDIOMIX_SAI2_RX_DATA00 0xd6
-+			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00 0xd6
-+		>;
-+	};
- };
--- 
-2.34.1
+Either way, I think I prefer this approach to the vendor_id stuffing!
+If we do end up needing to fit an aircraft carrier, we can come back and
+revisit another parameter in the alternatives I suppose...
 
+I don't really know if the macros do anything to help with
+understandability, so with or without trying to use macros:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+>  #define RISCV_ALTERNATIVES_BOOT		0 /* alternatives applied during regula=
+r boot */
+>  #define RISCV_ALTERNATIVES_MODULE	1 /* alternatives applied during modul=
+e-init */
+>  #define RISCV_ALTERNATIVES_EARLY_BOOT	2 /* alternatives applied before m=
+mu start */
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 6102b6bb5db3..0594989ead63 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -273,12 +273,35 @@ void __init riscv_fill_hwcap(void)
+>  }
+> =20
+>  #ifdef CONFIG_RISCV_ALTERNATIVE
+> +/*
+> + * Alternative patch sites consider 48 bits when determining when to pat=
+ch
+> + * the old instruction sequence with the new. These bits are broken into=
+ a
+> + * 16-bit vendor ID and a 32-bit patch ID. A non-zero vendor ID means the
+> + * patch site is for an erratum, identified by the 32-bit patch ID. When
+> + * the vendor ID is zero, the patch site is for a cpufeature. cpufeatures
+> + * further break down patch ID into two 16-bit numbers. The lower 16 bits
+> + * are the cpufeature ID and the upper 16 bits are used for a value spec=
+ific
+> + * to the cpufeature and patch site. If the upper 16 bits are zero, then=
+ it
+> + * implies no specific value is specified. cpufeatures that want to cont=
+rol
+> + * patching on a per-site basis will provide non-zero values and impleme=
+nt
+> + * checks here. The checks return true when patching should be done, and
+> + * false otherwise.
+> + */
+> +static bool riscv_cpufeature_patch_check(u16 id, u16 value)
+> +{
+> +	if (!value)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+>  void __init_or_module riscv_cpufeature_patch_func(struct alt_entry *begi=
+n,
+>  						  struct alt_entry *end,
+>  						  unsigned int stage)
+>  {
+>  	struct alt_entry *alt;
+>  	void *oldptr, *altptr;
+> +	u16 id, value;
+> =20
+>  	if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+>  		return;
+> @@ -286,13 +309,19 @@ void __init_or_module riscv_cpufeature_patch_func(s=
+truct alt_entry *begin,
+>  	for (alt =3D begin; alt < end; alt++) {
+>  		if (alt->vendor_id !=3D 0)
+>  			continue;
+> -		if (alt->patch_id >=3D RISCV_ISA_EXT_MAX) {
+> -			WARN(1, "This extension id:%d is not in ISA extension list",
+> -				alt->patch_id);
+> +
+> +		id =3D PATCH_ID_CPUFEATURE_ID(alt->patch_id);
+> +
+> +		if (id >=3D RISCV_ISA_EXT_MAX) {
+> +			WARN(1, "This extension id:%d is not in ISA extension list", id);
+>  			continue;
+>  		}
+> =20
+> -		if (!__riscv_isa_extension_available(NULL, alt->patch_id))
+> +		if (!__riscv_isa_extension_available(NULL, id))
+> +			continue;
+> +
+> +		value =3D PATCH_ID_CPUFEATURE_VALUE(alt->patch_id);
+> +		if (!riscv_cpufeature_patch_check(id, value))
+>  			continue;
+> =20
+>  		oldptr =3D ALT_OLD_PTR(alt);
+> --=20
+> 2.39.1
+>=20
+
+--GqMNVKB/GCgclQiO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/ZQkwAKCRB4tDGHoIJi
+0k+wAPwIor5ilu4B0RgPKFqm7EtX5MEeyIBYCiI+e43beFThVAD8DO/1X/a4zv0y
+P04ldR+yuDJDo4G0/ySBm28E4Kbc1Ac=
+=THQn
+-----END PGP SIGNATURE-----
+
+--GqMNVKB/GCgclQiO--
