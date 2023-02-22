@@ -2,126 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F209E69EDAF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 04:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD64D69EDBE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 05:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbjBVDz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 22:55:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
+        id S229552AbjBVEDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 23:03:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbjBVDz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 22:55:27 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D03B31E0F;
-        Tue, 21 Feb 2023 19:55:26 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id h6-20020a9d7986000000b0068bd8c1e836so1235011otm.3;
-        Tue, 21 Feb 2023 19:55:26 -0800 (PST)
+        with ESMTP id S229538AbjBVEDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 23:03:21 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCC4B758
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 20:03:20 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id s18so3396162pgq.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 20:03:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RisiUnTKxh0SthJdKQRZqo4o/ROREVq/nJM+wr/YiyI=;
-        b=mJzj0Kh6Ny+WV2zRyd/i0FgKix70BpBi/bk64KxYVV1kMpmOSO0KbfIfqfyAJHVfjL
-         91jQhvYUwAB2jy/yywyIG1CCdBcH1D2O7Z+rPsMIMB2rRw++E78s9ktgrmGysJo2kKmR
-         hSMq/pW8ibFmpnJCFE8TAByaGUTDFycE+29NFuv4cC+kk/gVjDIu11jDn5vLGrOAyQNb
-         Fq1jBuiJZIxtTqgY7wS5aQkfdUumkUJ803fv+RUIe7vurWdzpOYbLzFA24igUqoikXxG
-         YL99EguEl0vf6QHe+QFcfkcP3JA0KA0V3hCR0g8XOEyb0MSJoLfAOBeWOdRkoNL1HkOB
-         0xcA==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QuI/VvwDNYNNazJWSsosiKrPGXGOzC0MjV/AUA+0Y18=;
+        b=nCQyd6hFnx68A0tFIWYPEgBjsOibWoTXo/smz+3gYmBRuFPBPE4pSywkfCdKUgkvpA
+         2hEWf1fS6sHfJJXEu8DWcYvgIJnpq7iCy2lvMkzx+HoVbnLXGhDO3iOZBooeJGtaR0Pd
+         PIZdAXgjwX/QLrf6b4kb2lhJNJ1j/mPGS3Ik1K0eu/3Wy4urzl1+NUghMtTwh0O3P7VO
+         XwlRUrcPNrxw9hmttzjw+mE8ECx7oXM2WAMltKMJ6Ph5wzLKVBrlFjqFfJs7uN86eaQv
+         wJJXhF1XzUfKegtHqxyQWMa88wL+GMAeFpaouHVUjOmGIQMWTqRQH3o2TN5f/VRX0YMW
+         7WDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RisiUnTKxh0SthJdKQRZqo4o/ROREVq/nJM+wr/YiyI=;
-        b=BWYZ33/20AVqpWqr8XTSTeE5DtTPgoYKooEDnUS7Uty0xiXXHMFfcIw+1OM+AAzQ16
-         DZn4aeiHipqElzjo7x3U4DOJnZF73hxqXXdUDnumm57f57fgFcWYbktEqPpr1ieaLN56
-         P3+34kvXwrJtR21yctG2nhWbCJWYPADy/C2B0CChasGOciHXJesU0DuJH3XKeVv14brT
-         lDUs+13ENpfYPq2Lnn3uYRS5gLj4ybVxnTItp/A7jfYPfT4fUhiiUfzQclFdzjNnCEZm
-         iMRNTKD4Uul27EoR6L1Xux6CIGPqopPU7QKiEijbOkF1B0+Oq2jqEpzejOxUOBLnyAer
-         giwg==
-X-Gm-Message-State: AO0yUKXkbMA9lkKChJzY/+UeraJM6P7pP+oUy7huw65y/4xYvHW41kF1
-        tDdmofm6PzLcuziZ9xcxjcY=
-X-Google-Smtp-Source: AK7set/sJ34MLf2jf6mSSDOZ23KNk5Up3UeK3LZwuo+rpYWvgeYKkLSkcAhL0/VhL8e4TIN6juyZSw==
-X-Received: by 2002:a05:6830:3115:b0:68b:cb07:49ec with SMTP id b21-20020a056830311500b0068bcb0749ecmr4527670ots.14.1677038125821;
-        Tue, 21 Feb 2023 19:55:25 -0800 (PST)
-Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:70ac:b1e4:53db:3994])
-        by smtp.gmail.com with ESMTPSA id y6-20020a056830070600b00684cbd8dd49sm533404ots.79.2023.02.21.19.55.24
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QuI/VvwDNYNNazJWSsosiKrPGXGOzC0MjV/AUA+0Y18=;
+        b=vU1s671oog9M94V/Qn7mMGfz9QQLZ3TMCJx10fynSH7mGbRlx+ky1+cFIC5xiFWf0f
+         BIuPrypPzpq9F4akYV+MdGYoE8Dzwo181RZ1sUiIU0z4gqb8smITuvNh9byLHXdJxrDE
+         gfsu+vLGuIjFGqZmpFaSY8qCffRB62dskrwW/L/wbyUzZKtjvyXmO7cVWL3QDUrHC+OO
+         wwgcieuCqwqhx/ojIaEAOhP/FtpqDw8lt4NmaN0O3vlSUj0ADMKfCEZBNqSxpznkFTgU
+         8zAe5ywQ4I9InvGeDSbLxDLvwmSlGTUaPXRlRyqeFmsczD5wmZ7PxlQawSoUnGw/QTiw
+         uujw==
+X-Gm-Message-State: AO0yUKWKmUDihbrex7iA+Ec0hJ1VyWNMMGsBThHw90jSjuV8fXuKrljH
+        KHnwk4gksY5t/UpZ8st5bC67WQ==
+X-Google-Smtp-Source: AK7set+j5AzguT+wPMqJTKHp23ybKVMqcUGOXK1UT3NyydZuoWzKn02WTplOAHKPGXm8wetjgNETZA==
+X-Received: by 2002:aa7:96d0:0:b0:5a8:515a:eba4 with SMTP id h16-20020aa796d0000000b005a8515aeba4mr6768719pfq.10.1677038600006;
+        Tue, 21 Feb 2023 20:03:20 -0800 (PST)
+Received: from localhost ([122.172.83.155])
+        by smtp.gmail.com with ESMTPSA id h5-20020a62b405000000b005ae8e94b0d5sm6764079pfn.107.2023.02.21.20.03.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Feb 2023 19:55:25 -0800 (PST)
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 2/2] of: unittest: treat missing of_root as error instead of fixing up
-Date:   Tue, 21 Feb 2023 21:54:52 -0600
-Message-Id: <20230222035452.803375-3-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230222035452.803375-1-frowand.list@gmail.com>
-References: <20230222035452.803375-1-frowand.list@gmail.com>
+        Tue, 21 Feb 2023 20:03:19 -0800 (PST)
+Date:   Wed, 22 Feb 2023 09:33:17 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
+        dmitry.osipenko@collabora.com, rafael@kernel.org,
+        jonathanh@nvidia.com, robh+dt@kernel.org, lpieralisi@kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
+        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
+        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v2 7/9] cpufreq: tegra194: add OPP support and set
+ bandwidth
+Message-ID: <20230222040317.r2p6zlbumazymluc@vireshk-i7>
+References: <20230220140559.28289-1-sumitg@nvidia.com>
+ <20230220140559.28289-8-sumitg@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230220140559.28289-8-sumitg@nvidia.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-setup_of() now ensures that of_root node is populated with the
-root of a default devicetree. Remove the unittest code that
-created of_root if it was missing.  Verify that of_root is
-valid before attempting to attach the testcase-data subtree.
+On 20-02-23, 19:35, Sumit Gupta wrote:
+> +static int tegra_cpufreq_set_bw(struct cpufreq_policy *policy, unsigned long freq_khz)
+> +{
+> +	struct dev_pm_opp *opp;
+> +	struct device *dev;
+> +	int ret;
+> +
+> +	dev = get_cpu_device(policy->cpu);
+> +	if (!dev)
+> +		return -ENODEV;
+> +
+> +	opp = dev_pm_opp_find_freq_exact(dev, freq_khz * KHZ, true);
+> +	if (IS_ERR(opp))
+> +		return PTR_ERR(opp);
+> +
+> +	ret = dev_pm_opp_set_opp(dev, opp);
+> +	dev_pm_opp_put(opp);
 
-Signed-off-by: Frank Rowand <frowand.list@gmail.com>
----
-Changes since version 1:
-  - refresh for 6.2-rc1
-  - update Signed-off-by
-  - fix formatting error (leading space) in patch comment
+What about dev_pm_opp_set_rate() instead ?
 
- drivers/of/unittest.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+> +	return ret;
+> +}
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index bc0f1e50a4be..006713511c53 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1469,20 +1469,16 @@ static int __init unittest_data_add(void)
- 		return -EINVAL;
- 	}
- 
--	if (!of_root) {
--		of_root = unittest_data_node;
--		for_each_of_allnodes(np)
--			__of_attach_node_sysfs(np);
--		of_aliases = of_find_node_by_path("/aliases");
--		of_chosen = of_find_node_by_path("/chosen");
--		of_overlay_mutex_unlock();
--		return 0;
--	}
--
- 	EXPECT_BEGIN(KERN_INFO,
- 		     "Duplicate name in testcase-data, renamed to \"duplicate-name#1\"");
- 
- 	/* attach the sub-tree to live tree */
-+	if (!of_root) {
-+		pr_warn("%s: no live tree to attach sub-tree\n", __func__);
-+		kfree(unittest_data);
-+		return -ENODEV;
-+	}
-+
- 	np = unittest_data_node->child;
- 	while (np) {
- 		struct device_node *next = np->sibling;
 -- 
-Frank Rowand <frowand.list@gmail.com>
-
+viresh
