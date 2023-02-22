@@ -2,216 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8752C69FBAC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 20:03:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AD3F69FBC4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 20:11:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbjBVTC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 14:02:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
+        id S232177AbjBVTLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 14:11:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjBVTC6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 14:02:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8A0CE055
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 11:02:56 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pUuO8-0003LX-IK; Wed, 22 Feb 2023 20:02:48 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pUuO6-0007Pj-P2; Wed, 22 Feb 2023 20:02:46 +0100
-Date:   Wed, 22 Feb 2023 20:02:46 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        with ESMTP id S230402AbjBVTLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 14:11:13 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36B938B59;
+        Wed, 22 Feb 2023 11:11:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677093071; x=1708629071;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=X4wQ+O3eBVoGDjrrVinp2PRl4OgU1Fc491UedwVGnKs=;
+  b=Qo46ycor//CApUGO0xcuccJo0vbrzwW4gvMugdUkZLOCa9uj5s38uQin
+   1++FKtO7b4wrxUJLCYCPHINdh8kVnMwOCTXI5pDLhYIkwoHlwMUzwdnJ2
+   23LWmO3x3m5qfLwFlydGExHD04raySoHIkyxbwSl3QZ1A2NpqwWMh1PD6
+   RhqwGO0DAXEdvz6+JC7E+mP539LqzugJbGPsi/IQcqSJVCypYcFKRk1md
+   qj/c5hwPV137ifBASsGfHHbUDpma5WWyyRD/kBmEgIEpEo9/0l36Gsv5p
+   NI1OG4i/hbxoayVFQXwU2MrjSRCFXXWbPdMs5BksCOPcMRbDNL/f6Djyr
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="333022472"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; 
+   d="scan'208";a="333022472"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2023 11:11:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="761058560"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; 
+   d="scan'208";a="761058560"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by FMSMGA003.fm.intel.com with ESMTP; 22 Feb 2023 11:11:08 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pUuW9-00AaOx-30;
+        Wed, 22 Feb 2023 21:11:05 +0200
+Date:   Wed, 22 Feb 2023 21:11:05 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        devicetree@vger.kernel.org, Abel Vesa <abel.vesa@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
-Message-ID: <20230222190246.ihknh2tgjb2w3qmf@pengutronix.de>
-References: <20230222182252.2ad6d82b@booty>
- <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
- <20230222175941.7pdi7yg5am3ws4gp@pengutronix.de>
- <10394cf6-70f0-638a-15d3-5a14615dad44@denx.de>
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Raul E Rangel <rrangel@chromium.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-usb@vger.kernel.org,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] auxdisplay: ht16k33: Make use of
+ device_get_match_data()
+Message-ID: <Y/ZoyaV10TCWhloT@smile.fi.intel.com>
+References: <20230221133307.20287-1-andriy.shevchenko@linux.intel.com>
+ <20230221133307.20287-3-andriy.shevchenko@linux.intel.com>
+ <Y/TJs+Arban0ats8@smile.fi.intel.com>
+ <be203dfd290e67c8ce74d11c5c9478a4@protonic.nl>
+ <Y/UD3HWNy8uKYShC@smile.fi.intel.com>
+ <0235f0fed989a8b027db720663699f5d@protonic.nl>
+ <Y/ZKdN4nuHcL4DgE@smile.fi.intel.com>
+ <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
+ <06f29d66-f16a-039c-ecd0-155bdcce00c1@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <10394cf6-70f0-638a-15d3-5a14615dad44@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <06f29d66-f16a-039c-ecd0-155bdcce00c1@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-02-22, Marek Vasut wrote:
-> On 2/22/23 18:59, Marco Felsch wrote:
-> > Hi Luca,
+On Wed, Feb 22, 2023 at 07:46:25PM +0100, Krzysztof Kozlowski wrote:
+> On 22/02/2023 18:20, Andy Shevchenko wrote:
+> >>
+> >>> Which effectively breaks i.e. user-space instantiation for other display
+> >>> types which now do work due to i2c_of_match_device().
+> >>> (so my suggestion above is not sufficient).
+> >>>
+> >>> Are you proposing extending and searching the I2C ID table to work around
+> >>> that?
+> >>
+> >> See (1) above. This is the downside I have noticed after sending this series.
+> >> So, the I²C ID table match has to be restored, but the above mentioned issues
+> >> with existing table are not gone, hence they need to be addressed in the next
+> >> version.
 > > 
-> > On 23-02-22, Luca Ceresoli wrote:
-> > > The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
-> > > NXPP SGTL5000 audio codec connected to I2S-0 (sai2).
-> > > 
-> > > This requires to:
-> > > 
-> > >   * add the power supplies (always on)
-> > >   * enable sai2 with pinmuxes
-> > >   * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
-> > >     IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
-> > > 
-> > > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > > ---
-> > >   .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 60 +++++++++++++++++++
-> > >   1 file changed, 60 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> > > index 470ff8e31e32..894d9809f76d 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> > > @@ -14,6 +14,57 @@ / {
-> > >   	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
-> > >   		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
-> > >   		     "fsl,imx8mp";
-> > 
-> > ...
-> > 
-> > > +/* I2S-0 = sai2 */
-> > > +&sai2 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_sai2>;
-> > > +
-> > > +	assigned-clocks = <&clk IMX8MP_CLK_SAI2>;
-> > > +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-> > > +	assigned-clock-rates = <12288000>;
-> > > +
-> > > +	fsl,sai-mclk-direction-output;
-> > > +	status = "okay";
-> > >   };
-> > 
-> > Do you have some downstream patches for the sai interfaces? AFAIR Marek
-> > worked on this but the patches are not mainlien yet.
+> > I see now what you mean. So, we have even more issues in this driver:
+> > - I²C table is not in sync with all devices supported
 > 
-> I guess it is time to resubmit these.
+> Does anything actually rely on i2c_device_id table? ACPI would match
+> either via ACPI or OF tables. All modern ARM systems (e.g. imx6) are
+> DT-based. Maybe just drop the I2C ID table?
 
-I would have two patches for your series first is necessary the other is
-changing the sound-card to make use of the simple-audio-card.
+For I²C it's still possible to enumerate the device via sysfs, which is ABI.
 
-Regards,
-  Marco
+> > - the OF ID table seems has something really badly formed for adafruit
+> >   (just a number after a comma)
+> 
+> Maybe it is a model number? It was documented:
+> Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
 
-8<-----------------------------------------------------------------------------------------
-[1]
+Yes, it's not a problem for ACPI/DT platforms, the problem is for the above
+way of enumeration, so if we have more than 1 manufacturer that uses plain
+numbers for the model, I²C framework may not distinguish which driver to use.
 
-diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-index 2d5d8255c7fa2..32eb29ae8f71f 100644
---- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-+++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-@@ -18,7 +18,7 @@
- 
- #define CLKEN0                 0x000
- #define CLKEN1                 0x004
--#define SAI_MCLK_SEL(n)                (300 + 4 * (n)) /* n in 0..5 */
-+#define SAI_MCLK_SEL(n)                (0x300 + 4 * (n))       /* n in 0..5 */
- #define PDM_SEL                        0x318
- #define SAI_PLL_GNRL_CTL       0x400
+I.o.w. the part after comma in the compatible strings of the I²C devices must
+be unique globally to make that enumeration disambiguous.
 
-8<-----------------------------------------------------------------------------------------
-[2]
+> > The latter shows how broken it is. The I²C ID table mechanism is used as
+> > a backward compatibility to the OF. Unfortunately, user space may not provide
+> > the data except in form of DT overlays, so for the legacy enumeration we
+> > have only device name, which is a set of 4 digits for adafruit case.
+> > 
+> > Now imagine if by some reason we will get adafruit2 (you name it) with
+> > the same schema. How I²C framework can understand that you meant adafruit
+> > and not adafruit2? Or did I miss something?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 8547391d9cbbf..3b38ec7bb47be 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -47,7 +47,6 @@ reg_audio_pwr: regulator-audio-pwr {
- 		regulator-max-microvolt = <3300000>;
- 		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
--		regulator-always-on;
- 	};
- 
- 	reg_can1_stby: regulator-can1-stby {
-@@ -94,21 +93,34 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
- 		enable-active-high;
- 	};
- 
--	sound-wm8960 {
--		compatible = "fsl,imx-audio-wm8960";
--		model = "wm8960-audio";
--		audio-cpu = <&sai3>;
--		audio-codec = <&codec>;
--		audio-routing =
-+	sound-wm8524 {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "wm8960-audio";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&cpudai>;
-+		simple-audio-card,bitclock-master = <&cpudai>;
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack",
-+			"Speaker", "External Speaker",
-+			"Microphone", "Mic Jack";
-+		simple-audio-card,routing =
- 			"Headphone Jack", "HP_L",
- 			"Headphone Jack", "HP_R",
--			"Ext Spk", "SPK_LP",
--			"Ext Spk", "SPK_LN",
--			"Ext Spk", "SPK_RP",
--			"Ext Spk", "SPK_RN",
-+			"External Speaker", "SPK_LP",
-+			"External Speaker", "SPK_LN",
-+			"External Speaker", "SPK_RP",
-+			"External Speaker", "SPK_RN",
- 			"LINPUT1", "Mic Jack",
- 			"LINPUT3", "Mic Jack",
- 			"Mic Jack", "MICB";
-+
-+		cpudai: simple-audio-card,cpu {
-+			sound-dai = <&sai3>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&wm8960>;
-+		};
- 	};
- };
- 
-@@ -364,7 +376,7 @@ &i2c3 {
- 	pinctrl-0 = <&pinctrl_i2c3>;
- 	status = "okay";
- 
--	codec: wm8960@1a {
-+	wm8960: codec@1a {
- 		compatible = "wlf,wm8960";
- 		reg = <0x1a>;
- 		clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI3_MCLK1>;
-@@ -373,6 +385,7 @@ codec: wm8960@1a {
- 		wlf,hp-cfg = <3 2 3>;
- 		wlf,gpio-cfg = <1 3>;
- 		SPKVDD1-supply = <&reg_audio_pwr>;
-+		#sound-dai-cells = <0>;
- 	};
- 
- 	pca6416: gpio@20 {
-8<-----------------------------------------------------------------------------------------
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
