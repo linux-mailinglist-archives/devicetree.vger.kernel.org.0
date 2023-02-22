@@ -2,64 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6D869F732
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 15:57:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED3A69F738
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:00:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbjBVO5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 09:57:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44114 "EHLO
+        id S232025AbjBVPAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 10:00:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230246AbjBVO5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 09:57:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA4D32CE7;
-        Wed, 22 Feb 2023 06:57:21 -0800 (PST)
+        with ESMTP id S231854AbjBVPAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:00:30 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D2938B55;
+        Wed, 22 Feb 2023 07:00:23 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 656F2B815C8;
-        Wed, 22 Feb 2023 14:57:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F7FFC433D2;
-        Wed, 22 Feb 2023 14:57:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C02BD61497;
+        Wed, 22 Feb 2023 15:00:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1F054C4339B;
+        Wed, 22 Feb 2023 15:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677077837;
-        bh=0oI0QSVIZmrYGzm5qMI9FC9aY3lntQPLGoGkeh0XrTQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zhr39bqj+x9QOvNA+gfkh257ZaUD7gPdpSBgJ2x/L5bH8xIqU5qhpEHpMC/GMgXhO
-         0ulwaRWnaBj6fhmCnbcdPAwn2y+qIb0xDkNN3M1RUBih935hUPxP4gWtiWxLyCPvMV
-         kKeiejMm2q0cKVSluDw685zojrYX9OvB0Gi/Sr0JxMT6lw/g241bbusWK8ilMJ9RAn
-         e+XTiYjBARNyh9n0yQitJByY/7dQqpvvHM8QcNIP4CaeY/DurtL5TK1w1Tkg1h+A8y
-         rEZtoUT3Ff5fu5N1cQlRoJK4qxQVfS2Nde9UAmD71lleNujfrZIbqGj4Un+IBMQ+Jc
-         +ftVYAfe92jmw==
-Date:   Wed, 22 Feb 2023 14:57:10 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Carpenter <error27@gmail.com>
-Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v1 04/10] ASoC: tegra: Support RT5631 by machine driver
-Message-ID: <Y/YtRtSqFAQj+AZU@sirena.org.uk>
-References: <20230221183211.21964-1-clamor95@gmail.com>
- <20230221183211.21964-5-clamor95@gmail.com>
- <Y/UcXNueAmrrhWG0@kadam>
- <CAPVz0n01YWQ6FY9RDsa1rw_36n=NKpRLokFiVTxLsMDpQEd4YA@mail.gmail.com>
- <Y/YYaVhE7WwqLIey@kadam>
+        s=k20201202; t=1677078022;
+        bh=kydm5AUKJGxRvRaP4t7C0EB2bX0fweLM9h2sQNC5Byk=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=QF3n4CqTvoxq/NH0jcIs+uxO22bVplSaoDzshEHaQOMhvaTBW/4E6zp5cZ/VZXp/g
+         bfU3plMH8gGfZMD60MfsbT2/w+HfXObEFE4SyPNv8dyrCCWVMxjK9SvGrl9Jrdma2I
+         +6G6XkqdZYk4h7cdDVOalAo138K8MtM6m8AqViv0lQs+L3mMGXPESWi0CLM4Srb/p1
+         2eaYzlNWP1/APrj6yxG9gLyPCEblere/O8Gpa4CM5mVo5CEzDx6oI+YNOamYXANL0k
+         Fw+84oT7ckBU5zcOGQSg4ZTV3ben/mIIPV4PO1ClYnTBmWrY2IyIRAqizCx1S75+DI
+         RKnc6BmjWNYRw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E663EC395DF;
+        Wed, 22 Feb 2023 15:00:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SP3ot0dvarn2c/WQ"
-Content-Disposition: inline
-In-Reply-To: <Y/YYaVhE7WwqLIey@kadam>
-X-Cookie: My LESLIE GORE record is BROKEN ...
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 00/19] Basic clock,
+ reset & device tree support for StarFive JH7110 RISC-V SoC
+From:   patchwork-bot+linux-riscv@kernel.org
+Message-Id: <167707802193.24438.5407460288169239541.git-patchwork-notify@kernel.org>
+Date:   Wed, 22 Feb 2023 15:00:21 +0000
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+In-Reply-To: <20230221024645.127922-1-hal.feng@starfivetech.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, ben.dooks@sifive.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de, maz@kernel.org,
+        emil.renner.berthing@canonical.com, linux-kernel@vger.kernel.org
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -69,47 +62,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
---SP3ot0dvarn2c/WQ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
 
-On Wed, Feb 22, 2023 at 04:28:09PM +0300, Dan Carpenter wrote:
-> On Wed, Feb 22, 2023 at 09:55:52AM +0200, Svyatoslav Ryhel wrote:
-> > =D0=B2=D1=82, 21 =D0=BB=D1=8E=D1=82. 2023 =D1=80. =D0=BE 21:32 Dan Carp=
-enter <error27@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+On Tue, 21 Feb 2023 10:46:26 +0800 you wrote:
+> This patch series adds basic clock, reset & DT support for StarFive
+> JH7110 SoC. Patch 17 depends on series [1] which provides pinctrl
+> dt-bindings. Patch 19 depends on series [2] which provides dt-bindings
+> of VisionFive 2 board and JH7110 SoC.
+> 
+> You can simply review or test the patches at the link [3].
+> 
+> [...]
 
-> > > >  /* Mic Jack */
+Here is the summary with links:
+  - [v4,01/19] clk: starfive: Factor out common JH7100 and JH7110 code
+    (no matching commit)
+  - [v4,02/19] clk: starfive: Rename clk-starfive-jh7100.h to clk-starfive-jh71x0.h
+    https://git.kernel.org/riscv/c/f3af3b0039fe
+  - [v4,03/19] clk: starfive: Rename "jh7100" to "jh71x0" for the common code
+    (no matching commit)
+  - [v4,04/19] reset: Create subdirectory for StarFive drivers
+    (no matching commit)
+  - [v4,05/19] reset: starfive: Factor out common JH71X0 reset code
+    (no matching commit)
+  - [v4,06/19] reset: starfive: Extract the common JH71X0 reset code
+    (no matching commit)
+  - [v4,07/19] reset: starfive: Rename "jh7100" to "jh71x0" for the common code
+    (no matching commit)
+  - [v4,08/19] reset: starfive: jh71x0: Use 32bit I/O on 32bit registers
+    (no matching commit)
+  - [v4,09/19] dt-bindings: clock: Add StarFive JH7110 system clock and reset generator
+    (no matching commit)
+  - [v4,10/19] dt-bindings: clock: Add StarFive JH7110 always-on clock and reset generator
+    (no matching commit)
+  - [v4,11/19] clk: starfive: Add StarFive JH7110 system clock driver
+    (no matching commit)
+  - [v4,12/19] clk: starfive: Add StarFive JH7110 always-on clock driver
+    (no matching commit)
+  - [v4,13/19] reset: starfive: Add StarFive JH7110 reset driver
+    (no matching commit)
+  - [v4,14/19] dt-bindings: timer: Add StarFive JH7110 clint
+    (no matching commit)
+  - [v4,15/19] dt-bindings: interrupt-controller: Add StarFive JH7110 plic
+    (no matching commit)
+  - [v4,16/19] dt-bindings: riscv: Add SiFive S7 compatible
+    (no matching commit)
+  - [v4,17/19] riscv: dts: starfive: Add initial StarFive JH7110 device tree
+    (no matching commit)
+  - [v4,18/19] riscv: dts: starfive: Add StarFive JH7110 pin function definitions
+    (no matching commit)
+  - [v4,19/19] riscv: dts: starfive: Add StarFive JH7110 VisionFive 2 board device tree
+    (no matching commit)
 
-> > > This comment doesn't make sense now.  It was never super useful, thou=
-gh.
-> > > Just delete it.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-> > It does. Headset is Mic Jack + Headphones combined. headset_check funct=
-ion
-> > performs check for a Mic Jack component in plugged Jack 3.5
 
-> I feel if we need to discuess what a comment means or if it even means
-> anything then that's a useless comment by definition.
-
-If the device doesn't have a distinct mic jack then it's not ideal to
-talk about there being one (as opposed to the microphone on the headset
-jack).
-
---SP3ot0dvarn2c/WQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmP2LUUACgkQJNaLcl1U
-h9DohwgAg5B1RDs7IHmHXbAnOEJot3PmpYe4ZT8mvWdsipVsEOmicv9Jq5TgOMBr
-8tj3IwItO4yzHJDcN3A/dwYZFVppFntMyVC8RRP13DSzXdwquSXpfnKm+JPoV7MQ
-pgCCVTw6NMhE35JfxkzGrvEmJdnPYzxkeDhjOKpNLL+j5w/BntNBUfvtf1mLv0HL
-9kHud7beeXTyY6TNXMnm33ZeUjXpGsSXizJgvDrxl+kjr2KG02uS6ad/7fdNhBK3
-AnNKzJbzKuydQFAWbBGDQUg2qwkcBzyo8aQm1rpw7WmdS839MaeU0lxyM9aa3WiQ
-ndwCYvC+WVNlJ6v9nFJ5XeCtAIJBGA==
-=g3uz
------END PGP SIGNATURE-----
-
---SP3ot0dvarn2c/WQ--
