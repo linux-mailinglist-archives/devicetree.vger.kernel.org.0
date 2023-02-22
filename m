@@ -2,165 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3EC869F2D8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 11:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF4769F2F7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 11:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231398AbjBVKld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 05:41:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42078 "EHLO
+        id S230434AbjBVKvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 05:51:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbjBVKlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 05:41:32 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E693756E;
-        Wed, 22 Feb 2023 02:41:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1677062490; x=1708598490;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=og8oc3RuSx7isHJHsUxe9wkqbVmwchIzWVG+7PVsMs0=;
-  b=ot0euPjuqJzHLYsUGyy3nLXSphmj6hIdfqH0Ucz5UdDTevJyR/bYBF4M
-   XR0ohvH2Xx3Of5svmVIB+ZS6HwB5hyPsm3FI962RR9Su44WmwOFOO3zdV
-   3tGGr12vCncrvs8Tcci/wPG4LuKmKRNvayMueWgZCjPbPP1sPs0wUwWPN
-   dXfenECVMLZy4yp3xx8+7v7a1/oNah6qIge2lUtWbqARSA/IvBBqOfZim
-   JChrsP5/HqOnjxJ10eTs1lfzX5kY7PsNXNUzhGuu/bmqkYY04gjp6WHBo
-   4ekAmHHni/avINgmMKqi2XnY6QEwQhbgX+cZ9dQErpCjJ9ghcfxh+cION
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,318,1669100400"; 
-   d="asc'?scan'208";a="138452374"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Feb 2023 03:41:29 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 22 Feb 2023 03:41:28 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Wed, 22 Feb 2023 03:41:25 -0700
-Date:   Wed, 22 Feb 2023 10:40:59 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Hal Feng <hal.feng@starfivetech.com>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S229834AbjBVKvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 05:51:19 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B4C3A38654;
+        Wed, 22 Feb 2023 02:51:17 -0800 (PST)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 22 Feb 2023 19:51:17 +0900
+Received: from mail.mfilter.local (mail-arc02.css.socionext.com [10.213.46.40])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 208AA2058B4F;
+        Wed, 22 Feb 2023 19:51:17 +0900 (JST)
+Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Wed, 22 Feb 2023 19:51:17 +0900
+Received: from [10.212.156.137] (unknown [10.212.156.137])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 3FFB3A6B9C;
+        Wed, 22 Feb 2023 19:51:16 +0900 (JST)
+Message-ID: <3786ea07-b1fe-8aff-c17e-a4cb9427344e@socionext.com>
+Date:   Wed, 22 Feb 2023 19:51:15 +0900
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3] dt-bindings: ata: Add UniPhier controller binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 09/19] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Message-ID: <Y/XxOw+T0WdYY7jP@wendy>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
- <20230221024645.127922-10-hal.feng@starfivetech.com>
- <e4c2b711-7953-821b-4281-04e4b40154ea@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="A5GMe6d9NPNRqkf9"
-Content-Disposition: inline
-In-Reply-To: <e4c2b711-7953-821b-4281-04e4b40154ea@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230220054711.4584-1-hayashi.kunihiko@socionext.com>
+ <8a4042fd-02a3-261e-4126-7a3090850fda@linaro.org>
+ <7e19d3f4-a3bc-dc9d-35a0-9bfc05f22b2c@socionext.com>
+ <5f2bebad-5c9d-41bd-63c1-043f1d8c6c16@linaro.org>
+Content-Language: en-US
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <5f2bebad-5c9d-41bd-63c1-043f1d8c6c16@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---A5GMe6d9NPNRqkf9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2023/02/22 17:38, Krzysztof Kozlowski wrote:
+> On 22/02/2023 02:03, Kunihiko Hayashi wrote:
+>>>> -  resets:
+>>>> -    maxItems: 1
+>>>
+>>> Why moving it?
+>>
+>> Sorry for my mistake. I should fix it.
+>>
+>>>> +allOf:
+>>>
+>>> This goes to the same place as in example-schema.
+>>
+>> I can see "allOf" next to "required" in example-schema,
+> 
+> Are you agreeing or disagreeing here (thus I should explain that it's
+> not the same place)? If the first, sometimes it's enough to say "ack" or
+> "sure".
 
-On Wed, Feb 22, 2023 at 10:13:19AM +0100, Krzysztof Kozlowski wrote:
-> On 21/02/2023 03:46, Hal Feng wrote:
-> > From: Emil Renner Berthing <kernel@esmil.dk>
-> >=20
-> > Add bindings for the system clock and reset generator (SYSCRG) on the
-> > JH7110 RISC-V SoC by StarFive Ltd.
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->=20
-> I don't know what is happening here as neither this nor other patchset
-> explains anything. Please stop writing what you do in the patches, but
-> explain why. What is easy to get.
->=20
-> (...)
->=20
->=20
-> > +
-> > +#define JH7110_SYSCLK_PLL0_OUT			190
-> > +#define JH7110_SYSCLK_PLL1_OUT			191
-> > +#define JH7110_SYSCLK_PLL2_OUT			192
->=20
-> NAK. Do not add incorrect bindings just to remove it THE SAME TIME.
+Sure. I'll move it in v4.
 
-For some context, the PLL driver series [1] does the following, which is
-where this complaint stems from:
-> diff --git a/include/dt-bindings/clock/starfive,jh7110-crg.h b/include/dt=
--bindings/clock/starfive,jh7110-crg.h
-> index 5e4f21ca0642..086a6ddcf380 100644
-> --- a/include/dt-bindings/clock/starfive,jh7110-crg.h
-> +++ b/include/dt-bindings/clock/starfive,jh7110-crg.h
-> @@ -6,6 +6,12 @@
->  #ifndef __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
->  #define __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
-> =20
-> +/* PLL clocks */
-> +#define JH7110_CLK_PLL0_OUT			0
-> +#define JH7110_CLK_PLL1_OUT			1
-> +#define JH7110_CLK_PLL2_OUT			2
-> +#define JH7110_PLLCLK_END			3
-> +
->  /* SYSCRG clocks */
->  #define JH7110_SYSCLK_CPU_ROOT			0
->  #define JH7110_SYSCLK_CPU_CORE			1
-> @@ -198,11 +204,7 @@
->  #define JH7110_SYSCLK_TDM_TDM_INV		188
->  #define JH7110_SYSCLK_JTAG_CERTIFICATION_TRNG	189
-> =20
-> -#define JH7110_SYSCLK_PLL0_OUT			190
-> -#define JH7110_SYSCLK_PLL1_OUT			191
-> -#define JH7110_SYSCLK_PLL2_OUT			192
-
-I was talking to Emil, who pointed out that these defines aren't
-actually ever used in the dts, so there's nothing really gained
-by adding them here in the first place.
-Seems like this series could simply move these defines into the driver
-(as the PLL addition series also does) and then we would not have to
-be worried about breaking the ABI in the future?
-
-Thanks,
-Conor.
-
-1 - https://patchwork.kernel.org/project/linux-riscv/patch/20230221141147.3=
-03642-3-xingyu.wu@starfivetech.com/
-
-
---A5GMe6d9NPNRqkf9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/XxOwAKCRB4tDGHoIJi
-0ouHAQD1J4/fzbT7Ija75eE1nauMe2czMcMbWAzQIL1nwqgxdAD9GIT1Ap0dMr5V
-1t1LqyevhjLJUO2GrLIxTX8k1p6Zqw8=
-=KcGW
------END PGP SIGNATURE-----
-
---A5GMe6d9NPNRqkf9--
+Thank you,
+---
+Best Regards
+Kunihiko Hayashi
