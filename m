@@ -2,141 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D640069FD72
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 22:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7136869FD8D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 22:12:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbjBVVFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 16:05:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37356 "EHLO
+        id S232353AbjBVVME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 16:12:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232664AbjBVVF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 16:05:27 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86C746098;
-        Wed, 22 Feb 2023 13:04:55 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id i34so10460797eda.7;
-        Wed, 22 Feb 2023 13:04:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D4sT1wUlCbHRDpbMzMMTT4BWgWGszScqpQQPPR7Avx8=;
-        b=fV1pXve6qVGgUZzvzS3Cvik+RMpTsqvE0467NRn8Yb6V7KweUNBEWo4/q30yGcFc9w
-         D+rYJdf2EukzBDNH1v7G086P4Dv9oonD3XT2xLE1mdfg9C347zfJ0wMXCy5hhBVc14pH
-         SBV+mro6+fG+QnaFP472RGso/v2hRpfnF2P7WuV8kfWU8Mqe0zirTpHBCeHrXRTAHwWJ
-         RQO/Z478Q5BdO51H3sh6xqDR5tX03sOJMgzlLDVjzSY+1gQ3jogJjmrdqQLm9kBjMb+q
-         SFu0bUnQ2TzX+kKa6RHt1qzdrPhfdrIk/LHxw6OAiSEcMmw0Xg9bjFXjEbqvTChMmY4Y
-         utgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D4sT1wUlCbHRDpbMzMMTT4BWgWGszScqpQQPPR7Avx8=;
-        b=fv5Uf75FMukdHEBbzAiMOhtkcrxr/kmifSpZTek3eFnC8gBEsBTPOvlddgDoZwdTKj
-         gn5jK15xyWKx4eYLlYKiDnQZj0TSHJB5FUfBEeJLomJk0sgUlLYSdklX4VX+bzur25XM
-         4Yt482iZ/ZPxdjkvN/VqSsZ+QmQtExdshsVCMlvMugAs25Upe2/7s0jLNZXmz+WsGNBp
-         XHLeiC99s3s5/Gvda7g/NpTqfVH8XrjGA4OiXgXtq79wbXGFHJdGyiu8SFQ4G0DsnYwZ
-         ZsrCNAnoyGDU9/KtgehQGVkgepEDdS1mQ+JXdzh8aH2yS3+kIE+Z49OErbMeFQR/emyO
-         Illw==
-X-Gm-Message-State: AO0yUKUhbmAQDV1f6WWmLyzkEVL9gQS4y9TU0fICvAoDZ0XwiL+9vOgg
-        zI5Ca2mZ5ZAxxk/S0J3DRZc=
-X-Google-Smtp-Source: AK7set9UsywGgwcaKfpjQbvcN4DriltaAx6XT6S28Ki/RySsfHBlPZPWUAWYQaHmEPazeYrWLX5orw==
-X-Received: by 2002:aa7:db44:0:b0:4ac:b309:3d76 with SMTP id n4-20020aa7db44000000b004acb3093d76mr9530208edt.31.1677099882731;
-        Wed, 22 Feb 2023 13:04:42 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c22-76c9-eb00-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:76c9:eb00::e63])
-        by smtp.googlemail.com with ESMTPSA id m17-20020a50c191000000b004af6a840f21sm209208edf.15.2023.02.22.13.04.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 13:04:42 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jirislaby@kernel.org, neil.armstrong@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 RFC 3/3] arm64: dts: meson-g12-common: Use the G12A UART compatible string
-Date:   Wed, 22 Feb 2023 22:04:25 +0100
-Message-Id: <20230222210425.626474-4-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
-References: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
+        with ESMTP id S229869AbjBVVMD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 16:12:03 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69045149B8;
+        Wed, 22 Feb 2023 13:12:02 -0800 (PST)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9723366021D8;
+        Wed, 22 Feb 2023 21:11:58 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677100321;
+        bh=XbP0sDtxNAm8IjAuyCN+WUe9AnaCJFk0QivDms/MLjQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G1TrERe84hp5Xh4cdSkuPi9RArEPR4vwFIsdCEi4eoh3RC74Qm/9Y9Q0rrx6he6MF
+         2iPbBOgXAoxANRrkIVPITIcY5WvvOcrf+iNUeSGe2aw838v42JwuLRj/F2eG/pX7XW
+         KHWswBtuV/cZcbdJyt4Iml8w9WmqrbsHF/GGT+WAxL0OxZwQdJwy8C2K3DICs3uc5U
+         yyBu3o4Kk2ubBrSJ2d3uWzi7oD1gAzcnmPSnGNmFtVzoPxoQa3gwr5aJGGPq90SyyP
+         +uJw3vWsqq31TIpE1nIZ2S0nf5yXuyOk6C4P5wQyDI+LH4totlwaGhiEHd/Bid9Tvs
+         YxIOnCzJnUE3g==
+Date:   Wed, 22 Feb 2023 16:11:54 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Yunfei Dong =?utf-8?B?KOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>
+Cc:     "wenst@chromium.org" <wenst@chromium.org>,
+        Tiffany Lin =?utf-8?B?KOael+aFp+ePiik=?= 
+        <tiffany.lin@mediatek.com>,
+        "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "frkoenig@chromium.org" <frkoenig@chromium.org>,
+        "stevecho@chromium.org" <stevecho@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v2] media: mediatek: vcodec: Force capture queue format
+ to MM21
+Message-ID: <20230222211154.mhl7mihycl7eq5v6@notapiano>
+References: <20230210055518.6017-1-yunfei.dong@mediatek.com>
+ <e972c2ac1a7a6f0ce258c8056b82bdc87e4d8ceb.camel@ndufresne.ca>
+ <f6148f4c4864d324b52a52cc87b8785d958ceeb5.camel@mediatek.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <f6148f4c4864d324b52a52cc87b8785d958ceeb5.camel@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch meson-12-common.dtsi to use the Meson G12A specific UART
-compatible string. This enables the "divide XTAL by 2" divider which
-improves support for UART attached Bluetooth modules (for example
-RTL8822CS) running at a baud rate of 1500000. Without dividing XTAL
-(24MHz) by 2 a baud rate of 1500000 cannot be generated cleanly and the
-resulting jitter breaks communication with the module.
+Hi,
 
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On Tue, Feb 14, 2023 at 02:28:04AM +0000, Yunfei Dong (董云飞) wrote:
+> Hi Nicolas,
+> 
+> Thanks for your suggestion.
+> On Fri, 2023-02-10 at 10:36 -0500, Nicolas Dufresne wrote:
+> > Le vendredi 10 février 2023 à 13:55 +0800, Yunfei Dong a écrit :
+> > > In order to conver the format of capture queue from mediatek MM21
+> > > to
+> > > standard yuv420 with Libyuv, need to force capture queue format to
+> > > MM21 for Libyuv can't covert mediatek MT21 format at current
+> > > period.
+> > 
+> > Please rework this text, it is hard to understand.
+> > 
+> 
+> Will re-write the commit message in next version as below, could you
+> please help to review whether it's well to be used ?
+> 
+> Libyuv is one software library used to covert format. Only covert
+> mediatek MM21 to standard yuv420 for MT21 is compressed mode and MM21
+> is uncompressed mode at current period. Need to set capture queue
+> format to MM21 in order to use Libyuv.
+> 
+> > > 
+> > > Fixes: 7501edef6b1f ("media: mediatek: vcodec: Different codec
+> > > using different capture format")
+> > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.org>
+> > > ---
+> > > changed with v1:
+> > > - add Fixes tag.
+> > > ---
+> > >  drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git
+> > > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > > index 641f533c417f..4f5e9c20214f 100644
+> > > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > > @@ -41,7 +41,7 @@ static bool mtk_vdec_get_cap_fmt(struct
+> > > mtk_vcodec_ctx *ctx, int format_index)
+> > >  	const struct mtk_video_fmt *fmt;
+> > >  	struct mtk_q_data *q_data;
+> > >  	int num_frame_count = 0, i;
+> > > -	bool ret = true;
+> > > +	bool ret = false;
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 123a56f7f818..3dc06848f3c4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2046,7 +2046,7 @@ pwm_AO_cd: pwm@2000 {
- 			};
- 
- 			uart_AO: serial@3000 {
--				compatible = "amlogic,meson-gx-uart",
-+				compatible = "amlogic,meson-g12a-uart",
- 					     "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
- 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
-@@ -2056,7 +2056,7 @@ uart_AO: serial@3000 {
- 			};
- 
- 			uart_AO_B: serial@4000 {
--				compatible = "amlogic,meson-gx-uart",
-+				compatible = "amlogic,meson-g12a-uart",
- 					     "amlogic,meson-ao-uart";
- 				reg = <0x0 0x4000 0x0 0x18>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
-@@ -2293,7 +2293,7 @@ clk_msr: clock-measure@18000 {
- 			};
- 
- 			uart_C: serial@22000 {
--				compatible = "amlogic,meson-gx-uart";
-+				compatible = "amlogic,meson-g12a-uart";
- 				reg = <0x0 0x22000 0x0 0x18>;
- 				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
-@@ -2302,7 +2302,7 @@ uart_C: serial@22000 {
- 			};
- 
- 			uart_B: serial@23000 {
--				compatible = "amlogic,meson-gx-uart";
-+				compatible = "amlogic,meson-g12a-uart";
- 				reg = <0x0 0x23000 0x0 0x18>;
- 				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
-@@ -2311,7 +2311,7 @@ uart_B: serial@23000 {
- 			};
- 
- 			uart_A: serial@24000 {
--				compatible = "amlogic,meson-gx-uart";
-+				compatible = "amlogic,meson-g12a-uart";
- 				reg = <0x0 0x24000 0x0 0x18>;
- 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
--- 
-2.39.2
+This change doesn't do anything, so I'd drop it.
 
+> > >  
+> > >  	for (i = 0; i < *dec_pdata->num_formats; i++) {
+> > >  		if (dec_pdata->vdec_formats[i].type != MTK_FMT_FRAME)
+> > > @@ -63,7 +63,7 @@ static bool mtk_vdec_get_cap_fmt(struct
+> > > mtk_vcodec_ctx *ctx, int format_index)
+> > >  	case V4L2_PIX_FMT_H264_SLICE:
+> > >  	case V4L2_PIX_FMT_VP9_FRAME:
+> > >  		if (fmt->fourcc == V4L2_PIX_FMT_MM21)
+> > > -			ret = false;
+> > > +			ret = true;
+> > 
+> > This makes the VP8 and the other cases identical, leaving anything
+> > that touches
+> > MT21 as dead code. I'm not sure, cause I cannot test it, but it
+> > should in theory
+> > render MT8192 unusable, unless a new firmware has been submitted to
+> > linux-
+> > firmware with MM21 support ?
+> > 
+> 
+> If the firmware only support MT21 => won't exist for vp8 need to use
+> MM21.
+
+And that's the issue, the scp.img for MT8192 on linux-firmware only supports
+MT21 [1]. Can you please update it to support both MM21 and MT21?
+
+For MT8195, only MM21 is supported in scp.img [2], but since the hardware
+supports both MM21 and MT21, the firmware should also support both. So please
+also update it on linux-firmware.
+
+[1] https://lore.kernel.org/all/20230112204626.ciaff4amseoidybw@notapiano/
+[2] https://lore.kernel.org/all/20230112205825.wb5qcqhh5kwvyi3y@notapiano/
+
+Thanks,
+Nícolas
+
+> 
+> If the firmware only support MM21, will using MM21.
+> If the firmware support MT21 & MM21, will force VP8 to use MM21,
+> H264/VP9/AV1 will use MT21 before this change. 
+> 
+> Will force all driver to use MM21 after adding this change. 
+> 
+> Best Regards,
+> Yunfei Dong
+> > >  		break;
+> > >  	default:
+> > >  		ret = true;
+> > 
+> > 
