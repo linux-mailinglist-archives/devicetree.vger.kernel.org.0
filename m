@@ -2,63 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E35A69FA25
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EBEC69FA30
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:29:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbjBVR14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 12:27:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
+        id S232136AbjBVR3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 12:29:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbjBVR14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:27:56 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26DA86A43
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:27:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AAA50604EF
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 17:27:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B058C433D2;
-        Wed, 22 Feb 2023 17:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677086873;
-        bh=GaQWt87pfqWhihgkWvN8V4jqdum+gGbBj2QXnN43Xco=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qmGVZmNf6jMCxbIEVKkOfdRYDWfmYRNqQJzVKPfG9rfKn3VOryXgjnJhTnGslNMdC
-         RRf/KvBODyLsWBHMMqhO3VwsjMi/Hm9gafrXRZzPSRrBMxc+Kl5tvIMw4V9VFiQFP8
-         rHSXXnfzO+dQsj01XYlOpdW63MNr1vZgIh9qrNa7nm06hA9TekwcIvkauuinyLt/RM
-         ko4QAisxGK276tPWrc7ASm07tGuVxlsgmDbV8+YWMbuJp6K0tQRUnO+kqglPwuWLd9
-         CWjRDeV6tpa34aHZY0qNDv7zJR6w0wRZJ6LQLPll6sewq+2emPNeDsIIxDvS+kjoNH
-         yYOXOsgNx+n/g==
-Date:   Wed, 22 Feb 2023 17:27:47 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        kvm-riscv@lists.infradead.org, 'Rob Herring ' <robh@kernel.org>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Conor Dooley ' <conor.dooley@microchip.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Ben Dooks ' <ben.dooks@codethink.co.uk>,
-        'Atish Patra ' <atishp@rivosinc.com>
-Subject: Re: [PATCH v5 5/8] riscv: cpufeatures: Put the upper 16 bits of
- patch ID to work
-Message-ID: <Y/ZQk0ifXPEnenoe@spud>
-References: <20230221190916.572454-1-ajones@ventanamicro.com>
- <20230221190916.572454-6-ajones@ventanamicro.com>
+        with ESMTP id S231214AbjBVR3O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:29:14 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA7E22016
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:29:11 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id e24so2378447ljj.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:29:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=45x/yCivxi0bY+KeFqvEfjQJdJggSQUDL2JTnHKXlWE=;
+        b=TId2kjgPqyrYhTb7hjUC3UIncHucbPPI+vmYFujidho4wZJ+TMyeHrTtV39wRZ6jPJ
+         zqbdHhAFPS5B6Z2FkoCwQmtdg3lzNZHnT/BspWttEFeME0L+693slIjxz5Shok8IrmmQ
+         5YzLXqIVRQB7jNtpmcby49IpxS2+J3/Jx+NuROMu9iW3yh/7bk829VGQE6GjzkJPXHQ0
+         1YAOO4uFKIttIQgK32yJkwajkjkm2y4v2qdDkCeuSJ19MEgPJis37/tsOxbezWcuTBaL
+         O/latFjsQmkrqvgisJSLCcbLMMhKiuEiZhUQxspMv+K9MOc6Xv3Ekzz8eHJeAPn6wpO+
+         D7qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=45x/yCivxi0bY+KeFqvEfjQJdJggSQUDL2JTnHKXlWE=;
+        b=UOkfablxHBpQfapF8OzveAaWmNgwO7AVDFBrpKmMdsY8MMAavmhkEQsRZo5gM9iG/k
+         bgPXCi06hbh4rKYcqJMoBZHHyi4tiqlzzMC5jmJubW8iriN94dHd1RAOYO1TNzvXy0zB
+         IfQfFqsoatrNSAZ8E+4S6dqKYPorFhKSc++w8tzMvJ+hG/xxubCc1UsRMVFvMaaCoNET
+         yndUfjSxBr+bzDhC859EAkLjEKoh9AnXptImUmUGxcYLDR0YTuCMvF16uD2OCQF22rBC
+         slxx6fiPStWp1g1jSnFJxUpjo32tjZjDJ5su5MRHOnIAFQdhKW+SguKE/uWcoc7bZ5El
+         8POg==
+X-Gm-Message-State: AO0yUKU7bpGN6KmhnVQft1BX742/7KdEBK24KmMCZnN6jNqtlzScRprS
+        orPrXiWf1RechTgKQSOsGsqnRQ==
+X-Google-Smtp-Source: AK7set/yRvoRFXWjEDei4ZujEE7oxX9Phpezq0Nt/e7wp2JqvJ1PH+gvaT5pTrVY5Xb0djUlFXJu4g==
+X-Received: by 2002:a2e:8e7c:0:b0:294:6977:7b34 with SMTP id t28-20020a2e8e7c000000b0029469777b34mr2884429ljk.50.1677086949987;
+        Wed, 22 Feb 2023 09:29:09 -0800 (PST)
+Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
+        by smtp.gmail.com with ESMTPSA id v15-20020a056512048f00b004d61af6771dsm352682lfq.41.2023.02.22.09.29.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 09:29:09 -0800 (PST)
+Message-ID: <15ad12b3-60b1-85f0-d022-a463879458c4@linaro.org>
+Date:   Wed, 22 Feb 2023 18:29:07 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="GqMNVKB/GCgclQiO"
-Content-Disposition: inline
-In-Reply-To: <20230221190916.572454-6-ajones@ventanamicro.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v11 08/10] crypto: qce: core: Add support to initialize
+ interconnect path
+Content-Language: en-US
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, Jordan Crouse <jorcrous@amazon.com>
+References: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
+ <20230222172240.3235972-9-vladimir.zapolskiy@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230222172240.3235972-9-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,154 +84,89 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---GqMNVKB/GCgclQiO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 21, 2023 at 08:09:13PM +0100, Andrew Jones wrote:
-> cpufeature IDs are consecutive integers starting at 26, so a 32-bit
-> patch ID allows an aircraft carrier load of feature IDs. Repurposing
-> the upper 16 bits still leaves a boat load of feature IDs and gains
-> 16 bits which may be used to control patching on a per patch-site
-> basis.
->=20
-> This will be initially used in Zicboz's application to clear_page(),
-> as Zicboz's block size must also be considered. In that case, the
-> upper 16-bit value's role will be to convey the maximum block size
-> which the Zicboz clear_page() implementation supports.
->=20
-> cpufeature patch sites which need to check for the existence or
-> absence of other cpufeatures may also be able to make use of this.
->=20
-> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+On 22.02.2023 18:22, Vladimir Zapolskiy wrote:
+> From: Thara Gopinath <thara.gopinath@gmail.com>
+> 
+> Crypto engine on certain Snapdragon processors like sm8150, sm8250, sm8350
+> etc. requires interconnect path between the engine and memory to be
+> explicitly enabled and bandwidth set prior to any operations. Add support
+> in the qce core to enable the interconnect path appropriately.
+> 
+> Tested-by: Jordan Crouse <jorcrous@amazon.com>
+> Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
+> [Bhupesh: Make header file inclusion alphabetical and use devm_of_icc_get()]
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> [vladimir: moved icc bandwidth setup closer to its acquisition]
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
->  arch/riscv/include/asm/alternative.h |  3 +++
->  arch/riscv/kernel/cpufeature.c       | 37 +++++++++++++++++++++++++---
->  2 files changed, 36 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/as=
-m/alternative.h
-> index 8f39d4e8598d..f2cb543b0bd2 100644
-> --- a/arch/riscv/include/asm/alternative.h
-> +++ b/arch/riscv/include/asm/alternative.h
-> @@ -17,6 +17,9 @@
->  #include <linux/stddef.h>
->  #include <asm/hwcap.h>
-> =20
-> +#define PATCH_ID_CPUFEATURE_ID(p)		((u16)((u32)(p) & 0xffff))
-> +#define PATCH_ID_CPUFEATURE_VALUE(p)		((u16)(((u32)(p) >> 16) & 0xffff))
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-I was just fiddling around a bit with macros, I think these do the same
-thing:
-#define PATCH_ID_CPUFEATURE_ID(p)		((p) & GENMASK(15, 0))
-#define PATCH_ID_CPUFEATURE_VALUE(p)		FIELD_GET(GENMASK(31, 16), (p))
-Although without the same care about types - is there a specific reason
-you were casting like that?
-
-Either way, I think I prefer this approach to the vendor_id stuffing!
-If we do end up needing to fit an aircraft carrier, we can come back and
-revisit another parameter in the alternatives I suppose...
-
-I don't really know if the macros do anything to help with
-understandability, so with or without trying to use macros:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
->  #define RISCV_ALTERNATIVES_BOOT		0 /* alternatives applied during regula=
-r boot */
->  #define RISCV_ALTERNATIVES_MODULE	1 /* alternatives applied during modul=
-e-init */
->  #define RISCV_ALTERNATIVES_EARLY_BOOT	2 /* alternatives applied before m=
-mu start */
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 6102b6bb5db3..0594989ead63 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -273,12 +273,35 @@ void __init riscv_fill_hwcap(void)
+Konrad
+>  drivers/crypto/qce/core.c | 16 +++++++++++++++-
+>  drivers/crypto/qce/core.h |  1 +
+>  2 files changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> index 74deca4f96e0..0654b94cfb95 100644
+> --- a/drivers/crypto/qce/core.c
+> +++ b/drivers/crypto/qce/core.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include <linux/clk.h>
+>  #include <linux/dma-mapping.h>
+> +#include <linux/interconnect.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/module.h>
+>  #include <linux/mod_devicetable.h>
+> @@ -22,6 +23,8 @@
+>  #define QCE_MAJOR_VERSION5	0x05
+>  #define QCE_QUEUE_LENGTH	1
+>  
+> +#define QCE_DEFAULT_MEM_BANDWIDTH	393600
+> +
+>  static const struct qce_algo_ops *qce_ops[] = {
+>  #ifdef CONFIG_CRYPTO_DEV_QCE_SKCIPHER
+>  	&skcipher_ops,
+> @@ -218,10 +221,18 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>  	if (IS_ERR(qce->bus))
+>  		return PTR_ERR(qce->bus);
+>  
+> -	ret = clk_prepare_enable(qce->core);
+> +	qce->mem_path = devm_of_icc_get(qce->dev, "memory");
+> +	if (IS_ERR(qce->mem_path))
+> +		return PTR_ERR(qce->mem_path);
+> +
+> +	ret = icc_set_bw(qce->mem_path, QCE_DEFAULT_MEM_BANDWIDTH, QCE_DEFAULT_MEM_BANDWIDTH);
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = clk_prepare_enable(qce->core);
+> +	if (ret)
+> +		goto err_mem_path_disable;
+> +
+>  	ret = clk_prepare_enable(qce->iface);
+>  	if (ret)
+>  		goto err_clks_core;
+> @@ -260,6 +271,9 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>  	clk_disable_unprepare(qce->iface);
+>  err_clks_core:
+>  	clk_disable_unprepare(qce->core);
+> +err_mem_path_disable:
+> +	icc_set_bw(qce->mem_path, 0, 0);
+> +
+>  	return ret;
 >  }
-> =20
->  #ifdef CONFIG_RISCV_ALTERNATIVE
-> +/*
-> + * Alternative patch sites consider 48 bits when determining when to pat=
-ch
-> + * the old instruction sequence with the new. These bits are broken into=
- a
-> + * 16-bit vendor ID and a 32-bit patch ID. A non-zero vendor ID means the
-> + * patch site is for an erratum, identified by the 32-bit patch ID. When
-> + * the vendor ID is zero, the patch site is for a cpufeature. cpufeatures
-> + * further break down patch ID into two 16-bit numbers. The lower 16 bits
-> + * are the cpufeature ID and the upper 16 bits are used for a value spec=
-ific
-> + * to the cpufeature and patch site. If the upper 16 bits are zero, then=
- it
-> + * implies no specific value is specified. cpufeatures that want to cont=
-rol
-> + * patching on a per-site basis will provide non-zero values and impleme=
-nt
-> + * checks here. The checks return true when patching should be done, and
-> + * false otherwise.
-> + */
-> +static bool riscv_cpufeature_patch_check(u16 id, u16 value)
-> +{
-> +	if (!value)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  void __init_or_module riscv_cpufeature_patch_func(struct alt_entry *begi=
-n,
->  						  struct alt_entry *end,
->  						  unsigned int stage)
->  {
->  	struct alt_entry *alt;
->  	void *oldptr, *altptr;
-> +	u16 id, value;
-> =20
->  	if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
->  		return;
-> @@ -286,13 +309,19 @@ void __init_or_module riscv_cpufeature_patch_func(s=
-truct alt_entry *begin,
->  	for (alt =3D begin; alt < end; alt++) {
->  		if (alt->vendor_id !=3D 0)
->  			continue;
-> -		if (alt->patch_id >=3D RISCV_ISA_EXT_MAX) {
-> -			WARN(1, "This extension id:%d is not in ISA extension list",
-> -				alt->patch_id);
-> +
-> +		id =3D PATCH_ID_CPUFEATURE_ID(alt->patch_id);
-> +
-> +		if (id >=3D RISCV_ISA_EXT_MAX) {
-> +			WARN(1, "This extension id:%d is not in ISA extension list", id);
->  			continue;
->  		}
-> =20
-> -		if (!__riscv_isa_extension_available(NULL, alt->patch_id))
-> +		if (!__riscv_isa_extension_available(NULL, id))
-> +			continue;
-> +
-> +		value =3D PATCH_ID_CPUFEATURE_VALUE(alt->patch_id);
-> +		if (!riscv_cpufeature_patch_check(id, value))
->  			continue;
-> =20
->  		oldptr =3D ALT_OLD_PTR(alt);
-> --=20
-> 2.39.1
->=20
-
---GqMNVKB/GCgclQiO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/ZQkwAKCRB4tDGHoIJi
-0k+wAPwIor5ilu4B0RgPKFqm7EtX5MEeyIBYCiI+e43beFThVAD8DO/1X/a4zv0y
-P04ldR+yuDJDo4G0/ySBm28E4Kbc1Ac=
-=THQn
------END PGP SIGNATURE-----
-
---GqMNVKB/GCgclQiO--
+>  
+> diff --git a/drivers/crypto/qce/core.h b/drivers/crypto/qce/core.h
+> index 085774cdf641..228fcd69ec51 100644
+> --- a/drivers/crypto/qce/core.h
+> +++ b/drivers/crypto/qce/core.h
+> @@ -35,6 +35,7 @@ struct qce_device {
+>  	void __iomem *base;
+>  	struct device *dev;
+>  	struct clk *core, *iface, *bus;
+> +	struct icc_path *mem_path;
+>  	struct qce_dma_data dma;
+>  	int burst_size;
+>  	unsigned int pipe_pair_id;
