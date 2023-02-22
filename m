@@ -2,214 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE78C69EB53
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 00:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E21BE69EBA3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 01:09:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbjBUXj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 18:39:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53662 "EHLO
+        id S230116AbjBVAJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 19:09:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbjBUXj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 18:39:57 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2062.outbound.protection.outlook.com [40.107.20.62])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3422A174
-        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 15:39:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QdB2Mv0t9H0sDBGHwqgRXpQ30sFo4dg4mlCGnB0vR2Jb6Gfhtp48NI6NEar70UDaFsZcc4TADLgjVH7pa36sM19/X1d1dLEcVaSKJhY5RVexdb2rTc0Lw6vbd+yTxBeeeC+X9qS+PHlAxv1Sp4X8Nlu+6OV4jY25jq4rwVVAay5ZM8VXCVBTsY+5xQA11/d5CJFcFIes/g1dZGlFQa79l5TdE81Q4zK0HD3Ju8CTJ1kQEX1L5+xx0dA2sYE9DRWWtIxYRKdxPto3LcbZt/u0jJYSnQtHxwQRcE8LCWZo6EVeNexNf3RQJN8wZChI5ZRgulnLBP53K8IMq8iqlQqqGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2t7xbNj1VdILgxeh+ZXSUeaTAcEhKRQidSUbx/uht/A=;
- b=FaB2V2Hylzp9DaeA4Dbf6Icd61QklT3RPc6N6epOQrIQW64N3n9l3mFA4sWl0zyGf9yL//uzwaEYYMoZMnspkblpv04ZD9ZMb5NTjVq+/sjNcjd1bikZ7K2TdFmPqq9H5MvH28hac3TAMdyQdnq/U9JBl4nB9N8e5Khu4fUfiRsAcC46D8laxYAreKbM0588Ui3DJj3viGwW6Rqp1uj4EqfOZb56GsqF7qcTlQFy5wPoTjOGyWhbsejl9q5m2KMs3UOWNhkFocoVBSNLm5q7zPT95VsW2NgmZMSpPexRl4nsFOf/W9IsGOecmPHrVBq/+vUEfpyETSw6EtJ+AQVmvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2t7xbNj1VdILgxeh+ZXSUeaTAcEhKRQidSUbx/uht/A=;
- b=YQeSIxeSlTYFJ08jurN8NGRr19B5NsCRTy+F6kQI4MzJQGdPwYqU90AiutqhZg/4UwGeSJjnx2R8aV+2m3ZmBuF7SPee5zaWGS6M8imV0gdcokKsC7979eiGwQlZI5+NT+IfEmRY2snO0wP3ySCjjXzKR1EbMeAPcUo+tditpxBuuzUeno7gEkjB8OqbGxyT+ydDJ5YPeR87GwMI+eR6yZ0ibVxAZ7bcLaImoJWuldOM7HIxA6CVn2aKLEyZM6XFhjoZdCibaN5EnWi2bdgZLCxApRaJKWp0O7alO82D1jGq473HE4wZAl6hFKCYmSW20YvxGKqLEbQTAlaVCh++YA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=suse.com;
-Received: from AS8PR04MB8465.eurprd04.prod.outlook.com (2603:10a6:20b:348::19)
- by AM9PR04MB7713.eurprd04.prod.outlook.com (2603:10a6:20b:2d4::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.21; Tue, 21 Feb
- 2023 23:39:41 +0000
-Received: from AS8PR04MB8465.eurprd04.prod.outlook.com
- ([fe80::7bca:4b0c:401e:e1bb]) by AS8PR04MB8465.eurprd04.prod.outlook.com
- ([fe80::7bca:4b0c:401e:e1bb%3]) with mapi id 15.20.6111.021; Tue, 21 Feb 2023
- 23:39:41 +0000
-Message-ID: <b5953c8e-1796-2ce2-9a63-7dc06ec83f3d@suse.com>
-Date:   Wed, 22 Feb 2023 07:39:32 +0800
+        with ESMTP id S229712AbjBVAJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 19:09:12 -0500
+Received: from irl.hu (irl.hu [95.85.9.111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0BFE1E5F3;
+        Tue, 21 Feb 2023 16:09:10 -0800 (PST)
+Received: from [192.168.2.4] (bc065635.dsl.pool.telekom.hu [::ffff:188.6.86.53])
+  (AUTH: CRAM-MD5 soyer@irl.hu, )
+  by irl.hu with ESMTPSA
+  id 000000000006FA81.0000000063F55D23.002C9F2E; Wed, 22 Feb 2023 01:09:07 +0100
+Message-ID: <8f5bd6b1-b54b-22ad-f122-d29def914dd2@irl.hu>
+Date:   Wed, 22 Feb 2023 01:09:06 +0100
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH RFC 0/5] arm64: rockchip: enable PCIE3 controller and its
- phy for Rock5B boards
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        heiko@sntech.de, lucas.tanure@collabora.com
-References: <cover.1675498628.git.wqu@suse.com>
- <583D2908-ECED-4226-A6CD-683F0D5BEA71@gmail.com>
- <4b28da3e-9126-8409-dd9c-3899762e28bb@suse.com>
- <7A70CB52-1892-4455-B419-AD00298DE7B5@gmail.com>
- <CAMdYzYovDsiw5zwMvPbLaVcfpryX6K7r2zuVUVkAtYxiwzKGUQ@mail.gmail.com>
- <20230221214517.5rjtwpftcj5dugdl@mercury.elektranox.org>
-From:   Qu Wenruo <wqu@suse.com>
-In-Reply-To: <20230221214517.5rjtwpftcj5dugdl@mercury.elektranox.org>
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sdm845-oneplus: add alert-slider
+Content-Language: en-US, hu
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Caleb Connolly <caleb@connolly.tech>
+References: <cover.1676850819.git.soyer@irl.hu>
+ <16e6c00389bf0ee881a055f81a3dbfd5bfc9c469.1676850819.git.soyer@irl.hu>
+ <be1201a5-f315-9125-8768-4719a92f07f9@linaro.org>
+From:   Gergo Koteles <soyer@irl.hu>
+In-Reply-To: <be1201a5-f315-9125-8768-4719a92f07f9@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR01CA0051.prod.exchangelabs.com (2603:10b6:208:23f::20)
- To AS8PR04MB8465.eurprd04.prod.outlook.com (2603:10a6:20b:348::19)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8465:EE_|AM9PR04MB7713:EE_
-X-MS-Office365-Filtering-Correlation-Id: e0ccdbb1-02fa-4de6-d5ef-08db1464e757
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +eGkaTsh4zd71Hfn80x0gMWI8v3WnbGlMj5REJFg6cfo/wOR6aeGJM325tdZ5NjogMlhUYI9rlxKN2m1fVLn73Vo3XP/DBn5UidSEWhRBAp/q8gXaIw+OKofb/3yMd9dzMh1ghszSkvYJ5ORstrAIL6tYb4Eri4acFam7a9aBg5nEB/2aWK5Zu04OyYbyBF0ym3+Lfw2/D+h8ppcihk8Q46UrpUS5wenDYFPfnFSFBMkP+ucSOgg9iqqvTAE2DNIFOcCye+ilM47itzJ50DqMP8uUyhUdvhVqxo+GtcKX7yuXUnKSuJvFwoXmDQUmZhHTs/7DRP5xtnzA8dVJDiiR1z1Ac6rus5L5sX9gI5v102a12gwC96eHuDaSqUzicm0+MBGQos0+S4tuoJcqd3HcMulCUjBucuJOWwpBayjzU8ztPk9LwDo0rGVNuddd3T7RTk2ZlRtopaZpXcJrwOGivw+wUSq47gRKK4DJr1mwMlQL1NY4kNOhcIOqW4X1boYvdTdrHIgi4T6mCCT0lDD+x1Htr8opHgRbG6XOuzNRJB0U/jlIKlE3q2CMfPVN4i0n7AQ/Y8UYDyZ8Rxmdg50PfW/deuwKI5zpBRP1MH6sQB5T09ohjVLpzCLOPUx0AFWFJABmSb0kA29iGH8/bkLP+TkaT2rrXEyJM2dokz1KvoBcBbGBVDIA8gOvLbDX7rU9e9n0tEph05dB4CC5/G0eUQO6M73P/fJNOmYQKMwT19Bx0/ZBeilFsOYrwv44Nqp4kKEy+1qfJJJe5V/4DpLexX4uIpRZqQyV2RVQdS+NIU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8465.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(376002)(366004)(396003)(39860400002)(136003)(451199018)(83380400001)(31686004)(966005)(6486002)(2906002)(2616005)(66899018)(478600001)(38100700002)(5660300002)(110136005)(53546011)(66476007)(186003)(8676002)(8936002)(4326008)(316002)(54906003)(6506007)(6666004)(66946007)(6512007)(31696002)(66556008)(41300700001)(86362001)(36756003)(32563001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dXVncVFzcEFVYWxtSU5MOXF1NCsxZG9XdHdiUDI0Z0V2SzRuOEFNQmgyUUtN?=
- =?utf-8?B?WGxXVjUzMGh4VCtPM2p5M241Vmp2Y2tRUnpyTDV4ZWxFbTVmN3MwOGthMXhn?=
- =?utf-8?B?UVdBR2RyMFRmZFhmaWIrUjJocjkwZitocFc2cXF2VmhjZnFpTEsyQmhmOHJa?=
- =?utf-8?B?ekozR2dCSkxZMWdSMjRNcCthWEpiZkd0WXZYNDNvYzRYUzN0aDFNcjYzWHdp?=
- =?utf-8?B?YklZZVJPb2wyR0VuY1hNQ2tlZExiS05MSU5BRGhFMHBmNmE1QitOM3FtMlFH?=
- =?utf-8?B?WGVZMTNjanFTTzJJOUVpU2dRQkdTQnVnYk0yYlVYS21FRjNGRVF5ZDhnRFZH?=
- =?utf-8?B?UUNYZGdudU84d25hdnVvVC90cmVadXNWTnU4ckM1V0padERtRkRFSWtSTm13?=
- =?utf-8?B?dnF3QVQwT3pmWFVmVDZZeERNSHBNQzc2bm5kYmRQTzY3RjY3V2t0TThobklM?=
- =?utf-8?B?aVRFUmJhb0Z4bGQ5WGFBTE9KMkR4cTZKaTczaEZCSjVuMWJCRzBCcC9QbnRh?=
- =?utf-8?B?Z3g4ZktGYWpOTnVNclRVZ1h1anlDdWhva3ova2g3VzVqVzM4YUU4dGlZUE9l?=
- =?utf-8?B?Rm0zQkM1Z3YyVUdmcVJ6ejl4VzV6ZEtHM29abjVNUkZiTjREUXlVUE5DcVdS?=
- =?utf-8?B?QW8rVWNXWHBxeWRHWWcxUlhRcUxIaWJUcGRvRjVoTmtsbkRocDQ3bGFqT0xo?=
- =?utf-8?B?cjBGQnNMRE1Zell5a0V5SXNscmUwVnlxL3FZSTl6cDlMS3VJTFZhWk9ZS2xl?=
- =?utf-8?B?Z2RUQjB0eFNUY1c0bWJocENEbUJUODFTTkNkNHA2VzBPeUhZWE9TU2NySDRo?=
- =?utf-8?B?Z1BQalMwcXI1eWhxeENrTXFjK3o0NHJXYnVlUzJwNnQ0TTNlMk9YdjRySTFW?=
- =?utf-8?B?eU5Sb3BsVXNwV29ZemwyYlRQVDlGRkYydHl3ZkQrb2JEK0p6NlJmY1B1RDhu?=
- =?utf-8?B?Z3JrV1hRR20yZUZRVzBJc2EvMGIvK3htVEFweGh1akJVSk13UUkvQUYzQnJJ?=
- =?utf-8?B?NnJ2Q1hnWXQ5Uy9wajlGUFFLZTFiOXI2VW9XT1ByalVyTTh6NUQvemdzdTd5?=
- =?utf-8?B?WXhKMS9VV1pUOU03ZlArK2FPQ1ZwQ2FYbElwTGFVU2EwNmU1cEFyWUwyLzBz?=
- =?utf-8?B?WmNCV2lCcldUVXAzOW56c0NmZHNheTJPQ1BBNUl6V3VTcEFmS2xwd08xWFh5?=
- =?utf-8?B?NFdsT1ZHVHFHTDFPQUx3b2M4anFZYUgzNDNQcTlGek1DNFAyNFNPb1kybW1u?=
- =?utf-8?B?TDBCK3N0d2lEekxxc0RwYjZsTmhraWVhVVlwQmNsdFU1UndyOUp1UUJXb0hO?=
- =?utf-8?B?dkg0eS9xOWdEcGhoV09ETXU1cm9hS2JPNFQzcU1TT3F1RVBZdEZsVFZCTDNm?=
- =?utf-8?B?eGJjNTFtRlRvWnVpMFh3em00YzlDM2dkK2RTZTdCSDQ1WWg2UzlZQlBzN1Z4?=
- =?utf-8?B?RGhWMVB4OWN5c1lkemFZUFlBb2Naa1JnMWdCV3J2RlIwVEVVOGxQamdPNnJU?=
- =?utf-8?B?Ylh1bmVFRmJKc3lKTktCanZQNXpmT2hHQkM2YWxhZlRDWTRuOFZ4MCtrdlJ3?=
- =?utf-8?B?MXJ0bE9xK1o5TFhTaG5LUWV4U0M1ZERSa1FveWdjbWNGYWgyb0xyTk9xNENW?=
- =?utf-8?B?N1d1d3JvUDhjZ2MyeTB1emVpeDFSWUFXQUcyL2QxRFczU05qUDZmbEVrd3Ix?=
- =?utf-8?B?aGVHaVMyRGxEbXpVaFJIcTg3d2JvRm9UeHpUQ1hvVkRac3dlTXpTZzhrTnVE?=
- =?utf-8?B?Q2xKTjdqejlmVk9CTFB0VVlQUERyOENCeUdIcmkxdk93OGVqc2tJYVhYU0lN?=
- =?utf-8?B?Qi9XSUZKVU04c3QyYlBGNXNzTXRLK1VPcTk4QjNLMERIZmNqbFc3MDM3NHha?=
- =?utf-8?B?aVJHSXEyVDhNdEVGUVpSMFdPdEI1L0luZE1JL2J6QmhibXJkUWg3MCt6UE1w?=
- =?utf-8?B?aWtldTNyVnBhS2I5YklhMmcrclIyRmZaUU5JVW5zdU5JbTYyWlZsKzRXNzJV?=
- =?utf-8?B?OWNhR1djYWtiUTlQVm5MWTR1eXRad21FK0o1UHBYdUs4MytmODAwUCtDTndi?=
- =?utf-8?B?eHNJYnZSeFB4WFRyenFGL2ZKcDIxMWZiMWc5MkNKYmovQmJETkNBaFRuWDZC?=
- =?utf-8?B?YTNQQjkvdlI5c3pMSStUamxEK09meUJKcjk1M09mbHVjajJ6Y1BnbDgvOTV5?=
- =?utf-8?Q?Yviw5emSJlGdixl44odfiY0=3D?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0ccdbb1-02fa-4de6-d5ef-08db1464e757
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8465.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2023 23:39:41.5197
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dtIZxDIbrxQyIhFJ7P5BHDpCjeZByTeczPMadScSH8gnFi2Gi/kC6iMDGZpCYk/f
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7713
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/2/22 05:45, Sebastian Reichel wrote:
-> Hi everyone,
+Hi Konrad,
+On 2023. 02. 20. 11:17, Konrad Dybcio wrote:
 > 
-[...]
+> 
+> On 20.02.2023 01:13, Gergo Koteles wrote:
+>> The alert-slider is a tri-state sound profile switch found on the OnePlus 6,
+>> Android maps the states to "silent", "vibrate" and "ring". Expose them as
+>> ABS_SND_PROFILE events.
+>> The previous GPIO numbers were wrong. Update them to the correct
+>> ones.
 >>
->> If the phy is misconfigured, not powered, or the clocks aren't going
->> active, you'll hang when the controller tries to touch it. Unless
->> someone has completed the combophy rk3588 bits the driver is not
->> functional yet for rk3588.
+>> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
+>> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+>> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+>> ---
+>>   .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 43 ++++++++++++++++++-
+>>   1 file changed, 41 insertions(+), 2 deletions(-)
 >>
->> Looking at the current 6.2 release, I only see the rk3568 compatible,
->> so you'll need to add support for rk3588 before it will work.
->>
->> Very Respectfully,
->> Peter Geis
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> index 64638ea94db7..ff982dd853a9 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> @@ -52,6 +52,45 @@ key-vol-up {
+>>   		};
+>>   	};
+>>   
+>> +	alert-slider {
+> This is out of order, alphabetically.
 > 
-> Sorry for being late to the game. Life is busy right now :)
-
-Welcome back!
-
+>> +		compatible = "gpio-keys";
+>> +		label = "Alert slider";
+>> +
+>> +		pinctrl-0 = <&alert_slider_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		switch-top {
+>> +			label = "Silent";
+>> +			linux,input-type = <EV_ABS>;
+>> +			linux,code = <ABS_SND_PROFILE>;
+>> +			linux,input-value = <SND_PROFILE_SILENT>;
+>> +			gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <50>;
+> Is there a reason it can't be the default 5ms, since it should
+> more or less be a simple input ping to the userspace?
 > 
-> I haven't looked into PCIe myself so far, but some of my colleagues
-> are looking into native network support on Rock 5B (and thus PCIe2
-> controller).
-> 
-> Apart from the obvious (missing rk3588 support in the combophy driver),
-> the clocks will need some work. The clock tree implementation I upstreamed
-> is different from the downstream implementation. Downstream has some
-> clocks that have two parent clocks using a hacked implementation
-> that's obviously not upstreamable as is. The upstream implementation
-> currently only describes the first parent. More details are in the
-> following comment:
-
-Thanks for the details!
-
-No wonder why the combo phy doesn't work.
-
-I tried checking the downstream driver, and can only find trivial 
-differences between rk3588 and rk3568 naneng combo drivers.
-
-But didn't notice the clock problems.
-
-BTW, is there any docs on all the registers?
-For the combo phy drivers, there are some registers only utilized by 
-3588 but not 356x, thus docs on this would be very helpful.
+Yes, it's a simple input ping to the userspace.
+It works with the default 5ms also.
 
 Thanks,
-Qu
+Gergo
 
+> Other than that:
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/rockchip/clk-rk3588.c#n16
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Back than I wrote that I do not understand the exact need (the TRM
-> does not describe the clock tree unfortuantely), I found this
-> explanation:
-> 
-> https://lore.kernel.org/dri-devel/20220309094139198367142@rock-chips.com/
-> 
-> To get the advanced blocks properly running upstream this needs a
-> solution for this. Note that trying to access registers that are
-> not clocked properly will result in a hang (as Peter already wrote).
-> 
-> Apart from that the power-domain controller might need some of the
-> extra bits downstream has.
-> 
-> Last but not least the GIC controller is handled differently in
-> downstream. For that following the workaround that has been used for
-> rk356x should also work for rk3588.
-> 
-> TLDR: This is not trivial. It's really unfortunate, that the board
-> is not just using the native ethernet :(
-> 
-> P.S.: We try to keep a rk3588 / Rock 5 status matrix maintained here:
-> 
-> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3588/-/blob/main/mainline-status.md
-> 
-> Greetings,
-> 
-> -- Sebastian
+> Konrad
+>> +			linux,can-disable;
+>> +		};
+>> +
+>> +		switch-middle {
+>> +			label = "Vibrate";
+>> +			linux,input-type = <EV_ABS>;
+>> +			linux,code = <ABS_SND_PROFILE>;
+>> +			linux,input-value = <SND_PROFILE_VIBRATE>;
+>> +			gpios = <&tlmm 52 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <50>;
+>> +			linux,can-disable;
+>> +
+>> +		};
+>> +
+>> +		switch-bottom {
+>> +			label = "Ring";
+>> +			linux,input-type = <EV_ABS>;
+>> +			linux,code = <ABS_SND_PROFILE>;
+>> +			linux,input-value = <SND_PROFILE_RING>;
+>> +			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <50>;
+>> +			linux,can-disable;
+>> +		};
+>> +	};
+>> +
+>>   	reserved-memory {
+>>   		/*
+>>   		 * The rmtfs_mem needs to be guarded due to "XPU limitations"
+>> @@ -753,8 +792,8 @@ &usb_1_hsphy {
+>>   &tlmm {
+>>   	gpio-reserved-ranges = <0 4>, <81 4>;
+>>   
+>> -	tri_state_key_default: tri-state-key-default-state {
+>> -		pins = "gpio40", "gpio42", "gpio26";
+>> +	alert_slider_default: alert-slider-default-state {
+>> +		pins = "gpio126", "gpio52", "gpio24";
+>>   		function = "gpio";
+>>   		drive-strength = <2>;
+>>   		bias-disable;
+
