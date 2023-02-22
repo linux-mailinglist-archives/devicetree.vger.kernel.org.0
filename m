@@ -2,178 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5056269F7DC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E8A69F831
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:38:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232428AbjBVPdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 10:33:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51572 "EHLO
+        id S232656AbjBVPiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 10:38:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjBVPdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:33:04 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410152A17E;
-        Wed, 22 Feb 2023 07:33:03 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AB35D614AA;
-        Wed, 22 Feb 2023 15:33:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC8AC433EF;
-        Wed, 22 Feb 2023 15:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677079982;
-        bh=txryyDE2882BFByD8yhgCuBO2UJpM5MCFYWdzJfIfD0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M+wtjBbZgEuC6t8L9rjCGlgp0JEKiSfbAi6PQx2k4O6aZhjJP5KVaHDju87nwePzp
-         /ogARUEAAg50VOb0iCz/JZUt/DUvJo6lOecQS50bok4S6sC7kKpxWerumU9XG1qopj
-         UmYdSjm0yVn7iAxAfXys2VbHFPYii5+kENcvnkBI0wzvyYmc5LT+70oH6LsAggaQze
-         VlT7i689GGPsxp3pLAnkzvzOsGA4zU5xW9HOyGbnMPFAOJ+K/P5PXvE76IpxiLYLiy
-         iVqrObHU7N+qHoAnLzpa5ys8XPHR1yDlJFzXzjdj33ly1EZKLgDAV7C+tNp2Dj/CSn
-         ikC/0Kms3aTPw==
-Date:   Wed, 22 Feb 2023 15:32:55 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Okan Sahin <okan.sahin@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <Y/Y1p/4Mc1Oy4dWl@google.com>
-References: <20230221103926.49597-1-okan.sahin@analog.com>
- <20230221103926.49597-6-okan.sahin@analog.com>
- <Y/S1ftKmV92TL8VO@smile.fi.intel.com>
+        with ESMTP id S232659AbjBVPiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:38:00 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D9C63CE39;
+        Wed, 22 Feb 2023 07:37:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677080264; x=1708616264;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GjHMCPdnc/DQBIYCfxd4PyPZOUVK7PxFHa2aAc4wkSI=;
+  b=PwhieWXsDAcrANU5JBZYlc3k6giVn7IxYjl6XoExTArQG9sd7WatBJXi
+   RjfOmxqwFgn5WlRkwqHoBSI5mBpEZTZ+hvCTp+eVW2at3BqpxtsgrG4JM
+   cczcHkwZdivoEgOF4aohsQ8mEXqJLrpyvwnjs0K4Ko006miHNUkIGbd2C
+   FiSe2iJXqpf73v+9MwhATyyAMobuVL+F5SGdPdFXiJbvsx3/JfnAnHtX4
+   kQbNc5qt9VrFLRy/7AKBT0Z0H/2p156eBH/u9mUh94HsgW2mYEYQWdE3/
+   FzqobAdt9opF82QEugZ7RRxsi3wXy42hPAVf/R5LjzpMMW0z6iRF6JvsW
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="360438034"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; 
+   d="scan'208";a="360438034"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2023 07:37:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="846182182"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; 
+   d="scan'208";a="846182182"
+Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 22 Feb 2023 07:37:21 -0800
+Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pUrBI-0000VJ-0y;
+        Wed, 22 Feb 2023 15:37:20 +0000
+Date:   Wed, 22 Feb 2023 23:37:01 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
+Cc:     oe-kbuild-all@lists.linux.dev, rostedt@goodmis.org,
+        linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mhiramat@kernel.org,
+        alistair@popple.id.au, joel@jms.id.au, jk@ozlabs.org,
+        andrew@aj.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, eajames@linux.ibm.com
+Subject: Re: [PATCH v5 4/6] fsi: Add I2C Responder SCOM driver
+Message-ID: <202302222352.9rPqJxAV-lkp@intel.com>
+References: <20230221212622.3897097-5-eajames@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y/S1ftKmV92TL8VO@smile.fi.intel.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230221212622.3897097-5-eajames@linux.ibm.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Feb 2023, Andy Shevchenko wrote:
+Hi Eddie,
 
-> On Tue, Feb 21, 2023 at 01:39:13PM +0300, Okan Sahin wrote:
-> > MFD driver for MAX77541/MAX77540 to enable its sub
-> > devices.
-> > 
-> > The MAX77541 is a multi-function devices. It includes
-> > buck converter and ADC.
-> > 
-> > The MAX77540 is a high-efficiency buck converter
-> > with two 3A switching phases.
-> > 
-> > They have same regmap except for ADC part of MAX77541.
-> 
-> Extra space in the Subject.
-> 
-> ...
-> 
-> > +#include <linux/of_device.h>
-> 
-> Why?
-> 
-> ...
-> 
-> > +static const struct regmap_config max77541_regmap_config = {
-> > +	.reg_bits   = 8,
-> > +	.val_bits   = 8,
-> 
-> Do you need lock of regmap?
-> 
-> > +};
-> 
-> ...
-> 
-> > +static const struct mfd_cell max77540_devs[] = {
-> 
-> > +	MFD_CELL_OF("max77540-regulator", NULL, NULL, 0, 0,
-> > +		    NULL),
-> 
-> Perfectly one line.
-> 
-> > +};
-> 
-> > +static const struct mfd_cell max77541_devs[] = {
-> > +	MFD_CELL_OF("max77541-regulator", NULL, NULL, 0, 0,
-> > +		    NULL),
-> > +	MFD_CELL_OF("max77541-adc", NULL, NULL, 0, 0,
-> > +		    NULL),
-> 
-> Ditto.
-> 
-> > +};
-> 
-> ...
-> 
-> > +	if (max77541->chip->id == MAX77541) {
-> > +		ret = devm_regmap_add_irq_chip(dev, max77541->regmap, irq,
-> > +					       IRQF_ONESHOT | IRQF_SHARED, 0,
-> > +					       &max77541_adc_irq_chip,
-> > +					       &max77541->irq_adc);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> 
-> > +	return ret;
-> 
-> return 0;
-> 
-> ...
-> 
-> > +static const struct i2c_device_id max77541_i2c_id[];
-> 
-> What for?
-> 
-> ...
-> 
-> > +	if (dev->of_node)
-> > +		max77541->chip  = of_device_get_match_data(dev);
-> > +	else
-> > +		max77541->chip  = (struct chip_info *)
-> > +					i2c_match_id(max77541_i2c_id,
-> > +						     client)->driver_data;
-> 
-> Oh. Please use
-> 
-> 	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-> 	...
-> 	max77541->chip  = device_get_match_data(dev); // needs property.h
-> 	if (!max77541->chip)
-> 		max77541->chip  = (struct chip_info *)id->driver_data;
-> 
-> > +	if (!max77541->chip)
-> > +		return -EINVAL;
-> 
-> ...
-> 
-> > +#ifndef __MAX77541_MFD_H__
-> > +#define __MAX77541_MFD_H__
-> 
-> Can we go towards consistency in this?
-> Seems to me the most used patter so far is
-> 
-> #ifndef __LINUX_MFD_MAX77541_H
+I love your patch! Yet something to improve:
 
-Drop the LINUX_ part please.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.2 next-20230222]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Eddie-James/fsi-Move-fsi_slave-structure-definition-to-header/20230222-052904
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230221212622.3897097-5-eajames%40linux.ibm.com
+patch subject: [PATCH v5 4/6] fsi: Add I2C Responder SCOM driver
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230222/202302222352.9rPqJxAV-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/210010944ddca8e974ec4f5141a00c38eddf5b8e
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Eddie-James/fsi-Move-fsi_slave-structure-definition-to-header/20230222-052904
+        git checkout 210010944ddca8e974ec4f5141a00c38eddf5b8e
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202302222352.9rPqJxAV-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "fsi_master_i2cr_write" [drivers/fsi/i2cr-scom.ko] undefined!
+>> ERROR: modpost: "fsi_master_i2cr_read" [drivers/fsi/i2cr-scom.ko] undefined!
 
 -- 
-Lee Jones [李琼斯]
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
