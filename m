@@ -2,168 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B106B69EC2C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 02:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B46B69EC46
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 02:17:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjBVBDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Feb 2023 20:03:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
+        id S229880AbjBVBRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Feb 2023 20:17:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjBVBDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 20:03:18 -0500
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A1F331B56B;
-        Tue, 21 Feb 2023 17:03:16 -0800 (PST)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 22 Feb 2023 10:03:15 +0900
-Received: from mail.mfilter.local (mail-arc01.css.socionext.com [10.213.46.36])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 6C7A02058B4F;
-        Wed, 22 Feb 2023 10:03:15 +0900 (JST)
-Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Wed, 22 Feb 2023 10:03:15 +0900
-Received: from [10.212.157.25] (unknown [10.212.157.25])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id DA5217BEA;
-        Wed, 22 Feb 2023 10:03:14 +0900 (JST)
-Message-ID: <7e19d3f4-a3bc-dc9d-35a0-9bfc05f22b2c@socionext.com>
-Date:   Wed, 22 Feb 2023 10:03:14 +0900
+        with ESMTP id S229609AbjBVBRS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Feb 2023 20:17:18 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE752CC5E;
+        Tue, 21 Feb 2023 17:17:17 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id eg37so20523367edb.12;
+        Tue, 21 Feb 2023 17:17:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gT5ZSNIpI/yGjRCiyO4SCf25/TIbnWrvagpIK4outfk=;
+        b=GqrAlrvDzA2RyHnVeA3Sjo6RvBiHGY5GTdpeagHbSMILyqfK7KUgYsA4MvEc51TaAJ
+         cTaPbgN7CAVHFn9e+Ont7H2L2pb9JH0UO3zXX77atqPW1/ncQQ2mZc+WYeyV0X6ArmYE
+         Mrq+qH1vBEnhEaEmuxAANgQxRHzzgjKe39XSE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gT5ZSNIpI/yGjRCiyO4SCf25/TIbnWrvagpIK4outfk=;
+        b=jiapD0Q6Kw+dvK2WAc4TrfYBvec8DXp+jYBJbSlR97Wx+wcmpwCriE8CdoctFUXqQT
+         2jHTvut3OPGCahZdCB+73r51FXfV5L4xL8ns60PC7rJMGqCTQl0RG8U1S/uIb9gvRQ89
+         +iZtnY9igHSlZWW+tKJGMxvYEW4D9h0foVXCvR2Sq44Tzu6Uv72izunfCcRK+jSSR46y
+         B3MplgzeqZL4j7EA1aOejYkkdO7q2WJjsc8mJayc2203LRrH1vRA1OeIZ9ZSSCz0XgZi
+         xN4srvL/5pNC/+he62UQu/ZJ38vWleGl9+LIuCoKHnXXJ81MdVaTR5rTsLfoAgChpM3V
+         EGiA==
+X-Gm-Message-State: AO0yUKVR5WCyGBDLe7LXBhRhlUFqv0IrLA34UvjuKa2P+jpk7AlLxaPJ
+        cSDPleK+OgxdpQBbHqEjI6hAxuLhE5HjhxttwvI=
+X-Google-Smtp-Source: AK7set9exesMePic266XNZcQh4feMCxFbPgJgTLHbhqLICr+GjcL5odlL/ZqdseIwc2ukLyyBshlOXwGx6djDfoQtn8=
+X-Received: by 2002:a17:906:8295:b0:8b1:3357:b16b with SMTP id
+ h21-20020a170906829500b008b13357b16bmr6714865ejx.4.1677028635979; Tue, 21 Feb
+ 2023 17:17:15 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3] dt-bindings: ata: Add UniPhier controller binding
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+References: <20221118065109.2339066-1-quan@os.amperecomputing.com> <32FE8D60-98AF-4134-8FB0-46B0CE7CA420@amperemail.onmicrosoft.com>
+In-Reply-To: <32FE8D60-98AF-4134-8FB0-46B0CE7CA420@amperemail.onmicrosoft.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 22 Feb 2023 01:17:03 +0000
+Message-ID: <CACPK8Xe062i-6RsF6m+G4W8TfVVh=xOpmSevP2qvPy=u1_UqzA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: aspeed: mtjade: Add SMPro nodes
+To:     Thang Nguyen OS <thang@amperemail.onmicrosoft.com>
+Cc:     Quan Nguyen OS <quan@os.amperecomputing.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>
-Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230220054711.4584-1-hayashi.kunihiko@socionext.com>
- <8a4042fd-02a3-261e-4126-7a3090850fda@linaro.org>
-Content-Language: en-US
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <8a4042fd-02a3-261e-4126-7a3090850fda@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Andrew Jeffery <andrew@aj.id.au>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Open Source Submission <patches@amperecomputing.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 14 Feb 2023 at 04:02, Thang Nguyen OS
+<thang@amperemail.onmicrosoft.com> wrote:
 
-On 2023/02/20 20:48, Krzysztof Kozlowski wrote:
-> On 20/02/2023 06:47, Kunihiko Hayashi wrote:
->> Add UniPhier SATA controller compatible string to the platform binding.
->> This controller needs two or three reset controls.
->>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> ---
->>   .../bindings/ata/ahci-platform.yaml           | 32 ++++++++++++++++---
->>   1 file changed, 27 insertions(+), 5 deletions(-)
->>
->> Changes since v2:
->> - Add compatible strings to select property
->> - Add minItems and change maxItems for resets
->> - Move condition schema under allOf property
->> - Change resets to "required" for uniphier-*-ahci
->>
->> Changes since v1:
->> - Restrict resets property changes with compatible strings
->> - Fix maxItems from two to three
->>
->> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
->> b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
->> index 7dc2a2e8f598..4b2ee68097b8 100644
->> --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
->> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
->> @@ -30,12 +30,12 @@ select:
->>             - marvell,armada-3700-ahci
->>             - marvell,armada-8k-ahci
->>             - marvell,berlin2q-ahci
->> +          - socionext,uniphier-pro4-ahci
->> +          - socionext,uniphier-pxs2-ahci
->> +          - socionext,uniphier-pxs3-ahci
->>     required:
->>       - compatible
->>
->> -allOf:
->> -  - $ref: "ahci-common.yaml#"
->> -
->>   properties:
->>     compatible:
->>       oneOf:
->> @@ -45,6 +45,9 @@ properties:
->>                 - marvell,armada-8k-ahci
->>                 - marvell,berlin2-ahci
->>                 - marvell,berlin2q-ahci
->> +              - socionext,uniphier-pro4-ahci
->> +              - socionext,uniphier-pxs2-ahci
->> +              - socionext,uniphier-pxs3-ahci
->>             - const: generic-ahci
->>         - enum:
->>             - cavium,octeon-7130-ahci
->> @@ -67,14 +70,33 @@ properties:
->>       minItems: 1
->>       maxItems: 3
->>
->> +  resets:
->> +    minItems: 1
->> +    maxItems: 3
->> +
->>     interrupts:
->>       maxItems: 1
->>
->>     power-domains:
->>       maxItems: 1
->>
->> -  resets:
->> -    maxItems: 1
-> 
-> Why moving it?
+> Hi Joel,
+> Can you also pick https://git.kernel.org/pub/scm/linux/kernel/git/next/li=
+nux-next.git/commit/?id=3D7c07553807c5125c89de242d35c10c206fd8e6bb to fix U=
+SB gadget issue? It is to support multiple devices (i.e. virtual media, USB=
+ Ethernet, =E2=80=A6) at the same time?
 
-Sorry for my mistake. I should fix it.
+This is also in dev-6.1 already.
 
->> +allOf:
-> 
-> This goes to the same place as in example-schema.
+Thanks for getting your changes upstream!
 
-I can see "allOf" next to "required" in example-schema,
+Cheers,
 
->> +  - $ref: ahci-common.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - socionext,uniphier-pro4-ahci
->> +              - socionext,uniphier-pxs2-ahci
->> +              - socionext,uniphier-pxs3-ahci
->> +    then:
->> +      properties:
->> +        resets:
->> +          minItems: 2
->> +          maxItems: 3
-> 
-> You need to describe the items, what's expected here.
-
-I'll add the descriptions for each reset for the compatible.
-However, I'm afraid this "if" part will grow for UniPhier resets
-in common ahci-platform.
-
-> 
->> +      required:
->> +        - resets
-> 
-> The entire point was to add:
-> 
-> else - maxItems: 1
-
-I'll add it.
-
-Thank you,
-
----
-Best Regards
-Kunihiko Hayashi
+Joel
