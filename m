@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DBFB69F06C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:38:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0001469F073
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:38:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231146AbjBVIiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 03:38:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55528 "EHLO
+        id S230406AbjBVIiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 03:38:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbjBVIh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:37:59 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5444ECB
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:37:57 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id f23so7422010vsa.13
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:37:57 -0800 (PST)
+        with ESMTP id S229901AbjBVIix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:38:53 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF6FBBA6
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:38:52 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id f13so26655052edz.6
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:38:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sComzmbCpABMxGUkRsCiLtkyNheYwmjw48ljpFz3J24=;
-        b=lj5Wy8MK1mwapRAvUlPMKSor05OyZO5FDMUF3vmS3b4AA19H4/OTNnPn7urBRBWgNH
-         pDCjTxYoDNOOE7BuYRmNwu8P0aIwLJ3yduJkfc4bTH71uQwH93SttIJkswsYVXhj1J2Q
-         T6Ad3ZCsTfC91iXkA1tnIcoklpBf4kIODobuM=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VGYrvXKx730j8waNg6kc6q9n1QzZ6m03dBYS2j7HOQw=;
+        b=ikQu+qovo7VzH2uaNVKQF4awl/fxax4qj1G6kByJSoCI4aiiAnzx5WPzEZGCSXn75K
+         7hxlTaQwBvFnSZVsdBK+0X0et14eVzTaMw/KSxO7SVaxNBKroRDGyRGwZRsMPIQVh/Sl
+         J5jqAdLyNst0fPoKLPZX8ksKjM/IA+lLOoc01lRXl5eSBRwFMqOcOoe8DpHJSpOPZrPl
+         7gXcCX3AxMyS8q5n3oz3booaV57u4zDb5swg9nxlguwirS9L6uxEMIAJjd844htJP+QZ
+         5/+jPdWcJxPTp7MIexOWRbFEGMyy+wbXsjlSFyUnOkI+B1eDHLDT/T5kHKX6u+GeBir8
+         +pQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sComzmbCpABMxGUkRsCiLtkyNheYwmjw48ljpFz3J24=;
-        b=GGzaK1Rqz/7Xr/xyr2J1hJtHfSzwjBb7sLIsURBwQ1l/cFfWlT693d8H52MSoWP3Lv
-         ZEUX8Esep5JJhfqnwgSvfquGRmv1efxRCbIa3wNXUgOOMtkFEwKgCqMFnduYGxBchg2W
-         QYMgpM98LbyMpXs/AqDCL8E42Q14+O6Bqsc/KO8eNOsUzuuMKXkIHCKFmCqmhT0wfUtU
-         pyITS7ccRAdpk+Msx5gY+kY4f2RvTTU+ciO3q2dCxnw0gqyKFRp9Rsvx6HB2DGkFWQBp
-         EpdCrwoNthbb1bI3iwcPxbrn1LUjtqhP1yxXzbXZhwwnl8u/DGmIE2rQW7AgqfOHhDTh
-         sUvQ==
-X-Gm-Message-State: AO0yUKWwYW3XFZbltDrnxNJM1p8wetc09+mk/OiROcPzT9S8iO4z/LvD
-        hEQy7eSet7ouBuqTsjVhmJe0ebys4mOSMx99BEchIQ==
-X-Google-Smtp-Source: AK7set9FVEBAsLpdo2AF0VsdpWJoDj/pIevIOUHBKq0lW8mgWZ/QSNKhLwdL5NxD1KgYlkJH1/ua8amP+kkHXYKWlsw=
-X-Received: by 2002:a05:6102:570b:b0:3fc:58d:f90f with SMTP id
- dg11-20020a056102570b00b003fc058df90fmr1571526vsb.60.1677055076838; Wed, 22
- Feb 2023 00:37:56 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VGYrvXKx730j8waNg6kc6q9n1QzZ6m03dBYS2j7HOQw=;
+        b=PFtPhmO6MFN2cTRnZgy+kgs6/9FfeX72IwLLFh8UFpRBIynppASvJjHagRuYtHfMXr
+         aKH55suoH3KuUaBplRSgkz0UDkGPCTn8Yd11iZy/ZFl2cur8CgRvF7xU9V/MP8+7cmRi
+         AnraWqJd1SqdsvPV5AzD/mtGfLSSA87arVdKjY1GGhdjsBwHdBuzYPBKQ/v8/euAloCO
+         0Q4IFrOD4EbgGjJ8A6B4Hu/Zs3UrxM0oVvcbk7zsBb4F1g1plBP4ZG8pwxG8jlFvvUfm
+         cQK0DPhg/bZN3+yfihj4ym9H+GIoU2g39Ogj4/f1OxUacOWp09tv/hl2KU+rhgPe1zlA
+         gAfw==
+X-Gm-Message-State: AO0yUKUHVCq/EA5J8OG3lG1X2UMAElQ3i+HBEKzAQ0DGeQO3Kh6JGjEJ
+        zaXG0v+zoOWgfb9W+D1bRmh0/H0kyR9yB7XF
+X-Google-Smtp-Source: AK7set/ZWj3Inch8FESqr8vZe3PV7J6tCfOU4ycr20w9XgWAqWr8t7mtTcZYAg6wYekGNYxhb7NjHA==
+X-Received: by 2002:a17:906:9c85:b0:8af:2e78:ac2b with SMTP id fj5-20020a1709069c8500b008af2e78ac2bmr19914255ejc.3.1677055130718;
+        Wed, 22 Feb 2023 00:38:50 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u13-20020a1709063b8d00b008e45d7055f8sm1025458ejf.198.2023.02.22.00.38.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 00:38:50 -0800 (PST)
+Message-ID: <5f2bebad-5c9d-41bd-63c1-043f1d8c6c16@linaro.org>
+Date:   Wed, 22 Feb 2023 09:38:48 +0100
 MIME-Version: 1.0
-References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com> <20230221153740.1620529-7-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230221153740.1620529-7-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 22 Feb 2023 16:37:45 +0800
-Message-ID: <CAGXv+5Ed-5Nq0zNzCGzez3fnW2yxW7zFx9B6k58Y4yb8P+hvpw@mail.gmail.com>
-Subject: Re: [PATCH v2 06/10] dt-bindings: gpu: mali-bifrost: Add a compatible
- for MediaTek MT8186
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
-        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3] dt-bindings: ata: Add UniPhier controller binding
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230220054711.4584-1-hayashi.kunihiko@socionext.com>
+ <8a4042fd-02a3-261e-4126-7a3090850fda@linaro.org>
+ <7e19d3f4-a3bc-dc9d-35a0-9bfc05f22b2c@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7e19d3f4-a3bc-dc9d-35a0-9bfc05f22b2c@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 21, 2023 at 11:37 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Get GPU support on MT8186 by adding its compatible.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index be18b161959b..43a841d4e94d 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -15,6 +15,11 @@ properties:
->
->    compatible:
->      oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt8186-mali
-> +          - const: mediatek,mt8183b-mali
-> +          - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
+On 22/02/2023 02:03, Kunihiko Hayashi wrote:
+>>> -  resets:
+>>> -    maxItems: 1
+>>
+>> Why moving it?
+> 
+> Sorry for my mistake. I should fix it.
+> 
+>>> +allOf:
+>>
+>> This goes to the same place as in example-schema.
+> 
+> I can see "allOf" next to "required" in example-schema,
 
-The MT8186 has Mali-G52 MC2 2EE, while the MT8183 has Mali-G72 MP3.
-So we actually need a new entry with two power domains.
+Are you agreeing or disagreeing here (thus I should explain that it's
+not the same place)? If the first, sometimes it's enough to say "ack" or
+"sure".
 
-Our downstream Mali driver & DT use just that.
+> 
 
-ChenYu
+
+Best regards,
+Krzysztof
+
