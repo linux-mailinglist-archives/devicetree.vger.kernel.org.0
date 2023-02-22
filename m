@@ -2,149 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8F069F20D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 154FB69F255
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 10:58:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232221AbjBVJn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 04:43:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
+        id S232389AbjBVJ6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 04:58:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbjBVJni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:43:38 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CB73C783;
-        Wed, 22 Feb 2023 01:40:44 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id f16so7073420ljq.10;
-        Wed, 22 Feb 2023 01:40:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Yleek0oaFc70WbJunAtXSm0MOQeAIy9beRoYkSDegxQ=;
-        b=MaR6vviAZKVp1bFr4GsfVcqKsd/ROQreCiDNcS1+A/LFIMFtBOmT5Zq/0YH1dh8EzE
-         19ijszOgiXRWeTRZBoYGTWSR2M1W+qaB1soNJp9vb1GMyvJMT0xubVIVIilmbu2LY5V9
-         7wlKMhiN0GFK6f/SXB7U0zf5wqg5XHbAJ31HEgI4nnKcvwkZfPbargHwsz322Kt9vLUc
-         bevPvHUwQbg0VgPcGWsBIjIkTW2ExcW5kWunrqhddlXx1/8P5e/3ByfAy5PNlz/FeNpp
-         WX6GD+kGdOmSr9U0t380kEfCMXcQ8tknOgLjtCoiAWvNX12416KNGZ/uiIcKzjAfXGlb
-         MHtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yleek0oaFc70WbJunAtXSm0MOQeAIy9beRoYkSDegxQ=;
-        b=gJZG+mm+/nhVQHTbsu4mHqUYgfnH+HMDkFu0GFofsCYD7jJgmlumsJEljFLOkRiQfQ
-         fRsZjcet3xTApV+lEP26oKbNsZX6oWiC3Mt1uh95jWnQqyNQhAgEu/gmT7Ev00SVXlNd
-         QTsJcsnI5Vvvk/PJ7XjZKCgxdtykqv/X6YnsdgMF+0C3+LTU91U9mW0Abc6dWe92LdGn
-         RHUs5Zm3hnS4i+oz9KepNHpfWfYCzn9C8oowEBAm60M9YTi4K37xOTY9iOWMjzz4eWbp
-         GeMkJroQqMVCkZjOBVK3u5YbJ6B4Ha75+TXZqbLatgV9VMkmkrE8dEr+lboB4y663Z/Y
-         M4PQ==
-X-Gm-Message-State: AO0yUKWgWr+q3x3gkfvikE6Z4S8twzos2+2mQWe+ir4Hf0/sBRzxXAeU
-        0TI6FtIJhi+uf2s+DXtjiYc=
-X-Google-Smtp-Source: AK7set/JBY1TYm0YPPO8CsPIN7FcVv0ivVO2LrB1rButFqoarh+nxqZLywS5l5PLR/ZvbWmGNiTH+w==
-X-Received: by 2002:a2e:bc0d:0:b0:294:669b:8f97 with SMTP id b13-20020a2ebc0d000000b00294669b8f97mr4297154ljf.46.1677058801266;
-        Wed, 22 Feb 2023 01:40:01 -0800 (PST)
-Received: from [127.0.0.1] ([91.204.85.69])
-        by smtp.gmail.com with ESMTPSA id o16-20020a2e9b50000000b002958bb2deacsm401396ljj.46.2023.02.22.01.40.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 01:40:00 -0800 (PST)
-Date:   Wed, 22 Feb 2023 11:39:59 +0200
-From:   =?UTF-8?B?0KHQstGP0YLQvtGB0LvQsNCyINCg0LjQs9C10LvRjA==?= 
-        <clamor95@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_09/10=5D_staging=3A_dsp=3A_a?= =?US-ASCII?Q?dd_support_for_Fortemedia_FM34NE_DSP?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <Y/Xefn/76JW1C03d@kroah.com>
-References: <20230221183211.21964-1-clamor95@gmail.com> <20230221183211.21964-10-clamor95@gmail.com> <Y/UbMH5tXDgsvSbD@kroah.com> <CAPVz0n2-giCF9Z9fMimTFQnGk73HAdfU4SitGn58iZapLjeuTQ@mail.gmail.com> <Y/Xefn/76JW1C03d@kroah.com>
-Message-ID: <C94BE033-EE34-40E4-96D4-1EB4C1B04A09@gmail.com>
+        with ESMTP id S232318AbjBVJ5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 04:57:53 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38384EC8;
+        Wed, 22 Feb 2023 01:57:51 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A0B9B660215E;
+        Wed, 22 Feb 2023 09:57:49 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677059870;
+        bh=iupWZw710RJlsDfuH6ZphQSX1uucYuxWxs1WrmnL4w8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kYas5w6Jegs2D/xpl1OhhLiy3FMEDgo+bWugL3ObzJ6yUfY8RVjdpWT0v3PMM8ROa
+         FbQt7XjJu6chr4H7X5bPZ3pBh1oKjYp0XDSyCIGhG/dx8hniNm4UAXzi6+iq+OFVQ9
+         ehdh4DPCjknbUjVL0u5Yn13Yhp+dLjY9TOw/P0lYAg16ZiWStTX1dPy9HWD7QPVx5D
+         WCwh3HvdC8/AzDe3fPs1Lzh7mTUqtH7No8/JHuysZpSHJvNEKcB4eZGh56xXNIBvWB
+         6lzBLMfag4WOstlYU8BPcGljCfPOPI8VM1Vuk+axO/gYCVpo3ss4n/AtA5AzGjFIsI
+         f+O0O8yI0VFrw==
+Message-ID: <254cfbb5-c8b8-0abc-e6bc-5007fe757004@collabora.com>
+Date:   Wed, 22 Feb 2023 10:57:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 0/6] Add support for Qualcomm's legacy IOMMU v2
+Content-Language: en-US
+To:     agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        marijn.suijten@somainline.org, kernel@collabora.com,
+        luca@z3ntu.xyz, a39.skl@gmail.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 15/11/22 11:11, AngeloGioacchino Del Regno ha scritto:
+> This series adds support for handling "v2" firmware's IOMMU, found
+> on at least MSM8956 and MSM8976 (some other SoCs also need the same
+> but I honestly don't remember which ones precisely).
+> 
+> This is strictly required to get functional IOMMUs on these SoCs.
+> 
+> I'm sorry for not performing a much needed schema conversion on
+> qcom,iommu.txt, but I really didn't have time to do that :-(
+> 
+> This series was tested on Sony Xperia X and X Compact (MSM8956):
+> ADSP, LPASS, Venus, MSS, MDP and GPU are happy :-)
+> 
+> 
+
+Hello,
+this series is really old and got sent and resent many times.
+The first time I've sent this one was .. I think in 2019, then, at the
+end of 2022, I had some time to actually respin it and send another
+three versions. It's been 3 long years :-)
+The third version got the last comments addressed.
+
+Since this didn't get any more feedback for 3 months, I'm worried that it
+will be forgotten again, hence:
+
+Is there any more feedback? Anything else to fix?
+If not, can this be picked, please?
+
+Thank you.
+
+Best regards,
+Angelo
 
 
-22 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2023 =D1=80=2E 11:21:02 GMT+02:00,=
- Greg Kroah-Hartman <gregkh@linuxfoundation=2Eorg> =D0=BD=D0=B0=D0=BF=D0=B8=
-=D1=81=D0=B0=D0=B2(-=D0=BB=D0=B0):
->On Wed, Feb 22, 2023 at 10:19:47AM +0200, Svyatoslav Ryhel wrote:
->> =D0=B2=D1=82, 21 =D0=BB=D1=8E=D1=82=2E 2023 =D1=80=2E =D0=BE 21:27 Greg=
- Kroah-Hartman
->> <gregkh@linuxfoundation=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
->> >
->> > On Tue, Feb 21, 2023 at 08:32:10PM +0200, Svyatoslav Ryhel wrote:
->> > > FM34NE is digital sound processing chip used for active
->> > > noise suppression mainly on ASUS Transformers=2E
->> > >
->> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail=2Ecom>
->> > > ---
->> > >  drivers/staging/Kconfig          |   2 +
->> > >  drivers/staging/Makefile         |   1 +
->> > >  drivers/staging/dsp/Kconfig      |   7 +
->> > >  drivers/staging/dsp/Makefile     |   2 +
->> > >  drivers/staging/dsp/dsp-fm34ne=2Ec | 364 +++++++++++++
->> > >  drivers/staging/dsp/dsp-fm34ne=2Eh | 845 +++++++++++++++++++++++++=
-++++++
->> > >  6 files changed, 1221 insertions(+)
->> > >  create mode 100644 drivers/staging/dsp/Kconfig
->> > >  create mode 100644 drivers/staging/dsp/Makefile
->> > >  create mode 100644 drivers/staging/dsp/dsp-fm34ne=2Ec
->> > >  create mode 100644 drivers/staging/dsp/dsp-fm34ne=2Eh
->> >
->> >
->> > Sorry, but why is this going into drivers/staging/ at all?  What is
->> > needed to be done to get this out of staging?  Why not do that work
->> > right now?  At the least, we need a TODO file in the directory that
->> > lists what needs to be done and who is responsible for it=2E
->>=20
->> Because this driver sets up fm34 and switches it to bypass mode allowin=
-g
->> sound to work on the device=2E There is no dsp framework in kernel whic=
-h could
->> be called to operate dsp from the actual sound codec=2E (If there is, I
->> would be glad
->> if you show me)=2E Fm34 must be active only on DMIC use, all other case=
-s require
->> it to be in bypass=2E
->
->That does not explain at all why this needs to go into drivers/staging/
->and not the normal portion of the kernel=2E  Why this specific location?
->What is wrong with it that requires it to go here?
+> Changes in v3:
+>   - Removed useless FSRRESTORE reset and definition as pointed
+>     out in Robin Murphy's review
+>   - Fixed qcom,iommu.txt changes: squashed MSM8976 compatible
+>     string addition with msm-iommu-v2 generics addition
+> 
+> Changes in v2:
+>   - Added back Marijn's notes (sorry man!)
+>   - Added ARM_SMMU_CB_FSRRESTORE definition
+>   - Changed context bank reset to properly set FSR and FSRRESTORE
+> 
+> AngeloGioacchino Del Regno (6):
+>    dt-bindings: iommu: qcom,iommu: Document qcom,ctx-num property
+>    iommu/qcom: Use the asid read from device-tree if specified
+>    iommu/qcom: Properly reset the IOMMU context
+>    iommu/qcom: Index contexts by asid number to allow asid 0
+>    dt-bindings: iommu: qcom,iommu: Document QSMMUv2 and MSM8976
+>      compatibles
+>    iommu/qcom: Add support for QSMMUv2 and QSMMU-500 secured contexts
+> 
+>   .../devicetree/bindings/iommu/qcom,iommu.txt  |  9 +++
+>   drivers/iommu/arm/arm-smmu/qcom_iommu.c       | 78 +++++++++++++++----
+>   2 files changed, 70 insertions(+), 17 deletions(-)
+> 
 
-It is not fully functional and does not perform its main function (noise c=
-ancellation) because it has to be called only for DMIC=2E Same time it is e=
-ssential to be set so that audio could work on device=2E
 
-Once there is such a framework in kernel, which allows to control dsp from=
-, I assume, asoc machine driver, this driver can be moved wherever it shoul=
-d be=2E Currently I can not tell where it should be since I haven't seen ds=
-p drivers like this in kernel=2E
-
->In other words, you need to document _WHY_ it must go here as it is not
->obvious at all=2E
->
->thanks,
->
->greg k-h
