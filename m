@@ -2,108 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D484869FA06
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48E0769FA09
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232624AbjBVRXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 12:23:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37424 "EHLO
+        id S232667AbjBVRXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 12:23:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232667AbjBVRXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:23:07 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B554628237
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:23:04 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id t14so5882425ljd.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:23:04 -0800 (PST)
+        with ESMTP id S232558AbjBVRXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:23:17 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73693124;
+        Wed, 22 Feb 2023 09:23:15 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id e9so8563861ljn.9;
+        Wed, 22 Feb 2023 09:23:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9Yd9lAcpRbHxF9RdOizjwYgJ/PMIKmYOw1xnRDHR/30=;
-        b=XXW5OMHy/Ep3rE1cyCMMyjv41Cxcwe0bWk6m626Cvkdu/gigRgK3hrhr4wZLNRkzTb
-         RUdpKqVumScTcWzJKenYZ7Z9M4Qb8AEpyXcLa1shTpiq1rK5F+3FZPepli7+JyiM//Ht
-         3mIrKnSczUR/hRWn+MZuKPZGSAqqS2Cn/ZOAq1773Rm63F9Ysk4l7emUqIxmDflkgIOO
-         tFYRAlq8CgIbsWjqwJBXwEmqdkThdAHX9GbpSKqUhRDUV87nCWigWEar2v2aFqM0eePc
-         JEaythDhhcjkzzm3yebBJJ2jCkyThfTDE/MxilZaqx3xIFtiBpOUTpxUYnnvxBxyY4r5
-         mB+w==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LgHb4LTNou/T4gwWZDZG1bAr2SS3s1D2HvmIKlyTtyo=;
+        b=cuqTIWse5qx2sN8ejcmchMPEuaSlrGt9z4HkUkR65iRc/Ex4L8YE8Xc0SHh6GqLY2K
+         RNVAEGeb5nWU9hg6IXeT2PECD1/8btD7B0wtugdnholzLaNVZifh9cnZwZVUHVjvNIvS
+         LGPNS4EQuF6BgueXdQo7/LG4Rju+LTTfeNnDLwVJNmIPv1ZD6W6hH+vBmMjqcQfpIxnw
+         7Y92P/bxVPQeYXGLh92Geo74JtO3qYOGnvOteoqifJuWCRGrf1mIPnrMUrOCICMyI9bi
+         IMgg8GyvCf5+7si1LU2zV/GLh3kOD6yVkebYjpYy0k9CnJaSwRBG9zwKdtmSV78NBGKP
+         AlUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Yd9lAcpRbHxF9RdOizjwYgJ/PMIKmYOw1xnRDHR/30=;
-        b=2ik6pzARBQE3cuXwPaNcl674jk/PV7ePCgybT0L9SFJqYpYzUbus1j7BaQrfkjTPbx
-         jT6rRdLhtQ/JqXdZQIlbAZPxyXFQb7xetADxLL5bj/mtweAWlcGIL7I7yd+TRaB6gnCM
-         tMydSEKtuc+VLp0NLfw76VxGYXHijy0zLER7TArdf19CsfpIa/4dfKhUvlk8BYejQ/OB
-         8MCRgApArWPw1N3MPeu+BRYTstPF/jz7Kkrz7T4YT0Yh7djYm5On2eIeyOjZqVfK/dmA
-         XuqBpZtxxTbZUaR6TS0xkWqbw6GniaN0MByuEJTLMmZMy/DyfeMHUbA0C3ESGGfN81ct
-         NzRg==
-X-Gm-Message-State: AO0yUKW6TKhMP2z9EmEqy2yjsuxOGR4Xi1qkDi6fDapbeJHSPs2ZFaP5
-        DzWCva1IKTkZhHgXsYstbia3rQ==
-X-Google-Smtp-Source: AK7set9+a35SyzaMThPps2maGPeQlYFoOjNpp1u5BGY+WfsSwIKGlEUp5XIadUP2Yt0ULp3kTp73Pg==
-X-Received: by 2002:a05:651c:12c2:b0:295:8bea:99a2 with SMTP id 2-20020a05651c12c200b002958bea99a2mr2996064lje.1.1677086582964;
-        Wed, 22 Feb 2023 09:23:02 -0800 (PST)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id r3-20020a2e80c3000000b0029358afcc9esm805233ljg.34.2023.02.22.09.23.01
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LgHb4LTNou/T4gwWZDZG1bAr2SS3s1D2HvmIKlyTtyo=;
+        b=hpBToqMl5YWhKZp0yQ4opSlUPvkmds8JqQQznwyYEclbPcYJXQEN/sA05ss/8zhtxp
+         zUFoFqO5Dn8AtBwIncl/ugdE9Wa+gKMQ6z10utPqwGL0LHBoFOZgY63BGQZdn84eDepb
+         3E7tvKDZ7V1ugUcXUUPMi1A+GbiCgfcolGtZUkQflSdKRc6Q930O99uLE/oGCZuCJhNK
+         xjGNpimjmXkcUcREvrDWSZH5yq1HFRfhWvTSbmYtmKAXl/Qpbd24+PW9/CydhNA+BR0B
+         2J9bOpSqE5fNPb11ppZWXgdfSoHYcVU7ap4bxa3Dp3HVVqmE0OeE/c5cdfkW8hl9O9Gl
+         LjfA==
+X-Gm-Message-State: AO0yUKWbxzW8ksRIOZkat3OQPGwFuDYKXqWatx/ULfe3E5Nos7h5BpiT
+        dEDya4/McqIjAYllXzx7W0E=
+X-Google-Smtp-Source: AK7set/KWDvPSuMOkojBZB4RaqhrJysKCZKevJPXANsg0HBsYaa6OJZG6Ye7zg0PxpTbLNyKiuY/1g==
+X-Received: by 2002:a05:651c:2051:b0:295:74f5:fcaa with SMTP id t17-20020a05651c205100b0029574f5fcaamr3070632ljo.32.1677086593514;
+        Wed, 22 Feb 2023 09:23:13 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id p2-20020a2e93c2000000b0029477417d80sm721513ljh.85.2023.02.22.09.23.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 09:23:02 -0800 (PST)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-Subject: [PATCH v11 10/10] crypto: qce: core: Add a QCE IP family compatible 'qcom,qce'
-Date:   Wed, 22 Feb 2023 19:22:40 +0200
-Message-Id: <20230222172240.3235972-11-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
-References: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
+        Wed, 22 Feb 2023 09:23:13 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 0/4] nvmem: cell post-processing & U-Boot env MAC support
+Date:   Wed, 22 Feb 2023 18:22:41 +0100
+Message-Id: <20230222172245.6313-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The added 'qcom,qce' compatible value will serve as a sole QCE IP family
-compatible, since a particular QCE IP version is discoverablem thus, if
-it'd be needed to differentiate various IP versions, it can be obtained
-in runtime.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Two IP version based compatibles are left untouched to preserve backward
-DTB ABI compatibility.
+U-Boot environment variables are stored using ASCII format. One of
+important entries is "ethaddr" which contains base MAC address.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- drivers/crypto/qce/core.c | 1 +
- 1 file changed, 1 insertion(+)
+That NVMEM cell requires some extra processing when reading:
+1. ASCII needs translating into binary MAC format
+2. Final MAC needs to be calculated depending on cell index
 
-diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-index 5bb2128c95ca..fce49c0dee3e 100644
---- a/drivers/crypto/qce/core.c
-+++ b/drivers/crypto/qce/core.c
-@@ -293,6 +293,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
- static const struct of_device_id qce_crypto_of_match[] = {
- 	{ .compatible = "qcom,crypto-v5.1", },
- 	{ .compatible = "qcom,crypto-v5.4", },
-+	{ .compatible = "qcom,qce", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
+This patchset was originally based on top of layouts implementation
+which sadly ended up dropped for now. To proceed I rebased it on top of
+the current NVMEM subsystem code. Michael's patch has applied cleanly
+and this approach *will not* make U-Boot env transition to layouts any
+harder so I believe it's fine to take those patches without waiting for
+layouts updated implementation.
+
+Michael Walle (1):
+  nvmem: core: add per-cell post processing
+
+Rafał Miłecki (3):
+  nvmem: core: allow nvmem_cell_post_process_t callbacks to adjust
+    buffer
+  dt-bindings: nvmem: u-boot,env: add MAC's #nvmem-cell-cells
+  nvmem: u-boot-env: post-process "ethaddr" env variable
+
+ .../devicetree/bindings/nvmem/u-boot,env.yaml |  7 +++-
+ drivers/nvmem/Kconfig                         |  1 +
+ drivers/nvmem/core.c                          | 38 +++++++++++++++----
+ drivers/nvmem/imx-ocotp.c                     |  8 ++--
+ drivers/nvmem/u-boot-env.c                    | 25 ++++++++++++
+ include/linux/nvmem-provider.h                |  7 +++-
+ 6 files changed, 71 insertions(+), 15 deletions(-)
+
 -- 
-2.33.0
+2.34.1
 
