@@ -2,160 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E715E69FA51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:42:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D03B69FA97
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:57:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbjBVRmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 12:42:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54848 "EHLO
+        id S231236AbjBVR5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 12:57:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbjBVRmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:42:38 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 124E83E0AC
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:42:36 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id m7so10999585lfj.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:42:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rkvf2RmLW6rznz1HAgBefc/tK0jWR+Wupjni4KMu9Yo=;
-        b=WF28+J62nVWj+PoVKfoEZ0yrujyRavwV23LGwl6NYGp/3Y4muBY73poKlSGHhvhGvD
-         xRTDXW5/yuZDBSXMuVb6vpHWjNDW3JGYKmwJWFeeneiWK9NKrYsLSUVKbOEt0WiiKx+D
-         Cmxcx3haBhp9fL9/zVmRM2Je1MHqB7uxeL+wodNEXcSPyzTbFprgrYQ+MA8YTz+Uw3ki
-         2DxI1SOGAqk/nNpOmVcaKPzDMGSvFnpdcJ7CulMNVvnvy+tJHVk4iISGWAVBaDGwjCmd
-         wpW3SAefke3DYIdIJfZBcCOFrPWTuJmMXHOT8mbtL2qPlYYhZjBPalL9HPHxbU3SLl1A
-         RXZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rkvf2RmLW6rznz1HAgBefc/tK0jWR+Wupjni4KMu9Yo=;
-        b=BYyg5kfSyoIzvahxAeF1ESwdC5WvFlMQo0Iy5EAu1ifNSo5pQRWMV766unXeqZ/FiR
-         NOw7Da2vWYXX0muOBy5TjM+ZO2hMmNvhvYqPDuIt6mzE8B1sA18iyi48bRnDVnTWNMla
-         5z2OyAZ6EbTZe5ba6XGc+dU+qRjxuuHz4ydm39zR2sso9Q1+w6OqO1te123z1YZ1I4g2
-         p8WeVKCCWMn6K/hrbgWh7hfDiw71lACMfvAr91fapieCi5/kYwdLy+TliCWsyEueHIiw
-         lQGAylz0mmfea9lUTv4uxOAPG8L47XjG4x1VW+jfhTgtgqg1cGNwGPrNWoGCvNDSNMLz
-         Z4Ew==
-X-Gm-Message-State: AO0yUKUOLkSmNcwcciJK0KCi5oDicU4/oCi+zu/eJwFXRu+wIb3cW//l
-        K6B5FF7pk7fwJhzCJMTOgPrYqA==
-X-Google-Smtp-Source: AK7set+1a8OF7jyLmkJooq/S6lNZXi6oR2S6E8K5SzBMN50//7c5b474aeDnO7YV/iNAj+lyBUEWlQ==
-X-Received: by 2002:ac2:43a7:0:b0:4dc:4b92:dbc4 with SMTP id t7-20020ac243a7000000b004dc4b92dbc4mr2749532lfl.14.1677087754284;
-        Wed, 22 Feb 2023 09:42:34 -0800 (PST)
-Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id t9-20020a19ad09000000b004db2bda9527sm972736lfc.121.2023.02.22.09.42.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 09:42:33 -0800 (PST)
-Message-ID: <42b91fed-1f8c-b019-a1cc-32690b534dd9@linaro.org>
-Date:   Wed, 22 Feb 2023 18:42:32 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sdm845-oneplus: add alert-slider
-Content-Language: en-US
-To:     Gergo Koteles <soyer@irl.hu>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>
-References: <cover.1677022414.git.soyer@irl.hu>
- <a8610cc5e16b63cd716e466d8edae54d97f5ae57.1677022414.git.soyer@irl.hu>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <a8610cc5e16b63cd716e466d8edae54d97f5ae57.1677022414.git.soyer@irl.hu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230048AbjBVR5U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:57:20 -0500
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F893BDB8;
+        Wed, 22 Feb 2023 09:57:18 -0800 (PST)
+Received: from srv01.abscue.de (localhost [127.0.0.1])
+        by spamfilter.srv.local (Postfix) with ESMTP id 157F71C0048;
+        Wed, 22 Feb 2023 18:57:16 +0100 (CET)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: from fluffy-mammal.metal.fwg-cag.de (dslb-092-073-092-061.092.073.pools.vodafone-ip.de [92.73.92.61])
+        by srv01.abscue.de (Postfix) with ESMTPSA id 8F7521C0046;
+        Wed, 22 Feb 2023 18:57:15 +0100 (CET)
+Date:   Wed, 22 Feb 2023 18:57:08 +0100
+From:   Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] clk: qcom: Add global clock controller driver for
+ MSM8917
+Message-ID: <Y/ZXdO67/9X5xabE@fluffy-mammal.metal.fwg-cag.de>
+References: <20230221174909.164029-1-otto.pflueger@abscue.de>
+ <20230221174909.164029-3-otto.pflueger@abscue.de>
+ <10b2ce9a-d838-6063-1646-90f91ce819e6@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <10b2ce9a-d838-6063-1646-90f91ce819e6@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22.02.2023 01:10, Gergo Koteles wrote:
-> The alert-slider is a tri-state sound profile switch found on the OnePlus 6,
-> Android maps the states to "silent", "vibrate" and "ring". Expose them as
-> ABS_SND_PROFILE events.
-> The previous GPIO numbers were wrong. Update them to the correct
-> ones.
+On Wed, Feb 22, 2023 at 09:51:21AM +0100, Krzysztof Kozlowski wrote:
+> On 21/02/2023 18:49, Otto Pflüger wrote:
+> > This driver provides clocks, resets and power domains needed for various
+> > components of the MSM8917 SoC and the very similar QM215 SoC.
+> > 
+> > According to [1] in the downstream kernel, the GPU clock has a different
+> > source mapping on QM215 (gcc_gfx3d_map vs gcc_gfx3d_map_qm215).
+> > 
+> > [1]: https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LF.UM.8.6.2-28000-89xx.0/include/dt-bindings/clock/msm-clocks-hwio-8952.h#L298
+> > 
+> > Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> > ---
+> >  drivers/clk/qcom/Kconfig       |    8 +
+> >  drivers/clk/qcom/Makefile      |    1 +
+> >  drivers/clk/qcom/gcc-msm8917.c | 3283 ++++++++++++++++++++++++++++++++
+> >  3 files changed, 3292 insertions(+)
+> >  create mode 100644 drivers/clk/qcom/gcc-msm8917.c
+> > 
+> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> > index 70d43f0a8919..3ef58b09385a 100644
+> > --- a/drivers/clk/qcom/Kconfig
+> > +++ b/drivers/clk/qcom/Kconfig
+> > @@ -196,6 +196,14 @@ config MSM_GCC_8916
+> >  	  Say Y if you want to use devices such as UART, SPI i2c, USB,
+> >  	  SD/eMMC, display, graphics, camera etc.
+> >  
+> > +config MSM_GCC_8917
+> > +	tristate "MSM8917 Global Clock Controller"
 > 
-> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 39 ++++++++++++++++++-
->  1 file changed, 37 insertions(+), 2 deletions(-)
+> I propose to add here:
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 64638ea94db7..7567f5cf6e3f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -20,6 +20,41 @@
->  /delete-node/ &rmtfs_mem;
->  
->  / {
-> +	alert-slider {
-> +		compatible = "gpio-keys";
-> +		label = "Alert slider";
-> +
-> +		pinctrl-0 = <&alert_slider_default>;
-> +		pinctrl-names = "default";
-> +
-> +		switch-top {
-> +			label = "Silent";
-> +			linux,input-type = <EV_ABS>;
-> +			linux,code = <ABS_SND_PROFILE>;
-> +			linux,input-value = <SND_PROFILE_SILENT>;
-> +			gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +		};
-> +
-> +		switch-middle {
-> +			label = "Vibrate";
-> +			linux,input-type = <EV_ABS>;
-> +			linux,code = <ABS_SND_PROFILE>;
-> +			linux,input-value = <SND_PROFILE_VIBRATE>;
-> +			gpios = <&tlmm 52 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +		};
-> +
-> +		switch-bottom {
-> +			label = "Ring";
-> +			linux,input-type = <EV_ABS>;
-> +			linux,code = <ABS_SND_PROFILE>;
-> +			linux,input-value = <SND_PROFILE_RING>;
-> +			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
->  	aliases {
->  		serial0 = &uart9;
->  		serial1 = &uart6;
-> @@ -753,8 +788,8 @@ &usb_1_hsphy {
->  &tlmm {
->  	gpio-reserved-ranges = <0 4>, <81 4>;
->  
-> -	tri_state_key_default: tri-state-key-default-state {
-> -		pins = "gpio40", "gpio42", "gpio26";
-> +	alert_slider_default: alert-slider-default-state {
-> +		pins = "gpio126", "gpio52", "gpio24";
->  		function = "gpio";
->  		drive-strength = <2>;
->  		bias-disable;
+> depends on ARM64 || COMPILE_TEST
+
+Why should this driver only be enabled on ARM64 systems? In my opinion,
+this should also be supported on 32-bit ARM, just like the other clock
+drivers for the 64-bit SoCs. Users should be able to boot a 32-bit
+kernel if they have to, e.g. if their device has broken firmware that
+prohibits booting 64-bit kernels (there have been such cases with
+MSM8916) or if they think that 64-bit systems use too much memory (my
+QM215 device with 512MB RAM shipped with a 32-bit kernel for this very
+reason).
+
+> 
+> > +	select QCOM_GDSC
+> > +	help
+> > +	  Support for the global clock controller on msm8917 devices.
+> > +	  Say Y if you want to use devices such as UART, SPI i2c, USB,
+> > +	  SD/eMMC, display, graphics, camera etc.
+> > +
+> 
+> (...)
+> > +
+> > +static int gcc_msm8917_probe(struct platform_device *pdev)
+> > +{
+> > +	struct regmap *regmap;
+> > +
+> > +	regmap  = qcom_cc_map(pdev, &gcc_msm8917_desc);
+> > +	if (IS_ERR(regmap))
+> > +		return PTR_ERR(regmap);
+> > +
+> > +	if (of_device_is_compatible(pdev->dev.of_node, "qcom,gcc-qm215"))
+> 
+> Use data in of_device_id instead. This scales poorly if any new variant
+> is added here. Unless no new variants will be added? Ever?
+
+Thanks. There are a lot of other related SoCs (MSM8920, MSM8937, MSM8940,
+MSM8952, SDM429 and SDM439) which could get added here as variants, so
+I'll implement this using data in of_device_id.
+
+Regards,
+Otto Pflüger
