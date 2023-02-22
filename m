@@ -2,99 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB6469EF9F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 08:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF7B69EFA6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 08:55:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjBVHxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 02:53:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41076 "EHLO
+        id S229739AbjBVHz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 02:55:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbjBVHxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 02:53:46 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31AAE2BEF3;
-        Tue, 21 Feb 2023 23:53:41 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id s26so26769408edw.11;
-        Tue, 21 Feb 2023 23:53:41 -0800 (PST)
+        with ESMTP id S229755AbjBVHz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 02:55:56 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85D12887A
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 23:55:55 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id e5so8903658plg.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Feb 2023 23:55:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s85ej20o57EVIAZFbWgvrgnN0SkPXWj9xUiifHsTHZg=;
-        b=AFb76RWl0qx095lTG9TFJYrGSOSHsEId33Ft2ZTbU4DUX7kfqyIOv+8xnezBuHPYa1
-         yCDyIMnOZridhY9SjLWjr1yuNZYnjaiDKIytq7JCdL+N8e506wpoMBmPQ+Nx2YMRsLCu
-         RRtl75WuqhpLkXGr0F0kndHrxQhk2RMlFm7xAokmbPGAm3S9VcVvTGXs8s0X7W6B3quc
-         iBAczBLHfa2OGqN+whJaqLMPDVyvjY+Rz82MsXi7wcio17ZKeVdqIP/uP8fX/9ulnnZo
-         UmNtML76sovEkZBCTsHM6GkdL1/9B01pBEx4vUno8bi3hdeCaOdoTyfq6hkTa34gmft4
-         03oA==
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oBgzLfkXpKOGfd/1eNx8Vyt8q2pJnQcGFP33kaJSZLo=;
+        b=bKcnv4mE5FYO28aQVhL4l7jvPYfuxRvwJx4aDOMpVX7i7lTxPjZ2zeB/msNGjCoAUS
+         9BWfwGlpf4nOVynX5qpqDIcuFnNCx1ZYDUxfE0cP0TsmymLnw467Im4PI/aPWvfGTOTq
+         fYnOFo4Nyhdr7Pzf7P3ljnJxv/HDvkXFr7eog=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s85ej20o57EVIAZFbWgvrgnN0SkPXWj9xUiifHsTHZg=;
-        b=Kzl0AoT/KDL6l7nOeF5hIf9uLcqJpp982BAgCGq9CQ9nTDB4L17bbbCRwxM2v/MOo2
-         Kum28dTlKfDRCNZbLUfcZr140wc931/hPDuAb6jx2WbM8O7AtdqdA5c24ttBuV5XEhC2
-         OUaQkkC4ml3gIKU5UWYFDsld9ljQGNQ052uuViq7n7+PLvGQEHStdWtUpVpdlNii12tQ
-         1EibAJDJhA5tAvjaQ6cqMs3Dc/IOYtyeMMGN8q9zdc0WagwoL+N2oR2mJ8hnUUV1riix
-         kvDWN5Du3Eg7Z5NnqT2SXdm3/NOuhSZCvCfgP/W8pE9k0oe1jMxIc2pyPg4kpR1JwEQ6
-         pXHw==
-X-Gm-Message-State: AO0yUKVbrffgVicY0NAsC40ySbv/nTuZp/oGFLRrXbG/HleTxE+I05cB
-        Cr7i8XspyBfhIlfWoMeSYw88sR9l/GzqotPVnKM=
-X-Google-Smtp-Source: AK7set+0c5IFVbo5S3RjC5aOGFuL8Zs9WlbR6blsKJepl2XbT7Oc5hgv5WTV0x4z8gzWNJGZhNesPqm9d1b5s6s1HSQ=
-X-Received: by 2002:a17:907:6025:b0:877:7480:c568 with SMTP id
- fs37-20020a170907602500b008777480c568mr6954732ejc.8.1677052419551; Tue, 21
- Feb 2023 23:53:39 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oBgzLfkXpKOGfd/1eNx8Vyt8q2pJnQcGFP33kaJSZLo=;
+        b=DjbouBqNnFiKyZ6gNTN+2icistoJxArgGUHTBDOK/3r3gob8HwyF/11iL797JjES7B
+         N7Lg68vRA4hyFrkXxxmOzZE8f12M1MiyQnDWjkOJ/MVhCgfBhdm3dyye/JgWiI6V4gB3
+         vHfKHnzCUUbwFSammnwrv6DGKkweym1LjRFumL0ddAtH81rFwhJuOqynaT64E0FUCsvQ
+         Us9LsxTrlQH5dcNgfMdyT+NgqQAn+UXvtEXF9gkgMJDTlMh2IDAvRwAjLLQByrUj6H1N
+         onl6gEQiLF324hbtkYZudchtxQ8zja67t1IQAdLBgnUvjxd7NdHgVX+v8uiqRnex9mjx
+         BWdg==
+X-Gm-Message-State: AO0yUKU2UBvu1u+3RaR3h5oVXXPyQCfG7qHEPFF2xSapX5Wp2eB2K0Wf
+        yDCP0pjP5A/9dPgeaENrT9C9CA==
+X-Google-Smtp-Source: AK7set+DvRSC/UTE3/Bo65NIi9ejlfvJh5OTnIy8q82XRhMInMhg/LrhSdfTTPAcfKctZav/mMZuWQ==
+X-Received: by 2002:a17:903:110e:b0:19c:ac96:223b with SMTP id n14-20020a170903110e00b0019cac96223bmr509904plh.40.1677052555089;
+        Tue, 21 Feb 2023 23:55:55 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:ddae:8a07:7ed9:423d])
+        by smtp.gmail.com with ESMTPSA id x24-20020a170902821800b001947222676csm5009278pln.249.2023.02.21.23.55.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Feb 2023 23:55:54 -0800 (PST)
+Date:   Wed, 22 Feb 2023 15:55:50 +0800
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 00/10] Panfrost: Improve and add MediaTek SoCs support
+Message-ID: <Y/XKhg+wultVbEWW@google.com>
+References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-References: <20230221183211.21964-1-clamor95@gmail.com> <20230221183211.21964-3-clamor95@gmail.com>
- <Y/VA3HK/jGVPbrqb@sirena.org.uk>
-In-Reply-To: <Y/VA3HK/jGVPbrqb@sirena.org.uk>
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-Date:   Wed, 22 Feb 2023 09:53:28 +0200
-Message-ID: <CAPVz0n2cHvKfez6=ydR8HQfAfM_bipmAzav76Gxmp6pF4wLuhw@mail.gmail.com>
-Subject: Re: [PATCH v1 02/10] sound: soc: jack: allow multiple interrupt per gpio
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D1=81=D1=80, 22 =D0=BB=D1=8E=D1=82. 2023 =D1=80. =D0=BE 00:08 Mark Brown <=
-broonie@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Tue, Feb 21, 2023 at 08:32:03PM +0200, Svyatoslav Ryhel wrote:
-> > This feature is required for coupled hp-mic quirk used
-> > by some Nvidia Tegra 3 based devices work properly.
->
-> Please submit this separately, there's no meaningful dependency
-> on the rest of the series.
+On Tue, Feb 21, 2023 at 04:37:30PM +0100, AngeloGioacchino Del Regno wrote:
+> Changes in v2:
+>  - Add power-domain-names commit from Chen-Yu to the series
+>  - Kept sram-supply in base schema, overridden for non-MediaTek
+>  - Added Reviewed-by tags from Steven Price to the driver commits
+>    (as released in reply to v1's cover letter - thanks!)
+> 
+> This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
+> and improves MT8183 support: since the mtk-regulator-coupler driver
+> was picked, it is now useless for Panfrost to look for, and manage,
+> two regulators (GPU Vcore and GPU SRAM) on MediaTek;
+> 
+> The aforementioned driver will take care of keeping the voltage
+> relation (/constraints) of the two regulators on its own when a
+> voltage change request is sent to the Vcore, solving the old time
+> issue with not working DVFS on Panfrost+MediaTek (due to devfreq
+> supporting only single regulator).
+> 
+> In the specific case of MT8183, in order to not break the ABI, it
+> was necessary to add a new compatible for enabling DVFS.
+> 
+> Alyssa Rosenzweig (3):
+>   drm/panfrost: Increase MAX_PM_DOMAINS to 5
+>   drm/panfrost: Add the MT8192 GPU ID
+>   drm/panfrost: Add mediatek,mt8192-mali compatible
+> 
+> AngeloGioacchino Del Regno (6):
+>   dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains
+>     variation
+>   dt-bindings: gpu: mali-bifrost: Allow up to 5 power domains for MT8192
+>   dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
+>   dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
+>   dt-bindings: gpu: mali-bifrost: Add a compatible for MediaTek MT8186
+>   drm/panfrost: Add new compatible for Mali on the MT8183 SoC
+> 
+> Chen-Yu Tsai (1):
+>   dt-bindings: gpu: mali-bifrost: Add power-domain-names to base schema
+> 
+>  .../bindings/gpu/arm,mali-bifrost.yaml        | 67 ++++++++++++++++++-
+>  drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
+>  drivers/gpu/drm/panfrost/panfrost_drv.c       | 28 ++++++++
+>  drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 +++
+>  4 files changed, 101 insertions(+), 4 deletions(-)
 
-RT5631 by machine driver commit contains a coupled hp-mic quirk which
-requires this commit to work properly. In v2 RT5631 machine driver bringup
-and coupled hp-mic quirk may be split into separate commits.
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-> Please submit patches using subject lines reflecting the style for the
-> subsystem, this makes it easier for people to identify relevant patches.
-> Look at what existing commits in the area you're changing are doing and
-> make sure your subject lines visually resemble what they're doing.
-> There's no need to resubmit to fix this alone.
+on MT8183, MT8186, MT8192, MT8195 with glmark2.
