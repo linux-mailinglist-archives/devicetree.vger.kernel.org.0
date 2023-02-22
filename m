@@ -2,154 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A5869F34A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 12:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2ED69F350
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 12:15:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231785AbjBVLMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 06:12:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37440 "EHLO
+        id S231618AbjBVLP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 06:15:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231788AbjBVLMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 06:12:51 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCB2C392B5;
-        Wed, 22 Feb 2023 03:12:42 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id nt5-20020a17090b248500b00237161e33f4so6024541pjb.4;
-        Wed, 22 Feb 2023 03:12:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AJ9DYSbNtBd9DPjLU4U4sH7nNCDVV4pFgLMTLw3Ypkc=;
-        b=mCP2sIrzT0l72A0togvSIYGMucC8MVq21zmCLnPzmT0A3CydfV9EU+ChGgxhF4AM4g
-         WGJ+XJOcH4685GuPjhgv4ZyKxYicsKzKACf5vwstBKUxVouCkGqE/064BB/LlCkw58+g
-         4pf8A5QhPnypsJqYbLTSb9NBPzvwF6x+xuDWeQxF5wFXdM3Nb1QeoNAQnDYdXiksQKlF
-         roPfCPG3gid9SyCxxf3hbgeilVz/xCGCFKGqP9f1aWaNOURFTibs9uo5GxOR8VWmFcFv
-         joqqbydp4PPAvLHWsspL1AQejxNOFMF/DkPsAqbzCDO9rqWYaxQQn6AnP11ivEO2o2j1
-         PnZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AJ9DYSbNtBd9DPjLU4U4sH7nNCDVV4pFgLMTLw3Ypkc=;
-        b=DKLlJrAa8ZASyIzYcstoosY/51SqEA6+RaU4Jl5xWO86XGVTBxTDELkStuTJS8YIFB
-         lmhZa5jvUTpS64398AA9HWG5bjDZ6SAR27xRo6Dv/jbsECKCqcgogrsYWgIIXm+mX29K
-         OLb0y/Y9RqvUlZT26C5b2frh+CLd9+aO6SQHuAVri19xkxKyNb1XD0RRDS75Wp5oI8Yw
-         n7UhRX0MOeIGZNhqHSxa/YCaDOlE2TZ821k1+hzWG6oINPlSyEngWjefc30Ov/TRl/O7
-         Jw+bF4NG6OphFcI0E+j7kdMR5ckD2htN5IDWGGCI2AZsPfau9yo5sMnEVnGCIwdlmsBG
-         leHQ==
-X-Gm-Message-State: AO0yUKUHu6VHpf9dobniuepzhOCQU+qEVORvq477oFgnjD2iptve4WV0
-        atGMpUwMh1Ne41J+bSchBb/XNWgw+7SR4A==
-X-Google-Smtp-Source: AK7set8VK32EeAr175TT+eNn4od7p3eCIq1FJnE1yFuE/RAwOLqsg2DwJ4Cy5TGJTXMCYXVA7HhVlw==
-X-Received: by 2002:a17:90a:1d5:b0:233:ab9b:f86a with SMTP id 21-20020a17090a01d500b00233ab9bf86amr7497976pjd.8.1677064361780;
-        Wed, 22 Feb 2023 03:12:41 -0800 (PST)
-Received: from kelvin-ThinkPad-L14-Gen-1.. (94.130.220.35.bc.googleusercontent.com. [35.220.130.94])
-        by smtp.gmail.com with ESMTPSA id x7-20020a17090a294700b00234899c65e7sm4763228pjf.28.2023.02.22.03.12.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 03:12:41 -0800 (PST)
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231823AbjBVLPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 06:15:25 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DABDC83F9;
+        Wed, 22 Feb 2023 03:15:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 724ACB81260;
+        Wed, 22 Feb 2023 11:15:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96280C433D2;
+        Wed, 22 Feb 2023 11:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1677064513;
+        bh=L+vlKF7HhKxFmv88Coa+zjcHwjiWGvdeEhd8PDUoiRY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PJbMubh3B2HkoSiUZH0OTHYBRvfoY+pKE03DyTYLWPzFk4IW/FgJR4CZGvFLUr9vt
+         KvZvE4DrfmDWPImH4o3NCc8jfUpCGXkXBQMPQaDem9yw8g+P/LffaSrkBI5ywVgF8d
+         90I9pFnfH6s1j3byFYsxO0IlUgTZ4uKQ7ZVChq+M=
+Date:   Wed, 22 Feb 2023 12:15:10 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     =?utf-8?B?0KHQstGP0YLQvtGB0LvQsNCyINCg0LjQs9C10LvRjA==?= 
+        <clamor95@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Keguang Zhang <keguang.zhang@gmail.com>
-Subject: [PATCH 4/4] dt-bindings: gpio: Add Loongson-1 GPIO
-Date:   Wed, 22 Feb 2023 19:12:13 +0800
-Message-Id: <20230222111213.2241633-5-keguang.zhang@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230222111213.2241633-1-keguang.zhang@gmail.com>
-References: <20230222111213.2241633-1-keguang.zhang@gmail.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v1 09/10] staging: dsp: add support for Fortemedia FM34NE
+ DSP
+Message-ID: <Y/X5Po7Ieao3svBm@kroah.com>
+References: <20230221183211.21964-1-clamor95@gmail.com>
+ <20230221183211.21964-10-clamor95@gmail.com>
+ <Y/UbMH5tXDgsvSbD@kroah.com>
+ <CAPVz0n2-giCF9Z9fMimTFQnGk73HAdfU4SitGn58iZapLjeuTQ@mail.gmail.com>
+ <Y/Xefn/76JW1C03d@kroah.com>
+ <C94BE033-EE34-40E4-96D4-1EB4C1B04A09@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+In-Reply-To: <C94BE033-EE34-40E4-96D4-1EB4C1B04A09@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding document for Loongson-1 GPIO.
+On Wed, Feb 22, 2023 at 11:39:59AM +0200, Святослав Ригель wrote:
+> 
+> 
+> 22 лютого 2023 р. 11:21:02 GMT+02:00, Greg Kroah-Hartman <gregkh@linuxfoundation.org> написав(-ла):
+> >On Wed, Feb 22, 2023 at 10:19:47AM +0200, Svyatoslav Ryhel wrote:
+> >> вт, 21 лют. 2023 р. о 21:27 Greg Kroah-Hartman
+> >> <gregkh@linuxfoundation.org> пише:
+> >> >
+> >> > On Tue, Feb 21, 2023 at 08:32:10PM +0200, Svyatoslav Ryhel wrote:
+> >> > > FM34NE is digital sound processing chip used for active
+> >> > > noise suppression mainly on ASUS Transformers.
+> >> > >
+> >> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> >> > > ---
+> >> > >  drivers/staging/Kconfig          |   2 +
+> >> > >  drivers/staging/Makefile         |   1 +
+> >> > >  drivers/staging/dsp/Kconfig      |   7 +
+> >> > >  drivers/staging/dsp/Makefile     |   2 +
+> >> > >  drivers/staging/dsp/dsp-fm34ne.c | 364 +++++++++++++
+> >> > >  drivers/staging/dsp/dsp-fm34ne.h | 845 +++++++++++++++++++++++++++++++
+> >> > >  6 files changed, 1221 insertions(+)
+> >> > >  create mode 100644 drivers/staging/dsp/Kconfig
+> >> > >  create mode 100644 drivers/staging/dsp/Makefile
+> >> > >  create mode 100644 drivers/staging/dsp/dsp-fm34ne.c
+> >> > >  create mode 100644 drivers/staging/dsp/dsp-fm34ne.h
+> >> >
+> >> >
+> >> > Sorry, but why is this going into drivers/staging/ at all?  What is
+> >> > needed to be done to get this out of staging?  Why not do that work
+> >> > right now?  At the least, we need a TODO file in the directory that
+> >> > lists what needs to be done and who is responsible for it.
+> >> 
+> >> Because this driver sets up fm34 and switches it to bypass mode allowing
+> >> sound to work on the device. There is no dsp framework in kernel which could
+> >> be called to operate dsp from the actual sound codec. (If there is, I
+> >> would be glad
+> >> if you show me). Fm34 must be active only on DMIC use, all other cases require
+> >> it to be in bypass.
+> >
+> >That does not explain at all why this needs to go into drivers/staging/
+> >and not the normal portion of the kernel.  Why this specific location?
+> >What is wrong with it that requires it to go here?
+> 
+> It is not fully functional and does not perform its main function
+> (noise cancellation) because it has to be called only for DMIC. Same
+> time it is essential to be set so that audio could work on device.
 
-Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
----
- .../bindings/gpio/loongson,ls1x-gpio.yaml     | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls1x-gpio.yaml
+But why does that mean it should go to drivers/staging/?  That's not
+what staging is for (broken code).
 
-diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls1x-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls1x-gpio.yaml
-new file mode 100644
-index 000000000000..e4ab49d48fae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/loongson,ls1x-gpio.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/loongson,ls1x-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-1 GPIO controller
-+
-+maintainers:
-+  - Keguang Zhang <keguang.zhang@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: loongson,ls1x-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  ngpios:
-+    minimum: 1
-+    maximum: 32
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - ngpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio0: gpio@1fd010c0 {
-+        compatible = "loongson,ls1x-gpio";
-+        reg = <0x1fd010c0 0x4>;
-+
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+
-+        ngpios = <32>;
-+    };
-+
-+  - |
-+    gpio1: gpio@1fd010c4 {
-+        compatible = "loongson,ls1x-gpio";
-+        reg = <0x1fd010c4 0x4>;
-+
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+
-+        ngpios = <32>;
-+    };
-+
-+...
--- 
-2.34.1
+> Once there is such a framework in kernel, which allows to control dsp
+> from, I assume, asoc machine driver, this driver can be moved wherever
+> it should be. Currently I can not tell where it should be since I
+> haven't seen dsp drivers like this in kernel.
 
+Then work to create that, don't dump stuff in drivers/staging/ for no
+valid reason.
+
+thanks,
+
+greg k-h
