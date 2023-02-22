@@ -2,193 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F179369EF21
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 08:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C700469EF3F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 08:23:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230498AbjBVHKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 02:10:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41240 "EHLO
+        id S231148AbjBVHX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 02:23:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbjBVHKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 02:10:13 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2042.outbound.protection.outlook.com [40.107.20.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8DE36687;
-        Tue, 21 Feb 2023 23:10:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T6U+I8b4LlrXLv3vBExviFkJNUcSV3FbZlSp0Duu6BJnfPLYaiH3bQ80uby56hS5T8rUNWfG4yrY4iRUiMQ/RvMfLQ2b0PbxxY44GEUuibG9Y1RNJkGawHq0zi3yB5s9Ne01XzYAvcREAfAmypgXrWCbZRjFO5InYJrGe1mg6+2gSIxcHIng3CatObJ5h8nySWY2aLRYnzupvhpfrgfk+Vj1kiAZI/+qDXGAG30WeqimDB4SjhuLkrrXSjXy111mE9apDFfm5mgYuxgdpmiaUtmRn/GFS+Q8e52MnubddNmvJ2Eurq25BI+6uZsrMbQnZbfLzRDtl85RxBzI/ALIjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hsQ5ls1exxKsCLma6SAQ9OsHcCIriDEHofjxvEQBLM0=;
- b=XLMx2WB4/EwAu7DTJRaoSS67LbGLSA2da2Uuw1MX+Ob5F1un39njje4tqbWSTufnfRbp8hjZPUYRXI5W0dt2/zBWqpvSEOJtWnP+OvSiXF3KObV9XvS8McddUM8hFlu60OMKfb4DajktE4Y3EdHxxQMOIp1Yl6UIQIQQ6i1YUIa7fPsqelZvnnkM9fqbq1dERfJ28QeB+OH6Z5eDgtU15yn5DSK9mR2Vi9aQ1IEeqWTmrw2I5w9MVZUhr0qA5HsvDp7Y969xHnqcN5SkbKU3Z/9qDwkGV1dwNpoO6YJGMrPWgVVCCEuAc+4R4NPQGgGycZmVhCfj/m4h4bSyKpAPXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hsQ5ls1exxKsCLma6SAQ9OsHcCIriDEHofjxvEQBLM0=;
- b=S9pILsH90eF/hpUtgyrKJ98oQbDeiFpdZGnCAq8t4oOjD0gnJb5J4Wv5SBCm5B97Eo2yLPE9fKSzMTrwuAJ4orQlFRAzfXC5WW9h/NN8vims203X4OasDljjmALfDwr4YtSRYo5FkNSYbK5jde8sSRlQ9ndt5djkPdHUVRmAIcs=
-Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
- by PAXPR04MB8688.eurprd04.prod.outlook.com (2603:10a6:102:21f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.21; Wed, 22 Feb
- 2023 07:09:59 +0000
-Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
- ([fe80::1793:79b4:2cb7:4db]) by AS8PR04MB8642.eurprd04.prod.outlook.com
- ([fe80::1793:79b4:2cb7:4db%6]) with mapi id 15.20.6111.021; Wed, 22 Feb 2023
- 07:09:59 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>
-Subject: RE: [PATCH v5 2/3] rtc: bbnsm: Add the bbnsm rtc support
-Thread-Topic: [PATCH v5 2/3] rtc: bbnsm: Add the bbnsm rtc support
-Thread-Index: AQHZQObOpOypUkss30at6VWr9UBm6a7Zuy4AgAABAICAANp0MA==
-Date:   Wed, 22 Feb 2023 07:09:59 +0000
-Message-ID: <AS8PR04MB8642279B6FEF4D239AB927BA87AA9@AS8PR04MB8642.eurprd04.prod.outlook.com>
-References: <20230215024117.3357341-1-ping.bai@nxp.com>
- <20230215024117.3357341-3-ping.bai@nxp.com> <Y/UG7LT6e7+UySRs@mail.local>
- <Y/UHw2Q0FL9zlfFk@mail.local>
-In-Reply-To: <Y/UHw2Q0FL9zlfFk@mail.local>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR04MB8642:EE_|PAXPR04MB8688:EE_
-x-ms-office365-filtering-correlation-id: ee066b9b-fa98-4339-b494-08db14a3cf96
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 4brOSU3LrB+/PoJ/zKfllqzhAhAnnS/I+ghDs0UA/WGTnWqJns/WWgRY9VH8Ztd5PX2T7YR2IAV68RabKS/5vybnricFUWb4gqpZSAPbC8uohhU8WY78DOGrJHh5cA6xPlFpJGWwWwN86qeuuuyze3NbaaauWEhKDXcQVZ/MhkU5zO5pYKecQnDDEAfPvTe3/qwPHsRCoIxX3IbaaFVR5XX1VTQY05GDWVdQT1uoPFnkHuhj0izyCavEdsV6VJTNIx02yZGuYmvWqpGNUIEr6kDR7a6x98WPhejyE8nx0NKzSbRYlyHVUwoMUlQYrvovYZV/TO3UCYPEMGDo3Mp54aWVy9XzizT+vod4G2SEg5JsThuvEtC8jaYF/OOv5xCSfuE/uUrfNKuPGWMwr/QPWlLTRqCA7B3Vmk9rrUSsJiNbo82z76gt0o/FCluRSYMjQcIcYlOZeYkFhCb6VNux8k2mAgcc1V+mu+uYmoqsxzYYOoOmO4NXAF5bYJqE/gTroC7zps4Jmq4TgVMyBcPToPQtiah99IKOqVD+9lOUBVQ9jruQ+wFdIurUbns7a4NA+smtLKpbyE9p8Dt4fy0liqKtrDDAabX7ClTrIFea5wTAktv1WDhRM3+8BGSRF/qzTDHARzpUUYw2RfvqcQ9olAPBrlU4wnx/Hj0zCXs4/DJoE7yQX4MM8ftyQ6QU8GYK4XsJ1jiElDRrSsje2IC8oA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(396003)(366004)(39860400002)(376002)(136003)(346002)(451199018)(83380400001)(41300700001)(76116006)(26005)(54906003)(9686003)(33656002)(316002)(186003)(55016003)(478600001)(7696005)(86362001)(6506007)(71200400001)(38070700005)(66476007)(8676002)(64756008)(66446008)(4326008)(66946007)(6916009)(66556008)(2906002)(38100700002)(122000001)(7416002)(8936002)(5660300002)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Qvz+bp3gwmEJt6FtJFfOq7gI+G7oqNumhbMIEOkGn3F9kVMcMWDcXyjS15z3?=
- =?us-ascii?Q?eYVc7p9Creapb0CjNHAbfelEtvbg5mtfDb8oaq7ZFxUr4YR4qXqRvX1wjw3p?=
- =?us-ascii?Q?Pbw9E1JtyCfb6F+CmJv3gR7v1UpV+VVm7cyuP1OqFt34wdKDj8ly6ia7Lnhy?=
- =?us-ascii?Q?BrMlqJYdM0+DYFb1NwomzjXzBwveSYGMMro2EBhUnPy6uU4+n27pmVw+b27D?=
- =?us-ascii?Q?wU2VN5j5VsWazOB+mecQOCFBnLZITLOPaULGsB0JF6qo35Wi/vxWoVCM+Mwu?=
- =?us-ascii?Q?FT6xia/vXk/5wXapupTcy4mh5kbAiR3gEPe9Qur9n6lbKlh8rfdsX2EI5Hk3?=
- =?us-ascii?Q?zbVGEihwZGhCCAJ5va3L7NOb73l9giB/7fSrbrk61a93A6ojso6uQ97PPfl3?=
- =?us-ascii?Q?p2cE2ZKzOfwQENPksxsrug+roeO6XNmZWC/92M09NUtDPeyQ7V4gK54MWVvK?=
- =?us-ascii?Q?lqVsRorphfDyIVsLgUD0oOVMalYThZeTGfQ11/G5hlC715UU8uvQHi7iAH0W?=
- =?us-ascii?Q?47dZYLfqI/8qvNO3kTrA313oRy4Y7nU7T+empIjKZOo1A2gnTBIKZxSqjTUI?=
- =?us-ascii?Q?KSYApD6oaboBTpuTWWskkmvlFJHg6Ys08wRWdNdcAZyh8lDIIwtC+jFkVHMT?=
- =?us-ascii?Q?sZAA0XLmFH69si51vqXhwK9jX/1rPd4ze10sv9ZFxDEYfm/8RuMo9PaW9Qd5?=
- =?us-ascii?Q?+GIpwBYO6JiDPQFF+9RKNO/gcjqPCRusWXhHkqIJrOlG1KWsInGUj/DRFLkB?=
- =?us-ascii?Q?zJZy+h70E8ja0QDLYVVFTNe9KU2G0MScL/2DAmXzYvmu9ZZOIqipx/ioHdgr?=
- =?us-ascii?Q?3j22RVwSm2ERClz8or7NZRmNgvv4pgCBRnGwLRdZ0zFDHrfjxu9iZLm0djZf?=
- =?us-ascii?Q?BClA7XuVAsVTl0vaT7GEcLaNmIuQFCp8rdQkLZ5knyB+x6LF46ie6E0kcK4C?=
- =?us-ascii?Q?Dwj1i3sJLmjJZLKcNwJTijDg4B2Do38Z3OxWxaA+ORZsZkYaS2PTxphLFsIp?=
- =?us-ascii?Q?PMB3eo5qxWQoYWJ5oPscO8xm00J8xUC8m1dw48r37vHzYo7sqNqC/11PtWfc?=
- =?us-ascii?Q?QvBYTDXdaNfCtq8mZYttO2wAF/PyHp3qZM5QoLJWG0eBNeaVfYGv/7nQTNoZ?=
- =?us-ascii?Q?9EIugvrCKzUGEbHRFFCxG8Cd6TBLgGq0Y7wgp25AlVGhFCVNyNvoeCbb+6EJ?=
- =?us-ascii?Q?A8JTTraiPlWg6eI+q1t2i4LVwCvvjuprdRDs/E0OAdrL1pFSKXiyHnAEDiVd?=
- =?us-ascii?Q?cPO1crZCiQWnUPGLK1ITc/zNbsmFVPP9ugordUCU+RGYOsDm5qxF2gyCD9VO?=
- =?us-ascii?Q?6KsFaakVOA4AZcM/aM72MI43WBj8yIipzjxCxBFKQ6VBLG7tIVixWhAua353?=
- =?us-ascii?Q?1+hpTrj7rSk3Ghi3pGZKSZouFyk/4CDrxKlRkgWdlwKItKH7bQ0xO3RzEhjK?=
- =?us-ascii?Q?1oIEiMQE0H/aQqIrO7jcNPneLiRiJswyPXNfnYPKdHVNbf2lkTLTg/I19EsT?=
- =?us-ascii?Q?yHlu+9QKNn0LZZCkvwbhYyjoBCY8igudAR6drSpuYnJnFdoNJnbhiFFuIWMg?=
- =?us-ascii?Q?kTPt4I2DiqW6f6psjaM=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229579AbjBVHX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 02:23:28 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA1C227B6;
+        Tue, 21 Feb 2023 23:23:27 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31M5W6XZ017786;
+        Wed, 22 Feb 2023 07:23:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=fzYebqMeIjBalxOHqhpblubwY0Nw7Vo0rbBtH47v1O0=;
+ b=YLZ+ySy9VjC6kE+Ku/tNO+RaXMLSVizkDrAL8DjE79xzJM/kK2/9JVx2WH4uwLvYQXhj
+ hmBsbCzyJiu9ZUvHDCAC1Ruvk+AGlnxDa2FkliDCcVxlu++6GksmbqoG7V/wf07sUs2x
+ iLKpPho5y29ARrhQ4XylkRGmNEHWT0IUqsr+qvtHMgvb/URZpyVxDlXmeOh9yOn0hZbm
+ drJzcXARP7adyBFImLu88lrxAb3IZoWxmGIkPsyA2O3TMKWvj3Hc+MGkKe+TwyNUJloc
+ hvNxKQKlywkQMfHdGuWTH7sISXER1HnBcQ2G/73Y/K7wCRF3HHcGB6wjRcrWlRAUdEQZ 2g== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nw8gnrrqp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Feb 2023 07:23:09 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31M7N8l5005717
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Feb 2023 07:23:08 GMT
+Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 21 Feb
+ 2023 23:23:00 -0800
+Message-ID: <cdb5b07f-6767-3162-532b-2c80178b8b92@quicinc.com>
+Date:   Wed, 22 Feb 2023 12:52:56 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee066b9b-fa98-4339-b494-08db14a3cf96
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2023 07:09:59.7886
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pZMkvnmRqZloqG30aCDRoWA61qjR7BzNPRSUmHiFZC2F3Jo0/gz5vuU9huhfGh14/vlY1k0DPi6wAsPcspisCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8688
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V5 5/5] firmware: scm: Modify only the DLOAD bit in TCSR
+ register for download mode
+Content-Language: en-US
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <robimarko@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
+        <broonie@kernel.org>, <quic_gurus@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_devipriy@quicinc.com>
+References: <20230216120012.28357-1-quic_poovendh@quicinc.com>
+ <20230216120012.28357-6-quic_poovendh@quicinc.com>
+ <51bd93be-f8d3-a33c-18ad-ba4a331f2bcf@quicinc.com>
+ <38780d01-3e02-fd30-4c11-8cb307eeae4d@quicinc.com>
+ <45ea27af-d4d3-48b4-236d-128a26552d6c@quicinc.com>
+ <d290a4d7-885a-437f-028e-df04a117f983@quicinc.com>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <d290a4d7-885a-437f-028e-df04a117f983@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JXEkZmpr5NlofbRuKe7u4Mn942h8Tlrv
+X-Proofpoint-GUID: JXEkZmpr5NlofbRuKe7u4Mn942h8Tlrv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-22_03,2023-02-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 adultscore=0 bulkscore=0 clxscore=1015
+ lowpriorityscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 phishscore=0
+ suspectscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302220062
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
 
-> Subject: Re: [PATCH v5 2/3] rtc: bbnsm: Add the bbnsm rtc support
->=20
-> On 21/02/2023 19:01:16+0100, Alexandre Belloni wrote:
-> > On 15/02/2023 10:41:16+0800, Jacky Bai wrote:
-> > > The BBNSM module includes a real time counter with alarm.
-> > > Add a RTC driver for this function.
-> > >
-> > > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> > > Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> >
->=20
-> Actually, as there is no dependency anymore, I'm going to apply that dire=
-ctly.
->=20
 
-Do I need to resend or you will directly apply this V5 patch?
+On 2/22/2023 12:22 PM, Sricharan Ramabadhran wrote:
+> Hi,
+> 
+> On 2/20/2023 4:00 PM, POOVENDHAN SELVARAJ wrote:
+>>
+>> On 2/18/2023 1:19 AM, Mukesh Ojha wrote:
+>>>
+>>>
+>>> On 2/16/2023 7:30 PM, Mukesh Ojha wrote:
+>>>>
+>>>>
+>>>> On 2/16/2023 5:30 PM, Poovendhan Selvaraj wrote:
+>>>>> CrashDump collection is based on the DLOAD bit of TCSR register.
+>>>>> To retain other bits, we read the register and modify only the 
+>>>>> DLOAD bit as
+>>>>> the other bits have their own significance.
+>>>>>
+>>>>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>>>>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>>>>> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>>>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>>>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>>>>> ---
+>>>>>   Changes in V5:
+>>>>>     - checking the return value in qcom_scm_set_download_mode 
+>>>>> function as
+>>>>>       suggested by Srinivas Kandagatla
+>>>>>
+>>>>>   Changes in V4:
+>>>>>     - retain the orginal value of tcsr register when download mode
+>>>>>       is not set
+>>>>>
+>>>>>   drivers/firmware/qcom_scm.c | 21 ++++++++++++++++-----
+>>>>>   1 file changed, 16 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>>>>> index 468d4d5ab550..d88c5f14bd54 100644
+>>>>> --- a/drivers/firmware/qcom_scm.c
+>>>>> +++ b/drivers/firmware/qcom_scm.c
+>>>>> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
+>>>>>   }
+>>>>>   EXPORT_SYMBOL(qcom_scm_set_remote_state);
+>>>>> -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+>>>>> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, 
+>>>>> bool enable)
+>>>>>   {
+>>>>>       struct qcom_scm_desc desc = {
+>>>>>           .svc = QCOM_SCM_SVC_BOOT,
+>>>>> @@ -417,7 +417,8 @@ static int __qcom_scm_set_dload_mode(struct 
+>>>>> device *dev, bool enable)
+>>>>>           .owner = ARM_SMCCC_OWNER_SIP,
+>>>>>       };
+>>>>> -    desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
+>>>>> +    desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
+>>>>> +                val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE);
+>>>>>       return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
+>>>>>   }
+>>>>> @@ -426,15 +427,25 @@ static void qcom_scm_set_download_mode(bool 
+>>>>> enable)
+>>>>>   {
+>>>>>       bool avail;
+>>>>>       int ret = 0;
+>>>>> +    u32 dload_addr_val;
+>>>>>       avail = __qcom_scm_is_call_available(__scm->dev,
+>>>>>                            QCOM_SCM_SVC_BOOT,
+>>>>>                            QCOM_SCM_BOOT_SET_DLOAD_MODE);
+>>>>> +    ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
+>>>>> +
+>>>>> +    if (ret) {
+>>>>> +        dev_err(__scm->dev,
+>>>>> +            "failed to read dload mode address value: %d\n", ret);
+>>>>> +        return;
+>>>>> +    }
+>>>>> +
+>>>>>       if (avail) {
+>>>>> -        ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+>>>>> +        ret = __qcom_scm_set_dload_mode(__scm->dev, 
+>>>>> dload_addr_val, enable);
+>>>>
+>>>> Did you test this on a target where it comes under this if 
+>>>> statement? does it really need to know dload_mode_addr for this 
+>>>> target ?
+>>>
+>>>
+>>> Can we do something like this? I would let other review as well.
+>>>
+>>> --------------------------------------->0-------------------------------------------
+>>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>>> index cdbfe54..26b7eda 100644
+>>> --- a/drivers/firmware/qcom_scm.c
+>>> +++ b/drivers/firmware/qcom_scm.c
+>>> @@ -419,6 +419,7 @@ static void qcom_scm_set_download_mode(bool enable)
+>>>  {
+>>>         bool avail;
+>>>         int ret = 0;
+>>> +       u32 dload_addr_val;
+>>>
+>>>         avail = __qcom_scm_is_call_available(__scm->dev,
+>>>                                              QCOM_SCM_SVC_BOOT,
+>>> @@ -426,8 +427,16 @@ static void qcom_scm_set_download_mode(bool enable)
+>>>         if (avail) {
+>>>                 ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+>>>         } else if (__scm->dload_mode_addr) {
+>>> -               ret = qcom_scm_io_writel(__scm->dload_mode_addr,
+>>> -                               enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE 
+>>> : 0);
+>>> +               ret = qcom_scm_io_readl(__scm->dload_mode_addr, 
+>>> &dload_addr_val);
+>>> +               if (ret) {
+>>> +                       dev_err(__scm->dev,
+>>> +                               "failed to read dload mode address 
+>>> value: %d\n", ret);
+>>> +                       return;
+>>> +               }
+>>> +
+>>> +               ret = qcom_scm_io_writel(__scm->dload_mode_addr, 
+>>> enable ?
+>>> +                               dload_addr_val | 
+>>> QCOM_SCM_BOOT_SET_DLOAD_MODE :
+>>> +                               dload_addr_val & 
+>>> ~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
+>>>         } else {
+>>>                 dev_err(__scm->dev,
+>>>                         "No available mechanism for setting download 
+>>> mode\n");
+>>>
+>>> -Mukesh
+>>
+>> Okay sure..Agreed, will address this in the next patch.
+> 
+>    Also, not sure, if its better to keep the old behavior working for
+>    targets that does not support 'READ' of this address. If one such
+>    thing exists, that will be broken now. In such a case, we should
+>    ignore if scm_io_readl fails, still write and dload_addr_val should
+>    be '0' initialised.
 
-BR
-> > > +static int bbnsm_rtc_probe(struct platform_device *pdev) {
-> > > +	struct device_node *np =3D pdev->dev.of_node;
-> > > +	struct bbnsm_rtc *bbnsm;
-> > > +	int ret;
-> > > +
-> > > +	bbnsm =3D devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
-> > > +	if (!bbnsm)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	bbnsm->rtc =3D devm_rtc_allocate_device(&pdev->dev);
-> > > +	if (IS_ERR(bbnsm->rtc))
-> > > +		return PTR_ERR(bbnsm->rtc);
-> > > +
-> > > +	bbnsm->regmap =3D syscon_node_to_regmap(np->parent);
-> > > +	if (IS_ERR(bbnsm->regmap)) {
-> > > +		dev_dbg(&pdev->dev, "bbnsm get regmap failed\n");
-> > > +		return PTR_ERR(bbnsm->regmap);
-> > > +	}
-> > > +
-> > > +	bbnsm->irq =3D platform_get_irq(pdev, 0);
-> > > +	if (bbnsm->irq < 0)
-> > > +		return bbnsm->irq;
-> > > +
-> > > +	platform_set_drvdata(pdev, bbnsm);
-> > > +
-> > > +	/* clear all the pending events */
-> > > +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, 0x7A);
-> > > +
-> > > +	device_init_wakeup(&pdev->dev, true);
-> > > +	dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
-> > > +
-> > > +	ret =3D devm_request_irq(&pdev->dev, bbnsm->irq,
-> bbnsm_rtc_irq_handler,
-> > > +			IRQF_SHARED, "rtc alarm", &pdev->dev);
-> >
-> > This is not properly aligned, you can fix that if you ever have to
-> > resend.
->=20
-> >
-> >
-> > --
+Why would a secure read of this register would fail, if one is allowed 
+to do secure write ?
+
+Honestly, i was not understanding the purpose of this bitwise handling
+of this patch, i thought it is trying to fix existing issue for
+some target.
+
+For some of the upstream target(e.g sm8450, i verified it myself), it is 
+not an issue.
+
+arch/arm64/boot/dts/qcom/msm8916.dtsi:                  qcom,dload-mode 
+= <&tcsr 0x6100>;
+arch/arm64/boot/dts/qcom/msm8976.dtsi:                  qcom,dload-mode 
+= <&tcsr 0x6100>;
+arch/arm64/boot/dts/qcom/msm8996.dtsi:                  qcom,dload-mode 
+= <&tcsr_2 0x13000>;
+arch/arm64/boot/dts/qcom/sm8450.dtsi:                   qcom,dload-mode 
+= <&tcsr 0x13000>;
+
+
+However, it looks valid to handle only the effective bits. I have worked 
+on top of this patch and tested it and posted here.
+
+https://lore.kernel.org/lkml/1676990381-18184-1-git-send-email-quic_mojha@quicinc.com/
+
+Do you have any example of any upstream target where this would fail ?
+
+-Mukesh
+> 
+> 
+> Regards,
+>   Sricharan
+> 
