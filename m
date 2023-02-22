@@ -2,92 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D350569F4E3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 13:50:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3865169F52B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 14:16:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbjBVMui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 07:50:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46924 "EHLO
+        id S230478AbjBVNQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 08:16:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231234AbjBVMuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 07:50:37 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABEDB3403E;
-        Wed, 22 Feb 2023 04:50:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 567A0B81588;
-        Wed, 22 Feb 2023 12:50:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2CBDC433D2;
-        Wed, 22 Feb 2023 12:50:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677070232;
-        bh=lXJSnYFpOaH9S5ry7Q34tB4Egx1wpGFAl6NuADLurBM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LFo50uq2a2lA9uGWYxtbfavlMVkm3Yw72WJhQ8xxz1mRv6jd9TUTNMIKxGTUysNkr
-         Nb+k0Y2e0731kuVnUNSdhcFr8SgH2tESnmrJMz4MoUT2GiIIpUcWTL4UlSUKj8nza8
-         q5thst7AHxbAJykp867AghZyOOBLmzqb9eyzgr4fLIhilcVBGOO04sckVNohyC+bI9
-         uC8vi0f6X8jbilfirxI6p9QksJ+8VTLFHuRn+oGtnsSuzq/K2Kiojo/UTpmypEemUE
-         ZsgVCUAEnQ/8IGyRxe0mrbXm8CUE5HV2X8yql0QQ7274S66o3maduQP4PZvSGHu7le
-         W4EkztwzvYlHA==
-Date:   Wed, 22 Feb 2023 12:50:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Chancel Liu <chancel.liu@nxp.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        ckeepax@opensource.cirrus.com, patches@opensource.cirrus.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: wlf,wm8524: Add a property to
- specify power up sequency time
-Message-ID: <Y/YPkgOreByREmOz@sirena.org.uk>
-References: <20230222113945.3390672-1-chancel.liu@nxp.com>
- <20230222113945.3390672-2-chancel.liu@nxp.com>
+        with ESMTP id S230246AbjBVNQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 08:16:21 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C502739BB4;
+        Wed, 22 Feb 2023 05:16:17 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31MDFxnp113410;
+        Wed, 22 Feb 2023 07:15:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1677071759;
+        bh=hD52NgGyIxcH+/PIi7CS0t2PfjHjhrKYf0n1At3rXj4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=A6kApQgYAguYcRVJXgjC/uQ5wT3p1B8YFodt7GXl1iUHprmZPlNa49YnCapg7FOmX
+         sEGvO+g3rgVvY4LGmHcXK72AUZBH3q1X9VAHZp5/sS1QPz9Q5oLOf22YMT7fh0la1s
+         HhbNFECRMa7kmY3sePI17pRDlrLJhkr5mLGaVJ/k=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31MDFx3T083692
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Feb 2023 07:15:59 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 22
+ Feb 2023 07:15:59 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 22 Feb 2023 07:15:59 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31MDFxVx104054;
+        Wed, 22 Feb 2023 07:15:59 -0600
+Date:   Wed, 22 Feb 2023 07:15:59 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Ravi Gunasekaran <r-gunasekaran@ti.com>
+CC:     <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v10 2/9] arm64: dts: ti: k3-j721s2-main: Add support for
+ USB
+Message-ID: <20230222131559.day4frfvjuje25i4@suffrage>
+References: <20230221120612.27366-1-r-gunasekaran@ti.com>
+ <20230221120612.27366-3-r-gunasekaran@ti.com>
+ <20230221135852.n3yukx55q7jmqbgk@chowder>
+ <a74bf007-40b5-3d92-ba30-c50a2bf4a3c0@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pnbOLaS+zEft1evo"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230222113945.3390672-2-chancel.liu@nxp.com>
-X-Cookie: My LESLIE GORE record is BROKEN ...
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <a74bf007-40b5-3d92-ba30-c50a2bf4a3c0@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10:21-20230222, Ravi Gunasekaran wrote:
+[...]
+> >> +	usbss0: cdns-usb@4104000 {
+> >> +		compatible = "ti,j721e-usb";
+> >> +		reg = <0x00 0x04104000 0x00 0x100>;
+> >> +		clocks = <&k3_clks 360 16>, <&k3_clks 360 15>;
+> >> +		clock-names = "ref", "lpm";
+> >> +		assigned-clocks = <&k3_clks 360 16>; /* USB2_REFCLK */
+> >> +		assigned-clock-parents = <&k3_clks 360 17>;
+> >> +		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
+> >> +		#address-cells = <2>;
+> >> +		#size-cells = <2>;
+> >> +		ranges;
+> >> +		dma-coherent;
+> >> +
+> >> +		status = "disabled";
+> > 
+> > Why disabled by default?
+> 
+> One of the comment received in the v9 series was to disable the node in
+> the include file and then enable it in the board specific DTS file.
+> Changes in this series addressed that comment.
 
---pnbOLaS+zEft1evo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Document in the node why it is disabled by default. Also do make sure
+All K3 SoCs dtsi nodes follow the same argument.
 
-On Wed, Feb 22, 2023 at 07:39:43PM +0800, Chancel Liu wrote:
-> This property specifies power up to audio out time. It's necessary
-> beacause this device has to wait some time before ready to output audio
-> after MCLK, BCLK and MUTE=1 are enabled. For more details about the
-> timing constraints, please refer to WTN0302 on
-> https://www.cirrus.com/products/wm8524/
-
-According to that the delay is a property of MCLK and the sample rate
-rather than a per board constant, it shouldn't be in DT but rather the
-driver should figure out the required delay on each startup.
-
---pnbOLaS+zEft1evo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmP2D5EACgkQJNaLcl1U
-h9CbBwf+PFUPJ7J2/dmJK6wM+TWjfAtu4keu+9j+lOKo3Pnkd/BlCPx73MZ+DWsZ
-9HspBYBZ5wWZLV4CJMusG+v9Th9nB5ojpBW5hLHVlml9+IfdIm3zE9gm72M8pRZa
-xP8/dlMRVOwZgA0BO3xsncSJ+2N/WBHEA0A74LUYJlpSMYdSwi0LlFBF/6CilAm+
-CzpVBYBJj0/8SgfMv02kV/3BYRepWg/U2BhDJr++vWMs/ELAGs4P+UK95IEDT3ca
-Ueu333LU0a2J09wYLIy9UpY9UFZGpKnFTmreetXFBPySKtHUWhgzjtVGvXE+AiRS
-fcC4ecoxVBYJmBgSyvhxLef+uHMgFQ==
-=HX3c
------END PGP SIGNATURE-----
-
---pnbOLaS+zEft1evo--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
