@@ -2,192 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7706F69EE7A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 06:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E57C69EEFD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 07:54:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229605AbjBVFlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 00:41:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45476 "EHLO
+        id S229591AbjBVGx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 01:53:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230109AbjBVFlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 00:41:14 -0500
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2086.outbound.protection.outlook.com [40.107.92.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE0A3524B;
-        Tue, 21 Feb 2023 21:41:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CvmpxzZqUQLYNQC+ECWCjWW+QuOKwl0AqEuU7NYnByRlNmU6/T2w6nn6aZQCfrgykNqgoNVXU8gqKXkjlCeD5HFy8vPiplUDtor2H7KQlKBd4UMxzGTyzfM5FtkK0MpdMpwDzvOuPhTpnOUSUWVYMDuTyJtmdMlyVMz+elOHAU9JBRSEfDc5TX4Ydm/CrE4YCwgd2AQyg8Ckcaw3zWh0B6u68V2JKrpKqVp8GK+inIBKm5pcjXslurpbP90Gv+mS4CHtouILw3ETap8EdFlTg8YyD7YzSAAG1f7Vm3o26RdsDjolMyCxtWiz1ed1MfWXtlDx/EzBTw88rP71rwKESQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B1d7dF65/z7pY+/NlzLH5SrVEOV96HPK9A4PZMExfq4=;
- b=NZcEBpk5Va8dRQ4JlwY2ZYC6uceeLjp8re5eDgggCyXlOc5qfwqI2y4l0yCV0C5rPfdp0Lzbk7D9idQVeYLEOiLU1Due1LlcaeyUlZMfmX9Cveqc35QYUnFvCUjyNeaQqiyGlCwputPqFnH37p5WhWB25o5scnm+iAoHHhxVIPHxMs/02oDpEHBnayaSFRiAEIyEMJKSWjYYrAFXvPr6MtTYqkTv3iEJ4M7+JtBQKrx21DBuUZ/3BR08fJ0X/WpwysrTXOePd3dY8OZcxoQ1JmzT9DSNkCnmGpb3uVcIj/yCDHXRmi6hPMZ6uGtJbkRpvW1z0paQBEBk2/Da9m9Vpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B1d7dF65/z7pY+/NlzLH5SrVEOV96HPK9A4PZMExfq4=;
- b=SiJciVSRKrkl0yWiA0oB5KZi4VsmGGEoVhsvIvWMsnjhtAssCThuef98mRstKk1vCF+ByFqzc3OzgWGVWlzbiWjlT92xqnlkWlWMRIV3io+TVNoDRI2Z23QZ6q/s3MH6DGdfdEYvycFusAoUWQhlHsYc6h538Rp6J9COoDAgZgA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3082.namprd12.prod.outlook.com (2603:10b6:5:11b::12)
- by CH3PR12MB8534.namprd12.prod.outlook.com (2603:10b6:610:15a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Wed, 22 Feb
- 2023 05:40:58 +0000
-Received: from DM6PR12MB3082.namprd12.prod.outlook.com
- ([fe80::8d69:5417:b5e9:92a1]) by DM6PR12MB3082.namprd12.prod.outlook.com
- ([fe80::8d69:5417:b5e9:92a1%7]) with mapi id 15.20.6111.021; Wed, 22 Feb 2023
- 05:40:58 +0000
-Message-ID: <36b429ab-401c-b0de-3331-ba72246bc270@amd.com>
-Date:   Wed, 22 Feb 2023 11:10:37 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v8 2/7] iommu/arm-smmu-v3: support ops registration for
- CDX bus
-Content-Language: en-US
-To:     Robin Murphy <robin.murphy@arm.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
-        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
-        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
-        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com, will@kernel.org,
-        joro@8bytes.org, masahiroy@kernel.org, ndesaulniers@google.com,
-        rdunlap@infradead.org, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, git@amd.com
-References: <20230217132830.3140439-1-nipun.gupta@amd.com>
- <20230217132830.3140439-3-nipun.gupta@amd.com>
- <4cc935e2-8b24-8060-5070-fd6eb85f07b6@arm.com>
-From:   Nipun Gupta <nipun.gupta@amd.com>
-In-Reply-To: <4cc935e2-8b24-8060-5070-fd6eb85f07b6@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0221.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:ea::17) To DM6PR12MB3082.namprd12.prod.outlook.com
- (2603:10b6:5:11b::12)
+        with ESMTP id S229552AbjBVGx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 01:53:58 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1904C3644D;
+        Tue, 21 Feb 2023 22:53:37 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31M5VLKa015212;
+        Wed, 22 Feb 2023 06:53:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=5b8JEHE17ojZOj8kkTk5ltAXkLS6Mr6tmeMHmvckfE0=;
+ b=XB9eqy+xrlnUPXEZWkUFbWr5HNf2+fhIxygQ+oDdqXOk9ZUaB5911leFSgx2rurikHnZ
+ ciNN+YnU6ytrjy9ySdymiLb2BWUKOjn7UmmXcoV5Q8ulr0I9u/6J3/Cg0xfD7nDuxK8/
+ jWPbkS9bHq3iGqO5BZxXR4HeRV8MplHiERcj4l0k1GXe8miMxb6Jakjwetgpr69OKUEj
+ lkUyJOM+ax/Aavd7+8ocW9dnIPklYx0GSEPt+epp+XDJ+rHoinU8SIsfQq6+Lf1yD58S
+ /7wmwEOwrDgJf2GzJrCAourpxqWVDYe8VgC5mpBniM6HMFtR/8m/4hL/oY7ffcWVP7de XA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nw8gnrptp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Feb 2023 06:53:15 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31M6rERa003814
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Feb 2023 06:53:14 GMT
+Received: from [10.242.243.78] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 21 Feb
+ 2023 22:53:05 -0800
+Message-ID: <d290a4d7-885a-437f-028e-df04a117f983@quicinc.com>
+Date:   Wed, 22 Feb 2023 12:22:53 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3082:EE_|CH3PR12MB8534:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85934b07-6d16-4444-2f77-08db14975f48
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zTd6prrDXwmGfJvc8xjVgu5BfpgvnVJnpVy3AND8dkOYjuIqMj9cckSiU2kbB6z9s5JsPw1l8Qk31rx+NXAhsDhLh+AY54cb6BtzX2wSM/I3VXrJNMWmSEJ08W6r8uJFf8er6zEPaWW9KtirF5oLcwk+2AaE7+a0QFOca3f+DjQB+yvlMZxgsEbmWsYv/JvI7NocX1AiwB8qU08dw9aTLV/DaCX7f03fpc8Z3rfPyj0dJQkl7cR0HcPNbVEiqtV/K3ReSj6RusTxkhApAUffPzhaneFBFplFTh+A6UBi+HJKBcIl2QnNsZOyJp/PjqE9H5tXI1nUSo5Pu5Dbnpz2HdWZzq1RQNxZqM9nQcsQZOpXei/8Mmo/3u877q2R9PvCaQaxFvf9kYZApZ/dK05Qz1rd2vH9HdHEnSw3R+cEgrtWm7PhlgvhZhNgjdgl68Ds+iNfopcKBgpywwSM0bLSkBl2a5UathHinzw/1PPnSsHZT6XGoNtNnL7tkQJJbVsMRLvIUfkNOZjp6hdfcfEP3ZdcOWEJzX6jMuHH4Av3d7Ay35Ivf0fSutLbstZ39gdN2bODKssSc1fXWwqI0se0B+UBdAFJq/N80PupOXX7QuabQFUvtzHhndn8F3LU9FbqhjVHZJJ2sBTQOW0D947J2XhMCRjlTkXA1OJmk/FMYyEbxqlokPKWjIV0yEZviJZupkYG0Wp5IWtf1XLP+I4KweFzWm+XjbvCaByqVtSYjk/aEexfrIP75wfHwLrsZRow
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3082.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(376002)(136003)(346002)(366004)(396003)(451199018)(83380400001)(26005)(316002)(36756003)(6486002)(6666004)(186003)(6506007)(6512007)(53546011)(2616005)(478600001)(8936002)(921005)(38100700002)(31696002)(44832011)(86362001)(31686004)(7406005)(7416002)(5660300002)(2906002)(41300700001)(8676002)(66476007)(66556008)(4326008)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0lWcExyVC9kZEs0dEM4MGE2WEoyNTZMY3cycTdWVUl2TTg5Q1BhSVM2TUxF?=
- =?utf-8?B?R1JCQW94WGFyNU9TcFh0Sk9Qc3l3T3hMaHVObUZtbU9vVmZFc0VyTXdHYnZa?=
- =?utf-8?B?a2ZCRW9maFZiSEMyN3pCQ1ZWdjBUZFJJUXFDdzdybDN2NHUwcDdsWElQd1U5?=
- =?utf-8?B?UTJnbmRyS0s4ZlJSRklvVUdMTHJhLzlyM3hYR0lFd0N5c1VOU2NBMTJTQld5?=
- =?utf-8?B?dWQzaVdtVm5wMnVTUkpLeGY1cVlWRnk0QUM5OENjWjhDbEVMS0R2U1gyano3?=
- =?utf-8?B?Z0Q3R0ZYME9hMWlMMGcxUjBmR0NVWlNUcExrV2krQVhCY1ZIR0ZrOGtXS013?=
- =?utf-8?B?Z1F5eE1tNi80aDQzOGs1QnE4K1NPMVhkRDhqeHpqWDdYV3Z5MGZ1OUNQY0lx?=
- =?utf-8?B?NWxhZngvMzRKcnB2cUIwZXowRFo1U2FpWkk2U0VqWUdScVhWOVQzM0VpMmhi?=
- =?utf-8?B?U1Q3TThTUlFGZ3VaUklzT3pvbk5wbGF0L0JrclgvbG5RaW51YWZQRE1uMjZt?=
- =?utf-8?B?aGxSek1LVU9EbVB0UndjaGNxNjJGd21VcUxzbHUwT05hWDlLb0lSZm5RN3hM?=
- =?utf-8?B?eExjR21BY2JRdWxHd0VHbzBnUzlQbTk2dzlCUERuK2trN0NNTlhUbklsWHVP?=
- =?utf-8?B?ZG1nRTNtNUVNL3JFWmNUSVZaZmJMWW1nZU5HOC83ZDNZM2hXeUc5MklIZUdj?=
- =?utf-8?B?dHFpWXRoaGpadmFCUXdBNHRFTmZ6am5GTVJ4dFp2ZzEvNGVyd0gvRXZQZjBC?=
- =?utf-8?B?WXpLbmkyd3pwVDVCVUJSeWxvYlFWWGNpVXUrK3FaNkJwcFdZcEpma3RaQ0VT?=
- =?utf-8?B?SG9OUjllUmZNQzBvenZvYVUraUYxbC9wYW1yeWFmZ2drVTF2M3g0TlZsRFVr?=
- =?utf-8?B?bndaZDRXend1RlVJaVdHMUlZNk92NERKMWhEN3AxalYwOFRKSTVaWSszazEz?=
- =?utf-8?B?NjNJQWZsYnh3a1A1N0NsTzZpVEZmZjVzUU9qMEdDc3VFTFVJVGhCSjFWaUs2?=
- =?utf-8?B?bjJhUEhubkpXMEF1d0lBb1Y0RWhzZU05bkgvZmh4SGE4eFBNM3RWNURWVXND?=
- =?utf-8?B?cElkd1V4SkMzbnFJSFlDbDRVUTZOcEcya05ucW5OR0dkenQ5TlNydGdLMlNo?=
- =?utf-8?B?amdFWHBOZFNscXhMSzV0QU5sWHU4VHJnaDllOE83b1A5TGVTNHFralFxQWpC?=
- =?utf-8?B?V3BRU09XNEd2NjhPNXBqbE12SzMxd0RxbDhhY3VQSnVITjRHWXNSZEFPZ0lh?=
- =?utf-8?B?QU01S0FEWDB2ckEzU1ZvMFdtaFhGVHBwUndlV0ZSOG1WeHVIV0xvVTQ5N2VN?=
- =?utf-8?B?Q3B1TGpHalhHUUxFYUR3aFYxWUhicTQyUms2ME9tVGhEQnE0NmNmN1ZOb3Nk?=
- =?utf-8?B?aG9VSW94cHBXSXJUTlhnajFCU2N5Tks1emxwUWJ6TytGbHErWW9pVDMwd240?=
- =?utf-8?B?d2ZaWVFGRWF4akdUR1pDTVZsYm42MDNjZXNHRytwTlVvQkNVMkp6TTFnMk9P?=
- =?utf-8?B?MXF2OWJqclFHMjhhem16TFdUZlk2R2Z5UENUczBKS1Z6VnZPejQzZzdrSCtx?=
- =?utf-8?B?ZHdCeENITVRiMm1pRG9scU15TVhrdmNiSFZ5ZTJBdzR3dXUzUGtpTFZuS0VH?=
- =?utf-8?B?dldIN3pJa0F6b0xYTDRlR1E0SHRVN3ZGYjRadzhjTGtIdGVwSHF1ekV1ZFYz?=
- =?utf-8?B?bzBvaHF0WWVmNlJHVXhzaEdNclVIWmdrdDVhUHRLU1ZySXlBUFFnRTN1bGpV?=
- =?utf-8?B?OHRBYXZwVmRkWmUvSGZUZk1tWEpWK3JmMkdreCtPcTFFN2IvZW9CcUFMNVJP?=
- =?utf-8?B?c3pST2t0SmpOdnVUV3ZXekR4Y1hKQ3J6NGw2L05XSnc5eUVFYTlXZzNNN2F1?=
- =?utf-8?B?L0RobmxSaFNyZEhNQXQzaUkrcU8wSHp2TXZUN0tsUXA1bXB1ZDVmRkhVeTRZ?=
- =?utf-8?B?Mk5IcitJd3RFWlBKUW1scUdLMVdsdTNrc3J1ZSswZ1g1ekhocXRZNWZGNUl1?=
- =?utf-8?B?OWFHQTdqTTg1Y1ByNThCclVUNFNHdUhJaWFSdXNOU3VJcmx0cndnZ3F2LzBI?=
- =?utf-8?B?anN6WVVNak1haG4vaEVrWUxzcnhORHVuOGpmOGJua1kzV0VBVy9JN25XUzRq?=
- =?utf-8?Q?wJVxCQH5cYLx6F4nsqzjZBZjk?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85934b07-6d16-4444-2f77-08db14975f48
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3082.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2023 05:40:57.7990
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kyZo5ReX9xd0b4f/9TR7m0UR9y6AFg6j8w7zxsB9wsk8jhqaPAqvmmn1z9QLHHhe
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8534
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH V5 5/5] firmware: scm: Modify only the DLOAD bit in TCSR
+ register for download mode
+Content-Language: en-US
+To:     POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>,
+        Mukesh Ojha <quic_mojha@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <lee@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <robimarko@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
+        <broonie@kernel.org>, <quic_gurus@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_devipriy@quicinc.com>
+References: <20230216120012.28357-1-quic_poovendh@quicinc.com>
+ <20230216120012.28357-6-quic_poovendh@quicinc.com>
+ <51bd93be-f8d3-a33c-18ad-ba4a331f2bcf@quicinc.com>
+ <38780d01-3e02-fd30-4c11-8cb307eeae4d@quicinc.com>
+ <45ea27af-d4d3-48b4-236d-128a26552d6c@quicinc.com>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <45ea27af-d4d3-48b4-236d-128a26552d6c@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gVnS39JJuWO64AasN3YAAhMVcqg9jx0n
+X-Proofpoint-GUID: gVnS39JJuWO64AasN3YAAhMVcqg9jx0n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-22_02,2023-02-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 adultscore=0 bulkscore=0 clxscore=1011
+ lowpriorityscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 phishscore=0
+ suspectscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302220057
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 2/21/2023 5:26 PM, Robin Murphy wrote:
-> Caution: This message originated from an External Source. Use proper 
-> caution when opening attachments, clicking links, or responding.
+On 2/20/2023 4:00 PM, POOVENDHAN SELVARAJ wrote:
 > 
-> 
-> On 2023-02-17 13:28, Nipun Gupta wrote:
-> 
-> Nit: subject should be "iommu: Support ops registration for CDX bus",
-> since this is no longer a driver-specific thing.
-
-Sure, will update the subject in the next spin.
-
-Thanks,
-Nipun
-
-> 
-> Thanks,
-> Robin.
-> 
->> With new CDX bus supported for AMD FPGA devices on ARM
->> platform, the bus requires registration for the SMMU v3
->> driver.
+> On 2/18/2023 1:19 AM, Mukesh Ojha wrote:
 >>
->> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
->> Tested-by: Nikhil Agarwal <nikhil.agarwal@amd.com>
->> ---
->>   drivers/iommu/iommu.c | 4 ++++
->>   1 file changed, 4 insertions(+)
 >>
->> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
->> index 1fbe53354532..c2ff7754a4b3 100644
->> --- a/drivers/iommu/iommu.c
->> +++ b/drivers/iommu/iommu.c
->> @@ -28,6 +28,7 @@
->>   #include <linux/fsl/mc.h>
->>   #include <linux/module.h>
->>   #include <linux/cc_platform.h>
->> +#include <linux/cdx/cdx_bus.h>
->>   #include <trace/events/iommu.h>
->>   #include <linux/sched/mm.h>
->>   #include <linux/msi.h>
->> @@ -129,6 +130,9 @@ static struct bus_type * const iommu_buses[] = {
->>   #ifdef CONFIG_TEGRA_HOST1X_CONTEXT_BUS
->>       &host1x_context_device_bus_type,
->>   #endif
->> +#ifdef CONFIG_CDX_BUS
->> +     &cdx_bus_type,
->> +#endif
->>   };
+>> On 2/16/2023 7:30 PM, Mukesh Ojha wrote:
+>>>
+>>>
+>>> On 2/16/2023 5:30 PM, Poovendhan Selvaraj wrote:
+>>>> CrashDump collection is based on the DLOAD bit of TCSR register.
+>>>> To retain other bits, we read the register and modify only the DLOAD 
+>>>> bit as
+>>>> the other bits have their own significance.
+>>>>
+>>>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>>>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>>>> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>>>> ---
+>>>>   Changes in V5:
+>>>>     - checking the return value in qcom_scm_set_download_mode 
+>>>> function as
+>>>>       suggested by Srinivas Kandagatla
+>>>>
+>>>>   Changes in V4:
+>>>>     - retain the orginal value of tcsr register when download mode
+>>>>       is not set
+>>>>
+>>>>   drivers/firmware/qcom_scm.c | 21 ++++++++++++++++-----
+>>>>   1 file changed, 16 insertions(+), 5 deletions(-)
+>>>>
+>>>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>>>> index 468d4d5ab550..d88c5f14bd54 100644
+>>>> --- a/drivers/firmware/qcom_scm.c
+>>>> +++ b/drivers/firmware/qcom_scm.c
+>>>> @@ -407,7 +407,7 @@ int qcom_scm_set_remote_state(u32 state, u32 id)
+>>>>   }
+>>>>   EXPORT_SYMBOL(qcom_scm_set_remote_state);
+>>>> -static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+>>>> +static int __qcom_scm_set_dload_mode(struct device *dev, u32 val, 
+>>>> bool enable)
+>>>>   {
+>>>>       struct qcom_scm_desc desc = {
+>>>>           .svc = QCOM_SCM_SVC_BOOT,
+>>>> @@ -417,7 +417,8 @@ static int __qcom_scm_set_dload_mode(struct 
+>>>> device *dev, bool enable)
+>>>>           .owner = ARM_SMCCC_OWNER_SIP,
+>>>>       };
+>>>> -    desc.args[1] = enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0;
+>>>> +    desc.args[1] = enable ? val | QCOM_SCM_BOOT_SET_DLOAD_MODE :
+>>>> +                val & ~(QCOM_SCM_BOOT_SET_DLOAD_MODE);
+>>>>       return qcom_scm_call_atomic(__scm->dev, &desc, NULL);
+>>>>   }
+>>>> @@ -426,15 +427,25 @@ static void qcom_scm_set_download_mode(bool 
+>>>> enable)
+>>>>   {
+>>>>       bool avail;
+>>>>       int ret = 0;
+>>>> +    u32 dload_addr_val;
+>>>>       avail = __qcom_scm_is_call_available(__scm->dev,
+>>>>                            QCOM_SCM_SVC_BOOT,
+>>>>                            QCOM_SCM_BOOT_SET_DLOAD_MODE);
+>>>> +    ret = qcom_scm_io_readl(__scm->dload_mode_addr, &dload_addr_val);
+>>>> +
+>>>> +    if (ret) {
+>>>> +        dev_err(__scm->dev,
+>>>> +            "failed to read dload mode address value: %d\n", ret);
+>>>> +        return;
+>>>> +    }
+>>>> +
+>>>>       if (avail) {
+>>>> -        ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+>>>> +        ret = __qcom_scm_set_dload_mode(__scm->dev, dload_addr_val, 
+>>>> enable);
+>>>
+>>> Did you test this on a target where it comes under this if statement? 
+>>> does it really need to know dload_mode_addr for this target ?
 >>
->>   /*
+>>
+>> Can we do something like this? I would let other review as well.
+>>
+>> --------------------------------------->0------------------------------------------- 
+>>
+>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>> index cdbfe54..26b7eda 100644
+>> --- a/drivers/firmware/qcom_scm.c
+>> +++ b/drivers/firmware/qcom_scm.c
+>> @@ -419,6 +419,7 @@ static void qcom_scm_set_download_mode(bool enable)
+>>  {
+>>         bool avail;
+>>         int ret = 0;
+>> +       u32 dload_addr_val;
+>>
+>>         avail = __qcom_scm_is_call_available(__scm->dev,
+>>                                              QCOM_SCM_SVC_BOOT,
+>> @@ -426,8 +427,16 @@ static void qcom_scm_set_download_mode(bool enable)
+>>         if (avail) {
+>>                 ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+>>         } else if (__scm->dload_mode_addr) {
+>> -               ret = qcom_scm_io_writel(__scm->dload_mode_addr,
+>> -                               enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE 
+>> : 0);
+>> +               ret = qcom_scm_io_readl(__scm->dload_mode_addr, 
+>> &dload_addr_val);
+>> +               if (ret) {
+>> +                       dev_err(__scm->dev,
+>> +                               "failed to read dload mode address 
+>> value: %d\n", ret);
+>> +                       return;
+>> +               }
+>> +
+>> +               ret = qcom_scm_io_writel(__scm->dload_mode_addr, enable ?
+>> +                               dload_addr_val | 
+>> QCOM_SCM_BOOT_SET_DLOAD_MODE :
+>> +                               dload_addr_val & 
+>> ~(QCOM_SCM_BOOT_SET_DLOAD_MODE));
+>>         } else {
+>>                 dev_err(__scm->dev,
+>>                         "No available mechanism for setting download 
+>> mode\n");
+>>
+>> -Mukesh
+> 
+> Okay sure..Agreed, will address this in the next patch.
+
+   Also, not sure, if its better to keep the old behavior working for
+   targets that does not support 'READ' of this address. If one such
+   thing exists, that will be broken now. In such a case, we should
+   ignore if scm_io_readl fails, still write and dload_addr_val should
+   be '0' initialised.
+
+
+Regards,
+  Sricharan
+
