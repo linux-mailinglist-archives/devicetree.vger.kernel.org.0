@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFD369F080
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:40:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F9C69F090
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231297AbjBVIkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 03:40:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58444 "EHLO
+        id S231206AbjBVInS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 03:43:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbjBVIkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:40:14 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C030436098
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:40:12 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id s26so27167341edw.11
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:40:12 -0800 (PST)
+        with ESMTP id S230466AbjBVInP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:43:15 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A0B1CF70
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:43:14 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id p18-20020a05600c359200b003dc57ea0dfeso5570892wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:43:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lR+ISQQSb0vmBiGpqXlpCKGu34UyCzsJKioNfm+3xdA=;
-        b=KIr+5u8tc47eHv6DkkJqDeie1JQk4hY22L8yH26fDT81Zx+yYccFRNvZfGErS/JwgE
-         CkFTu4B3dTBom6tlDAwOKATkapR/iOJYg+iJK4VHTkXHpOfJVFgSH5DXftj8ZU/agotq
-         35qCt4kfM1oA7fUFnXluAKK8qz9YXpPBBmC4oqmjx1kpKurIgc2q5bHCEJIImZa6Vl29
-         LDxG5C/+Io3PGuebh/xBRhqYtOJ5AbzvYMLWtPKn6Hw37AKvuI/w/050rIMCDvSIGFdj
-         TY7LrQmsvqagR/tB59EO3jMP3aZyI9yO1hgVgCjWYZlMnCRN+9T20pPlUrxmfQvsNtSi
-         IBgQ==
+        bh=OQy0IKKyc3LYgpBwxk1hmAJwegXGjzIh80NvxBNJdC4=;
+        b=rTCypug++FRsfNQPtzvYFd3+1tmZajSA2J1/eoMIzHr8YtBS1j1uM2KQX/gIV7S3Bp
+         WPS+7Rl0RdJOFxbgYq9kuMG9xyZjBLa/OyzQlnDGwQz6UubTRAQYRGIuKlSTJAVgXJcg
+         FJB4CoivZO404aZkNExb7Gmh6F9HMali7VhKI1SlmcJtEX8tYrZ7BTALDlOB+G1nWjA3
+         Da3A3XfwPqhxCrsS8JHrNQYXyL46/TfJ2So3j9mbSgCFZZSlhVfupUwbr4BKA0HpZCQ+
+         HggwBNs0bjqE57p4RLJ/NzgitxpWZsUV7NjWSzIkurgb1V4C2pEKt6jhMbk0ugtC5lDX
+         u3zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lR+ISQQSb0vmBiGpqXlpCKGu34UyCzsJKioNfm+3xdA=;
-        b=Uj3Wiojy1e4yeuZCxvDdhcMD5O6s73loCwFtg3GpSHMzXoOrey3OkuHx8uTFQPKRkS
-         k8sCihSTcNvfcC8q/D67OZak8TifS+rU9qUwpX96K0V/7BnZBbx95Q6Emm06lCha0V9P
-         s8XqP1uQznX8PM9AUFWNz4wDYrQfv6KQOkSsHuYKRsRG97Zkie6e3qkYTII59myiRWQW
-         DyQcPM528dv63DjQJxP2EKC6BPniJs3EEVSseI/N1RfJB+zE3tzQfHopDbtKoaf6twao
-         NIYYjqw5Zn6AvYwm9GLJrx27Ey8HsGL3BgwkoVijd+gTjxh4poSdtsDyo0LaxZsyjXy5
-         CRcA==
-X-Gm-Message-State: AO0yUKU1K9QhPHDxPscWjCwYYHIRTzpu+MLNoyRp5XXRHLPrJCMgPl2T
-        J6urAAWmieMZsbDgk2QBbIN/gw==
-X-Google-Smtp-Source: AK7set8iXoGezZDOE3ZDJrGYpXVqhY+danP4XJR6egsj0cAxZ2DnpxbBKjpo8ym6+Oa7myY+JjJauQ==
-X-Received: by 2002:a17:907:3e22:b0:8e3:8543:8e71 with SMTP id hp34-20020a1709073e2200b008e385438e71mr5006300ejc.40.1677055211264;
-        Wed, 22 Feb 2023 00:40:11 -0800 (PST)
+        bh=OQy0IKKyc3LYgpBwxk1hmAJwegXGjzIh80NvxBNJdC4=;
+        b=0PsTrnHUpR+v2MJxgUK0xhZQTNUFNSCDPeqqlvMQfkYBHH13+f/9u12h3hNyb0UctH
+         m2u20pUjQ3J6O1KNu64bqTbLdAwn0u1IWv9bkAhKCmwuTmrpGZWPsypyyb6LMoeX4+/F
+         EHK28IXLZkaTIUgHDoPFmpB4WH85bQJHzzoGKDdvxoVxwzYwF9z0+C85SHS2Bnpcm9Zs
+         WjrkMUvsINy4fa5UnY74ovSNdCKipz8FpNm59NxQ+qgICYxaOkDrc6gDVH6GZKnxppKe
+         zAIh7zI2HgjIHwQ6A2KsxG81+AXqKk7Jj2LXkOj2pvNxOsdLYBNA9u0xQqD/UpT5IG1v
+         RwHw==
+X-Gm-Message-State: AO0yUKXSBQrLXWZw0TMLSdnzFh1p3lC+EM5qH1Z2p636OSBDdhrO4ubY
+        Vzck41X66j7MRAJv92opaRDxew==
+X-Google-Smtp-Source: AK7set8ScxZ4ZJd84TNx+nof9Foq9TSKqc5FmHtLVLdYFytAuS8f0kOwucyhT+WVIAC8U49TyEXTww==
+X-Received: by 2002:a7b:c7d4:0:b0:3df:de28:f819 with SMTP id z20-20020a7bc7d4000000b003dfde28f819mr5589040wmk.15.1677055392488;
+        Wed, 22 Feb 2023 00:43:12 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id 6-20020a170906318600b008e03af7e7c9sm1708450ejy.188.2023.02.22.00.40.09
+        by smtp.gmail.com with ESMTPSA id c22-20020a7bc856000000b003e01493b136sm7132169wml.43.2023.02.22.00.43.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 00:40:10 -0800 (PST)
-Message-ID: <939ffe2e-9b03-528a-3d27-e9eac7a04ded@linaro.org>
-Date:   Wed, 22 Feb 2023 09:40:08 +0100
+        Wed, 22 Feb 2023 00:43:12 -0800 (PST)
+Message-ID: <d9bd3216-2ee6-3034-9817-1f8b225bbc94@linaro.org>
+Date:   Wed, 22 Feb 2023 09:43:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 1/4] dt-bindings: mfd: Add DT bindings for TI TPS6594
- PMIC
+Subject: Re: [PATCH v3 1/4] dt-bindings: soc: imx8mp-media-blk-ctrl: Align
+ block controller example name
 Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        corbet@lwn.net
-Cc:     hdegoede@redhat.com, eric.auger@redhat.com, jgg@ziepe.ca,
-        razor@blackwall.org, suma.hegde@amd.com,
-        stephen@networkplumber.org, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, eblanc@baylibre.com,
-        jneanne@baylibre.com
-References: <20230216114410.183489-1-jpanis@baylibre.com>
- <20230216114410.183489-2-jpanis@baylibre.com>
- <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
- <4e64838c-b727-923b-b6d5-413a0681977c@baylibre.com>
- <8de5a3bb-a0b1-8d69-cf61-0c33f42c56f6@linaro.org>
- <85183c04-40e3-fd97-c4ca-06795fe99e40@baylibre.com>
- <ce5f8e9c-0e05-3391-1393-25ea8086f10c@linaro.org>
- <633753f7-2b8a-15bb-ba55-1c5a6f2eb3f1@baylibre.com>
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Liu Ying <victor.liu@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+References: <20230221152804.6061-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <633753f7-2b8a-15bb-ba55-1c5a6f2eb3f1@baylibre.com>
+In-Reply-To: <20230221152804.6061-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,26 +87,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 16:18, Julien Panis wrote:
->>>> It looks the property should be only in the drivers, not in the DT.
->>> I will remove 'ti,use-crc;' property from the DT. This will be only in
->>> the driver.
->>> Do you also consider that a property such as 'ti,is-secondary-pmic;'
->>> would not be acceptable either ? From driver point of view, this
->>> primary/secondary role on SPMI bus is a 'built-in' property of the
->>> PMIC (CRC must be enabled only via primary PMIC but using the
->>> primary PMIC does not imply that CRC is necessarily used).
->> Depends, I am not sure. Are the PMICs in some kind of hierarchical
->> topology? Like one is parent of another? If not (so both are
->> parallel/equal children of SPMI bus), then some property to indicate
->> which one is the main PMIC makes sense.
-> 
-> There is no hierarchical topology.
-> So, I will consider identifying in DT which one is the main PMIC.
+On 21/02/2023 16:28, Marek Vasut wrote:
+>      #include <dt-bindings/clock/imx8mp-clock.h>
+>      #include <dt-bindings/power/imx8mp-power.h>
+>  
+> -    media_blk_ctl: blk-ctl@32ec0000 {
+> +    blk-ctrl@32ec0000 {
 
-Yes. Such property would be also better than the "use-crc" as it
-describes the hardware, not desired Linux driver behavior.
+Ah, I think I missed in the previous version of patch that you actually
+update the node name.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
