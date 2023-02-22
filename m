@@ -2,66 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C4869F09A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:47:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530EA69F09E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230468AbjBVIq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 03:46:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35286 "EHLO
+        id S231206AbjBVIrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 03:47:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230262AbjBVIq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:46:58 -0500
-Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBB33346E
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:46:56 -0800 (PST)
-Received: by mail.tryweryn.pl (Postfix, from userid 1002)
-        id 5CB7BA4828; Wed, 22 Feb 2023 08:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
-        t=1677055614; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
-        h=Date:From:To:Subject:From;
-        b=jhnUcpgkETLMROujq6G5JV5Tabu7bk5wSEbfr7KXu/wZ/YjbCHr7eHLjrS6ftHPUG
-         phBsjuxwSRaSnJcYhbFleLncZHg3qWJzkVNzd9irccuI/uv9nIVGT3yvlKfEF/liDj
-         3onXuGFs8RVvLe7TBkhK6FVvEv4C03Ilj/n5kZsqDtiJuPqkrZY2muXsF2U3337bpJ
-         HBQjovqeLR9K1bih2v9/ZmCHxRc/eQQwIjhVlEUUs8iIbdWO+/TxE90Cse7cL7pRyv
-         bPLWRA4I3vuX/8uZDqFdPGl6GkGb7MXh7Y3nDIV+tPPsZj0d0MhFdGnh6JIxeLUqGs
-         v4YwuzvPN0Cng==
-Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 08:45:29 GMT
-Message-ID: <20230222074500-0.1.8b.314x8.0.j7hekpnpg6@tryweryn.pl>
-Date:   Wed, 22 Feb 2023 08:45:29 GMT
-From:   "Karol Michun" <karol.michun@tryweryn.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Prezentacja
-X-Mailer: mail.tryweryn.pl
+        with ESMTP id S231264AbjBVIrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:47:39 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B537D37B42
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:47:38 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id k14-20020a05600c1c8e00b003e22107b7ccso793141wms.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:47:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ydbqHIOomLQeh1beAvbyiFGfrGZ1Ce579+OZnxybWPo=;
+        b=fs3cPLauczcQdWa3FwFOSUhbiDXDMbGYoP25M2Of3zCyCpnMP/+YxTVIy6cPJ+7BFf
+         iKGuIuehQWipO3gIj2K0Y3sqoxbQPw9XBmtE8TT/iA6Hy/exctxcVHUgZBk94GZ6r8l4
+         sn7bydZckf1EsawQOcONeOTorrJr6zIhgHfVcQcYQG1M1Yp09X5KDxCO/3QQw1Jx8aIb
+         9sn/zaFlc5o0dwE/NJ1tvdpFituLHPFOgI2u45mOPoKa2rsSkCBHhJnn6gOQNbmKQlGu
+         oUxbqirnBZTcp7ZUzA8ufwOK5I8uJxJQfnEDqJWnsyd/htZx/ZgtOuxLhD21rEtKdk9R
+         JG9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ydbqHIOomLQeh1beAvbyiFGfrGZ1Ce579+OZnxybWPo=;
+        b=Kz9JVi95hH/PIi4hcVRnzESARNw7X37o4XyDFhAzuGc9cc9OB+8ipBhX8kQHrjtuep
+         Gqdd6Mvn0BxEeYO8zQ3a4U+GoE0dJ308bTSrSmsQPhULe6xaqV8AxCWIAS6vJG3/19aX
+         sZCCLh/2ZRgvHv7mlr8KlNqCrdlxXlTLLVoWaQY0zns25VJ9bUCZch9GVVIuR25B1GRL
+         1UdwjfQeA7I9E0rBoCSAMI/yci1hbH0yADwuZeQyo+tXYqL7LWaavIGCUlNPYYaE9UHs
+         l4e8KZ7Pk/zpKtDhwnaqYfw8CzqkYJS/2k43o5Q4r8SVjIQQHvkuYuC9Jg2cceHOhgqh
+         /FIA==
+X-Gm-Message-State: AO0yUKVAb8N89X6JvKGhbEzPeau1Zn9Eby/rK+yJ32mn9NKd60ZwSbia
+        H+a41ZZTmBPaGMa5e+tNNAis3w==
+X-Google-Smtp-Source: AK7set/Zwaf/JaFNUau2+Uariy73JokxO9E53tfbT25EZNWh66ldE+Ieh8tCAjj8QikD8cnpcGdsRg==
+X-Received: by 2002:a05:600c:4b30:b0:3e2:147f:ac16 with SMTP id i48-20020a05600c4b3000b003e2147fac16mr3437707wmp.10.1677055657253;
+        Wed, 22 Feb 2023 00:47:37 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p8-20020a05600c468800b003e2232d0960sm8408707wmo.23.2023.02.22.00.47.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 00:47:36 -0800 (PST)
+Message-ID: <51bc1656-2855-5d4d-076b-af1fc496974b@linaro.org>
+Date:   Wed, 22 Feb 2023 09:47:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/4] dt-bindings: clock: Add MSM8917 global clock
+ controller
+Content-Language: en-US
+To:     =?UTF-8?Q?Otto_Pfl=c3=bcger?= <otto.pflueger@abscue.de>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230221174909.164029-1-otto.pflueger@abscue.de>
+ <20230221174909.164029-2-otto.pflueger@abscue.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230221174909.164029-2-otto.pflueger@abscue.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry!
+On 21/02/2023 18:49, Otto Pflüger wrote:
+> Add a device tree binding to describe clocks, resets and power domains
+> provided by the global clock controller on MSM8917 SoCs and the very
+> similar QM215 SoCs.
+> 
+> Add the new compatibles to qcom,gcc-msm8909.yaml. There is
+> no need to create another YAML file because the bindings are identical
+> (MSM8917 GCC requires the same parent clocks as the MSM8909 GCC).
+> 
+> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> ---
+>  .../bindings/clock/qcom,gcc-msm8909.yaml      |  13 +-
+>  include/dt-bindings/clock/qcom,gcc-msm8917.h  | 190 ++++++++++++++++++
+>  2 files changed, 199 insertions(+), 4 deletions(-)
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-msm8917.h
+> 
 
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
-=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
-zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
-=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
-dostaw.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
-nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
- co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
+Best regards,
+Krzysztof
 
-Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
-=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
-zania w Pa=C5=84stwa firmie.
-
-
-Pozdrawiam
-Karol Michun
