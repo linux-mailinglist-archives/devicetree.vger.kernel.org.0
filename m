@@ -2,138 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1A269FAE4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 19:20:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD7669FAED
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 19:21:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbjBVSUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 13:20:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56598 "EHLO
+        id S229598AbjBVSVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 13:21:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231258AbjBVSUP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 13:20:15 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFC83866C
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:20:14 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id t15so8815034wrz.7
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:20:14 -0800 (PST)
+        with ESMTP id S231896AbjBVSVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 13:21:36 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F023C78F
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:21:34 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id ay29-20020a05600c1e1d00b003e9f4c2b623so635738wmb.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:21:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MswBRPm/o9JdJ+YWMq8NmSLgLFu7yJdf1U1uT0bi4wk=;
-        b=NfOvyOI0C5+enF221jxuifhLVKUhWyMMu7qxX2m0Q43IdHZJpVxAn97Cmt3PZOSd/m
-         lwzjULy50xcYr9IIbWsae9aokPMG0trlHC7nGM5TYQKvVlKibEASolaOiWhN6ZTddRHi
-         zG5z4VNwssd+z5ThR51Zh37yyhHQpVPlZG5y3HTD4UmdHyVZqOcvGTevobuy9tItkx99
-         oL3hcgNl+DkVpiB43bR0gA7L9hQDHPVqepXNl5RyfUMTX5t+dMQ3Nxu67CSO7sTflOK3
-         hVgAeR4J5zjdv8LPxAV0q47HkmEyKprl+oR8cEeWIy0a9BxEf8ENIoo4TsH4dAf+dALu
-         9zBg==
+        bh=lsxS40ms5lLtNze6ykBVmbXz3ZFlmjf74kZVLXUdqOo=;
+        b=TjWtYqGXTv/6K+iGSjdzptcbIWg9ggxlDhCvK1lRPbTz4RruOy/xRimoUb5gKGK39e
+         C5i6cOxIizIfuMIm322MTGspLxnZ2awFH/OgYi28ZoCcfCzoIyyv+MxwlNDJZFyfEwU1
+         0eB7U4TcOO9xt7oA//tfLWoJ/yhRYeJKzE5f6llFzq2+XDT39GCfF7b9p/oNWQEVCiTg
+         HBjwNF6yY/qqvWEIGn8yy7Ut/vwsBqfBiRcw7wpigWctG2fdn9FYu9a2gXGKzDtDjjoq
+         6juAHfP+zWnvALJeyDn8OLrnes+Xo+xK09oFUJJSSAETl2ukqkBrm6LqOs9d4TrNvRt0
+         dSpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MswBRPm/o9JdJ+YWMq8NmSLgLFu7yJdf1U1uT0bi4wk=;
-        b=HfsmbXxLzcmF1uq0GS3H0N6nbVE321XTtizPh14/xjypuXFucdS7C8cbOxSTaZj7p+
-         O77e2QJm7YYQOjTTh0gtDsPlVHGRjFfJ+7hhKf0/0scbBZt7b1XGmXcSgsJvFaOtmqGu
-         D6vA29V3LOzSnOwax3ZAgVA0VoHHULvIiopFTeSFhoN5UzMOvUYIFKze59E+yOdYnE2R
-         +Hw01T2gp0K1f2rZrO6/Xyx8qK+71xYQIAv/5TU47kU9hyJO2ivxNUulS8B+uc5JyDMH
-         XmqbOSPKEyWwCsK9tIR8S8V5tYke8Ylo8+g9TXalmruWNHlmw7mJybrrA0Vlsl86CpFl
-         Jl/g==
-X-Gm-Message-State: AO0yUKUYl/B+vL37XkBV72ZK2cJAUL2RhVn5xHblBjfUbj6Z12jdxNNA
-        40WAGIsnE2NtnobH0f6WaN2kESO2OnvUyQtz
-X-Google-Smtp-Source: AK7set/rCX3TN0bFObtV37T8Ft5AfHXy9F8TYRj2H1N3WNQU/y2Xg2H5fIrSrXdlLtcHSyC7by5vKA==
-X-Received: by 2002:adf:f207:0:b0:2c5:9d84:6067 with SMTP id p7-20020adff207000000b002c59d846067mr6573246wro.63.1677090012648;
-        Wed, 22 Feb 2023 10:20:12 -0800 (PST)
+        bh=lsxS40ms5lLtNze6ykBVmbXz3ZFlmjf74kZVLXUdqOo=;
+        b=JYkMIwq1U1ygnR/S7K587RJsZiT772PTbv76nzQd1kY5tLBWtwGpbd5DxvijQ5jYy1
+         ZXEMykFT9vzHgIbKM5ESVGiBXcToUeB9yR1Ahz1Jl1X+wHJOp+8Fz7oGatDs5Y7Gh6mm
+         zuzPLqc5bamFNxZKfJ7HEmvOlZMx/P9qeOZj2fGr2IodEmX2gETbPFCAWVOrcXeu3sad
+         oE1jwwJqUyR6x2yATapFPiA8jLOTwEzJcOaHZBkosldv0S2ZrAI5ZI+XiRr97Ay/0AKL
+         nfitURk8ThqYCrEacoKDRDDz4lcC0Xn73inIIlAykxAINxFD8uT9XMAEreUDDC7WnYKR
+         5l2w==
+X-Gm-Message-State: AO0yUKVek41JNCkNLSKNisznWZF7giW5tXM6qFDZSjY3XShNUVl64PrU
+        p6TZxmSFTeGPCn5SDPCTBHCPGw==
+X-Google-Smtp-Source: AK7set9/uuNG1lfqck18++gqmHZacuZJybJu2bpKIj48EjVChC9Prtaw2A5zrJEk1ENNrZdyCR14LQ==
+X-Received: by 2002:a05:600c:3c8e:b0:3db:1f68:28f with SMTP id bg14-20020a05600c3c8e00b003db1f68028fmr7148189wmb.24.1677090093070;
+        Wed, 22 Feb 2023 10:21:33 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e7-20020adffc47000000b002c70f5627d5sm156910wrs.63.2023.02.22.10.20.10
+        by smtp.gmail.com with ESMTPSA id e6-20020a05600c4e4600b003e214803343sm8189008wmq.46.2023.02.22.10.21.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 10:20:12 -0800 (PST)
-Message-ID: <da380923-3c36-ac14-d9ea-2a4ec34e4b0e@linaro.org>
-Date:   Wed, 22 Feb 2023 19:20:10 +0100
+        Wed, 22 Feb 2023 10:21:32 -0800 (PST)
+Message-ID: <23b0b20a-36fb-038a-4251-caeb1a838752@linaro.org>
+Date:   Wed, 22 Feb 2023 19:21:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
+Subject: Re: [PATCH 2/4] clk: qcom: Add global clock controller driver for
+ MSM8917
 Content-Language: en-US
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Martyn Welch <martyn.welch@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
+To:     =?UTF-8?Q?Otto_Pfl=c3=bcger?= <otto.pflueger@abscue.de>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230222182252.2ad6d82b@booty>
- <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230221174909.164029-1-otto.pflueger@abscue.de>
+ <20230221174909.164029-3-otto.pflueger@abscue.de>
+ <10b2ce9a-d838-6063-1646-90f91ce819e6@linaro.org>
+ <Y/ZXdO67/9X5xabE@fluffy-mammal.metal.fwg-cag.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
+In-Reply-To: <Y/ZXdO67/9X5xabE@fluffy-mammal.metal.fwg-cag.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2023 18:25, Luca Ceresoli wrote:
-> The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
-> NXPP SGTL5000 audio codec connected to I2S-0 (sai2).
+On 22/02/2023 18:57, Otto Pflüger wrote:
+> On Wed, Feb 22, 2023 at 09:51:21AM +0100, Krzysztof Kozlowski wrote:
+>> On 21/02/2023 18:49, Otto Pflüger wrote:
+>>> This driver provides clocks, resets and power domains needed for various
+>>> components of the MSM8917 SoC and the very similar QM215 SoC.
+>>>
+>>> According to [1] in the downstream kernel, the GPU clock has a different
+>>> source mapping on QM215 (gcc_gfx3d_map vs gcc_gfx3d_map_qm215).
+>>>
+>>> [1]: https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LF.UM.8.6.2-28000-89xx.0/include/dt-bindings/clock/msm-clocks-hwio-8952.h#L298
+>>>
+>>> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+>>> ---
+>>>  drivers/clk/qcom/Kconfig       |    8 +
+>>>  drivers/clk/qcom/Makefile      |    1 +
+>>>  drivers/clk/qcom/gcc-msm8917.c | 3283 ++++++++++++++++++++++++++++++++
+>>>  3 files changed, 3292 insertions(+)
+>>>  create mode 100644 drivers/clk/qcom/gcc-msm8917.c
+>>>
+>>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>>> index 70d43f0a8919..3ef58b09385a 100644
+>>> --- a/drivers/clk/qcom/Kconfig
+>>> +++ b/drivers/clk/qcom/Kconfig
+>>> @@ -196,6 +196,14 @@ config MSM_GCC_8916
+>>>  	  Say Y if you want to use devices such as UART, SPI i2c, USB,
+>>>  	  SD/eMMC, display, graphics, camera etc.
+>>>  
+>>> +config MSM_GCC_8917
+>>> +	tristate "MSM8917 Global Clock Controller"
+>>
+>> I propose to add here:
+>>
+>> depends on ARM64 || COMPILE_TEST
 > 
-> This requires to:
-> 
->  * add the power supplies (always on)
->  * enable sai2 with pinmuxes
->  * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
->    IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> index 470ff8e31e32..894d9809f76d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-> @@ -14,6 +14,57 @@ / {
->  	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
->  		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
->  		     "fsl,imx8mp";
-> +
-> +	reg_vcc_3v3_audio: 3v3_audio_regulator {
+> Why should this driver only be enabled on ARM64 systems? In my opinion,
+> this should also be supported on 32-bit ARM, just like the other clock
+> drivers for the 64-bit SoCs. Users should be able to boot a 32-bit
+> kernel if they have to, e.g. if their device has broken firmware that
+> prohibits booting 64-bit kernels (there have been such cases with
+> MSM8916) or if they think that 64-bit systems use too much memory (my
+> QM215 device with 512MB RAM shipped with a 32-bit kernel for this very
+> reason).
 
-No underscores in node names.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_3V3_AUD";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	reg_vcc_1v8_audio: 1v8_audio_regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_1V8_AUD";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +	};
-> +
-> +	sgtl5000-sound {
-
-Just: sound
-
+Are you going to upstream 32-bit DTS (wrapper actually)? If not, then
+why would you care about anything out-of-tree? Why would we care about
+anything out-of-tree?
 
 
 Best regards,
