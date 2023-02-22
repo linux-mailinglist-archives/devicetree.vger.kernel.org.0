@@ -2,126 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D03B69FA97
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D014C69FA9D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 18:59:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231236AbjBVR5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 12:57:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36988 "EHLO
+        id S230182AbjBVR7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 12:59:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjBVR5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:57:20 -0500
-Received: from srv01.abscue.de (abscue.de [89.58.28.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F893BDB8;
-        Wed, 22 Feb 2023 09:57:18 -0800 (PST)
-Received: from srv01.abscue.de (localhost [127.0.0.1])
-        by spamfilter.srv.local (Postfix) with ESMTP id 157F71C0048;
-        Wed, 22 Feb 2023 18:57:16 +0100 (CET)
+        with ESMTP id S229513AbjBVR7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 12:59:54 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB653B67C
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 09:59:53 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pUtP6-0002FR-9U; Wed, 22 Feb 2023 18:59:44 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pUtP4-0002T7-0d; Wed, 22 Feb 2023 18:59:42 +0100
+Date:   Wed, 22 Feb 2023 18:59:41 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Abel Vesa <abel.vesa@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, Jacky Bai <ping.bai@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
+Message-ID: <20230222175941.7pdi7yg5am3ws4gp@pengutronix.de>
+References: <20230222182252.2ad6d82b@booty>
+ <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Received: from fluffy-mammal.metal.fwg-cag.de (dslb-092-073-092-061.092.073.pools.vodafone-ip.de [92.73.92.61])
-        by srv01.abscue.de (Postfix) with ESMTPSA id 8F7521C0046;
-        Wed, 22 Feb 2023 18:57:15 +0100 (CET)
-Date:   Wed, 22 Feb 2023 18:57:08 +0100
-From:   Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] clk: qcom: Add global clock controller driver for
- MSM8917
-Message-ID: <Y/ZXdO67/9X5xabE@fluffy-mammal.metal.fwg-cag.de>
-References: <20230221174909.164029-1-otto.pflueger@abscue.de>
- <20230221174909.164029-3-otto.pflueger@abscue.de>
- <10b2ce9a-d838-6063-1646-90f91ce819e6@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <10b2ce9a-d838-6063-1646-90f91ce819e6@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 22, 2023 at 09:51:21AM +0100, Krzysztof Kozlowski wrote:
-> On 21/02/2023 18:49, Otto Pflüger wrote:
-> > This driver provides clocks, resets and power domains needed for various
-> > components of the MSM8917 SoC and the very similar QM215 SoC.
-> > 
-> > According to [1] in the downstream kernel, the GPU clock has a different
-> > source mapping on QM215 (gcc_gfx3d_map vs gcc_gfx3d_map_qm215).
-> > 
-> > [1]: https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LF.UM.8.6.2-28000-89xx.0/include/dt-bindings/clock/msm-clocks-hwio-8952.h#L298
-> > 
-> > Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> > ---
-> >  drivers/clk/qcom/Kconfig       |    8 +
-> >  drivers/clk/qcom/Makefile      |    1 +
-> >  drivers/clk/qcom/gcc-msm8917.c | 3283 ++++++++++++++++++++++++++++++++
-> >  3 files changed, 3292 insertions(+)
-> >  create mode 100644 drivers/clk/qcom/gcc-msm8917.c
-> > 
-> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> > index 70d43f0a8919..3ef58b09385a 100644
-> > --- a/drivers/clk/qcom/Kconfig
-> > +++ b/drivers/clk/qcom/Kconfig
-> > @@ -196,6 +196,14 @@ config MSM_GCC_8916
-> >  	  Say Y if you want to use devices such as UART, SPI i2c, USB,
-> >  	  SD/eMMC, display, graphics, camera etc.
-> >  
-> > +config MSM_GCC_8917
-> > +	tristate "MSM8917 Global Clock Controller"
-> 
-> I propose to add here:
-> 
-> depends on ARM64 || COMPILE_TEST
+Hi Luca,
 
-Why should this driver only be enabled on ARM64 systems? In my opinion,
-this should also be supported on 32-bit ARM, just like the other clock
-drivers for the 64-bit SoCs. Users should be able to boot a 32-bit
-kernel if they have to, e.g. if their device has broken firmware that
-prohibits booting 64-bit kernels (there have been such cases with
-MSM8916) or if they think that 64-bit systems use too much memory (my
-QM215 device with 512MB RAM shipped with a 32-bit kernel for this very
-reason).
+On 23-02-22, Luca Ceresoli wrote:
+> The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
+> NXPP SGTL5000 audio codec connected to I2S-0 (sai2).
+> 
+> This requires to:
+> 
+>  * add the power supplies (always on)
+>  * enable sai2 with pinmuxes
+>  * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
+>    IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
+> 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> ---
+>  .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+> index 470ff8e31e32..894d9809f76d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+> @@ -14,6 +14,57 @@ / {
+>  	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
+>  		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
+>  		     "fsl,imx8mp";
 
-> 
-> > +	select QCOM_GDSC
-> > +	help
-> > +	  Support for the global clock controller on msm8917 devices.
-> > +	  Say Y if you want to use devices such as UART, SPI i2c, USB,
-> > +	  SD/eMMC, display, graphics, camera etc.
-> > +
-> 
-> (...)
-> > +
-> > +static int gcc_msm8917_probe(struct platform_device *pdev)
-> > +{
-> > +	struct regmap *regmap;
-> > +
-> > +	regmap  = qcom_cc_map(pdev, &gcc_msm8917_desc);
-> > +	if (IS_ERR(regmap))
-> > +		return PTR_ERR(regmap);
-> > +
-> > +	if (of_device_is_compatible(pdev->dev.of_node, "qcom,gcc-qm215"))
-> 
-> Use data in of_device_id instead. This scales poorly if any new variant
-> is added here. Unless no new variants will be added? Ever?
+...
 
-Thanks. There are a lot of other related SoCs (MSM8920, MSM8937, MSM8940,
-MSM8952, SDM429 and SDM439) which could get added here as variants, so
-I'll implement this using data in of_device_id.
+> +/* I2S-0 = sai2 */
+> +&sai2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sai2>;
+> +
+> +	assigned-clocks = <&clk IMX8MP_CLK_SAI2>;
+> +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <12288000>;
+> +
+> +	fsl,sai-mclk-direction-output;
+> +	status = "okay";
+>  };
+
+Do you have some downstream patches for the sai interfaces? AFAIR Marek
+worked on this but the patches are not mainlien yet.
 
 Regards,
-Otto Pflüger
+  Marco
