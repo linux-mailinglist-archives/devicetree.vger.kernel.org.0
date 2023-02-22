@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BA3F69F89E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 17:06:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3086C69F8BA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 17:13:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbjBVQGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 11:06:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56442 "EHLO
+        id S231351AbjBVQNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 11:13:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbjBVQGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 11:06:52 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B8393CE33
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 08:06:51 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id m7so10602159lfj.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 08:06:51 -0800 (PST)
+        with ESMTP id S230406AbjBVQNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 11:13:54 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17792124;
+        Wed, 22 Feb 2023 08:13:52 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id s22so10610383lfi.9;
+        Wed, 22 Feb 2023 08:13:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8USIxg/ch7FSV86aq2IWnMVmX2lOYDkkYcIurOZq368=;
-        b=EMWzDHhPFmWX6K1h4sWnl4efdISDePX4QMzUIzv91ih43FiBsgeKUyXXsLw8aqRj/f
-         YFx0yomB7J7X3XVqL957/pZXG7RYdtW31SY1ve4Y9vIiGHxP1ZtwRq8NmCj20F6gj5pV
-         0oDUiLmJi2ydK7Lfux2cj5J5Og8AFuR8D9lHagVRSezna/+E2OdHwreTT9mhQiTHJrGO
-         c37DJgcjZHDevUZhr3wnIWXuMXsI+WfA0FuonExgJvircWhyb/yiZBrleXNBzTtvCn1B
-         21JmyNLsLiCEUZ+hi9Ienb8OAQ8L9903f13qYys2dF6TsccTifYfeovi2fM1zgEgpib6
-         PlwQ==
+        bh=O8HKJupUxTafko/9EYvv7Sk7sddF/f4G5xflzazxXqk=;
+        b=ayN+whCq+85Uy9GNDyl7tj63JhOiNXdqgvL721uCLLUFWMQ1P/MsgqOWTQYj3at6wI
+         KVbFQQpsvJKmRKQUsV6BdJGtEZLwFDBXTEJ4YM5Cqfizimhgfx1bctXLi+soh41quVz5
+         yS3wOem5ICtGGjYwq5gepGORdu/uxWgbtdv7EbrilYxJ9r8W4Hb8cOKSV7bTrVeAOEpH
+         fV0VMECyfBPEfYqyBik+feOZj8KtDz0WK+DSMLg0/L5j9QdFve8C7GSMpYThzkgRWMlo
+         ZhnAlV1NIuq5ve1PT9S3R+yPoRMuyDDWh9o4+/gDuPrqjScgTx6e7GqzClfiMJkPo6gR
+         D/ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8USIxg/ch7FSV86aq2IWnMVmX2lOYDkkYcIurOZq368=;
-        b=MiczJfI/YJPLtvak0mVFx6w/RP4wHVtmkXd72ykMDJyvV1v7rhQ9zgHBTU1UdFtV7J
-         xpjAvlo1uy12C4k8/x9TbEVimcemeJqMqVgYCQk2BO9fwh6J0aIDxzVWr6CMgDu538N7
-         QpDecPRYU0NSFX2MGY7w4AxdWrIJURl7EJcnMYZ5gQrjKecOEH3ON+qgEFzCFKTfp4nU
-         sWyK72MYOSu83omrXsVoWkr5qBPMbQAkwIfzeUDgXLqIdmac0JYrZ+h/mkIb2NJt07cu
-         mIAHRu874bDo17vtStp/9Z20Kkop1MokzEmztsXnau87epzaHo29s2iPIdCh9Ay2NW0u
-         UGKA==
-X-Gm-Message-State: AO0yUKWYNYY/XwR6xCVfsnf0ukDdQcwOG4+rwHfbRovh4hh89SA0pE80
-        UeXcTRk9hYT1C2mnds83oA0Wdg==
-X-Google-Smtp-Source: AK7set90zq0pUixr/vnRmsiQGKP735fINZmlrvTRuNAivKuiwFZsainImmoqZg2zjT58hixUQD4V0Q==
-X-Received: by 2002:ac2:5383:0:b0:4dc:4c53:4460 with SMTP id g3-20020ac25383000000b004dc4c534460mr2813784lfh.16.1677082009120;
-        Wed, 22 Feb 2023 08:06:49 -0800 (PST)
-Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id x23-20020ac24897000000b004b564e1a4e0sm282007lfc.76.2023.02.22.08.06.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 08:06:48 -0800 (PST)
-Message-ID: <8259f4e1-3ab0-0ac2-f717-7dca72ea4170@linaro.org>
-Date:   Wed, 22 Feb 2023 17:06:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3] arm64: dts: qcom: sm8450: Add IMEM and PIL info region
-Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, elder@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        bh=O8HKJupUxTafko/9EYvv7Sk7sddF/f4G5xflzazxXqk=;
+        b=Twbmkc1t0rVTwvAFcLZqIGhv4qQmZjg4j/w32z250TimEtw5J2kjueS29cRoFLfvbf
+         AMal4Ek5wGPkAjMDEDmOJfWsUjjYt1uq34LwOfqiwy8mZziNNruwUYED2Ufts9pzB52b
+         O+qMOgvTuZevm13FxfPnpnICPTkjdTvACO3aWN8o0c3nx3xAugF/DM2pZo38eTG/Cmut
+         lxY3wvYuHK+Kk0NTCNQO5CDFLR14DHTA6NsyKkLs19ajqEF5iIJmzHA9h+46wNrrHgj4
+         nW3xqgH3NHri/SFX0gXFLleFTuiGzPfY25fZfZ6Lk431h5pBfFPm/RCNAJPopUwi9dmc
+         TJlA==
+X-Gm-Message-State: AO0yUKVuOCezOLZPFUv62wDsVFDzLuEcHWJQxxdath9pUH9kBWTdM4UC
+        49QDVBYnkKqXxI54scYx6pRf8qCEIbA=
+X-Google-Smtp-Source: AK7set+Bkxe/dNStb4QzNgsxhE1AuJ3i0LAbRneKND0gCBVBoxsML2ZXfX+OH8t+ZOdq2OvD6V1Fuw==
+X-Received: by 2002:ac2:51c9:0:b0:4db:2aaf:7367 with SMTP id u9-20020ac251c9000000b004db2aaf7367mr2823794lfm.33.1677082430191;
+        Wed, 22 Feb 2023 08:13:50 -0800 (PST)
+Received: from dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id e6-20020ac25466000000b004db4fe8fd0bsm697953lfn.87.2023.02.22.08.13.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Feb 2023 08:13:49 -0800 (PST)
+Date:   Wed, 22 Feb 2023 18:13:43 +0200
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Liam Beguin <liambeguin@gmail.com>,
+        Peter Rosin <peda@axentia.se>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <1677079845-17650-1-git-send-email-quic_mojha@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1677079845-17650-1-git-send-email-quic_mojha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: [RFC PATCH 0/6] Support ROHM BU27034 ALS sensor
+Message-ID: <cover.1677080089.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="BlRpAQ1HKTL4mi9A"
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -77,48 +83,141 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--BlRpAQ1HKTL4mi9A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 22.02.2023 16:30, Mukesh Ojha wrote:
-> Add a simple-mfd representing IMEM on SM8450 and define the PIL
-> relocation info region, so that post mortem tools will be able
-> to locate the loaded remoteprocs.
-> 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Support ROHM BU27034 ALS sensor
 
-Konrad
-> Change in v3:
->  - Sorted by address.
-> 
-> Changes in v2:
->  -  put ranges after regs and corrected the sram node position.
-> 
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 1a744a3..7671f15 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -3689,6 +3689,20 @@
->  			};
->  		};
->  
-> +		sram@146aa000 {
-> +			compatible = "qcom,sm8450-imem", "syscon", "simple-mfd";
-> +			reg = <0 0x146aa000 0 0x1000>;
-> +			ranges = <0 0 0x146aa000 0x1000>;
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			pil-reloc@94c {
-> +				compatible = "qcom,pil-reloc-info";
-> +				reg = <0x94c 0xc8>;
-> +			};
-> +		};
-> +
->  		apps_smmu: iommu@15000000 {
->  			compatible = "qcom,sm8450-smmu-500", "arm,mmu-500";
->  			reg = <0 0x15000000 0 0x100000>;
+This series adds support for ROHM BU27034 Ambient Light Sensor.
+
+The BU27034 has configurable gain and measurement (integration) time
+settings. Both of these have direct, inversely proportional relation to
+the sensor's intensity channel scale.
+
+Many users only set the scale, which means that many drivers attempt to
+'guess' the best gain+time combination to meet the scale. Usually this
+is the biggest integration time which allows setting the requested
+scale. Typically, increasing the integration time has better accuracy
+than increasing the gain, which often amplifies the noise as well as the
+real signal.
+
+However, there may be cases where more responsive sensors are needed.
+So, in some cases the longest integration times may not be what the user
+prefers. The driver has no way of knowing this.
+
+Hence, the approach taken by this series is to allow user to set both
+the scale and the integration time with following logic:
+
+1. When scale is set, the existing integration time is tried to be
+   maintained as a first priority.
+   1a) If the requested scale can't be met by current time, then also
+       other time + gain combinations are searched. If scale can be met
+       by some other integration time, then the new time may be applied.
+       If the time setting is common for all channels, then also other
+       channels must be able to maintain their scale with this new time
+       (by changing their gain). The new times are scanned in the order
+       of preference (typically the longest times first).
+   1b) If the requested scale can be met using current time, then only
+       the gain for the channel is changed.
+
+2. When the integration time change - scale is maintained.
+   When integration time change is requested also gain for all impacted
+   channels is adjusted so that the scale is not changed. If gain can't
+   be changed for some channel, then the request is rejected.
+
+I think this fits the existing 'modes' where scale setting 'guesses' the
+best scale + integration time config - and integration time setting does
+not change the scale.
+
+This logic is really simple. When total gain (either caused by time or
+hw-gain) is doubled, the scale gets halved. Also, the supported times
+are given a 'multiplier' value which tells how much they increase the
+total gain. However, when I wrote this logic in bu27034 driver, I made
+quite a few errors on the way - and driver got pretty big. As I am
+writing drivers for two other sensors (RGB C/IR + flicker BU27010 and RGB
+C/IR BU27008) with similar gain-time-scale logic I thought that adding
+common helpers for these computations might be wise. I hope this way all
+the bugs will be concentrated in one place and not in every individual
+driver ;) Hence, this RFC also intriduces IIO gain-time-scale helpers +
+couple of KUnit tests for the most hairy parts.
+
+I can't help thinking that there should've been simpler way of computing
+the gain-time-scale conversions. Also, pretty good speed improvements
+might be available if some of the do_div()s could be replaced by >>.
+This, however, is not a priority for my light-sensor use-case where
+speed demands are not that big. I am open to all improvements and
+suggestions though!
+
+What is still missing is advertising the available scales / integration
+times. The list of available integration times is not static but depend
+on channel gain configurations. Hence, I wonder if there is a way to
+not only advertise available integration times with current gain
+configuration - but also the available scales with different gains?
+
+Finally, this patch series is an RFC becasue the helper logic could
+benefit from extra pairs of eyes - and because the sensor has been
+only very limitedly tested this far.
+
+
+Matti Vaittinen (6):
+  dt-bindings: iio: light: Support ROHM BU27034
+  iio: light: Add gain-time-scale helpers
+  iio: test: test gain-time-scale helpers
+  MAINTAINERS: Add IIO gain-time-scale helpers
+  iio: light: ROHM BU27034 Ambient Light Sensor
+  MAINTAINERS: Add ROHM BU27034
+
+ .../bindings/iio/light/rohm-bu27034.yaml      |   46 +
+ MAINTAINERS                                   |   13 +
+ drivers/iio/light/Kconfig                     |   16 +
+ drivers/iio/light/Makefile                    |    2 +
+ drivers/iio/light/gain-time-scale-helper.c    |  446 ++++++
+ drivers/iio/light/gain-time-scale-helper.h    |  111 ++
+ drivers/iio/light/rohm-bu27034.c              | 1212 +++++++++++++++++
+ drivers/iio/test/Kconfig                      |   15 +
+ drivers/iio/test/Makefile                     |    1 +
+ drivers/iio/test/iio-test-gts.c               |  331 +++++
+ 10 files changed, 2193 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/rohm-bu2703=
+4.yaml
+ create mode 100644 drivers/iio/light/gain-time-scale-helper.c
+ create mode 100644 drivers/iio/light/gain-time-scale-helper.h
+ create mode 100644 drivers/iio/light/rohm-bu27034.c
+ create mode 100644 drivers/iio/test/iio-test-gts.c
+
+
+base-commit: 5dc4c995db9eb45f6373a956eb1f69460e69e6d4
+--=20
+2.39.2
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--BlRpAQ1HKTL4mi9A
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmP2Px4ACgkQeFA3/03a
+ocUekggAtHqlwM8oq5roJKnU8YHnIE8rkZ/Bwd84+gt5erAyM1vdn4TTe5u9Z/ws
+sOL5ffbKdbJWMwsNQG2D4Bl+QgvTl4Sr2/mW53OL4hWBr6KosIvMnoXyl4MBFvuD
+pbpfca39xzmT5qUyrxWrsCfOOQ6wWW2C4opH8XGEt3w829TOIU9Bm8TOOxHO2jYX
+msfZ+3hMOFahaInsYiGKkk+LFHTNM/aaFiqEVe7+jYr5n5m8D8EwzJaQP/RUWy/E
+qaGhIKJz+/I53C2OnqcQkZKCw6gS/P9hVvzSimilTfAdE8ua2eWP5+a30wd/fXTd
+0r0h3Gr74MYBo33HCWwXAZeIoebKag==
+=Ye4V
+-----END PGP SIGNATURE-----
+
+--BlRpAQ1HKTL4mi9A--
