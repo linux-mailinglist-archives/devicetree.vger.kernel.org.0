@@ -2,132 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB3369EFCA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:01:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0A5E69EFCD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:01:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbjBVIBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 03:01:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
+        id S231274AbjBVIBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 03:01:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbjBVIBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:01:12 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB77367F9;
-        Wed, 22 Feb 2023 00:01:11 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id h16so27052848edz.10;
-        Wed, 22 Feb 2023 00:01:11 -0800 (PST)
+        with ESMTP id S231270AbjBVIBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:01:54 -0500
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191BE36FDB
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:01:38 -0800 (PST)
+Received: by mail-vs1-xe2d.google.com with SMTP id d20so37184vsf.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:01:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dlCUWg0V7l7YUSFlT2P4WSzL8o1xqPnxClcbe1tdHhY=;
-        b=Rl94logtw4OVPqPkZoH4YHWPBNT3fyRn557I+IuZXOjTQ6+SNRJv/yPjxTH7tqT/cX
-         XqdgxXSF/K1SIOSpT5NOUEsjlxlfJTVryaZ8b3sFcDTPV9o8Fs3G8E/p3Din+nmvhwqG
-         jnsU1pAYzmwAb3+YnPpteyIFwj2G9PbmIyBN0Zb+8u7c3TOF3sEdQo9R9UMBzdZJ4AHm
-         kIwc732yOVbngdGgQ7+OnHhqc5PeGrLNBbQ5NP6yJPKA1628qh2WKYMJRKCktkL09INm
-         1UypSen/+pfeV4QsLVudfBjaayKL7+Zuwo3lWCdZRQU+jfGd4vfDBM+byg01SzdluKKV
-         wZKg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Y/laJfFqV4xwHyPJ7m5mnZnkPz7sXnRa7yaLqyRbq4=;
+        b=fwgJZ1kd/b7yZ8TdPMq+tKUzKjEZD5tLpT9fCYC0eKvSX7BY8L4D6l5i5Fs5mQ0VhA
+         s1lH2IXxMhWLSNQcMkwL4NsJ6NPlpWG1Hs8qbltFRcnuRTTjJ9K1F6Aq28JktV0upaTi
+         lDlbusLsU4bSpWk9IP9DxyyIZVinrYwz8sqm8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dlCUWg0V7l7YUSFlT2P4WSzL8o1xqPnxClcbe1tdHhY=;
-        b=rOKJz8bgO4C5MmTQWzotNm+I0p4hiya5f1KE/mnybuyyDzpWDICXpBPwJ3cR0w1nkp
-         dsfiCqIn/50x6vIoWTkhUWkJnFNzBZJwcDn5UeZqfY2W5Tpa8VH6IuvWos6euWROOQFD
-         reHmOUq7HCgOogcVnp9taJaQdaOFGQrkGD2CWVxdzF2O+RrRy+Zyj++k9xXTq5RKl+Om
-         P0VMW2g6AXwNZgLHsglma6XHgu7xyDFAYWijlAV+B+G4CPMpYdCsR1ZB9fJB5dFpdQZk
-         lBZjUaAOr4T1sZGJ/bUU9eYAciNyw7Y2/LHEnySCCojtEqNFFQ0s9KY8lp4opoo+IJxg
-         tE9w==
-X-Gm-Message-State: AO0yUKVSBrLlNMIY37zWSKVLQZ71JroEyAYvxGwZjTfj879tXq06eOAk
-        XYDoWjZmIzD3+z23Eyb/y+6PCww8zN8pNI3v51U=
-X-Google-Smtp-Source: AK7set8xj9lBdPeX62Xma1nch2YV8vlnSz2QDZ40dpKo54vg1GEVrx1VOsdhxrUMU5EtCKQf3KkPFyAZRbFUahGuKdI=
-X-Received: by 2002:a17:906:4c49:b0:87b:fa21:7953 with SMTP id
- d9-20020a1709064c4900b0087bfa217953mr7243891ejw.8.1677052869804; Wed, 22 Feb
- 2023 00:01:09 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Y/laJfFqV4xwHyPJ7m5mnZnkPz7sXnRa7yaLqyRbq4=;
+        b=RQYBXcWwyw6SlhF0liERqeCbw9/hTFYzKC0dml+t0gXd/+rH6X4i0dFy2rc6nTVYAP
+         Gh1qbDq/HKERTvmvbl8of3Yvw3y1CO3y6uQ96I4/MfW5dQgYHQyeGnGE3X9RkI67dX2R
+         3Egix6LtZ9IuqlJ43OhZCRExz2eThuzOcdLD6eyBSb3FDN9RJFf8qVDaVBK5SQTPpe4Q
+         Goq/kb0hVRshnMADr7gQw9Nys6feJ5JwrP4hSHPC4IqG00lx+1Yer814y8gBR9MHwz4T
+         roUc/Dk2A06zQd4NXUhx4LIfKOAH25pCSpDeaCpPtobaQEq3Y8XeS7fmc62m2xSEyg5b
+         h1Ug==
+X-Gm-Message-State: AO0yUKVh57Z/CYHnpfRK7J71L+tSmhmqFWLVv0ZLb2QV/3vuFHnF3vOn
+        fBjde7a8RwW99hjGz7ZR3KJkyebazMedMVhHEX+rEw==
+X-Google-Smtp-Source: AK7set8jBcPu1FfniwnfmSpRHGWbhReDFVjElASgEIaz7mr0mpSwwLePzizwdVl4B4a62CrhB/XmVCgC0WHUB1uKmLg=
+X-Received: by 2002:a05:6102:570b:b0:3fc:58d:f90f with SMTP id
+ dg11-20020a056102570b00b003fc058df90fmr1556195vsb.60.1677052897191; Wed, 22
+ Feb 2023 00:01:37 -0800 (PST)
 MIME-Version: 1.0
-References: <20230221183211.21964-1-clamor95@gmail.com> <20230221183211.21964-5-clamor95@gmail.com>
- <Y/VEUaOIE1mk1utt@sirena.org.uk>
-In-Reply-To: <Y/VEUaOIE1mk1utt@sirena.org.uk>
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-Date:   Wed, 22 Feb 2023 10:00:58 +0200
-Message-ID: <CAPVz0n1kkXQDNhzFoa8xwqaFErNDTHSaqM07TDUHRPSnH+PvkQ@mail.gmail.com>
-Subject: Re: [PATCH v1 04/10] ASoC: tegra: Support RT5631 by machine driver
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
+References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com> <20230221153740.1620529-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230221153740.1620529-5-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 22 Feb 2023 16:01:26 +0800
+Message-ID: <CAGXv+5GKTdGoX61OBb84VeH3nKH2DhN=6h9KEyMuKa2phgcUpw@mail.gmail.com>
+Subject: Re: [PATCH v2 04/10] dt-bindings: gpu: mali-bifrost: Add compatible
+ for MT8195 SoC
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D1=81=D1=80, 22 =D0=BB=D1=8E=D1=82. 2023 =D1=80. =D0=BE 00:23 Mark Brown <=
-broonie@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+On Tue, Feb 21, 2023 at 11:37 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> On Tue, Feb 21, 2023 at 08:32:05PM +0200, Svyatoslav Ryhel wrote:
+> The MediaTek MT8195 SoC has a Mali G57 MC5 (Valhall-JM) and has the
+> same number of power domains and requirements as MT8192 in terms of
+> bindings.
 >
-> > Add Realtek ALC5631/RT5631 codec support to the Tegra ASoC machine driv=
-er.
-> > The RT5631 codec is found on devices like ASUS Transformer TF201, TF700=
-T
-> > and other Tegra-based Android tablets.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > Signed-off-by: Ion Agorria <ion@agorria.com>
->
-> Your signoff should be last if you're the one sending this.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Thanks
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
-> > +static unsigned int tegra_machine_mclk_rate_6mhz(unsigned int srate)
-> > +{
-> > +     unsigned int mclk;
-> > +
-> > +     switch (srate) {
-> > +     case 64000:
-> > +     case 88200:
-> > +     case 96000:
-> > +             mclk =3D 128 * srate;
-> > +             break;
-> > +     default:
-> > +             mclk =3D 256 * srate;
-> > +             break;
-> > +     }
-> > +     /* FIXME: Codec only requires >=3D 3MHz if OSR=3D=3D0 */
-> > +     while (mclk < 6000000)
-> > +             mclk *=3D 2;
->
-> It feels like this is complicated enough and looks like the
-> clocking is flexible enough that it might be easier to just have
-> a table of values or otherwise enumerate standard rates, seeing
-> the code I feel like I need to worry about what happens if we
-> pick a clock rate over 6MHz (the loop could give a value over
-> that), and it's not clear why we have the switch statement rather
-> than just starting at a multiple of 128 and looping an extra time.
->
-> I suspect there's going to be no meaningful downside for having
-> the clock held at over 3MHz on a tablet form factor, the usual
-> issue would be power consumption but between the larger battery
-> size you tend to have on a tablet and the power draw of the
-> screen if that's on it's likely to be into the noise practially
-> speaking.
-
-This is how downstream handled mclk rate for RT5631.
+For future reference, the Mali G57 in the MT8195 has a minor revision of 1,
+while in the MT8192 the minor revision number is 0.
