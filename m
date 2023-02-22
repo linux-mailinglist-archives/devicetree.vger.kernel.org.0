@@ -2,91 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3637F69FD51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 22:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3059969FD6E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 22:05:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232014AbjBVVBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 16:01:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34898 "EHLO
+        id S231896AbjBVVFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 16:05:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231764AbjBVVA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 16:00:56 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6260843919;
-        Wed, 22 Feb 2023 13:00:55 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 17419B8188D;
-        Wed, 22 Feb 2023 21:00:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3343C433D2;
-        Wed, 22 Feb 2023 21:00:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677099652;
-        bh=PhUBOUnu/Py6uAl2pOs4CADrQSyz1xYDNSEEsVhDC/I=;
-        h=In-Reply-To:References:Subject:From:To:Date:From;
-        b=DpJr7k66EtPYQI9xatYOgOw+EE3B/CCLQiS0GREbShipdAQo2k+yVDNFOrSZ9HSy3
-         oPNZFO7RQhLjl5Fr/ea7VW2P3MXfuoM/xqXAw1EJefmt97xtgSo9NhXRqyYA9EbEKj
-         mrYW8ZTs2HmsK8V2my1FWFE1Aee9cHdwtV4ZSMgBNy0gKyEF7KYYbYDpdxCuP+FgX2
-         dFuz0SfaUznSR2cFsYjXym6+EEeFijP9+N85tXppZ+FcJUNi6fCbM9otmhSdRoCIwG
-         VishBR9+2nmfLbgcSc9cz7RidDf8GccP3zOLrzLNL7g1aRaDM5STkB4omyywV+VPSJ
-         dpnBje/xd02Tg==
-Message-ID: <6c497d2d70d215a86be178fc08546f4d.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232523AbjBVVFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 16:05:23 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7EC43904;
+        Wed, 22 Feb 2023 13:04:50 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id b12so35740875edd.4;
+        Wed, 22 Feb 2023 13:04:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jHzJivt9HpdLxfhNJzT2EOfp00j8BcuasYYwqjK38/E=;
+        b=kZTwyGEiPrvsEohuvq8Lu5GaxX8jse1emt8D2g/FYBDH1UIDsSTs323t9g12L1xCjB
+         PZ8uINek2hJc+PBs5jvn3GhmdNZEJ8FpkQCxwdTVA6ny16ddgi73/FYftBpvJSlg35xr
+         xfJlNpj2ZhMhUDVDiF4wdMq83VupBzVujksL/ELDgq5pQ7CCzT5NqWC7ydCQT3TuCmEL
+         Ou2tKRIKMiET2bbGDKfhkMN+jzsuqELy834V0nYHbuh/Z65UBDN/TTvaohmku/wWujdQ
+         BHcbXcglk57Pgx6bY6e9TdKV05ilK0jpkY6JemEFdYUtubrYtAjx/w/WFr1/KiDFKtkW
+         novg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jHzJivt9HpdLxfhNJzT2EOfp00j8BcuasYYwqjK38/E=;
+        b=uTcL1tjCJIYp5sf5PYAYQqJYQugCYy9oPZw1+raVtBfDjvISqnCMcrPm/dHcDdeb3H
+         8kwbItIw1dBC1+PgtWde3NYn0FNrnlvmgQUmZf4Pz0cTa2TZnJJrQ+6G3+WS5QFxtM+k
+         1022S+iMUw2ws3Ua9IPa9HqZId1YHSlD3X1/0pJYBT88a3Pgv2TpSebuIAgTfyLT8m9K
+         XT6yBhayIB3rD+NZeQ0nVEW3WAu2HbGrjV6b1eoQeXL5FxR3RxbUP/pRZw66jzXvxf6h
+         FaQTIWCt8iU2lWOl9YNCxcD6DMevAbrGYgCmMkI9uuZAzlLKJTWai1+TLGisB6WvmK/c
+         2O1A==
+X-Gm-Message-State: AO0yUKXDoG6QTLn6RO4gAM25dE3AymoYnTrA+UBSK2FKoei5j1SfAnh/
+        FcBAwezENqzD0qk0se+B22b4QtfPmbNnDg==
+X-Google-Smtp-Source: AK7set8hkdfsi2LjDwLjtOhQuQIIFKuh9ziV22wwpO8xn5kqBWL0aL5POTZXLTeWhP0ZvK2q9sOm/A==
+X-Received: by 2002:aa7:cf03:0:b0:4ab:4d3c:7e99 with SMTP id a3-20020aa7cf03000000b004ab4d3c7e99mr10214265edy.2.1677099879661;
+        Wed, 22 Feb 2023 13:04:39 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a01-0c22-76c9-eb00-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:76c9:eb00::e63])
+        by smtp.googlemail.com with ESMTPSA id m17-20020a50c191000000b004af6a840f21sm209208edf.15.2023.02.22.13.04.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Feb 2023 13:04:39 -0800 (PST)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jirislaby@kernel.org, neil.armstrong@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 RFC 0/3] meson-uart: Use "divide XTAL by 2" bit on G12A
+Date:   Wed, 22 Feb 2023 22:04:22 +0100
+Message-Id: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <834da7dc-bb5d-3427-43e5-938e40a2d180@loongson.cn>
-References: <20221129034157.15036-1-zhuyinbo@loongson.cn> <20221129034157.15036-2-zhuyinbo@loongson.cn> <31c690a347f858a477bbba9c838984ed.sboyd@kernel.org> <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn> <8332a1cf44b01f06bdd5db9dc5d7f387.sboyd@kernel.org> <01ee3dc6-a868-fd2b-93aa-11e6bdfcc9df@loongson.cn> <9e8952c9415973dc7276185e3cdf5ae7.sboyd@kernel.org> <d92223a0-6d4c-33ea-1473-3d40bdd0ad9e@loongson.cn> <834da7dc-bb5d-3427-43e5-938e40a2d180@loongson.cn>
-Subject: Re: [PATCH v10 2/4] clk: clk-loongson2: add clock controller driver support
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, liupeibao@loongson.cn,
-        loongarch@lists.linux.dev, wanghongliang@loongson.cn,
-        zhuyinbo <zhuyinbo@loongson.cn>
-Date:   Wed, 22 Feb 2023 13:00:50 -0800
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting zhuyinbo (2023-02-21 21:10:14)
->=20
-> >
-> >>> yes, the use of dts doesn't require the use of CLK_OF_DECLARE and can
-> >>> use platform_driver_register
-> >>>
-> >>> but my drvier not use platform_driver_register to register clk and use
-> >>> CLK_OF_DECLARE to match of_clk_init.
-> >> of_clk_init() is there to register clks that are needed for early init,
-> >> i.e. the clockevent/clocksource or the root interrupt controller
-> >> (irqchip). Otherwise, it isn't necessary to register clks via
-> >> of_clk_init().
-> > okay, I got it.
->=20
-> and,=C2=A0 the time driver=C2=A0 get clock by CCF that ask loongson2 cloc=
-k driver=20
-> use CLK_OF_DECLARE
->=20
-> to match of_clk_init.=C2=A0=C2=A0 because=C2=A0 the timer_probe=C2=A0 is =
-very early and the=20
-> timer driver was use TIMER_OF_DECLARE
->=20
-> to match time_probe.
->=20
+This series improves support for UART attached Bluetooth modules on
+Amlogic Meson G12A and newer SoCs. These SoCs also support the "divide
+XTAL by 2" bit which (greatly) reduces jitter when generating baud
+rates such as 1500000 (which is used by the Bluetooth part of the
+RTL8822CS SDIO WiFi and UART Bluetooth combo chip).
 
-If you have a time driver that gets clks, register those early with
-CLK_OF_DECLARE_DRIVER() and then have a platform driver for the rest of
-the clk tree that registers clks later.
+Without this the baud rate calculation is based on the XTAL clock
+(running at 24MHz) divided by 3 (meaning: 8MHz). 8MHz cannot be divided
+with integer division to a 1500000 baud rate. Using the "divide XTAL
+by 2" bit however means that we can achieve 1500000 cleanly, without any
+jitter.
+
+In future we should allow dynamic switching of these UART controller
+internal dividers to pick the best divider automatically for the
+requested baud rate. This however still requires the new compatible
+string - which is added by this series - to enable the "divide XTAL
+by 2" logic on SoCs that support it (G12A and newer).
+
+Why am I sending this as RFC? The last change in this series means
+that the resulting .dtbs are not compatible with old kernels anymore.
+My understanding is that this is fine and only the opposite case (using
+old .dtbs on new kernels) has to be supported (which is still the case
+with this series). I'd like to get some confirmation for this.
+
+
+[0] https://lore.kernel.org/linux-bluetooth/3B9D4DB2-D2CD-44FE-817A-F6EA8A0AD734@gmail.com/
+
+
+Martin Blumenstingl (3):
+  dt-bindings: serial: amlogic,meson-uart: Add compatible string for
+    G12A
+  tty: serial: meson: Add a new compatible string for the G12A SoC
+  arm64: dts: meson-g12-common: Use the G12A UART compatible string
+
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi      | 10 +++++-----
+ drivers/tty/serial/meson_uart.c                        |  8 ++++++--
+ 3 files changed, 13 insertions(+), 7 deletions(-)
+
+-- 
+2.39.2
+
