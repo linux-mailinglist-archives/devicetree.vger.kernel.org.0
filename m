@@ -2,55 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0948369F759
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:05:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF83069F783
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 16:16:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232231AbjBVPE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 10:04:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53642 "EHLO
+        id S231842AbjBVPQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 10:16:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231916AbjBVPE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:04:58 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDEBF36FFA;
-        Wed, 22 Feb 2023 07:04:56 -0800 (PST)
+        with ESMTP id S230480AbjBVPQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 10:16:18 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50582360B8;
+        Wed, 22 Feb 2023 07:16:17 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6FFE2B815BA;
-        Wed, 22 Feb 2023 15:04:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE0AFC433EF;
-        Wed, 22 Feb 2023 15:04:51 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F1E2FB815B4;
+        Wed, 22 Feb 2023 15:16:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A3DAC433EF;
+        Wed, 22 Feb 2023 15:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677078294;
-        bh=tcsmg/sPzPDrl5ZpeptgJmANUp2vYmuC3kMeiCF/Km0=;
+        s=k20201202; t=1677078974;
+        bh=wUslbHkWZIpoEVNM5LtQHHbJ94IyutGQuJabE24DqWE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l5nvHoeXHFHOuXG96S+1JxOCjCna29DnzjJ3+dP4vhCKSRMJ9/tabjNGkZpLUKUt9
-         lXcAuyBBsdUH8mnnX/nKGWKJdcndzgbZFg76arMc3d4+UuOo2xA9vPJ50ecHcsgkCU
-         /iYqn6GhBz4p+8R6IOwqUtsLMm66J/LcfExVYg2vXfyex+uRlUYYuNlbvzopouejKi
-         mAcupyCwIEXvi0kkRu4iUrNKsaxgAkmUHwQLSKu55GEv1G5s61MO8BJOyM5Dh4Tyn3
-         DM+cARLaD7CfQawBHWL5jZiI+9Suqo/sOmITtq7NRkodVaH35cTvKr1mKvLa0mXSAq
-         Ws7560F4hIbBQ==
-Date:   Wed, 22 Feb 2023 15:04:48 +0000
+        b=DAT8rKh33CtVSEYanh8svT89vw8xxLp9ZiBkoGZrikdmQLTe1jJy9FibMbJZ/8dj5
+         J6iZWIDep2t0g79YX2tw+/gt6pZUCsaFwu811Tcjx+06elEPRcCX0eB3BTYAH0413V
+         s/EBlcteHGkrOw/znNzb7Ssv0/JauJsEsfeYscm3NrXOawlIPB70mlqDdpCKLB5axt
+         E1WlAvsj/fM2HmAGcaY6XFvHAh57MdHOGgDuXHgG01IYWpYZ39nq+c2QYmHKJAzwEn
+         B0q5fbmUJOyuaj9ZqvH4XHF1FfRphGRMaGC+7Qc4m6Ee0hnFKGVwVRtIkeykeDcR9l
+         6zT9tkRgBV4PA==
+Date:   Wed, 22 Feb 2023 15:16:08 +0000
 From:   Lee Jones <lee@kernel.org>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, andy.shevchenko@gmail.com,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/6] Add a multicolor LED driver for groups of
- monochromatic LEDs
-Message-ID: <Y/YvEHohk1FLOata@google.com>
-References: <20230102081021.138648-1-jjhiblot@traphandler.com>
- <Y7xMogUbXCFktH65@google.com>
- <4994ad51-7820-538a-723d-97cb17362b34@traphandler.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/7] dt-bindings: mfd: qcom,spmi-pmic: Add pattern
+ property for phy
+Message-ID: <Y/YxuM67on1X9NUA@google.com>
+References: <20230208190200.2966723-1-abel.vesa@linaro.org>
+ <20230208190200.2966723-3-abel.vesa@linaro.org>
+ <Y+uqcb+CZUy/8GYh@matsya>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4994ad51-7820-538a-723d-97cb17362b34@traphandler.com>
+In-Reply-To: <Y+uqcb+CZUy/8GYh@matsya>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,81 +64,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Feb 2023, Jean-Jacques Hiblot wrote:
+On Tue, 14 Feb 2023, Vinod Koul wrote:
 
-> Hi Pavel,
+> On 08-02-23, 21:01, Abel Vesa wrote:
+> > The phy pattern property will be used for providing eUSB2 repeater
+> > functionality. This will be modelled as a Qualcomm PHY driver.
 > 
-> Would you be kind enough and have a look at this series ? It may not be the
-> prettiest series of all,  but the feature make senses as it provides an
-> atomic way of handling color leds from user space.
+> Lee,
 > 
-> Any feedback would be appreciated.
+> Can I get your ack and merge this thru phy tree
 
-If Pavel doesn't get back to you soon, I'll do my best to take a look
-through.
+Acked-by: Lee Jones <lee@kernel.org>
 
-> On 09/01/2023 18:19, Lee Jones wrote:
-> > On Mon, 02 Jan 2023, Jean-Jacques Hiblot wrote:
-> > > Some HW design implement multicolor LEDs with several monochromatic LEDs.
-> > > Grouping the monochromatic LEDs allows to configure them in sync and use
-> > > the triggers.
-> > > The PWM multicolor LED driver implements such grouping but only for
-> > > PWM-based LEDs. As this feature is also desirable for the other types of
-> > > LEDs, this series implements it for any kind of LED device.
-> > Another for Pavel.
-> > > changes v6->v7:
-> > >   - in led_mcg_probe() increment the counter at the end of the loop for
-> > >     clarity.
-> > > 
-> > > changes v5->v6:
-> > >   - restore sysfs access to the leds when the device is removed
-> > > 
-> > > changes v4->v5:
-> > >   - Use "depends on COMPILE_TEST || OF" in Kconfig to indicate that OF
-> > >     is a functional requirement, not just a requirement for the
-> > >     compilation.
-> > >   - in led_mcg_probe() check if devm_of_led_get_optional() returns an
-> > >     error before testing for the end of the list.
-> > >   - use sysfs_emit() instead of sprintf() in color_show().
-> > >   - some grammar fixes in the comments and the commit logs.
-> > > 
-> > > changes v2->v3, only minor changes:
-> > >   - rephrased the Kconfig descritpion
-> > >   - make the sysfs interface of underlying LEDs read-only only if the probe
-> > >     is successful.
-> > >   - sanitize the header files
-> > >   - removed the useless call to dev_set_drvdata()
-> > >   - use dev_fwnode() to get the fwnode to the device.
-> > > 
-> > > changes v1->v2:
-> > >   - Followed Rob Herrings's suggestion to make the dt binding much simpler.
-> > >   - Added a patch to store the color property of a LED in its class
-> > >     structure (struct led_classdev).
-> > > 
-> > > 
-> > > Jean-Jacques Hiblot (6):
-> > >    devres: provide devm_krealloc_array()
-> > >    leds: class: simplify the implementation of devm_of_led_get()
-> > >    leds: provide devm_of_led_get_optional()
-> > >    leds: class: store the color index in struct led_classdev
-> > >    dt-bindings: leds: Add binding for a multicolor group of LEDs
-> > >    leds: Add a multicolor LED driver to group monochromatic LEDs
-> > > 
-> > >   Documentation/ABI/testing/sysfs-class-led     |   9 +
-> > >   .../bindings/leds/leds-group-multicolor.yaml  |  64 +++++++
-> > >   drivers/leds/led-class.c                      |  65 +++++--
-> > >   drivers/leds/rgb/Kconfig                      |  10 ++
-> > >   drivers/leds/rgb/Makefile                     |   1 +
-> > >   drivers/leds/rgb/leds-group-multicolor.c      | 166 ++++++++++++++++++
-> > >   include/linux/device.h                        |  13 ++
-> > >   include/linux/leds.h                          |   3 +
-> > >   8 files changed, 317 insertions(+), 14 deletions(-)
-> > >   create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> > >   create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
-> > > 
-> > > -- 
-> > > 2.25.1
-> > > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> > 
+> > The v4 is here:
+> > https://lore.kernel.org/all/20230207135551.1418637-3-abel.vesa@linaro.org/
+> > 
+> > Changes since v4:
+> >  * none
+> > 
+> > Changes since v3:
+> >  * made this the second patch rather than the first in the series
+> > 
+> >  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> > index adf88245c409..1e6fadec1301 100644
+> > --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> > @@ -135,6 +135,10 @@ patternProperties:
+> >      type: object
+> >      $ref: /schemas/pinctrl/qcom,pmic-gpio.yaml#
+> >  
+> > +  "phy@[0-9a-f]+$":
+> > +    type: object
+> > +    $ref: /schemas/phy/qcom,snps-eusb2-repeater.yaml#
+> > +
+> >    "pon@[0-9a-f]+$":
+> >      type: object
+> >      $ref: /schemas/power/reset/qcom,pon.yaml#
+> > -- 
+> > 2.34.1
+> 
+> -- 
+> ~Vinod
 
 -- 
 Lee Jones [李琼斯]
