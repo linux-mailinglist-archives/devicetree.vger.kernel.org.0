@@ -2,131 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C9969FB51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 19:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C7669FBA0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 19:58:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjBVSrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 13:47:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54636 "EHLO
+        id S231127AbjBVS6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 13:58:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232193AbjBVSri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 13:47:38 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBB57DA4
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:46:58 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id p26so6428074wmc.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:46:58 -0800 (PST)
+        with ESMTP id S232318AbjBVS6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 13:58:05 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A086C149
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:58:04 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id p26so6454519wmc.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 10:58:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=skuCIMzdXVRwoYI+VmugGgits0upO5wf/eyqFb3T6p0=;
-        b=ZRVz9U8eOgOEdv9yLJQJC9zAil69EdrhWJT9TuFbvf8r9kE2tIwdmF5Oy5d98mYnXa
-         sDK1BjxsSP49nTHhvFlr/fwV0qcVQbYE1u/VuKH1u4LHc4WwDN8SdtRsbdFT+ijVXE04
-         4k8fEfWO8SByWXviMlERIjWJF/ud+GOHUNvaV6ld5W0TkbMleggjJj+zkOxxSazNW5E4
-         3br8kRp+aasBSQOyuG2fyjee+po5ajeuLg094pyZg14QcXc4RckisHauGy9z7uh9nI+W
-         ac/wja/VbT1+vECtjfCyDLTaF8P3Ia1ncXCa/wjRQNrbGZALuYIkwDWFyzrnBA+/0zCH
-         1UWA==
+        bh=kZExv16LneJdJojxchxyl8kHM1ihqG5eeGh+aD+CDB8=;
+        b=XesKCxOtC6YIaWHD4mg2rAnro0pj3DqnIlLJmusRMCM1rKT4maaoKLEOAjqrK2X6TJ
+         nmrzxsoINL2Vz8EwumJ6IQazQ97ME1T23Y9gQEGIM6DkkI8y3LERzJVJcK2PpDgVYKgW
+         XN8y4L9zOX2KHj4SjW6X3u8y1vfTrR8TkUD4SOquixxaajLT6MZqQdt8EXRC2dN7nQcO
+         gHfGaeVAV7DnBxnu3B5jHLP367O7tpc65SFQg1DwImC7JQb81vU0RbT+qhYsDh9UqXhj
+         hhrbf9RZhN/2yQpYFBt1tveu1o0/KSuVB9Iqn/qFkNYe9+XO8C+7Ui0oFkfnh79MaYSr
+         hL0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=skuCIMzdXVRwoYI+VmugGgits0upO5wf/eyqFb3T6p0=;
-        b=ucLd/bwBDZk2euqx6uH68ld2YBEfoX+G7ke81/HGtkF6GYl3awHL0c/ajj21sU9XSy
-         ocjcGSldg9DD89TwQpwMuIRIwYTLzFrhq5PEK56srVgNRvnQxho+MyJLdqT5UmnIT6aW
-         8uirpbpskwAiuy0kPA2jngQ6fRYkexAk2b1Bq1QHYWzMFYAPF0D1YsVSMF7v5+Qoy1hj
-         U1dbl55LU1vZs4mcF24oVwG3udd93nMeiSwALjyplv2KfWIB20x+LK1fExWk8hH7kXoF
-         TdMQDWS9gsdGpm5LTR/q+bYx1nry3WgCH+lYDBxmWYrQ+OpC6D6neaZ6/aNYW4h4o9Di
-         iEng==
-X-Gm-Message-State: AO0yUKWlf0UYGM2HM1YZpQMJK7bJo4L3g6C4RF1aNhSD5VE+4oJepjrr
-        hhBQgLcY7iTQbQ3Clzx3XkpOsw==
-X-Google-Smtp-Source: AK7set9+LFmeEbLy5YAz6Ze7EnEQPH7JVkRV7xkmNU+cJ2jCtT0NaFWu+u650El0GShdrYOP4Dz91A==
-X-Received: by 2002:a05:600c:3196:b0:3da:acb1:2f09 with SMTP id s22-20020a05600c319600b003daacb12f09mr6996815wmp.19.1677091587670;
-        Wed, 22 Feb 2023 10:46:27 -0800 (PST)
+        bh=kZExv16LneJdJojxchxyl8kHM1ihqG5eeGh+aD+CDB8=;
+        b=fQ4iQblTKdzBNImcruNttiMJ2PbzG5nf/MIVWflbrX4B+C7ldUFi6noyMAI5FJhRD6
+         JmebtR+G+A4hLbSN1qNCsa39/Ubb3hTGB+XWkbTRuntjW+Q9b7y5chkSLRDGvcdxzxbj
+         SvSG9/aLHtsRmnBj3cwN9cmePXbfOkCx4iKkv6xSdB8vV89IARmR94YLYfinrx/UlkoL
+         SZXCtVnGrsh1hN8X0NWKOmTnyQJc/BGHkDTaXe4iaEZj/aYdLTsPubqxwnH0yudk5UZB
+         rFy2bX3YUZr4MHGqMRtrsyU9l8Ow1PxE0EJC+e4kueNkLKSH9PAp5lrsQdO3Vs5bvd9y
+         ss5g==
+X-Gm-Message-State: AO0yUKX0smNugNY+VlBQWWrTzBGTX2A09VFTK5/NAlGrJ68ERazCBK4e
+        QLg+xtNiFWBRFCht7B+aCA1l0Q==
+X-Google-Smtp-Source: AK7set9xOyM/dCt/cz/X48ePaa+6DCGe05eitjZbvtPxZdqVp2/OG8ogIQc4Hu4YGKAOEvJeOyG3nQ==
+X-Received: by 2002:a05:600c:32a7:b0:3db:15b1:fb28 with SMTP id t39-20020a05600c32a700b003db15b1fb28mr7423858wmp.19.1677092282743;
+        Wed, 22 Feb 2023 10:58:02 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e7-20020adffc47000000b002c70f5627d5sm210876wrs.63.2023.02.22.10.46.26
+        by smtp.gmail.com with ESMTPSA id bh21-20020a05600c3d1500b003e2052bad94sm2790414wmb.33.2023.02.22.10.57.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 10:46:27 -0800 (PST)
-Message-ID: <06f29d66-f16a-039c-ecd0-155bdcce00c1@linaro.org>
-Date:   Wed, 22 Feb 2023 19:46:25 +0100
+        Wed, 22 Feb 2023 10:58:02 -0800 (PST)
+Message-ID: <e6b2a6f4-d710-7f74-e85d-1cd3f5b96460@linaro.org>
+Date:   Wed, 22 Feb 2023 19:57:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 2/3] auxdisplay: ht16k33: Make use of
- device_get_match_data()
+Subject: Re: [RFC PATCH 1/6] dt-bindings: iio: light: Support ROHM BU27034
 Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Robin van der Gracht <robin@protonic.nl>,
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Raul E Rangel <rrangel@chromium.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-usb@vger.kernel.org,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
-References: <20230221133307.20287-1-andriy.shevchenko@linux.intel.com>
- <20230221133307.20287-3-andriy.shevchenko@linux.intel.com>
- <Y/TJs+Arban0ats8@smile.fi.intel.com>
- <be203dfd290e67c8ce74d11c5c9478a4@protonic.nl>
- <Y/UD3HWNy8uKYShC@smile.fi.intel.com>
- <0235f0fed989a8b027db720663699f5d@protonic.nl>
- <Y/ZKdN4nuHcL4DgE@smile.fi.intel.com> <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Liam Beguin <liambeguin@gmail.com>,
+        Peter Rosin <peda@axentia.se>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1677080089.git.mazziesaccount@gmail.com>
+ <af211ec180d91a13862630e635019ebe03d4be31.1677080089.git.mazziesaccount@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
+In-Reply-To: <af211ec180d91a13862630e635019ebe03d4be31.1677080089.git.mazziesaccount@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2023 18:20, Andy Shevchenko wrote:
->>
->>> Which effectively breaks i.e. user-space instantiation for other display
->>> types which now do work due to i2c_of_match_device().
->>> (so my suggestion above is not sufficient).
->>>
->>> Are you proposing extending and searching the I2C ID table to work around
->>> that?
->>
->> See (1) above. This is the downside I have noticed after sending this series.
->> So, the I²C ID table match has to be restored, but the above mentioned issues
->> with existing table are not gone, hence they need to be addressed in the next
->> version.
+On 22/02/2023 17:14, Matti Vaittinen wrote:
+> ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
+> capable of detecting a very wide range of illuminance. Typical application
+> is adjusting LCD and backlight power of TVs and mobile phones.
 > 
-> I see now what you mean. So, we have even more issues in this driver:
-> - I²C table is not in sync with all devices supported
+> Add initial dt-bindings.
 
-Does anything actually rely on i2c_device_id table? ACPI would match
-either via ACPI or OF tables. All modern ARM systems (e.g. imx6) are
-DT-based. Maybe just drop the I2C ID table?
-
-> - the OF ID table seems has something really badly formed for adafruit
->   (just a number after a comma)
-
-Maybe it is a model number? It was documented:
-Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+Driver can be "initial", but bindings better to be closer to complete,
+even if not used by the driver currently.
 
 > 
-> The latter shows how broken it is. The I²C ID table mechanism is used as
-> a backward compatibility to the OF. Unfortunately, user space may not provide
-> the data except in form of DT overlays, so for the legacy enumeration we
-> have only device name, which is a set of 4 digits for adafruit case.
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+>  .../bindings/iio/light/rohm-bu27034.yaml      | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/rohm-bu27034.yaml
 > 
-> Now imagine if by some reason we will get adafruit2 (you name it) with
-> the same schema. How I²C framework can understand that you meant adafruit
-> and not adafruit2? Or did I miss something?
-> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/rohm-bu27034.yaml b/Documentation/devicetree/bindings/iio/light/rohm-bu27034.yaml
+> new file mode 100644
+> index 000000000000..a3a642c259e8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/rohm-bu27034.yaml
+
+
+Comma as a separator, so:
+rohm,bu27034.yaml
+
+
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/rohm-bu27034.yaml#
+
+With filename and $id fix:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
