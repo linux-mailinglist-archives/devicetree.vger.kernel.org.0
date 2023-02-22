@@ -2,159 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8382669F093
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8C4869F09A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:47:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230363AbjBVIo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 03:44:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33780 "EHLO
+        id S230468AbjBVIq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 03:46:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230468AbjBVIo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:44:56 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07662E815
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:44:53 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id bt28so255043wrb.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:44:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ja0PIExg7QtVH8CkMZQt+gow5bQ/IjTXAb1rvOQO5SE=;
-        b=n3aTRm08QWqkCXP6vWRdaQXRkdjlZsw1/FZSbNhF5J2z38ZrYuFSqUuDpdsxR6Rl9U
-         4ln0hp9gHLzfu91SseG8N2Fmmmdd0uoRNqJl8LrmS2mYCSGPUvdqjwL/Un1kbTjwYUdQ
-         ckCovcEjCdsmNVQVuB23xCWDuQASxGOCB9x2KFWxyEvqxOOmnyRMzuPoigQJ/bCBbycD
-         7o30YI4FgReuJWZuSjZImRX2Pb+DYHPg2ENcUAd5nuEAgz72e3jtG1/5wIZrqiNmzaTO
-         LULu8Ai4TeFabQ+clEZqlOhMdlsh+5rzg+uu95PBNi5J8p5ad/1pG2JhIDSv/E0V4ChW
-         q0mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ja0PIExg7QtVH8CkMZQt+gow5bQ/IjTXAb1rvOQO5SE=;
-        b=TcXcR9S1GmGR5x/ANia28CCfqKLp8teH9HbW5l2N2uhrqRoRWvS7Mu/3JQ0CSDUeDQ
-         Ie9dHipO1ZaPOHA+BXneBdanE+bLoSNfRN3A+KQFBDJWRVIRwNDwOlKC21QKtLmr0/wy
-         xJuO6vnPiKSlcu/5xwCtbWhT9zhyfWzMTxPJ7LYG9EJkeJRkSFjHknet83iVcL+7FEuM
-         7AQuLUS83FwByR3zHpS7ayOXFNreZ66sX+7sXeWgb/QotJuD1fTgKIx5nVS3N8d+Jqdn
-         3/25lcmcRQkO/GE1ygU2DDdhzI3J+g11NCwvZlIyWk3qwrvjpxmNGeM/Wv8z3hyxSYlE
-         6iKg==
-X-Gm-Message-State: AO0yUKWRpzZdDF5WdRWDgqECjfhafsFJo7G008NmxvmoAcDzhDlUJdsR
-        J0Dhr/zGJLre3W89sZltuz2Kaw==
-X-Google-Smtp-Source: AK7set/INtiIeiEqLq31GfS7NEouC9iSfOFGLmINDVsTxUJtiLClf3hIlMhSpnkMFZiPKAEgx/xM/w==
-X-Received: by 2002:adf:fe07:0:b0:2c3:f0ed:4beb with SMTP id n7-20020adffe07000000b002c3f0ed4bebmr4635634wrr.70.1677055492115;
-        Wed, 22 Feb 2023 00:44:52 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a5-20020a05600c224500b003dc1a525f22sm4428625wmm.25.2023.02.22.00.44.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Feb 2023 00:44:51 -0800 (PST)
-Message-ID: <ef019382-61a8-c663-773b-21791413889d@linaro.org>
-Date:   Wed, 22 Feb 2023 09:44:48 +0100
+        with ESMTP id S230262AbjBVIq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:46:58 -0500
+Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBB33346E
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:46:56 -0800 (PST)
+Received: by mail.tryweryn.pl (Postfix, from userid 1002)
+        id 5CB7BA4828; Wed, 22 Feb 2023 08:46:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
+        t=1677055614; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
+        h=Date:From:To:Subject:From;
+        b=jhnUcpgkETLMROujq6G5JV5Tabu7bk5wSEbfr7KXu/wZ/YjbCHr7eHLjrS6ftHPUG
+         phBsjuxwSRaSnJcYhbFleLncZHg3qWJzkVNzd9irccuI/uv9nIVGT3yvlKfEF/liDj
+         3onXuGFs8RVvLe7TBkhK6FVvEv4C03Ilj/n5kZsqDtiJuPqkrZY2muXsF2U3337bpJ
+         HBQjovqeLR9K1bih2v9/ZmCHxRc/eQQwIjhVlEUUs8iIbdWO+/TxE90Cse7cL7pRyv
+         bPLWRA4I3vuX/8uZDqFdPGl6GkGb7MXh7Y3nDIV+tPPsZj0d0MhFdGnh6JIxeLUqGs
+         v4YwuzvPN0Cng==
+Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 08:45:29 GMT
+Message-ID: <20230222074500-0.1.8b.314x8.0.j7hekpnpg6@tryweryn.pl>
+Date:   Wed, 22 Feb 2023 08:45:29 GMT
+From:   "Karol Michun" <karol.michun@tryweryn.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.tryweryn.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 2/3] dt-bindings: net: bluetooth: Add NXP bluetooth
- support
-Content-Language: en-US
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        alok.a.tiwari@oracle.com, hdanton@sina.com,
-        ilpo.jarvinen@linux.intel.com, leon@kernel.org
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
-        rohit.fule@nxp.com, sherry.sun@nxp.com
-References: <20230221162541.3039992-1-neeraj.sanjaykale@nxp.com>
- <20230221162541.3039992-3-neeraj.sanjaykale@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230221162541.3039992-3-neeraj.sanjaykale@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 17:25, Neeraj Sanjay Kale wrote:
-> Add binding document for NXP bluetooth chipsets attached over UART.
-> 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
-> v2: Resolved dt_binding_check errors. (Rob Herring)
-> v2: Modified description, added specific compatibility devices, corrected indentations. (Krzysztof Kozlowski)
-> v3: Modified description, renamed file (Krzysztof Kozlowski)
-> v4: Resolved dt_binding_check errors, corrected indentation. (Rob
-> Herring, Krzysztof Kozlowski)
-> ---
->  .../bindings/net/bluetooth/nxp,w8987-bt.yaml  | 38 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp,w8987-bt.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,w8987-bt.yaml
-> new file mode 100644
-> index 000000000000..de361ce4ab73
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,w8987-bt.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/bluetooth/nxp,w8987-bt.yaml#
+Dzie=C5=84 dobry!
 
-I think list of compatibles changed... now they are nxp,88w8987-bt, so
-shouldn't the filename be "nxp,88w8987-bt.yaml"?
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Bluetooth chips
-> +
-> +description:
-> +  This binding describes UART-attached NXP bluetooth chips.
-> +  These chips are dual-radio chips supporting WiFi and Bluetooth.
-> +  The bluetooth works on standard H4 protocol over 4-wire UART.
-> +  The RTS and CTS lines are used during FW download.
-> +  To enable power save mode, the host asserts break signal
-> +  over UART-TX line to put the chip into power save state.
-> +  De-asserting break wakes-up the BT chip.
-> +
-> +maintainers:
-> +  - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,88w8987-bt
-> +      - nxp,88w8997-bt
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    uart2 {
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
 
-This is a friendly reminder during the review process.
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
 
-Thank you.
 
-Best regards,
-Krzysztof
-
+Pozdrawiam
+Karol Michun
