@@ -2,122 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C7569F076
-	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:39:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFD369F080
+	for <lists+devicetree@lfdr.de>; Wed, 22 Feb 2023 09:40:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231175AbjBVIjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 03:39:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57638 "EHLO
+        id S231297AbjBVIkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 03:40:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbjBVIjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:39:36 -0500
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 071751E5CA
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:39:35 -0800 (PST)
-Received: by mail-vs1-xe32.google.com with SMTP id m10so5754340vso.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:39:34 -0800 (PST)
+        with ESMTP id S229612AbjBVIkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 03:40:14 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C030436098
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:40:12 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id s26so27167341edw.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 00:40:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dmszevi2SksTWD2ubcICrn01x9b0o7eFEQpxMDnqSAk=;
-        b=em4VVRc2okwRN3SQHzajqxgirZ/Imo8edo1OC+ktYXzjmKrRYasm0n9PVupus++Icp
-         6GWdGZIKZNg7GzwyuGcWREv+Elvk8JiNhCCcTFJT6BuqxpoYHSEcaUfRSk6rBbUy3NYb
-         ThcqWvbcTjsO7bJAETYYb5RiVmz0OWMt4SqkU=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lR+ISQQSb0vmBiGpqXlpCKGu34UyCzsJKioNfm+3xdA=;
+        b=KIr+5u8tc47eHv6DkkJqDeie1JQk4hY22L8yH26fDT81Zx+yYccFRNvZfGErS/JwgE
+         CkFTu4B3dTBom6tlDAwOKATkapR/iOJYg+iJK4VHTkXHpOfJVFgSH5DXftj8ZU/agotq
+         35qCt4kfM1oA7fUFnXluAKK8qz9YXpPBBmC4oqmjx1kpKurIgc2q5bHCEJIImZa6Vl29
+         LDxG5C/+Io3PGuebh/xBRhqYtOJ5AbzvYMLWtPKn6Hw37AKvuI/w/050rIMCDvSIGFdj
+         TY7LrQmsvqagR/tB59EO3jMP3aZyI9yO1hgVgCjWYZlMnCRN+9T20pPlUrxmfQvsNtSi
+         IBgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dmszevi2SksTWD2ubcICrn01x9b0o7eFEQpxMDnqSAk=;
-        b=GsdJVGii1PP0hTIONaZwVve9dHz6bI5gMLVkvjmve3SUM/QqaSTkMh1raz7eSB32Tp
-         0ut9q5KKPW9arniRdiFITYQQwXI9inNjYzAfK/zna4HMbFq3G5Z6x8Bu4hr6pDbwWdZS
-         kpc/hbwpViKUOxw9Dxl84QUOdkoBzCYK+0/y/kbDlqWIUexjE2wKb/VAxUP+bOOxHomi
-         btU/M55R3j8ZCukkbkd2CGEX2hrclqc1KEprz1PKm6lJn8nbmL/lu498IIioQI9OHxIe
-         sL3kvDXfapUVG+5Sqd7TZpNO0IURpJ6rbCFneEneJKBJBDZM4HR3QEHGHioCEIsM5oHH
-         h1ww==
-X-Gm-Message-State: AO0yUKVA85lyS3GYzHrRF/7OJPaTRQf6i2CoWbliJFt08QgGRXaSsBnl
-        EJ0gFRHsEV1752uknku6K9XUdcWA1xBCzNXJVg/Rpg==
-X-Google-Smtp-Source: AK7set82JgoEJwmJ5PvwiX+SnPjQIuZJcVlZYYzuz1but6a8Se983ORppZPhV01+jbcYZHkfkMc5ZWYwUsQab1btvKQ=
-X-Received: by 2002:a05:6102:570b:b0:3fc:58d:f90f with SMTP id
- dg11-20020a056102570b00b003fc058df90fmr1572193vsb.60.1677055174148; Wed, 22
- Feb 2023 00:39:34 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lR+ISQQSb0vmBiGpqXlpCKGu34UyCzsJKioNfm+3xdA=;
+        b=Uj3Wiojy1e4yeuZCxvDdhcMD5O6s73loCwFtg3GpSHMzXoOrey3OkuHx8uTFQPKRkS
+         k8sCihSTcNvfcC8q/D67OZak8TifS+rU9qUwpX96K0V/7BnZBbx95Q6Emm06lCha0V9P
+         s8XqP1uQznX8PM9AUFWNz4wDYrQfv6KQOkSsHuYKRsRG97Zkie6e3qkYTII59myiRWQW
+         DyQcPM528dv63DjQJxP2EKC6BPniJs3EEVSseI/N1RfJB+zE3tzQfHopDbtKoaf6twao
+         NIYYjqw5Zn6AvYwm9GLJrx27Ey8HsGL3BgwkoVijd+gTjxh4poSdtsDyo0LaxZsyjXy5
+         CRcA==
+X-Gm-Message-State: AO0yUKU1K9QhPHDxPscWjCwYYHIRTzpu+MLNoyRp5XXRHLPrJCMgPl2T
+        J6urAAWmieMZsbDgk2QBbIN/gw==
+X-Google-Smtp-Source: AK7set8iXoGezZDOE3ZDJrGYpXVqhY+danP4XJR6egsj0cAxZ2DnpxbBKjpo8ym6+Oa7myY+JjJauQ==
+X-Received: by 2002:a17:907:3e22:b0:8e3:8543:8e71 with SMTP id hp34-20020a1709073e2200b008e385438e71mr5006300ejc.40.1677055211264;
+        Wed, 22 Feb 2023 00:40:11 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id 6-20020a170906318600b008e03af7e7c9sm1708450ejy.188.2023.02.22.00.40.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Feb 2023 00:40:10 -0800 (PST)
+Message-ID: <939ffe2e-9b03-528a-3d27-e9eac7a04ded@linaro.org>
+Date:   Wed, 22 Feb 2023 09:40:08 +0100
 MIME-Version: 1.0
-References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com> <Y/XKhg+wultVbEWW@google.com>
-In-Reply-To: <Y/XKhg+wultVbEWW@google.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 22 Feb 2023 16:39:23 +0800
-Message-ID: <CAGXv+5GV2BuQW+XDBzpiWwXDBi0zbjA4dF3_rD62y+B_qK_xOg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] Panfrost: Improve and add MediaTek SoCs support
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
-        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 1/4] dt-bindings: mfd: Add DT bindings for TI TPS6594
+ PMIC
+Content-Language: en-US
+To:     Julien Panis <jpanis@baylibre.com>, lee@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        corbet@lwn.net
+Cc:     hdegoede@redhat.com, eric.auger@redhat.com, jgg@ziepe.ca,
+        razor@blackwall.org, suma.hegde@amd.com,
+        stephen@networkplumber.org, arnd@arndb.de,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-doc@vger.kernel.org, eblanc@baylibre.com,
+        jneanne@baylibre.com
+References: <20230216114410.183489-1-jpanis@baylibre.com>
+ <20230216114410.183489-2-jpanis@baylibre.com>
+ <c50503f0-dce1-a3b0-2973-8a22b5ef8bc2@linaro.org>
+ <4e64838c-b727-923b-b6d5-413a0681977c@baylibre.com>
+ <8de5a3bb-a0b1-8d69-cf61-0c33f42c56f6@linaro.org>
+ <85183c04-40e3-fd97-c4ca-06795fe99e40@baylibre.com>
+ <ce5f8e9c-0e05-3391-1393-25ea8086f10c@linaro.org>
+ <633753f7-2b8a-15bb-ba55-1c5a6f2eb3f1@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <633753f7-2b8a-15bb-ba55-1c5a6f2eb3f1@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 22, 2023 at 3:55 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->
-> On Tue, Feb 21, 2023 at 04:37:30PM +0100, AngeloGioacchino Del Regno wrote:
-> > Changes in v2:
-> >  - Add power-domain-names commit from Chen-Yu to the series
-> >  - Kept sram-supply in base schema, overridden for non-MediaTek
-> >  - Added Reviewed-by tags from Steven Price to the driver commits
-> >    (as released in reply to v1's cover letter - thanks!)
-> >
-> > This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
-> > and improves MT8183 support: since the mtk-regulator-coupler driver
-> > was picked, it is now useless for Panfrost to look for, and manage,
-> > two regulators (GPU Vcore and GPU SRAM) on MediaTek;
-> >
-> > The aforementioned driver will take care of keeping the voltage
-> > relation (/constraints) of the two regulators on its own when a
-> > voltage change request is sent to the Vcore, solving the old time
-> > issue with not working DVFS on Panfrost+MediaTek (due to devfreq
-> > supporting only single regulator).
-> >
-> > In the specific case of MT8183, in order to not break the ABI, it
-> > was necessary to add a new compatible for enabling DVFS.
-> >
-> > Alyssa Rosenzweig (3):
-> >   drm/panfrost: Increase MAX_PM_DOMAINS to 5
-> >   drm/panfrost: Add the MT8192 GPU ID
-> >   drm/panfrost: Add mediatek,mt8192-mali compatible
-> >
-> > AngeloGioacchino Del Regno (6):
-> >   dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains
-> >     variation
-> >   dt-bindings: gpu: mali-bifrost: Allow up to 5 power domains for MT8192
-> >   dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
-> >   dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
-> >   dt-bindings: gpu: mali-bifrost: Add a compatible for MediaTek MT8186
-> >   drm/panfrost: Add new compatible for Mali on the MT8183 SoC
-> >
-> > Chen-Yu Tsai (1):
-> >   dt-bindings: gpu: mali-bifrost: Add power-domain-names to base schema
-> >
-> >  .../bindings/gpu/arm,mali-bifrost.yaml        | 67 ++++++++++++++++++-
-> >  drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
-> >  drivers/gpu/drm/panfrost/panfrost_drv.c       | 28 ++++++++
-> >  drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 +++
-> >  4 files changed, 101 insertions(+), 4 deletions(-)
->
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
->
-> on MT8183, MT8186, MT8192, MT8195 with glmark2.
+On 21/02/2023 16:18, Julien Panis wrote:
+>>>> It looks the property should be only in the drivers, not in the DT.
+>>> I will remove 'ti,use-crc;' property from the DT. This will be only in
+>>> the driver.
+>>> Do you also consider that a property such as 'ti,is-secondary-pmic;'
+>>> would not be acceptable either ? From driver point of view, this
+>>> primary/secondary role on SPMI bus is a 'built-in' property of the
+>>> PMIC (CRC must be enabled only via primary PMIC but using the
+>>> primary PMIC does not imply that CRC is necessarily used).
+>> Depends, I am not sure. Are the PMICs in some kind of hierarchical
+>> topology? Like one is parent of another? If not (so both are
+>> parallel/equal children of SPMI bus), then some property to indicate
+>> which one is the main PMIC makes sense.
+> 
+> There is no hierarchical topology.
+> So, I will consider identifying in DT which one is the main PMIC.
 
-Note: the MT8186 was tested with incorrect bindings with one extra power
-domain, but that doesn't affect functionality.
+Yes. Such property would be also better than the "use-crc" as it
+describes the hardware, not desired Linux driver behavior.
+
+
+Best regards,
+Krzysztof
+
