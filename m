@@ -2,225 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E38AF6A012B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 03:27:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A4E6A0142
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 03:44:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232684AbjBWC1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 21:27:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
+        id S232897AbjBWCoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 21:44:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232580AbjBWC1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 21:27:17 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5559C1715D
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 18:27:14 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-172334d5c8aso8817478fac.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 18:27:14 -0800 (PST)
+        with ESMTP id S233088AbjBWCoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 21:44:09 -0500
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CAA23133
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 18:44:02 -0800 (PST)
+Received: by mail-vs1-xe36.google.com with SMTP id v3so12474589vse.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 18:44:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IAoLiHZonQ9yzf6exsyPnPMjat+DcttMudRnM/cvohQ=;
-        b=kGKiOU9lZXUiSbBzfPeN1n7CSuyBK30Czjq4ei6DrXfsvFtKf14DPWNt+9PC9S3cHR
-         XR249GLTqFWyDoy0IkR/4uBqwV+Pmpw0FJ1S6oy2ZBYIWntYJ1Xd+yUDSNuhjzsIRzvj
-         psGjtU7aTul4IEQyhe1iljYAHM0PUt2hDwMPpDafq7IOL7swa7lrIAvfC4SbSzPOWawx
-         qsPNag+kePk4okC/uBc8CsDsRi0lo1MuDhM0MyVpVsq6ekew54r7WivAbOkSutPrmzoY
-         s15g+3NqJ/xGXjzh96MfZnYNeuky1vTc+PRQjXWYlJ24M4HNw6NwVi2VMd9ZlqUEcjnZ
-         qipQ==
+        bh=glBWgfS+Z8AsJzCa0azp9rra0TmC5WFPpp9wbSwIysQ=;
+        b=TlXON0dnZS3i2VneFhuywAEetx5CXx1Yt7HMbvQ90/JuEusyf7pnz6RQIpVd7zC3o0
+         n4VlSAzuWvRIT/CCUnkBdl+Zu47u8j1gifDeC4ygpLSlzXO4n8hRdHdU6zHPr8CNCmF6
+         xYxOGJMOjTDNqwpbiTnDtDSQcydd71K1J0p4U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=IAoLiHZonQ9yzf6exsyPnPMjat+DcttMudRnM/cvohQ=;
-        b=EYTfZaLbExDqRhmOL4n077+0x2oCpjCW941a/6Jq9BieOgPyqdATpZ+7hvnEec2yZp
-         Lb/GH5OnBwWLdJXBm3RvrNdNWXNvo6diJ+TCR1jEyee9GReH6w9rns2RnTnlGT14aWqv
-         BWf2iFiuqzTSQhkHKtovAZNDUabk2KGR8L+PGZvY0byYt6NQyGyRzOXPu4o07OOhbgGs
-         AAjkN+HnHVZkoSh6D5YCnI6YGHAd3JkoL1ZNX291HyDIsa0vd+2k91tp4EHZ3h3lAs0X
-         oRQP8kZrPEnotnwFK7LadSLBso3XtRS5ZaTUbzZ1IuwSJmuiMiU0YKi5LFYnLpJRw428
-         DGqQ==
-X-Gm-Message-State: AO0yUKVWMEtSR3Qgky6U+wY6U2X17aRYRCMipvJ5LCcuMML201Essoyj
-        +XrqW4pWgVcir0AldSaXkbDk/h2p70e1XuQire4cSw==
-X-Google-Smtp-Source: AK7set+h6QdDAN1HHNJ/ETPJpkHPuqATk5ZydfyUit0/Gt7f4augVb/rP3yqBsBk8d5tAAmUk9MZwkuSjop5xXR7v8g=
-X-Received: by 2002:a05:6870:678a:b0:16e:19a8:31d8 with SMTP id
- gc10-20020a056870678a00b0016e19a831d8mr1457846oab.62.1677119233386; Wed, 22
- Feb 2023 18:27:13 -0800 (PST)
+        bh=glBWgfS+Z8AsJzCa0azp9rra0TmC5WFPpp9wbSwIysQ=;
+        b=fbZ3nRHxonceo1Q0h2MRhu02ubqF5fB8GB/TPDcjIylTwF2mUSNWa0oEKJkpGF5lWB
+         uW+vP4447bVv/cr0gyLm2klq/BOh9N/S5qK0jvg3qKfWuWb6US65udlC4NzUXpXcQGO9
+         oCgaelDpdBTwy8RlSL82AU2j2pz13VmxvmuxG4+2bXRRLPPVeu1yioYnWPH72Kq8+/s7
+         zoTKW8C0ZDkEdM/+ZxjuQdTSd+KOKD6hyxq6FZ3vNDynYhmqvlWo4uAWQGtjUZQL5w1h
+         pmNjExybVRuMVE/nr0YclGUyNB0bFxTePsDjr4jIFg0v5LZT4gGqwvOehSHVgtI5M2cO
+         t+gg==
+X-Gm-Message-State: AO0yUKX1mJBMdSQm7e2XPlUUs0KNK8jQzQt9RhUKBKA3WQZPe2bz2KQ4
+        lfegDO7Vycd2wpKDvzkc7audqlGn5yiMGuBW/RfHPg==
+X-Google-Smtp-Source: AK7set9FQsaQ4wwwGwa1iJ35QZxS7z/tqpoggFV3jIIY4bRVdaLuYXMbSLMPdYFq5+nMU1dh82/hbSINPKYjn7/TdoE=
+X-Received: by 2002:a05:6102:570b:b0:3fc:58d:f90f with SMTP id
+ dg11-20020a056102570b00b003fc058df90fmr2241014vsb.60.1677120241810; Wed, 22
+ Feb 2023 18:44:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20230211064006.14981-1-semen.protsenko@linaro.org>
- <CGME20230211063956epcas2p423cb99655dcfdb34c6847bb228aa7324@epcms2p2>
- <20230211064006.14981-6-semen.protsenko@linaro.org> <20230215024056epcms2p28f04cf946f20343643faca944ea147ea@epcms2p2>
-In-Reply-To: <20230215024056epcms2p28f04cf946f20343643faca944ea147ea@epcms2p2>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Wed, 22 Feb 2023 20:27:18 -0600
-Message-ID: <CAPLW+4=rsUKkX+pYEdfXst2LsOOdhTDhE9kB-DROZOfweTGB-A@mail.gmail.com>
-Subject: Re: [PATCH 5/6] clk: samsung: exynos850: Add AUD and HSI main gate clocks
-To:     chanho61.park@samsung.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Virag <virag.david003@gmail.com>,
-        ALIM AKHTAR <alim.akhtar@samsung.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com>
+ <20230221153740.1620529-7-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5Ed-5Nq0zNzCGzez3fnW2yxW7zFx9B6k58Y4yb8P+hvpw@mail.gmail.com> <88a3fa09-60cb-bb3c-c392-286efd983627@collabora.com>
+In-Reply-To: <88a3fa09-60cb-bb3c-c392-286efd983627@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 23 Feb 2023 10:43:50 +0800
+Message-ID: <CAGXv+5H3XMF7ov_WfNFA=HC0frD003MRdVuBOFiBvu8zxE_rwg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/10] dt-bindings: gpu: mali-bifrost: Add a compatible
+ for MediaTek MT8186
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 at 20:41, CHANHO PARK <chanho61.park@samsung.com> wrote:
+On Wed, Feb 22, 2023 at 5:13 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> > -----Original Message-----
-> > From: Sam Protsenko <semen.protsenko@linaro.org>
-> > Sent: Saturday, February 11, 2023 3:40 PM
-> > To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Chanwoo Choi
-> > <cw00.choi@samsung.com>; Sylwester Nawrocki <s.nawrocki@samsung.com>; Rob
-> > Herring <robh+dt@kernel.org>
-> > Cc: David Virag <virag.david003@gmail.com>; Chanho Park
-> > <chanho61.park@samsung.com>; Alim Akhtar <alim.akhtar@samsung.com>; Sumit
-> > Semwal <sumit.semwal@linaro.org>; Tomasz Figa <tomasz.figa@gmail.com>;
-> > Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
-> > <sboyd@kernel.org>; linux-samsung-soc@vger.kernel.org; linux-
-> > clk@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> > Subject: [PATCH 5/6] clk: samsung: exynos850: Add AUD and HSI main gate
-> > clocks
+> Il 22/02/23 09:37, Chen-Yu Tsai ha scritto:
+> > On Tue, Feb 21, 2023 at 11:37 PM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> Get GPU support on MT8186 by adding its compatible.
+> >>
+> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 5 +++++
+> >>   1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> >> index be18b161959b..43a841d4e94d 100644
+> >> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> >> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> >> @@ -15,6 +15,11 @@ properties:
+> >>
+> >>     compatible:
+> >>       oneOf:
+> >> +      - items:
+> >> +          - enum:
+> >> +              - mediatek,mt8186-mali
+> >> +          - const: mediatek,mt8183b-mali
+> >> +          - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
 > >
-> > Add main gate clocks for controlling AUD and HSI CMUs:
-> >   - gout_aud_cmu_aud_pclk
-> >   - gout_hsi_cmu_hsi_pclk
-> >
-> > Those clocks were marked as CLK_IGNORE_UNUSED, as system hangs on boot
-> > otherwise.
-> >
-> > While at it, add missing PPMU (Performance Profiling Monitor Unit) clocks
-> > for CMU_HSI.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> >  drivers/clk/samsung/clk-exynos850.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >
-> > diff --git a/drivers/clk/samsung/clk-exynos850.c
-> > b/drivers/clk/samsung/clk-exynos850.c
-> > index a24eff42baae..3d776d57cc8f 100644
-> > --- a/drivers/clk/samsung/clk-exynos850.c
-> > +++ b/drivers/clk/samsung/clk-exynos850.c
-> > @@ -674,6 +674,7 @@ static const struct samsung_cmu_info apm_cmu_info
-> > __initconst = {
-> >  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF4 0x2014
-> >  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF5 0x2018
-> >  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF6 0x201c
-> > +#define CLK_CON_GAT_CLK_AUD_CMU_AUD_PCLK     0x2020
-> >  #define CLK_CON_GAT_GOUT_AUD_ABOX_ACLK               0x2048
-> >  #define CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_SPDY  0x204c
-> >  #define CLK_CON_GAT_GOUT_AUD_ABOX_CCLK_ASB   0x2050
-> > @@ -729,6 +730,7 @@ static const unsigned long aud_clk_regs[] __initconst
-> > = {
-> >       CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF4,
-> >       CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF5,
-> >       CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_UAIF6,
-> > +     CLK_CON_GAT_CLK_AUD_CMU_AUD_PCLK,
-> >       CLK_CON_GAT_GOUT_AUD_ABOX_ACLK,
-> >       CLK_CON_GAT_GOUT_AUD_ABOX_BCLK_SPDY,
-> >       CLK_CON_GAT_GOUT_AUD_ABOX_CCLK_ASB,
-> > @@ -848,6 +850,9 @@ static const struct samsung_div_clock aud_div_clks[]
-> > __initconst = {  };
-> >
-> >  static const struct samsung_gate_clock aud_gate_clks[] __initconst = {
-> > +     GATE(CLK_GOUT_AUD_CMU_AUD_PCLK, "gout_aud_cmu_aud_pclk",
-> > +          "dout_aud_busd",
-> > +          CLK_CON_GAT_CLK_AUD_CMU_AUD_PCLK, 21, CLK_IGNORE_UNUSED, 0),
-> >       GATE(CLK_GOUT_AUD_CA32_CCLK, "gout_aud_ca32_cclk",
-> > "mout_aud_cpu_hch",
-> >            CLK_CON_GAT_GOUT_AUD_ABOX_CCLK_CA32, 21, 0, 0),
-> >       GATE(CLK_GOUT_AUD_ASB_CCLK, "gout_aud_asb_cclk",
-> > "dout_aud_cpu_aclk", @@ -1117,12 +1122,15 @@ static const struct
-> > samsung_cmu_info g3d_cmu_info __initconst = {
-> >  #define PLL_CON0_MUX_CLKCMU_HSI_MMC_CARD_USER                        0x0610
-> >  #define PLL_CON0_MUX_CLKCMU_HSI_USB20DRD_USER                        0x0620
-> >  #define CLK_CON_MUX_MUX_CLK_HSI_RTC                          0x1000
-> > +#define CLK_CON_GAT_CLK_HSI_CMU_HSI_PCLK                     0x2000
-> >  #define CLK_CON_GAT_HSI_USB20DRD_TOP_I_RTC_CLK__ALV          0x2008
-> >  #define CLK_CON_GAT_HSI_USB20DRD_TOP_I_REF_CLK_50            0x200c
-> >  #define CLK_CON_GAT_HSI_USB20DRD_TOP_I_PHY_REFCLK_26         0x2010
-> >  #define CLK_CON_GAT_GOUT_HSI_GPIO_HSI_PCLK                   0x2018
-> >  #define CLK_CON_GAT_GOUT_HSI_MMC_CARD_I_ACLK                 0x2024
-> >  #define CLK_CON_GAT_GOUT_HSI_MMC_CARD_SDCLKIN                        0x2028
-> > +#define CLK_CON_GAT_GOUT_HSI_PPMU_ACLK                               0x202c
-> > +#define CLK_CON_GAT_GOUT_HSI_PPMU_PCLK                               0x2030
-> >  #define CLK_CON_GAT_GOUT_HSI_SYSREG_HSI_PCLK                 0x2038
-> >  #define CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_ACLK_PHYCTRL_20    0x203c
-> >  #define CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_BUS_CLK_EARLY              0x2040
-> > @@ -1132,12 +1140,15 @@ static const unsigned long hsi_clk_regs[]
-> > __initconst = {
-> >       PLL_CON0_MUX_CLKCMU_HSI_MMC_CARD_USER,
-> >       PLL_CON0_MUX_CLKCMU_HSI_USB20DRD_USER,
-> >       CLK_CON_MUX_MUX_CLK_HSI_RTC,
-> > +     CLK_CON_GAT_CLK_HSI_CMU_HSI_PCLK,
-> >       CLK_CON_GAT_HSI_USB20DRD_TOP_I_RTC_CLK__ALV,
-> >       CLK_CON_GAT_HSI_USB20DRD_TOP_I_REF_CLK_50,
-> >       CLK_CON_GAT_HSI_USB20DRD_TOP_I_PHY_REFCLK_26,
-> >       CLK_CON_GAT_GOUT_HSI_GPIO_HSI_PCLK,
-> >       CLK_CON_GAT_GOUT_HSI_MMC_CARD_I_ACLK,
-> >       CLK_CON_GAT_GOUT_HSI_MMC_CARD_SDCLKIN,
-> > +     CLK_CON_GAT_GOUT_HSI_PPMU_ACLK,
-> > +     CLK_CON_GAT_GOUT_HSI_PPMU_PCLK,
-> >       CLK_CON_GAT_GOUT_HSI_SYSREG_HSI_PCLK,
-> >       CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_ACLK_PHYCTRL_20,
-> >       CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_BUS_CLK_EARLY,
-> > @@ -1163,6 +1174,9 @@ static const struct samsung_mux_clock hsi_mux_clks[]
-> > __initconst = {  };
-> >
-> >  static const struct samsung_gate_clock hsi_gate_clks[] __initconst = {
-> > +     GATE(CLK_GOUT_HSI_CMU_HSI_PCLK, "gout_hsi_cmu_hsi_pclk",
-> > +          "mout_hsi_bus_user",
-> > +          CLK_CON_GAT_CLK_HSI_CMU_HSI_PCLK, 21, CLK_IGNORE_UNUSED, 0),
+> > The MT8186 has Mali-G52 MC2 2EE, while the MT8183 has Mali-G72 MP3.
 >
-> You'll need to put /* TODO: */ tag or use CLK_IS_CRITICAL if you make sure it is the critical clock.
+> Keeping in mind the obvious - which is that G52 and G72 are both Bifrost....
 >
+> > So we actually need a new entry with two power domains.
+> >
+>
+> ...This is my node for MT8186:
+>
+>                 gpu: gpu@13040000 {
+>                         compatible = "mediatek,mt8186-mali",
+>                                      "mediatek,mt8183b-mali",
+>                                      "arm,mali-bifrost";
+>                         reg = <0 0x13040000 0 0x4000>;
+>
+>                         clocks = <&mfgsys CLK_MFG_BG3D>;
+>                         interrupts = <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH 0>,
+>                                      <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH 0>,
+>                                      <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH 0>;
+>                         interrupt-names = "job", "mmu", "gpu";
+>                         power-domains = <&spm MT8186_POWER_DOMAIN_MFG1>,
+>                                         <&spm MT8186_POWER_DOMAIN_MFG2>,
+>                                         <&spm MT8186_POWER_DOMAIN_MFG3>;
+>                         power-domain-names = "core0", "core1", "core2";
+>
+>                         /* Please ignore speedbin, that's for another time :-) */
+>                         nvmem-cells = <&gpu_volt_bin>;
+>                         nvmem-cell-names = "speed-bin";
+>                         #cooling-cells = <2>;
+>                 };
+>
+> There are three MFG power domains... MFG2 and MFG3 are parents of MFG1, on that
+> I agree, but we can avoid adding a new entry just for MT8186 and use the MT8183-b
+> one while still being technically correct.
+>
+> Besides, Mali G52 and Mali G72 are both Bifrost... so I don't think that this
+> commit is incorrect. For the sake of simplicity, I would push on getting this
+> one picked.
 
-Thanks for the review! I'll add the comment for now, as it's done in
-other CMUs for similar clocks. As for making it critical: maybe I'll
-do it as a part of PM enablement, which I'm working on right now (if
-it's needed). But in that case I'd like to provide a separate patch
-for making all similar clocks (XXX_CMU_XXX) critical, so not in this
-patch.
+I'm aware. In case it wasn't obvious, Mali-G52 MC2 2EE has 2 cores, while
+Mali-G72 MP3 has 3 cores. I think that is reason enough to do a new entry.
+Otherwise you are describing power domains for 3 cores for a GPU that only
+has two.
 
-Will send v2 soon.
+> Unless there are any real-strong opinions against...
 
-> >       GATE(CLK_GOUT_USB_RTC_CLK, "gout_usb_rtc", "mout_hsi_rtc",
-> >            CLK_CON_GAT_HSI_USB20DRD_TOP_I_RTC_CLK__ALV, 21, 0, 0),
-> >       GATE(CLK_GOUT_USB_REF_CLK, "gout_usb_ref", "mout_hsi_usb20drd_user",
-> > @@ -1177,6 +1191,10 @@ static const struct samsung_gate_clock
-> > hsi_gate_clks[] __initconst = {
-> >       GATE(CLK_GOUT_MMC_CARD_SDCLKIN, "gout_mmc_card_sdclkin",
-> >            "mout_hsi_mmc_card_user",
-> >            CLK_CON_GAT_GOUT_HSI_MMC_CARD_SDCLKIN, 21, CLK_SET_RATE_PARENT,
-> > 0),
-> > +     GATE(CLK_GOUT_HSI_PPMU_ACLK, "gout_hsi_ppmu_aclk",
-> > "mout_hsi_bus_user",
-> > +          CLK_CON_GAT_GOUT_HSI_PPMU_ACLK, 21, 0, 0),
-> > +     GATE(CLK_GOUT_HSI_PPMU_PCLK, "gout_hsi_ppmu_pclk",
-> > "mout_hsi_bus_user",
-> > +          CLK_CON_GAT_GOUT_HSI_PPMU_PCLK, 21, 0, 0),
-> >       GATE(CLK_GOUT_SYSREG_HSI_PCLK, "gout_sysreg_hsi_pclk",
-> >            "mout_hsi_bus_user",
-> >            CLK_CON_GAT_GOUT_HSI_SYSREG_HSI_PCLK, 21, 0, 0),
-> > --
-> > 2.39.1
+Yes.
+
+ChenYu
