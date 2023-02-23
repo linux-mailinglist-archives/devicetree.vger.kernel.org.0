@@ -2,246 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF2F6A1222
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 22:37:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 470E06A122D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 22:39:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbjBWVhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 16:37:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
+        id S229502AbjBWVjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 16:39:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjBWVhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 16:37:16 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14CE5A380
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 13:37:13 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id x34so11036101pjj.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 13:37:13 -0800 (PST)
+        with ESMTP id S229525AbjBWVjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 16:39:41 -0500
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CE55C152;
+        Thu, 23 Feb 2023 13:39:34 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1720887dfcdso17236686fac.6;
+        Thu, 23 Feb 2023 13:39:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z7+aUg9HXQ/A/eUt8v18nKugzdSz6vl7sg4McbH6tWQ=;
-        b=c0u0fvJZo7cq6NMR9jPgTY+MYZwgs+0jV6PRHowGAKrgQuoUhvj3TL13DAL7cHpEIg
-         4fYxMXbiP4VqePjSGrYZ+GgoINswsELo4klKlaOH4DjNL3MId9Z0yRYhzhfiPzf14+Js
-         l5sOFeOLeZTeRxCU5FJ7yUA5tg8DlZpNSY3LQYP/lIR8O/awnhgVGJ4sEswcpLfqh6ux
-         GeK5MXrLx3lqT4df5CdiOamajjJAW0KBcA5PN6wJTJ6HgbUrsXmFllSjzjM7WvPpOqsO
-         TE70o8gCt2etNpQiPKSBG2B/atIKnm7rJoR0iG6sIKDmvr+I3CnqWdiZmk1xPB6cJt5x
-         hIvQ==
+        bh=oiqYmKCBb6pTn9/ZoddN5NSvx6CSd4fhJNmnMHgMU9s=;
+        b=SDLNeS2gXdtg2gCn+3+QIpnO8NNDqnczHqToUUg7R81LvyrE0d/3mx3w29Sjd6gk65
+         +opeyqm+JqCOp3cRw0fjzyuSqf7BD41B6rhVsF/1LhNxKEGg8R7yA8nfMAckSGWLZNNY
+         FKVDVXcdU4/cp9hzPHRxYdnwwiR/AhkdTK7hji1FVfdIUh/RummZVmpiz4c0c7arGvOF
+         JMTz++TQyKmhJQPPt81bOSG15/pX7bPbrxQyy013pY/D85cHR073R5NKofIEYScFNT9H
+         Zbs/DMnYl693qcts3kBZbEZGUA84ykI3l7YbYVmu7HCZLMz7I6nFyoYGcnWJb0W/Q+5+
+         ZaGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z7+aUg9HXQ/A/eUt8v18nKugzdSz6vl7sg4McbH6tWQ=;
-        b=iMmqXaz13qkfK68ZBS8uHOtzpXHtH6vM+AHma72yYoPs4+dGPrfKXroDJ6If6iIG8K
-         3hLeNO7RT8O+Py/zgrCKbXQyy8tFcv+AK33OvFhEXI6WvFFiZBuAX6IyeO0hBxJbJzID
-         1XWM9Am7GRiljamTYkjnuF0kRXlYqaA6VvpIQSuyLJ3Z26ARsAnDmWbEUEFH64XLknYk
-         0EwXpWPfNgs831cfURzGaKPUngobvIb1vd1yMzMtMo1bblVrPEt1seZRJITnqeXwoEX0
-         IENaFRsFZglycxTtFfsPvHY1rzb3sk/z31mm/67ekzZ/22Z8lYWGrHZ5JPquC2yCDMmp
-         F1/A==
-X-Gm-Message-State: AO0yUKXdXwPGpXHirQM2/quhWcLe+jw9cy5fFBwZLUrq+Mmhf4MM2oLh
-        CW6aH00d0Okc/Qs833BpgMf+0w==
-X-Google-Smtp-Source: AK7set+WA4y6isMIp2ZzVMyILhKLJ1WQxXMtedotrSE0LCPg6li/VQItDsL6LiRCl1UMeJqGyYTlRQ==
-X-Received: by 2002:a05:6a20:6918:b0:c7:164c:edf7 with SMTP id q24-20020a056a20691800b000c7164cedf7mr12929189pzj.36.1677188233241;
-        Thu, 23 Feb 2023 13:37:13 -0800 (PST)
-Received: from [10.211.55.3] (c-73-221-130-71.hsd1.wa.comcast.net. [73.221.130.71])
-        by smtp.gmail.com with ESMTPSA id s23-20020a62e717000000b005a9cb8edee3sm3881780pfh.85.2023.02.23.13.36.59
+        bh=oiqYmKCBb6pTn9/ZoddN5NSvx6CSd4fhJNmnMHgMU9s=;
+        b=lUFDSy5MMFENdLnSBsHoBouY1sfKIaXl6d8p+KMUreqYczxZwnMUpuKXoP2lDzh/x6
+         JLYHZzkcNq8yYCRM5iVOSuiPXJSX7d2uw/Lg3gF4hB0b8bX5CwTLcue7wOxWFAlCPmpO
+         tcbO/BKpumhc20Zolt2WFISGDuqimv5CjgbuJP6l+RWUuBSUru8MAKgk7kiXb3Ajhzn/
+         /iGSDUe1wCM5s65litwSTPwAJviw03ru9l0DEZhoC++mgsIDwsts1+Q48AKJSCUmRBGx
+         23aEAeP3/K56A87yi48EdHc14hE1EGmNbeLR5eYqMWUjHWW28m8+kliBmviYapg2bJa5
+         sieQ==
+X-Gm-Message-State: AO0yUKUKwXktfGgLLC0vFrNdHbbHEX0kaVm1sfLo3x2bilnsLuvYt7dr
+        4uejtAnxSn4L1Rxaj9pgqMsiUNqmKgg=
+X-Google-Smtp-Source: AK7set/A9A8K0Z+F/p9HhVeO46Gn31qPy7xM5/xVhS2qGOoJOSbAhmB1axNe+gYNOFcCv5+c8wR71Q==
+X-Received: by 2002:a05:6870:438e:b0:172:473c:5a1b with SMTP id r14-20020a056870438e00b00172473c5a1bmr4710501oah.15.1677188373479;
+        Thu, 23 Feb 2023 13:39:33 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:2586:7432:d181:902b? ([2600:1700:2442:6db0:2586:7432:d181:902b])
+        by smtp.gmail.com with ESMTPSA id o2-20020a4a84c2000000b0051d13098c54sm2612189oog.19.2023.02.23.13.39.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 13:37:01 -0800 (PST)
-Message-ID: <556ab51e-ddf8-b56b-1743-36f3b6d623d1@linaro.org>
-Date:   Thu, 23 Feb 2023 15:36:58 -0600
+        Thu, 23 Feb 2023 13:39:32 -0800 (PST)
+Message-ID: <12492b9f-1961-7d75-3197-41b4bce90b63@gmail.com>
+Date:   Thu, 23 Feb 2023 15:39:31 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v10 09/26] gunyah: rsc_mgr: Add VM lifecycle RPC
+Subject: Re: [PATCH v3 0/2] of: populate of_root_node if not set (alternate)
 Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212343.3311875-1-quic_eberman@quicinc.com>
-From:   Alex Elder <alex.elder@linaro.org>
-In-Reply-To: <20230214212343.3311875-1-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230223213418.891942-1-frowand.list@gmail.com>
+In-Reply-To: <20230223213418.891942-1-frowand.list@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/23 3:23 PM, Elliot Berman wrote:
+Hi Clément,
+
+Can you please test this version of the patch series?
+
+Thanks!
+
+-Frank
+
+On 2/23/23 15:34, Frank Rowand wrote:
+> This series is a different implementation to achieve the goals of
+> https://lore.kernel.org/r/20220623105044.152832-1-clement.leger@bootlin.com
 > 
-> Add Gunyah Resource Manager RPC to launch an unauthenticated VM.
+> In order to apply overlays or create new nodes under the root node, the
+> kernel expects of_root to be set. On some system where a device-tree was
+> not provided by firmware (x86 for instance) if CONFIG_OF is enabled,
+> then we will end up with a null of_root. This series adds support to
+> create this root node using a builtin dtb and removes the manual
+> creation of the root node done in unittests.c.
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   drivers/virt/gunyah/Makefile      |   2 +-
->   drivers/virt/gunyah/rsc_mgr.h     |  45 ++++++
->   drivers/virt/gunyah/rsc_mgr_rpc.c | 226 ++++++++++++++++++++++++++++++
->   include/linux/gunyah_rsc_mgr.h    |  73 ++++++++++
->   4 files changed, 345 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
+> Changes since version 2: (patch 1/2)
+>   - change of __dtb_empty_root_* from "void *" to "uint8_t []"
 > 
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> index cc864ff5abbb..de29769f2f3f 100644
-> --- a/drivers/virt/gunyah/Makefile
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -2,5 +2,5 @@
->   
->   obj-$(CONFIG_GUNYAH) += gunyah.o
->   
-> -gunyah_rsc_mgr-y += rsc_mgr.o
-> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
->   obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
-> diff --git a/drivers/virt/gunyah/rsc_mgr.h b/drivers/virt/gunyah/rsc_mgr.h
-> index d4e799a7526f..7406237bc66d 100644
-> --- a/drivers/virt/gunyah/rsc_mgr.h
-> +++ b/drivers/virt/gunyah/rsc_mgr.h
-> @@ -74,4 +74,49 @@ struct gh_rm;
->   int gh_rm_call(struct gh_rm *rsc_mgr, u32 message_id, void *req_buff, size_t req_buff_size,
->   		void **resp_buf, size_t *resp_buff_size);
->   
-> +/* Message IDs: VM Management */
-> +#define GH_RM_RPC_VM_ALLOC_VMID			0x56000001
-> +#define GH_RM_RPC_VM_DEALLOC_VMID		0x56000002
-> +#define GH_RM_RPC_VM_START			0x56000004
-> +#define GH_RM_RPC_VM_STOP			0x56000005
-> +#define GH_RM_RPC_VM_RESET			0x56000006
-> +#define GH_RM_RPC_VM_CONFIG_IMAGE		0x56000009
-> +#define GH_RM_RPC_VM_INIT			0x5600000B
-> +#define GH_RM_RPC_VM_GET_HYP_RESOURCES		0x56000020
-> +#define GH_RM_RPC_VM_GET_VMID			0x56000024
-> +
-> +struct gh_rm_vm_common_vmid_req {
-> +	__le16 vmid;
-> +	__le16 reserved0;
-> +} __packed;
-> +
-> +/* Call: VM_ALLOC */
-> +struct gh_rm_vm_alloc_vmid_resp {
-> +	__le16 vmid;
-> +	__le16 reserved0;
-> +} __packed;
-> +
-> +/* Call: VM_STOP */
-> +struct gh_rm_vm_stop_req {
-> +	__le16 vmid;
-> +#define GH_RM_VM_STOP_FLAG_FORCE_STOP	BIT(0)
-> +	u8 flags;
-> +	u8 reserved;
-> +#define GH_RM_VM_STOP_REASON_FORCE_STOP		3
-
-I suggested this before and you honored it.  Now I'll suggest
-it again, and ask you to do it throughout the driver.
-
-Please separate the definitions of constant values that
-certain fields can take on from the structure definition.
-I think doing it the way you have here makes it harder to
-understand the structure definition.
-
-You could define an anonymous enumerated type to hold
-the values meant to be held by each field.
-
-> +	__le32 stop_reason;
-> +} __packed;
-> +
-> +/* Call: VM_CONFIG_IMAGE */
-> +struct gh_rm_vm_config_image_req {
-> +	__le16 vmid;
-> +	__le16 auth_mech;
-> +	__le32 mem_handle;
-> +	__le64 image_offset;
-> +	__le64 image_size;
-> +	__le64 dtb_offset;
-> +	__le64 dtb_size;
-> +} __packed;
-> +
-> +/* Call: GET_HYP_RESOURCES */
-> +
->   #endif
-> diff --git a/drivers/virt/gunyah/rsc_mgr_rpc.c b/drivers/virt/gunyah/rsc_mgr_rpc.c
-> new file mode 100644
-> index 000000000000..4515cdd80106
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/rsc_mgr_rpc.c
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/gunyah_rsc_mgr.h>
-> +
-> +#include "rsc_mgr.h"
-> +
-> +/*
-> + * Several RM calls take only a VMID as a parameter and give only standard
-> + * response back. Deduplicate boilerplate code by using this common call.
-> + */
-> +static int gh_rm_common_vmid_call(struct gh_rm *rm, u32 message_id, u16 vmid)
-> +{
-> +	struct gh_rm_vm_common_vmid_req req_payload = {
-> +		.vmid = cpu_to_le16(vmid),
-> +	};
-> +	size_t resp_size;
-> +	void *resp;
-> +
-> +	return gh_rm_call(rm, message_id, &req_payload, sizeof(req_payload), &resp, &resp_size);
-> +}
-> +
-> +/**
-> + * gh_rm_alloc_vmid() - Allocate a new VM in Gunyah. Returns the VM identifier.
-> + * @rm: Handle to a Gunyah resource manager
-> + * @vmid: Use GH_VMID_INVAL or 0 to dynamically allocate a VM. A reserved VMID can
-> + *        be supplied to request allocation of a platform-defined VM.
-
-Honestly, I'd rather just see 0 (and *not* GH_VMID_INVAL) be the
-special value to mean "dynamically allocate the VMID."  It seems
-0 is a reserved VMID anyway, and GH_VMID_INVAL might as well be
-treated here as an invalid parameter.
-
-Is there any definitition of which VMIDs are reserved?  Like,
-anything under 1024?
-
-That's it on this patch for now.
-
-					-Alex
-
-> + *
-> + * Returns - the allocated VMID or negative value on error
-> + */
-> +int gh_rm_alloc_vmid(struct gh_rm *rm, u16 vmid)
-> +{
-> +	struct gh_rm_vm_common_vmid_req req_payload = { 0 };
-> +	struct gh_rm_vm_alloc_vmid_resp *resp_payload;
-> +	size_t resp_size;
-> +	void *resp;
-> +	int ret;
-
-. . .
+> Changes since version 1: (patch 1/2)
+>   - refresh for 6.2-rc1
+>   - update Signed-off-by
+>   - fix typo in of_fdt.h: s/of_setup/setup_of
+>   - unflatten_device_tree(): validate size in header field dtb_empty_root
+>     that will be used to copy dtb_empty_root
+>   - add Kconfig option to manually select CONFIG_OF_EARLY_FLATTREE
+> 
+> Changes since version 1: (patch 2/2)
+>   - refresh for 6.2-rc1
+>   - update Signed-off-by
+>   - fix formatting error (leading space) in patch comment
+> 
+> Frank Rowand (2):
+>   of: create of_root if no dtb provided
+>   of: unittest: treat missing of_root as error instead of fixing up
+> 
+>  drivers/of/Kconfig        |  7 ++++++-
+>  drivers/of/Makefile       |  2 +-
+>  drivers/of/empty_root.dts |  6 ++++++
+>  drivers/of/fdt.c          | 27 ++++++++++++++++++++++++++-
+>  drivers/of/unittest.c     | 16 ++++++----------
+>  include/linux/of_fdt.h    |  2 ++
+>  init/main.c               |  2 ++
+>  7 files changed, 49 insertions(+), 13 deletions(-)
+>  create mode 100644 drivers/of/empty_root.dts
+> 
 
