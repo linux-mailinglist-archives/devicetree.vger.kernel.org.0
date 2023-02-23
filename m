@@ -2,202 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A1DA6A0158
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 04:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 150826A0179
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 04:19:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233296AbjBWDDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 22:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
+        id S231726AbjBWDTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 22:19:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233841AbjBWDDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 22:03:21 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82E1AD08;
-        Wed, 22 Feb 2023 19:03:17 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3FB1D24E245;
-        Thu, 23 Feb 2023 11:03:15 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
- 2023 11:03:14 +0800
-Received: from [192.168.125.82] (113.72.147.165) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
- 2023 11:03:14 +0800
-Message-ID: <63d0e2a9-84b9-6637-6bbf-dedb2527eaa5@starfivetech.com>
-Date:   Thu, 23 Feb 2023 11:03:04 +0800
+        with ESMTP id S230114AbjBWDTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 22:19:33 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C97FE31E1D;
+        Wed, 22 Feb 2023 19:19:30 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.133])
+        by gateway (Coremail) with SMTP id _____8Axkk5A2_ZjoPUDAA--.2443S3;
+        Thu, 23 Feb 2023 11:19:28 +0800 (CST)
+Received: from [10.20.42.133] (unknown [10.20.42.133])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxOL0+2_ZjXWQ5AA--.38818S3;
+        Thu, 23 Feb 2023 11:19:26 +0800 (CST)
+Message-ID: <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
+Date:   Thu, 23 Feb 2023 11:19:25 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     Stephen Boyd <sboyd@kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
+ device node
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220005054.34518-1-hal.feng@starfivetech.com>
- <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
- <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
- <Y6tSWB2+98a8k9Qw@spud>
- <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
- <Y+5z8skN2DuvxDEL@spud> <72953dc9371b87da8d03c63633d7d9dd.sboyd@kernel.org>
- <Y/VWNPfApsfm3/UD@spud>
- <c0472d7f-56fe-3e91-e0a0-49ee51700b5d@starfivetech.com>
- <Y/ZCRv3jHwFxN1Fo@spud>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <Y/ZCRv3jHwFxN1Fo@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.165]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20230222165514.684729-1-suijingfeng@loongson.cn>
+ <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
+Content-Language: en-US
+From:   Sui jingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxOL0+2_ZjXWQ5AA--.38818S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxXF17try5AF4DZw1UJF13Jwb_yoW5ur17pF
+        sxCanxKr4kJF12vr4rXryUJrn3Za95AFyDCrsrKr1Uu3sxZ3Wqvry8JF4FgrWxZr17Ja4j
+        vF1rWr4I9Fn8CaDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
+        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
+        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E
+        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
+        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
+        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
+        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
+        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
+        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2
+        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFApnUUUUU=
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Feb 2023 16:26:46 +0000, Conor Dooley wrote:
-> On Wed, Feb 22, 2023 at 09:27:37PM +0800, Hal Feng wrote:
->> On Tue, 21 Feb 2023 23:39:32 +0000, Conor Dooley wrote:
->> > On Tue, Feb 21, 2023 at 02:17:17PM -0800, Stephen Boyd wrote:
->> >> Quoting Conor Dooley (2023-02-16 10:20:34)
->> >> > On Thu, Feb 16, 2023 at 10:42:20PM +0800, Hal Feng wrote:
->> >> > > On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
->> >> > > > On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
->> >> > > Please see the picture of these external clocks in clock tree.
->> >> > > 
->> >> > > # mount -t debugfs none /mnt
->> >> > > # cat /mnt/clk/clk_summary
->> >> > >                                  enable  prepare  protect                                duty  hardware
->> >> > >    clock                          count    count    count        rate   accuracy phase  cycle    enable
->> >> > > -------------------------------------------------------------------------------------------------------
->> >> > >  *mclk_ext*                             0        0        0    12288000          0     0  50000         Y
->> >> > >  *tdm_ext*                              0        0        0    49152000          0     0  50000         Y
->> >> > >  *i2srx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
->> >> > >  *i2srx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
->> >> > >  *i2stx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
->> >> > >  *i2stx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
->> >> > >  *gmac1_rgmii_rxin*                     0        0        0   125000000          0     0  50000         Y
->> >> > >     gmac1_rx                          0        0        0   125000000          0     0  50000         Y
->> >> > >        gmac1_rx_inv                   0        0        0   125000000          0   180  50000         Y
->> >> > >  *gmac1_rmii_refin*                     0        0        0    50000000          0     0  50000         Y
->> >> > >     gmac1_rmii_rtx                    0        0        0    50000000          0     0  50000         Y
->> >> > >        gmac1_tx                       0        0        0    50000000          0     0  50000         N
->> >> > >           gmac1_tx_inv                0        0        0    50000000          0   180  50000         Y
->> >> > >  *osc*                                  4        4        0    24000000          0     0  50000         Y
->> >> > >     apb_func                          0        0        0    24000000          0     0  50000         Y
->> >> > >  ...
->> >> > > 
->> >> > > The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
->> >> > > actually used as the parent of other clocks.
->> >> > 
->> >> > > The "dummy" clocks
->> >> > > you said are all internal clocks.
->> >> > 
->> >> > No, what I meant by "dummy" clocks is that if you make clocks "required"
->> >> > in the binding that are not needed by the hardware for operation a
->> >> > customer of yours might have to add "dummy" clocks to their devicetree
->> >> > to pass dtbs_check.
->> >> 
->> >> They can set the phandle specifier to '<0>' to fill in the required
->> >> property when there isn't anything there. If this is inside an SoC, it
->> >> is always connected because silicon can't change after it is made
->> >> (unless this is an FPGA). Therefore, any and all input clocks should be
->> >> listed as required.
->> > 
->> >> If the clk controller has inputs that are
->> >> pads/balls/pins on the SoC then they can be optional if a valid design
->> >> can leave those pins not connected.
->> > 
->> > From the discussion on the dts patches, where the clocks have been put
->> > (intentionally) into board.dts, I've been under the impression that we
->> > are in this situation.
->> 
->> For the system (sys) clock controller, we are in this situation.
->> For the always-on (aon) clock controller, we are not, because some input
->> clocks are inside the SoC.
->> 
->> > Up to Hal to tell us if the hardware is capable of having those inputs
->> > left unfilled!
->> 
->> The situation is different for v1.2A and v1.3B boards.
->> 
->> For the v1.2A board,
->> gmac1 only requires "gmac1_rmii_refin", which support 100MHz
->> gmac0 only requires "gmac0_rgmii_rxin", which support 1000MHz
->> 
->> For the v1.3B board,
->> gmac1 only requires "gmac1_rgmii_rxin", which support 1000MHz
->> gmac0 only requires "gmac0_rgmii_rxin", which support 1000MHz
->> 
->> So we should set the "required" property depending on different
->> boards.
-> 
-> These were Krzk's suggestions:
-> oneOf:
->  - clock-names:
->      minItems: 3
->      items:
->        - a
->        - b
->        - c
->        - d
->  - clock-names:
->      items:
->        - a
->        - b
->        - d
-> 
-> or maybe:
->  - clock-names:
->      minItems: 3
->      items:
->        - a
->        - b
->        - enum: [c, d]
->        - d
-> 
-> Might be making a mess here, but I think that becomes:
->   clock-names:
->     oneOf:
->       - items:
->           - const: osc
->           - enum:
->               - gmac1_rmii_refin
->               - gmac1_rgmii_rxin
->           - const: i2stx_bclk_ext
->           - const: i2stx_lrck_ext
->           - const: i2srx_bclk_ext
->           - const: i2srx_lrck_ext
->           - const: tdm_ext
->           - const: mclk_ext
-> 
->       - items:
->           - const: osc
->           - const: gmac1_rmii_refin
->           - const: gmac1_rgmii_rxin
->           - const: i2stx_bclk_ext
->           - const: i2stx_lrck_ext
->           - const: i2srx_bclk_ext
->           - const: i2srx_lrck_ext
->           - const: tdm_ext
->           - const: mclk_ext
+Hi,
 
-Will modify it and improve the description of clock items for
-pointing out which clock is required on different boards.
-Thank you all for your helpful suggestions.
+On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
+> On 22/02/2023 17:55, suijingfeng wrote:
+>> The display controller is a pci device, it's pci vendor id is
+>> 0x0014, it's pci device id is 0x7a06.
+>>
+>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+>> ---
+>>   .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
+>>   1 file changed, 21 insertions(+)
+>>
+>> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>> index 8143a61111e3..a528af3977d9 100644
+>> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>> @@ -31,6 +31,18 @@ memory@200000 {
+>>   			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
+>>   	};
+>>   
+>> +	reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		display_reserved: framebuffer@30000000 {
+>> +			compatible = "shared-dma-pool";
+>> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
+>> +			linux,cma-default;
+>> +		};
+>> +	};
+>> +
+>>   	cpu_clk: cpu_clk {
+>>   		#clock-cells = <0>;
+>>   		compatible = "fixed-clock";
+>> @@ -198,6 +210,15 @@ sata@8,0 {
+>>   				interrupt-parent = <&liointc0>;
+>>   			};
+>>   
+>> +			display-controller@6,0 {
+>> +				compatible = "loongson,ls2k1000-dc";
+>> +
+>> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
+>> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
+>> +				interrupt-parent = <&liointc0>;
+>> +				memory-region = <&display_reserved>;
+> NAK.
+Err :(,  please give me a chance to explain
+> Test your code against the bindings you send.
 
-Best regards,
-Hal
+I can guarantee to you that I test may code more than twice. The code 
+used to testing is listed at link [1].
+
+This patchset  mainly used to illustrate how  we made the driver in [1] 
+usable on our SoC platform.
+
+> It's the same
+> patchset. You basically send something which the same moment is incorrect.
+
+Loongson display controller IP has been integrated in both Loongson
+North Bridge chipset(ls7a1000 and ls7a2000) and Loongson SoCs(ls2k1000
+and ls2k2000 etc), it even has been included in Loongson BMC(ls2k0500 bmc)
+products.
+
+When use this driver on Loongson embedded platform(say ls2k2000, 
+ls2k1000 and ls2k0500)  ,
+
+the PMON/Uboot firmware(my company using pmon most of time) will pass a 
+DT to the kernel.
+
+Different boards will pass different DTs. But when using this driver on 
+Loongson server and
+
+PC platform( ls3c5000/ls3a5000+ls7a1000/ls7a2000), there will no DT 
+supplied. The firmware
+
+and kernel side developer of Loongson choose ACPI+UEFI for such 
+platform, more discussion
+
+can be found at [2]. Therefore, on such a situation we decide to send 
+the patch at separate patchset.
+
+It is not like the arm  and risc-v, as the binding would not be always 
+exits. If we put those patches
+
+into a same patchset, some reviewers would suggest us to revise our code.
+
+To a form that the code *ALWAYS*  probed from the DT, this is not desired.
+
+Besides, the driver code + dt support is petty large, separate it is 
+more easy to review and manage.
+
+
+Finally,  Thanks your kindly guiding and valuable reviews.
+
+
+[1] https://patchwork.freedesktop.org/patch/523409/?series=113566&rev=4
+
+[2] https://lkml.org/lkml/2022/7/15/135
+
+> Best regards,
+> Krzysztof
+
