@@ -2,141 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 634EB6A04BF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:26:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27FA16A04D6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233909AbjBWJ0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 04:26:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
+        id S233941AbjBWJcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 04:32:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233386AbjBWJ0K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:26:10 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3AAE4C6FD
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:26:06 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id o12so40249480edb.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:26:06 -0800 (PST)
+        with ESMTP id S233446AbjBWJcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:32:12 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109A1211FD
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:32:11 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id bo30so9556433wrb.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:32:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HTPqrdza57b/i0tF7P2H8m7ScdoQn+qvmHPmvgYAlqM=;
-        b=Kpl3Odd4DfBUatb+oUK4znvf4vqZg3bbXOmt3y7b/E+DPaI/gE12tUOCiR/FjbV5JJ
-         6w6RXUF7W2FciZwCyPDh7smq2MG4bag+omm7dbln5jie3+XiohRPegmJPOPAqfAlDDhf
-         HV1omLLRQdKooO2h2AG52SBuE9oa0AD5G9LhvBFgL4Hm6sCgkFy/UmpBNUKAgnSODv3t
-         okWqDePClnW0n8/aNof0A57v2RhzS2M5Ub3VluMjEJ1paLklRK1x9FN3RvHvefTY9S29
-         GBq6F0zB3TD3ooncvX50e4+b9kjdrG5Yeg/sMS/30l/gH9PvuRTQzR0SXezQ59siL4j5
-         QTLw==
+        bh=RGcZat4rJvZA4JvcNDS29r6hOcHFn5XfKWwq3XORVPs=;
+        b=Yt49MEJ9NqvopLj/2ozmBGZWXWZP4QGefbvOIErAMUKNhgea+wVF0D/Jy5Azg2/9Zk
+         ApR8dloCE57tigesDALBZ5JvU8wFsj0ksr5t2SsRABIVi6ikOoVO2DWbRD1JfFWTh/kW
+         H7b82HrlGm5vFPEjd19iE2kergvhiDnvJ6EPzlFW4d7fQ2FrCmsFM/T8SbLSWa6KkiHR
+         WXQzvOuUKglkxurFrTF1/e/lWj+DZ0EQwHGxFvuYLRrNyu73sxSKU/h7dDlJpCRZBD7E
+         TKvvUSIeLuPOEl1KWrpFtQim91uU9IPqshCevpoPfHOJzysW70/GRimB5io9ts3+/BUG
+         Dxiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HTPqrdza57b/i0tF7P2H8m7ScdoQn+qvmHPmvgYAlqM=;
-        b=iNaFo9qwRVQYqg6S6+oeHN/sFyufTHXStW3JliARMGKRgYZoLdq8ArAuY5z6SS8HUd
-         6RIRXyVQdJCCvDZtPR+7dazGskOkVblRrWAr6bsunOzsUrlL8FCVj2uPBQ1yMRi2VxYC
-         Stond8a7oVvmBKoiLL1Ct3pHxwU+vdo7hYDihT1cvt7ss6iPgkvdo4sAjU3K7zRi+1B2
-         pu58u3u26m1JPIMbYatuLYuAb8732+uXZ0KVxPajGRyje4tgfFL7r+/KS9UTfMIhwQDi
-         8171CH6jPse5bqjGCAm0E6F7YwxEaOjSzzgeFRCM6EHiYPNY/M6dcs+mjU/0hTm4diTo
-         axDg==
-X-Gm-Message-State: AO0yUKULjCryt55/6mFkN4NwsejTUG81wZmokk0lI6Wr3OQvbw92HafE
-        dFhAvM0GIFGALZMlB29mforKAw==
-X-Google-Smtp-Source: AK7set/3HmjmvJmIpPFWFLcD2qUG14pxGYDBL5y9WyM5aGAIcsmY6YRkED/94Lksw1wMaVEbv9pNVg==
-X-Received: by 2002:a05:6402:31ee:b0:4ae:eae1:1458 with SMTP id dy14-20020a05640231ee00b004aeeae11458mr11824256edb.31.1677144365246;
-        Thu, 23 Feb 2023 01:26:05 -0800 (PST)
+        bh=RGcZat4rJvZA4JvcNDS29r6hOcHFn5XfKWwq3XORVPs=;
+        b=QG7ilcvmgi4D+3WF4WugDlOI59ejBp9oyr3W73dLZSbpJeIslcT6XkSKk7YkTqUh3D
+         pSDxB020GsfWEI3bRV/m1/HTXnBZrnFvNxwDaZOA4ke0rCv7A67ACHQ2P6/yZZYW1kTP
+         D/7xISwx4y2FU97kQvrO3oQ1k/qvEA73x1v5YxEqRGHHr0QqzYZmxJ9S6Ixxbz3MXIYx
+         1jUOw+0By2iO7tEgk3Qw1hvVUPGbvatqVfwAzio/ynrDS8cwz18NKd5MjUHCRmTVs3EH
+         2HekHX0XYhH5nxoA53Qf438FzQwEVIf31e4fBMzi/In8H+wylghlWy2x5oENqAiQMNyf
+         q/Iw==
+X-Gm-Message-State: AO0yUKXRtMBQAjTEJTvSpBJjTkYmV4OhSQ1qfJSQIdFmEglwEGe2JBhq
+        SGuFfQHBn13rWUsK3W2DGyTb+Q==
+X-Google-Smtp-Source: AK7set8JtmCSdtvo0Q/Dix4hkgM4WlaiSkXDAUcpvvkOj2MWIykMQbAOyl7oCrI5Oq9nTyXgJO4d4A==
+X-Received: by 2002:adf:f7d1:0:b0:2c7:bd6:68fd with SMTP id a17-20020adff7d1000000b002c70bd668fdmr4252879wrq.47.1677144729470;
+        Thu, 23 Feb 2023 01:32:09 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id gk7-20020a17090790c700b008c673cd9ba2sm6230616ejb.126.2023.02.23.01.26.03
+        by smtp.gmail.com with ESMTPSA id a16-20020adffb90000000b002c54c92e125sm8537550wrr.46.2023.02.23.01.32.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 01:26:04 -0800 (PST)
-Message-ID: <33abc8a3-39f7-af7c-9676-723228624b0f@linaro.org>
-Date:   Thu, 23 Feb 2023 10:26:02 +0100
+        Thu, 23 Feb 2023 01:32:04 -0800 (PST)
+Message-ID: <3b54cd46-1c85-6a50-4902-7e59fb00a117@linaro.org>
+Date:   Thu, 23 Feb 2023 10:32:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [RFC PATCH 1/6] dt-bindings: iio: light: Support ROHM BU27034
+Subject: Re: [PATCH v11 06/10] dt-bindings: qcom-qce: document optional clocks
+ and clock-names properties
 Content-Language: en-US
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Liam Beguin <liambeguin@gmail.com>,
-        Peter Rosin <peda@axentia.se>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <cover.1677080089.git.mazziesaccount@gmail.com>
- <af211ec180d91a13862630e635019ebe03d4be31.1677080089.git.mazziesaccount@gmail.com>
- <e6b2a6f4-d710-7f74-e85d-1cd3f5b96460@linaro.org>
- <101db5e2-e878-b751-9679-6ea45eb24c26@fi.rohmeurope.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
+ <20230222172240.3235972-7-vladimir.zapolskiy@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <101db5e2-e878-b751-9679-6ea45eb24c26@fi.rohmeurope.com>
+In-Reply-To: <20230222172240.3235972-7-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2023 07:20, Vaittinen, Matti wrote:
-> Hi dee Ho Krzysztof,
+On 22/02/2023 18:22, Vladimir Zapolskiy wrote:
+> On newer Qualcomm SoCs the crypto engine clocks are enabled by default
+> by security firmware. To drop clocks and clock-names from the list of
+> required properties use 'qcom,sm8150-qce' compatible name.
 > 
-> Thanks for the review! It's nice you had the time to take a look on RFC :)
+> The change is based on Neil Armstrong's observation and an original change.
 > 
-> On 2/22/23 20:57, Krzysztof Kozlowski wrote:
->> On 22/02/2023 17:14, Matti Vaittinen wrote:
->>> ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
->>> capable of detecting a very wide range of illuminance. Typical application
->>> is adjusting LCD and backlight power of TVs and mobile phones.
->>>
->>> Add initial dt-bindings.
->>
->> Driver can be "initial", but bindings better to be closer to complete,
->> even if not used by the driver currently.
-> 
-> Out of the curiosity - why is that? (Please, don't take me wrong, I am 
-> not trying to argue against this - just learn the reason behind). I 
-> can't immediately see the harm caused by adding new properties later 
-> when we learn more of hardware. (and no, I don't expect this simple IC 
-> to gain at least many properties).
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
 
-Linux drivers change, but the hardware does not, thus DTS, which
-describes the hardware, can be complete. It should be written based on
-the hardware, not based on Linux drivers. If you add incomplete
-bindings, this suggests you wrote them to match your driver, not to
-match hardware. This in turn (adjusting bindings to driver) makes them
-less portable, narrowed to one specific driver implementation and more
-ABI-break-prone later.
 
-Imagine you that clock inputs, which you skipped in the binding, were
-actually needed but on your board they were enabled by bootloader. The
-binding is then used on other systems or by out of tree users. On your
-new system the clocks are not enabled by bootloader anymore, thus you
-add them to the binding. They are actually required for device to work,
-so you make them required. But all these other users cannot be fixed...
-
-What's more, incomplete binding/DTS is then used together with other
-pieces - DTS and driver, e.g. via some graphs or other
-phandles/supplies/pinctrl. So some other DTS or driver code might rely
-on your particular binding. Imagine you had only vdd-supply regulator,
-but no reset pins, so the only way to power-cycle device was to turn
-off/on regulator supply. Then you figure out that you have reset pins
-and it would be useful to add and use it. But already drivers are
-written to power cycle via regulator... or even someone wrote new driver
-regulator-pwrseq to power cycle your device due to missing reset GPIOs...
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
