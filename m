@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5956A1212
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 22:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B64C6A1218
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 22:34:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbjBWVb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 16:31:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45572 "EHLO
+        id S229496AbjBWVen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 16:34:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjBWVb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 16:31:56 -0500
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A519456505;
-        Thu, 23 Feb 2023 13:31:54 -0800 (PST)
-Received: by mail-qt1-x831.google.com with SMTP id d7so12551700qtr.12;
-        Thu, 23 Feb 2023 13:31:54 -0800 (PST)
+        with ESMTP id S229485AbjBWVem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 16:34:42 -0500
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD67058493;
+        Thu, 23 Feb 2023 13:34:40 -0800 (PST)
+Received: by mail-oo1-xc36.google.com with SMTP id p6-20020a4ab386000000b005252182b0e0so371006ooo.6;
+        Thu, 23 Feb 2023 13:34:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q4WrHToYhjDx1AbMUlSeZkbECM8IxjfDW2y4H9aWRFA=;
-        b=XtR2q1zAOu5fQT8ZO0UFLqP70l4Utk2RNQMU4Lw7PzbrLvcfAOigqZ9ft/r+RXMeLy
-         e6WsuLGk/t4oRLHMOI/J340NZGnx+zjolHPgOPu7vSzQpVNLeSzgeAWugOKRvPxRSQoQ
-         UcvBSQGIZpHR5/R8s5jMQnPDmS6iG48fXVEz4/vehSxs7h6CUlP3xQwrxOZHF7tWBV4L
-         miXcXrnTFA0/nNe4uKtGbOckGsFwhA73hJRbAg3wh1YsnSGYUP2vCBfFq6uMbgRZzkMy
-         Dp9AaR57Yjnj5JQtURRdaN9SGWyFd0wEc8JmW3MzbLlHt2Jm1BLTIH8RG22Dp4Os3ncm
-         cSqw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t0MLEdfogFCirLJv4TSRtYx1XikEIZ4JT62jkkkDm98=;
+        b=FvTqIUmGwrN1zrk+5UHgm6jrvUmwGd3XKVDM2DxdBv+oIF0ngaB6lNuKLYv5+b8X8B
+         qNpoPeSrCUkDSnoyGRz4NOBnqoxhRrAXpO3J49hJX/6TZr56SYaj0XtEz2Cj0tGmyPsl
+         /RWVHh14a/D5b2KL1tQLylvlasrGUTPFPJauxdtgA3OAFI5uNZQItENIHcPmwA+SouO5
+         cyfj6iR4BeUFkXQyxkHZsd1tpl2jfTf+tuzP+hblOmv5X55wVD+Vck06RlPlEoYeeNGH
+         mphj7e8PPf1AhHLCT6SfIc08bn0ewgDtQqgbfPY5gwKJT9cT2jk0GrWUCe4ns4QrYyUu
+         4ZqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q4WrHToYhjDx1AbMUlSeZkbECM8IxjfDW2y4H9aWRFA=;
-        b=gVvBWUDusvmMf0q6bea859PuEtM4NSlD8Su7oYog7WDjnn65t8fLms+7kVoPSJBHRu
-         p6/nH+nQQhhbxLg6r+wLrcIWnoeUcFvxQqn5XW+YGOw4AmE/RZm6JuCqfwM9v0Ul3aOe
-         mS8S4xe9XIKvCGHeHu5IYVTOB4S+xUgoafx1JexeJc6bc8FxtQ8Gx+rJ3QOOFw25+Rpk
-         Yg+ZZhAnoJX2p3ZGzRfKXaxVTR3QSbP99xgCz8UkyOZBKD0Rm2XJ9lUbpufyr35nCDn9
-         KzY2K09JmdNNzRBkyzcUCSCpiYSsCe+1cWflXnExLHvVLXUnjjpe7/2Dkgngju4Ot38y
-         pZcw==
-X-Gm-Message-State: AO0yUKWtLVP0abAM7kB63CATmt9VsQ09sYkSdSDFDajC0DBnYgLOnwtG
-        FmwA006IlPcVO/IbAHRoJJg=
-X-Google-Smtp-Source: AK7set82VY6tdcA/sG+2AAgbSthszXP3VxHt6hvxah8XWTkAHmEDji6pYZ96revkGPBdzdsOET1g2Q==
-X-Received: by 2002:ac8:5e09:0:b0:3bf:ae12:eff with SMTP id h9-20020ac85e09000000b003bfae120effmr9757859qtx.68.1677187913713;
-        Thu, 23 Feb 2023 13:31:53 -0800 (PST)
-Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
-        by smtp.gmail.com with ESMTPSA id j187-20020a3787c4000000b00739e7e10b71sm3475394qkd.114.2023.02.23.13.31.52
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t0MLEdfogFCirLJv4TSRtYx1XikEIZ4JT62jkkkDm98=;
+        b=ZgHt08DiS7dFFOwlXl1UBXqyHYRhOGAeRb+PNePcvrgDh1IKjmmkASxPr7F2GGc0p1
+         M8JdpGi3VDfJ+bqB2jKJozwc1cbTI25dd1gtf5uprDfzXDd+V3VBBTbgwtoYgTPj5DUX
+         VF6igr3SQA0iTVa060abFHUZsWnAY7QI99+S4lt7O2UJpTZ2zvaDzd+Pi+qdEZapmKjQ
+         tumQGT3GCNtbBJPMUNToU6/DxKo0PFIlbn7Y0lvOYHNLjYqI88fwMjc0rpHIln3yj94p
+         MYHVpjc9dqF/l6+a4aHuW2/w0Qj1JNjpo0HEc8ovd/WlqhmNzZpI3WPRgxglJMXzNz1E
+         Qdbw==
+X-Gm-Message-State: AO0yUKVHSt2LFu96bz25GEd+LwshfMSgwEEOrejeQUYjLIhXFvTVadEj
+        ssgo0I4a8/HzB5v2s+T/Kh4=
+X-Google-Smtp-Source: AK7set89e81XBaD9GNiMN6/H0V7uVRMc/0p7/e8HCQGkMtlnumVOHvYubDROdzuLW7kpBSwJQ2R1vw==
+X-Received: by 2002:a4a:3902:0:b0:525:c84:50b with SMTP id m2-20020a4a3902000000b005250c84050bmr4890042ooa.1.1677188080028;
+        Thu, 23 Feb 2023 13:34:40 -0800 (PST)
+Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:e42b:73d3:ba1a:1b32])
+        by smtp.gmail.com with ESMTPSA id r1-20020a4ae501000000b00524fe20aee5sm2903976oot.34.2023.02.23.13.34.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Feb 2023 13:31:53 -0800 (PST)
-From:   Danny Kaehn <kaehndan@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com
-Cc:     bartosz.golaszewski@linaro.org, andriy.shevchenko@linux.intel.com,
-        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Subject: [PATCH v7 3/3] HID: cp2112: Fwnode Support
-Date:   Thu, 23 Feb 2023 15:31:47 -0600
-Message-Id: <20230223213147.268-4-kaehndan@gmail.com>
+        Thu, 23 Feb 2023 13:34:39 -0800 (PST)
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v3 0/2] of: populate of_root_node if not set (alternate)
+Date:   Thu, 23 Feb 2023 15:34:16 -0600
+Message-Id: <20230223213418.891942-1-frowand.list@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230223213147.268-1-kaehndan@gmail.com>
-References: <20230223213147.268-1-kaehndan@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,86 +73,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bind I2C and GPIO interfaces to subnodes with names
-"i2c" and "gpio" if they exist, respectively. This
-allows the GPIO and I2C controllers to be described
-in firmware as usual. Additionally, support configuring the
-I2C bus speed from the clock-frequency device property.
+This series is a different implementation to achieve the goals of
+https://lore.kernel.org/r/20220623105044.152832-1-clement.leger@bootlin.com
 
-Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
----
- drivers/hid/hid-cp2112.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+In order to apply overlays or create new nodes under the root node, the
+kernel expects of_root to be set. On some system where a device-tree was
+not provided by firmware (x86 for instance) if CONFIG_OF is enabled,
+then we will end up with a null of_root. This series adds support to
+create this root node using a builtin dtb and removes the manual
+creation of the root node done in unittests.c.
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 27cadadda7c9..491e3c83af12 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -1234,6 +1234,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	u8 buf[3];
- 	struct cp2112_smbus_config_report config;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
- 	int ret;
- 
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1292,6 +1293,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	device_set_node(&dev->adap.dev, device_get_named_child_node(&hdev->dev, "i2c"));
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
-@@ -1300,7 +1305,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		hid_err(hdev, "error setting SMBus config\n");
- 		if (ret >= 0)
- 			ret = -EIO;
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_set_drvdata(hdev, (void *)dev);
-@@ -1322,7 +1327,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 
- 	if (ret) {
- 		hid_err(hdev, "error registering i2c adapter\n");
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_dbg(hdev, "adapter registered\n");
-@@ -1336,6 +1341,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	dev->gc.ngpio			= 8;
- 	dev->gc.can_sleep		= 1;
- 	dev->gc.parent			= &hdev->dev;
-+	dev->gc.fwnode			= device_get_named_child_node(&hdev->dev, "gpio");
- 
- 	dev->irq.name = "cp2112-gpio";
- 	dev->irq.irq_startup = cp2112_gpio_irq_startup;
-@@ -1376,7 +1382,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- err_gpiochip_remove:
- 	gpiochip_remove(&dev->gc);
- err_free_i2c:
-+	fwnode_handle_put(dev->gc.fwnode);
- 	i2c_del_adapter(&dev->adap);
-+err_free_i2c_of:
-+	fwnode_handle_put(dev_fwnode(&dev->adap.dev));
- err_power_normal:
- 	hid_hw_power(hdev, PM_HINT_NORMAL);
- err_hid_close:
-@@ -1391,6 +1400,8 @@ static void cp2112_remove(struct hid_device *hdev)
- 	struct cp2112_device *dev = hid_get_drvdata(hdev);
- 	int i;
- 
-+	fwnode_handle_put(dev->gc.fwnode);
-+	fwnode_handle_put(dev_fwnode(&dev->adap.dev));
- 	sysfs_remove_group(&hdev->dev.kobj, &cp2112_attr_group);
- 	i2c_del_adapter(&dev->adap);
- 
+Changes since version 2: (patch 1/2)
+  - change of __dtb_empty_root_* from "void *" to "uint8_t []"
+
+Changes since version 1: (patch 1/2)
+  - refresh for 6.2-rc1
+  - update Signed-off-by
+  - fix typo in of_fdt.h: s/of_setup/setup_of
+  - unflatten_device_tree(): validate size in header field dtb_empty_root
+    that will be used to copy dtb_empty_root
+  - add Kconfig option to manually select CONFIG_OF_EARLY_FLATTREE
+
+Changes since version 1: (patch 2/2)
+  - refresh for 6.2-rc1
+  - update Signed-off-by
+  - fix formatting error (leading space) in patch comment
+
+Frank Rowand (2):
+  of: create of_root if no dtb provided
+  of: unittest: treat missing of_root as error instead of fixing up
+
+ drivers/of/Kconfig        |  7 ++++++-
+ drivers/of/Makefile       |  2 +-
+ drivers/of/empty_root.dts |  6 ++++++
+ drivers/of/fdt.c          | 27 ++++++++++++++++++++++++++-
+ drivers/of/unittest.c     | 16 ++++++----------
+ include/linux/of_fdt.h    |  2 ++
+ init/main.c               |  2 ++
+ 7 files changed, 49 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/of/empty_root.dts
+
 -- 
-2.25.1
+Frank Rowand <frowand.list@gmail.com>
 
