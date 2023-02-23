@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEA136A0B64
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 15:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA28A6A0B70
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 15:03:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233852AbjBWOA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 09:00:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40826 "EHLO
+        id S233556AbjBWOC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 09:02:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232906AbjBWOAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 09:00:25 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4E54DE08;
-        Thu, 23 Feb 2023 06:00:24 -0800 (PST)
+        with ESMTP id S234514AbjBWOCp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 09:02:45 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1544657D08;
+        Thu, 23 Feb 2023 06:02:38 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 73C48B81992;
-        Thu, 23 Feb 2023 14:00:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEC2AC433EF;
-        Thu, 23 Feb 2023 14:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677160822;
-        bh=JnA0YflYHHHl3vV15cKiJ6n+ufwJedvbYA4DWUnOZqA=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C3CCE61723;
+        Thu, 23 Feb 2023 14:02:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A859C433A7;
+        Thu, 23 Feb 2023 14:02:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1677160957;
+        bh=QfxUQghE4DPpZIz+o5tpKsleTcnAA0ZVlwhLSMgXCtw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XRq6tlF45FvNHoYoDknCzE78dgTRXSSI6wfHMArqK6s2Uteh4Tvl8OoaICbWURBvi
-         syjmUsjjtQ8vWErRn/WRROQldKaI7h/JH/73InbgpIAOtMRpffOepREMruKi4ykqGU
-         y22U4d/dD4gUIEmbSSaVgmNqIxMOnNURgkZ0q/ylp5rRb82RFFfEsAEajVGhNRkcB1
-         LE5WOBJ0etEPGmFQQlcgTCHk8sxJpbd2UlT22SixTNVxrhE/9ruFk20wpfeW20CUXw
-         Io06oD2hUqgK1Z+vI4Z0415pVQOlZMSJ4JzzRGrVlSQlULCIDeHGoqkbYuUm+kYaYX
-         49j89g3DoO9Lw==
-Date:   Thu, 23 Feb 2023 14:00:15 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Okan Sahin <okan.sahin@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <Y/dxb+PTm4ry3Bss@google.com>
-References: <20230221103926.49597-1-okan.sahin@analog.com>
- <20230221103926.49597-6-okan.sahin@analog.com>
- <Y/S1ftKmV92TL8VO@smile.fi.intel.com>
- <Y/Y1p/4Mc1Oy4dWl@google.com>
- <Y/Y/Tv9CxgRkNESv@smile.fi.intel.com>
+        b=TkFY8ikFg+bB2r4feFrEQQ4G0kBWDk2EPbwGvb+4u7JcMFKDZ+bFxgg703xu7FUlF
+         R2kw5NzCQkWNef8PnLMDx1bxPd+wCYKVudgJ7JQqHH4zPfqSD6Hh8ZmDTbhmp27R+N
+         Q8mmCIOZcLr7OKrETZXJ2HpIw0Bazos44XU+oZIQ=
+Date:   Thu, 23 Feb 2023 15:02:35 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marcel@holtmann.org" <marcel@holtmann.org>,
+        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
+        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
+        "hdanton@sina.com" <hdanton@sina.com>,
+        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
+        "leon@kernel.org" <leon@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+        Rohit Fule <rohit.fule@nxp.com>,
+        Sherry Sun <sherry.sun@nxp.com>
+Subject: Re: [PATCH v5] Bluetooth: NXP: Add protocol support for NXP
+ Bluetooth chipsets
+Message-ID: <Y/dx+y8enikEP9iu@kroah.com>
+References: <20230223103614.4137309-1-neeraj.sanjaykale@nxp.com>
+ <20230223103614.4137309-4-neeraj.sanjaykale@nxp.com>
+ <Y/dEa6UJ2pXWsyOV@kroah.com>
+ <AM9PR04MB8603BD23BC407407316E928AE7AB9@AM9PR04MB8603.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y/Y/Tv9CxgRkNESv@smile.fi.intel.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <AM9PR04MB8603BD23BC407407316E928AE7AB9@AM9PR04MB8603.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,28 +74,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Feb 2023, Andy Shevchenko wrote:
-
-> On Wed, Feb 22, 2023 at 03:32:55PM +0000, Lee Jones wrote:
-> > On Tue, 21 Feb 2023, Andy Shevchenko wrote:
-> > > On Tue, Feb 21, 2023 at 01:39:13PM +0300, Okan Sahin wrote:
+On Thu, Feb 23, 2023 at 01:57:58PM +0000, Neeraj sanjay kale wrote:
+> Hi Greg,
 > 
-> ...
+> Thank you for your feedback.
 > 
-> > > > +#ifndef __MAX77541_MFD_H__
-> > > > +#define __MAX77541_MFD_H__
-> > > 
-> > > Can we go towards consistency in this?
-> > > Seems to me the most used patter so far is
-> > > 
-> > > #ifndef __LINUX_MFD_MAX77541_H
 > > 
-> > Drop the LINUX_ part please.
+> > > +
+> > > +static int init_baudrate = 115200;
+> > 
+> > and neither will this, as you need to support multiple devices in the system,
+> > your driver should never be only able to work with one device.
+> > Please make these device-specific things, not the same for the whole driver.
+> > 
 > 
-> Wouldn't be better to get rid of its usage at once?
-> Perhaps after v6.3-rc1 is out.
+> I am using this init_baudrate as a module parameter
+> static int init_baudrate = 115200;
+> module_param(init_baudrate, int, 0444);
+> MODULE_PARM_DESC(init_baudrate, "host baudrate after FW download: default=115200");
 
-Patches always welcome.
+Ah, totally missed that.
 
--- 
-Lee Jones [李琼斯]
+That is not ok, sorry, this is not the 1990's, we do not use module
+parameters for drivers as that obviously does not work at all for when
+you have multiple devices controlled by that driver.  Please make this
+all dynamic and "just work" properly for all devices.
+
+> We need this parameter configurable since different chip module vendors using the same NXP chipset, configure these chips differently.
+
+Then you are pushing the configuration to userspace for someone else to
+put on their boot command line?  that's crazy, please never do that.
+
+> For example, module vendor A distributes his modules based on NXP 88w8987 chips with a different configuration compared to module vendor B (based on NXP 88w8987), and the init_baudrate is one of the important distinctions between them.
+
+Then put that logic in DT where it belongs.
+
+> If we are able to keep this init_baudrate configurable, while compiling btnxpuart.ko as module, we will be able to support such baudrate variations.
+
+Again, no, that's not how tty or serial devices work.
+
+thanks,
+
+greg k-h
