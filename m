@@ -2,150 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93F5A6A018F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 04:40:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D10706A01BD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 05:19:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232470AbjBWDkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 22:40:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38944 "EHLO
+        id S233086AbjBWES7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 23:18:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbjBWDkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 22:40:51 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97DE628209;
-        Wed, 22 Feb 2023 19:40:49 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2B77324E1D4;
-        Thu, 23 Feb 2023 11:40:42 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
- 2023 11:40:41 +0800
-Received: from [192.168.125.82] (113.72.147.165) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
- 2023 11:40:40 +0800
-Message-ID: <25c01857-8f59-02ed-062d-a5e619258204@starfivetech.com>
-Date:   Thu, 23 Feb 2023 11:40:40 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v4 09/19] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S229502AbjBWES6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 23:18:58 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C94E816AD2
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 20:18:56 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id q189so5149234pga.9
+        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 20:18:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5qQ9fol+sC+iy0uVWw58Xvr3KUl7w21dyCA+M/nNmtc=;
+        b=rNUDxSOtOBiEJq4Me6lx0TC/mCbsEO+oy3qS0m6xblQktIr7bEZa0ftDWOL9NiNUkE
+         oQxI86bMJ3rWLIUBCYPc5pgIXxubu59QixW841yfWzHkIjX5rUwLvtf0uOITQYqnau0e
+         bUbgUv+abYNp6jaIVlR7iYEiDMNPpezd2VfRhUEwcVBJ61CR3lgSfIuGrwcaVRG2dqKc
+         zbGtZOdnJY4SZe+mnrtzTPFATbgAYjWaVL7RMAwrd0mdi9TE1EJxl3EC7rsM3Dp9Snls
+         ovqAbn47gpm620cEeecKfTa/4Nkkvtx3QA26K7JRsc38g71Fy7JzczE4GsxZeDP89j65
+         0/zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5qQ9fol+sC+iy0uVWw58Xvr3KUl7w21dyCA+M/nNmtc=;
+        b=I5Q7tWy25YKW0YkQNG7o+eXVywye8motMuQ96Jp8jUaqeDLdRmpIW9GktQbY+GY5Mi
+         9pQDou6NU3WjYSXlCYbbZVXKHlR4LongBUV7kDI36gINb0R1ZXylwctA3Z0ZkOKoqK4j
+         +2PEDbzogV1XXmw7Yns/hCbVVq3dQIq3DquVOSXlZvP7pPzYEFDeM0exiEzTnzuHZGAx
+         AcMncyAtITKNHMGWRoRGTCxpwUE2DOjFXb9QvuhsI6s4VlYB3CLA7T81KEag7duw8AKd
+         TnVj5WRZQfB0wreh0JHJzP2yqoESDRZzchD4ZEJv3P0Qkzoi9x85xkOi5Whn/ew9ZONS
+         jNGg==
+X-Gm-Message-State: AO0yUKXnXr+rP3MUjwg5J4g5cX4spxhMoIuy6KLIXDcavy2XaIgTTr8k
+        KKpUZYy7OWglZzHOW6ZUrn89Zw==
+X-Google-Smtp-Source: AK7set+akWLvAiphfs3iyLo8UAqgRWgvNVeBLkOtdz2bc7GA/+F6UkpetphEtPZ9qpxlckp+szOl0Q==
+X-Received: by 2002:aa7:9797:0:b0:5a8:31a1:2f05 with SMTP id o23-20020aa79797000000b005a831a12f05mr10250824pfp.5.1677125936195;
+        Wed, 22 Feb 2023 20:18:56 -0800 (PST)
+Received: from localhost ([122.172.83.155])
+        by smtp.gmail.com with ESMTPSA id x15-20020a62fb0f000000b005d296facfa3sm2742714pfm.36.2023.02.22.20.18.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Feb 2023 20:18:55 -0800 (PST)
+Date:   Thu, 23 Feb 2023 09:48:53 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
- <20230221024645.127922-10-hal.feng@starfivetech.com> <Y/T+GNQAXLGyUtCH@spud>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <Y/T+GNQAXLGyUtCH@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.165]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: cpufreq: qcom-hw: add a compatible for
+ sa8775p
+Message-ID: <20230223041853.2ehczevium2ooid2@vireshk-i7>
+References: <20230221150543.283487-1-brgl@bgdev.pl>
+ <20230221150543.283487-2-brgl@bgdev.pl>
+ <1459c825-d915-c55d-ad1d-4bc590e580a8@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1459c825-d915-c55d-ad1d-4bc590e580a8@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Feb 2023 17:23:36 +0000, Conor Dooley wrote:
-> Hey Hal,
+On 21-02-23, 16:46, Krzysztof Kozlowski wrote:
+> On 21/02/2023 16:05, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > 
+> > Add the compatible for the cpufreq engine present on sa8775p platforms.
+> > 
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
 > 
-> On Tue, Feb 21, 2023 at 10:46:35AM +0800, Hal Feng wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->> 
->> Add bindings for the system clock and reset generator (SYSCRG) on the
->> JH7110 RISC-V SoC by StarFive Ltd.
->> 
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > 
->> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> new file mode 100644
->> index 000000000000..ec81504dcb27
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> @@ -0,0 +1,80 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-syscrg.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 System Clock and Reset Generator
->> +
->> +maintainers:
->> +  - Emil Renner Berthing <kernel@esmil.dk>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-syscrg
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Main Oscillator (24 MHz)
->> +      - description: GMAC1 RMII reference
->> +      - description: GMAC1 RGMII RX
->> +      - description: External I2S TX bit clock
->> +      - description: External I2S TX left/right channel clock
->> +      - description: External I2S RX bit clock
->> +      - description: External I2S RX left/right channel clock
->> +      - description: External TDM clock
->> +      - description: External audio master clock
-> 
-> You didn't reply to the conversation I had with Krzysztof about how to
-> represent the optional nature of some of these clocks, contained in this
-> thread here:
-> https://lore.kernel.org/all/7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com/
-> 
-> What happens to the gmac1 mux if only one of the input clocks is
-> provided?
-> And I mean what does the hardware do, not the software representation of
-> that mux in the driver.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-In hardware, just providing the required input clocks is enough. Refer to the
-following link for the required clocks. Thanks.
+Applied. Thanks.
 
-https://lore.kernel.org/all/c0472d7f-56fe-3e91-e0a0-49ee51700b5d@starfivetech.com/
-
-Best regards,
-Hal
-
-> 
->> +
->> +  clock-names:
->> +    items:
->> +      - const: osc
->> +      - const: gmac1_rmii_refin
->> +      - const: gmac1_rgmii_rxin
->> +      - const: i2stx_bclk_ext
->> +      - const: i2stx_lrck_ext
->> +      - const: i2srx_bclk_ext
->> +      - const: i2srx_lrck_ext
->> +      - const: tdm_ext
->> +      - const: mclk_ext
-
+-- 
+viresh
