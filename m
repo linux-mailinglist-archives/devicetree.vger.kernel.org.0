@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE936A080B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 13:07:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 621786A0811
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 13:07:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233773AbjBWMHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 07:07:07 -0500
+        id S234028AbjBWMHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 07:07:10 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233964AbjBWMHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 07:07:04 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABAAE54A37
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:06:54 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id a10so10672685ljq.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:06:54 -0800 (PST)
+        with ESMTP id S234067AbjBWMHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 07:07:06 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55B655C1A
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:06:56 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id f16so10556595ljq.10
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:06:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=C2DkiOzFvqlB7+TWcEMrrrEcX0lZ3dVU5NgfPePd3XY=;
-        b=efFeIEoRxtiwlRt4E84hxWjWFgZ8KMsAJkCidihuG+M3eZe7QV62rT5onTi9rAglPM
-         HSxhPLUpgWlsnU/R2rCa452wWwxrWYayL092HzdLdt3653XgJo2wweouLP2L7HAuVUcT
-         Cww+HYGkwT/z6qg/+52NeomA9jThkbIxBtzKJJccWGCq0FREgvqohMzFH3wJE+pbsAo/
-         jzElWjR6zZ4y8yXBiTvCYJsbMDgPRI+3zHwhVEDpSnQ8tACNh/PuBblokUvHytT2pkEc
-         t/hV7lheaBUeGCWz8KRnXT6TnMCB9EKl4y3PI1PCbmXAkjpA/97OK9ulpOByP3wxyCVb
-         eirg==
+        bh=Qf5HInxjG90aUJ6hCZyojCQwkimyt7Jgftn2UOCVowY=;
+        b=PblEPf/xero1S5B6lz+EkjYQqQGaR3LqwLmbXZLAlwoNHm7ZalfNJZ2fHw1hwcF2VS
+         0d1LkH4gUzTpbyC+OYCy/89Uv0rUCxpXqd3xvPQf//Oa02qGtNswmtzmT1pde1TYMaGO
+         Y96OQxy/OCX6jNOO6byWEp7EJr5BVZUUjrxa6dBnw7BCCbNg8fM9lEIFIhSDsTRTEGc0
+         sz+I7NIVt6lzuUL4MIlHoM1megdE+6rt2soWExAfh3JNU394tu2cW8YUswJ3NGNJDe8L
+         8QlgOA3NhMtuNN2mJGkKW2ar89bmgdBwmX5FuLAbNs+nW7PJddScFIkE51xF0P8ZvJa1
+         d1Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=C2DkiOzFvqlB7+TWcEMrrrEcX0lZ3dVU5NgfPePd3XY=;
-        b=xuR1zksxXCll/wOQM4MVN+oTgyns9kZZdsZr1rxqVe0APxgdC+ly+f33dDC2pO/msU
-         JLJAGYGsIJGDdguKuAjIl/ZCKNR/JcUegKwrIJvtpwScCAvvufxznPbMdDrqtVJTKAW5
-         bYm+EaTFmE7a8SHTGNpmxpdFGYPEP8ZPMasnT6q2xb9/ToYnmGlzlN6lfxdpho0hxz5Z
-         uyh34bjHzK+WGzUSzPEF4GlVcYLs8he+j8pm4vwFETkwze52tBYWpGQKoAthIswMRHha
-         bh5Zq+yMly5l8TzkhUf7+PgAYflug3jg/vH+IpFUF+6+Fz/GeZMoEkIeiIUoB3CdhUEN
-         B/zQ==
-X-Gm-Message-State: AO0yUKXuJu5SSrObMioqi2nUJ4IcnCjx3qJ4B/FnK2mBpjqR0PH0oCyz
-        2h7MQ1T0fMiywmeYdHEbjSqb4w==
-X-Google-Smtp-Source: AK7set8+aozCdUsK9/A1dkHtq39HEuFqMzrwj0hVRPwFQ8fRu8JTjjYapM8hXr5CoBmrSc5n2EkIvw==
-X-Received: by 2002:a2e:a0d7:0:b0:290:6af2:2aac with SMTP id f23-20020a2ea0d7000000b002906af22aacmr3936791ljm.28.1677154014119;
-        Thu, 23 Feb 2023 04:06:54 -0800 (PST)
+        bh=Qf5HInxjG90aUJ6hCZyojCQwkimyt7Jgftn2UOCVowY=;
+        b=aMb8F3ObD1fKYM2dMznXcYBBrqQ+kdoiostmebGGZhS+/2f87NwprgtAjiyNzRNyAe
+         YNY4xWG48kLpi4bgv6yaFAAs9EA18V+INhzKMbliCXlfy7IR3P7I6nA0RVUfeJ4xuUqK
+         C8MhS9c5G/ddzDh6FPC8vl2f2INko72pArK9KMtmabAlpJ7HqcblCidxSrNQ/eQsH13T
+         qEdDrA8lwQzwBci66PaO8A/je/VMKLHtBdj6a+3YEE7BMCkSj4mjhUBTIEdkGFUlUFvs
+         +ZvzJrQJ9ALSq+To77/GKy/R6KrjaYaaKH/ew/Z3crDX3v7VMi/ACYLrrWE/QkNR6Xem
+         0RKg==
+X-Gm-Message-State: AO0yUKV2Rkrw+ZK5lPkOYqHgfQj/3ZYPaKz04t2BCPqJ0rbYv2JrGW7x
+        bYO7MVYf8qFLlPgN+fZ7DzjVrVHZB4c6wu0R
+X-Google-Smtp-Source: AK7set8LggzN6WNPfBVr0UHvKGJ3hSixlN1HA7HErHjUIxOpbU4YBioGHk+U2bkHICf2lFT3ZDrCQg==
+X-Received: by 2002:a05:651c:109:b0:293:3d31:be8 with SMTP id a9-20020a05651c010900b002933d310be8mr4002640ljb.5.1677154015641;
+        Thu, 23 Feb 2023 04:06:55 -0800 (PST)
 Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id h23-20020a2ea497000000b0029599744c02sm414838lji.75.2023.02.23.04.06.52
+        by smtp.gmail.com with ESMTPSA id h23-20020a2ea497000000b0029599744c02sm414838lji.75.2023.02.23.04.06.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Feb 2023 04:06:53 -0800 (PST)
+        Thu, 23 Feb 2023 04:06:55 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 23 Feb 2023 13:06:40 +0100
-Subject: [PATCH v3 06/15] drm/msm/a6xx: Remove both GBIF and RBBM GBIF halt
- on hw init
+Date:   Thu, 23 Feb 2023 13:06:41 +0100
+Subject: [PATCH v3 07/15] drm/msm/adreno: Disable has_cached_coherent in
+ GMU wrapper configurations
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v3-6-5be55a336819@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v3-7-5be55a336819@linaro.org>
 References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -74,52 +74,56 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1677154003; l=1251;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1677154003; l=1374;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=rP7wPgzCBRL4O8RjqZW82yCjEqeUwKMvFLJUSz0sk4w=;
- b=t1dDTvbESCNHgHAYmBv6IMnTLBnwneLOTRz1mF8VO3Y2mx1isDo8k3MOwjLqk/aVELjI0UZ5VVbf
- aPLaEhokA/k0s+GpA7f0O2MxMoiZNsGLLyrtJRa30jB5kDjx7zqA
+ bh=YYycR3bRJfKGsgGpgNOineZFPyZdnWytf23WfqsrBCk=;
+ b=cLHqy1jK95xMtC2H769nOzM6xMSsaFAe/WGrn1IYO7julVHu5tBndfmxPVQn2i+HLOjV8ES2kW4E
+ +nErpCukA7P3YzRQOH6OQqE7uQm5Kq+ROEkDvH0NLuZVuEw6UKS8
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently we're only deasserting REG_A6XX_RBBM_GBIF_HALT, but we also
-need REG_A6XX_GBIF_HALT to be set to 0. For GMU-equipped GPUs this is
-done in a6xx_bus_clear_pending_transactions(), but for the GMU-less
-ones we have to do it *somewhere*. Unhalting both side by side sounds
-like a good plan and it won't cause any issues if it's unnecessary.
-
-Also, add a memory barrier to ensure it's gone through.
+A610 and A619_holi don't support the feature. Disable it to make the GPU stop
+crashing after almost each and every submission - the received data on
+the GPU end was simply incomplete in garbled, resulting in almost nothing
+being executed properly. Extend the disablement to adreno_has_gmu_wrapper,
+as none of the GMU wrapper Adrenos that don't support yet seem to feature it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/msm/adreno/adreno_device.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index d8e7ef181e39..a8b727b82389 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1029,8 +1029,12 @@ static int hw_init(struct msm_gpu *gpu)
- 	}
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index 5142a4c72cfc..dfb43741ea32 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -540,7 +540,6 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
+ 		config.rev.minor, config.rev.patchid);
  
- 	/* Clear GBIF halt in case GX domain was not collapsed */
--	if (a6xx_has_gbif(adreno_gpu))
-+	if (a6xx_has_gbif(adreno_gpu)) {
-+		gpu_write(gpu, REG_A6XX_GBIF_HALT, 0);
- 		gpu_write(gpu, REG_A6XX_RBBM_GBIF_HALT, 0);
-+		/* Let's make extra sure that the GPU can access the memory.. */
-+		mb();
-+	}
+ 	priv->is_a2xx = config.rev.core == 2;
+-	priv->has_cached_coherent = config.rev.core >= 6;
  
- 	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
+ 	gpu = info->init(drm);
+ 	if (IS_ERR(gpu)) {
+@@ -552,6 +551,10 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
+ 	if (ret)
+ 		return ret;
+ 
++	if (config.rev.core >= 6)
++		if (!adreno_has_gmu_wrapper(to_adreno_gpu(gpu)))
++			priv->has_cached_coherent = true;
++
+ 	return 0;
+ }
  
 
 -- 
