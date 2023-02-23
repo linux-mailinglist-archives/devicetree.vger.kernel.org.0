@@ -2,162 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF0DB6A1255
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 22:54:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B70926A1270
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 22:59:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229453AbjBWVyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 16:54:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34164 "EHLO
+        id S229788AbjBWV7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 16:59:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjBWVyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 16:54:10 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4FD3D092;
-        Thu, 23 Feb 2023 13:54:08 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id j3so8132394wms.2;
-        Thu, 23 Feb 2023 13:54:08 -0800 (PST)
+        with ESMTP id S229784AbjBWV7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 16:59:03 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31A411FFE
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 13:59:01 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id qa18-20020a17090b4fd200b0023750b675f5so747215pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 13:59:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cnf188iR/tvAsm2WYE+b4Ycz9c+bAZHE51WtPBLYK6Q=;
-        b=MhW4haD4Lhbbin77nq10waiTDTz/XAwM3yIxnPpqoG6rxtyRhy7aaDuoOehGwWAl41
-         8U/V5TSuHWNpvL/kz9e/A4V/6AXYmulmKZamzTNukbdVmHsh2xy1WnYBZ8XojDQrHi4G
-         graY2OIRAUGPdNh/K2Cm3AAo6pFqTrPOaf21wrS+G0NV3CJV9WkzBWuDrpu6RVVrysWM
-         KC1i2VA+2a/Y0O80EUjVeXUtw8jrl6ztXX5NJVphir4GSh/H85IOFVu3OQi4I7cO6Qos
-         dyPWvckd1fBTTMNUSuljpIIZyBymCuL5dlLTieCpbf2hB5NzE6Uvo8nM3O3RMo4K+Pq8
-         brmQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s4Mr/rCIfznjMH6ZhmV4S/R+2E0ra9anHB7zT/P7eKw=;
+        b=fmoe7GqEAskBDcDzNZHbQZoj09JyGfUXYYKF5nEbfxEGliwyTZ78C8xVaf1Q5X8HJl
+         c2294rdMFOUVcTOP8Y2gbuHZY3Cn3197Pqoy1qcFdlpbO1ErMVeuKjjdUDlW6kICPt8K
+         xqzuhbgC6VvbLXb440TXkCn/hApWyobxQqgZ9OEY5ZkGor1G468/XaI1YePz/7mFn6/3
+         yke+cSm08fEsWLdvWGmGAHsQ50X+yxHCklgX/YHAuKNIgH3k/mxNjkZqPXZTlxYm6nsT
+         /O9jAsS/553PM2fsIgDltac4CNriIRC0nrWJzVfzkkJxNLd3kuK5NL7enclap6D/Djqk
+         5Riw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cnf188iR/tvAsm2WYE+b4Ycz9c+bAZHE51WtPBLYK6Q=;
-        b=fv8aZelsvMHE4KsOzGb+gBHzdJIY5Q34McnCSpx3WhX6ToKAG1dlHtL/7k5cS+ICL8
-         +VAo5VoJxQyBiSCVLLYwJPVMQm6SMllYroFGs7mhmXxro0qAQanQnDf9NoJTpdAdBDXS
-         tN7Dp1z9Wvdeom+vV/IciRg+1UIUYPQbwSE/C0/apk9OLrgae3lJlCZhsiyr/kYlhs8p
-         JQYa/mv9LwPNjiSKkjAV0yhFkasXvagjVb3bQsASikmOIJJq1Ckj97V0FN+P1tWzxUpS
-         4VzmxZ93M5/c4JbLclwddF758rsU/94ihnhDdjKzmZMktHvKpTtSWvYGRBX3bQJvjdPW
-         ELCw==
-X-Gm-Message-State: AO0yUKVhx3VMiRFEl8nYBSCRlSFP00Nn019i/0B+c7cYUuTddGIge+Pt
-        BgyJ4g8rVYdWFG+Uv1n+Od2QBwaRDZh2jpZzbq4=
-X-Google-Smtp-Source: AK7set/Y607YByKtpt2CfjK1Grnqn9NwL8hFS+0E7zqzm/O5s4grTI4xHe+wh1+ct/hTKg5jMqICYlZ57I+vdf/+Ml4=
-X-Received: by 2002:a05:600c:1c89:b0:3e2:669:f04e with SMTP id
- k9-20020a05600c1c8900b003e20669f04emr589797wms.2.1677189246968; Thu, 23 Feb
- 2023 13:54:06 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s4Mr/rCIfznjMH6ZhmV4S/R+2E0ra9anHB7zT/P7eKw=;
+        b=PwutGvMbR4PhTipNiv58wFWzbFw8uaKm5cFbSrMkZ38ylJ9xkgXFFLt1+JJs341r8E
+         gToBuTJ3h3+HGHFH+eH0ljd0YEBe0W/YckJ5dCbRrN1aXSZgrMIFIqL65rl181dRV1Bn
+         ZJv/k6zNIvj40jdVc6PkGEH6YacqZAi6/XQWwkpHvVrri678mpq7ImPqhfrZ83tmH17m
+         oUMY8ofj8vZMBMXg11ggYVE1/M6w8VS+1u2b/9kxBGXRdM3EBVec5CURL/rIorioKqlG
+         5JHWw971KUSi0qZImEWX09Jv/hQyqXi0Yor1gBshaPmruJOAWikGsASyGJkICPACFy1C
+         vxng==
+X-Gm-Message-State: AO0yUKWbN1RUFwz3/R3UrBhlO8GDx/LyfJ6sn6aKdyNSkczep4cgU+1D
+        +HEk+3Qbb6IxL+C/r1bamVLmCw==
+X-Google-Smtp-Source: AK7set+IuofcGG5Kuc+wgMaj11Z8DA++Rd/x/pbYLU/+F/IK9///eNtuG5BrHiJykcQjod2gP5rnrA==
+X-Received: by 2002:a05:6a21:33a4:b0:cc:59b7:79e6 with SMTP id yy36-20020a056a2133a400b000cc59b779e6mr1112752pzb.24.1677189540582;
+        Thu, 23 Feb 2023 13:59:00 -0800 (PST)
+Received: from [10.211.55.3] (c-73-221-130-71.hsd1.wa.comcast.net. [73.221.130.71])
+        by smtp.gmail.com with ESMTPSA id x5-20020a654145000000b00502ecb91940sm3043520pgp.55.2023.02.23.13.58.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Feb 2023 13:59:00 -0800 (PST)
+Message-ID: <5d67ee67-e63f-1393-1455-bfb6b2ddaeb5@linaro.org>
+Date:   Thu, 23 Feb 2023 15:58:58 -0600
 MIME-Version: 1.0
-References: <20230215010914.104754-1-frattaroli.nicolas@gmail.com>
- <CAMdYzYrZvHLFdhn_qYadYbDDnnC+16pkM_kWXiU16u_6XNHEMg@mail.gmail.com> <5650057.DvuYhMxLoT@archbox>
-In-Reply-To: <5650057.DvuYhMxLoT@archbox>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Thu, 23 Feb 2023 16:53:53 -0500
-Message-ID: <CAMdYzYrQRmOu_Q5n0t=TV2EZE9jh1OKqy5h5nnRt4NO+QDixJQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Always enable sd regulator on
- SOQuartz CM4IO
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v10 03/26] gunyah: Common types and error codes for Gunyah
+ hypercalls
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214211229.3239350-4-quic_eberman@quicinc.com>
+From:   Alex Elder <alex.elder@linaro.org>
+In-Reply-To: <20230214211229.3239350-4-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 12:53 AM Nicolas Frattaroli
-<frattaroli.nicolas@gmail.com> wrote:
->
-> On Thursday, 23 February 2023 01:29:39 CET Peter Geis wrote:
-> > On Tue, Feb 14, 2023 at 8:09 PM Nicolas Frattaroli
-> >
-> > <frattaroli.nicolas@gmail.com> wrote:
-> > > The 3.3V line coming from the SDMMC regulator is required for USB
-> > > on the CM4IO board. Without it, the USB mux (U13 in the CM4IO
-> > > schematic[1]) that's used likely remains unpowered, and no USB
-> > > devices show up.
-> > >
-> > > The consequence of this was the behaviour of an inserted SD card
-> > > allowing USB to work, while pulling it out turned off all USB
-> > > devices.
-> > >
-> > > [1]: https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
-> >
-> > I disagree with this. According to the datasheet u13 and half a dozen
-> > other devices are powered by 3.3v sourced from the SOM. sdmmc_pwr
-> > triggers SD_PWR_ON which serves only to provide an enable signal to
-> > u18, the regulator that powers the sdmmc slot from the same 3.3v. If
-> > you are having problems with USB working, you likely have something
-> > else going wrong here.
-> >
-> > Very Respectfully,
-> > Peter Geis
->
-> Hello,
->
-> I don't see how else the observed behaviour would be triggered.
-> As far as I can tell, the sdmmc_pwr regulator is the name of the
-> 3.3V regulator on the SOM, which is what powers the 3.3V on the
-> USB mux chip.
->
-> Do you have an alternate explanation for why this patch works?
+On 2/14/23 3:12 PM, Elliot Berman wrote:
+> Add architecture-independent standard error codes, types, and macros for
+> Gunyah hypercalls.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>   include/linux/gunyah.h | 82 ++++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 82 insertions(+)
+>   create mode 100644 include/linux/gunyah.h
+> 
+> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
+> new file mode 100644
+> index 000000000000..59ef4c735ae8
+> --- /dev/null
+> +++ b/include/linux/gunyah.h
+> @@ -0,0 +1,82 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef _LINUX_GUNYAH_H
+> +#define _LINUX_GUNYAH_H
+> +
+> +#include <linux/errno.h>
+> +#include <linux/limits.h>
+> +
+> +/******************************************************************************/
+> +/* Common arch-independent definitions for Gunyah hypercalls                  */
+> +#define GH_CAPID_INVAL	U64_MAX
+> +#define GH_VMID_ROOT_VM	0xff
+> +
+> +enum gh_error {
+> +	GH_ERROR_OK			= 0,
+> +	GH_ERROR_UNIMPLEMENTED		= -1,
+> +	GH_ERROR_RETRY			= -2,
 
-If you have the new variant of the SoQuartz, that pin is no longer
-sdmmc power and now feeds nEXTRST. As the variant I built this device
-tree from was not the final production version and is only operated by
-a few individuals (such as myself) you should probably just adjust
-this to the production variant.
+Do you expect this type to have a particular size?
+Since you specify negative values, it matters, and
+it's possible that this forces it to be a 4-byte value
+(though I'm not sure what the rules are).  In other
+words, UNIMPLEMENTED could conceivably have value 0xff
+or 0xffffffff.  I'm not even sure you can tell whether
+an enum is interpreted as signed or unsigned.
 
-On the production variant the sdmmc power pin is pulled high to 3.3v
-and cannot be controlled, which lead to the issues observed with the
-prototype model a baseboard.
+It's not usually a good thing to do, but this *could*
+be a case where you do a typedef to represent this as
+a signed value of a certain bit width.  (But don't do
+that unless someone else says that's worth doing.)
 
-Very Respectfully,
-Peter Geis
+					-Alex
 
->
-> Kind regards,
-> Nicolas Frattaroli
->
-> >
-> > > Fixes: 5859b5a9c3ac ("arm64: dts: rockchip: add SoQuartz CM4IO dts")
-> > > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> > > ---
-> > >
-> > >  arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> > > b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts index
-> > > 263ce40770dd..88a61fa8a95c 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> > > @@ -135,6 +135,12 @@ &sdmmc0 {
-> > >
-> > >  };
-> > >
-> > >  &sdmmc_pwr {
-> > >
-> > > +       /*
-> > > +        * USB also needs this regulator to work on this board, so just
-> > > enable +        * it unconditionally.
-> > > +        */
-> > > +       regulator-always-on;
-> > > +       regulator-boot-on;
-> > >
-> > >         regulator-min-microvolt = <3300000>;
-> > >         regulator-max-microvolt = <3300000>;
-> > >         status = "okay";
-> > >
-> > > --
-> > > 2.39.1
->
->
->
->
+> +
+> +	GH_ERROR_ARG_INVAL		= 1,
+> +	GH_ERROR_ARG_SIZE		= 2,
+> +	GH_ERROR_ARG_ALIGN		= 3,
+> +
+> +	GH_ERROR_NOMEM			= 10,
+> +
+> +	GH_ERROR_ADDR_OVFL		= 20,
+> +	GH_ERROR_ADDR_UNFL		= 21,
+> +	GH_ERROR_ADDR_INVAL		= 22,
+> +
+> +	GH_ERROR_DENIED			= 30,
+> +	GH_ERROR_BUSY			= 31,
+> +	GH_ERROR_IDLE			= 32,
+> +
+> +	GH_ERROR_IRQ_BOUND		= 40,
+> +	GH_ERROR_IRQ_UNBOUND		= 41,
+> +
+> +	GH_ERROR_CSPACE_CAP_NULL	= 50,
+> +	GH_ERROR_CSPACE_CAP_REVOKED	= 51,
+> +	GH_ERROR_CSPACE_WRONG_OBJ_TYPE	= 52,
+> +	GH_ERROR_CSPACE_INSUF_RIGHTS	= 53,
+> +	GH_ERROR_CSPACE_FULL		= 54,
+> +
+> +	GH_ERROR_MSGQUEUE_EMPTY		= 60,
+> +	GH_ERROR_MSGQUEUE_FULL		= 61,
+> +};
+> +
+> +/**
+> + * gh_remap_error() - Remap Gunyah hypervisor errors into a Linux error code
+> + * @gh_error: Gunyah hypercall return value
+> + */
+> +static inline int gh_remap_error(enum gh_error gh_error)
+> +{
+> +	switch (gh_error) {
+> +	case GH_ERROR_OK:
+> +		return 0;
+> +	case GH_ERROR_NOMEM:
+> +		return -ENOMEM;
+> +	case GH_ERROR_DENIED:
+> +	case GH_ERROR_CSPACE_CAP_NULL:
+> +	case GH_ERROR_CSPACE_CAP_REVOKED:
+> +	case GH_ERROR_CSPACE_WRONG_OBJ_TYPE:
+> +	case GH_ERROR_CSPACE_INSUF_RIGHTS:
+> +	case GH_ERROR_CSPACE_FULL:
+> +		return -EACCES;
+> +	case GH_ERROR_BUSY:
+> +	case GH_ERROR_IDLE:
+> +	case GH_ERROR_IRQ_BOUND:
+> +	case GH_ERROR_IRQ_UNBOUND:
+> +	case GH_ERROR_MSGQUEUE_FULL:
+> +	case GH_ERROR_MSGQUEUE_EMPTY:
+
+Is an empty message queue really busy?
+
+> +		return -EBUSY;
+> +	case GH_ERROR_UNIMPLEMENTED:
+> +	case GH_ERROR_RETRY:
+> +		return -EOPNOTSUPP;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +#endif
+
