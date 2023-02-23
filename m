@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A4E6A0142
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 03:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1DA6A0158
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 04:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232897AbjBWCoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 21:44:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
+        id S233296AbjBWDDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 22:03:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233088AbjBWCoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 21:44:09 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CAA23133
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 18:44:02 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id v3so12474589vse.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 18:44:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=glBWgfS+Z8AsJzCa0azp9rra0TmC5WFPpp9wbSwIysQ=;
-        b=TlXON0dnZS3i2VneFhuywAEetx5CXx1Yt7HMbvQ90/JuEusyf7pnz6RQIpVd7zC3o0
-         n4VlSAzuWvRIT/CCUnkBdl+Zu47u8j1gifDeC4ygpLSlzXO4n8hRdHdU6zHPr8CNCmF6
-         xYxOGJMOjTDNqwpbiTnDtDSQcydd71K1J0p4U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=glBWgfS+Z8AsJzCa0azp9rra0TmC5WFPpp9wbSwIysQ=;
-        b=fbZ3nRHxonceo1Q0h2MRhu02ubqF5fB8GB/TPDcjIylTwF2mUSNWa0oEKJkpGF5lWB
-         uW+vP4447bVv/cr0gyLm2klq/BOh9N/S5qK0jvg3qKfWuWb6US65udlC4NzUXpXcQGO9
-         oCgaelDpdBTwy8RlSL82AU2j2pz13VmxvmuxG4+2bXRRLPPVeu1yioYnWPH72Kq8+/s7
-         zoTKW8C0ZDkEdM/+ZxjuQdTSd+KOKD6hyxq6FZ3vNDynYhmqvlWo4uAWQGtjUZQL5w1h
-         pmNjExybVRuMVE/nr0YclGUyNB0bFxTePsDjr4jIFg0v5LZT4gGqwvOehSHVgtI5M2cO
-         t+gg==
-X-Gm-Message-State: AO0yUKX1mJBMdSQm7e2XPlUUs0KNK8jQzQt9RhUKBKA3WQZPe2bz2KQ4
-        lfegDO7Vycd2wpKDvzkc7audqlGn5yiMGuBW/RfHPg==
-X-Google-Smtp-Source: AK7set9FQsaQ4wwwGwa1iJ35QZxS7z/tqpoggFV3jIIY4bRVdaLuYXMbSLMPdYFq5+nMU1dh82/hbSINPKYjn7/TdoE=
-X-Received: by 2002:a05:6102:570b:b0:3fc:58d:f90f with SMTP id
- dg11-20020a056102570b00b003fc058df90fmr2241014vsb.60.1677120241810; Wed, 22
- Feb 2023 18:44:01 -0800 (PST)
+        with ESMTP id S233841AbjBWDDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 22:03:21 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82E1AD08;
+        Wed, 22 Feb 2023 19:03:17 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 3FB1D24E245;
+        Thu, 23 Feb 2023 11:03:15 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 11:03:14 +0800
+Received: from [192.168.125.82] (113.72.147.165) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 11:03:14 +0800
+Message-ID: <63d0e2a9-84b9-6637-6bbf-dedb2527eaa5@starfivetech.com>
+Date:   Thu, 23 Feb 2023 11:03:04 +0800
 MIME-Version: 1.0
-References: <20230221153740.1620529-1-angelogioacchino.delregno@collabora.com>
- <20230221153740.1620529-7-angelogioacchino.delregno@collabora.com>
- <CAGXv+5Ed-5Nq0zNzCGzez3fnW2yxW7zFx9B6k58Y4yb8P+hvpw@mail.gmail.com> <88a3fa09-60cb-bb3c-c392-286efd983627@collabora.com>
-In-Reply-To: <88a3fa09-60cb-bb3c-c392-286efd983627@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 23 Feb 2023 10:43:50 +0800
-Message-ID: <CAGXv+5H3XMF7ov_WfNFA=HC0frD003MRdVuBOFiBvu8zxE_rwg@mail.gmail.com>
-Subject: Re: [PATCH v2 06/10] dt-bindings: gpu: mali-bifrost: Add a compatible
- for MediaTek MT8186
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
-        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     Stephen Boyd <sboyd@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220005054.34518-1-hal.feng@starfivetech.com>
+ <20221220005054.34518-8-hal.feng@starfivetech.com> <Y6JB37Pd5TZoGMy4@spud>
+ <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
+ <Y6tSWB2+98a8k9Qw@spud>
+ <5cf0fe71-fd17-fb28-c01e-28356081ba76@starfivetech.com>
+ <Y+5z8skN2DuvxDEL@spud> <72953dc9371b87da8d03c63633d7d9dd.sboyd@kernel.org>
+ <Y/VWNPfApsfm3/UD@spud>
+ <c0472d7f-56fe-3e91-e0a0-49ee51700b5d@starfivetech.com>
+ <Y/ZCRv3jHwFxN1Fo@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y/ZCRv3jHwFxN1Fo@spud>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.165]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,80 +68,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 22, 2023 at 5:13 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 22/02/23 09:37, Chen-Yu Tsai ha scritto:
-> > On Tue, Feb 21, 2023 at 11:37 PM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> Get GPU support on MT8186 by adding its compatible.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 5 +++++
-> >>   1 file changed, 5 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> >> index be18b161959b..43a841d4e94d 100644
-> >> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> >> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> >> @@ -15,6 +15,11 @@ properties:
-> >>
-> >>     compatible:
-> >>       oneOf:
-> >> +      - items:
-> >> +          - enum:
-> >> +              - mediatek,mt8186-mali
-> >> +          - const: mediatek,mt8183b-mali
-> >> +          - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-> >
-> > The MT8186 has Mali-G52 MC2 2EE, while the MT8183 has Mali-G72 MP3.
->
-> Keeping in mind the obvious - which is that G52 and G72 are both Bifrost....
->
-> > So we actually need a new entry with two power domains.
-> >
->
-> ...This is my node for MT8186:
->
->                 gpu: gpu@13040000 {
->                         compatible = "mediatek,mt8186-mali",
->                                      "mediatek,mt8183b-mali",
->                                      "arm,mali-bifrost";
->                         reg = <0 0x13040000 0 0x4000>;
->
->                         clocks = <&mfgsys CLK_MFG_BG3D>;
->                         interrupts = <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH 0>,
->                                      <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH 0>,
->                                      <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH 0>;
->                         interrupt-names = "job", "mmu", "gpu";
->                         power-domains = <&spm MT8186_POWER_DOMAIN_MFG1>,
->                                         <&spm MT8186_POWER_DOMAIN_MFG2>,
->                                         <&spm MT8186_POWER_DOMAIN_MFG3>;
->                         power-domain-names = "core0", "core1", "core2";
->
->                         /* Please ignore speedbin, that's for another time :-) */
->                         nvmem-cells = <&gpu_volt_bin>;
->                         nvmem-cell-names = "speed-bin";
->                         #cooling-cells = <2>;
->                 };
->
-> There are three MFG power domains... MFG2 and MFG3 are parents of MFG1, on that
-> I agree, but we can avoid adding a new entry just for MT8186 and use the MT8183-b
-> one while still being technically correct.
->
-> Besides, Mali G52 and Mali G72 are both Bifrost... so I don't think that this
-> commit is incorrect. For the sake of simplicity, I would push on getting this
-> one picked.
+On Wed, 22 Feb 2023 16:26:46 +0000, Conor Dooley wrote:
+> On Wed, Feb 22, 2023 at 09:27:37PM +0800, Hal Feng wrote:
+>> On Tue, 21 Feb 2023 23:39:32 +0000, Conor Dooley wrote:
+>> > On Tue, Feb 21, 2023 at 02:17:17PM -0800, Stephen Boyd wrote:
+>> >> Quoting Conor Dooley (2023-02-16 10:20:34)
+>> >> > On Thu, Feb 16, 2023 at 10:42:20PM +0800, Hal Feng wrote:
+>> >> > > On Tue, 27 Dec 2022 20:15:20 +0000, Conor Dooley wrote:
+>> >> > > > On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
+>> >> > > Please see the picture of these external clocks in clock tree.
+>> >> > > 
+>> >> > > # mount -t debugfs none /mnt
+>> >> > > # cat /mnt/clk/clk_summary
+>> >> > >                                  enable  prepare  protect                                duty  hardware
+>> >> > >    clock                          count    count    count        rate   accuracy phase  cycle    enable
+>> >> > > -------------------------------------------------------------------------------------------------------
+>> >> > >  *mclk_ext*                             0        0        0    12288000          0     0  50000         Y
+>> >> > >  *tdm_ext*                              0        0        0    49152000          0     0  50000         Y
+>> >> > >  *i2srx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+>> >> > >  *i2srx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+>> >> > >  *i2stx_lrck_ext*                       0        0        0      192000          0     0  50000         Y
+>> >> > >  *i2stx_bclk_ext*                       0        0        0    12288000          0     0  50000         Y
+>> >> > >  *gmac1_rgmii_rxin*                     0        0        0   125000000          0     0  50000         Y
+>> >> > >     gmac1_rx                          0        0        0   125000000          0     0  50000         Y
+>> >> > >        gmac1_rx_inv                   0        0        0   125000000          0   180  50000         Y
+>> >> > >  *gmac1_rmii_refin*                     0        0        0    50000000          0     0  50000         Y
+>> >> > >     gmac1_rmii_rtx                    0        0        0    50000000          0     0  50000         Y
+>> >> > >        gmac1_tx                       0        0        0    50000000          0     0  50000         N
+>> >> > >           gmac1_tx_inv                0        0        0    50000000          0   180  50000         Y
+>> >> > >  *osc*                                  4        4        0    24000000          0     0  50000         Y
+>> >> > >     apb_func                          0        0        0    24000000          0     0  50000         Y
+>> >> > >  ...
+>> >> > > 
+>> >> > > The clock "gmac1_rgmii_rxin" and the clock "gmac1_rmii_refin" are
+>> >> > > actually used as the parent of other clocks.
+>> >> > 
+>> >> > > The "dummy" clocks
+>> >> > > you said are all internal clocks.
+>> >> > 
+>> >> > No, what I meant by "dummy" clocks is that if you make clocks "required"
+>> >> > in the binding that are not needed by the hardware for operation a
+>> >> > customer of yours might have to add "dummy" clocks to their devicetree
+>> >> > to pass dtbs_check.
+>> >> 
+>> >> They can set the phandle specifier to '<0>' to fill in the required
+>> >> property when there isn't anything there. If this is inside an SoC, it
+>> >> is always connected because silicon can't change after it is made
+>> >> (unless this is an FPGA). Therefore, any and all input clocks should be
+>> >> listed as required.
+>> > 
+>> >> If the clk controller has inputs that are
+>> >> pads/balls/pins on the SoC then they can be optional if a valid design
+>> >> can leave those pins not connected.
+>> > 
+>> > From the discussion on the dts patches, where the clocks have been put
+>> > (intentionally) into board.dts, I've been under the impression that we
+>> > are in this situation.
+>> 
+>> For the system (sys) clock controller, we are in this situation.
+>> For the always-on (aon) clock controller, we are not, because some input
+>> clocks are inside the SoC.
+>> 
+>> > Up to Hal to tell us if the hardware is capable of having those inputs
+>> > left unfilled!
+>> 
+>> The situation is different for v1.2A and v1.3B boards.
+>> 
+>> For the v1.2A board,
+>> gmac1 only requires "gmac1_rmii_refin", which support 100MHz
+>> gmac0 only requires "gmac0_rgmii_rxin", which support 1000MHz
+>> 
+>> For the v1.3B board,
+>> gmac1 only requires "gmac1_rgmii_rxin", which support 1000MHz
+>> gmac0 only requires "gmac0_rgmii_rxin", which support 1000MHz
+>> 
+>> So we should set the "required" property depending on different
+>> boards.
+> 
+> These were Krzk's suggestions:
+> oneOf:
+>  - clock-names:
+>      minItems: 3
+>      items:
+>        - a
+>        - b
+>        - c
+>        - d
+>  - clock-names:
+>      items:
+>        - a
+>        - b
+>        - d
+> 
+> or maybe:
+>  - clock-names:
+>      minItems: 3
+>      items:
+>        - a
+>        - b
+>        - enum: [c, d]
+>        - d
+> 
+> Might be making a mess here, but I think that becomes:
+>   clock-names:
+>     oneOf:
+>       - items:
+>           - const: osc
+>           - enum:
+>               - gmac1_rmii_refin
+>               - gmac1_rgmii_rxin
+>           - const: i2stx_bclk_ext
+>           - const: i2stx_lrck_ext
+>           - const: i2srx_bclk_ext
+>           - const: i2srx_lrck_ext
+>           - const: tdm_ext
+>           - const: mclk_ext
+> 
+>       - items:
+>           - const: osc
+>           - const: gmac1_rmii_refin
+>           - const: gmac1_rgmii_rxin
+>           - const: i2stx_bclk_ext
+>           - const: i2stx_lrck_ext
+>           - const: i2srx_bclk_ext
+>           - const: i2srx_lrck_ext
+>           - const: tdm_ext
+>           - const: mclk_ext
 
-I'm aware. In case it wasn't obvious, Mali-G52 MC2 2EE has 2 cores, while
-Mali-G72 MP3 has 3 cores. I think that is reason enough to do a new entry.
-Otherwise you are describing power domains for 3 cores for a GPU that only
-has two.
+Will modify it and improve the description of clock items for
+pointing out which clock is required on different boards.
+Thank you all for your helpful suggestions.
 
-> Unless there are any real-strong opinions against...
-
-Yes.
-
-ChenYu
+Best regards,
+Hal
