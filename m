@@ -2,175 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7966A0405
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 884106A040D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233411AbjBWIlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 03:41:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38860 "EHLO
+        id S233249AbjBWInh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 03:43:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232954AbjBWIlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:41:02 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5211E13DC2;
-        Thu, 23 Feb 2023 00:40:39 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.133])
-        by gateway (Coremail) with SMTP id _____8Axkk6FJvdjYw0EAA--.2595S3;
-        Thu, 23 Feb 2023 16:40:37 +0800 (CST)
-Received: from [10.20.42.133] (unknown [10.20.42.133])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxX+SBJvdjAIQ5AA--.4780S3;
-        Thu, 23 Feb 2023 16:40:35 +0800 (CST)
-Message-ID: <6662546a-2c83-71bd-7050-903331201bdc@loongson.cn>
-Date:   Thu, 23 Feb 2023 16:40:33 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
- device node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232644AbjBWIng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:43:36 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F313732CE8;
+        Thu, 23 Feb 2023 00:43:29 -0800 (PST)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7FE7266021EF;
+        Thu, 23 Feb 2023 08:43:27 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677141807;
+        bh=Pyy4+SZVekNirtkGEkJ02ji/jAYr8ndwKDae9kAk4h8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GN1EV4egjuQkjjKlRoGVPI2vqp2VDVWfpmo5EsK3Udl7/F1zH7op0TTVcBS2onQIj
+         Cq5Eh4VD0XPF6GjNggCP57dEFoobbNRAYtOV8WNBwG/TimPYUrhfHYQQ0pfjuhJWFJ
+         QF/+TCk0cxoGpfSnovFFsqLbFkTVUjUYfdOdLUsX3pKQPEvHnmCn6ne6pBxrVZF5ms
+         Ehr3aZuNm9+gIaD7SZKxLbbpqZRxxlpgMWkm8YM7rrGEJgMWXa0F4cJH5x+IHsRuTG
+         PSEuNv+kOhjtgYPDIbgEHORCYNbfWyjAU7dFrAPc1+Mf2BQLOfr2QTzrwQAfGfLIoF
+         1Of5N0o9ZjpOQ==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     David Rhodes <david.rhodes@cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20230222165514.684729-1-suijingfeng@loongson.cn>
- <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
- <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
- <f1cb010c-be28-9b1b-da1f-93d5e2fb213f@kernel.org>
-From:   suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <f1cb010c-be28-9b1b-da1f-93d5e2fb213f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>
+Subject: [PATCH v7 0/4] Add CS35L41 shared boost feature
+Date:   Thu, 23 Feb 2023 08:43:20 +0000
+Message-Id: <20230223084324.9076-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxX+SBJvdjAIQ5AA--.4780S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxGFyDtryUCrWDZF4rCr18AFb_yoWrJFW3pF
-        nxAanrKr40yF17ZryFq348JrnIvFyrAF1DWFsrtw1UJ3sIva12vr4rJr1ruF48ZrW7Za4j
-        vF1rKrWIgF1kAaDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E
-        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
-        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
-        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUtVW8ZwC20s026c02F40E14v26r1j6r18MI
-        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
-        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
-        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2
-        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFApnUUUUU=
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Valve's Steam Deck uses CS35L41 in shared boost mode, where both speakers
+share the boost circuit.
+Add this support in the shared lib, but for now, shared boost is not
+supported in HDA systems as would require BIOS changes.
 
-On 2023/2/23 15:58, Krzysztof Kozlowski wrote:
-> On 23/02/2023 04:19, Sui jingfeng wrote:
->> Hi,
->>
->> On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
->>> On 22/02/2023 17:55, suijingfeng wrote:
->>>> The display controller is a pci device, it's pci vendor id is
->>>> 0x0014, it's pci device id is 0x7a06.
->>>>
->>>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
->>>> ---
->>>>    .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
->>>>    1 file changed, 21 insertions(+)
->>>>
->>>> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>> index 8143a61111e3..a528af3977d9 100644
->>>> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>> @@ -31,6 +31,18 @@ memory@200000 {
->>>>    			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
->>>>    	};
->>>>    
->>>> +	reserved-memory {
->>>> +		#address-cells = <2>;
->>>> +		#size-cells = <2>;
->>>> +		ranges;
->>>> +
->>>> +		display_reserved: framebuffer@30000000 {
->>>> +			compatible = "shared-dma-pool";
->>>> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
->>>> +			linux,cma-default;
->>>> +		};
->>>> +	};
->>>> +
->>>>    	cpu_clk: cpu_clk {
->>>>    		#clock-cells = <0>;
->>>>    		compatible = "fixed-clock";
->>>> @@ -198,6 +210,15 @@ sata@8,0 {
->>>>    				interrupt-parent = <&liointc0>;
->>>>    			};
->>>>    
->>>> +			display-controller@6,0 {
->>>> +				compatible = "loongson,ls2k1000-dc";
->>>> +
->>>> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
->>>> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
->>>> +				interrupt-parent = <&liointc0>;
->>>> +				memory-region = <&display_reserved>;
->>> NAK.
->> Err :(,  please give me a chance to explain
->>> Test your code against the bindings you send.
->> I can guarantee to you that I test may code more than twice. The code
->> used to testing is listed at link [1].
-> I wrote - test against the bindings. I don't believe that it was tested.
-> Please paste the output of the testing (dtbs_check).
+Based on David Rhodes shared boost patches.
 
-I *do* run the test against the bindings and the test result say nothing.
+Also, fix boost config overwriting in IRQ found in the review and do a
+small refactor of the code.
 
-I reset my modify today made, then re-run the test again.
+Changes from V6:
+ - Fix TX/RX bits in passive amp
 
-I'm telling the truth: the test result say nothing. I paste the log at 
-below:
+Changes from V5:
+ - Improved documentation from Cirrrus
+ - All amps use MDSCYN for boost source
+ - Active amp has TX and RX enabled
 
-make -j$(nproc) ARCH=loongarch 
-CROSS_COMPILE=loongarch64-unknown-linux-gnu- dt_binding_check 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml 
-dtbs_check 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+Changes from V4:
+ - Fix Document subject
 
-   DTEX 
-Documentation/devicetree/bindings/display/loongson/loongson,display-controller.example.dts
-   DTC_CHK 
-Documentation/devicetree/bindings/display/loongson/loongson,display-controller.example.dtb
+Changes from V3:
+ - Fix wrong code sent
+ - Fix ISO C90 mixed declarations and code 
 
+Changes from V2:
+ - Drop External boost without VSPK Documentation
+ - Move Shared boost to use values 2 and 3
+ - Revert back to reg_sequence but reading the value first and only update
+the necessary bits
+ - Fix bug found by Intel kernel Test Robot
 
-I remember, if there anything wrong, rob's test robot will complain.
+Changes from V1:
+ - Fix Documentation patch subject
+ - New patch for External boost without VSPK Documentation
+ - New patch to fix boost IRQ overwriting issue
+ - New patch to refactor IRQ release error code
+ - reinit_completion on pcm_startup
+ - fix DRE switch overwriting
+ - return IRQ_HANDLED in PLL_LOCK case
 
-let's wait and witness.
+Lucas Tanure (4):
+  ASoC: cs35l41: Only disable internal boost
+  ASoC: cs35l41: Refactor error release code
+  ALSA: cs35l41: Add shared boost feature
+  ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
 
->> This patchset  mainly used to illustrate how  we made the driver in [1]
->> usable on our SoC platform.
->>
->>> It's the same
->>> patchset. You basically send something which the same moment is incorrect.
->> Loongson display controller IP has been integrated in both Loongson
->> North Bridge chipset(ls7a1000 and ls7a2000) and Loongson SoCs(ls2k1000
->> and ls2k2000 etc), it even has been included in Loongson BMC(ls2k0500 bmc)
->> products.
-> I don't understand how your reply here is relevant to incorrect bindings
-> or incorrect DTS according to bindings.
+ .../bindings/sound/cirrus,cs35l41.yaml        |  10 +-
+ include/sound/cs35l41.h                       |  13 +-
+ sound/pci/hda/cs35l41_hda.c                   |   6 +-
+ sound/soc/codecs/cs35l41-lib.c                |  73 +++++++++-
+ sound/soc/codecs/cs35l41.c                    | 125 +++++++++---------
+ sound/soc/codecs/cs35l41.h                    |   1 +
+ 6 files changed, 157 insertions(+), 71 deletions(-)
 
-Ok, now I know that you refer to the bindings.
-
-I'm a newbie at DT bindings, but i will correct all of the problem you 
-mentioned.
-
-It takes a few time, thanks for  your valuable advice.
-
->
-> Best regards,
-> Krzysztof
+-- 
+2.39.2
 
