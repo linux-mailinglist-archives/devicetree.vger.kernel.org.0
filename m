@@ -2,156 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9EB6A0C34
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 15:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7C666A0C3D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 15:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233910AbjBWOvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 09:51:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59968 "EHLO
+        id S233193AbjBWOyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 09:54:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233193AbjBWOvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 09:51:39 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC77759427
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 06:51:36 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id m6so14135389lfq.5
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 06:51:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cKP/YloJ0OTk1Xglp3NOzzCGaVgg7YFxQB7FIhSRxwQ=;
-        b=gnuyw/43I9lW3uSoOmMTHB9/YkkCpbjw21JM58EHCFJLWthALpGuPkCXFguNsij/yu
-         PUSnyr0KT4lK5RxcBbxBB/IByddBj+P3hdyl0bA6PW3BLjbDYhRDB8T/8TQbHwVujvNU
-         JIfZn0vnE/sfwKnEKEqRz8W3TWmKVWDcuK4MNuo7diYXMlAiJaQQZq71VDIMgn09qsN4
-         jDSHw1ew1lB1mruDtK8SCfYVGxtuSgOjlUVctPZDwcgppzmG27Jxn9FUFU5S9JZhRjtY
-         +YczytkQAd6G1l4TdaqeD/3RQZACwgAV2nTzlnaKl8WhUF2gG6WHo6dXT1Tj6pWFmZhu
-         9MeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cKP/YloJ0OTk1Xglp3NOzzCGaVgg7YFxQB7FIhSRxwQ=;
-        b=uWA8/EX9t5uhPu5l21CChoopmmFE3Ii6u0Xvfsnp1S+TtPTiKXPthwxWmKZH3zN6Nk
-         hUQLVmAPcmvDN3MJsuEDM//+N2Atcfw2Lollz9y1XI12TNjzLCgWrX6H3EtEGiNsX+Y5
-         YW++K2e8jC/pSSxSsSEQOMvK9/VoxiVRW/DZ1VAQOrEfLmCA1WC0OJVLlgq8H6lQVway
-         3yl6+/ZuTYVENF/dqUpqb9WfCX9COnW5xz60SPIxhJZmY1Cs6a3Hbn9UM7Cnqgw0wtHi
-         6it05wH18v/bzz3NQYN9N9lonT+h66OQVk22fLwCnBs39MoqGz9n6s/FiKUDz02/vcUv
-         ANZg==
-X-Gm-Message-State: AO0yUKU5tuum08a2fFK6FqakYUzbztABMXlFCP8T7IVjEAcTHIVDBPgG
-        DcKJPOGekHNHtd2qKK2+P7KRkQ==
-X-Google-Smtp-Source: AK7set/JzmQxNYhoYOGR53AF3yyANHsb8TETRVoVhpKbUAMZWOA/GJaFtTbLDT5T7avOgrAT5PuOUA==
-X-Received: by 2002:a19:ac4d:0:b0:4cb:64:ba93 with SMTP id r13-20020a19ac4d000000b004cb0064ba93mr3774850lfc.36.1677163895158;
-        Thu, 23 Feb 2023 06:51:35 -0800 (PST)
-Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id u8-20020ac25188000000b004dda02f5e42sm337967lfi.298.2023.02.23.06.51.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 06:51:34 -0800 (PST)
-Message-ID: <b39f63ce-7f88-ba68-df46-de9470d63a4e@linaro.org>
-Date:   Thu, 23 Feb 2023 15:51:32 +0100
+        with ESMTP id S229502AbjBWOyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 09:54:37 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED48F52DE6;
+        Thu, 23 Feb 2023 06:54:35 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id ED7576602215;
+        Thu, 23 Feb 2023 14:54:33 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677164074;
+        bh=LLTzPuRFN+0pSbDG6Kkh/Csyc+/dUcma135aklDWzWc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=D4PyWZAI957HM5iZBYJ1CROMDtLSIR6aaKLhErvyJyooR/gDUhX48SnoHuSKzwkXI
+         098Ahdc8nPAE0XlmOLnjM8OfT5KGKOAfBMTMli2Rj4CQtG3iI0jn3+q6uFMNFMMVCC
+         3ze3KspldXTeQQdjTmvbV4CcaoeWWx3+4xFV2e0dkptgAABcFWiRa5XseQBa3HYQBn
+         ChiUT76MHJ55wF6lycrmAtW1r1B0FkpFTm0xh1l8X9OrZC57ddD9zA13pDyMjZpYXW
+         khn8/Sn7QLk/vDANu/gB9NngBEgAUhH37GF+Op6KsVm7cCPdS0fMgflTgYVl8ezAiw
+         CNaVRZHm7+k+g==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v1 0/4] MT8195 Cherry: Enable PCIe/WiFi, add PWMs
+Date:   Thu, 23 Feb 2023 15:54:22 +0100
+Message-Id: <20230223145426.193590-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 10/15] drm/msm/a6xx: Fix A680 highest bank bit value
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>
-References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
- <20230223-topic-gmuwrapper-v3-10-5be55a336819@linaro.org>
- <CAA8EJppi45K0hQ=1fZvf+Mps+4uEkXmLFeqdmyk-yk31CNvUsw@mail.gmail.com>
- <761e0aba-9364-557a-e6e5-e21494597dbc@linaro.org>
- <CAA8EJppvmojWnvwB1aKJ1M7CcoFHk9BLFR0U7CQGR9GexQckdw@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAA8EJppvmojWnvwB1aKJ1M7CcoFHk9BLFR0U7CQGR9GexQckdw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series enables PCI-Express on MT8195 Cherry Tomato Chromebooks,
+making it possible to use the MT7921E WiFi card on PCIe bus.
 
+While at it, I've also added the missing hardware PWM nodes for
+MT8195 and relevant nodes to get backlight support in all Cherry
+devices for the internal display.
 
-On 23.02.2023 15:48, Dmitry Baryshkov wrote:
-> On Thu, 23 Feb 2023 at 15:49, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->>
->> On 23.02.2023 14:06, Dmitry Baryshkov wrote:
->>> On Thu, 23 Feb 2023 at 14:07, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>>
->>>> According to the vendor sources, it's equal to 16, which makes hbb_lo
->>>> equal to 3.
->>>
->>> I think we might be stricken with the ddr kind difference here, but I
->>> would not bet on it.
->> It totally is, but it also seems to be SoC-dependent..
->> I think all 8180x devices shipped with LPDDR4X FWIW
-> 
-> I think so too. However sdmshrike dts uses LPDDR5.
-Yeah.. it may be better to skip this patch; it should be
-possible to apply this series without this one.
+!! Please Note !!
 
-Konrad
-> 
->>
->> Konrad
->>>
->>>>
->>>> Fixes: 840d10b64dad ("drm: msm: Add 680 gpu to the adreno gpu list")
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 8 +++++++-
->>>>  1 file changed, 7 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->>>> index b5017c56fa1b..2c4afecdd213 100644
->>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->>>> @@ -885,12 +885,18 @@ static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
->>>>                 hbb_lo = 2;
->>>>         }
->>>>
->>>> -       if (adreno_is_a640_family(adreno_gpu)) {
->>>> +       if (adreno_is_a640(adreno_gpu)) {
->>>>                 amsbc = 1;
->>>>                 /* HBB = 15 */
->>>>                 hbb_lo = 2;
->>>>         }
->>>>
->>>> +       if (adreno_is_a680(adreno_gpu)) {
->>>> +               amsbc = 1;
->>>> +               /* HBB = 16 */
->>>> +               hbb_lo = 3;
->>>> +       }
->>>> +
->>>>         if (adreno_is_a650(adreno_gpu) || adreno_is_a660(adreno_gpu)) {
->>>>                 amsbc = 1;
->>>>                 /* TODO: get ddr type from bootloader and use 2 for LPDDR4 */
->>>>
->>>> --
->>>> 2.39.2
->>>>
->>>
->>>
-> 
-> 
-> 
+This series applies on top of [1], [2] and [3], even though it does not
+have any real dependencies on them.
+
+[1]: https://patchwork.kernel.org/project/linux-mediatek/patch/20230209105628.50294-6-bchihi@baylibre.com/
+[2]: https://patchwork.kernel.org/project/linux-mediatek/patch/20230209105628.50294-7-bchihi@baylibre.com/
+[3]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=724363
+
+AngeloGioacchino Del Regno (4):
+  arm64: dts: mediatek: cherry: Add platform thermal configuration
+  arm64: dts: mediatek: cherry: Enable PCI-Express ports for WiFi
+  arm64: dts: mediatek: mt8195: Add display pwm nodes
+  arm64: dts: mediatek: cherry: Add configuration for display backlight
+
+ .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |   7 +
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      | 173 ++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  23 +++
+ 3 files changed, 203 insertions(+)
+
+-- 
+2.39.2
+
