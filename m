@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 432636A0E83
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 18:18:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 316476A0EB7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 18:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjBWRR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 12:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
+        id S229553AbjBWR3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 12:29:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjBWRR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 12:17:58 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7395FF8;
-        Thu, 23 Feb 2023 09:17:56 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31NHHXY2037741;
-        Thu, 23 Feb 2023 11:17:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1677172653;
-        bh=o2Nb7KbFzvIYkv4sc2lMJ4n5HXWpmBwMln8gTDzt9K0=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=wMrtpCCafkPOnQwzlEcjxQqTlNCsWd4DnQS5l+Sq2uI++DrbqQIimEHXpsvDka0oT
-         AzyGhbYvxo2IU9+JFFcrrmN/A8I/voZQOy/QOZIS+gseGrCJDGS7CQe1y1+spFJD7C
-         MOoJHPc5W6N2YRtl3hIHBDIKr3TFfDI5LbLSIIck=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31NHHXUP072344
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Feb 2023 11:17:33 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 23
- Feb 2023 11:17:32 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 23 Feb 2023 11:17:32 -0600
-Received: from [10.250.32.101] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31NHHWVx058665;
-        Thu, 23 Feb 2023 11:17:32 -0600
-Message-ID: <a3819147-dc7b-ecbf-107e-88f88be33825@ti.com>
-Date:   Thu, 23 Feb 2023 11:17:31 -0600
+        with ESMTP id S229938AbjBWR3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 12:29:12 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4CF2C669;
+        Thu, 23 Feb 2023 09:29:04 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id e9so8838453plh.2;
+        Thu, 23 Feb 2023 09:29:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PqlmwnCysiJ0Lm/Yxgcirbk8z7suOlutmpcz689L3X0=;
+        b=FFNBNuDgQ5y8l30XWClTMTui6/A0bfyGQ8jb2eID96N/iubKQ7yvNRD71sDFMvsmyy
+         gWczjALeZZBeQIbOJJuMe2N0hvwYqO5Zcwf8x4T1mJ3wf9wwf3HR0Z555yyqkJfp8U64
+         KWLovaHeTy3gdv1KoozswjdVWP0ebUneH+013hHUQy+SCP+9mFmFZq1dE8Ga/xiXgHew
+         7ZOYaqwHy2A2g7asNIN6wTC17BqHpBzViEq8PIJ1NTqIWC2jQ0Z3hmv8lyi+Ml5DSeI4
+         oVyLmnUp7HJ4flR0t8vD8/hmLOFxHNJbzPdIoZ0L/j6yw4lr5c7AS3yy25SeSQRsBinr
+         3KXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PqlmwnCysiJ0Lm/Yxgcirbk8z7suOlutmpcz689L3X0=;
+        b=Kn57jdZ5VgwhdOEZvebDu6wg3J6dBIf4LCG1y2uN51D0ymSFnk3SfaQDjdfbc8gcn/
+         sXb6tMzCzkIksntWPUCY0bX3TtbfeOSuUtVBPlsIMcYvUMLPNzliMsnbniEp14E5BKwg
+         sFteqP6XtvikHcclOeEoZqx4ur4+fY2p7t7YAW2D/03X6tSSt7wUpUxUInV3IpjRjSif
+         +K8XbMyMf3UWQuWEvbgLGfSzivjLCD+uQmbOqu1je/+MX97J9LmwKZ1sU7CWquHcEuAT
+         MQSCuTIABUYUifqbW+sDYo95mW+jviZkcNUQ9PcVrZkaiPNiii2f8chlUOskV9LuDDXR
+         TyAQ==
+X-Gm-Message-State: AO0yUKV7pwbGZGYaJtvMABW/Vnt98UHsdjyXsTd6gyuCGl8TijwM3R98
+        CGaJFzkG9t6m7DnfTDKDN/LN7W83CaGmzHq2SDNV6V8gZiM=
+X-Google-Smtp-Source: AK7set/8g/9ng9RyoZUT0w0i8u0Qkv0M3n6u73jF3yC5x0yUgsMX5EkbT+Co6WUOCU91bzTZMPNxwdFji6l8xNdnnGA=
+X-Received: by 2002:a17:902:f782:b0:19c:b7da:d2ec with SMTP id
+ q2-20020a170902f78200b0019cb7dad2ecmr805199pln.4.1677173344015; Thu, 23 Feb
+ 2023 09:29:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: omap: add phytec pcm-049 som and
- pcm-959 dev board
-Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>
-CC:     <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        <soc@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Arnd Bergmann <arnd@arndb.de>,
+References: <20230223171114.59164-1-marex@denx.de> <20230223171114.59164-5-marex@denx.de>
+In-Reply-To: <20230223171114.59164-5-marex@denx.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 23 Feb 2023 14:28:52 -0300
+Message-ID: <CAOMZO5A5k0EdE9_VqXe5iJ5x+dPFse=jqjMaL-3ip3r0zDQ=5w@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] arm64: dts: imx8mp: Add analog audio output on
+ i.MX8MP EVK
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-clk@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20230222203847.2664903-1-colin.foster@in-advantage.com>
- <20230222203847.2664903-2-colin.foster@in-advantage.com>
- <dd67f7c9-0867-47d0-a201-9316908d9d62@ti.com>
- <Y/eTZONJh8QdJVP8@COLIN-DESKTOP1.localdomain>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <Y/eTZONJh8QdJVP8@COLIN-DESKTOP1.localdomain>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,48 +81,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/23/23 10:25 AM, Colin Foster wrote:
-> On Thu, Feb 23, 2023 at 10:00:50AM -0600, Andrew Davis wrote:
->> On 2/22/23 2:38 PM, Colin Foster wrote:
->>> Add yaml documentation for TI OMAP devices for the Phytec PCM-049 SoM and
->>> the Phytec PCM-959 development kit.
->>>
->>> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
->>> ---
->>>
->>> v4
->>>       * New patch, based on a WIP from Andrew Davis <afd@ti.com>
->>>
->>> ---
->>>    .../devicetree/bindings/arm/ti,omap.yaml      | 29 +++++++++++++++++++
->>>    1 file changed, 29 insertions(+)
->>>    create mode 100644 Documentation/devicetree/bindings/arm/ti,omap.yaml
->>
->> How will this work if I add the same file? Why not take my WIP patch, make
->> the suggested changes from Rob, then have it as your first patch in this
->> series?
-> 
-> Is your WIP intended to convert all omap.txt to ti,omap.yaml? Or chunk
-> off devices one at a time?
-> 
-> If the former, when your patch is done it should be a pretty simple
-> rebase conflict resolution. If the latter (which feels more digestable)
-> this offers that template. This was Rob's / Tony's suggestion, albeit
-> before you sent your patch set.
-> 
-> 
-> Anyway, I'm happy to do any of the following:
-> 
-> 1. Take Andrew's patches, add these references and re-submit.
-> 2. Keep this set as-is (with the typo fix) and when Andrew's WIP is done
->     it should be an easy rebase before submission.
-> 3. Wait for Andrew's WIP to be done, then submit with this update.
-> 
-> 
-> I'd like to avoid #3 because I don't know where this might fall on your
-> priorities list.
+Hi Marek,
 
-Low priority for me, I'd suggest #1 or they probably will not be
-converted anytime soon.
+On Thu, Feb 23, 2023 at 2:11 PM Marek Vasut <marex@denx.de> wrote:
 
-Andrew
+> +       reg_audio_pwr: regulator-audio-pwr {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "audio-pwr";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+> +               enable-active-high;
+> +               regulator-always-on;
+
+It seems that "regulator-always-on" could be removed as the regulator
+is controlled by the codec.
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
