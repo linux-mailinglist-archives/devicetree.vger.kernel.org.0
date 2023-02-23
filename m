@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CA7A6A05D6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 11:18:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 076C46A05E5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 11:20:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234178AbjBWKSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 05:18:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50824 "EHLO
+        id S233390AbjBWKU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 05:20:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233412AbjBWKSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 05:18:42 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90CF93D928
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 02:18:40 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id cq23so39979902edb.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 02:18:40 -0800 (PST)
+        with ESMTP id S233320AbjBWKUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 05:20:01 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C843F4E5ED
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 02:19:59 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id cy6so34793667edb.5
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 02:19:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3/aXgtpRAAmBlOXzSkXhzdZkmLPBehTIrS5g09JIRzo=;
-        b=RR/sD/ukR85nWBQeNICDAifane3oP+7Bybn5qjnm19TgMnsrsto6pCq9Pt+E3r13jT
-         /P33bRNSNAWwKjnNcsW6fC/qtxrrpIGPOSrGnGIOIPLXAEV1mMSqf4V65f9t1N/tJJvi
-         zYpEMUCtAC/DeUFJ9H26EmKrfC1vcBCL1mtGV1E0zOLx/8vGcdRDc/4GaftPQSLkXg5k
-         atRKjrpbdKdEG3ljIXHnHMNCAiVnoTnEawL0jNuzzEKBakgXAAtvAb0h38oej3Lepgox
-         17UopHUpoBz7rlcmZIh51n1D2eBedl7ret75IOupB17G1j8ueN5xpqjYS4fVjwGgXOoD
-         xXEw==
+        bh=m6uAB3hMkwfTyu9zpqIRso2gSVlXxxzw5LU2JlkCD4M=;
+        b=o2ZB4fuTJwzxCZhQ2tmTs5lrZFWhH5BwdbDpifGGFd9yqO1BdlACS25fsjwCJh9ggA
+         62+AeeDh+mdbzFPmtMDMcFMKCFj2j1AQWuendGCiL3QOqnyLG1gDolDyQ2PTrgCpOYpx
+         QF4GheSt8S/7O9UaGygXpL1ukn7MuSEMK71YHI439/RdoL0dOJlpIeJb0439+zcbvW7H
+         v6TrsuJKvm0YfCGs4QjZAklaJjRtTfUuwANPxmlkpZ6G0ErEVoOrsg7ERWLaJ9c+HWgo
+         ZXJB+GdoUAfu73u+PgrODq+YRat599J668AV6aIaBLY70hbh9tO0tE1xTcUHH2bIPbT8
+         gwlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3/aXgtpRAAmBlOXzSkXhzdZkmLPBehTIrS5g09JIRzo=;
-        b=aBYzvws22coX+kz1cvk14RbfUfy9W+mo3iGtRV214UzifFE3rjHv9z7GJW5cPiluSp
-         hciClRlIsnhegXskOBSb1Y/LHzstcDU7JN2KfXbjB32fsaZwIgNdl7H2A4tNgKS4EVpL
-         K7NDBRPdXMDwhO8MP1n1JggzI0G+ZSHPEKFv9sxZyIyFE4dD8w45zrSJAVY9xd0qrke9
-         Or0nmbq95KKp2haXxDxrTrCplvoiUGM1jRsTCOEwOqqfMsEc36UWrO2oC9T478501hq8
-         hm6w0++rFhEkpLoQCM2XREdi9rneodrRWA7NJwtDcjAjnsf2QbdTU7FobutdDwoHfKMp
-         yvnA==
-X-Gm-Message-State: AO0yUKXo2s5zJEffsW9xKBmzpi8G9WUbBF3REhRVrx2ei4fCsKEqraGA
-        jPcNk55SL+3gbSHx80MPXEUNeg==
-X-Google-Smtp-Source: AK7set+auc5RST/uYYMVLzBpn9BjsWrPQ8Bb/2gvNFfSEYyoeQt+g8Sqq38q4SabwCeG1Q4hXbGabw==
-X-Received: by 2002:aa7:d88c:0:b0:4aa:a4e8:8d5a with SMTP id u12-20020aa7d88c000000b004aaa4e88d5amr11193144edq.33.1677147519115;
-        Thu, 23 Feb 2023 02:18:39 -0800 (PST)
+        bh=m6uAB3hMkwfTyu9zpqIRso2gSVlXxxzw5LU2JlkCD4M=;
+        b=77NefFoa8njr09T4ErtP00m0cR6VEleKOI6SlUVmmmb/ff157n5ccCNrEXtYsttyP0
+         6XKlStZF1ryopiTwyxbrt1Y8/riwElxIV5+tZYRe07JlAQfH2KLY3JH3U6Hu6Cxaazrm
+         CbPMwSqrwQGN6gYhT9W4S3wIWA77RsEb/B6bv8HvZPUCeb5abtXnUqGBL0xDmojpbBEA
+         K3+mgStiGg8LTaoqlux4H43UAm4xI1h9il3WsyM18FI3uxBjEqfEeBLn4x8gqw+kNh8m
+         9+Nc2jPQdeOMqyIMcv8d8UvRmRIMbN+meH7jOtc7Z+rM7bAhoXPsRuTTR5E+j2CGVuoT
+         hBcw==
+X-Gm-Message-State: AO0yUKX+5bcNYOaTxNGZW2kLelAsh/V/XHH5YKhCDvTJGnOEs20YXJcf
+        fvTKHUMDV/1U96F5d1i30+Qtbg==
+X-Google-Smtp-Source: AK7set+TVBt4K4pa6VJM6rEUw7E2E7okg1D0xXMxW3mWDSqRnw4ZJ/Xqg+dzQlhhiz4CVjzp40sZOQ==
+X-Received: by 2002:a17:906:dc8e:b0:8e5:c06b:90e9 with SMTP id cs14-20020a170906dc8e00b008e5c06b90e9mr8223497ejc.50.1677147598320;
+        Thu, 23 Feb 2023 02:19:58 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g9-20020a170906348900b008b11ba87bf4sm8288218ejb.209.2023.02.23.02.18.37
+        by smtp.gmail.com with ESMTPSA id bj4-20020a170906b04400b008c78fb7206dsm6186219ejb.68.2023.02.23.02.19.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 02:18:38 -0800 (PST)
-Message-ID: <ace28a97-b43e-4b24-52d0-93bc21263aff@linaro.org>
-Date:   Thu, 23 Feb 2023 11:18:37 +0100
+        Thu, 23 Feb 2023 02:19:57 -0800 (PST)
+Message-ID: <b834bea9-8370-5bc1-8edd-c4b62287e837@linaro.org>
+Date:   Thu, 23 Feb 2023 11:19:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH RFC 1/4] dt-bindings: clock: rename mt7986-clk.h to
- mediatek,mt7986-clk.h
+Subject: Re: [PATCH RFC 2/4] dt-bindings: clock: break out mediatek,ethsys
+ into its own header
 Content-Language: en-US
 To:     Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
         linux-mediatek@lists.infradead.org,
@@ -75,14 +75,15 @@ To:     Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
         Miles Chen <miles.chen@mediatek.com>,
         Sam Shih <sam.shih@mediatek.com>
 References: <cover.1677089171.git.daniel@makrotopia.org>
- <15d718a2d696d29b48668b9ab5531369c537a1e6.1677089171.git.daniel@makrotopia.org>
+ <db58bdb35e68f5e57b79e0d3560618ef86f10459.1677089171.git.daniel@makrotopia.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <15d718a2d696d29b48668b9ab5531369c537a1e6.1677089171.git.daniel@makrotopia.org>
+In-Reply-To: <db58bdb35e68f5e57b79e0d3560618ef86f10459.1677089171.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,19 +91,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/02/2023 19:09, Daniel Golle wrote:
-> Rename dt-bindings header file mt7986-clk.h to mediatek,mt7986-clk.h,
-> propagate this change also to mt7986a.dtsi which is the only user.
+> The ethsys clocks of MT7981 and MT7986 are identical. In order to
+> de-duplicate both clock drivers, start with putting ethsys into a
+> header files of its own, so it can be used by both SoCs.
+> Propagate this change also to mt7986a.dtsi which is the only user.
 > 
 > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->  arch/arm64/boot/dts/mediatek/mt7986a.dtsi                       | 2 +-
->  drivers/clk/mediatek/clk-mt7986-infracfg.c                      | 2 +-
->  drivers/clk/mediatek/clk-mt7986-topckgen.c                      | 2 +-
->  .../dt-bindings/clock/{mt7986-clk.h => mediatek,mt7986-clk.h}   | 0
+>  arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  1 +
+>  drivers/clk/mediatek/clk-mt7986-eth.c         |  2 +-
+>  include/dt-bindings/clock/mediatek,ethsys.h   | 32 +++++++++++++++++++
 
-You cannot have bindings and DTS and drivers mixed together. Which
-points to fact - you cannot make such change... Also your commit msg
-does not justify "why" you are doing it.
+A bit too generic name. Are you sure it will fit all of eth on all
+Mediatek SoCs? Current and future?
+
+>  .../dt-bindings/clock/mediatek,mt7981-clk.h   | 18 -----------
+>  .../dt-bindings/clock/mediatek,mt7986-clk.h   | 22 -------------
+
+Same problems as previous patch. You cannot mix bindings and DTS and
+drivers.
 
 Best regards,
 Krzysztof
