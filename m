@@ -2,173 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 150826A0179
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 04:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93F5A6A018F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 04:40:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231726AbjBWDTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 22:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
+        id S232470AbjBWDkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 22:40:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbjBWDTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 22:19:33 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C97FE31E1D;
-        Wed, 22 Feb 2023 19:19:30 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.133])
-        by gateway (Coremail) with SMTP id _____8Axkk5A2_ZjoPUDAA--.2443S3;
-        Thu, 23 Feb 2023 11:19:28 +0800 (CST)
-Received: from [10.20.42.133] (unknown [10.20.42.133])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxOL0+2_ZjXWQ5AA--.38818S3;
-        Thu, 23 Feb 2023 11:19:26 +0800 (CST)
-Message-ID: <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
-Date:   Thu, 23 Feb 2023 11:19:25 +0800
+        with ESMTP id S229646AbjBWDkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 22:40:51 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97DE628209;
+        Wed, 22 Feb 2023 19:40:49 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2B77324E1D4;
+        Thu, 23 Feb 2023 11:40:42 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 11:40:41 +0800
+Received: from [192.168.125.82] (113.72.147.165) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 11:40:40 +0800
+Message-ID: <25c01857-8f59-02ed-062d-a5e619258204@starfivetech.com>
+Date:   Thu, 23 Feb 2023 11:40:40 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
- device node
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20230222165514.684729-1-suijingfeng@loongson.cn>
- <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v4 09/19] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
 Content-Language: en-US
-From:   Sui jingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxOL0+2_ZjXWQ5AA--.38818S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF17try5AF4DZw1UJF13Jwb_yoW5ur17pF
-        sxCanxKr4kJF12vr4rXryUJrn3Za95AFyDCrsrKr1Uu3sxZ3Wqvry8JF4FgrWxZr17Ja4j
-        vF1rWr4I9Fn8CaDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E
-        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
-        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
-        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
-        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
-        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
-        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2
-        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFApnUUUUU=
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <20230221024645.127922-10-hal.feng@starfivetech.com> <Y/T+GNQAXLGyUtCH@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y/T+GNQAXLGyUtCH@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.165]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
-> On 22/02/2023 17:55, suijingfeng wrote:
->> The display controller is a pci device, it's pci vendor id is
->> 0x0014, it's pci device id is 0x7a06.
->>
->> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
->> ---
->>   .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
->>   1 file changed, 21 insertions(+)
->>
->> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->> index 8143a61111e3..a528af3977d9 100644
->> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->> @@ -31,6 +31,18 @@ memory@200000 {
->>   			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
->>   	};
->>   
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
+On Tue, 21 Feb 2023 17:23:36 +0000, Conor Dooley wrote:
+> Hey Hal,
+> 
+> On Tue, Feb 21, 2023 at 10:46:35AM +0800, Hal Feng wrote:
+>> From: Emil Renner Berthing <kernel@esmil.dk>
+>> 
+>> Add bindings for the system clock and reset generator (SYSCRG) on the
+>> JH7110 RISC-V SoC by StarFive Ltd.
+>> 
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> 
+>> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> new file mode 100644
+>> index 000000000000..ec81504dcb27
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> @@ -0,0 +1,80 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-syscrg.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +		display_reserved: framebuffer@30000000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
->> +			linux,cma-default;
->> +		};
->> +	};
+>> +title: StarFive JH7110 System Clock and Reset Generator
 >> +
->>   	cpu_clk: cpu_clk {
->>   		#clock-cells = <0>;
->>   		compatible = "fixed-clock";
->> @@ -198,6 +210,15 @@ sata@8,0 {
->>   				interrupt-parent = <&liointc0>;
->>   			};
->>   
->> +			display-controller@6,0 {
->> +				compatible = "loongson,ls2k1000-dc";
+>> +maintainers:
+>> +  - Emil Renner Berthing <kernel@esmil.dk>
 >> +
->> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
->> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
->> +				interrupt-parent = <&liointc0>;
->> +				memory-region = <&display_reserved>;
-> NAK.
-Err :(,  please give me a chance to explain
-> Test your code against the bindings you send.
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-syscrg
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Main Oscillator (24 MHz)
+>> +      - description: GMAC1 RMII reference
+>> +      - description: GMAC1 RGMII RX
+>> +      - description: External I2S TX bit clock
+>> +      - description: External I2S TX left/right channel clock
+>> +      - description: External I2S RX bit clock
+>> +      - description: External I2S RX left/right channel clock
+>> +      - description: External TDM clock
+>> +      - description: External audio master clock
+> 
+> You didn't reply to the conversation I had with Krzysztof about how to
+> represent the optional nature of some of these clocks, contained in this
+> thread here:
+> https://lore.kernel.org/all/7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com/
+> 
+> What happens to the gmac1 mux if only one of the input clocks is
+> provided?
+> And I mean what does the hardware do, not the software representation of
+> that mux in the driver.
 
-I can guarantee to you that I test may code more than twice. The code 
-used to testing is listed at link [1].
+In hardware, just providing the required input clocks is enough. Refer to the
+following link for the required clocks. Thanks.
 
-This patchset  mainly used to illustrate how  we made the driver in [1] 
-usable on our SoC platform.
+https://lore.kernel.org/all/c0472d7f-56fe-3e91-e0a0-49ee51700b5d@starfivetech.com/
 
-> It's the same
-> patchset. You basically send something which the same moment is incorrect.
+Best regards,
+Hal
 
-Loongson display controller IP has been integrated in both Loongson
-North Bridge chipset(ls7a1000 and ls7a2000) and Loongson SoCs(ls2k1000
-and ls2k2000 etc), it even has been included in Loongson BMC(ls2k0500 bmc)
-products.
-
-When use this driver on Loongson embedded platform(say ls2k2000, 
-ls2k1000 and ls2k0500)  ,
-
-the PMON/Uboot firmware(my company using pmon most of time) will pass a 
-DT to the kernel.
-
-Different boards will pass different DTs. But when using this driver on 
-Loongson server and
-
-PC platform( ls3c5000/ls3a5000+ls7a1000/ls7a2000), there will no DT 
-supplied. The firmware
-
-and kernel side developer of Loongson choose ACPI+UEFI for such 
-platform, more discussion
-
-can be found at [2]. Therefore, on such a situation we decide to send 
-the patch at separate patchset.
-
-It is not like the arm  and risc-v, as the binding would not be always 
-exits. If we put those patches
-
-into a same patchset, some reviewers would suggest us to revise our code.
-
-To a form that the code *ALWAYS*  probed from the DT, this is not desired.
-
-Besides, the driver code + dt support is petty large, separate it is 
-more easy to review and manage.
-
-
-Finally,  Thanks your kindly guiding and valuable reviews.
-
-
-[1] https://patchwork.freedesktop.org/patch/523409/?series=113566&rev=4
-
-[2] https://lkml.org/lkml/2022/7/15/135
-
-> Best regards,
-> Krzysztof
+> 
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: osc
+>> +      - const: gmac1_rmii_refin
+>> +      - const: gmac1_rgmii_rxin
+>> +      - const: i2stx_bclk_ext
+>> +      - const: i2stx_lrck_ext
+>> +      - const: i2srx_bclk_ext
+>> +      - const: i2srx_lrck_ext
+>> +      - const: tdm_ext
+>> +      - const: mclk_ext
 
