@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D00E96A0411
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EC156A041E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:46:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233714AbjBWIni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 03:43:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41842 "EHLO
+        id S232954AbjBWIqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 03:46:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233659AbjBWInh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:43:37 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A49E2B29C;
-        Thu, 23 Feb 2023 00:43:30 -0800 (PST)
-Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E638666021FF;
-        Thu, 23 Feb 2023 08:43:28 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677141809;
-        bh=ULUS8juqT9D663UOmoNu1JrQcrXe/fPV+74I8cFGkeE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TENpdt+t0Yvr5vcNTBdb6dDKeDJ1cVNmxMmvwatqCMDmgbo25cy72ILeeU5hSW525
-         UdO1JjXjA6SXeIwMeeD0QrWD6nSWlEAVObTOnXWV50MFnAgpQ/q0ImuichQYL0AXl6
-         HwVZu2KMUupiqgZlyd3dHBZNOEEA59IfH22ssoGaCtgPFI+Ugdu8Gk6O+pnZdwI+FX
-         o+n6hV6ZvJswdbmOnJah4jmbKB8GEYJDowjmwAHydmPCAbuNstj3lrWozHRyjEk/Sg
-         uS8dQ1apLrWMaquTiI0VriBwMbUI38JCohGXhfYHTNBrzum33KLTDIaPI1Se254LxX
-         k4R3KaPvHXpJQ==
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-To:     David Rhodes <david.rhodes@cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Lucas Tanure <lucas.tanure@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 4/4] ASoC: dt-bindings: cirrus,cs35l41: Document CS35l41 shared boost
-Date:   Thu, 23 Feb 2023 08:43:24 +0000
-Message-Id: <20230223084324.9076-5-lucas.tanure@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230223084324.9076-1-lucas.tanure@collabora.com>
-References: <20230223084324.9076-1-lucas.tanure@collabora.com>
+        with ESMTP id S229745AbjBWIqr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:46:47 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312752A6EA;
+        Thu, 23 Feb 2023 00:46:46 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id A482D24E282;
+        Thu, 23 Feb 2023 16:46:44 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 16:46:44 +0800
+Received: from [192.168.125.128] (113.72.147.165) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 16:46:43 +0800
+Message-ID: <842e5825-07ad-1806-d969-f54d9a9eed5a@starfivetech.com>
+Date:   Thu, 23 Feb 2023 16:47:03 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: jh7110: Add PLL clock node
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230221141147.303642-1-xingyu.wu@starfivetech.com>
+ <20230221141147.303642-4-xingyu.wu@starfivetech.com>
+ <a799e064-b0ac-7300-b706-0c33e2d3610a@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <a799e064-b0ac-7300-b706-0c33e2d3610a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.165]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the properties used for shared boost configuration.
-Based on David Rhodes shared boost patches.
+On 2023/2/22 17:09, Krzysztof Kozlowski wrote:
+> On 21/02/2023 15:11, Xingyu Wu wrote:
+>> Add the PLL clock node for the Starfive JH7110 SoC and
+>> modify the SYSCRG node to add PLL clocks.
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> ---
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 15 +++++++++++++--
+>>  1 file changed, 13 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> index b6612c53d0d2..0cb8d86ebce5 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> @@ -461,12 +461,16 @@ syscrg: clock-controller@13020000 {
+>>  				 <&gmac1_rgmii_rxin>,
+>>  				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+>>  				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+>> -				 <&tdm_ext>, <&mclk_ext>;
+>> +				 <&tdm_ext>, <&mclk_ext>,
+>> +				 <&pllclk JH7110_CLK_PLL0_OUT>,
+>> +				 <&pllclk JH7110_CLK_PLL1_OUT>,
+>> +				 <&pllclk JH7110_CLK_PLL2_OUT>;
+>>  			clock-names = "osc", "gmac1_rmii_refin",
+>>  				      "gmac1_rgmii_rxin",
+>>  				      "i2stx_bclk_ext", "i2stx_lrck_ext",
+>>  				      "i2srx_bclk_ext", "i2srx_lrck_ext",
+>> -				      "tdm_ext", "mclk_ext";
+>> +				      "tdm_ext", "mclk_ext",
+>> +				      "pll0_out", "pll1_out", "pll2_out";
+>>  			#clock-cells = <1>;
+>>  			#reset-cells = <1>;
+>>  		};
+>> @@ -476,6 +480,13 @@ sys_syscon: syscon@13030000 {
+>>  			reg = <0x0 0x13030000 0x0 0x1000>;
+>>  		};
+>>  
+>> +		pllclk: pll-clock-controller {
+> 
+> Does not look like you tested the DTS against bindings. Please run `make
+> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+> for instructions). You should see here warnings of mixing non-MMIO nodes
+> in MMIO-bus.
+> 
 
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/sound/cirrus,cs35l41.yaml      | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Oh I cherry-pick the commit of syscon node and it also include the MMC node.
+I will remove the MMC node. 
+I used dtbs_check and get the error 'should not be valid under {'type': 'object'}',
+If I move this node out of the 'soc' node, the dtbs_check will be pass.
+Is it OK to move the PLL node out of the 'soc' node? Thanks.
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-index 18fb471aa891..14dea1feefc5 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-@@ -85,11 +85,19 @@ properties:
-       boost-cap-microfarad.
-       External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
-       enable boost voltage.
-+      Shared boost allows two amplifiers to share a single boost circuit by
-+      communicating on the MDSYNC bus. The active amplifier controls the boost
-+      circuit using combined data from both amplifiers. GPIO1 should be
-+      configured for Sync when shared boost is used. Shared boost is not
-+      compatible with External boost. Active amplifier requires
-+      boost-peak-milliamp, boost-ind-nanohenry and boost-cap-microfarad.
-       0 = Internal Boost
-       1 = External Boost
-+      2 = Shared Boost Active
-+      3 = Shared Boost Passive
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
--    maximum: 1
-+    maximum: 3
- 
-   cirrus,gpio1-polarity-invert:
-     description:
--- 
-2.39.2
+Best regards,
+Xingyu Wu
 
