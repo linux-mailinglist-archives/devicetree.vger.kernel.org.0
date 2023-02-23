@@ -2,155 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E56406A1025
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 20:09:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE9A6A10AD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 20:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjBWTJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 14:09:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
+        id S229604AbjBWTma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 14:42:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231298AbjBWTJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 14:09:36 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 142A255C17
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 11:09:33 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bp25so15159354lfb.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 11:09:32 -0800 (PST)
+        with ESMTP id S229491AbjBWTma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 14:42:30 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02B859E41;
+        Thu, 23 Feb 2023 11:42:28 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id cy6so40823987edb.5;
+        Thu, 23 Feb 2023 11:42:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ki/+8rKjqaLiO1EXm/3PKBzNTnhWcpNouZYryd40ZXw=;
-        b=xIuTFUJwmjUmo/ZY7Efw7KXI4HDpZwPevKdH4zReUGBB530x2VTfEXIap7soq0xrkt
-         fLxo3HUQXeuriXYqhotDJepEW6dKbiKyscYKjciNlfpIQ7fIuhqj74/8rDCysXnnO0JS
-         4Rf3qTXcAeSv7w9CaUQ4B3flmF0e7QuqGF5lBxjmALTvorOeudLvwvHwKkIWAMFH6FGY
-         RzPjMj1fh5sESLWEVhNtWl4+eoCT4hsOhoXtes5Embqey5/DrfNuKrjAedYKpFs1dksR
-         kK0cf+naL7g3BnH+Zg0cDxH484/qNt5tBW1W5g+ElnpeGmP/16EUhsw6If9ri8NPv5Js
-         WtKg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8BXWAwPXU4gL7NDBNH5IiDYMBbcpymX6jA+XKQ4A+7Y=;
+        b=Z9qIIeH4K2XaOajUagHIDfr3qHg6UXZN8iDBhj6FFX0dIjfQCBvZnks9KcNGHHY19G
+         ldGQ9mahmCf7kjx2w1OPaz4kn6RnIsQC2dYq6V3Pby6VVovYfUveaWaBMaYGGj90m54q
+         xOe9VekczEw87U22eyuTextgD4lzevi8ETHyOkm3ySyTAl0OtGv4jfqzDRDtKIhOO0+S
+         21Df/7kwahDs6AbQ2P3SP4JS8Ipm6YUYhZscMNwa7+WcNpkVz0xD9QxfkCrSbuJkPrDO
+         dwKvak9Ck8GAKMCuwVgpk1sf63ERU9F9bxOzeBJvQs3DbJtG8mJMcd7+JDw9U/oMftjH
+         j/Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ki/+8rKjqaLiO1EXm/3PKBzNTnhWcpNouZYryd40ZXw=;
-        b=ehdR58kb12YC2zJjZ2Es5KHvSXJFgsQUrv0shIKW5ePKzAJyCVJ+TcCEfNC0KCmfZX
-         y3uVXe/b7Kq8we5w8ucRVQl6VB/xTN7AUPMxhhY2+oT39Kowpfylo2x0dMlcUxhvz8OK
-         7cpVKIYr8+038LXEaSC/JQ97M+s2lq1QwcdiDcODceBLx+0zZnTGKBr0lxPMRVCuQXuV
-         EYiemaGf0/fXuhetmUI1fNACqsAvGC9BZm32JHwEV8lU9+pCdlEHJToeP5GuAwVl5BAg
-         ewL5wo8eN8VtDJO7dsAYxETwK0GP1UJmG8KxSsJvWpcpJkkl1TFMt4LAqVuyeWv0SFZI
-         y0nw==
-X-Gm-Message-State: AO0yUKVmjuAjvw7JvajoRdN7oGgJRnY1US7rLvYGnpSsyut0kn9hucC6
-        jwlizu6XReIKJh5tipvhVf+miuKdip9sY4iy3qaMAQ==
-X-Google-Smtp-Source: AK7set+1Snm8QmjNNVo8GqQflRkjIgua4+rtwYxMZTP19pOBlpTETTnalWgFkXRsDT/zGvsFyvQiZm0rEv+ZUq9Zrys=
-X-Received: by 2002:ac2:5387:0:b0:4d5:ca32:7bbb with SMTP id
- g7-20020ac25387000000b004d5ca327bbbmr4069994lfh.2.1677179371151; Thu, 23 Feb
- 2023 11:09:31 -0800 (PST)
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8BXWAwPXU4gL7NDBNH5IiDYMBbcpymX6jA+XKQ4A+7Y=;
+        b=1SCEMBb6B5OoLlQeePZtSqN/hldSVzYx30y3aEUNhdCuiXmcZH7azdb9rzvK57JHqg
+         X4K4APZMiPskteSCbF6RxJo5QUrMFY18ogbRhBLtmiakQZ2fJKpe3KGoylv42KcsPi0B
+         bon8FYU+shaFHYlXECLkTFJJOaddQzGMlSVPgYqumIHaYFTMcq2LCr9h/fBoxQZbddOH
+         cxOcQNWSjh5lz6QpKe2jLYEwjR596z5yrSXPA0tT5/TT2sODl+cBxzLnxSyIvCD0u0zj
+         Bvvfvkb0EzMHFAlfIHXgAsmvG0Zn9zqHVFFP5pLJ6BJ+h9G+0z6XCoU/IGbhksvMBuie
+         S2Dw==
+X-Gm-Message-State: AO0yUKXfVUfnzmBOUcenyjGDOtx1Ee4rqsZDBj1nM2TCi9BbpKkHcSQh
+        v8kC7G3uyO/AE+DTzsFe5FM=
+X-Google-Smtp-Source: AK7set/x32vBkRksysZ8SuzBqjVeMXtXLVaQQBia6jjruTfaGG5eWsPI6iBac7ydZdrGPp4yl+5qcQ==
+X-Received: by 2002:a17:906:9bc3:b0:8a5:3d1e:6302 with SMTP id de3-20020a1709069bc300b008a53d1e6302mr19527041ejc.56.1677181347149;
+        Thu, 23 Feb 2023 11:42:27 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id bk15-20020a170906b0cf00b008f398f25beesm19079ejb.189.2023.02.23.11.42.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Feb 2023 11:42:26 -0800 (PST)
+Message-ID: <3eeaa940-9d40-5e33-bc36-c9b0449ded9f@gmail.com>
+Date:   Thu, 23 Feb 2023 20:42:25 +0100
 MIME-Version: 1.0
-References: <20220929060405.2445745-1-bhupesh.sharma@linaro.org>
- <20220929060405.2445745-4-bhupesh.sharma@linaro.org> <4e896382-c666-55c6-f50b-5c442e428a2b@linaro.org>
- <1163e862-d36a-9b5e-2019-c69be41cc220@linaro.org> <9999a1a3-cda0-2759-f6f4-9bc7414f9ee4@linaro.org>
- <0aeb2c5e-9a5e-90c6-a974-f2a0b866d64f@linaro.org> <ca62fc03-8acc-73fc-3b15-bd95fe8e05a4@linaro.org>
- <CAH=2Nty1BfaTWbE-PZQPiRtAco=5xhvJT3QbpqYsABxZxBzF3w@mail.gmail.com>
- <2e68d64f-766c-0a52-9df8-74f0681a5973@linaro.org> <20230222202904.mhsbxnaxt3psmwr7@halaney-x13s>
-In-Reply-To: <20230222202904.mhsbxnaxt3psmwr7@halaney-x13s>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Fri, 24 Feb 2023 00:39:19 +0530
-Message-ID: <CAH=2NtzJViZ2e7aw9Ej67=XRrWOPzGrq1gccCsFiHBzRDZxmmQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: net: qcom,ethqos: Convert bindings to yaml
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v4 1/7] dt-bindings: gpio: rockchip,gpio-bank: add compatible
+ string per SoC
+To:     linus.walleij@linaro.org, brgl@bgdev.pl
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Feb 2023 at 01:59, Andrew Halaney <ahalaney@redhat.com> wrote:
->
-> On Mon, Oct 03, 2022 at 11:32:58AM +0200, Krzysztof Kozlowski wrote:
-> > On 03/10/2022 10:29, Bhupesh Sharma wrote:
-> > > On Sun, 2 Oct 2022 at 13:24, Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > >>
-> > >> On 01/10/2022 14:51, Bhupesh Sharma wrote:
-> > >>>>> Right, most of them are to avoid the make dtbs_check errors / warnings
-> > >>>>> like the one mentioned above.
-> > >>>>
-> > >>>> All of them should not be here.
-> > >>>
-> > >>> I guess only 'snps,reset-gpio' need not be replicated here, as for
-> > >>> others I still see 'dtbs_check' error, if they are not replicated here:
-> > >>>
-> > >>>
-> > >>> arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated
-> > >>> properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth',
-> > >>> 'tx-fifo-depth' were unexpected)
-> > >>>       From schema: /Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> > >>>
-> > >>> Am I missing something here?
-> > >>
-> > >> Probably the snps,dwmac schema failed. It is then considered
-> > >> unevaluated, so such properties are unknown for qcom,ethqos schema. Run
-> > >> check with snps,dwmac and fix all errors first.
-> > >
-> > > Running dt_binding_check DT_SCHEMA_FILES=net/snps,dwmac.yaml
-> > > reports no error currently.
-> >
-> > Then it's something in your commits. I don't know what you wrote, as you
-> > did not sent a commit. I cannot reproduce your errors after removing
-> > unneeded power-domains.
-> >
-> > Just to clarify - I am testing only the dt_binding_check (so only the
-> > examples - I assume they are meaningful).
->
-> Just a little note before I forget..
->
-> I picked this up yesterday (in prep for adding sa8540p support here),
-> and noticed the same thing as Bhupesh when validating dtbs with
-> the requested changes (not duplicating snsp,dwmac.yaml). I ended up
-> tracking it down to a (fixed) bug in dtschema:
->
->     https://github.com/devicetree-org/dt-schema/commit/e503ec1115345bdfa06b96c9d6c4496457cbd75b
->
-> And a little test output showing before and after (fix is in the 2022.12
-> release):
->
->     (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sm8150-hdk.dtb
->       LINT    Documentation/devicetree/bindings
->       CHKDT   Documentation/devicetree/bindings/processed-schema.json
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->       DTC_CHK arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
->     /home/ahalaney/git/redhat/stmmac/arch/arm64/boot/dts/qcom/sm8150-hdk.dtb: ethernet@20000: Unevaluated properties are not allowed ('power-domains', 'resets', 'rx-fifo-depth', 'snps,tso', 'tx-fifo-depth' were unexpected)
->         From schema: /home/ahalaney/git/redhat/stmmac/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
->     (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % pip3 list | grep dtschema
->     dtschema         2022.11
->     (dtschema-2022.11) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
->
->     dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % pip3 list | grep dtschema
->     dtschema         2023.1
->     (dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] % make CHECK_DTBS=y DT_SCHEMA_FILES=/net/qcom,ethqos.yaml qcom/sm8150-hdk.dtb
->       LINT    Documentation/devicetree/bindings
->       CHKDT   Documentation/devicetree/bindings/processed-schema.json
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->       DTC_CHK arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
->     (dtschema) ahalaney@halaney-x13s ~/git/redhat/stmmac (git)-[stmmac] %
->
->
-> I'll go ahead and make the adjustments and pull this series into mine
-> adding sa8540p support, thanks for starting it!
+Currently all Rockchip gpio nodes have the same compatible.
+Compatible strings should be SoC related.
 
-Thanks Andrew. Please feel free to add it to your series.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Regards,
-Bhupesh
+Changed V3:
+  Keep enum
+---
+ .../bindings/gpio/rockchip,gpio-bank.yaml     | 27 ++++++++++++++++---
+ 1 file changed, 23 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+index affd823c8..2e9a5179c 100644
+--- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
++++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+@@ -11,9 +11,28 @@ maintainers:
+
+ properties:
+   compatible:
+-    enum:
+-      - rockchip,gpio-bank
+-      - rockchip,rk3188-gpio-bank0
++    oneOf:
++      - enum:
++          - rockchip,gpio-bank
++          - rockchip,rk3188-gpio-bank0
++      - items:
++          - enum:
++              - rockchip,px30-gpio-bank
++              - rockchip,rk3036-gpio-bank
++              - rockchip,rk3066a-gpio-bank
++              - rockchip,rk3128-gpio-bank
++              - rockchip,rk3188-gpio-bank
++              - rockchip,rk3228-gpio-bank
++              - rockchip,rk3288-gpio-bank
++              - rockchip,rk3328-gpio-bank
++              - rockchip,rk3308-gpio-bank
++              - rockchip,rk3368-gpio-bank
++              - rockchip,rk3399-gpio-bank
++              - rockchip,rk3568-gpio-bank
++              - rockchip,rk3588-gpio-bank
++              - rockchip,rv1108-gpio-bank
++              - rockchip,rv1126-gpio-bank
++          - const: rockchip,gpio-bank
+
+   reg:
+     maxItems: 1
+@@ -75,7 +94,7 @@ examples:
+       };
+
+       gpio1: gpio@2003c000 {
+-        compatible = "rockchip,gpio-bank";
++        compatible = "rockchip,rk3188-gpio-bank", "rockchip,gpio-bank";
+         reg = <0x2003c000 0x100>;
+         interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+         clocks = <&clk_gates8 10>;
+--
+2.20.1
+
