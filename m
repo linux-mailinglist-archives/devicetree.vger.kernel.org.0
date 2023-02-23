@@ -2,228 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 067B06A00EC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 02:56:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4529F6A00F8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 03:00:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233068AbjBWB4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 20:56:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
+        id S230048AbjBWCAI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Feb 2023 21:00:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233072AbjBWB4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 20:56:10 -0500
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2100.outbound.protection.outlook.com [40.107.255.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B71149B8;
-        Wed, 22 Feb 2023 17:56:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OQ2iIQF5FTP643xLSoLLCcJtKUsBcB3pNKb4JqGjP+FCrrFxQnxf5wQCnV1fIyplIhfTE5G0zeGUqsaB4lNLEjpJMCNX/vcPbNFOi/5/MfOTqHOQ+80k+dkE16VVfSOBdCz8M94H3USmbnjMIkqQpshxZgmJaxeqJqpEV87zokzSdNI3itcag12WW7AsmcDcF167vC+O97irMQpmBRI1OPAtlcSAMtY8FlUyKN+T3sJ4obdXbVBzhUwrNeN51r4vzqtapsw9Ni51KgaesH9zkR7IXX1lPZxeJk6j1s2jlNApC95BI4ZknlmAWm5uwB9z6KkHsvE/+ASOoDSbFowIYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5G2z1qMNW6/oMKSZNM10RVthx0Vxi11oYJwp4k4v5qA=;
- b=jjQUbxuZ0CgJ/TfR6b79o6E6J5cXY9pzHsY06lQkivVmDilF3ezdgvOidgvTlPS+OWWiRyq+DEnI3TXVUqyMnDAdV2i6KK2wfOC9nV3jJjN1Rf9Op/5tpqRSh5hEXq5lVHkbliGDR2foJvwZsaD8GmhMxksFSLx5smSpl++/MHMbI4Eh0ZQ3oQ/jznfAQuNio4dXb3oZSyALcUX+IguE0tjF7JmpbwgT/uMYf7MirNe2DRLjgAEiYEwVMLYUlXftRB9T1fYx5yCjsFLqQNZv85Nz2re7DPmeVuQPk7t5FT2y2+mDXpQmgYbM7d0ir08/b34WqDuE9sIMiGTBEpEXVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5G2z1qMNW6/oMKSZNM10RVthx0Vxi11oYJwp4k4v5qA=;
- b=vO6zgQVDczryKtJIYL2F7FObtm/i65bvet8aZfjaWsr7IQdBym0E+PhWeLyWoNyXm0BMGrrSLqurW5lyGqb2Owoo4Z20Ee9yOYOIbPeJWwi/8J0kxln/hRHpIGswJx01P/cAfVoUr/cCd2aLcTDkVa+Ff42dPD2A0X27sTu3krLKYe4g0mDQHSS+JTGWyOeu3ATxGokXbfUdbQ77cIWroZahiP5KtDi6xdWuxupab2YtFVBV5Ov2qyjVx2bn5osU8XZt+Wcj5ub6RbhljDkJO8D5V9tBqMg8hB4Mebv6f8F/3d9gTmt6K2FnHqIfFfhNyYBpauC0cmiyfY0zuTCncA==
-Received: from TY2PR06MB3213.apcprd06.prod.outlook.com (2603:1096:404:97::16)
- by PUZPR06MB5476.apcprd06.prod.outlook.com (2603:1096:301:100::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.12; Thu, 23 Feb
- 2023 01:56:01 +0000
-Received: from TY2PR06MB3213.apcprd06.prod.outlook.com
- ([fe80::b113:70f9:7dc9:543f]) by TY2PR06MB3213.apcprd06.prod.outlook.com
- ([fe80::b113:70f9:7dc9:543f%5]) with mapi id 15.20.6134.017; Thu, 23 Feb 2023
- 01:56:00 +0000
-From:   Neal Liu <neal_liu@aspeedtech.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232785AbjBWCAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 21:00:08 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B495E1EBC6;
+        Wed, 22 Feb 2023 18:00:01 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9418B24DE73;
+        Thu, 23 Feb 2023 09:59:54 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 09:59:54 +0800
+Received: from ubuntu.localdomain (113.72.147.165) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 09:59:53 +0800
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>
-Subject: RE: [PATCH v5 1/4] crypto: aspeed: Add ACRY RSA driver
-Thread-Topic: [PATCH v5 1/4] crypto: aspeed: Add ACRY RSA driver
-Thread-Index: AQHZH9y551Wz9Wl3hka+spzxo8WWOa7bV7gAgAC4bQA=
-Date:   Thu, 23 Feb 2023 01:56:00 +0000
-Message-ID: <TY2PR06MB3213D7FEB7D3FF472419419E80AB9@TY2PR06MB3213.apcprd06.prod.outlook.com>
-References: <20230104013436.203427-1-neal_liu@aspeedtech.com>
- <20230104013436.203427-2-neal_liu@aspeedtech.com>
- <CAMuHMdVS_JF0+5CyNM6ivxqRLKkMte9=Xw5E-fc-OTHibwc5vw@mail.gmail.com>
-In-Reply-To: <CAMuHMdVS_JF0+5CyNM6ivxqRLKkMte9=Xw5E-fc-OTHibwc5vw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PR06MB3213:EE_|PUZPR06MB5476:EE_
-x-ms-office365-filtering-correlation-id: 480720c8-e070-4016-1764-08db15411cd6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gtzo6IiCRrSZKaTKgZMk9YJo0Ed8qZ9DrpcRcxDNDDXMbDPqGFYhQ7KAsOsDnnrMQYUyggRmKugPRkUHNjVW5J7dLRyzgD68AZ2CN+hMc0IoB4+S8gzGRrGLpEqY+wLMsosoETO9JMSO1ABXPXizkXgwOIdejv+C4piPLxVIf8Ldi7kp1dly/g/xZWdSP/xMQbbhPW89nRcZm/Q0sgDF0Ym+ytMl5P5ULgWhTdD/9GTxPtKNL1YCSQWCFmpbgOSW5pgRmAyDwfUS+wt8snj9ZPTyQgcM1cputcFU0OGCiYCQ8U5pYb2PpkewMYK1IFGQ7lSminkiimdH/wWhZ9kOoCDRvMZINdcOmLdTFubz90QqS2Ys7MiLpUbygKsBwc3wOwvMRB8rOEan0QOYlJ+jMugWMvIPsjiDRA/2phSuPlS5DNWpbFgvdwva1YH8SDoj5nFz/pimrUOLM/TqOBB+SXF53HxRh9t3Kzosq/mHG7r9mJL8s1ShGqs4hv31KBu2+T8KTZns25ds6/sDVoGXG17lOqWT7p27jxvqJkQIiYG0l6e4W5xqnFy4EMdWy1jCf7kLi/4UOKyvXG9Y0GxD7AOJwIHblwnO25f9gdL289RnBLrHAL/5PCR9VcwbSDq+g+PJ6WhyG+rLwwaN8gWKpKoGzpBYbNdQeSaWXigdQlcogRupHkOwSD++0zGNY37stKOyM7P+PcQrHjm8a5znbA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR06MB3213.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(396003)(366004)(39850400004)(376002)(136003)(346002)(451199018)(316002)(64756008)(66946007)(4326008)(66476007)(8676002)(66556008)(66446008)(6916009)(2906002)(76116006)(41300700001)(478600001)(54906003)(8936002)(7696005)(52536014)(7416002)(5660300002)(71200400001)(6506007)(53546011)(26005)(186003)(9686003)(33656002)(55016003)(86362001)(38070700005)(83380400001)(38100700002)(122000001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NWljRm5GY0lYdTdRLy9PSWRpQTZ2eWk5eGxFaGFJTFZaNVZ4Z25Ed1BHY1Yy?=
- =?utf-8?B?NVNWdVNKdHR4Q043YTJHRVo4eVRCSHNHZlhQdzNXQmNQSjhRaDhJSksrOWI0?=
- =?utf-8?B?T1grNnhDTUZDc3B6Y2VRbmg5SndDaDJ4RkoyZjBGeFdyd1NSZm1EVFB3SG5i?=
- =?utf-8?B?eUhHeWIyTzVIVzZ3VlpWai95bVU0eTNWVUF3V0JtOFFsVTByY1VUcDhWN1g1?=
- =?utf-8?B?QmIrT2s1dFU1S0RoUDlTL1ZTZTZ5Z3pyVlhQcFIrR3FXUGhseWhidXpmU1k4?=
- =?utf-8?B?TVkvTmFPb21RVmtuRVEwMnMyN2lteERTZnQzRWh5cGNzcHRxOStwRXZ4d3dE?=
- =?utf-8?B?QTlNYVd1MFlWdXVwRzBYK1NkYmc0TjNiT0ZtZXhEcDlVZHQ1bHlNT0dLK0k5?=
- =?utf-8?B?ZWdHcStneUZBRllqZzQwanVRWDN4U2s5YlNFR3VLMTIwR0tLczhuZHBTcDYr?=
- =?utf-8?B?ODM0OHM1SGhUcEsxV0NOemFySjN4SWpPYXlxZURJS0M1bDZkNTZ6ajVhN09m?=
- =?utf-8?B?NjVYTHJWS2xqWExBaUlJbDhhSEJNbjBEeXJwZ3VnNlI1RlhtbXZ4RmlHRmhp?=
- =?utf-8?B?UnB1WW1OUjZyOGRLMFZNekZEMmRLaEtrWjdSc0ZUcDJHZ1BqQmFOZ2g3b2JD?=
- =?utf-8?B?RFA0L0h0bEYxZE5vdDEvdnMzOHB0UUJHSGYvckplUG1xVG96UDJ3K0ttbisv?=
- =?utf-8?B?cTBYY0tUQnBCalB3dm9sVU5aT2JQbjlXM0wxQ0pWNlBXcnpYcEd5RHhFNE5S?=
- =?utf-8?B?b3d3RW4rNCtzQW10ckE0RWQyUm0zOHRFQmoySXJmbzZQSGpydUZXamNXWEll?=
- =?utf-8?B?M09NZndyRWN3MjNLTC9vQ0FTbURhUEZmQnpnVFhuSDJ5bDRJUjExTEtYQ0JS?=
- =?utf-8?B?M29FWEEvRytMNFlGVzBjeXF0ajBSOFpYdzJoWm43empxamhrb0tsYndkT1Av?=
- =?utf-8?B?TllYS21qUmc3eUNNd3lZZ21ta2wrUDVyM0pUcTNZT25UVTNmTUQyemttVEVO?=
- =?utf-8?B?YzhDa0lKYzI3emVrYVBHRmxWYXg5Rjk5L0dVZ3VZaDVqaTJkem5GNjhHa1dZ?=
- =?utf-8?B?Z0NMZS9ER1I5cVdHYmpxcHZrVXBpc0c4SFRMejYwYWZoMm9MQ05SdDdNYm5W?=
- =?utf-8?B?R3JmODFhdytvaURSS0dyMno2N2NTYWthZkVNTW5lZWk1OVVPZTZtK2xpVnNx?=
- =?utf-8?B?S3BGUGdsa0VnWFBCOFYzZ1F3b2x3eHZQOG9uOXk1QzBpeVJDZG1SVG82ZWxL?=
- =?utf-8?B?ZHN2R1NXT0luU25aMzZNdnVLTEViNFdHWWR2Y0dHVVVyTk1PTFY4SUptWUtV?=
- =?utf-8?B?QTA1MFo5SkZkZUpqYnVIZzBPZjRnbkhKOW9DWWRtUlBlM3FlYWU5TVZqalZx?=
- =?utf-8?B?aEdyOXh2VFd5TTl0d1lXcUd0SFg4YWV1K2JYb2RscjgrWjhGbmUrNXh4b1ZS?=
- =?utf-8?B?Yk9oTkxHa2dVdi9kR1JuSkRTVWwxM25OQ01DYzRTNGdyL21TT2lWRGtiTkFw?=
- =?utf-8?B?R3o4MGtQRzRnMFFTL2VtK0pPZWRoKzRCRUhpV0ZhaVphY0NuVFdOenBnVXNy?=
- =?utf-8?B?VG80aEFRNVhveXFNN2xxclIvd1R1T2hHWHdIRWFBSUttTmlEUVc3bndVRGlX?=
- =?utf-8?B?cmhnNVdBTHh5MjFtU040TktTM0FpMTcyZmNvZS9QaEV0dmx1QjJFZHdrS0ZP?=
- =?utf-8?B?NkVPbjA2bHFJc1FrRU9GdmR6SUxxS1NyWmszTGhSVUl4YkdmNUJNcFlJNW5H?=
- =?utf-8?B?cnd1M2tvYUxPWGltZTRRVFFyUFQzdy9Ya2RFdlV0WjJnRGNlNmVLVkZqSzM5?=
- =?utf-8?B?MjlvS1QzWFMwUVBpaU5Fc2xBLzVvOE1CZE9qWUpoWEtIUXV0WVFOeDAzV2lV?=
- =?utf-8?B?aTVUSmdqa1B5bHFqOFBUdHFadVVjbldMRExjeU5wdVJoT09jRFlUU2xHUElR?=
- =?utf-8?B?M2N5T0p3emdVTmNlTHVlZlBSbExEdWgrSTkybDVpMjVmYjY3cTIyWVdnMVNF?=
- =?utf-8?B?VnVTYTA5K3hMWURFRUx6UDgwc0JRbFhEblErRGovYzVBM2RYbnFubE5aNyty?=
- =?utf-8?B?VmNLdTFVVFpISXNqT2dtWHRHZEhaSEJ1OGQvNUI2VXpmWGVkOTczbFZzbFVW?=
- =?utf-8?Q?WYFbNcAr06/Ex2mgQzTvcBxp2?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Changhuang Liang <changhuang.liang@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v2 0/3] Add JH7110 MIPI DPHY RX support
+Date:   Wed, 22 Feb 2023 17:59:49 -0800
+Message-ID: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR06MB3213.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 480720c8-e070-4016-1764-08db15411cd6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2023 01:56:00.3438
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UkfzM4Ks23KdAhDRQ29vWWWHw8kjRt2jsRqTRSF76DF44Fr9gFB6vTt87LTtZ8DuD7yZZ6TAvtnV+P09civ9UQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB5476
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [113.72.147.165]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBIaSBOZWFsLA0KPiANCj4gT24gV2VkLCBKYW4gNCwgMjAyMyBhdCAyOjM3IEFNIE5lYWwgTGl1
-IDxuZWFsX2xpdUBhc3BlZWR0ZWNoLmNvbT4gd3JvdGU6DQo+ID4gQUNSWSBFbmdpbmUgaXMgZGVz
-aWduZWQgdG8gYWNjZWxlcmF0ZSB0aGUgdGhyb3VnaHB1dCBvZiBFQ0RTQS9SU0ENCj4gPiBzaWdu
-YXR1cmUgYW5kIHZlcmlmaWNhdGlvbi4NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWltcyB0byBhZGQg
-QUNSWSBSU0EgZW5naW5lIGRyaXZlciBmb3IgaGFyZHdhcmUNCj4gPiBhY2NlbGVyYXRpb24uDQo+
-ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBOZWFsIExpdSA8bmVhbF9saXVAYXNwZWVkdGVjaC5jb20+
-DQo+IA0KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2gsIHdoaWNoIGlzIG5vdyBjb21taXQgMmYxY2Y0
-ZTUwYzk1NmY4OCAoImNyeXB0bzoNCj4gYXNwZWVkIC0gQWRkIEFDUlkgUlNBIGRyaXZlciIpLg0K
-PiANCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9jcnlwdG8vYXNwZWVkL2Fz
-cGVlZC1hY3J5LmMNCj4gDQo+ID4gK3N0YXRpYyBpbnQgYXNwZWVkX2FjcnlfcHJvYmUoc3RydWN0
-IHBsYXRmb3JtX2RldmljZSAqcGRldikgew0KPiA+ICsgICAgICAgc3RydWN0IGFzcGVlZF9hY3J5
-X2RldiAqYWNyeV9kZXY7DQo+ID4gKyAgICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+
-ZGV2Ow0KPiA+ICsgICAgICAgc3RydWN0IHJlc291cmNlICpyZXM7DQo+ID4gKyAgICAgICBpbnQg
-cmM7DQo+ID4gKw0KPiA+ICsgICAgICAgYWNyeV9kZXYgPSBkZXZtX2t6YWxsb2MoZGV2LCBzaXpl
-b2Yoc3RydWN0IGFzcGVlZF9hY3J5X2RldiksDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBHRlBfS0VSTkVMKTsNCj4gPiArICAgICAgIGlmICghYWNyeV9kZXYpDQo+ID4gKyAg
-ICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOw0KPiA+ICsNCj4gPiArICAgICAgIGFjcnlfZGV2
-LT5kZXYgPSBkZXY7DQo+ID4gKw0KPiA+ICsgICAgICAgcGxhdGZvcm1fc2V0X2RydmRhdGEocGRl
-diwgYWNyeV9kZXYpOw0KPiA+ICsNCj4gPiArICAgICAgIHJlcyA9IHBsYXRmb3JtX2dldF9yZXNv
-dXJjZShwZGV2LCBJT1JFU09VUkNFX01FTSwgMCk7DQo+ID4gKyAgICAgICBhY3J5X2Rldi0+cmVn
-cyA9IGRldm1faW9yZW1hcF9yZXNvdXJjZShkZXYsIHJlcyk7DQo+ID4gKyAgICAgICBpZiAoSVNf
-RVJSKGFjcnlfZGV2LT5yZWdzKSkNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuIFBUUl9FUlIo
-YWNyeV9kZXYtPnJlZ3MpOw0KPiA+ICsNCj4gPiArICAgICAgIHJlcyA9IHBsYXRmb3JtX2dldF9y
-ZXNvdXJjZShwZGV2LCBJT1JFU09VUkNFX01FTSwgMSk7DQo+ID4gKyAgICAgICBhY3J5X2Rldi0+
-YWNyeV9zcmFtID0gZGV2bV9pb3JlbWFwX3Jlc291cmNlKGRldiwgcmVzKTsNCj4gPiArICAgICAg
-IGlmIChJU19FUlIoYWNyeV9kZXYtPmFjcnlfc3JhbSkpDQo+ID4gKyAgICAgICAgICAgICAgIHJl
-dHVybiBQVFJfRVJSKGFjcnlfZGV2LT5hY3J5X3NyYW0pOw0KPiA+ICsNCj4gPiArICAgICAgIC8q
-IEdldCBpcnEgbnVtYmVyIGFuZCByZWdpc3RlciBpdCAqLw0KPiA+ICsgICAgICAgYWNyeV9kZXYt
-PmlycSA9IHBsYXRmb3JtX2dldF9pcnEocGRldiwgMCk7DQo+ID4gKyAgICAgICBpZiAoYWNyeV9k
-ZXYtPmlycSA8IDApDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRU5YSU87DQo+ID4gKw0K
-PiA+ICsgICAgICAgcmMgPSBkZXZtX3JlcXVlc3RfaXJxKGRldiwgYWNyeV9kZXYtPmlycSwgYXNw
-ZWVkX2FjcnlfaXJxLCAwLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRldl9u
-YW1lKGRldiksIGFjcnlfZGV2KTsNCj4gPiArICAgICAgIGlmIChyYykgew0KPiA+ICsgICAgICAg
-ICAgICAgICBkZXZfZXJyKGRldiwgIkZhaWxlZCB0byByZXF1ZXN0IGlycS5cbiIpOw0KPiA+ICsg
-ICAgICAgICAgICAgICByZXR1cm4gcmM7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAg
-ICAgYWNyeV9kZXYtPmNsayA9IGRldm1fY2xrX2dldF9lbmFibGVkKGRldiwgTlVMTCk7DQo+ID4g
-KyAgICAgICBpZiAoSVNfRVJSKGFjcnlfZGV2LT5jbGspKSB7DQo+ID4gKyAgICAgICAgICAgICAg
-IGRldl9lcnIoZGV2LCAiRmFpbGVkIHRvIGdldCBhY3J5IGNsa1xuIik7DQo+ID4gKyAgICAgICAg
-ICAgICAgIHJldHVybiBQVFJfRVJSKGFjcnlfZGV2LT5jbGspOw0KPiA+ICsgICAgICAgfQ0KPiA+
-ICsNCj4gPiArICAgICAgIGFjcnlfZGV2LT5haGJjID0NCj4gc3lzY29uX3JlZ21hcF9sb29rdXBf
-YnlfcGhhbmRsZShkZXYtPm9mX25vZGUsDQo+ID4gKw0KPiAiYXNwZWVkLGFoYmMiKTsNCj4gPiAr
-ICAgICAgIGlmIChJU19FUlIoYWNyeV9kZXYtPmFoYmMpKSB7DQo+ID4gKyAgICAgICAgICAgICAg
-IGRldl9lcnIoZGV2LCAiRmFpbGVkIHRvIGdldCBBSEJDIHJlZ21hcFxuIik7DQo+ID4gKyAgICAg
-ICAgICAgICAgIHJldHVybiAtRU5PREVWOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAg
-ICAgIC8qIEluaXRpYWxpemUgY3J5cHRvIGhhcmR3YXJlIGVuZ2luZSBzdHJ1Y3R1cmUgZm9yIFJT
-QSAqLw0KPiA+ICsgICAgICAgYWNyeV9kZXYtPmNyeXB0X2VuZ2luZV9yc2EgPSBjcnlwdG9fZW5n
-aW5lX2FsbG9jX2luaXQoZGV2LCB0cnVlKTsNCj4gPiArICAgICAgIGlmICghYWNyeV9kZXYtPmNy
-eXB0X2VuZ2luZV9yc2EpIHsNCj4gPiArICAgICAgICAgICAgICAgcmMgPSAtRU5PTUVNOw0KPiA+
-ICsgICAgICAgICAgICAgICBnb3RvIGNsa19leGl0Ow0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4g
-PiArICAgICAgIHJjID0gY3J5cHRvX2VuZ2luZV9zdGFydChhY3J5X2Rldi0+Y3J5cHRfZW5naW5l
-X3JzYSk7DQo+ID4gKyAgICAgICBpZiAocmMpDQo+ID4gKyAgICAgICAgICAgICAgIGdvdG8gZXJy
-X2VuZ2luZV9yc2Ffc3RhcnQ7DQo+ID4gKw0KPiA+ICsgICAgICAgdGFza2xldF9pbml0KCZhY3J5
-X2Rldi0+ZG9uZV90YXNrLCBhc3BlZWRfYWNyeV9kb25lX3Rhc2ssDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgKHVuc2lnbmVkIGxvbmcpYWNyeV9kZXYpOw0KPiA+ICsNCj4gPiArICAgICAgIC8q
-IFNldCBEYXRhIE1lbW9yeSB0byBBSEIoQ1BVKSBBY2Nlc3MgTW9kZSAqLw0KPiA+ICsgICAgICAg
-YXN0X2Fjcnlfd3JpdGUoYWNyeV9kZXYsIEFDUllfQ01EX0RNRU1fQUhCLA0KPiA+ICsgQVNQRUVE
-X0FDUllfRE1BX0NNRCk7DQo+ID4gKw0KPiA+ICsgICAgICAgLyogSW5pdGlhbGl6ZSBBQ1JZIFNS
-QU0gaW5kZXggKi8NCj4gPiArICAgICAgIGFzcGVlZF9hY3J5X3NyYW1fbWFwcGluZyhhY3J5X2Rl
-dik7DQo+ID4gKw0KPiA+ICsgICAgICAgYWNyeV9kZXYtPmJ1Zl9hZGRyID0gZG1hbV9hbGxvY19j
-b2hlcmVudChkZXYsDQo+IEFTUEVFRF9BQ1JZX0JVRkZfU0laRSwNCj4gPiArDQo+ICZhY3J5X2Rl
-di0+YnVmX2RtYV9hZGRyLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBHRlBfS0VSTkVMKTsNCj4gPiArICAgICAgIG1lbXplcm9fZXhwbGljaXQo
-YWNyeV9kZXYtPmJ1Zl9hZGRyLA0KPiBBU1BFRURfQUNSWV9CVUZGX1NJWkUpOw0KPiANCj4gV2hl
-biBjb21waWxlLXRlc3Rpbmcgd2l0aCBDT05GSUdfSEFTX0RNQT1uOg0KPiANCj4gICAgIGVycm9y
-OiBhcmd1bWVudCAxIG51bGwgd2hlcmUgbm9uLW51bGwgZXhwZWN0ZWQgWy1XZXJyb3I9bm9ubnVs
-bF0NCj4gDQo+IFRoZSBjYWxsIHRvIGRtYW1fYWxsb2NfY29oZXJlbnQoKSBsYWNrcyBlcnJvciBo
-YW5kbGluZywgYXMgdGhlIHJldHVybmVkDQo+IGFkZHJlc3MgbWF5IGJlIE5VTEwuDQoNClRoYW5r
-cyBmb3IgeW91ciByZW1pbmRpbmcuIEknbGwgYWRkIGVycm9yIGhhbmRsaW5nIGZvciB0aGlzLg0K
-DQo+IE1vcmVvdmVyLCBpcyBpdCBzYWZlIHRvIGFsbG9jYXRlIHRoaXMgYnVmZmVyIG9ubHkgYWZ0
-ZXIgdGhlIGNhbGwgdG8NCj4gY3J5cHRvX2VuZ2luZV9zdGFydCgpPyBJLmUuIGNvdWxkIGFjcnlf
-ZGV2LT5idWZfYWRkciBiZSBhY2Nlc3NlZCBiZWZvcmUsDQo+IGNhdXNpbmcgYSBOVUxMIHBvaW50
-ZXIgZGVyZWZlcmVuY2U/DQo+IElzIHRoZXJlIGFueSBvdGhlciBpbml0aWFsaXphdGlvbiB0aGF0
-IHNob3VsZCBiZSBkb25lIGVhcmxpZXI/DQoNClRoaXMgZG9lcyBub3Qgc2VlbSB0byBiZSBhbnkg
-cHJvYmxlbSBzaW5jZSBhY3J5X2Rldi0+YnVmX2FkZHIgb25seSBiZSBhY2Nlc3NlZCB3aGVuIEhX
-IGhhcyB0YXNrIHRvIGRvLg0KQW5kIHRoZSBIVyBoYXMgdGFzayB0byBkbyBvbmx5IGFmdGVyIHRo
-ZSBhbGdvcml0aG0gYmUgcmVnaXN0ZXJlZCwgd2hpY2ggaXMgYWZ0ZXIgYWNyeV9kZXYtPmJ1Zl9h
-ZGRyIGluaXRpYWxpemF0aW9uLg0KDQo+ID4gKw0KPiA+ICsgICAgICAgYXNwZWVkX2FjcnlfcmVn
-aXN0ZXIoYWNyeV9kZXYpOw0KPiA+ICsNCj4gPiArICAgICAgIGRldl9pbmZvKGRldiwgIkFzcGVl
-ZCBBQ1JZIEFjY2VsZXJhdG9yIHN1Y2Nlc3NmdWxseQ0KPiA+ICsgcmVnaXN0ZXJlZFxuIik7DQo+
-ID4gKw0KPiA+ICsgICAgICAgcmV0dXJuIDA7DQo+ID4gKw0KPiA+ICtlcnJfZW5naW5lX3JzYV9z
-dGFydDoNCj4gPiArICAgICAgIGNyeXB0b19lbmdpbmVfZXhpdChhY3J5X2Rldi0+Y3J5cHRfZW5n
-aW5lX3JzYSk7DQo+ID4gK2Nsa19leGl0Og0KPiA+ICsgICAgICAgY2xrX2Rpc2FibGVfdW5wcmVw
-YXJlKGFjcnlfZGV2LT5jbGspOw0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiByYzsNCj4gPiAr
-fQ0KPiANCj4gR3J7b2V0amUsZWV0aW5nfXMsDQo+IA0KPiAgICAgICAgICAgICAgICAgICAgICAg
-ICBHZWVydA0KPiANCj4gLS0NCj4gR2VlcnQgVXl0dGVyaG9ldmVuIC0tIFRoZXJlJ3MgbG90cyBv
-ZiBMaW51eCBiZXlvbmQgaWEzMiAtLQ0KPiBnZWVydEBsaW51eC1tNjhrLm9yZw0KPiANCj4gSW4g
-cGVyc29uYWwgY29udmVyc2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9wbGUsIEkgY2FsbCBteXNl
-bGYgYSBoYWNrZXIuIEJ1dA0KPiB3aGVuIEknbSB0YWxraW5nIHRvIGpvdXJuYWxpc3RzIEkganVz
-dCBzYXkgInByb2dyYW1tZXIiIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQuDQo+ICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFsZHMNCg==
+This patchset adds mipi dphy rx driver for the StarFive JH7110 SoC.
+It is used to transfer CSI camera data. The series has been tested on
+the VisionFive 2 board.
+
+This patchset should be applied after the patchset [1] and patch [2]:
+[1] https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
+[2] https://lore.kernel.org/all/20230215113249.47727-4-william.qiu@starfivetech.com/
+
+changes since v1:
+- Rebased on tag v6.2.
+- Dropped patch 1, it will be added by the patch [2].
+
+patch 1:
+- Changed the node name 'dphy' to 'phy'.
+- Changed the "starfive,aon-syscon" description.
+- Changed the MIPI DPHY RX IP description.
+- Add description to resets.
+- Update devicetree binding examples.
+
+patch 2:
+- Changed the commit message.
+
+patch 3:
+- Changed the commit message.
+- Changed the node name 'dphy' to 'phy'.
+- Sorted the node by address.
+
+v1: https://lore.kernel.org/all/20230210061713.6449-1-changhuang.liang@starfivetech.com/
+
+Changhuang Liang (3):
+  dt-bindings: phy: Add starfive,jh7110-dphy-rx
+  phy: starfive: Add mipi dphy rx support
+  riscv: dts: starfive: Add dphy rx node
+
+ .../bindings/phy/starfive,jh7110-dphy-rx.yaml |  74 ++++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  13 +
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/starfive/Kconfig                  |  13 +
+ drivers/phy/starfive/Makefile                 |   2 +
+ drivers/phy/starfive/phy-starfive-dphy-rx.c   | 362 ++++++++++++++++++
+ 8 files changed, 473 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
+ create mode 100644 drivers/phy/starfive/Kconfig
+ create mode 100644 drivers/phy/starfive/Makefile
+ create mode 100644 drivers/phy/starfive/phy-starfive-dphy-rx.c
+
+
+base-commit: c9c3395d5e3dcc6daee66c6908354d47bf98cb0c
+prerequisite-patch-id: 4dc515731ce237184553c1606ffb3afaeb51c3d8
+prerequisite-patch-id: ac150a8c622e858e088df8121093d448df49c245
+prerequisite-patch-id: a4255724d4698f1238663443024de56de38d717b
+prerequisite-patch-id: a798370d170dc2bcc79ed86f741c21c1e6d87c78
+prerequisite-patch-id: 203d2500cadc112bd20fefc56eabf1470d3d2d2d
+prerequisite-patch-id: 315303931e4b6499de7127a88113763f86e97e16
+prerequisite-patch-id: 40cb8212ddb024c20593f73d8b87d9894877e172
+prerequisite-patch-id: a1673a9e9f19d6fab5a51abb721e54e36636f067
+prerequisite-patch-id: 94860423c7acc9025249d4bb36652a585bd0a797
+prerequisite-patch-id: b5084253283929d9a6d0e66c350400c7c85d034d
+prerequisite-patch-id: a428ed7a2aa45abab86923dc467e1e6b08427e85
+prerequisite-patch-id: d4f80829fca7ce370a6fad766593cdcb502fa245
+prerequisite-patch-id: e3490e19e089fe284334db300ee189b619a61628
+prerequisite-patch-id: 34298e3882261bc2d72955b1570cc9612ab7d662
+prerequisite-patch-id: 377c5c282a0776feee9acd10b565adbd5275a67e
+prerequisite-patch-id: 3ccee718de0750adbf8d0b77d553a2778a344f64
+prerequisite-patch-id: 4710f2ac22dca0bdd9ff5d744d2c37cab3c74515
+prerequisite-patch-id: 65f2aed865d88e6fa468d2923527b523d4313857
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
+prerequisite-patch-id: a2b3a9cff8a683422eb0ccf3a0850091401812d4
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: ea9a6d0313dd3936c8de0239dc2072c3360a2f6b
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 29aab7148bf56a20acddcb8a11f290705fcc97f6
+prerequisite-patch-id: eeecb5367bea99627210b661986ca5b49e2a9d63
+prerequisite-patch-id: c02658f677990683d4c4957e06c19ed3a3a0cfab
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: 55b80c069faccc7dede15748d888bb13c7120a30
+prerequisite-patch-id: 7acbc9c924e802712d3574dd74a6b3576089f78c
+prerequisite-patch-id: 35b9e27cc439a35eebc18cbe375ea65da94653be
+prerequisite-patch-id: d426704849c21687b4ef32c7d399081706e34c51
+prerequisite-patch-id: 9f71c539a241baf1e73c7e7dfde5b0b04c66a502
+prerequisite-patch-id: 5acc7f9a7547a301014071f446685e21779cb5f7
+prerequisite-patch-id: 9fddcb61301b615ad6f0102f2235265a01ccc2a2
+prerequisite-patch-id: 0c04762f1d20f09cd2a1356334a86e520907d111
+prerequisite-patch-id: 04d1167facdccfd6c737bf64d83cfd6ed1d74099
+prerequisite-patch-id: ff5bca2dbaafaa14248f5f9a6ddc5d26d827cf50
+prerequisite-patch-id: 2bc43b375b470f7e8bbe937b78678ba3856e3b8f
+--
+2.25.1
