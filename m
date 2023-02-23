@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8D726A047B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:08:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD7696A0481
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:09:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233628AbjBWJIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 04:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37286 "EHLO
+        id S233819AbjBWJJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 04:09:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjBWJIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:08:13 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6843A8F
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:08:06 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id o12so40097559edb.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:08:06 -0800 (PST)
+        with ESMTP id S233823AbjBWJJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:09:34 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FC93A8F
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:09:31 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id ec43so39153469edb.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:09:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nmC8rU/r/vCYcTCassjtbwxQQmvscPWPC8NwoK8nv6Y=;
-        b=yXHwG+9zDhuVZ2TCZZ4Z30RxvwOLheweftDdXO1MbTiq4GvnDaonuOL5PDrPpEMpdk
-         mRiEcZ/44ZPPwvrGQ2FLuwMO4+0KXmQ5KzWof+9uprrkevZkwltts+56/Or9kfsf81iy
-         x/TNi+MZI/eSSvB9TSvpMfRtTEe7K9dCoEC8eeHVMsMWmddeiKOV1po+0vR4/WOwghUm
-         GXvTvMYFT8O3Qv2uOIryrT40DyUDESsePbbCr8K1ALlP4amRrO0gsEFPWT966ebb5PEa
-         mgt4NjoCIXt+2EI4Kj1PB81uk0i5v0b9WsTfsLuJTzcloptM13D1hKzDRGtLC3723ey4
-         vfEw==
+        bh=WTHH9zlDbccoeTvmUDLrTEqObJ4nge6CNLgpKIfq2Nc=;
+        b=L0TWocZdfOWbL96bTpIQDkvaSs7o3o4cO16HwuUxwlTvaIlvDlGhPqNlwkQFCz2BZH
+         tbmfoULCqeCg9jidx+1+SLITPxcXi0ZzwEjg8Ue9fKJcw9dRqMcNmrSoIr+EHp3gEr9+
+         GkOWxjHXVtSPWqXFyuQ4zjDCqG2G07kCCPXr2gttwyBYdchCl3x0vUoc3XDrN0vcV+Tw
+         p8sXVg4Ic+4PJsZuJsOpHdLmiJ5RsJoXOmGTt60sx6qtXKQI4r2VU5NRT9w90aEOSHaS
+         3clRGn+HvwmrCabpgXVtqto8lUvXDB7rwOcvTA3x2WSJDeCMeLzMDCmH64BaYoTUrUaC
+         PMUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nmC8rU/r/vCYcTCassjtbwxQQmvscPWPC8NwoK8nv6Y=;
-        b=MAnwZ6V2uJQyfoL7yQKiUAJ4IYUyzY4kx/f8N5hhVvi6cyInauoqhJSJRVakMAWNaI
-         fM0uZWpSd4JyFMIsAnxARFi2L7U7hLjx5NpYYlPzsMqZ+PZmYTggv9WFAExMEJ6LpRnP
-         PKsYktnNP/M00wHwixP36TNBXUj6vU1e0agaDeC/PiGkchWXXHprhs+4u/TEz/XjWUms
-         ZJNzlMSgKv0kT2PQMPZojsZMrfyTBJND37awDLGIavmG+phG7ovabW9Hro5cNx/hsTgI
-         2SkcYkb3VYycLBcyISMdgJsYjNaWkZEuhb9IFRH8UQsamgl+8OeYnS1dssCVDD2a9wYh
-         +H0g==
-X-Gm-Message-State: AO0yUKWwhKApQu3eKaORP7LhyJ1Ee56gQyHtY1rhSuoYnmzL3paXeaKC
-        lXhq8mwdrqjbKM9dAxNDEUEmBg==
-X-Google-Smtp-Source: AK7set8FqssPw31ewckoqg56O8trOVzvzax0KiJfiMOPwugY0umCwzbsSexEYjm9Rymh5WfeBMy3Rg==
-X-Received: by 2002:aa7:d351:0:b0:4ac:bb85:c895 with SMTP id m17-20020aa7d351000000b004acbb85c895mr9724924edr.1.1677143285066;
-        Thu, 23 Feb 2023 01:08:05 -0800 (PST)
+        bh=WTHH9zlDbccoeTvmUDLrTEqObJ4nge6CNLgpKIfq2Nc=;
+        b=HN695jmy/USRAV5w8CGY0TDs2n5yRtez95Ua5q6kmYelfdtll4jTEn2qdWauKYP8M7
+         2FcdIuaP+tAHWYz6J7U4Pr+9s9Isuf3/ZyouFjfAiadp9u1pWPV02aOqx6kwG/RHXy7b
+         LU7SXqHzxvWo8dgQgXSYV1CSBeuwDVsp21Z8p59GlQ3ghv3elOLHhGblvNm1QrA7hm+e
+         qZj8C0eINjQgg76J94QKsuUt2e2jVz/Ev2nc9WaIwz2nZrmKTcZ+9CPhMQlzlW08R2YN
+         9TkPraQ2QzFYetujxgsuO0BJF+fGHewfPgSikx4MlK4gNS0YtEXxlxblMPVTt3OrsEQn
+         FUOw==
+X-Gm-Message-State: AO0yUKVXW3YizKK95Bvecsag33zEOfaPq8QlChAu5XlhtzxfaLxScZpX
+        VI/h6zOC5nPQk1eCuvhn78upKj9YaBur0yPY
+X-Google-Smtp-Source: AK7set9zgkcJ/Ydry/Spnvy0EWMQ98kUtwo44jN+5Rz6tMBQUI/yAHDbBTpVQg27blmc1k0bmHFKng==
+X-Received: by 2002:aa7:c98a:0:b0:4ae:eb17:3afc with SMTP id c10-20020aa7c98a000000b004aeeb173afcmr11652406edt.7.1677143369613;
+        Thu, 23 Feb 2023 01:09:29 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m6-20020a509986000000b004aef147add6sm4252398edb.47.2023.02.23.01.08.01
+        by smtp.gmail.com with ESMTPSA id b15-20020a1709062b4f00b008db605598b9sm3847171ejg.67.2023.02.23.01.09.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 01:08:02 -0800 (PST)
-Message-ID: <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
-Date:   Thu, 23 Feb 2023 10:08:00 +0100
+        Thu, 23 Feb 2023 01:09:27 -0800 (PST)
+Message-ID: <d5d9a1fe-2f66-66e3-d88a-76a12f2ec55e@linaro.org>
+Date:   Thu, 23 Feb 2023 10:09:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Subject: Re: [PATCH v1 3/3] arch/arm: dts: introduce meson-a1 device tree
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
         khilman@baylibre.com, jbrunet@baylibre.com,
@@ -65,40 +66,44 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         kernel@sberdevices.ru
 References: <20230222115020.55867-1-avromanov@sberdevices.ru>
  <20230222115020.55867-4-avromanov@sberdevices.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230222115020.55867-4-avromanov@sberdevices.ru>
+ <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
+In-Reply-To: <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2023 12:50, Alexey Romanov wrote:
-> Add basic support for the 32-bit Amlogic A1. This device tree
-
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
-> describes following compontents: CPU, GIC, IRQ, Timer, UART,
-> PIN controller. It's capable of booting up into
-> the serial console.
+On 23/02/2023 10:08, Krzysztof Kozlowski wrote:
+> On 22/02/2023 12:50, Alexey Romanov wrote:
+>> Add basic support for the 32-bit Amlogic A1. This device tree
 > 
-> This is based on arm64 version of meson-a1.dtsi.
+> Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching).
 > 
-> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-> ---
->  arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
+>> describes following compontents: CPU, GIC, IRQ, Timer, UART,
+>> PIN controller. It's capable of booting up into
+>> the serial console.
+>>
+>> This is based on arm64 version of meson-a1.dtsi.
+>>
+>> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+>> ---
+>>  arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
+> 
+> There is such file and there is such DTS/hardware support. I don't see
+> any reason why entire DTSI should be duplicated. What's more, your
+> commit does not explain it - does not justify duplication.
 
-There is such file and there is such DTS/hardware support. I don't see
-any reason why entire DTSI should be duplicated. What's more, your
-commit does not explain it - does not justify duplication.
+One more comment - I think you just added dead code. It's
+uncompilable/untestable. Otherwise, please share how to build this DTSI
+without DTS.
 
 Best regards,
 Krzysztof
