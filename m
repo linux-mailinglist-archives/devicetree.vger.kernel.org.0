@@ -2,110 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9E76A07BB
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 12:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 049816A07EC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 13:06:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233603AbjBWLxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 06:53:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51758 "EHLO
+        id S233315AbjBWMGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 07:06:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233389AbjBWLxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 06:53:24 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 962032449E;
-        Thu, 23 Feb 2023 03:53:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677153202; x=1708689202;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=9UQVMZWr2tJmrTeaqBt8QBAvocH3yVm9kr/ecibUREE=;
-  b=l8FPqp7WMYZWbhXdCKmHcwX2JazhHbfJly4xqwXuUtkcy/6SJLNQ+lbe
-   BmCWKm30pdsEmmJ0xgNd2IjGae76pOZdnKmazIoavbgAfNerG1JXgut8O
-   DYDKB3NygRRmsAxUJUrXJEpTA2yqXwolnsFrQd9YXKyxks2YrmSnzCWnE
-   NSZH3PkD4aWxFwVtOjNWmnViUTiNbDgLWDg/Hk2N9JYmXSEsSQlWC3ZFy
-   0KxToN/nIYk3NHUP+StT72kod431nwaa8J15eQe5kau6w2/t1HwGRabBa
-   8QlqQSac44y2SJE7Xi04w3Kpe1qIaZKEa+4NV8Xl2vthhH9vZ1Ed2Wgvj
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="321339616"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; 
-   d="scan'208";a="321339616"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2023 03:53:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="815303383"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; 
-   d="scan'208";a="815303383"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 23 Feb 2023 03:53:18 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pVA9z-00AvWb-2W;
-        Thu, 23 Feb 2023 13:53:15 +0200
-Date:   Thu, 23 Feb 2023 13:53:15 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Robin van der Gracht <robin@protonic.nl>,
+        with ESMTP id S229713AbjBWMGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 07:06:48 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B15354543
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:06:46 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id a10so10672262ljq.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:06:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QkKPkt6K8I16jd1Wjb3aZsG77PYKiXbGXPYI41OEs9k=;
+        b=tAtajSSPzl1mwYWBXR+0tmHgiFeEgpsbv3vhqLZrkDZ160IQbHlKrTLzcDtbPe2GnK
+         bUSt4QBfE5L/8YPcXVNvMh/DiCh/LpGR2suG9IBm7TfayIG5sEgH1qQYYvnf97vxbrR3
+         PVLptLfbUV+5d8nq0gc60wfgvdbMCh+j7G5yATau85zvJllvgKTcvQUXrtbVhU01NDio
+         r4nsGE0G72ZyI4X/WK0RmT9wEIb7WvYe3iFDFOqqFYcXeAiD1AemcBlHptTEQ+CUP748
+         AqNO+emEW9ik5UvDYrwwZu2ZVWw/AdNQ8G247lRrSKlKvac/fIVbC0WYzXG6D90WHrND
+         RcPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QkKPkt6K8I16jd1Wjb3aZsG77PYKiXbGXPYI41OEs9k=;
+        b=wgMiCOdi0ZTysO2Z+/iv9S1tU8h6ZqkThHg7ERBHHDxqJ/s4XMX4+Okyd99c4vnEwI
+         upA1giwMiXsa3Y+2bdz2vuBaApugAQN5RXEn+NQZaE/soWuhzk2AXCu65qLb/giUPabd
+         oVuzfRoQ7CIga7lkRvo3hMajzL+0rz2yuKBC2Vs66euzpgjjvlHi1hx7AR524TYVcKVG
+         cWImWTmmMsMpd8e8Q3eOcpTutX4UbV8dOBSJfHs668c1mZEvdqoTz85tS3FEho2HtlrO
+         +p/N+K04w+//+ePfWCZSspXzWU7mpmQfPM94D963Kwx2oets91EDgQC9aGy/xipC5Sl8
+         0WyA==
+X-Gm-Message-State: AO0yUKVGeqoNqyyRDpzEe8DDs6lWV/+xJVLZFHkazSLzeyPMbPvcrUIm
+        E/31SaSdBsKxCYONe9MaonAb1Q==
+X-Google-Smtp-Source: AK7set+6aMuX+fIwu7TKmnFH2zI+TIWMDx0P1BNXDkNGx33VUkBqKOt28i6yC/SpfOfFe1jifZ62qQ==
+X-Received: by 2002:a2e:7216:0:b0:295:8a9b:d8d6 with SMTP id n22-20020a2e7216000000b002958a9bd8d6mr3366493ljc.4.1677154004555;
+        Thu, 23 Feb 2023 04:06:44 -0800 (PST)
+Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
+        by smtp.gmail.com with ESMTPSA id h23-20020a2ea497000000b0029599744c02sm414838lji.75.2023.02.23.04.06.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Feb 2023 04:06:44 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v3 00/15] GMU-less A6xx support (A610, A619_holi)
+Date:   Thu, 23 Feb 2023 13:06:34 +0100
+Message-Id: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMpW92MC/x2N0QqDMAwAf0XyvIC0Drf9ythDWxMNuFpS3QTx3
+ xf2eAfHHVBJhSo8mgOUPlJlyQb+0kCaQh4JZTAG1zrfOudxXYokHN/bV0MppBg7Zr7y0Pe3O1g
+ WQyWMGnKaLMzbPJssSiz7//N8necPqATO1ncAAAA=
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Raul E Rangel <rrangel@chromium.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-usb@vger.kernel.org,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] auxdisplay: ht16k33: Make use of
- device_get_match_data()
-Message-ID: <Y/dTqynpTWn86wUy@smile.fi.intel.com>
-References: <20230221133307.20287-3-andriy.shevchenko@linux.intel.com>
- <Y/TJs+Arban0ats8@smile.fi.intel.com>
- <be203dfd290e67c8ce74d11c5c9478a4@protonic.nl>
- <Y/UD3HWNy8uKYShC@smile.fi.intel.com>
- <0235f0fed989a8b027db720663699f5d@protonic.nl>
- <Y/ZKdN4nuHcL4DgE@smile.fi.intel.com>
- <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
- <06f29d66-f16a-039c-ecd0-155bdcce00c1@linaro.org>
- <Y/ZoyaV10TCWhloT@smile.fi.intel.com>
- <CAMuHMdXbYapqG1eirbRoxS9akue+URKOV338efMp1c0CbwUEKg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdXbYapqG1eirbRoxS9akue+URKOV338efMp1c0CbwUEKg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1677154003; l=6803;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=SrO+tT9dL/Vn3p2tiDM013OqjkJMjRrAWfBDI0HEZLo=;
+ b=0TZ4tmSBt1jWJ+b2r+8ZhfTgB1jlxMKBIVSE8fbdBosET7znKqmGYTuujxpBrWgzTTuSvyGRzH40
+ /hGS6u/IBLM7pjKrUGaAIEcazqjEroPQR7IGJtDLm/Pk0F6CQ5Tb
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 10:55:15AM +0100, Geert Uytterhoeven wrote:
-> On Wed, Feb 22, 2023 at 8:21 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Wed, Feb 22, 2023 at 07:46:25PM +0100, Krzysztof Kozlowski wrote:
+v2 -> v3:
+New dependencies:
+- https://lore.kernel.org/linux-arm-msm/20230223-topic-opp-v3-0-5f22163cd1df@linaro.org/T/#t
+- https://lore.kernel.org/linux-arm-msm/20230120172233.1905761-1-konrad.dybcio@linaro.org/
 
-...
+Sidenote: A speedbin rework is in progress, the of_machine_is_compatible
+calls in A619_holi are ugly (but well, necessary..) but they'll be
+replaced with socid matching in this or the next kernel cycle.
 
-> > I.o.w. the part after comma in the compatible strings of the I²C devices must
-> > be unique globally to make that enumeration disambiguous.
-> 
-> Which is not unique to this driver?
-> I bet you can find other compatible values that become non-unique
-> after stripping the manufacturer.
+Due to the new way of identifying GMU wrapper GPUs, configuring 6350
+to use wrapper would cause the wrong fuse values to be checked, but that
+will be solved by the conversion + the ultimate goal is to use the GMU
+whenever possible with the wrapper left for GMU-less Adrenos and early
+bringup debugging of GMU-equipped ones.
 
-Yes, exactly my point.
-So this all schema is error prone. Hence I would not rely on it at all.
+- Ship dt-bindings in this series as we're referencing the compatible now
 
+- "De-staticize" -> "remove static keyword" [3/15]
 
+- Track down all the values in [4/15]
+
+- Add many comments and explanations in [4/15]
+
+- Fix possible return-before-mutex-unlock [5/15]
+
+- Explain the GMU wrapper a bit more in the commit msg [5/15]
+
+- Separate out pm_resume/suspend for GMU-wrapper GPUs to make things
+  cleaner [5/15]
+
+- Don't check if `info` exists, it has to at this point [5/15]
+
+- Assign gpu->info early and clean up following if statements in
+  a6xx_gpu_init [5/15]
+
+- Determine whether we use GMU wrapper based on the GMU compatible
+  instead of a quirk [5/15]
+
+- Use a struct field to annotate whether we're using gmu wrapper so
+  that it can be assigned at runtime (turns out a619 holi-ness cannot
+  be determined by patchid + that will make it easier to test out GMU
+  GPUs without actually turning on the GMU if anybody wants to do so)
+  [5/15]
+
+- Unconditionally hook up gx to the gmu wrapper (otherwise our gpu
+  will not get power) [5/15]
+
+- Don't check for gx domain presence in gmu_wrapper paths, it's
+  guaranteed [5/15]
+
+- Use opp set rate in the gmuwrapper suspend path [5/15]
+
+- Call opp functions on the GPU device and not on the DRM device of
+  mdp4/5/DPU1 half the time (WHOOOOPS!) [5/15]
+
+- Disable the memory clock in a6xx_pm_suspend instead of enabling it
+  (moderate oops) [5/15]
+
+- Call the forgotten clk_bulk_disable_unprepare in a6xx_pm_suspend [5/15]
+
+- Set rate to FMIN (a6xx really doesn't like rate=0 + that's what
+  msm-5.x does anyway) before disabling core clock [5/15]
+
+- pm_runtime_get_sync -> pm_runtime_resume_and_get [5/15]
+
+- Don't annotate no cached BO support with a quirk, as A619_holi is
+  merged into the A619 entry in the big const struct - this means
+  that all GPUs operating in gmu wrapper configuration will be
+  implicitly treated as if they didn't have this feature [7/15]
+
+- Drop OPP rate & icc related patches, they're a part of a separate
+  series now; rebase on it
+
+- Clean up extra parentheses [8/15]
+
+- Identify A619_holi by checking the compatible of its GMU instead
+  of patchlevel [8/15]
+
+- Drop "Fix up A6XX protected registers" - unnecessary, Rob will add
+  a comment explaining why
+
+- Fix existing UBWC values for A680, new patch [10/15]
+
+- Use adreno_is_aXYZ macros in speedbin matching [13/15] - new patch
+
+v2: https://lore.kernel.org/linux-arm-msm/20230214173145.2482651-1-konrad.dybcio@linaro.org/
+
+v1 -> v2:
+- Fix A630 values in [2/14]
+- Fix [6/14] for GMU-equipped GPUs
+
+Link to v1: https://lore.kernel.org/linux-arm-msm/20230126151618.225127-1-konrad.dybcio@linaro.org/
+
+This series concludes my couple-weeks-long suffering of figuring out
+the ins and outs of the "non-standard" A6xx GPUs which feature no GMU.
+
+The GMU functionality is essentially emulated by parting out a
+"GMU wrapper" region, which is essentially just a register space
+within the GPU. It's modeled to be as similar to the actual GMU
+as possible while staying as unnecessary as we can make it - there's
+no IRQs, communicating with a microcontroller, no RPMh communication
+etc. etc. I tried to reuse as much code as possible without making
+a mess where every even line is used for GMU and every odd line is
+used for GMU wrapper..
+
+This series contains:
+- plumbing for non-GMU operation, if-ing out GMU calls based on
+  GMU presence
+- GMU wrapper support
+- A610 support (w/ speedbin)
+- A619 support (w/ speedbin)
+- couple of minor fixes and improvements
+- VDDCX/VDDGX scaling fix for non-GMU GPUs (concerns more than just
+  A6xx)
+- Enablement of opp interconnect properties
+
+A619_holi works perfectly fine using the already-present A619 support
+in mesa. A610 needs more work on that front, but can already replay
+command traces captures on downstream.
+
+NOTE: the "drm/msm/a6xx: Add support for A619_holi" patch contains
+two occurences of 0x18 used in place of a register #define, as it's
+supposed to be RBBM_GPR0_CNTL, but that will only be present after
+mesa-side changes are merged and headers are synced from there.
+
+Speedbin patches depend on:
+https://lore.kernel.org/linux-arm-msm/20230120172233.1905761-1-konrad.dybcio@linaro.org/
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (15):
+      dt-bindings: display/msm: gpu: Document GMU wrapper-equipped A6xx
+      dt-bindings: display/msm/gmu: Add GMU wrapper
+      drm/msm/a6xx: Remove static keyword from sptprac en/disable functions
+      drm/msm/a6xx: Extend and explain UBWC config
+      drm/msm/a6xx: Introduce GMU wrapper support
+      drm/msm/a6xx: Remove both GBIF and RBBM GBIF halt on hw init
+      drm/msm/adreno: Disable has_cached_coherent in GMU wrapper configurations
+      drm/msm/a6xx: Add support for A619_holi
+      drm/msm/a6xx: Add A610 support
+      drm/msm/a6xx: Fix A680 highest bank bit value
+      drm/msm/a6xx: Fix some A619 tunables
+      drm/msm/a6xx: Use "else if" in GPU speedbin rev matching
+      drm/msm/a6xx: Use adreno_is_aXYZ macros in speedbin matching
+      drm/msm/a6xx: Add A619_holi speedbin support
+      drm/msm/a6xx: Add A610 speedbin support
+
+ .../devicetree/bindings/display/msm/gmu.yaml       |  49 +-
+ .../devicetree/bindings/display/msm/gpu.yaml       |  63 ++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              |  57 ++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |   2 +
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c              | 513 ++++++++++++++++++---
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h              |   1 +
+ drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        |  14 +-
+ drivers/gpu/drm/msm/adreno/adreno_device.c         |  17 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  33 +-
+ 9 files changed, 655 insertions(+), 94 deletions(-)
+---
+base-commit: f122501715b5bb8ea340e077401257795b6638a1
+change-id: 20230223-topic-gmuwrapper-b4fff5fd7789
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
