@@ -2,259 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D521869FFA8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 00:39:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A815069FFEB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 01:15:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbjBVXjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 18:39:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51192 "EHLO
+        id S232300AbjBWAPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 19:15:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232110AbjBVXjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 18:39:44 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91455FEA;
-        Wed, 22 Feb 2023 15:39:42 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id i10so1910881plr.9;
-        Wed, 22 Feb 2023 15:39:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7OTEdY8D3K+c7NVOVJW3QT3u26pZNUIP6ACrNCbW69s=;
-        b=pVe/fkikWvouVy1IOchUQ0cUTjGsBGBlzLS6fZ7/aq7eSzmvdDtwnevpuvi+/CG/OU
-         fY6D0pNuS1iHU2Jv4VKm5A9NLWYWTpqrKGcy+EGeMdXh4/IowmGl/OwHlyP3qeMOQqAm
-         A5bAazhehCMOjUDegumobdOq3bMyC7bcH8LfvTLKqh1Ca78zHEF77TuRRW8KICS17HFE
-         u+0H7RTe83eLK3Yi1Xh6CaS/5+8wIJLqlrMAoA0igyY8pqG7+yjFopqejqHfJQVNk9Tp
-         LHe27SNwB7jgtzT8XY2a1bRoOaTEi8LfcKoUksq+WCatgLjUnMpveq8rO69mJ2WRZxrH
-         h5LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7OTEdY8D3K+c7NVOVJW3QT3u26pZNUIP6ACrNCbW69s=;
-        b=6B/sYxPVHtzj8wvtXrJ6sedKEB28yOaPO1jhbJhq3VgGOn1ipph/yXC8X7h9K0pp4i
-         7/7V8PRWr8OL5N+kqToAgHQ8MF8Z8mzJlSZ53DOc16J7yz0asSJp935qJBE9K/EimdLe
-         m5JqfYdMRQHRP6O2IiCQW7B3Bp32HVyNlNqfTJJPwF32TocRsIBKoVe7rdLPaPTeeIEN
-         BaJ5+kAvvelGwbYrtyuKgtsPrBd0sHyGMfPNsT/teh0D01QVgU9HPGHJBv54Xg5+wI8W
-         Dk49Xa+RuoiXwj9/wlUfNVm5xbQLnE03avmCF2XA3W/JFeENJUVOFXPwmGr/dK8PDOjH
-         qwzQ==
-X-Gm-Message-State: AO0yUKVpNySeArGJLtRS4Xr8FGhGERvysc66mQM03tO3A90/il3FuBa5
-        y0E8iR6avqGfLAxV1eBf77tfAfbaA0MQHlCQ/U4=
-X-Google-Smtp-Source: AK7set+s7zMICQMRVeWypsMN+kqFJG2xOdsEjmeAU8sA6FB9C6Be47XBki+H/ZTs9MXv9ydDIk10YDOkbV/Jyqcez5g=
-X-Received: by 2002:a17:902:eb8c:b0:19a:7f9c:66e3 with SMTP id
- q12-20020a170902eb8c00b0019a7f9c66e3mr1965518plg.5.1677109182000; Wed, 22 Feb
- 2023 15:39:42 -0800 (PST)
+        with ESMTP id S229446AbjBWAPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 19:15:37 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0030934C34;
+        Wed, 22 Feb 2023 16:15:35 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31MLUZPe015607;
+        Thu, 23 Feb 2023 00:15:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=HCL+ctSWpGnB2xaBRX9FLVk33q+txzOX1BjEyAyM2K0=;
+ b=Y6V03bqm8Ox+5JXvn6CCmdL61OJKZwt7q48MV7231XVhUB2fTcgUCPLPmB99q3XKp78q
+ rZTLKNk8qJQgW9D4suC3OrX4NuSCKR2vVErbh6obdwoCeRwG5D8MqP7eNGpErbFwh5UK
+ ttU2z4A/MA5Ceig5hr2GVRc7QT9fap1xpem2HbPNGGeydazceldLvceYGzC9VM4EEb+2
+ WLhhvhkqAvPP4UAsrFL2dTVSChNAxCsgQu/tUd4qnEt/esA5M3Y5ORyb3A4xLbvYjtPj
+ z4S4jE0yogBQCgGEbNJvTfjJ5yk8EQdPMlLzJzI9rsiCvj6uFmDw3OSUJUe3aHgIBCfm 7A== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nwn389afs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 23 Feb 2023 00:15:16 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31N0FFLA010669
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 23 Feb 2023 00:15:15 GMT
+Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 22 Feb
+ 2023 16:15:15 -0800
+Message-ID: <576aed85-a566-3645-559e-06b2135cf57f@quicinc.com>
+Date:   Wed, 22 Feb 2023 16:15:14 -0800
 MIME-Version: 1.0
-References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
-In-Reply-To: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 22 Feb 2023 17:39:30 -0600
-Message-ID: <CAHCN7xKbL+g5ZaPe3a50fUEe4AU3a6asCqWFSE8d7DCzWZO=qg@mail.gmail.com>
-Subject: Re: [PATCH v3 00/14] media: rkisp1: Add support for i.MX8MP
-To:     Paul Elder <paul.elder@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, Dafna Hirschfeld <dafna@fastmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v10 07/26] mailbox: Add Gunyah message queue mailbox
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212316.3309053-1-quic_eberman@quicinc.com>
+ <c8161a4c-fa45-cb9e-7211-5486ece1fc2d@linaro.org>
+Content-Language: en-US
+In-Reply-To: <c8161a4c-fa45-cb9e-7211-5486ece1fc2d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: K53N7I3HpO79FCEwWKk2fCSWW6GikGMq
+X-Proofpoint-ORIG-GUID: K53N7I3HpO79FCEwWKk2fCSWW6GikGMq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-22_11,2023-02-22_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 phishscore=0 spamscore=0 priorityscore=1501
+ mlxlogscore=883 adultscore=0 suspectscore=0 lowpriorityscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302230000
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 3:44 AM Paul Elder <paul.elder@ideasonboard.com> wrote:
->
-> This series depends on v3 of "dt-bindings: media: Add macros for video
-> interface bus types" [1].
->
-> This series extends the rkisp1 driver to support the ISP found in the
-> NXP i.MX8MP SoC.
->
-> The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
-> and in the NXP i.MX8MP have the same origin, and have slightly diverged
-> over time as they are now independently developed (afaik) by Rockchip
-> and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
-> and is close enough to the RK3399 ISP that it can easily be supported by
-> the same driver.
->
-> The last two patches add support for UYVY output format, which can be
-> implemented on the ISP version in the i.MX8MP but not in the one in the
-> RK3399.
->
-> This version of the series specifically has been tested on a Polyhex
-> Debix model A with an imx219 (Raspberry Pi cam v2).
->
-> [1] https://lore.kernel.org/linux-media/20220615221410.27459-2-laurent.pinchart@ideasonboard.com/
->
-> Laurent Pinchart (3):
->   dt-bindings: media: rkisp1: Add i.MX8MP ISP example
->   media: rkisp1: Add and use rkisp1_has_feature() macro
->   media: rkisp1: Configure gasket on i.MX8MP
->
-> Paul Elder (11):
->   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
->   media: rkisp1: Add match data for i.MX8MP ISP
->   media: rkisp1: Add and set registers for crop for i.MX8MP
->   media: rkisp1: Add and set registers for output size config on i.MX8MP
->   media: rkisp1: Add i.MX8MP-specific registers for MI and resizer
->   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
->   media: rkisp1: Add register definitions for the test pattern generator
->   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
->   media: rkisp1: Support devices without self path
->   media: rkisp1: Add YC swap capability
->   media: rkisp1: Add UYVY as an output format
->
-
-Paul / Laurent,
-
-I noticed an unexpected behaviour on the imx8mp.
-
-If I setup my pipeline for 640x480, it works just fine using an imx219
-camera configured for SRGGB10_1X10.
-
-However, when I try to configure the pipeline to use the same camera
-at 1920x1080 (no resizing), the ISP source keeps defaulting to 640x480
-
-Media device information
-------------------------
-driver          rkisp1
-model           rkisp1
-serial
-bus info        platform:rkisp1
-hw revision     0xe
-driver version  6.2.0
-
-Device topology
-- entity 1: rkisp1_isp (4 pads, 4 links)
-            type V4L2 subdev subtype Unknown flags 0
-            device node name /dev/v4l-subdev0
-pad0: Sink
-[fmt:SRGGB10_1X10/1920x1080 field:none colorspace:raw xfer:none
-ycbcr:601 quantization:full-range
-crop.bounds:(0,0)/1920x1080
-crop:(0,0)/640x480]
-<- "csis-32e40000.csi":1 [ENABLED]
-pad1: Sink
-[fmt:unknown/0x0 field:none]
-<- "rkisp1_params":0 [ENABLED,IMMUTABLE]
-pad2: Source
-[fmt:YUYV8_2X8/640x480 field:none colorspace:raw xfer:none ycbcr:601
-quantization:lim-range
-crop.bounds:(0,0)/640x480
-crop:(0,0)/640x480]
--> "rkisp1_resizer_mainpath":0 [ENABLED]
-pad3: Source
-[fmt:unknown/0x0 field:none]
--> "rkisp1_stats":0 [ENABLED,IMMUTABLE]
-
-- entity 6: rkisp1_resizer_mainpath (2 pads, 2 links)
-            type V4L2 subdev subtype Unknown flags 0
-            device node name /dev/v4l-subdev1
-pad0: Sink
-[fmt:YUYV8_2X8/1920x1080 field:none colorspace:srgb xfer:srgb
-ycbcr:601 quantization:lim-range
-crop.bounds:(0,0)/1920x1080
-crop:(0,0)/640x480]
-<- "rkisp1_isp":2 [ENABLED]
-pad1: Source
-[fmt:YUYV8_2X8/1920x1080 field:none colorspace:srgb xfer:srgb
-ycbcr:601 quantization:lim-range]
--> "rkisp1_mainpath":0 [ENABLED,IMMUTABLE]
-
-- entity 9: rkisp1_mainpath (1 pad, 1 link)
-            type Node subtype V4L flags 0
-            device node name /dev/video0
-pad0: Sink
-<- "rkisp1_resizer_mainpath":1 [ENABLED,IMMUTABLE]
-
-- entity 13: rkisp1_stats (1 pad, 1 link)
-             type Node subtype V4L flags 0
-             device node name /dev/video1
-pad0: Sink
-<- "rkisp1_isp":3 [ENABLED,IMMUTABLE]
-
-- entity 17: rkisp1_params (1 pad, 1 link)
-             type Node subtype V4L flags 0
-             device node name /dev/video2
-pad0: Source
--> "rkisp1_isp":1 [ENABLED,IMMUTABLE]
-
-- entity 29: csis-32e40000.csi (2 pads, 2 links)
-             type V4L2 subdev subtype Unknown flags 0
-             device node name /dev/v4l-subdev2
-pad0: Sink
-[fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb
-ycbcr:601 quantization:full-range]
-<- "imx219 1-0010":0 [ENABLED]
-pad1: Source
-[fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb
-ycbcr:601 quantization:full-range]
--> "rkisp1_isp":0 [ENABLED]
-
-- entity 34: imx219 1-0010 (1 pad, 1 link)
-             type V4L2 subdev subtype Sensor flags 0
-             device node name /dev/v4l-subdev3
-pad0: Source
-[fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfer:srgb
-ycbcr:601 quantization:full-range
-crop.bounds:(8,8)/3280x2464
-crop:(688,700)/1920x1080]
--> "csis-32e40000.csi":0 [ENABLED]
-
-It's at this point that everything except the ISP source is 1920x1080.
-
-When I try to set the ISP sink to 1080, it ends up being 640x480 and
-the resizer sink is also changed to 640x480
-
-root@beacon-imx8mp-kit:~# media-ctl -v -V "'rkisp1_isp':2
-[fmt:YUYV8_2X8/1920x1080 field:none]"
-Opening media device /dev/media0
-Enumerating entities
-looking up device: 81:3
-looking up device: 81:4
-looking up device: 81:0
-looking up device: 81:1
-looking up device: 81:2
-looking up device: 81:5
-looking up device: 81:6
-Found 7 entities
-Enumerating pads and links
-Setting up format YUYV8_2X8 1920x1080 on pad rkisp1_isp/2
-Format set: YUYV8_2X8 640x480
-Setting up format YUYV8_2X8 640x480 on pad rkisp1_resizer_mainpath/0
-Format set: YUYV8_2X8 640x480
 
 
-It's my understanding that the ISP should be able to handle 1920x1080,
-and the resizer sink should match the ISP source.
+On 2/20/2023 5:59 AM, Srinivas Kandagatla wrote:
+> 
+> 
+> On 14/02/2023 21:23, Elliot Berman wrote:
+>> Gunyah message queues are a unidirectional inter-VM pipe for messages up
+>> to 1024 bytes. This driver supports pairing a receiver message queue and
+>> a transmitter message queue to expose a single mailbox channel.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   Documentation/virt/gunyah/message-queue.rst |   8 +
+>>   drivers/mailbox/Makefile                   |   2 +
+>>   drivers/mailbox/gunyah-msgq.c               | 214 ++++++++++++++++++++
+>>   include/linux/gunyah.h                      |  56 +++++
+>>   4 files changed, 280 insertions(+)
+>>   create mode 100644 drivers/mailbox/gunyah-msgq.c
+>>
+>> diff --git a/Documentation/virt/gunyah/message-queue.rst 
+>> b/Documentation/virt/gunyah/message-queue.rst
+>> index 0667b3eb1ff9..082085e981e0 100644
+>> --- a/Documentation/virt/gunyah/message-queue.rst
+>> +++ b/Documentation/virt/gunyah/message-queue.rst
+>> @@ -59,3 +59,11 @@ vIRQ: two TX message queues will have two vIRQs 
+>> (and two capability IDs).
+>>         |               |         |                 |         
+>> |               |
+>>         |               |         |                 |         
+>> |               |
+>>         +---------------+         +-----------------+         
+>> +---------------+
+>> +
+>> +Gunyah message queues are exposed as mailboxes. To create the 
+>> mailbox, create
+>> +a mbox_client and call `gh_msgq_init`. On receipt of the RX_READY 
+>> interrupt,
+>> +all messages in the RX message queue are read and pushed via the 
+>> `rx_callback`
+>> +of the registered mbox_client.
+>> +
+>> +.. kernel-doc:: drivers/mailbox/gunyah-msgq.c
+>> +   :identifiers: gh_msgq_init
+>> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+>> index fc9376117111..5f929bb55e9a 100644
+>> --- a/drivers/mailbox/Makefile
+>> +++ b/drivers/mailbox/Makefile
+>> @@ -55,6 +55,8 @@ obj-$(CONFIG_MTK_CMDQ_MBOX)    += mtk-cmdq-mailbox.o
+>>   obj-$(CONFIG_ZYNQMP_IPI_MBOX)    += zynqmp-ipi-mailbox.o
+>> +obj-$(CONFIG_GUNYAH)        += gunyah-msgq.o
+> 
+> Why are we reusing CONFIG_GUNYAH Kconfig symbol for mailbox, why not 
+> CONFIG_GUNYAH_MBOX?
+> 
 
-With the pipeline improperly setup, the capture fails.
+There was some previous discussion about this:
 
-adam
+https://lore.kernel.org/all/2a7bb5f2-1286-b661-659a-a5037150eae8@quicinc.com/
 
+>> +
+>>   obj-$(CONFIG_SUN6I_MSGBOX)    += sun6i-msgbox.o
+>>   obj-$(CONFIG_SPRD_MBOX)       += sprd-mailbox.o
+>> diff --git a/drivers/mailbox/gunyah-msgq.c 
+>> b/drivers/mailbox/gunyah-msgq.c
+>> new file mode 100644
+>> index 000000000000..03ffaa30ce9b
+>> --- /dev/null
+>> +++ b/drivers/mailbox/gunyah-msgq.c
+>> @@ -0,0 +1,214 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All 
+>> rights reserved.
+>> + */
+>> +
+>> +#include <linux/mailbox_controller.h>
+>> +#include <linux/module.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/gunyah.h>
+>> +#include <linux/printk.h>
+>> +#include <linux/init.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/wait.h>
+> 
+> ...
+> 
+>> +/* Fired when message queue transitions from "full" to "space 
+>> available" to send messages */
+>> +static irqreturn_t gh_msgq_tx_irq_handler(int irq, void *data)
+>> +{
+>> +    struct gh_msgq *msgq = data;
+>> +
+>> +    mbox_chan_txdone(gh_msgq_chan(msgq), 0);
+>> +
+>> +    return IRQ_HANDLED;
+>> +}
+>> +
+>> +/* Fired after sending message and hypercall told us there was more 
+>> space available. */
+>> +static void gh_msgq_txdone_tasklet(struct tasklet_struct *tasklet)
+> 
+> Tasklets have been long deprecated, consider using workqueues in this 
+> particular case.
+> 
 
->  .../bindings/media/rockchip-isp1.yaml         |  79 ++++++++++-
->  .../platform/rockchip/rkisp1/rkisp1-capture.c | 102 +++++++++++---
->  .../platform/rockchip/rkisp1/rkisp1-common.h  |  32 +++++
->  .../platform/rockchip/rkisp1/rkisp1-debug.c   |  14 +-
->  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  67 +++++++--
->  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 128 +++++++++++++++++-
->  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  90 ++++++++++++
->  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  35 ++++-
->  include/uapi/linux/rkisp1-config.h            |   2 +
->  9 files changed, 509 insertions(+), 40 deletions(-)
->
-> --
-> 2.35.1
->
+Workqueues have higher latency and tasklets came as recommendation from 
+Jassi. drivers/mailbox/imx-mailbox.c uses tasklets in the same way.
+
+I did some quick unscientific measurements of ~1000x samples. The median 
+latency for resource manager went from 25.5 us (tasklet) to 26 us 
+(workqueue) (2% slower). The mean went from 28.7 us to 32.5 us (13% 
+slower). Obviously, the outliers for workqueues were much more extreme.
+
+> 
+>> +{
+>> +    struct gh_msgq *msgq = container_of(tasklet, struct gh_msgq, 
+>> txdone_tasklet);
+>> +
+>> +    mbox_chan_txdone(gh_msgq_chan(msgq), msgq->last_ret);
+>> +}
+>> +
+>> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
+>> +{
+> ..
+> 
+>> +    tasklet_schedule(&msgq->txdone_tasklet);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static struct mbox_chan_ops gh_msgq_ops = {
+>> +    .send_data = gh_msgq_send_data,
+>> +};
+>> +
+>> +/**
+>> + * gh_msgq_init() - Initialize a Gunyah message queue with an 
+>> mbox_client
+>> + * @parent: optional, device parent used for the mailbox controller
+>> + * @msgq: Pointer to the gh_msgq to initialize
+>> + * @cl: A mailbox client to bind to the mailbox channel that the 
+>> message queue creates
+>> + * @tx_ghrsc: optional, the transmission side of the message queue
+>> + * @rx_ghrsc: optional, the receiving side of the message queue
+>> + *
+>> + * At least one of tx_ghrsc and rx_ghrsc should be not NULL. Most 
+>> message queue use cases come with
+>> + * a pair of message queues to facilitate bidirectional 
+>> communication. When tx_ghrsc is set,
+>> + * the client can send messages with 
+>> mbox_send_message(gh_msgq_chan(msgq), msg). When rx_ghrsc
+>> + * is set, the mbox_client should register an .rx_callback() and the 
+>> message queue driver will
+>> + * push all available messages upon receiving the RX ready interrupt. 
+>> The messages should be
+>> + * consumed or copied by the client right away as the gh_msgq_rx_data 
+>> will be replaced/destroyed
+>> + * after the callback.
+>> + *
+>> + * Returns - 0 on success, negative otherwise
+>> + */
+>> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct 
+>> mbox_client *cl,
+>> +             struct gunyah_resource *tx_ghrsc, struct gunyah_resource 
+>> *rx_ghrsc)
+>> +{
+>> +    int ret;
+>> +
+>> +    /* Must have at least a tx_ghrsc or rx_ghrsc and that they are 
+>> the right device types */
+>> +    if ((!tx_ghrsc && !rx_ghrsc) ||
+>> +        (tx_ghrsc && tx_ghrsc->type != GUNYAH_RESOURCE_TYPE_MSGQ_TX) ||
+>> +        (rx_ghrsc && rx_ghrsc->type != GUNYAH_RESOURCE_TYPE_MSGQ_RX))
+>> +        return -EINVAL;
+>> +
+>> +    if (gh_api_version() != GUNYAH_API_V1) {
+>> +        pr_err("Unrecognized gunyah version: %u. Currently supported: 
+>> %d\n",
+> dev_err(parent
+> 
+> would make this more useful
+> 
+
+Done.
+
+- Elliot
