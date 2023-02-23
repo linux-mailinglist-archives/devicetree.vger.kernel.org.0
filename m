@@ -2,117 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 706206A0F37
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 19:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CBA16A0F45
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 19:12:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbjBWSKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 13:10:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
+        id S229715AbjBWSMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 13:12:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbjBWSKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 13:10:36 -0500
-Received: from srv01.abscue.de (abscue.de [89.58.28.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AFDA58B6F;
-        Thu, 23 Feb 2023 10:10:23 -0800 (PST)
-Received: from srv01.abscue.de (localhost [127.0.0.1])
-        by spamfilter.srv.local (Postfix) with ESMTP id E64AB1C006E;
-        Thu, 23 Feb 2023 19:10:21 +0100 (CET)
+        with ESMTP id S231311AbjBWSMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 13:12:22 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3B683E7
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 10:12:21 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id h16so45516222edz.10
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 10:12:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+XcNcjTbGilqBFvSaP95ds+AOY0Sg3ycWjre6wkeObA=;
+        b=vgTBIVEy5TmD7m/Nin7C3TEn+OkXdt/iTICubDVjjr7vgx8mJNAwWkyk8CdTzKGoxw
+         62Pc4ghtUJmbrccf791CV/wmpWuK7Tma/NbVNV4Zg2dOLWrd0gMNB4O/i0FwPqFSzG3C
+         2tcnB7KtfVMa+kYzWEFhGNAkEJtNmS/QXCDreDM9pjeJxEIJIAcegEjKBOQJXDBQx/34
+         JLk514sQBQcsAs7YpCjNm4NzvBSAhKTLK5EcQkzXIW+sEtkiJk1Ru1d+Rjx5uNxiKIkS
+         84SrX1A+QeTPFj28+VNrvRZNzBO7j5cD3IKWQPy5FDewbUEkMDOriFiWUB5YUM8C5qoQ
+         6U5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+XcNcjTbGilqBFvSaP95ds+AOY0Sg3ycWjre6wkeObA=;
+        b=wgfxhhaH5UoKoYPOs5HQMr5gezT+uMCJfpu4r1ROgEFZXFasfC3l//8AtEh75KPs4h
+         1gBY0fLOhU6vo65HOZpw7obB357Rneszozg9ydTqEMBXyOrcPJUBIJgnIGhSNWf4j/0+
+         LkdHnPm5Mh4V8Hl64TlZ7bWstMcg15X5wLs930yCW18Y28gyUmKr0GrNCQ5ghCgo33M4
+         ZlfKg8+JI5ihQhmpI6ksUNXzGqlbh2Dd4J67tnMez9j9iQmovY1W40zOIox8BHrZKtgI
+         gttQkSFdYS3O3kyOIPwd6ClcHtu3iTBY3BYWbVD6EDsIK8mkkvYD29E3lGS8A1Qc66md
+         0w3g==
+X-Gm-Message-State: AO0yUKVQYUCJZSJ9e9azuD0Ii3qe6eSAiRAP+GjOd4Nxh1oRvNCcI729
+        vh5qxEzc/zCW2s0C8rdvKv6Y5w==
+X-Google-Smtp-Source: AK7set/0TI9/IGIRPb7wNuaey7VzvLJXk2ZeAmp0C8JDikvIw28X7Dd+4ZC8Bot5PtmWvbcilYfCsA==
+X-Received: by 2002:a05:6402:8d0:b0:4ac:be7c:4bf9 with SMTP id d16-20020a05640208d000b004acbe7c4bf9mr11858209edz.10.1677175939608;
+        Thu, 23 Feb 2023 10:12:19 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u23-20020a50d517000000b004acdf09027esm5360874edi.4.2023.02.23.10.12.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Feb 2023 10:12:19 -0800 (PST)
+Message-ID: <6dfde695-16d5-57ac-fbdd-b86ec91322a9@linaro.org>
+Date:   Thu, 23 Feb 2023 19:12:17 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 4/7] dt-bindings: PCI: dwc: add DMA, region mask bits
+Content-Language: en-US
+To:     Elad Nachman <enachman@marvell.com>, thomas.petazzoni@bootlin.com,
+        bhelgaas@google.com, lpieralisi@kernel.org, robh@kernel.org,
+        kw@linux.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230223180531.15148-1-enachman@marvell.com>
+ <20230223180531.15148-5-enachman@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230223180531.15148-5-enachman@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Received: from fluffy-mammal.fritz.box (dslb-092-073-085-163.092.073.pools.vodafone-ip.de [92.73.85.163])
-        by srv01.abscue.de (Postfix) with ESMTPSA id 789431C006F;
-        Thu, 23 Feb 2023 19:10:21 +0100 (CET)
-From:   =?UTF-8?q?Otto=20Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?UTF-8?q?Otto=20Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Subject: [PATCH v2 4/4] clk: qcom: smd-rpm: Add clocks for MSM8917
-Date:   Thu, 23 Feb 2023 19:09:35 +0100
-Message-Id: <20230223180935.60546-5-otto.pflueger@abscue.de>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230223180935.60546-1-otto.pflueger@abscue.de>
-References: <20230223180935.60546-1-otto.pflueger@abscue.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8917 has mostly the same rpm clocks as MSM8953, but lacks RF_CLK3 and
-IPA_CLK and additionally has the BIMC_GPU clock.
+On 23/02/2023 19:05, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
+> 
+> Add properties to support configurable DMA mask bits
+> and region mask bits.
+> configurable DMA mask bits is needed for Marvell AC5/AC5X SOCs which
+> have their physical DDR memory start at address 0x2_0000_0000.
+> Configurable region mask bits is needed for the Marvell Armada
+> 7020/7040/8040 SOCs when the DT file places the PCIe window above the
+> 4GB region.
+> The Synopsis Designware PCIe IP in these SOCs is too old to specify the
+> highest memory location supported by the PCIe, but practically supports
+> such locations. Allow these locations to be specified in the DT file.
 
-Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
----
-Changes in v2:
- - Rebased onto linux-next-20230223
----
- drivers/clk/qcom/clk-smd-rpm.c | 35 ++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+This formatting is so bad it makes difficult to read. Make these proper
+sentences with proper wrapping.
 
-diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
-index 198886c1b6c8..ae6559c7efab 100644
---- a/drivers/clk/qcom/clk-smd-rpm.c
-+++ b/drivers/clk/qcom/clk-smd-rpm.c
-@@ -573,6 +573,40 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8916 = {
- 	.num_clks = ARRAY_SIZE(msm8916_clks),
- };
- 
-+static struct clk_smd_rpm *msm8917_clks[] = {
-+	[RPM_SMD_XO_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo,
-+	[RPM_SMD_XO_A_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo_a,
-+	[RPM_SMD_PNOC_CLK]		= &clk_smd_rpm_bus_0_pcnoc_clk,
-+	[RPM_SMD_PNOC_A_CLK]		= &clk_smd_rpm_bus_0_pcnoc_a_clk,
-+	[RPM_SMD_SNOC_CLK]		= &clk_smd_rpm_bus_1_snoc_clk,
-+	[RPM_SMD_SNOC_A_CLK]		= &clk_smd_rpm_bus_1_snoc_a_clk,
-+	[RPM_SMD_BIMC_CLK]		= &clk_smd_rpm_bimc_clk,
-+	[RPM_SMD_BIMC_A_CLK]		= &clk_smd_rpm_bimc_a_clk,
-+	[RPM_SMD_BIMC_GPU_CLK]		= &clk_smd_rpm_bimc_gpu_clk,
-+	[RPM_SMD_BIMC_GPU_A_CLK]	= &clk_smd_rpm_bimc_gpu_a_clk,
-+	[RPM_SMD_SYSMMNOC_CLK]		= &clk_smd_rpm_bus_2_sysmmnoc_clk,
-+	[RPM_SMD_SYSMMNOC_A_CLK]	= &clk_smd_rpm_bus_2_sysmmnoc_a_clk,
-+	[RPM_SMD_QDSS_CLK]		= &clk_smd_rpm_qdss_clk,
-+	[RPM_SMD_QDSS_A_CLK]		= &clk_smd_rpm_qdss_a_clk,
-+	[RPM_SMD_BB_CLK1]		= &clk_smd_rpm_bb_clk1,
-+	[RPM_SMD_BB_CLK1_A]		= &clk_smd_rpm_bb_clk1_a,
-+	[RPM_SMD_BB_CLK2]		= &clk_smd_rpm_bb_clk2,
-+	[RPM_SMD_BB_CLK2_A]		= &clk_smd_rpm_bb_clk2_a,
-+	[RPM_SMD_RF_CLK2]		= &clk_smd_rpm_rf_clk2,
-+	[RPM_SMD_RF_CLK2_A]		= &clk_smd_rpm_rf_clk2_a,
-+	[RPM_SMD_DIV_CLK2]		= &clk_smd_rpm_div_clk2,
-+	[RPM_SMD_DIV_A_CLK2]		= &clk_smd_rpm_div_clk2_a,
-+	[RPM_SMD_BB_CLK1_PIN]		= &clk_smd_rpm_bb_clk1_pin,
-+	[RPM_SMD_BB_CLK1_A_PIN]		= &clk_smd_rpm_bb_clk1_a_pin,
-+	[RPM_SMD_BB_CLK2_PIN]		= &clk_smd_rpm_bb_clk2_pin,
-+	[RPM_SMD_BB_CLK2_A_PIN]		= &clk_smd_rpm_bb_clk2_a_pin,
-+};
-+
-+static const struct rpm_smd_clk_desc rpm_clk_msm8917 = {
-+	.clks = msm8917_clks,
-+	.num_clks = ARRAY_SIZE(msm8917_clks),
-+};
-+
- static struct clk_smd_rpm *msm8936_clks[] = {
- 	[RPM_SMD_XO_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo,
- 	[RPM_SMD_XO_A_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo_a,
-@@ -1228,6 +1262,7 @@ static const struct of_device_id rpm_smd_clk_match_table[] = {
- 	{ .compatible = "qcom,rpmcc-msm8226", .data = &rpm_clk_msm8974 },
- 	{ .compatible = "qcom,rpmcc-msm8909", .data = &rpm_clk_msm8909 },
- 	{ .compatible = "qcom,rpmcc-msm8916", .data = &rpm_clk_msm8916 },
-+	{ .compatible = "qcom,rpmcc-msm8917", .data = &rpm_clk_msm8917 },
- 	{ .compatible = "qcom,rpmcc-msm8936", .data = &rpm_clk_msm8936 },
- 	{ .compatible = "qcom,rpmcc-msm8953", .data = &rpm_clk_msm8953 },
- 	{ .compatible = "qcom,rpmcc-msm8974", .data = &rpm_clk_msm8974 },
--- 
-2.39.1
+
+> First DT property is called num-dmamask,
+> and can range between 33 and 64.
+
+Wrong mapping and we see it in the code. No need to code it again in
+commit msg. Especially that you already said it in the first sentence.
+
+> Second DT property is called num-regionmask,
+> and can range between 33 and 64.
+
+
+> 
+> Signed-off-by: Elad Nachman <enachman@marvell.com>
+> ---
+>  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml   | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> index d87e13496834..a1b06ff19ca7 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> @@ -261,6 +261,16 @@ properties:
+>  
+>    dma-coherent: true
+>  
+> +  num-dmamask:
+> +    description: |
+> +      number of dma mask bits to use, if different than default 32
+
+minimum: 33 (from commit msg)
+default: 32... which does not make now sense...
+
+> +    maximum: 64
+> +
+> +  num-regionmask:
+> +    description: |
+> +      number of region limit mask bits to use, if different than default 32
+> +    maximum: 64
+> +
+>  additionalProperties: true
+>  
+>  ...
+
+Best regards,
+Krzysztof
+
