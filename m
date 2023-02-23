@@ -2,117 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F136A1112
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 21:14:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A08E86A118D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 21:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbjBWUO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 15:14:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38136 "EHLO
+        id S229605AbjBWU7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 15:59:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjBWUO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 15:14:28 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC9B279B8;
-        Thu, 23 Feb 2023 12:14:26 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id ec43so46102447edb.8;
-        Thu, 23 Feb 2023 12:14:26 -0800 (PST)
+        with ESMTP id S229569AbjBWU7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 15:59:50 -0500
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EAB85C162
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 12:59:49 -0800 (PST)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-536bbef1c5eso223098267b3.9
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 12:59:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gXQwgZeL/74hBPgk1C6lmiCQBoirI87Yxu5xfVbpD0E=;
-        b=kp4aGFtBZoyz9uLGKkaytsS+5gzhr8kJblMcm4O8bMhUdVveKduwcGDToWZdCu8C6U
-         oHuVUSL9A3XeOwyooSkxHqEAPbVvTDZrtvm05NO4YYqWxlUeJ/uD44RPCyvOd/xrERnK
-         M4DA2hTux8/h75fhMHSAq11A8Tw5KGpsHZx9dPnBe3rgW/DPuEGCSZZs9179fR+5eZYj
-         k2XlixpKN4cSE0/eyVllpcVap3faX5SV1R+tN89zygSmUYBO+T6RxrnZT0BZwzgGWE2f
-         9eFnYqn4BmHqgyZyFu/PVU2H0XkVAlF9aoUFmg6fE3JT28MBoX09iMoPkVjxyShzJDbb
-         9vyQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ohz7ibnthCjmkK/bN3U7vjBvXHhe/lwMEhzdp9DLnfE=;
+        b=WbvFlX320ZPeHHjI9qrDmKxpseWZnbB0LFo0Tgy2z2lvJtrhvb97eIXdT53lbG6snc
+         TdJPR5xTBmpVUEqnq4q6mRF5An/8KQs23Sqikhsrxi7tV5WXKwZ0jiOPuJ954UPkGrpk
+         MSbQHQ5WxClUkp+h5uV9k+NUWcORvRnSQfn519uO7n5VwGus3A0W/jbGt2YKuUC0JD47
+         19HB4uJy50znKKTPOE+WkZiRddkSxmknMAZR+eVclnRtoyHPp5GgRyp0v9AARvquwxaU
+         RGxqfiy+ReDwjaTkefpw/ifShrWs1zRG/AY67lTdEFWhPcCXAOuALmhUovczQcqb/Zyb
+         b/9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gXQwgZeL/74hBPgk1C6lmiCQBoirI87Yxu5xfVbpD0E=;
-        b=7n5zQoy+++aRZcgnN5dxLGna7UXS41nKUzPWvrQDsir2SnWgvewg3ExV0sH3SD8pG0
-         XSshW7KADeKFW7kMiT2tSaVr1+4ok+uGHdmioGTLq1nSbLBA0EIPrWWHh2JvZRWruKST
-         UkCLkRn7szNwpeCpj/lUpErNw9H7g7uNDcgUyQhVlSBp0+iJyGF24V0Z7wEP0Kj8Z/7i
-         1Kuop+elAl8B/eDJb9pHysGaVYK7gjFIJkxm1c3WkCOKeHDkvvPpkeY2KwljAzRZRIhC
-         b1flnPgozQ1p2baHlEs9DStIxMK7t8EEFEgpC679VFmBBFJ7YHsvD2uv5q33jlzcTzxt
-         ezfg==
-X-Gm-Message-State: AO0yUKVhSI8fkprilOeSbNk4C7xwn0dspz7FaM34nYTi6JKsDyE5E15J
-        ExXogG4FQL9mWEUTfpDRX/D/RHcRwZszFtddglKchKEhUwE=
-X-Google-Smtp-Source: AK7set+K+d19g2bT7E4AGeiww4cIACa6p2T/f4jZGdZ4GqaW13JJLwZ8A9ecbJyX+VWi4I3RE+Lg+gFmzolWCQyCzss=
-X-Received: by 2002:a50:d544:0:b0:4ad:6e3e:7da6 with SMTP id
- f4-20020a50d544000000b004ad6e3e7da6mr6163318edj.6.1677183264974; Thu, 23 Feb
- 2023 12:14:24 -0800 (PST)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ohz7ibnthCjmkK/bN3U7vjBvXHhe/lwMEhzdp9DLnfE=;
+        b=Z6RaXfp/5AGTwIbuoR8MeWk9fe39jcgxhpBYoypsutFB+hrXls19Thvr6PiSQXVeX7
+         P/OtZouLkyCPkQExMlmyfCef3yc/nZpl1MPRXmCKstCe1n28sX8+8BI23juWJ52Iym0u
+         16A3QjEoD58tSG15Wc2RHSVJozt3k98GOfqtc/ov+vjhzCt1Vi3xENOZMBvpl/I/D840
+         DiPnMWBrGWAJQ23iVtUHrWl9T0bn92LQ25oG94AYCn+MZiim3/H+aFqh7aluZGk/feP7
+         fqy9KCAn8+BYhJB7DfwN17uVTZtunxCkYHiE47/wkSKu1k9BObVhgIku/c4Pz5YOcnCq
+         +TKw==
+X-Gm-Message-State: AO0yUKW3TGjP2ofw05+Rk76QBfsZiPAuqsLoLpYuehlR5H0APbf7HNMa
+        gqz6zyiZZpTFHTd8bGoHe91hBqTM0q/N/O9fvPyAog==
+X-Google-Smtp-Source: AK7set8+ipO/Zwoq487SWgkmX9GiP1XQ7/puxKDDMGSogWZxeEgQ+93XWZeggEDg9clGRmt+mwM5cYo4Eogy/RgwGio=
+X-Received: by 2002:a81:b606:0:b0:52e:c79a:cda with SMTP id
+ u6-20020a81b606000000b0052ec79a0cdamr2943098ywh.10.1677185988446; Thu, 23 Feb
+ 2023 12:59:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20230222210425.626474-1-martin.blumenstingl@googlemail.com>
- <20230222210425.626474-2-martin.blumenstingl@googlemail.com> <319cb654-51f6-6241-802b-22ee0d5b0aab@linaro.org>
-In-Reply-To: <319cb654-51f6-6241-802b-22ee0d5b0aab@linaro.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 23 Feb 2023 21:14:14 +0100
-Message-ID: <CAFBinCCzXb2Ty3TaZatEKQyxJmYPhHDL7SeLfF5-3PsDKBznWw@mail.gmail.com>
-Subject: Re: [PATCH v1 RFC 1/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for G12A
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jirislaby@kernel.org, neil.armstrong@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org,
-        Christian Hewitt <christianshewitt@gmail.com>
+References: <20221226123630.6515-1-pali@kernel.org> <20221226123630.6515-2-pali@kernel.org>
+ <Y9OycfvJEZ3tX/xm@google.com> <Y/d2vNUeuQTwQ2VG@google.com> <20230223164833.bsaqwgevphnsenal@pali>
+In-Reply-To: <20230223164833.bsaqwgevphnsenal@pali>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 23 Feb 2023 21:59:37 +0100
+Message-ID: <CACRpkda8QQZrUkcKKvQ1z1u9X-uOrL-VAVgfkrgU3E+ihJ-YDA@mail.gmail.com>
+Subject: Re: [PATCH RESEND 1/8] dt-bindings: leds: register-bit-led: Add
+ active-low property
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        soc@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
-
-On Thu, Feb 23, 2023 at 10:12 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/02/2023 22:04, Martin Blumenstingl wrote:
-> > Amlogic G12A SoCs gained a new "divide XTAL by 2" bit. Everything else
-> > (we know about) is identical to the UART IP on GX (GXBB/GXL/GXM) SoCs.
-> > Add a new compatible string for this SoC so this new bit can be managed
-> > accordingly.
+On Thu, Feb 23, 2023 at 5:48 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
+> On Thursday 23 February 2023 14:22:52 Lee Jones wrote:
+> > On Fri, 27 Jan 2023, Lee Jones wrote:
 > >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > ---
-> > Why am I sending this as RFC? The last change in this series means
-> > that the resulting .dtbs are not compatible with old kernels anymore.
-> > My understanding is that this is fine and only the opposite case (using
-> > old .dtbs on new kernels) has to be supported (which is still the case
-> > with this series). I'd like to get some confirmation for this.
+> > > On Mon, 26 Dec 2022, Pali Roh=C3=A1r wrote:
+> > >
+> > > > Allow to define inverted logic (0 - enable LED, 1 - disable LED) vi=
+a
+> > > > active-low property.
+> > > >
+> > > > Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
+> > > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/leds/register-bit-led.yaml | 5 +=
+++++
+> > > >  1 file changed, 5 insertions(+)
+> > >
+> > > Needs a DT Ack (now Cc:ed)
+> >
+> > I can't do anything with this set until we have a DT Ack.
+> >
+> > If you don't receive one soon, I'd suggest resending the set again with
+> > all of the DT people on Cc that it should have been sent to in the firs=
+t
+> > place.
 >
-> The other way around is also nice to have, because DTS is used in other
-> projects. You fixed here Linux kernel, but what about all other
-> out-of-tree kernels, BSDs, firmwares and bootloaders? Did you fix them
-> as well?
-Indeed, u-boot is of concern here (as mainline u-boot does have Meson
-G12A SoC support).
+> (Re)Sending one email multiple times is against email etiquette,
+> moreover it is spam technique and reason for marking sender on the
+> blacklist.
 
-> The question is whether the devices can be made compatible thus keeping
-> DTS working on older kernel. This commit suggests they are. Your DTS
-> commit is written in different tone - something was broken and is being
-> fixed.
-If we keep "amlogic,meson-gx-uart" as fallback compatible string then
-old kernels (or other .dtb consumers - like u-boot) would still work.
-Without the new "amlogic,meson-g12a-uart" compatible string we're
-unable to make use of a newly added clock divider within the UART IP
-block which allows baud rates such as 1500000 to work without (a lot
-of) jitter. Old kernels - with the new .dtb - would still be able to
-use serial (thanks to the "amlogic,meson-gx-uart" fallback compatible
-string) albeit with limited divider support (so not all baud rates can
-be used).
-Is this a valid plan?
+No problem on the kernel mailing lists actually, we love to mail
+bomb each other here. Yeah maybe we are a bit weird :/
 
+> Moreover I have already sent it more than one time. DT people are known
+> to not respond to patches and pull requests and I have no motivation to
+> send reminder emails for them for more than half of year.
+>
+> So I would suggest to not send emails to people who just do not want to
+> receive or read emails. It is logical reaction.
+>
+> This patch is here for more than 6 months, so I do not see reason why to
+> wait for Godot. Rather move forward than stepping at the same position.
 
-Best regards,
-Martin
+I understand that it is annoying.
+
+In my experience Krzysztof and Rob (now added on To) are usually
+quite responsive and helpful, so something must have made them
+miss it I think.
+
+As subsystem maintainer, if the DT reviewers haven't said anything
+in ~2 weeks I tend to sanity check the binding as best I can and then
+merge it. The bigger and more complex it is the more hesitant I get to
+do this...
+
+Yours,
+Linus Walleij
