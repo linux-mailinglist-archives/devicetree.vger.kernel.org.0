@@ -2,87 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 012036A1279
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 23:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 869446A1295
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 23:08:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbjBWWAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 17:00:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38572 "EHLO
+        id S229479AbjBWWIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 17:08:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbjBWWAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 17:00:05 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8395E521C2
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 14:00:00 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id bn17so800244pgb.10
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 14:00:00 -0800 (PST)
+        with ESMTP id S229793AbjBWWId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 17:08:33 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C92F52DE7
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 14:08:31 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id f41so15547704lfv.13
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 14:08:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=linaro.org; s=google; t=1677190109;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=b+mJjhLKuxQBtUISdRXM2nXLfPdKn+PRq8NK1iTbBCk=;
-        b=KXVI3/xB2Bb15dZQuLce9ySUcCyncejTtBeVmOS60XOyTmUgC7ixPm8SwT53x1jGTt
-         webcH6PZrA9yKWYstffABWdpxELEjGY0o0KhqXXUGZ9ILHj7UBUhLFe2wDUC2ehuzH4G
-         pAqs7AMlMd6GN/EkiJ9zmi29Vy/Cde5dK9C3rVaRcKeM1AX+oiqlZBv6CXQmMibTDRWA
-         zMKGxR0pi5ZOr+5sehCl3OPV/i70i8Hw+9VArt9Yikq/mbfxeMH34TvQ6fHEYs/Yg5xE
-         Nq7hKw3cwwlLkwKjeMAFiue3fwE5lDVLdLcuz8S7q+9rJUSTPmpoT2SpASNnr5KhKZIR
-         RekQ==
+        bh=FpIYBvef67KIJ3NnrbVSWmzC1ty4BZYEeYQF6vvBuHs=;
+        b=rRNgN1gWU08liue17+9XjEUEG1VeOfSTgo5yvd8qehur7BM4JCRdUN5mWf4VfLAW8a
+         +Enuu6PZljKldSlsmUssms6QePHt9i/uuTne6UHlJ26Lg5lwO6Qf6GHvFpn3bWytmor7
+         fAQekJette0EwPBd/0blN0Tln8JyUewTruJNRA1rctEtAyr+C5gj/ZQVUe8i6rFgKWoO
+         qzmWzKfRyuSyG3EV+A513f/+vVxLW4qazldgdWp2LFio4BYwFRwlhGPUVq1JJSy0ZRC/
+         +uqLFaC6MMW0VQnaGsMJdyYgT/7RnsT9N5PltQ7euPmwMqInTU2otcxeWVQ56ja9rpVB
+         Q7Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
+        d=1e100.net; s=20210112; t=1677190109;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b+mJjhLKuxQBtUISdRXM2nXLfPdKn+PRq8NK1iTbBCk=;
-        b=cUH+JjP27CkeotApppedmvAK5b/tOIlGfd/qTe3WtYAqHjGDpdxSVhWNbd81ZBgGsK
-         g/GCqonJVMVl0Ur3ovdRg2G8HwhPR/r0nCXxeq3aiOZTchsMj81lBuEg6rXsLMNW0ob+
-         28kZB3AEcjy1e/ziUw2w8j2lJShjYDd+qqfy/ZCrMRhFImbDxDaPBDsePsNf+y5djTRl
-         1z+T8eO6ATelFTnpN6jQ5+dkQ3e+f6Zn08xjxPV/YxYF9eNjzxQhom7oihqD3fJfx+6n
-         gqaNOGqRMXGs+Diql7/0X4sFDBZQKbutDY0D2NGNsRR1BOPz9VPo8jFR6JsmuJeIDmcX
-         1JzA==
-X-Gm-Message-State: AO0yUKXBEt6PaZrL5EzE7WOGNAuL/1kUQFDMLQY1hGuyxvsYlMH7y1lc
-        HSdOGxFOxtkAB8x7WdnCZoRbTg==
-X-Google-Smtp-Source: AK7set+NVjZ5pG5LQw7zStCtGRkhlaN9G1/TlBiFYNzbN6C+vPQhOWv6Xu4ASt4ZFV0SdHSqRbdpoQ==
-X-Received: by 2002:a05:6a00:809:b0:5a8:ac15:534d with SMTP id m9-20020a056a00080900b005a8ac15534dmr12804120pfk.13.1677189599844;
-        Thu, 23 Feb 2023 13:59:59 -0800 (PST)
-Received: from [10.211.55.3] (c-73-221-130-71.hsd1.wa.comcast.net. [73.221.130.71])
-        by smtp.gmail.com with ESMTPSA id a21-20020aa78655000000b005a54a978c1bsm4416016pfo.7.2023.02.23.13.59.58
+        bh=FpIYBvef67KIJ3NnrbVSWmzC1ty4BZYEeYQF6vvBuHs=;
+        b=lh7KOJs3ew34Q0hQj4Lvsra6pC3dlc3IsfDePIVZ9TbH34Eq6sdTCwlSJBhCVGs/70
+         ClpquhHG3Ji4Lp5JLf0/EuNcNya34bCBzyviAIjNp85fW39rBR+6Kt2aeY6blNf1wxED
+         04sh2XzCdpql71axhY5n33R+9+jvEZ3NtJ+ytj0IYHQMrBCMENa6jk+meSuZ80XQkE74
+         3gMi7xbVzDQqaX7DnmPZipQpW3IAKpxlfZGAc7kub2Okbfd3W84qYsWQcUzpRlxGQckZ
+         OzY37lrt/x5oFEEfHdWo1FXrxWseu1g07/F2GXZrlUgRii4ilHi3ybwMtBOAsT74iWIz
+         sfQw==
+X-Gm-Message-State: AO0yUKXBKruPnaBv8+arJsO5ypGZUHjF1Pxp0/lzAnkYPK6PrsRn4+Wi
+        dKzBtdFK37MCaq58dLIreiqUiw==
+X-Google-Smtp-Source: AK7set8PwnvNKjEm2ttWdokuKDX5spkhC6lDHrpgx7wKKTnT4YwMbOYFGseNvXa6+hiHRE6AQhdwAg==
+X-Received: by 2002:ac2:5e84:0:b0:4dd:9f73:f3f7 with SMTP id b4-20020ac25e84000000b004dd9f73f3f7mr2185244lfq.64.1677190109505;
+        Thu, 23 Feb 2023 14:08:29 -0800 (PST)
+Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
+        by smtp.gmail.com with ESMTPSA id p9-20020a05651238c900b004dda87e7de7sm65321lft.81.2023.02.23.14.08.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 13:59:59 -0800 (PST)
-Message-ID: <df3b485f-924e-a7bc-7c07-7fb9cfed5110@linaro.org>
-Date:   Thu, 23 Feb 2023 15:59:58 -0600
+        Thu, 23 Feb 2023 14:08:29 -0800 (PST)
+Message-ID: <907731c3-c37e-6ab0-4985-6b43e8d0a120@linaro.org>
+Date:   Thu, 23 Feb 2023 23:08:27 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 00/26] Drivers for Gunyah hypervisor
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 4/4] clk: qcom: smd-rpm: Add clocks for MSM8917
 Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     =?UTF-8?Q?Otto_Pfl=c3=bcger?= <otto.pflueger@abscue.de>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
-From:   Alex Elder <alex.elder@linaro.org>
-In-Reply-To: <20230214211229.3239350-1-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230223180935.60546-1-otto.pflueger@abscue.de>
+ <20230223180935.60546-5-otto.pflueger@abscue.de>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230223180935.60546-5-otto.pflueger@abscue.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -93,238 +82,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/23 3:12 PM, Elliot Berman wrote:
-> Gunyah is a Type-1 hypervisor independent of any
-> high-level OS kernel, and runs in a higher CPU privilege level. It does
-> not depend on any lower-privileged OS kernel/code for its core
-> functionality. This increases its security and can support a much smaller
-> trusted computing base than a Type-2 hypervisor.
-
-Very general comment, across your whole series...
-
-Although it is not strictly required any more, most kernel
-code still stays within about 80 columns width, where longer
-lines are the exception.  Your patches go beyond 80 columns
-a lot, and it's just not what I'm accustomed to looking at.
-
-Others might disagree with this, but it would be my preference
-that you try to reformat your lines so they normally fit within
-80 columns.  Format strings for printk-like functions are an
-exception--people prefer those to be kept intact.  But even
-there, look at long messages and consider whether they can
-be made more concise.
-
-					-Alex
 
 
-> Gunyah is an open source hypervisor. The source repo is available at
-> https://github.com/quic/gunyah-hypervisor.
+On 23.02.2023 19:09, Otto Pflüger wrote:
+> MSM8917 has mostly the same rpm clocks as MSM8953, but lacks RF_CLK3 and
+> IPA_CLK and additionally has the BIMC_GPU clock.
 > 
-> The diagram below shows the architecture.
-> 
-> ::
-> 
->           VM A                    VM B
->       +-----+ +-----+  | +-----+ +-----+ +-----+
->       |     | |     |  | |     | |     | |     |
->   EL0 | APP | | APP |  | | APP | | APP | | APP |
->       |     | |     |  | |     | |     | |     |
->       +-----+ +-----+  | +-----+ +-----+ +-----+
->   ---------------------|-------------------------
->       +--------------+ | +----------------------+
->       |              | | |                      |
->   EL1 | Linux Kernel | | |Linux kernel/Other OS |   ...
->       |              | | |                      |
->       +--------------+ | +----------------------+
->   --------hvc/smc------|------hvc/smc------------
->       +----------------------------------------+
->       |                                        |
->   EL2 |            Gunyah Hypervisor           |
->       |                                        |
->       +----------------------------------------+
-> 
-> Gunyah provides these following features.
-> 
-> - Threads and Scheduling: The scheduler schedules virtual CPUs (VCPUs) on
-> physical CPUs and enables time-sharing of the CPUs.
-> - Memory Management: Gunyah tracks memory ownership and use of all memory
-> under its control. Memory partitioning between VMs is a fundamental
-> security feature.
-> - Interrupt Virtualization: All interrupts are handled in the hypervisor
-> and routed to the assigned VM.
-> - Inter-VM Communication: There are several different mechanisms provided
-> for communicating between VMs.
-> - Device Virtualization: Para-virtualization of devices is supported using
-> inter-VM communication. Low level system features and devices such as
-> interrupt controllers are supported with emulation where required.
-> 
-> This series adds the basic framework for detecting that Linux is running
-> under Gunyah as a virtual machine, communication with the Gunyah Resource
-> Manager, and a virtual machine manager capable of launching virtual machines.
-> 
-> The series relies on two other patches posted separately:
->   - https://lore.kernel.org/all/20230213181832.3489174-1-quic_eberman@quicinc.com/
->   - https://lore.kernel.org/all/20230213232537.2040976-2-quic_eberman@quicinc.com/
-> 
-> Changes in v10:
->   - Fix bisectability (end result of series is same, --fixups applied to wrong commits)
->   - Convert GH_ERROR_* and GH_RM_ERROR_* to enums
->   - Correct race condition between allocating/freeing user memory
->   - Replace offsetof with struct_size
->   - Series-wide renaming of functions to be more consistent
->   - VM shutdown & restart support added in vCPU and VM Manager patches
->   - Convert VM function name (string) to type (number)
->   - Convert VM function argument to value (which could be a pointer) to remove memory wastage for arguments
->   - Remove defensive checks of hypervisor correctness
->   - Clean ups to ioeventfd as suggested by Srivatsa
-> 
-> Changes in v9: https://lore.kernel.org/all/20230120224627.4053418-1-quic_eberman@quicinc.com/
->   - Refactor Gunyah API flags to be exposed as feature flags at kernel level
->   - Move mbox client cleanup into gunyah_msgq_remove()
->   - Simplify gh_rm_call return value and response payload
->   - Missing clean-up/error handling/little endian fixes as suggested by Srivatsa and Alex in v8 series
-> 
-> Changes in v8: https://lore.kernel.org/all/20221219225850.2397345-1-quic_eberman@quicinc.com/
->   - Treat VM manager as a library of RM
->   - Add patches 21-28 as RFC to support proxy-scheduled vCPUs and necessary bits to support virtio
->     from Gunyah userspace
-> 
-> Changes in v7: https://lore.kernel.org/all/20221121140009.2353512-1-quic_eberman@quicinc.com/
->   - Refactor to remove gunyah RM bus
->   - Refactor allow multiple RM device instances
->   - Bump UAPI to start at 0x0
->   - Refactor QCOM SCM's platform hooks to allow CONFIG_QCOM_SCM=Y/CONFIG_GUNYAH=M combinations
-> 
-> Changes in v6: https://lore.kernel.org/all/20221026185846.3983888-1-quic_eberman@quicinc.com/
->   - *Replace gunyah-console with gunyah VM Manager*
->   - Move include/asm-generic/gunyah.h into include/linux/gunyah.h
->   - s/gunyah_msgq/gh_msgq/
->   - Minor tweaks and documentation tidying based on comments from Jiri, Greg, Arnd, Dmitry, and Bagas.
-> 
-> Changes in v5: https://lore.kernel.org/all/20221011000840.289033-1-quic_eberman@quicinc.com/
->   - Dropped sysfs nodes
->   - Switch from aux bus to Gunyah RM bus for the subdevices
->   - Cleaning up RM console
-> 
-> Changes in v4: https://lore.kernel.org/all/20220928195633.2348848-1-quic_eberman@quicinc.com/
->   - Tidied up documentation throughout based on questions/feedback received
->   - Switched message queue implementation to use mailboxes
->   - Renamed "gunyah_device" as "gunyah_resource"
-> 
-> Changes in v3: https://lore.kernel.org/all/20220811214107.1074343-1-quic_eberman@quicinc.com/
->   - /Maintained/Supported/ in MAINTAINERS
->   - Tidied up documentation throughout based on questions/feedback received
->   - Moved hypercalls into arch/arm64/gunyah/; following hyper-v's implementation
->   - Drop opaque typedefs
->   - Move sysfs nodes under /sys/hypervisor/gunyah/
->   - Moved Gunyah console driver to drivers/tty/
->   - Reworked gunyah_device design to drop the Gunyah bus.
-> 
-> Changes in v2: https://lore.kernel.org/all/20220801211240.597859-1-quic_eberman@quicinc.com/
->   - DT bindings clean up
->   - Switch hypercalls to follow SMCCC
-> 
-> v1: https://lore.kernel.org/all/20220223233729.1571114-1-quic_eberman@quicinc.com/
-> 
-> Elliot Berman (26):
->    docs: gunyah: Introduce Gunyah Hypervisor
->    dt-bindings: Add binding for gunyah hypervisor
->    gunyah: Common types and error codes for Gunyah hypercalls
->    virt: gunyah: Add hypercalls to identify Gunyah
->    virt: gunyah: Identify hypervisor version
->    virt: gunyah: msgq: Add hypercalls to send and receive messages
->    mailbox: Add Gunyah message queue mailbox
->    gunyah: rsc_mgr: Add resource manager RPC core
->    gunyah: rsc_mgr: Add VM lifecycle RPC
->    gunyah: vm_mgr: Introduce basic VM Manager
->    gunyah: rsc_mgr: Add RPC for sharing memory
->    unyah: vm_mgr: Add/remove user memory regions
->    gunyah: vm_mgr: Add ioctls to support basic non-proxy VM boot
->    samples: Add sample userspace Gunyah VM Manager
->    gunyah: rsc_mgr: Add platform ops on mem_lend/mem_reclaim
->    firmware: qcom_scm: Register Gunyah platform ops
->    docs: gunyah: Document Gunyah VM Manager
->    virt: gunyah: Translate gh_rm_hyp_resource into gunyah_resource
->    gunyah: vm_mgr: Add framework to add VM Functions
->    virt: gunyah: Add resource tickets
->    virt: gunyah: Add IO handlers
->    virt: gunyah: Add proxy-scheduled vCPUs
->    virt: gunyah: Add hypercalls for sending doorbell
->    virt: gunyah: Add irqfd interface
->    virt: gunyah: Add ioeventfd
->    MAINTAINERS: Add Gunyah hypervisor drivers section
-> 
->   .../bindings/firmware/gunyah-hypervisor.yaml  |  82 ++
->   .../userspace-api/ioctl/ioctl-number.rst      |   1 +
->   Documentation/virt/gunyah/index.rst           | 114 +++
->   Documentation/virt/gunyah/message-queue.rst   |  69 ++
->   Documentation/virt/gunyah/vm-manager.rst      | 193 +++++
->   Documentation/virt/index.rst                  |   1 +
->   MAINTAINERS                                   |  13 +
->   arch/arm64/Kbuild                             |   1 +
->   arch/arm64/gunyah/Makefile                    |   3 +
->   arch/arm64/gunyah/gunyah_hypercall.c          | 146 ++++
->   arch/arm64/include/asm/gunyah.h               |  23 +
->   drivers/firmware/Kconfig                      |   2 +
->   drivers/firmware/qcom_scm.c                   | 100 +++
->   drivers/mailbox/Makefile                      |   2 +
->   drivers/mailbox/gunyah-msgq.c                 | 214 +++++
->   drivers/virt/Kconfig                          |   2 +
->   drivers/virt/Makefile                         |   1 +
->   drivers/virt/gunyah/Kconfig                   |  46 +
->   drivers/virt/gunyah/Makefile                  |  11 +
->   drivers/virt/gunyah/gunyah.c                  |  54 ++
->   drivers/virt/gunyah/gunyah_ioeventfd.c        | 113 +++
->   drivers/virt/gunyah/gunyah_irqfd.c            | 160 ++++
->   drivers/virt/gunyah/gunyah_platform_hooks.c   |  80 ++
->   drivers/virt/gunyah/gunyah_vcpu.c             | 463 ++++++++++
->   drivers/virt/gunyah/rsc_mgr.c                 | 798 +++++++++++++++++
->   drivers/virt/gunyah/rsc_mgr.h                 | 169 ++++
->   drivers/virt/gunyah/rsc_mgr_rpc.c             | 419 +++++++++
->   drivers/virt/gunyah/vm_mgr.c                  | 801 ++++++++++++++++++
->   drivers/virt/gunyah/vm_mgr.h                  |  70 ++
->   drivers/virt/gunyah/vm_mgr_mm.c               | 258 ++++++
->   include/linux/gunyah.h                        | 198 +++++
->   include/linux/gunyah_rsc_mgr.h                | 171 ++++
->   include/linux/gunyah_vm_mgr.h                 | 119 +++
->   include/uapi/linux/gunyah.h                   | 191 +++++
->   samples/Kconfig                               |  10 +
->   samples/Makefile                              |   1 +
->   samples/gunyah/.gitignore                     |   2 +
->   samples/gunyah/Makefile                       |   6 +
->   samples/gunyah/gunyah_vmm.c                   | 270 ++++++
->   samples/gunyah/sample_vm.dts                  |  68 ++
->   40 files changed, 5445 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->   create mode 100644 Documentation/virt/gunyah/index.rst
->   create mode 100644 Documentation/virt/gunyah/message-queue.rst
->   create mode 100644 Documentation/virt/gunyah/vm-manager.rst
->   create mode 100644 arch/arm64/gunyah/Makefile
->   create mode 100644 arch/arm64/gunyah/gunyah_hypercall.c
->   create mode 100644 arch/arm64/include/asm/gunyah.h
->   create mode 100644 drivers/mailbox/gunyah-msgq.c
->   create mode 100644 drivers/virt/gunyah/Kconfig
->   create mode 100644 drivers/virt/gunyah/Makefile
->   create mode 100644 drivers/virt/gunyah/gunyah.c
->   create mode 100644 drivers/virt/gunyah/gunyah_ioeventfd.c
->   create mode 100644 drivers/virt/gunyah/gunyah_irqfd.c
->   create mode 100644 drivers/virt/gunyah/gunyah_platform_hooks.c
->   create mode 100644 drivers/virt/gunyah/gunyah_vcpu.c
->   create mode 100644 drivers/virt/gunyah/rsc_mgr.c
->   create mode 100644 drivers/virt/gunyah/rsc_mgr.h
->   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
->   create mode 100644 drivers/virt/gunyah/vm_mgr.c
->   create mode 100644 drivers/virt/gunyah/vm_mgr.h
->   create mode 100644 drivers/virt/gunyah/vm_mgr_mm.c
->   create mode 100644 include/linux/gunyah.h
->   create mode 100644 include/linux/gunyah_rsc_mgr.h
->   create mode 100644 include/linux/gunyah_vm_mgr.h
->   create mode 100644 include/uapi/linux/gunyah.h
->   create mode 100644 samples/gunyah/.gitignore
->   create mode 100644 samples/gunyah/Makefile
->   create mode 100644 samples/gunyah/gunyah_vmm.c
->   create mode 100644 samples/gunyah/sample_vm.dts
-> 
-> 
-> base-commit: 3ebb0ac55efaf1d0fb1b106f852c114e5021f7eb
+> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+> Changes in v2:
+>  - Rebased onto linux-next-20230223
+> ---
+>  drivers/clk/qcom/clk-smd-rpm.c | 35 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
+> index 198886c1b6c8..ae6559c7efab 100644
+> --- a/drivers/clk/qcom/clk-smd-rpm.c
+> +++ b/drivers/clk/qcom/clk-smd-rpm.c
+> @@ -573,6 +573,40 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8916 = {
+>  	.num_clks = ARRAY_SIZE(msm8916_clks),
+>  };
+>  
+> +static struct clk_smd_rpm *msm8917_clks[] = {
+> +	[RPM_SMD_XO_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo,
+> +	[RPM_SMD_XO_A_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo_a,
+> +	[RPM_SMD_PNOC_CLK]		= &clk_smd_rpm_bus_0_pcnoc_clk,
+> +	[RPM_SMD_PNOC_A_CLK]		= &clk_smd_rpm_bus_0_pcnoc_a_clk,
+> +	[RPM_SMD_SNOC_CLK]		= &clk_smd_rpm_bus_1_snoc_clk,
+> +	[RPM_SMD_SNOC_A_CLK]		= &clk_smd_rpm_bus_1_snoc_a_clk,
+> +	[RPM_SMD_BIMC_CLK]		= &clk_smd_rpm_bimc_clk,
+> +	[RPM_SMD_BIMC_A_CLK]		= &clk_smd_rpm_bimc_a_clk,
+> +	[RPM_SMD_BIMC_GPU_CLK]		= &clk_smd_rpm_bimc_gpu_clk,
+> +	[RPM_SMD_BIMC_GPU_A_CLK]	= &clk_smd_rpm_bimc_gpu_a_clk,
+> +	[RPM_SMD_SYSMMNOC_CLK]		= &clk_smd_rpm_bus_2_sysmmnoc_clk,
+> +	[RPM_SMD_SYSMMNOC_A_CLK]	= &clk_smd_rpm_bus_2_sysmmnoc_a_clk,
+> +	[RPM_SMD_QDSS_CLK]		= &clk_smd_rpm_qdss_clk,
+> +	[RPM_SMD_QDSS_A_CLK]		= &clk_smd_rpm_qdss_a_clk,
+> +	[RPM_SMD_BB_CLK1]		= &clk_smd_rpm_bb_clk1,
+> +	[RPM_SMD_BB_CLK1_A]		= &clk_smd_rpm_bb_clk1_a,
+> +	[RPM_SMD_BB_CLK2]		= &clk_smd_rpm_bb_clk2,
+> +	[RPM_SMD_BB_CLK2_A]		= &clk_smd_rpm_bb_clk2_a,
+> +	[RPM_SMD_RF_CLK2]		= &clk_smd_rpm_rf_clk2,
+> +	[RPM_SMD_RF_CLK2_A]		= &clk_smd_rpm_rf_clk2_a,
+> +	[RPM_SMD_DIV_CLK2]		= &clk_smd_rpm_div_clk2,
+> +	[RPM_SMD_DIV_A_CLK2]		= &clk_smd_rpm_div_clk2_a,
+> +	[RPM_SMD_BB_CLK1_PIN]		= &clk_smd_rpm_bb_clk1_pin,
+> +	[RPM_SMD_BB_CLK1_A_PIN]		= &clk_smd_rpm_bb_clk1_a_pin,
+> +	[RPM_SMD_BB_CLK2_PIN]		= &clk_smd_rpm_bb_clk2_pin,
+> +	[RPM_SMD_BB_CLK2_A_PIN]		= &clk_smd_rpm_bb_clk2_a_pin,
+> +};
+> +
+> +static const struct rpm_smd_clk_desc rpm_clk_msm8917 = {
+> +	.clks = msm8917_clks,
+> +	.num_clks = ARRAY_SIZE(msm8917_clks),
+> +};
+> +
+>  static struct clk_smd_rpm *msm8936_clks[] = {
+>  	[RPM_SMD_XO_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo,
+>  	[RPM_SMD_XO_A_CLK_SRC]		= &clk_smd_rpm_branch_bi_tcxo_a,
+> @@ -1228,6 +1262,7 @@ static const struct of_device_id rpm_smd_clk_match_table[] = {
+>  	{ .compatible = "qcom,rpmcc-msm8226", .data = &rpm_clk_msm8974 },
+>  	{ .compatible = "qcom,rpmcc-msm8909", .data = &rpm_clk_msm8909 },
+>  	{ .compatible = "qcom,rpmcc-msm8916", .data = &rpm_clk_msm8916 },
+> +	{ .compatible = "qcom,rpmcc-msm8917", .data = &rpm_clk_msm8917 },
+>  	{ .compatible = "qcom,rpmcc-msm8936", .data = &rpm_clk_msm8936 },
+>  	{ .compatible = "qcom,rpmcc-msm8953", .data = &rpm_clk_msm8953 },
+>  	{ .compatible = "qcom,rpmcc-msm8974", .data = &rpm_clk_msm8974 },
