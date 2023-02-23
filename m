@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3AC36A0950
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 14:04:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C29F6A097D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 14:06:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233920AbjBWNEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 08:04:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58576 "EHLO
+        id S233712AbjBWNGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 08:06:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234266AbjBWNEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 08:04:49 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC4D4FC8E
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 05:04:46 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id l1so2535627pjt.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 05:04:46 -0800 (PST)
+        with ESMTP id S233819AbjBWNGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 08:06:39 -0500
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8296C5652F
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 05:06:35 -0800 (PST)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-536c2a1cc07so176928397b3.5
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 05:06:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JDkAyTl4e5Pg7c9IntJyDDk2YT+I/mT8i4BOda6y2xY=;
-        b=nBsez7fHRRIiINSdFLPvlrg8TZchD4wKhnS1nlLN1Hk9OXSJ19hvMaV/2ZF/XX0WDk
-         kdCw9easfSZyFfb0Qu51theWgnSRm54ROwWtJySpxSlhhJhx0xfU2u1zT54zrOWdmc9Y
-         a9AUkEp2t4ZRy2QeSiEOTNCmQDJwGqBLgSFTL9YfTZYp57i8r1l/W+1EA01VDVkLeHJw
-         3zHh3UaTFkbrlT+chwl/6mOIumbi/97rhE4pntxkc/T1cZ9lXW4MeCQQkvacJwzbB7Pf
-         pZkCyU2uT3Y5Ed9s5swPMNScYpw8LY4G9MORJ/huzHTesbnSRvVs2IRnGyq/11VFR4cv
-         UQYg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=l976B99XbUna08WmeRhXUm4UkQfISnSwvYYzr2+N86c=;
+        b=qCFX28+RmwbMs9tpeR19tdUmhwjV+3IV4aF4Gydv6qUmejZ3SQkwml0zKgGQqTA5xf
+         X87HDDK8AjUvFyv20SDTeZykRVX6IHWtD50HEih7dCcq5NnMleFAr+IBxzoP0o+CR+q5
+         8tSUkIN9QpxSaGMo6trcYpUNBPxbBzI4Yqltz+Wb+a0YGnm+W3kPkf3Wssh6QAsX1Vum
+         c8AFxcbjdk+HNUEYWbU/Epcwpq0GliRbp7PS7iqSwwWRclarjnxBsKhQU9+MyKI+gtI4
+         HMD9W+g8dl1VxiDvITDL+L2EwaNSFADD1Cq8iaV1qBArlRlnem9lsC/LuL5RaWe9kKTj
+         F6FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JDkAyTl4e5Pg7c9IntJyDDk2YT+I/mT8i4BOda6y2xY=;
-        b=t+mbV0HFY7vy+AspFqyagOn9rzWbCfygBzIf0HG5MJjOY9v7/K9SpV2HQgeE4RwQG2
-         L8TS+upXE7MHQNTeDX7CGiGHxoYd/b1IVlbx4RHdxmqP0MHNJkuLdQwIfq2ZnyCAuak3
-         clCK1NsV4paZGdbMNUfZe5EY3ofTtM6Y6XhdeJZ5nLZIuFRUR9bPWSwkv9PBsxrOgxpx
-         gEMxODkQFcnpo7LmxmTAHbJvPPKf1GNpvreVMAW43lekA2B8dNRfQeiFG5OX3J5FYBe1
-         6ef6NPYzIVD3NLD285BmyWPblZflWSevjJ1ppxvBB3Vq+D2UUPz6cYa5xuKKq/PUgpBK
-         ux7g==
-X-Gm-Message-State: AO0yUKWTD2ghdJ24u9BW0vyxIeD8pdFeDG2pUxW5OAvzZ1J5xF9XEf5S
-        JRxpQl1TLrW97RJk17+zJm80
-X-Google-Smtp-Source: AK7set9yzaubAFiFFmxHybxYsis4ROkd2GJ3XyKkK0PglYAtJDCPH1KeLOw8n7C3jddbCjDO/uWWjw==
-X-Received: by 2002:a17:902:dac7:b0:19a:aa9c:c66f with SMTP id q7-20020a170902dac700b0019aaa9cc66fmr14188841plx.21.1677157486080;
-        Thu, 23 Feb 2023 05:04:46 -0800 (PST)
-Received: from workstation ([59.97.53.124])
-        by smtp.gmail.com with ESMTPSA id e1-20020a170902b78100b001967580f60fsm8675022pls.260.2023.02.23.05.04.41
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 23 Feb 2023 05:04:45 -0800 (PST)
-Date:   Thu, 23 Feb 2023 18:34:40 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     andersson@kernel.org, lpieralisi@kernel.org, robh@kernel.org,
-        kw@linux.com, krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        bhelgaas@google.com, kishon@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 05/11] ARM: dts: qcom: sdx55: Fix the unit address of
- PCIe EP node
-Message-ID: <20230223130440.GB6422@workstation>
-References: <20230222153251.254492-1-manivannan.sadhasivam@linaro.org>
- <20230222153251.254492-6-manivannan.sadhasivam@linaro.org>
- <4e61522d-075d-c77d-b1f6-c9f4c25e1cf2@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l976B99XbUna08WmeRhXUm4UkQfISnSwvYYzr2+N86c=;
+        b=sb/1Rfcp7uY0rkGTDS8biT10vmD4Jf4tEbtOePTQteTAD6JFB6uqgf1k20m0d6XrCO
+         0ld7v2yEKWuPoU5RDOsVx7fDDeyCZtwqokR0mv1XV/SQIbNx6LFa0FiXmZSVHgUJwMTA
+         VoRw9zBpGOz6ZUuBO6ONDlUaeA9a4fow2UY98GNDdS+pt7aZTxM0hB8G+vQyoiMlGNng
+         mFgCX94tpmPjQdyLasU4+NSVEDvcQ7aqlJ6NrZ06xPLjL1kEEjKV98TU/pEfyXCwqTem
+         iyMre8KfN05YCjxzMlXXDE9CXlP9tYAN39ni4uBU0z6GNxi3hzTzB+EfRdzbzN7NdTmu
+         HAHw==
+X-Gm-Message-State: AO0yUKUmV2G+0dPn9cbj3ZLi1YL9uGiSlaA68Hwte9ETfbKpD89lygHt
+        21lIvF/buNxtfdtJCuzG0dDvBQmkRu/6a8YYJL25sA==
+X-Google-Smtp-Source: AK7set/2vMOCqRHFpmTtAlE31OFzB2vTZ54A1Ly7Gmtm4/ZMrRWyA2L4L3oNl/nq0kGy+urTZ86JLF9PtiPqWxqc8CU=
+X-Received: by 2002:a05:6902:138d:b0:a09:314f:9f09 with SMTP id
+ x13-20020a056902138d00b00a09314f9f09mr2255202ybu.6.1677157594719; Thu, 23 Feb
+ 2023 05:06:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4e61522d-075d-c77d-b1f6-c9f4c25e1cf2@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org> <20230223-topic-gmuwrapper-v3-10-5be55a336819@linaro.org>
+In-Reply-To: <20230223-topic-gmuwrapper-v3-10-5be55a336819@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 23 Feb 2023 15:06:24 +0200
+Message-ID: <CAA8EJppi45K0hQ=1fZvf+Mps+4uEkXmLFeqdmyk-yk31CNvUsw@mail.gmail.com>
+Subject: Re: [PATCH v3 10/15] drm/msm/a6xx: Fix A680 highest bank bit value
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -79,128 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 22, 2023 at 05:02:08PM +0100, Konrad Dybcio wrote:
-> 
-> 
-> On 22.02.2023 16:32, Manivannan Sadhasivam wrote:
-> > Unit address of PCIe EP node should be 0x1c00000 as it has to match the
-> > first address specified in the reg property.
-> > 
-> > This also requires sorting the node in the ascending order.
-> > 
-> > Fixes: 31c9ef002580 ("dt-bindings: PCI: Add Qualcomm PCIe Endpoint controller")
-> Unsure, we aren't fixing the bindings..
-> 
+On Thu, 23 Feb 2023 at 14:07, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> According to the vendor sources, it's equal to 16, which makes hbb_lo
+> equal to 3.
 
-Err... will fix the tag in next version.
+I think we might be stricken with the ddr kind difference here, but I
+would not bet on it.
 
-Thanks,
-Mani
+>
+> Fixes: 840d10b64dad ("drm: msm: Add 680 gpu to the adreno gpu list")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> index b5017c56fa1b..2c4afecdd213 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> @@ -885,12 +885,18 @@ static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
+>                 hbb_lo = 2;
+>         }
+>
+> -       if (adreno_is_a640_family(adreno_gpu)) {
+> +       if (adreno_is_a640(adreno_gpu)) {
+>                 amsbc = 1;
+>                 /* HBB = 15 */
+>                 hbb_lo = 2;
+>         }
+>
+> +       if (adreno_is_a680(adreno_gpu)) {
+> +               amsbc = 1;
+> +               /* HBB = 16 */
+> +               hbb_lo = 3;
+> +       }
+> +
+>         if (adreno_is_a650(adreno_gpu) || adreno_is_a660(adreno_gpu)) {
+>                 amsbc = 1;
+>                 /* TODO: get ddr type from bootloader and use 2 for LPDDR4 */
+>
+> --
+> 2.39.2
+>
 
-> 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> For the dt change:
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> Konrad
-> >  arch/arm/boot/dts/qcom-sdx55.dtsi | 78 +++++++++++++++----------------
-> >  1 file changed, 39 insertions(+), 39 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> > index 93d71aff3fab..e84ca795cae6 100644
-> > --- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> > @@ -303,6 +303,45 @@ qpic_nand: nand-controller@1b30000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > +		pcie_ep: pcie-ep@1c00000 {
-> > +			compatible = "qcom,sdx55-pcie-ep";
-> > +			reg = <0x01c00000 0x3000>,
-> > +			      <0x40000000 0xf1d>,
-> > +			      <0x40000f20 0xc8>,
-> > +			      <0x40001000 0x1000>,
-> > +			      <0x40200000 0x100000>,
-> > +			      <0x01c03000 0x3000>;
-> > +			reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-> > +				    "mmio";
-> > +
-> > +			qcom,perst-regs = <&tcsr 0xb258 0xb270>;
-> > +
-> > +			clocks = <&gcc GCC_PCIE_AUX_CLK>,
-> > +				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
-> > +				 <&gcc GCC_PCIE_MSTR_AXI_CLK>,
-> > +				 <&gcc GCC_PCIE_SLV_AXI_CLK>,
-> > +				 <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>,
-> > +				 <&gcc GCC_PCIE_SLEEP_CLK>,
-> > +				 <&gcc GCC_PCIE_0_CLKREF_CLK>;
-> > +			clock-names = "aux", "cfg", "bus_master", "bus_slave",
-> > +				      "slave_q2a", "sleep", "ref";
-> > +
-> > +			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "global", "doorbell";
-> > +			reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-> > +			wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-> > +			resets = <&gcc GCC_PCIE_BCR>;
-> > +			reset-names = "core";
-> > +			power-domains = <&gcc PCIE_GDSC>;
-> > +			phys = <&pcie0_lane>;
-> > +			phy-names = "pciephy";
-> > +			max-link-speed = <3>;
-> > +			num-lanes = <2>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +
-> >  		pcie0_phy: phy@1c07000 {
-> >  			compatible = "qcom,sdx55-qmp-pcie-phy";
-> >  			reg = <0x01c07000 0x1c4>;
-> > @@ -400,45 +439,6 @@ sdhc_1: mmc@8804000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > -		pcie_ep: pcie-ep@40000000 {
-> > -			compatible = "qcom,sdx55-pcie-ep";
-> > -			reg = <0x01c00000 0x3000>,
-> > -			      <0x40000000 0xf1d>,
-> > -			      <0x40000f20 0xc8>,
-> > -			      <0x40001000 0x1000>,
-> > -			      <0x40200000 0x100000>,
-> > -			      <0x01c03000 0x3000>;
-> > -			reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-> > -				    "mmio";
-> > -
-> > -			qcom,perst-regs = <&tcsr 0xb258 0xb270>;
-> > -
-> > -			clocks = <&gcc GCC_PCIE_AUX_CLK>,
-> > -				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
-> > -				 <&gcc GCC_PCIE_MSTR_AXI_CLK>,
-> > -				 <&gcc GCC_PCIE_SLV_AXI_CLK>,
-> > -				 <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>,
-> > -				 <&gcc GCC_PCIE_SLEEP_CLK>,
-> > -				 <&gcc GCC_PCIE_0_CLKREF_CLK>;
-> > -			clock-names = "aux", "cfg", "bus_master", "bus_slave",
-> > -				      "slave_q2a", "sleep", "ref";
-> > -
-> > -			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
-> > -				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-> > -			interrupt-names = "global", "doorbell";
-> > -			reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-> > -			wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-> > -			resets = <&gcc GCC_PCIE_BCR>;
-> > -			reset-names = "core";
-> > -			power-domains = <&gcc PCIE_GDSC>;
-> > -			phys = <&pcie0_lane>;
-> > -			phy-names = "pciephy";
-> > -			max-link-speed = <3>;
-> > -			num-lanes = <2>;
-> > -
-> > -			status = "disabled";
-> > -		};
-> > -
-> >  		remoteproc_mpss: remoteproc@4080000 {
-> >  			compatible = "qcom,sdx55-mpss-pas";
-> >  			reg = <0x04080000 0x4040>;
+
+-- 
+With best wishes
+Dmitry
