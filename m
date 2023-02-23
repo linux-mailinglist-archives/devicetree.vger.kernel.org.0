@@ -2,71 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10C206A0495
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:17:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 190AF6A04AA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:21:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233806AbjBWJR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 04:17:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45618 "EHLO
+        id S233374AbjBWJVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 04:21:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbjBWJR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:17:56 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B848C7289;
-        Thu, 23 Feb 2023 01:17:53 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.133])
-        by gateway (Coremail) with SMTP id _____8AxYcw8L_djQRIEAA--.2702S3;
-        Thu, 23 Feb 2023 17:17:48 +0800 (CST)
-Received: from [10.20.42.133] (unknown [10.20.42.133])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxbL4mL_djtIs5AA--.39148S3;
-        Thu, 23 Feb 2023 17:17:27 +0800 (CST)
-Message-ID: <2c54ec72-28c9-7ce2-e525-b2ad01bd8f9a@loongson.cn>
-Date:   Thu, 23 Feb 2023 17:17:26 +0800
+        with ESMTP id S233157AbjBWJVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:21:36 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C3C4FCBA
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:21:35 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id p8so10218237wrt.12
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:21:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eJSCygSyqymwVM3qv58bXIOQ/QMwS9A0T2gOwos2ANI=;
+        b=fegQtyEWhTqmEAd0iw7X7HKpXLywzYFPBBzCm5qOIC8lDXtvSvWPLxRK1SHoHx4D8F
+         cX9nYfRK96054nl3FKHZATG+FapB5e23HntdNfvK5fJTrpOIQaNkPh/xOf2q2H/h43Se
+         U8P0v8yKtozY/YP3KYye8WS9wsVTR5g4NxnbpZFKLDDujNez4IvzyNE8MDGdtipvuMQS
+         QGoU+osQ2ysbPKou87uCJADJSCZH3B8NHlV4LoKYB+YXGLZL07eCv71HXiKC1ZUz4wsZ
+         G9TUCri7cQOq+twOG6pqmE/sgiTL2VcQhWorwnarYl22GecZP4GL0w3WTLmc7eegOgEH
+         Aq2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eJSCygSyqymwVM3qv58bXIOQ/QMwS9A0T2gOwos2ANI=;
+        b=IaJRwqzY4SUEUQqWGoqF1NK02FyuVubWD4CtKyqKZ2RTQKzH4jfiAAdThrdpC5/MhN
+         mhg8vQ7dw6tvePw/sHs862IQAFU4j31fr6A7jKIhNOu2wcVNmN5ZgLYoDPLjtgJyW2Xr
+         M9c+xHw0NvIYST3B7niJcyn0P+rpVHypbwFNXrXSVzt6pO1z/xnb213IPcIqHE9ncFOC
+         ACc6GGUAS8yqI8Co/veT5UFQW2O5hLj0UqHv6+J6AKP9FZmvIA2s0EztGq4RVawd1NPe
+         ORJX14+H2aZsozRvHTEiGF+7UCwcVmxYDplqwjKuYJuKyMEOIsNfac6gPTWjelQoMhYv
+         zbyA==
+X-Gm-Message-State: AO0yUKXPsjCBPnoed4gGWr+QPoIS6rjkeX1wEIShEgQCgq5YWBEZnR2e
+        w9csdQrnzo/Tk8LCSpqQ3lmSM0AotLt6+ouS
+X-Google-Smtp-Source: AK7set+KT38k5JXdqB9gWpe020J1FzMkLGn2pF7mw7ss+GUQRXzcwUsyPn/SBCWmwFh5a4SSTvcWZA==
+X-Received: by 2002:a5d:6a03:0:b0:2c7:84e:1cfa with SMTP id m3-20020a5d6a03000000b002c7084e1cfamr5709487wru.40.1677144093790;
+        Thu, 23 Feb 2023 01:21:33 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id v17-20020adff691000000b002c70e60eb40sm2038217wrp.11.2023.02.23.01.21.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Feb 2023 01:21:32 -0800 (PST)
+Message-ID: <e9fc3d3e-173c-6e8b-3f1f-187b1c72ff6c@linaro.org>
+Date:   Thu, 23 Feb 2023 09:21:30 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
- device node
+Subject: Re: [PATCH v10 13/26] gunyah: vm_mgr: Add ioctls to support basic
+ non-proxy VM boot
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20230222165514.684729-1-suijingfeng@loongson.cn>
- <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
- <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
- <f1cb010c-be28-9b1b-da1f-93d5e2fb213f@kernel.org>
- <6662546a-2c83-71bd-7050-903331201bdc@loongson.cn>
- <53cc20a0-bc9d-a094-13bc-6a5ef78069d1@kernel.org>
-From:   suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <53cc20a0-bc9d-a094-13bc-6a5ef78069d1@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212427.3316544-1-quic_eberman@quicinc.com>
+ <1080339c-608e-6df8-8eee-b8f3bb7f396d@linaro.org>
+ <320d42a0-9889-43ae-5d62-0c4cab3434c5@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <320d42a0-9889-43ae-5d62-0c4cab3434c5@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxbL4mL_djtIs5AA--.39148S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxZr45urWxZF4UZw4UKF17Jrb_yoW5Zr4fpF
-        9xAFsrKrW8JF17tr1Sqw1rJrnIvFWrAF1DWrsrtw18J34qv3W7tr18Jr10gry8Zry7A3Wj
-        vr1rGrWIgF15J3DanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bqxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAa
-        w2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
-        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2
-        jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62
-        AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCa
-        FVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r4a6rW5MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
-        IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
-        42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
-        IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280
-        aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8uc_3UUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,90 +96,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2023/2/23 16:59, Krzysztof Kozlowski wrote:
-> On 23/02/2023 09:40, suijingfeng wrote:
->> On 2023/2/23 15:58, Krzysztof Kozlowski wrote:
->>> On 23/02/2023 04:19, Sui jingfeng wrote:
->>>> Hi,
->>>>
->>>> On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
->>>>> On 22/02/2023 17:55, suijingfeng wrote:
->>>>>> The display controller is a pci device, it's pci vendor id is
->>>>>> 0x0014, it's pci device id is 0x7a06.
->>>>>>
->>>>>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
->>>>>> ---
->>>>>>     .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
->>>>>>     1 file changed, 21 insertions(+)
->>>>>>
->>>>>> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>>>> index 8143a61111e3..a528af3977d9 100644
->>>>>> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>>>> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>>>> @@ -31,6 +31,18 @@ memory@200000 {
->>>>>>     			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
->>>>>>     	};
->>>>>>     
->>>>>> +	reserved-memory {
->>>>>> +		#address-cells = <2>;
->>>>>> +		#size-cells = <2>;
->>>>>> +		ranges;
->>>>>> +
->>>>>> +		display_reserved: framebuffer@30000000 {
->>>>>> +			compatible = "shared-dma-pool";
->>>>>> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
->>>>>> +			linux,cma-default;
->>>>>> +		};
->>>>>> +	};
->>>>>> +
->>>>>>     	cpu_clk: cpu_clk {
->>>>>>     		#clock-cells = <0>;
->>>>>>     		compatible = "fixed-clock";
->>>>>> @@ -198,6 +210,15 @@ sata@8,0 {
->>>>>>     				interrupt-parent = <&liointc0>;
->>>>>>     			};
->>>>>>     
->>>>>> +			display-controller@6,0 {
->>>>>> +				compatible = "loongson,ls2k1000-dc";
->>>>>> +
->>>>>> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
->>>>>> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
->>>>>> +				interrupt-parent = <&liointc0>;
->>>>>> +				memory-region = <&display_reserved>;
->>>>> NAK.
->>>> Err :(,  please give me a chance to explain
->>>>> Test your code against the bindings you send.
->>>> I can guarantee to you that I test may code more than twice. The code
->>>> used to testing is listed at link [1].
->>> I wrote - test against the bindings. I don't believe that it was tested.
->>> Please paste the output of the testing (dtbs_check).
->                                            ^^^^^^^^^^^^
-> Do you see this                       ----------^^^^?
->
-> But you pasted:
->
->> I *do* run the test against the bindings and the test result say nothing.
+
+On 23/02/2023 00:50, Elliot Berman wrote:
+>>>
+>>> +
+>>> +    mem_handle = mapping->parcel.mem_handle;
+>>> +    dtb_offset = ghvm->dtb_config.gpa - mapping->guest_phys_addr;
+>>> +
+>>> +    ret = gh_rm_vm_configure(ghvm->rm, ghvm->vmid, ghvm->auth, 
+>>> mem_handle,
 >>
->> I reset my modify today made, then re-run the test again.
+>> where is authentication mechanism (auth) comming from? Who is supposed 
+>> to set this value?
 >>
->> I'm telling the truth: the test result say nothing. I paste the log at
->> below:
+>> Should it come from userspace? if so I do not see any UAPI facility to 
+>> do that via VM_START ioctl.
 >>
->> make -j$(nproc) ARCH=loongarch
->> CROSS_COMPILE=loongarch64-unknown-linux-gnu- dt_binding_check
-> This -------------------------------------------^^^^^^^^^^^^
+> 
+> Right, we are only adding the support for unauthenticated VMs for now. 
+> There would be further UAPI facilities to set the authentication type.
+We have to be careful, please note that you can not change an existing 
+UAPI to accommodate new features.
 
-Yes, I see it.
+There are two ways to do this properly:
 
-I means I have tested all of them as the instruction[1]!
+1. Design UAPI to accommodate features that will be part of this in very 
+  soon or in future. This way the UAPI is stable and does not change 
+over time when we add support this feature in driver.
 
-the test log just say nothing.  I re-run it again and all passed.
+In this particular case, vm authentication type is one that needs to 
+come from user, rather than kernel assuming it, so definitely this need 
+to be properly addressed by passing this info from userspace.
+Or rename this IOCTl to something like VM_START_UNAUTH_VM to make this 
+more explicit.
 
 
-[1] 
-https://www.kernel.org/doc/html/v5.9/devicetree/writing-schema.html#:~:text=The%20DT%20schema%20project%20can%20be%20installed%20with,they%20are%20in%20your%20PATH%20%28~%2F.local%2Fbin%20by%20default%29.
+2. For each feature add new UAPI as and when its required, which is 
+really the only option when we failed to design UAPIs correctly in the 
+first place.
 
->
-> Best regards,
-> Krzysztof
+--srini
 
+
+> 
+>>
+>>> +                0, 0, dtb_offset, ghvm->dtb_config.size);
+>>> +    if (ret) { 
