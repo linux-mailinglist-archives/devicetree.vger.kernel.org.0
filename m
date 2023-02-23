@@ -2,145 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F93B6A0568
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:55:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A53B06A0587
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 11:03:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234226AbjBWJzw convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Feb 2023 04:55:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
+        id S233136AbjBWKDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 05:03:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234235AbjBWJzc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:55:32 -0500
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743731E1E4;
-        Thu, 23 Feb 2023 01:55:31 -0800 (PST)
-Received: by mail-qt1-f180.google.com with SMTP id h16so10030915qta.8;
-        Thu, 23 Feb 2023 01:55:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hXrWb+RJzAAA7brRcQbYGgS5+dy15Kv9F2Mt8wEyV6s=;
-        b=mnSjkLVrmE7i9bNBN2uvhvpmDHcGTk71jmgIWefTvYX/G0O46X789k8sKAv/utBb67
-         8/AL7awXVrRGUzUoBUPsvxS4ybZo53Y1ackd4Q11Wt/JKZwKv6CenVoSB0nchERYLxdl
-         gBaO6y9f4uUvZIXYFAbyZpV/CZgYQ7RS7/vrR30WjqzyPtmGMOeRF7pClC7fUeHEiT0j
-         2+gG2F4F+y8RIz0+XsIESPysyhAprvEt2xwlaV0gz4wnAHfmBPDpRb/L8mc3UMcqLnNy
-         C28UgW1RT+MHPZ+Yc6g7coKmeAxijPsU7OF9Por6HYOJEzalocim/jV0w9CHdbZMfCmm
-         EuJQ==
-X-Gm-Message-State: AO0yUKWv/DQzrxFNYDQTp/qJudhxSV4P04R+TcWu6jxa5ROHAO0jwhya
-        jYjOQCmGTC8g0WP+wJJlbpk1QCEk5XJ/siSp
-X-Google-Smtp-Source: AK7set9Qkh1P897xqvUjPFlXBSrVq5MiyA5KhOlwNl6+kMkDOkS6zeN1TRDbU3tY0VjntRLKF9PlOA==
-X-Received: by 2002:ac8:7f48:0:b0:3b8:ea00:7021 with SMTP id g8-20020ac87f48000000b003b8ea007021mr17105908qtk.28.1677146130298;
-        Thu, 23 Feb 2023 01:55:30 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id e13-20020a05620a12cd00b007423c122457sm2057737qkl.63.2023.02.23.01.55.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 01:55:29 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-536e10ae021so131418377b3.7;
-        Thu, 23 Feb 2023 01:55:29 -0800 (PST)
-X-Received: by 2002:a81:4312:0:b0:52f:1c23:ef1 with SMTP id
- q18-20020a814312000000b0052f1c230ef1mr1756000ywa.5.1677146129399; Thu, 23 Feb
- 2023 01:55:29 -0800 (PST)
+        with ESMTP id S233541AbjBWKDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 05:03:32 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D817126E4;
+        Thu, 23 Feb 2023 02:03:29 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6EB9924E2BA;
+        Thu, 23 Feb 2023 18:03:28 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 18:03:28 +0800
+Received: from [192.168.125.128] (113.72.147.165) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 18:03:27 +0800
+Message-ID: <f23b3755-e2dd-f858-02ad-3f1b58934bc6@starfivetech.com>
+Date:   Thu, 23 Feb 2023 18:03:47 +0800
 MIME-Version: 1.0
-References: <20230221133307.20287-1-andriy.shevchenko@linux.intel.com>
- <20230221133307.20287-3-andriy.shevchenko@linux.intel.com>
- <Y/TJs+Arban0ats8@smile.fi.intel.com> <be203dfd290e67c8ce74d11c5c9478a4@protonic.nl>
- <Y/UD3HWNy8uKYShC@smile.fi.intel.com> <0235f0fed989a8b027db720663699f5d@protonic.nl>
- <Y/ZKdN4nuHcL4DgE@smile.fi.intel.com> <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
- <06f29d66-f16a-039c-ecd0-155bdcce00c1@linaro.org> <Y/ZoyaV10TCWhloT@smile.fi.intel.com>
-In-Reply-To: <Y/ZoyaV10TCWhloT@smile.fi.intel.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 23 Feb 2023 10:55:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXbYapqG1eirbRoxS9akue+URKOV338efMp1c0CbwUEKg@mail.gmail.com>
-Message-ID: <CAMuHMdXbYapqG1eirbRoxS9akue+URKOV338efMp1c0CbwUEKg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] auxdisplay: ht16k33: Make use of device_get_match_data()
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 2/3] clk: starfive: Add StarFive JH7110 PLL clock
+ driver
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Raul E Rangel <rrangel@chromium.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-usb@vger.kernel.org,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230221141147.303642-1-xingyu.wu@starfivetech.com>
+ <20230221141147.303642-3-xingyu.wu@starfivetech.com>
+ <3f50066b-f967-b9fa-1e0d-5337ec1ed194@linaro.org>
+ <5e4007b7-6522-4c81-ca15-15a98c586aad@starfivetech.com>
+ <50b6fb73-afb2-051b-7969-d7fbbe1e6175@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <50b6fb73-afb2-051b-7969-d7fbbe1e6175@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.165]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On 2023/2/23 17:35, Krzysztof Kozlowski wrote:
+> On 23/02/2023 10:32, Xingyu Wu wrote:
+>> On 2023/2/23 16:56, Krzysztof Kozlowski wrote:
+>>> On 21/02/2023 15:11, Xingyu Wu wrote:
+>>>> Add driver for the StarFive JH7110 PLL clock controller and
+>>>> modify the JH7110 system clock driver to rely on this PLL clocks.
+>>>>
+>>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>>> ---
+>>>
+>>>
+>>>> +
+>>>> +static int jh7110_pll_clk_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +	int ret;
+>>>> +	struct of_phandle_args args;
+>>>> +	struct regmap *pll_syscon_regmap;
+>>>> +	unsigned int idx;
+>>>> +	struct jh7110_clk_pll_priv *priv;
+>>>> +	struct jh7110_clk_pll_data *data;
+>>>> +	char *pll_name[JH7110_PLLCLK_END] = {
+>>>> +		"pll0_out",
+>>>> +		"pll1_out",
+>>>> +		"pll2_out"
+>>>> +	};
+>>>> +
+>>>> +	priv = devm_kzalloc(&pdev->dev,
+>>>> +			    struct_size(priv, data, JH7110_PLLCLK_END),
+>>>> +			    GFP_KERNEL);
+>>>> +	if (!priv)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	priv->dev = &pdev->dev;
+>>>> +	ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node, "starfive,sysreg", 0, 0, &args);
+>>>
+>>> 1. Wrong wrapping. Wrap code at 80 as coding style asks.
+>>>
+>>> 2. Why you are using syscon for normal, device MMIO operation? Your DTS
+>>> also points that this is incorrect, hacky representation of hardware.
+>>> Don't add devices to DT to fake places and then overuse syscon to fix
+>>> that fake placement. The clock is in system registers, thus it must be
+>>> there.
+>>>
+>>> 3. Even if this stays, why so complicated code instead of
+>>> syscon_regmap_lookup_by_phandle()?
+>>>
+>> 
+>> Thanks for your advice. Will use syscon_regmap_lookup_by_phandle instead it
+>> and remove useless part.
+> 
+> So you ignored entirely part 2? This was the main comment... I am going
+> to keep NAK-ing it then.
 
-On Wed, Feb 22, 2023 at 8:21 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> On Wed, Feb 22, 2023 at 07:46:25PM +0100, Krzysztof Kozlowski wrote:
-> > On 22/02/2023 18:20, Andy Shevchenko wrote:
-> > >>> Which effectively breaks i.e. user-space instantiation for other display
-> > >>> types which now do work due to i2c_of_match_device().
-> > >>> (so my suggestion above is not sufficient).
-> > >>>
-> > >>> Are you proposing extending and searching the I2C ID table to work around
-> > >>> that?
-> > >>
-> > >> See (1) above. This is the downside I have noticed after sending this series.
-> > >> So, the I²C ID table match has to be restored, but the above mentioned issues
-> > >> with existing table are not gone, hence they need to be addressed in the next
-> > >> version.
-> > >
-> > > I see now what you mean. So, we have even more issues in this driver:
-> > > - I²C table is not in sync with all devices supported
-> >
-> > Does anything actually rely on i2c_device_id table? ACPI would match
-> > either via ACPI or OF tables. All modern ARM systems (e.g. imx6) are
-> > DT-based. Maybe just drop the I2C ID table?
->
-> For I²C it's still possible to enumerate the device via sysfs, which is ABI.
+What I understand to mean is that I cannot use a fake node to operate syscon
+registers. So I should move the PLL node under syscon node directly. Is it ok?
 
-Yes, and AFAIK, that worked fine. E.g.
+Best regards,
+Xingyu Wu
 
-    echo adafruit,3130 0x70 > /sys/class/i2c/i2c-adapter/.../new_device
-
-Cfr. https://lore.kernel.org/all/20211019144520.3613926-3-geert@linux-m68k.org/
-
-Note that that example actually includes the manufacturer.
-I didn't check whether the I2C core takes that part into account when
-matching, or just strips it.
-
-> > > - the OF ID table seems has something really badly formed for adafruit
-> > >   (just a number after a comma)
-> >
-> > Maybe it is a model number? It was documented:
-> > Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
->
-> Yes, it's not a problem for ACPI/DT platforms, the problem is for the above
-> way of enumeration, so if we have more than 1 manufacturer that uses plain
-> numbers for the model, I²C framework may not distinguish which driver to use.
->
-> I.o.w. the part after comma in the compatible strings of the I²C devices must
-> be unique globally to make that enumeration disambiguous.
-
-Which is not unique to this driver?
-I bet you can find other compatible values that become non-unique
-after stripping the manufacturer.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
