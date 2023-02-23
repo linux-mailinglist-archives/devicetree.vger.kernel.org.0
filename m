@@ -2,39 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCD76A0C9D
+	by mail.lfdr.de (Postfix) with ESMTP id C2AA16A0C9E
 	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 16:11:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233839AbjBWPLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 10:11:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52406 "EHLO
+        id S233218AbjBWPLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 10:11:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233330AbjBWPLG (ORCPT
+        with ESMTP id S233393AbjBWPLG (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 10:11:06 -0500
 Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1FD5474C0
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 07:11:04 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945FE48E33
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 07:11:05 -0800 (PST)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 4CACA85738;
-        Thu, 23 Feb 2023 16:11:02 +0100 (CET)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2D1A98574F;
+        Thu, 23 Feb 2023 16:11:03 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
         s=phobos-20191101; t=1677165063;
-        bh=3p7lEBx3cIlD6Fy4DRROkU3fCFOEpLdEeY6/gslm4+A=;
+        bh=16xbgJCTo5sTBDrtuR0KQuDS4zF7hRZbmCwulnyc40w=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=b7O3zgr0/UOXYx2wBRTcjnYS7Hjbq35Fb+8CTiOMIk+7QfLvJ8+fpxfHlmvkAnyyc
-         oYSmx7OdpO4GTUno9NxIoNBx7kgBUDvD5xr1xAgEV5b9wIbqGrLIpvSeu5m7f+3pMc
-         I+w0FWOEyQMBYhElGjAPmcVw1JSyTgMwsJB32FeueSuQpx1vzUDYv+9XP/eYu92bnA
-         go07MwMiZxlGkGIgaxeUGMSQw0Yy45JmQKeiDDH63mwB/FBR0OPMPMCPX0xOzAky71
-         nUSFIuA9gGLS08wXrdozZc0eY1BynaX1vooSieXx9tDGD1exUcED6lWw96+1mwlQE1
-         l1ZkazSqvH/Iw==
+        b=uY74j56PRyRx8q2zDB/bx1WGePGPgJ2peTuxb3yOALzqb1SyDm7iMbttlrWyZUQl8
+         wtEKurJaEHwku572bRyfz+FNXutWuiUBfMjaoEjcpZA/zCLXGj3BgVV4x1BkobqHgu
+         oH3vdlfiAU7fp3VXKT9MORlAcGB+8c4lfRoGsJyaBFsZwfvNcF6b98OYTiGRDrawJL
+         y019nETx3ZkwNhPttOhh5bjuS7W5H5gCezn0spKvWzS9fHyMsG+1EAUQSmfvpmYp2p
+         JBRIMPh4EfX0n5FzqWtXuYw3n97Ixa41O+7aQQQcZhnnOXBAYDKml8g0rHs9fTc7PP
+         MlDbLct2zfG+g==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
         Alexander Stein <alexander.stein@ew.tq-group.com>,
         Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -49,9 +47,9 @@ Cc:     Marek Vasut <marex@denx.de>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 2/4] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB subnode into schema and example
-Date:   Thu, 23 Feb 2023 16:10:41 +0100
-Message-Id: <20230223151043.41548-2-marex@denx.de>
+Subject: [PATCH v4 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind drivers to them
+Date:   Thu, 23 Feb 2023 16:10:42 +0100
+Message-Id: <20230223151043.41548-3-marex@denx.de>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230223151043.41548-1-marex@denx.de>
 References: <20230223151043.41548-1-marex@denx.de>
@@ -68,13 +66,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the LDB bridge subnode and add the subnode into the example.
-For the subnode to work, the block control must scan its subnodes and
-bind drivers to them, do not misuse either simple-bus or simple-mfd
-here.
+This particular block can have DT subnodes describing the LVDS LDB
+bridge. Instead of misusing simple-bus to scan for those nodes, do
+the scan within the driver.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Liu Ying <victor.liu@nxp.com>
+Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
@@ -94,92 +90,28 @@ Cc: Shawn Guo <shawnguo@kernel.org>
 Cc: devicetree@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org
 ---
-V2: Add RB from Liu
-V3: - Update commit subject and drop space before fullstop.
-    - Add RB from Krzysztof
-V4: No change
+V2: - Turn this into 3/4
+    - Warn and continue in case of error
+V3: Add RB from Liu
+V4: - Use devm_of_platform_populate()
+    - Remove RB from Liu
 ---
- .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
+ drivers/soc/imx/imx8m-blk-ctrl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-index a0f7c73510d04..f092916dc8594 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-@@ -23,6 +23,12 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+index 399cb85105a18..77e7dc4eb8cff 100644
+--- a/drivers/soc/imx/imx8m-blk-ctrl.c
++++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+@@ -310,7 +310,7 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
  
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-   '#power-domain-cells':
-     const: 1
+ 	dev_set_drvdata(dev, bc);
  
-@@ -78,9 +84,16 @@ properties:
-       - const: isp1
-       - const: dwe
+-	return 0;
++	return devm_of_platform_populate(dev);
  
-+  bridge@5c:
-+    type: object
-+    $ref: /schemas/display/bridge/fsl,ldb.yaml#
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
-+  - '#address-cells'
-+  - '#size-cells'
-   - '#power-domain-cells'
-   - power-domains
-   - power-domain-names
-@@ -114,5 +127,43 @@ examples:
-         clock-names = "apb", "axi", "cam1", "cam2", "disp1", "disp2",
-                       "isp", "phy";
-         #power-domain-cells = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        bridge@5c {
-+            compatible = "fsl,imx8mp-ldb";
-+            clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-+            clock-names = "ldb";
-+            reg = <0x5c 0x4>, <0x128 0x4>;
-+            reg-names = "ldb", "lvds";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+
-+                    ldb_from_lcdif2: endpoint {
-+                        remote-endpoint = <&lcdif2_to_ldb>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+
-+                    ldb_lvds_ch0: endpoint {
-+                        remote-endpoint = <&ldb_to_lvdsx4panel>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+
-+                    ldb_lvds_ch1: endpoint {
-+                    };
-+                };
-+            };
-+        };
-     };
- ...
+ cleanup_provider:
+ 	of_genpd_del_provider(dev->of_node);
 -- 
 2.39.1
 
