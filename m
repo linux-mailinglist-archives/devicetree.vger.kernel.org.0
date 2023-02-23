@@ -2,201 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B5DC6A03ED
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 811FD6A03B9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:22:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232644AbjBWIg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 03:36:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
+        id S233572AbjBWIWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 03:22:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjBWIg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:36:26 -0500
-X-Greylist: delayed 963 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 23 Feb 2023 00:36:05 PST
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [IPv6:2a02:9e0:8000::26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 933552D172
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 00:36:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=protonic.nl; s=202111;
-        h=message-id:references:in-reply-to:reply-to:subject:cc:to:from:date:
-         content-transfer-encoding:content-type:mime-version:from;
-        bh=dq7QMb++ghVX0hglhWq4dxVA8wD/izUizUd3XT6OvEQ=;
-        b=COePPPmzUH4UN8knj1wE6FQ/2gp1MKJCXCF0Lzur9usYXiub/r14j88rymCi3gB3Z1I5Ed4ymU25B
-         HT9OPbbBn9J9BrvjjQMQ63tc6b8nZLLO6q8cAC2yzah4EQLYUGHMcenVgq0t2XiQzWCX8R4i9nzqi8
-         sj7YI7D6p8UYrYfGqjbtsmtrcWxJ3PpGPa82ZUXtpunsC3xZfPLet6qmMJWP+w2Ea6I8Y8xd8bHelO
-         0zt9yZeEyHffIi5HiC6fIECpL7LgHHgPIf8iFuYdIF4MECtDW1cRRyt5ByjlHXtOL/SQF09FqSXdRM
-         Z8XLfW+Ty5Tw9ceWESDcQeNN123c+jw==
-X-MSG-ID: dbf9e1f2-b352-11ed-8fb4-0050569d3a82
+        with ESMTP id S232919AbjBWIV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:21:58 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 006B5149BA;
+        Thu, 23 Feb 2023 00:21:56 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.133])
+        by gateway (Coremail) with SMTP id _____8Cxf80iIvdj6QsEAA--.2497S3;
+        Thu, 23 Feb 2023 16:21:54 +0800 (CST)
+Received: from [10.20.42.133] (unknown [10.20.42.133])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxK74gIvdjK4I5AA--.39097S3;
+        Thu, 23 Feb 2023 16:21:52 +0800 (CST)
+Message-ID: <61df255c-1637-ed60-7542-4b00e41597e6@loongson.cn>
+Date:   Thu, 23 Feb 2023 16:21:52 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Thu, 23 Feb 2023 09:19:57 +0100
-From:   Robin van der Gracht <robin@protonic.nl>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
+ device node
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Raul E Rangel <rrangel@chromium.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-usb@vger.kernel.org,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] auxdisplay: ht16k33: Make use of
- device_get_match_data()
-Organization: Protonic Holland
-Reply-To: robin@protonic.nl
-Mail-Reply-To: robin@protonic.nl
-In-Reply-To: <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
-References: <20230221133307.20287-1-andriy.shevchenko@linux.intel.com>
- <20230221133307.20287-3-andriy.shevchenko@linux.intel.com>
- <Y/TJs+Arban0ats8@smile.fi.intel.com>
- <be203dfd290e67c8ce74d11c5c9478a4@protonic.nl>
- <Y/UD3HWNy8uKYShC@smile.fi.intel.com>
- <0235f0fed989a8b027db720663699f5d@protonic.nl>
- <Y/ZKdN4nuHcL4DgE@smile.fi.intel.com> <Y/ZOyGo8X7r258EC@smile.fi.intel.com>
-Message-ID: <e49fa56881c28901ae951742efbd7dad@protonic.nl>
-X-Sender: robin@protonic.nl
-User-Agent: Roundcube Webmail/1.3.1 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20230222165514.684729-1-suijingfeng@loongson.cn>
+ <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
+ <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
+ <f1cb010c-be28-9b1b-da1f-93d5e2fb213f@kernel.org>
+ <9e890c83-495b-87d5-68bf-838c7cf0c003@kernel.org>
+From:   suijingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <9e890c83-495b-87d5-68bf-838c7cf0c003@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxK74gIvdjK4I5AA--.39097S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxXrW8ur47JF1DKrWfArWDurg_yoW5Xr4DpF
+        1UAa1DKr40yF17Xr4Sq34UJrnIvFWFyF1DWrsrGr1UJ3sIv3W2vr1fJr1rGry8Xry3Aayj
+        v3W8CF42gFn8AaUanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
+        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
+        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E
+        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
+        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
+        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
+        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
+        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
+        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2
+        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFApnUUUUU=
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-22 18:20, Andy Shevchenko wrote:
-> + Cc: OF bindings people for the mess with the IDs.
-> 
-> On Wed, Feb 22, 2023 at 07:01:40PM +0200, Andy Shevchenko wrote:
->> On Wed, Feb 22, 2023 at 05:46:00PM +0100, Robin van der Gracht wrote:
->> > On 2023-02-21 18:48, Andy Shevchenko wrote:
->> > > On Tue, Feb 21, 2023 at 05:10:00PM +0100, Robin van der Gracht wrote:
->> > > > On 2023-02-21 14:40, Andy Shevchenko wrote:
->> > > > > On Tue, Feb 21, 2023 at 03:33:06PM +0200, Andy Shevchenko wrote:
-> 
-> ...
-> 
->> > > > > > -	id = i2c_of_match_device(dev->driver->of_match_table, client);
->> > > > > > -	if (id)
->> > > > > > -		priv->type = (uintptr_t)id->data;
->> > > > > > +	priv->type = (uintptr_t)device_get_match_data(dev);
->> > > > >
->> > > > > Looking closer the I²C ID table should provide DISP_MATRIX to keep
->> > > > > default and
->> 
->> > > > > this needs to be not dropped.
->> 
->> ^^^^^ (1)
->> 
->> > > > > So, the question is what to do with unknown type then, return -EINVAL
->> > > > > from probe()?
->> > > >
->> > > > If you leave out your addition of the DISP_UNKNOWN type, the default
->> > > > type
->> > > > will be DISP_MATRIX if no match is found, which is as it is now.
->> > > >
->> > > > In that case the following change should suffice:
->> > > >
->> > > > @@ -713,7 +715,6 @@ static int ht16k33_seg_probe(struct device *dev,
->> > > > struct
->> > > > ht16k33_priv *priv,
->> > > >  static int ht16k33_probe(struct i2c_client *client)
->> > > >  {
->> > > >      struct device *dev = &client->dev;
->> > > > -    const struct of_device_id *id;
->> > > >      struct ht16k33_priv *priv;
->> > > >      uint32_t dft_brightness;
->> > > >      int err;
->> > > > @@ -728,9 +729,8 @@ static int ht16k33_probe(struct i2c_client
->> > > > *client)
->> > > >          return -ENOMEM;
->> > > >
->> > > >      priv->client = client;
->> > > > -    id = i2c_of_match_device(dev->driver->of_match_table, client);
->> > > > -    if (id)
->> > > > -        priv->type = (uintptr_t)id->data;
->> > > > +    priv->type = (uintptr_t)device_get_match_data(dev);
->> > > > +
->> > > >      i2c_set_clientdata(client, priv);
->> > > >
->> > > >      err = ht16k33_initialize(priv);
->> > > >
->> > > > Or do you think falling back to DISP_MATRIX if no match is found is
->> > > > wrong?
->> > >
->> > > First of all, the I²C ID table should actually use DISP_MATRIX.
->> > >
->> > > Second, there are two points:
->> > >
->> > > - It would be nice to check if the OF ID table doesn't provide a setting
->> > >   (shouldn't we try I²C ID table and then, if still nothing, bail out?)
->> > >
->> > > - The I²C ID table can be extended in the future with another entry
->> > > which
->> > >   may want to have different default
->> >
->> > For my understanding, please correct me if I'm wrong;
->> >
->> > For all methods of instantiation during ht16k33 probe, i2c_of_match_device()
->> > matches the compatible strings in the OF ID table due to a call to
->> > i2c_of_match_device_sysfs().
->> >
->> > device_get_match_data() only matches the compatible strings in the OF ID
->> > table for devicetree instantiation because of_match_device() won't match
->> > is there is no actual of_node.
->> 
->> That's half-true. On ACPI based platforms we may have no of_node and 
->> match
->> against OF ID table.
->> 
->> > So with only device_get_match_data() and a non devicetree instantiation,
->> > priv->type will always be (uintptr_t)NULL = 0 = DISP_MATRIX.
->> 
->> Yes.
->> 
->> > Which effectively breaks i.e. user-space instantiation for other display
->> > types which now do work due to i2c_of_match_device().
->> > (so my suggestion above is not sufficient).
->> >
->> > Are you proposing extending and searching the I2C ID table to work around
->> > that?
->> 
->> See (1) above. This is the downside I have noticed after sending this 
->> series.
->> So, the I²C ID table match has to be restored, but the above mentioned 
->> issues
->> with existing table are not gone, hence they need to be addressed in 
->> the next
->> version.
-> 
-> I see now what you mean. So, we have even more issues in this driver:
-> - I²C table is not in sync with all devices supported
-> - the OF ID table seems has something really badly formed for adafruit
->   (just a number after a comma)
-> 
-> The latter shows how broken it is. The I²C ID table mechanism is used 
-> as
-> a backward compatibility to the OF. Unfortunately, user space may not 
-> provide
-> the data except in form of DT overlays, so for the legacy enumeration 
-> we
-> have only device name, which is a set of 4 digits for adafruit case.
-> 
-> Now imagine if by some reason we will get adafruit2 (you name it) with
-> the same schema. How I²C framework can understand that you meant 
-> adafruit
-> and not adafruit2? Or did I miss something?
 
-I agree.
+On 2023/2/23 16:05, Krzysztof Kozlowski wrote:
+> On 23/02/2023 08:58, Krzysztof Kozlowski wrote:
+>> On 23/02/2023 04:19, Sui jingfeng wrote:
+>>> Hi,
+>>>
+>>> On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
+>>>> On 22/02/2023 17:55, suijingfeng wrote:
+>>>>> The display controller is a pci device, it's pci vendor id is
+>>>>> 0x0014, it's pci device id is 0x7a06.
+>>>>>
+>>>>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+>>>>> ---
+>>>>>    .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
+>>>>>    1 file changed, 21 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>>>>> index 8143a61111e3..a528af3977d9 100644
+>>>>> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>>>>> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>>>>> @@ -31,6 +31,18 @@ memory@200000 {
+>>>>>    			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
+>>>>>    	};
+>>>>>    
+>>>>> +	reserved-memory {
+>>>>> +		#address-cells = <2>;
+>>>>> +		#size-cells = <2>;
+>>>>> +		ranges;
+>>>>> +
+>>>>> +		display_reserved: framebuffer@30000000 {
+>>>>> +			compatible = "shared-dma-pool";
+>>>>> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
+>>>>> +			linux,cma-default;
+>>>>> +		};
+>>>>> +	};
+>>>>> +
+>>>>>    	cpu_clk: cpu_clk {
+>>>>>    		#clock-cells = <0>;
+>>>>>    		compatible = "fixed-clock";
+>>>>> @@ -198,6 +210,15 @@ sata@8,0 {
+>>>>>    				interrupt-parent = <&liointc0>;
+>>>>>    			};
+>>>>>    
+>>>>> +			display-controller@6,0 {
+>>>>> +				compatible = "loongson,ls2k1000-dc";
+>>>>> +
+>>>>> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
+>>>>> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
+>>>>> +				interrupt-parent = <&liointc0>;
+>>>>> +				memory-region = <&display_reserved>;
+>>>> NAK.
+>>> Err :(,  please give me a chance to explain
+>>>> Test your code against the bindings you send.
+>>> I can guarantee to you that I test may code more than twice. The code
+>>> used to testing is listed at link [1].
+>> I wrote - test against the bindings. I don't believe that it was tested.
+>> Please paste the output of the testing (dtbs_check).
+> OTOH, dtschema has some hickups on loongsoon DTS, so I doubt you could
+> even test it. Anyway, where is above property memory-region described in
+> the bindings?
 
-I've added Geert Uytterhoeven to the CC. He added support for the 
-adafruit
-segment displays. Maybe he has a comment on this.
+Yes, you are right. I forget to write memory-region property.
 
-Kind regards,
-Robin van der Gracht
+but the code provided in  loongson64-2k1000.dtsi is correct.
+
+I do run dt_binding_check, the results seems good.
+
+there are some problem when make dtbs_check, but it seems not relevant 
+to me.
+
+please give me more time to figure it out, i will reply to you later.
+
+> Best regards,
+> Krzysztof
+
