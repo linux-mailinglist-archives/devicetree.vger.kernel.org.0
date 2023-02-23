@@ -2,90 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190AF6A04AA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:21:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 634EB6A04BF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233374AbjBWJVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 04:21:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50014 "EHLO
+        id S233909AbjBWJ0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 04:26:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233157AbjBWJVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:21:36 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C3C4FCBA
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:21:35 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id p8so10218237wrt.12
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:21:35 -0800 (PST)
+        with ESMTP id S233386AbjBWJ0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:26:10 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3AAE4C6FD
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:26:06 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id o12so40249480edb.9
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:26:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eJSCygSyqymwVM3qv58bXIOQ/QMwS9A0T2gOwos2ANI=;
-        b=fegQtyEWhTqmEAd0iw7X7HKpXLywzYFPBBzCm5qOIC8lDXtvSvWPLxRK1SHoHx4D8F
-         cX9nYfRK96054nl3FKHZATG+FapB5e23HntdNfvK5fJTrpOIQaNkPh/xOf2q2H/h43Se
-         U8P0v8yKtozY/YP3KYye8WS9wsVTR5g4NxnbpZFKLDDujNez4IvzyNE8MDGdtipvuMQS
-         QGoU+osQ2ysbPKou87uCJADJSCZH3B8NHlV4LoKYB+YXGLZL07eCv71HXiKC1ZUz4wsZ
-         G9TUCri7cQOq+twOG6pqmE/sgiTL2VcQhWorwnarYl22GecZP4GL0w3WTLmc7eegOgEH
-         Aq2Q==
+        bh=HTPqrdza57b/i0tF7P2H8m7ScdoQn+qvmHPmvgYAlqM=;
+        b=Kpl3Odd4DfBUatb+oUK4znvf4vqZg3bbXOmt3y7b/E+DPaI/gE12tUOCiR/FjbV5JJ
+         6w6RXUF7W2FciZwCyPDh7smq2MG4bag+omm7dbln5jie3+XiohRPegmJPOPAqfAlDDhf
+         HV1omLLRQdKooO2h2AG52SBuE9oa0AD5G9LhvBFgL4Hm6sCgkFy/UmpBNUKAgnSODv3t
+         okWqDePClnW0n8/aNof0A57v2RhzS2M5Ub3VluMjEJ1paLklRK1x9FN3RvHvefTY9S29
+         GBq6F0zB3TD3ooncvX50e4+b9kjdrG5Yeg/sMS/30l/gH9PvuRTQzR0SXezQ59siL4j5
+         QTLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eJSCygSyqymwVM3qv58bXIOQ/QMwS9A0T2gOwos2ANI=;
-        b=IaJRwqzY4SUEUQqWGoqF1NK02FyuVubWD4CtKyqKZ2RTQKzH4jfiAAdThrdpC5/MhN
-         mhg8vQ7dw6tvePw/sHs862IQAFU4j31fr6A7jKIhNOu2wcVNmN5ZgLYoDPLjtgJyW2Xr
-         M9c+xHw0NvIYST3B7niJcyn0P+rpVHypbwFNXrXSVzt6pO1z/xnb213IPcIqHE9ncFOC
-         ACc6GGUAS8yqI8Co/veT5UFQW2O5hLj0UqHv6+J6AKP9FZmvIA2s0EztGq4RVawd1NPe
-         ORJX14+H2aZsozRvHTEiGF+7UCwcVmxYDplqwjKuYJuKyMEOIsNfac6gPTWjelQoMhYv
-         zbyA==
-X-Gm-Message-State: AO0yUKXPsjCBPnoed4gGWr+QPoIS6rjkeX1wEIShEgQCgq5YWBEZnR2e
-        w9csdQrnzo/Tk8LCSpqQ3lmSM0AotLt6+ouS
-X-Google-Smtp-Source: AK7set+KT38k5JXdqB9gWpe020J1FzMkLGn2pF7mw7ss+GUQRXzcwUsyPn/SBCWmwFh5a4SSTvcWZA==
-X-Received: by 2002:a5d:6a03:0:b0:2c7:84e:1cfa with SMTP id m3-20020a5d6a03000000b002c7084e1cfamr5709487wru.40.1677144093790;
-        Thu, 23 Feb 2023 01:21:33 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id v17-20020adff691000000b002c70e60eb40sm2038217wrp.11.2023.02.23.01.21.32
+        bh=HTPqrdza57b/i0tF7P2H8m7ScdoQn+qvmHPmvgYAlqM=;
+        b=iNaFo9qwRVQYqg6S6+oeHN/sFyufTHXStW3JliARMGKRgYZoLdq8ArAuY5z6SS8HUd
+         6RIRXyVQdJCCvDZtPR+7dazGskOkVblRrWAr6bsunOzsUrlL8FCVj2uPBQ1yMRi2VxYC
+         Stond8a7oVvmBKoiLL1Ct3pHxwU+vdo7hYDihT1cvt7ss6iPgkvdo4sAjU3K7zRi+1B2
+         pu58u3u26m1JPIMbYatuLYuAb8732+uXZ0KVxPajGRyje4tgfFL7r+/KS9UTfMIhwQDi
+         8171CH6jPse5bqjGCAm0E6F7YwxEaOjSzzgeFRCM6EHiYPNY/M6dcs+mjU/0hTm4diTo
+         axDg==
+X-Gm-Message-State: AO0yUKULjCryt55/6mFkN4NwsejTUG81wZmokk0lI6Wr3OQvbw92HafE
+        dFhAvM0GIFGALZMlB29mforKAw==
+X-Google-Smtp-Source: AK7set/3HmjmvJmIpPFWFLcD2qUG14pxGYDBL5y9WyM5aGAIcsmY6YRkED/94Lksw1wMaVEbv9pNVg==
+X-Received: by 2002:a05:6402:31ee:b0:4ae:eae1:1458 with SMTP id dy14-20020a05640231ee00b004aeeae11458mr11824256edb.31.1677144365246;
+        Thu, 23 Feb 2023 01:26:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id gk7-20020a17090790c700b008c673cd9ba2sm6230616ejb.126.2023.02.23.01.26.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 01:21:32 -0800 (PST)
-Message-ID: <e9fc3d3e-173c-6e8b-3f1f-187b1c72ff6c@linaro.org>
-Date:   Thu, 23 Feb 2023 09:21:30 +0000
+        Thu, 23 Feb 2023 01:26:04 -0800 (PST)
+Message-ID: <33abc8a3-39f7-af7c-9676-723228624b0f@linaro.org>
+Date:   Thu, 23 Feb 2023 10:26:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 13/26] gunyah: vm_mgr: Add ioctls to support basic
- non-proxy VM boot
+ Thunderbird/102.8.0
+Subject: Re: [RFC PATCH 1/6] dt-bindings: iio: light: Support ROHM BU27034
 Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212427.3316544-1-quic_eberman@quicinc.com>
- <1080339c-608e-6df8-8eee-b8f3bb7f396d@linaro.org>
- <320d42a0-9889-43ae-5d62-0c4cab3434c5@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <320d42a0-9889-43ae-5d62-0c4cab3434c5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Liam Beguin <liambeguin@gmail.com>,
+        Peter Rosin <peda@axentia.se>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <cover.1677080089.git.mazziesaccount@gmail.com>
+ <af211ec180d91a13862630e635019ebe03d4be31.1677080089.git.mazziesaccount@gmail.com>
+ <e6b2a6f4-d710-7f74-e85d-1cd3f5b96460@linaro.org>
+ <101db5e2-e878-b751-9679-6ea45eb24c26@fi.rohmeurope.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <101db5e2-e878-b751-9679-6ea45eb24c26@fi.rohmeurope.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -95,50 +90,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 23/02/2023 00:50, Elliot Berman wrote:
+On 23/02/2023 07:20, Vaittinen, Matti wrote:
+> Hi dee Ho Krzysztof,
+> 
+> Thanks for the review! It's nice you had the time to take a look on RFC :)
+> 
+> On 2/22/23 20:57, Krzysztof Kozlowski wrote:
+>> On 22/02/2023 17:14, Matti Vaittinen wrote:
+>>> ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
+>>> capable of detecting a very wide range of illuminance. Typical application
+>>> is adjusting LCD and backlight power of TVs and mobile phones.
 >>>
->>> +
->>> +    mem_handle = mapping->parcel.mem_handle;
->>> +    dtb_offset = ghvm->dtb_config.gpa - mapping->guest_phys_addr;
->>> +
->>> +    ret = gh_rm_vm_configure(ghvm->rm, ghvm->vmid, ghvm->auth, 
->>> mem_handle,
+>>> Add initial dt-bindings.
 >>
->> where is authentication mechanism (auth) comming from? Who is supposed 
->> to set this value?
->>
->> Should it come from userspace? if so I do not see any UAPI facility to 
->> do that via VM_START ioctl.
->>
+>> Driver can be "initial", but bindings better to be closer to complete,
+>> even if not used by the driver currently.
 > 
-> Right, we are only adding the support for unauthenticated VMs for now. 
-> There would be further UAPI facilities to set the authentication type.
-We have to be careful, please note that you can not change an existing 
-UAPI to accommodate new features.
+> Out of the curiosity - why is that? (Please, don't take me wrong, I am 
+> not trying to argue against this - just learn the reason behind). I 
+> can't immediately see the harm caused by adding new properties later 
+> when we learn more of hardware. (and no, I don't expect this simple IC 
+> to gain at least many properties).
 
-There are two ways to do this properly:
+Linux drivers change, but the hardware does not, thus DTS, which
+describes the hardware, can be complete. It should be written based on
+the hardware, not based on Linux drivers. If you add incomplete
+bindings, this suggests you wrote them to match your driver, not to
+match hardware. This in turn (adjusting bindings to driver) makes them
+less portable, narrowed to one specific driver implementation and more
+ABI-break-prone later.
 
-1. Design UAPI to accommodate features that will be part of this in very 
-  soon or in future. This way the UAPI is stable and does not change 
-over time when we add support this feature in driver.
+Imagine you that clock inputs, which you skipped in the binding, were
+actually needed but on your board they were enabled by bootloader. The
+binding is then used on other systems or by out of tree users. On your
+new system the clocks are not enabled by bootloader anymore, thus you
+add them to the binding. They are actually required for device to work,
+so you make them required. But all these other users cannot be fixed...
 
-In this particular case, vm authentication type is one that needs to 
-come from user, rather than kernel assuming it, so definitely this need 
-to be properly addressed by passing this info from userspace.
-Or rename this IOCTl to something like VM_START_UNAUTH_VM to make this 
-more explicit.
+What's more, incomplete binding/DTS is then used together with other
+pieces - DTS and driver, e.g. via some graphs or other
+phandles/supplies/pinctrl. So some other DTS or driver code might rely
+on your particular binding. Imagine you had only vdd-supply regulator,
+but no reset pins, so the only way to power-cycle device was to turn
+off/on regulator supply. Then you figure out that you have reset pins
+and it would be useful to add and use it. But already drivers are
+written to power cycle via regulator... or even someone wrote new driver
+regulator-pwrseq to power cycle your device due to missing reset GPIOs...
 
 
-2. For each feature add new UAPI as and when its required, which is 
-really the only option when we failed to design UAPIs correctly in the 
-first place.
+Best regards,
+Krzysztof
 
---srini
-
-
-> 
->>
->>> +                0, 0, dtb_offset, ghvm->dtb_config.size);
->>> +    if (ret) { 
