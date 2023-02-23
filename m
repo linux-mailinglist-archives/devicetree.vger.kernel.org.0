@@ -2,206 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 810216A0E6F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 18:11:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 432636A0E83
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 18:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjBWRLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 12:11:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60320 "EHLO
+        id S229512AbjBWRR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 12:17:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjBWRLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 12:11:51 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C7D57D3B;
-        Thu, 23 Feb 2023 09:11:36 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 8FF7A8573B;
-        Thu, 23 Feb 2023 18:11:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1677172295;
-        bh=Nf/P0ayFUpGFdK1UOwFUmICvUugkXNWxEwlW5PRq+R8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wzUliG17HOjAKxFrj+0xwX+qIMmjqXrGN57aRtmw6YKFcseNwodOOp1GMkxX2OnPN
-         sIYR4SeMEXeS/DKPxGdG+VqauOgWZszT/YYHrTOe46+VLiEhPYyBjth3DRhrxkfjhU
-         O8lJKLjSYKqiC4P/oljmtdVCo92wSDQWkFhmdEwi4avldq4MqwUYAMYJm5B8Z0evUR
-         o698NpU71Y2nwYJa5h1r85QQp5C0sBwW9Sx1mxrjG6Iw+54P04OeDIPL5QPkPQom9c
-         qWdCV9YQ8ZDRjZo5N3Ly1Jwc4zmj3oVmfwzVyFu8tE6TXaxbK6q0EG3vpU8DtOb+Jq
-         AaBA+yOu1N1jw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-clk@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 5/5] arm64: dts: imx8mp: Add analog audio output on i.MX8MP EVK
-Date:   Thu, 23 Feb 2023 18:11:14 +0100
-Message-Id: <20230223171114.59164-5-marex@denx.de>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230223171114.59164-1-marex@denx.de>
-References: <20230223171114.59164-1-marex@denx.de>
+        with ESMTP id S229454AbjBWRR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 12:17:58 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7395FF8;
+        Thu, 23 Feb 2023 09:17:56 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31NHHXY2037741;
+        Thu, 23 Feb 2023 11:17:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1677172653;
+        bh=o2Nb7KbFzvIYkv4sc2lMJ4n5HXWpmBwMln8gTDzt9K0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=wMrtpCCafkPOnQwzlEcjxQqTlNCsWd4DnQS5l+Sq2uI++DrbqQIimEHXpsvDka0oT
+         AzyGhbYvxo2IU9+JFFcrrmN/A8I/voZQOy/QOZIS+gseGrCJDGS7CQe1y1+spFJD7C
+         MOoJHPc5W6N2YRtl3hIHBDIKr3TFfDI5LbLSIIck=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31NHHXUP072344
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Feb 2023 11:17:33 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 23
+ Feb 2023 11:17:32 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 23 Feb 2023 11:17:32 -0600
+Received: from [10.250.32.101] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31NHHWVx058665;
+        Thu, 23 Feb 2023 11:17:32 -0600
+Message-ID: <a3819147-dc7b-ecbf-107e-88f88be33825@ti.com>
+Date:   Thu, 23 Feb 2023 11:17:31 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: omap: add phytec pcm-049 som and
+ pcm-959 dev board
+Content-Language: en-US
+To:     Colin Foster <colin.foster@in-advantage.com>
+CC:     <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        <soc@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20230222203847.2664903-1-colin.foster@in-advantage.com>
+ <20230222203847.2664903-2-colin.foster@in-advantage.com>
+ <dd67f7c9-0867-47d0-a201-9316908d9d62@ti.com>
+ <Y/eTZONJh8QdJVP8@COLIN-DESKTOP1.localdomain>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <Y/eTZONJh8QdJVP8@COLIN-DESKTOP1.localdomain>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable SAI3 on i.MX8MP EVK, add WM8960 codec binding and regulator.
-This is all that is needed to get analog audio output operational
-on i.MX8MP EVK.
+On 2/23/23 10:25 AM, Colin Foster wrote:
+> On Thu, Feb 23, 2023 at 10:00:50AM -0600, Andrew Davis wrote:
+>> On 2/22/23 2:38 PM, Colin Foster wrote:
+>>> Add yaml documentation for TI OMAP devices for the Phytec PCM-049 SoM and
+>>> the Phytec PCM-959 development kit.
+>>>
+>>> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+>>> ---
+>>>
+>>> v4
+>>>       * New patch, based on a WIP from Andrew Davis <afd@ti.com>
+>>>
+>>> ---
+>>>    .../devicetree/bindings/arm/ti,omap.yaml      | 29 +++++++++++++++++++
+>>>    1 file changed, 29 insertions(+)
+>>>    create mode 100644 Documentation/devicetree/bindings/arm/ti,omap.yaml
+>>
+>> How will this work if I add the same file? Why not take my WIP patch, make
+>> the suggested changes from Rob, then have it as your first patch in this
+>> series?
+> 
+> Is your WIP intended to convert all omap.txt to ti,omap.yaml? Or chunk
+> off devices one at a time?
+> 
+> If the former, when your patch is done it should be a pretty simple
+> rebase conflict resolution. If the latter (which feels more digestable)
+> this offers that template. This was Rob's / Tony's suggestion, albeit
+> before you sent your patch set.
+> 
+> 
+> Anyway, I'm happy to do any of the following:
+> 
+> 1. Take Andrew's patches, add these references and re-submit.
+> 2. Keep this set as-is (with the typo fix) and when Andrew's WIP is done
+>     it should be an easy rebase before submission.
+> 3. Wait for Andrew's WIP to be done, then submit with this update.
+> 
+> 
+> I'd like to avoid #3 because I don't know where this might fall on your
+> priorities list.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Abel Vesa <abelvesa@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jacky Bai <ping.bai@nxp.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Richard Cochran <richardcochran@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-clk@vger.kernel.org
----
-V2: No change
-V3: No change
-V4: - Update codec node name and phandle label
-    - Use just sound for the sound node name
-    - Rebase on next 20230223
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 60 ++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+Low priority for me, I'd suggest #1 or they probably will not be
+converted anytime soon.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 7816853162b3f..9ed94f271ef9a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -40,6 +40,16 @@ pcie0_refclk: pcie0-refclk {
- 		clock-frequency = <100000000>;
- 	};
- 
-+	reg_audio_pwr: regulator-audio-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "audio-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
- 	reg_can1_stby: regulator-can1-stby {
- 		compatible = "regulator-fixed";
- 		regulator-name = "can1-stby";
-@@ -83,6 +93,23 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
- 		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 	};
-+
-+	sound {
-+		compatible = "fsl,imx-audio-wm8960";
-+		model = "wm8960-audio";
-+		audio-cpu = <&sai3>;
-+		audio-codec = <&wm8960>;
-+		audio-routing =
-+			"Headphone Jack", "HP_L",
-+			"Headphone Jack", "HP_R",
-+			"Ext Spk", "SPK_LP",
-+			"Ext Spk", "SPK_LN",
-+			"Ext Spk", "SPK_RP",
-+			"Ext Spk", "SPK_RN",
-+			"LINPUT1", "Mic Jack",
-+			"LINPUT3", "Mic Jack",
-+			"Mic Jack", "MICB";
-+	};
- };
- 
- &flexspi {
-@@ -344,6 +371,17 @@ &i2c3 {
- 	pinctrl-0 = <&pinctrl_i2c3>;
- 	status = "okay";
- 
-+	wm8960: codec@1a {
-+		compatible = "wlf,wm8960";
-+		reg = <0x1a>;
-+		clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI3_MCLK1>;
-+		clock-names = "mclk";
-+		wlf,shared-lrclk;
-+		wlf,hp-cfg = <3 2 3>;
-+		wlf,gpio-cfg = <1 3>;
-+		SPKVDD1-supply = <&reg_audio_pwr>;
-+	};
-+
- 	pca6416: gpio@20 {
- 		compatible = "ti,tca6416";
- 		reg = <0x20>;
-@@ -422,6 +460,16 @@ &pwm4 {
- 	status = "okay";
- };
- 
-+&sai3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai3>;
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -668,6 +716,18 @@ MX8MP_IOMUXC_UART3_TXD__UART1_DCE_RTS	0x140
- 		>;
- 	};
- 
-+	pinctrl_sai3: sai3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC	0xd6
-+			MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK	0xd6
-+			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00	0xd6
-+			MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
-+			MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK	0xd6
-+			MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28		0xd6
-+			MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29		0xd6
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
--- 
-2.39.1
-
+Andrew
