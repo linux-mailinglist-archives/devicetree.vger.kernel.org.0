@@ -2,385 +2,421 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D31AB6A06EA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 12:01:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FEE66A068C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 11:48:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233980AbjBWLBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 06:01:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39018 "EHLO
+        id S233758AbjBWKsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 05:48:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233907AbjBWLBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 06:01:48 -0500
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857FD5456B
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 03:01:40 -0800 (PST)
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230223110138epoutp04d2f30246bca27edc4a16ed6c06307693~GbyDxj0kb1803818038epoutp04s
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 11:01:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230223110138epoutp04d2f30246bca27edc4a16ed6c06307693~GbyDxj0kb1803818038epoutp04s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1677150098;
-        bh=6Am/pU+0DRzbajMRwCB6It4syIPlNp3VoLOYpRU4yCQ=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=sEoVfkkyyx75sM1XGUU83Z1luTWtMSTVBEdiI0s9Yj7d5O4DollVnDI/sv2I+pgZy
-         5Fy5jWQawCM4M5QEJYFT3uQXsXM8szTfpL+JXEMMUWJ5pXZi2OSJAA/Ase7r9n9ova
-         sel3sTFcec9F0ubAI1Wifrp4UxYqxWQH9JHJNZcc=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20230223110137epcas5p38c18c38934281e8f8d9d9ef9a21e33db~GbyCzirgn1474914749epcas5p3u;
-        Thu, 23 Feb 2023 11:01:37 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.174]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4PMqpR3Kd2z4x9Q9; Thu, 23 Feb
-        2023 11:01:35 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        48.1A.10528.F8747F36; Thu, 23 Feb 2023 20:01:35 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20230223104649epcas5p260da7a49016c9ef7826ac1fab7567776~GblIIBS6x0042400424epcas5p2l;
-        Thu, 23 Feb 2023 10:46:49 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230223104649epsmtrp1e92b922e75ba00bacd4219ef0374638c~GblIG-Srv1201512015epsmtrp10;
-        Thu, 23 Feb 2023 10:46:49 +0000 (GMT)
-X-AuditID: b6c32a49-c17ff70000012920-2a-63f7478f5309
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        02.39.05839.91447F36; Thu, 23 Feb 2023 19:46:49 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-        [107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20230223104646epsmtip2496f2c8dcee31e0110a003036556156a~GblFJEi2O0991609916epsmtip2T;
-        Thu, 23 Feb 2023 10:46:46 +0000 (GMT)
-From:   Aakarsh Jain <aakarsh.jain@samsung.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, Aakarsh Jain <aakarsh.jain@samsung.com>
-Subject: [PATCH] dt-bindings: media: s5p-mfc: convert bindings to
- json-schema
-Date:   Thu, 23 Feb 2023 16:16:14 +0530
-Message-Id: <20230223104614.10954-1-aakarsh.jain@samsung.com>
-X-Mailer: git-send-email 2.17.1
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WTfUxTVxjGc+69vbeoJVeEcWBT2Y3bAgnQbm05Xawj0YyrYxO2GTM3B7W9
-        46u0TW8ZuGSZLsNp5UMdJoAICKgJImL5luqwFO3YWMYAcWgdX44Ps8FgDLcprOXC9t/vnOd9
-        njfnPeeIcT8XGSxOMVg4s0GjZ8g1RFNHaFh4fsyCVvpw8Bn0sKVIhIZKm0hU+XgcQz9XzhHI
-        Ud9IoYa+Mzi6eLtdhMqc34tQ880RAl2d8Kg9RW4CjZfVAjRZ/IBEeRPDOLKN3hGh3mslJMqp
-        axShy043hc4P9GDogu0Jhioa/6BQ9nUnhb444sSiA9ma0hrAtrirADtQNYuzrcVuiq20T2Ks
-        rfoYyd6/YyfZ+qrP2OzOvwk2r6EasFbnAMnO2TaxXfNzVJxkX9rWZE6j48whnEFr1KUYktTM
-        G+8kbE9QKKWycJkKRTEhBk06p2Z2xMaFv56i95yeCflYo8/wbMVpeJ6J3LbVbMywcCHJRt6i
-        ZjiTTm+SmyJ4TTqfYUiKMHCWV2VS6csKT2FiWnJ9zzRlWlJlNbe1kodAUagV+IghLYdjU8Ok
-        l/3oNgCrxyIFngUwzyWygjUe/hNA68QZsGpwuUqBIFwHsMDeiwuLbAw2Dv6GWYFYTNLhsLtZ
-        7zX404cBHD1q8dbgtJXwJN2kvMIGejecyb0r8jJBvwA7noxQXq+EVkPbvVih2WZ4qa59OR/S
-        Y2L4bfFxUhB2QJfjFibwBjh1u4ESOBhO5h9ZYS0crZjEBdbDK/YCQuDXYHtfCeHthdOh8Mq1
-        SGF7IzzdVbscidO+MPefsZV4CWwpXeUXYcn9xyKBn4Mdl86vDIWFp47NE8Lk9sOR7gbRCbCx
-        +P8O5QBUgyDOxKcncbzCJDNwmf9dk9aYbgPLTzpsZwtwD81EOAAmBg4AxTjjLzmNLWj9JDrN
-        wU84szHBnKHneAdQeEZ2Eg8O0Bo9f8JgSZDJVVK5UqmUq15RyphAyUvqb7R+dJLGwqVxnIkz
-        r/owsU/wIWwP1LeG//BdeV1B2adUoOFRfdDUV9bdE6lBm87Wbs537iqy18zKb5SNXFS/l0/E
-        cI8mE591xLf/qlxKaA8btR1QvBk/Nrq9PyW2L7vK3BlAdvYRF7iQL99yJzZdbkP+Ww7G3819
-        oAuKVXx+9q+l6c6sbr9E8sPCwFS+/YP3pc0nA47q1rv3TlfkcOk+B/qfFkoXyrVZi3XPL86Y
-        VLhofQ6Tt3M8c8hU9XTf19E/+u7aI4132ReTiJjf1wY7WroS55p+Sb3ls1ZVDw3ryqP2xmTe
-        +Gm+v3K+Yp3yo74p7FzU1eiK/YPDcefetVl4Zgvf27VNKfNNbfOve5vi7x2OO3XcWsgQfLJG
-        Foabec2/OzZ7L1sEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGLMWRmVeSWpSXmKPExsWy7bCSvK6ky/dkgwN9ehZPd8xktXgwbxub
-        xeIfz5ks7i/+zGJxaPNWdostV2YzWyw/foDVYv6Rc6wW2w8+YrHY+AIoe3HmXRaL5/PXMVq8
-        nHWPzaLvxUNmi02Pr7FaXN41h82iZ8NWVou1R+6yWyy9fpHJYtmmP0wWi7Z+Ybdo3XuE3aKl
-        7QiTg7jHmnlrGD123F3C6HF9ySdmj52z7rJ7LN7zkslj06pONo871/aweWxeUu/RevQXi0ff
-        llWMHl1HrrN5fN4k53Hq62f2AN4oLpuU1JzMstQifbsErozNF9+zF/y3rNi+eydbA+NMzS5G
-        Tg4JAROJEyfmMXYxcnEICexmlFjy/Q8TREJG4n/bMXYIW1hi5b/n7BBFzUwSq2evBerg4GAT
-        0JU4uz0HJC4i0MoocX1lJxOIwyywgEVi9aITLCDdwgK+Em/nH2cDsVkEVCUO/3nEDtLMK2Ar
-        sem2D8QCeYnVGw4wT2DkWcDIsIpRMrWgODc9t9iwwDAvtVyvODG3uDQvXS85P3cTIzhqtDR3
-        MG5f9UHvECMTB+MhRgkOZiUR3qlM35OFeFMSK6tSi/Lji0pzUosPMUpzsCiJ817oOhkvJJCe
-        WJKanZpakFoEk2Xi4JRqYDr+g/lE896En3yCjLpPNho58J2vYtY09feNcxFL/MoZxb/ccmbM
-        lLer959ujdszw/Pc8/T/2eUMt/48Pqe7dTPfRO+rAoVxQbP2VLorsruoCM0tOWQsvPxGlO0V
-        y9dTrsufqOKv1OZ0s1af/GLfCb6WzS+VeQ+tu98Uu7uWYcakOQ/ihPJFZZlb+zI3sT9yKnn1
-        4xnjTz7zxfULOg57uJ198y1R9Jx45kv3oszyN/dXzd4h+2dCNIPSCdkz899eeMG99wHT6cvF
-        bUebzjV03t3/edHRQuePq11eb2GpCNphaaSumFmxfO/Pt05d/TavlPY9/H32z83VUa+TzU6U
-        xby73n9k/tOYoqvzT8695XdOiaU4I9FQi7moOBEAmd2ZMwkDAAA=
-X-CMS-MailID: 20230223104649epcas5p260da7a49016c9ef7826ac1fab7567776
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230223104649epcas5p260da7a49016c9ef7826ac1fab7567776
-References: <CGME20230223104649epcas5p260da7a49016c9ef7826ac1fab7567776@epcas5p2.samsung.com>
+        with ESMTP id S233253AbjBWKsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 05:48:17 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E34C15572;
+        Thu, 23 Feb 2023 02:48:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2CC94616B5;
+        Thu, 23 Feb 2023 10:48:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DD21C433D2;
+        Thu, 23 Feb 2023 10:48:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1677149294;
+        bh=JwmNI2Lo8sTrNWeiDTCxCHRZGl3QFUVJuHx58Vb1VyE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Zz41rr1nqWB7VqrFwnMoaIzUun01+96F4nM2dXHVAyS1pN2Q87hoY7TSlqLlrPd5n
+         bGlekWuRVAcfqNlYYdSiKONnjL03aiUn54Dj6sfbLsbfxyCdn5FrWKnaejYhxjRArk
+         DXBlRslwfYkMWtbzhIvOwenPGWb1UbOzATFiOMgY=
+Date:   Thu, 23 Feb 2023 11:48:11 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        jirislaby@kernel.org, alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+Subject: Re: [PATCH v5] Bluetooth: NXP: Add protocol support for NXP
+ Bluetooth chipsets
+Message-ID: <Y/dEa6UJ2pXWsyOV@kroah.com>
+References: <20230223103614.4137309-1-neeraj.sanjaykale@nxp.com>
+ <20230223103614.4137309-4-neeraj.sanjaykale@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230223103614.4137309-4-neeraj.sanjaykale@nxp.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert s5p-mfc bindings to DT schema format using json-schema.
+On Thu, Feb 23, 2023 at 04:06:14PM +0530, Neeraj Sanjay Kale wrote:
+> This adds a driver based on serdev driver for the NXP BT serial protocol
+> based on running H:4, which can enable the built-in Bluetooth device
+> inside an NXP BT chip.
+> 
+> This driver has Power Save feature that will put the chip into sleep state
+> whenever there is no activity for 2000ms, and will be woken up when any
+> activity is to be initiated over UART.
+> 
+> This driver enables the power save feature by default by sending the vendor
+> specific commands to the chip during setup.
+> 
+> During setup, the driver checks if a FW is already running on the chip
+> based on the CTS line, and downloads device specific FW file into the
+> chip over UART.
+> 
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Removed conf file support and added static data for each chip based on
+> compatibility devices mentioned in DT bindings. Handled potential memory
+> leaks and null pointer dereference issues, simplified FW download feature,
+> handled byte-order and few cosmetic changes. (Ilpo Järvinen, Alok Tiwari,
+> Hillf Danton)
+> v3: Added conf file support necessary to support different vendor modules,
+> moved .h file contents to .c, cosmetic changes. (Luiz Augusto von Dentz,
+> Rob Herring, Leon Romanovsky)
+> v4: Removed conf file support, optimized driver data, add logic to select
+> FW name based on chip signature (Greg KH, Ilpo Jarvinen, Sherry Sun)
+> v5: Replaced bt_dev_info() with bt_dev_dbg(), handled user-space cmd
+> parsing in nxp_enqueue() in a better way. (Greg KH, Luiz Augusto
+> von Dentz)
+> ---
+>  MAINTAINERS                   |    1 +
+>  drivers/bluetooth/Kconfig     |   11 +
+>  drivers/bluetooth/Makefile    |    1 +
+>  drivers/bluetooth/btnxpuart.c | 1312 +++++++++++++++++++++++++++++++++
+>  4 files changed, 1325 insertions(+)
+>  create mode 100644 drivers/bluetooth/btnxpuart.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 030ec6fe89df..fdb9b0788c89 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22840,6 +22840,7 @@ M:	Amitkumar Karwar <amitkumar.karwar@nxp.com>
+>  M:	Neeraj Kale <neeraj.sanjaykale@nxp.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> +F:	drivers/bluetooth/btnxpuart.c
+>  
+>  THE REST
+>  M:	Linus Torvalds <torvalds@linux-foundation.org>
+> diff --git a/drivers/bluetooth/Kconfig b/drivers/bluetooth/Kconfig
+> index 5a1a7bec3c42..359a4833e31f 100644
+> --- a/drivers/bluetooth/Kconfig
+> +++ b/drivers/bluetooth/Kconfig
+> @@ -465,4 +465,15 @@ config BT_VIRTIO
+>  	  Say Y here to compile support for HCI over Virtio into the
+>  	  kernel or say M to compile as a module.
+>  
+> +config BT_NXPUART
+> +	tristate "NXP protocol support"
+> +	depends on SERIAL_DEV_BUS
+> +	help
+> +	  NXP is serial driver required for NXP Bluetooth
+> +	  devices with UART interface.
+> +
+> +	  Say Y here to compile support for NXP Bluetooth UART device into
+> +	  the kernel, or say M here to compile as a module (btnxpuart).
+> +
+> +
+>  endmenu
+> diff --git a/drivers/bluetooth/Makefile b/drivers/bluetooth/Makefile
+> index e0b261f24fc9..7a5967e9ac48 100644
+> --- a/drivers/bluetooth/Makefile
+> +++ b/drivers/bluetooth/Makefile
+> @@ -29,6 +29,7 @@ obj-$(CONFIG_BT_QCA)		+= btqca.o
+>  obj-$(CONFIG_BT_MTK)		+= btmtk.o
+>  
+>  obj-$(CONFIG_BT_VIRTIO)		+= virtio_bt.o
+> +obj-$(CONFIG_BT_NXPUART)	+= btnxpuart.o
+>  
+>  obj-$(CONFIG_BT_HCIUART_NOKIA)	+= hci_nokia.o
+>  
+> diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
+> new file mode 100644
+> index 000000000000..55f6bf7c5d87
+> --- /dev/null
+> +++ b/drivers/bluetooth/btnxpuart.c
+> @@ -0,0 +1,1312 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + *  NXP Bluetooth driver
+> + *  Copyright 2018-2023 NXP
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +
+> +#include <linux/serdev.h>
+> +#include <linux/of.h>
+> +#include <linux/skbuff.h>
+> +#include <asm/unaligned.h>
+> +#include <linux/firmware.h>
+> +#include <linux/string.h>
+> +#include <linux/crc8.h>
+> +
+> +#include <net/bluetooth/bluetooth.h>
+> +#include <net/bluetooth/hci_core.h>
+> +
+> +#include "h4_recv.h"
+> +
+> +#define MANUFACTURER_NXP		37
+> +
+> +#define BTNXPUART_TX_STATE_ACTIVE	1
+> +#define BTNXPUART_FW_DOWNLOADING	2
+> +
+> +#define FIRMWARE_W8987	"nxp/uartuart8987_bt.bin"
+> +#define FIRMWARE_W8997	"nxp/uartuart8997_bt_v4.bin"
+> +#define FIRMWARE_W9098	"nxp/uartuart9098_bt_v1.bin"
+> +#define FIRMWARE_IW416	"nxp/uartiw416_bt_v0.bin"
+> +#define FIRMWARE_IW612	"nxp/uartspi_n61x_v1.bin.se"
+> +
+> +#define CHIP_ID_W9098		0x5c03
+> +#define CHIP_ID_IW416		0x7201
+> +#define CHIP_ID_IW612		0x7601
+> +
+> +#define HCI_NXP_PRI_BAUDRATE	115200
+> +#define HCI_NXP_SEC_BAUDRATE	3000000
+> +
+> +#define MAX_FW_FILE_NAME_LEN    50
+> +
+> +/* Default ps timeout period in milli-second */
+> +#define PS_DEFAULT_TIMEOUT_PERIOD     2000
+> +
+> +/* wakeup methods */
+> +#define WAKEUP_METHOD_DTR       0
+> +#define WAKEUP_METHOD_BREAK     1
+> +#define WAKEUP_METHOD_EXT_BREAK 2
+> +#define WAKEUP_METHOD_RTS       3
+> +#define WAKEUP_METHOD_INVALID   0xff
+> +
+> +/* power save mode status */
+> +#define PS_MODE_DISABLE         0
+> +#define PS_MODE_ENABLE          1
+> +
+> +/* Power Save Commands to ps_work_func  */
+> +#define PS_CMD_EXIT_PS          1
+> +#define PS_CMD_ENTER_PS         2
+> +
+> +/* power save state */
+> +#define PS_STATE_AWAKE          0
+> +#define PS_STATE_SLEEP          1
+> +
+> +/* Bluetooth vendor command : Sleep mode */
+> +#define HCI_NXP_AUTO_SLEEP_MODE	0xfc23
+> +/* Bluetooth vendor command : Wakeup method */
+> +#define HCI_NXP_WAKEUP_METHOD	0xfc53
+> +/* Bluetooth vendor command : Set operational baudrate */
+> +#define HCI_NXP_SET_OPER_SPEED	0xfc09
+> +/* Bluetooth vendor command: Independent Reset */
+> +#define HCI_NXP_IND_RESET	0xfcfc
+> +
+> +/* Bluetooth Power State : Vendor cmd params */
+> +#define BT_PS_ENABLE			0x02
+> +#define BT_PS_DISABLE			0x03
+> +
+> +/* Bluetooth Host Wakeup Methods */
+> +#define BT_HOST_WAKEUP_METHOD_NONE      0x00
+> +#define BT_HOST_WAKEUP_METHOD_DTR       0x01
+> +#define BT_HOST_WAKEUP_METHOD_BREAK     0x02
+> +#define BT_HOST_WAKEUP_METHOD_GPIO      0x03
+> +
+> +/* Bluetooth Chip Wakeup Methods */
+> +#define BT_CTRL_WAKEUP_METHOD_DSR       0x00
+> +#define BT_CTRL_WAKEUP_METHOD_BREAK     0x01
+> +#define BT_CTRL_WAKEUP_METHOD_GPIO      0x02
+> +#define BT_CTRL_WAKEUP_METHOD_EXT_BREAK 0x04
+> +#define BT_CTRL_WAKEUP_METHOD_RTS       0x05
+> +
+> +#define MAX_USER_PARAMS			10
+> +
+> +struct ps_data {
+> +	u8    ps_mode;
+> +	u8    cur_psmode;
+> +	u8    ps_state;
+> +	u8    ps_cmd;
+> +	u8    h2c_wakeupmode;
+> +	u8    cur_h2c_wakeupmode;
+> +	u8    c2h_wakeupmode;
+> +	u8    c2h_wakeup_gpio;
+> +	bool  driver_sent_cmd;
+> +	bool  timer_on;
+> +	u32   interval;
+> +	struct hci_dev *hdev;
+> +	struct work_struct work;
+> +	struct timer_list ps_timer;
+> +};
+> +
+> +struct btnxpuart_data {
+> +	bool fw_dnld_use_high_baudrate;
+> +	const u8 *fw_name;
+> +};
+> +
+> +struct btnxpuart_dev {
+> +	struct hci_dev *hdev;
+> +	struct serdev_device *serdev;
+> +
+> +	struct work_struct tx_work;
+> +	unsigned long tx_state;
+> +	struct sk_buff_head txq;
+> +	struct sk_buff *rx_skb;
+> +
+> +	const struct firmware *fw;
+> +	u8 fw_name[MAX_FW_FILE_NAME_LEN];
+> +	u32 fw_dnld_v1_offset;
+> +	u32 fw_v1_sent_bytes;
+> +	u32 fw_v3_offset_correction;
+> +	u32 fw_v1_expected_len;
+> +	wait_queue_head_t suspend_wait_q;
+> +
+> +	u32 new_baudrate;
+> +	u32 current_baudrate;
+> +	bool timeout_changed;
+> +	bool baudrate_changed;
+> +
+> +	struct ps_data *psdata;
+> +	struct btnxpuart_data *nxp_data;
+> +};
+> +
+> +#define NXP_V1_FW_REQ_PKT	0xa5
+> +#define NXP_V1_CHIP_VER_PKT	0xaa
+> +#define NXP_V3_FW_REQ_PKT	0xa7
+> +#define NXP_V3_CHIP_VER_PKT	0xab
+> +
+> +#define NXP_ACK_V1		0x5a
+> +#define NXP_NAK_V1		0xbf
+> +#define NXP_ACK_V3		0x7a
+> +#define NXP_NAK_V3		0x7b
+> +#define NXP_CRC_ERROR_V3	0x7c
+> +
+> +#define HDR_LEN			16
+> +
+> +#define NXP_RECV_FW_REQ_V1 \
+> +	.type = NXP_V1_FW_REQ_PKT, \
+> +	.hlen = 4, \
+> +	.loff = 0, \
+> +	.lsize = 0, \
+> +	.maxlen = 4
+> +
+> +#define NXP_RECV_CHIP_VER_V3 \
+> +	.type = NXP_V3_CHIP_VER_PKT, \
+> +	.hlen = 4, \
+> +	.loff = 0, \
+> +	.lsize = 0, \
+> +	.maxlen = 4
+> +
+> +#define NXP_RECV_FW_REQ_V3 \
+> +	.type = NXP_V3_FW_REQ_PKT, \
+> +	.hlen = 9, \
+> +	.loff = 0, \
+> +	.lsize = 0, \
+> +	.maxlen = 9
+> +
+> +struct v1_data_req {
+> +	__le16 len;
+> +	__le16 len_comp;
+> +} __packed;
+> +
+> +struct v3_data_req {
+> +	__le16 len;
+> +	__le32 offset;
+> +	__le16 error;
+> +	u8 crc;
+> +} __packed;
+> +
+> +struct v3_start_ind {
+> +	__le16 chip_id;
+> +	u8 loader_ver;
+> +	u8 crc;
+> +} __packed;
+> +
+> +/* UART register addresses of BT chip */
+> +#define CLKDIVADDR	0x7f00008f
+> +#define UARTDIVADDR	0x7f000090
+> +#define UARTMCRADDR	0x7f000091
+> +#define UARTREINITADDR	0x7f000092
+> +#define UARTICRADDR	0x7f000093
+> +#define UARTFCRADDR	0x7f000094
+> +
+> +#define MCR		0x00000022
+> +#define INIT		0x00000001
+> +#define ICR		0x000000c7
+> +#define FCR		0x000000c7
+> +
+> +#define POLYNOMIAL8	0x07
+> +#define POLYNOMIAL32	0x04c11db7L
+> +
+> +struct uart_reg {
+> +	__le32 address;
+> +	__le32 value;
+> +} __packed;
+> +
+> +struct uart_config {
+> +	struct uart_reg clkdiv;
+> +	struct uart_reg uartdiv;
+> +	struct uart_reg mcr;
+> +	struct uart_reg re_init;
+> +	struct uart_reg icr;
+> +	struct uart_reg fcr;
+> +	__le32 crc;
+> +} __packed;
+> +
+> +struct nxp_bootloader_cmd {
+> +	__le32 header;
+> +	__le32 arg;
+> +	__le32 payload_len;
+> +	__le32 crc;
+> +} __packed;
+> +
+> +static u8 crc8_table[CRC8_TABLE_SIZE];
 
-Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
----
-Since, obsolete properties are not part of dt-node so we are not including these properties in dt-schema. 
- 
-.../devicetree/bindings/media/s5p-mfc.txt     |  78 ---------
- .../bindings/media/samsung,s5p-mfc.yaml       | 160 ++++++++++++++++++
- 2 files changed, 160 insertions(+), 78 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+Shouldn't this be initialized when the module is loaded and not at some
+random time later on?
 
-diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-index 8eb90c043d5d..e69de29bb2d1 100644
---- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-+++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-@@ -1,78 +0,0 @@
--* Samsung Multi Format Codec (MFC)
--
--Multi Format Codec (MFC) is the IP present in Samsung SoCs which
--supports high resolution decoding and encoding functionalities.
--The MFC device driver is a v4l2 driver which can encode/decode
--video raw/elementary streams and has support for all popular
--video codecs.
--
--Required properties:
--  - compatible : value should be either one among the following
--	(a) "samsung,mfc-v5" for MFC v5 present in Exynos4 SoCs
--	(b) "samsung,mfc-v6" for MFC v6 present in Exynos5 SoCs
--	(c) "samsung,exynos3250-mfc", "samsung,mfc-v7" for MFC v7
--	     present in Exynos3250 SoC
--	(d) "samsung,mfc-v7" for MFC v7 present in Exynos5420 SoC
--	(e) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
--	(f) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433 SoC
--	(g) "samsung,mfc-v10" for MFC v10 present in Exynos7880 SoC
--
--  - reg : Physical base address of the IP registers and length of memory
--	  mapped region.
--
--  - interrupts : MFC interrupt number to the CPU.
--  - clocks : from common clock binding: handle to mfc clock.
--  - clock-names : from common clock binding: must contain "mfc",
--		  corresponding to entry in the clocks property.
--
--Optional properties:
--  - power-domains : power-domain property defined with a phandle
--			   to respective power domain.
--  - memory-region : from reserved memory binding: phandles to two reserved
--	memory regions, first is for "left" mfc memory bus interfaces,
--	second if for the "right" mfc memory bus, used when no SYSMMU
--	support is available; used only by MFC v5 present in Exynos4 SoCs
--
--Obsolete properties:
--  - samsung,mfc-r, samsung,mfc-l : support removed, please use memory-region
--	property instead
--
--
--Example:
--SoC specific DT entry:
--
--mfc: codec@13400000 {
--	compatible = "samsung,mfc-v5";
--	reg = <0x13400000 0x10000>;
--	interrupts = <0 94 0>;
--	power-domains = <&pd_mfc>;
--	clocks = <&clock 273>;
--	clock-names = "mfc";
--};
--
--Reserved memory specific DT entry for given board (see reserved memory binding
--for more information):
--
--reserved-memory {
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	mfc_left: region@51000000 {
--		compatible = "shared-dma-pool";
--		no-map;
--		reg = <0x51000000 0x800000>;
--	};
--
--	mfc_right: region@43000000 {
--		compatible = "shared-dma-pool";
--		no-map;
--		reg = <0x43000000 0x800000>;
--	};
--};
--
--Board specific DT entry:
--
--codec@13400000 {
--	memory-region = <&mfc_left>, <&mfc_right>;
--};
-diff --git a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-index 000000000000..e82b143086ba
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-@@ -0,0 +1,160 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/samsung,s5p-mfc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung Exynos Multi Format Codec (MFC)
-+
-+maintainers:
-+  - Marek Szyprowski <m.szyprowski@samsung.com>
-+  - Aakarsh Jain <aakarsh.jain@samsung.com>
-+
-+description:
-+  Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-+  supports high resolution decoding and encoding functionalities.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - samsung,mfc-v5                  # Exynos4
-+              - samsung,mfc-v6                  # Exynos5
-+      - items:
-+          - enum:
-+              - samsung,exynos3250-mfc          # Exynos3250
-+          - const: samsung,mfc-v7               # Fall back Exynos3250
-+      - items:
-+          - enum:
-+              - samsung,mfc-v7                  # Exynos5420
-+              - samsung,mfc-v8                  # Exynos5800
-+              - samsung,exynos5433-mfc          # Exynos5433
-+              - samsung,mfc-v10                 # Exynos7880
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 2
-+
-+  iommu-names:
-+    minItems: 1
-+    maxItems: 2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  memory-region:
-+    minItems: 1
-+    maxItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,mfc-v5
-+              - samsung,exynos3250-mfc
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          items:
-+            - const: mfc
-+            - const: sclk_mfc
-+        iommus:
-+          minItems: 1
-+          maxItems: 2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,mfc-v6
-+              - samsung,mfc-v8
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names:
-+          items:
-+            - const: mfc
-+        iommus:
-+          maxItems: 2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos5433-mfc
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 3
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: aclk
-+            - const: aclk_xiu
-+        iommus:
-+          maxItems: 2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,mfc-v7
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 1
-+          maxItems: 2
-+        iommus:
-+          minItems: 1
-+          maxItems: 2
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/exynos4.h>
-+    #include <dt-bindings/clock/exynos-audss-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    codec@13400000 {
-+          compatible = "samsung,mfc-v5";
-+          reg = <0x13400000 0x10000>;
-+          interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+          power-domains = <&pd_mfc>;
-+          clocks = <&clock CLK_MFC>, <&clock CLK_SCLK_MFC>;
-+          clock-names = "mfc", "sclk_mfc";
-+          iommus = <&sysmmu_mfc_l>, <&sysmmu_mfc_r>;
-+          iommu-names = "left", "right";
-+
-+    };
--- 
-2.17.1
+> +static unsigned long crc32_table[256];
 
+Why do you hand-create this, don't we have kernel functions for this?
+
+> +
+> +/* Default Power Save configuration */
+> +static int h2c_wakeupmode = WAKEUP_METHOD_BREAK;
+> +static int ps_mode = PS_MODE_ENABLE;
+
+This will not work.
+
+> +
+> +static int init_baudrate = 115200;
+
+and neither will this, as you need to support multiple devices in the
+system, your driver should never be only able to work with one device.
+Please make these device-specific things, not the same for the whole
+driver.
+
+> +static int ps_wakeup(struct btnxpuart_dev *nxpdev)
+> +{
+> +	struct ps_data *psdata = nxpdev->psdata;
+> +
+> +	if (psdata->ps_state == PS_STATE_AWAKE)
+> +		return 0;
+> +	psdata->ps_cmd = PS_CMD_EXIT_PS;
+> +	schedule_work(&psdata->work);
+> +
+> +	return 1;
+
+Why is this function returning anything (and what does 0 and 1 mean?)
+when you never actually check the return value of it?
+
+thanks,
+
+greg k-h
