@@ -2,82 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62BC86A046C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D726A047B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:08:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233728AbjBWJE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 04:04:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34336 "EHLO
+        id S233628AbjBWJIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 04:08:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233839AbjBWJE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:04:56 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 126C74A1EA
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:04:55 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id eg37so35837617edb.12
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:04:54 -0800 (PST)
+        with ESMTP id S229453AbjBWJIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:08:13 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6843A8F
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:08:06 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id o12so40097559edb.9
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 01:08:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8RmO4b5hhwebSj5Cj50iTEF8PxEqggdJHWYbDNzOlRM=;
-        b=O+4WkHK2t+oozA7GD5sbtbrdpKW4pqbPFGy6aDnYXl9BzRPgRkKmX7qCo6iDFyJVvb
-         Qfr4AHufrzEOqYmHDTbP4QbQgGQOXVzmQMb84SjZrALszYSSA658zSP0quiqlu/62Qjz
-         A6+4wAB/wMnSRzmAE04EwuXoWGxOFJL7Xs91N94iY2ZraaAgdB8/H5r0WwNiSvhlalc8
-         Nn+9SquFmNLf7/KcZ6LqMEcioiRTWxdlqmDqeqVkFOpOjbysj/GvLF6KyMyZJ7Nx8OR8
-         vQEpYg43Cbn32zSWbsMF6PFBIiHx8n5NFI4SDWhkhKSIF20qXgB5bD9BKAml7wwXjXJQ
-         nB3A==
+        bh=nmC8rU/r/vCYcTCassjtbwxQQmvscPWPC8NwoK8nv6Y=;
+        b=yXHwG+9zDhuVZ2TCZZ4Z30RxvwOLheweftDdXO1MbTiq4GvnDaonuOL5PDrPpEMpdk
+         mRiEcZ/44ZPPwvrGQ2FLuwMO4+0KXmQ5KzWof+9uprrkevZkwltts+56/Or9kfsf81iy
+         x/TNi+MZI/eSSvB9TSvpMfRtTEe7K9dCoEC8eeHVMsMWmddeiKOV1po+0vR4/WOwghUm
+         GXvTvMYFT8O3Qv2uOIryrT40DyUDESsePbbCr8K1ALlP4amRrO0gsEFPWT966ebb5PEa
+         mgt4NjoCIXt+2EI4Kj1PB81uk0i5v0b9WsTfsLuJTzcloptM13D1hKzDRGtLC3723ey4
+         vfEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8RmO4b5hhwebSj5Cj50iTEF8PxEqggdJHWYbDNzOlRM=;
-        b=oOAUyo+WxfbPo/qecYOTVx/sKBoHqmKrenj56zfAhB1klo8XiJexwjcGD84GuxyEtS
-         tFHBT4uVWLJAet56Xo2Yk4+BNxU+0c8SMqjSYN2t8udjPXMG7hGjbmW3j5ObDBOIlbWX
-         fsjlG2YlAhnYO5wzJcJacNfAfXvc0s0wrtQx1QLpwEwTBpdAOMJsopkuWs6DTKiW8K7H
-         xPmQE2VknZr0Z9uXLfZKCSJ1nYpDTyDwsGY623t7MvN7q5zAeNUQKpNYFPu2u8agfTCI
-         gkBkxSHc3IAAyaf3s/XU9MfKoSAty/bWF1bo15Zlv1usw/Hur0tn9KXEXML2l6tlRbYx
-         03zw==
-X-Gm-Message-State: AO0yUKVULKOcEIXeN93r27Fg/1AA2Qk46msehFxdgCa9CtKvkOQzHXuN
-        qdZCgsTtv7p/yH/sjtxwUwg8kg==
-X-Google-Smtp-Source: AK7set+3/2aqYsFGt0VD4bmZlatErnbLDJU/4VZzq7ckU0T/EaM6DW2wHb7xPgo8rQ5md5gIhk/yqg==
-X-Received: by 2002:a17:907:2da8:b0:8b1:7274:1a72 with SMTP id gt40-20020a1709072da800b008b172741a72mr19780103ejc.6.1677143093583;
-        Thu, 23 Feb 2023 01:04:53 -0800 (PST)
+        bh=nmC8rU/r/vCYcTCassjtbwxQQmvscPWPC8NwoK8nv6Y=;
+        b=MAnwZ6V2uJQyfoL7yQKiUAJ4IYUyzY4kx/f8N5hhVvi6cyInauoqhJSJRVakMAWNaI
+         fM0uZWpSd4JyFMIsAnxARFi2L7U7hLjx5NpYYlPzsMqZ+PZmYTggv9WFAExMEJ6LpRnP
+         PKsYktnNP/M00wHwixP36TNBXUj6vU1e0agaDeC/PiGkchWXXHprhs+4u/TEz/XjWUms
+         ZJNzlMSgKv0kT2PQMPZojsZMrfyTBJND37awDLGIavmG+phG7ovabW9Hro5cNx/hsTgI
+         2SkcYkb3VYycLBcyISMdgJsYjNaWkZEuhb9IFRH8UQsamgl+8OeYnS1dssCVDD2a9wYh
+         +H0g==
+X-Gm-Message-State: AO0yUKWwhKApQu3eKaORP7LhyJ1Ee56gQyHtY1rhSuoYnmzL3paXeaKC
+        lXhq8mwdrqjbKM9dAxNDEUEmBg==
+X-Google-Smtp-Source: AK7set8FqssPw31ewckoqg56O8trOVzvzax0KiJfiMOPwugY0umCwzbsSexEYjm9Rymh5WfeBMy3Rg==
+X-Received: by 2002:aa7:d351:0:b0:4ac:bb85:c895 with SMTP id m17-20020aa7d351000000b004acbb85c895mr9724924edr.1.1677143285066;
+        Thu, 23 Feb 2023 01:08:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b42-20020a509f2d000000b004ad72045ed9sm4325306edf.65.2023.02.23.01.04.51
+        by smtp.gmail.com with ESMTPSA id m6-20020a509986000000b004aef147add6sm4252398edb.47.2023.02.23.01.08.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 01:04:52 -0800 (PST)
-Message-ID: <3dd8c78b-20ea-24c8-4019-cc03ebbcad71@linaro.org>
-Date:   Thu, 23 Feb 2023 10:04:50 +0100
+        Thu, 23 Feb 2023 01:08:02 -0800 (PST)
+Message-ID: <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
+Date:   Thu, 23 Feb 2023 10:08:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: jh7110: Add PLL clock node
+Subject: Re: [PATCH v1 3/3] arch/arm: dts: introduce meson-a1 device tree
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230221141147.303642-1-xingyu.wu@starfivetech.com>
- <20230221141147.303642-4-xingyu.wu@starfivetech.com>
- <a799e064-b0ac-7300-b706-0c33e2d3610a@linaro.org>
- <842e5825-07ad-1806-d969-f54d9a9eed5a@starfivetech.com>
- <a8f723cf-d120-0102-d9b2-d40bfbf78349@linaro.org>
- <84a785bb-8a48-fa55-ea64-29c21ac42cf8@starfivetech.com>
+To:     Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@sberdevices.ru
+References: <20230222115020.55867-1-avromanov@sberdevices.ru>
+ <20230222115020.55867-4-avromanov@sberdevices.ru>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <84a785bb-8a48-fa55-ea64-29c21ac42cf8@starfivetech.com>
+In-Reply-To: <20230222115020.55867-4-avromanov@sberdevices.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,67 +79,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2023 10:03, Xingyu Wu wrote:
-> On 2023/2/23 16:52, Krzysztof Kozlowski wrote:
->> On 23/02/2023 09:47, Xingyu Wu wrote:
->>> On 2023/2/22 17:09, Krzysztof Kozlowski wrote:
->>>> On 21/02/2023 15:11, Xingyu Wu wrote:
->>>>> Add the PLL clock node for the Starfive JH7110 SoC and
->>>>> modify the SYSCRG node to add PLL clocks.
->>>>>
->>>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>>>> ---
->>>>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 15 +++++++++++++--
->>>>>  1 file changed, 13 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> index b6612c53d0d2..0cb8d86ebce5 100644
->>>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> @@ -461,12 +461,16 @@ syscrg: clock-controller@13020000 {
->>>>>  				 <&gmac1_rgmii_rxin>,
->>>>>  				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
->>>>>  				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
->>>>> -				 <&tdm_ext>, <&mclk_ext>;
->>>>> +				 <&tdm_ext>, <&mclk_ext>,
->>>>> +				 <&pllclk JH7110_CLK_PLL0_OUT>,
->>>>> +				 <&pllclk JH7110_CLK_PLL1_OUT>,
->>>>> +				 <&pllclk JH7110_CLK_PLL2_OUT>;
->>>>>  			clock-names = "osc", "gmac1_rmii_refin",
->>>>>  				      "gmac1_rgmii_rxin",
->>>>>  				      "i2stx_bclk_ext", "i2stx_lrck_ext",
->>>>>  				      "i2srx_bclk_ext", "i2srx_lrck_ext",
->>>>> -				      "tdm_ext", "mclk_ext";
->>>>> +				      "tdm_ext", "mclk_ext",
->>>>> +				      "pll0_out", "pll1_out", "pll2_out";
->>>>>  			#clock-cells = <1>;
->>>>>  			#reset-cells = <1>;
->>>>>  		};
->>>>> @@ -476,6 +480,13 @@ sys_syscon: syscon@13030000 {
->>>>>  			reg = <0x0 0x13030000 0x0 0x1000>;
->>>>>  		};
->>>>>  
->>>>> +		pllclk: pll-clock-controller {
->>>>
->>>> Does not look like you tested the DTS against bindings. Please run `make
->>>> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
->>>> for instructions). You should see here warnings of mixing non-MMIO nodes
->>>> in MMIO-bus.
->>>>
->>>
->>> Oh I cherry-pick the commit of syscon node and it also include the MMC node.
->>> I will remove the MMC node. 
->>> I used dtbs_check and get the error 'should not be valid under {'type': 'object'}',
->>> If I move this node out of the 'soc' node, the dtbs_check will be pass.
->>> Is it OK to move the PLL node out of the 'soc' node? Thanks.
->>
->> Shall it be out side of soc? How it can then do anything with registers?
->> This does not look like correct representation of hardware.
-> 
-> The error appears to be due to a lack of reg base about PLL node. PLL do something with register
-> by 'sys_syscon' node and the syscon node is in the soc node.
+On 22/02/2023 12:50, Alexey Romanov wrote:
+> Add basic support for the 32-bit Amlogic A1. This device tree
 
-Again: And how is this correct representation of hardware?
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+> describes following compontents: CPU, GIC, IRQ, Timer, UART,
+> PIN controller. It's capable of booting up into
+> the serial console.
+> 
+> This is based on arm64 version of meson-a1.dtsi.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> ---
+>  arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
+
+There is such file and there is such DTS/hardware support. I don't see
+any reason why entire DTSI should be duplicated. What's more, your
+commit does not explain it - does not justify duplication.
 
 Best regards,
 Krzysztof
