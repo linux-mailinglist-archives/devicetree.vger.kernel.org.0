@@ -2,156 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 487226A083E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 13:10:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD2F6A08F4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 13:52:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233297AbjBWMKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 07:10:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
+        id S233844AbjBWMwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 07:52:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232565AbjBWMKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 07:10:38 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C4D55047
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:10:09 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id g17so780577lfv.4
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:10:09 -0800 (PST)
+        with ESMTP id S233912AbjBWMwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 07:52:01 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C40F55C17
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:51:58 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id bt28so3938776wrb.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 04:51:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VQn70AP+A3I2sqmjhfgfqL1Y9XTnRaJMCZdiO2SRAdA=;
-        b=sRsF5eRVhlmOFCywnN66o4x7hIsjnlo+cWOI++wvBg3w7DbFNASgEvl3i4emeNfmUH
-         kKzoEjujEgFiAaYYD7THOVWUlp8iKd6Zpr6CKzVYEsifp9nhIe8JbDP7ohG1qANgSx3H
-         gEUo+g45pmRdlJPGeREwrWiYametw2jcpSB/6KviTPtGU8sM0CYf7AM/M9PfggKMBnu4
-         VW5XcA+egquL2zQdIc/+fCb0sYxw3dQpDaULAWsK/NePCEh9p6jCJlN/WKr8MBiwN4yt
-         wewBTQS7JB1n0lVHjUN1N8Jdpd96QrSTS1ONhNv9K/PcWdTkbleJHCCMjYxnznEv7Pv5
-         YBRA==
+        bh=He3/T5rNjZxbvQvsLoh9SavvhiALDTplmrGhWdH6/2E=;
+        b=alxxBCSG2sPNWiZwA17ja0FEz5b1RDxTTs4NGCFVIi8pqg9nexPHIGFFiVv19m7MF7
+         9lQqxzBWsGQfoFuqnSSabuDcCcD9lLoEBQlTsTiTzzXMAhJwzI3msL3PxuEc4lX2LN7N
+         PAUR1w6FHcB0gAgWqzWp+HhtdnvRT8MZq2jpz5WCzdFjfk2IAPyooUwKK4XswJVhkqMo
+         YmIHqfHGLxCxaEf9bKUoaUZe74VVxinp9k1p0nQZyGUHYaZb2DAvdkDy4IcO9owSUaR0
+         3o3gkdcYBcjVQvYgurSYyIazojzvlQ/gje1S+X7QFhPaWhuAI0wP7Yzp6C8UTFqkU/zu
+         c4GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VQn70AP+A3I2sqmjhfgfqL1Y9XTnRaJMCZdiO2SRAdA=;
-        b=yQHtNkg8/2aQelZcy/QbkkHyrCh5R0+CGpexZjzNuvB7+7YLkWwj0TIgXoJGrjufgF
-         +C084GQoCBUxwsD6EmgE1hpYb+VcmXaW+FWFJUf4stEbvffc6ICqvnJa18dON5XRXEFO
-         Xf4jAbUkbWncWEqjnzfaWIHHsDfHSZlCkeqy3n1V43cc+tw9oy3RioNOnXIB+Kujkm5/
-         0BhWSRzaMM03Idw6CttNrQIHYFfa9pnCqTSXda71O/eBBQoRVE1og5THoCGzaU5Tdtwh
-         692PEWIMDLxZ7olvK+HK5tvWCIFJB6dVXEuNs0h0WnaqqEQt0LA6yYf4s5msTTR72v5T
-         Z+KQ==
-X-Gm-Message-State: AO0yUKXn8Vm8W72LCHnBf94qLgFM0DM3Ckldycw6UtCkvUw7/k3MJ7Bt
-        kjjP4q/G6LdKHkWdibitxXdmDQ==
-X-Google-Smtp-Source: AK7set+O7HU38OM6BC/kSjZpEGP7oZyfke11r+upQCHouYa68PvTYy0DG/uzr00PZxqYJE6A8ov2tg==
-X-Received: by 2002:ac2:560f:0:b0:4d5:c96f:f7c7 with SMTP id v15-20020ac2560f000000b004d5c96ff7c7mr3460171lfd.23.1677154122485;
-        Thu, 23 Feb 2023 04:08:42 -0800 (PST)
-Received: from [192.168.1.101] (abxi151.neoplus.adsl.tpnet.pl. [83.9.2.151])
-        by smtp.gmail.com with ESMTPSA id v26-20020ac2593a000000b004dc4d984911sm638214lfi.271.2023.02.23.04.08.41
+        bh=He3/T5rNjZxbvQvsLoh9SavvhiALDTplmrGhWdH6/2E=;
+        b=CZVk6daTzlwrliyp5mNwE8L0ZTv65bg0lf97ppnStmurKbupuSH5opdsQaua3pann/
+         1IovNc6CBZNauHrO7/+TePWeBthcQuVo1rdfvrsN3O4zfyKyr6LpG8Xqbh55W9IHFXYt
+         yrOD3eoh2v5RMBwxcR7KcW40to0M28KecidB2gTAqz3d83L4NqVaOzwV9erzbcp0YI6Q
+         FbDpy3KoyuPMRP02ylD+lg0e7iguXI/s3teDRZ8FhPqLlXr7nbBP7eVNkQ+qsA2/EwTR
+         x4P8KRT1G7p/obhLWP3OMzssOOAjrJGFi+wPCnkMFqzRgVFDnpICZGjChrl5tBZThNfL
+         g5jw==
+X-Gm-Message-State: AO0yUKVT7OsvT7/CXIfR5ox1O9MQ0qJPZitnYp6lFs6yo+9k35MIRJb3
+        Z5BWRkDPfyhNlmuAGPcA9ul5KQ==
+X-Google-Smtp-Source: AK7set9ix212YSCnyGx56kbZG1wFRQMw0z+jnmOA6BkbGPbPtnvuzNhWX3F4lLDb03ZsXuDk0ySpaQ==
+X-Received: by 2002:a05:6000:136a:b0:2c7:f56:28d9 with SMTP id q10-20020a056000136a00b002c70f5628d9mr2470997wrz.54.1677156716880;
+        Thu, 23 Feb 2023 04:51:56 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c214a00b003e209186c07sm11194549wml.19.2023.02.23.04.51.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 04:08:42 -0800 (PST)
-Message-ID: <1c4f3f2c-d435-3721-df03-152c6468e0e3@linaro.org>
-Date:   Thu, 23 Feb 2023 13:08:40 +0100
+        Thu, 23 Feb 2023 04:51:56 -0800 (PST)
+Message-ID: <f852bf35-6f29-a91a-00ab-9f7b2d709328@linaro.org>
+Date:   Thu, 23 Feb 2023 12:51:55 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 01/15] dt-bindings: display/msm: gpu: Document GMU
- wrapper-equipped A6xx
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v6 2/5] arm64: dts: qcom: Add msm8939 SoC
 Content-Language: en-US
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>
-References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
- <20230223-topic-gmuwrapper-v3-1-5be55a336819@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230223-topic-gmuwrapper-v3-1-5be55a336819@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
+        stephan@gerhold.net, Jun Nie <jun.nie@linaro.org>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+References: <20230222120411.55197-1-bryan.odonoghue@linaro.org>
+ <20230222120411.55197-3-bryan.odonoghue@linaro.org>
+ <56ed6a30-9815-002f-8174-95e7e9fc0954@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <56ed6a30-9815-002f-8174-95e7e9fc0954@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 23.02.2023 13:06, Konrad Dybcio wrote:
-> GMU wrapper-equipped A6xx GPUs require clocks and clock-names to be
-> specified under the GPU node, just like their older cousins.
-> Account for that.
+On 22/02/2023 17:08, Konrad Dybcio wrote:
+>> +			interrupt-names = "wdog", "fatal", "ready",
+>> +					  "handover", "stop-ack";
+> This should be a vertical list
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-[...]
-> -    then: # Since Adreno 6xx series clocks should be defined in GMU
-> +            enum:
-> +              - qcom,adreno-610.0
-> +              - qcom,adreno-619.1
-Immediate comment: this could be improved by checking
-the compatible of the node referenced in qcom,gmu, but
-frankly - I have no idea how to do this / whether it's
-possible with schema.
-
-Konrad
-> +    then:
->        properties:
-> -        clocks: false
-> -        clock-names: false
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +              description: GPU Core clock
-> +            - const: iface
-> +              description: GPU Interface clock
-> +            - const: mem_iface
-> +              description: GPU Memory Interface clock
-> +            - const: alt_mem_iface
-> +              description: GPU Alternative Memory Interface clock
-> +            - const: gmu
-> +              description: CX GMU clock
-> +            - const: xo
-> +              description: GPUCC clocksource clock
-> +
-> +        reg-names:
-> +          minItems: 1
-> +          items:
-> +            - const: kgsl_3d0_reg_memory
-> +            - const: cx_dbgc
-> +
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +    else:
-> +      if:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              pattern: '^qcom,adreno-6[0-9][0-9]\.[0-9]$'
-> +
-> +      then: # Starting with A6xx, the clocks are usually defined in the GMU node
-> +        properties:
-> +          clocks: false
-> +          clock-names: false
-> +
-> +          reg-names:
-> +            minItems: 1
-> +            items:
-> +              - const: kgsl_3d0_reg_memory
-> +              - const: cx_mem
-> +              - const: cx_dbgc
->  
->  examples:
->    - |
+>> +
+>> +			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
+>> +				 <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
+>> +				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
+>> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>> +			clock-names = "iface", "bus", "mem", "xo";
+> This could also be one
 > 
+
+Sorry what are you asking for here Konrad
+
+clock-names = "iface",
+               "bus",
+
+if so, why ?
