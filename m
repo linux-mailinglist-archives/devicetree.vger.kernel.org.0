@@ -2,863 +2,453 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 474BF6A0F5E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 19:23:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A84186A0F65
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 19:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbjBWSXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 13:23:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38306 "EHLO
+        id S230338AbjBWSZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 13:25:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjBWSXr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 13:23:47 -0500
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 405D241B57;
-        Thu, 23 Feb 2023 10:23:45 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id u6so5670886ilk.12;
-        Thu, 23 Feb 2023 10:23:45 -0800 (PST)
+        with ESMTP id S231354AbjBWSZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 13:25:04 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B41F5AB59
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 10:25:02 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id e9so9038457plh.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 10:25:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KqaReXDUZ6RSuPnkPc3Zr3BCXFW8JQnRugjPygUU3Zo=;
-        b=G346yfAw2yX3ZGhRl6Xlj92UQWX5OCg+4gr7CEgxsYQHGT9HYadjLH56DLX/cxni5H
-         xVMIcja8ZoZv6YxRvVrY/Cy3dXCiNMvSnEkwkNvX3RWdI5CLqid/gn/m4uiO7yBI7KP3
-         ocOc7O4Gm3X0RrFvuRMnFpS343Fv57ar4b6EDYTFZipr9yxhpizbNleWk5hRcGPtEN7h
-         Tn0jpmw349vGSe4hrn+bTPdDSm7UTQwjLbuIGQ82qaQpW83YBDnkvHeGGnADn7kY0pDF
-         JdtnyTFl6swTbkRBQu1jJEPiMH2QT67VSDGg5G5TqXa35lmq0mk+2+oFh2H2GFAXfmPW
-         CLxQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bVwEscz/Y+saDO3etwQYIKRQGuuetgmWTZiefuu5kco=;
+        b=NlC/idhqV9P0E/O6ydhIrMg+1dYJ0NDCsEwRKT1eKrL5KMy35xw49Fdot+vX3XpGTE
+         NcKP4Z64VvBRZhGdvEUp43smXAI7i99CcYzVmI1lPx+vjNINXICb4ZA7hyQczarzmeUr
+         q1tfDLtw/4yqKWukmFSDuc2cwdFWYRdhemWWbUInI/wiX0/CmwyUVw+jNVpTcWD37u5/
+         S1HEgtTXu6r8y22rMtwYn9Zi47S2gsoZOyO+uRxtfEyWRczNaGRgXrNn4qrSjQqh20tp
+         URav5aFh0jENZesypnGQu/q9/hsRYyHFV6qNCNb38yEbgTnBZW6b973XzEAgkgBVVee/
+         f4ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KqaReXDUZ6RSuPnkPc3Zr3BCXFW8JQnRugjPygUU3Zo=;
-        b=dsg5LG7Al8N/2JMh8nE3xSGZrPcOTstWA1xyUAS3hcb3AjEeFDw/I+QNyXmmTbdEM+
-         LWWWAuSmTgbNeUvwKEshLn4XZlwhJGUmo+uLyMvP6+g5xDr9cY+mVaH6mwiPMWeS0/Ut
-         O9s9vpiP8+98+t5wtwCzHF0Ebs8RelHCAI3OuyErXXJDYtidymbgSLlLO3IINtuYp3hV
-         wt94t3gS0TYxVOmRn1MHglRgyy6PBYKK0/4NBT9ZvX8/iKHVmNmWdEWQyr5S1hnn1PY+
-         9hlPOLfWV8oYFF4PaF8fEu6/ZzH+QilMxIH8LReZs6ZUHKqsiiLYQkDJNkwbNXTUq/Sy
-         FQzA==
-X-Gm-Message-State: AO0yUKWNJTpu1kPMJzlM69WXJO0wSv0rY2VkZRg1lzczE8zqy/Cp1gB9
-        gDLf6Ctg2BAmftJlPJ1dWko=
-X-Google-Smtp-Source: AK7set89ESDqURyBGkcDKv0T06SviKnWXnA60W24VArgDS2JHZE+6zExlHNF4D6xALUY2qbMH5SvYA==
-X-Received: by 2002:a05:6e02:1d87:b0:316:b0b2:beff with SMTP id h7-20020a056e021d8700b00316b0b2beffmr13004998ila.4.1677176624254;
-        Thu, 23 Feb 2023 10:23:44 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q28-20020a02cf1c000000b003c4f35c21absm3791473jar.137.2023.02.23.10.23.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Feb 2023 10:23:43 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 23 Feb 2023 10:23:41 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
-Message-ID: <20230223182341.GA200380@roeck-us.net>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-3-xingyu.wu@starfivetech.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bVwEscz/Y+saDO3etwQYIKRQGuuetgmWTZiefuu5kco=;
+        b=k/7PmdruAFrSfGP9AjTY8MB123S5heyjbu2f3aBg3ZeZaxW46tUPJKyJTApJVyqMky
+         o0Jp2Y7kpPtEK1xHAVsxhxiMCTegkP8MBSHPfbMDtV0z+yCszQh4UcVo6/6xzrV+KGEO
+         BXIrAFznpYOX7iros9XwgqbidkihxNB3/jLU7CTpBPuofVYK6nGo0JuE3/HIuuPb4NZX
+         cdEIBliXEaeLEMtOIOtKhxE8SKUdLjQbL99xjqfnVw5Gq3URYuT6XtJvBmiBngoo/N00
+         3CewUhuWzTtm1s5kt119vsPtR/kOOMo136r0kGlwwyKJbB1GxAAdRrb6SXHeSuE/7WMp
+         honA==
+X-Gm-Message-State: AO0yUKVfNrk6TMm+0JSOEycSAdbTPQZRpGC4sWpwYy6nIF4Yx0ESV1H4
+        kdx0mDVyQIwq1zagsQzhP5XfDQ==
+X-Google-Smtp-Source: AK7set+54NYIyG+rKqashp041S2yrG/uGzg64/ZsISfO06ELYtkPlOWa5CGZiELDsnrScAzjs8CxsA==
+X-Received: by 2002:a17:902:ecc4:b0:19a:9945:a7aa with SMTP id a4-20020a170902ecc400b0019a9945a7aamr18203955plh.20.1677176701626;
+        Thu, 23 Feb 2023 10:25:01 -0800 (PST)
+Received: from [10.211.55.3] (c-73-221-130-71.hsd1.wa.comcast.net. [73.221.130.71])
+        by smtp.gmail.com with ESMTPSA id y11-20020a170902700b00b0019ac9c4f32esm5992380plk.309.2023.02.23.10.24.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Feb 2023 10:25:01 -0800 (PST)
+Message-ID: <18e90758-472e-31b2-65d4-c2504b185d4e@linaro.org>
+Date:   Thu, 23 Feb 2023 12:24:57 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230220081926.267695-3-xingyu.wu@starfivetech.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v10 07/26] mailbox: Add Gunyah message queue mailbox
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212316.3309053-1-quic_eberman@quicinc.com>
+From:   Alex Elder <alex.elder@linaro.org>
+In-Reply-To: <20230214212316.3309053-1-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 20, 2023 at 04:19:26PM +0800, Xingyu Wu wrote:
-> Add watchdog driver for the StarFive JH7110 SoC.
+On 2/14/23 3:23 PM, Elliot Berman wrote:
+> Gunyah message queues are a unidirectional inter-VM pipe for messages up
+> to 1024 bytes. This driver supports pairing a receiver message queue and
+> a transmitter message queue to expose a single mailbox channel.
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+
+I have a general comment for "include/linux/gunyah.h".
+
+You sometimes use "gunyah" in exported names (for example,
+enum gunyah_resource_type, or struct gunyah_resource).  In
+many cases, though, you use "gh_ or "GH_" (such as in
+struct gh_msgq, or GH_DBL_NONBLOCK).  Is there a reason
+that you don't pick one and use it everywhere?
+
+I think it would be best--certainly for exported symbols
+like these--to use a single symbol prefix for all cases.
+
+Sometimes there might be a reason to distinguish two names
+(maybe "gunyah_" symbols are truly public, while "gh_"
+symbols are helpers meant generally to be private).  But
+I don't think that's the case here.
+
+It seems that "gh" is your most frequent prefix, so that
+might be easier to implement.  But "gunyah" is more expressive
+and is only 4 characters wider.
+
+					-Alex
+
 > ---
->  MAINTAINERS                     |   7 +
->  drivers/watchdog/Kconfig        |   9 +
->  drivers/watchdog/Makefile       |   2 +
->  drivers/watchdog/starfive-wdt.c | 651 ++++++++++++++++++++++++++++++++
->  4 files changed, 669 insertions(+)
->  create mode 100644 drivers/watchdog/starfive-wdt.c
+>   Documentation/virt/gunyah/message-queue.rst |   8 +
+>   drivers/mailbox/Makefile                    |   2 +
+>   drivers/mailbox/gunyah-msgq.c               | 214 ++++++++++++++++++++
+>   include/linux/gunyah.h                      |  56 +++++
+>   4 files changed, 280 insertions(+)
+>   create mode 100644 drivers/mailbox/gunyah-msgq.c
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 135d93368d36..6cbcf08fa76a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19933,6 +19933,13 @@ F:	Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
->  F:	drivers/reset/reset-starfive-jh7100.c
->  F:	include/dt-bindings/reset/starfive-jh7100.h
->  
-> +STARFIVE JH7110 WATCHDOG DRIVER
-> +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
-> +M:	Samin Guo <samin.guo@starfivetech.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/watchdog/starfive*
-> +F:	drivers/watchdog/starfive-wdt.c
+> diff --git a/Documentation/virt/gunyah/message-queue.rst b/Documentation/virt/gunyah/message-queue.rst
+> index 0667b3eb1ff9..082085e981e0 100644
+> --- a/Documentation/virt/gunyah/message-queue.rst
+> +++ b/Documentation/virt/gunyah/message-queue.rst
+> @@ -59,3 +59,11 @@ vIRQ: two TX message queues will have two vIRQs (and two capability IDs).
+>         |               |         |                 |         |               |
+>         |               |         |                 |         |               |
+>         +---------------+         +-----------------+         +---------------+
 > +
->  STATIC BRANCH/CALL
->  M:	Peter Zijlstra <peterz@infradead.org>
->  M:	Josh Poimboeuf <jpoimboe@kernel.org>
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 0bc40b763b06..4608eb5c9501 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -2089,6 +2089,15 @@ config UML_WATCHDOG
->  	tristate "UML watchdog"
->  	depends on UML || COMPILE_TEST
->  
-> +config STARFIVE_WATCHDOG
-> +	tristate "StarFive Watchdog support"
-> +	depends on RISCV
-> +	select WATCHDOG_CORE
-> +	default SOC_STARFIVE
-> +	help
-> +	  Say Y here to support the watchdog of StarFive JH7110 SoC.
-> +	  This driver can also be built as a module if choose M.
+> +Gunyah message queues are exposed as mailboxes. To create the mailbox, create
+> +a mbox_client and call `gh_msgq_init`. On receipt of the RX_READY interrupt,
+> +all messages in the RX message queue are read and pushed via the `rx_callback`
+> +of the registered mbox_client.
 > +
->  #
->  # ISA-based Watchdog Cards
->  #
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 9cbf6580f16c..4c0bd377e92a 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -211,6 +211,8 @@ obj-$(CONFIG_WATCHDOG_SUN4V)		+= sun4v_wdt.o
->  # Xen
->  obj-$(CONFIG_XEN_WDT) += xen_wdt.o
->  
-> +obj-$(CONFIG_STARFIVE_WATCHDOG) += starfive-wdt.o
+> +.. kernel-doc:: drivers/mailbox/gunyah-msgq.c
+> +   :identifiers: gh_msgq_init
+> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> index fc9376117111..5f929bb55e9a 100644
+> --- a/drivers/mailbox/Makefile
+> +++ b/drivers/mailbox/Makefile
+> @@ -55,6 +55,8 @@ obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
+>   
+>   obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
+>   
+> +obj-$(CONFIG_GUNYAH)		+= gunyah-msgq.o
 > +
->  # Architecture Independent
->  obj-$(CONFIG_BD957XMUF_WATCHDOG) += bd9576_wdt.o
->  obj-$(CONFIG_DA9052_WATCHDOG) += da9052_wdt.o
-> diff --git a/drivers/watchdog/starfive-wdt.c b/drivers/watchdog/starfive-wdt.c
+>   obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
+>   
+>   obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
+> diff --git a/drivers/mailbox/gunyah-msgq.c b/drivers/mailbox/gunyah-msgq.c
 > new file mode 100644
-> index 000000000000..dfbb80406076
+> index 000000000000..03ffaa30ce9b
 > --- /dev/null
-> +++ b/drivers/watchdog/starfive-wdt.c
-> @@ -0,0 +1,651 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/mailbox/gunyah-msgq.c
+> @@ -0,0 +1,214 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * Starfive Watchdog driver
-> + *
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
 > + */
 > +
-> +#include <linux/clk.h>
-> +#include <linux/iopoll.h>
+> +#include <linux/mailbox_controller.h>
 > +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/reset.h>
-> +#include <linux/watchdog.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/gunyah.h>
+> +#include <linux/printk.h>
+> +#include <linux/init.h>
+> +#include <linux/slab.h>
+> +#include <linux/wait.h>
 > +
-> +/* JH7110 WatchDog register define */
-> +#define STARFIVE_WDT_JH7110_LOAD	0x000	/* RW: Watchdog load register */
-> +#define STARFIVE_WDT_JH7110_VALUE	0x004	/* RO: The current value for the watchdog counter */
-> +#define STARFIVE_WDT_JH7110_CONTROL	0x008	/*
-> +						 * RW:
-> +						 * [0]: reset enable;
-> +						 * [1]: int enable/wdt enable/reload counter;
-> +						 * [31:2]: reserve.
-
-reserved
-
-> +						 */
-> +#define STARFIVE_WDT_JH7110_INTCLR	0x00c	/* WO: clear intterupt && reload the counter */
-> +#define STARFIVE_WDT_JH7110_RIS		0x010	/* RO: Raw interrupt status from the counter */
-> +#define STARFIVE_WDT_JH7110_IMS		0x014	/* RO: Enabled interrupt status from the counter */
-> +#define STARFIVE_WDT_JH7110_LOCK	0xc00	/*
-> +						 * RO: Enable write access to all other registers
-> +						 * by writing 0x1ACCE551.
-> +						 */
-
-"RO" contradicts itself against the rest of the comment. The register is
-written to, so it can't bew RO.
-
+> +#define mbox_chan_to_msgq(chan) (container_of(chan->mbox, struct gh_msgq, mbox))
 > +
-> +/* WDOGCONTROL */
-> +#define STARFIVE_WDT_ENABLE			0x1
-> +#define STARFIVE_WDT_JH7110_EN_SHIFT		0
-> +#define STARFIVE_WDT_RESET_EN			0x1
-> +#define STARFIVE_WDT_JH7110_RESEN_SHIFT		1
-> +
-> +/* WDOGLOCK */
-> +#define STARFIVE_WDT_LOCKED			BIT(0)
-> +#define STARFIVE_WDT_JH7110_UNLOCK_KEY		0x1acce551
-> +
-> +/* WDOGINTCLR */
-> +#define STARFIVE_WDT_INTCLR			0x1
-> +
-> +#define STARFIVE_WDT_MAXCNT			0xffffffff
-> +#define STARFIVE_WDT_DEFAULT_TIME		(15)
-> +#define STARFIVE_WDT_DELAY_US			0
-> +#define STARFIVE_WDT_TIMEOUT_US			10000
-> +
-> +/* module parameter */
-> +#define STARFIVE_WDT_EARLY_ENA			0
-> +
-> +static bool nowayout = WATCHDOG_NOWAYOUT;
-> +static int heartbeat;
-> +static int early_enable = STARFIVE_WDT_EARLY_ENA;
-> +
-> +module_param(heartbeat, int, 0);
-> +module_param(early_enable, int, 0);
-> +module_param(nowayout, bool, 0);
-> +
-> +MODULE_PARM_DESC(heartbeat, "Watchdog heartbeat in seconds. (default="
-> +		 __MODULE_STRING(STARFIVE_WDT_DEFAULT_TIME) ")");
-> +MODULE_PARM_DESC(early_enable,
-> +		 "Watchdog is started at boot time if set to 1, default="
-> +		 __MODULE_STRING(STARFIVE_WDT_EARLY_ENA));
-> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-> +
-> +struct starfive_wdt_variant {
-> +	u32 control;
-> +	u32 load;
-> +	u32 enable;
-> +	u32 value;
-> +	u32 int_clr;
-> +	u32 unlock;
-> +	u32 unlock_key;
-> +	u32 irq_is_raise;
-> +	u8 enrst_shift;
-> +	u8 en_shift;
-> +};
-> +
-> +struct starfive_wdt {
-> +	unsigned long freq;
-> +	struct device *dev;
-> +	struct watchdog_device wdt_device;
-> +	struct clk *core_clk;
-> +	struct clk *apb_clk;
-> +	struct reset_control *rsts;
-> +	const struct starfive_wdt_variant *drv_data;
-> +	u32 count;	/*count of timeout*/
-> +	u32 reload;	/*restore the count*/
-> +	void __iomem *base;
-> +	spinlock_t lock;	/* spinlock for register handling */
-> +};
-> +
-> +/* Register bias in JH7110 */
-> +static const struct starfive_wdt_variant drv_data_jh7110 = {
-> +	.control = STARFIVE_WDT_JH7110_CONTROL,
-> +	.load = STARFIVE_WDT_JH7110_LOAD,
-> +	.enable = STARFIVE_WDT_JH7110_CONTROL,
-> +	.value = STARFIVE_WDT_JH7110_VALUE,
-> +	.int_clr = STARFIVE_WDT_JH7110_INTCLR,
-> +	.unlock = STARFIVE_WDT_JH7110_LOCK,
-> +	.unlock_key = STARFIVE_WDT_JH7110_UNLOCK_KEY,
-> +	.irq_is_raise = STARFIVE_WDT_JH7110_IMS,
-> +	.enrst_shift = STARFIVE_WDT_JH7110_RESEN_SHIFT,
-> +	.en_shift = STARFIVE_WDT_JH7110_EN_SHIFT,
-> +};
-> +
-> +static const struct of_device_id starfive_wdt_match[] = {
-> +	{ .compatible = "starfive,jh7110-wdt", .data = &drv_data_jh7110 },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, starfive_wdt_match);
-> +
-> +static const struct platform_device_id starfive_wdt_ids[] = {
-> +	{
-> +		.name = "starfive-jh7110-wdt",
-> +		.driver_data = (unsigned long)&drv_data_jh7110,
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(platform, starfive_wdt_ids);
-> +
-> +static int starfive_wdt_get_clock_rate(struct starfive_wdt *wdt)
+> +static irqreturn_t gh_msgq_rx_irq_handler(int irq, void *data)
 > +{
-> +	wdt->freq = clk_get_rate(wdt->core_clk);
-> +	/* The clock rate should not be 0.*/
-
-This is obvious and not worth a comment.
-
-> +	if (wdt->freq)
+> +	struct gh_msgq *msgq = data;
+> +	struct gh_msgq_rx_data rx_data;
+> +	enum gh_error err;
+> +	bool ready = true;
+> +
+> +	while (ready) {
+> +		err = gh_hypercall_msgq_recv(msgq->rx_ghrsc->capid,
+> +				(uintptr_t)&rx_data.data, sizeof(rx_data.data),
+> +				&rx_data.length, &ready);
+> +		if (err != GH_ERROR_OK) {
+> +			if (err != GH_ERROR_MSGQUEUE_EMPTY)
+> +				pr_warn("Failed to receive data from msgq for %s: %d\n",
+> +					msgq->mbox.dev ? dev_name(msgq->mbox.dev) : "", err);
+> +			break;
+> +		}
+> +		mbox_chan_received_data(gh_msgq_chan(msgq), &rx_data);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +/* Fired when message queue transitions from "full" to "space available" to send messages */
+> +static irqreturn_t gh_msgq_tx_irq_handler(int irq, void *data)
+> +{
+> +	struct gh_msgq *msgq = data;
+> +
+> +	mbox_chan_txdone(gh_msgq_chan(msgq), 0);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +/* Fired after sending message and hypercall told us there was more space available. */
+> +static void gh_msgq_txdone_tasklet(struct tasklet_struct *tasklet)
+> +{
+> +	struct gh_msgq *msgq = container_of(tasklet, struct gh_msgq, txdone_tasklet);
+> +
+> +	mbox_chan_txdone(gh_msgq_chan(msgq), msgq->last_ret);
+> +}
+> +
+> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
+> +{
+> +	struct gh_msgq *msgq = mbox_chan_to_msgq(chan);
+> +	struct gh_msgq_tx_data *msgq_data = data;
+> +	u64 tx_flags = 0;
+> +	enum gh_error gh_error;
+> +	bool ready;
+> +
+> +	if (msgq_data->push)
+> +		tx_flags |= GH_HYPERCALL_MSGQ_TX_FLAGS_PUSH;
+> +
+> +	gh_error = gh_hypercall_msgq_send(msgq->tx_ghrsc->capid, msgq_data->length,
+> +					(uintptr_t)msgq_data->data, tx_flags, &ready);
+> +
+> +	/**
+> +	 * unlikely because Linux tracks state of msgq and should not try to
+> +	 * send message when msgq is full.
+> +	 */
+> +	if (unlikely(gh_error == GH_ERROR_MSGQUEUE_FULL))
+> +		return -EAGAIN;
+> +
+> +	/**
+> +	 * Propagate all other errors to client. If we return error to mailbox
+> +	 * framework, then no other messages can be sent and nobody will know
+> +	 * to retry this message.
+> +	 */
+> +	msgq->last_ret = gh_remap_error(gh_error);
+> +
+> +	/**
+> +	 * This message was successfully sent, but message queue isn't ready to
+> +	 * receive more messages because it's now full. Mailbox framework
+> +	 * requires that we only report that message was transmitted when
+> +	 * we're ready to transmit another message. We'll get that in the form
+> +	 * of tx IRQ once the other side starts to drain the msgq.
+> +	 */
+> +	if (gh_error == GH_ERROR_OK && !ready)
 > +		return 0;
 > +
-> +	dev_err(wdt->dev, "get clock rate failed.\n");
-> +	return -ENOENT;
-
-Error handling should come first
-
-	if (!wdt->freq) {
-		dev_err(wdt->dev, "get clock rate failed.\n");
-		return -EINVAL;
-	}
-	return 0;
-
-This is not "No such file or directory" (yes, I see that other drivers
-do that, but that doesn't make it better). Use -EINVAL instead.
-
-> +}
-> +
-> +static int starfive_wdt_get_clock(struct starfive_wdt *wdt)
-> +{
-> +	wdt->apb_clk = devm_clk_get(wdt->dev, "apb");
-> +	if (IS_ERR(wdt->apb_clk)) {
-> +		dev_err(wdt->dev, "failed to get apb clock.\n");
-> +		return PTR_ERR(wdt->apb_clk);
-> +	}
-> +
-> +	wdt->core_clk = devm_clk_get(wdt->dev, "core");
-> +	if (IS_ERR(wdt->core_clk)) {
-> +		dev_err(wdt->dev, "failed to get core clock.\n");
-> +		return PTR_ERR(wdt->core_clk);
-> +	}
+> +	/**
+> +	 * We can send more messages. Mailbox framework requires that tx done
+> +	 * happens asynchronously to sending the message. Gunyah message queues
+> +	 * tell us right away on the hypercall return whether we can send more
+> +	 * messages. To work around this, defer the txdone to a tasklet.
+> +	 */
+> +	tasklet_schedule(&msgq->txdone_tasklet);
 > +
 > +	return 0;
 > +}
 > +
-> +static int starfive_wdt_reset_init(struct starfive_wdt *wdt)
-> +{
-> +	int ret = 0;
+> +static struct mbox_chan_ops gh_msgq_ops = {
+> +	.send_data = gh_msgq_send_data,
+> +};
 > +
-> +	wdt->rsts = devm_reset_control_array_get_exclusive(wdt->dev);
-> +	if (IS_ERR(wdt->rsts)) {
-> +		dev_err(wdt->dev, "failed to get rsts error.\n");
-
-I don't think this message is understandable. "failed to get reset
-control", maybe. Also, the call may return -EPROBE_DEFER,
-which should not generate an error message. Either drop the message
-or use dev_err_probe().
-
-> +		ret = PTR_ERR(wdt->rsts);
-> +	} else {
-> +		ret = reset_control_deassert(wdt->rsts);
-> +		if (ret)
-> +			dev_err(wdt->dev, "failed to deassert rsts.\n");
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static u32 starfive_wdt_ticks_to_sec(struct starfive_wdt *wdt, u32 ticks)
-> +{
-> +	return DIV_ROUND_CLOSEST(ticks, wdt->freq);
-> +}
-> +
-> +/*
-> + * Write unlock-key to unlock. Write other value to lock. When lock bit is 1,
-> + * external accesses to other watchdog registers are ignored.
+> +/**
+> + * gh_msgq_init() - Initialize a Gunyah message queue with an mbox_client
+> + * @parent: optional, device parent used for the mailbox controller
+> + * @msgq: Pointer to the gh_msgq to initialize
+> + * @cl: A mailbox client to bind to the mailbox channel that the message queue creates
+> + * @tx_ghrsc: optional, the transmission side of the message queue
+> + * @rx_ghrsc: optional, the receiving side of the message queue
+> + *
+> + * At least one of tx_ghrsc and rx_ghrsc should be not NULL. Most message queue use cases come with
+> + * a pair of message queues to facilitate bidirectional communication. When tx_ghrsc is set,
+> + * the client can send messages with mbox_send_message(gh_msgq_chan(msgq), msg). When rx_ghrsc
+> + * is set, the mbox_client should register an .rx_callback() and the message queue driver will
+> + * push all available messages upon receiving the RX ready interrupt. The messages should be
+> + * consumed or copied by the client right away as the gh_msgq_rx_data will be replaced/destroyed
+> + * after the callback.
+> + *
+> + * Returns - 0 on success, negative otherwise
 > + */
-> +static bool starfive_wdt_is_locked(struct starfive_wdt *wdt)
+> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct mbox_client *cl,
+> +		     struct gunyah_resource *tx_ghrsc, struct gunyah_resource *rx_ghrsc)
 > +{
-> +	u32 val;
-> +
-> +	val = readl(wdt->base + wdt->drv_data->unlock);
-> +	return !!(val & STARFIVE_WDT_LOCKED);
-> +}
-> +
-> +static void starfive_wdt_unlock(struct starfive_wdt *wdt)
-> +{
-> +	if (starfive_wdt_is_locked(wdt))
-> +		writel(wdt->drv_data->unlock_key,
-> +		       wdt->base + wdt->drv_data->unlock);
-> +}
-> +
-> +static void starfive_wdt_lock(struct starfive_wdt *wdt)
-> +{
-> +	if (!starfive_wdt_is_locked(wdt))
-> +		writel(~wdt->drv_data->unlock_key,
-> +		       wdt->base + wdt->drv_data->unlock);
-> +}
-> +
-> +/* enable watchdog interrupt to reset/reboot */
-> +static void starfive_wdt_enable_reset(struct starfive_wdt *wdt)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(wdt->base + wdt->drv_data->control);
-> +	val |= STARFIVE_WDT_RESET_EN << wdt->drv_data->enrst_shift;
-> +	writel(val, wdt->base + wdt->drv_data->control);
-> +}
-> +
-> +/* disable watchdog interrupt to reset/reboot */
-> +static void starfive_wdt_disable_reset(struct starfive_wdt *wdt)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(wdt->base + wdt->drv_data->control);
-> +	val &= ~(STARFIVE_WDT_RESET_EN << wdt->drv_data->enrst_shift);
-> +	writel(val, wdt->base + wdt->drv_data->control);
-> +}
-> +
-> +/* interrupt status whether has been raised from the counter */
-> +static bool starfive_wdt_raise_irq_status(struct starfive_wdt *wdt)
-> +{
-> +	return !!readl(wdt->base + wdt->drv_data->irq_is_raise);
-> +}
-> +
-> +/* clear interrupt signal before initialization or reload */
-> +static void starfive_wdt_int_clr(struct starfive_wdt *wdt)
-> +{
-> +	writel(STARFIVE_WDT_INTCLR, wdt->base + wdt->drv_data->int_clr);
-> +}
-> +
-> +static inline void starfive_wdt_set_count(struct starfive_wdt *wdt, u32 val)
-> +{
-> +	writel(val, wdt->base + wdt->drv_data->load);
-> +}
-> +
-> +static inline u32 starfive_wdt_get_count(struct starfive_wdt *wdt)
-> +{
-> +	return readl(wdt->base + wdt->drv_data->value);
-> +}
-> +
-> +/* enable watchdog */
-> +static inline void starfive_wdt_enable(struct starfive_wdt *wdt)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(wdt->base + wdt->drv_data->enable);
-> +	val |= STARFIVE_WDT_ENABLE << wdt->drv_data->en_shift;
-> +	writel(val, wdt->base + wdt->drv_data->enable);
-> +}
-> +
-> +/* disable watchdog */
-> +static inline void starfive_wdt_disable(struct starfive_wdt *wdt)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(wdt->base + wdt->drv_data->enable);
-> +	val &= ~(STARFIVE_WDT_ENABLE << wdt->drv_data->en_shift);
-> +	writel(val, wdt->base + wdt->drv_data->enable);
-> +}
-> +
-> +static inline void starfive_wdt_set_reload_count(struct starfive_wdt *wdt, u32 count)
-> +{
-> +	starfive_wdt_set_count(wdt, count);
-> +	/* need enable controller to reload counter */
-> +	starfive_wdt_enable(wdt);
-> +}
-> +
-> +static unsigned int starfive_wdt_max_timeout(struct starfive_wdt *wdt)
-> +{
-> +	return DIV_ROUND_UP(STARFIVE_WDT_MAXCNT, (wdt->freq / 2)) - 1;
-> +}
-> +
-> +static unsigned int starfive_wdt_get_timeleft(struct watchdog_device *wdd)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +	u32 count;
-> +
-> +	starfive_wdt_unlock(wdt);
-> +	/*
-> +	 * Because set half count value,
-> +	 * timeleft value should add the count value before first timeout.
-> +	 */
-> +	count = starfive_wdt_get_count(wdt);
-> +	if (!starfive_wdt_raise_irq_status(wdt))
-> +		count += wdt->count;
-> +
-> +	starfive_wdt_lock(wdt);
-> +
-> +	return starfive_wdt_ticks_to_sec(wdt, count);
-> +}
-> +
-> +static int starfive_wdt_keepalive(struct watchdog_device *wdd)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +
-> +	spin_lock(&wdt->lock);
-> +
-> +	starfive_wdt_unlock(wdt);
-> +	starfive_wdt_int_clr(wdt);
-> +	starfive_wdt_set_reload_count(wdt, wdt->count);
-> +	starfive_wdt_lock(wdt);
-> +
-> +	spin_unlock(&wdt->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_wdt_stop(struct watchdog_device *wdd)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +
-> +	spin_lock(&wdt->lock);
-> +
-> +	starfive_wdt_unlock(wdt);
-> +	starfive_wdt_disable_reset(wdt);
-
-Is that necessary ? The watchdog is going to be stopped, after all.
-
-> +	starfive_wdt_int_clr(wdt);
-> +	starfive_wdt_disable(wdt);
-> +	starfive_wdt_lock(wdt);
-> +
-> +	spin_unlock(&wdt->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_wdt_pm_stop(struct watchdog_device *wdd)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +
-> +	starfive_wdt_stop(wdd);
-> +	pm_runtime_put_sync(wdt->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_wdt_start(struct watchdog_device *wdd)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +
-> +	spin_lock(&wdt->lock);
-> +	starfive_wdt_unlock(wdt);
-> +	/* disable watchdog, to be safe */
-> +	starfive_wdt_disable(wdt);
-> +
-> +	starfive_wdt_enable_reset(wdt);
-> +	starfive_wdt_int_clr(wdt);
-> +	starfive_wdt_set_count(wdt, wdt->count);
-> +	starfive_wdt_enable(wdt);
-> +
-> +	starfive_wdt_lock(wdt);
-> +	spin_unlock(&wdt->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_wdt_pm_start(struct watchdog_device *wdd)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +
-> +	pm_runtime_get_sync(wdt->dev);
-> +
-> +	return starfive_wdt_start(wdd);
-> +}
-> +
-> +static int starfive_wdt_set_timeout(struct watchdog_device *wdd,
-> +				    unsigned int timeout)
-> +{
-> +	struct starfive_wdt *wdt = watchdog_get_drvdata(wdd);
-> +	unsigned long freq = wdt->freq;
-> +
-> +	spin_lock(&wdt->lock);
-> +
-> +	/*
-> +	 * This watchdog takes twice timeouts to reset.
-> +	 * In order to reduce time to reset, should set half count value.
-> +	 */
-> +	wdt->count = timeout * freq / 2;
-> +	wdd->timeout = timeout;
-> +
-> +	starfive_wdt_unlock(wdt);
-> +	starfive_wdt_disable(wdt);
-> +	starfive_wdt_set_reload_count(wdt, wdt->count);
-> +	starfive_wdt_enable(wdt);
-> +	starfive_wdt_lock(wdt);
-> +
-> +	spin_unlock(&wdt->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +#define OPTIONS (WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE)
-> +
-> +static const struct watchdog_info starfive_wdt_ident = {
-> +	.options = OPTIONS,
-> +	.identity = "StarFive Watchdog",
-> +};
-> +
-> +static const struct watchdog_ops starfive_wdt_ops = {
-> +	.owner = THIS_MODULE,
-> +	.start = starfive_wdt_pm_start,
-> +	.stop = starfive_wdt_pm_stop,
-> +	.ping = starfive_wdt_keepalive,
-> +	.set_timeout = starfive_wdt_set_timeout,
-> +	.get_timeleft = starfive_wdt_get_timeleft,
-> +};
-> +
-> +static const struct watchdog_device starfive_wdd = {
-> +	.info = &starfive_wdt_ident,
-> +	.ops = &starfive_wdt_ops,
-> +	.timeout = STARFIVE_WDT_DEFAULT_TIME,
-> +};
-> +
-> +static inline const struct starfive_wdt_variant *
-> +starfive_wdt_get_drv_data(struct platform_device *pdev)
-> +{
-> +	const struct starfive_wdt_variant *variant;
-> +
-> +	variant = of_device_get_match_data(&pdev->dev);
-> +	if (!variant) {
-> +		/* Device matched by platform_device_id */
-> +		variant = (struct starfive_wdt_variant *)
-> +			   platform_get_device_id(pdev)->driver_data;
-> +	}
-> +
-> +	return variant;
-> +}
-> +
-> +static int starfive_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct starfive_wdt *wdt;
 > +	int ret;
 > +
-> +	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-> +	if (!wdt)
+> +	/* Must have at least a tx_ghrsc or rx_ghrsc and that they are the right device types */
+> +	if ((!tx_ghrsc && !rx_ghrsc) ||
+> +	    (tx_ghrsc && tx_ghrsc->type != GUNYAH_RESOURCE_TYPE_MSGQ_TX) ||
+> +	    (rx_ghrsc && rx_ghrsc->type != GUNYAH_RESOURCE_TYPE_MSGQ_RX))
+> +		return -EINVAL;
+> +
+> +	if (gh_api_version() != GUNYAH_API_V1) {
+> +		pr_err("Unrecognized gunyah version: %u. Currently supported: %d\n",
+> +			gh_api_version(), GUNYAH_API_V1);
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	if (!gh_api_has_feature(GH_API_FEATURE_MSGQUEUE))
+> +		return -EOPNOTSUPP;
+> +
+> +	msgq->tx_ghrsc = tx_ghrsc;
+> +	msgq->rx_ghrsc = rx_ghrsc;
+> +
+> +	msgq->mbox.dev = parent;
+> +	msgq->mbox.ops = &gh_msgq_ops;
+> +	msgq->mbox.num_chans = 1;
+> +	msgq->mbox.txdone_irq = true;
+> +	msgq->mbox.chans = kcalloc(msgq->mbox.num_chans, sizeof(*msgq->mbox.chans), GFP_KERNEL);
+> +	if (!msgq->mbox.chans)
 > +		return -ENOMEM;
 > +
-> +	wdt->dev = dev;
-> +	spin_lock_init(&wdt->lock);
-> +	wdt->wdt_device = starfive_wdd;
-> +
-> +	wdt->drv_data = starfive_wdt_get_drv_data(pdev);
-> +
-> +	/* get the memory region for the watchdog timer */
-> +	wdt->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(wdt->base)) {
-> +		ret = PTR_ERR(wdt->base);
-> +		return ret;
+> +	if (msgq->tx_ghrsc) {
+> +		ret = request_irq(msgq->tx_ghrsc->irq, gh_msgq_tx_irq_handler, 0, "gh_msgq_tx",
+> +				msgq);
+> +		if (ret)
+> +			goto err_chans;
 > +	}
 > +
-> +	platform_set_drvdata(pdev, wdt);
-> +	pm_runtime_enable(wdt->dev);
-> +
-> +	ret = starfive_wdt_get_clock(wdt);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (pm_runtime_enabled(wdt->dev)) {
-> +		ret = pm_runtime_get_sync(wdt->dev);
-> +		if (ret < 0)
-> +			return ret;
-> +	} else {
-> +		/* runtime PM is disabled but clocks need to be enabled */
-> +		ret = clk_prepare_enable(wdt->apb_clk);
-> +		if (ret) {
-> +			dev_err(wdt->dev, "failed to enable apb_clk.\n");
-> +			return ret;
-> +		}
-> +		ret = clk_prepare_enable(wdt->core_clk);
-> +		if (ret) {
-> +			dev_err(wdt->dev, "failed to enable core_clk.\n");
-> +			goto err_apb_clk_disable;
-> +		}
+> +	if (msgq->rx_ghrsc) {
+> +		ret = request_threaded_irq(msgq->rx_ghrsc->irq, NULL, gh_msgq_rx_irq_handler,
+> +						IRQF_ONESHOT, "gh_msgq_rx", msgq);
+> +		if (ret)
+> +			goto err_tx_irq;
 > +	}
 > +
-> +	ret = starfive_wdt_get_clock_rate(wdt);
+> +	tasklet_setup(&msgq->txdone_tasklet, gh_msgq_txdone_tasklet);
+> +
+> +	ret = mbox_controller_register(&msgq->mbox);
 > +	if (ret)
-> +		goto err_clk_disable;
+> +		goto err_rx_irq;
 > +
-> +	ret = starfive_wdt_reset_init(wdt);
+> +	ret = mbox_bind_client(gh_msgq_chan(msgq), cl);
 > +	if (ret)
-> +		goto err_clk_disable;
-> +
-> +	wdt->wdt_device.min_timeout = 1;
-> +	wdt->wdt_device.max_timeout = starfive_wdt_max_timeout(wdt);
-
-	wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
-
-should be set here. Otherwise the warning below would always be seen
-if the module parameter is not set.
-
-> +
-> +	watchdog_set_drvdata(&wdt->wdt_device, wdt);
-> +
-> +	/*
-> +	 * see if we can actually set the requested heartbeat,
-> +	 * and if not, try the default value.
-> +	 */
-> +	watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev);
-> +	if (wdt->wdt_device.timeout == 0 ||
-
-If wdt->wdt_device.timeout is pre-initialized, it will never be 0 here.
-
-> +	    wdt->wdt_device.timeout > wdt->wdt_device.max_timeout) {
-
-That won't happen because watchdog_init_timeout() validates it and does
-not update the value if it is out of range.
-
-> +		dev_warn(dev, "heartbeat value out of range, default %d used\n",
-> +			 STARFIVE_WDT_DEFAULT_TIME);
-> +		wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
-
-And this is then unnecessary. wdt->wdt_device.timeout will always be
-valid if it was pre-initialized.
-
-> +	}
-> +	starfive_wdt_set_timeout(&wdt->wdt_device, wdt->wdt_device.timeout);
-> +
-> +	watchdog_set_nowayout(&wdt->wdt_device, nowayout);
-> +	watchdog_stop_on_reboot(&wdt->wdt_device);
-> +	watchdog_stop_on_unregister(&wdt->wdt_device);
-> +
-> +	wdt->wdt_device.parent = dev;
-> +
-> +	ret = watchdog_register_device(&wdt->wdt_device);
-> +	if (ret)
-> +		goto err_clk_disable;
-> +
-> +	if (early_enable) {
-> +		starfive_wdt_start(&wdt->wdt_device);
-> +		set_bit(WDOG_HW_RUNNING, &wdt->wdt_device.status);
-
-Is it correct to call pm_runtime_put_sync() below if the watchdog
-is running ? Doesn't that stop the clock ?
-
-> +	} else {
-> +		starfive_wdt_stop(&wdt->wdt_device);
-> +	}
-
-Wrong order. This has to be done _before_ the watchdog device is registered
-to make sure that the watchdog core knows about WDOG_HW_RUNNING.
-
-> +
-> +	pm_runtime_put_sync(wdt->dev);
+> +		goto err_mbox;
 > +
 > +	return 0;
-> +
-> +err_clk_disable:
-> +	clk_disable_unprepare(wdt->core_clk);
-> +err_apb_clk_disable:
-> +	clk_disable_unprepare(wdt->apb_clk);
-> +	pm_runtime_disable(wdt->dev);
-> +
+> +err_mbox:
+> +	mbox_controller_unregister(&msgq->mbox);
+> +err_rx_irq:
+> +	if (msgq->rx_ghrsc)
+> +		free_irq(msgq->rx_ghrsc->irq, msgq);
+> +err_tx_irq:
+> +	if (msgq->tx_ghrsc)
+> +		free_irq(msgq->tx_ghrsc->irq, msgq);
+> +err_chans:
+> +	kfree(msgq->mbox.chans);
 > +	return ret;
 > +}
+> +EXPORT_SYMBOL_GPL(gh_msgq_init);
 > +
-> +static int starfive_wdt_remove(struct platform_device *dev)
+> +void gh_msgq_remove(struct gh_msgq *msgq)
 > +{
-> +	struct starfive_wdt *wdt = platform_get_drvdata(dev);
+> +	mbox_controller_unregister(&msgq->mbox);
 > +
-> +	starfive_wdt_stop(&wdt->wdt_device);
-> +	watchdog_unregister_device(&wdt->wdt_device);
+> +	if (msgq->rx_ghrsc)
+> +		free_irq(msgq->rx_ghrsc->irq, msgq);
 > +
-> +	if (pm_runtime_enabled(wdt->dev)) {
-> +		pm_runtime_disable(wdt->dev);
-> +	} else {
-> +		/* disable clock without PM */
-> +		clk_disable_unprepare(wdt->core_clk);
-> +		clk_disable_unprepare(wdt->apb_clk);
-> +	}
+> +	if (msgq->tx_ghrsc)
+> +		free_irq(msgq->tx_ghrsc->irq, msgq);
 > +
-> +	return 0;
+> +	kfree(msgq->mbox.chans);
 > +}
+> +EXPORT_SYMBOL_GPL(gh_msgq_remove);
 > +
-> +static void starfive_wdt_shutdown(struct platform_device *dev)
-> +{
-> +	struct starfive_wdt *wdt = platform_get_drvdata(dev);
-> +
-> +	starfive_wdt_pm_stop(&wdt->wdt_device);
-> +}
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int starfive_wdt_suspend(struct device *dev)
-> +{
-> +	int ret;
-> +	struct starfive_wdt *wdt = dev_get_drvdata(dev);
-> +
-> +	starfive_wdt_unlock(wdt);
-> +
-> +	/* Save watchdog state, and turn it off. */
-> +	wdt->reload = starfive_wdt_get_count(wdt);
-> +
-> +	/* Note that WTCNT doesn't need to be saved. */
-> +	starfive_wdt_stop(&wdt->wdt_device);
-> +	pm_runtime_force_suspend(dev);
-> +
-> +	starfive_wdt_lock(wdt);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_wdt_resume(struct device *dev)
-> +{
-> +	int ret;
-> +	struct starfive_wdt *wdt = dev_get_drvdata(dev);
-> +
-> +	starfive_wdt_unlock(wdt);
-> +
-> +	pm_runtime_force_resume(dev);
-> +
-> +	/* Restore watchdog state. */
-> +	starfive_wdt_set_reload_count(wdt, wdt->reload);
-> +
-> +	starfive_wdt_start(&wdt->wdt_device);
-> +
-> +	starfive_wdt_lock(wdt);
-> +
-> +	return 0;
-> +}
-> +#endif /* CONFIG_PM_SLEEP */
-> +
-> +#ifdef CONFIG_PM
-> +static int starfive_wdt_runtime_suspend(struct device *dev)
-> +{
-> +	struct starfive_wdt *wdt = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(wdt->apb_clk);
-> +	clk_disable_unprepare(wdt->core_clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_wdt_runtime_resume(struct device *dev)
-> +{
-> +	struct starfive_wdt *wdt = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(wdt->apb_clk);
-> +	if (ret) {
-> +		dev_err(wdt->dev, "failed to enable apb_clk.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(wdt->core_clk);
-> +	if (ret)
-> +		dev_err(wdt->dev, "failed to enable core_clk.\n");
-> +
-> +	return ret;
-> +}
-> +#endif /* CONFIG_PM */
-> +
-> +static const struct dev_pm_ops starfive_wdt_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(starfive_wdt_runtime_suspend, starfive_wdt_runtime_resume, NULL)
-> +	SET_SYSTEM_SLEEP_PM_OPS(starfive_wdt_suspend, starfive_wdt_resume)
-> +};
-> +
-> +static struct platform_driver starfive_wdt_driver = {
-> +	.probe		= starfive_wdt_probe,
-> +	.remove		= starfive_wdt_remove,
-> +	.shutdown	= starfive_wdt_shutdown,
-> +	.id_table	= starfive_wdt_ids,
-> +	.driver		= {
-> +		.name	= "starfive-wdt",
-> +		.pm	= &starfive_wdt_pm_ops,
-> +		.of_match_table = of_match_ptr(starfive_wdt_match),
-> +	},
-> +};
-> +
-> +module_platform_driver(starfive_wdt_driver);
-> +
-> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
-> +MODULE_AUTHOR("Samin Guo <samin.guo@starfivetech.com>");
-> +MODULE_DESCRIPTION("StarFive Watchdog Device Driver");
 > +MODULE_LICENSE("GPL");
-> -- 
-> 2.25.1
-> 
+> +MODULE_DESCRIPTION("Gunyah Message Queue Driver");
+> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
+> index cb6df4eec5c2..2e13669c6363 100644
+> --- a/include/linux/gunyah.h
+> +++ b/include/linux/gunyah.h
+> @@ -8,11 +8,67 @@
+>   
+>   #include <linux/bitfield.h>
+>   #include <linux/errno.h>
+> +#include <linux/interrupt.h>
+>   #include <linux/limits.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox_client.h>
+>   #include <linux/types.h>
+>   
+> +/* Follows resource manager's resource types for VM_GET_HYP_RESOURCES */
+> +enum gunyah_resource_type {
+> +	GUNYAH_RESOURCE_TYPE_BELL_TX	= 0,
+> +	GUNYAH_RESOURCE_TYPE_BELL_RX	= 1,
+> +	GUNYAH_RESOURCE_TYPE_MSGQ_TX	= 2,
+> +	GUNYAH_RESOURCE_TYPE_MSGQ_RX	= 3,
+> +	GUNYAH_RESOURCE_TYPE_VCPU	= 4,
+> +};
+> +
+> +struct gunyah_resource {
+> +	enum gunyah_resource_type type;
+> +	u64 capid;
+> +	int irq;
+> +};
+> +
+> +/**
+> + * Gunyah Message Queues
+> + */
+> +
+> +#define GH_MSGQ_MAX_MSG_SIZE	240
+> +
+> +struct gh_msgq_tx_data {
+> +	size_t length;
+> +	bool push;
+> +	char data[];
+> +};
+> +
+> +struct gh_msgq_rx_data {
+> +	size_t length;
+> +	char data[GH_MSGQ_MAX_MSG_SIZE];
+> +};
+> +
+> +struct gh_msgq {
+> +	struct gunyah_resource *tx_ghrsc;
+> +	struct gunyah_resource *rx_ghrsc;
+> +
+> +	/* msgq private */
+> +	int last_ret; /* Linux error, not GH_STATUS_* */
+> +	struct mbox_controller mbox;
+> +	struct tasklet_struct txdone_tasklet;
+> +};
+> +
+> +
+> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct mbox_client *cl,
+> +		     struct gunyah_resource *tx_ghrsc, struct gunyah_resource *rx_ghrsc);
+> +void gh_msgq_remove(struct gh_msgq *msgq);
+> +
+> +static inline struct mbox_chan *gh_msgq_chan(struct gh_msgq *msgq)
+> +{
+> +	return &msgq->mbox.chans[0];
+> +}
+> +
+>   /******************************************************************************/
+>   /* Common arch-independent definitions for Gunyah hypercalls                  */
+> +
+>   #define GH_CAPID_INVAL	U64_MAX
+>   #define GH_VMID_ROOT_VM	0xff
+>   
+
