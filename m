@@ -2,63 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5FD46A044F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 09:59:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB156A0465
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 10:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233787AbjBWI7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 03:59:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57030 "EHLO
+        id S233809AbjBWJDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 04:03:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233777AbjBWI7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 03:59:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D099038;
-        Thu, 23 Feb 2023 00:59:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 38810B818EE;
-        Thu, 23 Feb 2023 08:59:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57AA2C433EF;
-        Thu, 23 Feb 2023 08:59:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677142785;
-        bh=F0o0cKnSDpDn6p6gfaa0cgORZZdfAcpmNCptMtkWGMo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cWrCNgIUCWybMOAM65p3P8Ow7EW0oV6gLvfnfB/z7oHJ4WQlBpGYoPSjRDxs75i1S
-         /y3xaaYRQMn2K71c0cuM61aUdMHwjWbPme53J95CMuedEHrUlaM3mr1jnQFAdlLqGF
-         8V9TlH0NE9pOXcxb9J+90DFGde7JdY8JnkwV7R1PSD35KUKQKgLFjar5ohBDeR8H51
-         fZvVOZPXID4zCgXjav67l1hONvzxcmwfIA7sDGupVrVYmOZU/c96qPn5VUbYsTcDZG
-         mdVKWcKM2oDD5VN7LHxgfIFWscSc80S1GGrsa98kDfX0rbqfg+Ws/+VF+CmLrfd5IV
-         JdWA6tfarKVKQ==
-Message-ID: <53cc20a0-bc9d-a094-13bc-6a5ef78069d1@kernel.org>
-Date:   Thu, 23 Feb 2023 09:59:39 +0100
+        with ESMTP id S233799AbjBWJDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 04:03:23 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442F24FA95;
+        Thu, 23 Feb 2023 01:03:21 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id f13so39103348edz.6;
+        Thu, 23 Feb 2023 01:03:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TD+8GeanCE/x70uegO9U5MTQbLl+734GZzOwj0hQ4pc=;
+        b=mBD1BQ37iIDR7JWXX/OlXKvNa8NVaHt1sKz+6t6eagPmuzwSpIqozkFoQL9xibTUeN
+         3fC98PAzmuSCFN4uVDugWglgh9ZFCbprkbnk/HgZzNcPy5Huhtt0QJWw1RPYKXXur4cK
+         +HAym9Bz/wfblPBHSOhXPxjJuaX78FsDr+BYgJtMDtKxHNZE7gfIAvlE2nSR6CXR+wwc
+         Mv+2mycXUCH3tu7Ybl2pKGWT1+cIJj6ZrSYn9k7mCzXsqPeJjQs1COycHwtlzYY4Ra6b
+         sXB0vmOmHGpThhwfR4G96Dcq6EU0tq+PKyatlmxBBpDd+4aVumxQQH/rX8+lPgn+9Hu6
+         dlHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TD+8GeanCE/x70uegO9U5MTQbLl+734GZzOwj0hQ4pc=;
+        b=0e+NX9NGqvBKLWRgerkCH0ydggIExM1uuuEw5Z06skOvTML6kd3mUjvlI9gDkHnN9w
+         JstECEQkbPHasjH+KpkfhpaxyVsiUnb0ko8X7FMclx2NEFWML6TJqlpcM3eXHuuzBd5z
+         17lTZggcxy557WXEIg3kIERd+XZCnCTaXo6RC2LB35sp/uwEHbzrh/uq0L6uye8bokq7
+         zp3GcqhZ4deJdAcLY/D+UHTQ7y6EA5E2w5Xaf+Y19xHyxHkPGHJ0F8jEY57fMJEht19g
+         RIJz2a3B4bMxPW5MqVKWt95d57uUG66AekO4WFp3jrGJS7OfrdDZvC1u2RG1nBTZADQT
+         oPmg==
+X-Gm-Message-State: AO0yUKWQkBBHApuTZ9NgZ3THKdbUj5s8bZ87WbBhRKDoURJSXOAEs1T0
+        U/aVsJ+ioGIe+SNbc0Q/3NA=
+X-Google-Smtp-Source: AK7set86PvyMLRzK9dDTPURDEy4nuoWHHr4XakacxhoLyoAJkDCWB6Fov3n50dy0+RO0ic4uWzJuwg==
+X-Received: by 2002:aa7:d74a:0:b0:4ad:7481:c2fe with SMTP id a10-20020aa7d74a000000b004ad7481c2femr9298095eds.22.1677142999215;
+        Thu, 23 Feb 2023 01:03:19 -0800 (PST)
+Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id n27-20020a50935b000000b0049ef70a2894sm4139786eda.38.2023.02.23.01.03.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Feb 2023 01:03:18 -0800 (PST)
+Date:   Thu, 23 Feb 2023 10:03:16 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     christian.koenig@amd.com, digetx@gmail.com, jonathanh@nvidia.com,
+        ldewangan@nvidia.com, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        sumit.semwal@linaro.org, wsa@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] i2c: tegra: Share same DMA channel for Rx and Tx
+Message-ID: <Y/cr1EKI7R6rtg+O@orome>
+References: <20230222102759.23165-1-akhilrajeev@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
- device node
-Content-Language: en-US
-To:     suijingfeng <suijingfeng@loongson.cn>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20230222165514.684729-1-suijingfeng@loongson.cn>
- <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
- <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
- <f1cb010c-be28-9b1b-da1f-93d5e2fb213f@kernel.org>
- <6662546a-2c83-71bd-7050-903331201bdc@loongson.cn>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <6662546a-2c83-71bd-7050-903331201bdc@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="HaVAMW8fbvrZJ5yn"
+Content-Disposition: inline
+In-Reply-To: <20230222102759.23165-1-akhilrajeev@nvidia.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,83 +76,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2023 09:40, suijingfeng wrote:
-> 
-> On 2023/2/23 15:58, Krzysztof Kozlowski wrote:
->> On 23/02/2023 04:19, Sui jingfeng wrote:
->>> Hi,
->>>
->>> On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
->>>> On 22/02/2023 17:55, suijingfeng wrote:
->>>>> The display controller is a pci device, it's pci vendor id is
->>>>> 0x0014, it's pci device id is 0x7a06.
->>>>>
->>>>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
->>>>> ---
->>>>>    .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
->>>>>    1 file changed, 21 insertions(+)
->>>>>
->>>>> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>>> index 8143a61111e3..a528af3977d9 100644
->>>>> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>>> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->>>>> @@ -31,6 +31,18 @@ memory@200000 {
->>>>>    			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
->>>>>    	};
->>>>>    
->>>>> +	reserved-memory {
->>>>> +		#address-cells = <2>;
->>>>> +		#size-cells = <2>;
->>>>> +		ranges;
->>>>> +
->>>>> +		display_reserved: framebuffer@30000000 {
->>>>> +			compatible = "shared-dma-pool";
->>>>> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
->>>>> +			linux,cma-default;
->>>>> +		};
->>>>> +	};
->>>>> +
->>>>>    	cpu_clk: cpu_clk {
->>>>>    		#clock-cells = <0>;
->>>>>    		compatible = "fixed-clock";
->>>>> @@ -198,6 +210,15 @@ sata@8,0 {
->>>>>    				interrupt-parent = <&liointc0>;
->>>>>    			};
->>>>>    
->>>>> +			display-controller@6,0 {
->>>>> +				compatible = "loongson,ls2k1000-dc";
->>>>> +
->>>>> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
->>>>> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
->>>>> +				interrupt-parent = <&liointc0>;
->>>>> +				memory-region = <&display_reserved>;
->>>> NAK.
->>> Err :(,  please give me a chance to explain
->>>> Test your code against the bindings you send.
->>> I can guarantee to you that I test may code more than twice. The code
->>> used to testing is listed at link [1].
->> I wrote - test against the bindings. I don't believe that it was tested.
->> Please paste the output of the testing (dtbs_check).
 
-                                          ^^^^^^^^^^^^
-Do you see this                       ----------^^^^?
+--HaVAMW8fbvrZJ5yn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-But you pasted:
+On Wed, Feb 22, 2023 at 03:57:59PM +0530, Akhil R wrote:
+> Allocate only one DMA channel for I2C and share it for both Tx and Rx.
+> Since I2C supports only half duplex, there is no impact on perf with
+> this.
+>=20
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> ---
+> v1->v2: Remove WARN_ON for DMA channel mismatch. There is only one
+> channel in use with this change.
+>=20
+>  drivers/i2c/busses/i2c-tegra.c | 54 ++++++++++------------------------
+>  1 file changed, 15 insertions(+), 39 deletions(-)
 
-> 
-> I *do* run the test against the bindings and the test result say nothing.
-> 
-> I reset my modify today made, then re-run the test again.
-> 
-> I'm telling the truth: the test result say nothing. I paste the log at 
-> below:
-> 
-> make -j$(nproc) ARCH=loongarch 
-> CROSS_COMPILE=loongarch64-unknown-linux-gnu- dt_binding_check 
+I'm a little confused by this. All device trees already list the very
+same reference for both TX and RX DMA channels in the I2C nodes, so
+these channels are already effectively shared, aren't they?
 
-This -------------------------------------------^^^^^^^^^^^^
+So all this does is to get rid of the duplicated pointer? In practice,
+is the DMA channel pointer going to point to the exact same memory or
+are these separate objects that happen to point to the same hardware
+resource?
 
+In either case, I think the commit message should clarify that. Also, a
+few minor nits below...
 
-Best regards,
-Krzysztof
+> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegr=
+a.c
+> index 6aab84c8d22b..f52b835f1700 100644
+> --- a/drivers/i2c/busses/i2c-tegra.c
+> +++ b/drivers/i2c/busses/i2c-tegra.c
+> @@ -248,8 +248,7 @@ struct tegra_i2c_hw_feature {
+>   * @msg_read: indicates that the transfer is a read access
+>   * @timings: i2c timings information like bus frequency
+>   * @multimaster_mode: indicates that I2C controller is in multi-master m=
+ode
+> - * @tx_dma_chan: DMA transmit channel
+> - * @rx_dma_chan: DMA receive channel
+> + * @dma_chan: DMA channel
+>   * @dma_phys: handle to DMA resources
+>   * @dma_buf: pointer to allocated DMA buffer
+>   * @dma_buf_size: DMA buffer size
+> @@ -281,8 +280,7 @@ struct tegra_i2c_dev {
+>  	u8 *msg_buf;
+> =20
+>  	struct completion dma_complete;
+> -	struct dma_chan *tx_dma_chan;
+> -	struct dma_chan *rx_dma_chan;
+> +	struct dma_chan *dma_chan;
+>  	unsigned int dma_buf_size;
+>  	struct device *dma_dev;
+>  	dma_addr_t dma_phys;
+> @@ -398,7 +396,7 @@ static int tegra_i2c_dma_submit(struct tegra_i2c_dev =
+*i2c_dev, size_t len)
+>  	reinit_completion(&i2c_dev->dma_complete);
+> =20
+>  	dir =3D i2c_dev->msg_read ? DMA_DEV_TO_MEM : DMA_MEM_TO_DEV;
+> -	chan =3D i2c_dev->msg_read ? i2c_dev->rx_dma_chan : i2c_dev->tx_dma_cha=
+n;
+> +	chan =3D i2c_dev->dma_chan;
 
+Is there any point in keeping around the local variable? It doesn't
+serve any purpose anymore.
+
+> =20
+>  	dma_desc =3D dmaengine_prep_slave_single(chan, i2c_dev->dma_phys,
+>  					       len, dir, DMA_PREP_INTERRUPT |
+> @@ -426,14 +424,9 @@ static void tegra_i2c_release_dma(struct tegra_i2c_d=
+ev *i2c_dev)
+>  		i2c_dev->dma_buf =3D NULL;
+>  	}
+> =20
+> -	if (i2c_dev->tx_dma_chan) {
+> -		dma_release_channel(i2c_dev->tx_dma_chan);
+> -		i2c_dev->tx_dma_chan =3D NULL;
+> -	}
+> -
+> -	if (i2c_dev->rx_dma_chan) {
+> -		dma_release_channel(i2c_dev->rx_dma_chan);
+> -		i2c_dev->rx_dma_chan =3D NULL;
+> +	if (i2c_dev->dma_chan) {
+> +		dma_release_channel(i2c_dev->dma_chan);
+> +		i2c_dev->dma_chan =3D NULL;
+>  	}
+>  }
+> =20
+> @@ -457,25 +450,18 @@ static int tegra_i2c_init_dma(struct tegra_i2c_dev =
+*i2c_dev)
+>  		return 0;
+>  	}
+> =20
+> -	chan =3D dma_request_chan(i2c_dev->dev, "rx");
+> -	if (IS_ERR(chan)) {
+> -		err =3D PTR_ERR(chan);
+> -		goto err_out;
+> -	}
+> -
+> -	i2c_dev->rx_dma_chan =3D chan;
+> -
+> +	/* The same channel will be used for both Rx and Tx.
+> +	 * Keeping the name as tx for backward compatibility with
+> +	 * existing devicetrees.
+> +	 */
+
+Block comments should have the starting /* on a line of its own. Also,
+s/Rx/RX/ and s/Tx/TX/ for consistency. Looks like you also used "Rx" and
+"Tx" in the commit message. The driver uses "RX" and "TX" elsewhere, so
+better switch to that in both this comment and the commit message.
+
+Also, perhaps quote the "tx" reference above to highlight that it's the
+literal string in DT that you're referring to.
+
+Thierry
+
+--HaVAMW8fbvrZJ5yn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmP3K9IACgkQ3SOs138+
+s6GUoxAAudDGSGiO3PEE4ksIGRgrtEcXb9K/XuoFrT8ULh2NOTqG8JmhnNWwYeER
+UrujHgnAP3o0OKiv1VBmygpiNawKSccuf3ztFr3ZsiFiobbscutexweT1hbXviWs
+H7+FMfA1x7H1vbRQl6wP1/HMXQwbqWPZFd1AGGwaJaOtkLr4l83Tr3K2GZ074tI+
+Zspl7vc29lHhgOuQ7T2eYeJVDRkHG7ikE55ROJVyp+ZlV+nbvGXnInmOj4Vfg0Is
+0YHobXhgJ97rBi5RXbZS+fRFGZyJpsGedk1WvzaZ8lTpHVYHSRw3Ozav/Yygl6WQ
+JpY+XEIxLBV1fIhhZpaINulc59K4oHh4tQrlZDIQP/xjgA6IJpflfFz6LVSZBOta
+fQ8r2GIpq0RrOdWR1EyyIHw+BUH3yT0SaavCdkoOtjV70PHEByCGBYvF2EWvfONw
+M//DXdV10RzKpuaNO1CkaKcDWn+0umeyHn3aBW9OzMksPHoui4yP5ud8fSyzxx2d
+CwIn6eZwT5cXujN5/AKeZcNzr4zdw4MyDi2+/NifGv42kSl1Ji5CldWKwJxTWRGF
+yrmndC7ZxzOtZvdRV/iSyBdSVlt4MxXnwFle6ovqJrgjV5t+oEROaPFhFfaCbPZD
+Ej2AUVdjj1WMWNvqsBBifDPb97jrjIRHQcM+eMsq9/DLzKroN90=
+=kWnv
+-----END PGP SIGNATURE-----
+
+--HaVAMW8fbvrZJ5yn--
