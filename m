@@ -2,119 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 222EB6A0347
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 08:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A76886A0371
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 08:59:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbjBWHcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 02:32:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40236 "EHLO
+        id S233324AbjBWH7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 02:59:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjBWHb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 02:31:59 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32EA32CCC;
-        Wed, 22 Feb 2023 23:31:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677137517; x=1708673517;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Dq9ZM6uONo0tIMpiu9/xccUFLsK/L/fEIRiovbTblBo=;
-  b=SaCYaM1/fIxfORzV7W8AjATjRHsBsycbvle9a14mTzoYuemQ7d36OgyO
-   dwP2sw6AEXlzdQ18DDW5N7eDixeb/cBtOxWoCdVW6wDOHz1loi9CtTVON
-   ZOU0EhbXAjlumx7xlJPWmvxc+TIZS5WPMxOmKz8SRjwooDmHcofKQ9SEs
-   2dDyrLwhbhPq9L8UujzoJmiiA1+/8Ub+KmIlQ4Kp8lKntBnD7hP3enkLI
-   Z/gO3UrDPqMiABAZsujHaK/elyPs8/B9CCr/kOkEXLS+hoTiLOnPxSK8l
-   88eq/bfeLm7XlFC2C++sVQgx7OFUhJQTsWkIk5CfLXHswkEUwQVYh4sio
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="419363775"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; 
-   d="scan'208";a="419363775"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2023 23:31:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="702694422"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; 
-   d="scan'208";a="702694422"
-Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 22 Feb 2023 23:31:52 -0800
-Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pV651-00019B-2u;
-        Thu, 23 Feb 2023 07:31:51 +0000
-Date:   Thu, 23 Feb 2023 15:30:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Martyn Welch <martyn.welch@collabora.com>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Abel Vesa <abel.vesa@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
-Message-ID: <202302231533.yOY5yoeD-lkp@intel.com>
-References: <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
+        with ESMTP id S230356AbjBWH7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 02:59:08 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3210F1A4A6;
+        Wed, 22 Feb 2023 23:59:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DBC6EB818F2;
+        Thu, 23 Feb 2023 07:59:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51339C4339B;
+        Thu, 23 Feb 2023 07:58:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677139142;
+        bh=hhUhD+GQIDGu4qZjQp3HxpY6cANDAYNuHS1oWM0ZPlM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OPAwjxfVt3BWAo8pRpkfdmFfsBnQ+4B4vRmL95IgBBE+Jwxz66RsUbpLkDv1ZmAu/
+         N9CiOGsyStMaLBXrAb3eQQsJjM5lsfW102cwA3Xxw9WoA0KNI+F5TLzTaeIwZvbWqy
+         1+ENEmNZ1DZczh5owKalrU6nXVMMOU/T90Obomn5vEsKN3PpmvFEctKOdyrMPOcmTF
+         YUu/lXD7MQg7kH0mo7weC1UYthJqBAZM+rmQEEHkKtcCA+g6JpvOYBRtPeMNNUeZb1
+         j0s63k7dRIFwJUWhX/qf1To9iNPFnYb2L0yhOlxzbU3LAnm1hAZZmaTXwd23vKRgNm
+         KpMaDBSGv+kmA==
+Message-ID: <f1cb010c-be28-9b1b-da1f-93d5e2fb213f@kernel.org>
+Date:   Thu, 23 Feb 2023 08:58:54 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] Mips: ls2k1000: dts: add the display controller
+ device node
+To:     Sui jingfeng <suijingfeng@loongson.cn>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20230222165514.684729-1-suijingfeng@loongson.cn>
+ <f153bb62-ec3c-c16d-5b43-f53b5319c2e6@kernel.org>
+ <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <32a56a81-e9b5-138b-4dff-35c2525cc0b6@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+On 23/02/2023 04:19, Sui jingfeng wrote:
+> Hi,
+> 
+> On 2023/2/23 02:32, Krzysztof Kozlowski wrote:
+>> On 22/02/2023 17:55, suijingfeng wrote:
+>>> The display controller is a pci device, it's pci vendor id is
+>>> 0x0014, it's pci device id is 0x7a06.
+>>>
+>>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+>>> ---
+>>>   .../boot/dts/loongson/loongson64-2k1000.dtsi  | 21 +++++++++++++++++++
+>>>   1 file changed, 21 insertions(+)
+>>>
+>>> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>>> index 8143a61111e3..a528af3977d9 100644
+>>> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>>> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+>>> @@ -31,6 +31,18 @@ memory@200000 {
+>>>   			<0x00000001 0x10000000 0x00000001 0xb0000000>; /* 6912 MB at 4352MB */
+>>>   	};
+>>>   
+>>> +	reserved-memory {
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +		ranges;
+>>> +
+>>> +		display_reserved: framebuffer@30000000 {
+>>> +			compatible = "shared-dma-pool";
+>>> +			reg = <0x0 0x30000000 0x0 0x04000000>; /* 64M */
+>>> +			linux,cma-default;
+>>> +		};
+>>> +	};
+>>> +
+>>>   	cpu_clk: cpu_clk {
+>>>   		#clock-cells = <0>;
+>>>   		compatible = "fixed-clock";
+>>> @@ -198,6 +210,15 @@ sata@8,0 {
+>>>   				interrupt-parent = <&liointc0>;
+>>>   			};
+>>>   
+>>> +			display-controller@6,0 {
+>>> +				compatible = "loongson,ls2k1000-dc";
+>>> +
+>>> +				reg = <0x3000 0x0 0x0 0x0 0x0>;
+>>> +				interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
+>>> +				interrupt-parent = <&liointc0>;
+>>> +				memory-region = <&display_reserved>;
+>> NAK.
+> Err :(,  please give me a chance to explain
+>> Test your code against the bindings you send.
+> 
+> I can guarantee to you that I test may code more than twice. The code 
+> used to testing is listed at link [1].
 
-I love your patch! Yet something to improve:
+I wrote - test against the bindings. I don't believe that it was tested.
+Please paste the output of the testing (dtbs_check).
 
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on krzk/for-next krzk-dt/for-next linus/master v6.2 next-20230223]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> This patchset  mainly used to illustrate how  we made the driver in [1] 
+> usable on our SoC platform.
+> 
+>> It's the same
+>> patchset. You basically send something which the same moment is incorrect.
+> 
+> Loongson display controller IP has been integrated in both Loongson
+> North Bridge chipset(ls7a1000 and ls7a2000) and Loongson SoCs(ls2k1000
+> and ls2k2000 etc), it even has been included in Loongson BMC(ls2k0500 bmc)
+> products.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Ceresoli/arm64-dts-imx8mp-msc-sm2s-Add-sound-card/20230223-012837
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230222172552.1545519-1-luca.ceresoli%40bootlin.com
-patch subject: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20230223/202302231533.yOY5yoeD-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/a5c4ed6f9f95285c0ec312f5293250a83ccfc5ce
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Luca-Ceresoli/arm64-dts-imx8mp-msc-sm2s-Add-sound-card/20230223-012837
-        git checkout a5c4ed6f9f95285c0ec312f5293250a83ccfc5ce
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+I don't understand how your reply here is relevant to incorrect bindings
+or incorrect DTS according to bindings.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302231533.yOY5yoeD-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+Best regards,
+Krzysztof
 
->> Error: arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts:58.1-6 Label or path sai2 not found
->> FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
