@@ -2,99 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CF2B6A0ED1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 18:39:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FD416A0F11
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 19:06:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjBWRj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 12:39:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56948 "EHLO
+        id S229512AbjBWSGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 13:06:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjBWRj1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 12:39:27 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B11A215CA6;
-        Thu, 23 Feb 2023 09:39:24 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D825080AE4;
-        Thu, 23 Feb 2023 18:39:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1677173963;
-        bh=O3IRV+shEDtZsoaALUQKrtNo9sDC2VLCvqXxuJK8bUQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Gyqof24y1xX0/Da9dgFTlfK4TWqU2HB3AiaJqSMsRuLJ8xZtWb83CjYuHqxUqhRp0
-         8zuqWw84XyUP3/7QkUMemeVZMJPKVmfuS6VLSVW1OtkbMOoQIEIcNbE9csulJXEVB5
-         NTDWsoegBjAx0Oj6WgCcAjWR6ybVH2L9OY1pF2CLEAWufNlBSEr4sN2EuIfsjKdIMl
-         uL/F4SZmqIj6mw+wKZDnPXo0oG8RJmZkZKIJNn04uatwyLBJNDdEGl4Lu4Vc1Qx3hk
-         157V6qkIDMc/lpV1Luf6QlhDb/xpeztpFlMiHWBXy/lUUX96PdAEqwGnR5bLogvb4w
-         FCkBf6MX4mAyg==
-Message-ID: <9bcaaa02-d9e6-1086-91bf-b94a10330577@denx.de>
-Date:   Thu, 23 Feb 2023 18:39:21 +0100
+        with ESMTP id S229472AbjBWSGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 13:06:06 -0500
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CBBD4FAA8;
+        Thu, 23 Feb 2023 10:06:05 -0800 (PST)
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31NHVA6G027360;
+        Thu, 23 Feb 2023 10:05:51 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=cJtPNFCr0v5OLJisx3imEHbO/0vzHn18+sJHW6lT7c4=;
+ b=GnmvEx+F8PNvPJYX+Bzerv9J+NqwE8YUSw0ee1BNDIX0t9atYbCm2hvPkJtu7JZPGvN/
+ NMWmFxsSpr7Dc9Tr3qpvDL+CeYhx8jXqSZxU7qqG8B1BGZgdi5PFY6vuhwBxhkHOFpCv
+ KAptZzGhSn61EUDsSBSfrZnWuTE9rITytivsAXIqWPYQCuBpKW/t7brJXuM8O5w9SNZ1
+ mbChzsle+Z0MJNUTQz1rc4b2WoI0IZ1rq1tLpMjIkOfInNsGxKjeYsqty3pQ5drfo2Lw
+ 43244P2jrgmhQcg14FForwE5YjPjlEWxhX2dTYhKDWGi/UCg6AWtSAwVP6PybX9w4S2i Gw== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3nwy5h2cuu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Thu, 23 Feb 2023 10:05:51 -0800
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Feb
+ 2023 10:05:49 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Thu, 23 Feb 2023 10:05:49 -0800
+Received: from jupiter073.il.marvell.com (unknown [10.5.116.85])
+        by maili.marvell.com (Postfix) with ESMTP id 2D5AD3F7092;
+        Thu, 23 Feb 2023 10:05:46 -0800 (PST)
+From:   Elad Nachman <enachman@marvell.com>
+To:     <thomas.petazzoni@bootlin.com>, <bhelgaas@google.com>,
+        <lpieralisi@kernel.org>, <robh@kernel.org>, <kw@linux.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Elad Nachman <enachman@marvell.com>
+Subject: [PATCH v3 0/7] PCI: dwc: Add support for Marvell AC5 SoC
+Date:   Thu, 23 Feb 2023 20:05:24 +0200
+Message-ID: <20230223180531.15148-1-enachman@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 5/5] arm64: dts: imx8mp: Add analog audio output on
- i.MX8MP EVK
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     linux-clk@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>
-References: <20230223171114.59164-1-marex@denx.de>
- <20230223171114.59164-5-marex@denx.de>
- <CAOMZO5A5k0EdE9_VqXe5iJ5x+dPFse=jqjMaL-3ip3r0zDQ=5w@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAOMZO5A5k0EdE9_VqXe5iJ5x+dPFse=jqjMaL-3ip3r0zDQ=5w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Proofpoint-GUID: _hXnW85fch48t-qUSZlTLyCx5p93Ha95
+X-Proofpoint-ORIG-GUID: _hXnW85fch48t-qUSZlTLyCx5p93Ha95
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-23_11,2023-02-23_01,2023-02-09_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/23/23 18:28, Fabio Estevam wrote:
-> Hi Marek,
+From: Elad Nachman <enachman@marvell.com>
 
-Hi,
+Add support for AC5 SoC with MSI and in message emulated legacy mode.
+There are differences in the registers addresses, blocks, DDR location
+for coherent DMA allocation and additional implementation specific registers.
+In addition, support cases of older Designware IP (Armada 7020) which supports
+above 4GB PCIe physical memory window by use of device tree.
 
-> On Thu, Feb 23, 2023 at 2:11 PM Marek Vasut <marex@denx.de> wrote:
-> 
->> +       reg_audio_pwr: regulator-audio-pwr {
->> +               compatible = "regulator-fixed";
->> +               regulator-name = "audio-pwr";
->> +               regulator-min-microvolt = <3300000>;
->> +               regulator-max-microvolt = <3300000>;
->> +               gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
->> +               enable-active-high;
->> +               regulator-always-on;
-> 
-> It seems that "regulator-always-on" could be removed as the regulator
-> is controlled by the codec.
+v3:
+   1) Add dt bindings for DMA and region mask bits
 
-Ah yes
+   2) Support AC5 Legacy PCIe interrupts
 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+   3) Introduce Configurable DMA mask
 
-Thanks
+   4) Introduce region limit from DT
+
+v2:
+   1) add patch with adding compatible string for dt-bindings description
+
+   2) fix W1 warnings which caused by unused leftover code
+
+   3) Use one xlate function to translate ac5 dbi access. Also add
+      mode description in comments about this translation.
+
+   4) Use correct name of Raz
+
+   5) Use matching data to pass the SoC specific params (type & ops)
+
+Elad Nachman (4):
+  dt-bindings: PCI: dwc: add DMA, region mask bits
+  PCI: dwc: support AC5 Legacy PCIe interrupts
+  PCI: dwc: Introduce Configurable DMA mask
+  PCI: dwc: Introduce region limit from DT
+
+Raz Adashi (1):
+  PCI: armada8k: Add AC5 SoC support
+
+Vadym Kochan (1):
+  dt-bindings: PCI: armada8k: Add compatible string for AC5 SoC
+
+Yuval Shaia (1):
+  PCI: armada8k: Add MSI support for AC5 SoC
+
+ .../devicetree/bindings/pci/pci-armada8k.txt  |   4 +-
+ .../bindings/pci/snps,dw-pcie-common.yaml     |  10 +
+ drivers/pci/controller/dwc/pcie-armada8k.c    | 184 +++++++++++++++---
+ .../pci/controller/dwc/pcie-designware-host.c |  23 ++-
+ drivers/pci/controller/dwc/pcie-designware.c  |  13 +-
+ 5 files changed, 197 insertions(+), 37 deletions(-)
+
+-- 
+2.17.1
+
