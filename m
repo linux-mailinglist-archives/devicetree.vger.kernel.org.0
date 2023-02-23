@@ -2,118 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB8B76A01FA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 05:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4658A6A0233
+	for <lists+devicetree@lfdr.de>; Thu, 23 Feb 2023 05:58:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233044AbjBWEXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Feb 2023 23:23:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35028 "EHLO
+        id S233265AbjBWE6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Feb 2023 23:58:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231558AbjBWEWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 23:22:44 -0500
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82EA8498AD
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 20:21:37 -0800 (PST)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-17213c961dfso12338000fac.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Feb 2023 20:21:37 -0800 (PST)
+        with ESMTP id S232995AbjBWE6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Feb 2023 23:58:44 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBEC9EF3;
+        Wed, 22 Feb 2023 20:58:42 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id bk2so9666477oib.10;
+        Wed, 22 Feb 2023 20:58:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TGmInqCeyC0bjSGfaYON7cbBzHggVKyExnI0LnVwOZk=;
-        b=hNnuU66qswnxXZ0Idb5rbGFkzOFnNXYz5+rS69cLgSK2qhJnyOxCAb+a/K1ng7Ery+
-         Oiu7dlI07t0q88hPYgDmmCeSi8kWHhnKuxbnNGL+PfJKxIq7ZUREcEFotPM1VcW16BBQ
-         hJwbTgqdciscJUSHy3C4XS02LrgFopp3ZWV/LkqHleC1tfZ8XaWAaMu8C5v+0lpxJCUz
-         ea51+3BDeU2E+s2O/BSvcZ1xFqRIAcT0xI4H48+h+3oRFt3xlaLuk2FGpgRGm+qI2CD3
-         hYtNsp2YezZy9AGbfzSD7OnAAgcjdmZcQoG/73mtSjODuhXxLwWlCIULx3ciz80S4wyR
-         hRRw==
+        bh=7zwfDzUYIF2/Ch0TBhvURuwPH0xhlEkOqRiPNAWbTAM=;
+        b=Wu8i+tebr+qM9evWjfiBZqOisU73NEX4GLFp8a7/pfkyhzIk3fiyDPJc6h3f67kJWY
+         ZOlbNmgN/3G4xapSB2wbi69lnPmMcQyA2RfVQXdLsvEDOXh9miFAi50A84md91TMaHiQ
+         M5AqTlwkYsxAwE0NYg4+HDNST2XGg2ka09FJRf7qoS7JFNPczj1TnNHX28zLQhum6v14
+         0owxu8gsPitIYS/yrn5sYlBnK4+ZmNOwmaHR7oCm3tLUV4z8b3OBQH/5yXX00CTl5kIm
+         24z5QnQPglgh4C8JR1XUp8C9XuHen1PYUUNDoybXUs/XKYVvLz9DvB2B4+rJvX424MSV
+         /J4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TGmInqCeyC0bjSGfaYON7cbBzHggVKyExnI0LnVwOZk=;
-        b=5qzaIZH+5BCEXuo4UPEioDg6gHeTGCVCVqK1ptI4hthkCUluQf5ZjPCClTFa+7h1xW
-         daDqpyAkhztwq7/xUMkmvWeJbW6sX02FOHCbZwCiWJe8oksRZniIGtLShu+sGI3Di9db
-         0Q6Xn8rtk1gB1MEB5kRwGlGtrVtVf6JhM0WCOpTz2kk4rZ85DhT3/aC9Hd/EXYsPLsAj
-         2T5PrpJEJ4P7n8+XjVwa1OFME19ONZcezARcc2ewNwDHrWIZf2+wEfGopKMVn3ZKLes2
-         7ZGPVisnJg6tAc4B+qYVmnDqhWcSSuA1OQN8F4/8YCZIDLBkx7thIrp8KbgiQ4jxsyRb
-         lm4g==
-X-Gm-Message-State: AO0yUKWNRc1WkqrpDR9GCFD8tsUmIBpeILRWWF0dXCQbHHjS5jHEOhya
-        HYEwhgcuQOeo4HupBcL3KPr34A==
-X-Google-Smtp-Source: AK7set+Q+laDbcJvzvJZwI/eLi1W2mIUWl6/M4aafhL5u6VMJfb7rqnt2jDqGrEPu0Bqol5tlCb5pw==
-X-Received: by 2002:a05:6870:64ab:b0:172:5036:1dcc with SMTP id cz43-20020a05687064ab00b0017250361dccmr2606154oab.5.1677126085205;
-        Wed, 22 Feb 2023 20:21:25 -0800 (PST)
-Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id w130-20020aca6288000000b0037832f60518sm1154464oib.14.2023.02.22.20.21.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Feb 2023 20:21:24 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     David Virag <virag.david003@gmail.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
-Date:   Wed, 22 Feb 2023 22:21:33 -0600
-Message-Id: <20230223042133.26551-7-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230223042133.26551-1-semen.protsenko@linaro.org>
-References: <20230223042133.26551-1-semen.protsenko@linaro.org>
+        bh=7zwfDzUYIF2/Ch0TBhvURuwPH0xhlEkOqRiPNAWbTAM=;
+        b=6XSEoGjKtM41wSQqvJDm5BFUxUOOVuAw1+YUSt4ZvvbZT3gV1JKbNKfu/MMGriEYwe
+         WGYLtLyswrg7Bfd05L3R/ZA9XTFQUZJoO0FeQuIQTE++PiizMkALMLGKhgZr43GwGZJr
+         e75rhWuI2LNrp+KFrSFVE0H1MLUsHxQCoQD+/Hl6Tu+H7To8dHa4KQScx9q6wVHTcgRU
+         YoIAGA9OvC06KhDcMWKhO83kB2/to+q9ym90brJsN4CMJFiKNJd/mqi/w1pGKAHOF1/2
+         l5cibWCU/aYLdsFzKWYcJGYBAEwO6SWhT16DohFGutZgjYJJu+4iDmz8bpPyj+eCTitA
+         64eQ==
+X-Gm-Message-State: AO0yUKXY0DjPnDImrWtauckBNZFhGwf/aMC59FwxjCqxgixYCILmEgbL
+        Q3tKOJ2Te6XUaFjnNOVlVi/s5NxMf89BtEML9pA=
+X-Google-Smtp-Source: AK7set8J9L0Jihnqm6aIw47nAmbm+z3nWjNHyX7IzhURyC7solSWgHuO+mOLsPvPXJcp9+OTsGE6JZluMqIUV4tFvWI=
+X-Received: by 2002:a05:6808:13c3:b0:37b:7c36:4df8 with SMTP id
+ d3-20020a05680813c300b0037b7c364df8mr402953oiw.144.1677128321624; Wed, 22 Feb
+ 2023 20:58:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230222183932.33267-1-arinc.unal@arinc9.com>
+In-Reply-To: <20230222183932.33267-1-arinc.unal@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Thu, 23 Feb 2023 05:58:30 +0100
+Message-ID: <CAMhs-H8cKG_aQaE_JBuEfchQ4jNZT5NRPEypywWFuFtsc2MiZg@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/16] pinctrl: ralink: fix ABI, improve driver, move
+ to mediatek, improve dt-bindings
+To:     arinc9.unal@gmail.com
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing G3D clock domain to Exynos850 SoC device tree.
+Hi Ar=C4=B1n=C3=A7,
 
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-Changes in v2:
-  - Rebased on top of most recent soc/for-next tree
-  - Added Chanho Park Reviewed-by tag
+All of this looks pretty good to me. You did a really big effort with
+this series. Thanks for doing this!
 
- arch/arm64/boot/dts/exynos/exynos850.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Wed, Feb 22, 2023 at 7:39 PM <arinc9.unal@gmail.com> wrote:
+>
+> This is an ambitious effort I've been wanting to do for months.
+>
+> Straight off the bat, I'm fixing the ABI that I broke a while back, by
+> reintroducing the ralink,rt2880-pinmux compatible string.
+>
+> If you take a look at the schema for mt7620 and rt305x, some functions go=
+t
+> multiple lists for groups. Like refclk on mt7620. Because mt7620 and
+> mt7628/mt7688 SoCs use the same compatible string, it's impossible to
+> differentiate on the binding which SoC a devicetree is actually for.
+> Therefore, the binding will allow all groups listed for that function. Fo=
+r
+> example, if the SoC is mt7620, only the refclk function for the mdio grou=
+p
+> can be used. If one were to put "spi cs1" as the function there, there
+> wouldn't be a warning.
+>
+> I address this by introducing new compatible strings for these SoCs, then
+> split the schemas. I also separate mt7628/mt7688 from mt7620 pinctrl
+> subdriver in the process.
+>
+> I wanted to split the rt305x driver too but too much code would be reused
+> so I backed down from that.
+>
+> Ralink was acquired by MediaTek in 2011. These SoCs have been rebranded a=
+s
+> MediaTek. We're moving the Ralink pinctrl driver to MediaTek, and rename
+> the schemas to mediatek.
+>
+> I've renamed the ralink core driver to mtmips. I decided to call the core
+> mtmips as I've seen folks from MediaTek use the same name when they added
+> support for MT7621 pinctrl on U-Boot. Feel free to comment on this.
+>
+> The MTMIPS pinctrl driver requires rt_sysc_membase from
+> arch/mips/ralink/of.c, so, for COMPILE_TEST to be useful, RALINK must be
+> selected. These headers, asm/mach-ralink/ralink_regs.h and
+> asm/mach-ralink/mt7620.h, from arch/mips/include are also required but
+> they can easily be included:
+>
+> ifeq ($(CONFIG_COMPILE_TEST),y)
+> CFLAGS_pinctrl-mtmips.o                 +=3D -I$(srctree)/arch/mips/inclu=
+de
+> endif
+>
+> Sergio, do you see a way to make the pinctrl driver independent of
+> architecture code? At least avoid using rt_sysc_membase.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index a38fe5129937..d67e98120313 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -245,6 +245,15 @@ cmu_peri: clock-controller@10030000 {
- 				      "dout_peri_uart", "dout_peri_ip";
- 		};
- 
-+		cmu_g3d: clock-controller@11400000 {
-+			compatible = "samsung,exynos850-cmu-g3d";
-+			reg = <0x11400000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&oscclk>, <&cmu_top CLK_DOUT_G3D_SWITCH>;
-+			clock-names = "oscclk", "dout_g3d_switch";
-+		};
-+
- 		cmu_apm: clock-controller@11800000 {
- 			compatible = "samsung,exynos850-cmu-apm";
- 			reg = <0x11800000 0x8000>;
--- 
-2.39.1
+The only really dependent architecture code in these drivers now is
+because of the use of
+'rt_sysc_r32()' and 'rt_sysc_w32()' in 'ralink_pmx_group_enable()'
+function [0]. This is just to set the gpio mode. The read and write
+registers here  SYSC_REG_GPIO_MODE and  SYSC_REG_GPIO_MODE2 are in the
+system controller area. In all single ralink platform 'sysc' nodes
+should be a syscon that can be accessed from the driver side. That way
+you can just get those syscon areas via regmap APIs and properly read
+and write desired registers. For the mt7621.dtsi file, the node is
+already a syscon [1]. Other ralink device tree files should also be
+modified to include this in its 'sysc' node (I think in openWRT dts
+files at least for mt7620 is already included). You have to add that
+in all of them since 'ralink_pmx_group_enable()' is common code for
+all. I think this can be done in a different patch series. I can help
+you to do this after this series is reviewed and accepted.
 
+>
+> dtbs_check will print warnings for DTs with the old strings as it will
+> match multiple bindings. I assume that's acceptable in order to have the
+> things properly documented without breaking the ABI. The bindings will wo=
+rk
+> fine with the new compatible strings.
+>
+> I could define the checks under $defs:, then refer to it if the compatibl=
+e
+> string is the one which would work fine. Or I could put only the new
+> compatible strings on the documentation. What are your thoughts Krzysztof=
+,
+> Rob?
+>
+> Ar=C4=B1n=C3=A7
+>
+>
+
+Best regards,
+    Sergio Paracuellos
+
+[0]: https://elixir.bootlin.com/linux/v6.2/source/drivers/pinctrl/ralink/pi=
+nctrl-ralink.c#L117
+[1]: https://elixir.bootlin.com/linux/v6.2/source/arch/mips/boot/dts/ralink=
+/mt7621.dtsi#L62
