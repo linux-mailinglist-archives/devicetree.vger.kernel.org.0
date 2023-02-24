@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E966A1B2D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC176A1B30
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:14:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbjBXLLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 06:11:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
+        id S229693AbjBXLOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 06:14:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbjBXLLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:11:34 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E260142BE4
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:11:17 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id r7so13365705wrz.6
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:11:17 -0800 (PST)
+        with ESMTP id S229683AbjBXLOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:14:04 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2BE213D4A
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:14:02 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id ec43so52884030edb.8
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:14:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HW1MMOsZ1jdi5XBUIwdHvUOrWypSSf4PAFyyG2azRmY=;
-        b=oObB51ZbGeFK/JucA7XIeI2+mqGwFQqnDd+S+tN+8B6X1cPq2UXSe37sNTfnQATNOc
-         T960+WBcc6XralJWiUwoiGKC3Qhr9gUuPo1iArkursW04JZVsxdS+uOmp4/Wq+Tn9m8a
-         M20wWwWEcSdl/Gd09YsWvjHmx4bn8bEVTEcQmYEdo+d9f9xqLU2mVOIMDaBuz+IpQzej
-         xVVM85m4XdaA9EhxoBYv2GUWopDnYBCQjIQ7Fg8eD2MmkHrmxPRAporoc9u5/M7u8gcl
-         yh3xN2heWXPpJL80dTj01zG9v9RKWeq+acQD+2IwkmpfRs46G1ZQfhuDJG2ih0MHQNGi
-         eCIw==
+        bh=b4D6hX91fb92VP82KNoA4xeL0ZK1TUyb4FSrEk92iZw=;
+        b=zNcNrNzKfAKA5t/pAA7zijWFeVt36mJVhdHAeL4/YAlXPxdmWlKdR6R+xi+LrlWP33
+         z2Dt9BjXIn+4OqbmsvOUYbfiwdwSYia64/Lw2AxfOP49gPuxf+r7nWvl/96yHIQSaZ5D
+         +1bNEERoen9tf9vFvKxn6+SYz7+jID2wwp4PMWG2lkqm61CmdgDJoIJfDMs+sQ7HRiVx
+         uLFboR8A41OR6Mgl8CKjyZPx4ZDnUNuVa9z9bS4I+4wxDNf8EcoPR0YCcIfxtKYuS8tj
+         F6gSTyQBPPWtQ5Uit7thD9i9mwfZvqfj3mQaP5u369414I1D16RU1XlRwAshaGKww/QR
+         329g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HW1MMOsZ1jdi5XBUIwdHvUOrWypSSf4PAFyyG2azRmY=;
-        b=EMMBAptuPYx/TfKL08+Fx30WysnCPv2fUZb8fZIB31a1lQpl0GWNWiXzeheG7Xm35v
-         1X8mQVWeCfNg7mjYb6GTysnOngLgRxRKtJXozy1aWvw1T1kKmNqHm4f5TAXIxJ//T0OD
-         VgqZOA1acFxhFx8K7RwwVqwVrZTHpz47udcFdaDo2CcsaHbRDODfyty3Zf3VEvpq7a6c
-         z+h3blpjQ1wml7fCKY6Wtiz6x7LH/GjeCP7AMQpFk8UEZgLk4vtL+H8aKyTmQ+rdzNL7
-         l+7wZjM/G79EcFjYrz5A8z+rW9RGg1NRKNp3EzJQTRyQiRqOCaNnhlo9b5M5YqNqwZWn
-         CR0g==
-X-Gm-Message-State: AO0yUKUeJJy7n/fFSIgAJOMkz1n3y17tqikNyJEiAZPmuLYXoGhLoMWl
-        wacQ1xYYwybCzGtFSK1HF3H9amqARbl8Mv6O
-X-Google-Smtp-Source: AK7set9w7qpxDBdOWAHOzOR27ysmRZbKntF29OBpFSpvlT6RmuI9Wa/1F9AnYGAqRfWPMt5F3tNxMw==
-X-Received: by 2002:a05:6000:8c:b0:2c5:9cb8:d315 with SMTP id m12-20020a056000008c00b002c59cb8d315mr12435970wrx.62.1677237076381;
-        Fri, 24 Feb 2023 03:11:16 -0800 (PST)
+        bh=b4D6hX91fb92VP82KNoA4xeL0ZK1TUyb4FSrEk92iZw=;
+        b=Yykg7gy5IVG+bX5ZzwURcT+tep3NHoVEdCMXUSmRXoFNu8TsJN7dq33uG4joDSSsYY
+         O8JG8+j3bWnxwcllCs5zhbeEt49yTkXFB63zB1ZMlZacLUckUq35QEmx7gWsb7Dlkbph
+         kUkAkZh9G0BbpKCsV44+q/oUkl5PJiprqrlXzoNvpIQF9YYcrfXPebuIJuTNTXXqmVdn
+         degqSXcPDoUybtyge5O5yOF3Cbpnf/hKu1Xw07tjXRXSaK4kXHNuy2a90KKeGlPQACwd
+         60u2+9e6V+2ASaa5TsczVDtQR1LUigPR31McXSGG1uQBVa0lx9qb785ePywnR5urxZbL
+         tScQ==
+X-Gm-Message-State: AO0yUKWM+uPX6y/rzOrixMnZF70HDalTsYTLwee0YVwkOGp9oWR3xgTJ
+        oqFGitnOFxzZCU52qIsI/Kl1WpNuxb2FyajV
+X-Google-Smtp-Source: AK7set+gc4yhE+A0IXsPpE9c67JqLb4w2Z5XdXbf0h0MLlfYinTEULSVEUAfshoVmYErhQRuFjwloQ==
+X-Received: by 2002:a05:6402:54c:b0:4ad:7224:ce94 with SMTP id i12-20020a056402054c00b004ad7224ce94mr15016385edx.15.1677237241273;
+        Fri, 24 Feb 2023 03:14:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b9-20020a5d4b89000000b002c794495f6fsm598003wrt.117.2023.02.24.03.11.15
+        by smtp.gmail.com with ESMTPSA id w15-20020a50c44f000000b004af70c4b4a7sm1534058edf.97.2023.02.24.03.14.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 03:11:16 -0800 (PST)
-Message-ID: <e20f5d80-e53a-559d-9a21-fcf77c1cf968@linaro.org>
-Date:   Fri, 24 Feb 2023 12:11:14 +0100
+        Fri, 24 Feb 2023 03:14:00 -0800 (PST)
+Message-ID: <d4d4c5e6-4700-2404-618a-5cb21946b555@linaro.org>
+Date:   Fri, 24 Feb 2023 12:13:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v11 6/8] arm64: dts: ti: k3-j721s2: Add support for OSPI
- Flashes
+Subject: Re: [PATCH v4 2/7] dt-bindings: gpio: rockchip,gpio-bank: add unique
+ hardware GPIO ID
 Content-Language: en-US
-To:     Ravi Gunasekaran <r-gunasekaran@ti.com>, nm@ti.com, afd@ti.com,
-        vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s-vadapalli@ti.com,
-        vaishnav.a@ti.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230224102438.6541-1-r-gunasekaran@ti.com>
- <20230224102438.6541-7-r-gunasekaran@ti.com>
+To:     Johan Jonker <jbx6244@gmail.com>, linus.walleij@linaro.org,
+        brgl@bgdev.pl
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <3eeaa940-9d40-5e33-bc36-c9b0449ded9f@gmail.com>
+ <774d712d-bcdf-677a-2d9c-a49ed829e965@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230224102438.6541-7-r-gunasekaran@ti.com>
+In-Reply-To: <774d712d-bcdf-677a-2d9c-a49ed829e965@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,110 +78,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2023 11:24, Ravi Gunasekaran wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
+On 23/02/2023 20:46, Johan Jonker wrote:
+> Add a unique hardware GPIO ID to the Rockchip GPIO nodes with
+> the "rockchip,gpio-controller" property to be independent from aliases
+> and probe order. "gpio-ranges" can't be used for that, because there is
+> no semantic restrictions on how they are set up.
 > 
-> J721S2 has an OSPI NOR flash on its SOM connected the OSPI0 instance and a
-> QSPI NOR flash on the common processor board connected to the OSPI1
-> instance. Add support for the same
-> 
-> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> Changes from v10:
-> * Removed Link tag from commit message
 > 
-> Changes from v9:
-> * Enabled fss and ospi nodes
+> See discussion:
+> https://lore.kernel.org/u-boot/CACRpkdZx8EaSFLeh4vruRsdC+Sx_ieBiKmuE7t37zhiYqtS3WQ@mail.gmail.com/
+> ---
+>  .../devicetree/bindings/gpio/rockchip,gpio-bank.yaml        | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Changes from v8:
-> * No change
+> diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+> index 2e9a5179c..39ac41e9d 100644
+> --- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+> @@ -52,6 +52,12 @@ properties:
 > 
-> Changes from v7:
-> * No change
+>    gpio-line-names: true
 > 
-> Changes from v6:
-> * No change
-> 
-> Changes from v5:
-> * Removed Cc tags from commit message
-> 
-> Changes from v4:
-> * No change
-> 
-> Changes from v3:
-> * No change
-> 
-> Changes from v2:
-> * No change
-> 
-> Changes from v1:
-> * No change
-> 
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 39 +++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 43 +++++++++++++++++++
->  2 files changed, 82 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index fa38940fe6cd..76b420379645 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -206,6 +206,20 @@
->  			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) WKUP_GPIO0_2 */
->  		>;
->  	};
-> +
-> +	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
-> +			J721S2_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
-> +			J721S2_WKUP_IOPAD(0x060, PIN_OUTPUT, 0) /* (C21) MCU_OSPI1_CSn1 */
-> +			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
-> +			J721S2_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
-> +			J721S2_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
-> +			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
-> +			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
-> +			J721S2_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
-> +		>;
-> +	};
->  };
->  
->  &main_gpio2 {
-> @@ -347,6 +361,31 @@
->  	maximum-speed = "high-speed";
->  };
->  
-> +&fss {
-> +	status = "okay";
+> +  rockchip,gpio-controller:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 8
+> +    description:
+> +      Unique hardware GPIO ID.
 
-Where is the pinmux usage you said is required for the bus?
-
-> +};
-> +
-> +&ospi1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
-> +
-> +	flash@0{
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <1>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-max-frequency = <40000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-
-Are you sure these are correct? Aren't they marked as deprecated?
-
-
+Neither commit msg nor this description explain why do you need it.
+Also: what is a unique ID? why only 8 of them are allowed? Why assigning
+arbitrary numbers should be a property of DT (answer: it's not)?
 
 Best regards,
 Krzysztof
