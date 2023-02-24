@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2096A1FCB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 650086A1FDE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjBXQi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 11:38:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38796 "EHLO
+        id S229962AbjBXQnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 11:43:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjBXQi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:38:28 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75F072A3;
-        Fri, 24 Feb 2023 08:38:26 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 62BB21BF20E;
-        Fri, 24 Feb 2023 16:38:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1677256705;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=IcwVBMNJxREzAORSB4kwnslnfJW5DZUbMD+E/Pg4QUI=;
-        b=Qvx1aSQrhkeqEq19g8opXBm26MmSXSy9FWspGxqNL10YEXRd/YW9UgQACHVM2qjOSqWupk
-        6jSALGtl+yYBFU6MS8qY+MSVSrnpEbZANxFkXUtCxP8UgZ/gwA0b/yMqoRM6W9J8cx//il
-        le4EkDfKhZPxI+b1nT1td1wVkIZHEcoLTrIhIP0Tk3k/wDyQtDl5+8rIUUJcqswnS/0+NN
-        HVf77A8PC2mW+x4IKpk5H+FOZh14eABKzZrAp8Q9c+hPjueVY7tpaSqqOQVFx/7emrK5kF
-        Y50oihFedkwuKxnnFlyqapLTfSBMEUUB/mvNnokJaRtSGQJssBG76GE2ODEogA==
-Date:   Fri, 24 Feb 2023 17:38:20 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-clk@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/5] clk: imx: imx8mp: Add audiomix block control
-Message-ID: <20230224173820.644929b6@booty>
-In-Reply-To: <20230223171114.59164-2-marex@denx.de>
-References: <20230223171114.59164-1-marex@denx.de>
-        <20230223171114.59164-2-marex@denx.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229912AbjBXQnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:43:37 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F4A1A961;
+        Fri, 24 Feb 2023 08:43:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677257016; x=1708793016;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jJ+zDYe8YpOn9npwy/AmG2yBFLE8F2/8quZbClKmzyQ=;
+  b=M0LbihbSthwe0MvHlso/2AV9S1PxsbZgJTlKgB5hYVO823AhX36R8N0N
+   794AuJwGJw2jeeJQM+qj6sg+m62N7voWLfS+wNY0tgMozY0K3Ka2rdmUc
+   Vnlnu96ivbqSQbAS2baVM/hMCVJhRn+pkIYhGPJXCNNF0k6qmddvUm3QH
+   DPJl784hXLBJT2RMiFyFBCdnAox2GihQdxpI8OXsfBiCCV4jphe6QlPF3
+   A9fkY4qGcyrjBXks2J/gJgyYPkEv6uMM2FAUdt/MUQL0WHYH00F/Cg/+q
+   g/mrGY+E/XQOcOMzEWnXC5xEsVbpO9tYJQDsLzvR3ue1Vdwy+AnQ1H67l
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="331252001"
+X-IronPort-AV: E=Sophos;i="5.97,325,1669104000"; 
+   d="scan'208";a="331252001"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2023 08:43:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="672955234"
+X-IronPort-AV: E=Sophos;i="5.97,325,1669104000"; 
+   d="scan'208";a="672955234"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 24 Feb 2023 08:43:31 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pVbAP-00BXMW-0q;
+        Fri, 24 Feb 2023 18:43:29 +0200
+Date:   Fri, 24 Feb 2023 18:43:28 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Danny Kaehn <kaehndan@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v7 0/3] Firmware Support for USB-HID Devices and CP2112
+Message-ID: <Y/jpME2mb5CqPooj@smile.fi.intel.com>
+References: <20230223213147.268-1-kaehndan@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230223213147.268-1-kaehndan@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On Thu, Feb 23, 2023 at 03:31:44PM -0600, Danny Kaehn wrote:
+> This patchset allows USB-HID devices to have DeviceTree bindings through sharing
+> the USB fwnode with the HID driver, and adds such a binding and driver
+> implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+> USB-HID change). This change allows a CP2112 permanently attached in hardware to
+> be described in DT and interoperate with other drivers.
 
-On Thu, 23 Feb 2023 18:11:11 +0100
-Marek Vasut <marex@denx.de> wrote:
-
-> Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
-> series of clock gates and muxes. Model it as a large static table of
-> gates and muxes with one exception, which is the PLL14xx . The PLL14xx
-> SAI PLL has to be registered separately.
-> 
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
-  ^ confirmed with v4, works as well
+It's your responsibility to carry the tags you have got in the previous rounds
+of the review. Please, be respectful to the reviewers who spent a lot of time
+on yours, in particular, code. Otherwise why to bother with it (upstreaming)
+at all?
 
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With Best Regards,
+Andy Shevchenko
+
+
