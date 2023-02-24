@@ -2,167 +2,432 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 620C96A15F4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 05:37:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B652F6A16CC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 07:58:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbjBXEhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 23:37:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53260 "EHLO
+        id S229667AbjBXG62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 01:58:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjBXEhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 23:37:33 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2042.outbound.protection.outlook.com [40.107.20.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06EDF5EEC1;
-        Thu, 23 Feb 2023 20:37:31 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XIwqCtaXQc0ov/jjVUREKDChcqfiV5pUJLJT3BNreUtCK6urYpT/BjJP/n1o+vdjNUg+n+tLMU2J4ha9IvDf5l/y9NE7CUi9w4oXXT56ob3QGuJkkI4XTYT53kjuJlooYwjVDPDymXz0Fzkc3oKnkgOBFf7ECmlhzl4XhTubRzD4T3anVAgiLXa52SI3pG4MiMJDORcD4zGGHpCK9+7ohCZ3LuU3APatC+V3SQ6lyjy/Wlk0/4XGGJgUZuGzQ6cPKxtDHFG4jZYWS3nL7LYv0a9YDvyKyNuPjL7GK/vyMetkvmhSi0hW4rvPZie5DWs9Q/YcY7OoTkNJndSsMppDyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=to4F1kMN8HlN6amhHnRFTUgsZ/2MDG3KMUG3nFKjVlg=;
- b=KrDG1qEFQiO3MqSn2IWKfzvYPaDAc/yP+i07tTldxFXh10T0g/ex+rBLc0pxxuPpIxoQelX/ho2USBp+VPW7nXjnq3w9sEXkuqNEEY2RGUSEigJUEF0MihRNhVIHvIL6F62CpV/yqUyhdnZytZNdh1sUkWzUgL+oP2gwIjZIfBQFo9Ov45hdt5R5gdJVY2jQF+sxHhbuNXzDPhpbTRiOaqWfkC0ZpmHempPpRirVdrNRLC1yZ78g9zMQXLbJzMU3YiCC0yJxFs1TM2dLL4MYbwh9bWW89U2gpqYflBNhuKbZVRSPX4UjC0kXhttrVOR58Dcjpa8G55HlCXroZtUvvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=to4F1kMN8HlN6amhHnRFTUgsZ/2MDG3KMUG3nFKjVlg=;
- b=dtH5BVPlhkWvbG+hgt8KTgNtiwYXdPq5WqmaV1MsHzMltDHl8arVDDs8lJtD0X11ZyBG1oAxZupXQZ+fh3sDm/DrGmqYPa6mCMXwMA93vNJAXpG+EvkUMhyVbI6SQSiGr/cghnQA3E6wXWjbC7p0pz7C2AifRDMiWWhniG9rMlw=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM9PR04MB8162.eurprd04.prod.outlook.com (2603:10a6:20b:3e3::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.24; Fri, 24 Feb
- 2023 04:37:28 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::f55a:cf12:da08:6d2a]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::f55a:cf12:da08:6d2a%3]) with mapi id 15.20.6134.021; Fri, 24 Feb 2023
- 04:37:28 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "balbi@kernel.org" <balbi@kernel.org>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jun Li <jun.li@nxp.com>
-Subject: RE: [PATCH V2] dt-bindings: usb: snps,dwc3: support i.MX8MQ
-Thread-Topic: [PATCH V2] dt-bindings: usb: snps,dwc3: support i.MX8MQ
-Thread-Index: AQHZN3EBIMdG65+qaUS6uw5+ONteWa7dpF7g
-Date:   Fri, 24 Feb 2023 04:37:28 +0000
-Message-ID: <DU0PR04MB9417FCEB7D14C5914D80EBCE88A89@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20230203014526.1461386-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20230203014526.1461386-1-peng.fan@oss.nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AM9PR04MB8162:EE_
-x-ms-office365-filtering-correlation-id: 0f085442-656c-4cb2-1681-08db1620d5e3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aOBL7ovTMEM6S7V8kPlyKid/0ul4nUPZKYPZ68qIQS59j4QqiQq180oyO4R2Ozc1OnSHLplgKhmuGubXUaNbXyBAoZgsF+XscuPFIpqyCy7NBQfU9ZMAfXlRCt7DM46yl7P0yix/ErhXfxGNEXzaf8fKctdtyYE9cSRVWIqpUaXPY0KvCG0AlpC6P9kDTjomyexkrRx1gBgNL1J1xSvfVnUe8hTBFHhs9bm+8glWCnO+9MQpB9EKxztfBEG0iCHa/jFE+H7phnpUBDA4YP6A73yji1MxF0ecI9fzE9K08o7pGmoNCs/NzSX4Pf3gTbW9/MzIK0Bp7XgPkR/8iQ/ajf8EJmBYabGsdf0md+YqdSZensDvGrGNQ8884NqmzYSM/+re9+NzVgoBDc7k+zZ5Jl+B4MeSHSZ8dOoHwngH6Wou2WGzL59hQkQKys0mPpnFsueJ0LTLDoruULouaBuruMgbl70LNy6Z7XmopH+vWPkiAEwaJGbKlaY6QzpEoZlyV1rUTSHtGPRpKIlp+WqvMzLvlCGW91rRpbW77wICXc76EWQSAU4xTH6sezgQ+ZiqI2W9El4tEhJCba6lxNqu9WNVizSnJFBGMZ4bZGAbghGZE737RQoCd6OgvmdGEgAFGdftCzTo/P43hlyjXxx5iABZuicuzvmGyrEgqH8VRfplpLXvcvKbPbCHPd3iUB5K2BRFnfo2eIeTixYyj70jq8wrcY11YVKZb+HXNZperH2qlTzts1aRSo4CC3Oagasm
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(346002)(396003)(366004)(39860400002)(376002)(451199018)(122000001)(8936002)(52536014)(54906003)(316002)(38070700005)(26005)(9686003)(186003)(478600001)(6506007)(33656002)(7696005)(71200400001)(86362001)(2906002)(55016003)(44832011)(110136005)(5660300002)(38100700002)(64756008)(41300700001)(8676002)(83380400001)(4326008)(66946007)(66556008)(66446008)(76116006)(66476007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?G98rXYIyvTWGdY4LW38KzeB1kKW5Hqp7zOwagdbQ2WWZ6t/5kiUFOa4Z6R2g?=
- =?us-ascii?Q?1TVcO2OCwAjtOtIzn1d/Sq1b0VvnNk4FGW847Qa4zNvzh4BJw6QMLCWTbDXV?=
- =?us-ascii?Q?kcs+zQFY1KAZs3fxsvHEeVYdJDzAYUpBO/dZ4ry/CiGA197N6kVd+fVAZbId?=
- =?us-ascii?Q?ps4dwqJP2zrKcWpQ8i0pufLcmib7FVzm8Lou92wO3Bof2hbaHZWZK/0i0IGE?=
- =?us-ascii?Q?coyQovs4ELzK2EwCj554eI2SDwFZX4SQ/cFCOfdaII7/mU7PhEkTrvTY/03d?=
- =?us-ascii?Q?mCmpQ4JzySt1/rcjEl+Eoc5c+j0/yI0br+GEl9FruyeKAFdJH4PAjJkHej0p?=
- =?us-ascii?Q?WmwMdiuMpw/dFPqzw/BQEb025R6WVeLmRF+VhJdI62BTKc3y2Q62e6k7WH65?=
- =?us-ascii?Q?OZmbVKaQzIU/Er8ox2YMRRRZgm6ctQVs7WQovEhY7P6AotREZrphsusrYxMm?=
- =?us-ascii?Q?OwvkNC7/5kl+IkutkaCEDgZq7DjpuC75mS63WggTv50XCkCs6WtcR7oUQY7f?=
- =?us-ascii?Q?45e3LVIlzyQ8byHakKvvenMJ+5H58oz3lEDtma4D8MFSLu1MWrtvm8U7/Wmj?=
- =?us-ascii?Q?zipB4bi26iTf/tCP5w8JxqAq3wrG1oWBMm9tzEmCU/Q8ZoRDYywqp14nY7sN?=
- =?us-ascii?Q?A3dP/CQ0CumbANlon4fzNlw3xRgnRWHi31M5NUYZJ4Lc96nWVxlsvBQHK0Rm?=
- =?us-ascii?Q?Y0jtuCd5HXdU2H9KxKQ/ojZ9GCJslEPhz0vD62riIw569kqwPqMYBRdfvSlc?=
- =?us-ascii?Q?ES+B2XydvVj874vIIb7ViK6nvRKYBcyej8Q2b3mTzkhKhyGiDuXhETxzesMW?=
- =?us-ascii?Q?PVuXRnFKbKORYEC6OctrXQgisfIsDU/Q2w/KNzVU6cnWaFU8yGbIob3AyAOJ?=
- =?us-ascii?Q?wnumunY4Xmnx4zz5Hv3VXEPTP9WzK1952KewUagWDpYrPiXUoP4r82ETVD+D?=
- =?us-ascii?Q?zaRQvjIfQswVl3NMbPXm9Hg6PBgSPjfhm08bFFeirF1UKNrIOA8APRVh0lZO?=
- =?us-ascii?Q?yR1aIw9RtC6lqNH/Eh9tjgPoCGqNyWr+LpvGpq7xVHtpAyODbnfXXj0L1bfG?=
- =?us-ascii?Q?XyVyanLVibhdz3YXbAfKvB71HcrsZE5UuBa2xenOxBaFTIhBUY1YQKalMKsv?=
- =?us-ascii?Q?NDXe1uBhKP3rfrNDtSk7ZUgpIZsM48+n/n9OsPRCvo8DpnY9UdZFrGfGpp0d?=
- =?us-ascii?Q?qj8spTZVKFjg50lpig1+I+CsM+nF5JORtHUl7anhTUoFRMbhOXuSPrmx2N3u?=
- =?us-ascii?Q?Xk0pdhqCfo2Ogv62kR5smNRwoOjNcGJYDuK6NbEipjH9FMBPXaGLZQW/Y3K0?=
- =?us-ascii?Q?AsxzV2dngh9Elv4kcC5W4vvCSCdX5SWFAOflPTT8MKFXhG3Kxi4zvKChsOJV?=
- =?us-ascii?Q?YOmXce8h2AeqwEcsF3bE9wlzIZqS57nU9VloyOw6EyVvQXuQWi9rPt4/uzUg?=
- =?us-ascii?Q?4Sh9xkQUbp3YKbPXrxS/Xj3Nkgc4w01L5D61cojmabPsvNXR2WZI8YnipSg6?=
- =?us-ascii?Q?ibMpnH/x6oVI7ZivXlZUM+H2uvfmgTrwOjQey0WaRCevh92ulZASLxdf2Fm4?=
- =?us-ascii?Q?AUJllWWZcVbCc+tGl74=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229498AbjBXG61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 01:58:27 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 750B8410B8;
+        Thu, 23 Feb 2023 22:58:25 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31O2NUsO030509;
+        Fri, 24 Feb 2023 06:58:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ExYGv7uD0WZzY2ho0BwFRS07UTaJZxj71lOvMF39JVY=;
+ b=V4YlBVnHKYYJ22OJV2cyL1Z6lKp9M60dmCWQtloQXFegllNUw3XnlYMXOebclvhA9oIT
+ RcZdTdy97hzk/AFiuUY/Z82xC8epjV+BNOEtC1ZQcCR08WZji6j0tz9QZTF5zOZZEkF2
+ +gBLPgVt/UwiFG7j2RG6qs+lVBaWVzsB94CFm52NLnDIG3pTfB8Fzs3VqydXAPh5uWeO
+ R7ViDH7lgJJv6ouy/q0NuMpvN9wahmerPu679mGrUkWbS3u0LaQ8ofIdpNiFlINqf9Ni
+ t/Trkl5wE2u9484Icz4MvgNw2bSWFCStCBWh6cSt10htnPwTlBEWxpdOCs+PlGP3Z5ot /w== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nwycnkqpr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Feb 2023 06:58:05 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31O6w4dX002510
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Feb 2023 06:58:04 GMT
+Received: from [10.50.30.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 23 Feb
+ 2023 22:57:55 -0800
+Message-ID: <d3403424-4adc-26d6-3a98-1807361fe0fc@quicinc.com>
+Date:   Fri, 24 Feb 2023 12:27:52 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f085442-656c-4cb2-1681-08db1620d5e3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2023 04:37:28.5782
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vNg1ZSC0ZZd/eYB3ji/4fSJIxy+zJmYkeAC44FOpYsZzzwXHhuKddrLpC5CC1LJLYy42MhEtguIJIokMiHgSdQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8162
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: ipq9574: Add PCIe PHYs and
+ controller nodes
+To:     Devi Priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <mani@kernel.org>, <p.zabel@pengutronix.de>,
+        <svarbanov@mm-sol.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>
+References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
+ <20230214164135.17039-8-quic_devipriy@quicinc.com>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <20230214164135.17039-8-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zEjx_kquJH8OKG_6ysX1stIhuddtfRsj
+X-Proofpoint-GUID: zEjx_kquJH8OKG_6ysX1stIhuddtfRsj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-24_03,2023-02-23_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0
+ clxscore=1015 mlxlogscore=999 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302240057
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ping..
 
-> Subject: [PATCH V2] dt-bindings: usb: snps,dwc3: support i.MX8MQ
->=20
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> i.MX8MQ use Synopsys DesignWare USB3 Controller IP, so add the
-> compatible.
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On 2/14/2023 10:11 PM, Devi Priya wrote:
+> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+> found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane Gen3
+> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+>
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 > ---
->=20
-> V2:
->  Rebased on linux-next, remove power-domains from v1
->=20
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index be36956af53b..fefd6610ab45 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -30,11 +30,13 @@ allOf:
->=20
->  properties:
->    compatible:
-> -    contains:
-> -      oneOf:
-> -        - const: snps,dwc3
-> -        - const: synopsys,dwc3
-> -          deprecated: true
-> +    oneOf:
-> +      - items:
-> +          - const: fsl,imx8mq-dwc3
-> +          - const: snps,dwc3
-> +      - const: snps,dwc3
-> +      - const: synopsys,dwc3
-> +        deprecated: true
->=20
->    reg:
->      maxItems: 1
-> --
-> 2.37.1
+>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  28 ++
+>   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 477 ++++++++++++++++++-
+>   2 files changed, 499 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+> index 2c8430197ec0..21b53f34ce84 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+> @@ -8,6 +8,7 @@
+>   
+>   /dts-v1/;
+>   
+> +#include <dt-bindings/gpio/gpio.h>
+>   #include "ipq9574.dtsi"
+>   
+>   / {
+> @@ -29,6 +30,33 @@
+>   	status = "okay";
+>   };
+>   
+> +&pcie1_phy {
+> +	status = "okay";
+> +};
+> +
+> +&pcie1_x1 {
+> +	perst-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie2_phy {
+> +	status = "okay";
+> +};
+> +
+> +&pcie2_x2 {
+> +	perst-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie3_phy {
+> +	status = "okay";
+> +};
+> +
+> +&pcie3_x2 {
+> +	perst-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +};
+> +
+>   &sdhc_1 {
+>   	pinctrl-0 = <&sdc_default_state>;
+>   	pinctrl-names = "default";
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 062f80798ebb..a32dbdeb5bed 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -6,8 +6,8 @@
+>    * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>    */
+>   
+> -#include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
+>   
+>   / {
+> @@ -22,11 +22,41 @@
+>   			#clock-cells = <0>;
+>   		};
+>   
+> +		pcie30_phy0_pipe_clk: pcie30_phy0_pipe_clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <250000000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie30_phy1_pipe_clk: pcie30_phy1_pipe_clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <250000000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie30_phy2_pipe_clk: pcie30_phy2_pipe_clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <250000000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie30_phy3_pipe_clk: pcie30_phy3_pipe_clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <250000000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+>   		sleep_clk: sleep-clk {
+>   			compatible = "fixed-clock";
+>   			#clock-cells = <0>;
+>   		};
+>   
+> +		usb3phy_0_cc_pipe_clk: usb3phy_0_cc_pipe_clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <125000000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+>   		xo_board_clk: xo-board-clk {
+>   			compatible = "fixed-clock";
+>   			#clock-cells = <0>;
+> @@ -121,6 +151,155 @@
+>   		#size-cells = <1>;
+>   		ranges = <0 0 0 0xffffffff>;
+>   
+> +		pcie0_phy: phy@84000 {
+> +			compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+> +			reg = <0x00084000 0x1bc>; /* Serdes PLL */
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +			clocks = <&gcc GCC_PCIE0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE0_AHB_CLK>,
+> +				 <&gcc GCC_ANOC_PCIE0_1LANE_M_CLK>,
+> +				 <&gcc GCC_SNOC_PCIE0_1LANE_S_CLK>;
+> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE0_AUX_CLK>;
+> +			assigned-clock-rates = <20000000>;
+> +
+> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
+> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
+> +			reset-names = "phy", "common";
+> +
+> +			status = "disabled";
+> +
+> +			pcie0_lane: phy@84200 {
+> +				reg = <0x00084200 0x16c>, /* Serdes Tx */
+> +				      <0x00084400 0x200>, /* Serdes Rx */
+> +				      <0x00084800 0x1f0>, /* PCS: Lane0, COM, PCIE */
+> +				      <0x00084c00 0xf4>;  /* pcs_misc */
+> +				#phy-cells = <0>;
+> +
+> +				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+> +				clock-names = "pipe0";
+> +				clock-output-names = "gcc_pcie0_pipe_clk_src";
+> +				#clock-cells = <0>;
+> +			};
+> +		};
+> +
+> +		pcie2_phy: phy@8c000 {
+> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
+> +			reg = <0x0008c000 0x1bc>; /* Serdes PLL */
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			clocks = <&gcc GCC_PCIE2_AUX_CLK>,
+> +				 <&gcc GCC_PCIE2_AHB_CLK>,
+> +				 <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
+> +				 <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>;
+> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE2_AUX_CLK>;
+> +			assigned-clock-rates = <20000000>;
+> +
+> +			resets = <&gcc GCC_PCIE2_PHY_BCR>,
+> +				 <&gcc GCC_PCIE2PHY_PHY_BCR>;
+> +			reset-names = "phy", "common";
+> +
+> +			status = "disabled";
+> +
+> +			pcie2_lanes: phy@8c200 {
+> +				reg = <0x0008c200 0x16c>, /* Serdes Tx0 */
+> +				      <0x0008c400 0x200>, /* Serdes Rx0 */
+> +				      <0x0008d000 0x1f0>, /* PCS: Lane0, COM, PCIE */
+> +				      <0x0008c600 0x16c>, /* Serdes Tx1 */
+> +				      <0x0008c800 0x200>, /* Serdes Rx1 */
+> +				      <0x0008d400 0x0f8>; /* pcs_misc */
+> +
+> +				#phy-cells = <0>;
+> +
+> +				clocks = <&gcc GCC_PCIE2_PIPE_CLK>;
+> +				clock-names = "pipe0";
+> +				clock-output-names = "gcc_pcie2_pipe_clk_src";
+> +				#clock-cells = <0>;
+> +			};
+> +		};
+> +
+> +		pcie3_phy: phy@f4000 {
+> +			compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy";
+> +			reg = <0x000f4000 0x1bc>; /* Serdes PLL */
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			clocks = <&gcc GCC_PCIE3_AUX_CLK>,
+> +				 <&gcc GCC_PCIE3_AHB_CLK>,
+> +				 <&gcc GCC_ANOC_PCIE3_2LANE_M_CLK>,
+> +				 <&gcc GCC_SNOC_PCIE3_2LANE_S_CLK>;
+> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE3_AUX_CLK>;
+> +			assigned-clock-rates = <20000000>;
+> +
+> +			resets = <&gcc GCC_PCIE3_PHY_BCR>,
+> +				 <&gcc GCC_PCIE3PHY_PHY_BCR>;
+> +			reset-names = "phy", "common";
+> +
+> +			status = "disabled";
+> +
+> +			pcie3_lanes: phy@f4200 {
+> +				reg = <0x000f4200 0x16c>, /* Serdes Tx0 */
+> +				      <0x000f4400 0x200>, /* Serdes Rx0 */
+> +				      <0x000f5000 0x1f0>, /* PCS: Lane0, COM, PCIE */
+> +				      <0x000f4600 0x16c>, /* Serdes Tx1 */
+> +				      <0x000f4800 0x200>, /* Serdes Rx1 */
+> +				      <0x000f5400 0x0f8>; /* pcs_misc */
+> +
+> +				#phy-cells = <0>;
+> +
+> +				clocks = <&gcc GCC_PCIE3_PIPE_CLK>;
+> +				clock-names = "pipe0";
+> +				clock-output-names = "gcc_pcie3_pipe_clk_src";
+> +				#clock-cells = <0>;
+> +			};
+> +		};
+> +
+> +		pcie1_phy: phy@fc000 {
+> +			compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+> +			reg = <0x000fc000 0x1bc>; /* Serdes PLL */
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			clocks = <&gcc GCC_PCIE1_AUX_CLK>,
+> +				 <&gcc GCC_PCIE1_AHB_CLK>,
+> +				 <&gcc GCC_ANOC_PCIE1_1LANE_M_CLK>,
+> +				 <&gcc GCC_SNOC_PCIE1_1LANE_S_CLK>;
+> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE1_AUX_CLK>;
+> +			assigned-clock-rates = <20000000>;
+> +
+> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
+> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
+> +			reset-names = "phy", "common";
+> +
+> +			status = "disabled";
+> +
+> +			pcie1_lane: phy@fc200 {
+> +				reg = <0x000fc200 0x16c>, /* Serdes Tx */
+> +				      <0x000fc400 0x200>, /* Serdes Rx */
+> +				      <0x000fc800 0x1f0>, /* PCS: Lane0, COM, PCIE */
+> +				      <0x000fcc00 0xf4>;  /* pcs_misc */
+> +				#phy-cells = <0>;
+> +
+> +				clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
+> +				clock-names = "pipe0";
+> +				clock-output-names = "gcc_pcie1_pipe_clk_src";
+> +				#clock-cells = <0>;
+> +			};
+> +		};
+> +
+>   		tlmm: pinctrl@1000000 {
+>   			compatible = "qcom,ipq9574-tlmm";
+>   			reg = <0x01000000 0x300000>;
+> @@ -145,11 +324,11 @@
+>   			clocks = <&xo_board_clk>,
+>   				 <&sleep_clk>,
+>   				 <&bias_pll_ubi_nc_clk>,
+> -				 <0>,
+> -				 <0>,
+> -				 <0>,
+> -				 <0>,
+> -				 <0>;
+> +				 <&pcie30_phy0_pipe_clk>,
+> +				 <&pcie30_phy1_pipe_clk>,
+> +				 <&pcie30_phy2_pipe_clk>,
+> +				 <&pcie30_phy3_pipe_clk>,
+> +				 <&usb3phy_0_cc_pipe_clk>;
+
+
+pipe clock source is PHY. So should we add the pcie_phy phandle here and 
+use it like how it is done in other targets, ex: sm8550.dtsi?
+
+
+>   			#clock-cells = <1>;
+>   			#reset-cells = <1>;
+>   			#power-domain-cells = <1>;
+> @@ -282,6 +461,292 @@
+>   				status = "disabled";
+>   			};
+>   		};
+> +
+> +		pcie1_x1: pci@10000000 {
+> +			compatible = "qcom,pcie-ipq9574";
+> +			reg =  <0x10000000 0xf1d>,
+> +			       <0x10000F20 0xa8>,
+> +			       <0x10001000 0x1000>,
+> +			       <0x000F8000 0x4000>,
+> +			       <0x10100000 0x1000>,
+> +			       <0x00618108 0x4>;
+> +			reg-names = "dbi", "elbi", "atu", "parf", "config", "aggr_noc";
+> +			device_type = "pci";
+> +			linux,pci-domain = <2>;
+> +			bus-range = <0x00 0xff>;
+> +			num-lanes = <1>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			ranges = <0x81000000 0 0x10200000 0x10200000
+> +				  0 0x00100000   /* downstream I/O */
+> +				  0x82000000 0 0x10300000 0x10300000
+> +				  0 0x07d00000>; /* non-prefetchable memory */
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 35
+> +					IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> +					<0 0 0 2 &intc 0 49
+> +					IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> +					<0 0 0 3 &intc 0 84
+> +					IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+> +					<0 0 0 4 &intc 0 85
+> +					IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+> +
+> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "global_irq";
+
+
+Controller driver doesn't support the "global_irq" yet. Please correct 
+me If I am wrong.
+
+
+Thanks, Kathiravan T.
 
