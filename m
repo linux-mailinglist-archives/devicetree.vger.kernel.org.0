@@ -2,152 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 155DD6A17B7
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 09:08:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 315786A17A2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 09:01:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbjBXIIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 03:08:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
+        id S229617AbjBXIBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 03:01:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjBXIIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 03:08:24 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707A425E09;
-        Fri, 24 Feb 2023 00:08:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677226103; x=1708762103;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tK3PjEZic4TnRDEQrMnzOsYQnpHOQ7k2HFJWHp2ltd0=;
-  b=LoqUQLTt/nN7gQE02bP0bsyRjO5jiomkf+/5oCmaTdrdcPaQoBeE78kv
-   vh8tZCsViquh9qKpwl3+NF2Awuberg5Fzt2eHIcbOUGdePZBj61ZCMnJ5
-   VvP7DIktxxyPT7qF67X/Y7FBKOrYbOEw/yYHnt28fo9eMRLinpeKxAPtZ
-   3quASQt4wyt6gyGb+YXq7c/OMn9AsT6e2aF2HPa0unf14GPf+5g4J5HZv
-   pfZTa/7XNFhpK/17xgZuR2ZGvp+94xmG5sWIyjCydQXY5ao5JXmPHNxnu
-   L3vJZY9XOR+krM8i+MMNvKVeVvvZMGpw9zFZrf/yUeuDc/suoHmuyy5J5
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="332108176"
-X-IronPort-AV: E=Sophos;i="5.97,324,1669104000"; 
-   d="scan'208";a="332108176"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2023 00:08:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="736718256"
-X-IronPort-AV: E=Sophos;i="5.97,324,1669104000"; 
-   d="scan'208";a="736718256"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga008.fm.intel.com with ESMTP; 24 Feb 2023 00:08:08 -0800
-Date:   Fri, 24 Feb 2023 15:57:09 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-        Tom Rix <trix@redhat.com>, linux-riscv@lists.infradead.org,
+        with ESMTP id S229554AbjBXIA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 03:00:59 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B0A25BAD
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 00:00:57 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id y2so11356578pjg.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 00:00:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PcsnC67wn+CqlKF18BOklq3hhvo7C+mJm1DzOVZsLT8=;
+        b=cRnat+0Cs7+bku17Q0RWfYOyZoaY/AM3gR/A4qjMETzHJ8K/6cMg6sGIDgVGEUi2us
+         Siv6tVSk8OJ5+NMBcy4u69Wi+IRYTZb2yyEQ8cJnQqoajbwvM+r8ywhAxau9pRpMoh6z
+         OxNBb8aaTRh7b3QNsM/2CObzPZWXqGwDli3mx5Z+XP6TFOlawPctW5DeNRZSNWo3fZfw
+         /A0QLienw62/ybqG/1ipvDDFWQSzUISSJ47SFKk2HvEf//fPLO+YQKMZIg5CvhdKVQyw
+         GX5AhiDnxUK5seaggpfa44E6V7EvuGqu0myYlM0AI72dHew3HhKu5t27GC7z75uN4+TN
+         xRrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PcsnC67wn+CqlKF18BOklq3hhvo7C+mJm1DzOVZsLT8=;
+        b=6nsRdXf4ZcF9dnO7w4MjhQpcCY7S0pIiXM48+fezEv8fkO0/C7j7WKguHhlZWIj5bB
+         af5eUkxFoafa3kusfam5Pv49grC9uEgS1CJWY1S/b4qFWL++tpIAYUBz9Zz74JyLQ0Ms
+         uDCwr2rz6RrNKoQxp49RDU5zzFff531OOXM+FZLR6S97gcRo8aTw17lfxeH4IQaPnCZM
+         WI2/wAsXCTEO1HEkH5ggsTo4/Q8C+bznH5Jmdfnn32qNasoOCntw8N1vXlraoM7UTUYL
+         GDdFeBm4ogDWl5GnbnaR8cQPtzB+TKL1S7vGlwZdIhHnsGkO8Jt9KxHIvqJrrplqNm+W
+         GI9Q==
+X-Gm-Message-State: AO0yUKWn/XOzQLBnyBOncoBPToptWsOLMAXINRkTdN94yAHBVBS0QULi
+        o4YhFBVBgQ38y37BIiLXx8++
+X-Google-Smtp-Source: AK7set/lzSiKZKtwDbb/ZwhiiXzU1IO4RluJP7aya+5eNvg/2KbycM28CZD5Iy/+ZPBhkHUjotDfcw==
+X-Received: by 2002:a17:90b:3144:b0:237:99b9:c415 with SMTP id ip4-20020a17090b314400b0023799b9c415mr725021pjb.38.1677225656986;
+        Fri, 24 Feb 2023 00:00:56 -0800 (PST)
+Received: from localhost.localdomain ([117.217.187.3])
+        by smtp.gmail.com with ESMTPSA id l3-20020a17090ac58300b002372106a5casm914211pjt.44.2023.02.24.00.00.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Feb 2023 00:00:56 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org
+Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org
-Subject: Re: [PATCH v1 0/6] PolarFire SoC Auto Update Support
-Message-ID: <Y/ht1eHgtRrLxIhC@yilunxu-OptiPlex-7050>
-References: <20230217164023.14255-1-conor@kernel.org>
+        bhupesh.sharma@linaro.org, srinivas.kandagatla@linaro.org,
+        quic_vkamble@quicinc.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8150: Fix the iommu mask used for PCIe controllers
+Date:   Fri, 24 Feb 2023 13:30:45 +0530
+Message-Id: <20230224080045.6577-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230217164023.14255-1-conor@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-02-17 at 16:40:17 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Hey all,
-> 
-> This patchset adds support for the "Auto Update" feature on PolarFire
-> SoC that allows for writing an FPGA bistream to the SPI flash connected
-> to the system controller.
+The iommu mask should be 0x3f as per Qualcomm internal documentation.
+Without the correct mask, the PCIe transactions from the endpoint will
+result in SMMU faults. Hence, fix it!
 
-I haven't fully checked the patches yet, just some quick comments:
+Cc: stable@vger.kernel.org # 5.19
+Fixes: a1c86c680533 ("arm64: dts: qcom: sm8150: Add PCIe nodes")
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Since this feature is just to R/W the flash, and would not affect the
-runtime FPGA region, I don't think an FPGA manager is actually needed.
-Why not just use the MTD uAPI? There is a set of exsiting MTD uAPI &
-MTD tool if I remember correctly.
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index fd20096cfc6e..13e0ce828606 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -1826,7 +1826,7 @@ pcie0: pci@1c00000 {
+ 				      "slave_q2a",
+ 				      "tbu";
+ 
+-			iommus = <&apps_smmu 0x1d80 0x7f>;
++			iommus = <&apps_smmu 0x1d80 0x3f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1d80 0x1>,
+ 				    <0x100 &apps_smmu 0x1d81 0x1>;
+ 
+@@ -1925,7 +1925,7 @@ pcie1: pci@1c08000 {
+ 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+ 			assigned-clock-rates = <19200000>;
+ 
+-			iommus = <&apps_smmu 0x1e00 0x7f>;
++			iommus = <&apps_smmu 0x1e00 0x3f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1e00 0x1>,
+ 				    <0x100 &apps_smmu 0x1e01 0x1>;
+ 
+-- 
+2.25.1
 
-Thanks,
-Yilun
-
-> On powercycle (or reboot depending on how the firmware implements the
-> openSBI SRST extension) "Auto Update" will take place, and program the
-> FPGA with the contents of the SPI flash - provided that that image is
-> valid and an actual upgrade from that already programmed!
-> 
-> Unfortunately, this series is not really testable yet - the Engineering
-> Sample silicon on most dev boards has a bug in the QSPI controller
-> connected to the system controller's flash and cannot access it.
-> Pre-production and later silicon has this bug fixed.
-> 
-> I previously posted an RFC about my approach in this driver, since as a
-> flash-based FPGA we are somewhat different to the existing
-> self-reprogramming drivers here. That RFC is here:
-> https://lore.kernel.org/linux-fpga/20221121225748.124900-1-conor@kernel.org/
-> 
-> This series depends on the following fixes:
-> https://patchwork.kernel.org/project/linux-riscv/list/?series=714160
-> 
-> The patch adding the driver depends on the soc patches earlier in the
-> series, so taking both through the same tree makes sense. Depending on
-> sequencing with the dependencies, me taking it through the soc tree
-> (with Acks etc of course) may make the most sense.
-> 
-> The other caveat here I guess is that this uses debugfs to trigger the
-> write, as we do not yet have a userspace for this yet!
-> 
-> Cheers,
-> Conor.
-> 
-> CC: Conor Dooley <conor.dooley@microchip.com>
-> CC: Daire McNamara <daire.mcnamara@microchip.com>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Moritz Fischer <mdf@kernel.org>
-> CC: Wu Hao <hao.wu@intel.com>
-> CC: Xu Yilun <yilun.xu@intel.com>
-> CC: Tom Rix <trix@redhat.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> CC: linux-fpga@vger.kernel.org
-> 
-> Conor Dooley (6):
->   soc: microchip: mpfs: add a prefix to rx_callback()
->   dt-bindings: soc: microchip: add a property for system controller
->     flash
->   soc: microchip: mpfs: enable access to the system controller's flash
->   soc: microchip: mpfs: add auto-update subdev to system controller
->   fpga: add PolarFire SoC Auto Update support
->   riscv: dts: microchip: add the mpfs' system controller qspi &
->     associated flash
-> 
->  .../microchip,mpfs-sys-controller.yaml        |  10 +
->  .../boot/dts/microchip/mpfs-icicle-kit.dts    |  21 +
->  arch/riscv/boot/dts/microchip/mpfs.dtsi       |  24 +-
->  drivers/fpga/Kconfig                          |   9 +
->  drivers/fpga/Makefile                         |   1 +
->  drivers/fpga/microchip-auto-update.c          | 495 ++++++++++++++++++
->  drivers/soc/microchip/Kconfig                 |   1 +
->  drivers/soc/microchip/mpfs-sys-controller.c   |  33 +-
->  include/soc/microchip/mpfs.h                  |   2 +
->  9 files changed, 586 insertions(+), 10 deletions(-)
->  create mode 100644 drivers/fpga/microchip-auto-update.c
-> 
-> -- 
-> 2.39.1
-> 
