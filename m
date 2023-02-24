@@ -2,84 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC3A6A1B26
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:10:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B686A1B29
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:10:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbjBXLKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 06:10:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47446 "EHLO
+        id S230397AbjBXLKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 06:10:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230341AbjBXLJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:09:44 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E125830EB;
-        Fri, 24 Feb 2023 03:08:54 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id h16so53535290edz.10;
-        Fri, 24 Feb 2023 03:08:54 -0800 (PST)
+        with ESMTP id S230095AbjBXLKF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:10:05 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A826C6A4F
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:09:42 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id l2-20020a05600c1d0200b003e1f6dff952so1896052wms.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:09:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WNMaV7WgelnPDajGIIjEuoHp/ErryWU67TwpipK+OSM=;
-        b=oDuL7Ue9xH8ZoBiA5tN3w6IubU7+wQ4QnW4617I0HaxulfV2N13io+A6bRzXhBEZQl
-         7mMO+lp7ZppdXTw50/Q54r4ccPFfdiGB+2HZpfJpwEWLjxAZ8CGUpcE3A3Xp6/rONF/4
-         gfRhGvKefnWeRtZBQxLqnasfk4Q3rZaAPq6v2FnBfJnSuP0RGmiPr9p59TIZwaNEmS4L
-         mf1JevvOczqi1Wxf7MnTqMyWF0zhXuixPw8FQxbpfxdMFEtX22SDYjYjrJxkZjT7bPFP
-         MtSZwWxdC0V0idELKfYRFexjad3um+WfUdbyRBFHI0hxat1jwBlg2EG3lMBm+XP6mUeD
-         bPXA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NZLgGbzYMjAzej3DGyr9UAP/ybR/0Ek6icgQ+DcCBHc=;
+        b=Iu9e0+yoOMJyPP1DwYpXIIP9s6Bi+zJHDMccwayOxQ/Vw5TS74+FN8LBeHZazsyzNS
+         /f3fJ3+a1u7yiB7pl7SFYrwLZgIVNEnPQn6v1Dzi8vq85D7ao539SfcEhCTWDHraKlWp
+         KktVa9GGnEk1nJdMBtToh1RVJI6dQgS+vBu/CcTIgZi0s7e7X0D+spZ2dfQoCnfX/O4N
+         4+TtCv5Vl4UPHWCODVEuvmiBBF7JEZlUFvuxhUJHFCqORRtyfV5ucfjPWxqVFbYYY2SW
+         fNGllGHbQCG7Z71iDdS7szZSlngAHBmAsCGJvIGICc77+K+4ZciGQPOb2okZknqZvQ/l
+         Z1WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WNMaV7WgelnPDajGIIjEuoHp/ErryWU67TwpipK+OSM=;
-        b=CffK6SUN5OYR9IaQSJR0tLSCAlvVhwYU3f0Yrbi7qA54XCNADMf3k7AV19b/jpAliA
-         +EFMrqbU+aXhM+UczJ5mDnEV0fhv5LuTO7ePa8uB9TpXRnGHUpMWLEJnWlMDCsqR4QuP
-         bhzIH2WJGfJ3N0Zz77UfTD5i2dlxUZdoXOJMysiMZz7h7REbKIS/JBPHjVBfEVCov7hF
-         CmdXsT0K86C/DqDSxrbClnjh781ZW1twu8fEY5AVQjvLYpUD9cxWAR5xa1+4XPbPt/HB
-         YwjE9DvnZUn0qOyksUj4DXwGlfAFmsTrcLbF5Mt7sb2Hs6eDVoPQ3OoUZCm/Hp6rIUqr
-         BfKA==
-X-Gm-Message-State: AO0yUKXywtL1PeGBb+7mqMF57AwY6w3Dxb+boKqSshKxLt1nLp5jLh7O
-        t3671lNRKsElpMIe5CqalZ4gSXNPCkiVx88iDjk=
-X-Google-Smtp-Source: AK7set/mimyM80YxsFoZxkhOgklb1+pkk/5rW4IWn20z4RKP/YfJqx8WEPI4Y56SKGrPc7yIrLZhMgLzLSVoksJ3Of4=
-X-Received: by 2002:a50:8a92:0:b0:4ae:e606:432f with SMTP id
- j18-20020a508a92000000b004aee606432fmr8210069edj.0.1677236933400; Fri, 24 Feb
- 2023 03:08:53 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NZLgGbzYMjAzej3DGyr9UAP/ybR/0Ek6icgQ+DcCBHc=;
+        b=7LUuYyCdkG01c38OKqWejhbaefINpFSB22PVBPIZ7407gbhUKit4oJm+lHFmotawvR
+         tPSJaChxPfgBEdW81X8heoX188QeUx6zYFlRRICF5tAlxsieHBGoRBU7rkyUw6Bp8I2w
+         IGhmNaFWVr/Q3eShdO/SNuzZAGnIsXYgiaQjacvlAS2/WptB6oSuj9wyaErK8i/NT0aj
+         DIHAaqawJpBu0tXwMAtGVyaZNRqAeVm5uwiTrY/Fv1LxDJBYNus23FFoPLl/Mf4yGV/X
+         qYjLyE4FMASOGx77T3ndfCtFw87xdiN4RrxUfRb/M23NXs4wsDcbGUyo1M9arBR2R0r+
+         ueAw==
+X-Gm-Message-State: AO0yUKVLvzBxT0Jx3D57gIa6IdCDcspKcytOmA5WWJk3A4j+/ic7ndXH
+        l88Hc+Xd3wrKttgpiLbLP62M5g==
+X-Google-Smtp-Source: AK7set+QsSPhmANXMAmCwprRZOYWjaSTm3y6grWcXfx2bgZgbD0wCNjkRxCF6ITQZdC0GZCugESXCQ==
+X-Received: by 2002:a05:600c:30ca:b0:3df:12ac:7cc9 with SMTP id h10-20020a05600c30ca00b003df12ac7cc9mr5480813wmn.15.1677236981130;
+        Fri, 24 Feb 2023 03:09:41 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id jb17-20020a05600c54f100b003e200d3b2d1sm2425610wmb.38.2023.02.24.03.09.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Feb 2023 03:09:40 -0800 (PST)
+Message-ID: <7e236ecc-1cb4-b53b-fb68-c23aa45c4cd2@linaro.org>
+Date:   Fri, 24 Feb 2023 12:09:39 +0100
 MIME-Version: 1.0
-References: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
- <20230223-z2-for-ml-v1-1-028f2b85dc15@gmail.com> <e26318db-77b1-4876-8a40-f707d11b5857@app.fastmail.com>
-In-Reply-To: <e26318db-77b1-4876-8a40-f707d11b5857@app.fastmail.com>
-From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date:   Fri, 24 Feb 2023 12:08:42 +0100
-Message-ID: <CAMT+MTQ0bZiGpEFK9w3zncB-ZcCLY_tp1d5Wc0MJUMjWqc61jA@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/4] dt-bindings: input: touchscreen: Add Z2
- controller bindings.
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <asahi@lists.linux.dev>, Henrik Rydberg <rydberg@bitmath.org>,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v11 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
+ of OSPI
+Content-Language: en-US
+To:     Ravi Gunasekaran <r-gunasekaran@ti.com>, nm@ti.com, afd@ti.com,
+        vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s-vadapalli@ti.com,
+        vaishnav.a@ti.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230224102438.6541-1-r-gunasekaran@ti.com>
+ <20230224102438.6541-4-r-gunasekaran@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230224102438.6541-4-r-gunasekaran@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Feb 2023 at 12:04, Sven Peter <sven@svenpeter.dev> wrote:
-> Now that I thought about this again after the brief discussion we already had:
-> Do we even need to specify the device name? Is there any reason we can't just
-> always use something like "Apple Z2 TouchBar"?
-A similar protocol is used for primary touchscreen on idevices, which
-need different
-userspace handling. This is to make the driver potentially useful for
-people who run
-linux on checkra1n-able devices.
+On 24/02/2023 11:24, Ravi Gunasekaran wrote:
+> From: Aswath Govindraju <a-govindraju@ti.com>
+> 
+> Add support for two instance of OSPI in J721S2 SoC.
+> 
+> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> ---
+> Changes from v10:
+> * Documented the reason for disabling the nodes by default.
+> * Removed Link tag from commmit message
+> 
+> Changes from v9:
+> * Disabled fss, ospi nodes by default in common DT file
+> 
+> Changes from v8:
+> * Updated "ranges" property to fix dtbs warnings
+> 
+> Changes from v7:
+> * Removed "reg" property from syscon node
+> * Renamed the "syscon" node to "bus" to after change in
+>   compatible property
+> 
+> Changes from v6:
+> * Fixed the syscon node's compatible property
+> 
+> Changes from v5:
+> * Updated the syscon node's compatible property
+> * Removed Cc tags from commit message
+> 
+> Changes from v4:
+> * No change
+> 
+> Changes from v3:
+> * No change
+> 
+> Changes from v2:
+> * No change
+> 
+> Changes from v1:
+> * No change
+> 
+>  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> index 0af242aa9816..5005a3ebbd34 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> @@ -306,4 +306,66 @@
+>  			ti,cpts-periodic-outputs = <2>;
+>  		};
+>  	};
+> +
+> +	fss: bus@47000000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
+> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
+> +			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
+> +
+> +		/*
+> +		 * Disable the node by default in the common include file.
+> +		 * And enable it in the board specific DT file where the
+> +		 * pinmux property is added.
+
+Why? Bus does not need pinmux.
+
+> +		 */
+> +		status = "disabled";
+> +
+> +		ospi0: spi@47040000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x47040000 0x00 0x100>,
+> +			      <0x05 0x00000000 0x01 0x00000000>;
+> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			clocks = <&k3_clks 109 5>;
+> +			assigned-clocks = <&k3_clks 109 5>;
+> +			assigned-clock-parents = <&k3_clks 109 7>;
+> +			assigned-clock-rates = <166666666>;
+> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			/*
+> +			 * Disable the node by default in the common include
+> +			 * file. And enable it in the board specific DT file
+> +			 * where the pinmux property is added.
+
+Isn't this comment obvious? It's what we do everywhere on every platform
+every SoC?
+
+> +			 */
+> +			status = "disabled";
+> +		};
+> +
+> +		ospi1: spi@47050000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x47050000 0x00 0x100>,
+> +			      <0x07 0x00000000 0x01 0x00000000>;
+> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			clocks = <&k3_clks 110 5>;
+> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			/*
+> +			 * Disable the node by default in the common include
+> +			 * file. And enable it in the board specific DT file
+> +			 * where the pinmux property is added.
+> +			 */
+> +			status = "disabled";
+> +		};
+> +
+
+No need for blank line.
+
+> +	};
+>  };
+
+Best regards,
+Krzysztof
+
