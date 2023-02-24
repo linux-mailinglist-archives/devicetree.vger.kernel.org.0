@@ -2,109 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68A336A1C79
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 13:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C15B6A1C85
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 13:56:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbjBXMyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 07:54:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52780 "EHLO
+        id S230097AbjBXM4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 07:56:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbjBXMyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 07:54:36 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C374059E69
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 04:54:34 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id r7so13651546wrz.6
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 04:54:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sKJQDv4Kif6EGyfqOTg66AyQtr3vwAgyU41TdnYU1ok=;
-        b=n5Dy01q6kUixJ9kKRCOGyblC2Dy5qoduTfh5ms/rHvPjmTstlc+RWyu71B8e3+Kotg
-         QmDj8qStmtWPrIydTH0Q69pcr7WxYIcDBFZJsIxPzf68qfurepjaOLAOGNu5J+BA7Gpx
-         T1KEq1qxa/+NE85nrB151iM3kKRiU/TSTWsBg28N1J0Rl5gaLGqFe4Sa9tmrdk3ceq4q
-         jqkx2KfdEyAWleRWkIC3OGm7i4JNcueEmHJ22uhX9+5YbT804eI+mw03dTuRJNTvYl5r
-         LZrmao6nugHccwZT0ODuT+3A+1EPR4XRcENjPyC8rZCiMgJ6c14h8+ceCGiazj4j6vn+
-         eRHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sKJQDv4Kif6EGyfqOTg66AyQtr3vwAgyU41TdnYU1ok=;
-        b=hB2m/dR9goFXRA04J//C9753x+YwOaH60USkJwG2zLJiMAUHEk0hG16BX0KtU7z+ew
-         WVQsBvMm2Zk4+LuC4zsC1bsT8l8+xZK8iPsGzHXlgKb9s6lok/rNCSjK4SeS4Nr3qAqV
-         nVWg4JFnUv4iEYX8LrN1I2SacFl1H7C18/FJ/jqnqObmkD4w/dPZ4Zv5214qM+3Jl9A2
-         5yqNZa5W7AIV9jv0neM0Au9cNuZ1UXtOjNy0RR55BsvYOCbur8sfvlkMF8usAuXjAK+y
-         C67Yj7EIPkHrSeZJr5y6Jt6U15y2ydV4ROjPmDkDysEcjiu+hRKgGL9jwQda0eZCYOfj
-         Ak2A==
-X-Gm-Message-State: AO0yUKVwAUagg/IZ5P8YWCl6/WbLOuFXEFBmH12lTuoRrxmv1Tjnq8X+
-        jsl0pRTXSDHrNJHvke4hswkYyA==
-X-Google-Smtp-Source: AK7set9YMD34P8T/oGssJCIPFl6P4x2re05kDEPyfm4ulVZnvWLTPtalofrM1ozZ42Xn60QYUEdqhQ==
-X-Received: by 2002:adf:f802:0:b0:2c5:4c7d:53ab with SMTP id s2-20020adff802000000b002c54c7d53abmr11060307wrp.20.1677243273310;
-        Fri, 24 Feb 2023 04:54:33 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d10-20020adfe84a000000b002c71d206329sm1714946wrn.55.2023.02.24.04.54.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 04:54:32 -0800 (PST)
-Message-ID: <3bfa1895-a282-14c2-9710-7e887a5d52ee@linaro.org>
-Date:   Fri, 24 Feb 2023 13:54:31 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 01/15] dt-bindings: display/msm: gpu: Document GMU
- wrapper-equipped A6xx
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230084AbjBXM4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 07:56:42 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09DD59E4F
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 04:56:41 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pVXcn-0007AP-Vw; Fri, 24 Feb 2023 13:56:33 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pVXcm-0005Zq-2j; Fri, 24 Feb 2023 13:56:32 +0100
+Date:   Fri, 24 Feb 2023 13:56:32 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>
-References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
- <20230223-topic-gmuwrapper-v3-1-5be55a336819@linaro.org>
- <c3376575-c24f-18a3-1d8b-c3d67f072287@linaro.org>
- <a28c4e67-78b4-21b5-7094-9953316576b2@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a28c4e67-78b4-21b5-7094-9953316576b2@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        devicetree@vger.kernel.org, Abel Vesa <abel.vesa@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, Jacky Bai <ping.bai@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add sound card
+Message-ID: <20230224125632.eokbmb4wchxuny4s@pengutronix.de>
+References: <20230222182252.2ad6d82b@booty>
+ <20230222172552.1545519-1-luca.ceresoli@bootlin.com>
+ <20230222175941.7pdi7yg5am3ws4gp@pengutronix.de>
+ <10394cf6-70f0-638a-15d3-5a14615dad44@denx.de>
+ <20230222190246.ihknh2tgjb2w3qmf@pengutronix.de>
+ <63cbfbaf-7405-eaec-9681-36fc3792e637@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <63cbfbaf-7405-eaec-9681-36fc3792e637@denx.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2023 12:51, Konrad Dybcio wrote:
->>> +    else:
->>> +      if:
->>> +        properties:
->>> +          compatible:
->>> +            contains:
->>> +              pattern: '^qcom,adreno-6[0-9][0-9]\.[0-9]$'
->>> +
->>> +      then: # Starting with A6xx, the clocks are usually defined in the GMU node
->>
->> The comment is not accurate anymore.
-> I'll argue the semantics, they are still "usually" defined
-> in the GMU node..
+On 23-02-23, Marek Vasut wrote:
+> On 2/22/23 20:02, Marco Felsch wrote:
+> 
+> Hi,
+> 
+> [...]
+> 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > index 8547391d9cbbf..3b38ec7bb47be 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > @@ -47,7 +47,6 @@ reg_audio_pwr: regulator-audio-pwr {
+> >   		regulator-max-microvolt = <3300000>;
+> >   		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+> >   		enable-active-high;
+> > -		regulator-always-on;
+> >   	};
+> >   	reg_can1_stby: regulator-can1-stby {
+> > @@ -94,21 +93,34 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+> >   		enable-active-high;
+> >   	};
+> > -	sound-wm8960 {
+> > -		compatible = "fsl,imx-audio-wm8960";
+> > -		model = "wm8960-audio";
+> > -		audio-cpu = <&sai3>;
+> > -		audio-codec = <&codec>;
+> > -		audio-routing =
+> > +	sound-wm8524 {
+> 
+> Why WM8524 ? The MX8MP EVK I have here is populated with WM8960 chip and
+> with single headphone jack, are you sure the below is correct ?
 
-Ah, usually. It's fine then.
+Argh.. the name was copied from 8MM evk dts but the below setup is
+working, at least the audio-outpath. Didn't tested the mic path.
 
-Best regards,
-Krzysztof
-
+Regards,
+  Marco
