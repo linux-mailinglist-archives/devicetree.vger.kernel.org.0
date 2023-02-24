@@ -2,137 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B2516A1CE9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4AFA6A1D09
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:34:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbjBXNVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 08:21:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52528 "EHLO
+        id S229481AbjBXNem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 08:34:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbjBXNVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:21:31 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302FC66969
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:21:25 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id o12so55132295edb.9
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:21:25 -0800 (PST)
+        with ESMTP id S229454AbjBXNel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:34:41 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BAB10439;
+        Fri, 24 Feb 2023 05:34:40 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id i34so29533439eda.7;
+        Fri, 24 Feb 2023 05:34:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZyflOORFuzAU5BULEoWaY0vuPe5ZUd6mweprOBGP7n4=;
-        b=eEGf8AL+6iX6ix7igIArls0uX4woeA0Icw/G+F3GhaIH0WKf1pteL+EEp/5D5voScK
-         QXJSbogrGgJb059hs7A0Dv7UMrG9AIajzfIAwo4bfpy8M0TiF8bv00PhDa9H0zxJgSEb
-         520bsEZ1Cl92FhcSMTMskoZ3ZLuxA0IEnYdfiCWdjyOV395WmAjbDCzeE5cBgzOBa9ve
-         36lKYVNVqORoRDhbXrxKrTzVHaBR7Pt98o5SWqpi+5p42MTb2GNFnjGCSHvdh9MBD1Ul
-         gR7MuEowqHHhoSNgQiFW1mzH3nb6hGV38h4nF6qe6dt0Jn/xqBNjZr/ZSZOiYuJhMjPA
-         TIZA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kw5cJI1rHZIRKHFIWnHekwrBsn4zRcD69gaW1hs0C/U=;
+        b=n+51ixapN6Td6Ox2ZaphZfZswNZWcv8r7IjlzBxg+njtkIGWD22XaYh47X6eJ7Zt0x
+         9a9L7A+KqjlhbWJNpiMlv84lP1rG5+cgzWm8UXkQ6CoKtvYmb72RYFLCn9Q9qI+1aig0
+         9JobeAGumu/w9YvfOLDK2P8httH35IboGFZWJuPVeQhVXQH/puaB9CZCC0S3ORQF5mJH
+         ErolpBaeaLvO/GUm5cAarpvzWyoR/H4B88h4arceFwAv25JAJxVNgXAMWSu3EYbMpYfp
+         zbDSrfsjnjTM/78t0jkXzqOVh57OLz5VMWMkPvwdZrDgcsAuEdCyhiR6cZGJAf8J6083
+         zEjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZyflOORFuzAU5BULEoWaY0vuPe5ZUd6mweprOBGP7n4=;
-        b=RUnmUF+EUYwn13pbUSTbxogbwFvZQmorkG+uXcAb9ys6804HRtFjBVfapiEx1X+FYR
-         zvmoD6S2E9vLfTioh5t6Tqxe+96FfiQZ2mWDPuPN+aawLP0ptIAefINgS+QzhxIvJ6Ra
-         LuZmA4b0SDgDWd2opbUr7trFn7JeBC9/agenNrMV4Vk1kC5DGgagYIIbScq4KTmMez5H
-         V39jPPsR3tcOdsPSf/F0o4zeW9LKXOYp1hpUl/mEWmRdpjl3fStggVn7ZLMDijNI1NUd
-         2xn3d5OLA9FZs58h2kxm6A931IGIFk7WJ8N/wQ8VksYNPT+0KSGze2Gh0O62ZS+8MBYr
-         CirA==
-X-Gm-Message-State: AO0yUKV2Ppf9GqzyMTbYx2X+24bF5yRfmrQR5fJoXz/Yn/+ZAVlEKxwM
-        TTxVSowc/Vbz/rVrQb5rLhsXtg==
-X-Google-Smtp-Source: AK7set+7MBWjsuB8yva8Fc5p8aC5aN5uYqqryTPqCXjxKK3H5HjlkWNP4KGkPHf5peiWVdp8nCUvCw==
-X-Received: by 2002:a17:906:f212:b0:8a9:f870:d25b with SMTP id gt18-20020a170906f21200b008a9f870d25bmr22004320ejb.15.1677244883698;
-        Fri, 24 Feb 2023 05:21:23 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id kx20-20020a170907775400b008b17de96f00sm9947077ejc.151.2023.02.24.05.21.22
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kw5cJI1rHZIRKHFIWnHekwrBsn4zRcD69gaW1hs0C/U=;
+        b=VTHBK7dHBippYt1ThjnS+SPuT7Ur5FyWfQHQCvc5d1N0/8MJwAZM4mZtPrii7KOcgF
+         YyZLW+PqGKrRd7Pghkg9r+tBTxQ/Ev5JQGrIvyl4ujmn8x63WdwoBDIXI2tczRvze7sh
+         //4OA2sJHI8aWBZE5NuIiCWFZO1r/HNlRLJq/kJmxU9cEPrAw3i512Gc9BRflwdLTufH
+         jAzLTBZE0eo3jtSjpKH2cdIf87/rEUgdoHAe9ZEWJdeD/SP8iry+tJoTJHFoPy/2bqpl
+         JqizCO2+P4LJ8R1YWpeeoQ3ojZNzqRQW0Q5bHRgvAHcGssDbcMil3L9XEx0xGWtdBQPq
+         1oUA==
+X-Gm-Message-State: AO0yUKWQ55zjFArGMvO11/Gd1ule7mNIaCWJ85Hqjh8rpaJXsogFZVcs
+        jeGgUnTVKOTWdYZSc7pVv4Q=
+X-Google-Smtp-Source: AK7set9of3J1wJ2it/J7AXZmN2hY3XpHL2jexB0WeT4xbfAQaN5TEpvXvIXdR6Agc8bfL18mB0vQgA==
+X-Received: by 2002:a17:906:ad82:b0:8b1:7eb4:6bea with SMTP id la2-20020a170906ad8200b008b17eb46beamr25019154ejb.38.1677245679028;
+        Fri, 24 Feb 2023 05:34:39 -0800 (PST)
+Received: from [127.0.0.1] ([91.204.84.193])
+        by smtp.gmail.com with ESMTPSA id b24-20020a170906491800b008dd2db45c0bsm4924674ejq.105.2023.02.24.05.34.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 05:21:23 -0800 (PST)
-Message-ID: <6ebf87aa-4422-1f84-7e76-276ac4d884c3@linaro.org>
-Date:   Fri, 24 Feb 2023 14:21:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: dma: snps,dw-axi-dmac: Add reset
- items
-Content-Language: en-US
-To:     Walker Chen <walker.chen@starfivetech.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        Fri, 24 Feb 2023 05:34:38 -0800 (PST)
+Date:   Fri, 24 Feb 2023 15:34:39 +0200
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Mikko Perttunen <cyndis@kapsi.fi>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20230221140424.719-1-walker.chen@starfivetech.com>
- <20230221140424.719-2-walker.chen@starfivetech.com>
- <1467f7c5-07eb-97db-c6f2-573a4208cc28@linaro.org>
- <d0984638-3f7f-7e4e-fe3e-5e1f88375dca@starfivetech.com>
- <36188e04-332f-e944-9c58-f6f2b74987da@linaro.org>
- <bd4301c5-d79f-6ba5-a840-95b733d2d44e@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bd4301c5-d79f-6ba5-a840-95b733d2d44e@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+CC:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] ARM: tegra: Add labels to tegra30.dtsi
+User-Agent: K-9 Mail for Android
+In-Reply-To: <50e64bd0-00cc-fd2f-b45e-e7268cd371b8@kapsi.fi>
+References: <20230221175348.15681-1-clamor95@gmail.com> <20230221175348.15681-2-clamor95@gmail.com> <50e64bd0-00cc-fd2f-b45e-e7268cd371b8@kapsi.fi>
+Message-ID: <99DD9F81-682B-4EFF-B665-D6C2CDC5EC75@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2023 14:09, Walker Chen wrote:
-> 
-> 
-> On 2023/2/24 18:51, Krzysztof Kozlowski wrote:
->> On 24/02/2023 11:14, Walker Chen wrote:
->>>>>    resets:
->>>>> -    maxItems: 1
->>>>> +    maxItems: 2
->>>>
->>>> This breaks ABI and all other users. Test your changes before sending.
->>>
->>> I think 'minItems' should be added here. So like this:
->>> resets:
->>>   minItems: 1
->>>   maxItems: 2
->>>
->>> Other platform/users will not be affected by this.
->>
->> Which will allow two resets on all platforms. Is this correct for these
->> platforms? Do they have two resets?
->>
-> In kernel 6.2, only two platforms use this DMA controller (see 'arch/arc/boot/dts/hsdk.dts' and 'arch/riscv/boot/dts/canaan/k210.dtsi').
+22 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2023 =D1=80=2E 10:56:23 GMT+02:00, =
+Mikko Perttunen <cyndis@kapsi=2Efi> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=D0=
+=B2(-=D0=BB=D0=B0):
+>On 2/21/23 19:53, Svyatoslav Ryhel wrote:
+>> From: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere=2Eqmqm=2Epl>
+>>=20
+>> Add phandle names for memory/I2C/SPI/USB/SDMMC controller nodes to allo=
+w
+>> for cleaner device descriptions=2E
+>>=20
+>> Signed-off-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere=2Eqmqm=2Epl>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail=2Ecom>
+>> ---
+>
+>Hi!
+>
+>Patches 1 and 2 are missing your Signed-off-by=2E But also, I'd only add =
+labels as they are needed instead of adding them all in one go=2E
+>
+>Mikko
+>
 
-What about all out-of-tree platforms, bootloaders and FW?
-
-> There is one reset on k210, while there is no reset of DMA on hsdk at all.
-> If here minItems with value 1 is added and the value of maxItems is changed to 2, after my testing,
-> whether it is one reset or two resets, even no reset, there is no errors occur when doing dtbs_check,
-
-Yeah, I know how this works.
-
-> the DMA initialization shall not be affected either on their platforms.
-
-I asked whether the hardware physically have two resets. dtbs_check
-checks the DTS, not the hardware. You know allow two resets for each
-other variant. What's more, you call first reset axi for all variants.
-This does not look correct, e.g. k210.dtsi does not indicate this is axi
-reset line but reset for entire block.
-
-Thus your change should be constrained per your variant (min/max in
-top-level, allOf:if:then allowing two lines for you, disallowing for
-others).
-
-
+Thanks for suggestions=2E I may agree about labels, but it eventually will=
+ get to stage when all labels from patches will be added=2E So why not add =
+them in one commit instead of making a dozen more with adding one label a t=
+ime=2E
 
 Best regards,
-Krzysztof
-
+Svyatoslav R=2E
