@@ -2,137 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D83C6A1C92
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EC76A1C96
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:02:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbjBXNAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 08:00:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
+        id S229725AbjBXNCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 08:02:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjBXNAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:00:11 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA05841B7F
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:00:09 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pVXg6-0007RR-8K; Fri, 24 Feb 2023 13:59:58 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pVXg5-0005cG-Oo; Fri, 24 Feb 2023 13:59:57 +0100
-Date:   Fri, 24 Feb 2023 13:59:57 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-clk@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 5/5] arm64: dts: imx8mp: Add analog audio output on
- i.MX8MP EVK
-Message-ID: <20230224125957.ynbqionkmhce2uij@pengutronix.de>
-References: <20230223171114.59164-1-marex@denx.de>
- <20230223171114.59164-5-marex@denx.de>
+        with ESMTP id S229470AbjBXNCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:02:32 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8348E5E843;
+        Fri, 24 Feb 2023 05:02:28 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 80A406602FB6;
+        Fri, 24 Feb 2023 13:02:26 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677243746;
+        bh=v09nEiPPrKyyZ5dnBNTGSJ/5jA/WVigVy6zfFwa7DEU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gUHDoki01EnQxD1f5QnXwVHKZs8QUfYzYPjD3m/a6F8vOYJ98XrwY1axIFFBz0966
+         vy1IgyZK+YkQctwONolbD6b8BEMpXFD2Q3FR7K+VfILJUJ/CTRsJ9iJNig0vcwuFtg
+         rM+jUY3OGYKoC3//BAncdrtS8ZR09KBLoT3bOxPvjsMMWz5s1JkqcVaMMmjUTPlBA3
+         rCxoRNhekOPa+us26y3IFOTdgjLGtruOgTRpxHyO6qfVnTjxy0wdbbRh/K/iw5ikZv
+         9Nwyt9aNWZgA5Do/GYd+jrulhFSn6e/0VcRvVtEvxRrqHoE0H4/vIttwCib3X7AFte
+         s+Uiuc/12/rJg==
+Message-ID: <fa6c2d63-0341-b5d6-059e-d44b1f2e9d02@collabora.com>
+Date:   Fri, 24 Feb 2023 14:02:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230223171114.59164-5-marex@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 02/16] arm64: dts: mediatek: mt8183-kukui: Override
+ vgpu/vsram_gpu constraints
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230223134345.82625-1-angelogioacchino.delregno@collabora.com>
+ <20230223134345.82625-3-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5FUzeB1SPDt+Ys8ALA_y5ZAPQGnz43NnLCPorvurF3eYg@mail.gmail.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5FUzeB1SPDt+Ys8ALA_y5ZAPQGnz43NnLCPorvurF3eYg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
-
-On 23-02-23, Marek Vasut wrote:
-> Enable SAI3 on i.MX8MP EVK, add WM8960 codec binding and regulator.
-> This is all that is needed to get analog audio output operational
-> on i.MX8MP EVK.
+Il 24/02/23 10:50, Chen-Yu Tsai ha scritto:
+> On Thu, Feb 23, 2023 at 9:43 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Override the PMIC-default voltage constraints for VGPU and VSRAM_GPU
+>> with the platform specific vmin/vmax for the highest possible SoC
+>> binning.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V2: No change
-> V3: No change
-> V4: - Update codec node name and phandle label
->     - Use just sound for the sound node name
->     - Rebase on next 20230223
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 60 ++++++++++++++++++++
->  1 file changed, 60 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index 7816853162b3f..9ed94f271ef9a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -40,6 +40,16 @@ pcie0_refclk: pcie0-refclk {
->  		clock-frequency = <100000000>;
->  	};
->  
-> +	reg_audio_pwr: regulator-audio-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "audio-pwr";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
->  	reg_can1_stby: regulator-can1-stby {
->  		compatible = "regulator-fixed";
->  		regulator-name = "can1-stby";
-> @@ -83,6 +93,23 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->  		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
->  		enable-active-high;
->  	};
-> +
-> +	sound {
-> +		compatible = "fsl,imx-audio-wm8960";
+> The maximum voltage numbers don't match the existing OPP table though.
 
-Can we make use the "simple-audio-card" here? At least the 8mq-evk and
-the 8mm-evk is using this as well.
+The OPP table that we've got in mt8183.dtsi does not declare frequencies for the
+highest binning for this SoC, I guess because there was no way to check fuses to
+restrict the table to bin XYZ.
+
+These maximum voltages are - true - higher compared to the highest voltage in
+the GPU OPP table, but they're still in spec (check datasheets!).
+
+Should I reword the commit description?
 
 Regards,
-  Marco
+Angelo
+
+> 
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+>> index de9778c85b94..63952c1251df 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+>> @@ -401,6 +401,9 @@ &mt6358codec {
+>>   };
+>>
+>>   &mt6358_vgpu_reg {
+>> +       regulator-min-microvolt = <625000>;
+>> +       regulator-max-microvolt = <900000>;
+>> +
+>>          regulator-coupled-with = <&mt6358_vsram_gpu_reg>;
+>>          regulator-coupled-max-spread = <100000>;
+>>   };
+>> @@ -416,6 +419,9 @@ &mt6358_vsim2_reg {
+>>   };
+>>
+>>   &mt6358_vsram_gpu_reg {
+>> +       regulator-min-microvolt = <850000>;
+>> +       regulator-max-microvolt = <1000000>;
+>> +
+>>          regulator-coupled-with = <&mt6358_vgpu_reg>;
+>>          regulator-coupled-max-spread = <100000>;
+>>   };
+>> --
+>> 2.39.2
+>>
+
