@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 461646A1AC0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 11:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52DA56A1AC5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 11:59:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbjBXK6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 05:58:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55796 "EHLO
+        id S230040AbjBXK7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 05:59:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjBXK6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:58:18 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F342234D3
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:58:17 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id l1so13204311wry.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:58:16 -0800 (PST)
+        with ESMTP id S229702AbjBXK6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:58:35 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF8458487
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:58:31 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id bt28so6825508wrb.8
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:58:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UxT9FvHaPhscbfESj3x0Ux9E1/gu3fQSaddPYs/H2Hw=;
-        b=pkSDpRPNfOn9j5B7JLq6oB+YolUwofphUahCjYotC5/zcNg+W6lKUwh5QWY3BYN1oR
-         Gj1jdTuiZftrUBREWDqpORisvEZBVn9C2k5v9pWY85/XXkWnXUm0uSYfw3wLCFwjujMs
-         Zl16tD7QX6gfR1oPj9qS3V2HAmUyZ+3PQmqwyagTmYUtjr96Ly8aoS7/6JpbdoiB2Dyy
-         hQJK5+w4ANFxENTCR3wIoHqFs1EAghWnunjb9IPuLuyhaIF48ZJVoob+7f9ODMOetTAx
-         VWGcYJgfkzFkH4QdZs9sc2XepmVEZ/LZpxR9qgjae3Zht2Js/OqwmXVN0Mq+PqYCzyNq
-         o7dA==
+        bh=BWQnxO1Qoh2BkDXLOlnoREhUBx6MERP/uawbk8zyhDE=;
+        b=oIYBcBS1IroSN+gIwdmpGD92lGKnxaCpEVal9alvoswXTnjWR+wsNj8HIy1pvZhg83
+         0BJVTC6M2grX3w9wNFNgKBv4oBo6cvjCBTzXNPwkh5SftRZUGQ7xc1uirr3KRFx5yd2+
+         lHU5VTv+zCcnIXOjplrdeeHBGPa3FnJmhgHarkMjegfRxiCTY6BLccitUp8E96XcPSE3
+         xE9JeN0xJwtQwYceNzORWOWBcjozomasU5yL//L144AJJIRcBvgLegxYUeDcCwTCqBJe
+         hqWhqWI3kBLSKqwBIXoYgguws0lSf+P8+83nczcaHN/UEIJd1JA8k66x1FN8yF4hhmiB
+         bYUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UxT9FvHaPhscbfESj3x0Ux9E1/gu3fQSaddPYs/H2Hw=;
-        b=aLThr0dOAe5L6NTq5mxDNM1kVB66xRI7TO/wgn/96RMgyLwRuE2cPHpGrmekGX2LUj
-         m1ZVP0BtszQux3SQwi3k0AaVaMn7NIQORBIzwX6oT0Ryko0EG6ySTeoWB2PwjDvht2ma
-         INZsfmpqd8M2Etv21tZd+NXhgAfm3sAEj6YUBEQypF9qZgHiKJEf8C48DLaGWIqgiIMW
-         5U6jy2KkvN/BNT9iq6D0ctZXfqfFWViUlkA2ggQLVCxNCk1SHrATXjpxKb919KUqPggW
-         qKxguq5u7rIEBB+nBtMTekNVIhXjsSS1EJ6NqU4EpRwon9+cp0TPQqjMm5v3ctTj+qzf
-         anrA==
-X-Gm-Message-State: AO0yUKW4UMKLnJXyUpLu6BbKTdEAL9EDizohQmzVJ4C+vwiKM9FMBGwp
-        Xa/54OJi9vxaJ5SgLsgi8gKJuw==
-X-Google-Smtp-Source: AK7set+7RhqsPgSckFc9YeBO3C0XfgcgNt80h0N7RD356kt/ThYv7bc6ee/ItorJfO2nByqDumA7Bg==
-X-Received: by 2002:adf:ea07:0:b0:2c7:420:5d52 with SMTP id q7-20020adfea07000000b002c704205d52mr10876348wrm.62.1677236295491;
-        Fri, 24 Feb 2023 02:58:15 -0800 (PST)
+        bh=BWQnxO1Qoh2BkDXLOlnoREhUBx6MERP/uawbk8zyhDE=;
+        b=n2QWqyzZxkQwj1zFCw4laYr8C9HAl47BLD9z44gapooA8P8oJxbiHd26cVeGz6DGAQ
+         f9DklfMzG4Lsc5zy6WUkATsOmrM9UBNHDpCBVkHpNDXqe9Es5skQ37s0szcO8jfBFQGN
+         FFRUe5Kmji5Wyve1SfPJwu6upHg1PRPAfVzHXIaL1Ylbr/LLrqQoYylb+2sc8AGYC/Sn
+         tgJ45oLQXpXKuIwPsRUfVhB2UpKypmm6q9gaT6wjJZ0L9luf3536HbnXv6DHkbpVYqMy
+         ba2LSceaSkDQsk258NX8ZZ4FHEYw1Qg63E+sDizmbN2UgJTWWbb/x3Bj5T4kXPpMcAhp
+         JBrw==
+X-Gm-Message-State: AO0yUKXNGOD1oxm/LUnMDLEpYb/P/aAmJFGUELw4ER7INFuTJSVxmCxT
+        f6OVv4px16keroeee2UrcaGuFg==
+X-Google-Smtp-Source: AK7set+20sAValcTBU0xLyseyncEcxYkyBhTV7YB9xSSXQvtIniIzhiGHg6epY5B4L3Xsq5lj7UD+w==
+X-Received: by 2002:a5d:56c9:0:b0:2c3:e07d:46cc with SMTP id m9-20020a5d56c9000000b002c3e07d46ccmr14386158wrw.41.1677236309745;
+        Fri, 24 Feb 2023 02:58:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y6-20020a056000108600b002c53f6c7599sm11157554wrw.29.2023.02.24.02.58.14
+        by smtp.gmail.com with ESMTPSA id o24-20020a5d58d8000000b002c7066a6f77sm9714423wrf.31.2023.02.24.02.58.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 02:58:15 -0800 (PST)
-Message-ID: <d0ca7b78-1fa6-d999-e010-e633ee3dbf19@linaro.org>
-Date:   Fri, 24 Feb 2023 11:58:13 +0100
+        Fri, 24 Feb 2023 02:58:29 -0800 (PST)
+Message-ID: <08fca891-d5df-0337-0615-e49e53fd2940@linaro.org>
+Date:   Fri, 24 Feb 2023 11:58:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 06/11] dt-bindings: gpu: mali-bifrost: Add support for
- MediaTek MT8186
+Subject: Re: [PATCH v3 05/11] dt-bindings: gpu: mali-bifrost: Add new MT8183
+ compatible
 Content-Language: en-US
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>, airlied@gmail.com
@@ -67,14 +67,15 @@ Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, wenst@chromium.org
 References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com>
- <20230223133440.80941-7-angelogioacchino.delregno@collabora.com>
+ <20230223133440.80941-6-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230223133440.80941-7-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230223133440.80941-6-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,52 +83,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/02/2023 14:34, AngeloGioacchino Del Regno wrote:
-> MT8186 has a Mali-G52 MC2 2EE GPU (two cores): add a binding with
-> two power domains (one per core) for it.
+> Since new platform data was required in Panfrost for getting GPU DVFS
+> finally working on MediaTek SoCs, add a new "mediatek,mt8183b-mali"
+> compatible.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/gpu/arm,mali-bifrost.yaml         | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  .../bindings/gpu/arm,mali-bifrost.yaml        | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index be18b161959b..b9424f3ebd5f 100644
+> index 4d9ab4702582..be18b161959b 100644
 > --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
 > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -20,6 +20,7 @@ properties:
+> @@ -19,6 +19,7 @@ properties:
+>            - enum:
 >                - amlogic,meson-g12a-mali
 >                - mediatek,mt8183-mali
->                - mediatek,mt8183b-mali
-> +              - mediatek,mt8186-mali
+> +              - mediatek,mt8183b-mali
 >                - realtek,rtd1619-mali
 >                - renesas,r9a07g044-mali
 >                - renesas,r9a07g054-mali
-> @@ -159,6 +160,7 @@ allOf:
+> @@ -157,6 +158,7 @@ allOf:
+>              contains:
 >                enum:
 >                  - mediatek,mt8183-mali
->                  - mediatek,mt8183b-mali
-> +                - mediatek,mt8186-mali
+> +                - mediatek,mt8183b-mali
 >                  - mediatek,mt8192-mali
 >      then:
 >        properties:
-> @@ -204,6 +206,22 @@ allOf:
->        required:
->          - power-domains
->          - power-domain-names
+> @@ -185,6 +187,23 @@ allOf:
+>      else:
+>        properties:
+>          sram-supply: false
 > +  - if:
 > +      properties:
 > +        compatible:
 > +          contains:
-> +            const: mediatek,mt8186-mali
+> +            const: mediatek,mt8183b-mali
 > +    then:
 > +      properties:
 > +        power-domains:
-> +          minItems: 2
+> +          minItems: 3
 
-as well:
-maxItems: 2
-
-
+also: maxItems
 
 Best regards,
 Krzysztof
