@@ -2,54 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 914A76A1881
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 10:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F22346A188D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 10:13:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbjBXJJI convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 24 Feb 2023 04:09:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52552 "EHLO
+        id S229903AbjBXJNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 04:13:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjBXJJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 04:09:07 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CEAF10F2
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:09:06 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1pVU4O-0001Ii-0L; Fri, 24 Feb 2023 10:08:48 +0100
-Message-ID: <a73850d6e3254d73adec31a723efc9816a633257.camel@pengutronix.de>
-Subject: Re: [PATCH v4 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
- drivers to them
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Date:   Fri, 24 Feb 2023 10:08:45 +0100
-In-Reply-To: <20230223151043.41548-3-marex@denx.de>
-References: <20230223151043.41548-1-marex@denx.de>
-         <20230223151043.41548-3-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+        with ESMTP id S229651AbjBXJNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 04:13:07 -0500
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD163662AA
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:12:38 -0800 (PST)
+Received: by mail-vs1-xe36.google.com with SMTP id a3so7467024vsi.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:12:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/qoo0Vl6Dt6+rRFuuAIcMuZATYWf1GK6779hkAk6CE4=;
+        b=ZjPNlKUyIo7tNRDIxYTYuF7YTMR/erUuudAm8uZtmcoRkOW3CV1paGAOl7X1VC65Kr
+         Z6eSKAiYHLmTsaJ/J3gbRAba8BV+KEPVEP+qanXhg+mav/BY9GlOqJLPB/yvnNT7pkM4
+         2ikpZ6yDaQdRtMuD914DMA/lDdtdfQh5O/zTw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/qoo0Vl6Dt6+rRFuuAIcMuZATYWf1GK6779hkAk6CE4=;
+        b=NmUT0knNrjlsE1NQm7FZJijPRdJmKH9ce0kSG/JYrAYJy/zZTyUm1PgYLtVWl2vQ3Y
+         g/3VzsKH/vcT368NQ8mwLh0kuF/LcphAg3LfWNY6evIiKz7+xLB0XgpYi3IjYRQ/7QSo
+         qHRhsgFGRweim2Ag34ErCGagGHh3r/vOCBnrTRXbgeOSUrOXGHW8e+fNctLKqGVziLNI
+         qAUgl4uGfM56eCszzTSmISlAUg4YkU08+O2et92zatIAEXcctGfLI96/ISj/a0o9RVkW
+         G+Hc/pC30Om+yNIijkLq8qUsOXPWqZ5qkSO+ZxnVYU7I+r599O7JnwUyfx+FgbMyL9iu
+         VTmw==
+X-Gm-Message-State: AO0yUKVBllrs+P9CjrWdn5yd4JQpWzcJSHTCcY4teV+cP4rndSaYlR/l
+        LfkKqeWi0xaGe5BxWsQApUeRpHo2PREXvXAheKO35A==
+X-Google-Smtp-Source: AK7set/kZM+FtzDiARLR/jfO3rdOy/faEqk4bCEdVebsQUHQkhnwfGQlKHeg2rZg9NqLac7Tpv7VJ2de/hYHIO2cTYE=
+X-Received: by 2002:a05:6102:1592:b0:412:5424:e58e with SMTP id
+ g18-20020a056102159200b004125424e58emr2312489vsv.0.1677229954275; Fri, 24 Feb
+ 2023 01:12:34 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20230223145426.193590-1-angelogioacchino.delregno@collabora.com> <20230223145426.193590-3-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230223145426.193590-3-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 24 Feb 2023 17:12:23 +0800
+Message-ID: <CAGXv+5HyqPLYqXBwwExRUXy0BhykX7K+gGGnGCZ1rAmJhm9Hyg@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] arm64: dts: mediatek: cherry: Enable PCI-Express
+ ports for WiFi
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,60 +66,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 23.02.2023 um 16:10 +0100 schrieb Marek Vasut:
-> This particular block can have DT subnodes describing the LVDS LDB
-> bridge. Instead of misusing simple-bus to scan for those nodes, do
-> the scan within the driver.
-> 
-> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Thu, Feb 23, 2023 at 10:55 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> On the Cherry platform, a MT7621 WiFi+Bluetooth combo is connected
+> over PCI-Express (for WiFi) and USB (for BT): enable the PCIe ports
+> to enable enumerating this chip.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Richard Zhu <hongxing.zhu@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: - Turn this into 3/4
->     - Warn and continue in case of error
-> V3: Add RB from Liu
-> V4: - Use devm_of_platform_populate()
->     - Remove RB from Liu
-> ---
->  drivers/soc/imx/imx8m-blk-ctrl.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> index 399cb85105a18..77e7dc4eb8cff 100644
-> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -310,7 +310,7 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
->  
->  	dev_set_drvdata(dev, bc);
->  
-> -	return 0;
-> +	return devm_of_platform_populate(dev);
+>  .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |  7 ++++++
 
-You need to handle the return value, not simply pass it through as the
-return value of the probe function. When devm_of_platform_populate
-fails you miss to clean up the genpd provider and detach from the power
-domains.
+For pcie0 in tomato-r1, this is not used for WiFi. This was only used in
+the earliest version for NVMe. It was subsequently removed. Please add it in
+a separate patch.
 
-Regards,
-Lucas
+>  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 25 +++++++++++++++++++
 
->  
->  cleanup_provider:
->  	of_genpd_del_provider(dev->of_node);
+For pcie1 in Cherry:
 
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
