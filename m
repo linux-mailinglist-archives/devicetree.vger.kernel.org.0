@@ -2,112 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF6AA6A20DD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 18:48:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE236A212B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 19:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjBXRsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 12:48:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44496 "EHLO
+        id S229674AbjBXSIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 13:08:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjBXRsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 12:48:25 -0500
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11F4DCDE2;
-        Fri, 24 Feb 2023 09:48:15 -0800 (PST)
-Received: by mail-vs1-xe35.google.com with SMTP id o6so439377vsq.10;
-        Fri, 24 Feb 2023 09:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nI4MTy4hfmIHZczxuvxQkj6TviIESlZvjhSFN/mxO7c=;
-        b=nuKnC2m16pkQSZekabJxPlgkqSj00V0UU1BihH1nRPRFuU5k7fbTH9EmoTeINdFtwp
-         FaY9NobP22m5XimRdWICjVXkopn9cea8Jh9Ovj2wVPVPZoxoDOg0ClUpNNj0ZUcaB3wf
-         I4LPWNIoyehaQGy7iwNoLcnfb2aqCKPBxdgr5eOyd8qfhnnxbN75OqUm8pnhCclnUi1l
-         aKGSo+YjusYr/wlBDJa7PUSnfcoJ21QoOM1wBXoHkVWJXkFiLkQ2It9mPP4InIWGLuI+
-         vlrlui6MEVPeGDUVN1AsR3xV/3wQ9MzGMDMcN4R17iX9UJ+3CUnhVhX8emSUt4v+meBA
-         xk1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nI4MTy4hfmIHZczxuvxQkj6TviIESlZvjhSFN/mxO7c=;
-        b=PWtvgGFR4hXWIJXskOnUvWUdcZIcCn9qksRnTNqty/FkSE+aRLv2gxevtMU0VtZRQG
-         BSPGIVF58VhK5qdPEfqEuJbXd39+SPnyRO/OOJwZF3t9esMpPeaBe6rCTX79qu4Rm25B
-         gC3IBXrdAyVMZdYRp1emWSKpp1P9Bg601RXThJU1Dz+VQwfezRYLHCTAfT9nmGrL9Zjr
-         b6N8t5Isq6wPHLJ/SxNW4oozszG08ks9TINeLFpZefj0w6MqercTLmnLOgnJGdbVlCXS
-         VTp4PgVxhJO0A6/vDD6I9H+oqeuOvwXHiaAVF/RqxDQrtQ5wthK1KTvTOrveBeT883k5
-         t20Q==
-X-Gm-Message-State: AO0yUKX/0JcNDbZJ1VLKS/VL/Rb5vQZmWMXrFmVi8mdME/Q9ksuSmAya
-        Y6nANcp4gELbxg1jbRpHhjLlmhbDm2vcCj1QJ8c=
-X-Google-Smtp-Source: AK7set/Bq+JucHQePYu4eno61QosclIS07ewhQ/+kp60WwVOFqxMYZasokoNzNNvR9yvHTqoQOmHb+tMAZhGVUQ9Oqs=
-X-Received: by 2002:a05:6102:236b:b0:412:48b2:48fe with SMTP id
- o11-20020a056102236b00b0041248b248femr2918623vsa.1.1677260894002; Fri, 24 Feb
- 2023 09:48:14 -0800 (PST)
+        with ESMTP id S229610AbjBXSIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 13:08:51 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B798965302;
+        Fri, 24 Feb 2023 10:08:46 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31OI8VMV030263;
+        Fri, 24 Feb 2023 18:08:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=0YkAC5sdUDDNmzZjSAq+GcFuOfC2a1Wmd+AzIEAfGlk=;
+ b=mtfdtO8xjp0EKrogibIHZXdFq3IWWg3cGIDlEeKVNGccHgKogSbdNPsV2JMqkJmcKBQ1
+ S84I62QQt1n0GX8Hud235eLdJK+6kCYJKyNmaOgDX7LQ9pgGah/9skQ+2lK71cs7Yy4n
+ IyyDNXqM6hu39RKFaHSTJXLtxxVSTsRK0ABCrOmE6YUyIcj4G3WIIeLz474gu/9qliis
+ Pb4iEH5K6hUhvlLAK1cl6+T5MmXKudIKNJv7T0nrojK4nsQyepJZ6okIUNLci//ubyQd
+ BLhtxO3C571knJ0uX20g++vedoQTHcWPEn8qCce1sc5KGYr9oso5TD3aFiH5c59UWMzk aQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ny05mrcs6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Feb 2023 18:08:31 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31OI8UW5000665
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Feb 2023 18:08:30 GMT
+Received: from [10.110.9.108] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 24 Feb
+ 2023 10:08:29 -0800
+Message-ID: <7b6d4c14-ebde-1bc3-04de-59cae9d4b7be@quicinc.com>
+Date:   Fri, 24 Feb 2023 10:08:28 -0800
 MIME-Version: 1.0
-References: <20230223213147.268-1-kaehndan@gmail.com> <Y/jpME2mb5CqPooj@smile.fi.intel.com>
-In-Reply-To: <Y/jpME2mb5CqPooj@smile.fi.intel.com>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Fri, 24 Feb 2023 11:48:02 -0600
-Message-ID: <CAP+ZCCeTg5jggU9hLax43ZNppjArSnc4dKQMHdC8S-xM1sD6Tg@mail.gmail.com>
-Subject: Re: [PATCH v7 0/3] Firmware Support for USB-HID Devices and CP2112
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v10 12/26] gunyah: vm_mgr: Add/remove user memory regions
+Content-Language: en-US
+To:     Fuad Tabba <tabba@google.com>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Arnd Bergmann" <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Chao Peng" <chao.p.peng@linux.intel.com>,
+        "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+        Sean Christopherson <seanjc@google.com>,
+        Quentin Perret <qperret@google.com>,
+        Will Deacon <will@kernel.org>,
+        "smoreland@google.com" <smoreland@google.com>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212417.3315422-1-quic_eberman@quicinc.com>
+ <CA+EHjTxEeiBWXJMCnv0V+5n=jB8w=m0EFdgK=FKtSqKOkiaChg@mail.gmail.com>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <CA+EHjTxEeiBWXJMCnv0V+5n=jB8w=m0EFdgK=FKtSqKOkiaChg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GB_MM5ia32HfIiO1IJ_OZveSflPxvTnN
+X-Proofpoint-ORIG-GUID: GB_MM5ia32HfIiO1IJ_OZveSflPxvTnN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-24_13,2023-02-24_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
+ priorityscore=1501 malwarescore=0 clxscore=1011 phishscore=0 mlxscore=0
+ spamscore=0 impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302240142
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 24, 2023 at 10:43 AM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Feb 23, 2023 at 03:31:44PM -0600, Danny Kaehn wrote:
-> > This patchset allows USB-HID devices to have DeviceTree bindings through sharing
-> > the USB fwnode with the HID driver, and adds such a binding and driver
-> > implementation for the CP2112 USB to SMBus Bridge (which necessitated the
-> > USB-HID change). This change allows a CP2112 permanently attached in hardware to
-> > be described in DT and interoperate with other drivers.
->
-> It's your responsibility to carry the tags you have got in the previous rounds
-> of the review. Please, be respectful to the reviewers who spent a lot of time
-> on yours, in particular, code. Otherwise why to bother with it (upstreaming)
-> at all?
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
 
-Hello Andy,
 
-My sincerest apologies on this! I wasn't actually aware that this is
-something I could do / am responsible for doing. No disrespect is
-intended, though I see how this would be frustrating for reviewers (I
-previously thought that maintainers used some sort of automated tool
-to keep track of who approved/acked what in previous versions, but
-didn't really know how that would work).
+On 2/24/2023 2:19 AM, Fuad Tabba wrote:
+> Hi,
+> 
+> On Tue, Feb 14, 2023 at 9:26 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+>>
+>>
+>> When launching a virtual machine, Gunyah userspace allocates memory for
+>> the guest and informs Gunyah about these memory regions through
+>> SET_USER_MEMORY_REGION ioctl.
+> 
+> I'm working on pKVM [1], and regarding the problem of donating private
+> memory to a guest, we and others working on confidential computing
+> have faced a similar issue that this patch is trying to address. In
+> pKVM, we've initially taken an approach similar to the one here by
+> pinning the pages being donated to prevent swapping or migration [2].
+> However, we've encountered issues with this approach since the memory
+> is still mapped by the host, which could cause the system to crash on
+> an errant access.
+> 
+> Instead, we've been working on adopting an fd-based restricted memory
+> approach that was initially proposed for TDX [3] and is now being
+> considered by others in the confidential computing space as well
+> (e.g., Arm CCA [4]). The basic idea is that the host manages the guest
+> memory via a file descriptor instead of a userspace address. It cannot
+> map that memory (unless explicitly shared by the guest [5]),
+> eliminating the possibility of the host trying to access private
+> memory accidentally or being tricked by a malicious actor. This is
+> based on memfd with some restrictions. It handles swapping and
+> migration by disallowing them (for now [6]), and adds a new type of
+> memory region to KVM to accommodate having an fd representing guest
+> memory.
+> 
+> Although the fd-based restricted memory isn't upstream yet, we've
+> ported the latest patches to arm64 and made changes and additions to
+> make it work with pKVM, to test it and see if the solution is feasible
+> for us (it is). I wanted to mention this work in case you find it
+> useful, and in the hopes that we can all work on confidential
+> computing using the same interfaces as much as possible.
 
-If I'm understanding correctly, this means that whenever someone
-responds to my patch with a "Reviewed-by", etc.. I should be adding
-that tag to the end of the commit message of that patch if a future
-revision is needed? I assume this only applies on future revisions
-where patches other than the one initially reviewed are changed, and
-that any tags I take with should be dropped if that patch is changed?
-Apologies about these questions - - I looked for guidance on this in
-the various "submitting patches to the kernel" guides out there, and
-wasn't able to find much.
+Thanks for highlighting the memfd_restricted changes to us! We'll 
+investigate how/if it can suit Gunyah usecases. It sounds like you 
+might've made memfd_restricted changes as well? Are those posted on the 
+mailing lists? Also, are example userspace (crosvm?) changes posted?
 
 Thanks,
-Danny Kaehn
+Elliot
+
+> 
+> Some comments inline below...
+> 
+> Cheers,
+> /fuad
+> 
+> [1] https://lore.kernel.org/kvmarm/20220519134204.5379-1-will@kernel.org/
+> [2] https://lore.kernel.org/kvmarm/20220519134204.5379-34-will@kernel.org/
+> [3] https://lore.kernel.org/all/20221202061347.1070246-1-chao.p.peng@linux.intel.com/
+> [4] https://lore.kernel.org/lkml/20230127112932.38045-1-steven.price@arm.com/
+> [5] This is a modification we've done for the arm64 port, after
+> discussing it with the original authors.
+> [6] Nothing inherent in the proposal to stop migration and swapping.
+> There are some technical issues that need to be resolved.
+> 
+> <snip>
+<snip, looking at comments in parallel>
