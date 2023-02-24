@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A2096A1FA1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0D96A1FA2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:27:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbjBXQ06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 11:26:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54218 "EHLO
+        id S229630AbjBXQ07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 11:26:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbjBXQ0r (ORCPT
+        with ESMTP id S229796AbjBXQ0r (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:26:47 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E80DC6EB2F
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:42 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id j2so14322008wrh.9
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:42 -0800 (PST)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD436A7B1
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:43 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id az36so40786wmb.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/Z6tZFFE5BTtnAERh23ZFuGlAMKjWB1LeNlstGrShuA=;
-        b=Vy71SU7zuNIXJiH/qB1kiXZfMEfbB0uoSbnTAnzP1PjTxaknmh+uieMfRQ6/zp3xwI
-         1E0yfSZRExBO6kXuBZ82OuZcPS+SA3bXdWyGMvPV6vhXVvnifzs1o/w3kobRRYgNct3w
-         rkkjMf3lVRjipghLhcn1DmgDh676bVYG+nwh09AJ61Lq/e2GCjrP0fK7E1wcEny1D/Hg
-         Qu6sSvnhbbuUHEse4hbl84VcYhM3RXXJzJafSlqWdRGIFFQUPQxoJqKIJiMP7V5/YkZC
-         2tvWjg6zURxTidnqq/Jl/Cu/1On97PKDfMO814pQ0+Z84XRQ8rCmzQbvtjIfHlxBNgpG
-         Xrug==
+        bh=LQSbWzdXITTUFGVPTFXHGgENmDgXWQs7cxb8n6vTRIg=;
+        b=WYvJAh+G6x6Vlax3zUgVMCE5aXia8pEEMHFNGJZMetpJPvr3AFrx1UrS6bgxuRlFYl
+         fKHzZw7I1iDnhJfcYXRJMf2tEm+ZJ9hg9Y9xvmFG0rEb3OHivpXDTV/Pv03X1YkRFJQg
+         cbhwwMKK2Os8sLmFRb9cWh9yW0rtwGZ1XOO6VV2JHqQJcZXesoRzsQ/jkNjoZhsX5hFc
+         an+IAXJ+TN2el+6ea9OJWLW1AkRFD/P6PCHlro7SkO1WYB5j4XTQXRdS2f1dodDMbojn
+         oPldkG8xv0UfVfz/WGB0PliCkOlM8q8dpFBruuPPq2KUYDZovFmzoaf1b6hAYSUzqwoz
+         y1tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/Z6tZFFE5BTtnAERh23ZFuGlAMKjWB1LeNlstGrShuA=;
-        b=tsb6XgRCfSwSLaxXO+6UnfgzkUaZ0hv6p0HvjDXBJE6vuui8MLEc7JrBOrD7zKX2w4
-         x+rQ6xTkczGX2qtiQrAv1wVER0JoNE2ZqNopMZXzMgMi7AWCAvlo3JcDjRSbmCWUbxuH
-         JLn2oA8jq02DpO8LL+mxvH3ebW5UCUxxWEvpAW18Jtp+KlQrrQLfSyW9cm5zSIOppnQB
-         Qb83U22XLoaWHmjUcimTEUtA9ks5yCAT42yrsGXesHvkHjVXmX0X/RRqG3IqVPTQgH/w
-         qPYu6VzvnmwqCf+ofzS6Y30xam160CU0xmM288oczTfDQbxsWyP5ifKRs5ZwNgXuaTrD
-         vr0Q==
-X-Gm-Message-State: AO0yUKVbUFkp05Eeq1si+LUSs2Y4vH5c7JY6Vmw3PJ6uKNCvDFbUr0v/
-        iXbUghitDibZZqh3tH/kjAIFiQ==
-X-Google-Smtp-Source: AK7set/VtgsyzXm8Ap48VZCq1ILylsYFDhexWn5ba7SjzSOIRQncUWlH4PUYTDZ/8fn10OmbbTANfA==
-X-Received: by 2002:a05:6000:89:b0:2c8:42b5:8025 with SMTP id m9-20020a056000008900b002c842b58025mr640072wrx.47.1677256001439;
-        Fri, 24 Feb 2023 08:26:41 -0800 (PST)
+        bh=LQSbWzdXITTUFGVPTFXHGgENmDgXWQs7cxb8n6vTRIg=;
+        b=1sz6Vkx4CaoblNqJCjAloNEYs8UxkXBzq8rZbhILSaaBJBvPutXbiV5HSXD1CQ4nvy
+         Dwbdthg2lJUTrOYnpVAlq1SOqJE4eVoSThP3Rwky+kfgQcQY+m9gKHCmXcN85Yl14JBQ
+         HA0J1M3NykfOyoVvMh8CjB8n/fB6gQ3XQUSJ/BCk9HUuQAClhc4kAjrmAJ2YI/0zL270
+         bM3YbfUTulG3BocpPP6VyMkPVhh/hz2TK/jR2Yc8d94Z5pWN+p1Q0IRWdrg5qvTeM46Q
+         b0rQ8FqN4LcgEf66323zj7vPXRfDzP70KDWQwFvqYl6ZGckzpapsW3cn2nKT556hjriT
+         j1PQ==
+X-Gm-Message-State: AO0yUKW3FjqIIuyJOi39Hg0vY8ZJBzRLSWLy84IjhVd+K2Jb/vxOuErR
+        IjT6mTeUe2mcy/hyeA9P/OU8Lw==
+X-Google-Smtp-Source: AK7set+B4L+KEhB/KyLIkSH6PHaVRqL2xDGuGkTQosj7QgMJ6o2wSVbxw27nLBgEAAEMmRkOdbvzag==
+X-Received: by 2002:a05:600c:354c:b0:3df:9858:c03a with SMTP id i12-20020a05600c354c00b003df9858c03amr178485wmq.15.1677256002565;
+        Fri, 24 Feb 2023 08:26:42 -0800 (PST)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id y7-20020a1c4b07000000b003daf672a616sm3318597wma.22.2023.02.24.08.26.40
+        by smtp.gmail.com with ESMTPSA id j22-20020a5d4536000000b002c5a07e940csm13820864wra.33.2023.02.24.08.26.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Feb 2023 08:26:41 -0800 (PST)
+        Fri, 24 Feb 2023 08:26:42 -0800 (PST)
 From:   Andrew Jones <ajones@ventanamicro.com>
 To:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
         devicetree@vger.kernel.org
@@ -65,9 +65,9 @@ Cc:     'Conor Dooley ' <conor.dooley@microchip.com>,
         'Jisheng Zhang ' <jszhang@kernel.org>,
         'Heiko Stuebner ' <heiko@sntech.de>,
         Anup Patel <anup@brainfault.org>
-Subject: [PATCH v6 7/8] RISC-V: KVM: Provide UAPI for Zicboz block size
-Date:   Fri, 24 Feb 2023 17:26:30 +0100
-Message-Id: <20230224162631.405473-8-ajones@ventanamicro.com>
+Subject: [PATCH v6 8/8] RISC-V: KVM: Expose Zicboz to the guest
+Date:   Fri, 24 Feb 2023 17:26:31 +0100
+Message-Id: <20230224162631.405473-9-ajones@ventanamicro.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230224162631.405473-1-ajones@ventanamicro.com>
 References: <20230224162631.405473-1-ajones@ventanamicro.com>
@@ -83,57 +83,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We're about to allow guests to use the Zicboz extension. KVM
-userspace needs to know the cache block size in order to
-properly advertise it to the guest. Provide a virtual config
-register for userspace to get it with the GET_ONE_REG API, but
-setting it cannot be supported, so disallow SET_ONE_REG.
+Guests may use the cbo.zero instruction when the CPU has the Zicboz
+extension and the hypervisor sets henvcfg.CBZE.
+
+Add Zicboz support for KVM guests which may be enabled and
+disabled from KVM userspace using the ISA extension ONE_REG API.
 
 Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Reviewed-by: Anup Patel <anup@brainfault.org>
 ---
  arch/riscv/include/uapi/asm/kvm.h | 1 +
- arch/riscv/kvm/vcpu.c             | 7 +++++++
- 2 files changed, 8 insertions(+)
+ arch/riscv/kvm/vcpu.c             | 4 ++++
+ 2 files changed, 5 insertions(+)
 
 diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index 92af6f3f057c..c1a1bb0fa91c 100644
+index c1a1bb0fa91c..e44c1e90eaa7 100644
 --- a/arch/riscv/include/uapi/asm/kvm.h
 +++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -52,6 +52,7 @@ struct kvm_riscv_config {
- 	unsigned long mvendorid;
- 	unsigned long marchid;
- 	unsigned long mimpid;
-+	unsigned long zicboz_block_size;
+@@ -106,6 +106,7 @@ enum KVM_RISCV_ISA_EXT_ID {
+ 	KVM_RISCV_ISA_EXT_SVINVAL,
+ 	KVM_RISCV_ISA_EXT_ZIHINTPAUSE,
+ 	KVM_RISCV_ISA_EXT_ZICBOM,
++	KVM_RISCV_ISA_EXT_ZICBOZ,
+ 	KVM_RISCV_ISA_EXT_MAX,
  };
  
- /* CORE registers for KVM_GET_ONE_REG and KVM_SET_ONE_REG */
 diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index 7c08567097f0..e5126cefbc87 100644
+index e5126cefbc87..198ee86cad38 100644
 --- a/arch/riscv/kvm/vcpu.c
 +++ b/arch/riscv/kvm/vcpu.c
-@@ -276,6 +276,11 @@ static int kvm_riscv_vcpu_get_reg_config(struct kvm_vcpu *vcpu,
- 			return -EINVAL;
- 		reg_val = riscv_cbom_block_size;
- 		break;
-+	case KVM_REG_RISCV_CONFIG_REG(zicboz_block_size):
-+		if (!riscv_isa_extension_available(vcpu->arch.isa, ZICBOZ))
-+			return -EINVAL;
-+		reg_val = riscv_cboz_block_size;
-+		break;
- 	case KVM_REG_RISCV_CONFIG_REG(mvendorid):
- 		reg_val = vcpu->arch.mvendorid;
- 		break;
-@@ -347,6 +352,8 @@ static int kvm_riscv_vcpu_set_reg_config(struct kvm_vcpu *vcpu,
- 		break;
- 	case KVM_REG_RISCV_CONFIG_REG(zicbom_block_size):
- 		return -EOPNOTSUPP;
-+	case KVM_REG_RISCV_CONFIG_REG(zicboz_block_size):
-+		return -EOPNOTSUPP;
- 	case KVM_REG_RISCV_CONFIG_REG(mvendorid):
- 		if (!vcpu->arch.ran_atleast_once)
- 			vcpu->arch.mvendorid = reg_val;
+@@ -63,6 +63,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
+ 	KVM_ISA_EXT_ARR(SVPBMT),
+ 	KVM_ISA_EXT_ARR(ZIHINTPAUSE),
+ 	KVM_ISA_EXT_ARR(ZICBOM),
++	KVM_ISA_EXT_ARR(ZICBOZ),
+ };
+ 
+ static unsigned long kvm_riscv_vcpu_base2isa_ext(unsigned long base_ext)
+@@ -865,6 +866,9 @@ static void kvm_riscv_vcpu_update_config(const unsigned long *isa)
+ 	if (riscv_isa_extension_available(isa, ZICBOM))
+ 		henvcfg |= (ENVCFG_CBIE | ENVCFG_CBCFE);
+ 
++	if (riscv_isa_extension_available(isa, ZICBOZ))
++		henvcfg |= ENVCFG_CBZE;
++
+ 	csr_write(CSR_HENVCFG, henvcfg);
+ #ifdef CONFIG_32BIT
+ 	csr_write(CSR_HENVCFGH, henvcfg >> 32);
 -- 
 2.39.1
 
