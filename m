@@ -2,88 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F22346A188D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 10:13:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C12B86A189B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 10:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229903AbjBXJNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 04:13:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55878 "EHLO
+        id S229772AbjBXJTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 04:19:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjBXJNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 04:13:07 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD163662AA
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:12:38 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id a3so7467024vsi.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:12:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/qoo0Vl6Dt6+rRFuuAIcMuZATYWf1GK6779hkAk6CE4=;
-        b=ZjPNlKUyIo7tNRDIxYTYuF7YTMR/erUuudAm8uZtmcoRkOW3CV1paGAOl7X1VC65Kr
-         Z6eSKAiYHLmTsaJ/J3gbRAba8BV+KEPVEP+qanXhg+mav/BY9GlOqJLPB/yvnNT7pkM4
-         2ikpZ6yDaQdRtMuD914DMA/lDdtdfQh5O/zTw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/qoo0Vl6Dt6+rRFuuAIcMuZATYWf1GK6779hkAk6CE4=;
-        b=NmUT0knNrjlsE1NQm7FZJijPRdJmKH9ce0kSG/JYrAYJy/zZTyUm1PgYLtVWl2vQ3Y
-         g/3VzsKH/vcT368NQ8mwLh0kuF/LcphAg3LfWNY6evIiKz7+xLB0XgpYi3IjYRQ/7QSo
-         qHRhsgFGRweim2Ag34ErCGagGHh3r/vOCBnrTRXbgeOSUrOXGHW8e+fNctLKqGVziLNI
-         qAUgl4uGfM56eCszzTSmISlAUg4YkU08+O2et92zatIAEXcctGfLI96/ISj/a0o9RVkW
-         G+Hc/pC30Om+yNIijkLq8qUsOXPWqZ5qkSO+ZxnVYU7I+r599O7JnwUyfx+FgbMyL9iu
-         VTmw==
-X-Gm-Message-State: AO0yUKVBllrs+P9CjrWdn5yd4JQpWzcJSHTCcY4teV+cP4rndSaYlR/l
-        LfkKqeWi0xaGe5BxWsQApUeRpHo2PREXvXAheKO35A==
-X-Google-Smtp-Source: AK7set/kZM+FtzDiARLR/jfO3rdOy/faEqk4bCEdVebsQUHQkhnwfGQlKHeg2rZg9NqLac7Tpv7VJ2de/hYHIO2cTYE=
-X-Received: by 2002:a05:6102:1592:b0:412:5424:e58e with SMTP id
- g18-20020a056102159200b004125424e58emr2312489vsv.0.1677229954275; Fri, 24 Feb
- 2023 01:12:34 -0800 (PST)
+        with ESMTP id S229481AbjBXJTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 04:19:01 -0500
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDF261EFE;
+        Fri, 24 Feb 2023 01:18:58 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 15D5724000A;
+        Fri, 24 Feb 2023 09:18:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1677230337;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=M3ozjZdZR8sNKNPhgcvAJ2WlN7ZmVjanXl59zU7ERyw=;
+        b=EUMdp5xYUoX1LkvoICtaztv5JY7YBwkJHyO9aZnKMY03yXU9wbzFWDHgoX0Vw0fXdE7n3f
+        i8gvDC2lRnZ099HYY3Gu6nuRi2S4OD11pT0GlmaNfo+e0eiSd6PMQe83aG5vSy9xMjbelc
+        tVPKuGTdlG/9tubvnhnxVd1Moy9CHwlbnJUkLHOoMpG3Set/robfhj6iKX7IL0vDPTGUip
+        WgPoPGgUzOEdmXC0lFU0Uvrha+ML5O7WOPNgBrB68WcApTBuwgFTyxI8/8soWVQ/GciJOT
+        BKLZVApxKUjf6u+2ca2d1orP8NKYxRz/+utKdsVQjiuVnehXDOrDWaWYngIxYw==
+Date:   Fri, 24 Feb 2023 10:18:54 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 16/22] dt-bindings: rtc: qcom-pm8xxx: add nvmem-cell
+ offset
+Message-ID: <Y/iA/sQh/p9980qQ@mail.local>
+References: <20230202155448.6715-1-johan+linaro@kernel.org>
+ <20230202155448.6715-17-johan+linaro@kernel.org>
+ <Y+bJqIpgZ0fbzL2b@mail.local>
+ <Y+dQXlABqc/uzIXc@hovoldconsulting.com>
+ <Y+fF94EOkUuMq9Fc@mail.local>
+ <Y+0NiJsp4JjeyrqH@hovoldconsulting.com>
+ <Y/hzcxrS3D0O3s9U@hovoldconsulting.com>
 MIME-Version: 1.0
-References: <20230223145426.193590-1-angelogioacchino.delregno@collabora.com> <20230223145426.193590-3-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230223145426.193590-3-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 24 Feb 2023 17:12:23 +0800
-Message-ID: <CAGXv+5HyqPLYqXBwwExRUXy0BhykX7K+gGGnGCZ1rAmJhm9Hyg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] arm64: dts: mediatek: cherry: Enable PCI-Express
- ports for WiFi
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y/hzcxrS3D0O3s9U@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 10:55 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> On the Cherry platform, a MT7621 WiFi+Bluetooth combo is connected
-> over PCI-Express (for WiFi) and USB (for BT): enable the PCIe ports
-> to enable enumerating this chip.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |  7 ++++++
+On 24/02/2023 09:21:07+0100, Johan Hovold wrote:
+> Hi Alexandre,
+> 
+> On Wed, Feb 15, 2023 at 05:51:20PM +0100, Johan Hovold wrote:
+> > On Sat, Feb 11, 2023 at 05:44:39PM +0100, Alexandre Belloni wrote:
+> > > On 11/02/2023 09:22:54+0100, Johan Hovold wrote:
+> > > > On Fri, Feb 10, 2023 at 11:48:08PM +0100, Alexandre Belloni wrote:
+> > > > > On 02/02/2023 16:54:42+0100, Johan Hovold wrote:
+> > > > > > On many Qualcomm platforms the PMIC RTC control and time registers are
+> > > > > > read-only so that the RTC time can not be updated. Instead an offset
+> > > > > > needs be stored in some machine-specific non-volatile memory, which a
+> > > > > > driver can take into account.
+> > > > > > 
+> > > > > > Add an 'offset' nvmem cell which can be used to store a 32-bit offset
+> > > > > > from the Unix epoch so that the RTC time can be updated on such
+> > > > > > platforms.
+> > > > > > 
+> > > > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > 
+> > > > > The patch doesn't apply because this part of the context is not
+> > > > > upstream. Can you rebase?
+> > > > 
+> > > > Ah, sorry about that. That's because of commit 51b3802e7960
+> > > > ("dt-bindings: rtc: qcom-pm8xxx: allow 'wakeup-source' property") which
+> > > > is now in Linus's tree (and your rtc-fixes branch).
+> > > > 
+> > > > Do you still want me to rebase or do you prefer to handle the conflict
+> > > > some other way?
+> > > 
+> > > Ah yes, my bad, I'll merge rtc-fixes in rtc-next before applying
+> > 
+> > Sorry about reminding so soon, but with the merge window approaching
+> > fast, will you be able to get this merged for 6.3?
+> 
+> Looks like these last two patches adding support for the nvmem offset
+> has not been applied yet. Still hoping you can get them merged for 6.3
+> even if this one does not apply cleanly unless you first merge your
+> rtc-fixes branch.
 
-For pcie0 in tomato-r1, this is not used for WiFi. This was only used in
-the earliest version for NVMe. It was subsequently removed. Please add it in
-a separate patch.
+This is still my plan, I'm travelling right now but they will be sent for
+6.3
 
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 25 +++++++++++++++++++
-
-For pcie1 in Cherry:
-
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
