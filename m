@@ -2,120 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A47796A1B4D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5608B6A1B57
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjBXLUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 06:20:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57472 "EHLO
+        id S230004AbjBXLUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 06:20:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjBXLUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:20:03 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC55F74A
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:20:02 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id cq23so53204563edb.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:20:02 -0800 (PST)
+        with ESMTP id S229672AbjBXLUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:20:45 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06FCA63DF3
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:20:38 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id cy6so48010907edb.5
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:20:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Njm30AQBCiZsl1r/A2bbjJBxbIy+rhISCg90BWo/8k=;
-        b=mIiZeEsUWzPmwXGwXcmoWAfjzZYvzoqU/vkxax57FwmpV3E5k28nSbg82tY2DhJ3QZ
-         xtulBn3jmkKp5RridDbhwmQELXZQ48vcYSp6Nj6q8TagLOxlPH0eBy5EVVvOzfeKRWmW
-         C+ERb6aIlJU1QWWVWfEU0HKhyWKqDM5B0HkVx2D80p7Qk1haolAv8j3yqLNOUKim9p+c
-         ZOG9iWs+KpRAWE6U/jfRpobjSlek692ZsXJUP0LLI0dmak+QJIfiASNRWYcsJjKpF/Lv
-         C+D5kJWzOJbWqaF6UEJuXr1+6qoCZqreQnnfaRPRcHwT+xKwx5e882GvbnuRcUrTDH+3
-         9XkQ==
+        bh=v3hEGyCucdzbqe3LrutT0J4NZq9m5aBL5wEqBphvaXQ=;
+        b=jbUpwEFLdpLKVZ953n8tg2+JdWrD2rrbXAVTkJRRzca1k45TyM00PvwsLpS0vJGFrc
+         RwMLvwKwI8TwqNYj21oQJA/ud3Unyv4HVPhUVAe50anXgbAQmTwr0li8Xf+i6ZZHJ1im
+         UCc0uoXxnARYlaoAX8eqvTYwDn1zSGFZ0u+N72c6LQ1VYgNk/JFUQCb3OJzvoyUEzoaD
+         cRxSDJWSpmiEb7qYa/k0szyVNZ3gEQ8vnk08SvSP65B4jXmH6bf4LXWGRZq+aBwve8de
+         ehfwXeVca7WeyRLbqMBhfzNx+pPeQzprzUc5xdj0xZTzxwdu5Xtitvmrwzt4Es8uGUnn
+         khOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Njm30AQBCiZsl1r/A2bbjJBxbIy+rhISCg90BWo/8k=;
-        b=xjx+/5XxY3bwdqzJ/ERsFRg+MzEZQ7EiYWtaa/vaTjP/NEitPtdUF+MqZLjWz2BWxq
-         c3nlhhsEfR2eh0lvJPmFFw5V44Db1zSPgT6Pg+BD+Em7GnCM/Wn1UI0TCWUE4jTTA+ec
-         wU3JSw+Oe9obKNwOkoqt7KJUsr0JoZudabc0Chqfr58+irsXO83BYSrbk1UhFGAfTOIE
-         oFWISnVtoZ4ixsFcdNV8EoYIPshxQAEa6jqXFKkiGzYRA6FmH6zOFqRr4Xdhbp2oHu9y
-         CF619G/x3f8owmdbbYqe0VEwUQ0CCGZrGvEprDVnhY4wBlPm2NDqjrPwgLTLXwswJgC8
-         i+7Q==
-X-Gm-Message-State: AO0yUKV3N5r1jZBPikz11CkdFbE6/Qo9slG8+UDi9YvEI/udpSV2Ze4/
-        Nxb2bHIcehIFvoeZUtYY0BQ5tQ==
-X-Google-Smtp-Source: AK7set8K/SNOhJHO32tZQmCDVnK5BSQ+/EUE74ldpMSsptNS/Vnl5kTCOFqgSob/GlzmFjZqj83ZwA==
-X-Received: by 2002:a17:906:f0d3:b0:8af:54d2:36af with SMTP id dk19-20020a170906f0d300b008af54d236afmr25060935ejb.76.1677237600869;
-        Fri, 24 Feb 2023 03:20:00 -0800 (PST)
+        bh=v3hEGyCucdzbqe3LrutT0J4NZq9m5aBL5wEqBphvaXQ=;
+        b=SgLrv8qXEDubAgYee+d/FoLHp25QNK/8Sa2lB6OBLMqcIcjEyG5PPZh/bKM+CfJjoL
+         D3hhxCfoIrT3ufu7k3dG2pvOgVmPNP5lHa6+QiI1zmj9xcqkgC+o/f8LUOX+pKe20w6q
+         ahPz0NB35hiMn1hjwWO+XhE45KlvPturIXSUY+43utkcZd9Vj0aAmMp/wX7QtD97z8z7
+         0HWjowYjHMsm3RxWb7ahxxiwZJxJVHyNJdMsj6dI5WaKZTHlS92rgJqbpGyHF2KzS3zA
+         jzXuUXoAQhj2WGQTC6UU9yuf9+sARbyrg8cqNb4s3wOrweqHk/fiIqje/GdHXRoQIbYh
+         NxYA==
+X-Gm-Message-State: AO0yUKUs+5sm1h4nIXWYHh71zP7jsufcRlnb9NpfEVEwibnw4RIV6HJn
+        L7mqwYVXIRuTY5yJUKcEolZqtg==
+X-Google-Smtp-Source: AK7set98CJO+wXTLM4UFAXnn0d/1LPj+v6ZqaACgh7v/kaIs6ZoV7T9E/BJ/U9Ahs/LjexIsQttccg==
+X-Received: by 2002:a17:906:1093:b0:8b1:75a0:e5c6 with SMTP id u19-20020a170906109300b008b175a0e5c6mr26507949eju.18.1677237636530;
+        Fri, 24 Feb 2023 03:20:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id my22-20020a1709065a5600b008bc2c2134c5sm8165118ejc.216.2023.02.24.03.19.59
+        by smtp.gmail.com with ESMTPSA id kv7-20020a17090778c700b008e53874f8d8sm3436088ejc.180.2023.02.24.03.20.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 03:20:00 -0800 (PST)
-Message-ID: <2fb0ba58-c011-7896-9792-005d0ed9ad55@linaro.org>
-Date:   Fri, 24 Feb 2023 12:19:58 +0100
+        Fri, 24 Feb 2023 03:20:36 -0800 (PST)
+Message-ID: <1cda61a7-91cd-6f47-619b-e38a5131d182@linaro.org>
+Date:   Fri, 24 Feb 2023 12:20:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 02/15] dt-bindings: display/msm/gmu: Add GMU wrapper
+Subject: Re: [PATCH v5 2/3] dt-bindings: net: Bluetooth: Add NXP bluetooth
+ support
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>
-References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
- <20230223-topic-gmuwrapper-v3-2-5be55a336819@linaro.org>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+References: <20230223103614.4137309-1-neeraj.sanjaykale@nxp.com>
+ <20230223103614.4137309-3-neeraj.sanjaykale@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230223-topic-gmuwrapper-v3-2-5be55a336819@linaro.org>
+In-Reply-To: <20230223103614.4137309-3-neeraj.sanjaykale@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2023 13:06, Konrad Dybcio wrote:
-> GMU wrapper is essentially a register space within the GPU, which
-> Linux sees as a dumbed-down regular GMU: there's no clocks,
-> interrupts, multiple regs, iommus and OPP. Document it.
+On 23/02/2023 11:36, Neeraj Sanjay Kale wrote:
+> Add binding document for NXP bluetooth chipsets attached over UART.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
 > ---
->  .../devicetree/bindings/display/msm/gmu.yaml       | 49 ++++++++++++++++------
->  1 file changed, 37 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> index ab14e81cb050..021373e686e1 100644
-> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> @@ -19,16 +19,18 @@ description: |
->  
->  properties:
->    compatible:
-> -    items:
-> -      - pattern: '^qcom,adreno-gmu-6[0-9][0-9]\.[0-9]$'
-> -      - const: qcom,adreno-gmu
-> +    oneOf:
-> +      - items:
-> +          - pattern: '^qcom,adreno-gmu-6[0-9][0-9]\.[0-9]$'
-> +          - const: qcom,adreno-gmu
-> +      - const: qcom,adreno-gmu-wrapper
 
-Why wrapper is part of this binding then? Usually wrapper means there is
-wrapper node with a GMU child (at least this is what we call for all
-wrappers of custom IP blocks like USB DWC). Where is the child?
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
