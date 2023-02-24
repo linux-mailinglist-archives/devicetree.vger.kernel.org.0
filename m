@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FDB26A1F95
+	by mail.lfdr.de (Postfix) with ESMTP id D8DCE6A1F96
 	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbjBXQ0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 11:26:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53824 "EHLO
+        id S229763AbjBXQ0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 11:26:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjBXQ0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:26:37 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3886E6EB0B
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:36 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id q16so4153532wrw.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:36 -0800 (PST)
+        with ESMTP id S229688AbjBXQ0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:26:40 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625606A7AF
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:37 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id k37so66170wms.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K7rGW7hYEauj0lEHNx054QYhURQUQQG6A8fMOX9HH84=;
-        b=RKqYoE96klcsM5eA//F76t0V+zO9OQvwwBKBQ77Ld8n2SOHHJSGhBHre9+TrbmLg+o
-         dc34CetaLatRWo/FVB1zzFELNGy8JhmmN9Qa+JXiXcOnXDr137/7bPD7R8XGC3p8k4/j
-         NKlIDe+e4cDuGoIQl+28FOOiIz6lDS+GG2UkxoCBmhdjLMGw4n/yrFvnHU0zL9IJJe1/
-         0SH4qE47mmAZWUiXuU6sg2VJBsAbDco/MSTG0tBoPkemCdtlp99mNEwwz0MuRWQvnwPt
-         Xp+OH3iSZn6RKtfuy79sG1xBGhuhhlRp8bxCrqAr7RhYZ+vsSxYdKovagshJpdo0I2ef
-         E0Vw==
+        bh=/ulHjChwX0EpCdPBQp6OD2TjDP7InY37wU45TsSAj1w=;
+        b=Hqo7fu1B4xqPawDMyW66q3vces/lc1k8SQ+c8oQEtP6S3LvATJfoIKXuRYcluW7sfy
+         +ugmVcqInbSAczNkKhfdWaI3i8SO4YOZWvKcrdtgk6OIuxNLt2RkpXwslwuEonv9zXph
+         vxeHEaoiDJOu4nqWOCTZ6P2mXWns/DP9NTw5VBWS/trQxmwUIZ1F0pmY4RQA/Xh7rfTl
+         rtBrfIN/Px2t1plT6ZbP2YvAzk1H1PV5QkTHqcBEwHvcN5EwRy+lX5NfhLqVAOjH74mh
+         ZSM+9eG0NGdZSqiMlM8N2QbPkiKSDr8QRwjKSQKha5gxA+Vd9I+jXViZAqAIzsIpkZ7e
+         IK6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K7rGW7hYEauj0lEHNx054QYhURQUQQG6A8fMOX9HH84=;
-        b=fMJjmmBBhvkVxjD6O6VV8mvGbCZ9FCZz0/YFhurjtB0TULozitrbvfSFRJOlUq3+UX
-         sADfiYrdIJ8qF6FwQisk7GXziBFXNzTmjePJcwwIsZUzAue+C9dR9ztzstrHO/fBICcW
-         RTtQjfBxKEIZl0cdSUBB1ZxA3UffNzjD0tG0I29vQFd/+/QVW1WsyfaNjcEvnKuozahX
-         9kJr+k15cMUH2pjRR5DooAajj8jYngycJcYlQPoN3MyCNq1wt+mSYm6HfNPHLUnq+cEq
-         M94zofQ2HirgjzYukP+tqGlbS8+wiA/6NIrU6Lswtgb48XpyqsXhuH+Ec8WkzzFcNZmW
-         1ywg==
-X-Gm-Message-State: AO0yUKXWxZZ8b+YveVDc0kIiSQykkSWvEJvJaVZVjJjZ3d6Nq94VrB0n
-        oPCKIeqLeti9mS4Ugg3RGZQmbw==
-X-Google-Smtp-Source: AK7set9db9FJqAXFvqnxkWNWao+YM41d9TaJzN8ugnsztfkd9yIZbvWR8jbKEB5MZVXaCknWRUaPNg==
-X-Received: by 2002:a5d:504f:0:b0:2bf:942b:ddc with SMTP id h15-20020a5d504f000000b002bf942b0ddcmr13630182wrt.55.1677255994674;
-        Fri, 24 Feb 2023 08:26:34 -0800 (PST)
+        bh=/ulHjChwX0EpCdPBQp6OD2TjDP7InY37wU45TsSAj1w=;
+        b=PowqP856JPwGUlSNgsPjiciM743uRUwOCM01EA7yRioETgE0o0GQaPqc3yO0b69IgM
+         RLm6qv066zzdl0QPB6VEjcF/lx7iTYXAlx27rm26gAoFvbrQlqzOBxQJZiqQ4bUws5pB
+         Cn6SVZiIuT7FzwsJ9VqQC51eBd3sgGYMn1Qzs2sr3AfUqcSCxH+NCDKwYuzBrvPUxGa0
+         FkeEEbsZ527Bb1jtfBQZtecT2LsixDOsQP+GtHKDGrA2yCdNgQg+eTtWHd5I34gYyUcG
+         qIX3DpeAgC1QYzakoHnTTJYhS3YHwM6HxfFNBCpluXLSiA1iC1ULopHEVkqgN7XeArdd
+         P+JQ==
+X-Gm-Message-State: AO0yUKXIPm7PFevonNzw1ZjtjqXaJGTbY2vT9jCTYlaZLC1DeQRJd1YH
+        Z8JS2V8JZlFi/iYYU8WBRuZfOw==
+X-Google-Smtp-Source: AK7set8zVxc5qiCueExOLHTCFNNzolxFPSj234tIjv7/zx7MafBbdDpFH8c7Yoswk3smf5KklatbGA==
+X-Received: by 2002:a05:600c:331b:b0:3eb:2da4:f32d with SMTP id q27-20020a05600c331b00b003eb2da4f32dmr1107776wmp.26.1677255995904;
+        Fri, 24 Feb 2023 08:26:35 -0800 (PST)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id t26-20020a05600c2f9a00b003eae73f0fc1sm3307797wmn.18.2023.02.24.08.26.34
+        by smtp.gmail.com with ESMTPSA id t25-20020a7bc3d9000000b003e896d953a8sm3377129wmj.17.2023.02.24.08.26.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Feb 2023 08:26:34 -0800 (PST)
+        Fri, 24 Feb 2023 08:26:35 -0800 (PST)
 From:   Andrew Jones <ajones@ventanamicro.com>
 To:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
         devicetree@vger.kernel.org
@@ -64,9 +64,9 @@ Cc:     'Conor Dooley ' <conor.dooley@microchip.com>,
         'Rob Herring ' <robh@kernel.org>,
         'Jisheng Zhang ' <jszhang@kernel.org>,
         'Heiko Stuebner ' <heiko@sntech.de>
-Subject: [PATCH v6 2/8] RISC-V: Factor out body of riscv_init_cbom_blocksize loop
-Date:   Fri, 24 Feb 2023 17:26:25 +0100
-Message-Id: <20230224162631.405473-3-ajones@ventanamicro.com>
+Subject: [PATCH v6 3/8] dt-bindings: riscv: Document cboz-block-size
+Date:   Fri, 24 Feb 2023 17:26:26 +0100
+Message-Id: <20230224162631.405473-4-ajones@ventanamicro.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230224162631.405473-1-ajones@ventanamicro.com>
 References: <20230224162631.405473-1-ajones@ventanamicro.com>
@@ -82,80 +82,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Refactor riscv_init_cbom_blocksize() to prepare for it to be used
-for both cbom block size and cboz block size.
+The Zicboz operation (cbo.zero) operates on a block-size defined
+for the cpu-core. While we already have the riscv,cbom-block-size
+property, it only provides the block size for Zicbom operations.
+Even though it's likely Zicboz and Zicbom will use the same size,
+that's not required by the specification. Create another property
+specifically for Zicboz.
 
+Cc: Rob Herring <robh@kernel.org>
 Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- arch/riscv/mm/cacheflush.c | 45 +++++++++++++++++++++-----------------
- 1 file changed, 25 insertions(+), 20 deletions(-)
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
-index 3cc07ed45aeb..eaf23fc14966 100644
---- a/arch/riscv/mm/cacheflush.c
-+++ b/arch/riscv/mm/cacheflush.c
-@@ -98,34 +98,39 @@ void flush_icache_pte(pte_t pte)
- unsigned int riscv_cbom_block_size;
- EXPORT_SYMBOL_GPL(riscv_cbom_block_size);
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index 001931d526ec..f24cf9601c6e 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -72,6 +72,11 @@ properties:
+     description:
+       The blocksize in bytes for the Zicbom cache operations.
  
-+static void cbo_get_block_size(struct device_node *node,
-+			       const char *name, u32 *block_size,
-+			       unsigned long *first_hartid)
-+{
-+	unsigned long hartid;
-+	u32 val;
++  riscv,cboz-block-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The blocksize in bytes for the Zicboz cache operations.
 +
-+	if (riscv_of_processor_hartid(node, &hartid))
-+		return;
-+
-+	if (of_property_read_u32(node, name, &val))
-+		return;
-+
-+	if (!*block_size) {
-+		*block_size = val;
-+		*first_hartid = hartid;
-+	} else if (*block_size != val) {
-+		pr_warn("%s mismatched between harts %lu and %lu\n",
-+			name, *first_hartid, hartid);
-+	}
-+}
-+
- void riscv_init_cbom_blocksize(void)
- {
- 	struct device_node *node;
- 	unsigned long cbom_hartid;
--	u32 val, probed_block_size;
--	int ret;
-+	u32 probed_block_size;
- 
- 	probed_block_size = 0;
- 	for_each_of_cpu_node(node) {
--		unsigned long hartid;
--
--		ret = riscv_of_processor_hartid(node, &hartid);
--		if (ret)
--			continue;
--
- 		/* set block-size for cbom extension if available */
--		ret = of_property_read_u32(node, "riscv,cbom-block-size", &val);
--		if (ret)
--			continue;
--
--		if (!probed_block_size) {
--			probed_block_size = val;
--			cbom_hartid = hartid;
--		} else {
--			if (probed_block_size != val)
--				pr_warn("cbom-block-size mismatched between harts %lu and %lu\n",
--					cbom_hartid, hartid);
--		}
-+		cbo_get_block_size(node, "riscv,cbom-block-size",
-+				   &probed_block_size, &cbom_hartid);
- 	}
- 
- 	if (probed_block_size)
+   riscv,isa:
+     description:
+       Identifies the specific RISC-V instruction set architecture
 -- 
 2.39.1
 
