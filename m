@@ -2,158 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 127956A1D2D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 15:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 911056A1D60
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 15:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjBXOAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 09:00:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51246 "EHLO
+        id S229580AbjBXOXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 09:23:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbjBXOAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 09:00:52 -0500
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441CE12055
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 06:00:51 -0800 (PST)
-Received: from [167.98.27.226] (helo=[10.35.4.85])
-        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1pVYcu-008Yc1-W1; Fri, 24 Feb 2023 14:00:45 +0000
-Message-ID: <36abc02f-ef35-88a8-1fa8-ce7cebbae7ea@codethink.co.uk>
-Date:   Fri, 24 Feb 2023 14:00:44 +0000
+        with ESMTP id S229476AbjBXOXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 09:23:18 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7091A66B
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 06:23:14 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id o12so55817839edb.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 06:23:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jpdwd3xuyVkT/VZTbWwrg7JoT4Mr4P0993yBblOq6r0=;
+        b=N62jwKH6GLV3ZnDXyQdYVzHbnVimhMiCShHjGPkkI3RYP4gPXMHyOuVJifi9V7OS6B
+         +kJedx1kd4GLReffDyrsdS25EtGqywRzGu4YU5/B/P909aprnMmcC3HvJ/8LQVn7n3JA
+         h/CkUYEzY+Cy0pO91jvCtrOXuqAeJ81YLZSCNvCCWrHXazacOtMQgdqDKODlZ0gYUSY/
+         gJbXCXkLVYlASIwOp4fdQPM05ZT9ous7e6Ug6Gd+YXT8JsVvPREujMsVKGj/1zBgFGfN
+         ifFN4BIHuGyk+V53kn1ZzlHN/AVVexh28gYNWqg1ZaIU6a5kWXH1dobBrsYdyK8F5NbA
+         z0NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jpdwd3xuyVkT/VZTbWwrg7JoT4Mr4P0993yBblOq6r0=;
+        b=ZIgah2bSjxra9ta/uG23qwvxdD9uCWEAM9bhui/sq0+qdlAqHEjh5uPm98ujMXIIH2
+         ki+3jFga/WBjNT7DBCdbEW6hMVmIrZrP7933Im05lXAc1okhKF/iRJk1LKWhKImIzn7a
+         RETfMIlo896eJRkyMRLjSUvXXPDxc+0R//c+QujgUcYxImVF91uA0xgCiHVnZXODbIQB
+         egQ5IcNADOK2Mocitf0YfshJ5vkpRrP0Mh1NfOWL8tMC34gSIEPOsLAo/caDR5enR8B9
+         o9ON037cMcJAYYE/ECj7D1r6mA6FITDj+CYlw9dLBtuNDMbQQSpeuuiG0OZYi7ojwjBA
+         Eosg==
+X-Gm-Message-State: AO0yUKVTd+wDYqFG+dfWAAShrAnTueAe+5fyAcV+HqoUMRTzsoQYQ7hX
+        rfh5A1MobgljwhCJcB3Oi20V0ZCGstKfLDS35ig=
+X-Google-Smtp-Source: AK7set8LmuiSL/ssqeMCpIcIv5MpLD3VFV4BqrcEVY7icY2Mtoxc6wihMXvdOdaKIwFbyhCpqU19zJIYdLOpVX1wXKs=
+X-Received: by 2002:a17:906:195b:b0:8a6:91d9:c7ac with SMTP id
+ b27-20020a170906195b00b008a691d9c7acmr11686018eje.5.1677248593283; Fri, 24
+ Feb 2023 06:23:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH v5 6/8] RISC-V: Use Zicboz in clear_page when available
-Content-Language: en-GB
-To:     Andrew Jones <ajones@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        kvm-riscv@lists.infradead.org
-Cc:     'Rob Herring ' <robh@kernel.org>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        'Conor Dooley ' <conor.dooley@microchip.com>,
-        'Krzysztof Kozlowski ' <krzysztof.kozlowski+dt@linaro.org>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Atish Patra ' <atishp@rivosinc.com>
-References: <20230221190916.572454-1-ajones@ventanamicro.com>
- <20230221190916.572454-7-ajones@ventanamicro.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20230221190916.572454-7-ajones@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a50:7806:0:b0:1f0:12e9:4bf1 with HTTP; Fri, 24 Feb 2023
+ 06:23:12 -0800 (PST)
+Reply-To: cfc.ubagroup013@gmail.com
+From:   Kristalina Georgieva <tonyelumelu918@gmail.com>
+Date:   Fri, 24 Feb 2023 14:23:12 +0000
+Message-ID: <CAHPS+3dLDCUoU9m9sp5UN=E78GPHS3sBFDpCAF8behFLddOAxw@mail.gmail.com>
+Subject: HEAD UUDISED
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,UNDISC_FREEM
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:532 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [tonyelumelu918[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [cfc.ubagroup013[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [tonyelumelu918[at]gmail.com]
+        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  3.0 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2023 19:09, Andrew Jones wrote:
-> Using memset() to zero a 4K page takes 563 total instructions, where
-> 20 are branches. clear_page(), with Zicboz and a 64 byte block size,
-> takes 169 total instructions, where 4 are branches and 33 are nops.
-> Even though the block size is a variable, thanks to alternatives, we
-> can still implement a Duff device without having to do any preliminary
-> calculations. This is achieved by using the alternatives' cpufeature
-> value (the upper 16 bits of patch_id). The value used is the maximum
-> zicboz block size order accepted at the patch site. This enables us
-> to stop patching / unrolling when 4K bytes have been zeroed (we would
-> loop and continue after 4K if the page size would be larger)
-> 
-> For 4K pages, unrolling 16 times allows block sizes of 64 and 128 to
-> only loop a few times and larger block sizes to not loop at all. Since
-> cbo.zero doesn't take an offset, we also need an 'add' after each
-> instruction, making the loop body 112 to 160 bytes. Hopefully this
-> is small enough to not cause icache misses.
-> 
-> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   arch/riscv/Kconfig                | 13 ++++++
->   arch/riscv/include/asm/insn-def.h |  4 ++
->   arch/riscv/include/asm/page.h     |  6 ++-
->   arch/riscv/kernel/cpufeature.c    | 11 +++++
->   arch/riscv/lib/Makefile           |  1 +
->   arch/riscv/lib/clear_page.S       | 73 +++++++++++++++++++++++++++++++
->   6 files changed, 107 insertions(+), 1 deletion(-)
->   create mode 100644 arch/riscv/lib/clear_page.S
+Lugupeetud abisaaja!
+Saatsin sulle selle kirja kuu aega tagasi, aga ma pole sinust midagi kuulnu=
+d, ei
+Olen kindel, et saite selle k=C3=A4tte ja sellep=C3=A4rast saatsin selle te=
+ile uuesti.
+Esiteks olen pr Kristalina Georgieva, tegevdirektor ja
+Rahvusvahelise Valuutafondi president.
 
-[snip]
+Tegelikult oleme l=C3=A4bi vaadanud k=C3=B5ik =C3=BCmbritsevad takistused j=
+a probleemid
+teie mittet=C3=A4ielik tehing ja teie suutmatus tasuda
+=C3=BClekandetasud, mida v=C3=B5etakse teie vastu j=C3=A4rgmiste v=C3=B5ima=
+luste eest
+varasemate =C3=BClekannete kohta k=C3=BClastage kinnituse saamiseks meie sa=
+iti 38
+=C2=B0 53=E2=80=B256 =E2=80=B3 N 77 =C2=B0 2 =E2=80=B2 39 =E2=80=B3 W
 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 0594989ead63..4a496552b812 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -292,6 +292,17 @@ static bool riscv_cpufeature_patch_check(u16 id, u16 value)
->   	if (!value)
->   		return true;
->   
-> +	switch (id) {
-> +	case RISCV_ISA_EXT_ZICBOZ:
-> +		/*
-> +		 * Zicboz alternative applications provide the maximum
-> +		 * supported block size order, or zero when it doesn't
-> +		 * matter. If the current block size exceeds the maximum,
-> +		 * then the alternative cannot be applied.
-> +		 */
-> +		return riscv_cboz_block_size <= (1U << value);
-> +	}
-> +
->   	return false;
->   }
->   
-> diff --git a/arch/riscv/lib/Makefile b/arch/riscv/lib/Makefile
-> index 6c74b0bedd60..26cb2502ecf8 100644
-> --- a/arch/riscv/lib/Makefile
-> +++ b/arch/riscv/lib/Makefile
-> @@ -8,5 +8,6 @@ lib-y			+= strlen.o
->   lib-y			+= strncmp.o
->   lib-$(CONFIG_MMU)	+= uaccess.o
->   lib-$(CONFIG_64BIT)	+= tishift.o
-> +lib-$(CONFIG_RISCV_ISA_ZICBOZ)	+= clear_page.o
->   
->   obj-$(CONFIG_FUNCTION_ERROR_INJECTION) += error-inject.o
-> diff --git a/arch/riscv/lib/clear_page.S b/arch/riscv/lib/clear_page.S
-> new file mode 100644
-> index 000000000000..7c7fa45b5ab5
-> --- /dev/null
-> +++ b/arch/riscv/lib/clear_page.S
-> @@ -0,0 +1,73 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2023 Ventana Micro Systems Inc.
-> + */
-> +
-> +#include <linux/linkage.h>
-> +#include <asm/asm.h>
-> +#include <asm/alternative-macros.h>
-> +#include <asm/hwcap.h>
-> +#include <asm/insn-def.h>
-> +#include <asm/page.h>
-> +
-> +#define CBOZ_ALT(order, old, new)				\
-> +	ALTERNATIVE(old, new, 0,				\
-> +		    ((order) << 16) | RISCV_ISA_EXT_ZICBOZ,	\
-> +		    CONFIG_RISCV_ISA_ZICBOZ)
-> +
-> +/* void clear_page(void *page) */
-> +ENTRY(__clear_page)
-> +WEAK(clear_page)
+Oleme direktorite n=C3=B5ukogu, Maailmapank ja Valuutafond
+Washingtoni Rahvusvaheline (IMF) koos osakonnaga
+Ameerika =C3=9Chendriikide riigikassa ja m=C3=B5ned teised uurimisasutused
+asjakohane siin Ameerika =C3=9Chendriikides. on tellinud
+meie Overseas Payment Remittance Unit, United Bank of
+Africa Lome Togo, et v=C3=A4ljastada teile VISA kaart, kus $
+1,5 miljonit teie fondist, et oma fondist rohkem v=C3=A4lja v=C3=B5tta.
 
-out of interest, why the __clear_page() entry and the
-WEAK(clear_page)?
+Uurimise k=C3=A4igus avastasime koos
+kardab, et teie makse on hilinenud korrumpeerunud ametnike poolt
+pangast, kes =C3=BCritavad teie raha teie kontodele suunata
+privaatne.
 
-Just followed up with a patch to fix the modpost.
+Ja t=C3=A4na anname teile teada, et teie raha on kaardile kantud
+UBA panga VISA ja see on ka kohaletoimetamiseks valmis. N=C3=BC=C3=BCd
+v=C3=B5tke =C3=BChendust UBA panga direktoriga, tema nimi on hr Tony
+Elumelu, e-post: (cfc.ubagroup013@gmail.com)
+et =C3=B6elda, kuidas ATM VISA kaarti k=C3=A4tte saada.
 
-So far this seems to be working with qemu and a backport to 5.19.x
+Lugupidamisega
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
-
+Proua Kristalina Georgieva
