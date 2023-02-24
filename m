@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4EA6A1AD6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:00:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA866A1B0A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:03:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjBXLAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 06:00:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60960 "EHLO
+        id S229847AbjBXLDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 06:03:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbjBXK76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:59:58 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A8339B8E
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:59:29 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id c18so6500321wmr.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:59:29 -0800 (PST)
+        with ESMTP id S229813AbjBXLCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:02:46 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 801DD6ADFD
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:01:01 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id iv11-20020a05600c548b00b003dc52fed235so1483676wmb.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:01:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gtukSA39Wi90XWdmVY6UvzBxv9KPhp2uRrC15iYduW8=;
-        b=uL3hKxHp/QXQ6xxqZpfnK+ZdbFhkCtPTiyzqk/+yYqbn+VoDSiH8G17tejFKbj0sQG
-         Sqxqsv9U29FgWliM0iUNMh8QMmfe7m9DuuPiMK+L6JA6+dosaBHnELPLJ2E4SDNYp5gZ
-         Xh7I/W1eiRMc05fMDssPr1aqjVcNe51ksM4D8K/aP0aCFZpLtR/DJsBTgf7AKmhSp1N7
-         RIqDEE3o7M9Bh0aAutn7Od3daPvzZws+YrkZbEnoHN1k8ZV+BoPZTiN6i9qvldYxjFYH
-         8NIg61DZWB4NzDiw720CKy3j2CypXHe7yEz/z9iJt5d8PppT+7utXZjQNKjdbIeTL2p9
-         FFzQ==
+        bh=YQXdthJWktVg+AfZN3EoP9jJpFIjhltnajA7ETUKP00=;
+        b=IF92FQ4Yrs/99XAN+aqzcbXp4q8ualq5rHhtoMYPBPlGl+yLUC1qMVQp1MDew/kI5W
+         dyucBtwA4rU7jqF9GMi8YqoVxBlp5+mmjE1fNgQ1XqogirLvoMlzMA1u8vJWL2mlm9O5
+         dvtqdu8v6Qbjnsczl1sAnAfmy7qNcMAo+Yk8Oy41pceC5k6mDReHfciIhqWCR1CYKQwx
+         haS1KGir4qcCazCkrw5yF1C/MAiEbn1FFaReSc1D1kehH7TB0/aCrwkK5nqZ87xNirsz
+         sNYC5iAFoqnZU8koEuYwjKku4tgWtVgQBBQiVYXZjWvRgRu84yvqpy9i/ME2jxgbz0FJ
+         AdUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gtukSA39Wi90XWdmVY6UvzBxv9KPhp2uRrC15iYduW8=;
-        b=Q7sbckcGhXpmPfiDV73G1o236tBBTZCKhUVbNiJ3ZFXqRmr+mhs8nivZonetpTL2qc
-         STxwu2IvD/F1fTLxolCEGmQYZ9wIi6T1BjOs4JhKcQA7RPev/Kr7cVIGqmD49bPSxIqo
-         t7YqlSG0+tUU+xi/G7ok7T0k9wqigDG60fF7yUlh3J0AQUtTpW/6F8bm7ioMvtSkMpaM
-         JxMoDikCwdPQ+oqRQjFQlsOjg1fcZIXCLw+jaAWZunwbwFiGFYLjh5jwU065nssCvC6E
-         h69fiBWhXhHa5PGRtSxySJaN8ibCht4p8Y3GH1NeLfHCWJYFxMSYoi7SaIT7Y2CeGS/Z
-         qlUQ==
-X-Gm-Message-State: AO0yUKWPkvnVXaTsGCoMjYKkAi4sPub/v+oNfwTF/C5SqUt6QlSe/1hX
-        zsj0aUkCrgteux0zIhpw79WY/VTpoWuDr0eO
-X-Google-Smtp-Source: AK7set+6qCrCJhJWKul9+wwk0Sl1OQr5LMWEah+GmhryU62cpZOQqYSLbs7n6/2LMzNjVIRdKwXcvQ==
-X-Received: by 2002:a05:600c:600f:b0:3dc:4316:52be with SMTP id az15-20020a05600c600f00b003dc431652bemr13299778wmb.10.1677236368402;
-        Fri, 24 Feb 2023 02:59:28 -0800 (PST)
+        bh=YQXdthJWktVg+AfZN3EoP9jJpFIjhltnajA7ETUKP00=;
+        b=w/W8weQ//iPGMkNHHfqH5ilwenxBuBOw3aR7KUZf6p8rlJoL64j2k5GECXwEDcBryK
+         haV7PkT35bS3VHmobHb4Zc0lzRV8fF6CzQW/+8XIPoho5AYgHyKtlzwHnv//oNzVhgxQ
+         DATXf/6DkethHKhmdvdEGxlNCqwY2t+fGbQqpSwWaB47zOjla91T48Fm7/g0QV9cXd9W
+         WcSZB9fyavBgsfZvmKuFqGKpSs8UZhRJWDBchPA+C6/9j8rjtIzzNN/ALKdZ/kjxQFaC
+         W7vD8+8WnTrhje4wMp82tynEERV58K9kF9RJCUWDb2bmcIQ7XzdfsCo9CvYRgA48ceog
+         OA6A==
+X-Gm-Message-State: AO0yUKXssB4skgbc5s5nrg1PTBSuq9a40hTkRzdeH/aRPY1+Meft3x+j
+        cseK3byjLI46iXGu5rgswbt7iQ==
+X-Google-Smtp-Source: AK7set9dHj9kLkZPaISJBsJ10O8wJ3m2rq4+MiUJiAJbe2kWTXSiXT1NDaqULWv9AGtBmE4CHqkD5Q==
+X-Received: by 2002:a05:600c:3b1e:b0:3ea:e5fc:a5a4 with SMTP id m30-20020a05600c3b1e00b003eae5fca5a4mr2599117wms.1.1677236457750;
+        Fri, 24 Feb 2023 03:00:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k8-20020a05600c1c8800b003dec22de1b1sm2601864wms.10.2023.02.24.02.59.27
+        by smtp.gmail.com with ESMTPSA id fm19-20020a05600c0c1300b003e22508a343sm2535437wmb.12.2023.02.24.03.00.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 02:59:28 -0800 (PST)
-Message-ID: <0827a05c-117d-3d4c-2e3a-f8d80e256ca0@linaro.org>
-Date:   Fri, 24 Feb 2023 11:59:26 +0100
+        Fri, 24 Feb 2023 03:00:57 -0800 (PST)
+Message-ID: <c4ee1a7b-a500-5fa5-6a97-93b1eba2c852@linaro.org>
+Date:   Fri, 24 Feb 2023 12:00:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Subject: Re: [PATCH 2/4] ASoC: dt-bindings: wlf,wm8524: Add a property to
  specify power up sequency time
 Content-Language: en-US
-To:     Chancel Liu <chancel.liu@nxp.com>, Mark Brown <broonie@kernel.org>
-Cc:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+To:     Chancel Liu <chancel.liu@nxp.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
@@ -71,10 +72,10 @@ Cc:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 References: <20230222113945.3390672-1-chancel.liu@nxp.com>
  <20230222113945.3390672-2-chancel.liu@nxp.com>
- <Y/YPkgOreByREmOz@sirena.org.uk>
- <VI1PR04MB4222996DB8494FD14A1D5FCEE3A89@VI1PR04MB4222.eurprd04.prod.outlook.com>
+ <506f92cd-7cf5-4fd5-a930-9af086732f84@linaro.org>
+ <VI1PR04MB42221B1708BA02B1FA2149D9E3A89@VI1PR04MB4222.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <VI1PR04MB4222996DB8494FD14A1D5FCEE3A89@VI1PR04MB4222.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB42221B1708BA02B1FA2149D9E3A89@VI1PR04MB4222.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,25 +88,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2023 11:56, Chancel Liu wrote:
->> On Wed, Feb 22, 2023 at 07:39:43PM +0800, Chancel Liu wrote:
+On 24/02/2023 11:54, Chancel Liu wrote:
+>> On 22/02/2023 12:39, Chancel Liu wrote:
 >>> This property specifies power up to audio out time. It's necessary
->>> beacause this device has to wait some time before ready to output
->>> audio after MCLK, BCLK and MUTE=1 are enabled. For more details about
->>> the timing constraints, please refer to WTN0302 on
->>> https://www.cirrus.com/products/wm8524/
+>>> beacause this device has to wait some time before ready to output audio
 >>
->> According to that the delay is a property of MCLK and the sample rate rather
->> than a per board constant, it shouldn't be in DT but rather the driver should
->> figure out the required delay on each startup.
+>> typo... run spellcheck, also on the subject
+>>
+>>> after MCLK, BCLK and MUTE=1 are enabled. For more details about the
+>>> timing constraints, please refer to WTN0302 on
+>>>
+>>>
+>>> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+>>> ---
+>>>  .../devicetree/bindings/sound/wlf,wm8524.yaml          | 10
+>> ++++++++++
+>>>  1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+>> b/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+>>> index 09c54cc7de95..54b4da5470e4 100644
+>>> --- a/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+>>> +++ b/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+>>> @@ -21,6 +21,15 @@ properties:
+>>>      description:
+>>>        a GPIO spec for the MUTE pin.
+>>>
+>>> +  wlf,power-up-delay-ms:
+>>> +    maximum: 1500
+>>
+>> maximum is 1003. Where do you see 1500?
+>>
+>> minimum: 82
+>>
 > 
-> I can't agree with you more. From the power up to audio out timing table in
-> WTN0302, the delay depends on sample rate and MCLK. Driver should calculate it
-> rather than read it from DT. However as I mentioned in my last email, values in
-> the table seem not accurate for all systems. It's a kind of compromise to get
-> the value from DT. Do other codecs have a similar situation?
+> Yes, you are absolutely right. From the power up to audio out timing table in
+> WTN0302, the minimum number is 82 and the maximum is 1003.
+> 
+> Consider the following possibilities:
+> 1. These timings may depend on the system design
+> 2. These timings may be simulated results
+> 3. These timings may be the minimum values
+> 
+> I set a larger value trying to extend the time. The larger value of course
+> introduces unwanted time delay but it benefits on avoiding beginning audio
+> lost.
+> 
+> I also did some tests on a board. If I want to work on 48KHZ sample rate and
+> 512FS, the recommended value is 143. But the test result showed 143ms is not
+> enough. I increased the value to 500ms and could hear the beginning sound.
 
-DT is for hardware properties, not for software compromises.
+Maybe you miss proper regulator ramp-up?
+
+> 
+> Maybe it's a better choice to let DT set the suitable value? Is there a similar
+> situation before?
+
+That's not really good argument. DT should describe hardware and if this
+property does not match hardware, it means you mix this with something
+else. Something not for DT.
 
 
 Best regards,
