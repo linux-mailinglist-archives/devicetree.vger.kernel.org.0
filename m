@@ -2,119 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 467AD6A1CA9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:05:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 319336A1CB3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:08:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbjBXNFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 08:05:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35972 "EHLO
+        id S229980AbjBXNIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 08:08:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230172AbjBXNFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:05:30 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F78FF959;
-        Fri, 24 Feb 2023 05:05:29 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8EE386602FB6;
-        Fri, 24 Feb 2023 13:05:27 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677243928;
-        bh=aVfAm+nqbHeECjn7WiittCHTPKqgPS/pUH3qciDBBc4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=c9nU2MjQbPZi2nc6yF9Aamrh8ompl8InKd/kvjIlJKM0IpQoh8tF1GSEr3IBRATpb
-         SasUgJJS4JsSuFGRl5Fx5jALhtvW5H5ODPQZydwYyU7MiwTtb0Qwnfwb1wYwsJP8WD
-         kHnR8EmFK1htn974GrQMziuFYrkMzrabEx4Nb4wvSqqz6BStoeoVDqEXF33GilUL/G
-         MUY7+08FDC1dbUQL7FL8eXAMPOSWbRW6u5k0wp2QLJ2DYV1eS+mHf8C+Bi8bN2CdAJ
-         E/up31yxCNi2dAZSEK73kS+xxicGSCoxlGWDHXcXq1SixncMx5sJU3B7rGJU0i1bO0
-         vLHpeXrwv/tdA==
-Message-ID: <7a4653f6-c074-1bd7-718a-7754f56c5105@collabora.com>
-Date:   Fri, 24 Feb 2023 14:05:24 +0100
+        with ESMTP id S229518AbjBXNIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:08:05 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10882113C5
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:08:04 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id s22so17728686lfi.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:08:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677244082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gN8b9GXb2LqjzNg3cwuXCF1BQgevYypxQGrEJaz7uhM=;
+        b=V5ofE10k7BW8odAS0XBia+Pvrd/krmgTyHtSvpJCKBbJ/djp1P240KmVVvghRCC31X
+         S3aNkNYv3nW2JEP5TA8GdX4GbZ1Rq0GBcpIuX5RNpgQ5VeLU9dFBFL66yFd1W00gsYmW
+         SpfxnLdUR6caBcGbGmTlnIymKkklk9gz5Bg5DnQrR8xW8XBUzYW3hatIyFXvN12fXgQi
+         jIdlY/QyfRgR+iTr/hyC4/CFai+ca3zVS9+Zhqq/dr0rj2MEaUYx7zh54OD8LxxTPQOq
+         6R1LFW/wEHy0OJKsZLTODIZ45OUyMjM9Pq7cKx1imXzMnoUZ+emkcyYszTBJeMNggAOO
+         WeEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677244082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gN8b9GXb2LqjzNg3cwuXCF1BQgevYypxQGrEJaz7uhM=;
+        b=YgCIYbdgJ1zJUzPzBFbUzfYDSylweEB97BxCy8Rya6IrwGB9fKq5TorlQ5moVHUXCl
+         DAILi5PEdiMe/g9bTUv7zIG3DxhbAzLUT23OergSNIW8byObHpFJFJuL/caIhc6EzHm8
+         tAd09u4nnswBOpLIM+UYNVPMGem3Dmn8RCKTZ1NhtR4TXRDgsZUDw8xhUhqNqf1XJ/X/
+         qbP+LV2NxQwww0vmngBnz9/ibuVIHQr8tFK6RDXkNPXAM5YnG6lUSRZm9/LCDSoDOga5
+         HabOvlPIw0pjLUmJ2NSv3gh+ja3n/5AjyJ9nzgb1z+2ylktvprZ1FbLU/88NGvsyu1TK
+         muEg==
+X-Gm-Message-State: AO0yUKWlkbh+piyc5oA/H4+C5aFcQ3QDepDJkQOTctKjTPqG1Fg2wbnW
+        9j6Tswtb620Mu63340MNc9osUg==
+X-Google-Smtp-Source: AK7set+xIXkMbZ6Lc3PNf8lwh/JJt57hNiF4+8VfR6hVSWl2mptZKaQY9MkH8bPQGFeLz6HruZbmyQ==
+X-Received: by 2002:a05:6512:3052:b0:4cc:a107:4227 with SMTP id b18-20020a056512305200b004cca1074227mr6397793lfb.22.1677244082333;
+        Fri, 24 Feb 2023 05:08:02 -0800 (PST)
+Received: from localhost.localdomain (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id i19-20020a056512007300b004dd7fefd2c8sm524046lfo.242.2023.02.24.05.08.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Feb 2023 05:08:01 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Iskren Chernev <me@iskren.info>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: Add Cortex-A78C and X1C
+Date:   Fri, 24 Feb 2023 14:07:57 +0100
+Message-Id: <20230224130759.45579-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 11/16] arm64: dts: mediatek: mt8192-asurada: Couple
- VGPU and VSRAM_OTHER regulators
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230223134345.82625-1-angelogioacchino.delregno@collabora.com>
- <20230223134345.82625-12-angelogioacchino.delregno@collabora.com>
- <CAGXv+5ER-Z9WiRAKEbfKV3hzNQu0Xru-z5QUJA85wzrwzY7hcw@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5ER-Z9WiRAKEbfKV3hzNQu0Xru-z5QUJA85wzrwzY7hcw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/02/23 10:58, Chen-Yu Tsai ha scritto:
-> On Thu, Feb 23, 2023 at 9:44 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Add coupling for these regulators, as VSRAM_OTHER is used to power the
->> GPU SRAM, and they have a strict voltage output relation to satisfy in
->> order to ensure GPU stable operation.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->> index df477eb89f21..c8b6e1a9605b 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->> @@ -447,6 +447,13 @@ &mt6359_vrf12_ldo_reg {
->>          regulator-always-on;
->>   };
->>
->> +&mt6359_vsram_others_ldo_reg {
->> +       regulator-min-microvolt = <750000>;
->> +       regulator-max-microvolt = <850000>;
->> +       regulator-coupled-with = <&mt6315_7_vbuck1>;
->> +       regulator-coupled-max-spread = <10000>;
->> +};
->> +
->>   &mt6359_vufs_ldo_reg {
->>          regulator-always-on;
->>   };
->> @@ -1411,6 +1418,8 @@ mt6315_7_vbuck1: vbuck1 {
->>                                  regulator-max-microvolt = <1193750>;
->>                                  regulator-enable-ramp-delay = <256>;
->>                                  regulator-allowed-modes = <0 1 2>;
->> +                               regulator-coupled-with = <&mt6359_vsram_others_ldo_reg>;
->> +                               regulator-coupled-max-spread = <10000>;
-> 
-> Also fix the constraints here? And overriding the constraints should be
-> mentioned in the commit log.
-> 
+Add compatibles for the Cortex-A78C and X1C cores found in some
+recent flagship designs.
 
-There's no constraint to fix, though. The current ones are just fine.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/cpus.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I'll mention the constraints override for vsram_others in v3!
-
-Regards,
-Angelo
-
->>                          };
->>                  };
->>          };
->> --
->> 2.39.2
->>
-
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index c145f6a035ee..a9bbe2b74b5d 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -139,6 +139,7 @@ properties:
+       - arm,cortex-a77
+       - arm,cortex-a78
+       - arm,cortex-a78ae
++      - arm,cortex-a78c
+       - arm,cortex-a510
+       - arm,cortex-a710
+       - arm,cortex-a715
+@@ -151,6 +152,7 @@ properties:
+       - arm,cortex-r5
+       - arm,cortex-r7
+       - arm,cortex-x1
++      - arm,cortex-x1c
+       - arm,cortex-x2
+       - arm,cortex-x3
+       - arm,neoverse-e1
+-- 
+2.39.2
 
