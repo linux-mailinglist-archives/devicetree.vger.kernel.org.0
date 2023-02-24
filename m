@@ -2,93 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B71576A1834
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 09:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC54A6A184B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 09:53:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbjBXIqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 03:46:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
+        id S229896AbjBXIxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 03:53:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbjBXIqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 03:46:23 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DBD8663A2D;
-        Fri, 24 Feb 2023 00:46:17 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 741C4C14;
-        Fri, 24 Feb 2023 00:47:00 -0800 (PST)
-Received: from [192.168.1.79] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3C0093F703;
-        Fri, 24 Feb 2023 00:46:15 -0800 (PST)
-Message-ID: <4e0673e7-5685-ad1b-2fac-4ae544caefeb@arm.com>
-Date:   Fri, 24 Feb 2023 08:46:05 +0000
+        with ESMTP id S229897AbjBXIxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 03:53:04 -0500
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DEE78A4B
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 00:53:00 -0800 (PST)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-536bbe5f888so262082107b3.8
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 00:53:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WXBxCzUTwUkY9VpXwOuTsg9QsDGpyRlggQ0Ehs3LnAQ=;
+        b=kLCBct7OJ0ZWzc41yyFNoAbZU/0AeYHVz7PrnBKPVpdqsXs2IAdyj+vQZ4TlLmrVwI
+         weqFuX+933EX7S14S/LlRbwYOj0fFXjgMSzRLlN69zyC1b53+Gb1kHUBmbSLcPTaJfSL
+         mpJY1tS03b3k21dWA0+dIK2361RNm6DE73/5w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WXBxCzUTwUkY9VpXwOuTsg9QsDGpyRlggQ0Ehs3LnAQ=;
+        b=NfrsKhgA3Azk5d6qFl5RqyjOMk1mS7BP27R5YOz6Kws1U7LCLGkNNGlGlM6pC7E/VZ
+         DENex8XNEClKjacCfA02ep0TB7A8JxcCmret9DJOIDVE6Wb3S/x/cGcaqZIsdBU6fM74
+         4qVnixSfG8EeSO8hd3MJlDVp4G/kpe2NX658xoAYMCxhAMoheQZ35DOgVHUaHVs1SJPp
+         n8F1/sZvitLzFm7Ar9twL26ZS+6I/fAoNHoe7zRjgrACB/PryEsZJ3d4AdNaKa2lZaUj
+         vvNcf6e8UaHCBdMX8Mp4OrKLl2FR83rjoLWA2ikb62NanH6A/1TIX2WUNAgqALh8cBuq
+         Cx/g==
+X-Gm-Message-State: AO0yUKXxUUHdcUcHHdFN33ldept1ZfclYQaCFkNzlco+Fx6/6grxAjcX
+        AMbh+Sqk2ne2P7KPSOK6fyaAewT93miWwTx8V5JXmvlGeXvGVrwl
+X-Google-Smtp-Source: AK7set+Ee//aV+bgfKyyjEpjRL0bSpqErjnIpTNSDdx4FSfXGZbHvCA4NH6lrLlFfb3LI0RYGdapOLHeJoNvs/rJzp0=
+X-Received: by 2002:ab0:5550:0:b0:688:c23f:c22f with SMTP id
+ u16-20020ab05550000000b00688c23fc22fmr3805805uaa.1.1677228765555; Fri, 24 Feb
+ 2023 00:52:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 11/11] drm/panfrost: Add support for Mali on the MT8186
- SoC
+References: <20230223145426.193590-1-angelogioacchino.delregno@collabora.com> <20230223145426.193590-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230223145426.193590-5-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 24 Feb 2023 16:52:34 +0800
+Message-ID: <CAGXv+5H7ADKUu1bsGrF5F-EgJBM6WW0N+AFw=m+hH_00QGHDew@mail.gmail.com>
+Subject: Re: [PATCH v1 4/4] arm64: dts: mediatek: cherry: Add configuration
+ for display backlight
 To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, airlied@gmail.com
-Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alyssa.rosenzweig@collabora.com,
-        matthias.bgg@gmail.com, robh@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wenst@chromium.org
-References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com>
- <20230223133440.80941-12-angelogioacchino.delregno@collabora.com>
-Content-Language: en-GB
-From:   Steven Price <steven.price@arm.com>
-In-Reply-To: <20230223133440.80941-12-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2023 13:34, AngeloGioacchino Del Regno wrote:
-> MediaTek MT8186 has a Mali-G52 MC2 2EE (Bifrost): add a new compatible
-> and platform data using the same supplies list as "mt8183_b" (only one
-> regulator), and a new pm_domains list with only two power domains.
-> 
+On Thu, Feb 23, 2023 at 10:56 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Configure the hardware PWM for the integrated display's backlight:
+> all Cherry devices enable the backlight with GPIO82 and manage the
+> PWM via MediaTek disp-pwm on GPIO97.
+>
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Reviewed-by: Steven Price <steven.price@arm.com>
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-> ---
->  drivers/gpu/drm/panfrost/panfrost_drv.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> index 14cdeaeeb5c4..e4053bf84c62 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> @@ -679,6 +679,14 @@ static const struct panfrost_compatible mediatek_mt8183_b_data = {
->  	.pm_domain_names = mediatek_mt8183_pm_domains,
->  };
->  
-> +static const char * const mediatek_mt8186_pm_domains[] = { "core0", "core1" };
-> +static const struct panfrost_compatible mediatek_mt8186_data = {
-> +	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
-> +	.supply_names = mediatek_mt8183_b_supplies,
-> +	.num_pm_domains = ARRAY_SIZE(mediatek_mt8186_pm_domains),
-> +	.pm_domain_names = mediatek_mt8186_pm_domains,
-> +};
-> +
->  static const char * const mediatek_mt8192_supplies[] = { "mali", NULL };
->  static const char * const mediatek_mt8192_pm_domains[] = { "core0", "core1", "core2",
->  							   "core3", "core4" };
-> @@ -708,6 +716,7 @@ static const struct of_device_id dt_match[] = {
->  	{ .compatible = "arm,mali-valhall-jm", .data = &default_data, },
->  	{ .compatible = "mediatek,mt8183-mali", .data = &mediatek_mt8183_data },
->  	{ .compatible = "mediatek,mt8183b-mali", .data = &mediatek_mt8183_b_data },
-> +	{ .compatible = "mediatek,mt8186-mali", .data = &mediatek_mt8186_data },
->  	{ .compatible = "mediatek,mt8192-mali", .data = &mediatek_mt8192_data },
->  	{}
->  };
-
+with some additional patches to enable the internal display.
