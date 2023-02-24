@@ -2,100 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A206A24FE
-	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 00:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF006A2508
+	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 00:27:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbjBXXYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 18:24:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51900 "EHLO
+        id S229963AbjBXX1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 18:27:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbjBXXYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 18:24:04 -0500
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62BE305CA;
-        Fri, 24 Feb 2023 15:23:48 -0800 (PST)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-1729bdcca99so1259137fac.12;
-        Fri, 24 Feb 2023 15:23:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2f/vVHxyRFoilKJr+B3hBhPHEkdjVLFye93UcIisf+c=;
-        b=WqcUrpJHyMd+DOpqLUAY26fI/ntqOLcXGXmVAEQ1CtlMgxgMxuBXEgLob50LuZSO5j
-         t0ScwxeHCX+fLeR49iM27ekm8HCiNs7h81oah4QyAk1IMXj6TFMQswKGzasnBwZekOH3
-         FVAhWr4Tc0SEGzmnzpW9v7cYGtNu+i4RlAEHUxcCrs3m+O35foj9pefCGZnOzOXScUE2
-         IUFZRoylJ+KLKBIgVrZeJmKmlFJ0sMVF5aJ7sRIxP0RqclypWRjsB3KW/RtrDeufZZvK
-         JuAvvjnQBuN19iOon7+BRGVjVOYq/IrmAGsXvGxmkrpznce8jc3FKdaorllUl0x1B4jo
-         tzZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2f/vVHxyRFoilKJr+B3hBhPHEkdjVLFye93UcIisf+c=;
-        b=5uxelF1zeZ0VcZeEhM9+OEkqysZjB7S9thV9RAr6EhXhVsXRCR8dVNstpMsyHvAG9L
-         nZFy3fQ6KskSpxkiYqzQsnZ/aVNCTir+Rh+TJc1Scqp8S2uPvl0zQGiDdV2ruqvjCFvn
-         2vbmufEbri5vwzyxVMl+tVJN9wGeqx2h/bwDVp41S9GI2+GnX3xaKtDZ6+KYuvrC1+O3
-         9LMRL3a0WccCBl9UEX1+yXmdzkoO8ZV4ihUaB6Z4YJPQ8RMBdFOForKYnWJSeuUA7dBd
-         Q1QH4uXdotUlPGxEEcEVdkAjBfBVdQAtp4Sqs2LiYSNs9lMjq54Hsr/vEhtpvnyi3Q2L
-         W+9A==
-X-Gm-Message-State: AO0yUKWCAYfLTzYTNCzPq8O4m0dM3KMwlgrtTeZnwamy/7u1kaBoZNk3
-        5JEW54ZqLLFgLgn1XCBhzrcKRfWEMrg=
-X-Google-Smtp-Source: AK7set8C1egSTfnJAP1SL8dAmi9WqnexME0wh4BKjbOYt1RbkKQwYW5BEpVydoralYI7E1k4RlKwEQ==
-X-Received: by 2002:a05:6870:e9a1:b0:16a:b45a:e2d9 with SMTP id r33-20020a056870e9a100b0016ab45ae2d9mr12176536oao.7.1677281027757;
-        Fri, 24 Feb 2023 15:23:47 -0800 (PST)
-Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id k22-20020a056870d39600b0016b0369f08fsm119706oag.15.2023.02.24.15.23.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Feb 2023 15:23:47 -0800 (PST)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-bluetooth@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
-        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 3/3 V2] arm64: dts: rockchip: Update compatible for bluetooth
-Date:   Fri, 24 Feb 2023 17:23:39 -0600
-Message-Id: <20230224232339.124969-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230224232339.124969-1-macroalpha82@gmail.com>
-References: <20230224232339.124969-1-macroalpha82@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229942AbjBXX1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 18:27:32 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F1E67E06;
+        Fri, 24 Feb 2023 15:27:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9621FB81D65;
+        Fri, 24 Feb 2023 23:27:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5515FC4339E;
+        Fri, 24 Feb 2023 23:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677281244;
+        bh=rqnat2U7GCyVSphVnLvHYMAWNnjLAU443wvDA5jeHOw=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=id1gAOJ4+B5J7RGUaYeEDYw5TVv7Qr8G6HmC0s94iWWVknKkr3fzDwvAYZjeJzKYr
+         JtYHAmb5LmMAaRWJU5zaJj0I6Mif1LFbnpo7KY/ap86IxHdTF3BY0dd2qXy9P/Jp3i
+         axyuqAFeF7EHzXAIBUCMSRCkjP15euGgbr5s7hb5HwBVftiz4uDN+GI62mNXpzysId
+         evoEWMc6/XUp1UQrL8FL6x/vEBPuvbLhGtIwF8Drq0iP2eOszK406fe0aD41fDVpJe
+         F7jM6LycaPXFF9WjFbDmfc5gcnWvuCYWOcBmpitil9YSYwL9X8KxIOMGSXC+4aa/xW
+         kvwk4/UeqKDdA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 43C23C41676;
+        Fri, 24 Feb 2023 23:27:24 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v6.3
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20230222163440.GA11643-robh@kernel.org>
+References: <20230222163440.GA11643-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20230222163440.GA11643-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.3
+X-PR-Tracked-Commit-Id: 1ba7dfb905b3975bdb8b9d1f7793efcdfc59385b
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 8395d932d24a9b4c01ab33ed0b4b2de06328afc2
+Message-Id: <167728124426.28021.2336383650288310291.pr-tracker-bot@kernel.org>
+Date:   Fri, 24 Feb 2023 23:27:24 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+The pull request you sent on Wed, 22 Feb 2023 10:34:40 -0600:
 
-Update the compatible for the Realtek RTL8821CS bluetooth node.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.3
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/8395d932d24a9b4c01ab33ed0b4b2de06328afc2
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-index 41262a69d33e..8fadd8afb190 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-@@ -716,7 +716,7 @@ &uart1 {
- 	status = "okay";
- 
- 	bluetooth {
--		compatible = "realtek,rtl8821cs-bt";
-+		compatible = "realtek,rtl8821cs-bt", "realtek,rtl8822cs-bt";
- 		device-wake-gpios = <&gpio4 4 GPIO_ACTIVE_HIGH>;
- 		enable-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
- 		host-wake-gpios = <&gpio4 5 GPIO_ACTIVE_HIGH>;
+Thank you!
+
 -- 
-2.34.1
-
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
