@@ -2,64 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B49526A1C2A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 13:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 337656A1C75
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 13:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjBXMaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 07:30:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57884 "EHLO
+        id S229611AbjBXMxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 07:53:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbjBXMay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 07:30:54 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0054963A1F;
-        Fri, 24 Feb 2023 04:30:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7974BB81B29;
-        Fri, 24 Feb 2023 12:30:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7CC7C433EF;
-        Fri, 24 Feb 2023 12:30:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677241849;
-        bh=z8vuGuWFSWV1LDUDxZzIaVe2aeHW5pFI5rwMEdFeI1A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IMKF78ZWMxd4xvTEW+AVmZ3d41ZJg8DPdi1BaQ0uMAGnKtD5vy1/GDubE10u2hTBH
-         m0XPtCvlhBAIS0LXtXOfGo9CZjE6wu28ej1BB2jfjc8xYGyZIeJB9p8FlVJ6/tG115
-         Bz+/wnzZZsikeuQR9hMK1a2+Ui+yURwYv1Z8d8dyLrXOZn9VTiZNN/w+ffdPFCzl9e
-         Z1gcELmhSGVMVlNeKFfQhMBF3UjR/ze0gJGOgO21fxlFd8g61wW3fUN6fc2Inmi+zb
-         M63t1SyR3r3mmfgU4dpAECPsyV9ROe7yiv6dBOz54FeWwiTFL+VfVShYKAS8j2cEwD
-         iWfzov8Xt1gJA==
-Date:   Fri, 24 Feb 2023 12:30:43 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Chancel Liu <chancel.liu@nxp.com>
-Cc:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "ckeepax@opensource.cirrus.com" <ckeepax@opensource.cirrus.com>,
-        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: Re: [PATCH 4/4] ASoC: wm8524: Delay some time to follow power up
- sequency
-Message-ID: <Y/it8z/w2c+gS/85@sirena.org.uk>
-References: <20230222113945.3390672-1-chancel.liu@nxp.com>
- <20230222113945.3390672-4-chancel.liu@nxp.com>
- <Y/YPNMGMZcVZs3xy@sirena.org.uk>
- <VI1PR04MB42220617033D1DE404AF445DE3A89@VI1PR04MB4222.eurprd04.prod.outlook.com>
+        with ESMTP id S230092AbjBXMxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 07:53:36 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5215130B36
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 04:53:23 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id ay29-20020a05600c1e1d00b003e9f4c2b623so2062731wmb.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 04:53:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B43T0AEPZJigOIS/UyBFbfsmEoemf/SiYcHZlZbArDU=;
+        b=OGkN0CXJsVpWhKLUzO+2J2EP6C2ZwB2OfxpxnFiy9L1Ff+oeVtGaepYwATvJ1ZZ2pK
+         hufBlMrsd5ufeluzrEuT2G6PrqLLHAaEj7ri3YUxeIxkHrE4IoovPC7ZgmmfsffFQqsU
+         l8WMxxt1p91VeqyXKQpa+1NBGX/TvqdlWA1ebvxb9jJqb6nd7OETN5acxdOZrwT3LeJk
+         AjMddVKub+kRR/yfFld6Vgb0sXEcu2Ij3T+7YWPVi+pE0jTucksi8gBObYgLYBoMHyP1
+         kcctMIK+wi9WUWr86QW7tJUK09EBVwTMFmx2p4HG9FEJPMBfQ7KrVOifpmLjKTqhTveX
+         stXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B43T0AEPZJigOIS/UyBFbfsmEoemf/SiYcHZlZbArDU=;
+        b=DROSLqU4YFOGO9iYFva+pr0H6cToqJMx6xwnV5EkbP9WkvUpQcmRErEx3sqr+lgIxw
+         chF3RtJ0BRt+CUyLZr5KZrbobKl8J2oh64cR5U87S3lUe8JZi/acPAzeabXPfyqwQsK8
+         b8A7ejXlF40TOtk4kojW2jXKGm3H7L+qXbU/RNfq83rNJRnY16/IZc0NnfzsrjgGsPP/
+         MMpskVC4nAmFDNU9L2u5n1e6LbPZAbD/tykKsOeabXX+t5RniZtgRSe4/Cbk8mUr0wQi
+         6BlyV4Qp076SfrACIpLFmUHTTM0bYu9YugeO8+e7iDjHCgqhIPMnMfHUEzt43svZmJFJ
+         T5nQ==
+X-Gm-Message-State: AO0yUKW0VY1ktiEqkJHKmIWVP+k9WwFmRPYKTkJ7JVB5cg9R8qpIBOQC
+        5To2E1Hepw0VG+9kT703Apbkzg==
+X-Google-Smtp-Source: AK7set+9lbd6dHt3hcDH3Rll7jbmvT9hwcj+WcM08mZeJj4pNOSU1eN9J5AAw4Qd2Tb4Iivb4brDXw==
+X-Received: by 2002:a05:600c:348f:b0:3ea:f132:63d8 with SMTP id a15-20020a05600c348f00b003eaf13263d8mr2323258wmq.5.1677243201812;
+        Fri, 24 Feb 2023 04:53:21 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f5-20020a1c6a05000000b003dfe5190376sm2713538wmc.35.2023.02.24.04.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Feb 2023 04:53:21 -0800 (PST)
+Message-ID: <9a25020c-de26-5c1d-f7ff-c2dbb38d3872@linaro.org>
+Date:   Fri, 24 Feb 2023 13:53:19 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="h1Fxj73TV969Kz5/"
-Content-Disposition: inline
-In-Reply-To: <VI1PR04MB42220617033D1DE404AF445DE3A89@VI1PR04MB4222.eurprd04.prod.outlook.com>
-X-Cookie: The early worm gets the bird.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/2] ARM: dts: mvebu: add device tree for IIJ SA-W2
+ appliance
+Content-Language: en-US
+To:     INAGAKI Hiroshi <musashino.open@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20230223132502.2045-1-musashino.open@gmail.com>
+ <20230223132502.2045-2-musashino.open@gmail.com>
+ <76395d89-1c56-12b2-b6f7-e77603019b70@linaro.org>
+ <e9da7a1e-d48f-014b-a0a7-841c77feb12f@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e9da7a1e-d48f-014b-a0a7-841c77feb12f@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,48 +81,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/02/2023 13:28, INAGAKI Hiroshi wrote:
 
---h1Fxj73TV969Kz5/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+>>> +
+>>> +/ {
+>>> +	model = "IIJ SA-W2";
+>>> +	compatible = "iij,sa-w2", "marvell,armada380";
+>> It would be nice to start documenting the board compatibles, at least
+>> for new boards.
+> 
+> So...how do I do that?
 
-On Fri, Feb 24, 2023 at 10:54:59AM +0000, Chancel Liu wrote:
-> > On Wed, Feb 22, 2023 at 07:39:45PM +0800, Chancel Liu wrote:
+Start with something like this for Marvell:
 
-> > Doing a 100ms busy wait in atomic context does not seem like a great
-> > idea, never mind a 1.5s one.  This shouldn't be done in trigger, it
-> > needs to be done later - digital_mute() might be a better time to hook
-> > in, though longer delays like this are really quite bad.
+https://lore.kernel.org/all/20230222203847.2664903-2-colin.foster@in-advantage.com/
 
-> Yes, such long time delay in driver is very bad. But this device requires
-> waiting some time before able to output audio. We have to wait otherwise the
-> beginning data may be lost.
+But maybe someone already started it for Marvell? Marvell SoC
+maintainers might help here to coordinate to avoid duplicated work.
 
-It's not just that it's doing this in the driver, it's doing it in the
-trigger() function which runs in atomic context.  That's unreasonable.
+Best regards,
+Krzysztof
 
-> The power up to audio out timing occurs after MCLK, BCLK and MUTE=1 are ready.
-> I added the delay in trigger() because some CPU DAI drivers enable BCLK in
-> trigger(). You suggested moving the delay to digital_mute(). It seems
-> digital_mute() is called before cpu_dai->trigger. Please correct me if I'm
-> wrong.
-
-Hrm, right - in any case, it needs to be somewhere that isn't atomic
-context.
-
---h1Fxj73TV969Kz5/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmP4rfIACgkQJNaLcl1U
-h9A1lwf+OS+A++3bwTMcv2PfQianyzMlPcFLYR42hoFkNYSf1dY/omT9tJyVpD1x
-ioWTgVrm4rhgyUmsGODd3WFJ4WeUq4E3mrKpy2xpSvH6u2z3J50F8WNuHVYxq1HN
-6bH/LMog2u2HINCyatYyEz7XID0YPqfzlNiRBfG8zZ3DCLFhPRpFQySy8EC5ShNK
-ih+rrKeJbC/ZO4Ob+Ziw50d0ifrqQxSq8vlcnqPryImayJj1jYoQLYuUv1D1TBQx
-BONmKLNc6OELYJois8Jlni3ld43Tanxvb0RmebhQjYlPqHx03PwjXQ1N0J1UWDRD
-0aNN+NG0jyxp5D895Nax9Hz6F6fw4w==
-=MHUI
------END PGP SIGNATURE-----
-
---h1Fxj73TV969Kz5/--
