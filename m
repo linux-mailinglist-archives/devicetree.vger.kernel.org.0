@@ -2,185 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 054E16A1438
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 01:15:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5C36A1448
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 01:25:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbjBXAPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 19:15:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        id S229598AbjBXAZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 19:25:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjBXAPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 19:15:14 -0500
+        with ESMTP id S229463AbjBXAZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 19:25:01 -0500
 Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBB14616A
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 16:15:13 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id qi12-20020a17090b274c00b002341621377cso1093462pjb.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 16:15:13 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78BB4DBF9;
+        Thu, 23 Feb 2023 16:24:59 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id nw10-20020a17090b254a00b00233d7314c1cso1068431pjb.5;
+        Thu, 23 Feb 2023 16:24:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gnsL+pGfqbSaj40dlXSygHui8rkzCXGh8NQYT1OtVjc=;
-        b=MEMyJaQw67L5JtHF1XZ61OYT6n+VfEM4YMA80P0tKRQfHyK6eOM2UnebOQdeamv+xT
-         yz2NB/ixM+eJktRajoBHzOa6L7dT2+CXtbR/pOqZGAHeq9z5a9z03YJ341hIx6xxxeoL
-         h+IutQs/R34YpzIUCI2D62wQKZ8qveteFtJOf6WvLi4PawfWnxcu/s6MoTWhsJ6bIVkm
-         JWB0JPg9ASJdw1+MZYPjQC5D3pD5S12YsD7Dk5SRBebuwl/9Wk1g90CacKGm/yWcAqQJ
-         p+28peXucCwPRkbo6f4iUAB4JqxQqU4Q+iKlqjmi0Qg+j0xJNiPRzKPqGYm+Rfx4E0g5
-         huKg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gysGhMcUQ0n2SpBIwRmVe4+oZ4N6GELTjU0y0sJHeKI=;
+        b=qvtCVJebtlULReB8q4nQA9xUaE1XYvjTC6nlbDGgL4XLkr9XSCyxBkqhyWlnwJITDK
+         hpaJH1dqwd3W+B0kteA5GKhBmpjoXzxtdwO5Sh0OhXf5y2q6EStBxY+zxVBZji061jU4
+         lgrxh+3i7Qfqze1cTNjBQzKZwxsAWoJKcuaR7k34VtEkvzgQiWIVDZagIbxPYxbDisxD
+         L/0WzvZqrfcxloOySqIwP7kVPSVH6eomv41c7L944xk31oUdlpE7DsCSnYd+5oGKe9LO
+         sSIHnnA6ngGJ8g9iI4fd+gjpxZNERn8zdgDREvxwLDaPcglaQeSY6/SpLvGxmVNYA1mH
+         1+RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gnsL+pGfqbSaj40dlXSygHui8rkzCXGh8NQYT1OtVjc=;
-        b=FzntamzJYkYB2vjQwpW9pkgmVsB+D2drnTJyO8yajQt3cYFTSA38mDWjKi+/AoDDl5
-         GqyuoSN6/cCzsTIO+NzC6E6N73nYMqKP4rEq15PQUMrz9O76HT5cK9X8szYWDqkDrPSg
-         9trm3lBOv5rClgi2ixLkPkGnJHzKhcEYemO0KjgKM/Hy/A7zbPijLjx0kTk64lXmABFw
-         zd0ZVv5v7gClUUImfI5vsywQcnDozF1ioJ1yoafo3Dtjxw0SKyrM130ihbr7qhFAvNNg
-         uQD2Jqm7t/lG7d/SSCO61GOLHmEkNSGTup1CpP7gOLfAzzRhWug8/QVavUhaB1gDKFr5
-         /XRA==
-X-Gm-Message-State: AO0yUKUOS3id9s1CvvO0X5stvd8wd7txw76S6fZYqoju24zCLEF2DzrO
-        ZOiyOXeFV92NgJdyb6uK+J4jXA==
-X-Google-Smtp-Source: AK7set+H1Oed36cehxC8KiJPC3s0ckOpweO6g64c5qWByIUOeqKQ8bas15lSHf/5Y113qatq+WyDfg==
-X-Received: by 2002:a05:6a20:7d99:b0:cc:4db1:12fc with SMTP id v25-20020a056a207d9900b000cc4db112fcmr2303043pzj.46.1677197712594;
-        Thu, 23 Feb 2023 16:15:12 -0800 (PST)
-Received: from [10.211.55.3] (c-73-221-130-71.hsd1.wa.comcast.net. [73.221.130.71])
-        by smtp.gmail.com with ESMTPSA id q18-20020a62e112000000b005a7ae8b3a09sm3528645pfh.32.2023.02.23.16.15.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Feb 2023 16:15:12 -0800 (PST)
-Message-ID: <d4cdae93-a003-d07f-3074-3542a231747b@linaro.org>
-Date:   Thu, 23 Feb 2023 18:15:10 -0600
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gysGhMcUQ0n2SpBIwRmVe4+oZ4N6GELTjU0y0sJHeKI=;
+        b=f6E5/56ft/pJyVHlktMteA1dNQZSjqJ9j4YCu/hLI+04iXXnxSlIXKAjutSwj5cXqd
+         Idgdq3WSzBZ7yTavWpBFx8+RSjD+q03gcaLIdlNqxK2uYz/o3aZBa2X4uIU5mL/I3eac
+         QiAgsAAf6cja3wmNkMfnBF0dyX2BsU/+pEjZZwyoon5H6johjv7TrHp9jRQhROFzajR2
+         ahRRHhORqST2XjvVgBPCgIvi49ngtxeo4GRNlm2b+cB7fhvU1W3019I4rugGYz3Bd7Rl
+         Y8s5moBSu6CIaH09QHhE4fqeIEgUCGgiWEmwMovm0pcYsHoxAQy/TKKbTkJWqJtrMjK6
+         Yt9Q==
+X-Gm-Message-State: AO0yUKXEgsVGxP1s7UMi91YXlmb+4jmPnWkILM3ZGLIBMoODs0jmgnnR
+        PJjlBE9SBR/K2VqD1VCuX0MNQusQ8gnHeuxvWwA=
+X-Google-Smtp-Source: AK7set/XazoMOetvfmwxlAs8+m/rm0FfjIGQ8anvDUmgg1Nt7S+36MMMPSrbAZ1L3Ab5Dzu7Syoalud5PMnylQW/Dzc=
+X-Received: by 2002:a17:90a:8990:b0:22c:aa7:2d98 with SMTP id
+ v16-20020a17090a899000b0022c0aa72d98mr1028188pjn.6.1677198299084; Thu, 23 Feb
+ 2023 16:24:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v10 06/26] virt: gunyah: msgq: Add hypercalls to send and
- receive messages
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230223171114.59164-1-marex@denx.de>
+In-Reply-To: <20230223171114.59164-1-marex@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 23 Feb 2023 18:24:47 -0600
+Message-ID: <CAHCN7xLPvV7=GxSfUJFTtUTEi_16cpRQnR3zCGhFTWDzmk4ERA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] clk: Introduce devm_clk_hw_register_gate_parent_data()
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-clk@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212303.3307536-1-quic_eberman@quicinc.com>
-From:   Alex Elder <alex.elder@linaro.org>
-In-Reply-To: <20230214212303.3307536-1-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/23 3:23 PM, Elliot Berman wrote:
-> Add hypercalls to send and receive messages on a Gunyah message queue.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+On Thu, Feb 23, 2023 at 11:12 AM Marek Vasut <marex@denx.de> wrote:
+>
+> Add an API for clock gate that uses parent_data for the parent instead of
+> a string parent_name.
+>
+
+For the series:
+
+Tested-by:  Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+
+adam
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->   arch/arm64/gunyah/gunyah_hypercall.c | 32 ++++++++++++++++++++++++++++
->   include/linux/gunyah.h               |  7 ++++++
->   2 files changed, 39 insertions(+)
-> 
-> diff --git a/arch/arm64/gunyah/gunyah_hypercall.c b/arch/arm64/gunyah/gunyah_hypercall.c
-> index f30d06ee80cf..2ca9ab098ff6 100644
-> --- a/arch/arm64/gunyah/gunyah_hypercall.c
-> +++ b/arch/arm64/gunyah/gunyah_hypercall.c
-> @@ -38,6 +38,8 @@ EXPORT_SYMBOL_GPL(arch_is_gunyah_guest);
->   						   fn)
->   
->   #define GH_HYPERCALL_HYP_IDENTIFY		GH_HYPERCALL(0x8000)
-> +#define GH_HYPERCALL_MSGQ_SEND			GH_HYPERCALL(0x801B)
-> +#define GH_HYPERCALL_MSGQ_RECV			GH_HYPERCALL(0x801C)
->   
->   /**
->    * gh_hypercall_hyp_identify() - Returns build information and feature flags
-> @@ -57,5 +59,35 @@ void gh_hypercall_hyp_identify(struct gh_hypercall_hyp_identify_resp *hyp_identi
->   }
->   EXPORT_SYMBOL_GPL(gh_hypercall_hyp_identify);
->   
-> +enum gh_error gh_hypercall_msgq_send(u64 capid, size_t size, uintptr_t buff, int tx_flags,
-> +					bool *ready)
-> +{
-> +	struct arm_smccc_res res;
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jacky Bai <ping.bai@nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marco Felsch <m.felsch@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+> V3: New patch
+> V4: - Rebase on next 20230223
+> ---
+>  include/linux/clk-provider.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 842e72a5348fa..92b7c794c6272 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, const char *name,
+>         __devm_clk_hw_register_gate((dev), NULL, (name), (parent_name), NULL, \
+>                                NULL, (flags), (reg), (bit_idx),               \
+>                                (clk_gate_flags), (lock))
 > +
-> +	arm_smccc_1_1_hvc(GH_HYPERCALL_MSGQ_SEND, capid, size, buff, tx_flags, 0, &res);
+> +/**
+> + * devm_clk_hw_register_gate - register a gate clock with the clock framework
+> + * @dev: device that is registering this clock
+> + * @name: name of this clock
+> + * @parent_data: parent clk data
+> + * @flags: framework-specific flags for this clock
+> + * @reg: register address to control gating of this clock
+> + * @bit_idx: which bit in the register controls gating of this clock
+> + * @clk_gate_flags: gate-specific flags for this clock
+> + * @lock: shared register lock for this clock
+> + */
+> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data, flags,  \
+> +                                             reg, bit_idx, clk_gate_flags,   \
+> +                                             lock)                           \
+> +       __devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,          \
+> +                                   (parent_data), (flags), (reg), (bit_idx), \
+> +                                   (clk_gate_flags), (lock))
 > +
-> +	if (res.a0 == GH_ERROR_OK)
-> +		*ready = res.a1;
-> +
-> +	return res.a0;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_hypercall_msgq_send);
-> +
-> +enum gh_error gh_hypercall_msgq_recv(u64 capid, uintptr_t buff, size_t size, size_t *recv_size,
-> +					bool *ready)
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	arm_smccc_1_1_hvc(GH_HYPERCALL_MSGQ_RECV, capid, buff, size, 0, &res);
-> +
-> +	if (res.a0 == GH_ERROR_OK) {
-> +		*recv_size = res.a1;
-
-Is there any chance the 64-bit size is incompatible
-with size_t?  (Too big?)
-
-> +		*ready = res.a2;
-
-		*ready = !!res.a2;
-
-> +	}
-> +
-> +	return res.a0;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_hypercall_msgq_recv);
-> +
->   MODULE_LICENSE("GPL");
->   MODULE_DESCRIPTION("Gunyah Hypervisor Hypercalls");
-> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
-> index 3fef2854c5e1..cb6df4eec5c2 100644
-> --- a/include/linux/gunyah.h
-> +++ b/include/linux/gunyah.h
-> @@ -112,4 +112,11 @@ struct gh_hypercall_hyp_identify_resp {
->   
->   void gh_hypercall_hyp_identify(struct gh_hypercall_hyp_identify_resp *hyp_identity);
->   
-> +#define GH_HYPERCALL_MSGQ_TX_FLAGS_PUSH		BIT(0)
-> +
-> +enum gh_error gh_hypercall_msgq_send(u64 capid, size_t size, uintptr_t buff, int tx_flags,
-> +					bool *ready);
-
-Why uintptr_t?  Why not just pass a host pointer (void *)
-and do whatever conversion is necessary inside the function?
-
-					-Alex
-
-> +enum gh_error gh_hypercall_msgq_recv(u64 capid, uintptr_t buff, size_t size, size_t *recv_size,
-> +					bool *ready);
-> +
->   #endif
-
+>  void clk_unregister_gate(struct clk *clk);
+>  void clk_hw_unregister_gate(struct clk_hw *hw);
+>  int clk_gate_is_enabled(struct clk_hw *hw);
+> --
+> 2.39.1
+>
