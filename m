@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 696CE6A1985
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 11:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33E0C6A198C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 11:08:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbjBXKGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 05:06:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
+        id S229678AbjBXKIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 05:08:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjBXKFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:05:45 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6A365CC7
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:04:23 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id o2so7243233vss.8
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:04:23 -0800 (PST)
+        with ESMTP id S230036AbjBXKHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:07:42 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6E142BFA
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:06:32 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id v27so12791214vsa.7
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:06:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cvk5wpFc0DKAQZ00qghhmUCCY/U6r1q0rqg+NhQNPzA=;
-        b=cFMugqChQXL7ym79hnpjF2hy0qq6heDITVRFQzF1T1+HR4BxaalKvPgMUPnCRgc2zX
-         K1aVXJYjdC2pMFkdGMfIO8PLYW8/FdHp58Gd909cvpu1zA9uWb65c/7iUrbp/K39tbWh
-         kIyW+EGGp+t7Iq7ObQSH+ZZNR054KabiSeNLQ=
+        bh=ds+e0Ih6UL/cn2qDTbsziNvDdZY4duRrpUzCZIYiaLU=;
+        b=afCawh6DuktGjlOudCjHqoYpmBUiUP5Ue7N5HIcodXbWKYh46tetr3moqM2V46f0PX
+         k1kLAoF9UNzrw7ZwGSQok0opvqeYx5eiPfdra365llKKcEmrJH4+S7HeMFY5qIO653f0
+         0UUg86COEMbN7GEPS/1KbEO7+MlWMZ4Poe1nI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cvk5wpFc0DKAQZ00qghhmUCCY/U6r1q0rqg+NhQNPzA=;
-        b=pobopq84Rgu1PTJakxujPV3rttuZYweUre82ayYhkLv0kClgTjr2xXu+E9j5MGX12n
-         695Db2JQ87TbSVATa3Z0uSqcuiUcJJwOrjaZ91pxwqBxyJfw3RiVlwBakWCo/Ppg/Aok
-         XfOb6UfT4/RBK7zz7hnrDZ8Ip4HQ/NIa2SqGNe3Bm1V6lMUqHHPhPSP2Qd5FIgj+SnhX
-         0eGGz+8VjXhSEaxPxBntuAPKWnvBwOc4ZHROKYD33dGDyFNjSK+ZnWODrRN7eUK9ZBwE
-         RVlOw98UKdWl5Pyz7wDeyDvIXmqqSwlHRFR06oaBAIKIaW0e8E/cZ5592aYfKTD0FR1N
-         ggcQ==
-X-Gm-Message-State: AO0yUKXuV3s/RSBxSXPLrJvKbeilD6jHUjRvMQBlUo4dC+WB9YXzhE/d
-        NM8Aw6r6hWlsCxbM8dpILnxHqlkxI7z8ANYm4t3X/w==
-X-Google-Smtp-Source: AK7set8sv/uOez4Rc/C6TZ50n1VhpLKNUw7QlrbXGvX7eDuYw8eujWp0Kc33QvhtJcEfRx7ZMOIkuYwOnR4Jt0xVR7Q=
-X-Received: by 2002:a1f:41c8:0:b0:404:d819:960b with SMTP id
- o191-20020a1f41c8000000b00404d819960bmr2200097vka.0.1677233059185; Fri, 24
- Feb 2023 02:04:19 -0800 (PST)
+        bh=ds+e0Ih6UL/cn2qDTbsziNvDdZY4duRrpUzCZIYiaLU=;
+        b=ZOi0ftTPkleNh4knaumirJFCa2FL7bBC4X+uuljI0mRd7RKreaHpCo++zWcawyqSg0
+         dn6wJtlWbvAiB9Z9qPH4mNSNifgDmSXKYNtvRNxOE9r/RDgpi59oeNNdNoshtOujf7iN
+         aY02coPM1StDpuUdI/i+32DZlrtTG54M1YPMXnJ8q70gKOejpYI/oZa/N6VyOg/cFty8
+         naiqHLoEuObja9Znln116uVhnSFXjDjljd1pL0WLZMF+qRDyQFI6v/nv54bnZLpgV9ZN
+         2We00C1JtaMDj5SL42uz1nhPEYAc0w7kW0bOqEYrdvaA/qRypSkOk57D+wpseCLdJMjN
+         2gWw==
+X-Gm-Message-State: AO0yUKWezOrAL7XRp/4a3pyi9aTUtkjbEDR23lNABWHCk6hnQtdLOuJk
+        6U3Aqw92/DiiNTaPql9Ij0USVaudXX0KhHafx9Sv3A==
+X-Google-Smtp-Source: AK7set/tL0nx+dCLvdLFPGL6MZqwGOMrTaZ11JDqKi1o+dz+K1NCp5pT/0RlUA0xvnbRGHDGRyh3fqWz6RCt7wSFp7Q=
+X-Received: by 2002:a67:f650:0:b0:415:2063:e403 with SMTP id
+ u16-20020a67f650000000b004152063e403mr2102294vso.3.1677233186030; Fri, 24 Feb
+ 2023 02:06:26 -0800 (PST)
 MIME-Version: 1.0
-References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com> <20230223133440.80941-10-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230223133440.80941-10-angelogioacchino.delregno@collabora.com>
+References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com> <20230223133440.80941-9-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230223133440.80941-9-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 24 Feb 2023 18:04:08 +0800
-Message-ID: <CAGXv+5FV-Y_gaVNZ9s_9y+F5HLE799vVJ8bJyx-JZiPXhAFVwg@mail.gmail.com>
-Subject: Re: [PATCH v3 09/11] drm/panfrost: Add mediatek,mt8192-mali compatible
+Date:   Fri, 24 Feb 2023 18:06:15 +0800
+Message-ID: <CAGXv+5Hzin_5aTqMRRztWbDR64z6_oFOx2hUVnpJBvk9xDzrfw@mail.gmail.com>
+Subject: Re: [PATCH v3 08/11] drm/panfrost: Add the MT8192 GPU ID
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
@@ -74,13 +74,45 @@ On Thu, Feb 23, 2023 at 9:35 PM AngeloGioacchino Del Regno
 >
 > From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 >
-> Required for Mali-G57 on the Mediatek MT8192 and MT8195, which
-> uses even more power domains than the MT8183 before it.
+> MediaTek MT8192 has a Mali-G57 with a special GPU ID. Add its GPU ID,
+> but treat it as otherwise identical to a standard Mali-G57.
+>
+> We do _not_ fix up the GPU ID here -- userspace needs to be aware of the
+> special GPU ID, in case we find functional differences between
+> MediaTek's implementation and the standard Mali-G57 down the line.
 >
 > Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-> [Angelo: Removed unneeded "sram" supply, added mt8195 to commit description]
-> Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > Reviewed-by: Steven Price <steven.price@arm.com>
 
 Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+
+As previously mentioned, MT8195 Mali G57 has minor revision number 1.
+Do we need to handle that?
+
+> ---
+>  drivers/gpu/drm/panfrost/panfrost_gpu.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.c b/drivers/gpu/drm/panfrost/panfrost_gpu.c
+> index 6452e4e900dd..d28b99732dde 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_gpu.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_gpu.c
+> @@ -204,6 +204,14 @@ static const struct panfrost_model gpu_models[] = {
+>
+>         GPU_MODEL(g57, 0x9001,
+>                 GPU_REV(g57, 0, 0)),
+> +
+> +       /* MediaTek MT8192 has a Mali-G57 with a different GPU ID from the
+> +        * standard. Arm's driver does not appear to handle this model.
+> +        * ChromeOS has a hack downstream for it. Treat it as equivalent to
+> +        * standard Mali-G57 for now.
+> +        */
+> +       GPU_MODEL(g57, 0x9003,
+> +               GPU_REV(g57, 0, 0)),
+>  };
+>
+>  static void panfrost_gpu_init_features(struct panfrost_device *pfdev)
+> --
+> 2.39.2
+>
