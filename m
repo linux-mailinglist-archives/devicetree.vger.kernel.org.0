@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C36516A1F90
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDB26A1F95
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 17:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjBXQ0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 11:26:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53706 "EHLO
+        id S229738AbjBXQ0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 11:26:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjBXQ0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:26:35 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44DE6A7B6
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:34 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id t15so14608254wrz.7
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:34 -0800 (PST)
+        with ESMTP id S229610AbjBXQ0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 11:26:37 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3886E6EB0B
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:36 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id q16so4153532wrw.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 08:26:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FYNxCoy2kO8Df1US+5U8F6a2dVH3sUiqyDcA4T+cIdk=;
-        b=En6Si0WFgSuFebHftBEO8bUQY7IXWNBN8xsTRVwkNrqnPGfu+D8r/lYQcuhdU8YUPP
-         YgRH44w/1MWw8wEHfpe7mB7OWrRWbLHMGvuyPv/WSDum94YBwysEwpw552laUM2K8L0d
-         +MDRijxrej0aeRLxf7Dpl5bA/cOZoff5DCrhZQxXe/4cSN1FUxqlpPAN+JRo7AirD5yI
-         Ro09nnO6q3z/UwhLgl8D6zfK0a74bGu8FTaYZC7G2OENX6Np7Iq1jKSklpL/ttYjDV2C
-         /oEpU0uEhBUEj0TwxlCeOsnYfqM6POjbCpx8+P+YDm4rVgAHYhcNYxyNh/U6nn8ZmT9F
-         V3iQ==
+        bh=K7rGW7hYEauj0lEHNx054QYhURQUQQG6A8fMOX9HH84=;
+        b=RKqYoE96klcsM5eA//F76t0V+zO9OQvwwBKBQ77Ld8n2SOHHJSGhBHre9+TrbmLg+o
+         dc34CetaLatRWo/FVB1zzFELNGy8JhmmN9Qa+JXiXcOnXDr137/7bPD7R8XGC3p8k4/j
+         NKlIDe+e4cDuGoIQl+28FOOiIz6lDS+GG2UkxoCBmhdjLMGw4n/yrFvnHU0zL9IJJe1/
+         0SH4qE47mmAZWUiXuU6sg2VJBsAbDco/MSTG0tBoPkemCdtlp99mNEwwz0MuRWQvnwPt
+         Xp+OH3iSZn6RKtfuy79sG1xBGhuhhlRp8bxCrqAr7RhYZ+vsSxYdKovagshJpdo0I2ef
+         E0Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FYNxCoy2kO8Df1US+5U8F6a2dVH3sUiqyDcA4T+cIdk=;
-        b=8LLAXhWdFpZA63o+sE8Z+xPXK1C0pZUmAJvZLFV4ONqUZz1gKyQUAXLUh0SwNRjysd
-         WO9vc3ruzHpquB1HbhGEvWZKNSQeLasopIaQ5dM4auWP4aXMOev0qYnEPMphoOzs6V7c
-         OSnVrLr21vlKmxRKHV/ZvrOWXJlrjsyxIh5/cPSNJXFluckw9KkVfDdnUD2Gsojew9Et
-         kkmw8BQoP6cQTVk63p8MOZnZItB8BLmqSweFsV3zdu/Bm/atm8oaWHdNFDJa+qOwiwbD
-         gdwVpSRDEYB9yfcV+INMU1ZZGdhmQSxzCZ1pHbcD+bko75Bmny3NSbo3fNkSuwuygPzg
-         n2tw==
-X-Gm-Message-State: AO0yUKWSQ4TTeVCkSUv5EmFGF/2gLEjtSjN7UQkJ6Z5s+ih7bgQUXp2D
-        3YnSqf9xmrVJIy95hYodQfXQzQ==
-X-Google-Smtp-Source: AK7set/GnWAY+QoOE4/JlyN7MAfKde64aupvlOHt32saZ6ryvyjf7Edvr9vRivLB3FGJ0yazaa1Mkw==
-X-Received: by 2002:a5d:5512:0:b0:2c7:1210:feaa with SMTP id b18-20020a5d5512000000b002c71210feaamr5381917wrv.26.1677255993449;
-        Fri, 24 Feb 2023 08:26:33 -0800 (PST)
+        bh=K7rGW7hYEauj0lEHNx054QYhURQUQQG6A8fMOX9HH84=;
+        b=fMJjmmBBhvkVxjD6O6VV8mvGbCZ9FCZz0/YFhurjtB0TULozitrbvfSFRJOlUq3+UX
+         sADfiYrdIJ8qF6FwQisk7GXziBFXNzTmjePJcwwIsZUzAue+C9dR9ztzstrHO/fBICcW
+         RTtQjfBxKEIZl0cdSUBB1ZxA3UffNzjD0tG0I29vQFd/+/QVW1WsyfaNjcEvnKuozahX
+         9kJr+k15cMUH2pjRR5DooAajj8jYngycJcYlQPoN3MyCNq1wt+mSYm6HfNPHLUnq+cEq
+         M94zofQ2HirgjzYukP+tqGlbS8+wiA/6NIrU6Lswtgb48XpyqsXhuH+Ec8WkzzFcNZmW
+         1ywg==
+X-Gm-Message-State: AO0yUKXWxZZ8b+YveVDc0kIiSQykkSWvEJvJaVZVjJjZ3d6Nq94VrB0n
+        oPCKIeqLeti9mS4Ugg3RGZQmbw==
+X-Google-Smtp-Source: AK7set9db9FJqAXFvqnxkWNWao+YM41d9TaJzN8ugnsztfkd9yIZbvWR8jbKEB5MZVXaCknWRUaPNg==
+X-Received: by 2002:a5d:504f:0:b0:2bf:942b:ddc with SMTP id h15-20020a5d504f000000b002bf942b0ddcmr13630182wrt.55.1677255994674;
+        Fri, 24 Feb 2023 08:26:34 -0800 (PST)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id t16-20020a5d5350000000b002c53cc7504csm10368171wrv.78.2023.02.24.08.26.32
+        by smtp.gmail.com with ESMTPSA id t26-20020a05600c2f9a00b003eae73f0fc1sm3307797wmn.18.2023.02.24.08.26.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Feb 2023 08:26:33 -0800 (PST)
+        Fri, 24 Feb 2023 08:26:34 -0800 (PST)
 From:   Andrew Jones <ajones@ventanamicro.com>
 To:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
         devicetree@vger.kernel.org
@@ -64,9 +64,9 @@ Cc:     'Conor Dooley ' <conor.dooley@microchip.com>,
         'Rob Herring ' <robh@kernel.org>,
         'Jisheng Zhang ' <jszhang@kernel.org>,
         'Heiko Stuebner ' <heiko@sntech.de>
-Subject: [PATCH v6 1/8] RISC-V: alternatives: Support patching multiple insns in assembly
-Date:   Fri, 24 Feb 2023 17:26:24 +0100
-Message-Id: <20230224162631.405473-2-ajones@ventanamicro.com>
+Subject: [PATCH v6 2/8] RISC-V: Factor out body of riscv_init_cbom_blocksize loop
+Date:   Fri, 24 Feb 2023 17:26:25 +0100
+Message-Id: <20230224162631.405473-3-ajones@ventanamicro.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230224162631.405473-1-ajones@ventanamicro.com>
 References: <20230224162631.405473-1-ajones@ventanamicro.com>
@@ -82,49 +82,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As pointed out in commit d374a16539b1 ("RISC-V: fix compile error
-from deduplicated __ALTERNATIVE_CFG_2"), we need quotes around
-parameters passed to macros within macros to avoid spaces being
-interpreted as separators. ALT_NEW_CONTENT was trying to handle
-this by defining new_c has a vararg, but this isn't sufficient
-for calling ALTERNATIVE() from assembly with multiple instructions
-in the new/old sequences. Remove the vararg "hack" and use quotes.
+Refactor riscv_init_cbom_blocksize() to prepare for it to be used
+for both cbom block size and cboz block size.
 
 Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/include/asm/alternative-macros.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/riscv/mm/cacheflush.c | 45 +++++++++++++++++++++-----------------
+ 1 file changed, 25 insertions(+), 20 deletions(-)
 
-diff --git a/arch/riscv/include/asm/alternative-macros.h b/arch/riscv/include/asm/alternative-macros.h
-index 993a44a8fdac..b8c55fb3ab2c 100644
---- a/arch/riscv/include/asm/alternative-macros.h
-+++ b/arch/riscv/include/asm/alternative-macros.h
-@@ -14,7 +14,7 @@
- 	.4byte \patch_id
- .endm
+diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+index 3cc07ed45aeb..eaf23fc14966 100644
+--- a/arch/riscv/mm/cacheflush.c
++++ b/arch/riscv/mm/cacheflush.c
+@@ -98,34 +98,39 @@ void flush_icache_pte(pte_t pte)
+ unsigned int riscv_cbom_block_size;
+ EXPORT_SYMBOL_GPL(riscv_cbom_block_size);
  
--.macro ALT_NEW_CONTENT vendor_id, patch_id, enable = 1, new_c : vararg
-+.macro ALT_NEW_CONTENT vendor_id, patch_id, enable = 1, new_c
- 	.if \enable
- 	.pushsection .alternative, "a"
- 	ALT_ENTRY 886b, 888f, \vendor_id, \patch_id, 889f - 888f
-@@ -41,13 +41,13 @@
- 	\old_c
- 	.option pop
- 887 :
--	ALT_NEW_CONTENT \vendor_id, \patch_id, \enable, \new_c
-+	ALT_NEW_CONTENT \vendor_id, \patch_id, \enable, "\new_c"
- .endm
++static void cbo_get_block_size(struct device_node *node,
++			       const char *name, u32 *block_size,
++			       unsigned long *first_hartid)
++{
++	unsigned long hartid;
++	u32 val;
++
++	if (riscv_of_processor_hartid(node, &hartid))
++		return;
++
++	if (of_property_read_u32(node, name, &val))
++		return;
++
++	if (!*block_size) {
++		*block_size = val;
++		*first_hartid = hartid;
++	} else if (*block_size != val) {
++		pr_warn("%s mismatched between harts %lu and %lu\n",
++			name, *first_hartid, hartid);
++	}
++}
++
+ void riscv_init_cbom_blocksize(void)
+ {
+ 	struct device_node *node;
+ 	unsigned long cbom_hartid;
+-	u32 val, probed_block_size;
+-	int ret;
++	u32 probed_block_size;
  
- .macro ALTERNATIVE_CFG_2 old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
- 				new_c_2, vendor_id_2, patch_id_2, enable_2
- 	ALTERNATIVE_CFG "\old_c", "\new_c_1", \vendor_id_1, \patch_id_1, \enable_1
--	ALT_NEW_CONTENT \vendor_id_2, \patch_id_2, \enable_2, \new_c_2
-+	ALT_NEW_CONTENT \vendor_id_2, \patch_id_2, \enable_2, "\new_c_2"
- .endm
+ 	probed_block_size = 0;
+ 	for_each_of_cpu_node(node) {
+-		unsigned long hartid;
+-
+-		ret = riscv_of_processor_hartid(node, &hartid);
+-		if (ret)
+-			continue;
+-
+ 		/* set block-size for cbom extension if available */
+-		ret = of_property_read_u32(node, "riscv,cbom-block-size", &val);
+-		if (ret)
+-			continue;
+-
+-		if (!probed_block_size) {
+-			probed_block_size = val;
+-			cbom_hartid = hartid;
+-		} else {
+-			if (probed_block_size != val)
+-				pr_warn("cbom-block-size mismatched between harts %lu and %lu\n",
+-					cbom_hartid, hartid);
+-		}
++		cbo_get_block_size(node, "riscv,cbom-block-size",
++				   &probed_block_size, &cbom_hartid);
+ 	}
  
- #define __ALTERNATIVE_CFG(...)		ALTERNATIVE_CFG __VA_ARGS__
+ 	if (probed_block_size)
 -- 
 2.39.1
 
