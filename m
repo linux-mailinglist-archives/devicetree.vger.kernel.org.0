@@ -2,87 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD756A18A8
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 10:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CA126A18F5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 10:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjBXJYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 04:24:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36086 "EHLO
+        id S229688AbjBXJmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 04:42:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbjBXJYl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 04:24:41 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623E160132;
-        Fri, 24 Feb 2023 01:24:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 24C07B81BE0;
-        Fri, 24 Feb 2023 09:24:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B87F6C433D2;
-        Fri, 24 Feb 2023 09:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677230677;
-        bh=JTlnceaMAn4H4iP52lMgGtEKORtQS2pIE1OgoKHtH70=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f0SnnPEB9P7u/XrrEaaj4ngWoTVK+LbZYKwmiKVwik0UlY/j92e47u15eUBezSasE
-         JRpEU6EDLZwrTLMsjLjbgbmwf6F2ZM0G39mIcpMdJwAQP0u9l8LglNnspzlAV6X4+9
-         cnbw8yQx/Rrn7ULq2BIbkcP7cFq/CMZUheKMCm9YbPnmR6si3ynw3VraRHB91RX7RM
-         Whr2X58fVheKV91vkWk79IrtFX9MFnalwzArxR5Fz3QHUjdkNXgLJr86fS6SSVMehy
-         fshjbZohaOuONv7iiluA9ksW1jd8bbPfvBLsLZVFH3ghSH2w0aHU7QAYGSReHyRBnc
-         OXtwkvTuB1H/g==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pVUJs-0003wL-JT; Fri, 24 Feb 2023 10:24:48 +0100
-Date:   Fri, 24 Feb 2023 10:24:48 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 16/22] dt-bindings: rtc: qcom-pm8xxx: add nvmem-cell
- offset
-Message-ID: <Y/iCYA3xQEE4w2Th@hovoldconsulting.com>
-References: <20230202155448.6715-1-johan+linaro@kernel.org>
- <20230202155448.6715-17-johan+linaro@kernel.org>
- <Y+bJqIpgZ0fbzL2b@mail.local>
- <Y+dQXlABqc/uzIXc@hovoldconsulting.com>
- <Y+fF94EOkUuMq9Fc@mail.local>
- <Y+0NiJsp4JjeyrqH@hovoldconsulting.com>
- <Y/hzcxrS3D0O3s9U@hovoldconsulting.com>
- <Y/iA/sQh/p9980qQ@mail.local>
+        with ESMTP id S229516AbjBXJmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 04:42:07 -0500
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8411241ED
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:42:04 -0800 (PST)
+Received: by mail-vs1-xe35.google.com with SMTP id o2so7144882vss.8
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 01:42:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hup0iftcL4w1rRk5wtFimO6PxuW6uWdJ0jF6+XpUdR4=;
+        b=ILlbVCTYVbpnbi+jGGAGx3PaoBWbhKoVb6P+oj/K1qHYViVWJaIetHfDytZ27sv5ta
+         vbT1LgpOKrk1fogvyMOL2rd/aQi/sc4z2bOcGAXaAbNnwvVddJ97/I3KDSt8O0VZJeyV
+         AWxdSUQjjBnxOZ60ohawiP8oRX2MBClGagJiQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hup0iftcL4w1rRk5wtFimO6PxuW6uWdJ0jF6+XpUdR4=;
+        b=U5M1cDfhpcTTaXM9auLxmo4DxEDpHPQ68pu6Jdut2dsbhoUhwtyLIFLLGdXg32f2AL
+         HZR1aLxbhDHi5xzmC0haro4BJz+I5hmYcWamYSPmh/COCBLKFUVhFUouGv/dME0kzWne
+         0aycNTC1FHYhtwlrYModwUE2G7B89phey/Ho2ZOFrIe2peSgm6wdeQJL0se1injJhOcI
+         vHteGdn8FX4XwAsJlSgho0ZfROjvU+m70Nck/K4gEUVJfya+OjWX2z3biYHFllN3jsks
+         e/sECS98WJ/JuMzuBor4ypY1a3xF1TfaILFwKo0Iczfj4OjenARCYkSNjcbUJWsOnl1J
+         2tsQ==
+X-Gm-Message-State: AO0yUKW34r7CkwaEnj6bdmfH1dlzCUgZ544ZYUdJoKrWWILqooDZy509
+        oY9+GxEqMu9UZb9aot/fJjZx85pA0XC0XI/iKQVqcA==
+X-Google-Smtp-Source: AK7set9DUpz0pEONX2reqzfDYEcSwsr+i/Um3XAlW3+tABX0lBa5XkMywVbJR0HhqBPXZ89dHJNKXj2sT8/vLVhiVck=
+X-Received: by 2002:a67:d21c:0:b0:402:999f:51dd with SMTP id
+ y28-20020a67d21c000000b00402999f51ddmr2176299vsi.3.1677231723939; Fri, 24 Feb
+ 2023 01:42:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y/iA/sQh/p9980qQ@mail.local>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230223134345.82625-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230223134345.82625-1-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 24 Feb 2023 17:41:52 +0800
+Message-ID: <CAGXv+5HvQugnQjJbdqOuQKeqpFgJOvtzzwhVD9FL2CKgxxJYQQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/16] Enable GPU with DVFS support on MediaTek SoCs
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 24, 2023 at 10:18:54AM +0100, Alexandre Belloni wrote:
-> On 24/02/2023 09:21:07+0100, Johan Hovold wrote:
+On Thu, Feb 23, 2023 at 9:43 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Changes in v2:
+>  - Changed MT8186 to use only two power domains for the GPU.
+>
+> We finally have working GPU DVFS on MediaTek SoCs.
+> On Panfrost.
+> For real.
+> ...and the best part is that it's going upstream.
+>
+> In order to get GPU DVFS working, it was necessary to satisfy a
+> specific constraint (which is different, depending on the SoC)
+> between two regulators: GPU VCORE and GPU SRAM.
+> This was done through adding the mtk-regulator-coupler driver,
+> which transparently manages the voltage relation between these
+> two vregs, hence completely eliminating the need to manage these
+> regulators in the Panfrost driver; this solves the long standing
+> issue with devfreq+opp tables not supporting managing voltages
+> for two regulators per opp entry out of the box, due to which
+> we never got GPU DVFS on those SoCs, often locking them out to
+> a low GPU frequency.
+>
+> This changes. Right now!
+>
+> Tested on MT8192, MT8195 Chromebooks.
+>
+> This series depends on [1].
+>
+> [1]: https://lore.kernel.org/lkml/20230223133440.80941-1-angelogioacchino=
+.delregno@collabora.com/
+>
+> Alyssa Rosenzweig (2):
+>   arm64: dts: mediatek: mt8192: Add GPU nodes
+>   arm64: dts: mediatek: mt8192-asurada: Enable GPU
+>
+> AngeloGioacchino Del Regno (13):
+>   arm64: dts: mediatek: mt8183-kukui: Couple VGPU and VSRAM_GPU
+>     regulators
+>   arm64: dts: mediatek: mt8183-kukui: Override vgpu/vsram_gpu
+>     constraints
+>   arm64: dts: mediatek: mt8183: Remove second opp-microvolt entries from
+>     gpu table
+>   arm64: dts: mt8183-pumpkin: Couple VGPU and VSRAM_GPU regulators
+>   arm64: dts: mediatek: mt8183-evb: Couple VGPU and VSRAM_GPU regulators
+>   arm64: dts: mediatek: mt8183: Use mediatek,mt8183b-mali as GPU
+>     compatible
+>   arm64: dts: mediatek: mt8192: Add mfg_ref_sel clock to MFG0 domain
+>   arm64: dts: mediatek: mt8192-asurada: Assign sram supply to MFG1 pd
+>   arm64: dts: mediatek: mt8192-asurada: Couple VGPU and VSRAM_OTHER
+>     regulators
+>   arm64: dts: mediatek: mt8195: Add mfg_core_tmp clock to MFG1 domain
+>   arm64: dts: mt8195: Add panfrost node for Mali-G57 Valhall Natt GPU
+>   arm64: dts: mediatek: mt8195-cherry: Enable Mali-G57 GPU
+>   arm64: dts: mediatek: mt8186: Add GPU node
+>
+> N=C3=ADcolas F. R. A. Prado (1):
+>   arm64: dts: mediatek: mt8192-asurada: Add MFG0 domain supply
 
-> > Looks like these last two patches adding support for the nvmem offset
-> > has not been applied yet. Still hoping you can get them merged for 6.3
-> > even if this one does not apply cleanly unless you first merge your
-> > rtc-fixes branch.
-> 
-> This is still my plan, I'm travelling right now but they will be sent for
-> 6.3
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Perfect, thanks!
-
-Johan
+on MT8183 Juniper, MT8192 Hayato, MT8195 Tomato, MT8186 not-yet-upstreamed
+device.
