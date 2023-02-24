@@ -2,75 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B48E6A1480
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 02:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 661CD6A14AC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 02:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjBXBIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Feb 2023 20:08:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
+        id S229464AbjBXBq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Feb 2023 20:46:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbjBXBIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 20:08:35 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1878CDF;
-        Thu, 23 Feb 2023 17:08:34 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id i10so6198866plr.9;
-        Thu, 23 Feb 2023 17:08:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vEGaxTrptF/i88hDG2ZZPDfmgm+Q0tSvkYEKB/u7k1M=;
-        b=YyJtXr4dCPBimtyO0bOKFjj9lpU+V6GliYEV7tT3zN2u+sfwV4sTTMiDL2XR+o7l50
-         B+pCrCrnMs2950ptW9F23gafbWVKjWxFhHfA3+HrN5+15ofJTKXD8oQGKnr70/fxFXty
-         nvt6zzjPLifLD2ZKoNOjPoudRHzs6P6LWu55Tj8eUGKzgo9d1RkoOscD4v51jfITbo3I
-         Y+dPA9ygtTSDnJFyHZMx8HgMPFMqRj5qfp1r6NopPa1grEsWVvsGMoHOkJskZ9vv22pb
-         wh5MALsek/GFvAjNFMulQyXMMYRY3tq1/y0c+Pu5XxNDvK2ZKD9W5zC5USIKJ0zjjJWy
-         tVjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vEGaxTrptF/i88hDG2ZZPDfmgm+Q0tSvkYEKB/u7k1M=;
-        b=bXHYYaSvDk0Zf1Yw5Ttl9oD31d5YxaZSrjEU4MGZ9YXWmNb7L369LKx++4FW7K1Kew
-         CAtc/xJkVptRdjplWxD7VwweX9rcx232jak9w91EgO/wu6WOs3+yoS69n7GkorfdSJjm
-         RKmQp+rY5tkBpnLLvqXst7aXAsheB/OBikMqjdDriDBxnPgRuDG5fl2IHV3hL4fv1KLW
-         ZTfUFSyS82bEqWvCOhZUJ8TUcVA1CuGKq0TM8t0VM6n+9rsor7ZFnlvmcN00dKU1cuvn
-         u8poZxtYCUz/EyQiphWSbUwpM6bm6KvqDCJI7CtXC3f8cbB0Mpz6Y7XdFQ+QsKEThryQ
-         DL8w==
-X-Gm-Message-State: AO0yUKWq7WkIiUOovlznN5/DMx4gwpKAGsjkUf1flf9w7n5AmEVOCyHO
-        Au6XqjA7KLrghTYPS7+L0sU=
-X-Google-Smtp-Source: AK7set9Br2M0tdazVDbZiCs0X3VbrL7as0h5R9J9TKRZGADBmXew7lvFqbL+fhZWHf0GFxrQlyz61Q==
-X-Received: by 2002:a17:90b:224f:b0:236:9eef:e280 with SMTP id hk15-20020a17090b224f00b002369eefe280mr16311616pjb.46.1677200913497;
-        Thu, 23 Feb 2023 17:08:33 -0800 (PST)
-Received: from ryan-ThinkPad-T470.. (c-24-6-63-212.hsd1.ca.comcast.net. [24.6.63.212])
-        by smtp.gmail.com with ESMTPSA id p5-20020a170902a40500b0019adfb96084sm3821008plq.36.2023.02.23.17.08.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Feb 2023 17:08:33 -0800 (PST)
-From:   =?UTF-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, krzysztof.kozlowski@linaro.org,
-        rf@opensource.cirrus.com, ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-Subject: [PATCH 2/2] ASoC: dt-bindings: max98363: add soundwire amplifier driver
-Date:   Thu, 23 Feb 2023 17:08:14 -0800
-Message-Id: <20230224010814.504016-2-ryan.lee.analog@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230224010814.504016-1-ryan.lee.analog@gmail.com>
-References: <20230224010814.504016-1-ryan.lee.analog@gmail.com>
+        with ESMTP id S229441AbjBXBq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Feb 2023 20:46:28 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2049.outbound.protection.outlook.com [40.107.20.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 055EE5AB64
+        for <devicetree@vger.kernel.org>; Thu, 23 Feb 2023 17:46:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b1r5WgLDi4AuwTiuCOle5y60P7Wcf/QdzFg/uP0REtaIh0JrAOO9eiTFt20rz4yuCCpIIsOgRVHrftY/ZXXoQN2LmRRbwigA/XYkInB/4c+GLIDDGSWblYKWraDB/N480ChRbobntqgz+Z9O6VkxwDzQEtS13z3z0+ItAFB9rh5Wz5iADKGyCSc0Ks8t2jaUngqtNoEET4wy6LDVUwIhA8zjlJ/Svr6VTBSfCa+nCT7euvS3ezW6nigpTCPedCKoIPMSP491czV+cjCa+GP0DhSHnbq63dSq+gUZwQI+Fsjyk+dZfwWjOUi3NBlt/aixUz0/+3zB6yV67UTEKnEiWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5oNJHZMl9xOWX/eXeGSsvbpZq5YnSqkqXLuKZlP0B9M=;
+ b=K3Q9X6TV2yrqXW/8boayfM8Si97GSbh5KUCFby8OrDR1D/SKiBT/mcArBPI3zYWoI+RUf5PEt16iTCvycdz0u/ONBoAqpL6hj/dfZEtWp6rijil3lZu4+7CzZoL6UX2Ne6+a0mY6ZPgsiYE74eWKA/+3n7l4gs3jqsvN+CCcuDaafYGhisQNyy0KyDO5Nw47Vp7bcPN2iqeKqGt54X2SOoh/dlt2/5BofQXNx18q7LILPH7Cj2Fo6ae+5OVHNfop+F4XBKAJt6d4VD4OiEluuQQYAUN7MkzD4ZZZndz6Nd7DeWMFkHbJ9S4EPlME+iih93qxZQjhA7oORcdJ2WrpLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5oNJHZMl9xOWX/eXeGSsvbpZq5YnSqkqXLuKZlP0B9M=;
+ b=djBq+xcpF3TqcQiV50NKElTIoLfXI+gxTxxABlPT9Pxd755xdYpATEmRnAHXNjOD5fAXjKipq9rP/BLFvNg3XWELCwJ1GpfaWQ8xV+l5GjF21uP94pkgpBs1u5tZvO+YwSCaAtp30/wm4EmHFmjX98dAZZmwC1UAZsT3r1gQWo4=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM7PR04MB6966.eurprd04.prod.outlook.com (2603:10a6:20b:109::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.24; Fri, 24 Feb
+ 2023 01:46:24 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::f55a:cf12:da08:6d2a]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::f55a:cf12:da08:6d2a%3]) with mapi id 15.20.6134.021; Fri, 24 Feb 2023
+ 01:46:24 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>
+CC:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 1/1] arm64: dts: imx93: Fix eqos properties
+Thread-Topic: [PATCH 1/1] arm64: dts: imx93: Fix eqos properties
+Thread-Index: AQHZR0zjGCRJEtUoh0uT91dyPUU1O67dVN0Q
+Date:   Fri, 24 Feb 2023 01:46:24 +0000
+Message-ID: <DU0PR04MB9417775AF8471F3D6E8D99FD88A89@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20230223060543.2862661-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230223060543.2862661-1-alexander.stein@ew.tq-group.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AM7PR04MB6966:EE_
+x-ms-office365-filtering-correlation-id: e226db0c-4434-4cbf-113b-08db1608efc6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /xumzAh2Ci9sceMwFxoWLRpZ28cmLvMkUGcwvyVX1ZPGXZtbgrDGP3fwIQx9muyS/BlZxadVxW8eAlcvwPriphPi92tCLUe8JQL6CSJDp3CYnSBm2N68jWUdnaYwRbw8sCgKrne2KLs9U9Zs4DqzhZBvAhOqHjRgUKIo3zX/edHDW9L+wNTNV5ylWTGsoDB1wYOQLeUUl9EB4922H47rBEWf+Mo2eiyk2Eci7JbvsSxF6Sc3DmBA+gmjNEJ2bciVwpEsT+4eTk6oLK0loJtbjSYqfCIBtQgu4+SAebWphOuJPgXx7QgVg66D8xoBwN2ZVNbY/4j8Tcg6JJMb7TpN5WRFmA2dw/YeyTOr2HCJGlLRASeKEslu9ZRAhd5plY2/3/mdWeN+CcbeTA8etElbyOILp/c7KDw0+ZvQ4Dlz5zSmrYIjEwoQ2F0L17FpRJ6IFdFEzrzywgIbaGCtvc5/WxBbwY/uu1XAizqw/BSAZrduAxKc/P4V8+jda64XVGR81YEQX+61LopLvhvL7MEuPdQrpT2Xp1PWM15fW7tf6EVLm6XetEXDHunsFZj7XppCJDe5jHWv7smDWhMdmRycrU8Uue4H8myQebs2qgoLOZtVDYriHH1K1rdDS/TaKYQPPy645VYbLHN8do87ttuAzsmSfe70UjYnyv84xeVEfGv6UhWSmzoXrlQLg2sTYo1XKANk4GetgCEq2xL+IIshug==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(346002)(396003)(366004)(376002)(136003)(451199018)(33656002)(2906002)(6506007)(38100700002)(38070700005)(110136005)(54906003)(55016003)(83380400001)(316002)(478600001)(122000001)(66446008)(8936002)(8676002)(76116006)(64756008)(66946007)(66556008)(66476007)(52536014)(4326008)(7696005)(5660300002)(9686003)(186003)(26005)(7416002)(71200400001)(41300700001)(44832011)(86362001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zatUUnC5DA5VYAap2dnzOtE1WOvBmA4uKbHFaAt6t03J+baJzn0GK+t1V+VX?=
+ =?us-ascii?Q?ajhCIiEQR95Yqw73e4fJ/mxKa+Q3+BhEgANrjmHTUOmuvg3L3P4TqaDV99iR?=
+ =?us-ascii?Q?m4cV8Yn0glt5crdTkQxbM1g3YieyNGS8mpNgwb12u5WoO9eACICMBH2HNybz?=
+ =?us-ascii?Q?jZYNjKYeT7a+XBCnHUjtH4Z6qsva3Pl2If4symFlKIF6a4JIW2KuMcfs0o01?=
+ =?us-ascii?Q?+toMwWYf4IhVo2x6aBUDZxRGWxC3Sp0NKgKmZT+h1Izpop4EdnHCbtudSN/b?=
+ =?us-ascii?Q?bdMXG3tsE4NnA7gP1LWKVFUSxcqopHgLN2z371hz3DEuZEXoe3xEUsbb0lIo?=
+ =?us-ascii?Q?GNXJ3qD51LNY8TPu4fsqPDhR2OZpn5MgzSFU0GF7dmtKPR4XsGEh3eIA8B3C?=
+ =?us-ascii?Q?iJ1baKaxRPwX1jECju6/pcD2AxUQr+VVBbEnG+fh6hSJx7v/roCjlrpF/HZI?=
+ =?us-ascii?Q?bCcA5qjI6/SMlKiYYRB5vaj9ZiXiFi9RGRHAhU81uTxyv5C/KhFhiuXnlbdq?=
+ =?us-ascii?Q?K/RSBcTerdfUvfNnvGc6OmyCbkYPDWuG8yZT4KZIwiExNFNovTaMYN038Kfe?=
+ =?us-ascii?Q?rcJITCw2YNgvPNQ600LeziUyasyQSAawJv0mHh/IW0HunPGfQBRS4AsAu+bC?=
+ =?us-ascii?Q?BnwhbJbbJZIYPl8rK/OAC1PrKkPvhRhnKeuDxhGWbYDDZr+TbsW2jVSmQUjT?=
+ =?us-ascii?Q?4KJZP6qFjzS//E2qUfTJDP/8LZ8uboQIYXvpY8Idtf4M3Qei9TclyZ/VRit6?=
+ =?us-ascii?Q?gyz0FY8x3HiG7Mh1+SJKJ7h8NhYOtYcS5yHZl1Ga6taaFgeSHs52ZX7G79UA?=
+ =?us-ascii?Q?fbiqeviRf/nZ+uWgyuLLqsrDRD077JKZ3iDlirmqVR5T99O5pMGC0r7RO52b?=
+ =?us-ascii?Q?DKh4FVIRRZuVsrfxu8hksRCofCK0XtsG9OmHTPNoYzpdm8MFlqwk9SUCRSpu?=
+ =?us-ascii?Q?0aWlZEdYB1J4JiaxRgwtT49M/qFIY7P+2HwxhJPieT4ReVrxMtiCBjnx2pt8?=
+ =?us-ascii?Q?+XC/sbCpA3o9FxqYeJx3hYK3ugDNXdG3xZXVToEComVNyyFcYysPqzEei1iB?=
+ =?us-ascii?Q?pBnNal5CWJSoH9KzHZF/qOdJLIymSvU9wZr2csBlPCpaDWB8lyUA5bWx5aLt?=
+ =?us-ascii?Q?SFuJj6qMeZ94F/6hVAljN2GodRHzbGxXrVwG9ITagrC8hpYQXmWKbcpbSKdF?=
+ =?us-ascii?Q?hNDdoMUjbggPtERc/tLew4QdX/uPlN+vFU7HnH1oHg4YxvcL61h/i7Qr/QpI?=
+ =?us-ascii?Q?JJ7fLUWXkZpFmsih+eHp5Ku1nECW1YSUbrrfAhnfnWObNydJUs8Ib/Dc2koV?=
+ =?us-ascii?Q?41cFGYp3s1QOwmfGLvRtLMB9easw/mdlgkvf1UVsRMnLnizSP0bMu5mA4CuR?=
+ =?us-ascii?Q?slQ9X/MFk6ZpgDZvq6tQV4qklqLFJPKa8rsnLim4dyrdGi/j9cWRAARXg8eX?=
+ =?us-ascii?Q?q4tECPirCBVobf6K7rH+yb1wN3j88mpE0nxm8TJIoIYUhWKgD5iEKhfHbLu5?=
+ =?us-ascii?Q?/ddeahc3+K/fsume+KfpsrQTNndijYsu/vxBxPfELOLrkRsjC7jJw/iELyHQ?=
+ =?us-ascii?Q?9mYIFXpiU1Xgvi82V3U=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e226db0c-4434-4cbf-113b-08db1608efc6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2023 01:46:24.0716
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rlDqzWozT6DHKI3tBR85rtT6fITz6GPnVdWPWmqyJ778mDme2QkMqRj8BnIMXdIVyxT7vIBlAEZXnaINZ1gLFQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6966
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,78 +124,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Lee <ryans.lee@analog.com>
+> Subject: [PATCH 1/1] arm64: dts: imx93: Fix eqos properties
+>=20
+> 'macirq' is supposed to be listed first. Also only 'snps,clk-csr' is list=
+ed in the
+> bindings while 'clk_csr' is only supported for legacy reasons. See commit
+> 83936ea8d8ad2 ("net: stmmac: add a parse for new property 'snps,clk-csr'"=
+)
+>=20
+> Fixes: 1f4263ea6a4b ("arm64: dts: imx93: add eqos support")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+[Peng Fan]=20
 
-This patch adds dt-bindings information for Analog Devices MAX98363
-SoundWire Amplifier.
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Ryan Lee <ryans.lee@analog.com>
----
- .../bindings/sound/adi,max98363.yaml          | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-new file mode 100644
-index 000000000000..fda571d04a64
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,max98363.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX98363 SoundWire Amplifier
-+
-+maintainers:
-+  - Ryan Lee <ryans.lee@analog.com>
-+
-+description:
-+  The MAX98363 is a SoundWire input Class D mono amplifier that
-+  supports MIPI SoundWire v1.2-compatible digital interface for
-+  audio and control data.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,max98363
-+
-+  reg:
-+    maxItems: 1
-+    description: Peripheral-device unique ID decoded from pin
-+
-+  vdd-supply:
-+    description:
-+      A 2.5V to 5.5V supply that powers up the VDD pin.
-+
-+  dvddio-supply:
-+    description:
-+      A 1.7V or 1.9V supply that powers up the DVDDIO pin.
-+      This property is only needed for MAX98363A/B.
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+  - dvddio-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    soundwire {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        max98363: amplifier@3 {
-+            compatible = "adi,max98363";
-+            reg = <0x3>;
-+            vdd-supply = <&regulator_vdd>;
-+            dvddio-supply = <&regulator_1v8>;
-+        };
-+    };
--- 
-2.34.1
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 4c70089d419f2..13ea4bfb97c68 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -666,9 +666,9 @@ usdhc2: mmc@42860000 {
+>  			eqos: ethernet@428a0000 {
+>  				compatible =3D "nxp,imx93-dwmac-eqos",
+> "snps,dwmac-5.10a";
+>  				reg =3D <0x428a0000 0x10000>;
+> -				interrupts =3D <GIC_SPI 183
+> IRQ_TYPE_LEVEL_HIGH>,
+> -					     <GIC_SPI 184
+> IRQ_TYPE_LEVEL_HIGH>;
+> -				interrupt-names =3D "eth_wake_irq", "macirq";
+> +				interrupts =3D <GIC_SPI 184
+> IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 183
+> IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-names =3D "macirq", "eth_wake_irq";
+>  				clocks =3D <&clk
+> IMX93_CLK_ENET_QOS_GATE>,
+>  					 <&clk
+> IMX93_CLK_ENET_QOS_GATE>,
+>  					 <&clk IMX93_CLK_ENET_TIMER2>,
+> @@ -681,7 +681,7 @@ eqos: ethernet@428a0000 {
+>  							 <&clk
+> IMX93_CLK_SYS_PLL_PFD0_DIV2>;
+>  				assigned-clock-rates =3D <100000000>,
+> <250000000>;
+>  				intf_mode =3D <&wakeupmix_gpr 0x28>;
+> -				clk_csr =3D <0>;
+> +				snps,clk-csr =3D <0>;
+>  				status =3D "disabled";
+>  			};
+>=20
+> --
+> 2.34.1
 
