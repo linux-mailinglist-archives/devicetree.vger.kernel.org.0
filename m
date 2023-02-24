@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1B686A1B29
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:10:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E966A1B2D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 12:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbjBXLKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 06:10:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46868 "EHLO
+        id S229532AbjBXLLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 06:11:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230095AbjBXLKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:10:05 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A826C6A4F
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:09:42 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id l2-20020a05600c1d0200b003e1f6dff952so1896052wms.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:09:42 -0800 (PST)
+        with ESMTP id S230031AbjBXLLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 06:11:34 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E260142BE4
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:11:17 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id r7so13365705wrz.6
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 03:11:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NZLgGbzYMjAzej3DGyr9UAP/ybR/0Ek6icgQ+DcCBHc=;
-        b=Iu9e0+yoOMJyPP1DwYpXIIP9s6Bi+zJHDMccwayOxQ/Vw5TS74+FN8LBeHZazsyzNS
-         /f3fJ3+a1u7yiB7pl7SFYrwLZgIVNEnPQn6v1Dzi8vq85D7ao539SfcEhCTWDHraKlWp
-         KktVa9GGnEk1nJdMBtToh1RVJI6dQgS+vBu/CcTIgZi0s7e7X0D+spZ2dfQoCnfX/O4N
-         4+TtCv5Vl4UPHWCODVEuvmiBBF7JEZlUFvuxhUJHFCqORRtyfV5ucfjPWxqVFbYYY2SW
-         fNGllGHbQCG7Z71iDdS7szZSlngAHBmAsCGJvIGICc77+K+4ZciGQPOb2okZknqZvQ/l
-         Z1WQ==
+        bh=HW1MMOsZ1jdi5XBUIwdHvUOrWypSSf4PAFyyG2azRmY=;
+        b=oObB51ZbGeFK/JucA7XIeI2+mqGwFQqnDd+S+tN+8B6X1cPq2UXSe37sNTfnQATNOc
+         T960+WBcc6XralJWiUwoiGKC3Qhr9gUuPo1iArkursW04JZVsxdS+uOmp4/Wq+Tn9m8a
+         M20wWwWEcSdl/Gd09YsWvjHmx4bn8bEVTEcQmYEdo+d9f9xqLU2mVOIMDaBuz+IpQzej
+         xVVM85m4XdaA9EhxoBYv2GUWopDnYBCQjIQ7Fg8eD2MmkHrmxPRAporoc9u5/M7u8gcl
+         yh3xN2heWXPpJL80dTj01zG9v9RKWeq+acQD+2IwkmpfRs46G1ZQfhuDJG2ih0MHQNGi
+         eCIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NZLgGbzYMjAzej3DGyr9UAP/ybR/0Ek6icgQ+DcCBHc=;
-        b=7LUuYyCdkG01c38OKqWejhbaefINpFSB22PVBPIZ7407gbhUKit4oJm+lHFmotawvR
-         tPSJaChxPfgBEdW81X8heoX188QeUx6zYFlRRICF5tAlxsieHBGoRBU7rkyUw6Bp8I2w
-         IGhmNaFWVr/Q3eShdO/SNuzZAGnIsXYgiaQjacvlAS2/WptB6oSuj9wyaErK8i/NT0aj
-         DIHAaqawJpBu0tXwMAtGVyaZNRqAeVm5uwiTrY/Fv1LxDJBYNus23FFoPLl/Mf4yGV/X
-         qYjLyE4FMASOGx77T3ndfCtFw87xdiN4RrxUfRb/M23NXs4wsDcbGUyo1M9arBR2R0r+
-         ueAw==
-X-Gm-Message-State: AO0yUKVLvzBxT0Jx3D57gIa6IdCDcspKcytOmA5WWJk3A4j+/ic7ndXH
-        l88Hc+Xd3wrKttgpiLbLP62M5g==
-X-Google-Smtp-Source: AK7set+QsSPhmANXMAmCwprRZOYWjaSTm3y6grWcXfx2bgZgbD0wCNjkRxCF6ITQZdC0GZCugESXCQ==
-X-Received: by 2002:a05:600c:30ca:b0:3df:12ac:7cc9 with SMTP id h10-20020a05600c30ca00b003df12ac7cc9mr5480813wmn.15.1677236981130;
-        Fri, 24 Feb 2023 03:09:41 -0800 (PST)
+        bh=HW1MMOsZ1jdi5XBUIwdHvUOrWypSSf4PAFyyG2azRmY=;
+        b=EMMBAptuPYx/TfKL08+Fx30WysnCPv2fUZb8fZIB31a1lQpl0GWNWiXzeheG7Xm35v
+         1X8mQVWeCfNg7mjYb6GTysnOngLgRxRKtJXozy1aWvw1T1kKmNqHm4f5TAXIxJ//T0OD
+         VgqZOA1acFxhFx8K7RwwVqwVrZTHpz47udcFdaDo2CcsaHbRDODfyty3Zf3VEvpq7a6c
+         z+h3blpjQ1wml7fCKY6Wtiz6x7LH/GjeCP7AMQpFk8UEZgLk4vtL+H8aKyTmQ+rdzNL7
+         l+7wZjM/G79EcFjYrz5A8z+rW9RGg1NRKNp3EzJQTRyQiRqOCaNnhlo9b5M5YqNqwZWn
+         CR0g==
+X-Gm-Message-State: AO0yUKUeJJy7n/fFSIgAJOMkz1n3y17tqikNyJEiAZPmuLYXoGhLoMWl
+        wacQ1xYYwybCzGtFSK1HF3H9amqARbl8Mv6O
+X-Google-Smtp-Source: AK7set9w7qpxDBdOWAHOzOR27ysmRZbKntF29OBpFSpvlT6RmuI9Wa/1F9AnYGAqRfWPMt5F3tNxMw==
+X-Received: by 2002:a05:6000:8c:b0:2c5:9cb8:d315 with SMTP id m12-20020a056000008c00b002c59cb8d315mr12435970wrx.62.1677237076381;
+        Fri, 24 Feb 2023 03:11:16 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id jb17-20020a05600c54f100b003e200d3b2d1sm2425610wmb.38.2023.02.24.03.09.39
+        by smtp.gmail.com with ESMTPSA id b9-20020a5d4b89000000b002c794495f6fsm598003wrt.117.2023.02.24.03.11.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 03:09:40 -0800 (PST)
-Message-ID: <7e236ecc-1cb4-b53b-fb68-c23aa45c4cd2@linaro.org>
-Date:   Fri, 24 Feb 2023 12:09:39 +0100
+        Fri, 24 Feb 2023 03:11:16 -0800 (PST)
+Message-ID: <e20f5d80-e53a-559d-9a21-fcf77c1cf968@linaro.org>
+Date:   Fri, 24 Feb 2023 12:11:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v11 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
- of OSPI
+Subject: Re: [PATCH v11 6/8] arm64: dts: ti: k3-j721s2: Add support for OSPI
+ Flashes
 Content-Language: en-US
 To:     Ravi Gunasekaran <r-gunasekaran@ti.com>, nm@ti.com, afd@ti.com,
         vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
@@ -64,15 +64,14 @@ To:     Ravi Gunasekaran <r-gunasekaran@ti.com>, nm@ti.com, afd@ti.com,
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230224102438.6541-1-r-gunasekaran@ti.com>
- <20230224102438.6541-4-r-gunasekaran@ti.com>
+ <20230224102438.6541-7-r-gunasekaran@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230224102438.6541-4-r-gunasekaran@ti.com>
+In-Reply-To: <20230224102438.6541-7-r-gunasekaran@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,7 +81,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 24/02/2023 11:24, Ravi Gunasekaran wrote:
 > From: Aswath Govindraju <a-govindraju@ti.com>
 > 
-> Add support for two instance of OSPI in J721S2 SoC.
+> J721S2 has an OSPI NOR flash on its SOM connected the OSPI0 instance and a
+> QSPI NOR flash on the common processor board connected to the OSPI1
+> instance. Add support for the same
 > 
 > Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
 > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
@@ -90,25 +91,21 @@ On 24/02/2023 11:24, Ravi Gunasekaran wrote:
 > Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 > ---
 > Changes from v10:
-> * Documented the reason for disabling the nodes by default.
-> * Removed Link tag from commmit message
+> * Removed Link tag from commit message
 > 
 > Changes from v9:
-> * Disabled fss, ospi nodes by default in common DT file
+> * Enabled fss and ospi nodes
 > 
 > Changes from v8:
-> * Updated "ranges" property to fix dtbs warnings
+> * No change
 > 
 > Changes from v7:
-> * Removed "reg" property from syscon node
-> * Renamed the "syscon" node to "bus" to after change in
->   compatible property
+> * No change
 > 
 > Changes from v6:
-> * Fixed the syscon node's compatible property
+> * No change
 > 
 > Changes from v5:
-> * Updated the syscon node's compatible property
 > * Removed Cc tags from commit message
 > 
 > Changes from v4:
@@ -123,90 +120,68 @@ On 24/02/2023 11:24, Ravi Gunasekaran wrote:
 > Changes from v1:
 > * No change
 > 
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
+>  .../dts/ti/k3-j721s2-common-proc-board.dts    | 39 +++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 43 +++++++++++++++++++
+>  2 files changed, 82 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 0af242aa9816..5005a3ebbd34 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -306,4 +306,66 @@
->  			ti,cpts-periodic-outputs = <2>;
->  		};
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> index fa38940fe6cd..76b420379645 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> @@ -206,6 +206,20 @@
+>  			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) WKUP_GPIO0_2 */
+>  		>;
 >  	};
 > +
-> +	fss: bus@47000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
-> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
-> +			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
-> +
-> +		/*
-> +		 * Disable the node by default in the common include file.
-> +		 * And enable it in the board specific DT file where the
-> +		 * pinmux property is added.
-
-Why? Bus does not need pinmux.
-
-> +		 */
-> +		status = "disabled";
-> +
-> +		ospi0: spi@47040000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47040000 0x00 0x100>,
-> +			      <0x05 0x00000000 0x01 0x00000000>;
-> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 109 5>;
-> +			assigned-clocks = <&k3_clks 109 5>;
-> +			assigned-clock-parents = <&k3_clks 109 7>;
-> +			assigned-clock-rates = <166666666>;
-> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			/*
-> +			 * Disable the node by default in the common include
-> +			 * file. And enable it in the board specific DT file
-> +			 * where the pinmux property is added.
-
-Isn't this comment obvious? It's what we do everywhere on every platform
-every SoC?
-
-> +			 */
-> +			status = "disabled";
-> +		};
-> +
-> +		ospi1: spi@47050000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47050000 0x00 0x100>,
-> +			      <0x07 0x00000000 0x01 0x00000000>;
-> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 110 5>;
-> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			/*
-> +			 * Disable the node by default in the common include
-> +			 * file. And enable it in the board specific DT file
-> +			 * where the pinmux property is added.
-> +			 */
-> +			status = "disabled";
-> +		};
-> +
-
-No need for blank line.
-
+> +	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721S2_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
+> +			J721S2_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
+> +			J721S2_WKUP_IOPAD(0x060, PIN_OUTPUT, 0) /* (C21) MCU_OSPI1_CSn1 */
+> +			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
+> +			J721S2_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
+> +			J721S2_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
+> +			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
+> +			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
+> +			J721S2_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
+> +		>;
 > +	};
 >  };
+>  
+>  &main_gpio2 {
+> @@ -347,6 +361,31 @@
+>  	maximum-speed = "high-speed";
+>  };
+>  
+> +&fss {
+> +	status = "okay";
+
+Where is the pinmux usage you said is required for the bus?
+
+> +};
+> +
+> +&ospi1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+> +
+> +	flash@0{
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-max-frequency = <40000000>;
+> +		cdns,tshsl-ns = <60>;
+> +		cdns,tsd2d-ns = <60>;
+> +		cdns,tchsh-ns = <60>;
+> +		cdns,tslch-ns = <60>;
+> +		cdns,read-delay = <2>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+
+Are you sure these are correct? Aren't they marked as deprecated?
+
+
 
 Best regards,
 Krzysztof
