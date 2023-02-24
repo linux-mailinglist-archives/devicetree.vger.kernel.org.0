@@ -2,76 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4AFA6A1D09
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:34:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D9AA6A1D23
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:53:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjBXNem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 08:34:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33546 "EHLO
+        id S229477AbjBXNxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 08:53:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjBXNel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:34:41 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BAB10439;
-        Fri, 24 Feb 2023 05:34:40 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id i34so29533439eda.7;
-        Fri, 24 Feb 2023 05:34:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kw5cJI1rHZIRKHFIWnHekwrBsn4zRcD69gaW1hs0C/U=;
-        b=n+51ixapN6Td6Ox2ZaphZfZswNZWcv8r7IjlzBxg+njtkIGWD22XaYh47X6eJ7Zt0x
-         9a9L7A+KqjlhbWJNpiMlv84lP1rG5+cgzWm8UXkQ6CoKtvYmb72RYFLCn9Q9qI+1aig0
-         9JobeAGumu/w9YvfOLDK2P8httH35IboGFZWJuPVeQhVXQH/puaB9CZCC0S3ORQF5mJH
-         ErolpBaeaLvO/GUm5cAarpvzWyoR/H4B88h4arceFwAv25JAJxVNgXAMWSu3EYbMpYfp
-         zbDSrfsjnjTM/78t0jkXzqOVh57OLz5VMWMkPvwdZrDgcsAuEdCyhiR6cZGJAf8J6083
-         zEjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kw5cJI1rHZIRKHFIWnHekwrBsn4zRcD69gaW1hs0C/U=;
-        b=VTHBK7dHBippYt1ThjnS+SPuT7Ur5FyWfQHQCvc5d1N0/8MJwAZM4mZtPrii7KOcgF
-         YyZLW+PqGKrRd7Pghkg9r+tBTxQ/Ev5JQGrIvyl4ujmn8x63WdwoBDIXI2tczRvze7sh
-         //4OA2sJHI8aWBZE5NuIiCWFZO1r/HNlRLJq/kJmxU9cEPrAw3i512Gc9BRflwdLTufH
-         jAzLTBZE0eo3jtSjpKH2cdIf87/rEUgdoHAe9ZEWJdeD/SP8iry+tJoTJHFoPy/2bqpl
-         JqizCO2+P4LJ8R1YWpeeoQ3ojZNzqRQW0Q5bHRgvAHcGssDbcMil3L9XEx0xGWtdBQPq
-         1oUA==
-X-Gm-Message-State: AO0yUKWQ55zjFArGMvO11/Gd1ule7mNIaCWJ85Hqjh8rpaJXsogFZVcs
-        jeGgUnTVKOTWdYZSc7pVv4Q=
-X-Google-Smtp-Source: AK7set9of3J1wJ2it/J7AXZmN2hY3XpHL2jexB0WeT4xbfAQaN5TEpvXvIXdR6Agc8bfL18mB0vQgA==
-X-Received: by 2002:a17:906:ad82:b0:8b1:7eb4:6bea with SMTP id la2-20020a170906ad8200b008b17eb46beamr25019154ejb.38.1677245679028;
-        Fri, 24 Feb 2023 05:34:39 -0800 (PST)
-Received: from [127.0.0.1] ([91.204.84.193])
-        by smtp.gmail.com with ESMTPSA id b24-20020a170906491800b008dd2db45c0bsm4924674ejq.105.2023.02.24.05.34.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 05:34:38 -0800 (PST)
-Date:   Fri, 24 Feb 2023 15:34:39 +0200
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Mikko Perttunen <cyndis@kapsi.fi>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-CC:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/5] ARM: tegra: Add labels to tegra30.dtsi
-User-Agent: K-9 Mail for Android
-In-Reply-To: <50e64bd0-00cc-fd2f-b45e-e7268cd371b8@kapsi.fi>
-References: <20230221175348.15681-1-clamor95@gmail.com> <20230221175348.15681-2-clamor95@gmail.com> <50e64bd0-00cc-fd2f-b45e-e7268cd371b8@kapsi.fi>
-Message-ID: <99DD9F81-682B-4EFF-B665-D6C2CDC5EC75@gmail.com>
+        with ESMTP id S229446AbjBXNxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:53:08 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3BAB71F91C;
+        Fri, 24 Feb 2023 05:53:07 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C76CC1042;
+        Fri, 24 Feb 2023 05:53:49 -0800 (PST)
+Received: from [10.1.38.16] (e122027.cambridge.arm.com [10.1.38.16])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 454093F71A;
+        Fri, 24 Feb 2023 05:53:04 -0800 (PST)
+Message-ID: <8c20f01a-2123-b76d-bf70-bf75aec9efb8@arm.com>
+Date:   Fri, 24 Feb 2023 13:53:02 +0000
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 08/11] drm/panfrost: Add the MT8192 GPU ID
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com>
+ <20230223133440.80941-9-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5Hzin_5aTqMRRztWbDR64z6_oFOx2hUVnpJBvk9xDzrfw@mail.gmail.com>
+ <61ebdd1a-2737-0516-08fd-3b9aa0ddd4fe@collabora.com>
+Content-Language: en-GB
+From:   Steven Price <steven.price@arm.com>
+In-Reply-To: <61ebdd1a-2737-0516-08fd-3b9aa0ddd4fe@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,32 +54,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-22 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2023 =D1=80=2E 10:56:23 GMT+02:00, =
-Mikko Perttunen <cyndis@kapsi=2Efi> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=D0=
-=B2(-=D0=BB=D0=B0):
->On 2/21/23 19:53, Svyatoslav Ryhel wrote:
->> From: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere=2Eqmqm=2Epl>
->>=20
->> Add phandle names for memory/I2C/SPI/USB/SDMMC controller nodes to allo=
-w
->> for cleaner device descriptions=2E
->>=20
->> Signed-off-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere=2Eqmqm=2Epl>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail=2Ecom>
->> ---
->
->Hi!
->
->Patches 1 and 2 are missing your Signed-off-by=2E But also, I'd only add =
-labels as they are needed instead of adding them all in one go=2E
->
->Mikko
->
+On 24/02/2023 13:08, AngeloGioacchino Del Regno wrote:
+> Il 24/02/23 11:06, Chen-Yu Tsai ha scritto:
+>> On Thu, Feb 23, 2023 at 9:35 PM AngeloGioacchino Del Regno
+>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>
+>>> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+>>>
+>>> MediaTek MT8192 has a Mali-G57 with a special GPU ID. Add its GPU ID,
+>>> but treat it as otherwise identical to a standard Mali-G57.
+>>>
+>>> We do _not_ fix up the GPU ID here -- userspace needs to be aware of the
+>>> special GPU ID, in case we find functional differences between
+>>> MediaTek's implementation and the standard Mali-G57 down the line.
+>>>
+>>> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+>>> Signed-off-by: AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com>
+>>> Reviewed-by: Steven Price <steven.price@arm.com>
+>>
+>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+>>
+>> As previously mentioned, MT8195 Mali G57 has minor revision number 1.
+>> Do we need to handle that?
+>>
+> 
+> Maybe something went wrong while sending the reply to the same question
+> on v2?
+> 
+> Anyway, from what I can see on my MT8195 machine, it works fine without
+> adding
+> any particular handling...
+> 
+> Alyssa, Steven,
+> are you aware of anything that we should consider?
 
-Thanks for suggestions=2E I may agree about labels, but it eventually will=
- get to stage when all labels from patches will be added=2E So why not add =
-them in one commit instead of making a dozen more with adding one label a t=
-ime=2E
+The minor revision means that the set of HW workarounds might be
+different. Specifically it appears that "BASE_HW_ISSUE_TTRX_3485"
+applies to G57 ('Natt') r0p0 but not r0p1.
 
-Best regards,
-Svyatoslav R=2E
+That particular workaround is a horrendous "dummy job" in kbase and we
+don't have an implementation in Panfrost. However Panfrost also doesn't
+(yet[1]) proactively SOFT_STOP jobs so is also unlikely to be affected.
+
+TLDR; Minor revision 1 has a HW bug fixed, Panfrost isn't affected by
+the bug anyway.
+
+Steve
+
+[1] It's been on my todo list for a while to look at improving job
+scheduling, but to be honest I doubt I'm going to get round to it with
+Panfrost, and PanCSF obviously changes the job scheduling anyway.
+
+> Regards,
+> Angelo
+> 
+>>> ---
+>>>   drivers/gpu/drm/panfrost/panfrost_gpu.c | 8 ++++++++
+>>>   1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/panfrost/panfrost_gpu.c
+>>> b/drivers/gpu/drm/panfrost/panfrost_gpu.c
+>>> index 6452e4e900dd..d28b99732dde 100644
+>>> --- a/drivers/gpu/drm/panfrost/panfrost_gpu.c
+>>> +++ b/drivers/gpu/drm/panfrost/panfrost_gpu.c
+>>> @@ -204,6 +204,14 @@ static const struct panfrost_model gpu_models[] = {
+>>>
+>>>          GPU_MODEL(g57, 0x9001,
+>>>                  GPU_REV(g57, 0, 0)),
+>>> +
+>>> +       /* MediaTek MT8192 has a Mali-G57 with a different GPU ID
+>>> from the
+>>> +        * standard. Arm's driver does not appear to handle this model.
+>>> +        * ChromeOS has a hack downstream for it. Treat it as
+>>> equivalent to
+>>> +        * standard Mali-G57 for now.
+>>> +        */
+>>> +       GPU_MODEL(g57, 0x9003,
+>>> +               GPU_REV(g57, 0, 0)),
+>>>   };
+>>>
+>>>   static void panfrost_gpu_init_features(struct panfrost_device *pfdev)
+>>> -- 
+>>> 2.39.2
+>>>
+> 
+> 
+
