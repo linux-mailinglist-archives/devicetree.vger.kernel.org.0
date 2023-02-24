@@ -2,159 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D021A6A1CE5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:21:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B2516A1CE9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 14:21:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbjBXNVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 08:21:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51798 "EHLO
+        id S230072AbjBXNVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 08:21:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjBXNVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:21:05 -0500
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FFAC66970;
-        Fri, 24 Feb 2023 05:21:00 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id C8BE55C00FD;
-        Fri, 24 Feb 2023 08:20:57 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 24 Feb 2023 08:20:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1677244857; x=1677331257; bh=Xle0yeUGBO
-        ksma2Gc9p3BVXHO1tPXh7Uos0haf9MEdw=; b=CSaI77jmGYFEpkHo8SbSMJFSNt
-        s+7t+i35rlx+02Rkc5GAegdPGWQwqYVeBJpwrcevDxWbkkFilW4xy+gcUGK/YhKt
-        W3Ir7ftEGg6agi3OWEjE439seloBmVLd0aa0RdMdoZhGTxrvS7fen4k6BRHmwTXu
-        MEmO1qInbkqbvbC81tUMIG05+VQQ6lsiuxvkQsZOey+917S/b6e7fxDL4wSD7ZNE
-        3X6w2UZa8k/kpE/M5P0UtPwg8dsJl144hrrCX/4vIqsE2Reez1vELeNPXCt+BqSk
-        1Ve7MAgrcfDNDWB7QgPkMwjwbTvPYqtIAcGUJbug5lQek62VSMxT6+0IV1yw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1677244857; x=1677331257; bh=Xle0yeUGBOksma2Gc9p3BVXHO1tP
-        Xh7Uos0haf9MEdw=; b=mkUCCb+7KZ0i6c+OmFU3nSQZO0DzLhBKzaVQdyl5hj7E
-        B6La8P7s76VzF19FLer7kfJcr4Z3QO8ycIY8IVCzXqmp2o6+CYcjJbVfmNi/9uwX
-        XpvKmbtloNnJ6Y7cMLaq8VXRSPgiN4OBNMLJmuGkTXXdgJL1Tp5h5KsD//Wd9GzZ
-        1FcwsLxE/53TAJHnzFB1lmPrQG7i/LpXS+CdgRuwWxLFR/0SHcx+Y9gIaH3K7dzs
-        zOvWrGuT9w+pGZ9Rs3aPZN/oeA94Y6zQdAXbVd9aL4ZWVcBDKQMEZpMjEq5gfQDL
-        IUuyD4BbKtiS3S20aPC2bc58cv/DPoQAXMA/HDeeWg==
-X-ME-Sender: <xms:ubn4YwjAurfwTsVL7ndr1bAB6gidcqZijE86FhNUmGeJniTuL60i5g>
-    <xme:ubn4Y5APYULTM1iq2cJDTTfy32rZ2TM3D0wYrrWDNFyU_ud0E5-DUPI77_UkBMJAv
-    dD-EnG9CvOJl_DlEIc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudekfedggeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:ubn4Y4FYb6e9VA8-bXVQxC6VBZOnLCKl1hVxEIMQOdpJjxtA7yBbeA>
-    <xmx:ubn4YxQBvA1VhTF9vQTgsEScgcMpnAep5-eP9iB02UhbhiT6MX6GoA>
-    <xmx:ubn4Y9wxuFRfRM0GGGVjpUYIeOPPEHV_nMYNt9wR3u0QikPh3fwRnQ>
-    <xmx:ubn4YyxFUZ_-OwngXtf0cXoRFAOD81hhN_bdOYgOooL8MiEwQxFZRw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 5D0F7B60086; Fri, 24 Feb 2023 08:20:57 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-172-g9a2dae1853-fm-20230213.001-g9a2dae18
-Mime-Version: 1.0
-Message-Id: <15aa881f-5cf1-446e-a71e-f62d24e87500@app.fastmail.com>
-In-Reply-To: <a50fa44d-fbc3-9ce2-175b-85c8cd7a9f7f@linaro.org>
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212356.3313181-1-quic_eberman@quicinc.com>
- <dbcfa4e9-a1ad-0f24-77bf-05934ca26bb2@linaro.org>
- <05c4aab8-2d26-b944-adb6-624d67e4a11d@quicinc.com>
- <52d944b1-3ea6-26b7-766a-2fed05dccf3a@linaro.org>
- <c5ff1523-7a62-3d3f-6fa9-792ce4d222e8@quicinc.com>
- <a50fa44d-fbc3-9ce2-175b-85c8cd7a9f7f@linaro.org>
-Date:   Fri, 24 Feb 2023 14:20:40 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Elliot Berman" <quic_eberman@quicinc.com>,
-        "Alex Elder" <elder@linaro.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Prakruthi Deepak Heragu" <quic_pheragu@quicinc.com>
-Cc:     "Murali Nalajala" <quic_mnalajal@quicinc.com>,
-        "Trilok Soni" <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Bagas Sanjaya" <bagasdotme@gmail.com>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Jassi Brar" <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 10/26] gunyah: vm_mgr: Introduce basic VM Manager
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230057AbjBXNVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 08:21:31 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302FC66969
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:21:25 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id o12so55132295edb.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 05:21:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZyflOORFuzAU5BULEoWaY0vuPe5ZUd6mweprOBGP7n4=;
+        b=eEGf8AL+6iX6ix7igIArls0uX4woeA0Icw/G+F3GhaIH0WKf1pteL+EEp/5D5voScK
+         QXJSbogrGgJb059hs7A0Dv7UMrG9AIajzfIAwo4bfpy8M0TiF8bv00PhDa9H0zxJgSEb
+         520bsEZ1Cl92FhcSMTMskoZ3ZLuxA0IEnYdfiCWdjyOV395WmAjbDCzeE5cBgzOBa9ve
+         36lKYVNVqORoRDhbXrxKrTzVHaBR7Pt98o5SWqpi+5p42MTb2GNFnjGCSHvdh9MBD1Ul
+         gR7MuEowqHHhoSNgQiFW1mzH3nb6hGV38h4nF6qe6dt0Jn/xqBNjZr/ZSZOiYuJhMjPA
+         TIZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZyflOORFuzAU5BULEoWaY0vuPe5ZUd6mweprOBGP7n4=;
+        b=RUnmUF+EUYwn13pbUSTbxogbwFvZQmorkG+uXcAb9ys6804HRtFjBVfapiEx1X+FYR
+         zvmoD6S2E9vLfTioh5t6Tqxe+96FfiQZ2mWDPuPN+aawLP0ptIAefINgS+QzhxIvJ6Ra
+         LuZmA4b0SDgDWd2opbUr7trFn7JeBC9/agenNrMV4Vk1kC5DGgagYIIbScq4KTmMez5H
+         V39jPPsR3tcOdsPSf/F0o4zeW9LKXOYp1hpUl/mEWmRdpjl3fStggVn7ZLMDijNI1NUd
+         2xn3d5OLA9FZs58h2kxm6A931IGIFk7WJ8N/wQ8VksYNPT+0KSGze2Gh0O62ZS+8MBYr
+         CirA==
+X-Gm-Message-State: AO0yUKV2Ppf9GqzyMTbYx2X+24bF5yRfmrQR5fJoXz/Yn/+ZAVlEKxwM
+        TTxVSowc/Vbz/rVrQb5rLhsXtg==
+X-Google-Smtp-Source: AK7set+7MBWjsuB8yva8Fc5p8aC5aN5uYqqryTPqCXjxKK3H5HjlkWNP4KGkPHf5peiWVdp8nCUvCw==
+X-Received: by 2002:a17:906:f212:b0:8a9:f870:d25b with SMTP id gt18-20020a170906f21200b008a9f870d25bmr22004320ejb.15.1677244883698;
+        Fri, 24 Feb 2023 05:21:23 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id kx20-20020a170907775400b008b17de96f00sm9947077ejc.151.2023.02.24.05.21.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Feb 2023 05:21:23 -0800 (PST)
+Message-ID: <6ebf87aa-4422-1f84-7e76-276ac4d884c3@linaro.org>
+Date:   Fri, 24 Feb 2023 14:21:21 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: dma: snps,dw-axi-dmac: Add reset
+ items
+Content-Language: en-US
+To:     Walker Chen <walker.chen@starfivetech.com>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230221140424.719-1-walker.chen@starfivetech.com>
+ <20230221140424.719-2-walker.chen@starfivetech.com>
+ <1467f7c5-07eb-97db-c6f2-573a4208cc28@linaro.org>
+ <d0984638-3f7f-7e4e-fe3e-5e1f88375dca@starfivetech.com>
+ <36188e04-332f-e944-9c58-f6f2b74987da@linaro.org>
+ <bd4301c5-d79f-6ba5-a840-95b733d2d44e@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <bd4301c5-d79f-6ba5-a840-95b733d2d44e@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 24, 2023, at 11:29, Srinivas Kandagatla wrote:
-> On 23/02/2023 22:40, Elliot Berman wrote:
-
->>>> Does this means adding #define GH_VM_DEFAULT_ARG 0 ? I am not sure 
->>>> yet what arguments to add here.
+On 24/02/2023 14:09, Walker Chen wrote:
+> 
+> 
+> On 2023/2/24 18:51, Krzysztof Kozlowski wrote:
+>> On 24/02/2023 11:14, Walker Chen wrote:
+>>>>>    resets:
+>>>>> -    maxItems: 1
+>>>>> +    maxItems: 2
 >>>>
->>>> The ABI can add new "long" values to GH_CREATE_VM and that wouldn't 
+>>>> This breaks ABI and all other users. Test your changes before sending.
 >>>
->>> Sorry, that is exactly what we want to avoid, we can not change the 
->>> UAPI its going to break the userspace.
+>>> I think 'minItems' should be added here. So like this:
+>>> resets:
+>>>   minItems: 1
+>>>   maxItems: 2
 >>>
->>>> break compatibility with old kernels; old kernels reject it as -EINVAL.
->>>
->>> If you have userspace built with older kernel headers then that will 
->>> break. Am not sure about old-kernels.
->>>
->>> What exactly is the argument that you want to add to GH_CREATE_VM?
->>>
->>> If you want to keep GH_CREATE_VM with no arguments that is fine but 
->>> remove the conflicting comments in the code and document so that its 
->>> not misleading readers/reviewers that the UAPI is going to be modified 
->>> in near future.
->>>
->>>
->> 
->> The convention followed here comes from KVM_CREATE_VM. Is this ioctl 
->> considered bad example?
->> 
->
-> It is recommended to only use _IO for commands without arguments, and 
-> use pointers for passing data. Even though _IO can indicate either 
-> commands with no argument or passing an integer value instead of a 
-> pointer. Am really not sure how this works in compat case.
->
-> Am sure there are tricks that can be done with just using _IO() macro 
-> (ex vfio), but this does not mean that we should not use _IOW to be more 
-> explicit on the type and size of argument that we are expecting.
->
-> On the other hand If its really not possible to change this IOCTL to 
-> _IOW and argument that you are referring would be with in integer range, 
-> then what you have with _IO macro should work.
+>>> Other platform/users will not be affected by this.
+>>
+>> Which will allow two resets on all platforms. Is this correct for these
+>> platforms? Do they have two resets?
+>>
+> In kernel 6.2, only two platforms use this DMA controller (see 'arch/arc/boot/dts/hsdk.dts' and 'arch/riscv/boot/dts/canaan/k210.dtsi').
 
-Passing an 'unsigned long' value instead of a pointer is fine for compat
-mode, as a 32-bit compat_ulong_t always fits inside of the 64-bit
-unsigned long. The downside is that portable code cannot have a
-single ioctl handler function that takes both commands with pointers
-and other commands with integer arguments, as some architectures
-(i.e. s390, possibly arm64+morello in the future) need to mangle
-pointer arguments using compat_ptr() but must not do that on integer
-arguments.
+What about all out-of-tree platforms, bootloaders and FW?
 
-     Arnd
+> There is one reset on k210, while there is no reset of DMA on hsdk at all.
+> If here minItems with value 1 is added and the value of maxItems is changed to 2, after my testing,
+> whether it is one reset or two resets, even no reset, there is no errors occur when doing dtbs_check,
+
+Yeah, I know how this works.
+
+> the DMA initialization shall not be affected either on their platforms.
+
+I asked whether the hardware physically have two resets. dtbs_check
+checks the DTS, not the hardware. You know allow two resets for each
+other variant. What's more, you call first reset axi for all variants.
+This does not look correct, e.g. k210.dtsi does not indicate this is axi
+reset line but reset for entire block.
+
+Thus your change should be constrained per your variant (min/max in
+top-level, allOf:if:then allowing two lines for you, disallowing for
+others).
+
+
+
+Best regards,
+Krzysztof
+
