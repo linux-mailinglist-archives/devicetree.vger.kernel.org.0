@@ -2,171 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE236A212B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 19:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC23A6A2167
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 19:25:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbjBXSIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 13:08:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
+        id S229569AbjBXSZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 13:25:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjBXSIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 13:08:51 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B798965302;
-        Fri, 24 Feb 2023 10:08:46 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31OI8VMV030263;
-        Fri, 24 Feb 2023 18:08:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=0YkAC5sdUDDNmzZjSAq+GcFuOfC2a1Wmd+AzIEAfGlk=;
- b=mtfdtO8xjp0EKrogibIHZXdFq3IWWg3cGIDlEeKVNGccHgKogSbdNPsV2JMqkJmcKBQ1
- S84I62QQt1n0GX8Hud235eLdJK+6kCYJKyNmaOgDX7LQ9pgGah/9skQ+2lK71cs7Yy4n
- IyyDNXqM6hu39RKFaHSTJXLtxxVSTsRK0ABCrOmE6YUyIcj4G3WIIeLz474gu/9qliis
- Pb4iEH5K6hUhvlLAK1cl6+T5MmXKudIKNJv7T0nrojK4nsQyepJZ6okIUNLci//ubyQd
- BLhtxO3C571knJ0uX20g++vedoQTHcWPEn8qCce1sc5KGYr9oso5TD3aFiH5c59UWMzk aQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ny05mrcs6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Feb 2023 18:08:31 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31OI8UW5000665
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Feb 2023 18:08:30 GMT
-Received: from [10.110.9.108] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 24 Feb
- 2023 10:08:29 -0800
-Message-ID: <7b6d4c14-ebde-1bc3-04de-59cae9d4b7be@quicinc.com>
-Date:   Fri, 24 Feb 2023 10:08:28 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v10 12/26] gunyah: vm_mgr: Add/remove user memory regions
-Content-Language: en-US
-To:     Fuad Tabba <tabba@google.com>
-CC:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Arnd Bergmann" <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229626AbjBXSZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 13:25:04 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6F412FCFD
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 10:24:51 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id ay9so296552qtb.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 10:24:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1Fnp0ba5VhlafZVccT2w5j+DOMmZOJytBGzATXCfRD8=;
+        b=gsy94FmB/yD5akZbWO1RHmsYnY7jOABYlgOtGW+dqfUo/RJ/YocCQi3PyiDgw406OM
+         8e5J52NEppx0L0S8P0f27OoShbCoRqvnxPSn/kw10Z8xHHzcOo8j8P2vn5OQl2O0KIkN
+         241S97+5XB5fzrWsuBQ1o6mMXWmLhmC/HvafwEjrzMgg8IMBoNgxCg37s3kuKriuZBsO
+         FI4v+9INha/6ABRTN8iSBytExs9NpvTFcu/zP4YT/7o2JAazVcZ34wSG0mF8l/gWiNhi
+         9uzZw1hLZ7R+uTmuhWg0+FGk7fCWctkGz0vBw6mKs7BvCMp3ke3eg66DI0aLgO6JyS+7
+         2epg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1Fnp0ba5VhlafZVccT2w5j+DOMmZOJytBGzATXCfRD8=;
+        b=1+hVqUnU5LUk3YvqzfQ28fwqKIgjsuWcMxgUzvI4Bu0YywgP2977tutAiT4Pe5huf4
+         2yS8TEb5wSn0s3fvOPlELCTIymJlSEEMBsfKIBshH9fP2Mex1CTiXLRMY5X+3uWsLmZC
+         ZH1JtGSjGnb256RUBikyENN5ykQaOdpN2j3EG2PYkTMF/Ae4w2170kGwpv5ll9ETBN1s
+         2MsApKrGb7xeFAvUC5zwQjN+vv5yvAoqpBaI/Pfe9WKBNppbHi/85Ah+GHP3/2ho+jLV
+         nsj7CATRezT1x1x1ylUT7FMV4VmZcguNPJpA0AmMRRrc3/Drhw8OxZDljxZsKkb1HREW
+         6Ftg==
+X-Gm-Message-State: AO0yUKWm+toysuGgudfF3M9U22l+Dw510pe3+L6S95iXZFK4LzKQPCHq
+        8vchR08krNnDWK7NsEsdSR7+qw==
+X-Google-Smtp-Source: AK7set/BeRHe9RXAinrBHWyLkkp50J5q+OBYt4CtP9mCl04Us2eZ1g2ISTz8oiIeu+G+p4iRan5NbQ==
+X-Received: by 2002:ac8:5f86:0:b0:3bf:a461:e6df with SMTP id j6-20020ac85f86000000b003bfa461e6dfmr23199359qta.25.1677263090595;
+        Fri, 24 Feb 2023 10:24:50 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id x14-20020ac8018e000000b003bfaae103f6sm5340400qtf.89.2023.02.24.10.24.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Feb 2023 10:24:49 -0800 (PST)
+Message-ID: <12dfd1f511d83bb1a3d9924cb0d09dbba626a699.camel@ndufresne.ca>
+Subject: Re: [PATCH v3 00/14] media: rkisp1: Add support for i.MX8MP
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Adam Ford <aford173@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org, Dafna Hirschfeld <dafna@fastmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Bagas Sanjaya" <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Chao Peng" <chao.p.peng@linux.intel.com>,
-        "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
-        Sean Christopherson <seanjc@google.com>,
-        Quentin Perret <qperret@google.com>,
-        Will Deacon <will@kernel.org>,
-        "smoreland@google.com" <smoreland@google.com>
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214212417.3315422-1-quic_eberman@quicinc.com>
- <CA+EHjTxEeiBWXJMCnv0V+5n=jB8w=m0EFdgK=FKtSqKOkiaChg@mail.gmail.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <CA+EHjTxEeiBWXJMCnv0V+5n=jB8w=m0EFdgK=FKtSqKOkiaChg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GB_MM5ia32HfIiO1IJ_OZveSflPxvTnN
-X-Proofpoint-ORIG-GUID: GB_MM5ia32HfIiO1IJ_OZveSflPxvTnN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-24_13,2023-02-24_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 malwarescore=0 clxscore=1011 phishscore=0 mlxscore=0
- spamscore=0 impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302240142
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Fri, 24 Feb 2023 13:24:48 -0500
+In-Reply-To: <CAHCN7xLXz4iSKcTQgyW=E0c4eLZSAYAiuoTKpQBWz8GsfZ2GCA@mail.gmail.com>
+References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+         <CAHCN7xKbL+g5ZaPe3a50fUEe4AU3a6asCqWFSE8d7DCzWZO=qg@mail.gmail.com>
+         <Y/d3m78NgmuuXOH8@pendragon.ideasonboard.com>
+         <CAHCN7xLXz4iSKcTQgyW=E0c4eLZSAYAiuoTKpQBWz8GsfZ2GCA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Adam,
 
+Le jeudi 23 f=C3=A9vrier 2023 =C3=A0 10:10 -0600, Adam Ford a =C3=A9crit=C2=
+=A0:
+> On Thu, Feb 23, 2023 at 8:26 AM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> >=20
+> > Hi Adam,
+> >=20
+> > On Wed, Feb 22, 2023 at 05:39:30PM -0600, Adam Ford wrote:
+> > > On Fri, Nov 18, 2022 at 3:44 AM Paul Elder wrote:
+> > > >=20
+> > > > This series depends on v3 of "dt-bindings: media: Add macros for vi=
+deo
+> > > > interface bus types" [1].
+> > > >=20
+> > > > This series extends the rkisp1 driver to support the ISP found in t=
+he
+> > > > NXP i.MX8MP SoC.
+> > > >=20
+> > > > The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP=
+1")
+> > > > and in the NXP i.MX8MP have the same origin, and have slightly dive=
+rged
+> > > > over time as they are now independently developed (afaik) by Rockch=
+ip
+> > > > and VeriSilicon. The latter is marketed under the name "ISP8000Nano=
+",
+> > > > and is close enough to the RK3399 ISP that it can easily be support=
+ed by
+> > > > the same driver.
+> > > >=20
+> > > > The last two patches add support for UYVY output format, which can =
+be
+> > > > implemented on the ISP version in the i.MX8MP but not in the one in=
+ the
+> > > > RK3399.
+> > > >=20
+> > > > This version of the series specifically has been tested on a Polyhe=
+x
+> > > > Debix model A with an imx219 (Raspberry Pi cam v2).
+> > > >=20
+> > > > [1] https://lore.kernel.org/linux-media/20220615221410.27459-2-laur=
+ent.pinchart@ideasonboard.com/
+> > > >=20
+> > > > Laurent Pinchart (3):
+> > > >   dt-bindings: media: rkisp1: Add i.MX8MP ISP example
+> > > >   media: rkisp1: Add and use rkisp1_has_feature() macro
+> > > >   media: rkisp1: Configure gasket on i.MX8MP
+> > > >=20
+> > > > Paul Elder (11):
+> > > >   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
+> > > >   media: rkisp1: Add match data for i.MX8MP ISP
+> > > >   media: rkisp1: Add and set registers for crop for i.MX8MP
+> > > >   media: rkisp1: Add and set registers for output size config on i.=
+MX8MP
+> > > >   media: rkisp1: Add i.MX8MP-specific registers for MI and resizer
+> > > >   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
+> > > >   media: rkisp1: Add register definitions for the test pattern gene=
+rator
+> > > >   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
+> > > >   media: rkisp1: Support devices without self path
+> > > >   media: rkisp1: Add YC swap capability
+> > > >   media: rkisp1: Add UYVY as an output format
+> > >=20
+> > > Paul / Laurent,
+> > >=20
+> > > I noticed an unexpected behaviour on the imx8mp.
+> > >=20
+> > > If I setup my pipeline for 640x480, it works just fine using an imx21=
+9
+> > > camera configured for SRGGB10_1X10.
+> > >=20
+> > > However, when I try to configure the pipeline to use the same camera
+> > > at 1920x1080 (no resizing), the ISP source keeps defaulting to 640x48=
+0
+> > >=20
+> > > Media device information
+> > > ------------------------
+> > > driver          rkisp1
+> > > model           rkisp1
+> > > serial
+> > > bus info        platform:rkisp1
+> > > hw revision     0xe
+> > > driver version  6.2.0
+> > >=20
+> > > Device topology
+> > > - entity 1: rkisp1_isp (4 pads, 4 links)
+> > >             type V4L2 subdev subtype Unknown flags 0
+> > >             device node name /dev/v4l-subdev0
+> > > pad0: Sink [fmt:SRGGB10_1X10/1920x1080 field:none colorspace:raw xfer=
+:none ycbcr:601 quantization:full-range crop.bounds:(0,0)/1920x1080 crop:(0=
+,0)/640x480]
+> >=20
+> > You're cropping the image to 640x480 here. You need to set the crop
+> > rectangle to 1920x1080.
+> >=20
+> > As Jacopo mentioned, I wouldn't recommend exercising the ISP directly.
+> > Not only do you need to setup the pipeline, but you would also need to
+> > implement all the imaging algorithms in userspace. libcamera will do al=
+l
+> > this for you.
+>=20
+> I'll give that a try.  My current employer has a v4l2src requirement,
+> but I can likely make an argument to switch to libcamera.  I didn't
+> catch the cropping part. Thanks for that.
 
-On 2/24/2023 2:19 AM, Fuad Tabba wrote:
-> Hi,
-> 
-> On Tue, Feb 14, 2023 at 9:26 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>
->>
->> When launching a virtual machine, Gunyah userspace allocates memory for
->> the guest and informs Gunyah about these memory regions through
->> SET_USER_MEMORY_REGION ioctl.
-> 
-> I'm working on pKVM [1], and regarding the problem of donating private
-> memory to a guest, we and others working on confidential computing
-> have faced a similar issue that this patch is trying to address. In
-> pKVM, we've initially taken an approach similar to the one here by
-> pinning the pages being donated to prevent swapping or migration [2].
-> However, we've encountered issues with this approach since the memory
-> is still mapped by the host, which could cause the system to crash on
-> an errant access.
-> 
-> Instead, we've been working on adopting an fd-based restricted memory
-> approach that was initially proposed for TDX [3] and is now being
-> considered by others in the confidential computing space as well
-> (e.g., Arm CCA [4]). The basic idea is that the host manages the guest
-> memory via a file descriptor instead of a userspace address. It cannot
-> map that memory (unless explicitly shared by the guest [5]),
-> eliminating the possibility of the host trying to access private
-> memory accidentally or being tricked by a malicious actor. This is
-> based on memfd with some restrictions. It handles swapping and
-> migration by disallowing them (for now [6]), and adds a new type of
-> memory region to KVM to accommodate having an fd representing guest
-> memory.
-> 
-> Although the fd-based restricted memory isn't upstream yet, we've
-> ported the latest patches to arm64 and made changes and additions to
-> make it work with pKVM, to test it and see if the solution is feasible
-> for us (it is). I wanted to mention this work in case you find it
-> useful, and in the hopes that we can all work on confidential
-> computing using the same interfaces as much as possible.
+I'd hope you can transparently replace v4l2src with libcamerasrc, the plugi=
+ns
+currently lives inside the libcamera project. If not, I'd really like to kn=
+ow
+why. We can work together on adding missing controls (this is something I'm
+starting on soon).
 
-Thanks for highlighting the memfd_restricted changes to us! We'll 
-investigate how/if it can suit Gunyah usecases. It sounds like you 
-might've made memfd_restricted changes as well? Are those posted on the 
-mailing lists? Also, are example userspace (crosvm?) changes posted?
+regards,
+Nicolas
 
-Thanks,
-Elliot
+>=20
+> adam
+> >=20
+> > > <- "csis-32e40000.csi":1 [ENABLED]
+> > > pad1: Sink [fmt:unknown/0x0 field:none]
+> > > <- "rkisp1_params":0 [ENABLED,IMMUTABLE]
+> > > pad2: Source [fmt:YUYV8_2X8/640x480 field:none colorspace:raw xfer:no=
+ne ycbcr:601 quantization:lim-range crop.bounds:(0,0)/640x480 crop:(0,0)/64=
+0x480]
+> > > -> "rkisp1_resizer_mainpath":0 [ENABLED]
+> > > pad3: Source [fmt:unknown/0x0 field:none]
+> > > -> "rkisp1_stats":0 [ENABLED,IMMUTABLE]
+> > >=20
+> > > - entity 6: rkisp1_resizer_mainpath (2 pads, 2 links)
+> > >             type V4L2 subdev subtype Unknown flags 0
+> > >             device node name /dev/v4l-subdev1
+> > > pad0: Sink [fmt:YUYV8_2X8/1920x1080 field:none colorspace:srgb xfer:s=
+rgb ycbcr:601 quantization:lim-range crop.bounds:(0,0)/1920x1080 crop:(0,0)=
+/640x480]
+> > > <- "rkisp1_isp":2 [ENABLED]
+> > > pad1: Source [fmt:YUYV8_2X8/1920x1080 field:none colorspace:srgb xfer=
+:srgb ycbcr:601 quantization:lim-range]
+> > > -> "rkisp1_mainpath":0 [ENABLED,IMMUTABLE]
+> > >=20
+> > > - entity 9: rkisp1_mainpath (1 pad, 1 link)
+> > >             type Node subtype V4L flags 0
+> > >             device node name /dev/video0
+> > > pad0: Sink
+> > > <- "rkisp1_resizer_mainpath":1 [ENABLED,IMMUTABLE]
+> > >=20
+> > > - entity 13: rkisp1_stats (1 pad, 1 link)
+> > >              type Node subtype V4L flags 0
+> > >              device node name /dev/video1
+> > > pad0: Sink
+> > > <- "rkisp1_isp":3 [ENABLED,IMMUTABLE]
+> > >=20
+> > > - entity 17: rkisp1_params (1 pad, 1 link)
+> > >              type Node subtype V4L flags 0
+> > >              device node name /dev/video2
+> > > pad0: Source
+> > > -> "rkisp1_isp":1 [ENABLED,IMMUTABLE]
+> > >=20
+> > > - entity 29: csis-32e40000.csi (2 pads, 2 links)
+> > >              type V4L2 subdev subtype Unknown flags 0
+> > >              device node name /dev/v4l-subdev2
+> > > pad0: Sink [fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb xfe=
+r:srgb ycbcr:601 quantization:full-range]
+> > > <- "imx219 1-0010":0 [ENABLED]
+> > > pad1: Source [fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb x=
+fer:srgb ycbcr:601 quantization:full-range]
+> > > -> "rkisp1_isp":0 [ENABLED]
+> > >=20
+> > > - entity 34: imx219 1-0010 (1 pad, 1 link)
+> > >              type V4L2 subdev subtype Sensor flags 0
+> > >              device node name /dev/v4l-subdev3
+> > > pad0: Source [fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb x=
+fer:srgb ycbcr:601 quantization:full-range crop.bounds:(8,8)/3280x2464 crop=
+:(688,700)/1920x1080]
+> > > -> "csis-32e40000.csi":0 [ENABLED]
+> > >=20
+> > > It's at this point that everything except the ISP source is 1920x1080=
+.
+> > >=20
+> > > When I try to set the ISP sink to 1080, it ends up being 640x480 and
+> > > the resizer sink is also changed to 640x480
+> > >=20
+> > > root@beacon-imx8mp-kit:~# media-ctl -v -V "'rkisp1_isp':2
+> > > [fmt:YUYV8_2X8/1920x1080 field:none]"
+> > > Opening media device /dev/media0
+> > > Enumerating entities
+> > > looking up device: 81:3
+> > > looking up device: 81:4
+> > > looking up device: 81:0
+> > > looking up device: 81:1
+> > > looking up device: 81:2
+> > > looking up device: 81:5
+> > > looking up device: 81:6
+> > > Found 7 entities
+> > > Enumerating pads and links
+> > > Setting up format YUYV8_2X8 1920x1080 on pad rkisp1_isp/2
+> > > Format set: YUYV8_2X8 640x480
+> > > Setting up format YUYV8_2X8 640x480 on pad rkisp1_resizer_mainpath/0
+> > > Format set: YUYV8_2X8 640x480
+> > >=20
+> > >=20
+> > > It's my understanding that the ISP should be able to handle 1920x1080=
+,
+> > > and the resizer sink should match the ISP source.
+> > >=20
+> > > With the pipeline improperly setup, the capture fails.
+> > >=20
+> > > >  .../bindings/media/rockchip-isp1.yaml         |  79 ++++++++++-
+> > > >  .../platform/rockchip/rkisp1/rkisp1-capture.c | 102 +++++++++++---
+> > > >  .../platform/rockchip/rkisp1/rkisp1-common.h  |  32 +++++
+> > > >  .../platform/rockchip/rkisp1/rkisp1-debug.c   |  14 +-
+> > > >  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  67 +++++++--
+> > > >  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 128 ++++++++++++++=
++++-
+> > > >  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  90 ++++++++++++
+> > > >  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  35 ++++-
+> > > >  include/uapi/linux/rkisp1-config.h            |   2 +
+> > > >  9 files changed, 509 insertions(+), 40 deletions(-)
+> >=20
+> > --
+> > Regards,
+> >=20
+> > Laurent Pinchart
 
-> 
-> Some comments inline below...
-> 
-> Cheers,
-> /fuad
-> 
-> [1] https://lore.kernel.org/kvmarm/20220519134204.5379-1-will@kernel.org/
-> [2] https://lore.kernel.org/kvmarm/20220519134204.5379-34-will@kernel.org/
-> [3] https://lore.kernel.org/all/20221202061347.1070246-1-chao.p.peng@linux.intel.com/
-> [4] https://lore.kernel.org/lkml/20230127112932.38045-1-steven.price@arm.com/
-> [5] This is a modification we've done for the arm64 port, after
-> discussing it with the original authors.
-> [6] Nothing inherent in the proposal to stop migration and swapping.
-> There are some technical issues that need to be resolved.
-> 
-> <snip>
-<snip, looking at comments in parallel>
