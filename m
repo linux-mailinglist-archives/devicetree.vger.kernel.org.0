@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7147D6A1969
-	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 11:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4A16A197D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Feb 2023 11:05:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjBXKD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Feb 2023 05:03:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44894 "EHLO
+        id S229993AbjBXKFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Feb 2023 05:05:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230002AbjBXKDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:03:31 -0500
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85CC5158BB
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:03:10 -0800 (PST)
-Received: by mail-vs1-xe2a.google.com with SMTP id s1so4367050vsk.5
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:03:10 -0800 (PST)
+        with ESMTP id S230034AbjBXKEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Feb 2023 05:04:35 -0500
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004BD65306
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:03:36 -0800 (PST)
+Received: by mail-vs1-xe36.google.com with SMTP id s1so4369086vsk.5
+        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 02:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=81aqISuq2eYUnck2go8oizXxt9eqFaaUJ7kbWY5LcaQ=;
-        b=BBIaeUfzGQ8ePb1MEWkKRMSN306q1XdtDnvrgaXMI2a78+E4hErLx37tCLGhJSxY4A
-         RMdxBfp07pBnOryIBtcyvGw0ia26eC6PpMmP3Wm0XRyE7bRga3NyH5nlZ7HkoxceIc6S
-         Ybi1UNdfJUUIcirP0Oxp+u2C4gL8bYn7DmAiA=
+        bh=TOM+IbwtBAiPFvq6ycNMUw45nB2aH2u3BMzF8LfulTo=;
+        b=lJjz2Ig4+Qs0/rc6HicYYxTiXTrw3KU0aEtlIWog/dkOb8669avk/G9Gc4z2yCrPEl
+         UoSJKuPWV6wmTncogJPoVR1Libzx7QPM8JhpBQbdMWNV0msZeWG4uvYtb/X+GnIDdPXR
+         xm22++ecslEfdQwZpn9qB5YEVo0hakXaU17uU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=81aqISuq2eYUnck2go8oizXxt9eqFaaUJ7kbWY5LcaQ=;
-        b=dh+trHfIdfI273/55HxvSwAnk7dEtMmHiLW3d9+l7d7MLW/aQcActBgFUpCXZGoNnu
-         bwd4WyGwccmGejwYtBBETLXX1yJJl0vs1kCGApSZ/ZyzP823Ak4BsVrk5tjepf6QtPgb
-         BPNqMbxjGjeydV4K5Qnmak5LWS5SkchMkRzRE5Jh7uaiVK+YcIRQYHNu2iVK6MN9oG4/
-         PgtLJNVy5jmLKQTyVBKHPcDvPB2O29r4VSZvIIYH8XSwBz7sMikQB6kufx0GGI6F+K0X
-         L9iD8gsda8Yu/xarAH/tzTSe0Ge8PRR98fC63AXUNOrW/zuP3Sh+ojyXcxDmT8AhdBAL
-         nGSw==
-X-Gm-Message-State: AO0yUKVgjXoptK4Zl+OPDA6ZfPNN5+VuCHgmbQcbmH/btcuy35sYiMNJ
-        GpIB5BjLxbzq6lod/03Lej8naHtDXKQDX6bNRNIHtg==
-X-Google-Smtp-Source: AK7set+3I53BDKCorZLNVo5d0QftsqocEySXrxgfRxSbKglMQGMQLOvpEbCtJonqcgFcA2dFPOyYsedOXPEqiC/zdec=
-X-Received: by 2002:ab0:53d5:0:b0:68a:5c52:7f2b with SMTP id
- l21-20020ab053d5000000b0068a5c527f2bmr4368520uaa.1.1677232989554; Fri, 24 Feb
- 2023 02:03:09 -0800 (PST)
+        bh=TOM+IbwtBAiPFvq6ycNMUw45nB2aH2u3BMzF8LfulTo=;
+        b=oG5wTC/vIQAuf7za0xLs+FyxEDy6FvS/Hv97j+uRXmtbgU6YUGX/HM1zHiSx+T7Q5H
+         kSQ8DNHo4MC6b+3J/AMRF5tOn+MKUnsG8BXpWIZIDbOpIEo16N6/EPDnmus2fkn6KF8O
+         Aw5vWd3/9659NX7WR8ZHWuATo27YfynzKX/CY4k2R+8M6RpcRzZZqqRsfiZh8Ehidads
+         /GCok/DHCkUm7fajhst1CIc1SAuZ5rBEX/xApDApWFYcPdTne74wX/KwFgKFln3jVs2s
+         lw0q5AxdPE86gRtdoK/Z5wl+pI3lMselWVjryr4VlxmD32GingruXOm5bvUp6st0JSNI
+         Hm8w==
+X-Gm-Message-State: AO0yUKU9HNQR3RqTOVppXFlLljE69cZ9hlL6IvTIio/tqCV0B7SjzJqH
+        NdQ/N+BBIvKor8m9uNLq4qb5DDWpOLci1JjZGhCZNw==
+X-Google-Smtp-Source: AK7set/SYPCxVBflpRQGKecsjnyfDdkoGF7kargtYFZ6pSE/pnkb0nj2hS8BJcPINJZtdPjnTGck5LQCaDsEStN/Zvs=
+X-Received: by 2002:ab0:1014:0:b0:68b:90f4:1d8c with SMTP id
+ f20-20020ab01014000000b0068b90f41d8cmr4235195uab.1.1677233015332; Fri, 24 Feb
+ 2023 02:03:35 -0800 (PST)
 MIME-Version: 1.0
-References: <20230223134345.82625-1-angelogioacchino.delregno@collabora.com> <20230223134345.82625-17-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230223134345.82625-17-angelogioacchino.delregno@collabora.com>
+References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com>
+ <20230223133440.80941-12-angelogioacchino.delregno@collabora.com> <4e0673e7-5685-ad1b-2fac-4ae544caefeb@arm.com>
+In-Reply-To: <4e0673e7-5685-ad1b-2fac-4ae544caefeb@arm.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 24 Feb 2023 18:02:58 +0800
-Message-ID: <CAGXv+5HgMPvsCUWjeofYBbrGKBvP_eE70exKZ2QLRFuMvn7PAQ@mail.gmail.com>
-Subject: Re: [PATCH v2 16/16] arm64: dts: mediatek: mt8186: Add GPU node
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+Date:   Fri, 24 Feb 2023 18:03:24 +0800
+Message-ID: <CAGXv+5E68nV_Lj-fE5aTqBryUwMu+JJ0N=EZEzjLTXp+980MEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 11/11] drm/panfrost: Add support for Mali on the MT8186 SoC
+To:     Steven Price <steven.price@arm.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alyssa.rosenzweig@collabora.com,
+        matthias.bgg@gmail.com, robh@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
@@ -65,11 +69,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 9:44 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Fri, Feb 24, 2023 at 4:46 PM Steven Price <steven.price@arm.com> wrote:
 >
-> Add a GPU node for MT8186 SoC but keep it disabled.
+> On 23/02/2023 13:34, AngeloGioacchino Del Regno wrote:
+> > MediaTek MT8186 has a Mali-G52 MC2 2EE (Bifrost): add a new compatible
+> > and platform data using the same supplies list as "mt8183_b" (only one
+> > regulator), and a new pm_domains list with only two power domains.
+> >
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 >
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Steven Price <steven.price@arm.com>
 
 Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
