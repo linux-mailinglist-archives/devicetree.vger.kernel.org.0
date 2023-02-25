@@ -2,80 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A8C06A2A6C
-	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 16:14:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3003D6A2A8C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 16:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbjBYPOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 10:14:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35132 "EHLO
+        id S229536AbjBYPlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 10:41:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjBYPOP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 10:14:15 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92B91816E
-        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 07:14:12 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id t15so2026986wrz.7
-        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 07:14:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aAn8974QxJQM/mYz2BJxPbBDPxMn3GnejkmRFkH9GXI=;
-        b=q7ZUrCeC0vRJQwA04gj3mvWJ0PYVrMlztefvPQsVyPv3doR/tf/K9mPDiAHvCJXmmM
-         SmQbZ0tWaFNc5sxtRuAWkLBwvjo5rGxtgP/3o+b+KDDpMQD0XKHCbovkPp+AVNEDlHtR
-         +ImvfDXU0nINrYRouY34cTIIDB0703832Fd++lTpE8wFT5cLOkYCkizfz+toJ9M0Dhk5
-         mOhwR+07tbqgIR2d6uNImZgj7O8SwWSGe4CqgIzvNNXFaG0mvlEP2r0lwLb772mMvjY3
-         0LZvO7h7eFpibldF6A3yOq9HAYMvvxkRkdObtcCLXvE7PmDdig1Y+FgrlmPATiYXHjtI
-         gT3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:subject:from:cc:to:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aAn8974QxJQM/mYz2BJxPbBDPxMn3GnejkmRFkH9GXI=;
-        b=HvM9BxGO0X2MHEnnpiS86HNcXNdxk4Q02SiZLICL9yvLfzyM4ZmhWOoDHEMvImvYMu
-         B3xePHG2UjTSbwJuNqIiUHklD42xW2wpso4vACt5CmdmQVk56VGMQplghlMQSB9bYMH+
-         A53SU0OKDf4zmPJfc6PF5vG24wS/kvKCW3MSdAw+UxRqlgJrZdS/4gEfiemEOzL20PQC
-         gqNT3vgBZyVjyjr6IKdnT6rK1XfYWVcHwvrifq/KS9Q+OKJm/L1KM5T0VcY4nqlFdwyI
-         iJvMq0nQFXuU9K+qM2d4IesNpyUSvG2FpVJQqQx+VBmrzo56OfS9ug+MNvtzw5erbwRs
-         n8sA==
-X-Gm-Message-State: AO0yUKWSdiSiR0R4R+EtqvOzKW/k87icqa4WAfBkBLmJYcdn1at8vE4H
-        7pVjmdjBLU6M7risUuC5y9rukg==
-X-Google-Smtp-Source: AK7set+4jebEtDTqo6qRMUN694xq9Q1DE0QswNAWC8eq6MAqtaH+QCpHpBt7P00LW2d6UT2VDPknmg==
-X-Received: by 2002:adf:e242:0:b0:2c5:8c04:c6a8 with SMTP id bl2-20020adfe242000000b002c58c04c6a8mr17455819wrb.51.1677338051415;
-        Sat, 25 Feb 2023 07:14:11 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f5-20020a1c6a05000000b003d9aa76dc6asm6478150wmc.0.2023.02.25.07.14.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Feb 2023 07:14:11 -0800 (PST)
-Message-ID: <e48669a4-8fd1-dc0b-1446-7fbe1266c32c@linaro.org>
-Date:   Sat, 25 Feb 2023 16:14:09 +0100
+        with ESMTP id S229482AbjBYPlj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 10:41:39 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336B683C0;
+        Sat, 25 Feb 2023 07:41:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677339698; x=1708875698;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7TlSJBAv1JWgP8CG84HHh60dSmh6Utj+V6WWc5f2D80=;
+  b=eFuLfSuKFnD2v5vaIcSmUubPUHmXQAeCEdRCbcmzGeUEXNwrXwtw/LsL
+   W+xrDmWx0Ka0ehvnl/efN/xsO1n+hFSMT1im7/hNlENk2NUyozYUIssIr
+   gf38KRQtaq0hND7Hc99iK6Ca1j+oaOdygsI3y5SDiib91/yV8DG5AG0Km
+   lZmYePVL6iNRdZC+WKd6XRyGwLBrW1R9ZxcNTtRFMF2x3PhIZWWKEUZla
+   CBjHJpOUk3wnJCkkSN+eniORrMxNedkFZ3WevGrOnsEIOsZaVJToVSzyl
+   ZWsPdfLc02jhvKVuA7OQTGVxpMnUDsYhQCZtO56oIb3k3lKpDcZWq5bAm
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="396182615"
+X-IronPort-AV: E=Sophos;i="5.97,327,1669104000"; 
+   d="scan'208";a="396182615"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2023 07:41:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="782728869"
+X-IronPort-AV: E=Sophos;i="5.97,327,1669104000"; 
+   d="scan'208";a="782728869"
+Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 25 Feb 2023 07:41:34 -0800
+Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pVwg1-0003Hb-2Q;
+        Sat, 25 Feb 2023 15:41:33 +0000
+Date:   Sat, 25 Feb 2023 23:40:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM64: dts: debix model-a: enable hdmi
+Message-ID: <202302252343.4lnZcpLX-lkp@intel.com>
+References: <MA0PR01MB7145D1E9382C7F91197B259FFFA99@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Any more work on "regulator: tps65090: Convert to json-schema"?
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MA0PR01MB7145D1E9382C7F91197B259FFFA99@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thierry,
+Hi Hardevsinh,
 
-Long time ago you sent:
-https://lore.kernel.org/all/20211217170507.2843568-6-thierry.reding@gmail.com/
+Thank you for the patch! Yet something to improve:
 
-Any plans to resubmit it?
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on linus/master next-20230225]
+[cannot apply to v6.2]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best regards,
-Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/Hardevsinh-Palaniya/ARM64-dts-debix-model-a-enable-hdmi/20230225-222532
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+patch link:    https://lore.kernel.org/r/MA0PR01MB7145D1E9382C7F91197B259FFFA99%40MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM
+patch subject: [PATCH] ARM64: dts: debix model-a: enable hdmi
+config: arm64-randconfig-r014-20230222 (https://download.01.org/0day-ci/archive/20230225/202302252343.4lnZcpLX-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project db89896bbbd2251fff457699635acbbedeead27f)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/169f8a9904944622235b3485702d64ac942af621
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Hardevsinh-Palaniya/ARM64-dts-debix-model-a-enable-hdmi/20230225-222532
+        git checkout 169f8a9904944622235b3485702d64ac942af621
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202302252343.4lnZcpLX-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:49.1-15 Label or path irqsteer_hdmi not found
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:53.1-15 Label or path hdmi_blk_ctrl not found
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:57.1-11 Label or path hdmi_pavi not found
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:61.1-6 Label or path hdmi not found
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:65.1-9 Label or path hdmiphy not found
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:69.1-8 Label or path lcdif1 not found
+>> Error: arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts:77.1-8 Label or path lcdif3 not found
+   FATAL ERROR: Syntax error parsing input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
