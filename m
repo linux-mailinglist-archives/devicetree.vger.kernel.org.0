@@ -2,105 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 861486A2783
-	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 07:25:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FE596A2894
+	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 10:44:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbjBYGZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 01:25:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55890 "EHLO
+        id S229522AbjBYJoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 04:44:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjBYGZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 01:25:40 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D98829E09
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 22:25:37 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id ky4so1689422plb.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Feb 2023 22:25:37 -0800 (PST)
+        with ESMTP id S229456AbjBYJoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 04:44:38 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A72701204E;
+        Sat, 25 Feb 2023 01:44:37 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id cy6so6747980edb.5;
+        Sat, 25 Feb 2023 01:44:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4QPCIfZpunPpGQRjZ0CLzZgvh1bMrAOlRsJYurE9VOI=;
-        b=i2OnX+qtVkxWkVFcUUUtHoMVo58k8kPteFOU3yRJoch4UrZVjVtoKgQCILPsSIH2IM
-         9SuCn3vu72nb3n2gCsoCb9MQcwZbuXYf5jgyHDO34s/gR8M5CxRU5gV0+YnHw+9V/jL3
-         UereLqEbLRdif9+wLl1Wv9EJQ5zwKS3GE8nA8qUJSHw1j151949EZ1cDEtx0EJ19hLV9
-         2i4mG+2eo1p0BSS1qZavXyXOVwVlLf24HyC12nbm1kz7x2IzYuc7LLP1/1i2knyLhN87
-         asicV45YD46sfQWagebPdNnXBrCMp8DyEYimgDowgWuBomRC1Gc2M0hNTbO7Evf7ew4Y
-         cwsQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kpSiX+Ch3K3DG82dTWHs1KrCJ7bKDMWnHZOHhDvLqjE=;
+        b=L8yNZMz2lUKp55CoI/P5ILvkS07Fd+3ffcxzVOi7k2wQgdjPIbOqMl79YnFcjuLqUb
+         2advNios1Y+qXq0iKJL2R2ynHOAc8cL0YlOJreg6FyUCBfLWzL3PiJH4+JccOu2la0ha
+         0ItIJ+hjw0a+v0U2X5K3aw32QBmB9+Yh8EuDZCOrpcdkgMXzXCjEhOWKu908Mby5XoGB
+         nF1GtsEC+twxPGL4nRBDsam9nIuanLMFdtIx6ddcTXNmapQvbcTOJFsCw5f8Y/v5i+/0
+         7HJTUMObiMSDaEtF4MMprseEyvybXfSFE7Srad9474H51uNZmRI3Bo4BA4QyMAHq639z
+         jtqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4QPCIfZpunPpGQRjZ0CLzZgvh1bMrAOlRsJYurE9VOI=;
-        b=hzNeL95BtShn3slNO9NJYvtHRyHiBHKliZDUDNklhC+sTS3IQ81zXhKOjMvVLsef40
-         t35hpBXKRtmacW+5kblskqTht9i6MDkr2Pto0ufrRAHGBVHp+eLvsm9psGFv3MSvR0O4
-         3S+Za2eJFIWhMqxPpI8oaKFxj/l5sKeg53IPogbJgHPKRe7cV6Jh3mjrW6COR39e9gwt
-         rH1cf4BSl3/lSLndWOngXRJne6+YQNyTo0GiiwPEYa/qzJxdRVl+9/iARS1QmaecFx8g
-         wpyhKY8Wl+UbF1Dq+O4MM8OtKbYPEeQr8OZQ5Z+Ik/mVlDd2yL+FxdGWMK+jsfLunHvw
-         x29g==
-X-Gm-Message-State: AO0yUKUCJNqIaizLCN5LHr7kU7Ju4XiD1U/t0wi1ypDDUzCoNfBP/qVI
-        GhxTIhfcE4sVU6lZHwfkLRXPmR/AoaFX7Nbjq4F/qg==
-X-Google-Smtp-Source: AK7set/k/0eO1pGMhcQMet0YU6e3h9+c98wFu1JipuFF0QZYfLgw6WY/Kw7NUyUCthebeNVAXRQmnWBsB84kG+im0+I=
-X-Received: by 2002:a17:903:2402:b0:19c:a7a7:7072 with SMTP id
- e2-20020a170903240200b0019ca7a77072mr3005999plo.10.1677306336589; Fri, 24 Feb
- 2023 22:25:36 -0800 (PST)
+        bh=kpSiX+Ch3K3DG82dTWHs1KrCJ7bKDMWnHZOHhDvLqjE=;
+        b=jODD9DsOVuJYvLlmmt+/6pk1ZXTkDPXNs4Li0qCb24MTYochCFnbybNAXcWpn7lNeE
+         //vijF67OSEepXK1pUstT6zBPoqI5E1BQ2f4sCL7jtzgb72+s8dHerANes3ZYpr1n2ib
+         yjOPmzhFP5i/nX9bBi224oz88iALOxfs5TGH5yjmPJv0IQFf8TKIaVsH3jQBthsBjywH
+         WUq4yjOnFuWit8UgQ+pLEGPrCSroLECH7Sj0XmgSDRYNc+JTwPOWymE4kpKApW3zrEbi
+         ids8CXaN4IqFYnsOSAVb7eieb7HaSBhlIqtvnt/wdIOOedJ4C53NLXhQHUcSt9kXhq+D
+         tA5A==
+X-Gm-Message-State: AO0yUKUTQRnVCyCdqaGD633d1HH/5bZxOegsj15CFMibQelOw0WUdcCG
+        ZgL7iiEGopQRaj5Qe21vBVE=
+X-Google-Smtp-Source: AK7set9+Xgh0cE06K4X3mgz9u24bqVJ4GpTOEj1fhk9LgxQm94r3LHbSBgyuUTyyO09qQbCb4lPHJQ==
+X-Received: by 2002:a17:906:1747:b0:8b1:3d15:1e2c with SMTP id d7-20020a170906174700b008b13d151e2cmr24479933eje.9.1677318276056;
+        Sat, 25 Feb 2023 01:44:36 -0800 (PST)
+Received: from localhost.localdomain ([95.183.227.97])
+        by smtp.gmail.com with ESMTPSA id va13-20020a17090711cd00b008b23b22b062sm653649ejb.114.2023.02.25.01.44.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Feb 2023 01:44:35 -0800 (PST)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/4] MediaTek MT6735 main clock and reset drivers
+Date:   Sat, 25 Feb 2023 12:42:42 +0300
+Message-Id: <20230225094246.261697-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230207014207.1678715-1-saravanak@google.com> <CAA8EJprMMh3udsKKwtGJW9kBLfMv=_OXFnnPGobK=dK-raX5ew@mail.gmail.com>
-In-Reply-To: <CAA8EJprMMh3udsKKwtGJW9kBLfMv=_OXFnnPGobK=dK-raX5ew@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 24 Feb 2023 22:24:59 -0800
-Message-ID: <CAGETcx8iR20dtrKMu+5VdqqTG8xYY7PFjLnkgUfvMNV2bmfhkw@mail.gmail.com>
-Subject: Re: [PATCH v3 00/12] fw_devlink improvements
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Maxim Kiselev <bigunclemax@gmail.com>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Jean-Philippe Brucker <jpb@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        kernel-team@android.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -108,186 +89,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 7:12 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 07/02/2023 03:41, Saravana Kannan wrote:
-> > Naresh, Tony, Abel, Geert, Dmitry, Maxim(s), Miquel, Luca, Doug, Martin,
-> > Jean-Philippe,
-> >
-> > Can I get your Tested-by's for this v3 series please?
-> >
-> > Vladimir,
-> >
-> > Ccing you because DSA's and fw_devlink have known/existing problems
-> > (still in my TODOs to fix). But I want to make sure this series doesn't
-> > cause additional problems for DSA.
-> >
-> > All,
-> >
-> > This patch series improves fw_devlink in the following ways:
-> >
-> > 1. It no longer cares about a fwnode having a "compatible" property. It
-> >     figures this out more dynamically. The only expectation is that
-> >     fwnodes that are converted to devices actually get probed by a driver
-> >     for the dependencies to be enforced correctly.
-> >
-> > 2. Finer grained dependency tracking. fw_devlink will now create device
-> >     links from the consumer to the actual resource's device (if it has one,
-> >     Eg: gpio_device) instead of the parent supplier device. This improves
-> >     things like async suspend/resume ordering, potentially remove the need
-> >     for frameworks to create device links, more parallelized async probing,
-> >     and better sync_state() tracking.
-> >
-> > 3. Handle hardware/software quirks where a child firmware node gets
-> >     populated as a device before its parent firmware node AND actually
-> >     supplies a non-optional resource to the parent firmware node's
-> >     device.
-> >
-> > 4. Way more robust at cycle handling (see patch for the insane cases).
-> >
-> > 5. Stops depending on OF_POPULATED to figure out some corner cases.
-> >
-> > 6. Simplifies the work that needs to be done by the firmware specific
-> >     code.
-> >
-> > The v3 series has gone through my usual testing on my end and looks good
-> > to me.
->
-> Saravana,
->
-> Please excuse me, I was completely overwhelmed with my regular work and
-> had no time to properly test the series, while doing just the light
-> test would defeat the purpose of testing.
->
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # Qualcomm RB3
->
-> Thanks a lot for going through all the troubles and hunting all the issues!
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-You are welcome! Thanks for testing it.
+These patches are part of a larger effort to support the MT6735 SoC family in mainline
+Linux. More patches (unsent or sent and pending review or revision) can be found here[1].
 
-> Just a note: on an RB3 device (arm64 qcom/sdm845-db845c.dtsi) extended
-> with the patch at [3] I got the following messages in dmesg:
->
-> [    1.051325] platform ae00000.mdss: Failed to create device link
-> with ae00000.mdss
-> [    1.059368] platform ae00000.mdss: Failed to create device link
-> with ae00000.mdss
-> [    1.067174] platform ae00000.mdss: Failed to create device link
-> with ae00000.mdss
-> [    1.088322] platform c440000.spmi: Failed to create device link
-> with c440000.spmi
-> [    1.096019] platform c440000.spmi: Failed to create device link
-> with c440000.spmi
-> [    1.103707] platform c440000.spmi: Failed to create device link
-> with c440000.spmi
-> [    1.111400] platform c440000.spmi: Failed to create device link
-> with c440000.spmi
-> [    1.119141] platform c440000.spmi: Failed to create device link
-> with c440000.spmi
-> [    1.126825] platform c440000.spmi: Failed to create device link
-> with c440000.spmi
-> [    2.024763] qcom-lab-ibb-regulator c440000.spmi:pmic@3:labibb:
-> Failed to create device link with c440000.spmi
-> [    2.035026] qcom-lab-ibb-regulator c440000.spmi:pmic@3:labibb:
-> Failed to create device link with c440000.spmi
->
-> They look to be harmless, but it might be good to filter some of them
-> out? Especially the ones which tell about creating a device link
-> pointing back to the same device.
+This series adds support for the main clock and reset controllers on the
+Mediatek MT6735 SoC:
+- apmixedsys (global PLLs)
+- topckgen (global divisors and muxes)
+- infracfg (gates and resets for internal components)
+- pericfg (gates and resets for peripherals)
 
-I'm sure it's harmless when the supplier == consumer. Agreed on
-filtering these out.
+MT6735 has other more specialized clock/reset controllers, support for which is
+not included in this series:
+- mfgcfg (GPU)
+- imgsys (camera)
+- mmsys (display)
+- vdecsys (video decoder)
+- vencsys (video encoder)
+- audsys (audio)
 
-I looked at [3], but it's not obvious to me how this is happening for
-your specific case. There are a couple of  ways I can think of:
-1. A SYNC_STATE_ONLY link being created as a proxy link (I don't do as
-many checks here because it can't break anything)
-2. __fw_devlink_pickup_dangling_consumers() causing the consumer and
-supplier to be the same.
+Changes since v2:
+- Add "CLK_" prefix to infracfg and pericfg clock definitions to avoid possible
+  clashes with reset bindings.
+- Replace "_RST" suffix with "RST_" prefix to maintain consistency with clock bindings.
+- Use macros to define clocks.
+- Abandon mtk_clk_simple_probe/mtk_clk_simple_remove in favor of custom functions in apmixedsys
+  and topckgen drivers for the time being. 
+- Capitalize T in MediaTek in MODULE_DESCRIPTION.
+Changes since v1:
+- Rebase on some pending patches.
+- Move common clock improvements to a separate series.
+- Use mtk_clk_simple_probe/remove after making them support several clock types
+  in said series.
+- Combine all 4 drivers into one patch, and use one Kconfig symbol for all
+  following a conversation seen on a different series[2].
+- Correct APLL2 registers in apmixedsys driver (were offset backwards by 0x4).
+- Make irtx clock name lower case to match the other clocks.
 
-But I want to understand which one is happening in your case. Can you
-add a WARN_ON(1) after the error message and give me the list of stack
-dumps that are unique?
+[1] https://gitlab.com/mt6735-mainline/linux/-/commits/mt6735-staging
+[2] https://lore.kernel.org/linux-mediatek/CAGXv+5H4gF5GXzfk8mjkG4Kry8uCs1CQbKoViBuc9LC+XdHH=A@mail.gmail.com/
 
-Thanks,
-Saravana
+Yassine Oudjana (4):
+  dt-bindings: clock: Add MediaTek MT6735 clock bindings
+  dt-bindings: reset: Add MediaTek MT6735 reset bindings
+  dt-bindings: arm: mediatek: Add MT6735 clock controller compatibles
+  clk: mediatek: Add drivers for MediaTek MT6735 main clock and reset
+    drivers
 
+ .../arm/mediatek/mediatek,infracfg.yaml       |   8 +-
+ .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   4 +-
+ .../bindings/clock/mediatek,topckgen.yaml     |   4 +-
+ MAINTAINERS                                   |  16 +
+ drivers/clk/mediatek/Kconfig                  |   9 +
+ drivers/clk/mediatek/Makefile                 |   1 +
+ drivers/clk/mediatek/clk-mt6735-apmixedsys.c  | 139 ++++++
+ drivers/clk/mediatek/clk-mt6735-infracfg.c    |  78 +++
+ drivers/clk/mediatek/clk-mt6735-pericfg.c     |  91 ++++
+ drivers/clk/mediatek/clk-mt6735-topckgen.c    | 450 ++++++++++++++++++
+ .../clock/mediatek,mt6735-apmixedsys.h        |  16 +
+ .../clock/mediatek,mt6735-infracfg.h          |  25 +
+ .../clock/mediatek,mt6735-pericfg.h           |  37 ++
+ .../clock/mediatek,mt6735-topckgen.h          |  79 +++
+ .../reset/mediatek,mt6735-infracfg.h          |  31 ++
+ .../reset/mediatek,mt6735-pericfg.h           |  31 ++
+ 17 files changed, 1015 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-pericfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-topckgen.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-infracfg.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-pericfg.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-topckgen.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mt6735-infracfg.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mt6735-pericfg.h
 
->
-> [3] https://lore.kernel.org/linux-arm-msm/20230118082048.2198715-1-dmitry.baryshkov@linaro.org/
->
-> >
-> > Thanks,
-> > Saravana
-> >
-> > [1] - https://lore.kernel.org/lkml/20220810060040.321697-1-saravanak@google.com/
-> > [2] - https://lore.kernel.org/lkml/CAGETcx-JUV1nj8wBJrTPfyvM7=Mre5j_vkVmZojeiumUGG6QZQ@mail.gmail.com/
-> >
-> > v1 -> v2:
-> > - Fixed Patch 1 to handle a corner case discussed in [2].
-> > - New patch 10 to handle "fsl,imx8mq-gpc" being initialized by 2 drivers.
-> > - New patch 11 to add fw_devlink support for SCMI devices.
-> >
-> > v2 -> v3:
-> > - Addressed most of Andy's comments in v2
-> > - Added Colin and Sudeep's Tested-by for the series (except the imx and
-> >    renesas patches)
-> > - Added Sudeep's Acked-by for the scmi patch.
-> > - Added Geert's Reviewed-by for the renesas patch.
-> > - Fixed gpiolib crash reported by Naresh.
-> > - Patch 6: Fix __fwnode_links_move_consumers() to preserve fwnode link flags.
-> > - New Patch 12 to fix nvmem-cells issue reported by Maxim(s)/Miquel.
-> > - Deleted some stale function doc in Patch 8
-> >
-> > Cc: Abel Vesa <abel.vesa@linaro.org>
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Cc: Tony Lindgren <tony@atomide.com>
-> > Cc: Sudeep Holla <sudeep.holla@arm.com>
-> > Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Cc: John Stultz <jstultz@google.com>
-> > Cc: Doug Anderson <dianders@chromium.org>
-> > Cc: Guenter Roeck <linux@roeck-us.net>
-> > Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Cc: Maxim Kiselev <bigunclemax@gmail.com>
-> > Cc: Maxim Kochetkov <fido_max@inbox.ru>
-> > Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Cc: Luca Weiss <luca.weiss@fairphone.com>
-> > Cc: Colin Foster <colin.foster@in-advantage.com>
-> > Cc: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > Cc: Jean-Philippe Brucker <jpb@kernel.org>
-> > Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
-> >
-> > Saravana Kannan (12):
-> >    driver core: fw_devlink: Don't purge child fwnode's consumer links
-> >    driver core: fw_devlink: Improve check for fwnode with no
-> >      device/driver
-> >    soc: renesas: Move away from using OF_POPULATED for fw_devlink
-> >    gpiolib: Clear the gpio_device's fwnode initialized flag before adding
-> >    driver core: fw_devlink: Add DL_FLAG_CYCLE support to device links
-> >    driver core: fw_devlink: Allow marking a fwnode link as being part of
-> >      a cycle
-> >    driver core: fw_devlink: Consolidate device link flag computation
-> >    driver core: fw_devlink: Make cycle detection more robust
-> >    of: property: Simplify of_link_to_phandle()
-> >    irqchip/irq-imx-gpcv2: Mark fwnode device as not initialized
-> >    firmware: arm_scmi: Set fwnode for the scmi_device
-> >    mtd: mtdpart: Don't create platform device that'll never probe
-> >
-> >   drivers/base/core.c             | 449 +++++++++++++++++++++-----------
-> >   drivers/firmware/arm_scmi/bus.c |   3 +-
-> >   drivers/gpio/gpiolib.c          |   7 +
-> >   drivers/irqchip/irq-imx-gpcv2.c |   1 +
-> >   drivers/mtd/mtdpart.c           |  10 +
-> >   drivers/of/property.c           |  84 +-----
-> >   drivers/soc/imx/gpcv2.c         |   2 +-
-> >   drivers/soc/renesas/rcar-sysc.c |   2 +-
-> >   include/linux/device.h          |   1 +
-> >   include/linux/fwnode.h          |  12 +-
-> >   10 files changed, 344 insertions(+), 227 deletions(-)
-> >
->
-> --
-> With best wishes
->
-> Dmitry
+-- 
+2.39.2
+
