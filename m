@@ -2,121 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F2E6A2A9D
-	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 17:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21E4C6A2AB3
+	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 17:22:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjBYQDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 11:03:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34550 "EHLO
+        id S229667AbjBYQWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 11:22:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbjBYQDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 11:03:04 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF66113F1
-        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 08:03:02 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id d41-20020a05600c4c2900b003e9e066550fso1333752wmp.4
-        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 08:03:02 -0800 (PST)
+        with ESMTP id S229492AbjBYQWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 11:22:45 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F160ECC22
+        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 08:22:43 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id ay29-20020a05600c1e1d00b003e9f4c2b623so4340152wmb.3
+        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 08:22:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B/2HES7YJYG6wdjYxPV+3ewSssuf+BgawA5HJPMTCWY=;
-        b=Bd9lZESTgYO9OWlWOtNgDM/TuKjeeH2cyc2TzDdOWHZLPyVyfUwJ+c3MhlDO02y0e0
-         KN10IsntPQuRIYRoPXGIj8eJFOLC/VY0h4TjpspWoz/gl9faN+orqft6idcWGQtQoLsU
-         QSwd5a5fk7P6p8AvN9r+veMXUeC+XHA/za/epqDZpy2zqm2AKDQqetZE1GKdx+s0SOq8
-         pyXW6ywBmfaYj911hI/i1N0HGU49LkU6/1tsXHhWbTFs4LXCeCTOfJIP25n28cl/H77V
-         VVhpSn8K5YbaM66ZKXXefQjXUk07YJYhv2I50fA1X0ZCOy1S5hbwFdVf3Hxn1MxihAaE
-         B61w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4UzpVaZytKcLsXqShGzDCNEbw1p9sY2b5QAjio7ekeY=;
+        b=ZPaVxQdfCRmnackJCVG2l50d8ypO+7nluWrSD/sL3W4gqsJo/rG0w6rFL8aFzWRkHO
+         esuWfA+T+NmFuIXvgHH0TaJyMQVHdEjTx7bbENjK5OUxBctniG7DHPmlPUBocMY9Gt2W
+         lxgfKdqoh91SEd+haH0Yb/sQvsGP2gKPt4cASb6vaVbXPk66t/BDbTohC7LIB/uI3BVe
+         1IisnOMBvABLqG+PId07TyCVLBwyclJjR0wUE20N+LcF+eUs7Vdv7s5oQ+NVeSKlslDc
+         EGqxbsOdPXxmCyjR1K/8BeNrn/zkmStAhxL7VYE0oYExMX9rj0uMGKZJWY1KRs0BgXT/
+         qb0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B/2HES7YJYG6wdjYxPV+3ewSssuf+BgawA5HJPMTCWY=;
-        b=LI4nYU4xLPW25nj7EAl8PoisL7Zobb/dfxarKonWyMVVq/OhwrcOx6aysFFbqJ7aYu
-         soXOcCXNmJLjegRonnXaP1lMyARfNprOvVReLjC8E8vfLCBQlitnlVQDOUZOiyL5w9MB
-         yjcIOkXqQPDMw6uL0TrXxRUhWito00K4SUw6XKIMFbeGB5/3nX4hrpWBpa6ZqR1+k8pW
-         y12WOdSq8RAbrQ4+SY+iKgy2YtKP3Yin9BP5az8eVp6HeroTYTlmpfH4mtaTrQbGBbp2
-         8SUsrLwm69t5+iwZzP1yb96uNTJg+U+5hrkk/c40XNcnZpTZaSiFOFriNsZHKfgYXM14
-         ZFWA==
-X-Gm-Message-State: AO0yUKWp3sDvN3gOHwAGZFebsneKu+txZildzYs4HHTxn/o0ojv9DbpY
-        w4myF5E+fmiqC5IXwbLqcy4gWw==
-X-Google-Smtp-Source: AK7set/nFgtU44u0s2ZGliuMXyDDD4aNmehE54BeMxWYYIi+ECKVGKMkEvFNRexR38HlOZYgBw6DLg==
-X-Received: by 2002:a05:600c:3413:b0:3eb:2de9:d01 with SMTP id y19-20020a05600c341300b003eb2de90d01mr3382674wmp.18.1677340981217;
-        Sat, 25 Feb 2023 08:03:01 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4UzpVaZytKcLsXqShGzDCNEbw1p9sY2b5QAjio7ekeY=;
+        b=hQIGvtNn5AwGxSc13lETHp4WOkqDGhgcQQaSZY3MxzNayE45ML7EfwKHKbt3ab4Ao7
+         VjPNv45AyFd2F5wYfKdIQF/uhnjynZxirLJHSMY7QrgEyUrC+yF6QmC6ecYrbWSZWmZe
+         11dwpggF2nRCOYVDAib9OXkUxVWtAMkys8wXkh1WousUGRH7BQh5pcH6uH4cNur9wpD6
+         ujtBZ5unO0EJjMaxQRbsS6nzZ2C6Pk0EGEVqxloYwCK0bN0Wl3E+TJTecqmdvWiwYjxC
+         ULSsuLyBq8g3pdCTk2QSeOi2rdklHoERC2z0wkZQbD24tUQxkkC63dAGNPhXL5PAdEHV
+         onnA==
+X-Gm-Message-State: AO0yUKUmsbwbViHRboINYjxMs3J2WgzYKfQDEUnjw+MNBoZEd+mCxlpI
+        TnfYVWRBT5E0cLvAsdmG4BpDgA==
+X-Google-Smtp-Source: AK7set/Nod/Xia4rV9jLSmmGp54Zu4nS6/zzzbVWrPbcoZ/Om2gUpFAkQ6vS1IW1nmQJoiyZR6NZMQ==
+X-Received: by 2002:a05:600c:2e94:b0:3e2:201a:5bcc with SMTP id p20-20020a05600c2e9400b003e2201a5bccmr10927795wmn.33.1677342162501;
+        Sat, 25 Feb 2023 08:22:42 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id fc19-20020a05600c525300b003e215a796fasm3266868wmb.34.2023.02.25.08.02.59
+        by smtp.gmail.com with ESMTPSA id i20-20020a5d5234000000b002c5493a17efsm2193087wra.25.2023.02.25.08.22.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Feb 2023 08:03:00 -0800 (PST)
+        Sat, 25 Feb 2023 08:22:42 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: exynos: add ports to TC358764 bridge on Arndale
-Date:   Sat, 25 Feb 2023 17:02:52 +0100
-Message-Id: <20230225160252.18737-2-krzysztof.kozlowski@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     linus.walleij@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: spear320-hmi: correct STMPE GPIO compatible
+Date:   Sat, 25 Feb 2023 17:22:37 +0100
+Message-Id: <20230225162237.40242-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230225160252.18737-1-krzysztof.kozlowski@linaro.org>
-References: <20230225160252.18737-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Toshiba TC358764 bridge binding expect up two ports as it is a
-bridge, thus add ports property to encapsulate them.
+The compatible is st,stmpe-gpio.
 
+Fixes: e2eb69183ec4 ("ARM: SPEAr320: DT: Add SPEAr 320 HMI board support")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/exynos5250-arndale.dts | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/spear320-hmi.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
-index 2e3da5670bc2..c03bb436bfed 100644
---- a/arch/arm/boot/dts/exynos5250-arndale.dts
-+++ b/arch/arm/boot/dts/exynos5250-arndale.dts
-@@ -192,12 +192,15 @@ bridge@0 {
- 		vddio-supply = <&vcc_1v8_reg>;
- 		vddlvds-supply = <&vcc_3v3_reg>;
- 		reset-gpios = <&gpd1 6 GPIO_ACTIVE_LOW>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		port@1 {
--			reg = <1>;
--			bridge_out_ep: endpoint {
--				remote-endpoint = <&panel_ep>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@1 {
-+				reg = <1>;
-+				bridge_out_ep: endpoint {
-+					remote-endpoint = <&panel_ep>;
-+				};
- 			};
- 		};
- 	};
+diff --git a/arch/arm/boot/dts/spear320-hmi.dts b/arch/arm/boot/dts/spear320-hmi.dts
+index 34503ac9c51c..721e5ee7b680 100644
+--- a/arch/arm/boot/dts/spear320-hmi.dts
++++ b/arch/arm/boot/dts/spear320-hmi.dts
+@@ -241,7 +241,7 @@ stmpe811@41 {
+ 					irq-trigger = <0x1>;
+ 
+ 					stmpegpio: stmpe-gpio {
+-						compatible = "stmpe,gpio";
++						compatible = "st,stmpe-gpio";
+ 						reg = <0>;
+ 						gpio-controller;
+ 						#gpio-cells = <2>;
 -- 
 2.34.1
 
