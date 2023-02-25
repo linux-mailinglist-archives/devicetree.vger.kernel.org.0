@@ -2,194 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C706A2B97
-	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 20:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22DDF6A2BAC
+	for <lists+devicetree@lfdr.de>; Sat, 25 Feb 2023 21:37:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbjBYT6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 14:58:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55738 "EHLO
+        id S229861AbjBYUhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 15:37:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbjBYT6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 14:58:51 -0500
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12ED16AE1
-        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 11:58:41 -0800 (PST)
-Received: by mail-vs1-xe2d.google.com with SMTP id df20so4922989vsb.3
-        for <devicetree@vger.kernel.org>; Sat, 25 Feb 2023 11:58:41 -0800 (PST)
+        with ESMTP id S229507AbjBYUhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 15:37:19 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46AE31588C;
+        Sat, 25 Feb 2023 12:37:18 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id d10so1466391pgt.12;
+        Sat, 25 Feb 2023 12:37:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QAQDG0pec1FN3oIaf8M47FYziP2/g06HhiCdsUCCmeI=;
-        b=JBpee1a5HOWHeGByYBtFY2WWpU1Pnymw5hqv1m1TynO3gmhmT7yMYb6gsiZ25ktQzs
-         HQi2b4bxfx1SWXRdqNLPZ6XeXmkXIXfc9L8OtTIgZH3kszNKewBZMk0gE4tHy+dDQnoC
-         fxaaO5cumL9FU8sEUNOsdY2jq2g+QeZ7wvIgMk619brC+FiwE3lxiMDrPvQYXVk6A8Mo
-         2hdmTxBwg/v27Y8alJhG50v9cxLOdjHu0jKvfkuK8A+wAujQqGXSCE8d4CMyq7gorc5/
-         xQTC0y95aeIFs8co03u9p+3vttHbz6h7u0D8QC8caPsIJENmseJgaJ5OMrjh6sjUSTZ5
-         crJA==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Sxttv6I+juTLKjiPxUsAPsaTJ+ru7lbKlN1o0tA6Ttk=;
+        b=TVGuJQu9OPuKz6WsX33OyO5hO+0ti3VM+iAzzRzXygnaHM+ubOkEZdX9oxRv0hiZES
+         p93VxwPdeblq+8sGn5Bc05UKYRQrGgmFfLwFGlgXj6/QOi0GPe8FchLEE+Dq+JOTCSsG
+         6tt3Uj65Ht42AGOQnsutJWv1plH+P8dOUibjoghLBTUg9XbtO7ojmy/wIR9qSua2BQD+
+         97MLRypHHttjn0WOA3fxvrXdwRHs7+iJrkuKR9rcBhlXcQxQlEC8jhQxDc3c42YPPDWT
+         kqXLzhHKgQtYT5iKbJg5yV4PzKhgw1fAkorQMztEVJ7zKRrny3bcvUgHoNVrT4fiuMgt
+         nCoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QAQDG0pec1FN3oIaf8M47FYziP2/g06HhiCdsUCCmeI=;
-        b=jr63UnEevIij0xfc614msQ12+/cB5IrRiIz2VBjjxf5TlYsYEOTw35YA36B85ZarBj
-         p7xRteOjDOo5VOU6pi1xUc/o2YPJTAiqj2AjdV8PkXKqbhfWPMXHjj99DBTKQCznXbvE
-         Vs5Drr1FHK++TZ/tqQpZF/1KbA9ro4ufPsZrK5gybGleVfevH5WzRm77c4VTNDkbPZXH
-         MvzbUJubMHE10gxEy5ZdV9e/FCAOoIgbGse6WpJhl8JJBcbCjNgjsTCRuTsaiyEU0CkR
-         SWXN9ovfGC4SqPq29Sms1CV2uFDGT4qN2EZMsNyegFTp+ZQiUls7iytUt/z0pt91TVPC
-         sLeA==
-X-Gm-Message-State: AO0yUKVOoHMzkukH/BpekClXwEEPYFQj/uCtaCo54NypOMK/hpi1YlPt
-        QAlmDIrJFoIpELaHnG5zFbD3yK6ZtAJOLoV6jC4=
-X-Google-Smtp-Source: AK7set84/a7F1p3jcd8ZvtnujyhCnkocvew/1MgeLrITBAOVmt/GjLEMxYHiwmPtCUM/w8XGcWzyk13eVNr99uKfEwE=
-X-Received: by 2002:a67:d21c:0:b0:402:999f:51dd with SMTP id
- y28-20020a67d21c000000b00402999f51ddmr5006325vsi.3.1677355120866; Sat, 25 Feb
- 2023 11:58:40 -0800 (PST)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Sxttv6I+juTLKjiPxUsAPsaTJ+ru7lbKlN1o0tA6Ttk=;
+        b=4pz7t2vfeXz1Gtuu3zswW4GQCFGqlMvEplreTr67bX2i/KhSU7FaEmE2Qbml+QAY6A
+         CAUx0jay16rxmGoO0ZbvfnNrEglWW/S29V7Xrt4pFVS30mKMLAmnR5rcdPi7gZWY5J0m
+         DRDTieSDnbmEND2Tq/vXtJnaDfvE2w1YZ2OPxTqkmJdCfu82awE54Rv+IDc+qax1yLjp
+         f/okD7iHmH0r20nS1Cy4mCczsNhmeDqyXfawhyFGRCORxE802Lux58KHx66RdSF8pULC
+         xc0NmCO9ik8q5a1fezeYaWeOYwp2nn5cYezKn/1OYWfXXlMDaADh9FkLc1IpYlfdVb4T
+         kxQw==
+X-Gm-Message-State: AO0yUKVoDSWQZ6WbxXQDIDSjUcPii3qGwNPv/mzRkBbTSS9pGKsGMPDG
+        J7VyV/+dtRbVDZQHFjI8saGG6RvncinjxJnUrIg=
+X-Google-Smtp-Source: AK7set9m9zmBMybskn4/CtRVzmIsYcxR2iEnJLjJAJ597qgl75EBPE7Bor64uS4fMm70NlLYZO66s2ej2qn7jT8KgPM=
+X-Received: by 2002:a63:7a54:0:b0:4fb:3896:a7d4 with SMTP id
+ j20-20020a637a54000000b004fb3896a7d4mr4114625pgn.7.1677357437775; Sat, 25 Feb
+ 2023 12:37:17 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a59:8d10:0:b0:350:a280:252d with HTTP; Sat, 25 Feb 2023
- 11:58:40 -0800 (PST)
-Reply-To: kodjovihegbor4@gmail.com
-From:   kodjovihegbor <maur2920@gmail.com>
-Date:   Sat, 25 Feb 2023 19:58:40 +0000
-Message-ID: <CAGLO-R-ryXSvuPZrAOygdTEZ7TN8VdZAv5tbODkpn9X5jDTVOA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
+References: <20230225113712.340612-1-alistair@alistair23.me> <20230225113712.340612-4-alistair@alistair23.me>
+In-Reply-To: <20230225113712.340612-4-alistair@alistair23.me>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sat, 25 Feb 2023 17:37:06 -0300
+Message-ID: <CAOMZO5COg7wZbG3aWcwMsvTBQ9Ft8CQ9wearXMh+00o29CTaeg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] ARM: dts: imx7d-remarkable2: Enable the rohm,bd71815
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     s.hauer@pengutronix.de, devicetree@vger.kernel.org,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        arnd@arndb.de, alistair23@gmail.com, kernel@pengutronix.de,
+        jernej.skrabec@gmail.com, linux@armlinux.org.uk
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-4LiJ4Lix4LiZ4LmA4Liq4LiZ4Lit4Lih4Li04LiV4Lij4Lig4Liy4Lie4LiC4Lit4LiH4LiJ4Lix
-4LiZ4LmB4Lil4Liw4LiJ4Lix4LiZ4LiE4Li04LiU4Lin4LmI4Liy4LiE4Li44LiT4LiI4Liw4Lij
-4Lix4Lia4Lih4Lix4LiZ4LiU4LmJ4Lin4Lii4LmD4LiI4LiX4Li14LmI4LiU4Li1DQrguJnguLHg
-uYjguJnguJfguLPguYPguKvguYnguInguLHguJnguJXguLTguJTguJXguYjguK3guYDguILguLLg
-uYHguKXguLDguJTguLnguKfguYjguLLguYDguKPguLLguKrguLLguKHguLLguKPguJbguIrguYjg
-uKfguKLguYDguKvguKXguLfguK3guIvguLbguYjguIfguIHguLHguJnguYHguKXguLDguIHguLHg
-uJnguYTguJTguYnguJTguLXguJfguLXguYjguKrguLjguJTguK3guKLguYjguLLguIfguYTguKMN
-CuC4ieC4seC4meC4hOC4t+C4reC4meC4suC4hyBLb2Rqb3ZpIEhlZ2JvciDguKHguLLguIjguLLg
-uIHguJXguLjguKPguIHguLUNCuC5geC4peC4sOC4ieC4seC4meC4l+C4s+C4h+C4suC4meC5gOC4
-m+C5h+C4meC4q+C4seC4p+C4q+C4meC5ieC4suC4neC5iOC4suC4ouC4m+C4j+C4tOC4muC4seC4
-leC4tOC4geC4suC4o+C4l+C4teC5iCBTdGFuZGFyZEJOUCBCYW5rIExpbWl0ZWQNClR1cmtleSDg
-uInguLHguJnguYDguIrguLfguYjguK3guKfguYjguLLguJ7guKPguLDguYDguIjguYnguLLguJXg
-uYnguK3guIfguIHguLLguKPguYPguKvguYnguInguLHguJnguJ7guJrguITguLjguJPguYPguJng
-uJXguK3guJnguJnguLXguYkNCuC4ieC4seC4meC4oeC4teC5gOC4o+C4t+C5iOC4reC4h+C4o+C4
-suC4p+C4l+C4suC4h+C4mOC4uOC4o+C4geC4tOC4iOC4l+C4teC5iOC4quC4s+C4hOC4seC4jeC4
-l+C4teC5iOC4ieC4seC4meC4leC5ieC4reC4h+C4geC4suC4o+C5geC4muC5iOC4h+C4m+C4seC4
-meC4geC4seC4muC4hOC4uOC4k+C5geC4peC4sOC4ieC4seC4meC4hOC4tOC4lOC4p+C5iOC4suC4
-hOC4uOC4k+C4iOC4sOC4quC4meC5g+C4iOC5gOC4nuC4o+C4suC4sOC5gOC4geC4teC5iOC4ouC4
-p+C4guC5ieC4reC4h+C4geC4seC4muC4iuC4t+C5iOC4reC4quC4geC4uOC4peC4guC4reC4h+C4
-hOC4uOC4k+C5geC4peC4sOC4iOC4sOC5gOC4m+C5h+C4meC4m+C4o+C4sOC5guC4ouC4iuC4meC5
-jOC4geC4seC4muC4hOC4uOC4kw0KDQogICDguYPguJnguJvguLUgMjAxOCDguJ7guKXguYDguKHg
-uLfguK3guIfguILguK3guIfguJvguKPguLDguYDguJfguKjguILguK3guIfguITguLjguJPguIrg
-uLfguYjguK0gSXZhbiBIYWxpbSDguYTguJTguYnguYDguJvguLTguJTguJrguLHguI3guIrguLXg
-uYDguIrguYfguIQgMzYNCuC5gOC4lOC4t+C4reC4meC4geC4seC4muC4mOC4meC4suC4hOC4suC4
-o+C4guC4reC4h+C4ieC4seC4mSDguKHguLnguKXguITguYjguLIgOCw0MDAsMDAwLjAwIOC4m+C4
-reC4meC4lOC5jA0K4Lin4Lix4LiZ4Lir4Lih4LiU4Lit4Liy4Lii4Li44LiC4Lit4LiH4Liq4Lix
-4LiN4LiN4Liy4Lid4Liy4LiB4LiZ4Li14LmJ4LiE4Li34Lit4Lin4Lix4LiZ4LiX4Li14LmIIDE2
-IOC4oeC4geC4o+C4suC4hOC4oSAyMDIxIOC4reC4ouC5iOC4suC4h+C5hOC4o+C4geC5h+C4leC4
-suC4oQ0K4LmA4LiC4Liy4LmA4Lib4LmH4LiZ4Lir4LiZ4Li24LmI4LiH4LmD4LiZ4LmA4Lir4Lii
-4Li34LmI4Lit4LiC4Lit4LiH4LiB4Liy4Lij4LmB4Lie4Lij4LmI4Lij4Liw4Lia4Liy4LiU4LiC
-4Lit4LiH4LmE4Lin4Lij4Lix4Liq4LmC4LiE4LmC4Lij4LiZ4LiyIChDb3ZpZDE5KSDguYPguJng
-uJvguLUNCjIwMTktMjAyMCDguJfguLXguYjguYDguIHguLTguJTguILguLbguYnguJnguYPguJng
-uJvguKPguLDguYDguJfguKjguIjguLXguJkNCuC5g+C4meC4guC4k+C4sOC4l+C4teC5iOC4geC4
-suC4o+C5gOC4lOC4tOC4meC4l+C4suC4h+C5gOC4nuC4t+C5iOC4reC4mOC4uOC4o+C4geC4tOC4
-iOC5hOC4lOC5ieC4hOC4o+C5iOC4suC4iuC4teC4p+C4tOC4leC4nOC4ueC5ieC4hOC4meC5hOC4
-m+C4reC4ouC5iOC4suC4h+C4meC5ieC4reC4oiA2OCwwMDAg4LiE4LiZIC4NCg0KICAg4Lic4Li5
-4LmJ4Lia4Lij4Li04Lir4Liy4Lij4LiY4LiZ4Liy4LiE4Liy4Lij4LiC4Lit4LiH4LiJ4Lix4LiZ
-4Lii4Lix4LiH4LmE4Lih4LmI4Lij4Li54LmJ4LmA4LiB4Li14LmI4Lii4Lin4LiB4Lix4Lia4LiB
-4Liy4Lij4LiV4Liy4Lii4LiC4Lit4LiH4LmA4LiC4LiyDQrguInguLHguJnguKPguLnguYnguYDg
-uJ7guKPguLLguLDguYDguILguLLguYDguJvguYfguJnguYDguJ7guLfguYjguK3guJnguILguK3g
-uIfguInguLHguJnguYHguKXguLDguInguLHguJnguYDguJvguYfguJnguYDguIjguYnguLLguKvg
-uJnguYnguLLguJfguLXguYjguJrguLHguI3guIrguLXguILguK3guIfguYDguILguLLguYDguKHg
-uLfguYjguK3guJrguLHguI3guIrguLXguJbguLnguIHguYDguJvguLTguJTguIHguYjguK3guJng
-uJfguLXguYjguInguLHguJnguIjguLDguYDguKXguLfguYjguK3guJnguJXguLPguYHguKvguJng
-uYjguIcNCuC4reC4ouC5iOC4suC4h+C5hOC4o+C4geC5h+C4leC4suC4oSBJdmFuIEhhbGltIOC5
-hOC4oeC5iOC5hOC4lOC5ieC4geC4peC5iOC4suC4p+C4luC4tuC4h+C4jeC4suC4leC4tOC4quC4
-meC4tOC4ly/guKXguLnguIHguKvguKXguLLguJnguYDguKHguLfguYjguK3guYDguJvguLTguJTg
-uJrguLHguI3guIrguLUNCuC5gOC4guC4suC5hOC4oeC5iOC5gOC4hOC4ouC5geC4leC5iOC4h+C4
-h+C4suC4meC5geC4peC4sOC5hOC4oeC5iOC5gOC4hOC4ouC4oeC4teC4peC4ueC4gSDguKrguLHg
-uJvguJTguLLguKvguYzguJfguLXguYjguYHguKXguYnguKcNCuC4nOC4ueC5ieC4muC4o+C4tOC4
-q+C4suC4o+C4mOC4meC4suC4hOC4suC4o+C4guC4reC4h+C4ieC4seC4meC4guC4reC5g+C4q+C5
-ieC4ieC4seC4meC5g+C4q+C5ieC4hOC4s+C5geC4meC4sOC4meC4s+C5gOC4geC4teC5iOC4ouC4
-p+C4geC4seC4muC4p+C4tOC4mOC4teC4iOC4seC4lOC4geC4suC4o+C4geC4seC4muC5gOC4h+C4
-tOC4meC4guC4reC4h+C5gOC4guC4suC4q+C4suC4geC5gOC4guC4suC4leC5iOC4reC4quC4seC4
-jeC4jeC4sg0KDQogICAg4LiJ4Lix4LiZ4Lij4Li54LmJ4Lin4LmI4Liy4Liq4Li04LmI4LiH4LiZ
-4Li14LmJ4LiI4Liw4LmA4LiB4Li04LiU4LiC4Li24LmJ4LiZDQrguJnguLHguYjguJnguYDguJvg
-uYfguJnguYDguKvguJXguLjguJzguKXguJfguLXguYjguInguLHguJnguKHguK3guIfguKvguLLg
-uKfguLTguJjguLXguITguKfguJrguITguLjguKHguKrguJbguLLguJnguIHguLLguKPguJPguYwN
-CuC5gOC4nuC4o+C4suC4sOC5gOC4oeC4t+C5iOC4reC4nOC4ueC5ieC4iOC4seC4lOC4geC4suC4
-o+C4mOC4meC4suC4hOC4suC4o+C4guC4reC4h+C4ieC4seC4meC4nuC4muC4p+C5iOC4siBJdmFu
-IEhhbGltIOC5gOC4quC4teC4ouC4iuC4teC4p+C4tOC4leC5geC4peC4sOC5hOC4oeC5iOC4oeC4
-teC4l+C4suC4ouC4suC4lw0K4Lie4Lin4LiB4LmA4LiC4Liy4LiI4Li24LiH4LiZ4Liz4LmA4LiH
-4Li04LiZ4LmE4Lib4LmA4Lil4Li14LmJ4Lii4LiH4LiU4Li54LiV4Lix4Lin4LmA4Lit4LiHIOC5
-gOC4peC4ouC5hOC4oeC5iOC4reC4ouC4suC4geC5g+C4q+C5ieC5gOC4geC4tOC4lOC4guC4tuC5
-ieC4mQ0K4LiZ4Lix4LmI4LiZ4LmA4Lib4LmH4LiZ4LmA4Lir4LiV4Li44Lic4Lil4LiX4Li14LmI
-4LiJ4Lix4LiZ4Lie4Lia4LiZ4Liy4Lih4Liq4LiB4Li44Lil4LiC4Lit4LiH4LmA4LiC4LiyIOC4
-ieC4seC4meC4lOC4teC5g+C4iA0K4LmB4Lil4Liw4LiV4Lit4LiZ4LiZ4Li14LmJ4LiJ4Lix4LiZ
-4LiB4Liz4Lil4Lix4LiH4Lih4Lit4LiH4Lir4Liy4LiE4Lin4Liy4Lih4Lij4LmI4Lin4Lih4Lih
-4Li34Lit4LiI4Liy4LiB4LmA4LiC4Liy4LmA4Lie4Li34LmI4Lit4LmB4Liq4LiU4LiH4Lin4LmI
-4Liy4LmA4LiC4Liy4LmA4Lib4LmH4LiZ4LiN4Liy4LiV4Li0L+C4l+C4suC4ouC4suC4l+C4muC4
-seC4jeC4iuC4tQ0K4LmA4LiZ4Li34LmI4Lit4LiH4LiI4Liy4LiB4LmA4LiC4Liy4Lih4Li14LiK
-4Li34LmI4Lit4LmA4LiU4Li14Lii4Lin4LiB4Lix4Lia4LmA4LiC4Liy4LmB4Lil4Liw4Liq4Liz
-4LiZ4Lix4LiB4LiH4Liy4LiZ4LmD4Lir4LiN4LmI4LiY4LiZ4Liy4LiE4Liy4Lij4LiC4Lit4LiH
-4LiJ4Lix4LiZ4LiB4LmH4Liq4LmI4LiH4Lia4Lix4LiN4LiK4Li14Lih4Liy4LmD4Lir4LmJDQou
-IOC4quC4s+C4q+C4o+C4seC4muC4hOC4uOC4ky4g4LmE4Lih4LmI4Lih4Li14Lib4Lix4LiN4Lir
-4LiyOw0K4LiB4Liy4Lij4LiX4Liz4LiY4Li44Lij4LiB4Lij4Lij4Lih4LmA4LiB4Li04LiU4LiC
-4Li24LmJ4LiZ4Lig4Liy4Lii4LmD4LiV4LmJ4LiC4LmJ4Lit4LiV4LiB4Lil4LiH4LiX4Li14LmI
-4LmA4Lir4Lih4Liy4Liw4Liq4Lih4LmA4Lie4Li34LmI4Lit4Lib4LiB4Lib4LmJ4Lit4LiH4LiE
-4Li44LiT4LiI4Liy4LiB4LiB4Liy4Lij4Lil4Liw4LmA4Lih4Li04LiU4LiB4LiO4Lir4Lih4Liy
-4LiiDQoNCiAgICDguYDguJvguYfguJnguIHguLLguKPguJTguLXguIHguKfguYjguLLguJfguLXg
-uYjguIjguLDguYDguKPguLXguKLguIHguKPguYnguK3guIfguYDguIfguLTguJnguKHguLLguIHg
-uIHguKfguYjguLLguJvguKXguYjguK3guKLguYPguKvguYnguJzguLnguYnguIjguLHguJTguIHg
-uLLguKPguJjguJnguLLguITguLLguKPguJfguLXguYjguKPguYjguLPguKPguKfguKLguK3guKLg
-uLnguYjguYHguKXguYnguKcNCuC4ieC4seC4meC5hOC4oeC5iOC5g+C4iuC5iOC4hOC4meC5guC4
-peC4oCDguJTguLHguIfguJnguLHguYnguJnguInguLHguJnguITguLTguJTguKfguYjguLLguIng
-uLHguJnguIjguLDguYHguJrguYjguIfguYDguIfguLTguJnguYDguJfguYjguLLguYYg4LiB4Lix
-4LiZIDUwLzUwDQrguKrguLPguKvguKPguLHguJrguJfguLHguYnguIfguKrguK3guIfguJ3guYjg
-uLLguKIg4Liq4LmI4Lin4LiZ4LmB4Lia4LmI4LiH4LiC4Lit4LiH4LiJ4Lix4LiZ4LiI4Liw4LiK
-4LmI4Lin4Lii4LmD4Lir4LmJ4LiJ4Lix4LiZ4LmA4Lij4Li04LmI4Lih4LiV4LmJ4LiZ4Lia4Lij
-4Li04Lip4Lix4LiX4LiC4Lit4LiH4LiV4Lix4Lin4LmA4Lit4LiHDQrguYHguKXguLDguYPguIrg
-uYnguKfguLTguJjguLXguIHguLLguKPguYDguJ7guLfguYjguK3guITguKfguLLguKHguKPguLHg
-uIEg4LiZ4Li14LmI4LiE4Li34Lit4LiE4Lin4Liy4Lih4Lid4Lix4LiZ4LiC4Lit4LiH4LiJ4Lix
-4LiZDQoNCuC5guC4m+C4o+C4lOC5geC4iOC5ieC4h+C5g+C4q+C5ieC5gOC4o+C4suC4l+C4o+C4
-suC4muC4p+C5iOC4suC4hOC4uOC4k+C4hOC4tOC4lOC4reC4ouC5iOC4suC4h+C5hOC4o+C5gOC4
-geC4teC5iOC4ouC4p+C4geC4seC4muC4hOC4s+C4guC4reC4guC4reC4h+C4ieC4seC4mQ0K4LiJ
-4Lix4LiZ4LiV4LmJ4Lit4LiH4LiB4Liy4Lij4LiE4Lin4Liy4Lih4LiK4LmI4Lin4Lii4LmA4Lir
-4Lil4Li34Lit4LiI4Liy4LiB4LiE4Li44LiT4LmD4LiZ4LiB4Liy4Lij4LiX4Liz4LiY4Li44Lij
-4LiB4Lij4Lij4Lih4LiZ4Li14LmJ4LiI4Lij4Li04LiH4LmGIOC4ieC4seC4meC5gOC4peC4t+C4
-reC4geC5g+C4q+C5ieC4hOC4uOC4k+C4iuC5iOC4p+C4og0K4LmE4Lih4LmI4LmD4LiK4LmI4LiU
-4LmJ4Lin4Lii4LiE4Lin4Liy4Lih4Lib4Lij4Liw4Liq4LiH4LiE4LmM4LiC4Lit4LiH4LiJ4Lix
-4LiZ4LmA4Lit4LiHIOC5geC4leC5iOC5guC4lOC4ouC4nuC4o+C4sOC5gOC4iOC5ieC4sg0K4LiJ
-4Lix4LiZ4LiV4LmJ4Lit4LiH4LiB4Liy4Lij4LmD4Lir4LmJ4LiE4Li44LiT4Lij4Li54LmJ4Lin
-4LmI4Liy4LiJ4Lix4LiZ4LmD4LiK4LmJ4LmA4Lin4Lil4Liy4Lih4Liy4LiB4Lih4Liy4LiiIOC5
-g+C4meC4geC4suC4o+C4reC4mOC4tOC4qeC4kOC4suC4mQ0K4LmA4LiB4Li14LmI4Lii4Lin4LiB
-4Lix4Lia4LmA4Lij4Li34LmI4Lit4LiH4LiZ4Li14LmJ4LiB4LmI4Lit4LiZ4LiX4Li14LmI4LiJ
-4Lix4LiZ4LiI4Liw4LiV4Li04LiU4LiV4LmI4Lit4LiE4Li44LiTDQrguYLguJvguKPguJTguYHg
-uIjguYnguIfguYPguKvguYnguYDguKPguLLguJfguKPguLLguJrguITguKfguLLguKHguITguLTg
-uJTguYDguKvguYfguJnguILguK3guIfguITguLjguJPguYDguIHguLXguYjguKLguKfguIHguLHg
-uJrguYDguKPguLfguYjguK3guIfguJnguLXguYnguYHguKXguLDguILguYnguK3guKHguLnguKXg
-uJnguLXguYnguIjguLDguYDguJvguYfguJnguITguKfguLLguKHguKXguLHguJrguKrguLjguJTg
-uKLguK3guJQNCuC5gOC4oeC4t+C5iOC4reC4ieC4seC4meC5hOC4lOC5ieC4o+C4seC4muC4geC4
-suC4o+C4leC4reC4muC4geC4peC4seC4muC4iOC4suC4geC4hOC4uOC4kyDguYLguJvguKPguJTg
-uKrguYjguIfguYTguJvguJfguLXguYjguJfguLXguYjguK3guKLguLnguYjguK3guLXguYDguKHg
-uKXguKrguYjguKfguJnguJXguLHguKfguILguK3guIfguInguLHguJkNCmtvZGpvdmloZWdib3I0
-QGdtYWlsLmNvbQ0K4LiI4Liw4LmD4Lir4LmJ4Lij4Liy4Lii4Lil4Liw4LmA4Lit4Li14Lii4LiU
-4LiB4Liy4Lij4LiX4Liz4LiY4Li44Lij4LiB4Lij4Lij4Lih4LmB4LiB4LmI4LiE4Li44LiTDQrg
-uJ7guKPguYnguK3guKHguJfguLHguYnguIfguKrguLPguYDguJnguLLguYPguJrguYDguIfguLTg
-uJnguJ3guLLguIHguILguK3guIfguJjguJnguLLguITguLLguKPguYHguKXguLDguKvguJnguLHg
-uIfguKrguLfguK3guKPguLHguJrguKPguK3guIfguIHguLLguKPguIjguLHguJTguJXguLHguYng
-uIfguJrguKPguLTguKnguLHguJfguJfguLXguYjguIHguYjguK3guJXguLHguYnguIfguJjguJng
-uLLguITguLLguKMNCuC4nuC4o+C4sOC5gOC4iOC5ieC4suC4reC4p+C4ouC4nuC4o+C4ieC4seC4
-meC4geC4s+C4peC4seC4h+C4o+C4reC4geC4suC4o+C4leC4reC4muC4geC4peC4seC4muC4reC4
-ouC5iOC4suC4h+C4o+C4p+C4lOC5gOC4o+C5h+C4p+C4guC4reC4h+C4hOC4uOC4kw0K4Liq4Lin
-4Lix4Liq4LiU4Li1DQrguJnguLLguIcgS29kam92aSBIZWdib3INCmtvZGpvdmloZWdib3I0QGdt
-YWlsLmNvbQ0K
+On Sat, Feb 25, 2023 at 8:37=E2=80=AFAM Alistair Francis <alistair@alistair=
+23.me> wrote:
+
+> +&i2c2 {
+> +       clock-frequency =3D <100000>;
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_i2c2>;
+> +       status =3D "okay";
+> +
+> +       bd71815: pmic@4b {
+> +               compatible =3D "rohm,bd71815";
+> +               reg =3D <0x4b>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&pinctrl_bd71815>;
+> +               interrupt-parent =3D <&gpio6>; /* PMIC_INT_B GPIO6_IO16 *=
+/
+> +               interrupts =3D <16 IRQ_TYPE_LEVEL_LOW>;
+> +               gpio-controller;
+> +               clocks =3D <&clks IMX7D_CLKO2_ROOT_SRC>;
+> +               clock-output-names =3D "bd71815-32k-out";
+> +               #clock-cells =3D <0>;
+> +               #gpio-cells =3D <1>;
+
+The binding document says #gpio-cells =3D <2>;
+
+> +
+> +               regulators {
+> +                       #address-cells =3D <1>;
+> +                       #size-cells =3D <0>;
+> +
+> +                       buck1_reg: regulator@0 {
+> +                               reg =3D <0>;
+
+The regulator@0 and reg should not be present.
+
+Please check Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
