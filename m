@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F082A6A3392
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 20:18:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF0FB6A339D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 20:28:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjBZTR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 14:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56702 "EHLO
+        id S229560AbjBZT2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 14:28:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjBZTR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 14:17:58 -0500
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6515F6E9D;
-        Sun, 26 Feb 2023 11:17:57 -0800 (PST)
-Received: by mail-il1-f175.google.com with SMTP id s8so2875160ilv.10;
-        Sun, 26 Feb 2023 11:17:57 -0800 (PST)
+        with ESMTP id S229470AbjBZT2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 14:28:44 -0500
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5FCE7AA5;
+        Sun, 26 Feb 2023 11:28:43 -0800 (PST)
+Received: by mail-il1-f169.google.com with SMTP id a1so2889117iln.9;
+        Sun, 26 Feb 2023 11:28:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kq1ivKD6RivZCMPyh5AoByorkVQ4XKKDpGw+zbHBm8c=;
-        b=YeulEnZFqVOeS1/m3SVCyZFLXJiziFBL0Cpm6LJi59RpEvt9Ppk5OncmioVH/yPYTl
-         NLWyhTRmKxNLtMJ0Yt1jp9RCl69+IIeCnR1Y409SCJXvH+oLx7IAewV61GPd0FfqTF3D
-         S7IE5V3H67CqIvnAXvRchuly/NwCkTPHlI+m5645ezt08wpUPNtL0td4jPjwSCRKwQ7u
-         RJIV6wKfmZGNSj8ZKV1dW2UlIhdPgynIsmtMEbrlChduMrIwy7FyAOlOGP7d8UmwWj4b
-         JptIHx6hOY0fb17JSeJm0wXw1VECOi1DgIUJ9pvUPyvomu4g4vbpyr/v+x5R8XigYvlR
-         RW/A==
-X-Gm-Message-State: AO0yUKUtTkxHymfSwK0FCznvmVGqp2/D6C7phsBkAbd9uRIFrT5xJw2u
-        nRl7eR3N7SQWL7ynG2ghFw==
-X-Google-Smtp-Source: AK7set9Hu4Sy+NQhvjCSJqK0tY1a0Hk6P5CLj7F5TClDXfRfHpsboyEPsry+SsYb4Kjo0zofxpn/UA==
-X-Received: by 2002:a05:6e02:214f:b0:316:fcbe:397c with SMTP id d15-20020a056e02214f00b00316fcbe397cmr10307752ilv.27.1677439076618;
-        Sun, 26 Feb 2023 11:17:56 -0800 (PST)
+        bh=HKuQGwgeivweI5xlO+yyhOKyA8QolVQHlkAsgWNyaXU=;
+        b=Zv5X860df2UXEXj3Z9RcC+s4iuWP4PRjzYRvc53wGcXiZ+XkDZq8jIO1MyCx7ic8L2
+         4ZfBkaJGuqvpPOW4fjTeAZClog1letVi/IzYKTsONru1GahrsX1Hb2Fwi8Fj7QIPFRK1
+         NppzWl9clnk7WgesNplo9Xsg2aIzZC2sLZSh+nTAx9fvZvJBrZiHr+kZuFyFe6z6S98M
+         P9S9+vg8qxgDmuM9DcmGGn7ODRmkWdKLWupLvoafxx8HA0phdHJfThoK5uMTEYsLi+Hj
+         9JcYwMeVF3VAeSmm7VoouwnvD66UUbkuIus+wIjtbqUjpmG5mhqDOTmlKBCTb1sV6lyb
+         MLuw==
+X-Gm-Message-State: AO0yUKVNlqGRCoqonF5AVwHOA0JsOK1/Y47AjitKFrQ3NeskLvxfRoux
+        YlMTJIQjfvOOKnHvjAUCkw==
+X-Google-Smtp-Source: AK7set/yRKMUsr6NvXUpjmQoil22oIQyZmo7yH+GQmh15bAM5qpqQYM0WWeAVEwjoiMqaT0CkRUWFA==
+X-Received: by 2002:a05:6e02:198e:b0:315:9452:2822 with SMTP id g14-20020a056e02198e00b0031594522822mr19889535ilf.0.1677439723216;
+        Sun, 26 Feb 2023 11:28:43 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:8069:8ddf:ff6b:c94c:94fd:4442])
-        by smtp.gmail.com with ESMTPSA id g23-20020a02bb97000000b003a58ae912aasm1558577jan.28.2023.02.26.11.17.54
+        by smtp.gmail.com with ESMTPSA id t11-20020a92c90b000000b003158a3455bbsm1443619ilp.78.2023.02.26.11.28.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Feb 2023 11:17:56 -0800 (PST)
-Received: (nullmailer pid 163984 invoked by uid 1000);
-        Sun, 26 Feb 2023 19:17:52 -0000
-Date:   Sun, 26 Feb 2023 13:17:52 -0600
+        Sun, 26 Feb 2023 11:28:42 -0800 (PST)
+Received: (nullmailer pid 178199 invoked by uid 1000);
+        Sun, 26 Feb 2023 19:28:34 -0000
+Date:   Sun, 26 Feb 2023 13:28:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: mips: loongson: Add Loongson-1 based
- boards
-Message-ID: <167743907191.163906.16111583186738971743.robh@kernel.org>
-References: <20230221110142.2121482-1-keguang.zhang@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: cypress,cyapa: convert to dtschema
+Message-ID: <167743971306.178099.7728165026052288759.robh@kernel.org>
+References: <20230221161706.56639-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230221110142.2121482-1-keguang.zhang@gmail.com>
+In-Reply-To: <20230221161706.56639-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,19 +64,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 21 Feb 2023 19:01:42 +0800, Keguang Zhang wrote:
-> Add two Loongson-1 based boards: LSGZ 1B and Smartloong 1C.
+On Tue, 21 Feb 2023 17:17:06 +0100, Krzysztof Kozlowski wrote:
+> Convert the Cypress All Points Addressable (APA) I2C Touchpad / Trackpad
+> bindings to DT schema.
 > 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> V2 -> V3: Amend the vendor prefix
-> V1 -> V2: Add the according vendor prefix
->           Change the board string to enum
->           Modify the board description
-> ---
->  .../devicetree/bindings/mips/loongson/devices.yaml   | 12 ++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml         |  2 ++
->  2 files changed, 14 insertions(+)
+>  .../bindings/input/cypress,cyapa.txt          | 42 ----------------
+>  .../bindings/input/cypress,cyapa.yaml         | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/cypress,cyapa.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/cypress,cyapa.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
