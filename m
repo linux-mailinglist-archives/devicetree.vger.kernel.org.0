@@ -2,84 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10E8C6A3316
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 18:11:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F7C6A3325
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 18:22:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjBZRLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 12:11:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45788 "EHLO
+        id S229601AbjBZRW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 12:22:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbjBZRLa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 12:11:30 -0500
-X-Greylist: delayed 2787 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 26 Feb 2023 09:11:28 PST
-Received: from antispamsnwll.cedia.org.ec (antispamsnwll.cedia.org.ec [201.159.220.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 53987FF06
-        for <devicetree@vger.kernel.org>; Sun, 26 Feb 2023 09:11:28 -0800 (PST)
-Received: from antispamsnwll.cedia.org.ec (127.0.0.1) id hve9c00171su for <devicetree@vger.kernel.org>; Sun, 26 Feb 2023 11:24:52 -0500 (envelope-from <prvs=1421df1a3c=phernandez@cuenca.gob.ec>)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cuenca.gob.ec; s=cuenca; i=@cuenca.gob.ec; h=Received:Received:
-        Received:Received:Received:Content-Type:MIME-Version:
-        Content-Transfer-Encoding:Content-Description:Subject:To:From:
-        Date:Reply-To:Message-Id; bh=4Q8sM1WnLl2+Gbtb3rrOkEcuzcuZBE8iv+H
-        DJ7a/1zw=; b=T085qnFovlPigcmoZ7zeiulHBt6lYWu5ZMiFtA+L7VsiCcNusEw
-        645lXwOUwWrXop2NH3ap66f61tQVGvYs+c+3LeD7YnWdQHiJalqnpsG3cN2XCP1h
-        qxhlBA0+E8L4BYVEz6Hpxj/RIWOnrHIXc5fUwy9bkwD5oga2SRj1nTow=
-Received: from mtace.cuenca.gob.ec ([200.55.234.131])
-        by antispamsnwll.cedia.org.ec ([192.168.205.200]) (SonicWall 10.0.21.7607)
-        with ESMTP id o202302261624510099282-2; Sun, 26 Feb 2023 11:24:52 -0500
-Received: from mtace.cuenca.gob.ec (localhost [127.0.0.1])
-        by mtace.cuenca.gob.ec (Postfix) with ESMTPS id 90D8E42080C2;
-        Sun, 26 Feb 2023 11:24:51 -0500 (-05)
-Received: from localhost (localhost [127.0.0.1])
-        by mtace.cuenca.gob.ec (Postfix) with ESMTP id 7000B42080CF;
-        Sun, 26 Feb 2023 11:24:51 -0500 (-05)
-Received: from mtace.cuenca.gob.ec ([127.0.0.1])
-        by localhost (mtace.cuenca.gob.ec [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id unyx6FjlJJqC; Sun, 26 Feb 2023 11:24:51 -0500 (-05)
-Received: from [10.20.18.117] (unknown [156.146.63.154])
-        by mtace.cuenca.gob.ec (Postfix) with ESMTPSA id EBC7D42080C2;
-        Sun, 26 Feb 2023 11:24:41 -0500 (-05)
-Content-Type: text/plain; charset="iso-8859-1"
+        with ESMTP id S229617AbjBZRWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 12:22:55 -0500
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D7A6A6F;
+        Sun, 26 Feb 2023 09:22:54 -0800 (PST)
+Received: by mail-il1-f174.google.com with SMTP id u6so2742602ilk.12;
+        Sun, 26 Feb 2023 09:22:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cZbAAW2LhN0XjJxVgdRFWlox+ztnO/qtqmkajxnI7Dg=;
+        b=Im4x4EimTu9GcNtjRJ7FX4LJocaZuegbcrS1QFth8yrWw5CD7p7tfVGA75uIz9Boe8
+         68yzAOd45eBHPXD71xGE9bdM/pWfzDpYEtd2uVkRRwT0Jml03tzEQT/py7/IQ4ARE4qP
+         tJ1d9xTb5r7AL2i/W3t+ZVVe7MVawQobhcOFNzvqJg/6vV1TVFdde7LFa86H4XOGuWIC
+         l1Xz0O96Az61NNVNNlS48E1smo9wn8Y3LLS0W7/Wxt8XvXFIW3p4Ob2MdqhHR8nijKb9
+         NsAlQtkwHKcGQTtBqWbhYZBWlzSrt/denZL87J3AnywN3PH1bS2ZfcNmZPtwwLsDux3B
+         a6hw==
+X-Gm-Message-State: AO0yUKXLxNgGYc+4mifLY7v/vWbELVyHZSOQIF2JBDeHupsuxJngoleG
+        Ny+oAvJZTyIgAwOSwEPhCQ==
+X-Google-Smtp-Source: AK7set9Ei4vkCXLk+pyPw9tD9bTD0a5PZqFdVS5ekfmJqFXIZlbAF/z0U2hZkghLu9Q/2ShzJ1RSzg==
+X-Received: by 2002:a05:6e02:18cf:b0:313:dd5c:e55f with SMTP id s15-20020a056e0218cf00b00313dd5ce55fmr4986365ilu.6.1677432173112;
+        Sun, 26 Feb 2023 09:22:53 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:8069:8ddf:ff6b:c94c:94fd:4442])
+        by smtp.gmail.com with ESMTPSA id f17-20020a92cb51000000b003141b775fbasm1413045ilq.16.2023.02.26.09.22.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Feb 2023 09:22:52 -0800 (PST)
+Received: (nullmailer pid 49214 invoked by uid 1000);
+        Sun, 26 Feb 2023 17:22:48 -0000
+Date:   Sun, 26 Feb 2023 11:22:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     Andrew Davis <afd@ti.com>, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        soc@kernel.org, Olof Johansson <olof@lixom.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: omap: add phytec pcm-049 som
+ and pcm-959 dev board
+Message-ID: <20230226172248.GA47940-robh@kernel.org>
+References: <20230222203847.2664903-1-colin.foster@in-advantage.com>
+ <20230222203847.2664903-2-colin.foster@in-advantage.com>
+ <dd67f7c9-0867-47d0-a201-9316908d9d62@ti.com>
+ <Y/eTZONJh8QdJVP8@COLIN-DESKTOP1.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: Investment proposition
-To:     Recipients <phernandez@cuenca.gob.ec>
-From:   "Franklin C. James QC" <phernandez@cuenca.gob.ec>
-Date:   Sun, 26 Feb 2023 17:24:31 +0100
-Reply-To: franklin.c34@aol.com
-X-Antivirus: Avast (VPS 230226-0, 2/26/2023), Outbound message
-X-Antivirus-Status: Clean
-Message-Id: <20230226162441.EBC7D42080C2@mtace.cuenca.gob.ec>
-X-Mlf-DSE-Version: 7077
-X-Mlf-Rules-Version: s20230112191048; ds20200715013501;
-        di20230221222152; ri20160318003319; fs20230223174059
-X-Mlf-Smartnet-Version: 20210917223710
-X-Mlf-Envelope-From: phernandez@cuenca.gob.ec
-X-Mlf-CnxnMgmt-Allow: 200.55.234.131
-X-Mlf-Version: 10.0.21.7607
-X-Mlf-License: BSV_C_AP_T_R
-X-Mlf-UniqueId: o202302261624510099282
-X-Spam-Status: No, score=2.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y/eTZONJh8QdJVP8@COLIN-DESKTOP1.localdomain>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I trust you are staying safe and well, I am Franklin C. James QC. from Glas=
-gow, Scotland. I have an investment proposition for your consideration and =
-more details will be revealed once your interest is indicated.
-   
-Yours in service,
-Franklin C. James QC.
-____________________
-Secretary: Phillip Hernandez
+On Thu, Feb 23, 2023 at 08:25:08AM -0800, Colin Foster wrote:
+> On Thu, Feb 23, 2023 at 10:00:50AM -0600, Andrew Davis wrote:
+> > On 2/22/23 2:38 PM, Colin Foster wrote:
+> > > Add yaml documentation for TI OMAP devices for the Phytec PCM-049 SoM and
+> > > the Phytec PCM-959 development kit.
+> > > 
+> > > Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> > > ---
+> > > 
+> > > v4
+> > >      * New patch, based on a WIP from Andrew Davis <afd@ti.com>
+> > > 
+> > > ---
+> > >   .../devicetree/bindings/arm/ti,omap.yaml      | 29 +++++++++++++++++++
+> > >   1 file changed, 29 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/arm/ti,omap.yaml
+> > 
+> > How will this work if I add the same file? Why not take my WIP patch, make
+> > the suggested changes from Rob, then have it as your first patch in this
+> > series?
+> 
+> Is your WIP intended to convert all omap.txt to ti,omap.yaml? Or chunk
+> off devices one at a time?
+> 
+> If the former, when your patch is done it should be a pretty simple
+> rebase conflict resolution. If the latter (which feels more digestable)
+> this offers that template. This was Rob's / Tony's suggestion, albeit
+> before you sent your patch set.
+> 
+> 
+> Anyway, I'm happy to do any of the following:
+> 
+> 1. Take Andrew's patches, add these references and re-submit.
+> 2. Keep this set as-is (with the typo fix) and when Andrew's WIP is done
+>    it should be an easy rebase before submission.
+> 3. Wait for Andrew's WIP to be done, then submit with this update.
+> 
+> 
+> I'd like to avoid #3 because I don't know where this might fall on your
+> priorities list.
 
--- 
-This email has been checked for viruses by Avast antivirus software.
-www.avast.com
+If you are willing to do #1, that's certainly my preference.
+
+Rob
