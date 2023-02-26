@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A226A2D80
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 04:43:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5A36A2D97
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 04:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbjBZDni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 22:43:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52818 "EHLO
+        id S229850AbjBZDoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 22:44:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbjBZDnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 22:43:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E549215146;
-        Sat, 25 Feb 2023 19:43:08 -0800 (PST)
+        with ESMTP id S229854AbjBZDn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 22:43:59 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D0E199F;
+        Sat, 25 Feb 2023 19:43:31 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DDDA060BD4;
-        Sun, 26 Feb 2023 03:43:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E2BCC4339E;
-        Sun, 26 Feb 2023 03:43:06 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2206BB80B88;
+        Sun, 26 Feb 2023 03:43:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A8B6C433D2;
+        Sun, 26 Feb 2023 03:43:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677382987;
-        bh=Swp9cal23T3bRtttDRGQ8Yv4EpqIDlMRm6uqrJbkTY4=;
+        s=k20201202; t=1677383003;
+        bh=OEnsKvdIGTG7q7AsXdoOikj6+xhLB298GVG6F/Sn51s=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aIySZE2k/gA5qCgOce4zO3FVo2PQr4bz7HmZ1l1jDgPMKa323maT0ySSsmviVD6nB
-         05CERTkYLzwxM+BJBpdxXin7ELZl/3AY9h8DHA+cOPpnTf5vz+2kaW9z5dF6Hzqyk/
-         ItVNz+sN2xz6LxIbTZr1b3R35Y0ojhBwUY7FDSqZDwL2u5naUt4cnRourF/ajOBgWU
-         IXzVg76x67zJQ6cTJ+Dtxr3kYiI5f5CpRMfjTqHLT+VjWulExn01VdAB0QpKh50k8s
-         Fd4u8+Clm5kymAgfCtXb2yXa98IlSojTPIo+w5/fd61rQqGK539SEDw36SD2fGHmAr
-         q1AZ72kjHn9jA==
+        b=LtJDjJunIj+sqC1382sA993eKPO6SQXRnLYIynu8fC7E6yI32z/OU5yG1Ms0KzYsj
+         QYsViGjl7Dj4EskCYyNoU5xCrbwOSCcQfSL/Z7i7HNF9Wc4EgxnrMPDgDayYhs7VPK
+         GUHwl++Qj9vA1nRkNUIgzZ2KO0msLPLCFUivdbSlXqQnJeLuIeaFTIRaaihFECCObj
+         UF6lfNO5jJw/mB1SG5pmFoHXCbJao2fCOXYgscq2kQPtGr0mXOf8eqjtHcQSVR7xH1
+         kAXUlAxGPgRLL8OnSl70CRVNPNML0Ji4KBmymMVpcc8ll7ubC/me4NeVOSaEL0oos8
+         ualmlVz0dpjTg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Cc:     Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Michal Simek <michal.simek@amd.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 06/21] ARM: dts: exynos: Use Exynos5420 compatible for the MIPI video phy
-Date:   Sat, 25 Feb 2023 22:42:41 -0500
-Message-Id: <20230226034256.771769-6-sashal@kernel.org>
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        laurent.pinchart@ideasonboard.com, robert.hancock@calian.com,
+        harini.katakam@amd.com, m.tretter@pengutronix.de,
+        piyush.mehta@xilinx.com, tanmay.shah@amd.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.1 15/21] arm64: zynqmp: Enable hs termination flag for USB dwc3 controller
+Date:   Sat, 25 Feb 2023 22:42:50 -0500
+Message-Id: <20230226034256.771769-15-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230226034256.771769-1-sashal@kernel.org>
 References: <20230226034256.771769-1-sashal@kernel.org>
@@ -58,34 +60,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markuss Broks <markuss.broks@gmail.com>
+From: Michael Grzeschik <m.grzeschik@pengutronix.de>
 
-[ Upstream commit 5d5aa219a790d61cad2c38e1aa32058f16ad2f0b ]
+[ Upstream commit 32405e532d358a2f9d4befae928b9883c8597616 ]
 
-For some reason, the driver adding support for Exynos5420 MIPI phy
-back in 2016 wasn't used on Exynos5420, which caused a kernel panic.
-Add the proper compatible for it.
+Since we need to support legacy phys with the dwc3 controller,
+we enable this quirk on the zynqmp platforms.
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-Link: https://lore.kernel.org/r/20230121201844.46872-2-markuss.broks@gmail.com
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+Link: https://lore.kernel.org/r/20221023215649.221726-1-m.grzeschik@pengutronix.de
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/exynos5420.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
-index 9f2523a873d9d..62263eb91b3cc 100644
---- a/arch/arm/boot/dts/exynos5420.dtsi
-+++ b/arch/arm/boot/dts/exynos5420.dtsi
-@@ -592,7 +592,7 @@ dp_phy: dp-video-phy {
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index a549265e55f6e..7c1af75f33a05 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -825,6 +825,7 @@ dwc3_0: usb@fe200000 {
+ 				clock-names = "bus_early", "ref";
+ 				iommus = <&smmu 0x860>;
+ 				snps,quirk-frame-length-adjustment = <0x20>;
++				snps,resume-hs-terminations;
+ 				/* dma-coherent; */
+ 			};
  		};
- 
- 		mipi_phy: mipi-video-phy {
--			compatible = "samsung,s5pv210-mipi-video-phy";
-+			compatible = "samsung,exynos5420-mipi-video-phy";
- 			syscon = <&pmu_system_controller>;
- 			#phy-cells = <1>;
+@@ -851,6 +852,7 @@ dwc3_1: usb@fe300000 {
+ 				clock-names = "bus_early", "ref";
+ 				iommus = <&smmu 0x861>;
+ 				snps,quirk-frame-length-adjustment = <0x20>;
++				snps,resume-hs-terminations;
+ 				/* dma-coherent; */
+ 			};
  		};
 -- 
 2.39.0
