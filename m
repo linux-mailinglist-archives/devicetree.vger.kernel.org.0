@@ -2,142 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC2C6A2EAF
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 08:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F236A2ED2
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 09:02:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbjBZHE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 02:04:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
+        id S229547AbjBZIC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 03:02:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjBZHE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 02:04:27 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A80E06D;
-        Sat, 25 Feb 2023 23:04:25 -0800 (PST)
-Received: from sparky.lan (unknown [159.196.93.152])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1BD3A2022A;
-        Sun, 26 Feb 2023 15:04:17 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1677395063;
-        bh=Y7NTv+s/hWLeamtCbWmhn/7LKRoNqR/n38OfE9hBxlM=;
-        h=Subject:From:To:Date:In-Reply-To:References;
-        b=eRUwOOoHuKdrRpkN6k32TqeYuPJ2qpo8OHbVCzKlNi0EcrDheEyrUr7y8e7GJXNED
-         PQwzOSmmsOInezLa2c5lLpi0j0qRe3tda/GrHsp2InsAdUhXEerdjAFXxWoH3gbzHx
-         dDYrnKPJZbqCtAng1kR86tfWvHG2oOa/oQ++PKP+19xVZuawP0azjT98V5dNiTSadq
-         8v3A5ynMhOdk7FvEZgoSv2pABRqqkeW8E9fVYdE31uRXt2MdT0XYrVjXoNgBFxY/g5
-         m8O0EWEC04qfEIQ3kBcIl0LGlDNYvh+ThCamAIPZWrpyTkS307I3ZcU/ECJeppcfGd
-         6BwTzPiVu4NkQ==
-Message-ID: <8999ef4a57b035a81b086d8732d119638d46968c.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     Ryan Chen <ryan_chen@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date:   Sun, 26 Feb 2023 15:04:16 +0800
-In-Reply-To: <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
-References: <20230226031321.3126756-1-ryan_chen@aspeedtech.com>
-         <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
+        with ESMTP id S229577AbjBZICz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 03:02:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E577558C;
+        Sun, 26 Feb 2023 00:02:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DD026B80B6B;
+        Sun, 26 Feb 2023 08:02:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3AC4C433D2;
+        Sun, 26 Feb 2023 08:02:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677398571;
+        bh=OrzqlWOQcfQnlqFbe3GMPRvRARjlyE9lBCtiY1b4Zxk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=N+gUhwjMepAn6I/5BW0BbqQg9HGh4rZjQS+ogOsJRwxq/Zg5Z+JxTh/BN3c9hB/od
+         XMfgFaaOXgDABQF5KPVDWCYhh4EmfftzWLPH+UhoLmZnfPNkcsj1sik++9KNyu1VmA
+         GuvQiask+OL7m/oVySCV5qjY6WJ4W4MT6emBBrh8vQUP5Afk49PeD6zsonnAF0gwVt
+         JU/9hCB4Jaq+eiS/KrFsNke3CnDtoDw6j1do3huwpDfuFyseUD7AXGANyLTcu9TiVy
+         NhP4vzFR7BLFd4tezkstfmTQcVmHoIj8BS6VoOyuSzYexU1R55M+Phtv/PUAd44n/7
+         nR0Ol7TqDi8YA==
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-172334d5c8aso4482046fac.8;
+        Sun, 26 Feb 2023 00:02:51 -0800 (PST)
+X-Gm-Message-State: AO0yUKWFpVOvyTDdr0gdudDHPY9r3KymvovNLcFRj17ArpSqCkFZCRGJ
+        8Tmzi1SY5D/JndV+v68/HnpLilJQvFraIaZbEdU=
+X-Google-Smtp-Source: AK7set9X+iE7Z8FCwtROlejJhdk9qupobf0BdRTu6l0ae11qbiY+ZF7MOdKkzqpqYMN1lhjsmw1B/n/fEPjbr/xknR0=
+X-Received: by 2002:a05:6871:6b97:b0:16e:2f74:e5c1 with SMTP id
+ zh23-20020a0568716b9700b0016e2f74e5c1mr1828465oab.8.1677398570942; Sun, 26
+ Feb 2023 00:02:50 -0800 (PST)
+MIME-Version: 1.0
+References: <20230219142327.2309518-1-masahiroy@kernel.org>
+In-Reply-To: <20230219142327.2309518-1-masahiroy@kernel.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Sun, 26 Feb 2023 17:02:14 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASPE6KWA-g0t3gD1vfFYqZL0pcy=e_tFa09Ns5j5pkqkg@mail.gmail.com>
+Message-ID: <CAK7LNASPE6KWA-g0t3gD1vfFYqZL0pcy=e_tFa09Ns5j5pkqkg@mail.gmail.com>
+Subject: Re: [PATCH v3] .gitattributes: use 'dts' diff driver for *.dtso files
+To:     linux-kbuild@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-1 
-MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ryan,
+On Sun, Feb 19, 2023 at 11:23=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.=
+org> wrote:
+>
+> Now we have the third extension for DT source files (overlay).
+> Give the diff=3Ddts attribute to *.dtso as well.
+>
+> While I was here, I merged *.c and *.o into *.[ch] and added the
+> SPDX-License-Identifier.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+>
+> Changes in v3:
+>   - Add SPDX-License-Identifier
+>
+> Changes in v2:
+>   - Slightly shorten the code
+>
+>  .gitattributes | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/.gitattributes b/.gitattributes
+> index 4b32eaa9571e..c9ba5bfc4036 100644
+> --- a/.gitattributes
+> +++ b/.gitattributes
+> @@ -1,4 +1,4 @@
+> -*.c   diff=3Dcpp
+> -*.h   diff=3Dcpp
+> -*.dtsi diff=3Ddts
+> -*.dts  diff=3Ddts
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +*.[ch] diff=3Dcpp
+> +*.dts diff=3Ddts
+> +*.dts[io] diff=3Ddts
+> --
+> 2.34.1
+>
 
-> --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> @@ -49,6 +49,25 @@ properties:
-> =C2=A0=C2=A0=C2=A0=C2=A0 description:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 states that there is another master =
-active on this bus
-> =C2=A0
-> +=C2=A0 aspeed,timeout:
-> +=C2=A0=C2=A0=C2=A0 type: boolean
-> +=C2=A0=C2=A0=C2=A0 description: I2C bus timeout enable for master/slave =
-mode
-> +
-> +=C2=A0 aspeed,xfer-mode:
-> +=C2=A0=C2=A0=C2=A0 description: |
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 I2C bus transfer mode selection.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - "byte": I2C bus byte transfer mode.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - "buffered": I2C bus buffer register tra=
-nsfer mode.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - "dma": I2C bus dma transfer mode (defau=
-lt)
-> +=C2=A0=C2=A0=C2=A0 items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [byte, buffered, dma]
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/non-unique-str=
-ing-array
-
-There are still unresolved questions about this xfer-mode property from
-previous submissions of this binding. We don't yet have a justification
-on why the mode configuration is needed in the device tree rather than
-something that is specified in a driver implementation.
-
-By now, I think we well understand what the modes are, and how a driver
-implementation might configure them, but none of that has (so far)
-provided sufficient rationale on why this belongs in the device tree.
-
-The previous threads had a couple of pending discussions, following up on
-those here:
-
-A) You mentioned in [1] that the DMA controller is shared between all i3c
-devices, does that have any consequence on which modes individual
-devices might want to choose?
-
-B) You implied in [2] that the different transfer modes might be related
-to whether there are other masters present on the bus, but the logic
-behind that is not clear.
-
-C) In [3] you mentioned that there might be some DRAM savings by using a
-particular mode.
-
-and, most importantly:
-
-D) unanswered from [4] and [5]: what are the hardware-specified reasons
-why a DT author would chose one mode over another?
-
-If you can write this out in some format like:
-
- - in hardware situation X, you should use DMA mode
- - in hardware situation Y, you should use byte mode
- - [...]
-
-that might help us to understand where this configuration belongs, or
-what a reasonable DT representation should look like, or even if
-existing DT schema can already provide the information required to
-decide.
-
-Cheers,
+Applied to linux-kbuild.
 
 
-Jeremy
-
-[1]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009876.h=
-tml
-[2]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009892.h=
-tml
-[3]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009880.h=
-tml
-[4]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009871.h=
-tml
-[5]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009884.h=
-tml
+--=20
+Best Regards
+Masahiro Yamada
