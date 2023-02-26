@@ -2,123 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 829216A2E7B
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 06:53:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC2C6A2EAF
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 08:04:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbjBZFw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 00:52:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
+        id S229562AbjBZHE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 02:04:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjBZFwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 00:52:47 -0500
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69FD136EF;
-        Sat, 25 Feb 2023 21:52:46 -0800 (PST)
-Received: by mail-vs1-xe29.google.com with SMTP id x14so6053215vso.9;
-        Sat, 25 Feb 2023 21:52:46 -0800 (PST)
+        with ESMTP id S229379AbjBZHE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 02:04:27 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A80E06D;
+        Sat, 25 Feb 2023 23:04:25 -0800 (PST)
+Received: from sparky.lan (unknown [159.196.93.152])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1BD3A2022A;
+        Sun, 26 Feb 2023 15:04:17 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O2H4Vh3JQEN1PhARpU0GTYpYqzp5jLNHawwZOVptfOk=;
-        b=nBrjA9gf93Wv1r7E/fwn2YVmNO9mbMQnSARhXaoLn0sVcV5I1CM86kfUOjYrxZgGTJ
-         f3xvQlDd0tAR301V30W0jOhP0ZfxKCWik67qI7wHnKP9aE0i6LiztDQ6h3XgFbafGPwv
-         Zk8oVB3Uidg7VQcTSQ8ilusDI6Js8hB+kiLpGoGOjv5J/0CUE25sY7tHWa36JXltOlgv
-         1lIJJahMr6aNK7l5vACyOcnzU54X8tQfKXy4LbWlqgGYNfuuxn3sBE/oMP9ECC9ekA/R
-         ISQ/ewj5h4DDfeVa3XO2endeFx3uSm6MdvvGo6gzfm4vQoFuCxCF6dkcvvRep6gaIpwI
-         uiNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O2H4Vh3JQEN1PhARpU0GTYpYqzp5jLNHawwZOVptfOk=;
-        b=sBCygAMZR+Iiu/+49fk5xrb3sGnLjSJ2hu2B+b2eYUUNcgDcm+aERNPTRJctdfDs0s
-         hfOdJTey+JbJ92KeuaSJIwsXlLcFsjxAxITaQztTKLVc7nGEWdQjY28jjuPDRdwwVtuU
-         TrHsOXOyk3/uCXVQODX2IcZZbHKRTkbuIwt/uLBj6d6uCjDIv6Y2IR+/LNz+aSHvXHd6
-         nfxh96kWcBYMw3bNm7GUbk9WkLoaXVUaHEaD+oSTnR523KNzjU3gyjQa0nvp92iamaTR
-         qLQqU4ZAK+D7QX9zczNG23Nt4JIkkOGPaBcL+hAS2PcMiW/JLPIw1KTC0a3ZXz6UvoDL
-         tRzQ==
-X-Gm-Message-State: AO0yUKXMRRZH/8dwigrPyYQrcnaAq6VpZ2cujDwfsIUimGww5ZLz17Th
-        2dXvoq4iKNTnysUuFpU3GkkrQpK2eVvpTtFP15E=
-X-Google-Smtp-Source: AK7set9UIGHgIySyWRZA7668der+RjU5uY/74VdNrOKuNVsqxPQuUApOuo6GdWnoYTEogHc/mJhuuAuXLkcX1njp88Q=
-X-Received: by 2002:a67:db02:0:b0:411:c666:583b with SMTP id
- z2-20020a67db02000000b00411c666583bmr5020787vsj.5.1677390765792; Sat, 25 Feb
- 2023 21:52:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20230225113712.340612-1-alistair@alistair23.me>
- <20230225113712.340612-4-alistair@alistair23.me> <CAOMZO5COg7wZbG3aWcwMsvTBQ9Ft8CQ9wearXMh+00o29CTaeg@mail.gmail.com>
-In-Reply-To: <CAOMZO5COg7wZbG3aWcwMsvTBQ9Ft8CQ9wearXMh+00o29CTaeg@mail.gmail.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Sun, 26 Feb 2023 15:52:19 +1000
-Message-ID: <CAKmqyKPuuHcqYqNinrSfziN1+=5bVTyg=8eZh5j=yYS3BEWMRA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] ARM: dts: imx7d-remarkable2: Enable the rohm,bd71815
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Alistair Francis <alistair@alistair23.me>, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de,
-        kernel@pengutronix.de, jernej.skrabec@gmail.com,
-        linux@armlinux.org.uk
+        d=codeconstruct.com.au; s=2022a; t=1677395063;
+        bh=Y7NTv+s/hWLeamtCbWmhn/7LKRoNqR/n38OfE9hBxlM=;
+        h=Subject:From:To:Date:In-Reply-To:References;
+        b=eRUwOOoHuKdrRpkN6k32TqeYuPJ2qpo8OHbVCzKlNi0EcrDheEyrUr7y8e7GJXNED
+         PQwzOSmmsOInezLa2c5lLpi0j0qRe3tda/GrHsp2InsAdUhXEerdjAFXxWoH3gbzHx
+         dDYrnKPJZbqCtAng1kR86tfWvHG2oOa/oQ++PKP+19xVZuawP0azjT98V5dNiTSadq
+         8v3A5ynMhOdk7FvEZgoSv2pABRqqkeW8E9fVYdE31uRXt2MdT0XYrVjXoNgBFxY/g5
+         m8O0EWEC04qfEIQ3kBcIl0LGlDNYvh+ThCamAIPZWrpyTkS307I3ZcU/ECJeppcfGd
+         6BwTzPiVu4NkQ==
+Message-ID: <8999ef4a57b035a81b086d8732d119638d46968c.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Ryan Chen <ryan_chen@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date:   Sun, 26 Feb 2023 15:04:16 +0800
+In-Reply-To: <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
+References: <20230226031321.3126756-1-ryan_chen@aspeedtech.com>
+         <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.46.4-1 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 26, 2023 at 6:37 AM Fabio Estevam <festevam@gmail.com> wrote:
->
-> On Sat, Feb 25, 2023 at 8:37=E2=80=AFAM Alistair Francis <alistair@alista=
-ir23.me> wrote:
->
-> > +&i2c2 {
-> > +       clock-frequency =3D <100000>;
-> > +       pinctrl-names =3D "default";
-> > +       pinctrl-0 =3D <&pinctrl_i2c2>;
-> > +       status =3D "okay";
-> > +
-> > +       bd71815: pmic@4b {
-> > +               compatible =3D "rohm,bd71815";
-> > +               reg =3D <0x4b>;
-> > +               pinctrl-names =3D "default";
-> > +               pinctrl-0 =3D <&pinctrl_bd71815>;
-> > +               interrupt-parent =3D <&gpio6>; /* PMIC_INT_B GPIO6_IO16=
- */
-> > +               interrupts =3D <16 IRQ_TYPE_LEVEL_LOW>;
-> > +               gpio-controller;
-> > +               clocks =3D <&clks IMX7D_CLKO2_ROOT_SRC>;
-> > +               clock-output-names =3D "bd71815-32k-out";
-> > +               #clock-cells =3D <0>;
-> > +               #gpio-cells =3D <1>;
->
-> The binding document says #gpio-cells =3D <2>;
+Hi Ryan,
 
-Fixed!
+> --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> @@ -49,6 +49,25 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0 description:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 states that there is another master =
+active on this bus
+> =C2=A0
+> +=C2=A0 aspeed,timeout:
+> +=C2=A0=C2=A0=C2=A0 type: boolean
+> +=C2=A0=C2=A0=C2=A0 description: I2C bus timeout enable for master/slave =
+mode
+> +
+> +=C2=A0 aspeed,xfer-mode:
+> +=C2=A0=C2=A0=C2=A0 description: |
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 I2C bus transfer mode selection.
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - "byte": I2C bus byte transfer mode.
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - "buffered": I2C bus buffer register tra=
+nsfer mode.
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - "dma": I2C bus dma transfer mode (defau=
+lt)
+> +=C2=A0=C2=A0=C2=A0 items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [byte, buffered, dma]
+> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/non-unique-str=
+ing-array
 
->
-> > +
-> > +               regulators {
-> > +                       #address-cells =3D <1>;
-> > +                       #size-cells =3D <0>;
-> > +
-> > +                       buck1_reg: regulator@0 {
-> > +                               reg =3D <0>;
->
-> The regulator@0 and reg should not be present.
+There are still unresolved questions about this xfer-mode property from
+previous submissions of this binding. We don't yet have a justification
+on why the mode configuration is needed in the device tree rather than
+something that is specified in a driver implementation.
 
-Fixed
+By now, I think we well understand what the modes are, and how a driver
+implementation might configure them, but none of that has (so far)
+provided sufficient rationale on why this belongs in the device tree.
 
->
-> Please check Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+The previous threads had a couple of pending discussions, following up on
+those here:
 
-Thanks, I double checked my latest code against the bindings.
+A) You mentioned in [1] that the DMA controller is shared between all i3c
+devices, does that have any consequence on which modes individual
+devices might want to choose?
 
-Alistair
+B) You implied in [2] that the different transfer modes might be related
+to whether there are other masters present on the bus, but the logic
+behind that is not clear.
+
+C) In [3] you mentioned that there might be some DRAM savings by using a
+particular mode.
+
+and, most importantly:
+
+D) unanswered from [4] and [5]: what are the hardware-specified reasons
+why a DT author would chose one mode over another?
+
+If you can write this out in some format like:
+
+ - in hardware situation X, you should use DMA mode
+ - in hardware situation Y, you should use byte mode
+ - [...]
+
+that might help us to understand where this configuration belongs, or
+what a reasonable DT representation should look like, or even if
+existing DT schema can already provide the information required to
+decide.
+
+Cheers,
+
+
+Jeremy
+
+[1]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009876.h=
+tml
+[2]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009892.h=
+tml
+[3]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009880.h=
+tml
+[4]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009871.h=
+tml
+[5]: https://lists.ozlabs.org/pipermail/linux-aspeed/2023-February/009884.h=
+tml
