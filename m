@@ -2,57 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F686A2D76
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 04:43:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5022E6A2D92
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 04:44:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjBZDnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 22:43:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51836 "EHLO
+        id S229830AbjBZDoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 22:44:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbjBZDmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 22:42:54 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9D31448F;
-        Sat, 25 Feb 2023 19:42:28 -0800 (PST)
+        with ESMTP id S229803AbjBZDn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 22:43:57 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F59714492;
+        Sat, 25 Feb 2023 19:43:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D8DE60BC9;
-        Sun, 26 Feb 2023 03:42:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7D34C433EF;
-        Sun, 26 Feb 2023 03:42:21 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 10CA460B75;
+        Sun, 26 Feb 2023 03:43:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C2BCC433EF;
+        Sun, 26 Feb 2023 03:42:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677382943;
-        bh=icuXx2EmTsyNRovRKCl2AQPqBveRL9Gl4mQfb+1b+oI=;
+        s=k20201202; t=1677382980;
+        bh=6j7hNspdn3Cz9v+4tg6Flu7/36rdzRaWkXXUEKzBF30=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tTuTs2z++LdnHu81AzMhYlYTB8Hs3i24Mcb3zIpj18mjiQzm7IrcRSdmcuZ1OJv28
-         E4nYqZrDq+EiaMy4HmaRdD5S7YzkMRhMVWxfReROg7hzRlemQnkfyCLbMxFbQOZ3ee
-         mmd9BzNrcSVnquKtQscQdFVQXaXCpd52+5j+nyW2oLWzNTzNfGrllcA0+RHlgwNdcy
-         wk8AC1/acLa7rwxQrHvgp6/ipZ5llsJJjjjNTVoAPNVKiqm/pSH3Ar+sLh64DRbNtC
-         SNLNhes6EmKsXDIhopvRj5pbVcB8jP9mY+pGZak15LR1Rn4MRGgUxHSgxsVmI9h4p8
-         9s6FE+GSnV0Yw==
+        b=jJtqmY0TOyw0fzRTApdd6ONYd0h95IioGPtMh5yjDrqhQVSCZIuuB+Cy/BanuOLK2
+         trv9Rt1lqINYkToz9U8nap5goLILGionTzQ9NEBpwlHciegZQzDFoeRIvPyB9AI82L
+         mrMbAjL8b3FlQdMRaDa4smL4HQRQdvB5JDbgBUlCe+4OLHlIriH0f06zpEazORkzo7
+         XWe/4FZoqf5gk1nY5purjGo600p0x7byH18pZ6lwL0mfrc68siSJbJI6WC0rDi60fA
+         7xwQm4M1LqySqL50JsUlj46uEnJUxy0+Ko2CZA3iHsthrAzqFe102Vu+59n1Lmtug7
+         27ZcUmhVVAuZw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Michal Simek <michal.simek@amd.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        laurent.pinchart@ideasonboard.com, tanmay.shah@amd.com,
-        harini.katakam@amd.com, mathieu.poirier@linaro.org,
-        piyush.mehta@xilinx.com, robert.hancock@calian.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.2 15/21] arm64: zynqmp: Enable hs termination flag for USB dwc3 controller
-Date:   Sat, 25 Feb 2023 22:41:44 -0500
-Message-Id: <20230226034150.771411-15-sashal@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 02/21] arm64: dts: qcom: msm8996: Add additional A2NoC clocks
+Date:   Sat, 25 Feb 2023 22:42:37 -0500
+Message-Id: <20230226034256.771769-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230226034150.771411-1-sashal@kernel.org>
-References: <20230226034150.771411-1-sashal@kernel.org>
+In-Reply-To: <20230226034256.771769-1-sashal@kernel.org>
+References: <20230226034256.771769-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,41 +58,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Grzeschik <m.grzeschik@pengutronix.de>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-[ Upstream commit 32405e532d358a2f9d4befae928b9883c8597616 ]
+[ Upstream commit 67fb53745e0b38275fa0b422b6a3c6c1c028c9a2 ]
 
-Since we need to support legacy phys with the dwc3 controller,
-we enable this quirk on the zynqmp platforms.
+On eMMC devices, the UFS clocks aren't started in the bootloader (or well,
+at least it should not be, as that would just leak power..), which results
+in platform reboots when trying to access the unclocked UFS hardware,
+which unfortunately happens on each and every boot, as interconnect calls
+sync_state and goes over each and every path.
 
-Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
-Link: https://lore.kernel.org/r/20221023215649.221726-1-m.grzeschik@pengutronix.de
-Signed-off-by: Michal Simek <michal.simek@amd.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> #db820c
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Link: https://lore.kernel.org/r/20221210200353.418391-6-konrad.dybcio@linaro.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 4325cb8526edc..f92df478f0eea 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -858,6 +858,7 @@ dwc3_0: usb@fe200000 {
- 				clock-names = "bus_early", "ref";
- 				iommus = <&smmu 0x860>;
- 				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,resume-hs-terminations;
- 				/* dma-coherent; */
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 1107befc3b091..2344a9802ff54 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -829,9 +829,11 @@ a2noc: interconnect@583000 {
+ 			compatible = "qcom,msm8996-a2noc";
+ 			reg = <0x00583000 0x7000>;
+ 			#interconnect-cells = <1>;
+-			clock-names = "bus", "bus_a";
++			clock-names = "bus", "bus_a", "aggre2_ufs_axi", "ufs_axi";
+ 			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
+-				 <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
++				 <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
++				 <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
++				 <&gcc GCC_UFS_AXI_CLK>;
  		};
-@@ -884,6 +885,7 @@ dwc3_1: usb@fe300000 {
- 				clock-names = "bus_early", "ref";
- 				iommus = <&smmu 0x861>;
- 				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,resume-hs-terminations;
- 				/* dma-coherent; */
- 			};
- 		};
+ 
+ 		mnoc: interconnect@5a4000 {
 -- 
 2.39.0
 
