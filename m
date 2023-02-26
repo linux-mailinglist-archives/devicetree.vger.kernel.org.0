@@ -2,448 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3955D6A2CB8
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 01:07:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF30C6A2D39
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 04:15:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjBZAHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Feb 2023 19:07:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
+        id S229597AbjBZDPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Feb 2023 22:15:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjBZAHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 19:07:49 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F13314233;
-        Sat, 25 Feb 2023 16:07:47 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id e21so2561687oie.1;
-        Sat, 25 Feb 2023 16:07:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IB/0ZhBj49l2eO9gijViBYDSEBZCoRV6LX49yGm6hr8=;
-        b=dkCfMVvfRhk+GXjQtIbXYPvpMPO/TO65FwbD1OHObEBk3dX0RhG6xWGPMNZJWNZWZs
-         UgjdYEi7zEnw4GfGPdl1s+WWJapR80cgnS0RnpERHJ7Z0HKwkYpk+nPxGJ/3KqHheTrt
-         6iOpDzdQ+AJM51AMy6djK8AwCbKSTN0mdG5o+NJDI9oQ6KtSmqdxsSP6s0kmr++Fs8ZH
-         IhOPGARa4Ny/9fersI0T7hHvn5KMRaHBLX68jYVxeiZgyxl9BUJIh3lCoMkBDeZpi3GD
-         I3p50+7bGYXWGzNUbaQcUA21HcM5kv/PtDOyXiAB5cxXCoUS3AEa3fB+HxGzQYnI59Ir
-         vqVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IB/0ZhBj49l2eO9gijViBYDSEBZCoRV6LX49yGm6hr8=;
-        b=SGPLWvFXyG4Fq/nnf9XRZVWd3l0IECAb4HZPudTzrS0Q+4ppc2i9pTbF4UIWWpBCBQ
-         IbuPZeqq+QMVALiggoHWOOVi6OT5XtXuy8kect6JKVR3K77/20JClxVhIglW7BiMkcPd
-         TRVmxc0eVCuHLQeeRuJa3Ol3YnuyzO+nGIorjowIUcicO0a97NnwlA8y9/ipC9WA47wU
-         bwODhhv1lJLC0XnTJpmvYJ7sU7DnlWzXLUKNhy1cv7QQLvVnp6F2sA7gcLw6F+Dhyuj2
-         vuxcoLsGQriIBU9s5w9Yz263S++HBnqJShs0TYoVcu916E6NQ9w99p8vpb+Q2FWar32p
-         9wiA==
-X-Gm-Message-State: AO0yUKWLpKupFN8HhXIcTgit6RF1uYTRQBYq/Q678BzsSewKhla0Z31g
-        QuYWDa87rIdci3tHOzeydNFKlqabEbI=
-X-Google-Smtp-Source: AK7set8ymRZ9Nb6ARrHfsTEPJZoQYMNG/Xo+f+QKl3A0h+iDHMl1sOteJyU1bIQPaD9u4t7yKgBB2A==
-X-Received: by 2002:aca:2411:0:b0:378:9bd:2ce0 with SMTP id n17-20020aca2411000000b0037809bd2ce0mr6121578oic.59.1677370066612;
-        Sat, 25 Feb 2023 16:07:46 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n81-20020acabd54000000b00383e4ac8856sm979163oif.22.2023.02.25.16.07.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Feb 2023 16:07:45 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 25 Feb 2023 16:07:44 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/7] of: unittest: add node lifecycle tests
-Message-ID: <20230226000744.GA1777251@roeck-us.net>
-References: <20230213185702.395776-1-frowand.list@gmail.com>
- <20230213185702.395776-5-frowand.list@gmail.com>
+        with ESMTP id S229510AbjBZDPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Feb 2023 22:15:21 -0500
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DB6FF03;
+        Sat, 25 Feb 2023 19:15:18 -0800 (PST)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 31Q30CKS025216;
+        Sun, 26 Feb 2023 11:00:12 +0800 (GMT-8)
+        (envelope-from ryan_chen@aspeedtech.com)
+Received: from aspeedtech.com (192.168.10.13) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 26 Feb
+ 2023 11:13:25 +0800
+From:   Ryan Chen <ryan_chen@aspeedtech.com>
+To:     Ryan Chen <ryan_chen@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-i2c@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v6 0/2] Add ASPEED AST2600 I2Cv2 controller driver
+Date:   Sun, 26 Feb 2023 11:13:19 +0800
+Message-ID: <20230226031321.3126756-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230213185702.395776-5-frowand.list@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.13]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 31Q30CKS025216
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 13, 2023 at 12:56:59PM -0600, Frank Rowand wrote:
-> Add tests to exercise the actions that occur when the reference count
-> of devicetree nodes decrement to zero and beyond.  Decrementing to
-> zero triggers freeing memory allocated for the node.
-> 
-> This commit will expose a pr_err() issue in of_node_release(), resulting
-> in some kernal warnings and stack traces.
-> 
-> When scripts/dtc/of_unittest_expect processes the console messages,
-> it will also report related problems for EXPECT messages due to the
-> pr_err() issue:
->    **     missing EXPECT begin      :    5
-> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
-> ---
-> 
-> There are checkpatch warnings.  I have reviewed them and feel
-> they can be ignored.
-> 
-> Stack traces from the pr_err() issue:
-> 
+This series add AST2600 i2cv2 new register set driver. The i2cv2 new
+register set have new clock divider option for more flexiable generation.
+And also have separate i2c master and slave register set for control.
 
-Unfortunately my test beds trigger a warning if they encounter a backtrace
-in a log. Trying to implement workarounds would be just too time consuming,
-so I had to disable OF_UNITTEST in my boot tests as consequence of this
-patch.
+The legacy register layout is mix master/slave register control together.
+The following is add more detail description about new register layout.
+And new feature set add for register.
 
-Guenter
+-Add new clock divider option for more flexible and accurate clock
+rate generation
+-Add tCKHighMin timing to guarantee SCL high pulse width.
+-Add support dual pool buffer mode, split 32 bytes pool buffer of
+each device into 2 x 16 bytes for Tx and Rx individually.
+-Increase DMA buffer size to 4096 bytes and support byte alignment.
+-Re-define the base address of BUS1 ~ BUS16 and Pool buffer.
+-Re-define registers for separating master and slave mode control.
+-Support 4 individual DMA buffers for master Tx and Rx, slave Tx and Rx.
 
-> ------------[ cut here ]------------
-> WARNING: CPU: 0 PID: 1 at lib/refcount.c:25 kobject_get+0xa0/0xa4
-> refcount_t: addition on 0; use-after-free.
-> Modules linked in:
-> CPU: 0 PID: 1 Comm: swapper/0 Tainted: G                 N 6.2.0-rc1-00005-g774057a35a67 #21
-> Hardware name: Generic DT based system
->  unwind_backtrace from show_stack+0x10/0x14
->  show_stack from dump_stack_lvl+0x40/0x4c
->  dump_stack_lvl from __warn+0x7c/0x15c
->  __warn from warn_slowpath_fmt+0x98/0xcc
->  warn_slowpath_fmt from kobject_get+0xa0/0xa4
->  kobject_get from of_node_get+0x14/0x1c
->  of_node_get from of_fwnode_get+0x34/0x40
->  of_fwnode_get from fwnode_full_name_string+0x34/0xa0
->  fwnode_full_name_string from device_node_string+0x4dc/0x4f4
->  device_node_string from pointer+0x364/0x598
->  pointer from vsnprintf+0x1f8/0x3d0
->  vsnprintf from vprintk_store+0x134/0x410
->  vprintk_store from vprintk_emit+0x6c/0x234
->  vprintk_emit from vprintk_default+0x20/0x28
->  vprintk_default from _printk+0x30/0x60
->  _printk from of_node_release+0xb0/0xf4
->  of_node_release from kobject_put+0xc4/0x29c
->  kobject_put from of_unittest+0x256c/0x2eb8
->  of_unittest from do_one_initcall+0x4c/0x268
->  do_one_initcall from kernel_init_freeable+0x1b4/0x214
->  kernel_init_freeable from kernel_init+0x18/0x130
->  kernel_init from ret_from_fork+0x14/0x2c
-> Exception stack(0xf0821fb0 to 0xf0821ff8)
-> 1fa0:                                     00000000 00000000 00000000 00000000
-> 1fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> 1fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> ---[ end trace 0000000000000000 ]---
-> ------------[ cut here ]------------
-> WARNING: CPU: 0 PID: 1 at lib/refcount.c:28 fwnode_full_name_string+0x8c/0xa0
-> refcount_t: underflow; use-after-free.
-> Modules linked in:
-> CPU: 0 PID: 1 Comm: swapper/0 Tainted: G        W        N 6.2.0-rc1-00005-g774057a35a67 #21
-> Hardware name: Generic DT based system
->  unwind_backtrace from show_stack+0x10/0x14
->  show_stack from dump_stack_lvl+0x40/0x4c
->  dump_stack_lvl from __warn+0x7c/0x15c
->  __warn from warn_slowpath_fmt+0x98/0xcc
->  warn_slowpath_fmt from fwnode_full_name_string+0x8c/0xa0
->  fwnode_full_name_string from device_node_string+0x4dc/0x4f4
->  device_node_string from pointer+0x364/0x598
->  pointer from vsnprintf+0x1f8/0x3d0
->  vsnprintf from vprintk_store+0x134/0x410
->  vprintk_store from vprintk_emit+0x6c/0x234
->  vprintk_emit from vprintk_default+0x20/0x28
->  vprintk_default from _printk+0x30/0x60
->  _printk from of_node_release+0xb0/0xf4
->  of_node_release from kobject_put+0xc4/0x29c
->  kobject_put from of_unittest+0x256c/0x2eb8
->  of_unittest from do_one_initcall+0x4c/0x268
->  do_one_initcall from kernel_init_freeable+0x1b4/0x214
->  kernel_init_freeable from kernel_init+0x18/0x130
->  kernel_init from ret_from_fork+0x14/0x2c
-> Exception stack(0xf0821fb0 to 0xf0821ff8)
-> 1fa0:                                     00000000 00000000 00000000 00000000
-> 1fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> 1fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> ---[ end trace 0000000000000000 ]---
-> ------------[ cut here ]------------
-> WARNING: CPU: 0 PID: 1 at lib/refcount.c:22 kobject_get+0x8c/0xa4
-> refcount_t: saturated; leaking memory.
-> Modules linked in:
-> CPU: 0 PID: 1 Comm: swapper/0 Tainted: G        W        N 6.2.0-rc1-00005-g774057a35a67 #21
-> Hardware name: Generic DT based system
->  unwind_backtrace from show_stack+0x10/0x14
->  show_stack from dump_stack_lvl+0x40/0x4c
->  dump_stack_lvl from __warn+0x7c/0x15c
->  __warn from warn_slowpath_fmt+0x98/0xcc
->  warn_slowpath_fmt from kobject_get+0x8c/0xa4
->  kobject_get from of_node_get+0x14/0x1c
->  of_node_get from of_fwnode_get+0x34/0x40
->  of_fwnode_get from fwnode_full_name_string+0x34/0xa0
->  fwnode_full_name_string from device_node_string+0x4dc/0x4f4
->  device_node_string from pointer+0x364/0x598
->  pointer from vsnprintf+0x1f8/0x3d0
->  vsnprintf from vscnprintf+0x10/0x24
->  vscnprintf from printk_sprint+0x18/0x194
->  printk_sprint from vprintk_store+0x378/0x410
->  vprintk_store from vprintk_emit+0x6c/0x234
->  vprintk_emit from vprintk_default+0x20/0x28
->  vprintk_default from _printk+0x30/0x60
->  _printk from of_node_release+0xb0/0xf4
->  of_node_release from kobject_put+0xc4/0x29c
->  kobject_put from of_unittest+0x256c/0x2eb8
->  of_unittest from do_one_initcall+0x4c/0x268
->  do_one_initcall from kernel_init_freeable+0x1b4/0x214
->  kernel_init_freeable from kernel_init+0x18/0x130
->  kernel_init from ret_from_fork+0x14/0x2c
-> Exception stack(0xf0821fb0 to 0xf0821ff8)
-> 1fa0:                                     00000000 00000000 00000000 00000000
-> 1fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> 1fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> ---[ end trace 0000000000000000 ]---
-> 
-> 
->  drivers/of/dynamic.c                          |  14 +-
->  .../of/unittest-data/testcases_common.dtsi    |   1 +
->  drivers/of/unittest-data/tests-lifecycle.dtsi |   8 +
->  drivers/of/unittest.c                         | 148 +++++++++++++++++-
->  4 files changed, 168 insertions(+), 3 deletions(-)
->  create mode 100644 drivers/of/unittest-data/tests-lifecycle.dtsi
-> 
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index cd3821a6444f..becb80f762c8 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -332,7 +332,19 @@ void of_node_release(struct kobject *kobj)
->  	/* We should never be releasing nodes that haven't been detached. */
->  	if (!of_node_check_flag(node, OF_DETACHED)) {
->  		pr_err("ERROR: Bad of_node_put() on %pOF\n", node);
-> -		dump_stack();
-> +
-> +		/*
-> +		 * of unittests will test this path.  Do not print the stack
-> +		 * trace when the error is caused by unittest so that we do
-> +		 * not display what a normal developer might reasonably
-> +		 * consider a real bug.
-> +		 */
-> +		if (!IS_ENABLED(CONFIG_OF_UNITTEST) ||
-> +		    strcmp(node->parent->full_name, "testcase-data")) {
-> +			dump_stack();
-> +			pr_err("ERROR: next of_node_put() on this node will result in a kboject warning 'refcount_t: underflow; use-after-free.'\n");
-> +		}
-> +
->  		return;
->  	}
->  	if (!of_node_check_flag(node, OF_DYNAMIC))
-> diff --git a/drivers/of/unittest-data/testcases_common.dtsi b/drivers/of/unittest-data/testcases_common.dtsi
-> index 19292bbb4cbb..e7887f2301c1 100644
-> --- a/drivers/of/unittest-data/testcases_common.dtsi
-> +++ b/drivers/of/unittest-data/testcases_common.dtsi
-> @@ -17,3 +17,4 @@ node-remove {
->  #include "tests-address.dtsi"
->  #include "tests-platform.dtsi"
->  #include "tests-overlay.dtsi"
-> +#include "tests-lifecycle.dtsi"
-> diff --git a/drivers/of/unittest-data/tests-lifecycle.dtsi b/drivers/of/unittest-data/tests-lifecycle.dtsi
-> new file mode 100644
-> index 000000000000..28509a8783a7
-> --- /dev/null
-> +++ b/drivers/of/unittest-data/tests-lifecycle.dtsi
-> @@ -0,0 +1,8 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/ {
-> +	testcase-data {
-> +		refcount-node {
-> +		};
-> +	};
-> +};
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index bc0f1e50a4be..db72e208819c 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -54,8 +54,9 @@ static struct unittest_results {
->   * Print the expected message only if the current loglevel will allow
->   * the actual message to print.
->   *
-> - * Do not use EXPECT_BEGIN() or EXPECT_END() for messages generated by
-> - * pr_debug().
-> + * Do not use EXPECT_BEGIN(), EXPECT_END(), EXPECT_NOT_BEGIN(), or
-> + * EXPECT_NOT_END() to report messages expected to be reported or not
-> + * reported by pr_debug().
->   */
->  #define EXPECT_BEGIN(level, fmt, ...) \
->  	printk(level pr_fmt("EXPECT \\ : ") fmt, ##__VA_ARGS__)
-> @@ -63,6 +64,12 @@ static struct unittest_results {
->  #define EXPECT_END(level, fmt, ...) \
->  	printk(level pr_fmt("EXPECT / : ") fmt, ##__VA_ARGS__)
->  
-> +#define EXPECT_NOT_BEGIN(level, fmt, ...) \
-> +	printk(level pr_fmt("EXPECT_NOT \\ : ") fmt, ##__VA_ARGS__)
-> +
-> +#define EXPECT_NOT_END(level, fmt, ...) \
-> +	printk(level pr_fmt("EXPECT_NOT / : ") fmt, ##__VA_ARGS__)
-> +
->  static void __init of_unittest_find_node_by_name(void)
->  {
->  	struct device_node *np;
-> @@ -1488,6 +1495,7 @@ static int __init unittest_data_add(void)
->  		struct device_node *next = np->sibling;
->  
->  		np->parent = of_root;
-> +		/* this will clear OF_DETACHED in np and children */
->  		attach_node_and_children(np);
->  		np = next;
->  	}
-> @@ -2998,6 +3006,141 @@ static void __init of_unittest_overlay(void)
->  static inline void __init of_unittest_overlay(void) { }
->  #endif
->  
-> +static void __init of_unittest_lifecycle(void)
-> +{
-> +	unsigned int refcount;
-> +	int found_refcount_one = 0;
-> +	int put_count = 0;
-> +	struct device_node *np;
-> +	struct device_node *prev_sibling, *next_sibling;
-> +	const char *refcount_path = "/testcase-data/refcount-node";
-> +	const char *refcount_parent_path = "/testcase-data";
-> +
-> +	/*
-> +	 * Node lifecycle tests, non-dynamic node:
-> +	 *
-> +	 * - Decrementing refcount to zero via of_node_put() should cause the
-> +	 *   attempt to free the node memory by of_node_release() to fail
-> +	 *   because the node is not a dynamic node.
-> +	 *
-> +	 * - Decrementing refcount past zero should result in additional
-> +	 *   errors reported.
-> +	 */
-> +
-> +	np = of_find_node_by_path(refcount_path);
-> +	unittest(np, "find refcount_path \"%s\"\n", refcount_path);
-> +	if (np == NULL)
-> +		goto out_skip_tests;
-> +
-> +	while (!found_refcount_one) {
-> +
-> +		if (put_count++ > 10) {
-> +			unittest(0, "guardrail to avoid infinite loop\n");
-> +			goto out_skip_tests;
-> +		}
-> +
-> +		refcount = kref_read(&np->kobj.kref);
-> +		if (refcount == 1)
-> +			found_refcount_one = 1;
-> +		else
-> +			of_node_put(np);
-> +	}
-> +
-> +	EXPECT_BEGIN(KERN_INFO, "OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node");
-> +
-> +	/*
-> +	 * refcount is now one, decrementing to zero will result in a call to
-> +	 * of_node_release() to free the node's memory, which should result
-> +	 * in an error
-> +	 */
-> +	unittest(1, "/testcase-data/refcount-node is one");
-> +	of_node_put(np);
-> +
-> +	EXPECT_END(KERN_INFO, "OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node");
-> +
-> +
-> +	/*
-> +	 * expect stack trace for subsequent of_node_put():
-> +	 *   __refcount_sub_and_test() calls:
-> +	 *   refcount_warn_saturate(r, REFCOUNT_SUB_UAF)
-> +	 *
-> +	 * Not capturing entire WARN_ONCE() trace with EXPECT_*(), just
-> +	 * the first three lines, and the last line.
-> +	 */
-> +	EXPECT_BEGIN(KERN_INFO, "------------[ cut here ]------------");
-> +	EXPECT_BEGIN(KERN_INFO, "WARNING: <<all>>");
-> +	EXPECT_BEGIN(KERN_INFO, "refcount_t: underflow; use-after-free.");
-> +	EXPECT_BEGIN(KERN_INFO, "---[ end trace <<int>> ]---");
-> +
-> +	/* refcount is now zero, this should fail */
-> +	unittest(1, "/testcase-data/refcount-node is zero");
-> +	of_node_put(np);
-> +
-> +	EXPECT_END(KERN_INFO, "---[ end trace <<int>> ]---");
-> +	EXPECT_END(KERN_INFO, "refcount_t: underflow; use-after-free.");
-> +	EXPECT_END(KERN_INFO, "WARNING: <<all>>");
-> +	EXPECT_END(KERN_INFO, "------------[ cut here ]------------");
-> +
-> +	/*
-> +	 * Q. do we expect to get yet another warning?
-> +	 * A. no, the WARNING is from WARN_ONCE()
-> +	 */
-> +	EXPECT_NOT_BEGIN(KERN_INFO, "------------[ cut here ]------------");
-> +	EXPECT_NOT_BEGIN(KERN_INFO, "WARNING: <<all>>");
-> +	EXPECT_NOT_BEGIN(KERN_INFO, "refcount_t: underflow; use-after-free.");
-> +	EXPECT_NOT_BEGIN(KERN_INFO, "---[ end trace <<int>> ]---");
-> +
-> +	unittest(1, "/testcase-data/refcount-node is zero, second time");
-> +	of_node_put(np);
-> +
-> +	EXPECT_NOT_END(KERN_INFO, "---[ end trace <<int>> ]---");
-> +	EXPECT_NOT_END(KERN_INFO, "refcount_t: underflow; use-after-free.");
-> +	EXPECT_NOT_END(KERN_INFO, "WARNING: <<all>>");
-> +	EXPECT_NOT_END(KERN_INFO, "------------[ cut here ]------------");
-> +
-> +	/*
-> +	 * refcount of zero will trigger stack traces from any further
-> +	 * attempt to of_node_get() node "refcount-node". One example of
-> +	 * this is where of_unittest_check_node_linkage() will recursively
-> +	 * scan the tree, with 'for_each_child_of_node()' doing an
-> +	 * of_node_get() of the children of a node.
-> +	 *
-> +	 * Prevent the stack trace by removing node "refcount-node" from
-> +	 * its parent's child list.
-> +	 *
-> +	 * WARNING:  EVIL, EVIL, EVIL:
-> +	 *
-> +	 *   Directly manipulate the child list of node /testcase-data to
-> +	 *   remove child refcount-node.  This is ignoring all proper methods
-> +	 *   of removing a child and will leak a small amount of memory.
-> +	 */
-> +
-> +	np = of_find_node_by_path(refcount_parent_path);
-> +	unittest(np, "find refcount_parent_path \"%s\"\n", refcount_parent_path);
-> +	unittest(np, "ERROR: devicetree live tree left in a 'bad state' if test fail\n");
-> +	if (np == NULL)
-> +		return;
-> +
-> +	prev_sibling = np->child;
-> +	next_sibling = prev_sibling->sibling;
-> +	if (!strcmp(prev_sibling->full_name, "refcount-node")) {
-> +		np->child = next_sibling;
-> +		next_sibling = next_sibling->sibling;
-> +	}
-> +	while (next_sibling) {
-> +		if (!strcmp(next_sibling->full_name, "refcount-node"))
-> +			prev_sibling->sibling = next_sibling->sibling;
-> +		prev_sibling = next_sibling;
-> +		next_sibling = next_sibling->sibling;
-> +	}
-> +	of_node_put(np);
-> +
-> +	return;
-> +
-> +out_skip_tests:
-> +	unittest(0, "One or more lifecycle tests skipped\n");
-> +}
-> +
->  #ifdef CONFIG_OF_OVERLAY
->  
->  /*
-> @@ -3502,6 +3645,7 @@ static int __init of_unittest(void)
->  	of_unittest_match_node();
->  	of_unittest_platform_populate();
->  	of_unittest_overlay();
-> +	of_unittest_lifecycle();
->  
->  	/* Double check linkage after removing testcase data */
->  	of_unittest_check_tree_linkage();
-> -- 
-> Frank Rowand <frowand.list@gmail.com>
-> 
+And following is new register set for package transfer sequence.
+-New Master operation mode:
+ S -> Aw -> P
+ S -> Aw -> TxD -> P
+ S -> Ar -> RxD -> P
+ S -> Aw -> RxD -> Sr -> Ar -> TxD -> P
+-Bus SDA lock auto-release capability for new master DMA command mode.
+-Bus auto timeout for new master/slave DMA mode.
+
+The following is two versus register layout.
+Old:
+{I2CD00}: Function Control Register     
+{I2CD04}: Clock and AC Timing Control Register
+{I2CD08}: Clock and AC Timing Control Register
+{I2CD0C}: Interrupt Control Register
+{I2CD10}: Interrupt Status Register 
+{I2CD14}: Command/Status Register   
+{I2CD18}: Slave Device Address Register
+{I2CD1C}: Pool Buffer Control Register
+{I2CD20}: Transmit/Receive Byte Buffer Register
+{I2CD24}: DMA Mode Buffer Address Register
+{I2CD28}: DMA Transfer Length Register
+{I2CD2C}: Original DMA Mode Buffer Address Setting
+{I2CD30}: Original DMA Transfer Length Setting and Final Status
+
+New Register mode
+{I2CC00}: Master/Slave Function Control Register
+{I2CC04}: Master/Slave Clock and AC Timing Control Register
+{I2CC08}: Master/Slave Transmit/Receive Byte Buffer Register
+{I2CC0C}: Master/Slave Pool Buffer Control Register
+{I2CM10}: Master Interrupt Control Register
+{I2CM14}: Master Interrupt Status Register  
+{I2CM18}: Master Command/Status Register
+{I2CM1C}: Master DMA Buffer Length Register
+{I2CS20}: Slave~ Interrupt Control Register
+{I2CS24}: Slave~ Interrupt Status Register
+{I2CS28}: Slave~ Command/Status Register
+{I2CS2C}: Slave~ DMA Buffer Length Register
+{I2CM30}: Master DMA Mode Tx Buffer Base Address
+{I2CM34}: Master DMA Mode Rx Buffer Base Address
+{I2CS38}: Slave~ DMA Mode Tx Buffer Base Address
+{I2CS3C}: Slave~ DMA Mode Rx Buffer Base Address
+{I2CS40}: Slave Device Address Register
+{I2CM48}: Master DMA Length Status Register
+{I2CS4C}: Slave  DMA Length Status Register
+{I2CC50}: Current DMA Operating Address Status
+{I2CC54}: Current DMA Operating Length  Status
+
+aspeed,global-regs:
+This global register is needed, global register is setting for 
+new clock divide control, and new register set control.
+
+ASPEED SOC chip is server product, i2c bus may have
+fingerprint connect to another board. And also support hotplug.
+The following is board-specific design example.
+Board A                                         Board B
+-------------------------                       ------------------------
+|i2c bus#1(master/slave)  <===fingerprint ===> i2c bus#x (master/slave)|
+|i2c bus#2(master)-> tmp i2c device |          |                       |
+|i2c bus#3(master)-> adc i2c device |          |                       |
+-------------------------                       ------------------------
+
+aspeed,timout properites:
+For example I2C controller as slave mode, and suddenly disconnected.
+Slave state machine will keep waiting for master clock in for rx/tx transmit.
+So it need timeout setting to enable timeout unlock controller state.
+And in another side. In Master side also need avoid suddenly slave miss(un-plug),
+Master will timeout and release the SDA/SCL.
+
+aspeed,xfer-mode:
+For example The bus#1 have trunk data needed for tranfer, it can enable
+bus dma mode transfer, it can reduce cpu utilized. bus#2 is small
+transmit, it can enable buffer mode or byte mode to reduce memory
+cache flush overhead.
+
+v6:
+-remove aspeed,i2cv2.yaml, merge to aspeed,i2c.yaml
+ -add support for i2cv2 properites.
+-i2c-ast2600.c
+ -fix ast2600_i2c_remove ordering.
+ -remove ast2600_i2c_probe goto labels, and add dev_err_probe
+ -remove redundant deb_dbg debug message.
+ -rename gr_regmap -> global_regs
+
+v5:
+-remove ast2600-i2c-global.yaml, i2c-ast2600-global.c.
+-i2c-ast2600.c
+ -remove legacy clock divide, all go for new clock divide.
+ -remove duplicated read isr.
+ -remove no used driver match
+ -fix probe return for each labels return.
+ -global use mfd driver, driver use phandle to regmap read/write.
+-rename aspeed,i2c-ast2600.yaml to aspeed,i2cv2.yaml
+-remove bus-frequency.
+-add required aspeed,gr
+-add timeout, byte-mode, buff-mode properites.
+
+v4:
+-fix i2c-ast2600.c driver buffer mode use single buffer conflit in
+ master slave mode both enable.
+-fix kmemleak issue when use dma mode.
+-fix typo aspeed,i2c-ast2600.yaml compatible is "aspeed,ast2600-i2c"
+-fix typo aspeed,i2c-ast2600.ymal to aspeed,i2c-ast2600.yaml
+
+v3:
+-fix i2c global clock divide default value.
+-remove i2c slave no used dev_dbg info.
+
+v2:
+-add i2c global ymal file commit.
+-rename file name from new to ast2600.
+ aspeed-i2c-new-global.c -> i2c-ast2600-global.c
+ aspeed-i2c-new-global.h -> i2c-ast2600-global.h
+ i2c-new-aspeed.c -> i2c-ast2600.c
+-rename all driver function name to ast2600.
+
+Ryan Chen (2):
+  dt-bindings: i2c: aspeed: support for AST2600-i2cv2
+  i2c: aspeed: support ast2600 i2cv new register mode driver
+
+ .../devicetree/bindings/i2c/aspeed,i2c.yaml   |   44 +
+ MAINTAINERS                                   |    9 +
+ drivers/i2c/busses/Kconfig                    |   11 +
+ drivers/i2c/busses/Makefile                   |    1 +
+ drivers/i2c/busses/i2c-ast2600.c              | 1630 +++++++++++++++++
+ 5 files changed, 1695 insertions(+)
+ create mode 100644 drivers/i2c/busses/i2c-ast2600.c
+
+-- 
+2.34.1
+
