@@ -2,158 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A5CD6A2FA8
-	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 14:02:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B434C6A2F80
+	for <lists+devicetree@lfdr.de>; Sun, 26 Feb 2023 13:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjBZNCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 08:02:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42694 "EHLO
+        id S229549AbjBZMwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 07:52:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbjBZNCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 08:02:41 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2064.outbound.protection.outlook.com [40.107.20.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F06A12F00;
-        Sun, 26 Feb 2023 05:02:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LdD4S7TOxI0Icr4CjMYnUJJ/b6O4dR8I0rVM61Sc8b1V6TyU1CeEe4UHNWIDA8ZD4PHPLH+jmi7u+WfDzIcg6qgkvWVe4ajBqbhZ0d4fWFQRgdD6vrlY0tUvOrz7pLo06ShzAVuvth5oPIb3/ogki42Vqmu1tfIkSUucn5RjG53+tnbuI2sD+MghncpGTXE4N+s7f87Xl/8J4ANcPFdNaqIqMDo3IBkKXSvwmaU1V9IwoVv5bP5JP2xtXQPT6ettKon0GlbZyPItbrnnb6RQcAngYH7bJhwg6h3+WN14SpAUR9s7uURIQtqSUN1D4l1dtmlqekl6vgkdWlCfk3pAKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jLEzeQ8e3fW0rNttF2JWi1LXmFssh825G0k7LQqK+f0=;
- b=BcEiWa6PRnCYBNnMk4Pgd1sEJrOLFTe0PdzfaRMn+iXdDffJ91thbmujUuRbwjbMLCjmVZk+ABnyFjri9v2i1KA2aEaU13Ccepy0OSvwcBLJf7Borae36gpJHG3swhoIpjhv7LLGNAkxyeGFoOPg8a2PZK3Zl2IdOcsjxMXhEJq6F/ZDQU1kAF3Zo51MgyEXPLoO49BLfXYX3DsOe5OkGiOp43ju136nQvAbF5B4boUqBnzzyERTrHf0Z2z672i2iulMCWoTf3cbKnhS36ERloqOyrktb4r/nDov0L6481Gs4B8EmA8AR/XlIC2OemoQxkDLxS/2HADf8KCmqMY7bw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jLEzeQ8e3fW0rNttF2JWi1LXmFssh825G0k7LQqK+f0=;
- b=B8GOkvaQiGFJVsMByF0mAcZdRWRSNTCAidC28Q0hsUScWzMzlRdFqeRJv5wZT/6vv9EWGQHxkSJ9DSkNcS87NiqGuGv0mf6C9hqqNVMTPWqR0zSlBFQHmExhEugB0NCf2UZFRBOsFEG43ToC4WgAfr6KMWrfPXujbQlOn/8Xrsw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DU2PR04MB8968.eurprd04.prod.outlook.com (2603:10a6:10:2e3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.27; Sun, 26 Feb
- 2023 13:01:00 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::f55a:cf12:da08:6d2a]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::f55a:cf12:da08:6d2a%3]) with mapi id 15.20.6134.025; Sun, 26 Feb 2023
- 13:01:00 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, xu.yang_2@nxp.com
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V3 6/7] dt-bindings: usb: ci-hdrc-usb2: add i.MX8DXL/MN support
-Date:   Sun, 26 Feb 2023 21:05:38 +0800
-Message-Id: <20230226130539.277336-7-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230226130539.277336-1-peng.fan@oss.nxp.com>
-References: <20230226130539.277336-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0002.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::16) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S229605AbjBZMwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 07:52:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C885811646;
+        Sun, 26 Feb 2023 04:52:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 46415B80B7C;
+        Sun, 26 Feb 2023 12:52:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7975CC433D2;
+        Sun, 26 Feb 2023 12:52:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677415955;
+        bh=oEQsjh8Gi31+5wH5xx1MJkmxpc3pijYr5zWuKl/aPzs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PyHv21EgYDcD0G6sQucjz6ObfE4Z3fXq49xfVkFUumDc7edBeciQdk+hZYvaskZmc
+         yKPJjD0xISbCw8m1i0FJCgPqYKWnJCz6eSaMJxwtkgoAGiFK7KzPgJoj4JHU4957iY
+         79x9z/CYHVAVqMdJVDZC72SWQX6xzVOGNK//K7DdbAyxLP3P3Qf/eSe77n9ZZLd6OT
+         O+myq6Egyb7L3dT8zL8w3aBI75gJHgg0m24h1NBdZ1kgvUXEGkcf6qvGmtyHt5eBHx
+         L0N/XEoQNYp98FUrRIOFROnUEpbftDTTEckQmchkVq2LXU9ohiH20h5GXj4r69uLpA
+         RZTqZlm9YRTMg==
+Date:   Sun, 26 Feb 2023 13:07:00 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v4 2/5] iio: temperature: tmp117: improve fallback
+ capabilities
+Message-ID: <20230226130700.5b0d650f@jic23-huawei>
+In-Reply-To: <20230220122552.925216-3-m.felsch@pengutronix.de>
+References: <20230220122552.925216-1-m.felsch@pengutronix.de>
+        <20230220122552.925216-3-m.felsch@pengutronix.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DU2PR04MB8968:EE_
-X-MS-Office365-Filtering-Correlation-Id: be22d415-02e5-480f-9f46-08db17f98259
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eHkDNvAM8cQ5em4G+g3OSdCUqeZ2+6ZsEFCBYwm7BcE9AC2VnAM07mxh0bOnTJmc2dfYUYIQIb5gfqV49qCRBF6ii7uTpkC49UUq9kzmWSwhQvhq3akYzO7d26zPOF3VaqpOQ8JpaIkjH0TjBXhpyepE8NpFIbU16XP8XDcVL57AS0F1AbqfqqLkXhxCpRS9YRBt4gkycubQKadYTuCUCVUi4FkBvhRwt0CnesIlhWmmiw0k3TGSsN90JBxQwOob8Tqt5mffh1eeJxHsaryhlgksJ2aHsSFiBoU8Il+ZEWNNqfO09GsIcAWSJi1bVAcuk01xN9Di/Eeoj/D4ItAo76pLWtyfVIuSY2jtOjgy4lBper8HWF03OtSa2w2RBRwpO0jH4E1yj4h4+SAHaL4MUiaHsXw/T3GxpNnP+boaMt9wFSEZNA3+575WtdYj377e9iFz8vqTaBONl8pFhoQu4RoUTGUc7se5ygiiPJbifZReVce+UDvHzaDwr01vQWZUhqRtDr9kZ7bAtrlj+cNxJVurYX9URLDGvu2Cd4ruw8jvGZQe13nm9ogkyHeRApw9VlQdbdu7wA4/dYdLNqFPmZN/mhS34EpQBIY9692ZrH8hOV5zwRHkq1qAbJQmLc5LPuLHosGTzE0U6Rsym7BAa1Viy7hvJDzP/P3RmVNedCx1qMPQplbglRpzvcfWBdAn7PA3rEDVPDGGc5m5HRRzUQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(366004)(39860400002)(346002)(396003)(376002)(451199018)(83380400001)(8676002)(6666004)(38350700002)(38100700002)(86362001)(8936002)(5660300002)(478600001)(7416002)(2616005)(26005)(6486002)(1076003)(6512007)(6506007)(66556008)(66476007)(4326008)(2906002)(66946007)(316002)(52116002)(186003)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hkjWUrgXErNv8q2ucUYfYaf0wfvqlBPb3SWuYbrJXIYOOknjA4aLKf1/JrOc?=
- =?us-ascii?Q?IleKHyoQ0ilvuhhHjpw7deqhFMKtCd5Xne/c1RsMvxTXqlVSSoKWCI2AaFo5?=
- =?us-ascii?Q?qka8BYH2nM7rJX5kNBKdjSDNqdxDDCP+XScin2t3+VV1zISTwhlJsEACNsFi?=
- =?us-ascii?Q?YMrdqdIG+yN/P69zUlbeeqz88EDC0o/GJykQfRRM8zpGmaZwFYcc1/+a7UIy?=
- =?us-ascii?Q?kP0qaKv87WAMiSix6VmGRt3wA/0cijo/Qsatshi1IeLIoH6KQj/fSDWXhx6I?=
- =?us-ascii?Q?eZ/hJRdHs7q//td00ZyJa+4LR18Fmme9ejy1tylJLQOfug8UBmlyMOlCuX3N?=
- =?us-ascii?Q?z9KAg420MaPFKiwYYkGQQ8IfY2omoqk+uRypxKArCNAGIRel96WTd3F50uvh?=
- =?us-ascii?Q?zlb2Cj75SX1VetxZ3oZzGwo0uQJBkK/kZ2v1Sc12XLKOyYsVFlRZ0HFu60Gi?=
- =?us-ascii?Q?bbhsZOTfYxpuKD28GmxA2G8B9FXVk4oaoe6YkibIa43cHyTJqWoeIRcaofPi?=
- =?us-ascii?Q?0sldxEQf5eB86lA90mAOpgwy/bW+1heozdWSsCGmsiF09R/auL99VCZhw2wt?=
- =?us-ascii?Q?3hOkY3rdMv+WQKM2bCCaMc0YiBxGWvyrGvAVA+EdMawXU+25Nr7/a1Y6ZjAF?=
- =?us-ascii?Q?axTgAOMqReJQRoYTiJkIoRzl9+5/yCro/Us5z/9FeLpSL2kNIIlPiEmRvcz9?=
- =?us-ascii?Q?wMt3nba5lI+i8r34pui6gtbqxtKSDFDELYtM6ZGZmZUEHKt0iEI7DGNQZPEO?=
- =?us-ascii?Q?Fw1OKd0LWXQM02QrZooc56FKLCAzvAq+SeRNkbeEcRlrKVzX2Zn6SbmqhML5?=
- =?us-ascii?Q?Pc3cFlpa1diADe+y1s5vi42ExkTZDCK3WDCLYIti7MQH4YXzCKDn4jyJgjtG?=
- =?us-ascii?Q?C39yQWdeFCC9NIHhXubYfsiMm7NdBVFDbpWsnV/DuxYU+7kAxPKNKfHEUpXv?=
- =?us-ascii?Q?Oj0arnrkB425+Fy1HkN4c8by1hhG6KhXhP2RsQlJPNKWq25blTgMH2ak3aKG?=
- =?us-ascii?Q?8RQWNJQ+6KO8zRpGjtRYiFAfugUepKMqUA2FgbTl6EeCHCc3O0kWn73Tg9Tm?=
- =?us-ascii?Q?2s2CfesEYJAMV5iSKkYEgVcUsVXxTqXh8chpeU+KiLmr6dScYGiKPDKHq3DH?=
- =?us-ascii?Q?x2mmyR/uKUuWgiSGHEWoEqjxpRcK6khhbFZP8MMKjdpWahmAJz91gwgNoQHG?=
- =?us-ascii?Q?lUTSYHM67D5l3OVBxGRYXg9oOmXe2vFMPesju5GP6pMRbbBg6Bwm5lNDzz1s?=
- =?us-ascii?Q?mi1w8KPoVx9zf6LHA0L4o8ZETlb+ZFW50k/J9Qw3z5BIN9NT8Ad7du8lDPD0?=
- =?us-ascii?Q?J3wBX8RoJXGzjOvS++MR0vILjluUibNQEf+Wm/WkPVmQKFm+Ty9s90KaREmB?=
- =?us-ascii?Q?C2X5Ch5qHdG4BoDSXPspGYonKIY0gmPFSJWdytQyxadEIJH/tPmSxOW6o6TP?=
- =?us-ascii?Q?weWzv1Wf6cDfZdVeKO6ziXbdgBAsZQAus8dbakCHoJZslx6J9GSWwjbeQNqo?=
- =?us-ascii?Q?jZtyNrbAboL4rFT2A/uXe+oVrkPMH6XaUowTJik/mxqrnqAkU766BgDG2YAz?=
- =?us-ascii?Q?47OMeCHRE+opNYFkHzXukXSHYhVlpndCdGiSKRy/?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: be22d415-02e5-480f-9f46-08db17f98259
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2023 13:01:00.7544
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WbnIRcHfDdEa0Q34GGKRaGfVrQRFYuoZE7NADSByrgyRXM+b+tTUcPZb6kkAsGnr+rPsWcH6mRLlbM7F0zfRGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8968
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On Mon, 20 Feb 2023 13:25:49 +0100
+Marco Felsch <m.felsch@pengutronix.de> wrote:
 
-Add i.MX8MN compatible strings, which are compatible with i.MX7D.
-Add i.MX8DXL compatible string, which is compatible with i.MX7ULP.
+> Don't error if the device-id found don't match the device-id for the
+> TMP117 sensor since other TMPxxx might be compatible to the TMP117. The
+> fallback mechanism tries to gather the required information from the
+> of_device_id or from the i2c_client information.
+> 
+> The commit also prepares the driver for adding new devices more easily
+> by making use of switch-case at the relevant parts.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Hi Marco,
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- .../devicetree/bindings/usb/ci-hdrc-usb2.yaml         | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+Thanks for doing this.  A small things inline.
 
-diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-index 8fad6e034911..203649d0d02c 100644
---- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-@@ -37,13 +37,18 @@ properties:
-               - fsl,imx7d-usb
-               - fsl,vf610-usb
-           - const: fsl,imx27-usb
-+      - items:
-+          - const: fsl,imx8dxl-usb
-+          - const: fsl,imx7ulp-usb
-+      - items:
-+          - enum:
-+              - fsl,imx8mm-usb
-+              - fsl,imx8mn-usb
-+          - const: fsl,imx7d-usb
-       - items:
-           - const: fsl,imx6sll-usb
-           - const: fsl,imx6ul-usb
-           - const: fsl,imx27-usb
--      - items:
--          - const: fsl,imx8mm-usb
--          - const: fsl,imx7d-usb
-       - items:
-           - const: fsl,imx7ulp-usb
-           - const: fsl,imx6ul-usb
--- 
-2.37.1
+> ---
+> v4:
+> - new patch to implement possible fallback (Jonathan)
+> 
+>  drivers/iio/temperature/tmp117.c | 67 +++++++++++++++++++++-----------
+>  1 file changed, 44 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
+> index f9b8f2b570f6b..4ddb8cf9a29ab 100644
+> --- a/drivers/iio/temperature/tmp117.c
+> +++ b/drivers/iio/temperature/tmp117.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/types.h>
+>  #include <linux/kernel.h>
+>  #include <linux/limits.h>
+> +#include <linux/property.h>
+>  
+>  #include <linux/iio/iio.h>
+>  
+> @@ -113,32 +114,60 @@ static const struct iio_info tmp117_info = {
+>  	.write_raw = tmp117_write_raw,
+>  };
+>  
+> +static const struct of_device_id tmp117_of_match[] = {
+> +	{ .compatible = "ti,tmp117", .data = (void *)TMP117_DEVICE_ID },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, tmp117_of_match);
+> +
+> +static const struct i2c_device_id tmp117_id[] = {
+> +	{ "tmp117", TMP117_DEVICE_ID },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, tmp117_id);
+
+As below.  There is an easy way to avoid having to move these.
+
+> +
+>  static int tmp117_identify(struct i2c_client *client)
+>  {
+> +	unsigned long match_data;
+>  	int dev_id;
+>  
+>  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
+>  	if (dev_id < 0)
+>  		return dev_id;
+> -	if (dev_id != TMP117_DEVICE_ID) {
+> -		dev_err(&client->dev, "TMP117 not found\n");
+> -		return -ENODEV;
+> +
+> +	switch (dev_id) {
+> +	case TMP117_DEVICE_ID:
+> +		return dev_id;
+>  	}
+> -	return 0;
+> +
+> +	dev_info(&client->dev, "Unknown device id (0x%x), use fallback compatible\n",
+> +		 dev_id);
+> +
+> +	match_data = (uintptr_t)device_get_match_data(&client->dev);
+> +	if (match_data)
+> +		return match_data;
+> +
+> +	match_data = i2c_match_id(tmp117_id, client)->driver_data;
+
+Whilst correct, i2c_client_get_device_id() avoids the need
+to move tmp117_id up to where you have by getting to that table via
+the driver structure. That will simplify this patch a fair bit.
+
+> +	if (match_data)
+> +		return match_data;
+> +
+> +	dev_err(&client->dev, "error: No valid fallback found\n");
+
+This is a little misleading as fallback only applies to the device tree
+path.  Also, not a lot of point in putting error in the text of
+a dev_err.  Perhaps just "Unsupported device".
+
+
+> +
+> +	return -ENODEV;
+>  }
+>  
+>  static int tmp117_probe(struct i2c_client *client)
+>  {
+>  	struct tmp117_data *data;
+>  	struct iio_dev *indio_dev;
+> -	int ret;
+> +	int dev_id;
+>  
+>  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
+>  		return -EOPNOTSUPP;
+>  
+> -	ret = tmp117_identify(client);
+> -	if (ret < 0)
+> -		return ret;
+> +	dev_id = tmp117_identify(client);
+> +	if (dev_id < 0)
+> +		return dev_id;
+
+I'd keep it in ret until you know it's good.  Reduces churn and is nicer
+code in general, though one more line.
+
+	dev_id = ret;
+
+>  
+>  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+>  	if (!indio_dev)
+> @@ -148,28 +177,20 @@ static int tmp117_probe(struct i2c_client *client)
+>  	data->client = client;
+>  	data->calibbias = 0;
+>  
+> -	indio_dev->name = "tmp117";
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+>  	indio_dev->info = &tmp117_info;
+>  
+> -	indio_dev->channels = tmp117_channels;
+> -	indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
+> +	switch (dev_id) {
+> +	case TMP117_DEVICE_ID:
+> +		indio_dev->channels = tmp117_channels;
+> +		indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
+> +		indio_dev->name = "tmp117";
+> +		break;
+> +	}
+>  
+>  	return devm_iio_device_register(&client->dev, indio_dev);
+>  }
+>  
+> -static const struct of_device_id tmp117_of_match[] = {
+> -	{ .compatible = "ti,tmp117", },
+> -	{ }
+> -};
+> -MODULE_DEVICE_TABLE(of, tmp117_of_match);
+> -
+> -static const struct i2c_device_id tmp117_id[] = {
+> -	{ "tmp117", 0 },
+> -	{ }
+> -};
+> -MODULE_DEVICE_TABLE(i2c, tmp117_id);
+> -
+>  static struct i2c_driver tmp117_driver = {
+>  	.driver = {
+>  		.name	= "tmp117",
 
