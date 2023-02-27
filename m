@@ -2,373 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1906A3E97
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:51:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E64DE6A3ECA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:55:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjB0Jvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 04:51:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60074 "EHLO
+        id S229684AbjB0Jzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 04:55:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbjB0Jve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:51:34 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5421A4B6
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:51:31 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id d41-20020a05600c4c2900b003e9e066550fso3427037wmp.4
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:51:31 -0800 (PST)
+        with ESMTP id S229820AbjB0Jzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:55:50 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 366B81B550
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:55:43 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id i9so7736790lfc.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:55:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8f3b/AJc3LzeqUlp8tx5FLQrQ6kJ53BQotZpGY6oUTw=;
-        b=Qyh6sTLng8kVOeauxk+iSgPEdYtGRn7CObtiOZX3pO4BqJQjdcBrwtgNeMaPzK9vfz
-         L2w8jgdo0LuzMBL7BMkHbW9ISkn4SsPrrV+T5vuXGPPsBOu+Na5nV5OyxWHerbhLdQed
-         Wmu8/q9qOjXPHyqI7dPNxYaWddz0Es71cuWt/l4J+q19BziFJnv54WjRwHafrsChoPio
-         uMjbmH1sGN3aySzL8373Psj5iEuYmyAowSviURAVCfSb24dUHxolLqvgTJbG5XDiTnIY
-         jzf7rzO+bqtI0opwBAjz5BUImbr8OOzK/MCmkOSy0BtKwHyVgG69dmCo4NZFG6PJJ91h
-         wV1g==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZhaELgleS6+r+Ibfx7TrEKluNYIWjG4LoxKJl7PWG5U=;
+        b=Pv5L5SFIBIKlbiDrf20eyYOxXqDu4tIMuaF7OCiVWutcAYW9vA5wMU4sMuFvpKVM9P
+         BRTsL77XTKS75AVm9PTrfthBrrqn9Yb1vpJUKmAmjzrwO/1QLt5RY3JR2TORrYLOn7r6
+         ZWjiR0bsNpktEgaoamv5CeD50tvanAqBvDG8guLdBk9EgaQ5TpJ+DdRVffbHAWu3NF2j
+         88aliUG9pEuMvv0eHAowiAagjmMqCC2oHtA7U8jriAS++fZdTmDLJtYwFgBaD08fhOHK
+         xujFFMJvumRb4SBbfdzClnV6arnZBMI0Hk5Rrj+U73I7/aeeonCC550VgqJLC62mjenT
+         piYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8f3b/AJc3LzeqUlp8tx5FLQrQ6kJ53BQotZpGY6oUTw=;
-        b=nTP6FzEsoX6nTPrq7h3HlA9Ng0IhRVaKZC7+rDOWNx3J8qu2vIpWPRHtzFkkiCRcDN
-         ll9xTHSk3YNhmw25MxPBIl29yZApmDaaJyK3Db8zmv9LYbnOnYal5FzUTn0p9GxqzlyM
-         oBh67p3zZh4c69LcXisEJuiu7XwLb9gVDqmuhrbkS19hykxkX2pHhaoIWZyMQgItMhFv
-         MeV2znU4l2P9Az0ztu0UeRKjop6gml33y2rXzvimgzhgAHoWFY4JrT8tm/K8uFhwFuf8
-         rAgxBt8dFHYWdPAF2X9t7gteWVQ7t5hPwElhO4pIwoToj5+ZW7/TMFDiR86cnvyxgN5C
-         KCzQ==
-X-Gm-Message-State: AO0yUKVhI9KrWfx03529SVa5K98PWfa8vaEBZhrVbyclQMJMk89RMsM3
-        lqxGk0mkWmw6D5ADUaFzH8A/wg==
-X-Google-Smtp-Source: AK7set+lB+9CX8kYjq8Nr0Uf6aXdBzUA9xHVP07iGtqDdOTBYqVZWoH9UYy+Kye0ri8cnTePQ6oTwg==
-X-Received: by 2002:a05:600c:998:b0:3e2:20c7:6544 with SMTP id w24-20020a05600c099800b003e220c76544mr18413319wmp.19.1677491489869;
-        Mon, 27 Feb 2023 01:51:29 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i13-20020a1c540d000000b003db06224953sm8696244wmb.41.2023.02.27.01.51.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Feb 2023 01:51:29 -0800 (PST)
-Message-ID: <ef93fea2-e4db-7c28-b911-13b046352214@linaro.org>
-Date:   Mon, 27 Feb 2023 10:51:26 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZhaELgleS6+r+Ibfx7TrEKluNYIWjG4LoxKJl7PWG5U=;
+        b=GW1P5fuTq6q94M+9HLXrSALFpLxkQOi3Hm7JmhZC+BSCaq+R3KT4lVABWEtXNrYmfu
+         TateDt9fs7vNiaI3p1f5hXPHcD4Ewvbs7iLfReqmBPZtiSjZ65/6W/9JGhlE0D+CcaX/
+         xZIDe1an/LC6WrqAbkf0HrswS0V6ZrDhrYxlFHuOfZb1GsnMkXANy+XJptmJ2tPvwK3e
+         q+A7aYZ6aBcua4RwdS3IpPqMg6hV3LM1pQhp/QVBogrOFv5x1MxUsyflCOLoTIvgEkhw
+         YxlqnTrovW5wWzwtgZe2T9/EQiW0SvjyhwKip2X6lgMuhKRG+hjPvsd2TOHWNkNXYkEz
+         SEIg==
+X-Gm-Message-State: AO0yUKV6kdLwtXVe57mXjGg5BJpNAjTrd/VfYdGrCE0+/a+QuV+8lz4n
+        bNOQY+ZFGYIonSCvZErAuOF7Vh23TlFEEaq8ygzKMA==
+X-Google-Smtp-Source: AK7set+eRFLwmofDycetmUw4kVPKIe20hDcCWvU1Q09bxSkaosoMqAzmXAjjIx3XbLUV25e/AgPwzszOwhyIFFWoK3k=
+X-Received: by 2002:a05:6512:b10:b0:4dd:9eb6:444e with SMTP id
+ w16-20020a0565120b1000b004dd9eb6444emr3712409lfu.5.1677491741277; Mon, 27 Feb
+ 2023 01:55:41 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [Patch v5] dt-bindings: media: s5p-mfc: convert bindings to
- json-schema
-Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com
-References: <CGME20230227084748epcas5p2602a39017d3366bdfb5af95088ed89dc@epcas5p2.samsung.com>
- <20230227084736.89361-1-aakarsh.jain@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230227084736.89361-1-aakarsh.jain@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212417.3315422-1-quic_eberman@quicinc.com> <CA+EHjTxEeiBWXJMCnv0V+5n=jB8w=m0EFdgK=FKtSqKOkiaChg@mail.gmail.com>
+ <7b6d4c14-ebde-1bc3-04de-59cae9d4b7be@quicinc.com>
+In-Reply-To: <7b6d4c14-ebde-1bc3-04de-59cae9d4b7be@quicinc.com>
+From:   Fuad Tabba <tabba@google.com>
+Date:   Mon, 27 Feb 2023 09:55:05 +0000
+Message-ID: <CA+EHjTzZu4m_RGU0dbNjXhfHLRsHqnAWS24ZhL2SK0hV5M39dQ@mail.gmail.com>
+Subject: Re: [PATCH v10 12/26] gunyah: vm_mgr: Add/remove user memory regions
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chao Peng <chao.p.peng@linux.intel.com>,
+        "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+        Sean Christopherson <seanjc@google.com>,
+        Quentin Perret <qperret@google.com>,
+        Will Deacon <will@kernel.org>,
+        "smoreland@google.com" <smoreland@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2023 09:47, Aakarsh Jain wrote:
-> Convert s5p-mfc bindings to DT schema format using json-schema.
-> 
-> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> ---
-> changes since v4:
-> Removed items from oneOf section
-> dropped black line
-> defined the iommus names items as
-> items:
-> -const left
-> -const right
-> 
-> changes since v3:
-> fixed dt-schema warnings and errors while running make dtbs_check and make dt_binding_check for ARMv7
-> Since, obsolete properties are not part of dt-node so we are not including these properties in dt-schema.
-> 
-> changes since v2:
-> changed Commit message from Adds to Convert
-> Removed text "This file has moved to samsung,s5p-mfc.yaml" from s5p-mfc.txt
-> fixed dt-schema warnings and errors while running make dtbs_check and make dt_binding_check
-> 
-> changes since v1:
-> fixed dt-schema warnings and errors while running make dtbs_check and make dt_binding_check
-> Removed description.
-> Listed items.
-> Added allOf:if:then for restricting two items to specific compatible
-> 
-> This patch is independent from the previous MFC v12 patch series for HW3 support.
-> 
->  .../devicetree/bindings/media/s5p-mfc.txt     |  78 ---------
->  .../bindings/media/samsung,s5p-mfc.yaml       | 148 ++++++++++++++++++
->  2 files changed, 148 insertions(+), 78 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> index 8eb90c043d5d..e69de29bb2d1 100644
-> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> @@ -1,78 +0,0 @@
-> -* Samsung Multi Format Codec (MFC)
-> -
-> -Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-> -supports high resolution decoding and encoding functionalities.
-> -The MFC device driver is a v4l2 driver which can encode/decode
-> -video raw/elementary streams and has support for all popular
-> -video codecs.
-> -
-> -Required properties:
-> -  - compatible : value should be either one among the following
-> -	(a) "samsung,mfc-v5" for MFC v5 present in Exynos4 SoCs
-> -	(b) "samsung,mfc-v6" for MFC v6 present in Exynos5 SoCs
-> -	(c) "samsung,exynos3250-mfc", "samsung,mfc-v7" for MFC v7
-> -	     present in Exynos3250 SoC
-> -	(d) "samsung,mfc-v7" for MFC v7 present in Exynos5420 SoC
-> -	(e) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
-> -	(f) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433 SoC
-> -	(g) "samsung,mfc-v10" for MFC v10 present in Exynos7880 SoC
-> -
-> -  - reg : Physical base address of the IP registers and length of memory
-> -	  mapped region.
-> -
-> -  - interrupts : MFC interrupt number to the CPU.
-> -  - clocks : from common clock binding: handle to mfc clock.
-> -  - clock-names : from common clock binding: must contain "mfc",
-> -		  corresponding to entry in the clocks property.
-> -
-> -Optional properties:
-> -  - power-domains : power-domain property defined with a phandle
-> -			   to respective power domain.
-> -  - memory-region : from reserved memory binding: phandles to two reserved
-> -	memory regions, first is for "left" mfc memory bus interfaces,
-> -	second if for the "right" mfc memory bus, used when no SYSMMU
-> -	support is available; used only by MFC v5 present in Exynos4 SoCs
-> -
-> -Obsolete properties:
-> -  - samsung,mfc-r, samsung,mfc-l : support removed, please use memory-region
-> -	property instead
-> -
-> -
-> -Example:
-> -SoC specific DT entry:
-> -
-> -mfc: codec@13400000 {
-> -	compatible = "samsung,mfc-v5";
-> -	reg = <0x13400000 0x10000>;
-> -	interrupts = <0 94 0>;
-> -	power-domains = <&pd_mfc>;
-> -	clocks = <&clock 273>;
-> -	clock-names = "mfc";
-> -};
-> -
-> -Reserved memory specific DT entry for given board (see reserved memory binding
-> -for more information):
-> -
-> -reserved-memory {
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -	ranges;
-> -
-> -	mfc_left: region@51000000 {
-> -		compatible = "shared-dma-pool";
-> -		no-map;
-> -		reg = <0x51000000 0x800000>;
-> -	};
-> -
-> -	mfc_right: region@43000000 {
-> -		compatible = "shared-dma-pool";
-> -		no-map;
-> -		reg = <0x43000000 0x800000>;
-> -	};
-> -};
-> -
-> -Board specific DT entry:
-> -
-> -codec@13400000 {
-> -	memory-region = <&mfc_left>, <&mfc_right>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> index 000000000000..b4a289619db0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/samsung,s5p-mfc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung Exynos Multi Format Codec (MFC)
-> +
-> +maintainers:
-> +  - Marek Szyprowski <m.szyprowski@samsung.com>
-> +  - Aakarsh Jain <aakarsh.jain@samsung.com>
-> +
-> +description:
-> +  Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-> +  supports high resolution decoding and encoding functionalities.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - samsung,mfc-v5              # Exynos4
-> +          - samsung,mfc-v6              # Exynos5
-> +      - items:
-> +          - enum:
-> +              - samsung,exynos3250-mfc  # Exynos3250
-> +          - const: samsung,mfc-v7       # Fall back for Exynos3250
-> +      - enum:
-> +          - samsung,mfc-v7              # Exynos5420
-> +          - samsung,mfc-v8              # Exynos5800
-> +          - samsung,exynos5433-mfc      # Exynos5433
-> +          - samsung,mfc-v10             # Exynos7880
+Hi,
 
-Why this and first enum are separate?  I didn't notice it before...
-Usually we have only one enum for one-compatible variants. Also, sort
-them by compatible.
+On Fri, Feb 24, 2023 at 6:08 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+>
+>
+>
+> On 2/24/2023 2:19 AM, Fuad Tabba wrote:
+> > Hi,
+> >
+> > On Tue, Feb 14, 2023 at 9:26 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+> >>
+> >>
+> >> When launching a virtual machine, Gunyah userspace allocates memory for
+> >> the guest and informs Gunyah about these memory regions through
+> >> SET_USER_MEMORY_REGION ioctl.
+> >
+> > I'm working on pKVM [1], and regarding the problem of donating private
+> > memory to a guest, we and others working on confidential computing
+> > have faced a similar issue that this patch is trying to address. In
+> > pKVM, we've initially taken an approach similar to the one here by
+> > pinning the pages being donated to prevent swapping or migration [2].
+> > However, we've encountered issues with this approach since the memory
+> > is still mapped by the host, which could cause the system to crash on
+> > an errant access.
+> >
+> > Instead, we've been working on adopting an fd-based restricted memory
+> > approach that was initially proposed for TDX [3] and is now being
+> > considered by others in the confidential computing space as well
+> > (e.g., Arm CCA [4]). The basic idea is that the host manages the guest
+> > memory via a file descriptor instead of a userspace address. It cannot
+> > map that memory (unless explicitly shared by the guest [5]),
+> > eliminating the possibility of the host trying to access private
+> > memory accidentally or being tricked by a malicious actor. This is
+> > based on memfd with some restrictions. It handles swapping and
+> > migration by disallowing them (for now [6]), and adds a new type of
+> > memory region to KVM to accommodate having an fd representing guest
+> > memory.
+> >
+> > Although the fd-based restricted memory isn't upstream yet, we've
+> > ported the latest patches to arm64 and made changes and additions to
+> > make it work with pKVM, to test it and see if the solution is feasible
+> > for us (it is). I wanted to mention this work in case you find it
+> > useful, and in the hopes that we can all work on confidential
+> > computing using the same interfaces as much as possible.
+>
+> Thanks for highlighting the memfd_restricted changes to us! We'll
+> investigate how/if it can suit Gunyah usecases. It sounds like you
+> might've made memfd_restricted changes as well? Are those posted on the
+> mailing lists? Also, are example userspace (crosvm?) changes posted?
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  iommus:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  iommu-names:
-> +    items:
-> +      - const: left
-> +      - const: right
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,mfc-v5
-> +              - samsung,exynos3250-mfc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: mfc
-> +            - const: sclk_mfc
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,mfc-v6
-> +              - samsung,mfc-v8
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +        clock-names:
-> +          items:
-> +            - const: mfc
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,exynos5433-mfc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: pclk
-> +            - const: aclk
-> +            - const: aclk_xiu
+I have posted kvmtool changes to make it work with memfd_restricted
+and pKVM as an RFC [1] (git [2]). I haven't posted the arm64 port, but
+it's in a git repo [3]. Chao has a repository with qemu support (TDX)
+as well [4].
 
-What happened to iommus? You were requiring two items, but you dropped
-that requirement. Is it on purpose?
+Eventually, we're likely to have crosvm support as well. If you're
+interested, I can keep you CCed on anything we post upstream.
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,mfc-v7
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 1
-> +          maxItems: 2
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/exynos4.h>
-> +    #include <dt-bindings/clock/exynos-audss-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    codec@13400000 {
-> +          compatible = "samsung,mfc-v5";
+Cheers,
+/fuad
 
-You sill have here odd indentation. Use 4 spaces for DTS example.
+[1] https://lore.kernel.org/all/20221202174417.1310826-1-tabba@google.com/
+[2] https://android-kvm.googlesource.com/kvmtool/+/refs/heads/tabba/fdmem-v10-core
+[3] https://android-kvm.googlesource.com/linux/+/refs/heads/tabba/fdmem-v10-core
+[4] https://github.com/chao-p/qemu/tree/privmem-v10
 
-> +          reg = <0x13400000 0x10000>;
-> +          interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +          power-domains = <&pd_mfc>;
-> +          clocks = <&clock CLK_MFC>, <&clock CLK_SCLK_MFC>;
-> +          clock-names = "mfc", "sclk_mfc";
-> +          iommus = <&sysmmu_mfc_l>, <&sysmmu_mfc_r>;
-> +          iommu-names = "left", "right";
-> +    };
-
-Best regards,
-Krzysztof
-
+>
+> Thanks,
+> Elliot
+>
+> >
+> > Some comments inline below...
+> >
+> > Cheers,
+> > /fuad
+> >
+> > [1] https://lore.kernel.org/kvmarm/20220519134204.5379-1-will@kernel.org/
+> > [2] https://lore.kernel.org/kvmarm/20220519134204.5379-34-will@kernel.org/
+> > [3] https://lore.kernel.org/all/20221202061347.1070246-1-chao.p.peng@linux.intel.com/
+> > [4] https://lore.kernel.org/lkml/20230127112932.38045-1-steven.price@arm.com/
+> > [5] This is a modification we've done for the arm64 port, after
+> > discussing it with the original authors.
+> > [6] Nothing inherent in the proposal to stop migration and swapping.
+> > There are some technical issues that need to be resolved.
+> >
+> > <snip>
+> <snip, looking at comments in parallel>
