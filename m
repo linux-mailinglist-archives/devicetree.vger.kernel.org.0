@@ -2,80 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9AB96A3F9E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 11:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F33C06A3FA0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 11:44:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbjB0Knd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 05:43:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49948 "EHLO
+        id S229975AbjB0Kos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 05:44:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjB0Knd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 05:43:33 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E6E1FCA
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 02:43:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677494611; x=1709030611;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EWyHnGM46OIwP+alOvtsE4wkppBdCmEu2QNRM12E4Qs=;
-  b=bglYeDREwkcAGzKc2TyUH3aKGNPfDPS/rXDvEtu0o0zkqZ5ZxtXxfOxo
-   AY0iLbUZ2/NY+xQm+8AfgB+81zp8djhTsTyoH8iiOmDnvM46VwEwvQ8N5
-   qhSBQYFBsjNxF1+ZqFa+ZdLrcw6oIokuIpyYVOEsSPLzEbqMJLAsql9Ea
-   tKJAEj2T6mFhYt9lhSGYnoZHNZmhC1flSxMa/TdvPHFmCkW0faLiJAHn8
-   kFTzv4T5kz2mjC+Dn3JN/XEZj/BkDASgwh+9ge2NhnqJ+Zi0zzazi1hlR
-   UOMN8/Ay7Dqkc3du/A2Ez4qYzwecYQNtutmQWbJsahEbk+Ywj/GC/zuU0
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29331746"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 11:43:28 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 27 Feb 2023 11:43:28 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 11:43:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677494608; x=1709030608;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EWyHnGM46OIwP+alOvtsE4wkppBdCmEu2QNRM12E4Qs=;
-  b=Ijzrcjv1cIavrHAm31FxWdS5BZ/J3Ebe5c6Yb6v5kiiRllMKIPN+zWPJ
-   jRGAdGkcSb3sihKPjiBSBFccxhquPWlVOB9MIQa9AHaySeJWzJdI3qFGf
-   LUqOeit0vi2b0lNZdTZQWNu/mZTANbtZXS7dw5BK8lXZO2a/rp7Wa1FFP
-   DRtYTTuoiWrIiUh5v7J87C3aQ9vFMmjNUQ6SUJUr8Qm9fAzKAxmZEzGbK
-   EZ7pOSkNBPLs2pIPAuI9TYOLIYboX5WkfJr45RWSVTc+moT1Nvyu4IQH8
-   M4aPaN8Cy560KlEVDudrJ8zCIVth9KhPO8CR/gWbYuz1Uh16E+DaXTbci
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29331745"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Feb 2023 11:43:28 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 415D0280056;
-        Mon, 27 Feb 2023 11:43:28 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx93: Add FlexSPI support
-Date:   Mon, 27 Feb 2023 11:43:23 +0100
-Message-Id: <20230227104324.249343-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229894AbjB0Kon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 05:44:43 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 82465B455;
+        Mon, 27 Feb 2023 02:44:41 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 511B5C14;
+        Mon, 27 Feb 2023 02:45:24 -0800 (PST)
+Received: from [10.57.91.127] (unknown [10.57.91.127])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B4E83F881;
+        Mon, 27 Feb 2023 02:44:38 -0800 (PST)
+Message-ID: <3c3c55a8-8979-76f9-3b61-31c50ceefd33@arm.com>
+Date:   Mon, 27 Feb 2023 10:44:28 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.7.2
+Subject: Re: [PATCH v2 1/9] dt-bindings: arm: Add support for DSB element
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
+        Tao Zhang <taozha@qti.qualcomm.com>
+References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
+ <1674114105-16651-2-git-send-email-quic_taozha@quicinc.com>
+ <c55483da-8fa7-67d3-041d-930607768a2a@arm.com>
+ <7195d3dd-8c39-00c5-5037-5d6d01698cf5@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <7195d3dd-8c39-00c5-5037-5d6d01698cf5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,45 +61,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add FlexSPI node for i.MX93.
+On 27/02/2023 03:07, Tao Zhang wrote:
+> Hi Suzuki,
+> 
+> 在 2/22/2023 2:11 AM, Suzuki K Poulose 写道:
+>> On 19/01/2023 07:41, Tao Zhang wrote:
+>>> Add property "qcom,dsb-elem-size" to support DSB(Discrete Single
+>>> Bit) element for TPDA. Specifies the DSB element size supported
+>>> by each monitor connected to the aggregator on each port. Should
+>>> be specified in pairs (port, dsb element size).
+>>>
+>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
+>>> ---
+>>>   .../bindings/arm/qcom,coresight-tpda.yaml          | 22 
+>>> ++++++++++++++++++++++
+>>>   1 file changed, 22 insertions(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml 
+>>> b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+>>> index 2ec9b5b..298db7f 100644
+>>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+>>> @@ -58,6 +58,26 @@ properties:
+>>>       minItems: 1
+>>>       maxItems: 2
+>>>   +  qcom,dsb-element-size:
+>>> +    description: |
+>>> +      Specifies the DSB(Discrete Single Bit) element size supported by
+>>> +      each monitor connected to the aggregator on each port. Should be
+>>> +      specified in pairs <port, dsb element size>.
+>>
+>> Isn't this a property of the TPDM connected to the port ? i.e. the DSB 
+>> size ? Thus shouldn't this be part of the TPDM device (and the TPDA 
+>> will be able to find it from the TPDM device) ?
+>>
+> Since  the port number is about the input port of TPDA, this property 
+> needs to be configured in the TPDA-related settings.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This is mainly taken from the downstream kernel with the clock order
-fixed and 'nxp,imx93-fspi' compatible removed.
-I do not know if it makes sense to add an imx93 specific compatible or
-not. imx8mn uses imx8mm only, but imx8mp has it's own. But the latter
-uses the same device data in the driver.
+That is because, you chose to describe the property of TPDM in TPDA ?
+Instead if you do it as follows :
 
- arch/arm64/boot/dts/freescale/imx93.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+  tpdm {
+        qcom,tpdm-dsb-elemenet-size = <32>
+        out_ports {
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 3c3d3d570d8c..1d71ca8d1f5a 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -458,6 +458,21 @@ flexcan2: can@425b0000 {
- 				status = "disabled";
- 			};
- 
-+			flexspi1: spi@425e0000 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "nxp,imx8mm-fspi";
-+				reg = <0x425e0000 0x10000>, <0x28000000 0x10000000>;
-+				reg-names = "fspi_base", "fspi_mmap";
-+				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX93_CLK_FLEXSPI1_GATE>,
-+					 <&clk IMX93_CLK_FLEXSPI1_GATE>;
-+				clock-names = "fspi_en", "fspi";
-+				assigned-clocks = <&clk IMX93_CLK_FLEXSPI1>;
-+				assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>;
-+				status = "disabled";
-+			};
-+
- 			lpuart7: serial@42690000 {
- 				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x42690000 0x1000>;
--- 
-2.34.1
+	port {
+              remote-endpoint=<&tpda_port_number>;
+	}
+  }
+
+  tpda {
+        in_ports {
+            port {
+                  remote-endpoint=<&tpdm0_port0>;
+            }
+        }
+  }
+
+
+The TPDA driver can figure out the "port" that a given TPDM is connected
+to and thus find out the DSB size. For the tpda driver, pdata->conns
+could hold the reference to the TPDM device and thus fetch the DSB size.
+(Note: James is working on a patch to add input port connections to the
+platform data).
+
+Suzuki
 
