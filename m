@@ -2,124 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCE096A4747
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 17:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABB326A47B8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 18:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbjB0Quz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 11:50:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59466 "EHLO
+        id S229557AbjB0RR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 12:17:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjB0Quy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 11:50:54 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE14F1421A;
-        Mon, 27 Feb 2023 08:50:52 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 411865FD23;
-        Mon, 27 Feb 2023 19:50:50 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1677516650;
-        bh=+o4MePp9OqmjWmI8f3GoSonJgPXKEx/DY7E2POpmxqc=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=Is6lD68TXQ+LXSIPeMLcaY1cQuni31x7+SQTRswGrgqyp1Mf2TQmsF19mebjjkdlE
-         SStVzS24WRa1eM3iw3/Zlbs/gA0Av69UL/+Oj/1+v4sNSW9I1IpMOafYnZhS1a5NBB
-         GpBK27em27UMsN/Sv9qNT/guVqMviPD3K3nB4pfcU3sP0T3NjDGgPkkiptdbWsNIa+
-         fTcQiGRGseNijIEhHc6k6IQYbzRdG5aT3ud/9nnGYtbx829b/9JD4Yhqb4TYsm2ktu
-         5mBosKSROlE1B3fb3F/J3g+cL8hvlJYP+wNsIoyXXgDiMhMOSX/tQnIchiIjysI0LW
-         mnnZsZ5PoetSQ==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Mon, 27 Feb 2023 19:50:49 +0300 (MSK)
-Date:   Mon, 27 Feb 2023 19:50:49 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Alexey Romanov <avromanov@sberdevices.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
-Message-ID: <20230227165049.4y7jx5nnnlibe6kg@CAB-WSD-L081021>
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
- <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
- <f3e42012-609c-4085-b4f4-bd32bfc34aff@app.fastmail.com>
- <20230227155100.hhl4yvkyfqfyoa6h@CAB-WSD-L081021>
- <a5fa8b23-4ec8-475f-be5e-538b53d6f82d@app.fastmail.com>
- <33b58877-5167-c453-e686-1d10cdca66c0@linaro.org>
+        with ESMTP id S229781AbjB0RR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 12:17:58 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0966A7D;
+        Mon, 27 Feb 2023 09:17:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6665360EC4;
+        Mon, 27 Feb 2023 17:17:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC198C433EF;
+        Mon, 27 Feb 2023 17:17:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677518273;
+        bh=vafCIT6H1I4k0W6RFiw6dTjBQ+VyQHZVQ//gt0JC+fE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tpL0kByaUk37GU31DjSD6PYQ5VIEm52R2JBYCJ42CKOr0Mx8IMcRkjT+FV0C9PFkL
+         o3VrN1WaeUs8pwiRzhHs3lBEr2X0pVk/e2ZkjbyQAyT3zFm1eIerisWDy6CufqMOOQ
+         Y2oSJfM2O4rsIJf8k6wZk0xJOepi2qC6izBB5PKf9O8cSd3qQJN3KGXAVTRHUSWv1i
+         T2gZpra1OhXI2M4Tj36OU0mzGFnTu/tTl5fXhKglfMhlS0qMwRqPSWP5hdot3Vp3Ig
+         IvijMtuwjK5vdTcvH1omABXrWv/UfFJJH/XKP24T5Enhyt2E3Xk9DrOimRz86VOjcI
+         alw+JW4KvjpZw==
+Received: by mail-vs1-f42.google.com with SMTP id x14so12217039vso.9;
+        Mon, 27 Feb 2023 09:17:53 -0800 (PST)
+X-Gm-Message-State: AO0yUKUDPc6zPv+cZBJyVFM5cABd3GnqXWU12bn3guqr/+unTgZlrgRk
+        qqkS8lcQQ6U6A/dCHFJwCrs/sTrR3sr61igIeQ==
+X-Google-Smtp-Source: AK7set9NuVEKfi72PjX1EY+Wg3qJ8QkdMjcM1qKsL8dFIkVmkbYyZCYJNZ3p3Ep3WZ2ONWrRKwkBPb2l6lq/IeUGTy8=
+X-Received: by 2002:ab0:53d5:0:b0:68a:5c52:7f2b with SMTP id
+ l21-20020ab053d5000000b0068a5c527f2bmr10777056uaa.1.1677518272796; Mon, 27
+ Feb 2023 09:17:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <33b58877-5167-c453-e686-1d10cdca66c0@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/27 12:14:00 #20900843
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230223213418.891942-1-frowand.list@gmail.com> <20230223213418.891942-2-frowand.list@gmail.com>
+In-Reply-To: <20230223213418.891942-2-frowand.list@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 27 Feb 2023 11:17:41 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLR9sm+GRU8EP4eO_Ln2UhD=ztdAU834CzP8RSv2s2jQg@mail.gmail.com>
+Message-ID: <CAL_JsqLR9sm+GRU8EP4eO_Ln2UhD=ztdAU834CzP8RSv2s2jQg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] of: create of_root if no dtb provided
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 27, 2023 at 05:38:49PM +0100, Neil Armstrong wrote:
-> On 27/02/2023 17:15, Arnd Bergmann wrote:
-> > On Mon, Feb 27, 2023, at 16:51, Dmitry Rokosov wrote:
-> > > On Mon, Feb 27, 2023 at 03:58:50PM +0100, Arnd Bergmann wrote:
-> > > > 
-> > > > I would argue that is a problem with buildroot, and using a 32-bit
-> > > > kernel is not something we should encourage over fixing buildroot
-> > > > to do it right, or building the kernel separately from the rootfs.
-> > > > 
-> > > > We do allow building support for a couple of ARMv8 SoCs in 32-bit
-> > > > mode, but that is usually because they ship with a 32-bit bootrom
-> > > > and cannot actually run a 64-bit kernel.
-> > > 
-> > > To be honest, I didn't know about this principle. It looks like a very
-> > > rational approach "start from max supported bitness".
-> > > Based on overall maintainers opinion, we have to prepare a patch for
-> > > buildroot to support compat mode :)
-> > 
-> > That would be great, thanks a lot!
-> > 
-> > For what it's worth, the main arguments in favor of running a 64-bit
-> > kernel with compat user space over a 32-bit kernel are support for:
-> > 
-> > - larger RAM sizes without highmem (most 32-bit kernels only
-> >    support 768MB of lowmem, and highmem sucks)
-> > - larger virtual address space (4GB vs 3GB or less)
-> > - CPU specific errata workarounds (arch/arm/ only has those for 32-bit cpus)
-> > - mitigations for common attacks such as spectre
-> > - security hardening that depends on larger address space
-> >    (KASLR, BTI, ptrauth, PAN, ...)
-> > - emulating instructions that were removed in Armv8 (setend, swp, ...)
-> > 
-> > Most of these don't apply in userspace, so the incentive to
-> > run smaller 32-bit userland on systems with less than 1GB of
-> > RAM usually outweighs the benefits of 64-bit userspace.
-> 
-> Thanks for the details!
+On Thu, Feb 23, 2023 at 3:34=E2=80=AFPM Frank Rowand <frowand.list@gmail.co=
+m> wrote:
+>
+> When enabling CONFIG_OF on a platform where of_root is not populated by
+> firmware, we end up without a root node. In order to apply overlays and
+> create subnodes of the root node, we need one. Create this root node
+> by unflattening an empty builtin dtb.
+>
+> If firmware provides a flattened device tree (FDT) then the FDT is
+> unflattened via setup_arch().  Otherwise, setup_of() which is called
+> immediately after setup_arch(), and will create the default root node
+> if it does not exist.
 
-Looks like Thomas has already prepared a basic patch series for buildroot,
-but maintainers declined it.
+Why do we need a hook after setup_arch() rather than an initcall?
 
-https://lore.kernel.org/all/20220730194331.GA2515056@scaer/
-
--- 
-Thank you,
-Dmitry
+Rob
