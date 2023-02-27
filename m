@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06B756A3BC2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 08:37:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24CDE6A3BC8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 08:41:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbjB0Hh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 02:37:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50364 "EHLO
+        id S229862AbjB0HlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 02:41:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjB0HhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 02:37:25 -0500
+        with ESMTP id S229702AbjB0HlN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 02:41:13 -0500
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0861B2F0
-        for <devicetree@vger.kernel.org>; Sun, 26 Feb 2023 23:37:23 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636431B2F0
+        for <devicetree@vger.kernel.org>; Sun, 26 Feb 2023 23:41:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677483444; x=1709019444;
+  t=1677483672; x=1709019672;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=F1rd5pjczimcbpKk7Kc/JhwdZSpXACt6VJAEpmAwKkM=;
-  b=XYuLr45aI1bZPwQD+NelDCfoAEev1vWKsu5zSaSbR0vH9vlW0krjQetk
-   X7QCmURqJZZf6WDIPUsgqVKje41gZYfq26yJTtFIOMj2zfiY2HWj+7p+y
-   Oyqa5cLLcyNMKNUux/w3+uABocmubtC9gmXSEMyV1j0xVWbrc7U9FHS0a
-   Vp5p5OSRKt3Ouz+PjyH9jDzQlWB0rVIghQA7uua7xiGRQQX7RB9+Xh2pc
-   7dPkWdEWj+PAW633/TpmkEun4/r5q1ZJj/NedB7jZdpXCK+zrMFXWPThh
-   G0MsbaRvo1BBJ1Xf5p7/xNNWnh54M2zHE6JlBvUZ1UTVcmRF1e8eifrR8
-   w==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29323402"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 08:37:22 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 27 Feb 2023 08:37:22 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 08:37:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677483442; x=1709019442;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=F1rd5pjczimcbpKk7Kc/JhwdZSpXACt6VJAEpmAwKkM=;
-  b=NdD2V4PgA7DwSS6Sb93zP6H0POsgCpvFqW7PTI6WSaSq+9Ved8wcJ7W7
-   qH6UalTr/uGHC47wRmDTdw8/3WI+ZoMS+TAKJdy6wonLEh9jXjdz9UeTa
-   wNTPOjrCqyEJjLAV/nivih6XXYlczfOUrKeQL60KNwR8wgIOPJO7jW/f6
-   Ksy0g+czAQ+9X16ZlwjbztjKijImtFGVwG25m/xslPFLM7119M6v7KUPw
-   JpPKWoXmjz50A82UsjCiqQUG4KSu2evVSajJ5NjsE7FlfzMvnUoisEXLw
-   2YneGqS3X+rBLO8xSp9PgeYkFroZDmIDJ4TPMxuLRwo5aqY/H2u6XU8ow
+  bh=7hf2Klz8nb16wGOuK2AKHv1XnNwtTq+5bED6HetMwso=;
+  b=ivBoTaNnXlIQojoO4ZtoTuHQ3imxsuPwm1iWDHvmFlmSDkx5p8DpoEX1
+   qyKinCbdOVS00lhKR9tbY25gqL9K4RLzNe98UyUM43Ymo0mTPrdhcN4M4
+   clWM0MGY1ythm1O0qCyts9GMwsSuWxfpfVqAUVio3hLN2TlPxWfMRupZU
+   uwuC8Yu1A6vR8qqpRDTohbILFjYRB5UcL+GFsresIj7eBv5oX/xQPUR9s
+   s1lUDtKLTXjI9tG+y8NYJBjUDUo5vrefmyiI6i6lgj4PP/DrSpdc8RKX6
+   bAz4ye7lS6ohw9dHHqlZRF6OTJlwH5a9EYvzRXILaIx1+taaJLJ3niTc/
    A==;
 X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29323401"
+   d="scan'208";a="29323523"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 08:41:10 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 27 Feb 2023 08:41:10 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 08:41:10 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1677483670; x=1709019670;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=7hf2Klz8nb16wGOuK2AKHv1XnNwtTq+5bED6HetMwso=;
+  b=PuXtGTzwK79o8haXTZBpc6kijBocRRMdlUJFQK5TrOUq4n4pVkKSGLfn
+   ql67n7tIAHlXkPzKixUnoxuEGycKT+/U9gu/dz4QxCzRKoRZSNgSi3TLY
+   L5S+zcTjpNrHAfTBUE+o3Rr5PpOCBIUDx5mN5OU9gcwSYr6DaP2TFCPJl
+   FTV5pMmP1tJ7yLFDjD52jIeCY8EAWydXtViusqIghvV3rCRDaoffdWqSJ
+   0yleFt4/GAbx/s3+r1DOFpoZ7Lzgwi67uES88kKCVXbFPT+bFYkO2+0KH
+   87d6hck32phGWfMfc5lHwUIOcn5crtLQqRYO9kYZvjlxO2yPNEdjB9ntX
+   g==;
+X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
+   d="scan'208";a="29323522"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Feb 2023 08:37:22 +0100
+  by mx1.tq-group.com with ESMTP; 27 Feb 2023 08:41:10 +0100
 Received: from steina-w.localnet (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D6C42280056;
-        Mon, 27 Feb 2023 08:37:21 +0100 (CET)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 647BA280056;
+        Mon, 27 Feb 2023 08:41:10 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
+Cc:     Marek Vasut <marex@denx.de>, Liu Ying <victor.liu@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
@@ -76,12 +74,12 @@ Cc:     Marek Vasut <marex@denx.de>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: imx8mp-media-blk-ctrl: Add LDB subnode into schema and example
-Date:   Mon, 27 Feb 2023 08:37:19 +0100
-Message-ID: <2283499.ElGaqSPkdT@steina-w>
+Subject: Re: [PATCH v4 4/4] arm64: dts: imx8mp: Drop simple-bus from fsl, imx8mp-media-blk-ctrl
+Date:   Mon, 27 Feb 2023 08:41:08 +0100
+Message-ID: <13222095.uLZWGnKmhe@steina-w>
 Organization: TQ-Systems GmbH
-In-Reply-To: <20230223151043.41548-2-marex@denx.de>
-References: <20230223151043.41548-1-marex@denx.de> <20230223151043.41548-2-marex@denx.de>
+In-Reply-To: <20230223151043.41548-4-marex@denx.de>
+References: <20230223151043.41548-1-marex@denx.de> <20230223151043.41548-4-marex@denx.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"
@@ -98,15 +96,20 @@ Hi Marek,
 
 thanks for the cleanup.
 
-Am Donnerstag, 23. Februar 2023, 16:10:41 CET schrieb Marek Vasut:
-> Document the LDB bridge subnode and add the subnode into the example.
-> For the subnode to work, the block control must scan its subnodes and
-> bind drivers to them, do not misuse either simple-bus or simple-mfd
-> here.
+Am Donnerstag, 23. Februar 2023, 16:10:43 CET schrieb Marek Vasut:
+> This block should not be compatible with simple-bus and misuse it that wa=
+y.
+> Instead, the driver should scan its subnodes and bind drivers to them.
 >=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Reviewed-by: Liu Ying <victor.liu@nxp.com>
+> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
 > Signed-off-by: Marek Vasut <marex@denx.de>
+
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+Also the whole series tested on imx8mp and imx93.
+Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
 > ---
 > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
 > Cc: Fabio Estevam <festevam@gmail.com>
@@ -125,103 +128,28 @@ Am Donnerstag, 23. Februar 2023, 16:10:41 CET schrieb Marek Vasut:
 > Cc: devicetree@vger.kernel.org
 > Cc: linux-arm-kernel@lists.infradead.org
 > ---
-> V2: Add RB from Liu
-> V3: - Update commit subject and drop space before fullstop.
->     - Add RB from Krzysztof
+> V2: Turn this into 4/4
+> V3: Add RB from Liu
 > V4: No change
 > ---
->  .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> diff --git
-> a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> index a0f7c73510d04..f092916dc8594 100644
-> ---
-> a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> +++
-> b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
-> @@ -23,6 +23,12 @@ properties:
->    reg:
->      maxItems: 1
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> 2dd60e3252f35..ca8093ee4d0e4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1151,7 +1151,7 @@ lcdif2_to_ldb: endpoint {
 >=20
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
->    '#power-domain-cells':
->      const: 1
->=20
-> @@ -78,9 +84,16 @@ properties:
->        - const: isp1
->        - const: dwe
->=20
-> +  bridge@5c:
-> +    type: object
-> +    $ref: /schemas/display/bridge/fsl,ldb.yaml#
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> +  - '#address-cells'
-> +  - '#size-cells'
->    - '#power-domain-cells'
->    - power-domains
->    - power-domain-names
-> @@ -114,5 +127,43 @@ examples:
->          clock-names =3D "apb", "axi", "cam1", "cam2", "disp1", "disp2",
->                        "isp", "phy";
->          #power-domain-cells =3D <1>;
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +
-> +        bridge@5c {
-> +            compatible =3D "fsl,imx8mp-ldb";
-> +            clocks =3D <&clk IMX8MP_CLK_MEDIA_LDB>;
-> +            clock-names =3D "ldb";
-> +            reg =3D <0x5c 0x4>, <0x128 0x4>;
-> +            reg-names =3D "ldb", "lvds";
-
-I remember that reg shall be stated right after compatible. Maybe this orde=
-r=20
-should be used this example as well.
-Despite that:
-Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-> +
-> +            ports {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +
-> +                port@0 {
-> +                    reg =3D <0>;
-> +
-> +                    ldb_from_lcdif2: endpoint {
-> +                        remote-endpoint =3D <&lcdif2_to_ldb>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg =3D <1>;
-> +
-> +                    ldb_lvds_ch0: endpoint {
-> +                        remote-endpoint =3D <&ldb_to_lvdsx4panel>;
-> +                    };
-> +                };
-> +
-> +                port@2 {
-> +                    reg =3D <2>;
-> +
-> +                    ldb_lvds_ch1: endpoint {
-> +                    };
-> +                };
-> +            };
-> +        };
->      };
->  ...
+>  			media_blk_ctrl: blk-ctrl@32ec0000 {
+>  				compatible =3D "fsl,imx8mp-media-blk-
+ctrl",
+> -					     "simple-bus", "syscon";
+> +					     "syscon";
+>  				reg =3D <0x32ec0000 0x10000>;
+>  				#address-cells =3D <1>;
+>  				#size-cells =3D <1>;
 
 
 =2D-=20
