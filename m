@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E596A4954
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:12:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 222D76A49E9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:38:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbjB0SMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 13:12:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41698 "EHLO
+        id S229595AbjB0Six (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 13:38:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230410AbjB0SMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:12:44 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC98234F7;
-        Mon, 27 Feb 2023 10:12:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 15492B80D6D;
-        Mon, 27 Feb 2023 18:12:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67D79C433D2;
-        Mon, 27 Feb 2023 18:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677521559;
-        bh=zMhMn8aAWF1yij6h/z2ZQ66w5ISBOOImdqMr7vAIcJ0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UByeI1j6YFGybIKdXAkZNElk4G3cms0EW3kzf4qqXkGQHebKNAbLiygzTKQH9WdA/
-         ROmOZ9Vx2kidAqUwx/OK7IB2t3jEVKLDFHk2zxx0BymR3xCsTRgbaJD+qUW6wX2a7z
-         zCcEzcw8idFMHhowAGyfWHFPt8JZ8+IUTR7JEQLZFRTDKPp6tVDi8du4Mnk7Rjal5D
-         pQD01wOZb07LIWDU4Ji6t9RKZ/0oSxUxgQQtD6jwbUlin5OiCi9G/kz/hPebpRXWNq
-         7JzTw8ofrp9V+lgBkwP1F+DgKofx5TeyV1oYwz5J2U++r0WgDdjqd5LtCHaLzFO60i
-         1ZjN6FQyN9oCg==
-Date:   Mon, 27 Feb 2023 18:12:33 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 19/19] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-Message-ID: <Y/zykfydb+bJ7G2l@spud>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
- <20230221024645.127922-20-hal.feng@starfivetech.com>
- <CAJM55Z_QMtzKeRFN1iGf498z4+vga6RBgwybCQi6aOUYCr_P-Q@mail.gmail.com>
- <2af3f84b-2c2b-dc79-c76c-9411fcbcf7ca@starfivetech.com>
+        with ESMTP id S229874AbjB0Siw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:38:52 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88850D30C;
+        Mon, 27 Feb 2023 10:38:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677523121; x=1709059121;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=XI4+ng0G/han3RQEY/xW6B4U/2rCkKwLGFaf1iDMkc4=;
+  b=jvv8W4AW56LDOoIJe0mzh2eqkcIRsAiN8Z4FyBWCFhuZbsrxhYv+Z9xB
+   xP5e0n78zVufOU/tlK3BCdO7lmErVpGMvV7lab2HUJwQE+RXS/18ULz7v
+   Nymh/x7LLbstXSJ66lX0Q/4WDvL7Hkee+mnsCS6cmj/aXrta8VG0GZQ+x
+   x0KjrVR+tbPpv0BzbyZsb0pQuw0MLFOKeknVtyNofGRj6zStXB2TFSVwK
+   JSOm2MhnGd4FOZgx4aX+hAemp7ve4skZtp7zI6dlrf7/+2iwfzc8Bl7II
+   xGF6QSK7TGLNeboGDe97NDYCbT/Y/SobKqSM4vlPf0rkdIr2yxky0eCit
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="332660739"
+X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; 
+   d="scan'208";a="332660739"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 10:38:35 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="737837214"
+X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; 
+   d="scan'208";a="737837214"
+Received: from jaidenno-mobl.amr.corp.intel.com (HELO [10.212.85.4]) ([10.212.85.4])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 10:38:32 -0800
+Message-ID: <d95d15f3-34c3-32df-1a50-0ebce35bf81f@linux.intel.com>
+Date:   Mon, 27 Feb 2023 13:19:15 -0500
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qQDklUlJ7jtziWjT"
-Content-Disposition: inline
-In-Reply-To: <2af3f84b-2c2b-dc79-c76c-9411fcbcf7ca@starfivetech.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] ASoC: max98363: add soundwire amplifier driver
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        krzysztof.kozlowski@linaro.org, rf@opensource.cirrus.com,
+        ckeepax@opensource.cirrus.com, herve.codina@bootlin.com,
+        wangweidong.a@awinic.com, james.schulman@cirrus.com,
+        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
+        povik+lin@cutebit.org, flatmax@flatmax.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ryans.lee@analog.com
+References: <20230224010814.504016-1-ryan.lee.analog@gmail.com>
+ <0fb47fe7-719b-0773-fc14-3d62d7d33619@linux.intel.com>
+ <Y/zsqjOWFKrpDtl8@sirena.org.uk>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <Y/zsqjOWFKrpDtl8@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -70,98 +72,92 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---qQDklUlJ7jtziWjT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 23, 2023 at 04:50:20PM +0800, Hal Feng wrote:
-> On Tue, 21 Feb 2023 16:03:08 +0100, Emil Renner Berthing wrote:
-> > On Tue, 21 Feb 2023 at 03:47, Hal Feng <hal.feng@starfivetech.com> wrot=
-e:
-> >> From: Emil Renner Berthing <kernel@esmil.dk>
-> >>
-> >> Add a minimal device tree for StarFive JH7110 VisionFive 2 board
-> >> which has version A and version B. Support booting and basic
-> >> clock/reset/pinctrl/uart drivers.
-> >>
-> >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> >> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> >> ---
-> >>  arch/riscv/boot/dts/starfive/Makefile         |   6 +-
-> >>  .../jh7110-starfive-visionfive-2-v1.2a.dts    |  13 ++
-> >>  .../jh7110-starfive-visionfive-2-v1.3b.dts    |  13 ++
-> >>  .../jh7110-starfive-visionfive-2.dtsi         | 215 ++++++++++++++++++
-> >>  4 files changed, 246 insertions(+), 1 deletion(-)
-> >>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visio=
-nfive-2-v1.2a.dts
-> >>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visio=
-nfive-2-v1.3b.dts
-> >>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visio=
-nfive-2.dtsi
-> >>
-> >> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/d=
-ts/starfive/Makefile
-> >> index 039c143cba33..cd73519b907b 100644
-> >> --- a/arch/riscv/boot/dts/starfive/Makefile
-> >> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> >> @@ -1,2 +1,6 @@
-> >>  # SPDX-License-Identifier: GPL-2.0
-> >> -dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-beaglev-starlight.dtb jh7100-s=
-tarfive-visionfive-v1.dtb
-> >> +dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-beaglev-starlight.dtb
-> >> +dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-starfive-visionfive-v1.dtb
-> >> +
-> >> +dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
-> >> +dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
+On 2/27/23 12:47, Mark Brown wrote:
+> On Mon, Feb 27, 2023 at 10:17:45AM -0500, Pierre-Louis Bossart wrote:
+> 
+>>> +static struct reg_default max98363_reg[] = {
+>>> +	{MAX98363_R0040_SCP_INIT_STAT_1, 0x00},
+>>> +	{MAX98363_R0041_SCP_INIT_MASK_1, 0x00},
+>>> +	{MAX98363_R0042_SCP_INIT_STAT_2, 0x00},
+>>> +	{MAX98363_R0044_SCP_CTRL, 0x00},
+>>> +	{MAX98363_R0045_SCP_SYSTEM_CTRL, 0x00},
+>>> +	{MAX98363_R0046_SCP_DEV_NUMBER, 0x00},
+>>> +	{MAX98363_R004D_SCP_BUS_CLK, 0x00},
+>>> +	{MAX98363_R0050_SCP_DEV_ID_0, 0x21},
+>>> +	{MAX98363_R0051_SCP_DEV_ID_1, 0x01},
+>>> +	{MAX98363_R0052_SCP_DEV_ID_2, 0x9F},
+>>> +	{MAX98363_R0053_SCP_DEV_ID_3, 0x87},
+>>> +	{MAX98363_R0054_SCP_DEV_ID_4, 0x08},
+>>> +	{MAX98363_R0055_SCP_DEV_ID_5, 0x00},
+> 
+>> That seems wrong, why would you declare standard registers that are
+>> known to the bus and required to be implemented?
+> 
+> This is the register defaults table, it gets used to initialise the
+> register cache and optimise resync after suspend - all this does is
+> supply defaults for the cache.  That said...
+> 
+> I would suggest it's better to not supply defaults for ID registers and
+> read them back from the device otherwise things might get confused.
 
-If you could rebase on top of v6.3-rc1 for the next version & use ARCH_
-not SOC_ here that'd be great.
+The 'device_id' register is the good counter example: it includes a
+'unique_id' field to deal with cases where there are identical devices
+on the same link. The unique_id is usually set with board-specific
+pin-strapping, so there's no good default value here. In previous Maxim
+98373 amplifier configurations the unique IDs were 3 and 7 IIRC. The
+codec driver should not, rather shall not, assume any specific value here.
 
-> >> +/ {
-> >> +       aliases {
-> >> +               serial0 =3D &uart0;
-> >> +               i2c0 =3D &i2c0;
-> >> +               i2c2 =3D &i2c2;
-> >> +               i2c5 =3D &i2c5;
-> >> +               i2c6 =3D &i2c6;
-> >=20
-> > Let's keep these sorted alphabetically.
->=20
-> OK, will fix it.
->=20
+>>> +static const struct regmap_config max98363_sdw_regmap = {
+>>> +	.reg_bits = 32,
+>>> +	.val_bits = 8,
+>>> +	.max_register = MAX98363_R21FF_REV_ID,
+>>> +	.reg_defaults  = max98363_reg,
+>>> +	.num_reg_defaults = ARRAY_SIZE(max98363_reg),
+>>> +	.readable_reg = max98363_readable_register,
+>>> +	.volatile_reg = max98363_volatile_reg,
+> 
+>> I don't see why the SoundWire standard registers are part of regmap?
+> 
+> ...if there's an issue with the SoundWire core modifying the registers
+> directly then the driver would need to mark all the core registers as
+> volatile so that they're not cached otherwise there will be collisions.
+> Or is it the case that we always need to go via the SoundWire core for
+> the generic registers, so they should just never be written at all?
 
-> > It would be great to have some sort of order to this file so it's
-> > obvious where to add new nodes. I suggest we do
-> > - root node
-> > - external clocks
-> > - other node references in alphabetical order
-> >=20
-> > You're almost there with this patch except the uart0 node is out of pla=
-ce.
->=20
-> Will fix accordingly. Thanks for your suggestions.
+It's really that the SoundWire core will 'own' or take care of all
+'standard' programming registers. There is no good reason for a codec
+driver to interfere with standard port programming or clock stop. The
+bus provides a set of callbacks that can be used for vendor-specific
+registers and sequences.
 
-With Emil's suggestions implemented:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
+Put differently, SoundWire codec drivers should only deal with
+non-standard vendor-specific registers.
 
 
---qQDklUlJ7jtziWjT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/zykQAKCRB4tDGHoIJi
-0rQPAPkBDZJoRNk6lCcj0ANg8faGvHfRWGdaYyYaWI+YfboLwAD+PN28woxpivfc
-IvPNVwHix48qqNSe6XV1YTMwD50HggM=
-=0cCt
------END PGP SIGNATURE-----
-
---qQDklUlJ7jtziWjT--
+> 
+>>> +	if (max98363->dvddio) {
+>>> +		ret = regulator_enable(max98363->dvddio);
+>>> +		if (ret < 0)
+>>> +			return ret;
+>>> +	}
+>>> +
+>>> +	if (max98363->vdd) {
+>>> +		ret = regulator_enable(max98363->vdd);
+>>> +		if (ret < 0)
+>>> +			return ret;
+>>> +	}
+> 
+>> that is very very odd. It's the first time we see a SoundWire codec
+>> driver that has a power dependency, and it's quite likely that it's too
+>> late to enable power resources *AFTER* dealing with all the
+>> initialization and enumeration.
+> 
+>> It's not even clear to me how this device would be enumerated.
+> 
+>> You'd need to explain what part of the amplifier is controlled by those
+>> regulator, otherwise it's impossible to review and understand if the
+>> driver does the 'right thing'
+> 
+> It's also buggy to have regulators treated as optional unless they may
+> be physically absent.
