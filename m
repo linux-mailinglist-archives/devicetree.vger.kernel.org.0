@@ -2,145 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 104C06A456A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:59:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A89006A458F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 16:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbjB0O7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 09:59:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
+        id S230124AbjB0PGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 10:06:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230023AbjB0O7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:59:17 -0500
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC2822014;
-        Mon, 27 Feb 2023 06:59:14 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 0190B3200929;
-        Mon, 27 Feb 2023 09:59:11 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 27 Feb 2023 09:59:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1677509951; x=1677596351; bh=QLLRw6307b
-        THJCej6Dsg3/3/0PoBqWfSBSLn7yYLifY=; b=Zr7hsxRaft6qOSczlEXCHedPV+
-        r96EXTSibv+H/UWEsXhc838Rejel7LOs9McoeemUQo00cMKwz/Ed5Nnwz80d9sVW
-        je5164z2h30FqrLYmvRXXPwQgS2m2IzsZmiysTm3fFl3Nns/iQutYYeNfrDcZjQ/
-        CRGvO1UzHD/4Ho1rFUPnWXNyvMc7gfocah5yJMoAs7H1YEVa7XzR1h2xJHC4yf6Y
-        inirBw7UpfTMs0pS+sVjyzm436cMponYakuUj+R+mMjYJbFYFp48fGiEVTnq2LW7
-        tQL9phYkwCsCz7FCLDoyO26o2vHQIHvptMeCaWP1m/ZtFPHaGWP1g5N05AsA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1677509951; x=1677596351; bh=QLLRw6307bTHJCej6Dsg3/3/0PoB
-        qWfSBSLn7yYLifY=; b=fsQrMtN9T2DGoyaRs2G7JF87rgV8mM8aLVOlz+saByM3
-        ZIoe5+10++ITaYkrYcKL3rZxQxIQ9wqQsuwcrPQLy5+6M/kYMoKkCYYzVFZeW5sF
-        a8W6fbZ8pjS2VoZM/nhuvP8YoHKkkPEOknEZ1w2jfIxbwGqThrQS8QKmPMXdARWH
-        BfM6XWOW6tcAycp0BMLkzikexwLlUSOVtIWaB01EmMeko2g09es/iMA42KsJN3ub
-        xRmZCqzl3OuCzisFPtgWKJgkoGjOrHeBSRliEOTqVZ5bezEhFM+c39ln+o+Sh9HD
-        18yVa1PeI6zzIDLfvBLn+JwUQrY9m+BsXTrC4WcDlA==
-X-ME-Sender: <xms:P8X8Yw4R4tyM3Di0n8tiuJ22TZFaHDsvUVxJeObM48lCS9S4i2vjYA>
-    <xme:P8X8Yx7zcUxANilRbGReT_Or2RzHkKwzIuwVYx5_CIvIF5SNgvybasN82WY0ys6f3
-    VC9m_V-A-4sUROu784>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudeltddgieejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:P8X8Y_fP-QcbqSDT8-z_TnywZc5LWpabQqZt1sXiQObMaGazkHi2dg>
-    <xmx:P8X8Y1LizARy4cFAaLtRXks7BHS0HzyvGKQNes_7WJ3OCW8jf7GcNg>
-    <xmx:P8X8Y0LNbRpd64Tjs0XuOsTjbGumTnge6ox2WH2rF0jyWbI7TAZWZA>
-    <xmx:P8X8YyyTHLvhXZ2BQor-9PqVOVIs-c8G2phPueuDh2RdqE_v0YsYuA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 50F53B60086; Mon, 27 Feb 2023 09:59:11 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-172-g9a2dae1853-fm-20230213.001-g9a2dae18
-Mime-Version: 1.0
-Message-Id: <f3e42012-609c-4085-b4f4-bd32bfc34aff@app.fastmail.com>
-In-Reply-To: <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
- <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
-Date:   Mon, 27 Feb 2023 15:58:50 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Dmitry Rokosov" <ddrokosov@sberdevices.ru>,
-        "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc:     "Alexey Romanov" <avromanov@sberdevices.ru>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        "Kevin Hilman" <khilman@baylibre.com>, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@sberdevices.ru
-Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230051AbjB0PGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 10:06:33 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 747B622010;
+        Mon, 27 Feb 2023 07:06:27 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id l25so6580392wrb.3;
+        Mon, 27 Feb 2023 07:06:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YPvzl5AQcLke1QfhjznfZBkz9Qxeo9m3sAaerkELoHk=;
+        b=DxfGrXQf5uucvaH/jk4OeIZlgdP6Y2S24+bFg4IJUCklraz7RrSwfK0fV9GxL6dfAa
+         81PJaQW14FAkKGJPmWc3FMqteWpCtoYL9PAAHaJYjMm2lPBBGj4pQwoE69ZcHilgCpdS
+         51XjGgTfvsBoTbcgVA77H6VIaRq33mvjwaNBRZluDXfJByNDAn3kSlO8fC4cgbNMt2Dz
+         flzMPQAhEQLty2thW4Bz3USDJOVLY3Ya0oJV4R0Q6PX2yNjwywer4FUteHsKFBnN0z5b
+         ku6Xh2wywy+6DGA8cS9/AcRVNIC32hKFdKeETCCekovicipBHFy9lVrRW17YsduGDRl1
+         HbKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YPvzl5AQcLke1QfhjznfZBkz9Qxeo9m3sAaerkELoHk=;
+        b=Yflr3Av2ag0wkaXY0dgweuKAI4+SfS6VPOZxpuh9mM2I/DIl+HwNPaozoHdYbxSp6L
+         xA1qo5+bUP6twBz0ax3sJ0loln3o73WCSkk783iIZ5nqL2K4nRC1GE7Xg8YAUaXRs+vQ
+         mXacPOS50jiyBHyu+KiKlrjxeyQ+wbJNsp/Zn3H/rRRLSquBKI1c5haa+5uCGv/hFirl
+         h88sOrLAtMJGhab9ks3EcQsddmsBzTNaCoUztF7VGLePpYErvWdWBOv/pTrJeDeEaOlj
+         J6yXKW7YOlZBfqtfFlU8HxExYRg6yc0ba1WmrU7kczscMgtaWYCWLvBVzJHz+gNQxrL6
+         hdRQ==
+X-Gm-Message-State: AO0yUKX/1HeNFTS5jpHFwxPpkn85HlguP0DehAJtmNX1EG8v8qa9zSt9
+        FPBufjGGwM2S9tFQhbreHt/LQ6DVRm0=
+X-Google-Smtp-Source: AK7set+QhiPGzqs7w6yfbUv09BRoz3Z0B9Ssu4dBhAxnmVgHXZdG7H+4oY2VVDWXKEJ3/CUIfETT+g==
+X-Received: by 2002:a05:6000:38e:b0:2c5:4c9f:cf3b with SMTP id u14-20020a056000038e00b002c54c9fcf3bmr7433395wrf.7.1677510385852;
+        Mon, 27 Feb 2023 07:06:25 -0800 (PST)
+Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id m34-20020a05600c3b2200b003df5be8987esm14410840wms.20.2023.02.27.07.06.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Feb 2023 07:06:25 -0800 (PST)
+Date:   Mon, 27 Feb 2023 16:06:23 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: Any more work on "regulator: tps65090: Convert to json-schema"?
+Message-ID: <Y/zG77uzHkyHBrhU@orome>
+References: <e48669a4-8fd1-dc0b-1446-7fbe1266c32c@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="KlVJJU4Pn9yv3mYm"
+Content-Disposition: inline
+In-Reply-To: <e48669a4-8fd1-dc0b-1446-7fbe1266c32c@linaro.org>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 27, 2023, at 15:28, Dmitry Rokosov wrote:
-> Hello Neil!
->
-> On Mon, Feb 27, 2023 at 09:15:04AM +0100, neil.armstrong@linaro.org wrote:
->
-> [...]
->
->> I'm aware Amlogic also runs their kernel as 32bit to gain a few kbytes
->> of memory, but those processors are ARMv8 and the arm64 arch code
->> has been designed for those CPUs.
->> 
->> So far I didn't find a single good reason to add 32bit support for
->> ARMv8 Amlogic based SoCs, if you have a solid reason please share.
->
-> I totally agree with you, but I suppose it's fully related to 'big'
-> Amlogic SoC like S905_ or A311_ series. A113L (aka 'a1') is
-> a cost-efficient dual-core SoC which is used for small, cheap solutions
-> with cheap components. Every cent is important during BoM development.
-> That's why usually ODMs install small ROM and RAM capacity, and each
-> megabyte is important for RAM/ROM kernel and rootfs footprints.
-> Why am I talking about rootfs? For such small projects a good
-> choice is buildroot rootfs assembling framework. Unfortunatelly,
-> buildroot doesn't support 'compat' mode when kernel and userspace have
-> a different bitness. In the internal project, we save several
-> percents of ROM/RAM free space using 32-bit configuration (mostly rootfs
-> ROM space, to be honest). Therefore, for such 'little' cost-efficient
-> SoCs we can make an exception and support 32-bit configuration, from my
-> point of view.
->
-> What do you think about that?
 
-I would argue that is a problem with buildroot, and using a 32-bit
-kernel is not something we should encourage over fixing buildroot
-to do it right, or building the kernel separately from the rootfs.
+--KlVJJU4Pn9yv3mYm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-We do allow building support for a couple of ARMv8 SoCs in 32-bit
-mode, but that is usually because they ship with a 32-bit bootrom
-and cannot actually run a 64-bit kernel.
+On Sat, Feb 25, 2023 at 04:14:09PM +0100, Krzysztof Kozlowski wrote:
+> Hi Thierry,
+>=20
+> Long time ago you sent:
+> https://lore.kernel.org/all/20211217170507.2843568-6-thierry.reding@gmail=
+=2Ecom/
+>=20
+> Any plans to resubmit it?
 
-The overhead of running a 64-bit kernel is usually a few megabytes
-compared to a 32-bit kernel, to store the larger kernel .text/.data
-segments, per-thread stack and page tables as well as 'page',
-and 'inode' structures. I see that A1 only supports DDR3 and DDR4
-memory, so I assume that there are always at least 128MB
-of total RAM available, or 512MB for the most cost-effective
-size with a single memory chip.
+It's in my bucket of things to circle back to eventually. I've got about
+60 or so other conversions in various stages of review, but things have
+been going slower than I expected.
 
-My feeling is that for the 256MB configuration, it is very hard to
-argue for a 32-bit kernel because of the countless downsides,
-and even for the 128MB configuration, I would still try to avoid
-it out of principle.
+I can upload a branch somewhere with what I have if you want to take a
+stab at submitting those. I don't expect to get back to these within the
+next two to three weeks.
 
-      Arnd
+Thierry
+
+--KlVJJU4Pn9yv3mYm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmP8xu0ACgkQ3SOs138+
+s6FppQ/8DDD5TbjVZkQdLBx7Xw2wxM4QQ8ejh9ekHyT9jW2MgiHM2yDnHLzkvOP/
+AtmYp5s1+03Kv3a2pQmCGIkZYnCP30o9qkRB/wtH+F/aRDuZyvg65UlsgVMSK3sD
+sbnDNkdC20t+30hNXU6ma5ygS4Wj612KAj1ZtElRiNAat1PqcEBQFhYIXOaXZFwL
+yhJlDsfuv1MFrJxzquGhRpmlrqA7yxsJ10/H9WqF546bIk2Q1RCs6k+Q+6RW4Prl
+CYJo9OqwmBc9oSmXXhGahCutP6jGzdplRr7WZoRK9r6FV0SRmEMQt5FYUVetTeA5
+WI5TgYLO1MYZ1+zXaLpeq4T+MY0DPcRSFw26MQkD7PxZdPQ6/lH3y+0Qao1CoJW1
+dzvenNvhPN0oLzmcP6h4V3Ml9fKOz3UMViLzVbFpd+sKoPrGEcsEt3XMV8GzLe86
+XgekqKVvcjbZEkKh83X2JW9r1qlqIkPNCHknXUAssphxhnFhRGyFF79UVAhQTdxQ
+jsRff1Qq3R8EFQeJDAOZFpkZxRDBppXx4hcylh8n/9R7U5OJUxJYNTysezlzsqi5
+Y+Wm0Hd+gc5tMvD1GpdBMon9C2UQgSVTZB/V2WRfXUhsRj7TxnJbq9CxldFxV5LT
+mH2rVmn6xkzeEFAy5J06oeGXaWMXRIWhZUbrTDIZtqM4MiHr6ZQ=
+=F9ls
+-----END PGP SIGNATURE-----
+
+--KlVJJU4Pn9yv3mYm--
