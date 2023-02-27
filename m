@@ -2,42 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 939336A4A19
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F00E36A4A57
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:53:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjB0SpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 13:45:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54838 "EHLO
+        id S229900AbjB0Sxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 13:53:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbjB0SpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:45:21 -0500
+        with ESMTP id S229595AbjB0Sxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:53:34 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB722687F
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 10:45:10 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A681041E
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 10:53:32 -0800 (PST)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1pWiUc-0001as-9c; Mon, 27 Feb 2023 19:44:58 +0100
+        id 1pWicd-0002aM-JC; Mon, 27 Feb 2023 19:53:15 +0100
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1pWiUb-00082D-Qp; Mon, 27 Feb 2023 19:44:57 +0100
-Date:   Mon, 27 Feb 2023 19:44:57 +0100
+        id 1pWicb-0008Ja-93; Mon, 27 Feb 2023 19:53:13 +0100
+Date:   Mon, 27 Feb 2023 19:53:13 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v4 2/5] iio: temperature: tmp117: improve fallback
- capabilities
-Message-ID: <20230227184457.q3oj5miynnk6jskx@pengutronix.de>
-References: <20230220122552.925216-1-m.felsch@pengutronix.de>
- <20230220122552.925216-3-m.felsch@pengutronix.de>
- <20230226130700.5b0d650f@jic23-huawei>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-clk@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 3/5] dt-bindings: clock: imx8mp: Add audiomix block
+ control
+Message-ID: <20230227185313.sfuc3nehayjxbhqw@pengutronix.de>
+References: <20230227174308.87286-1-marex@denx.de>
+ <20230227174308.87286-3-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230226130700.5b0d650f@jic23-huawei>
+In-Reply-To: <20230227174308.87286-3-marex@denx.de>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -52,181 +68,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+Hi Marek,
 
-On 23-02-26, Jonathan Cameron wrote:
-> On Mon, 20 Feb 2023 13:25:49 +0100
-> Marco Felsch <m.felsch@pengutronix.de> wrote:
-> 
-> > Don't error if the device-id found don't match the device-id for the
-> > TMP117 sensor since other TMPxxx might be compatible to the TMP117. The
-> > fallback mechanism tries to gather the required information from the
-> > of_device_id or from the i2c_client information.
-> > 
-> > The commit also prepares the driver for adding new devices more easily
-> > by making use of switch-case at the relevant parts.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Hi Marco,
-> 
-> Thanks for doing this.  A small things inline.
+sorry for the late review on this, please see below.
 
-please see my comments below.
+On 23-02-27, Marek Vasut wrote:
+> Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
+> series of clock gates and muxes. Add DT bindings for this IP.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jacky Bai <ping.bai@nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marco Felsch <m.felsch@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+> V2: No change
+> V3: - Add missed RB from Rob from V1
+>     - Rename audio_ahb to plain ahb
+> V4: - Rebase on next 20230223
+> V5: Add TB from Adam and Alexander
+> ---
+>  .../bindings/clock/imx8mp-audiomix.yaml       | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+> new file mode 100644
+> index 0000000000000..01b4e1e311cef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/imx8mp-audiomix.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX8MP AudioMIX Block Control Binding
+> +
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description: |
+> +  NXP i.MX8M Plus AudioMIX is dedicated clock muxing and gating IP
+> +  used to control Audio related clock on the SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8mp-audio-blk-ctrl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  power-domain-names:
+> +    const: audio
 
-> > ---
-> > v4:
-> > - new patch to implement possible fallback (Jonathan)
-> > 
-> >  drivers/iio/temperature/tmp117.c | 67 +++++++++++++++++++++-----------
-> >  1 file changed, 44 insertions(+), 23 deletions(-)
-> > 
-> > diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
-> > index f9b8f2b570f6b..4ddb8cf9a29ab 100644
-> > --- a/drivers/iio/temperature/tmp117.c
-> > +++ b/drivers/iio/temperature/tmp117.c
-> > @@ -16,6 +16,7 @@
-> >  #include <linux/types.h>
-> >  #include <linux/kernel.h>
-> >  #include <linux/limits.h>
-> > +#include <linux/property.h>
-> >  
-> >  #include <linux/iio/iio.h>
-> >  
-> > @@ -113,32 +114,60 @@ static const struct iio_info tmp117_info = {
-> >  	.write_raw = tmp117_write_raw,
-> >  };
-> >  
-> > +static const struct of_device_id tmp117_of_match[] = {
-> > +	{ .compatible = "ti,tmp117", .data = (void *)TMP117_DEVICE_ID },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, tmp117_of_match);
-> > +
-> > +static const struct i2c_device_id tmp117_id[] = {
-> > +	{ "tmp117", TMP117_DEVICE_ID },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(i2c, tmp117_id);
-> 
-> As below.  There is an easy way to avoid having to move these.
-> 
-> > +
-> >  static int tmp117_identify(struct i2c_client *client)
-> >  {
-> > +	unsigned long match_data;
-> >  	int dev_id;
-> >  
-> >  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
-> >  	if (dev_id < 0)
-> >  		return dev_id;
-> > -	if (dev_id != TMP117_DEVICE_ID) {
-> > -		dev_err(&client->dev, "TMP117 not found\n");
-> > -		return -ENODEV;
-> > +
-> > +	switch (dev_id) {
-> > +	case TMP117_DEVICE_ID:
-> > +		return dev_id;
-> >  	}
-> > -	return 0;
-> > +
-> > +	dev_info(&client->dev, "Unknown device id (0x%x), use fallback compatible\n",
-> > +		 dev_id);
-> > +
-> > +	match_data = (uintptr_t)device_get_match_data(&client->dev);
-> > +	if (match_data)
-> > +		return match_data;
-> > +
-> > +	match_data = i2c_match_id(tmp117_id, client)->driver_data;
-> 
-> Whilst correct, i2c_client_get_device_id() avoids the need
-> to move tmp117_id up to where you have by getting to that table via
-> the driver structure. That will simplify this patch a fair bit.
-> 
-> > +	if (match_data)
-> > +		return match_data;
-> > +
-> > +	dev_err(&client->dev, "error: No valid fallback found\n");
-> 
-> This is a little misleading as fallback only applies to the device tree
-> path. 
+Why do we need to specify the name here? We have just one power-domain,
+so there should be no need to distinguish between them, or do I miss
+something?
 
-Since we support the i2c_device_id table as well, this is not 100% true.
+> +
+> +  clocks:
+> +    minItems: 7
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ahb
+> +      - const: sai1
+> +      - const: sai2
+> +      - const: sai3
+> +      - const: sai5
+> +      - const: sai6
+> +      - const: sai7
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      The clock consumer should specify the desired clock by having the clock
+> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8mp-clock.h
+> +      for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - power-domain-names
 
-> Also, not a lot of point in putting error in the text of
-> a dev_err.  Perhaps just "Unsupported device".
+We can drop the power-domain-names here as well.
 
-dev_err() does not print a error on the commandline. If something went
-wrong I tend to "dmesg|grep -i err" or "dmesg|grep -i fail". Therefore I
-added the error keyword here. But I can change the message to "Error:
-unsupported device" if this is okay for you.
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock Control Module node:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +
+> +    clock-controller@30e20000 {
+> +        #clock-cells = <1>;
+> +        compatible = "fsl,imx8mp-audio-blk-ctrl";
+> +        clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
+> +                 <&clk IMX8MP_CLK_SAI1>,
+> +                 <&clk IMX8MP_CLK_SAI2>,
+> +                 <&clk IMX8MP_CLK_SAI3>,
+> +                 <&clk IMX8MP_CLK_SAI5>,
+> +                 <&clk IMX8MP_CLK_SAI6>,
+> +                 <&clk IMX8MP_CLK_SAI7>;
+> +        clock-names = "ahb",
+> +                      "sai1", "sai2", "sai3",
+> +                      "sai5", "sai6", "sai7";
+> +        power-domains = <&pgc_audio>;
+> +        power-domain-names = "audio";
+> +        reg = <0x30e20000 0x10000>;
+
+It is common to have have the compatible as the first property followed
+by the reg property. We should change this here as well as in the
+8mp.dtsi patch.
 
 Regards,
   Marco
 
-> > +
-> > +	return -ENODEV;
-> >  }
-> >  
-> >  static int tmp117_probe(struct i2c_client *client)
-> >  {
-> >  	struct tmp117_data *data;
-> >  	struct iio_dev *indio_dev;
-> > -	int ret;
-> > +	int dev_id;
-> >  
-> >  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-> >  		return -EOPNOTSUPP;
-> >  
-> > -	ret = tmp117_identify(client);
-> > -	if (ret < 0)
-> > -		return ret;
-> > +	dev_id = tmp117_identify(client);
-> > +	if (dev_id < 0)
-> > +		return dev_id;
-> 
-> I'd keep it in ret until you know it's good.  Reduces churn and is nicer
-> code in general, though one more line.
-> 
-> 	dev_id = ret;
-> 
-> >  
-> >  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> >  	if (!indio_dev)
-> > @@ -148,28 +177,20 @@ static int tmp117_probe(struct i2c_client *client)
-> >  	data->client = client;
-> >  	data->calibbias = 0;
-> >  
-> > -	indio_dev->name = "tmp117";
-> >  	indio_dev->modes = INDIO_DIRECT_MODE;
-> >  	indio_dev->info = &tmp117_info;
-> >  
-> > -	indio_dev->channels = tmp117_channels;
-> > -	indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
-> > +	switch (dev_id) {
-> > +	case TMP117_DEVICE_ID:
-> > +		indio_dev->channels = tmp117_channels;
-> > +		indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
-> > +		indio_dev->name = "tmp117";
-> > +		break;
-> > +	}
-> >  
-> >  	return devm_iio_device_register(&client->dev, indio_dev);
-> >  }
-> >  
-> > -static const struct of_device_id tmp117_of_match[] = {
-> > -	{ .compatible = "ti,tmp117", },
-> > -	{ }
-> > -};
-> > -MODULE_DEVICE_TABLE(of, tmp117_of_match);
-> > -
-> > -static const struct i2c_device_id tmp117_id[] = {
-> > -	{ "tmp117", 0 },
-> > -	{ }
-> > -};
-> > -MODULE_DEVICE_TABLE(i2c, tmp117_id);
-> > -
-> >  static struct i2c_driver tmp117_driver = {
-> >  	.driver = {
-> >  		.name	= "tmp117",
+> +    };
+> +
+> +...
+> -- 
+> 2.39.2
 > 
 > 
