@@ -2,172 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 869096A3E1E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFF7E6A3E34
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbjB0JSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 04:18:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55310 "EHLO
+        id S229618AbjB0JVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 04:21:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229840AbjB0JSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:18:18 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D9E233CA;
-        Mon, 27 Feb 2023 01:13:11 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 727DE6602216;
-        Mon, 27 Feb 2023 09:13:07 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677489188;
-        bh=7S3Wd+Y8Q5ikBWz7AoFXFSwdvy2LarrEsJYC+b2DteQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=OCdsR+fCrGJISKVjFmrUinmHbCqqJQ8dFVTCSzIVW2Z5VmjLoUqXEsSOAY2LwN+Ds
-         Q3BNqVKyeCATB9TZqlWokMXlOqKCu1E3ahUhr7LtlKJ96ZqxUWk69SWadQP7Xy5g1S
-         mZr1lC050XkZjoWr2Pe2pcOxI9F8GCeg3TwiN/nG4/4+6WbTRggeqcfc5L/shDs+Ql
-         Nl82igvvVvZM2qdwkg8Yirq6fS3rD308ZIQx1cu/euZaYJrXWKTtVyq7BWDKXlgwOH
-         OLus16dff/fZetQi6aOjBxVZjFxjp54xz/FHmJwyar8dOKyeLCZcO5WyNQhNI2RmeM
-         iV4LXFkzmYwcw==
-Message-ID: <8c105a4f-f450-8fbf-ff0b-5629a47c1463@collabora.com>
-Date:   Mon, 27 Feb 2023 10:13:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 5/6] soc: qcom: Add support for Core Power Reduction
- v3, v4 and Hardened
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
- <20230217-topic-cpr3h-v10-5-67aed8fdfa61@linaro.org>
- <153ef3e0-9978-d201-44ad-3a5e55eeef4f@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <153ef3e0-9978-d201-44ad-3a5e55eeef4f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S229996AbjB0JVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:21:30 -0500
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2078.outbound.protection.outlook.com [40.107.21.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A4010A94;
+        Mon, 27 Feb 2023 01:20:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JmzmDRExqH3jHPl8T5B0OAiFK9NgxzK6X5IdejtHUY/ESoBWG/09Sh/oS9ao/xLjpyrXtNanzjGAqiJDOUgpAgXvBOBo9NkW8MInEq2JtWcjgW+EhOY6MkbcqBci3fokQNcG/KYq6mYJNVmbHU33eaRKdFcqWCGZEC7w7QRdrIL2jbNAHjPVcHPtST5VVqyQ0Of09cWSTd18AZBpRtpuUo1xLKeVLuSVSyKp0dX0aY04NZSz0LwSgZd4ROewf5OAWExyi8NHwymP3pks7QhVUvFuaneoRJTmGXLYyElZP9HMpB8flEQZBzz3tpWt7aA4n3Q2iEu2Zw4QbhdgfmhJEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kyMFWe+WU6YBlFtA1v37g8GOgrqQoyLOQFqVA6cuZM0=;
+ b=NWNs6FzQB2ZC2Z4anNg+NAYy6hDy3nzn8WP/n0N7xPf+T/k+aKvyYwDwM3VhyfvVDeqH0ycalZG6FGkbG32f4jK808y0GEDzDVDxktCExK8lwVOTvayzidGJSIWeO3Od9XpvW8oIyLhcSwjQbQ9pf9kSFECnKy8o16UBLlKqqsD1Su4w1rI59JYvw/BJyI21v7c5cJAfYHcvTsoawpdwJJsOMMf3cxoNukRX9U/YKyaP0MzmNdoWNZ+AK59IGVNZEqwUNjJ74XzgezbEW02PeqXWoZqkMzX+4jc4//E856qRzwZQa9FnSO5vhIVtqUURYOaDCXPXqLdpd5yZVdLG2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kyMFWe+WU6YBlFtA1v37g8GOgrqQoyLOQFqVA6cuZM0=;
+ b=gfsRq57wGlhfnGWPI8/OUjyEfdVjqLsVbVoOI5XTGVHvtbOrnrrX5ueaY82L0ZQIFFOKYeJMH8+kcWiE4t1AcwrROfdy5wP4+arJOd+SWigXeBQmwF0wXaq3EUs9/UJHQUt+xMWT33q7+81egw46XmnhT9YGLVlIHdmoUd5UX5o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19)
+ by AM0PR04MB7138.eurprd04.prod.outlook.com (2603:10a6:208:19e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Mon, 27 Feb
+ 2023 09:20:05 +0000
+Received: from VI1PR04MB4222.eurprd04.prod.outlook.com
+ ([fe80::8562:affc:e0c:c610]) by VI1PR04MB4222.eurprd04.prod.outlook.com
+ ([fe80::8562:affc:e0c:c610%7]) with mapi id 15.20.6134.029; Mon, 27 Feb 2023
+ 09:20:05 +0000
+From:   Chancel Liu <chancel.liu@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        ckeepax@opensource.cirrus.com, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: wlf,wm8524: Convert to json-schema
+Date:   Mon, 27 Feb 2023 17:19:37 +0800
+Message-Id: <20230227091938.1671416-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0206.apcprd04.prod.outlook.com
+ (2603:1096:4:187::21) To VI1PR04MB4222.eurprd04.prod.outlook.com
+ (2603:10a6:803:46::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4222:EE_|AM0PR04MB7138:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09b87386-38f3-4eee-9dc1-08db18a3cfec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gY2ZD4JVBd/DJVVCBdWs7k0XEWQ6g5AXEdINIzsbsN0DtkKI3YU64Gb4X0pAQGjyRxcbtpjOle0AP1VXBRFk/rcxN1Ihr5H6dSxH/q9nrFHzyemoJ2oFbM8WhPGJrn8mOlEHU4e2+bo7zHoimDWiyDow6PdqQRRSRB9+wVHR0MzEuhMdVChKREa0eIoBUMkVzdpCA/qbEL0b7Avkgf+7eLw1y0jv9Vu7R6bMgHqPOmXctTTroWwAyg49c0HIzTtPQDf6XeSZDJIhQad4RvIJm6Jb4XpUmZhOoI3WtvQIscwtJtRrenAWDU56dY/BaVRWhZ8ON6Qcd8gx/TgL2CFxas9LhqLH9eiMsNFUPaOik+N76l9yMyNwvbqJGx5jToAVLLtpADQb8dMw1y5bTSInNy73vp3KdDpDN3WiNSnf6D9jmwglyEQUFJ86Etl0B8AzsY6rB8y8igBRg5BpkAUCyDBHEyuarnOfPDanXJI0EpxzJT0OkWd8dTkHaGLtI4R7Iyy0ohu3g3jizTrJyaykpd2BBhjQYpNJdvtdZkRzYdTc9MSBZizW+lVf8bz1p969lUm79RD3OSZzeVc0vahxrunvByI0U9C4JO4Mq0Fz7WlCNjjh3snzWCLreNmyqiGqeHSqGbXv+XFp/UA7atcJGoznQIPLf58bSnzyGh212XemvWe6uSm7FqFhO2JlP6PmsWY3Zp29kdpdY780R6TuWENwk4sqVLx4xb62p2xZxBDKES4d4pakZRQBtpfr+UYU
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4222.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(39860400002)(366004)(346002)(396003)(136003)(451199018)(478600001)(52116002)(6486002)(966005)(2616005)(186003)(1076003)(26005)(316002)(6506007)(6512007)(6666004)(66556008)(66476007)(66946007)(83380400001)(8676002)(4326008)(41300700001)(7416002)(44832011)(5660300002)(8936002)(38350700002)(38100700002)(86362001)(921005)(36756003)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xU39zIAQSlpwcdR1FCJ40QRwYCVH9DtTYNentoEjDlxUnn/upv2mohyIP6W1?=
+ =?us-ascii?Q?JWWPzjnD3yNtbxnzYxG/+KoCyGaVDQWGkG/LQ/PTZtPHTuIkZTGMlQEf/SJ1?=
+ =?us-ascii?Q?bCLkcu1v8zkAuMIsWV3YhGixvq6vWawQP/fJmIoYMf+9g0tvvmTCNB/ZiRE8?=
+ =?us-ascii?Q?jX6CYwR/4I8FyDM0QHc4Mm//onCD5NrW+nAG72kzt0lf92NV625Dlyd8gI/P?=
+ =?us-ascii?Q?pt1wT8NLUO2F7KtYT8hnOmGHAWTeV7c2Xspn6Cw2nsVvnPXBq2JENYQidGzS?=
+ =?us-ascii?Q?LQE5TiHmHzxULlzl5GXrSXljvepnxSzhMwexO21PJ+6krQtRmDCPENqmyRMb?=
+ =?us-ascii?Q?ZFccrXKO+owGsxW+EXGB5m8ZZj1nj98UEWzspJpz1NzXtQ9WddvFjgFhuS+v?=
+ =?us-ascii?Q?K1Wi0m4qqcksGuse+RONPaNGsFBP+bYne+7vVuTl3gE+6qotPAZp1V60FdI7?=
+ =?us-ascii?Q?e0Zkr5QZKmKzIknAto1NuXQrpXvXOu9mRcvNd412yfH47gWQAwivM6CEJ1T7?=
+ =?us-ascii?Q?QtwnIFSpaYcfNM3bQGsrvblaV8Q84cp1PRW3KQqANfrEnVY4s/EuTkK84M6v?=
+ =?us-ascii?Q?yiitiYg8tJjJkJvIpvOTlm/+S9r0/toQRZ5Ibsi8JwH5HjFmb7x5tTBLhHhK?=
+ =?us-ascii?Q?0cEMNobPLl7TK7qQEGeT6snnqA9lSqi2AR46RVCKhHUXYddW3HaZc3o/4CMK?=
+ =?us-ascii?Q?63iHaBKcuEu81xng8tM6ybsRil9o6cB0+tOwT8S5dJhH3oOiAiFRbw4cnKF2?=
+ =?us-ascii?Q?B2zlmkTxsl4D+58o6qoS+9TiWeja+XyEVk6/kaEpFTleE0feYp4Ygp5wRlCz?=
+ =?us-ascii?Q?9VaC7Qik51Tl12aOzT93PH+vj1JXoUTdhG01xRS0VTwPAlg1K1yRDkd3zON7?=
+ =?us-ascii?Q?UsDpsESy9SuAxvppJCwIGtBghthnd5XyB3RkbymHy2DUDnXA7ZdvtIFxtEe1?=
+ =?us-ascii?Q?Vd+iAQ8kXnBH8FplQo99B8V6HaO1D73Wh+7AcCrr+5HNCOkwbeeW/N7YNB41?=
+ =?us-ascii?Q?YU11/n0G9G9JOINdqMwbWC7BE94r4CF6lG+wZ0/MsYstqX34nmb8nXAH+9Ba?=
+ =?us-ascii?Q?flPZYmnjh9hmcx87EvzxBv/uPLbm8Qo7/hmMEfZpWskVyrVbXfXrHReBfE4q?=
+ =?us-ascii?Q?rQr2MS2xxVvBOiPktH4Qu8y43lBogR5aeOiTr6ius5sq2uhlZg77vsT/yd4l?=
+ =?us-ascii?Q?JK76h3hcajROk97zmtoOU862//uRFU0e/uDdY0mrVzihU0EQK0NQSke6auVs?=
+ =?us-ascii?Q?NG7xPnpafqaDgcSR9ZLc5KFKqCn5TG2qhUA9QrMVbrcVq+xm7heSs9fjB+Vw?=
+ =?us-ascii?Q?qo77piK/bNW0pLqkj7lpyU0z+Qjqtxml8gzvp3UQyrv+pj3XdC6ZeUBmh2pw?=
+ =?us-ascii?Q?cqJOIiDZ/go6Scp1+elyKR9VDmJylYugGAgsANZuZxVp2pdRG3CEn1+EjyPE?=
+ =?us-ascii?Q?MPgTY6xBMdGweNvR7U3F3KGY1p44UW7asN9hHbxSMXAXJ6KENq6PkHiA9ylK?=
+ =?us-ascii?Q?3X0usSeJ5WbAu121br0NQ7yB5KkHFrt/xABsBhiSBXbDPOSLe/H++XntzrkF?=
+ =?us-ascii?Q?lF8zLIc1QG7ZHQBhNENPzajNFY8yyqXqDEO8UW5W?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09b87386-38f3-4eee-9dc1-08db18a3cfec
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4222.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2023 09:20:05.2683
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h6YVBHLlVTdsVjywyw3eifwBiSs9QMIjxWrseNjeqFBn9vldk+f3OLmhEC5iYrmOrddLYfISVb8r30x2qPBfmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7138
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 27/02/23 03:55, Dmitry Baryshkov ha scritto:
-> On 17/02/2023 13:08, Konrad Dybcio wrote:
->> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>
->> This commit introduces a new driver, based on the one for cpr v1,
->> to enable support for the newer Qualcomm Core Power Reduction
->> hardware, known downstream as CPR3, CPR4 and CPRh, and support
->> for MSM8998 and SDM630 CPU power reduction.
->>
->> In these new versions of the hardware, support for various new
->> features was introduced, including voltage reduction for the GPU,
->> security hardening and a new way of controlling CPU DVFS,
->> consisting in internal communication between microcontrollers,
->> specifically the CPR-Hardened and the Operating State Manager.
->>
->> The CPR v3, v4 and CPRh are present in a broad range of SoCs,
->> from the mid-range to the high end ones including, but not limited
->> to, MSM8953/8996/8998, SDM630/636/660/845.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> [Konrad: rebase, apply review comments]
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>   drivers/soc/qcom/Kconfig      |   22 +
->>   drivers/soc/qcom/Makefile     |    4 +-
->>   drivers/soc/qcom/cpr-common.h |    2 +
->>   drivers/soc/qcom/cpr3.c       | 2923 +++++++++++++++++++++++++++++++++++++++++
->>   include/soc/qcom/cpr.h        |   17 +
->>   5 files changed, 2967 insertions(+), 1 deletion(-)
->>
->> diff --git a/include/soc/qcom/cpr.h b/include/soc/qcom/cpr.h
->> new file mode 100644
->> index 000000000000..2ba4324d18f6
->> --- /dev/null
->> +++ b/include/soc/qcom/cpr.h
->> @@ -0,0 +1,17 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2013-2020, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2019 Linaro Limited
->> + * Copyright (c) 2021, AngeloGioacchino Del Regno
->> + *                     <angelogioacchino.delregno@somainline.org>
->> + */
->> +
->> +#ifndef __CPR_H__
->> +#define __CPR_H__
->> +
->> +struct cpr_ext_data {
->> +    int mem_acc_threshold_uV;
->> +    int apm_threshold_uV;
->> +};
-> 
-> Who is going to use this? Is it the cpufreq driver or some other driver?
-> We are adding an API without a clean user, can we drop it for now?
-> 
+Convert the Wolfson WM8524 24-bit 192KHz Stereo DAC device tree
+binding documentation to json-schema.
 
-This is mandatory: qcom-cpufreq-hw is supposed to program the OSM before
-starting.
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ .../devicetree/bindings/sound/wlf,wm8524.yaml | 40 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8524.txt      | 16 --------
+ 2 files changed, 40 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8524.txt
 
- From SDM845 onwards, the OSM is programmed by the bootloader before booting
-Linux;
-In MSM8996/98, SDM630/636/660, others, the bootloader does not program the OSM
-uC, so this has to be done in Linux - specifically, in the CPUFREQ driver
-(qcom-cpufreq-hw), otherwise this driver is completely pointless to have.
-
-CPU DVFS requires three uC to be correctly programmed in order to work:
-  - SAW (for sleep states)
-  - CPR-Hardened (voltage control, mandatory for stability)
-  - OSM (for cpufreq-hw frequency steps [1..N])
-
-Failing to *correctly* program either of the three will render CPU DVFS unusable.
-
-
-That clarified, my opinion is:
-No, you can't drop this. It's an essential piece for functionality.
-
-I agree in that this commit introduces a header that has only an internal (as in
-cpr3.c) user and no external ones, but I think that Konrad didn't want to include
-the qcom-cpufreq-hw.c commits in this series because it's already huge and pretty
-difficult to review; adding the cpufreq-hw commits would make the situation worse.
-
-Konrad, perhaps you can send the cpufreq-hw commits in a separate series, in
-which cover letter you mention a dependency on this one?
-That would *clearly* show the full picture to reviewers.
-
-I remember that when I sent the cpufreq-hw series along with this one (~2 years
-ago, I think?) that code had positive reviews from Bjorn, so it should be OK.
-It wasn't picked just-only-because of the cpr3 dependency.
-
-Regards,
-Angelo
-
->> +
->> +#endif /* __CPR_H__ */
->>
-> 
-
-
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+new file mode 100644
+index 000000000000..4d951ece394e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8524.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8524.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Wolfson WM8524 24-bit 192KHz Stereo DAC
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: wlf,wm8524
++
++  "#sound-dai-cells":
++    const: 0
++
++  wlf,mute-gpios:
++    maxItems: 1
++    description:
++      a GPIO spec for the MUTE pin.
++
++required:
++  - compatible
++  - wlf,mute-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    wm8524: codec {
++        compatible = "wlf,wm8524";
++        wlf,mute-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8524.txt b/Documentation/devicetree/bindings/sound/wm8524.txt
+deleted file mode 100644
+index f6c0c263b135..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8524.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-WM8524 audio CODEC
+-
+-This device does not use I2C or SPI but a simple Hardware Control Interface.
+-
+-Required properties:
+-
+-  - compatible : "wlf,wm8524"
+-
+-  - wlf,mute-gpios: a GPIO spec for the MUTE pin.
+-
+-Example:
+-
+-wm8524: codec {
+-	compatible = "wlf,wm8524";
+-	wlf,mute-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+-};
+-- 
+2.25.1
 
