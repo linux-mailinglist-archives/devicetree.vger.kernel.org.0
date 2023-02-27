@@ -2,148 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF34A6A4F07
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 23:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C13F6A4F83
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 00:07:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjB0W6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 17:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45704 "EHLO
+        id S229739AbjB0XHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 18:07:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbjB0W6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 17:58:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 249ED83CD;
-        Mon, 27 Feb 2023 14:58:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B6A1360EAC;
-        Mon, 27 Feb 2023 22:58:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F8F9C433D2;
-        Mon, 27 Feb 2023 22:57:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677538680;
-        bh=DOn3IqzBFJ3kATuBFE3wlApyPVODRfIIpiPTqiQJYuI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hEq+oLArpAqLo/uoxoF59arOtl6M6jRIvJqAuX3WHRl4PLpQZA6Z0rPAPoE+nzGjt
-         83yytWT6c9k7ck/YuF7rBbApyD7/z9f4o8W7ywZl333hGqtzFQHEp4NXExPNVNJGP6
-         Huv1fuKuBYUTL6HOIKXDY+N28CP61hkUMMaxPou+tmNLerpTVD5IW3e31hAzhbJ3py
-         Jg6Zk0O4MNbT++ZEdVAHyXc8HI8m5QdiPrLfTgEa9ut+rkZ63JP5DcjYUJQGOz8P6+
-         /iIckHedliE5RZmBfoD+/54BcryPhAPw1z4sxx86V8dm/zX1IS/lbmgcQxf3MWs4fv
-         OeLcMXmk+J/dw==
-Date:   Mon, 27 Feb 2023 22:57:55 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Evan Green <evan@rivosinc.com>
-Cc:     Palmer Dabbelt <palmer@rivosinc.com>, heiko@sntech.de,
-        slewis@rivosinc.com, vineetg@rivosinc.com,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 4/7] dt-bindings: Add RISC-V misaligned access
- performance
-Message-ID: <Y/01c7sZ9ri5i8ao@spud>
-References: <20230221190858.3159617-1-evan@rivosinc.com>
- <20230221190858.3159617-5-evan@rivosinc.com>
+        with ESMTP id S229676AbjB0XHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 18:07:41 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A6F1E1D1;
+        Mon, 27 Feb 2023 15:07:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677539260; x=1709075260;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dTd4MnC9/IhUBjoSUJk3q6uKh0ORunfmI4hX7cyMlNk=;
+  b=D4uv+1+62TEzduRBHHh+ADrU1Y38LnY2gvGX6zUgfNDUySMfX9HxeLty
+   fm8jAea1OBm80v1z+AkGqRBUBcoA7J0RSId90zyOsEkJ6SHw4h57ff2WH
+   K4ngFmYuTJEiEu/lIOhBRsCwwBQWn/OtHW+SvZH5wtJ8LCLigpdMBANSD
+   N49VCKP0rl8Ngrs98CkdM5hkEN/A15Rky/ZouEcN+wMVgxEYXI5N76GV4
+   59ljGQmrmb4f498FLD+GETEUHYNE520udWa68XQQPZz9qz+v0hSNOEgzX
+   aDEPJzzT+r0uKG8szfDAFDpLAN42yQcsWZc51CveNdZuwP20y7BevR3TK
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="361550516"
+X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; 
+   d="scan'208";a="361550516"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 15:07:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="676055548"
+X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; 
+   d="scan'208";a="676055548"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007.fm.intel.com with ESMTP; 27 Feb 2023 15:07:37 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pWmal-00D2N0-0e;
+        Tue, 28 Feb 2023 01:07:35 +0200
+Date:   Tue, 28 Feb 2023 01:07:34 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Danny Kaehn <kaehndan@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <Y/03to4XFXPwkGH1@smile.fi.intel.com>
+References: <20230227140758.1575-1-kaehndan@gmail.com>
+ <20230227140758.1575-4-kaehndan@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YuphDP/Rndy0HYOx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230221190858.3159617-5-evan@rivosinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230227140758.1575-4-kaehndan@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 27, 2023 at 08:07:58AM -0600, Danny Kaehn wrote:
+> Bind I2C and GPIO interfaces to subnodes with names
+> "i2c" and "gpio" if they exist, respectively. This
+> allows the GPIO and I2C controllers to be described
+> in firmware as usual. Additionally, support configuring the
+> I2C bus speed from the clock-frequency device property.
 
---YuphDP/Rndy0HYOx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A bit shorten indentation...
 
-Hey Evan,
+Nevertheless what I realized now is that this change, despite being OF
+independent by used APIs, still OF-only.
 
-On Tue, Feb 21, 2023 at 11:08:55AM -0800, Evan Green wrote:
-> From: Palmer Dabbelt <palmer@rivosinc.com>
->=20
-> This key allows device trees to specify the performance of misaligned
-> accesses to main memory regions from each CPU in the system.
+Would it be possible to allow indexed access to child nodes as well, so if
+there are no names, we may still be able to use firmware nodes from the correct
+children?
 
-Could you fold some of Palmer's explanation for why this must be in the
-devicetree? Think this is where he explained it:
-https://lore.kernel.org/all/mhng-8736b349-e27a-4372-81ca-3a25d2ec1e94@palme=
-r-ri-x1c9/
+P.S. The problem with ACPI is that "name" of the child node will be in capital
+letters as it's in accordance with the specification.
 
->=20
-> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Evan Green <evan@rivosinc.com>
-> ---
->=20
-> Changes in v3:
->  - Added | to description: to make dt-checker happy.
->=20
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
-ation/devicetree/bindings/riscv/cpus.yaml
-> index c6720764e765..f79e9e5c5ee9 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -85,6 +85,21 @@ properties:
->      $ref: "/schemas/types.yaml#/definitions/string"
->      pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
-> =20
-> +  riscv,misaligned-access-performance:
-> +    description: |
-> +      Identifies the performance of misaligned memory accesses to main m=
-emory
-> +      regions.  There are three flavors of unaligned access performance:=
- "emulated"
-> +      means that misaligned accesses are emulated via software and thus
-> +      extremely slow, "slow" means that misaligned accesses are supporte=
-d by
-> +      hardware but still slower that aligned accesses sequences, and "fa=
-st"
+-- 
+With Best Regards,
+Andy Shevchenko
 
-s/that/than/
 
-> +      means that misaligned accesses are as fast or faster than the
-> +      cooresponding aligned accesses sequences.
-
-s/cooresponding/corresponding/
-
-Thanks,
-Conor.
-
-> +    $ref: "/schemas/types.yaml#/definitions/string"
-> +    enum:
-> +      - emulated
-> +      - slow
-> +      - fast
-> +
->    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
->    timebase-frequency: false
-> =20
-> --=20
-> 2.25.1
->=20
-
---YuphDP/Rndy0HYOx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/01cwAKCRB4tDGHoIJi
-0nAeAQDSm+Ztzo3Tbf7N3R9oO20Sh+ylQ2JQ5FZnSgknEmJYYwD+IOIvf5vpBkfu
-PcnfnXXl8a2pwxomgK/WBgQbomX0IQg=
-=KSgx
------END PGP SIGNATURE-----
-
---YuphDP/Rndy0HYOx--
