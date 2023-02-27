@@ -2,103 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDBF56A455E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:58:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4146A43A5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:04:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229974AbjB0O6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 09:58:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41786 "EHLO
+        id S229803AbjB0OD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 09:03:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbjB0O6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:58:37 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6958C5262;
-        Mon, 27 Feb 2023 06:58:36 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B2CBF8339E;
-        Mon, 27 Feb 2023 15:58:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1677509914;
-        bh=r/XTzrYSTfxQc9R6KeDw695Bi854lHCpElV1s8nh8zI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=B61E42Rlo4Qbn6uODr49/NrHqZtDV6G2b4N5nZEpnn2AW4+IbG8wgrr/hxciTsicb
-         NlAQ9q5LW+JKbq1Q+qLwAmFrX894HlPPcbUri5KCfBhcf0GT5KYh1dRxjaXGKo9RMi
-         R8p2MoyhFHPHU1hwYnB4xK+aZy1D78LtNPFw3fdsid+MLAhXpiWOLqXWKht8n4lE6K
-         VndDJMufqNL8k5pXKMHEfM3ah2gL3tSoPg78bsubhW1k+8SCZKOvdQHCBAh0RbieuN
-         cyvq3JqauOs6gZSnqiIoqy6vCp/bi2IzDHb0gsqScKVGD5Z07g/SOxjZd7kAsbconp
-         h86Hx7j3fmLcA==
-Message-ID: <f4fd60db-9924-cb2c-71bb-1ac3b53305e8@denx.de>
-Date:   Mon, 27 Feb 2023 14:53:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 4/5] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-clk@vger.kernel.org
-Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+        with ESMTP id S229566AbjB0OD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:03:59 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D7A65BF;
+        Mon, 27 Feb 2023 06:03:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1677506638; x=1709042638;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lhINFStdkUVW6diIibKLb9nd7HYBVPWekTlInXGunlM=;
+  b=x+bRhmtBZx2nx6R+5HhztNXI3ptTCcbN0mW6qwlzhTiOmhGUJflpU5EY
+   L3GiUbHCzI4r1j3q2qEUTZTSqMKHsd+eXnU1klZ7y4OJ7FvtfsRn/FSqu
+   0T2DvBZJi8IGUm288xeUNVUZ8WWO7y5j7oC/QlPuq3y4Dlumh3zJIskQ4
+   pxf4uFog+BUfeqQ6rnlC6UXJ+rv2GQRc/tk63jlAyhbfToFVYuIZOm+hB
+   gNGQSR9c5YTRye0f6NnBUCyNs2PEjKg2sTSJJp1Eo7XztY/YYgKSrdZul
+   4A03PTKNiW94MD2Kj3A/KkoDZr5QCQii/s+m6YfxlF84EaWMNgMax5Wpc
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,332,1673938800"; 
+   d="asc'?scan'208";a="139247079"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Feb 2023 07:03:55 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 27 Feb 2023 07:03:55 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Mon, 27 Feb 2023 07:03:53 -0700
+Date:   Mon, 27 Feb 2023 14:03:26 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+CC:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230223171114.59164-1-marex@denx.de>
- <20230223171114.59164-4-marex@denx.de> <3160821.5fSG56mABF@steina-w>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <3160821.5fSG56mABF@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/2] hwmon: (sfctemp) Add StarFive JH71x0 temperature
+ sensor
+Message-ID: <Y/y4LunvriV2RYwu@wendy>
+References: <20230227134125.120638-1-hal.feng@starfivetech.com>
+ <20230227134125.120638-3-hal.feng@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NBI72SkxZsmpX/ON"
+Content-Disposition: inline
+In-Reply-To: <20230227134125.120638-3-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/27/23 10:08, Alexander Stein wrote:
+--NBI72SkxZsmpX/ON
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[...]
+On Mon, Feb 27, 2023 at 09:41:25PM +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
+>=20
+> Add driver for the StarFive JH71x0 temperature sensor. You
+> can enable/disable it and read temperature in milli Celcius
+> through sysfs.
+>=20
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Co-developed-by: Samin Guo <samin.guo@starfivetech.com>
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 
->> +			sdma2: dma-controller@30e10000 {
->> +				compatible = "fsl,imx8mp-sdma",
-> "fsl,imx8mq-sdma";
->> +				reg = <0x30e10000 0x10000>;
->> +				interrupts = <GIC_SPI 103
-> IRQ_TYPE_LEVEL_HIGH>;
->> +				clocks = <&audio_blk_ctrl
-> IMX8MP_CLK_AUDIOMIX_SDMA2_ROOT>,
->> +					 <&clk
-> IMX8MP_CLK_AUDIO_ROOT>;
->> +				clock-names = "ipg", "ahb";
->> +				#dma-cells = <3>;
->> +				fsl,sdma-ram-script-name = "imx/sdma/
-> sdma-imx7d.bin";
->> +			};
->> +
->> +			audio_blk_ctrl: blk-ctrl@30e20000 {
-> 
-> Shouldn't the node name be 'clock-controller@30e20000' as mentioned in the
-> bindings?
-> But for the whole series:
-> Testes-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> +config SENSORS_SFCTEMP
+> +	tristate "Starfive JH71x0 temperature sensor"
+> +	depends on SOC_STARFIVE || COMPILE_TEST
 
-It should be clock-controller indeed, fixed in V5, thanks.
+We (or I?) am trying to homogenise RISC-V with the rest of the kernel by
+using ARCH_FOO rather than SOC_FOO. We've currently got a mix of both,
+due to companies that started out with RISC-V having SOC_ symbols &
+those with history in other archs having ARCH_ ones.
+The ARCH_ definitions landed in mainline this week, so if you end up
+resubmitting this driver, it'd save me a conversion if you were to use
+the ARCH_ variant.
+
+Thanks,
+Conor.
+
+> +	help
+> +	  If you say yes here you get support for temperature sensor
+> +	  on the Starfive JH71x0 SoCs.
+> +
+> +	  This driver can also be built as a module.  If so, the module
+> +	  will be called sfctemp.
+
+--NBI72SkxZsmpX/ON
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/y4LgAKCRB4tDGHoIJi
+0mJ0AP4vNo5Ie/2kHWAmJFUKGr8YQL9x84VEY3Xn9vgF9A6izgD/QJzmlpXfLT0E
+wuAiKkJkRPP9FP1Z+dqqrB2FAZrw3QY=
+=DO8S
+-----END PGP SIGNATURE-----
+
+--NBI72SkxZsmpX/ON--
