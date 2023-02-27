@@ -2,101 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DC46A3A1E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 05:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F466A3A32
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 05:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229746AbjB0E2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 23:28:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
+        id S229795AbjB0Etm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 23:49:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbjB0E2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 23:28:17 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C90EB5E
-        for <devicetree@vger.kernel.org>; Sun, 26 Feb 2023 20:28:14 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id z10so2775057pgr.8
-        for <devicetree@vger.kernel.org>; Sun, 26 Feb 2023 20:28:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMvkWjZNPPFl1pl6IaXhWMOFP4oUQ7mx0SfykEhX4AQ=;
-        b=a8nxOFzJthk2KULRQ7fJuTH1ykL4dpMUTRb8Yi8d+6LJ5GcWR7OB4odOLdot4sqkKj
-         5JfbokevLgJZdOes29MK9qUlhRhuZlmLygzbMbqmnKohfPfQi+rVMiglPcpiDAbHaMwV
-         opICb88ttD10bHt8A+nX51ok/xtztTqUyfZly2soKwIsHS4JF0gNz+7w23S/ACXwuKwx
-         CgZsiWNwKHOh6rcZ/uIoQsvBy2PpP+AiNp9hHPLX9Ib4gMRJKfz2u7xbdTNJiS7+kU75
-         vq0dCTsJ2ItUQRzaa1J+i1mxtZ+DTLflpfuTszmRcHRbkKvgl8FDRvAH+1xzWQ1xaZ5o
-         Qo6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zMvkWjZNPPFl1pl6IaXhWMOFP4oUQ7mx0SfykEhX4AQ=;
-        b=XOPXHxgDCE0lLRuCWnbxJibIcW3zVoyeZE9ZYdbM9lWjGKAvmHiGumn4UKetpB0HWo
-         nTwchDWn6ZrK+yQDtJQkiOtFDg+7O+r5lrWUuZidPBDrF3tK3qyq2G/UYucOJeNg9Pwp
-         kn+PXmY2LJ9if21nWbbHEYFti8zSlCfALPlyWNkB9sr+5TVohuLf+Mp6wzcXFyh9UIus
-         DDjZdok194ubJDhgzdML445dGMgtEZeJnjLu0LkeqrJiTqFVjhwEIEzvf0SNyGZmjKrF
-         12+xjRsiX6yHhABIcAHV/aQSEI9T2uUWEE0LEDZOSPkdQQgu8/Opiytbxcne8IuvHHni
-         9Nqg==
-X-Gm-Message-State: AO0yUKXcGiQ+iaEBR2y1X9MI8/evr2x3BsyoZ0JmXXF53ceCMD2pESC1
-        eoCdfj+wOBwKDANMlx4yfdGVrA==
-X-Google-Smtp-Source: AK7set9GRzJ36aXs3VcwXq4IrdwM9TW62o8bs1MKgJLWEB7nYBiBcYlTgsuE9nvQM1DXtJiAr6coZQ==
-X-Received: by 2002:aa7:9eda:0:b0:5a8:5e6d:28d7 with SMTP id r26-20020aa79eda000000b005a85e6d28d7mr18966817pfq.0.1677472093500;
-        Sun, 26 Feb 2023 20:28:13 -0800 (PST)
-Received: from localhost ([122.172.83.155])
-        by smtp.gmail.com with ESMTPSA id h26-20020aa786da000000b005e4c3e2022fsm3178721pfo.72.2023.02.26.20.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Feb 2023 20:28:12 -0800 (PST)
-Date:   Mon, 27 Feb 2023 09:58:10 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linus.walleij@linaro.org
-Subject: Re: [PATCH] ARM: dts: spear320-hmi: correct STMPE GPIO compatible
-Message-ID: <20230227042810.vki4khjrusnf2r4b@vireshk-i7>
-References: <20230225162237.40242-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230225162237.40242-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229791AbjB0Etl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 23:49:41 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F525FF31;
+        Sun, 26 Feb 2023 20:49:25 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 6ED8032001C6;
+        Sun, 26 Feb 2023 23:49:22 -0500 (EST)
+Received: from imap43 ([10.202.2.93])
+  by compute5.internal (MEProxy); Sun, 26 Feb 2023 23:49:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1677473362; x=1677559762; bh=4d
+        +M82rxS2ilvQGtMbSyOF3k0B4HgMWmUhmiwlaDXqU=; b=kXR6sS98fTXBb5o8t4
+        nkK3s4aXdFsVDwtN/OZuJVfMtyPMULkf/u3PY4jS70u/Q8k4zZzQJ+AvD5ubRsm9
+        yQj0fbPV42wCi5nvnwKW5JmzJgt7TmVInwlOY3N/Yhnq7o7J6IC6X656RpiVCEIy
+        iwE8PCG6+YpZARF1bpLLXFmZZHIwNZzmZSj0HydWaqna0vK7O2gQ86w3rrloELFG
+        Aplky0EUpHUozb/6pJ7esAbg4Ybm9scQVSZLOnnDveO2qryWS0D8S71dwL24nFy3
+        nWkhQ5ZJoNt3yOVXOZYkugb9P7z6ir5ojQk259NpoptBGgVjJHu4MnPm4RssOkxW
+        TxIw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1677473362; x=1677559762; bh=4d+M82rxS2ilvQGtMbSyOF3k0B4H
+        gMWmUhmiwlaDXqU=; b=TCeG7wVvTlycIr/eNuzR2hc3bdetnoeAIDvwKPU8pp7Q
+        2T13wEb1AB4UOC1EsP4FekqucjHu/7O7NfCkrXBBMyYkuqINqOTpeXAe1IH9A3Ih
+        Tj80b/rLzXkIUfikfzUn37xr/SHQVFWRA7bQHH/LuPLg/MdD4pO8PNP51qs4aTgF
+        CGGce8FJuFMU0j89iqXCtfofERdeosLzh5QrxueDuMLb7tC5oXd6mlS5fOCROE8a
+        oRk3L/DSE+gbWiibg8H8Kwzi2aPmo2xXWuB7xo63NjJ6zoDhY5j7hD2R0cKxgmEA
+        gvg8JBhyuvRyKZQ5yI03mUTrFjlP90Hrkjhc2VxKOQ==
+X-ME-Sender: <xms:UTb8Y2sbaXD1Xwx6fzxcvxj3jlcl_oXGYdycdhk9HvfX1QsunBkMZw>
+    <xme:UTb8Y7fq_KOk9dK7KgA4yaubgCRd31DZCeDt8ll7NDLmqUjM4PXIcRbztZmcG_wBr
+    OpebFa9pW2Czj05uFc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudekledgjedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpeetlhhi
+    shhtrghirhcuoegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrf
+    grthhtvghrnhepudejjeeltdfgjedtieeileduhfeftdfhhefhffehiefhtdeiuddtvdek
+    keejfffhnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghl
+    ihhsthgrihhrvdefrdhmvg
+X-ME-Proxy: <xmx:UTb8YxyypBeBPhlg2Gkm_90bIOqaOdT-KQ85aqCZlt-UGyWyvjiz7w>
+    <xmx:UTb8YxNq2Mc4LscAwktSsbeYzJQWRTl_BPvAfU2bAQJxR5Z15sORfg>
+    <xmx:UTb8Y28AOgbgxWjvOv-NWpMZxbSr2EDWYHnhIx0W-B9cXovdGh0Kuw>
+    <xmx:Ujb8Y5Y1eLzCmdqkGFXtygDIgpdmxTEV3cGIgUYjfX11mnKqGc_HQg>
+Feedback-ID: ifd214418:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 6946A2D40074; Sun, 26 Feb 2023 23:49:21 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-172-g9a2dae1853-fm-20230213.001-g9a2dae18
+Mime-Version: 1.0
+Message-Id: <ce2df843-dc68-49af-9551-48769c26871a@app.fastmail.com>
+In-Reply-To: <20230224232339.124969-2-macroalpha82@gmail.com>
+References: <20230224232339.124969-1-macroalpha82@gmail.com>
+ <20230224232339.124969-2-macroalpha82@gmail.com>
+Date:   Mon, 27 Feb 2023 14:49:01 +1000
+From:   Alistair <alistair@alistair23.me>
+To:     "Chris Morgan" <macroalpha82@gmail.com>,
+        linux-bluetooth@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        "Vasily Khoruzhick" <anarsoul@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Marcel Holtmann" <marcel@holtmann.org>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Chris Morgan" <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/3 V2] dt-bindings: net: realtek-bluetooth: Add RTL8821CS
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-02-23, 17:22, Krzysztof Kozlowski wrote:
-> The compatible is st,stmpe-gpio.
+On Sat, 25 Feb 2023, at 9:23 AM, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Fixes: e2eb69183ec4 ("ARM: SPEAr320: DT: Add SPEAr 320 HMI board support")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add compatible string for RTL8821CS for existing Realtek Bluetooth
+> driver.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Reviewed-by: Alistair Francis <alistair@alistair23.me>
+
+Alistair
+
 > ---
->  arch/arm/boot/dts/spear320-hmi.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> .../bindings/net/realtek-bluetooth.yaml       | 23 +++++++++++--------
+> 1 file changed, 14 insertions(+), 9 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/spear320-hmi.dts b/arch/arm/boot/dts/spear320-hmi.dts
-> index 34503ac9c51c..721e5ee7b680 100644
-> --- a/arch/arm/boot/dts/spear320-hmi.dts
-> +++ b/arch/arm/boot/dts/spear320-hmi.dts
-> @@ -241,7 +241,7 @@ stmpe811@41 {
->  					irq-trigger = <0x1>;
+> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+> index 143b5667abad..f91d06d629b9 100644
+> --- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+> @@ -4,24 +4,29 @@
+> $id: http://devicetree.org/schemas/net/realtek-bluetooth.yaml#
+> $schema: http://devicetree.org/meta-schemas/core.yaml#
 >  
->  					stmpegpio: stmpe-gpio {
-> -						compatible = "stmpe,gpio";
-> +						compatible = "st,stmpe-gpio";
->  						reg = <0>;
->  						gpio-controller;
->  						#gpio-cells = <2>;
-
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-
--- 
-viresh
+> -title: RTL8723BS/RTL8723CS/RTL8822CS Bluetooth
+> +title: RTL8723BS/RTL8723CS/RTL8821CS/RTL8822CS Bluetooth
+>  
+> maintainers:
+>    - Vasily Khoruzhick <anarsoul@gmail.com>
+>    - Alistair Francis <alistair@alistair23.me>
+>  
+> description:
+> -  RTL8723CS/RTL8723CS/RTL8822CS is WiFi + BT chip. WiFi part is connected over
+> -  SDIO, while BT is connected over serial. It speaks H5 protocol with few
+> -  extra commands to upload firmware and change module speed.
+> +  RTL8723CS/RTL8723CS/RTL8821CS/RTL8822CS is a WiFi + BT chip. WiFi part
+> +  is connected over SDIO, while BT is connected over serial. It speaks
+> +  H5 protocol with few extra commands to upload firmware and change
+> +  module speed.
+>  
+> properties:
+>    compatible:
+> -    enum:
+> -      - realtek,rtl8723bs-bt
+> -      - realtek,rtl8723cs-bt
+> -      - realtek,rtl8723ds-bt
+> -      - realtek,rtl8822cs-bt
+> +    oneOf:
+> +      - const: realtek,rtl8723bs-bt
+> +      - const: realtek,rtl8723cs-bt
+> +      - const: realtek,rtl8723ds-bt
+> +      - const: realtek,rtl8822cs-bt
+> +      - items:
+> +          - enum:
+> +              - realtek,rtl8821cs-bt
+> +          - const: realtek,rtl8822cs-bt
+>  
+>    device-wake-gpios:
+>      maxItems: 1
+> -- 
+> 2.34.1
+> 
+> 
