@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFA186A4A5E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E08CF6A4A70
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbjB0S4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 13:56:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35498 "EHLO
+        id S229888AbjB0S7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 13:59:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjB0S4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:56:00 -0500
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2BA23119;
-        Mon, 27 Feb 2023 10:55:59 -0800 (PST)
-Received: by mail-ot1-f41.google.com with SMTP id g6-20020a056830308600b0068d4b30536aso4106365ots.9;
-        Mon, 27 Feb 2023 10:55:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MctcS45/qMC3RbmTOX9LKKozkUsDh8nNJ/NyikJMPj4=;
-        b=A0/on59icryX7KzDBkI2DpHIiMCN8prrlWFN7YeTcfKKIh/LTT6zegMG9b1DQ7V0jX
-         eQTnwlvsCpRFAh8CPs8U75q/bDvnjhnJSLrI4cO/mhYZtP7CoW9dQTpDnFv3o621Rj8y
-         kJFCVEgGkRnaPTRTCtLcR5x0s7vLo/9EKiSbWuWnsZq91CI6hbiR+K30Kgzknt+diry4
-         T6sZGm1aVxF6fBebdXOrJZai+O8CwuiUIspbxjR/CT7P2PNzmaJeG+vgOHZHe8WrzAcs
-         HNZrhQ4DaYfuHfE+ijaSk1sUpLPaoDGOR9hYmTGLiLss5sevpHd1s9tnF3I5qKFNiiVc
-         EqSw==
-X-Gm-Message-State: AO0yUKW3fik9fNeHqFP2KjPJNbS2HHSxGI+JcKQaOeosihfH22sD5CEl
-        oE69a8ca126a6j9r/mjiwZhjoAyw9Q==
-X-Google-Smtp-Source: AK7set9OGq0HpkXMZUcFSJxSS6XaRI8ZocsjlJpUKSwpRZbJVr1Uxuu6XfU0iaKi5FPZEwUHnVKDHw==
-X-Received: by 2002:a9d:4a4:0:b0:693:d5c2:9a9a with SMTP id 33-20020a9d04a4000000b00693d5c29a9amr7838837otm.36.1677524158423;
-        Mon, 27 Feb 2023 10:55:58 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v14-20020a9d604e000000b006864816ecd9sm2849948otj.59.2023.02.27.10.55.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Feb 2023 10:55:58 -0800 (PST)
-Received: (nullmailer pid 675791 invoked by uid 1000);
-        Mon, 27 Feb 2023 18:55:57 -0000
-Date:   Mon, 27 Feb 2023 12:55:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Elad Nachman <enachman@marvell.com>
-Cc:     thomas.petazzoni@bootlin.com, bhelgaas@google.com,
-        lpieralisi@kernel.org, kw@linux.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] dt-bindings: PCI: dwc: add DMA, region mask bits
-Message-ID: <20230227185557.GA672128-robh@kernel.org>
-References: <20230223180531.15148-1-enachman@marvell.com>
- <20230223180531.15148-5-enachman@marvell.com>
+        with ESMTP id S229942AbjB0S7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:59:35 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E579227BF;
+        Mon, 27 Feb 2023 10:59:31 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 117148523A;
+        Mon, 27 Feb 2023 19:59:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1677524370;
+        bh=SaV/TjI7UpEKIBVcaSodRiOfdQog7mrj9w1GGSFs7Oo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JJqqi7Qr+Cy0Bd7SzF+2rK+guHnXCV2G071rv8hxZJD+kMwpZnD9gM1wSvWlKcyC1
+         YKAM2NVhW81mm6I6DNpWxcEjj+OIhyq4xDM69gknF6S9ue/Chhb584exrf7/0xLtu0
+         AkTX2vGU7hJMhZvbdASt9NGpjSMSsbfNiWMp0dlgvxjVMvCETKz5eIcuuHGA4ZtmP/
+         xp2crAHIWTyij0nHwm3YZZnVoLduaw/5zbIf6n1ZuzvbEa3MyWzXe9+NM6oUyEGFLz
+         vjhCYqecdpH+YFiUspFfEzfmw/WVFJkpfR1ENpFvqPJjdQZrFrpfOQYdfciOUAPEpm
+         bltHjkEBqDK6Q==
+Message-ID: <f09ecb65-d72f-0132-c718-77c26e807d63@denx.de>
+Date:   Mon, 27 Feb 2023 19:59:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230223180531.15148-5-enachman@marvell.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: imx8mn: specify #sound-dai-cells for SAI
+ nodes
+Content-Language: en-US
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230227174535.87657-1-marex@denx.de>
+ <CAHCN7x+a-9pZFepD=543ri+TK2y-TDf9Nc44iRqpBnvf_qMk_A@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAHCN7x+a-9pZFepD=543ri+TK2y-TDf9Nc44iRqpBnvf_qMk_A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 08:05:28PM +0200, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
+On 2/27/23 19:05, Adam Ford wrote:
+> On Mon, Feb 27, 2023 at 11:58 AM Marek Vasut <marex@denx.de> wrote:
+>>
+>> Add #sound-dai-cells properties to SAI nodes.
+>>
 > 
-> Add properties to support configurable DMA mask bits
-> and region mask bits.
-> configurable DMA mask bits is needed for Marvell AC5/AC5X SOCs which
-> have their physical DDR memory start at address 0x2_0000_0000.
-> Configurable region mask bits is needed for the Marvell Armada
-> 7020/7040/8040 SOCs when the DT file places the PCIe window above the
-> 4GB region.
-> The Synopsis Designware PCIe IP in these SOCs is too old to specify the
-> highest memory location supported by the PCIe, but practically supports
-> such locations. Allow these locations to be specified in the DT file.
-> First DT property is called num-dmamask,
-> and can range between 33 and 64.
-> Second DT property is called num-regionmask,
-> and can range between 33 and 64.
+> Should this have a fixes tag?
 > 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
->  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml   | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Fixes: 9e9860069725 ("arm64: dts: imx8mn: Add SAI nodes")
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> index d87e13496834..a1b06ff19ca7 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> @@ -261,6 +261,16 @@ properties:
->  
->    dma-coherent: true
->  
-> +  num-dmamask:
+> I don't know when these became required, and/or if this should be
+> back-ported or not.
 
-Nope! There's already a defined way to define DMA/bus addresses and 
-sizes in DT. That's dma-ranges.
-
-Rob
+I am unsure myself, but this commit from 2020 does not have it:
+ebfa8951e6cd2 ("arm64: dts: imx8mm: specify #sound-dai-cells for SAI nodes")
