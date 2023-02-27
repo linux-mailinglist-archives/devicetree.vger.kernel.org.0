@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45C226A3D53
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 09:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2CAA6A3D55
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 09:36:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231857AbjB0Ieo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 03:34:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38836 "EHLO
+        id S230156AbjB0IgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 03:36:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231831AbjB0IeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 03:34:21 -0500
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D494222CD
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 00:29:38 -0800 (PST)
-Received: by mail-wr1-f52.google.com with SMTP id v16so2449136wrn.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 00:29:37 -0800 (PST)
+        with ESMTP id S232532AbjB0Ifj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 03:35:39 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F2D2115;
+        Mon, 27 Feb 2023 00:31:06 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id eg37so22186229edb.12;
+        Mon, 27 Feb 2023 00:31:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CH6ZpU+JOFCafQhSsbHQ0xgVRdIPci60OVF8oWU+Tfc=;
-        b=T/pef4aQhpHKVXdjEoStsvQDncMiQZ78J8GsUOpjLcFNNAgYA6i3hXoQhn+6dPp+T2
-         txgQ5E/uAtEXWxyXTjzhItOlpX7ux9sCS+EWmdHbnIJTwO75aZ+XsPJLSF6dMZnTtOET
-         k5BUloRtinJVwCJeBO57hUuZ1U/J2fnNpDuAkkbTc5LNyVnN34NI0JaLohx1qcLeBXJV
-         NzQ2hYeH9dqj4cPqXFtZ2i8JEKSKU8v+WF90Jl3Gh8eEQZGqchF5hJAn/vXfh0jz1+AV
-         zfLQaMoBFUFOWKcHb/48tQPIFYnakC1cCtsH9ygQnu2dMhSfjvvAQdGlyElfgODA5bC2
-         sa5A==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=07+qdTDQ6UBJE1ppAUMQ9P0jdgbB7pl5uWXEfVl4Vtk=;
+        b=PdYt7oEElXres1wTHUrJs0HhWeO98wzJ9CWly9kW6imArKG1ucr7eFri/kFG0u4D9o
+         IOEmZAILEx7y5UXi+4dV9d36NyK0hmfAtH5LZhWJEnUJPrbgA5BPF1GAQ9i8iFF/1GFo
+         TA/NMigaHCDOW8vMg0LR7S83IMB/n/doN0RAUObgRDzfnhylR4g/qegxJssiugwDSYds
+         wYGZtNX/EP4Iy9khTpNJ/A4P4HhpP+Ux+tGRZ9uZ9r7lVkyVk1duONUvdVxS3wzduJT0
+         nXlgAujayHG4snkp58oz7nYqWav/KaVM7JHVi9L0v1eACwLXy1IUP/NGz8SVllyN5J4G
+         5pAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CH6ZpU+JOFCafQhSsbHQ0xgVRdIPci60OVF8oWU+Tfc=;
-        b=QcyhHDrOcF3cvKjkg6UwPTGUSnzB9F1sHi29BzYm5mdcBfFEJm486lC4aMROGHE5cu
-         7SvGsNx3x/DsUEDr2VSRCe/gHeybok+7jNVkNVB2I+adbNtmIvWOUYbU35aFt8Lf66y5
-         cj9aVFdpe5fj9mQHlLFa9fGdA6JixV3hhWw83lO+fHtACkiGgITxfto+97hUYQtGTCuU
-         GnFwU5JlmLvXiwIV6Ef1MQGM4s1x6DI+o5y5hG+2CjDznG1kGsvwzTVMES8zkPVl3luD
-         hnuqQq8bDOL4m5A9+B/qAFzejMjj17s7R5y2XkwJ+tGcw9H6Y97nCzfpaXsTfYnNySO2
-         Sbcw==
-X-Gm-Message-State: AO0yUKXxTDn08I6e/Q5ZllCv25y3s5mkKRbeEsIR1GwaS1XK3jjBUl35
-        DWMxyBD0Iaes7Z8b7ZcQqDExlQ==
-X-Google-Smtp-Source: AK7set/XHFbsiCWEKMN5AeluxjBJDiNmFSbdklmpDlrCTPFxXBb6ozXrUsXvjirmXJjqO7SbPtCbDQ==
-X-Received: by 2002:a5d:6782:0:b0:2ca:19c1:1d4b with SMTP id v2-20020a5d6782000000b002ca19c11d4bmr3928716wru.54.1677486411314;
-        Mon, 27 Feb 2023 00:26:51 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id p2-20020adfe602000000b002c561805a4csm6482320wrm.45.2023.02.27.00.26.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Feb 2023 00:26:50 -0800 (PST)
-Message-ID: <45737a29-8279-cb40-8d22-6a5052361061@linaro.org>
-Date:   Mon, 27 Feb 2023 09:26:50 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v11 07/10] arm64: dts: qcom: sm8550: add QCE IP family
- compatible values
-Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=07+qdTDQ6UBJE1ppAUMQ9P0jdgbB7pl5uWXEfVl4Vtk=;
+        b=A+jYxD9i0FY/jnLolUUmiSSjnjtqYFhHKjYkX2Yy+1HuXjJ7gy1GDZj2hTm4UOM2gI
+         WobPPQ4eiTdXodGH8TvHBX+i0DclNb1oGtEhR4EasO8YseQ0EighGCuxGD/6VeJ39SZR
+         kpu925FCtGTvtI/RdlBqGUnxeIxj7ivg9zKwJDsqcMana+HHnGR+7keHNDt94PUo7dCB
+         873uADwNG735GIfp7rifS6jMTmczvTW+gF1XPJNsXGRxKQwlsTs8lFf8p8jmtK2f4sZ6
+         EC52U5y4QYaH3gD4jg9eFmZD69qKiAuubkNLA/6hAfc4oNZ5ERbmR8jL2G2IG+CVEJCo
+         uvfQ==
+X-Gm-Message-State: AO0yUKXgZVWGTDnM8AssOobH4f6eH6pgp4iQi9j66L2c7JZNSDohd0we
+        IYTZ3tsQIK87IuD0pNr94G12Pyi2pXU=
+X-Google-Smtp-Source: AK7set9HQ4ELfhFlAbdj5+Og+m9HexOksW8t+xT3bndkDTCmcqH05zqH4lnjwZoNhTBpFC3gadonOg==
+X-Received: by 2002:a17:907:94c5:b0:8f7:68ca:c004 with SMTP id dn5-20020a17090794c500b008f768cac004mr12022799ejc.64.1677486589371;
+        Mon, 27 Feb 2023 00:29:49 -0800 (PST)
+Received: from [10.33.2.246] ([95.183.227.97])
+        by smtp.gmail.com with ESMTPSA id p25-20020a170906141900b008b30e2a450csm2971396ejc.144.2023.02.27.00.29.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Feb 2023 00:29:49 -0800 (PST)
+Date:   Mon, 27 Feb 2023 11:29:26 +0300
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: Add MediaTek MT6735 clock
+ bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
- <20230222172240.3235972-8-vladimir.zapolskiy@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230222172240.3235972-8-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
+Message-Id: <2XCQQR.YSBPBN01H6D31@gmail.com>
+In-Reply-To: <52d479ff-14c6-b65d-952b-e7753fee2dea@linaro.org>
+References: <20230225094246.261697-1-y.oudjana@protonmail.com>
+        <20230225094246.261697-2-y.oudjana@protonmail.com>
+        <52d479ff-14c6-b65d-952b-e7753fee2dea@linaro.org>
+X-Mailer: geary/43.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,29 +92,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2023 18:22, Vladimir Zapolskiy wrote:
-> Add a family compatible for QCE IP on SM8550 SoC, which is equal to QCE IP
-> found on SM8150 SoC and described in the recently updated device tree
-> bindings documentation, as well add a generic QCE IP family compatible.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index ff4d342c0725..05ab0d5014c6 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1861,7 +1861,7 @@ cryptobam: dma-controller@1dc4000 {
->   		};
->   
->   		crypto: crypto@1de0000 {
-> -			compatible = "qcom,sm8550-qce";
-> +			compatible = "qcom,sm8550-qce", "qcom,sm8150-qce", "qcom,qce";
->   			reg = <0x0 0x01dfa000 0x0 0x6000>;
->   			dmas = <&cryptobam 4>, <&cryptobam 5>;
->   			dma-names = "rx", "tx";
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Mon, Feb 27 2023 at 09:18:45 AM +01:00:00, Krzysztof Kozlowski 
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 25/02/2023 10:42, Yassine Oudjana wrote:
+>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>> 
+>>  Add clock definitions for the main clock controllers of MT6735 
+>> (apmixedsys,
+>>  topckgen, infracfg and pericfg).
+>> 
+>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>  Acked-by: Rob Herring <robh@kernel.org>
+>>  ---
+>>   MAINTAINERS                                   | 10 +++
+>>   .../clock/mediatek,mt6735-apmixedsys.h        | 16 ++++
+>>   .../clock/mediatek,mt6735-infracfg.h          | 25 ++++++
+>>   .../clock/mediatek,mt6735-pericfg.h           | 37 +++++++++
+>>   .../clock/mediatek,mt6735-topckgen.h          | 79 
+>> +++++++++++++++++++
+>>   5 files changed, 167 insertions(+)
+> 
+> You should squash it with other part of binding. What is the reason
+> behind splitting one binding into three patches?
+
+It seemed logical to me that each of clock and reset bindings as well 
+as documentation would be separate parts especially since they go in 
+different paths, but if combining them is how it's done then sure, I'll 
+squash them and resend.
+
+
+
