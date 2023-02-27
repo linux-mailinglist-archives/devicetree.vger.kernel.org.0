@@ -2,68 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 987076A3E00
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2F876A3DED
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:11:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjB0JNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 04:13:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48730 "EHLO
+        id S229834AbjB0JLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 04:11:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbjB0JMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:12:52 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B355F244BC;
-        Mon, 27 Feb 2023 01:05:17 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31R8VmGR098538;
-        Mon, 27 Feb 2023 02:31:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1677486708;
-        bh=cOUx36NOUV9wAf7n+j0ODqotAHa1wOpCu5dRigafLDI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=vr+2ovQ6+2lZQx63tBxZ9o1uH87lUE3ik7Vpj+1euaMMO/cOd2xrCBYVPmjKonIzM
-         CMZFBcvK2Tdx4pexCx3+lUn4WJkrs/BRfSln05RtPod/Pu9nFubmTIZOdPEG0tA8zK
-         +ZK8UcbUD3AB2wS8KRcudUQ4Xf834eN9tmpJ2MLs=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31R8Vm8d062728
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Feb 2023 02:31:48 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 27
- Feb 2023 02:31:47 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 27 Feb 2023 02:31:47 -0600
-Received: from [10.24.69.79] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31R8VhNo006934;
-        Mon, 27 Feb 2023 02:31:44 -0600
-Message-ID: <a50f4623-edc6-f7c6-333d-551cf1f7eea7@ti.com>
-Date:   Mon, 27 Feb 2023 14:01:43 +0530
+        with ESMTP id S229827AbjB0JLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:11:19 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959721B54C;
+        Mon, 27 Feb 2023 01:03:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1677488597; x=1709024597;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nyE/K+Pz+wcKKkGoL+rUVG2U0lx/ddOr7NTEO/KWVXw=;
+  b=LAvS94sVq3JTcHGrtkBRbFN3ewcL25Z/YY7WYLFMh5ZOAxJ8+cZ2wFSc
+   DRSQOQjua2gt0jGXyybrR+uvPNjM3oSZPk6qmBu21bziDyXwqThs95Otn
+   WhUVC5dsQCVwQEQQoVEmH4hhP9vIvqA0Pg1bijfu/GkEmgCfLPkAK6cg6
+   7oexUZQg2g5X4k/b12K2R+T+nYodEVZ2wsBuGzLLsCYSILg626ahjpL4v
+   SBfbt6QawxfRBRrFTxgd9ac0fZr7/Fzn0JH+3nngc/+2rpOxe0HBJUE0z
+   5ZexoGuqM4EX8e6GIPRA7uxkfi+siW8UkqfD+ww47txUwskjj7Am+UwK4
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
+   d="scan'208";a="29326848"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 09:38:30 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 27 Feb 2023 09:38:30 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 09:38:30 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1677487110; x=1709023110;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nyE/K+Pz+wcKKkGoL+rUVG2U0lx/ddOr7NTEO/KWVXw=;
+  b=B9voUwt0fM9sg1rjIn6OwGm4B45G6kG7+QWBk/1Fj/ncaBNc7ZRSluhG
+   Dah4+fHRXwV4dAtVI00CbRAdL3UsJoGpsO6lis9GyzFJhdZLfeuj/wiIb
+   HQUqMd16ML/Ckn5p48hr5EULFcvJhrq/Yk1vy3F/HZGxri8Mxuy7FT8tC
+   Uk1dAZK7ylmLMW4LEq9WsG8gIo3z0rtwM7nmJsT5ZH13tE/fKz6Df+lzw
+   SnurgfsVhmtN7INxKoEIlgBFT+SNjM0lA7KIoyI39miPhClk/4c878XEm
+   AZ5Xh4dOHxHRDNMYi/c3uGs0hVf8CKJVPLrA/LcuTgU/whp86h0Ad2xeD
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
+   d="scan'208";a="29326847"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 27 Feb 2023 09:38:30 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F2D48280056;
+        Mon, 27 Feb 2023 09:38:29 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-clk@vger.kernel.org, Marek Vasut <marex@denx.de>
+Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abelvesa@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/5] clk: Introduce devm_clk_hw_register_gate_parent_data()
+Date:   Mon, 27 Feb 2023 09:38:29 +0100
+Message-ID: <8196426.T7Z3S40VBb@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230223171114.59164-1-marex@denx.de>
+References: <20230223171114.59164-1-marex@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [PATCH v11 3/8] arm64: dts: ti:
- k3-j721s2-mcu-wakeup: Add support of OSPI
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <nm@ti.com>,
-        <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <vaishnav.a@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230224102438.6541-1-r-gunasekaran@ti.com>
- <20230224102438.6541-4-r-gunasekaran@ti.com>
- <7e236ecc-1cb4-b53b-fb68-c23aa45c4cd2@linaro.org>
-Content-Language: en-US
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <7e236ecc-1cb4-b53b-fb68-c23aa45c4cd2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,126 +95,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marek,
+
+thanks for respinning this series.
+
+Am Donnerstag, 23. Februar 2023, 18:11:10 CET schrieb Marek Vasut:
+> Add an API for clock gate that uses parent_data for the parent instead of
+> a string parent_name.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jacky Bai <ping.bai@nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marco Felsch <m.felsch@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+> V3: New patch
+> V4: - Rebase on next 20230223
+> ---
+>  include/linux/clk-provider.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>=20
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 842e72a5348fa..92b7c794c6272 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, co=
+nst
+> char *name, __devm_clk_hw_register_gate((dev), NULL, (name), (parent_name=
+),
+> NULL, \ NULL, (flags), (reg), (bit_idx),		      \
+>  			       (clk_gate_flags), (lock))
+> +
+> +/**
+> + * devm_clk_hw_register_gate - register a gate clock with the clock
+> framework + * @dev: device that is registering this clock
+> + * @name: name of this clock
+> + * @parent_data: parent clk data
+> + * @flags: framework-specific flags for this clock
+> + * @reg: register address to control gating of this clock
+> + * @bit_idx: which bit in the register controls gating of this clock
+> + * @clk_gate_flags: gate-specific flags for this clock
+> + * @lock: shared register lock for this clock
+> + */
+> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data,
+> flags,  \ +					      reg,=20
+bit_idx, clk_gate_flags,   \
+> +					      lock)	=09
+	      \
+> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
+> +				    (parent_data), (flags), (reg),=20
+(bit_idx), \
+> +				    (clk_gate_flags), (lock))
+> +
+>  void clk_unregister_gate(struct clk *clk);
+>  void clk_hw_unregister_gate(struct clk_hw *hw);
+>  int clk_gate_is_enabled(struct clk_hw *hw);
+
+Is it worth to add the parent_data paremeter into existing=20
+devm_clk_hw_register_gate macro? Just adding this new macro for setting=20
+parent_data instead of parent_name seems a bit too much. What if someone wa=
+nts=20
+to set parent_hw? Add another macro?
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
-On 24/02/23 4:39 pm, Krzysztof Kozlowski wrote:
-> On 24/02/2023 11:24, Ravi Gunasekaran wrote:
->> From: Aswath Govindraju <a-govindraju@ti.com>
->>
->> Add support for two instance of OSPI in J721S2 SoC.
->>
->> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> Signed-off-by: Matt Ranostay <mranostay@ti.com>
->> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
->> ---
->> Changes from v10:
->> * Documented the reason for disabling the nodes by default.
->> * Removed Link tag from commmit message
->>
-
-[...]
-
->>
->>  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 62 +++++++++++++++++++
->>  1 file changed, 62 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> index 0af242aa9816..5005a3ebbd34 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> @@ -306,4 +306,66 @@
->>  			ti,cpts-periodic-outputs = <2>;
->>  		};
->>  	};
->> +
->> +	fss: bus@47000000 {
->> +		compatible = "simple-bus";
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges = <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
->> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
->> +			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
->> +
->> +		/*
->> +		 * Disable the node by default in the common include file.
->> +		 * And enable it in the board specific DT file where the
->> +		 * pinmux property is added.
-> 
-> Why? Bus does not need pinmux.
-
-Right. The comment is invalid for the bus node. Will remove it in the next
-series.
-
-> 
->> +		 */
->> +		status = "disabled";
->> +
->> +		ospi0: spi@47040000 {
->> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
->> +			reg = <0x00 0x47040000 0x00 0x100>,
->> +			      <0x05 0x00000000 0x01 0x00000000>;
->> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
->> +			cdns,fifo-depth = <256>;
->> +			cdns,fifo-width = <4>;
->> +			cdns,trigger-address = <0x0>;
->> +			clocks = <&k3_clks 109 5>;
->> +			assigned-clocks = <&k3_clks 109 5>;
->> +			assigned-clock-parents = <&k3_clks 109 7>;
->> +			assigned-clock-rates = <166666666>;
->> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			/*
->> +			 * Disable the node by default in the common include
->> +			 * file. And enable it in the board specific DT file
->> +			 * where the pinmux property is added.
-> 
-> Isn't this comment obvious? It's what we do everywhere on every platform
-> every SoC?
-> 
-
-Noted. Will remove the elaborate comment.
-
->> +			 */
->> +			status = "disabled";
->> +		};
->> +
->> +		ospi1: spi@47050000 {
->> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
->> +			reg = <0x00 0x47050000 0x00 0x100>,
->> +			      <0x07 0x00000000 0x01 0x00000000>;
->> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
->> +			cdns,fifo-depth = <256>;
->> +			cdns,fifo-width = <4>;
->> +			cdns,trigger-address = <0x0>;
->> +			clocks = <&k3_clks 110 5>;
->> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +
->> +			/*
->> +			 * Disable the node by default in the common include
->> +			 * file. And enable it in the board specific DT file
->> +			 * where the pinmux property is added.
->> +			 */
->> +			status = "disabled";
->> +		};
->> +
-> 
-> No need for blank line.
-
-Will remove the blank line.
-
-> 
->> +	};
->>  };
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Regards,
-Ravi
