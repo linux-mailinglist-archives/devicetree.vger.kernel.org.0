@@ -2,42 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 502246A4685
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 16:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D06D06A468A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 16:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjB0Pym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 10:54:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
+        id S229618AbjB0PzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 10:55:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbjB0Pym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 10:54:42 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1133D1ADC3
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 07:54:41 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S229627AbjB0PzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 10:55:24 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 817451C313
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 07:55:21 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id A80BE85A81;
-        Mon, 27 Feb 2023 16:54:38 +0100 (CET)
+        by phobos.denx.de (Postfix) with ESMTPSA id 36B9885A7B;
+        Mon, 27 Feb 2023 16:55:19 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1677513279;
-        bh=a8O4DByypb/t3gn7Z8fOup0Bdhrzf3HTjCQWF9LzYY4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=O4lgGKTCluXo8gVo8zEYNvWSAfDIRSHVquCn9z9rrEnCPG46xrRPj3mfzz3G3HqY9
-         M7i9hk+6glqC57uFKLlQamXGCwSJ78Mwej0DvP9vL+VoMxvuJKBkm/RJkJDyWc+CFe
-         Gg3B4KwI0DGqgBQZ4kDwbag585KKyylsk7bNRT3qxx+6NBZkTZ4RMDrOVaz9Nw92L/
-         jMtU3S8upDWUqy8zKah002e3GXUTTjJY8J34TfU6ncWzB1AjDyPiBaOnOpL1c4Y9h2
-         yQdci7d5an9lcdB3fbbr+dXXfSzdbOPfMdCDng4j6Z5A9OQ28CA2Y9N6f3wNQCc753
-         +reSWPf2WiBIw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        s=phobos-20191101; t=1677513320;
+        bh=7Dn6cBLdopBkp2Exs4jgSx9A/9zgQJ9kdSt/LUQ/hCY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=uThjkZICZ3yBvyipTGKiglELLQos6I0Gk+4Ju/aQt99bivUvDCoV3rKYkYgECddGO
+         K0EJaWaD1fJCf5HMc9xOb+uIjTlvWCeDt/k+S4kAFyIDkzbNNWye1AS5YEyQYM/Uc7
+         OOz/24oZS5D1s8E7PRP2lBEbIgTDQpLml7w8nqU+4IURtHwXCMOrtfrtHOkMxBhlor
+         PyJqMbLCY0PQSvf/1sIICY5VduyGRe1yfQdD+2EdrkNIXL1U66+/f7AMuEZPr2Xkp1
+         FiTA6dN5lOj89gjI99eysNJSZi+u46vfj1WlYBAJquHrLNEHju0QLiF6NgUZMtBB7p
+         EvhyZCrYG9zSg==
+Message-ID: <bfa97cc3-fd8a-f585-b2cd-b1f8e69928cc@denx.de>
+Date:   Mon, 27 Feb 2023 16:55:18 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 3/4] soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
+ drivers to them
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Paul Elder <paul.elder@ideasonboard.com>,
         Peng Fan <peng.fan@nxp.com>,
@@ -47,69 +52,54 @@ Cc:     Marek Vasut <marex@denx.de>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 5/5] arm64: dts: imx8mp: Reorder clock and reg properties
-Date:   Mon, 27 Feb 2023 16:54:23 +0100
-Message-Id: <20230227155423.40359-5-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230227155423.40359-1-marex@denx.de>
-References: <20230227155423.40359-1-marex@denx.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230223151043.41548-1-marex@denx.de>
+ <20230223151043.41548-3-marex@denx.de>
+ <a73850d6e3254d73adec31a723efc9816a633257.camel@pengutronix.de>
+ <8477c32f-28e6-96f2-a4ec-b378b142d234@denx.de>
+ <40830b7ba59797f890c365072d064b358622f59a.camel@pengutronix.de>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <40830b7ba59797f890c365072d064b358622f59a.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
 X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align the clock and reg properties order with example bindings
-and the rest of the imx8mp.dtsi . No functional change.
+On 2/24/23 14:09, Lucas Stach wrote:
+> Am Freitag, dem 24.02.2023 um 13:08 +0100 schrieb Marek Vasut:
+>> On 2/24/23 10:08, Lucas Stach wrote:
+>>
+>> Hi,
+>>
+>>>> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+>>>> index 399cb85105a18..77e7dc4eb8cff 100644
+>>>> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+>>>> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+>>>> @@ -310,7 +310,7 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>>>>    
+>>>>    	dev_set_drvdata(dev, bc);
+>>>>    
+>>>> -	return 0;
+>>>> +	return devm_of_platform_populate(dev);
+>>>
+>>> You need to handle the return value, not simply pass it through as the
+>>> return value of the probe function. When devm_of_platform_populate
+>>> fails you miss to clean up the genpd provider and detach from the power
+>>> domains.
+>>
+>> Hmmm, but then I cannot use the devm_ variant, can I ?
+> 
+> Why not? If everything works okay the devm will just take care of
+> cleaning up the platform devices when the blk-ctrl is removed. If it
+> fails you just need to roll back the non-devm parts of the blk-ctrl
+> probe routine.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Paul Elder <paul.elder@ideasonboard.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Richard Cochran <richardcochran@gmail.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
-V5: New patch
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index ca8093ee4d0e4..524b4ccfcc553 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1202,10 +1202,10 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
- 
- 				lvds_bridge: bridge@5c {
- 					compatible = "fsl,imx8mp-ldb";
--					clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
--					clock-names = "ldb";
- 					reg = <0x5c 0x4>, <0x128 0x4>;
- 					reg-names = "ldb", "lvds";
-+					clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-+					clock-names = "ldb";
- 					assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
- 					assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
- 					status = "disabled";
--- 
-2.39.2
-
+All right, I just sent a V5. Thanks for the clarification.
