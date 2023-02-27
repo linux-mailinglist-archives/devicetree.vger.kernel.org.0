@@ -2,132 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E576A4A12
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:44:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 939336A4A19
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbjB0Son (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 13:44:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53690 "EHLO
+        id S229568AbjB0SpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 13:45:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbjB0Som (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:44:42 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C828925BB2;
-        Mon, 27 Feb 2023 10:44:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E5FE60F0F;
-        Mon, 27 Feb 2023 18:44:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B478BC433EF;
-        Mon, 27 Feb 2023 18:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677523479;
-        bh=6Gbe71x5s6Das+rBasyVyMZPahwt8g5CfHY7P0xaV0E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fgoDyO3SaxmaL2rc+B4Y/Cvh+rq1kpg3+novn8WDLalswop2VSt+HRibd1IR+eRaW
-         1DrjQvRg4s0HWXjh9tqdLkPlMtU8YHRLGFQiTi97UrkBs0+ad7tCIM0LZiY5a9r1BL
-         Z2DX9ehl4dq9xj0klov0z35W3rKridHvpfWBl0Vv7Ez113qvcbK+jrqn7VbOYHNcVR
-         WNHzbNd36Pswlq8HmTxxL6v0QyB0/nVZUJzyyw7lzVzYp5y50j/X6mahH95nj3o57G
-         TTqG7dFuqiNEB1JvDUMb04OLWNEaWK8K/MsbFbB4VV9M0uq8BKn6qb5+aOzUx8gtQ6
-         R/s/L0u2Tf3YA==
-Date:   Mon, 27 Feb 2023 18:44:32 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Cc:     =?utf-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        krzysztof.kozlowski@linaro.org, rf@opensource.cirrus.com,
-        ckeepax@opensource.cirrus.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-Subject: Re: [PATCH 1/2] ASoC: max98363: add soundwire amplifier driver
-Message-ID: <Y/z6EB+0beX2Ji2h@sirena.org.uk>
-References: <20230224010814.504016-1-ryan.lee.analog@gmail.com>
- <0fb47fe7-719b-0773-fc14-3d62d7d33619@linux.intel.com>
- <Y/zsqjOWFKrpDtl8@sirena.org.uk>
- <d95d15f3-34c3-32df-1a50-0ebce35bf81f@linux.intel.com>
+        with ESMTP id S229773AbjB0SpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:45:21 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB722687F
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 10:45:10 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pWiUc-0001as-9c; Mon, 27 Feb 2023 19:44:58 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pWiUb-00082D-Qp; Mon, 27 Feb 2023 19:44:57 +0100
+Date:   Mon, 27 Feb 2023 19:44:57 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v4 2/5] iio: temperature: tmp117: improve fallback
+ capabilities
+Message-ID: <20230227184457.q3oj5miynnk6jskx@pengutronix.de>
+References: <20230220122552.925216-1-m.felsch@pengutronix.de>
+ <20230220122552.925216-3-m.felsch@pengutronix.de>
+ <20230226130700.5b0d650f@jic23-huawei>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ETdG2/4g/8e9VlgA"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d95d15f3-34c3-32df-1a50-0ebce35bf81f@linux.intel.com>
-X-Cookie: On the eighth day, God created FORTRAN.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230226130700.5b0d650f@jic23-huawei>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jonathan,
 
---ETdG2/4g/8e9VlgA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 23-02-26, Jonathan Cameron wrote:
+> On Mon, 20 Feb 2023 13:25:49 +0100
+> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> 
+> > Don't error if the device-id found don't match the device-id for the
+> > TMP117 sensor since other TMPxxx might be compatible to the TMP117. The
+> > fallback mechanism tries to gather the required information from the
+> > of_device_id or from the i2c_client information.
+> > 
+> > The commit also prepares the driver for adding new devices more easily
+> > by making use of switch-case at the relevant parts.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Hi Marco,
+> 
+> Thanks for doing this.  A small things inline.
 
-On Mon, Feb 27, 2023 at 01:19:15PM -0500, Pierre-Louis Bossart wrote:
-> On 2/27/23 12:47, Mark Brown wrote:
-> > On Mon, Feb 27, 2023 at 10:17:45AM -0500, Pierre-Louis Bossart wrote:
+please see my comments below.
 
-> >> That seems wrong, why would you declare standard registers that are
-> >> known to the bus and required to be implemented?
+> > ---
+> > v4:
+> > - new patch to implement possible fallback (Jonathan)
+> > 
+> >  drivers/iio/temperature/tmp117.c | 67 +++++++++++++++++++++-----------
+> >  1 file changed, 44 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
+> > index f9b8f2b570f6b..4ddb8cf9a29ab 100644
+> > --- a/drivers/iio/temperature/tmp117.c
+> > +++ b/drivers/iio/temperature/tmp117.c
+> > @@ -16,6 +16,7 @@
+> >  #include <linux/types.h>
+> >  #include <linux/kernel.h>
+> >  #include <linux/limits.h>
+> > +#include <linux/property.h>
+> >  
+> >  #include <linux/iio/iio.h>
+> >  
+> > @@ -113,32 +114,60 @@ static const struct iio_info tmp117_info = {
+> >  	.write_raw = tmp117_write_raw,
+> >  };
+> >  
+> > +static const struct of_device_id tmp117_of_match[] = {
+> > +	{ .compatible = "ti,tmp117", .data = (void *)TMP117_DEVICE_ID },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, tmp117_of_match);
+> > +
+> > +static const struct i2c_device_id tmp117_id[] = {
+> > +	{ "tmp117", TMP117_DEVICE_ID },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, tmp117_id);
+> 
+> As below.  There is an easy way to avoid having to move these.
+> 
+> > +
+> >  static int tmp117_identify(struct i2c_client *client)
+> >  {
+> > +	unsigned long match_data;
+> >  	int dev_id;
+> >  
+> >  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
+> >  	if (dev_id < 0)
+> >  		return dev_id;
+> > -	if (dev_id != TMP117_DEVICE_ID) {
+> > -		dev_err(&client->dev, "TMP117 not found\n");
+> > -		return -ENODEV;
+> > +
+> > +	switch (dev_id) {
+> > +	case TMP117_DEVICE_ID:
+> > +		return dev_id;
+> >  	}
+> > -	return 0;
+> > +
+> > +	dev_info(&client->dev, "Unknown device id (0x%x), use fallback compatible\n",
+> > +		 dev_id);
+> > +
+> > +	match_data = (uintptr_t)device_get_match_data(&client->dev);
+> > +	if (match_data)
+> > +		return match_data;
+> > +
+> > +	match_data = i2c_match_id(tmp117_id, client)->driver_data;
+> 
+> Whilst correct, i2c_client_get_device_id() avoids the need
+> to move tmp117_id up to where you have by getting to that table via
+> the driver structure. That will simplify this patch a fair bit.
+> 
+> > +	if (match_data)
+> > +		return match_data;
+> > +
+> > +	dev_err(&client->dev, "error: No valid fallback found\n");
+> 
+> This is a little misleading as fallback only applies to the device tree
+> path. 
 
-> > This is the register defaults table, it gets used to initialise the
-> > register cache and optimise resync after suspend - all this does is
-> > supply defaults for the cache.  That said...
+Since we support the i2c_device_id table as well, this is not 100% true.
 
-> > I would suggest it's better to not supply defaults for ID registers and
-> > read them back from the device otherwise things might get confused.
+> Also, not a lot of point in putting error in the text of
+> a dev_err.  Perhaps just "Unsupported device".
 
-> The 'device_id' register is the good counter example: it includes a
-> 'unique_id' field to deal with cases where there are identical devices
-> on the same link. The unique_id is usually set with board-specific
-> pin-strapping, so there's no good default value here. In previous Maxim
-> 98373 amplifier configurations the unique IDs were 3 and 7 IIRC. The
-> codec driver should not, rather shall not, assume any specific value here.
+dev_err() does not print a error on the commandline. If something went
+wrong I tend to "dmesg|grep -i err" or "dmesg|grep -i fail". Therefore I
+added the error keyword here. But I can change the message to "Error:
+unsupported device" if this is okay for you.
 
-Yes, as I said above ID registers in particular are often better off
-handled as volatile even ignoring any potential for them to show
-variable configuration information.
+Regards,
+  Marco
 
-> > ...if there's an issue with the SoundWire core modifying the registers
-> > directly then the driver would need to mark all the core registers as
-> > volatile so that they're not cached otherwise there will be collisions.
-> > Or is it the case that we always need to go via the SoundWire core for
-> > the generic registers, so they should just never be written at all?
-
-> It's really that the SoundWire core will 'own' or take care of all
-> 'standard' programming registers. There is no good reason for a codec
-> driver to interfere with standard port programming or clock stop. The
-> bus provides a set of callbacks that can be used for vendor-specific
-> registers and sequences.
-
-> Put differently, SoundWire codec drivers should only deal with
-> non-standard vendor-specific registers.
-
-OK, it'd be good to be clear about what the issue is when reviewing
-things.  The registers *are* in the device's register map but the driver
-shouldn't be referencing them at all and should instead be going via the
-SoundWire core for anything in there.
-
---ETdG2/4g/8e9VlgA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmP8+g8ACgkQJNaLcl1U
-h9ADvQf/TF6iszJg1jS/syn57MxUDtIGV3fgPQgc4CW0PGD6IbOIlZoZo/LxNtj2
-IZOxJw9/JXgHLa+M3YZkN3v1ijbY5mO3oP1OinM4dPccncR6Nx9SycL/aKXwByF+
-k06peYefJBZBadEihj1grRhnSjxXUZIDSqQeqPVR+L3IRquhcuOwUZssJwyHBKcP
-aaJFrHPf/dpBy5eSQcZ/aq8ccH6Ch6aoI/nwg4OuitZWHvoCDZ4DWqJMWBnRtLh1
-auV6gbe2GlzUdTsjJ9VGxmp+0wOH+VDxbUHDxVOwRCQjLLLBOV6IvOuPoklpmcHx
-U9PzG5c8H97Tn95P4tUH/JZeONIh2Q==
-=YBbv
------END PGP SIGNATURE-----
-
---ETdG2/4g/8e9VlgA--
+> > +
+> > +	return -ENODEV;
+> >  }
+> >  
+> >  static int tmp117_probe(struct i2c_client *client)
+> >  {
+> >  	struct tmp117_data *data;
+> >  	struct iio_dev *indio_dev;
+> > -	int ret;
+> > +	int dev_id;
+> >  
+> >  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
+> >  		return -EOPNOTSUPP;
+> >  
+> > -	ret = tmp117_identify(client);
+> > -	if (ret < 0)
+> > -		return ret;
+> > +	dev_id = tmp117_identify(client);
+> > +	if (dev_id < 0)
+> > +		return dev_id;
+> 
+> I'd keep it in ret until you know it's good.  Reduces churn and is nicer
+> code in general, though one more line.
+> 
+> 	dev_id = ret;
+> 
+> >  
+> >  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> >  	if (!indio_dev)
+> > @@ -148,28 +177,20 @@ static int tmp117_probe(struct i2c_client *client)
+> >  	data->client = client;
+> >  	data->calibbias = 0;
+> >  
+> > -	indio_dev->name = "tmp117";
+> >  	indio_dev->modes = INDIO_DIRECT_MODE;
+> >  	indio_dev->info = &tmp117_info;
+> >  
+> > -	indio_dev->channels = tmp117_channels;
+> > -	indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
+> > +	switch (dev_id) {
+> > +	case TMP117_DEVICE_ID:
+> > +		indio_dev->channels = tmp117_channels;
+> > +		indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
+> > +		indio_dev->name = "tmp117";
+> > +		break;
+> > +	}
+> >  
+> >  	return devm_iio_device_register(&client->dev, indio_dev);
+> >  }
+> >  
+> > -static const struct of_device_id tmp117_of_match[] = {
+> > -	{ .compatible = "ti,tmp117", },
+> > -	{ }
+> > -};
+> > -MODULE_DEVICE_TABLE(of, tmp117_of_match);
+> > -
+> > -static const struct i2c_device_id tmp117_id[] = {
+> > -	{ "tmp117", 0 },
+> > -	{ }
+> > -};
+> > -MODULE_DEVICE_TABLE(i2c, tmp117_id);
+> > -
+> >  static struct i2c_driver tmp117_driver = {
+> >  	.driver = {
+> >  		.name	= "tmp117",
+> 
+> 
