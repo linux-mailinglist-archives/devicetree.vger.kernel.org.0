@@ -2,183 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F876A3DED
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10ADB6A3DD4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:07:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbjB0JLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 04:11:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41528 "EHLO
+        id S229691AbjB0JHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 04:07:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjB0JLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:11:19 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959721B54C;
-        Mon, 27 Feb 2023 01:03:15 -0800 (PST)
+        with ESMTP id S229697AbjB0JHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:07:16 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D3D02596E
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 00:58:17 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id ee7so22711270edb.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 00:58:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677488597; x=1709024597;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nyE/K+Pz+wcKKkGoL+rUVG2U0lx/ddOr7NTEO/KWVXw=;
-  b=LAvS94sVq3JTcHGrtkBRbFN3ewcL25Z/YY7WYLFMh5ZOAxJ8+cZ2wFSc
-   DRSQOQjua2gt0jGXyybrR+uvPNjM3oSZPk6qmBu21bziDyXwqThs95Otn
-   WhUVC5dsQCVwQEQQoVEmH4hhP9vIvqA0Pg1bijfu/GkEmgCfLPkAK6cg6
-   7oexUZQg2g5X4k/b12K2R+T+nYodEVZ2wsBuGzLLsCYSILg626ahjpL4v
-   SBfbt6QawxfRBRrFTxgd9ac0fZr7/Fzn0JH+3nngc/+2rpOxe0HBJUE0z
-   5ZexoGuqM4EX8e6GIPRA7uxkfi+siW8UkqfD+ww47txUwskjj7Am+UwK4
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29326848"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 09:38:30 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 27 Feb 2023 09:38:30 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 09:38:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677487110; x=1709023110;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nyE/K+Pz+wcKKkGoL+rUVG2U0lx/ddOr7NTEO/KWVXw=;
-  b=B9voUwt0fM9sg1rjIn6OwGm4B45G6kG7+QWBk/1Fj/ncaBNc7ZRSluhG
-   Dah4+fHRXwV4dAtVI00CbRAdL3UsJoGpsO6lis9GyzFJhdZLfeuj/wiIb
-   HQUqMd16ML/Ckn5p48hr5EULFcvJhrq/Yk1vy3F/HZGxri8Mxuy7FT8tC
-   Uk1dAZK7ylmLMW4LEq9WsG8gIo3z0rtwM7nmJsT5ZH13tE/fKz6Df+lzw
-   SnurgfsVhmtN7INxKoEIlgBFT+SNjM0lA7KIoyI39miPhClk/4c878XEm
-   AZ5Xh4dOHxHRDNMYi/c3uGs0hVf8CKJVPLrA/LcuTgU/whp86h0Ad2xeD
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29326847"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Feb 2023 09:38:30 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F2D48280056;
-        Mon, 27 Feb 2023 09:38:29 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     linux-clk@vger.kernel.org, Marek Vasut <marex@denx.de>
-Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/5] clk: Introduce devm_clk_hw_register_gate_parent_data()
-Date:   Mon, 27 Feb 2023 09:38:29 +0100
-Message-ID: <8196426.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230223171114.59164-1-marex@denx.de>
-References: <20230223171114.59164-1-marex@denx.de>
+        d=linaro.org; s=google; t=1677488238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pl3dkRXMmAk1JBFimIqhpxnC6XsfsDXMDQ44PxTCQ/s=;
+        b=P7PCysNyGXBUHF2SEK3a2GC2Jh9F51OKcEN6X92KfvfaGf0iLrVCaR6qf6uLk0g6De
+         vbLNFRTKcg7N0fA3xgqqUiZDnbKp1C8L7vfwY36vZekzMKq8DGY2n0tg1bP4C2PQrArB
+         c3bG3XBn03CYvSsY73skxsZ71O+0xAQdY3CpHphBEKGKyD1ErqkVYq/xnVThIgOCeOfZ
+         OxG6uQSGWiq1j36h3SKHSSwBvqQjAqC3t3PD51+4zzUpAvlvfXxSVpePimPGdNBxQaAc
+         yVxol1vvk67ZY8+QUmv6P+ZlOalCTL/uuzRUNM1+eAdX40EPL7ai7w89gBEiqqPdcmZR
+         CaIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677488238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pl3dkRXMmAk1JBFimIqhpxnC6XsfsDXMDQ44PxTCQ/s=;
+        b=cSYwI3QPbWrQvyQ3OdOKqDBUf9fnGjZeY6e4k3FHBJnNB5yghPxIxZzi5e9MEPz95U
+         mjLKLhJkIT801MwpnjNCk9w7EogBz/0snVONqQjXFNbFmbUUBhTxk6Z6poHFt7/WDNu9
+         wBj6uRvlOjI7TKFjUXIrp2rve2a/T5XODkYJ+nXEDTn+cwBODv4d+HyOWASqa+NHX2iT
+         dcNUqvfnYUmBOYwie/Fc+cbZ1t77aqIsfbRV0jot+/JD75+nilptWOTt37zqZVFTMoWG
+         DaoGmz6GaTuY9x541vqXgFNB3QaLTH6crGi1Weq7SENCox4prqfljbZZ30HBW51G+czE
+         edlw==
+X-Gm-Message-State: AO0yUKUfIgVhw01PDijbDAVjCNHdiytZ4B1BhcNyZbJoEK7a3qwXcomn
+        79S1mZ5jL+GE4vHn9XrRWTmVj+jIyxKJ7//2
+X-Google-Smtp-Source: AK7set/Gvtsf5P7zOB+MC4cBLFFsUoGA6x+8HxOLVIaK3IY1MS+lDHx3oVzZik2heawiFH8nJ7qjMg==
+X-Received: by 2002:a05:651c:2228:b0:295:9c2e:7324 with SMTP id y40-20020a05651c222800b002959c2e7324mr7173325ljq.4.1677487397220;
+        Mon, 27 Feb 2023 00:43:17 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id i2-20020a05651c120200b002935305ff4asm643079lja.82.2023.02.27.00.43.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Feb 2023 00:43:16 -0800 (PST)
+Message-ID: <3aa78b15-8e6c-9657-0d08-0d0452d51fbe@linaro.org>
+Date:   Mon, 27 Feb 2023 09:43:15 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/6] dt-bindings: arm-smmu: Use qcom,smmu compatible
+ for MMU500 adreno SMMUs
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, marijn.suijten@somainline.org,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230217111613.306978-1-konrad.dybcio@linaro.org>
+ <20230226173706.GA60188-robh@kernel.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230226173706.GA60188-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
-
-thanks for respinning this series.
-
-Am Donnerstag, 23. Februar 2023, 18:11:10 CET schrieb Marek Vasut:
-> Add an API for clock gate that uses parent_data for the parent instead of
-> a string parent_name.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V3: New patch
-> V4: - Rebase on next 20230223
-> ---
->  include/linux/clk-provider.h | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->=20
-> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-> index 842e72a5348fa..92b7c794c6272 100644
-> --- a/include/linux/clk-provider.h
-> +++ b/include/linux/clk-provider.h
-> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, co=
-nst
-> char *name, __devm_clk_hw_register_gate((dev), NULL, (name), (parent_name=
-),
-> NULL, \ NULL, (flags), (reg), (bit_idx),		      \
->  			       (clk_gate_flags), (lock))
-> +
-> +/**
-> + * devm_clk_hw_register_gate - register a gate clock with the clock
-> framework + * @dev: device that is registering this clock
-> + * @name: name of this clock
-> + * @parent_data: parent clk data
-> + * @flags: framework-specific flags for this clock
-> + * @reg: register address to control gating of this clock
-> + * @bit_idx: which bit in the register controls gating of this clock
-> + * @clk_gate_flags: gate-specific flags for this clock
-> + * @lock: shared register lock for this clock
-> + */
-> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data,
-> flags,  \ +					      reg,=20
-bit_idx, clk_gate_flags,   \
-> +					      lock)	=09
-	      \
-> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
-> +				    (parent_data), (flags), (reg),=20
-(bit_idx), \
-> +				    (clk_gate_flags), (lock))
-> +
->  void clk_unregister_gate(struct clk *clk);
->  void clk_hw_unregister_gate(struct clk_hw *hw);
->  int clk_gate_is_enabled(struct clk_hw *hw);
-
-Is it worth to add the parent_data paremeter into existing=20
-devm_clk_hw_register_gate macro? Just adding this new macro for setting=20
-parent_data instead of parent_name seems a bit too much. What if someone wa=
-nts=20
-to set parent_hw? Add another macro?
-
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
 
 
+On 26.02.2023 18:37, Rob Herring wrote:
+> On Fri, Feb 17, 2023 at 12:16:08PM +0100, Konrad Dybcio wrote:
+>> qcom,smmu-500 was introduced to prevent people from adding new
+>> compatibles for what seems to roughly be the same hardware. Use it for
+>> qcom,adreno-smmu-compatible targets as well.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>> v1 -> v2:
+>> - Add this patch, omitted previously (big oops)
+>>
+>>  .../devicetree/bindings/iommu/arm,smmu.yaml        | 14 ++++++++++++--
+>>  1 file changed, 12 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> index 807cb511fe18..4d7f61700cae 100644
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -75,9 +75,19 @@ properties:
+>>                - qcom,sm8350-smmu-500
+>>                - qcom,sm8450-smmu-500
+>>            - const: arm,mmu-500
+>> -
+>> -      - description: Qcom Adreno GPUs implementing "arm,smmu-500"
+>> +      - description: Qcom Adreno GPUs implementing "qcom,smmu-500" and "arm,smmu-500"
+>> +        items:
+>> +          - enum:
+>> +              - qcom,sc7280-smmu-500
+>> +              - qcom,sm8150-smmu-500
+>> +              - qcom,sm8250-smmu-500
+>> +          - const: qcom,adreno-smmu
+>> +          - const: qcom,smmu-500
+>> +          - const: arm,mmu-500
+> 
+> 4 compatibles seems excessive. Is adding one that helpful? Is 
+> 'arm,mmu-500' useful on its own?
+Yes.
+
+per-soc compatible is there for per-soc quirks should there be any
+qcom,adreno-smmu enabled per-process pagetables
+qcom,smmu-500 matches the qcom smmu implementation
+arm,mmu-500 matches the smmu driver as a whole
+
+> 
+>> +      - description: Qcom Adreno GPUs implementing "arm,smmu-500" (legacy binding)
+> 
+> Perhaps fix the existing typo: arm,mmu-500
+Ack
+
+Konrad
+> 
+>> +        deprecated: true
+>>          items:
+>> +          # Do not add additional SoC to this list. Instead use previous list.
+>>            - enum:
+>>                - qcom,sc7280-smmu-500
+>>                - qcom,sm8150-smmu-500
+>> -- 
+>> 2.39.1
+>>
