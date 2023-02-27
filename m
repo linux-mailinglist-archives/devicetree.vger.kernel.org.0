@@ -2,94 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C13F6A4F83
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 00:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F6A6A4FB8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 00:38:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229739AbjB0XHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 18:07:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53682 "EHLO
+        id S229569AbjB0Xi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 18:38:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbjB0XHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 18:07:41 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A6F1E1D1;
-        Mon, 27 Feb 2023 15:07:40 -0800 (PST)
+        with ESMTP id S229492AbjB0Xi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 18:38:27 -0500
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699C5A24A;
+        Mon, 27 Feb 2023 15:38:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677539260; x=1709075260;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dTd4MnC9/IhUBjoSUJk3q6uKh0ORunfmI4hX7cyMlNk=;
-  b=D4uv+1+62TEzduRBHHh+ADrU1Y38LnY2gvGX6zUgfNDUySMfX9HxeLty
-   fm8jAea1OBm80v1z+AkGqRBUBcoA7J0RSId90zyOsEkJ6SHw4h57ff2WH
-   K4ngFmYuTJEiEu/lIOhBRsCwwBQWn/OtHW+SvZH5wtJ8LCLigpdMBANSD
-   N49VCKP0rl8Ngrs98CkdM5hkEN/A15Rky/ZouEcN+wMVgxEYXI5N76GV4
-   59ljGQmrmb4f498FLD+GETEUHYNE520udWa68XQQPZz9qz+v0hSNOEgzX
-   aDEPJzzT+r0uKG8szfDAFDpLAN42yQcsWZc51CveNdZuwP20y7BevR3TK
+  t=1677541106; x=1709077106;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ixxBTf5Ocgi76s8GFyE+uxGzNzt2DbcOET9UuIiMt50=;
+  b=CUybXDbFszRu9qrrCDkUZfj3eHtzKKOly9P0bpcqv68YIDMblYl3ib5l
+   5HFWX/qZptP89kvvDekkvMkgAKFB03kJmK4EjBwrZ/iULef6B247xZt8k
+   UI9DKv7S9Iq/VzOOwI6NJ85PA5ZqEPWdOEkF3VugAayZ5UO75w2T/o/XT
+   DIDKzLNjdQ+tZSyBLNsOc4oeOKI/2e8BoL9zt/u8hc7qyRLH0XDTxA5zN
+   q+uEdY7kXB+3PZ4Y5fLGObkRQL6fenQ35VeQiE07g4Irm86ceYKoGJsZ1
+   ek3aYRRwfL0NqSRWdeqhgrZ/oelziaM5WpxNIihXV4i1Bcdtcye3iEA76
    A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="361550516"
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="313672717"
 X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; 
-   d="scan'208";a="361550516"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 15:07:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="676055548"
+   d="scan'208";a="313672717"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 15:38:12 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="1002997697"
 X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; 
-   d="scan'208";a="676055548"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 27 Feb 2023 15:07:37 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pWmal-00D2N0-0e;
-        Tue, 28 Feb 2023 01:07:35 +0200
-Date:   Tue, 28 Feb 2023 01:07:34 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <Y/03to4XFXPwkGH1@smile.fi.intel.com>
-References: <20230227140758.1575-1-kaehndan@gmail.com>
- <20230227140758.1575-4-kaehndan@gmail.com>
+   d="scan'208";a="1002997697"
+Received: from jaidenno-mobl.amr.corp.intel.com (HELO [10.212.85.4]) ([10.212.85.4])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 15:38:10 -0800
+Message-ID: <5d78bbc6-340e-dea8-40c6-d065c7e7a878@linux.intel.com>
+Date:   Mon, 27 Feb 2023 18:38:09 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230227140758.1575-4-kaehndan@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] ASoC: max98363: add soundwire amplifier driver
+To:     "Lee, RyanS" <RyanS.Lee@analog.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "rf@opensource.cirrus.com" <rf@opensource.cirrus.com>,
+        "ckeepax@opensource.cirrus.com" <ckeepax@opensource.cirrus.com>,
+        "herve.codina@bootlin.com" <herve.codina@bootlin.com>,
+        "wangweidong.a@awinic.com" <wangweidong.a@awinic.com>,
+        "james.schulman@cirrus.com" <james.schulman@cirrus.com>,
+        "ajye_huang@compal.corp-partner.google.com" 
+        <ajye_huang@compal.corp-partner.google.com>,
+        "shumingf@realtek.com" <shumingf@realtek.com>,
+        "povik+lin@cutebit.org" <povik+lin@cutebit.org>,
+        "flatmax@flatmax.com" <flatmax@flatmax.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20230224010814.504016-1-ryan.lee.analog@gmail.com>
+ <0fb47fe7-719b-0773-fc14-3d62d7d33619@linux.intel.com>
+ <Y/zsqjOWFKrpDtl8@sirena.org.uk>
+ <d95d15f3-34c3-32df-1a50-0ebce35bf81f@linux.intel.com>
+ <Y/z6EB+0beX2Ji2h@sirena.org.uk>
+ <SJ0PR03MB66814E588528C771D7BEAB3D8AAF9@SJ0PR03MB6681.namprd03.prod.outlook.com>
+Content-Language: en-US
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <SJ0PR03MB66814E588528C771D7BEAB3D8AAF9@SJ0PR03MB6681.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 27, 2023 at 08:07:58AM -0600, Danny Kaehn wrote:
-> Bind I2C and GPIO interfaces to subnodes with names
-> "i2c" and "gpio" if they exist, respectively. This
-> allows the GPIO and I2C controllers to be described
-> in firmware as usual. Additionally, support configuring the
-> I2C bus speed from the clock-frequency device property.
 
-A bit shorten indentation...
+>>> Put differently, SoundWire codec drivers should only deal with
+>>> non-standard vendor-specific registers.
+>>
+>> OK, it'd be good to be clear about what the issue is when reviewing things.
+>> The registers *are* in the device's register map but the driver shouldn't be
+>> referencing them at all and should instead be going via the SoundWire core
+>> for anything in there.
+> 
+> Thanks for the comment.
+> The only reason I added standard SoundWire registers to the amp driver is
+> to check the values for the debugging purpose because these registers values are
+> important to understand the device status, but it is not visible from the regmap
+> debugfs if those registers are not included on the regmap table of the driver.
+> The driver never controls the standard SoundWire registers by itself.
+> Do you recommend removing the standard SoundWire registers from the driver
+> or keeping it non-volatile?
+> (The reg_default values in the table are all amp reset values and those registers
+> are treated as volatile. I shall clear 'unique ID' field because it is determined by
+> the hardware pin connection.)
 
-Nevertheless what I realized now is that this change, despite being OF
-independent by used APIs, still OF-only.
+We already have debugfs support for those registers, see
+sdw_slave_reg_show() in drivers/soundwire/debugfs.c
 
-Would it be possible to allow indexed access to child nodes as well, so if
-there are no names, we may still be able to use firmware nodes from the correct
-children?
+It's not the same file as regmap debugfs but the information is already
+there, see e.g. an example on the SOF CI devices:
 
-P.S. The problem with ACPI is that "name" of the child node will be in capital
-letters as it's in accordance with the specification.
+cd /sys/kernel/debug/soundwire/master-0-1/sdw:1:025d:0700:00
+more registers
 
--- 
-With Best Regards,
-Andy Shevchenko
+Register  Value
 
+DP0
+  0	 0
+  1	 0
+  2	 0
+  3	 0
+  4	 0
+  5	 1
+Bank0
+ 20	 0
+ 22	 0
+ 23	 0
+ 24	 0
+ 25	 0
+ 26	 0
+ 27	XX
+ 28	XX
+Bank1
+ 30	 0
+ 32	 0
+ 33	 0
+ 34	 0
+ 35	 0
+ 36	 0
+ 37	XX
+ 38	XX
+
+SCP
+ 40	 0
+ 41	 7
+ 42	 0
+ 43	 0
+ 44	20
+ 45	 9
+ 46	 4
+ 47	XX
+ 48	XX
+ 49	XX
+ 4a	XX
+ 4b	XX
+ 50	10
+ 51	 2
+ 52	5d
+ 53	 7
+ 54	 0
+ 55	 0
+
+DP1
+100	 0
+101	 0
+102	 0
 
