@@ -2,179 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E836A4527
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:50:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A81DF6A453E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjB0Ouu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 09:50:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
+        id S229627AbjB0Oxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 09:53:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjB0Out (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:50:49 -0500
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 765B8212AB;
-        Mon, 27 Feb 2023 06:50:48 -0800 (PST)
-Received: by mail-il1-x133.google.com with SMTP id h10so4034756ila.11;
-        Mon, 27 Feb 2023 06:50:48 -0800 (PST)
+        with ESMTP id S229925AbjB0Oxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:53:47 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E59A9EF1
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 06:53:45 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id p6so6126316plf.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 06:53:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=L+jYyq1jhOJX4L8R02OOarqFh4Kn9adYP/VGoKDxS3Y=;
-        b=nNOIXYN7JiHPmx34v6yMlx1tq5eUxFsnvQTj7QKj2zffdl3f/8TTirINmPwsHtqoIk
-         PaOZfE257b4iBHJCytvTZP6mZoYsA7cycoYXmeNxfceEgV9wfd3i93XkP6+RMW6O/WOe
-         Up6mtIxn6Q4kqtv0YJfB37mJRh63CzAbBbVM6h+hesHAb2QWyPgfZ10zCG7BMkEqXSff
-         DvOUeGxkj2G+eBB24Pfvhm11wMxnMDwOgtJitlHbcAik1hG/VJXJ/Wixa8Z1xlUSLKWm
-         GB0C039siTeYlazbQ+1jXbxRYDYJfNTiPo5cglaocrWk63Bpnw6ic2pxWaBnz0kCEtsf
-         depQ==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=l5VT3ghgOZyVF+1GKbNcLlSESdSRebrFv96yTN2Vgpo=;
+        b=Gq9LOqIDm1nkIlqoP1xyZ+r1d2RvDdRtUzQhuQgfroW5tY/m3hOqXxShZVsKKZLPsU
+         /LABK70GXsyzF7YIUCNsgsAgnhpjHLdlwGTQFRoBFUQa4+cPKoqfMQmOnbkakyyc7NVP
+         SdchPzpYyukrQeT5euY8wqJZf4aTHsh4ud4UscR0jPqQtT/oGlQVsLBbSityTaeZiZRP
+         gaOjUL8Ih6fKPTfCQ7t6Zoka8/OMmXy5e1qQoxM8v2EpddQoiVrzWKyqZUo582dapBE4
+         EeUifUFmTWFu7+S+FBFt1EOnCo6INjP35xPjDxDQCR84mKzvdtqthNzXZW/C1hn1zZ03
+         sB9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=L+jYyq1jhOJX4L8R02OOarqFh4Kn9adYP/VGoKDxS3Y=;
-        b=SGPU24RFJlGQKqEF7JWLrgpXSENaLQ8mFdEpFn2nNi/qXB5Iwg5KY/MXZqcZMSWQ5J
-         J7TMp8gyxPOLBokuOtqx7siNmysMZeGyTwuQqZrLLdXRJ7/8KPuf47m0u/QXjUCMyVE8
-         bLa3jSlcLRUtlNar7hpJpko8CHjxEaEE7fsv7ABW3YtM1jzSO9vIA/sNTwruF8MfI12X
-         pCMzqAl3IzZGhoVhjaosHRgReb+jiMpTO4kfAWJ/luKfut5oO76mBj9bFRF57Pf3ZtEH
-         WAMmAlmhb1TlwXbkhUU40moP4wKiW4l8wMJNu4UoKBFx1m0JU3MzmBVUWXnHEL+yrZJP
-         Xglg==
-X-Gm-Message-State: AO0yUKXjjAG+m8WNf8CLOgOQqROPYicr/G0m5jiROxr4DpycshY21TCe
-        MlwgMomKMxrAq6DKef0XhAg=
-X-Google-Smtp-Source: AK7set/5YiCfPaih4CO+pmCM2/MrPak5lsrv8POHxOAFXyUa0OqdaFeC6cXDbBKhR/j9tNcIvnmjEg==
-X-Received: by 2002:a05:6e02:1906:b0:315:3252:655f with SMTP id w6-20020a056e02190600b003153252655fmr23175858ilu.21.1677509447731;
-        Mon, 27 Feb 2023 06:50:47 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e23-20020a02a797000000b003c4f902cca5sm2124648jaj.172.2023.02.27.06.50.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Feb 2023 06:50:46 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a7ffe026-a48b-9ffd-20d3-7d25caba120d@roeck-us.net>
-Date:   Mon, 27 Feb 2023 06:50:44 -0800
+        bh=l5VT3ghgOZyVF+1GKbNcLlSESdSRebrFv96yTN2Vgpo=;
+        b=2E5CWxrhiP7It3iK6J1piKAxCQPuQG+WenmKzSranFd4AIcZNzVbWtIAUWxObHvUuB
+         KbFv0wTFHbrxMd5I7ogD7nFyule0HlzKMIKRX1p4M4fyVgvJKXPE9VJqPHTsu18E4VdI
+         8uACt91xNR7OCh1fOaBltm+UMhed38G63JoXtSGjbc/xg7KYaQ7hF1+LZrRcYMJ8BI1m
+         BmJdw6vLghuQvMwhsnfPHPL8t4LyVDRWX3u2MldmMRu2WdBdo3cLSXfWfuLGjk/6D/P5
+         E4tf/RkjXrzpV21qr/CKkHvE7pLooW8vT9YVrTK5LzK3dcF2mTC3jbTuQJbG0KSW8X4n
+         YPgg==
+X-Gm-Message-State: AO0yUKURyCEA893AF6EvjBQC4RVvrnjW0Mk7iC2sNnpsikoGo92G1Hp+
+        rQvyDowtDIYRUO63BDeFaawb6QURrNAAZDRwR4TEcQ==
+X-Google-Smtp-Source: AK7set+HTQu+x6c+i9QU4xI8526XGkvjGx9J6AmsgWbznB6SWWwRXE1fCT+1oSICb0P/XsJ0ryjzSBBrZzu1uNj4Yhc=
+X-Received: by 2002:a17:903:40c2:b0:19a:b502:4280 with SMTP id
+ t2-20020a17090340c200b0019ab5024280mr4788629pld.3.1677509624962; Mon, 27 Feb
+ 2023 06:53:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
-Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+References: <20230215113249.47727-1-william.qiu@starfivetech.com>
+ <CAPDyKFqJxrLh+pgQ-u_Lwxv4_TsH--rga049GBTqKAa_M14_yw@mail.gmail.com> <ca9bed19-9809-9443-7ca1-1d11984ded55@starfivetech.com>
+In-Reply-To: <ca9bed19-9809-9443-7ca1-1d11984ded55@starfivetech.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 27 Feb 2023 15:53:08 +0100
+Message-ID: <CAPDyKFpwFq26Tqa-5k7SbQ7Zgk3-AQSrjo7ZSJt6uo6QJR3+5Q@mail.gmail.com>
+Subject: Re: [PATCH v4 0/4] StarFive's SDIO/eMMC driver support
+To:     William Qiu <william.qiu@starfivetech.com>
 Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-3-xingyu.wu@starfivetech.com>
- <20230223182341.GA200380@roeck-us.net>
- <8ba002ea-299c-2eaf-b1a7-d7d38a540152@starfivetech.com>
- <ae998eb6-54ce-05c4-2961-bdb2393eac64@roeck-us.net>
- <58cab864-2a59-b82c-bdfe-2e805a04fd7a@starfivetech.com>
- <547a469d-eeaa-750c-4fe5-cc82d92493a6@roeck-us.net>
- <2b79e1ac-3399-075d-1d1d-e6d7f88351fc@starfivetech.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <2b79e1ac-3399-075d-1d1d-e6d7f88351fc@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/26/23 22:45, Xingyu Wu wrote:
-> On 2023/2/27 14:36, Guenter Roeck wrote:
->> On 2/26/23 22:26, Xingyu Wu wrote:
->>> On 2023/2/24 23:18, Guenter Roeck wrote:
->>>> On 2/23/23 23:42, Xingyu Wu wrote:
->>>>> On 2023/2/24 2:23, Guenter Roeck wrote:
->>>>>> On Mon, Feb 20, 2023 at 04:19:26PM +0800, Xingyu Wu wrote:
->>>>>>> [...]
->>>>>>> +
->>>>>>> +    wdt->wdt_device.min_timeout = 1;
->>>>>>> +    wdt->wdt_device.max_timeout = starfive_wdt_max_timeout(wdt);
->>>>>>
->>>>>>       wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
->>>>>>
->>>>>> should be set here. Otherwise the warning below would always be seen
->>>>>> if the module parameter is not set.
->>>>>>
->>>>>>> +
->>>>>>> +    watchdog_set_drvdata(&wdt->wdt_device, wdt);
->>>>>>> +
->>>>>>> +    /*
->>>>>>> +     * see if we can actually set the requested heartbeat,
->>>>>>> +     * and if not, try the default value.
->>>>>>> +     */
->>>>>>> +    watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev);
->>>>>>> +    if (wdt->wdt_device.timeout == 0 ||
->>>>>>
->>>>>> If wdt->wdt_device.timeout is pre-initialized, it will never be 0 here.
->>>>>>
->>>>>>> +        wdt->wdt_device.timeout > wdt->wdt_device.max_timeout) {
->>>>>>
->>>>>> That won't happen because watchdog_init_timeout() validates it and does
->>>>>> not update the value if it is out of range.
->>>>>>
->>>>>>> +        dev_warn(dev, "heartbeat value out of range, default %d used\n",
->>>>>>> +             STARFIVE_WDT_DEFAULT_TIME);
->>>>>>> +        wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
->>>>>>
->>>>>> And this is then unnecessary. wdt->wdt_device.timeout will always be
->>>>>> valid if it was pre-initialized.
->>>>>
->>>>> It is changed to be this at beginning of the driver:
->>>>>
->>>>> static int heartbeat = STARFIVE_WDT_DEFAULT_TIME;
->>>>>
->>>>
->>>> No, this is wrong. The static variable should be set to 0 to indicate
->>>> "use default".
->>>>
->>>>> and it is changed to be this here:
->>>>>
->>>>> ret = watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev);
->>>>> if (ret)
->>>>>       return ret;
->>>>>
->>>>> Would that be better?
->>>>>
->>>>
->>>> No, it is worse, because it would not instantiate the watchdog at all
->>>> if a bad heartbeat is provided.
->>>>
->>>
->>> So instantiate the watchdog with hearbeat first. And if this wrong, use default timeout.
->>> :
->>> if (watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev))
->>>      wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
->>>
->>
->> I am kind of lost why you have to make it that complicated.
->> Just pre-initialize wdt->wdt_device.timeout like all the other drivers do,
->> and as I had suggested earlier.
->>
-> 
-> So you mean just use :
-> wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
-> to initialize watchdog directly?
-> 
+On Mon, 27 Feb 2023 at 08:47, William Qiu <william.qiu@starfivetech.com> wrote:
+>
+>
+>
+> On 2023/2/15 20:37, Ulf Hansson wrote:
+> > On Wed, 15 Feb 2023 at 12:32, William Qiu <william.qiu@starfivetech.com> wrote:
+> >>
+> >> Hi,
+> >>
+> >> This patchset adds initial rudimentary support for the StarFive
+> >> designware mobile storage host controller driver. And this driver will
+> >> be used in StarFive's VisionFive 2 board. The main purpose of adding
+> >> this driver is to accommodate the ultra-high speed mode of eMMC.
+> >>
+> >> The last patch should be applied after the patchset [1]:
+> >> [1] https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
+> >>
+> >> Changes v3->v4:
+> >> - Added documentation to describe StarFive System Controller Registers.
+> >> - Added aon_syscon and stg_syscon node.
+> >> - Fixed some checkpatch errors/warnings.
+> >>
+> >> Changes v2->v3:
+> >> - Wraped commit message according to Linux coding style.
+> >> - Rephrased the description of the patches.
+> >> - Changed the description of syscon regsiter.
+> >> - Dropped redundant properties.
+> >>
+> >> Changes v1->v2:
+> >> - Renamed the dt-binding 'starfive,jh7110-sdio.yaml' to 'starfive,jh7110-mmc.yaml'.
+> >> - Changed the type of 'starfive,syscon' and modify its description.
+> >> - Deleted unused head files like '#include <linux/gpio.h>'.
+> >> - Added comment for the 'rise_point' and 'fall_point'.
+> >> - Changed the API 'num_caps' to 'common_caps'.
+> >> - Changed the node name 'sys_syscon' to 'syscon'.
+> >> - Changed the node name 'sdio' to 'mmc'.
+> >>
+> >> The patch series is based on v6.1.
+> >>
+> >> William Qiu (4):
+> >>   dt-bindings: mmc: Add StarFive MMC module
+> >>   mmc: starfive: Add sdio/emmc driver support
+> >>   riscv: dts: starfive: Add mmc node
+> >>   dt-bindings: syscon: Add StarFive syscon doc
+> >>
+> >>  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  77 ++++++++
+> >>  .../bindings/soc/starfive/jh7110-syscon.yaml  |  51 +++++
+> >>  MAINTAINERS                                   |  11 ++
+> >>  .../jh7110-starfive-visionfive-2.dtsi         |  23 +++
+> >>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  47 +++++
+> >>  drivers/mmc/host/Kconfig                      |  10 +
+> >>  drivers/mmc/host/Makefile                     |   1 +
+> >>  drivers/mmc/host/dw_mmc-starfive.c            | 186 ++++++++++++++++++
+> >>  8 files changed, 406 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+> >>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
+> >>  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
+> >>
+> >
+> > I have dropped the v3 patches and applied patch1 and patch2 from the
+> > v4 series instead, for my next branch, thanks!
+> >
+> > Kind regards
+> > Uffe
+>
+> Hi Uffe,
+>
+> Sorry to bother you.But I found a bug that in drivers/mmc/host/dw_mmc-starfive.c:
+>
+>     47 static int dw_mci_starfive_execute_tuning(struct dw_mci_slot *slot,
+>     48                                              u32 opcode)
+>     49 {
+>     50         static const int grade  = MAX_DELAY_CHAIN;
+>     51         struct dw_mci *host = slot->host;
+>     52         struct starfive_priv *priv = host->priv;
+>     53         int rise_point = -1, fall_point = -1;
+>     54         int err, prev_err;
+>     55         int i;
+>     56         bool found = 0;
+>     57         u32 regval;
+>     58
+>     59         /*
+>     60          * Use grade as the max delay chain, and use the rise_point and
+>     61          * fall_point to ensure the best sampling point of a data input
+>     62          * signals.
+>     63          */
+>     64         for (i = 0; i < grade; i++) {
+>     65                 regval = i << priv->syscon_shift;
+>     66                 err = regmap_update_bits(priv->reg_syscon, priv->syscon_offset,
+>     67                                                 priv->syscon_mask, regval);
+>     68                 if (err)
+>     69                         return err;
+>     70                 mci_writel(host, RINTSTS, ALL_INT_CLR);
+>     71
+>     72                 err = mmc_send_tuning(slot->mmc, opcode, NULL);
+>     73                 if (!err)
+>     74                         found = 1;
+>     75
+>     76                 if (i > 0) {
+> --> 77                         if (err && !prev_err)
+>
+> prev_err was never initialized to zero.
+>
+> So I'm here to ask for your suggestion, should I send a new version
+> to fix it or send you a patch with a fixes tag?
 
-Yes, as I had suggested before, before calling watchdog_init_timeout().
+Please send a new incremental patch on top. I will queue it up as a
+fix for v6.3-rc[n].
 
-Guenter
-
-> Best regards,
-> Xingyu Wu
-
+Kind regards
+Uffe
