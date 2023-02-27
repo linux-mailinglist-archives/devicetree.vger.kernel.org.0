@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD596A4C16
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 154986A4C22
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:17:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbjB0UPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 15:15:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34912 "EHLO
+        id S229738AbjB0URy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 15:17:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbjB0UPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:15:49 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A306222F8
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 12:15:48 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id y15-20020a17090aa40f00b00237ad8ee3a0so7388431pjp.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 12:15:48 -0800 (PST)
+        with ESMTP id S229620AbjB0URw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:17:52 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2803726B1;
+        Mon, 27 Feb 2023 12:17:51 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id f14so3044824iow.5;
+        Mon, 27 Feb 2023 12:17:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112; t=1677528948;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YpnEvE+/SdK2xJYvrmI9miffWQyVUk2OmaUWCwQjPNM=;
-        b=kXy56jY9p7bAWNqFFALBb24FnzbQGn6ZN6MQ9bLHtAa3gAZmLWxRz7gmHynTxlT7jF
-         vk+LeSSfHaCfQGJyTh/frxpZNKowih6hyyLck1oeydJLhGPV4vCW+TT2/ZKTyZ09xyMe
-         A66a5VyUKjs1XUG4pWFgCc2OpS2Iy3vtoxOZTBDGi6es0pvvhsTG7KiDNxTXl4sARQQy
-         liP+ZebAVXXVd3hi4BhMnbDsMi1noQ92rgBhGGe9FGbAeoYboLgp512cEEtqMHDZt5q5
-         LEwbCiZRloRYStzbNmIZsJba2Yqx44SkK+zRqvgitOiRhSWydvyFCpDLRYRrBy0G9cvV
-         S70A==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l0/uUKbeUlMXSZoxUa2qhMyrwjpbehtiHXetc7DLyTE=;
+        b=LQDdwcyhlKA8e4El7VCXFQvI81RT0I7RygQKZMLmIqAjqh8CQSVOo/p6gKa8MgjxlT
+         iAVwrcUg9Fo8+rroDhKZdNC41HevQRloYo5s9+ZbMFzXJUxgkv2UxpzsdEqDSNtspKfj
+         0bTvb+XEd/GP6Qyhdgv0z/YAl3bEgRyUucE/yJletywHJh1IeZaxmXzbL+sShaYESWlG
+         s/t7sd2iP+3dqiq+812PD0JqDbitYMgRJJFCs8lpgHDb5LbjIYQjra77o78dNv8GSSWu
+         fRBEaF0mXKceKgW0tOj30lM8S3KNDGqdHPaDesp/x7f4Y95RgO71R4P7ljdzZugO7QJY
+         HH2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677528948;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YpnEvE+/SdK2xJYvrmI9miffWQyVUk2OmaUWCwQjPNM=;
-        b=O/MGS7pvIxSgsGTs7ZhNdl95XJ9dc6oHRBMA5RdZcW/qjjo8gyDRsk0uz+HUaXz+8n
-         iimD+KCSY6aNSX/55dSm3iP2k2QT9IWFDUsz85kxoP6Po5hsKbIZU8VxyBSZHsd+gyKr
-         s77ebWclDUXS5fd/AU4EOW5hAlmI7kQdfwa+q9LV7YGkM+1dPC9w0fnPXwZxPuYSCfhL
-         fiB9nu6FNXX11vpiO77WPcXxf8JfFpvl5qi83f+GbOJwQsflgQHmJ4JzFIjtlcSejSAv
-         6kVNyv+yujm7fnUUoh6uAV6jSE3cmpVsbDjlKleFbQq3i3zXZ1wrlfSADEhvPQ/qZgMg
-         2DqA==
-X-Gm-Message-State: AO0yUKWpMM1lEnqOnoO2Wa/eMKdIah15XNqGURn5jJc4DtgFoQTE0oEJ
-        fpfQh9Ev9vjFYs+Re3svoEwjDzucrG7xz/6Nw/PnHQ==
-X-Google-Smtp-Source: AK7set+4+UusRDTWKUVqekIC00M9LlKWUPfOe10+UpN7ZNL7GUb5WQhWNHPeGvFb5PshqffBrr6OJiF/h70oCgv3vsM=
-X-Received: by 2002:a17:90a:ce12:b0:234:925b:7d61 with SMTP id
- f18-20020a17090ace1200b00234925b7d61mr207698pju.9.1677528947405; Mon, 27 Feb
- 2023 12:15:47 -0800 (PST)
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l0/uUKbeUlMXSZoxUa2qhMyrwjpbehtiHXetc7DLyTE=;
+        b=Ab8aZgFvKZ/ZacqTeJTe2TuhA+KIWGyNDaxHNNTUtmR1T78wQpossqodTQGgVVnM2Q
+         sn4UUHaWMEHVMr2rzdzLSVdZnqK0goEFS6QlBNii+NTViQzo0JrPVwzaDVftDxwllMis
+         kCErpXJrIK8efk0OWKgm9+32jhdmCwIoyY7q5psNZjeF1+MqEAYnR39YSoWyseSiJobA
+         /g/dgnYonKgM5zjWpe/bd3Dgg+73VzG5OisWA5b9XBFVzioC9XHvOBDalFPs2NgC5u3e
+         EjLLJ8mMP4vYT1kaFt7hhP2AjMnjsbpnR9zb/8uizDgvusZXqkC6Yt4MKloBkHMLDPBc
+         e5Rw==
+X-Gm-Message-State: AO0yUKVztnBlpu7pLkbY7yB1o1EpSKomEFntR9PmAtBXnGAH59I6Tx0z
+        9C+ZtKdpb06br+IfHQ+jaFug5HfZ4UKYfkHMlZr9WBp8
+X-Google-Smtp-Source: AK7set9pYv3iw2j7lNB9A+/BF4u3cKIAYeVUT78U8rpH2iDU2ilsazWqMgK2bIRctsIPkzAYT1GXwLUjLk3vI/zg8cA=
+X-Received: by 2002:a02:290f:0:b0:3c5:1986:699f with SMTP id
+ p15-20020a02290f000000b003c51986699fmr205449jap.0.1677529070502; Mon, 27 Feb
+ 2023 12:17:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20230224195749.818282-1-sdalvi@google.com> <20230224195749.818282-2-sdalvi@google.com>
- <b50ab99f-e307-3a66-9198-85a71b012e5e@linaro.org> <CAEbtx1k-7TJPcd3+cueRoKLJcoUQLfF6nfOQFVfzB0YCUrbtqg@mail.gmail.com>
- <2e4964c1-0831-c156-3372-81a56f8d623e@linaro.org> <CAEbtx1=EGC+4LfSz+HqGzjJvF2O1vsB7a42ESTqbU8p5N-yUHg@mail.gmail.com>
- <28c72c1a-df7d-db05-f32f-23b170b96db5@linaro.org> <80b17309-ec9c-8942-d901-7121bc936471@linaro.org>
-In-Reply-To: <80b17309-ec9c-8942-d901-7121bc936471@linaro.org>
-From:   Sajid Dalvi <sdalvi@google.com>
-Date:   Mon, 27 Feb 2023 14:15:36 -0600
-Message-ID: <CAEbtx1nmYwp-QJ_L-og+M=z-iQst53OtZeZOADGrQVcuhQGapQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: PCI: dwc: Add snps,skip-wait-link-up
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+References: <4927895.GXAFRqVoOG@tool> <20230213202542.aqsw6tzspo4nrq7n@mercury.elektranox.org>
+ <CABwr4_sd-kzg90VrQQOw91XsTXOcMq6qkj=TNPy6YQDuA6QQuQ@mail.gmail.com> <20230213212200.fgtcfm333aunrxqo@mercury.elektranox.org>
+In-Reply-To: <20230213212200.fgtcfm333aunrxqo@mercury.elektranox.org>
+From:   =?UTF-8?Q?Daniel_Gonz=C3=A1lez_Cabanelas?= <dgcbueu@gmail.com>
+Date:   Mon, 27 Feb 2023 21:17:39 +0100
+Message-ID: <CABwr4_vKxWKJsNDVF9yNeSSk4R3nDov-+qY5=nhp4ggr88EpAw@mail.gmail.com>
+Subject: Re: [PATCH] power: reset: linkstation-poweroff: add LS220D/E
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel-team@android.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,100 +70,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Krzysztof.
-I will attempt to send a new patch to address the delay solely in the driver.
+Hi Sebastian,
 
-Sajid
+El lun, 13 feb 2023 a las 22:22, Sebastian Reichel
+(<sebastian.reichel@collabora.com>) escribi=C3=B3:
+>
+> [+cc DT binding people]
+>
+> Hi,
+>
+> On Mon, Feb 13, 2023 at 09:38:24PM +0100, Daniel Gonz=C3=A1lez Cabanelas =
+wrote:
+> > > >  static const struct of_device_id ls_poweroff_of_match[] =3D {
+> > > > +     { .compatible =3D "buffalo,ls220d",
+> > > > +       .data =3D &linkstation_power_off_cfg,
+> > > > +     },
+> > > > +     { .compatible =3D "buffalo,ls220de",
+> > > > +       .data =3D &linkstation_power_off_cfg,
+> > > > +     },
+> > > >       { .compatible =3D "buffalo,ls421d",
+> > > >         .data =3D &linkstation_power_off_cfg,
+> > > >       },
+> > >
+> > > Where is the patch adding these compatibles to the DT binding
+> > > documentation?
+> >
+> > There is no DT binding at all. So no documentation.
+>
+> You are referencing a compatible, so there is supposed to be
+> a DT binding for it. Note, that you also need DT bindings for
+> board level compatible values. See for example:
+>
+> Documentation/devicetree/bindings/arm/rockchip.yaml
+> Documentation/devicetree/bindings/arm/fsl.yaml
 
-On Sat, Feb 25, 2023 at 4:08 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Since the driver uses the root compatible string, I don't see any
+binding to document at least for the driver itself.  Nor I don't see
+where a reference for this driver should be put if I documented the
+board compatible strings.
+
 >
-> On 25/02/2023 11:00, Krzysztof Kozlowski wrote:
-> > On 24/02/2023 23:09, Sajid Dalvi wrote:
-> >> On Fri, Feb 24, 2023 at 3:29 PM Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>> On 24/02/2023 22:27, Sajid Dalvi wrote:
-> >>>> On Fri, Feb 24, 2023 at 2:40 PM Krzysztof Kozlowski
-> >>>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>>
-> >>>>> On 24/02/2023 20:57, Sajid Dalvi wrote:
-> >>>>>> When the Root Complex is probed, the default behavior is to spin in a loop
-> >>>>>> waiting for the link to come up. In some systems the link is not brought up
-> >>>>>> during probe, but later in the context of an end-point turning on.
-> >>>>>> This property will allow the loop to be skipped.
-> >>>>>>
-> >>>>>> Signed-off-by: Sajid Dalvi <sdalvi@google.com>
-> >>>>>> ---
-> >>>>>
-> >>>>> Thank you for your patch. There is something to discuss/improve.
-> >>>>>
-> >>>>>>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 8 ++++++++
-> >>>>>>  1 file changed, 8 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> >>>>>> index 1a83f0f65f19..0b8950a73b7e 100644
-> >>>>>> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> >>>>>> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> >>>>>> @@ -197,6 +197,14 @@ properties:
-> >>>>>>        - contains:
-> >>>>>>            const: msi
-> >>>>>>
-> >>>>>> +  snps,skip-wait-link-up:
-> >>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
-> >>>>>> +    description:
-> >>>>>> +      When the Root Complex is probed, the default behavior is to spin in a
-> >>>>>> +      loop waiting for the link to come up. In some systems the link is not
-> >>>>>> +      brought up during probe, but later in the context of an end-point turning
-> >>>>>> +      on. This property will allow the loop to be skipped.
-> >>>>>
-> >>>>> I fail to see how probe behavior is related to properties of hardware.
-> >>>>> You describe OS behavior, not hardware. This does not look like
-> >>>>> belonging to DT.
-> >>>>>
-> >>>>>
-> >>>>> Best regards,
-> >>>>> Krzysztof
-> >>>>
-> >>>> Thanks for your response Krzysztof.
-> >>>> The hardware configuration of the system determines whether an
-> >>>> endpoint device is available during host init. If it isn't available
-> >>>> on a particular and dedicated pcie interface, we should skip waiting
-> >>>> for the link to be up. For other interfaces, possibly even on the same
-> >>>> system, where a device is present or maybe present we should wait for
-> >>>> the link to come up.
-> >>>
-> >>> Keep discussions public.
-> >>>
-> >>> Your commit and property description mentions probe, which is nothing
-> >>> related to hardware. Why the device would not be available during host
-> >>> init (I understand we do not talk about hotplug as it is already
-> >>> supported by Linux) in a way it is hardware property, not OS?
-> >>>
-> >>> Best regards,
-> >>> Krzysztof
-> >>>
-> >>
-> >> + everyone else I mistakenly didn't reply to earlier
-> >>
-> >> If I understand you correctly, the usage of probe is misleading
-> >> because it doesn't have anything to do with the hardware.
-> >> So your recommendation is to replace probe with device init, in the
-> >> description of the property and the commit message?
-> >
-> > No, I asked there a question for which we need answer.
-> >
-> > device init is also OS task... You need to explain why this is a
-> > property of hardware, not OS behavior.
->
-> Actually let's be clearer - your cover letter says:
-> "In some systems the link is not brought up
-> during probe, but later in the context of an end-point turning on. (...)
-> to skip this loop."
->
-> so this is pure Linux OS stuff. You just want to control driver behavior
-> from DT. Not at all DT property.
->
-> Best regards,
-> Krzysztof
->
+> -- Sebastian
