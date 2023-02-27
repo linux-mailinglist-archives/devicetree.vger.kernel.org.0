@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F466A3A32
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 05:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBCD86A3A34
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 05:50:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbjB0Etm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 23:49:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38702 "EHLO
+        id S229512AbjB0Euh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 23:50:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjB0Etl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 23:49:41 -0500
+        with ESMTP id S229470AbjB0Eug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 23:50:36 -0500
 Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F525FF31;
-        Sun, 26 Feb 2023 20:49:25 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F99E07C;
+        Sun, 26 Feb 2023 20:50:36 -0800 (PST)
 Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 6ED8032001C6;
-        Sun, 26 Feb 2023 23:49:22 -0500 (EST)
-Received: from imap43 ([10.202.2.93])
-  by compute5.internal (MEProxy); Sun, 26 Feb 2023 23:49:23 -0500
+        by mailout.west.internal (Postfix) with ESMTP id 84E443200902;
+        Sun, 26 Feb 2023 23:50:34 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Sun, 26 Feb 2023 23:50:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1677473362; x=1677559762; bh=4d
-        +M82rxS2ilvQGtMbSyOF3k0B4HgMWmUhmiwlaDXqU=; b=kXR6sS98fTXBb5o8t4
-        nkK3s4aXdFsVDwtN/OZuJVfMtyPMULkf/u3PY4jS70u/Q8k4zZzQJ+AvD5ubRsm9
-        yQj0fbPV42wCi5nvnwKW5JmzJgt7TmVInwlOY3N/Yhnq7o7J6IC6X656RpiVCEIy
-        iwE8PCG6+YpZARF1bpLLXFmZZHIwNZzmZSj0HydWaqna0vK7O2gQ86w3rrloELFG
-        Aplky0EUpHUozb/6pJ7esAbg4Ybm9scQVSZLOnnDveO2qryWS0D8S71dwL24nFy3
-        nWkhQ5ZJoNt3yOVXOZYkugb9P7z6ir5ojQk259NpoptBGgVjJHu4MnPm4RssOkxW
-        TxIw==
+         h=cc:cc:content-transfer-encoding:content-type:date:date:from
+        :from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1677473434; x=1677559834; bh=fI
+        4g0ve62uV8mrXHpG6HypxMDaY5Y37mRewKpXjGCJ4=; b=MzWrCfjmJHTWYYfXuf
+        sbuVwJ01HsRfvKx3HJACaqMezbF0+0e0zoVuAFFtpuGYAcjxRl5k/LG/4Ct/6WZm
+        Er0suMK8fBPXBRUMuwTpPxEYu25YAZdt70hIZbNXOCXCGvqlp/lUQ15thwknRfYC
+        okJUMHbEHRSWaDSxzINU+/HrkOrqLThZCb2gNCR1T1DC6bFUjvtEx3YdHWA1oeBX
+        VXWkxz0pb9YdDWwh53mJqjZjuLItXdI71rRSn9jKQNtEhKQzmJer6xyxBRPJGKsj
+        Mf0bRAZw0rfzDZGqP9/WOmZuHxUr3srzyyi/6SXzJ3voXPa4y2+Bxqlyisq0Svcb
+        2FrQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1677473362; x=1677559762; bh=4d+M82rxS2ilvQGtMbSyOF3k0B4H
-        gMWmUhmiwlaDXqU=; b=TCeG7wVvTlycIr/eNuzR2hc3bdetnoeAIDvwKPU8pp7Q
-        2T13wEb1AB4UOC1EsP4FekqucjHu/7O7NfCkrXBBMyYkuqINqOTpeXAe1IH9A3Ih
-        Tj80b/rLzXkIUfikfzUn37xr/SHQVFWRA7bQHH/LuPLg/MdD4pO8PNP51qs4aTgF
-        CGGce8FJuFMU0j89iqXCtfofERdeosLzh5QrxueDuMLb7tC5oXd6mlS5fOCROE8a
-        oRk3L/DSE+gbWiibg8H8Kwzi2aPmo2xXWuB7xo63NjJ6zoDhY5j7hD2R0cKxgmEA
-        gvg8JBhyuvRyKZQ5yI03mUTrFjlP90Hrkjhc2VxKOQ==
-X-ME-Sender: <xms:UTb8Y2sbaXD1Xwx6fzxcvxj3jlcl_oXGYdycdhk9HvfX1QsunBkMZw>
-    <xme:UTb8Y7fq_KOk9dK7KgA4yaubgCRd31DZCeDt8ll7NDLmqUjM4PXIcRbztZmcG_wBr
-    OpebFa9pW2Czj05uFc>
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1677473434; x=1677559834; bh=fI4g0ve62uV8m
+        rXHpG6HypxMDaY5Y37mRewKpXjGCJ4=; b=ct73tTMdD1tMi6iO0bvZ/WhlBfc1Z
+        3KL6lnCRN1vM4qcdeKQz85nq8uEVQL580QHq2AaOwinbY1Z4qmv6JdUMCTHRLTQR
+        rbvWXzRc8x1W0Jaan0VD+zQKlRoXetTH6pCORJKIqLagCvalIA2zRhXr9A/V2m4i
+        M4qAbHUTz+sB+vop2cCTL7eZqQBP3Jbkoj8DLG2+4Ek8e8XY3WVPvuRt/afor1qc
+        NdKKrH6RbcK0Js+3v22wny4F09I/aXCpUyOoIRKNYL+0hzWjwEwtlFMFy+E1YV1h
+        EcNDpCvuCMA5lrB8Y+dm7AXAn1Dn0hEodEHGUniNNvoGo4yfSv9KmqSmQ==
+X-ME-Sender: <xms:mTb8Y9R6aLPOYjUh7ZE171y2UvCMet7llO2DcLd6kah5TJsIUXsggg>
+    <xme:mTb8Y2zgPJ2wxVkOn0KIvgKRBETxZatv7RIeWJYxOxbXK_061TGkXw2tlj_H55QxG
+    OBrfeV-CyDAA98FWgw>
+X-ME-Received: <xmr:mTb8Yy3ufCf8WL9fYAaebXMuh1_rnNOg2eoMAmIlq3Ft-ezOUGXeZgpWkEunn2GBy2X_Vn0ITe4Q>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudekledgjedvucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpeetlhhi
-    shhtrghirhcuoegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrf
-    grthhtvghrnhepudejjeeltdfgjedtieeileduhfeftdfhhefhffehiefhtdeiuddtvdek
-    keejfffhnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghl
-    ihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:UTb8YxyypBeBPhlg2Gkm_90bIOqaOdT-KQ85aqCZlt-UGyWyvjiz7w>
-    <xmx:UTb8YxNq2Mc4LscAwktSsbeYzJQWRTl_BPvAfU2bAQJxR5Z15sORfg>
-    <xmx:UTb8Y28AOgbgxWjvOv-NWpMZxbSr2EDWYHnhIx0W-B9cXovdGh0Kuw>
-    <xmx:Ujb8Y5Y1eLzCmdqkGFXtygDIgpdmxTEV3cGIgUYjfX11mnKqGc_HQg>
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffotggggfesthekre
+    dtredtjeenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgr
+    ihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeffkefhleetge
+    fgteeikeetkeehtdffkedvtdevteegfffglefffedtheeugfehfeenucevlhhushhtvghr
+    ufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlih
+    hsthgrihhrvdefrdhmvg
+X-ME-Proxy: <xmx:mTb8Y1BDjerfhwsoHpUiylEfAXcc9O-dJPXscR1K6OIWoEF5J08ZFg>
+    <xmx:mTb8Y2hNo3KujXjFat0fdZQizYkLLyido_n79VMsSB41_hwdyU91dg>
+    <xmx:mTb8Y5oB2pMebs7B-iD2hSa78jua--jQuP9c_RvJ1OA5jrrGmAi89A>
+    <xmx:mjb8Y9QboG_OLoYoOGZLxSvp1HiDWf55I8fW9zxeBpqrXAQ3wUmFJg>
 Feedback-ID: ifd214418:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 6946A2D40074; Sun, 26 Feb 2023 23:49:21 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-172-g9a2dae1853-fm-20230213.001-g9a2dae18
-Mime-Version: 1.0
-Message-Id: <ce2df843-dc68-49af-9551-48769c26871a@app.fastmail.com>
-In-Reply-To: <20230224232339.124969-2-macroalpha82@gmail.com>
-References: <20230224232339.124969-1-macroalpha82@gmail.com>
- <20230224232339.124969-2-macroalpha82@gmail.com>
-Date:   Mon, 27 Feb 2023 14:49:01 +1000
-From:   Alistair <alistair@alistair23.me>
-To:     "Chris Morgan" <macroalpha82@gmail.com>,
-        linux-bluetooth@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        "Vasily Khoruzhick" <anarsoul@gmail.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        "Johan Hedberg" <johan.hedberg@gmail.com>,
-        "Marcel Holtmann" <marcel@holtmann.org>,
-        "Heiko Stuebner" <heiko@sntech.de>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Chris Morgan" <macromorgan@hotmail.com>
-Subject: Re: [PATCH 1/3 V2] dt-bindings: net: realtek-bluetooth: Add RTL8821CS
-Content-Type: text/plain
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 26 Feb 2023 23:50:28 -0500 (EST)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     devicetree@vger.kernel.org, s.hauer@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, linux-imx@nxp.com
+Cc:     linux@armlinux.org.uk, arnd@arndb.de, alistair23@gmail.com,
+        kernel@pengutronix.de, festevam@gmail.com,
+        jernej.skrabec@gmail.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v4 0/3] imx7d-remarkable2: Enable cyttsp5 and rohm,bd71815
+Date:   Mon, 27 Feb 2023 14:50:20 +1000
+Message-Id: <20230227045023.560319-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.39.1
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
@@ -93,66 +86,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Feb 2023, at 9:23 AM, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add compatible string for RTL8821CS for existing Realtek Bluetooth
-> driver.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Enable the cyttsp5 and rohm,bd71815 in the device trees and
+defconfig for the reMarkable 2.
 
-Reviewed-by: Alistair Francis <alistair@alistair23.me>
+v4:
+ - Fixup the rohm changes to match DT schema
+v3:
+ - Remove unused sleep states
+v2:
+ - Fixup DT formatting issues in path 3
 
-Alistair
+Alistair Francis (3):
+  ARM: dts: imx7d-remarkable2: Enable the cyttsp5
+  ARM: imx_v6_v7_defconfig: Enable rohm,bd71815
+  ARM: dts: imx7d-remarkable2: Enable the rohm,bd71815
 
-> ---
-> .../bindings/net/realtek-bluetooth.yaml       | 23 +++++++++++--------
-> 1 file changed, 14 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-> index 143b5667abad..f91d06d629b9 100644
-> --- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-> @@ -4,24 +4,29 @@
-> $id: http://devicetree.org/schemas/net/realtek-bluetooth.yaml#
-> $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: RTL8723BS/RTL8723CS/RTL8822CS Bluetooth
-> +title: RTL8723BS/RTL8723CS/RTL8821CS/RTL8822CS Bluetooth
->  
-> maintainers:
->    - Vasily Khoruzhick <anarsoul@gmail.com>
->    - Alistair Francis <alistair@alistair23.me>
->  
-> description:
-> -  RTL8723CS/RTL8723CS/RTL8822CS is WiFi + BT chip. WiFi part is connected over
-> -  SDIO, while BT is connected over serial. It speaks H5 protocol with few
-> -  extra commands to upload firmware and change module speed.
-> +  RTL8723CS/RTL8723CS/RTL8821CS/RTL8822CS is a WiFi + BT chip. WiFi part
-> +  is connected over SDIO, while BT is connected over serial. It speaks
-> +  H5 protocol with few extra commands to upload firmware and change
-> +  module speed.
->  
-> properties:
->    compatible:
-> -    enum:
-> -      - realtek,rtl8723bs-bt
-> -      - realtek,rtl8723cs-bt
-> -      - realtek,rtl8723ds-bt
-> -      - realtek,rtl8822cs-bt
-> +    oneOf:
-> +      - const: realtek,rtl8723bs-bt
-> +      - const: realtek,rtl8723cs-bt
-> +      - const: realtek,rtl8723ds-bt
-> +      - const: realtek,rtl8822cs-bt
-> +      - items:
-> +          - enum:
-> +              - realtek,rtl8821cs-bt
-> +          - const: realtek,rtl8822cs-bt
->  
->    device-wake-gpios:
->      maxItems: 1
-> -- 
-> 2.34.1
-> 
-> 
+ arch/arm/boot/dts/imx7d-remarkable2.dts | 239 ++++++++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig    |   5 +
+ 2 files changed, 244 insertions(+)
+
+-- 
+2.39.1
+
