@@ -2,111 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1CA06A4275
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 14:19:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C6B6A427F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 14:20:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjB0NT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 08:19:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59036 "EHLO
+        id S230015AbjB0NUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 08:20:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbjB0NT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 08:19:27 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B932A5F6;
-        Mon, 27 Feb 2023 05:19:13 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 21FCA6602EBB;
-        Mon, 27 Feb 2023 13:19:11 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677503951;
-        bh=M84hUc6FSjtfLLuQzMVefdgxCampFeISHt8LSmhyiIM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CDiCRdUU0NNxCM540FhfqUKkpo4mktrjuOYSHLlsZ13oHX2JlAsIydqSIIOir4PeH
-         BmEw7i4EV1M0yfhKyziVFK634gam8zXe1GE3igvbIFD5f1ctEoQpDFbCkiF60YiRHn
-         7hCyMAz6X7ahzt+xO6wqPYlnACJpPAGOZd41vWDaO9FM1FUyZf5XUAsSHnYwejfvHu
-         Z9Yg89+hrrZBPLBwYW+TeM7N0ytvedykIhUPOrP8sRDqdMQDqIU3NzS/Gqj3s8GeBn
-         tYkpcIH9Y/Ctre4OM0HYnqh0ed6KDfsy23E99j41mOaZIRfOcI6/y6eZX5dvTtWoE+
-         hFB4Ml2GDtKwg==
-Message-ID: <caddf39b-fb0d-c6ff-b98e-bbd5aac5f974@collabora.com>
-Date:   Mon, 27 Feb 2023 14:19:08 +0100
+        with ESMTP id S230008AbjB0NUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 08:20:52 -0500
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4EAB1CAFA
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 05:20:50 -0800 (PST)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-536cd8f6034so174032137b3.10
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 05:20:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zaBtZLYywqdJ+cCew+KHkUUeav5e7pMWJoeLC+Mi7As=;
+        b=OLPzpMLN8PqUAnVXOCv+skqO7HHYhalsabNrdn2864rpWxVebITw9H5GOnOauwrpD4
+         M4K0siVJlSMFw+Hc1aBXZbc/0SOmV1S1HuWOeg8L8sB5btiPLsnVQyCkAIYxbWdB4U0c
+         dPkLKICO/SSTx++C2zkZ2UcUfKBAzJ5900/NUUXdYXIbGXegI0lsr95QDQoynqxLPgOB
+         xp7DPahPVr7p/NxdXOu8VvLds3mHVqAxjOSs42YNgQSfpCRako/A7+NlEojEeXSyPAVM
+         GPQ+9NkE5hbA8AIqSXCD/UPd+z1DljaJ5t1JMU/HpO27QHTz++254nVSoQIhQnsaqKb7
+         xaVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zaBtZLYywqdJ+cCew+KHkUUeav5e7pMWJoeLC+Mi7As=;
+        b=T/aRER9T3Chtz5jcdn2alJO5bopC0JeaXToLvfSqklAZj3PVrXiyPAKO8cMHxG/Zba
+         u2edx78ggam9fIRZSdmnsPao0bOpTAX97BuvXGtpcCM5iuBiqby55HTznnFl8I34IRKO
+         Q8X00yopAbYw8MgOo6IzZprGxuQDCE4Pt9MOaDmxg4zPoSA9bACkr3D9oiDr8+3/uB7I
+         DAJmct1TqWV6vBiZV8YasqB4QxGkhRXhx2UiHxJOrpcDW/883tYVxEzwIvIwky5YJtdq
+         vb3YcaienKB84cXXi3s3uHBD10ilB9f6KLiCLavTyK68aNxvLlqxLHq67ydbSkpFsHeD
+         ov4g==
+X-Gm-Message-State: AO0yUKV8S+5HCAxYHxL+IO2uZH7m8hpjFDM6hPc/KWOAWbJ6IYo61CG/
+        s4CCeSrpnJ0r+za9dWg4rC5PrhBQP0I7C+f6ANsIUQ==
+X-Google-Smtp-Source: AK7set8pPLU5y0Hx42KChdbEnSayCirbt0pTXCztCtc3W1lN7atfCuKryo1f04D6pMnS0SInkJbUjTzqfIjYIGYU32A=
+X-Received: by 2002:a25:908e:0:b0:87a:957b:fd67 with SMTP id
+ t14-20020a25908e000000b0087a957bfd67mr9631906ybl.10.1677504050107; Mon, 27
+ Feb 2023 05:20:50 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 04/11] dt-bindings: gpu: mali-bifrost: Add compatible
- for MT8195 SoC
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
-        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230223133440.80941-1-angelogioacchino.delregno@collabora.com>
- <20230223133440.80941-5-angelogioacchino.delregno@collabora.com>
- <CAGXv+5GJgAz4yvb-zvFwxRD2PGtkpV7gD-Lst9KDAaZDzLyDEg@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
+References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
+ <20230217-topic-cpr3h-v10-5-67aed8fdfa61@linaro.org> <153ef3e0-9978-d201-44ad-3a5e55eeef4f@linaro.org>
+ <8c105a4f-f450-8fbf-ff0b-5629a47c1463@collabora.com> <d2784517-0f0c-43a5-63a6-57f6aa3e5912@linaro.org>
+ <8a813713-c60d-4726-0c62-de032db99ede@collabora.com>
+In-Reply-To: <8a813713-c60d-4726-0c62-de032db99ede@collabora.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 27 Feb 2023 15:20:39 +0200
+Message-ID: <CAA8EJpprXe3k6Kecg6v-QHT-qP=QjimFZFpLWjPqky3M=J+x+A@mail.gmail.com>
+Subject: Re: [PATCH v10 5/6] soc: qcom: Add support for Core Power Reduction
+ v3, v4 and Hardened
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5GJgAz4yvb-zvFwxRD2PGtkpV7gD-Lst9KDAaZDzLyDEg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/02/23 11:08, Chen-Yu Tsai ha scritto:
-> On Thu, Feb 23, 2023 at 9:34 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> The MediaTek MT8195 SoC has a Mali G57 MC5 (Valhall-JM) and has the
->> same number of power domains and requirements as MT8192 in terms of
->> bindings.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>   Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
->> index 65fe139ceb83..4d9ab4702582 100644
->> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
->> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
->> @@ -25,6 +25,11 @@ properties:
->>                 - rockchip,px30-mali
->>                 - rockchip,rk3568-mali
->>             - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
->> +      - items:
->> +          - enum:
->> +              - mediatek,mt8195-mali
-> 
-> This could be squashed into "- const: mediatek,mt8195-mali" like the
-> following lines?
-> 
+On Mon, 27 Feb 2023 at 15:06, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 27/02/23 13:01, Dmitry Baryshkov ha scritto:
+> >
+> > I took a glance at the 'cpufreq: qcom-hw: Implement CPRh aware OSM programming'
+> > patch, it doesn't seem to use the header (maybe I checked the older version of the
+> > patch). As for me, this is another signal that cpr_ext_data should come together
+> > with the LUT programming rather than with the CPRh itself.
+> >
+> >> Konrad, perhaps you can send the cpufreq-hw commits in a separate series, in
+> >> which cover letter you mention a dependency on this one?
+> >> That would *clearly* show the full picture to reviewers.
+> >
+> > Yes, that would be great. A small note regarding those patches. I see that you
+> > patched the qcom-cpufreq-hw.c. This way first the driver programs the LUT, then it
+> > reads it back to setup the OPPs. Would it be easier to split OSM-not-programmed
+> > driver?
+> >
+>
+> When I engineered that solution, I kept the cpufreq-hw reading *again* the values
+> from OSM to keep the driver *fully* compatible with the bootloader-programmed OSM
+> flow, which makes one thing (in my opinion) perfectly clear: that programming
+> sequence is exactly the same as what happens "under the hood" on SDM845 (and later)
+> but performed here-instead-of-there (linux instead of bootloader), with the actual
+> scaling driver being 100% the same between the two flows in the end.
+>
+> Having two drivers as you suggested would indeed achieve the same, but wouldn't be
+> any easier... if you do that, you'd have to *somehow* make sure that the
+> programming driver does its job before the cpufreq driver tries to read the OSM
+> status, adding one more link to an already long chain.
+>
+> Besides, I remember that this question got asked a while ago on the mailing lists
+> and there was a short discussion about it:
+>
+> https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2555580.html
 
-Could be, but I expect more compatibles on this list, that's why I've modeled
-that as enum. I prefer keeping this an enum.
+Ack, I see. Maybe splitting LUT programming to a separate source file
+would emphasise the fact that it is only required for some (older)
+SoCs. Other than that, I have no additional comments for that series.
 
-> Otherwise,
-> 
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> 
->> +          - const: mediatek,mt8192-mali
->> +          - const: arm,mali-valhall-jm # Mali Valhall GPU model/revision is fully discoverable
->>         - items:
->>             - enum:
->>                 - mediatek,mt8192-mali
->> --
->> 2.39.2
->>
-
+-- 
+With best wishes
+Dmitry
