@@ -2,157 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7639A6A43C0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 969856A445C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:28:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjB0OIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 09:08:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52964 "EHLO
+        id S229748AbjB0O2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 09:28:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbjB0OIL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:08:11 -0500
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F05B9901C;
-        Mon, 27 Feb 2023 06:08:04 -0800 (PST)
-Received: by mail-il1-x130.google.com with SMTP id b16so4003477iln.3;
-        Mon, 27 Feb 2023 06:08:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q4WrHToYhjDx1AbMUlSeZkbECM8IxjfDW2y4H9aWRFA=;
-        b=Jsl67gvYuwAc2P2veWRPxNCh3ZX6rmMelPmmnO80Tk4NQ6oja1qErj0b+LvqlfJBnL
-         4UTyPWAEyMPyFXRDP7vwpNDGmG17S3mK1PiB04gXVnsBxy0yRW+Pw3qkMTzwoYb0Pz+W
-         k5KQa8whywr909Sdb9JACUfZqtaPyI6uIiKDEkr8W/nWyHO2kiMayo3AuxTyMq55afvY
-         1p7ZdQ5qMSLJV466MixOLhnJm4tpe/wvf2LO7u2ALBmurFQHb444tjqLQsOVirTYw9Jt
-         pbfW9djuI7sbXZyeLxl0y9h7BalN3+w45mEO+MQwD7nB4cmQ1fGdiy1oIhvCSQrgXl7T
-         5xzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q4WrHToYhjDx1AbMUlSeZkbECM8IxjfDW2y4H9aWRFA=;
-        b=lECL7GYLD7cypb3UtzJMhmWmcEY9Hxvc/vzteNn6INB9SFN2zksESaQxElQeNbD/bZ
-         sVue34DCTKTNC7qnxQIhpcfdOnoUti4dCohsFPr8oISGPXxHDehgWoSkj8/wqpqeN1tj
-         jTIi6iAaglO/SiKIKkVWebBl5I+bLne6apJOsBlccqZhRENqN6O4y4ikSgbzmLJ/rkZK
-         ieyLyOeq2ley0JSbTH3IuUtqr5TAM5+i+P3a40S1iQK9Su95WyLqxa5JsvyHkXvDWccy
-         Ct1ncxAkxEhelhyAK3M8qU0eoreBpUDHHCPF+CBq8IWFXmjxofJgxAetGGP3tx7oft6v
-         kE/w==
-X-Gm-Message-State: AO0yUKXF/qIyyto//75xRZzmeo1/wuvp+w6cDQOCGRb92dh+hAs4qx+g
-        RilYpk+hHVkXTbvPLEdILTQ=
-X-Google-Smtp-Source: AK7set+dHX5EyhrPcZLkbz0EuHUW4YplP/yWV8dZM/+K97pjcjpiU4Pl2RTNRd3SsoG0At9toJ4LYw==
-X-Received: by 2002:a92:7611:0:b0:315:34b8:4c6d with SMTP id r17-20020a927611000000b0031534b84c6dmr16857929ilc.17.1677506884041;
-        Mon, 27 Feb 2023 06:08:04 -0800 (PST)
-Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
-        by smtp.gmail.com with ESMTPSA id 14-20020a056e020cae00b00316dc3afe57sm1921503ilg.86.2023.02.27.06.08.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Feb 2023 06:08:03 -0800 (PST)
-From:   Danny Kaehn <kaehndan@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com
-Cc:     bartosz.golaszewski@linaro.org, andriy.shevchenko@linux.intel.com,
-        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Subject: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Date:   Mon, 27 Feb 2023 08:07:58 -0600
-Message-Id: <20230227140758.1575-4-kaehndan@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230227140758.1575-1-kaehndan@gmail.com>
-References: <20230227140758.1575-1-kaehndan@gmail.com>
+        with ESMTP id S229549AbjB0O2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:28:16 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1867CA5C6;
+        Mon, 27 Feb 2023 06:28:14 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 083DA5FD18;
+        Mon, 27 Feb 2023 17:28:11 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1677508091;
+        bh=dHA/Wc3Fmu2Ic2yiLPy7ks11PfgCivPYbG1QvntY4RI=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=Zel0j/24EN18NurGpIm8rfbVXkCFfOOYSv6j+TFBnkDIF93AbsupE4YvZNiqr2ls9
+         HLIME5RCEC+i59clo7uAiR7k/8V2yphl54m96LCEI8I9CK085pJ997peXOfXCIAUEN
+         lqFz+VxIO9FygFdBB0Ud++tuxrrWwp5edkjMPux51JEC96LTAcyKUzIg2U3MHszt3C
+         7FtthXWvaU475A8AMJ1LW/TjeBR4YuZrK4KYNRZ5+YfEgBLzCRKZq/bdJdAncbYrdw
+         R3pv7BnyiFrsIXUdE/6ftXHANj5YTUpD3o6h5jsgSh7qe0JTD9MoPad4M/BEckMh+y
+         38xFN9hEqd9MQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon, 27 Feb 2023 17:28:10 +0300 (MSK)
+Date:   Mon, 27 Feb 2023 17:28:09 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     <neil.armstrong@linaro.org>
+CC:     Alexey Romanov <avromanov@sberdevices.ru>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <linus.walleij@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
+Message-ID: <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
+References: <20230222115020.55867-1-avromanov@sberdevices.ru>
+ <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/27 12:14:00 #20900843
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bind I2C and GPIO interfaces to subnodes with names
-"i2c" and "gpio" if they exist, respectively. This
-allows the GPIO and I2C controllers to be described
-in firmware as usual. Additionally, support configuring the
-I2C bus speed from the clock-frequency device property.
+Hello Neil!
 
-Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
----
- drivers/hid/hid-cp2112.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+On Mon, Feb 27, 2023 at 09:15:04AM +0100, neil.armstrong@linaro.org wrote:
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 27cadadda7c9..491e3c83af12 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -1234,6 +1234,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	u8 buf[3];
- 	struct cp2112_smbus_config_report config;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
- 	int ret;
- 
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1292,6 +1293,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	device_set_node(&dev->adap.dev, device_get_named_child_node(&hdev->dev, "i2c"));
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
-@@ -1300,7 +1305,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		hid_err(hdev, "error setting SMBus config\n");
- 		if (ret >= 0)
- 			ret = -EIO;
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_set_drvdata(hdev, (void *)dev);
-@@ -1322,7 +1327,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 
- 	if (ret) {
- 		hid_err(hdev, "error registering i2c adapter\n");
--		goto err_power_normal;
-+		goto err_free_i2c_of;
- 	}
- 
- 	hid_dbg(hdev, "adapter registered\n");
-@@ -1336,6 +1341,7 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	dev->gc.ngpio			= 8;
- 	dev->gc.can_sleep		= 1;
- 	dev->gc.parent			= &hdev->dev;
-+	dev->gc.fwnode			= device_get_named_child_node(&hdev->dev, "gpio");
- 
- 	dev->irq.name = "cp2112-gpio";
- 	dev->irq.irq_startup = cp2112_gpio_irq_startup;
-@@ -1376,7 +1382,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- err_gpiochip_remove:
- 	gpiochip_remove(&dev->gc);
- err_free_i2c:
-+	fwnode_handle_put(dev->gc.fwnode);
- 	i2c_del_adapter(&dev->adap);
-+err_free_i2c_of:
-+	fwnode_handle_put(dev_fwnode(&dev->adap.dev));
- err_power_normal:
- 	hid_hw_power(hdev, PM_HINT_NORMAL);
- err_hid_close:
-@@ -1391,6 +1400,8 @@ static void cp2112_remove(struct hid_device *hdev)
- 	struct cp2112_device *dev = hid_get_drvdata(hdev);
- 	int i;
- 
-+	fwnode_handle_put(dev->gc.fwnode);
-+	fwnode_handle_put(dev_fwnode(&dev->adap.dev));
- 	sysfs_remove_group(&hdev->dev.kobj, &cp2112_attr_group);
- 	i2c_del_adapter(&dev->adap);
- 
+[...]
+
+> I'm aware Amlogic also runs their kernel as 32bit to gain a few kbytes
+> of memory, but those processors are ARMv8 and the arm64 arch code
+> has been designed for those CPUs.
+> 
+> So far I didn't find a single good reason to add 32bit support for
+> ARMv8 Amlogic based SoCs, if you have a solid reason please share.
+
+I totally agree with you, but I suppose it's fully related to 'big'
+Amlogic SoC like S905_ or A311_ series. A113L (aka 'a1') is
+a cost-efficient dual-core SoC which is used for small, cheap solutions
+with cheap components. Every cent is important during BoM development.
+That's why usually ODMs install small ROM and RAM capacity, and each
+megabyte is important for RAM/ROM kernel and rootfs footprints.
+Why am I talking about rootfs? For such small projects a good
+choice is buildroot rootfs assembling framework. Unfortunatelly,
+buildroot doesn't support 'compat' mode when kernel and userspace have
+a different bitness. In the internal project, we save several
+percents of ROM/RAM free space using 32-bit configuration (mostly rootfs
+ROM space, to be honest). Therefore, for such 'little' cost-efficient
+SoCs we can make an exception and support 32-bit configuration, from my
+point of view.
+
+What do you think about that?
+
+> 
+> And as Krzysztof stated, the support is incomplete and cannot work
+> without a dts file.
+
+Agreed, we shouldn't merge dead code. But there are several question to
+discuss there. Please check my reply to Krzysztof message.
+
+[...]
+
 -- 
-2.25.1
-
+Thank you,
+Dmitry
