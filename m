@@ -2,87 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6083D6A3E7A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:36:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 583096A3E83
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbjB0Jgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 04:36:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49306 "EHLO
+        id S229613AbjB0Jiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 04:38:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjB0Jgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:36:51 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9D3CA2A;
-        Mon, 27 Feb 2023 01:36:48 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31R4sGgM007031;
-        Mon, 27 Feb 2023 09:36:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=fFtKuRl7ltXe/gF9tHGWwksasGO5SrHc88zXuVbCr0M=;
- b=QG9RDgamUYYP+MGFS6MBi7K2COX9/ePqTIyTM4+FhV8ERz+An29WiltxbahRaGYanhoj
- Vh1VKBOzlyyeGQaIW/5OnqyqoIFHdWGPBdCfDpYjAqvK3hF/KFYKoN0n6q0o5kx0iuvc
- fX467DJtujjcjTTUKGxJzsP0KHhQWW4pFDoEiohg/tQ+DIaI16ZNkY6lQT7elECR/VzO
- y5pQdAYsH4ZGMTvi9vZFbty0Dv9StYEvmYgEPps2W6C+vd+gSk8jtZ75wT/X2NU1Cb4n
- QD9CQHdwyBMho4rpJ0971DFbEgpp0qWeZJSiOpD7ngIzZQWjruq5nN9ezvTuIEusphhK aQ== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nyajavhgx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Feb 2023 09:36:29 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 31R9aOeS026273;
-        Mon, 27 Feb 2023 09:36:24 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3nybdkafcc-1;
-        Mon, 27 Feb 2023 09:36:24 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 31R9aO1R026268;
-        Mon, 27 Feb 2023 09:36:24 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.37])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 31R9aOMS026267;
-        Mon, 27 Feb 2023 09:36:24 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id 65E4147AF; Mon, 27 Feb 2023 15:06:23 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
-        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
-        svarbanov@mm-sol.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, lpieralisi@kernel.org,
-        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
-        linux-phy@lists.infradead.org, vkoul@kernel.org, kishon@ti.com,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229548AbjB0Jiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:38:54 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6291DCC2B
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:38:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1677490732; x=1709026732;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=OyY50N72D82Tv2zs2wQqlUTBMS7zJdzJLO+pxfUNwHU=;
+  b=RErB78zCZTtMF0qKFVzjp34MtiTVq+23e3+QOF+VccGd/IV2V12FSVag
+   N74VPA+MxbkrTV8WqCaeB/Bnzctw1JTQwJRyHfYg342eIXjJQ/8aBcei1
+   UoDPIQiItiEcbBY6xs9rbV3ShQJY2g16JwhUKpxXqy2t7h+GuBWrBWyat
+   ccrZJkpyTdqV/O2alOTufU23LJ+nZpThGWT+6WUo4Tp1+7b8fmsuiAKZ5
+   pLZjwn7bDKyi7VOAEdxmzpXges33OIA7nZ3sKsrbsyBY2x8hk29aC68Np
+   KLqnU1UziDMgKMAEEoQNPS/MYDlSrapXYPg3FuGfPTKcFOsX9ZczI0arG
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
+   d="scan'208";a="29329245"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 10:38:50 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 27 Feb 2023 10:38:50 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 10:38:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1677490730; x=1709026730;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=OyY50N72D82Tv2zs2wQqlUTBMS7zJdzJLO+pxfUNwHU=;
+  b=RILWy93ac5ukrkbXdKEVD9XfNVQvhE7xx0BY751VHHh/eK9mOeBQ+HOt
+   /8wu2ZOEaC5R2F29XmbWoHHuxcGW4FhHb2UvUEecMQ0EMzk5F+BUKJoFJ
+   yfHSQIpxFXMMQbuRRsWAiSUlTOk7Aeegbc6Is+2jtR92dDqBzv0QsZRpn
+   blFIsUM2SUx/nHFA50I2nv2QnHI8GRWgKkf67ijZWntKL7z5LfEhWO3RL
+   nY2/A9ori/9jT0E5i3d17PBDK0REfNdfsMvT+/H5th2DEqlHS7JA3Gaai
+   4E0aKokmS9GGluM+wBeidnUzr/4w3sWtsV1tisPlXVYVfTEv0y+ig02hj
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
+   d="scan'208";a="29329244"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 27 Feb 2023 10:38:50 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 30651280056;
+        Mon, 27 Feb 2023 10:38:50 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH V1] arm64:dts:qcom:sc7280: mark memory of PCIe as cache coherent
-Date:   Mon, 27 Feb 2023 15:06:15 +0530
-Message-Id: <1677490575-29092-1-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hv5wk8APxsiR4odzxFP3I-ezSliRXOvh
-X-Proofpoint-ORIG-GUID: hv5wk8APxsiR4odzxFP3I-ezSliRXOvh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-26_22,2023-02-24_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- bulkscore=0 clxscore=1011 phishscore=0 mlxscore=0 mlxlogscore=653
- priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302270074
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Subject: [PATCH 1/1] arm64: dts: imx93: add missing tpm pwm instances
+Date:   Mon, 27 Feb 2023 10:38:46 +0100
+Message-Id: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,27 +84,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark the PCIe node as dma-coherent as the devices on PCIe bus are
-cache coherent.
+TPM1/TPM3 are missing, add them.
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index bdcb749..8f4ab6b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2131,6 +2131,8 @@
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pcie1_clkreq_n>;
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index 2076f9c9983a..a30c5d5f4d13 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -153,6 +153,14 @@ system_counter: timer@44290000 {
+ 				nxp,no-divider;
+ 			};
  
-+			dma-coherent;
++			tpm1: pwm@44310000 {
++				compatible = "fsl,imx7ulp-pwm";
++				reg = <0x44310000 0x1000>;
++				clocks = <&clk IMX93_CLK_TPM1_GATE>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
 +
- 			iommus = <&apps_smmu 0x1c80 0x1>;
+ 			tpm2: pwm@44320000 {
+ 				compatible = "fsl,imx7ulp-pwm";
+ 				reg = <0x44320000 0x10000>;
+@@ -316,6 +324,14 @@ mu2: mailbox@42440000 {
+ 				status = "disabled";
+ 			};
  
- 			iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
++			tpm3: pwm@424e0000 {
++				compatible = "fsl,imx7ulp-pwm";
++				reg = <0x424e0000 0x1000>;
++				clocks = <&clk IMX93_CLK_TPM3_GATE>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
++
+ 			tpm4: pwm@424f0000 {
+ 				compatible = "fsl,imx7ulp-pwm";
+ 				reg = <0x424f0000 0x10000>;
 -- 
-2.7.4
+2.34.1
 
