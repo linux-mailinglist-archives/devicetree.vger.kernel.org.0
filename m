@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F1F46A3B57
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 07:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFDE6A3B61
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 07:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjB0Gpr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 Feb 2023 01:45:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48394 "EHLO
+        id S229725AbjB0Gvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 01:51:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjB0Gpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 01:45:46 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A0710AB1;
-        Sun, 26 Feb 2023 22:45:44 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id BC51724E2B1;
-        Mon, 27 Feb 2023 14:45:36 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Feb
- 2023 14:45:36 +0800
-Received: from [192.168.125.128] (113.72.145.171) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Feb
- 2023 14:45:35 +0800
-Message-ID: <2b79e1ac-3399-075d-1d1d-e6d7f88351fc@starfivetech.com>
-Date:   Mon, 27 Feb 2023 14:45:52 +0800
+        with ESMTP id S229451AbjB0Gve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 01:51:34 -0500
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8839199C1;
+        Sun, 26 Feb 2023 22:51:32 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id nv15so3812788qvb.7;
+        Sun, 26 Feb 2023 22:51:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=e9PqkTbJaR86+QlcX21Wyd3bjpVVjfCGk3M4h3+4pBI=;
+        b=a8Wqgs1ARiiBpDLloMPmNL03xLIYEsr+6kL7+pbPCNVAdz1E2GGdoO1m/RpGomrHbu
+         g6cTHbVPv2ofyfn3GTZqWIPTSH680jQxwi2nVxEmPDJ6aDMjFIevGsrIw8kFXmw0IULE
+         Fre1vRLYbckTD4H44jwyzAArcB89pbB4/MnMy8v9Ku84aLU8b2lMh8ZLJ6wDYMN6nMNP
+         q+YHC0BPR/m42ZyJQUYmzc1zBoLY4BTGTCrZXITUdxDHap5enwrjDwtd/xKdKe9qPK4U
+         kmwRru4VanzzV3jpb3XfbEjV4HbyMJHxG+7qV+AIdL7fhYFGhYYVoLbe8XVV45bZenyo
+         r47g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e9PqkTbJaR86+QlcX21Wyd3bjpVVjfCGk3M4h3+4pBI=;
+        b=DCF8jiUypOUbBnh8oEKxrtnMPKglLpeTtKsoAEo+kuHb6KtKOlVTBG48utsB4oiaae
+         R+GLoCzQOaPL48/MFIslA6WF/V7OhEqix5ss9BDz8B7KL102SqgMkZCrWuhTYXRxGlqr
+         05XDIwPB0v8+nS0w22b1lnPWkb/oH0VNJV6s0tp7Z6cPyIY08nDZ/x2nmuyUqg9hrE53
+         k+muE8dkQ3Y+6gqdCeIDO9F45O6TD7NVWIqVJdyfI1izMLbfLOUbwXBLGlmySgHAEViP
+         +OXhzUazsBm5RW70ePxwJ+F6xF6Gvdw7GX9ZcXHWbwRz6c3Xi3ARwf0dBh6Jth3bfTdw
+         GXsg==
+X-Gm-Message-State: AO0yUKWAyPKBDaiRwJW+49u10cTk5IReuhh3ZFa2qi27Vq0ioWT6vnaq
+        9HydEtf6WfeoEVwkFXJsm5k=
+X-Google-Smtp-Source: AK7set+pafXleWx2C7srXpVxsdHlo3G8CEbLurP102ktjIm0oy14tIF2XKYYJRN9EQNkEPe0/t77ZQ==
+X-Received: by 2002:a05:6214:528d:b0:537:727f:ac28 with SMTP id kj13-20020a056214528d00b00537727fac28mr43231738qvb.27.1677480691249;
+        Sun, 26 Feb 2023 22:51:31 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:319d:ae28:d693:d868? ([2600:1700:2442:6db0:319d:ae28:d693:d868])
+        by smtp.gmail.com with ESMTPSA id bm28-20020a05620a199c00b007296805f607sm4421917qkb.17.2023.02.26.22.51.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Feb 2023 22:51:30 -0800 (PST)
+Message-ID: <af2a6686-ea35-e5fc-7541-27e5d6ca9311@gmail.com>
+Date:   Mon, 27 Feb 2023 00:51:29 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
 Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-3-xingyu.wu@starfivetech.com>
- <20230223182341.GA200380@roeck-us.net>
- <8ba002ea-299c-2eaf-b1a7-d7d38a540152@starfivetech.com>
- <ae998eb6-54ce-05c4-2961-bdb2393eac64@roeck-us.net>
- <58cab864-2a59-b82c-bdfe-2e805a04fd7a@starfivetech.com>
- <547a469d-eeaa-750c-4fe5-cc82d92493a6@roeck-us.net>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <547a469d-eeaa-750c-4fe5-cc82d92493a6@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [113.72.145.171]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, helgaas@kernel.org
+Cc:     clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
+        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
+        trix@redhat.com
+References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,81 +77,263 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/2/27 14:36, Guenter Roeck wrote:
-> On 2/26/23 22:26, Xingyu Wu wrote:
->> On 2023/2/24 23:18, Guenter Roeck wrote:
->>> On 2/23/23 23:42, Xingyu Wu wrote:
->>>> On 2023/2/24 2:23, Guenter Roeck wrote:
->>>>> On Mon, Feb 20, 2023 at 04:19:26PM +0800, Xingyu Wu wrote:
->>>>>> [...]
->>>>>> +
->>>>>> +    wdt->wdt_device.min_timeout = 1;
->>>>>> +    wdt->wdt_device.max_timeout = starfive_wdt_max_timeout(wdt);
->>>>>
->>>>>      wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
->>>>>
->>>>> should be set here. Otherwise the warning below would always be seen
->>>>> if the module parameter is not set.
->>>>>
->>>>>> +
->>>>>> +    watchdog_set_drvdata(&wdt->wdt_device, wdt);
->>>>>> +
->>>>>> +    /*
->>>>>> +     * see if we can actually set the requested heartbeat,
->>>>>> +     * and if not, try the default value.
->>>>>> +     */
->>>>>> +    watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev);
->>>>>> +    if (wdt->wdt_device.timeout == 0 ||
->>>>>
->>>>> If wdt->wdt_device.timeout is pre-initialized, it will never be 0 here.
->>>>>
->>>>>> +        wdt->wdt_device.timeout > wdt->wdt_device.max_timeout) {
->>>>>
->>>>> That won't happen because watchdog_init_timeout() validates it and does
->>>>> not update the value if it is out of range.
->>>>>
->>>>>> +        dev_warn(dev, "heartbeat value out of range, default %d used\n",
->>>>>> +             STARFIVE_WDT_DEFAULT_TIME);
->>>>>> +        wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
->>>>>
->>>>> And this is then unnecessary. wdt->wdt_device.timeout will always be
->>>>> valid if it was pre-initialized.
->>>>
->>>> It is changed to be this at beginning of the driver:
->>>>
->>>> static int heartbeat = STARFIVE_WDT_DEFAULT_TIME;
->>>>
->>>
->>> No, this is wrong. The static variable should be set to 0 to indicate
->>> "use default".
->>>
->>>> and it is changed to be this here:
->>>>
->>>> ret = watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev);
->>>> if (ret)
->>>>      return ret;
->>>>
->>>> Would that be better?
->>>>
->>>
->>> No, it is worse, because it would not instantiate the watchdog at all
->>> if a bad heartbeat is provided.
->>>
->>
->> So instantiate the watchdog with hearbeat first. And if this wrong, use default timeout.
->> :
->> if (watchdog_init_timeout(&wdt->wdt_device, heartbeat, dev))
->>     wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
->>
+On 1/19/23 21:02, Lizhi Hou wrote:
+> This patch series introduces OF overlay support for PCI devices which
+> primarily addresses two use cases. First, it provides a data driven method
+> to describe hardware peripherals that are present in a PCI endpoint and
+> hence can be accessed by the PCI host. Second, it allows reuse of a OF
+> compatible driver -- often used in SoC platforms -- in a PCI host based
+> system.
 > 
-> I am kind of lost why you have to make it that complicated.
-> Just pre-initialize wdt->wdt_device.timeout like all the other drivers do,
-> and as I had suggested earlier.
+> There are 2 series devices rely on this patch:
+> 
+>   1) Xilinx Alveo Accelerator cards (FPGA based device)
+>   2) Microchip LAN9662 Ethernet Controller
+> 
+>      Please see: https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
 > 
 
-So you mean just use :
-wdt->wdt_device.timeout = STARFIVE_WDT_DEFAULT_TIME;
-to initialize watchdog directly?
 
-Best regards,
-Xingyu Wu
+> Normally, the PCI core discovers PCI devices and their BARs using the
+> PCI enumeration process. However, the process does not provide a way to
+> discover the hardware peripherals that are present in a PCI device, and
+> which can be accessed through the PCI BARs. Also, the enumeration process
+
+I'm confused.  The PCI Configuration Header Registers should describe the
+hardware on the PCI card.
+
+Ignoring case 1 above _for the moment_ (FPGA devices are a world unto
+themselves, so I would like to analyze that case separately), does the
+second device, "Microchip LAN9662 Ethernet Controller" properly implement
+the PCI Configuration Header Registers?  What additional information is
+needed that is not provided in those registers?
+
+-Frank
+
+> does not provide a way to associate MSI-X vectors of a PCI device with the
+> hardware peripherals that are present in the device. PCI device drivers
+> often use header files to describe the hardware peripherals and their
+> resources as there is no standard data driven way to do so. This patch
+> series proposes to use flattened device tree blob to describe the
+> peripherals in a data driven way. Based on previous discussion, using
+> device tree overlay is the best way to unflatten the blob and populate
+> platform devices. To use device tree overlay, there are three obvious
+> problems that need to be resolved.
+> 
+> First, we need to create a base tree for non-DT system such as x86_64. A
+> patch series has been submitted for this:
+> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
+> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
+> 
+> Second, a device tree node corresponding to the PCI endpoint is required
+> for overlaying the flattened device tree blob for that PCI endpoint.
+> Because PCI is a self-discoverable bus, a device tree node is usually not
+> created for PCI devices. This series adds support to generate a device
+> tree node for a PCI device which advertises itself using PCI quirks
+> infrastructure.
+> 
+> Third, we need to generate device tree nodes for PCI bridges since a child
+> PCI endpoint may choose to have a device tree node created.
+> 
+> This patch series is made up of three patches.
+> 
+> The first patch is adding OF interface to create or destroy OF node
+> dynamically.
+> 
+> The second patch introduces a kernel option, CONFIG_DYNAMIC_PCI_OF_NODEX.
+> When the option is turned on, the kernel will generate device tree nodes
+> for all PCI bridges unconditionally. The patch also shows how to use the
+> PCI quirks infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device
+> tree node for a device. Specifically, the patch generates a device tree
+> node for Xilinx Alveo U50 PCIe accelerator device. The generated device
+> tree nodes do not have any property.
+> 
+> The third patch adds basic properties ('reg', 'compatible' and
+> 'device_type') to the dynamically generated device tree nodes. More
+> properties can be added in the future.
+> 
+> Here is the example of device tree nodes generated within the ARM64 QEMU.
+> # lspci -t    
+> -[0000:00]-+-00.0
+>            +-01.0-[01]--
+>            +-01.1-[02]----00.0
+>            +-01.2-[03]----00.0
+>            +-01.3-[04]----00.0
+>            +-01.4-[05]----00.0
+>            +-01.5-[06]--
+>            +-01.6-[07]--
+>            +-01.7-[08]--
+>            +-02.0-[09-0b]----00.0-[0a-0b]----00.0-[0b]--+-00.0
+>            |                                            \-00.1
+>            +-02.1-[0c]--
+>            \-03.0-[0d-0e]----00.0-[0e]----01.0
+> 
+> # tree /sys/firmware/devicetree/base/pcie\@10000000
+> /sys/firmware/devicetree/base/pcie@10000000
+> |-- #address-cells
+> |-- #interrupt-cells
+> |-- #size-cells
+> |-- bus-range
+> |-- compatible
+> |-- device_type
+> |-- dma-coherent
+> |-- interrupt-map
+> |-- interrupt-map-mask
+> |-- linux,pci-domain
+> |-- msi-parent
+> |-- name
+> |-- pci@1,0
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,1
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,2
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,3
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,4
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,5
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,6
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,7
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@2,0
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- pci@0,0
+> |   |   |-- #address-cells
+> |   |   |-- #size-cells
+> |   |   |-- compatible
+> |   |   |-- device_type
+> |   |   |-- pci@0,0
+> |   |   |   |-- #address-cells
+> |   |   |   |-- #size-cells
+> |   |   |   |-- compatible
+> |   |   |   |-- dev@0,0
+> |   |   |   |   |-- compatible
+> |   |   |   |   `-- reg
+> |   |   |   |-- dev@0,1
+> |   |   |   |   |-- compatible
+> |   |   |   |   `-- reg
+> |   |   |   |-- device_type
+> |   |   |   |-- ranges
+> |   |   |   `-- reg
+> |   |   |-- ranges
+> |   |   `-- reg
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@2,1
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@3,0
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- pci@0,0
+> |   |   |-- #address-cells
+> |   |   |-- #size-cells
+> |   |   |-- compatible
+> |   |   |-- device_type
+> |   |   |-- ranges
+> |   |   `-- reg
+> |   |-- ranges
+> |   `-- reg
+> |-- ranges
+> `-- reg
+> 
+> Changes since v6:
+> - Removed single line wrapper functions
+> - Added Signed-off-by Clément Léger <clement.leger@bootlin.com>
+> 
+> Changes since v5:
+> - Fixed code review comments
+> - Fixed incorrect 'ranges' and 'reg' properties and verified address
+>   translation.
+> 
+> Changes since RFC v4:
+> - Fixed code review comments
+> 
+> Changes since RFC v3:
+> - Split the Xilinx Alveo U50 PCI quirk to a separate patch
+> - Minor changes in commit description and code comment
+> 
+> Changes since RFC v2:
+> - Merged patch 3 with patch 2
+> - Added OF interfaces of_changeset_add_prop_* and use them to create
+>   properties.
+> - Added '#address-cells', '#size-cells' and 'ranges' properties.
+> 
+> Changes since RFC v1:
+> - Added one patch to create basic properties.
+> - To move DT related code out of PCI subsystem, replaced of_node_alloc()
+>   with of_create_node()/of_destroy_node()
+> 
+> Lizhi Hou (3):
+>   of: dynamic: Add interfaces for creating device node dynamically
+>   PCI: Create device tree node for selected devices
+>   PCI: Add PCI quirks to generate device tree node for Xilinx Alveo U50
+> 
+>  drivers/of/dynamic.c        | 197 +++++++++++++++++++++++++++++++++
+>  drivers/pci/Kconfig         |  12 ++
+>  drivers/pci/Makefile        |   1 +
+>  drivers/pci/bus.c           |   2 +
+>  drivers/pci/msi/irqdomain.c |   6 +-
+>  drivers/pci/of.c            |  71 ++++++++++++
+>  drivers/pci/of_property.c   | 212 ++++++++++++++++++++++++++++++++++++
+>  drivers/pci/pci-driver.c    |   3 +-
+>  drivers/pci/pci.h           |  19 ++++
+>  drivers/pci/quirks.c        |  11 ++
+>  drivers/pci/remove.c        |   1 +
+>  include/linux/of.h          |  24 ++++
+>  12 files changed, 556 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/pci/of_property.c
+> 
+
