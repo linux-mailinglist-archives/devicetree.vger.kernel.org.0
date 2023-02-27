@@ -2,259 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 216846A4CA4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 22:00:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DD996A4C7A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbjB0VAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 16:00:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40038 "EHLO
+        id S229732AbjB0Uwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 15:52:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjB0VAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 16:00:33 -0500
-X-Greylist: delayed 420 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 27 Feb 2023 13:00:27 PST
-Received: from smtprelay04.ispgateway.de (smtprelay04.ispgateway.de [80.67.31.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47AF82528D;
-        Mon, 27 Feb 2023 13:00:27 -0800 (PST)
-Received: from [92.206.161.29] (helo=note-book.lan)
-        by smtprelay04.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <git@apitzsch.eu>)
-        id 1pWkSL-0006TA-3S; Mon, 27 Feb 2023 21:50:45 +0100
-From:   =?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>
-To:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>
-Subject: [PATCH 2/2] Input: atmel_mxt_ts - support capacitive keys
-Date:   Mon, 27 Feb 2023 21:50:35 +0100
-Message-Id: <20230227205035.18551-2-git@apitzsch.eu>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230227205035.18551-1-git@apitzsch.eu>
-References: <20230227205035.18551-1-git@apitzsch.eu>
+        with ESMTP id S229471AbjB0Uwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:52:32 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BEA424C81;
+        Mon, 27 Feb 2023 12:52:31 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id t22so6280104oiw.12;
+        Mon, 27 Feb 2023 12:52:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1IO0sBucNdWhZTvHKKkXibO8za6vlePhK4sUIcE5pvE=;
+        b=rLdfV+f0SrVanHMjHdJ0xD6V1jNO76tADIVfB7GAeU69p2RyF8PeDtDE2iUL64pWpP
+         SMKleRerJ1OYHCSzuAV++zycy1PHV1j3/RPRg7RxoO5LbhnWsYosAdPV0e22v/kjYAC9
+         aLxdFS6lWDjX5ZH02IkoAvFvgyjSvCVMC6RMYRMKJlgFpMeChilXVa2bvgXIZVvXjKYh
+         n0I3PmbAbvBKcgkcVyKZDb477KrpkNBWEz1QoESVJdiew5T2mluzmdROH44A9wOrQWXG
+         zCctzyGmUL0fbK2CGrsf7Jk5uIFDqYskejikgm4mPoK4D3l6X+Jm8VtKE7f8y5lVW43U
+         lvnQ==
+X-Gm-Message-State: AO0yUKU0DvEYjjGcUDX39LGbKW8GdfXtyMuE4XNFx/P0nmkIWwlv8Ij9
+        1mqCY9VLCYByZW83RBZC5X+JxL4BLQ==
+X-Google-Smtp-Source: AK7set9tiuyo+JLiUNfNjG4cswyI/NX7Fs2lfJdk7bR1wtltnPuv7VveV/ORSiio5JbdRdOdZyls9w==
+X-Received: by 2002:a05:6808:60a:b0:37f:ab79:a198 with SMTP id y10-20020a056808060a00b0037fab79a198mr234978oih.27.1677531150184;
+        Mon, 27 Feb 2023 12:52:30 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j126-20020acab984000000b00369a721732asm3546861oif.41.2023.02.27.12.52.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Feb 2023 12:52:29 -0800 (PST)
+Received: (nullmailer pid 894886 invoked by uid 1000);
+        Mon, 27 Feb 2023 20:52:29 -0000
+Date:   Mon, 27 Feb 2023 14:52:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, xu.yang_2@nxp.com,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V3 1/7] dt-bindings: usb: usbmisc-imx: convert to DT
+ schema
+Message-ID: <20230227205229.GA880857-robh@kernel.org>
+References: <20230226130539.277336-1-peng.fan@oss.nxp.com>
+ <20230226130539.277336-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230226130539.277336-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for touch keys found in some Atmel touch controller
-configurations.
+On Sun, Feb 26, 2023 at 09:05:33PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Convert usbmisc-imx to DT schema format.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/usb/fsl,usbmisc.yaml  | 54 +++++++++++++++++++
+>  .../devicetree/bindings/usb/usbmisc-imx.txt   | 19 -------
+>  2 files changed, 54 insertions(+), 19 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+> new file mode 100644
+> index 000000000000..517390b9d2c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/fsl,usbmisc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX wrapper module for Chipidea USB2 controller
+> +
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx6q-usbmisc
+> +          - fsl,imx7ulp-usbmisc
+> +          - fsl,vf610-usbmisc
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6ul-usbmisc
+> +              - fsl,imx6sx-usbmisc
+> +              - fsl,imx7d-usbmisc
+> +          - const: fsl,imx6q-usbmisc
+> +      - items:
+> +          - enum:
+> +              - fsl,imx7ulp-usbmisc
+> +              - fsl,imx8mm-usbmisc
+> +          - const: fsl,imx7d-usbmisc
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/input/touchscreen/atmel_mxt_ts.c | 85 ++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
+So imx8mm is compatible with imx7d, and imx7d is compatible with imx6q, 
+but imx8mm is not compatible with imx6q? That doesn't really make sense. 
+Maybe all 3 compatibles makes sense, but only if s/w understanding only 
+one of the fallback compatibles would function without knowledge of the 
+newer h/w.
 
-diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
-index 996bf434e1cb..eb368dd1abf0 100644
---- a/drivers/input/touchscreen/atmel_mxt_ts.c
-+++ b/drivers/input/touchscreen/atmel_mxt_ts.c
-@@ -55,6 +55,7 @@
- #define MXT_TOUCH_KEYARRAY_T15		15
- #define MXT_TOUCH_PROXIMITY_T23		23
- #define MXT_TOUCH_PROXKEY_T52		52
-+#define MXT_TOUCH_PTC_KEYS_T97		97
- #define MXT_PROCI_GRIPFACE_T20		20
- #define MXT_PROCG_NOISE_T22		22
- #define MXT_PROCI_ONETOUCH_T24		24
-@@ -326,9 +327,13 @@ struct mxt_data {
- 	u16 T71_address;
- 	u8 T9_reportid_min;
- 	u8 T9_reportid_max;
-+	u8 T15_reportid_min;
-+	u8 T15_reportid_max;
- 	u16 T18_address;
- 	u8 T19_reportid;
- 	u16 T44_address;
-+	u8 T97_reportid_min;
-+	u8 T97_reportid_max;
- 	u8 T100_reportid_min;
- 	u8 T100_reportid_max;
- 
-@@ -344,6 +349,9 @@ struct mxt_data {
- 	u32 *t19_keymap;
- 	unsigned int t19_num_keys;
- 
-+	u32 *t15_keymap;
-+	unsigned int t15_num_keys;
-+
- 	enum mxt_suspend_mode suspend_mode;
- 
- 	u32 wakeup_method;
-@@ -375,6 +383,7 @@ static bool mxt_object_readable(unsigned int type)
- 	case MXT_TOUCH_KEYARRAY_T15:
- 	case MXT_TOUCH_PROXIMITY_T23:
- 	case MXT_TOUCH_PROXKEY_T52:
-+	case MXT_TOUCH_PTC_KEYS_T97:
- 	case MXT_TOUCH_MULTITOUCHSCREEN_T100:
- 	case MXT_PROCI_GRIPFACE_T20:
- 	case MXT_PROCG_NOISE_T22:
-@@ -891,6 +900,25 @@ static void mxt_proc_t9_message(struct mxt_data *data, u8 *message)
- 	data->update_input = true;
- }
- 
-+static void mxt_proc_t15_messages(struct mxt_data *data, u8 *message)
-+{
-+	struct input_dev *input_dev = data->input_dev;
-+	unsigned long keystates = get_unaligned_le32(&message[2]);
-+	int key;
-+
-+	for (key = 0; key < data->t15_num_keys; key++) {
-+		input_report_key(input_dev, data->t15_keymap[key],
-+			!!(keystates & BIT(key)));
-+	}
-+
-+	data->update_input = true;
-+}
-+
-+static void mxt_proc_t97_messages(struct mxt_data *data, u8 *message)
-+{
-+	mxt_proc_t15_messages(data, message);
-+}
-+
- static void mxt_proc_t100_message(struct mxt_data *data, u8 *message)
- {
- 	struct device *dev = &data->client->dev;
-@@ -1017,6 +1045,12 @@ static int mxt_proc_message(struct mxt_data *data, u8 *message)
- 	} else if (report_id >= data->T9_reportid_min &&
- 		   report_id <= data->T9_reportid_max) {
- 		mxt_proc_t9_message(data, message);
-+	} else if (report_id >= data->T15_reportid_min &&
-+		   report_id <= data->T15_reportid_max) {
-+		mxt_proc_t15_messages(data, message);
-+	} else if (report_id >= data->T97_reportid_min &&
-+		   report_id <= data->T97_reportid_max) {
-+		mxt_proc_t97_messages(data, message);
- 	} else if (report_id >= data->T100_reportid_min &&
- 		   report_id <= data->T100_reportid_max) {
- 		mxt_proc_t100_message(data, message);
-@@ -1689,9 +1723,13 @@ static void mxt_free_object_table(struct mxt_data *data)
- 	data->T71_address = 0;
- 	data->T9_reportid_min = 0;
- 	data->T9_reportid_max = 0;
-+	data->T15_reportid_min = 0;
-+	data->T15_reportid_max = 0;
- 	data->T18_address = 0;
- 	data->T19_reportid = 0;
- 	data->T44_address = 0;
-+	data->T97_reportid_min = 0;
-+	data->T97_reportid_max = 0;
- 	data->T100_reportid_min = 0;
- 	data->T100_reportid_max = 0;
- 	data->max_reportid = 0;
-@@ -1764,6 +1802,10 @@ static int mxt_parse_object_table(struct mxt_data *data,
- 						object->num_report_ids - 1;
- 			data->num_touchids = object->num_report_ids;
- 			break;
-+		case MXT_TOUCH_KEYARRAY_T15:
-+			data->T15_reportid_min = min_id;
-+			data->T15_reportid_max = max_id;
-+			break;
- 		case MXT_SPT_COMMSCONFIG_T18:
- 			data->T18_address = object->start_address;
- 			break;
-@@ -1773,6 +1815,10 @@ static int mxt_parse_object_table(struct mxt_data *data,
- 		case MXT_SPT_GPIOPWM_T19:
- 			data->T19_reportid = min_id;
- 			break;
-+		case MXT_TOUCH_PTC_KEYS_T97:
-+			data->T97_reportid_min = min_id;
-+			data->T97_reportid_max = max_id;
-+			break;
- 		case MXT_TOUCH_MULTITOUCHSCREEN_T100:
- 			data->multitouch = MXT_TOUCH_MULTITOUCHSCREEN_T100;
- 			data->T100_reportid_min = min_id;
-@@ -2050,6 +2096,7 @@ static int mxt_initialize_input_device(struct mxt_data *data)
- 	int error;
- 	unsigned int num_mt_slots;
- 	unsigned int mt_flags = 0;
-+	int i;
- 
- 	switch (data->multitouch) {
- 	case MXT_TOUCH_MULTI_T9:
-@@ -2095,6 +2142,10 @@ static int mxt_initialize_input_device(struct mxt_data *data)
- 	input_dev->open = mxt_input_open;
- 	input_dev->close = mxt_input_close;
- 
-+	input_dev->keycode = data->t15_keymap;
-+	input_dev->keycodemax = data->t15_num_keys;
-+	input_dev->keycodesize = sizeof(data->t15_keymap[0]);
-+
- 	input_set_capability(input_dev, EV_KEY, BTN_TOUCH);
- 
- 	/* For single touch */
-@@ -2162,6 +2213,12 @@ static int mxt_initialize_input_device(struct mxt_data *data)
- 				     0, 255, 0, 0);
- 	}
- 
-+	/* For T15 and T97 Key Array */
-+	if (data->T15_reportid_min || data->T97_reportid_min) {
-+		for (i = 0; i < data->t15_num_keys; i++)
-+			input_set_capability(input_dev, EV_KEY, data->t15_keymap[i]);
-+	}
-+
- 	input_set_drvdata(input_dev, data);
- 
- 	error = input_register_device(input_dev);
-@@ -3080,8 +3137,10 @@ static void mxt_input_close(struct input_dev *dev)
- static int mxt_parse_device_properties(struct mxt_data *data)
- {
- 	static const char keymap_property[] = "linux,gpio-keymap";
-+	static const char buttons_property[] = "linux,keycodes";
- 	struct device *dev = &data->client->dev;
- 	u32 *keymap;
-+	u32 *buttonmap;
- 	int n_keys;
- 	int error;
- 
-@@ -3111,6 +3170,32 @@ static int mxt_parse_device_properties(struct mxt_data *data)
- 		data->t19_num_keys = n_keys;
- 	}
- 
-+	if (device_property_present(dev, buttons_property)) {
-+		n_keys = device_property_count_u32(dev, buttons_property);
-+		if (n_keys <= 0) {
-+			error = n_keys < 0 ? n_keys : -EINVAL;
-+			dev_err(dev, "invalid/malformed '%s' property: %d\n",
-+				buttons_property, error);
-+			return error;
-+		}
-+
-+		buttonmap = devm_kmalloc_array(dev, n_keys, sizeof(*buttonmap),
-+					       GFP_KERNEL);
-+		if (!buttonmap)
-+			return -ENOMEM;
-+
-+		error = device_property_read_u32_array(dev, buttons_property,
-+						       buttonmap, n_keys);
-+		if (error) {
-+			dev_err(dev, "failed to parse '%s' property: %d\n",
-+				buttons_property, error);
-+			return error;
-+		}
-+
-+		data->t15_keymap = buttonmap;
-+		data->t15_num_keys = n_keys;
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.39.2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#index-cells':
+> +    const: 1
+> +    description: Cells used to describe usb controller index.
 
+Please mark this as deprecated. If it is always 1 cell, then there's no 
+point. 
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#index-cells'
+
+And drop as required. That all can be a follow-up patch if you prefer or 
+in this patch is fine. Primarily, I don't want this pattern copied.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    usbmisc@2184800 {
+> +        #index-cells = <1>;
+> +        compatible = "fsl,imx6q-usbmisc";
+> +        reg = <0x02184800 0x200>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt b/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
+> deleted file mode 100644
+> index 29b8f65ff849..000000000000
+> --- a/Documentation/devicetree/bindings/usb/usbmisc-imx.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -* Freescale i.MX non-core registers
+> -
+> -Required properties:
+> -- #index-cells: Cells used to describe usb controller index. Should be <1>
+> -- compatible: Should be one of below:
+> -	"fsl,imx6q-usbmisc" for imx6q
+> -	"fsl,vf610-usbmisc" for Vybrid vf610
+> -	"fsl,imx6sx-usbmisc" for imx6sx
+> -	"fsl,imx7d-usbmisc" for imx7d
+> -	"fsl,imx7ulp-usbmisc" for imx7ulp
+> -	"fsl,imx8mm-usbmisc" for imx8mm
+> -- reg: Should contain registers location and length
+> -
+> -Examples:
+> -usbmisc@2184800 {
+> -	#index-cells = <1>;
+> -	compatible = "fsl,imx6q-usbmisc";
+> -	reg = <0x02184800 0x200>;
+> -};
+> -- 
+> 2.37.1
+> 
