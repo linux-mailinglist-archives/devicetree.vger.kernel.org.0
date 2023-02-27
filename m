@@ -2,142 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80CC46A4C09
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:11:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD596A4C16
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:15:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjB0ULr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 15:11:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58596 "EHLO
+        id S229615AbjB0UPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 15:15:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbjB0ULq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:11:46 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBB286B9;
-        Mon, 27 Feb 2023 12:11:45 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 214B280EB1;
-        Mon, 27 Feb 2023 21:11:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1677528703;
-        bh=HHhhNiiFFM6pJEYBbaLex7pnt0KsSv9LmdqUwbAIwk0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TXb/yCiVJLpdxJy2Qpl4WNlF0PnqG3X3ZT7PAabeoF2fWRAn+RIgU553qDJjNCz4T
-         ev8EmLQU7nMZtjkxyY81lXB3MKZrKJ3lN9YIDtsGtNtMcMY1Xl6zljshZ9IK17DnlV
-         lAGaqFPO8CbeUI2Hcmi8Rea9QxYR/2gKyJBqYFY1r0yy0EBS0jEEhhKdIA7cl6LDMQ
-         KDryQy7OeWSMzFyJY4WWAAnfmmZpPdj//63p5GLtkaJo0pghwyT3Wou7K+lfHZnB2X
-         mkNmf3fnyxA9CxHMlq9CEGxEeGx9BgHPC8/3EJPoXr9ow0J6UCctorfaz/9QGGhi0F
-         nda7zZ9jzwfTA==
-Message-ID: <be5edd33-31e4-695b-ff72-7a0dca3470e7@denx.de>
-Date:   Mon, 27 Feb 2023 21:11:41 +0100
+        with ESMTP id S229592AbjB0UPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:15:49 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A306222F8
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 12:15:48 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id y15-20020a17090aa40f00b00237ad8ee3a0so7388431pjp.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 12:15:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112; t=1677528948;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=YpnEvE+/SdK2xJYvrmI9miffWQyVUk2OmaUWCwQjPNM=;
+        b=kXy56jY9p7bAWNqFFALBb24FnzbQGn6ZN6MQ9bLHtAa3gAZmLWxRz7gmHynTxlT7jF
+         vk+LeSSfHaCfQGJyTh/frxpZNKowih6hyyLck1oeydJLhGPV4vCW+TT2/ZKTyZ09xyMe
+         A66a5VyUKjs1XUG4pWFgCc2OpS2Iy3vtoxOZTBDGi6es0pvvhsTG7KiDNxTXl4sARQQy
+         liP+ZebAVXXVd3hi4BhMnbDsMi1noQ92rgBhGGe9FGbAeoYboLgp512cEEtqMHDZt5q5
+         LEwbCiZRloRYStzbNmIZsJba2Yqx44SkK+zRqvgitOiRhSWydvyFCpDLRYRrBy0G9cvV
+         S70A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677528948;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YpnEvE+/SdK2xJYvrmI9miffWQyVUk2OmaUWCwQjPNM=;
+        b=O/MGS7pvIxSgsGTs7ZhNdl95XJ9dc6oHRBMA5RdZcW/qjjo8gyDRsk0uz+HUaXz+8n
+         iimD+KCSY6aNSX/55dSm3iP2k2QT9IWFDUsz85kxoP6Po5hsKbIZU8VxyBSZHsd+gyKr
+         s77ebWclDUXS5fd/AU4EOW5hAlmI7kQdfwa+q9LV7YGkM+1dPC9w0fnPXwZxPuYSCfhL
+         fiB9nu6FNXX11vpiO77WPcXxf8JfFpvl5qi83f+GbOJwQsflgQHmJ4JzFIjtlcSejSAv
+         6kVNyv+yujm7fnUUoh6uAV6jSE3cmpVsbDjlKleFbQq3i3zXZ1wrlfSADEhvPQ/qZgMg
+         2DqA==
+X-Gm-Message-State: AO0yUKWpMM1lEnqOnoO2Wa/eMKdIah15XNqGURn5jJc4DtgFoQTE0oEJ
+        fpfQh9Ev9vjFYs+Re3svoEwjDzucrG7xz/6Nw/PnHQ==
+X-Google-Smtp-Source: AK7set+4+UusRDTWKUVqekIC00M9LlKWUPfOe10+UpN7ZNL7GUb5WQhWNHPeGvFb5PshqffBrr6OJiF/h70oCgv3vsM=
+X-Received: by 2002:a17:90a:ce12:b0:234:925b:7d61 with SMTP id
+ f18-20020a17090ace1200b00234925b7d61mr207698pju.9.1677528947405; Mon, 27 Feb
+ 2023 12:15:47 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: imx8mn: specify #sound-dai-cells for SAI
- nodes
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Abel Vesa <abelvesa@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
+References: <20230224195749.818282-1-sdalvi@google.com> <20230224195749.818282-2-sdalvi@google.com>
+ <b50ab99f-e307-3a66-9198-85a71b012e5e@linaro.org> <CAEbtx1k-7TJPcd3+cueRoKLJcoUQLfF6nfOQFVfzB0YCUrbtqg@mail.gmail.com>
+ <2e4964c1-0831-c156-3372-81a56f8d623e@linaro.org> <CAEbtx1=EGC+4LfSz+HqGzjJvF2O1vsB7a42ESTqbU8p5N-yUHg@mail.gmail.com>
+ <28c72c1a-df7d-db05-f32f-23b170b96db5@linaro.org> <80b17309-ec9c-8942-d901-7121bc936471@linaro.org>
+In-Reply-To: <80b17309-ec9c-8942-d901-7121bc936471@linaro.org>
+From:   Sajid Dalvi <sdalvi@google.com>
+Date:   Mon, 27 Feb 2023 14:15:36 -0600
+Message-ID: <CAEbtx1nmYwp-QJ_L-og+M=z-iQst53OtZeZOADGrQVcuhQGapQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: PCI: dwc: Add snps,skip-wait-link-up
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20230227174535.87657-1-marex@denx.de>
- <20230227190123.znifdqympsantpt6@pengutronix.de>
- <a519eb0b-dc40-deec-03d3-676648a52f15@denx.de>
- <20230227200039.ugmtvpli6gvux3fi@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230227200039.ugmtvpli6gvux3fi@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        kernel-team@android.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/27/23 21:00, Marco Felsch wrote:
-> On 23-02-27, Marek Vasut wrote:
->> On 2/27/23 20:01, Marco Felsch wrote:
->>> Hi Marek,
->>>
->>> On 23-02-27, Marek Vasut wrote:
->>>> Add #sound-dai-cells properties to SAI nodes.
->>>>
->>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>> ---
->>>> Cc: Abel Vesa <abelvesa@kernel.org>
->>>> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>> Cc: Fabio Estevam <festevam@gmail.com>
->>>> Cc: Jacky Bai <ping.bai@nxp.com>
->>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>>> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
->>>> Cc: Lucas Stach <l.stach@pengutronix.de>
->>>> Cc: Marco Felsch <m.felsch@pengutronix.de>
->>>> Cc: Michael Turquette <mturquette@baylibre.com>
->>>> Cc: NXP Linux Team <linux-imx@nxp.com>
->>>> Cc: Peng Fan <peng.fan@nxp.com>
->>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->>>> Cc: Richard Cochran <richardcochran@gmail.com>
->>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->>>> Cc: Shawn Guo <shawnguo@kernel.org>
->>>> Cc: Stephen Boyd <sboyd@kernel.org>
->>>> Cc: devicetree@vger.kernel.org
->>>> Cc: linux-arm-kernel@lists.infradead.org
->>>> Cc: linux-clk@vger.kernel.org
->>>> ---
->>>>    arch/arm64/boot/dts/freescale/imx8mn.dtsi | 5 +++++
->>>>    1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
->>>> index ed9ac6c5047c0..bbec860ef8548 100644
->>>> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
->>>> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
->>>> @@ -294,6 +294,7 @@ spba2: spba-bus@30000000 {
->>>>    				ranges;
->>>>    				sai2: sai@30020000 {
->>>> +					#sound-dai-cells = <0>;
->>>
->>> Please don't add it in front of the compatible and the reg property.
->>
->> The #address-cells and #size-cells are also always on top, why should the
->> #sound-dai-cells be any different ? Where should they be ?
-> 
-> As of now my understanding of specifying a devicetree node was:
-> 
-> node-name@reg-nr {
-> 	compatible = "";
-> 	reg = <>;
-> 	// all pending properties below
-> 	...
-> };
-> 
-> @Rob, @Krzysztof:
-> Is this a (unwritten) rule/policy?
-> 
-> Marekt please ignore my comment if this is not the case.
+Thanks Krzysztof.
+I will attempt to send a new patch to address the delay solely in the driver.
 
-Getting input from Rob/Krysztof is a good idea, thanks.
+Sajid
+
+On Sat, Feb 25, 2023 at 4:08 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 25/02/2023 11:00, Krzysztof Kozlowski wrote:
+> > On 24/02/2023 23:09, Sajid Dalvi wrote:
+> >> On Fri, Feb 24, 2023 at 3:29 PM Krzysztof Kozlowski
+> >> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>
+> >>> On 24/02/2023 22:27, Sajid Dalvi wrote:
+> >>>> On Fri, Feb 24, 2023 at 2:40 PM Krzysztof Kozlowski
+> >>>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>>
+> >>>>> On 24/02/2023 20:57, Sajid Dalvi wrote:
+> >>>>>> When the Root Complex is probed, the default behavior is to spin in a loop
+> >>>>>> waiting for the link to come up. In some systems the link is not brought up
+> >>>>>> during probe, but later in the context of an end-point turning on.
+> >>>>>> This property will allow the loop to be skipped.
+> >>>>>>
+> >>>>>> Signed-off-by: Sajid Dalvi <sdalvi@google.com>
+> >>>>>> ---
+> >>>>>
+> >>>>> Thank you for your patch. There is something to discuss/improve.
+> >>>>>
+> >>>>>>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 8 ++++++++
+> >>>>>>  1 file changed, 8 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> >>>>>> index 1a83f0f65f19..0b8950a73b7e 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> >>>>>> @@ -197,6 +197,14 @@ properties:
+> >>>>>>        - contains:
+> >>>>>>            const: msi
+> >>>>>>
+> >>>>>> +  snps,skip-wait-link-up:
+> >>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+> >>>>>> +    description:
+> >>>>>> +      When the Root Complex is probed, the default behavior is to spin in a
+> >>>>>> +      loop waiting for the link to come up. In some systems the link is not
+> >>>>>> +      brought up during probe, but later in the context of an end-point turning
+> >>>>>> +      on. This property will allow the loop to be skipped.
+> >>>>>
+> >>>>> I fail to see how probe behavior is related to properties of hardware.
+> >>>>> You describe OS behavior, not hardware. This does not look like
+> >>>>> belonging to DT.
+> >>>>>
+> >>>>>
+> >>>>> Best regards,
+> >>>>> Krzysztof
+> >>>>
+> >>>> Thanks for your response Krzysztof.
+> >>>> The hardware configuration of the system determines whether an
+> >>>> endpoint device is available during host init. If it isn't available
+> >>>> on a particular and dedicated pcie interface, we should skip waiting
+> >>>> for the link to be up. For other interfaces, possibly even on the same
+> >>>> system, where a device is present or maybe present we should wait for
+> >>>> the link to come up.
+> >>>
+> >>> Keep discussions public.
+> >>>
+> >>> Your commit and property description mentions probe, which is nothing
+> >>> related to hardware. Why the device would not be available during host
+> >>> init (I understand we do not talk about hotplug as it is already
+> >>> supported by Linux) in a way it is hardware property, not OS?
+> >>>
+> >>> Best regards,
+> >>> Krzysztof
+> >>>
+> >>
+> >> + everyone else I mistakenly didn't reply to earlier
+> >>
+> >> If I understand you correctly, the usage of probe is misleading
+> >> because it doesn't have anything to do with the hardware.
+> >> So your recommendation is to replace probe with device init, in the
+> >> description of the property and the commit message?
+> >
+> > No, I asked there a question for which we need answer.
+> >
+> > device init is also OS task... You need to explain why this is a
+> > property of hardware, not OS behavior.
+>
+> Actually let's be clearer - your cover letter says:
+> "In some systems the link is not brought up
+> during probe, but later in the context of an end-point turning on. (...)
+> to skip this loop."
+>
+> so this is pure Linux OS stuff. You just want to control driver behavior
+> from DT. Not at all DT property.
+>
+> Best regards,
+> Krzysztof
+>
