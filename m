@@ -2,83 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C86DB6A492B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:05:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35D2D6A493E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 19:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229814AbjB0SFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 13:05:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60942 "EHLO
+        id S229777AbjB0SIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 13:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229841AbjB0SFr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:05:47 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB357A80;
-        Mon, 27 Feb 2023 10:05:21 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id 6-20020a17090a190600b00237c5b6ecd7so6463138pjg.4;
-        Mon, 27 Feb 2023 10:05:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+mPlMXv9RJI8/oFUUFc+RfUGUZO2bZNQ4Ayc+xRFn3c=;
-        b=By1hdEB7xxxN2kWGRWBOcLI13i8RhANt8RWn6SuIg1ojFHi5c6fgGpexO3pl76ELqk
-         QVcFsvOc7BukBEpAK6SLjFt0QzjbjI5erzeQbNQnLVflQOCQbPOHBVfIiC26mS1ja/MX
-         ptKHaxNaxRoPblImFN0UlMllMbJhLhQOaIb4bdYxH7WquWObfSISh8SC5zo+Zeorfvi9
-         BGotYGwKraxBmQeTFNqIM2LtYVSROM31h5ynsdsV8oTPEw4c54B/dnObetZ9FlHqjboP
-         7FEwgtTDl0bhVBP2SaPly2rO86rSFlCqBcyFn969Qf9R8vFR+u2xA6NnM9qvaPZ9YBeT
-         jGTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+mPlMXv9RJI8/oFUUFc+RfUGUZO2bZNQ4Ayc+xRFn3c=;
-        b=pgMYQfJSE2A2Z+hW8RhXskZ3CuSab7C/3efCE0p8zrKh+rGhxByTyvSjBETRgmicmi
-         ssk8wLomEXKjjSS0GoMM9yVFpq4izb7LiGmcUgCevrf7jZIdNeC5swKs/UxxGkmowtPX
-         T6ovK2HOul16sVwWZ8oQAn+NdIPkGMqd2I4lxQdJoWaueVz6xhZ1HXDCOpPsC+DSH9Iq
-         vEgJz2t1c7RtgqWF2ohtf/h/8v+n8X0TRkjcDDz8Ati+zCrYoJTwt5glHecD7SvvIEcq
-         j2iuSN+0Raw6ikffi793OaDUMyazpPz6F1VYzkZKxmykK7YzYaNpMNJ6RaOSahsbXN/V
-         zAMA==
-X-Gm-Message-State: AO0yUKV03NyYWo0qLmUObwGOk0M+ZsUi0BYd/smktlhALIx9V7fpJtwQ
-        p0Swqzcnjih5vvLqf3dp1kkQJtERD0gaccSSg0Y=
-X-Google-Smtp-Source: AK7set/sCYYETNno69V+PDf7R8xKuDmVtnx/nlOmyfqZlwSRzv+JYCUVBsf8oPkLy4vfgwJq2pyQgzG6NsgK47Wrenc=
-X-Received: by 2002:a17:90a:578a:b0:234:bed1:1012 with SMTP id
- g10-20020a17090a578a00b00234bed11012mr48894pji.6.1677521120846; Mon, 27 Feb
- 2023 10:05:20 -0800 (PST)
+        with ESMTP id S230228AbjB0SIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 13:08:07 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98FAD24490;
+        Mon, 27 Feb 2023 10:07:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1677521257; x=1709057257;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=scY7UonjFChQcjD94QJl2vOVah5UAvdvzWmSDMUa7Ss=;
+  b=xg3CvFsV/BejjorWOjs52uL91fLXCdSvmsQuBZvW25fPqGgplprfAmtR
+   Xlv8VmX71n4vNtSB3TTegVOcnDU1JxbMiuhKOQqY9tktQUBnQJKoVSu8z
+   4cc7PRWP3gvNo1V33Q7ub6iXAd9/nmZz+kqI8GnkitBMfaD+iwG7Mqq5L
+   g5z6v/aLRh8Ms3CJb5lN10kP0WcvLuWRCkBQSmNKT5Lr6qJNM2Es04dag
+   /j54NEhggr1lXBXTdy4VKdluZ7b/uPYmni70m7msjxJz+pV9b7JqegbUr
+   kIh80PQOKxoO8+AJwwGX775j054XfheCw7v1jxAJguVJGTOxGtsk+NAVX
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,219,1673938800"; 
+   d="scan'208";a="202436815"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Feb 2023 11:07:25 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 27 Feb 2023 11:07:19 -0700
+Received: from ryan-Precision-3630-Tower.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.16 via Frontend Transport; Mon, 27 Feb 2023 11:07:19 -0700
+From:   <Ryan.Wanner@microchip.com>
+To:     <ludovic.desroches@microchip.com>, <linus.walleij@linaro.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Ryan Wanner <Ryan.Wanner@microchip.com>
+Subject: [PATCH v3 0/2]Sama7g5 drive strength options updated
+Date:   Mon, 27 Feb 2023 11:07:26 -0700
+Message-ID: <cover.1677520830.git.Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-References: <20230227174535.87657-1-marex@denx.de>
-In-Reply-To: <20230227174535.87657-1-marex@denx.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 27 Feb 2023 12:05:09 -0600
-Message-ID: <CAHCN7x+a-9pZFepD=543ri+TK2y-TDf9Nc44iRqpBnvf_qMk_A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn: specify #sound-dai-cells for SAI nodes
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Abel Vesa <abelvesa@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,104 +64,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 27, 2023 at 11:58=E2=80=AFAM Marek Vasut <marex@denx.de> wrote:
->
-> Add #sound-dai-cells properties to SAI nodes.
->
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Should this have a fixes tag?
+This patch set updates drive strength options for the Sama7g5 to align
+with drive strength options in the Sama7g5 data sheet.
 
-Fixes: 9e9860069725 ("arm64: dts: imx8mn: Add SAI nodes")
+changes since v1:
+- Fix ABI break.
+- Add explanation for drive strength macros.
 
-I don't know when these became required, and/or if this should be
-back-ported or not.
+changes since v2:
+-Fix subject prefix to match subsystem.
+-Add more indepth discription of sama7g5 define values.
+-Fix formatting issues.
+-Add sama7g5 differences to dbg_show.
+-Remove array length for xlate.
 
-Reviewed-by: Adam Ford <aford173@gmail.com>
+Ryan Wanner (2):
+  pinctrl: at91-pio4: Implement the correct drive values for sama7g5
+  dt-bindings:pinctrl:at91:Adding macros for sama7g5
 
-adam
+ drivers/pinctrl/pinctrl-at91-pio4.c | 54 ++++++++++++++++++++++++++---
+ include/dt-bindings/pinctrl/at91.h  | 15 +++++++-
+ 2 files changed, 63 insertions(+), 6 deletions(-)
 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mn.dtsi
-> index ed9ac6c5047c0..bbec860ef8548 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -294,6 +294,7 @@ spba2: spba-bus@30000000 {
->                                 ranges;
->
->                                 sai2: sai@30020000 {
-> +                                       #sound-dai-cells =3D <0>;
->                                         compatible =3D "fsl,imx8mn-sai", =
-"fsl,imx8mq-sai";
->                                         reg =3D <0x30020000 0x10000>;
->                                         interrupts =3D <GIC_SPI 96 IRQ_TY=
-PE_LEVEL_HIGH>;
-> @@ -308,6 +309,7 @@ sai2: sai@30020000 {
->                                 };
->
->                                 sai3: sai@30030000 {
-> +                                       #sound-dai-cells =3D <0>;
->                                         compatible =3D "fsl,imx8mn-sai", =
-"fsl,imx8mq-sai";
->                                         reg =3D <0x30030000 0x10000>;
->                                         interrupts =3D <GIC_SPI 50 IRQ_TY=
-PE_LEVEL_HIGH>;
-> @@ -322,6 +324,7 @@ sai3: sai@30030000 {
->                                 };
->
->                                 sai5: sai@30050000 {
-> +                                       #sound-dai-cells =3D <0>;
->                                         compatible =3D "fsl,imx8mn-sai", =
-"fsl,imx8mq-sai";
->                                         reg =3D <0x30050000 0x10000>;
->                                         interrupts =3D <GIC_SPI 90 IRQ_TY=
-PE_LEVEL_HIGH>;
-> @@ -338,6 +341,7 @@ sai5: sai@30050000 {
->                                 };
->
->                                 sai6: sai@30060000 {
-> +                                       #sound-dai-cells =3D <0>;
->                                         compatible =3D "fsl,imx8mn-sai", =
-"fsl,imx8mq-sai";
->                                         reg =3D <0x30060000  0x10000>;
->                                         interrupts =3D <GIC_SPI 90 IRQ_TY=
-PE_LEVEL_HIGH>;
-> @@ -395,6 +399,7 @@ spdif1: spdif@30090000 {
->                                 };
->
->                                 sai7: sai@300b0000 {
-> +                                       #sound-dai-cells =3D <0>;
->                                         compatible =3D "fsl,imx8mn-sai", =
-"fsl,imx8mq-sai";
->                                         reg =3D <0x300b0000 0x10000>;
->                                         interrupts =3D <GIC_SPI 111 IRQ_T=
-YPE_LEVEL_HIGH>;
-> --
-> 2.39.2
->
+-- 
+2.37.2
+
