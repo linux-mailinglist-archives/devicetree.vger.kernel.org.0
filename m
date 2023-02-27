@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41D086A44D6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CFC96A450B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:47:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbjB0Ol3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 09:41:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51460 "EHLO
+        id S229659AbjB0OrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 09:47:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbjB0Ol2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:41:28 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26C120571
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 06:41:27 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id j19-20020a05600c1c1300b003e9b564fae9so7350693wms.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 06:41:27 -0800 (PST)
+        with ESMTP id S229451AbjB0OrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:47:00 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325B721A0F
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 06:46:54 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id bv17so6502704wrb.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 06:46:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K1ciYzjzBy3gfz4y6Y2JrahH5KBtu69kG00GA/F52AY=;
-        b=galyeW3Y/ZKXfxjNntAQk6EiQUOCJT4CyWMa7zLNmhh+PaDRlUOlTGF0/7YLf/KEOT
-         hCjDk4RMDE3fr5z3FvT+qolNVLqKXIzYk2jfteD4dboVs8vDZsEpYpW2OLZ3bK4KjN3+
-         KX/Z7GrtOFfvmR8JtbRCISD8i2IsYxyXFwP0xcOxQKsSiCjDXnr8czZaqyvZSWe+Zpob
-         cVjKD+4+kkKIkFHp8nPosGGa/JXYM/5haHtGN8UK2PjebfKSB2Z3Alk69TpyF7iudX/L
-         rKWdHm4q6kIG/X2O6V5f+mRWH7V7/Wb68SFEVwPnUZvls7p5mX/sn6Ih7F5qvXYHtUXt
-         Y8dw==
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=p5uPmXHKG/K2eyX0uTKfopGR5q6ewnoODzWdHrgpksY=;
+        b=xsDmR4Do5X7GXRqXrx1sWPPfkkQPSeeWpP2+i4dOxIWxcR7fP6Movgw/jx9+PTcgt7
+         hZJVmOvfvsqEjjlzatHhw1inycwyCGnF5AWqhfEdY8DqC4BB+6YJ8HfIKyumuaLjA4+6
+         8DWMB+gPmdduGXGL0H74VPktXjL82h5h0pmTvXBxiNrZiftH4CdztJlVo01814iYUGpJ
+         ZLIXJh4m2TyOrtln5FH1941ZRWVUy077IrohbwK1dJZBaR5k9BFLu0Y4QYZXkQZm0Bh0
+         XeG4HbNyRQ4pE6zIAYWUiZUqw0AU4Cm5MppLmtKFbDPVVXqXg5hGfBkZrOCekLklyq8S
+         0OFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K1ciYzjzBy3gfz4y6Y2JrahH5KBtu69kG00GA/F52AY=;
-        b=IZYKL6RY2MMN6WcGP/wy/oVqtQE3HEKSwSL7Pi707L/Wik+P5vROuuYFTmOMEr6N/D
-         A9hN1kRZyTpjt5dD3CNTpw7Ht0uL2hMqPeKEoeLixGx9MkmlKrQDnnO7GWWySGAG4nRC
-         4zWcpt27dVIFui8rB0cHFHepiWeGOfxMboXOoUqfMLMlx1VIUNj/uMANmisLB3EN+lQF
-         oQlqV2RKXhZhsSDtF4/WTTQj5UBOr3pQDAe4Msis+wVvLZF7Ajkb6sGWW9dpX8c6gIy0
-         vhLZnWOXtzNxNOjkcFzIRufIByz7MVYVV3J/Vcp1BQ1JF2Aa7LvwiVX00g8sGenDN+9a
-         Hehg==
-X-Gm-Message-State: AO0yUKWt6rHlgh/hMcF1v1Wjy9ND/evyhc2TN8QxX2sADmK1S8Mbyzim
-        OV6WL7KR0Iw60+ybJh/X/iQdZHTnd94KhetI
-X-Google-Smtp-Source: AK7set9HRlUGJup0r4UlH2WAr4w4xlP49Ruq+BeYt0uYrYvow/OWiJSmb8hqYYmcCG6hIUXk8Ad0FQ==
-X-Received: by 2002:a05:600c:ccc:b0:3df:db20:b0ae with SMTP id fk12-20020a05600c0ccc00b003dfdb20b0aemr6859368wmb.17.1677508886098;
-        Mon, 27 Feb 2023 06:41:26 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n5-20020a5d51c5000000b002c70d97af78sm7386052wrv.85.2023.02.27.06.41.24
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p5uPmXHKG/K2eyX0uTKfopGR5q6ewnoODzWdHrgpksY=;
+        b=uUJFw5ulcFPfg59BFDi8Z3hRIejpdkcFRnFoJF60urWvVidB2T48HesFMR8o9vGQmy
+         wua1gJVvpOeOCc/EEcle4WssU4V7K+xqHKfDzchyE08NptnJFypYxuLCtt6Dv259yKov
+         is8gdaOVpOAKf1/blf9dfcn6d65aaMnp+Kd30s8h3ZXYcDMQULXukN9PyACd+in9PlaK
+         ITjQumNi0rQbxZIdWSW4Fjl4Q28tNsZU60Za9aD2ImWn5REsOrK7NP1a6pPyZBtKsU0f
+         kfLRaBgu6wCeM0tgq4WSwo9yYxYqmNqUPTw4RwZw/UDsEIstNvPnyICzEM1cy2+oxqkL
+         oqzA==
+X-Gm-Message-State: AO0yUKVzB/kBvBdDBNQvG+SGq7Uk533wyiRVOb7td+4h0MM1VWpMp4np
+        DBHSc5kAXcVuOraL5qSZS1Nd6A==
+X-Google-Smtp-Source: AK7set+8chJEYzHKg+uduZ4y4OCNK6TUtWWaAIZZOVMlrI6GcnZITmCye0/0qIuUiQY19BZvAuI4wg==
+X-Received: by 2002:a5d:6187:0:b0:2c8:b9cb:885e with SMTP id j7-20020a5d6187000000b002c8b9cb885emr7599221wru.24.1677509212571;
+        Mon, 27 Feb 2023 06:46:52 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:94c3:7db:6fa6:5605? ([2a01:e0a:982:cbb0:94c3:7db:6fa6:5605])
+        by smtp.gmail.com with ESMTPSA id n4-20020a7bcbc4000000b003dc3f3d77e3sm8873890wmi.7.2023.02.27.06.46.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Feb 2023 06:41:25 -0800 (PST)
-Message-ID: <a652dd51-34c8-f493-1827-710f9b82bf5c@linaro.org>
-Date:   Mon, 27 Feb 2023 15:41:23 +0100
+        Mon, 27 Feb 2023 06:46:52 -0800 (PST)
+Message-ID: <13cf3223-d3fb-1a3e-f13a-77db3b6d144c@linaro.org>
+Date:   Mon, 27 Feb 2023 15:46:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 3/3] arch/arm: dts: introduce meson-a1 device tree
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+ Thunderbird/102.7.2
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>, arm@kernel.org,
+        soc@kernel.org
 Cc:     Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         kernel@sberdevices.ru
 References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <20230222115020.55867-4-avromanov@sberdevices.ru>
- <bc514ba7-406e-bca8-4d3a-4f8997cd3241@linaro.org>
- <d5d9a1fe-2f66-66e3-d88a-76a12f2ec55e@linaro.org>
- <20230227143929.h2lppesdiaj7l3gn@CAB-WSD-L081021>
+ <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
+ <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230227143929.h2lppesdiaj7l3gn@CAB-WSD-L081021>
-Content-Type: text/plain; charset=UTF-8
+Organization: Linaro Developer Services
+In-Reply-To: <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -82,46 +84,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2023 15:39, Dmitry Rokosov wrote:
-> Hello Krzysztof!
+On 27/02/2023 15:28, Dmitry Rokosov wrote:
+> Hello Neil!
 > 
-> On Thu, Feb 23, 2023 at 10:09:25AM +0100, Krzysztof Kozlowski wrote:
+> On Mon, Feb 27, 2023 at 09:15:04AM +0100, neil.armstrong@linaro.org wrote:
 > 
 > [...]
 > 
->>>> describes following compontents: CPU, GIC, IRQ, Timer, UART,
->>>> PIN controller. It's capable of booting up into
->>>> the serial console.
->>>>
->>>> This is based on arm64 version of meson-a1.dtsi.
->>>>
->>>> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
->>>> ---
->>>>  arch/arm/boot/dts/meson-a1.dtsi | 151 ++++++++++++++++++++++++++++++++
->>>
->>> There is such file and there is such DTS/hardware support. I don't see
->>> any reason why entire DTSI should be duplicated. What's more, your
->>> commit does not explain it - does not justify duplication.
+>> I'm aware Amlogic also runs their kernel as 32bit to gain a few kbytes
+>> of memory, but those processors are ARMv8 and the arm64 arch code
+>> has been designed for those CPUs.
 >>
->> One more comment - I think you just added dead code. It's
->> uncompilable/untestable. Otherwise, please share how to build this DTSI
->> without DTS.
+>> So far I didn't find a single good reason to add 32bit support for
+>> ARMv8 Amlogic based SoCs, if you have a solid reason please share.
 > 
-> You are right, Alexey doesn't provide any exact *.dts file for any
-> board, and *.dtsi file should be included somewhere, otherwise this is
-> dead code.
-> Unfortunately, our internal board *.dts file is useless for kernel
-> community, cause there is not any chance to burn locally compiled kernel
-> to our product due to secureboot protection.
-> But I think there is one possible option. We have reference Amlogic
-> boards somewhere in the office. So we can test 32-bit configuration on
-> it and prepare proper *.dts file for that. What do you think, it
-> reasanoble?
+> I totally agree with you, but I suppose it's fully related to 'big'
+> Amlogic SoC like S905_ or A311_ series. A113L (aka 'a1') is
+> a cost-efficient dual-core SoC which is used for small, cheap solutions
+> with cheap components. Every cent is important during BoM development.
+> That's why usually ODMs install small ROM and RAM capacity, and each
+> megabyte is important for RAM/ROM kernel and rootfs footprints.
 
-You just need to provide valid board which works in 32-bit mode. Anyway
-duplicating DTSI is a no-go and we do not do it in other platforms.
+Do you have figures ? is 32bit ARM kernel really lighter when ARM64 one is correctly configured ?
 
+> Why am I talking about rootfs? For such small projects a good
+> choice is buildroot rootfs assembling framework. Unfortunatelly,
+> buildroot doesn't support 'compat' mode when kernel and userspace have
+> a different bitness. 
 
-Best regards,
-Krzysztof
+well this is a buildroot problem... the kernel itself is perfectly capable
+of running an AArch32 userspace.
+
+> In the internal project, we save several
+> percents of ROM/RAM free space using 32-bit configuration (mostly rootfs
+> ROM space, to be honest). Therefore, for such 'little' cost-efficient
+> SoCs we can make an exception and support 32-bit configuration, from my
+> point of view.
+
+32bit ARM is now "legacy", I would need to have an advice from the ARM SoC
+maintainers, but AFAIK new ARMv8 SoCs should stay in arm64 arch.
+
+Arnd ? Olof ? do you have an opinion on this ?
+
+> 
+> What do you think about that?
+
+>>
+>> And as Krzysztof stated, the support is incomplete and cannot work
+>> without a dts file.
+> 
+> Agreed, we shouldn't merge dead code. But there are several question to
+> discuss there. Please check my reply to Krzysztof message.
+> 
+> [...]
+> 
 
