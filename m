@@ -2,101 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F47E6A4BFF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80CC46A4C09
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 21:11:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbjB0UHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 15:07:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55162 "EHLO
+        id S229657AbjB0ULr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 15:11:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbjB0UHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:07:23 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C944D279B6;
-        Mon, 27 Feb 2023 12:06:41 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id ck15so30936549edb.0;
-        Mon, 27 Feb 2023 12:06:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8uInxHePMiAlwvbGNwI0Ugw9k3Wci0tWnR38NP9c0+o=;
-        b=MeSmGwQ/HmmBFMFaypLzcQiaH3ObjO8JAEpXdx+4wryYDhZg4v/dgFbvwzQoancUEC
-         re5tVAHMzNYllS4LrS+9f6JkXeWGOWc5y6cHleQ7pw3qnZwjwzvTec56FGUbX0lb96oq
-         764RFnD9qxYmvWsCASLSRoOdcIDEq29HZ0/RQvmPPQpAox1S1R/cz7N+JEkuSP7TtR0n
-         8dqEVWMGjjUaNAVu1VBPKvpVu1CXwvRbL1LRus2ErmwuOnWPK3pbCvY0nvowMu5LBqtX
-         C1Qs3G3Fd/K300A2XjRVbnB/WmwQxdZtKOCqXEoGrilYPZX2D6AlqptEEIjs3HG4nxw0
-         Yxkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8uInxHePMiAlwvbGNwI0Ugw9k3Wci0tWnR38NP9c0+o=;
-        b=uaPLgbcWfN/B0y/aYEVeqWJnCp3n5WHZC2/bIutHefJbdjcTgghBJNdKkt6NSYupt8
-         lZBb2ZzoxsF9pY33msN+R925VnecuHb7x2+ms5f1+Oig3WaHisqtOgrzxNRXcD589ozw
-         iWruC1VJ3Pk2STygG2VC2fGm9jC+/oUxmR8cOI4Gb1KiyAnUQpcOI/nqoGibE2Rn9kQ5
-         jqR0BGFpaMZtPnJQpHoaw9AcOMHY6ACwbaD5j0FJLS4bOcUIP6VicIJLiUiE0Ig1x+r4
-         My/+3KcRBqLcQ2WGtb8/eVM/spBF6SZ+8qVRVReV11sdrixEif89kjnkqSaChNfLi3BB
-         mBrg==
-X-Gm-Message-State: AO0yUKVujWSdHZXIZOpKHslWqyt5pF9M5BQZbmQElsOShBci2h+i/R2C
-        vFAQwzWKl5avgUqJLWqZZMH95yf4W641UvbNlxg=
-X-Google-Smtp-Source: AK7set+rFRwwuHlNUo6YttoaHQUv1gV4hohZb6nayx6SZjljKZP1HvI16epTaVLppOg3ZaqYoXlGCrsWA0NVSYZEKns=
-X-Received: by 2002:a50:d494:0:b0:4ad:72b2:cf57 with SMTP id
- s20-20020a50d494000000b004ad72b2cf57mr461379edi.0.1677528400166; Mon, 27 Feb
- 2023 12:06:40 -0800 (PST)
+        with ESMTP id S229574AbjB0ULq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 15:11:46 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBB286B9;
+        Mon, 27 Feb 2023 12:11:45 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 214B280EB1;
+        Mon, 27 Feb 2023 21:11:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1677528703;
+        bh=HHhhNiiFFM6pJEYBbaLex7pnt0KsSv9LmdqUwbAIwk0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TXb/yCiVJLpdxJy2Qpl4WNlF0PnqG3X3ZT7PAabeoF2fWRAn+RIgU553qDJjNCz4T
+         ev8EmLQU7nMZtjkxyY81lXB3MKZrKJ3lN9YIDtsGtNtMcMY1Xl6zljshZ9IK17DnlV
+         lAGaqFPO8CbeUI2Hcmi8Rea9QxYR/2gKyJBqYFY1r0yy0EBS0jEEhhKdIA7cl6LDMQ
+         KDryQy7OeWSMzFyJY4WWAAnfmmZpPdj//63p5GLtkaJo0pghwyT3Wou7K+lfHZnB2X
+         mkNmf3fnyxA9CxHMlq9CEGxEeGx9BgHPC8/3EJPoXr9ow0J6UCctorfaz/9QGGhi0F
+         nda7zZ9jzwfTA==
+Message-ID: <be5edd33-31e4-695b-ff72-7a0dca3470e7@denx.de>
+Date:   Mon, 27 Feb 2023 21:11:41 +0100
 MIME-Version: 1.0
-References: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
- <20230223-z2-for-ml-v1-1-028f2b85dc15@gmail.com> <20230227195139.GA677578-robh@kernel.org>
-In-Reply-To: <20230227195139.GA677578-robh@kernel.org>
-From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date:   Mon, 27 Feb 2023 21:06:28 +0100
-Message-ID: <CAMT+MTRodB_+sMtoPxv-gP_+sJAwNb36XuLOGo=HvuCQq6h+gQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/4] dt-bindings: input: touchscreen: Add Z2
- controller bindings.
-To:     Rob Herring <robh@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: imx8mn: specify #sound-dai-cells for SAI
+ nodes
+Content-Language: en-US
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <asahi@lists.linux.dev>, Henrik Rydberg <rydberg@bitmath.org>,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230227174535.87657-1-marex@denx.de>
+ <20230227190123.znifdqympsantpt6@pengutronix.de>
+ <a519eb0b-dc40-deec-03d3-676648a52f15@denx.de>
+ <20230227200039.ugmtvpli6gvux3fi@pengutronix.de>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230227200039.ugmtvpli6gvux3fi@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Feb 2023 at 20:51, Rob Herring <robh@kernel.org> wrote:
->
-> > +properties:
-> > +  compatible:
-> > +    const: apple,z2-touchscreen
->
-> Is 'z2' anything other than a touchscreen? If not, '-touchscreen' is
-> redundant. If so, then what else is there? You should be describing
-> physical devices, not just a protocol for touchscreen.
->
+On 2/27/23 21:00, Marco Felsch wrote:
+> On 23-02-27, Marek Vasut wrote:
+>> On 2/27/23 20:01, Marco Felsch wrote:
+>>> Hi Marek,
+>>>
+>>> On 23-02-27, Marek Vasut wrote:
+>>>> Add #sound-dai-cells properties to SAI nodes.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>> ---
+>>>> Cc: Abel Vesa <abelvesa@kernel.org>
+>>>> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>>> Cc: Jacky Bai <ping.bai@nxp.com>
+>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>>>> Cc: Lucas Stach <l.stach@pengutronix.de>
+>>>> Cc: Marco Felsch <m.felsch@pengutronix.de>
+>>>> Cc: Michael Turquette <mturquette@baylibre.com>
+>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>>> Cc: Peng Fan <peng.fan@nxp.com>
+>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+>>>> Cc: Richard Cochran <richardcochran@gmail.com>
+>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>>> Cc: Stephen Boyd <sboyd@kernel.org>
+>>>> Cc: devicetree@vger.kernel.org
+>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>> Cc: linux-clk@vger.kernel.org
+>>>> ---
+>>>>    arch/arm64/boot/dts/freescale/imx8mn.dtsi | 5 +++++
+>>>>    1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+>>>> index ed9ac6c5047c0..bbec860ef8548 100644
+>>>> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+>>>> @@ -294,6 +294,7 @@ spba2: spba-bus@30000000 {
+>>>>    				ranges;
+>>>>    				sai2: sai@30020000 {
+>>>> +					#sound-dai-cells = <0>;
+>>>
+>>> Please don't add it in front of the compatible and the reg property.
+>>
+>> The #address-cells and #size-cells are also always on top, why should the
+>> #sound-dai-cells be any different ? Where should they be ?
+> 
+> As of now my understanding of specifying a devicetree node was:
+> 
+> node-name@reg-nr {
+> 	compatible = "";
+> 	reg = <>;
+> 	// all pending properties below
+> 	...
+> };
+> 
+> @Rob, @Krzysztof:
+> Is this a (unwritten) rule/policy?
+> 
+> Marekt please ignore my comment if this is not the case.
 
-This is a class of touchscreen controllers that talk the z2 protocol
-over spi.
-
-> > +                    touchscreen-size-y = <640>;
-> > +                    apple,z2-device-name = "MacBookPro17,1 Touch Bar";
->
-> Why do we need this string? If you want a human consumed label for
-> some identification, we have a property for that purpose. It's called
-> 'label'. But when there is only 1 instance, I don't really see the
-> point.
-
-I want a libinput-consumed label to distinguish between devices
-using this protocol. It is used both for 'normal' touchscreens, and,
-as is in this example a 'touchbar', which absolutely should not be
-treated as a normal touchscreen, and needs special handling in
-userspace.
+Getting input from Rob/Krysztof is a good idea, thanks.
