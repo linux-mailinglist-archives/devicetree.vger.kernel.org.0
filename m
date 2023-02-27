@@ -2,71 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 650E06A423C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 14:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7C96A424F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 14:11:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjB0NGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 08:06:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44758 "EHLO
+        id S229881AbjB0NLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 08:11:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbjB0NGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 08:06:50 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E721EBFA;
-        Mon, 27 Feb 2023 05:06:21 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4F6E4660220D;
-        Mon, 27 Feb 2023 13:06:17 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677503178;
-        bh=gM5HmWhtaJ0gdI7nEntVsCXZUWyh+xKgAjaVCtJGEFA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=B3IIkROHkoRW4wMlM/DtbXyuFDCSZntM02oRKBg2PsoV1F6QZTPMrXuObtiOlsxV/
-         5NA4moHNCAA1W6YMku7sZGbs12qstmQzsZJ248A4Guej6m77r3JDLtbWFJnod26mxH
-         8eGd0KVK1aLeCW01u04drir57gJYTaB18nhef9ICOpBAJAXk7MmG6jvEx6eveE+dvR
-         kYfarzlT9+mS9xoVJw625HDIh1IY3Q536ewz4+4uRoPAxvtJijrQSetR0RaFbJQnc8
-         Vcjb0JF/cMt2beRCnvkBWlUfE4taHfo3fHtZIhmTImr2jm8FweXQSk4VMt3cDzP1p1
-         t4vuvpdL4W6hQ==
-Message-ID: <8a813713-c60d-4726-0c62-de032db99ede@collabora.com>
-Date:   Mon, 27 Feb 2023 14:06:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 5/6] soc: qcom: Add support for Core Power Reduction
- v3, v4 and Hardened
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229877AbjB0NLC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 08:11:02 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71B0E04D;
+        Mon, 27 Feb 2023 05:10:56 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 303F024E25E;
+        Mon, 27 Feb 2023 21:10:54 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Feb
+ 2023 21:10:54 +0800
+Received: from localhost.localdomain (113.72.145.171) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Feb
+ 2023 21:10:53 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
- <20230217-topic-cpr3h-v10-5-67aed8fdfa61@linaro.org>
- <153ef3e0-9978-d201-44ad-3a5e55eeef4f@linaro.org>
- <8c105a4f-f450-8fbf-ff0b-5629a47c1463@collabora.com>
- <d2784517-0f0c-43a5-63a6-57f6aa3e5912@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <d2784517-0f0c-43a5-63a6-57f6aa3e5912@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v3 0/3] Add DMA driver for StarFive JH7110 SoC
+Date:   Mon, 27 Feb 2023 21:10:39 +0800
+Message-ID: <20230227131042.16125-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.145.171]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,167 +54,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 27/02/23 13:01, Dmitry Baryshkov ha scritto:
-> On 27/02/2023 11:13, AngeloGioacchino Del Regno wrote:
->> Il 27/02/23 03:55, Dmitry Baryshkov ha scritto:
->>> On 17/02/2023 13:08, Konrad Dybcio wrote:
->>>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>>
->>>> This commit introduces a new driver, based on the one for cpr v1,
->>>> to enable support for the newer Qualcomm Core Power Reduction
->>>> hardware, known downstream as CPR3, CPR4 and CPRh, and support
->>>> for MSM8998 and SDM630 CPU power reduction.
->>>>
->>>> In these new versions of the hardware, support for various new
->>>> features was introduced, including voltage reduction for the GPU,
->>>> security hardening and a new way of controlling CPU DVFS,
->>>> consisting in internal communication between microcontrollers,
->>>> specifically the CPR-Hardened and the Operating State Manager.
->>>>
->>>> The CPR v3, v4 and CPRh are present in a broad range of SoCs,
->>>> from the mid-range to the high end ones including, but not limited
->>>> to, MSM8953/8996/8998, SDM630/636/660/845.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno 
->>>> <angelogioacchino.delregno@somainline.org>
->>>> [Konrad: rebase, apply review comments]
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>   drivers/soc/qcom/Kconfig      |   22 +
->>>>   drivers/soc/qcom/Makefile     |    4 +-
->>>>   drivers/soc/qcom/cpr-common.h |    2 +
->>>>   drivers/soc/qcom/cpr3.c       | 2923 +++++++++++++++++++++++++++++++++++++++++
->>>>   include/soc/qcom/cpr.h        |   17 +
->>>>   5 files changed, 2967 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/include/soc/qcom/cpr.h b/include/soc/qcom/cpr.h
->>>> new file mode 100644
->>>> index 000000000000..2ba4324d18f6
->>>> --- /dev/null
->>>> +++ b/include/soc/qcom/cpr.h
->>>> @@ -0,0 +1,17 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0-only */
->>>> +/*
->>>> + * Copyright (c) 2013-2020, The Linux Foundation. All rights reserved.
->>>> + * Copyright (c) 2019 Linaro Limited
->>>> + * Copyright (c) 2021, AngeloGioacchino Del Regno
->>>> + *                     <angelogioacchino.delregno@somainline.org>
->>>> + */
->>>> +
->>>> +#ifndef __CPR_H__
->>>> +#define __CPR_H__
->>>> +
->>>> +struct cpr_ext_data {
->>>> +    int mem_acc_threshold_uV;
->>>> +    int apm_threshold_uV;
->>>> +};
->>>
->>> Who is going to use this? Is it the cpufreq driver or some other driver?
->>> We are adding an API without a clean user, can we drop it for now?
->>>
->>
->> This is mandatory: qcom-cpufreq-hw is supposed to program the OSM before
->> starting.
-> 
-> Thanks for the explanation!
-> 
->>
->>  From SDM845 onwards, the OSM is programmed by the bootloader before booting
->> Linux;
->> In MSM8996/98, SDM630/636/660, others, the bootloader does not program the OSM
->> uC, so this has to be done in Linux - specifically, in the CPUFREQ driver
->> (qcom-cpufreq-hw), otherwise this driver is completely pointless to have.
->>
->> CPU DVFS requires three uC to be correctly programmed in order to work:
->>   - SAW (for sleep states)
-> 
-> I believe this is handled by the PCSI for all mentioned platforms.
-> 
+This patch series adds dma support for the StarFive JH7110 RISC-V
+SoC. The first patch adds device tree binding. The second patch includes
+dma driver. The last patch adds device node of dma to JH7110 dts.
 
-This is handled by the SAW/SPM driver that we have in the kernel for all mentioned
-platforms (soc/qcom/spm.c)
+The series has been tested on the VisionFive 2 board which equip with
+JH7110 SoC and works normally.
 
->>   - CPR-Hardened (voltage control, mandatory for stability)
-> 
-> This driver (nit: 8996 has cpr3)
-> 
+The last patch should be applied after the following patchset:
+https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
 
-Yes, sorry, 8996 is not CPRh.
+Changes since v2:
+- Added minItems with value 1 and changed the maxItems' value to 2 about
+  resets properties in the dt-binding.
+- Added match data for jh7110-axi-dma and executed reset call to match
+  data.
+- Dropped reset-names from dma node of device tree.
 
->>   - OSM (for cpufreq-hw frequency steps [1..N])
-> 
-> I think this is valid only for the CPRh targets. And for OSM programming the driver 
-> populates OPP tables with voltage levels (which should then be handled by the 
-> cpufreq-hw).
-> 
+v2: https://lore.kernel.org/all/20230221140424.719-1-walker.chen@starfivetech.com/
 
-This is valid for all targets having OSM.. and I think you're right, the only ones
-that do have OSM are CPR-Hardened as the introduction of OSM is part of the actual
-hardening of CPR4.
+Changes since v1:
+- Rebased on Linux 6.2.
+- Changed the compatible string to SoC specific and dropped '-rst' from
+  reset-names in the dt-binding.
+- Dropped 'snps,num-hs-if' in the dt-binding.
+- Use different configuration on CH_CFG registers according to the compatible string.
 
-> I'd toss another coin into the list: for 8996 we also have to program APM and 
-> cluster (kryo) regulators _manually_.
-> 
+v1: https://lore.kernel.org/all/20230206113811.23133-1-walker.chen@starfivetech.com/
 
-Right! I even forgot about that :-)
+Walker Chen (3):
+  dt-bindings: dma: snps,dw-axi-dmac: constrain minItems/maxItems of
+    resets for JH7110 DMA
+  dmaengine: dw-axi-dmac: Add support for StarFive JH7110 DMA
+  riscv: dts: starfive: add dma controller node
 
->>
->> Failing to *correctly* program either of the three will render CPU DVFS unusable.
->>
->>
->> That clarified, my opinion is:
->> No, you can't drop this. It's an essential piece for functionality.
->>
->> I agree in that this commit introduces a header that has only an internal (as in
->> cpr3.c) user and no external ones, but I think that Konrad didn't want to include
->> the qcom-cpufreq-hw.c commits in this series because it's already huge and pretty
->> difficult to review; adding the cpufreq-hw commits would make the situation worse.
-> 
-> Perhaps we misunderstand each other here. I suggest dropping the header from _this_ 
-> patchset only and submit/merge corresponding code together with the cpufreq-hw 
-> changes. This might sound like a complication, but in reality it allows one to 
-> assess corresponding code separately.
-> 
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 25 +++++++++++---
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 18 ++++++++++
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 34 +++++++++++++++++--
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  7 ++++
+ 4 files changed, 78 insertions(+), 6 deletions(-)
 
-Exactly, I thought you were suggesting to drop it - having a more careful read,
-you said "for now", so, eh, that was misinterpretation on my side, sorry!
 
-> (Moreover, please correct me if I'm wrong, I think this header will be used only 
-> with the CPRh, and so this has no use for CPR3/4. Is this correct?)
-
-Even though my memories are a bit confused (changeset too old...), should be used
-only for CPR-Hardened, not for CPR3, not for CPR4.
-
-> 
-> I took a glance at the 'cpufreq: qcom-hw: Implement CPRh aware OSM programming' 
-> patch, it doesn't seem to use the header (maybe I checked the older version of the 
-> patch). As for me, this is another signal that cpr_ext_data should come together 
-> with the LUT programming rather than with the CPRh itself.
-> 
->> Konrad, perhaps you can send the cpufreq-hw commits in a separate series, in
->> which cover letter you mention a dependency on this one?
->> That would *clearly* show the full picture to reviewers.
-> 
-> Yes, that would be great. A small note regarding those patches. I see that you 
-> patched the qcom-cpufreq-hw.c. This way first the driver programs the LUT, then it 
-> reads it back to setup the OPPs. Would it be easier to split OSM-not-programmed 
-> driver?
-> 
-
-When I engineered that solution, I kept the cpufreq-hw reading *again* the values
-from OSM to keep the driver *fully* compatible with the bootloader-programmed OSM
-flow, which makes one thing (in my opinion) perfectly clear: that programming
-sequence is exactly the same as what happens "under the hood" on SDM845 (and later)
-but performed here-instead-of-there (linux instead of bootloader), with the actual
-scaling driver being 100% the same between the two flows in the end.
-
-Having two drivers as you suggested would indeed achieve the same, but wouldn't be
-any easier... if you do that, you'd have to *somehow* make sure that the
-programming driver does its job before the cpufreq driver tries to read the OSM
-status, adding one more link to an already long chain.
-
-Besides, I remember that this question got asked a while ago on the mailing lists
-and there was a short discussion about it:
-
-https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2555580.html
+base-commit: c9c3395d5e3dcc6daee66c6908354d47bf98cb0c
+prerequisite-patch-id: 54ce870d6ea747466474b5d4105cfbc05e1b01ab
+prerequisite-patch-id: ac150a8c622e858e088df8121093d448df49c245
+prerequisite-patch-id: 044263ef2fb9f1e5a586edbf85d5f67814a28430
+prerequisite-patch-id: 057fa35870d8d7d22a57c13362588ffb9e9df316
+prerequisite-patch-id: 848332ca483b026a755639b9eefb0bf8f3fcf8be
+prerequisite-patch-id: 1b2d0982b18da060c82134f05bf3ce16425bac8d
+prerequisite-patch-id: 090ba4b78d47bc19204916e76fdbc70021785388
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 87cb528acd9a7f1ffe7475d7261553f6a4de5753
+prerequisite-patch-id: 417736eb958e1158c60a5ed74bc2350394321a80
+prerequisite-patch-id: ff9fe0b043a5f7f74a1f6af5cebc4793c6f14ce7
+prerequisite-patch-id: 290602062703e666191c20ca02f2840471a6bf4f
+prerequisite-patch-id: f0b29adbb18edffbfeec7292c5f33e2bbeb30945
+prerequisite-patch-id: fccfad539d8455777988b709171ad97729e1a97c
+prerequisite-patch-id: 929ebaffab0df158ea801661d0da74e8b5ef138c
+prerequisite-patch-id: 0d9ddcaa8a867fcbc790b41d6d0349796e0c44b0
+prerequisite-patch-id: 5f539ac7c96023b36489c6da7c70c31eaf64a25b
+prerequisite-patch-id: 65f2aed865d88e6fa468d2923527b523d4313857
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
+prerequisite-patch-id: 2e03eeb766aefd5d38f132d091618e9fa19a37b6
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: ea9a6d0313dd3936c8de0239dc2072c3360a2f6b
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 602c3cf8f42c8c88125defa0a8a301da51f8af49
+prerequisite-patch-id: 82d2d2bc302045505a51f4ab2bf607a904d4b2d1
+prerequisite-patch-id: a6df0f7d8fc2d534c06d85f17578c9134913d01b
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: b9b8fda5e8cd2dd4c9101ec03f4c8fb8e8caa573
+prerequisite-patch-id: 7acbc9c924e802712d3574dd74a6b3576089f78c
+prerequisite-patch-id: f9ce88e490c2473c3c94ad63fa26bc91829ce2cc
+prerequisite-patch-id: ce8a6557564ba04bd90bb41d34f520347f399887
+prerequisite-patch-id: 9f71c539a241baf1e73c7e7dfde5b0b04c66a502
+prerequisite-patch-id: 378a6ccc643a8bf51918cdd61876af813564c638
+prerequisite-patch-id: bb8e071ed43998874b9d98292c0dcdeedc0760ca
+prerequisite-patch-id: 0c04762f1d20f09cd2a1356334a86e520907d111
+prerequisite-patch-id: 8867ef35e4d555491a97106db7834149309426b7
+prerequisite-patch-id: e5a319ba557c8165f7620e574c79ff2ad3be1f65
+prerequisite-patch-id: 2bc43b375b470f7e8bbe937b78678ba3856e3b8f
+-- 
+2.17.1
 
