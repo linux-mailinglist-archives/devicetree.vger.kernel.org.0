@@ -2,124 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D5F96A4AEB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 20:33:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A696A4B5F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 20:43:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjB0TdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 14:33:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
+        id S230130AbjB0Tny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 14:43:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbjB0TdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 14:33:23 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4E8241C1;
-        Mon, 27 Feb 2023 11:33:17 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 53ED085953;
-        Mon, 27 Feb 2023 20:33:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1677526394;
-        bh=tAq/oWaLSxjTJ16/lxY5fm0Xqd7KMhlxK9xncHr2Qfo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ygeFcHgcAEMrXSq0/A663qlz9Pm5mTdEPRcIO4YY8DzChz61eMRPivv1uKRE4ESpI
-         c5ClaOKGMMduVYX80kkhNS8VpbMoWlSb6HaJDJDPzY9OaYhW4hUetonsr0smVUVizv
-         2pa3A+heh56oVmvlu88DkHZjjzs/RMdguWE1JNpxcIPjYSvvlvJjuxM+mMQGb/9gKv
-         4kn3aUqDDzVUFrK3g9RPWG+6W4FifudGfJoqfAjyYHjBEU/ZxoN5jsnLOLA1JVD8Gt
-         C/cOQllnx4eV813b7FPKpO7JnDvSw8WsUeEVJ4yrlt58qS8awinSyh76KaIs/szP/R
-         OxSiwEdZ/b1tQ==
-Message-ID: <c3b3c08c-989b-3868-c74f-426b8f1733a5@denx.de>
-Date:   Mon, 27 Feb 2023 20:33:12 +0100
+        with ESMTP id S230222AbjB0Tnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 14:43:52 -0500
+Received: from out-43.mta1.migadu.com (out-43.mta1.migadu.com [95.215.58.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF07252BD
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 11:43:47 -0800 (PST)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+        t=1677527025;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=7f3/V6rulwdsJB4cadc//1WfYWmlU+C6b8gbWiFieEM=;
+        b=YqDlno+Sfly3+AuQitBsaI71vvdeAZJTr8nHtIdHr7xrywYPJg+uEKnae5pPFajR5Qx6Qo
+        mRrbDZWNHg0tOEl7vUhFB361CmHhzQ8kWOFtXwyKLTSEZMgMRwyt2OC6d+JHMEHSCroG13
+        DGqq8ukw3bSb4LKsyV2I/fQLgH+2DGk=
+From:   Henrik Grimler <henrik@grimler.se>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alim.akhtar@samsung.com, m.szyprowski@samsung.com,
+        jenneron@protonmail.com, markuss.broks@gmail.com,
+        martin.juecker@gmail.com, virag.david003@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Henrik Grimler <henrik@grimler.se>
+Subject: [PATCH v3 0/2] ARM: dts: add mmc aliases for Exynos devices
+Date:   Mon, 27 Feb 2023 20:38:17 +0100
+Message-Id: <20230227193819.30133-1-henrik@grimler.se>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v5 5/5] arm64: dts: imx8mp: Add analog audio output on
- i.MX8MP EVK
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     linux-clk@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230227174308.87286-1-marex@denx.de>
- <20230227174308.87286-5-marex@denx.de>
- <20230227185949.xaxltai4ksgrczmc@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230227185949.xaxltai4ksgrczmc@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/27/23 19:59, Marco Felsch wrote:
-[...]
+It is convenient to have fixed mmcblk numbering of the eMMC and sdcard
+so that assigned numbers will not change from boot-to-boot or
+depending on if storage devices are actually attached or not.
 
->> @@ -344,6 +384,18 @@ &i2c3 {
->>   	pinctrl-0 = <&pinctrl_i2c3>;
->>   	status = "okay";
->>   
->> +	wm8960: codec@1a {
->> +		#sound-dai-cells = <0>;
->> +		compatible = "wlf,wm8960";
->> +		reg = <0x1a>;
-> 
-> The compatible should be the first property followed by the reg
-> property.
+Anton Bambura has done the work for the chromebooks while I have
+looked at the other devices.  On the chromebooks, mmc0 is used for
+eMMC and mmc1 for sdcard, while mmc0 is used for eMMC and mmc2 for
+sdcard on the other boards, simply because Anton and I had different
+preferences.
 
-See my reply to the mx8mn sound-sai-cells patch , I am not sure here.
-The rest is fixed in V6.
+Also drop mshc aliases while we are at it and instead add mmc
+capabilities to the individual device trees (right now they are added
+depending on alias index).  I have tested the changes on
+exynos4412-odroid-u2 and exynos5422-odroid-xu4: the MMC_CAP_1_8V_DDR
+and MMC_CAP_8_BIT_DATA caps are set correctly (meaning they are set
+for mshc_0/mmc_0 but not mshc_2/mmc_2) both before and after this
+patchset.
 
->> +		clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI3_MCLK1>;
->> +		clock-names = "mclk";
->> +		wlf,shared-lrclk;
->> +		wlf,hp-cfg = <3 2 3>;
->> +		wlf,gpio-cfg = <1 3>;
->> +		SPKVDD1-supply = <&reg_audio_pwr>;
->> +	};
->> +
->>   	pca6416: gpio@20 {
->>   		compatible = "ti,tca6416";
->>   		reg = <0x20>;
+---
 
-[...]
+Changes since v2:
+* Set mmc-ddr-1_8v in device trees so that MMC_CAP_1_8V_DDR is set
+  also after removal of mshc0 alias.  Issue was pointed out by Krzysztof
+  and David.
+* Fix whitespace issue in patch 2 which was pointed out by Krzysztof
+* Reword commit message of patch 2 after Rob's comment
 
->> @@ -668,6 +730,18 @@ MX8MP_IOMUXC_UART3_TXD__UART1_DCE_RTS	0x140
->>   		>;
->>   	};
->>   
->> +	pinctrl_sai3: sai3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC	0xd6
->> +			MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK	0xd6
->> +			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00	0xd6
->> +			MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
->> +			MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK	0xd6
->> +			MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28		0xd6
-> 
-> What is gpio04-io28 used for?
+Changes since v1:
+* Move mshc alias cleanup to a separate commit
+* Use mmc0 and mmc1 (instead of mmc0 and mmc2) for eMMC and sdcard on
+  chromebooks
+* Address Krzysztof's review comments:
+ - Make changes per device rather than in soc dtsi
 
-Apparently unused, dropped.
+Henrik Grimler (2):
+  ARM: dts: exynos: replace mshc0 alias with mmc-ddr-1_8v property
+  ARM: dts: exynos: add mmc aliases
+
+ arch/arm/boot/dts/exynos3250-artik5-eval.dts  |  5 ++++
+ arch/arm/boot/dts/exynos3250-artik5.dtsi      | 20 ++++++++++------
+ arch/arm/boot/dts/exynos3250-monk.dts         | 20 ++++++++--------
+ arch/arm/boot/dts/exynos3250-rinato.dts       | 23 +++++++++----------
+ arch/arm/boot/dts/exynos3250.dtsi             |  3 ---
+ arch/arm/boot/dts/exynos4210-i9100.dts        | 11 ++++++---
+ arch/arm/boot/dts/exynos4210-origen.dts       |  8 ++++++-
+ arch/arm/boot/dts/exynos4210-smdkv310.dts     |  4 ++++
+ arch/arm/boot/dts/exynos4210-trats.dts        |  9 +++++++-
+ .../boot/dts/exynos4210-universal_c210.dts    |  9 +++++++-
+ arch/arm/boot/dts/exynos4412-itop-elite.dts   |  4 ++++
+ .../boot/dts/exynos4412-itop-scp-core.dtsi    | 17 +++++++++-----
+ arch/arm/boot/dts/exynos4412-midas.dtsi       | 20 +++++++++-------
+ .../boot/dts/exynos4412-odroid-common.dtsi    | 21 ++++++++++-------
+ arch/arm/boot/dts/exynos4412-origen.dts       | 17 +++++++++-----
+ arch/arm/boot/dts/exynos4412-p4note.dtsi      | 23 ++++++++++++-------
+ arch/arm/boot/dts/exynos4412-smdk4412.dts     |  4 ++++
+ arch/arm/boot/dts/exynos4412-tiny4412.dts     |  4 ++++
+ arch/arm/boot/dts/exynos4412.dtsi             |  1 -
+ arch/arm/boot/dts/exynos5250-arndale.dts      |  6 +++++
+ arch/arm/boot/dts/exynos5250-smdk5250.dts     |  3 +++
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi |  4 ++++
+ arch/arm/boot/dts/exynos5250-spring.dts       |  6 +++++
+ arch/arm/boot/dts/exynos5250.dtsi             |  4 ----
+ arch/arm/boot/dts/exynos5260-xyref5260.dts    | 16 +++++++++----
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  3 +++
+ arch/arm/boot/dts/exynos5410-smdk5410.dts     |  6 +++++
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts |  6 +++++
+ .../dts/exynos5420-galaxy-tab-common.dtsi     |  6 +++++
+ arch/arm/boot/dts/exynos5420-peach-pit.dts    |  4 ++++
+ arch/arm/boot/dts/exynos5420-smdk5420.dts     |  6 +++++
+ arch/arm/boot/dts/exynos5420.dtsi             |  3 ---
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |  4 ++++
+ .../boot/dts/exynos5422-odroidxu3-common.dtsi |  5 ++++
+ arch/arm/boot/dts/exynos5422-samsung-k3g.dts  |  1 +
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |  4 ++++
+ 36 files changed, 223 insertions(+), 87 deletions(-)
+
+
+base-commit: 301d3dd05525e3a046f6cfa6ee4dea6a3b7111ee
+-- 
+2.30.2
+
