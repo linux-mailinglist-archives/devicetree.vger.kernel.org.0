@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D87906A4335
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 14:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1C816A455C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 15:58:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbjB0NsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 08:48:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36574 "EHLO
+        id S229947AbjB0O6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 09:58:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjB0NsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 08:48:08 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDB4A25C
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 05:47:58 -0800 (PST)
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229794AbjB0O6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 09:58:35 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916455262;
+        Mon, 27 Feb 2023 06:58:34 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C84D43F736
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 13:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1677505676;
-        bh=Qt3E5flVBMfHP3C44cEpXDpByE+OTGf4ytpF8RE1WDw=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=ESkqL2jetwk5aMmx0VGqoh8paJHXU8ssuE1MweBJxJrZ3Tsf1K8wgO6J9a+pi5zl7
-         FvTr33uJJVmB5Cr8D3rTW1bXMB6bQOOyD4k76wYrEQe3GabnfuNYzup2N2F48X2IsV
-         +xa7kczdRlY71rQSnyRGiGVFgVegpi8/A0Ja4qBwUZRIOENR1MPMuWhQj3nrEIS7Lc
-         8g7GPSOqusne1PVqdOEr2ZPiT1+w1nrCJiOn7nnQcG/EREj33mJAVVkuTDxMAagGPW
-         9zMzEKfZeUnx7j1aLa/cYP7xBJSAXc/GtTpjOEJxaeCiSRBLBgDtBQecGTVCDXCCXG
-         MISlssHFcB/2w==
-Received: by mail-qv1-f70.google.com with SMTP id y6-20020ad457c6000000b00535261af1b1so3380994qvx.13
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 05:47:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Qt3E5flVBMfHP3C44cEpXDpByE+OTGf4ytpF8RE1WDw=;
-        b=YShhuFHgGdso5nUCfk/LIBCBpe1ASKInZnEi6JK3OdK50vSq8NnUmqQm4BzE78vPcP
-         cE/344A8JyzQRzJjbn0iA9ueziuNtBAmaE2RiVgTv6PTUidwY6Fz0GkUi8SSgO4QUCBt
-         LSfeWDNkBbAShJUNG/YehrRCrNHWmNVIwgsMsRaT5vkVWnVY14KilD8iKpC7JhUWD6tY
-         tDeI/L2YHD/krkjoiw4cDNQdLxba2t042PUuh+aauHhLCBblx9dtTMEL3mCo3WbXwF24
-         cvp1w9i4Q7Itu/yFtnV9li0yyzNgVAMBkC8BqVcfkuUMDh7XrGGqm0rZl4SHodbDcuIy
-         55Dw==
-X-Gm-Message-State: AO0yUKW01EJwvdHnL6Ulzq6ckRIdsfN0Rf6Oeo9CiCJwj0HQAn2pxgz2
-        43KL71LO4iQ7cstR7npJ9UJa82ac/ng4K3jad8MRBHV5fyC7FALFut+ON9/w1JDjxq9GpMKLWGr
-        LeTYK9Bzs+HMJ0AerjxC+vwCDMXL9A35NfwJM+SWawBBctaJU23mjQLY=
-X-Received: by 2002:ae9:e313:0:b0:742:8868:bfd1 with SMTP id v19-20020ae9e313000000b007428868bfd1mr1851582qkf.7.1677505675817;
-        Mon, 27 Feb 2023 05:47:55 -0800 (PST)
-X-Google-Smtp-Source: AK7set/TJt2EU/afZqiJqR6VD4laReyHa5Perg50Z5/nKcJ7QgSMmS3Kx2TG7JRmCyAgRQOQJcDd5SBGKgSUDP5Ny2k=
-X-Received: by 2002:ae9:e313:0:b0:742:8868:bfd1 with SMTP id
- v19-20020ae9e313000000b007428868bfd1mr1851578qkf.7.1677505675539; Mon, 27 Feb
- 2023 05:47:55 -0800 (PST)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id A9DBB80ADF;
+        Mon, 27 Feb 2023 15:58:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1677509911;
+        bh=xGYDGL1ihg6Ce/sNZWfhcSbVleeZf4hHm/9S/wA1Mr8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nvkpsLCGCvVSFxM2R65guX5RgTdZm9cMnrFgIPo1+FM9BIiiNKkjiCFHFUGcTITgm
+         D+Ilk7NeOoBMQUZD47gyDvZZ2OPIkxli2mEVpfyBhISTvr4jrLlIAEAl4XvkfRzX1Z
+         iR0TJkVa0mdWR4CUsBhzNf7/YT+ds14WB71XltMW6JQuiq7nXJt0Q1SBPuhDcYsVe3
+         gWn+iMPN4O+Bsz5S6QM2qN9Hzgzz4kosIhYeu7tt6z+mD6ww6hg6eeQwMkWz6VQqO8
+         WCspR19qNIOoQlWFQn/XTrgXgWgRRf+uzOr1x0E/6Tg/H7Zb5zVYz/kvPRFhc4ymWX
+         IYZWXQ0/Mwecg==
+Message-ID: <5073f78d-1c14-ce51-2f77-a94cda38e5f6@denx.de>
+Date:   Mon, 27 Feb 2023 14:47:56 +0100
 MIME-Version: 1.0
-References: <20230227131042.16125-1-walker.chen@starfivetech.com> <20230227131042.16125-3-walker.chen@starfivetech.com>
-In-Reply-To: <20230227131042.16125-3-walker.chen@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 27 Feb 2023 14:47:38 +0100
-Message-ID: <CAJM55Z946EVyN50KcBmh7chOOnzwTOjwLR+Z_fCOrfin9j7LNA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dmaengine: dw-axi-dmac: Add support for StarFive
- JH7110 DMA
-To:     Walker Chen <walker.chen@starfivetech.com>
-Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 1/5] clk: Introduce
+ devm_clk_hw_register_gate_parent_data()
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-clk@vger.kernel.org
+Cc:     Abel Vesa <abelvesa@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230223171114.59164-1-marex@denx.de>
+ <8196426.T7Z3S40VBb@steina-w>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <8196426.T7Z3S40VBb@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,167 +74,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Feb 2023 at 14:11, Walker Chen <walker.chen@starfivetech.com> wrote:
->
-> Add DMA reset operation in device probe and use different configuration
-> on CH_CFG registers according to match data.
->
-> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+On 2/27/23 09:38, Alexander Stein wrote:
 
-Hi Walker,
+[...]
 
-Firstly your Signed-off-by should be the last line.
+>> +/**
+>> + * devm_clk_hw_register_gate - register a gate clock with the clock
+>> framework + * @dev: device that is registering this clock
+>> + * @name: name of this clock
+>> + * @parent_data: parent clk data
+>> + * @flags: framework-specific flags for this clock
+>> + * @reg: register address to control gating of this clock
+>> + * @bit_idx: which bit in the register controls gating of this clock
+>> + * @clk_gate_flags: gate-specific flags for this clock
+>> + * @lock: shared register lock for this clock
+>> + */
+>> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data,
+>> flags,  \ +					      reg,
+> bit_idx, clk_gate_flags,   \
+>> +					      lock)		
+> 	      \
+>> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
+>> +				    (parent_data), (flags), (reg),
+> (bit_idx), \
+>> +				    (clk_gate_flags), (lock))
+>> +
+>>   void clk_unregister_gate(struct clk *clk);
+>>   void clk_hw_unregister_gate(struct clk_hw *hw);
+>>   int clk_gate_is_enabled(struct clk_hw *hw);
+> 
+> Is it worth to add the parent_data paremeter into existing
+> devm_clk_hw_register_gate macro? Just adding this new macro for setting
+> parent_data instead of parent_name seems a bit too much. What if someone wants
+> to set parent_hw? Add another macro?
 
-I may have been unclear in my last review, sorry. I meant to give my
-reviewed-by if you just removed the reset pointer that was never used.
-This new version also adds a lot of new code.
-
-Though, I'm glad you want to update the driver to use match data
-rather than of_device_is_compatible, but then please update all uses
-of of_device_is_compatible. With this patch starfive uses match data
-and the intel,kmb-axi-dma still uses of_device_is_compatible.
-
-More comments below..
-
-> ---
->  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 34 +++++++++++++++++--
->  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  7 ++++
->  2 files changed, 39 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> index bf85aa0979ec..400eeef707bf 100644
-> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> @@ -21,10 +21,12 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/of_dma.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/property.h>
-> +#include <linux/reset.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
->
-> @@ -86,7 +88,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
->
->         cfg_lo = (config->dst_multblk_type << CH_CFG_L_DST_MULTBLK_TYPE_POS |
->                   config->src_multblk_type << CH_CFG_L_SRC_MULTBLK_TYPE_POS);
-> -       if (chan->chip->dw->hdata->reg_map_8_channels) {
-> +       if (chan->chip->dw->hdata->reg_map_8_channels &&
-> +           !chan->chip->dw->hdata->use_cfg2) {
->                 cfg_hi = config->tt_fc << CH_CFG_H_TT_FC_POS |
->                          config->hs_sel_src << CH_CFG_H_HS_SEL_SRC_POS |
->                          config->hs_sel_dst << CH_CFG_H_HS_SEL_DST_POS |
-> @@ -1142,7 +1145,7 @@ static int dma_chan_terminate_all(struct dma_chan *dchan)
->         axi_chan_disable(chan);
->
->         ret = readl_poll_timeout_atomic(chan->chip->regs + DMAC_CHEN, val,
-> -                                       !(val & chan_active), 1000, 10000);
-> +                                       !(val & chan_active), 1000, DMAC_TIMEOUT_US);
->         if (ret == -ETIMEDOUT)
->                 dev_warn(dchan2dev(dchan),
->                          "%s failed to stop\n", axi_chan_name(chan));
-> @@ -1367,6 +1370,17 @@ static int parse_device_properties(struct axi_dma_chip *chip)
->         return 0;
->  }
->
-> +static int jh7110_rst_init(struct platform_device *pdev)
-> +{
-> +       struct reset_control *resets;
-> +
-> +       resets = devm_reset_control_array_get_exclusive(&pdev->dev);
-> +       if (IS_ERR(resets))
-> +               return PTR_ERR(resets);
-> +
-> +       return reset_control_deassert(resets);
-> +}
-> +
->  static int dw_probe(struct platform_device *pdev)
->  {
->         struct device_node *node = pdev->dev.of_node;
-> @@ -1374,6 +1388,7 @@ static int dw_probe(struct platform_device *pdev)
->         struct resource *mem;
->         struct dw_axi_dma *dw;
->         struct dw_axi_dma_hcfg *hdata;
-> +       const struct axi_dma_chip_config *ccfg;
->         u32 i;
->         int ret;
->
-> @@ -1416,6 +1431,15 @@ static int dw_probe(struct platform_device *pdev)
->         if (IS_ERR(chip->cfgr_clk))
->                 return PTR_ERR(chip->cfgr_clk);
->
-> +       ccfg = of_device_get_match_data(&pdev->dev);
-> +       if (ccfg) {
-> +               ret = ccfg->rst_init(pdev);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               chip->dw->hdata->use_cfg2 = ccfg->use_cfg2;
-> +       }
-> +
->         ret = parse_device_properties(chip);
->         if (ret)
->                 return ret;
-> @@ -1557,9 +1581,15 @@ static const struct dev_pm_ops dw_axi_dma_pm_ops = {
->         SET_RUNTIME_PM_OPS(axi_dma_runtime_suspend, axi_dma_runtime_resume, NULL)
->  };
->
-> +static const struct axi_dma_chip_config jh7110_chip_config = {
-> +       .rst_init = jh7110_rst_init,
-> +       .use_cfg2 = true,
-> +};
-> +
->  static const struct of_device_id dw_dma_of_id_table[] = {
->         { .compatible = "snps,axi-dma-1.01a" },
->         { .compatible = "intel,kmb-axi-dma" },
-> +       { .compatible = "starfive,jh7110-axi-dma", .data = &jh7110_chip_config },
->         {}
->  };
->  MODULE_DEVICE_TABLE(of, dw_dma_of_id_table);
-> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> index e9d5eb0fd594..7b404ae9a26a 100644
-> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> @@ -21,6 +21,7 @@
->  #define DMAC_MAX_CHANNELS      16
->  #define DMAC_MAX_MASTERS       2
->  #define DMAC_MAX_BLK_SIZE      0x200000
-> +#define DMAC_TIMEOUT_US                200000
->
->  struct dw_axi_dma_hcfg {
->         u32     nr_channels;
-> @@ -33,6 +34,7 @@ struct dw_axi_dma_hcfg {
->         /* Register map for DMAX_NUM_CHANNELS <= 8 */
->         bool    reg_map_8_channels;
->         bool    restrict_axi_burst_len;
-> +       bool    use_cfg2;
->  };
->
->  struct axi_dma_chan {
-> @@ -72,6 +74,11 @@ struct axi_dma_chip {
->         struct dw_axi_dma       *dw;
->  };
->
-> +struct axi_dma_chip_config {
-> +       int (*rst_init)(struct platform_device *pdev);
-
-Please just spell reset in full, it's not that much longer.
-
-> +       bool use_cfg2;
-> +};
-> +
-
-This struct is only used in dw-axi-dmac-platform.c above, so no need
-to add it here.
-
->  /* LLI == Linked List Item */
->  struct __packed axi_dma_lli {
->         __le64          sar;
-> --
-> 2.17.1
->
+Yes, another macro seems to be the accepted practice here.
