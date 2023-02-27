@@ -2,415 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E34A6A3E12
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:15:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 107266A3E14
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 10:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjB0JPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 04:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48928 "EHLO
+        id S230026AbjB0JR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 04:17:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbjB0JPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:15:34 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4763321A02;
-        Mon, 27 Feb 2023 01:08:58 -0800 (PST)
+        with ESMTP id S229874AbjB0JRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 04:17:12 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF3D1E1F0
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:11:52 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id p20so4787576plw.13
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 01:11:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677488938; x=1709024938;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0rcMwdB8P83YSG9t94WroP2Hfiqi+LBOffRPprk7z1U=;
-  b=aFNmlKKXcyfmMf6a5wasdPKUPjFRDvRjQDfcJLUC5+vnMFRh3FvZCPSV
-   iDL3kKWYeLJTZFNmTq6m6KaCCYjKgyWCBTMstVQ/dNT1wXkvGlvPjtU92
-   8ap5IZlg4qS5cWSVlXdGbTfV8q/cf1JTTF6jHoMj6QGoxC5fc3Qu6j6/p
-   UwGP6FACTeM7XhfDMmOme6vKMYgV0P8PU8VLlQmZV6idj53tEtXm67UyR
-   +QXi8+Ffeau/jtig/dvYuZOaicMchAcrhrQAllwYfN+dp1iWPKtbHWb64
-   hoZHoydMFNWfvDC79R1IQtu3TkI4vbWc2/SFSilxs9Cqj9MnF9xc09GYB
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29328069"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 27 Feb 2023 10:08:25 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 27 Feb 2023 10:08:25 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 27 Feb 2023 10:08:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677488905; x=1709024905;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0rcMwdB8P83YSG9t94WroP2Hfiqi+LBOffRPprk7z1U=;
-  b=DUsVvNlBYkKnUvV+1s4JaTZoRlcq2sQIoJwqnpFSIMLQlXco41Nh6OK/
-   FIx0G7ZBWUZg0+C22N4/WHHW6KF/aibxwC8Ks4rNKvycPNj9HS4Lxbsd3
-   VygBdmFXuu6ex7dv3fvphkRlQnlD0Hf+gMBFWqVCXdKNHzG98+y8IpqX7
-   ON6jbCT+w2Zw5x6UCmHvsgNlr1v7cx5peCE68Q2I9gbDdc7/DH0mWoNzD
-   rkDC4ObWYHQ5mjIrP4YTHqTypowuggMGVWrLlUucNCryOZYKXRqJW+F1p
-   c9Djx09f3cyS5v37uKxh6G63dHOfcwe2db7PU5NE104nc7FOV6LFgDVnr
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.97,331,1669071600"; 
-   d="scan'208";a="29328068"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Feb 2023 10:08:25 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A21E9280056;
-        Mon, 27 Feb 2023 10:08:24 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     linux-clk@vger.kernel.org, Marek Vasut <marex@denx.de>
-Cc:     Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 4/5] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-Date:   Mon, 27 Feb 2023 10:08:24 +0100
-Message-ID: <3160821.5fSG56mABF@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230223171114.59164-4-marex@denx.de>
-References: <20230223171114.59164-1-marex@denx.de> <20230223171114.59164-4-marex@denx.de>
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WAPbpGQmkYePcLGSveUOcE3E3YzvmMSxBjOApNMSSAI=;
+        b=aMKRdQuk5Hc0KFTyTW/VUmwz17bhX/wl1Gt4ZBYvtOFKrh1ZBMtgomOwb7xAonImK4
+         50JibakLFucZ6bYK/COJ8qcsS9/fd1ZjDq0pBOVG6IWjxFF5q0CDsc8nmz5itBcY2nBp
+         nTtnDT396lqVTPgr8akqb56F6yHGo1vOhJB1ozZ1oHsT9fLfWjmOyjR1IQuRJveZa5Fx
+         5iFt3A0HJe4l4jj/5+Na0+Mf4OD6NQ8QalNUol+L831SosGPtH2fbULRv1Dq8HpoWuHT
+         99nuLA60TEDUgDYcVmDyRBpU9oMDb0K701Ms0dYCZ9qdrq+3t7R8x4NenmzPiBNvmJnj
+         kTPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WAPbpGQmkYePcLGSveUOcE3E3YzvmMSxBjOApNMSSAI=;
+        b=QJgdxlqFdrM2XA5vrMteQx3H0Rkc/iA2xf8TbC0UIv8/fRA6wxZMoc2ybg7Vp8t9MN
+         ueKpQx5535TV4clKkKRHt4hQwSYhONApMPdTtHaVvUAErssAxFISfOsI9BLvg8rUy7Cf
+         bi7fiYikzKXKy/cnhhe7pNBi7DA+3f5INX8ipNIqIyo49/1uZh70MlnnsuF1GZT9cIb5
+         i5p+NAG0wiDU3V3iZ5nzaKhcVIxsp8/AapaAiP6zEKWpRskpPkgqVTWZLGuPUjdcHgZn
+         f6zUeQS9Gve2cNk3YrDWKeVgWaT6CcubwnPbmkmXktDxbnCaulxpNK/uDtQ59axix0Lo
+         qExQ==
+X-Gm-Message-State: AO0yUKVkqEWrgK7ZixY03Iv0eQgTZ7Au4C7zPRT2s/Ju7OnSCrVfLiET
+        6QPrW1ZREF2jdV3S4O/HYIRDl3hVjzxMXZSuUegpZQ==
+X-Google-Smtp-Source: AK7set9ZHtR3O7FIl0OXufx3VOUJRsLg+eycr1BJ3ljSwdZpvC7vJcxPi4oQRsjtShW/BkBuG7V3lYRmrSWHthvDU4c=
+X-Received: by 2002:a17:90a:c7d6:b0:233:d64d:4c29 with SMTP id
+ gf22-20020a17090ac7d600b00233d64d4c29mr4481202pjb.4.1677489111634; Mon, 27
+ Feb 2023 01:11:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230106164618.1845281-1-vincent.guittot@linaro.org>
+ <20230106182849.kr47mdgokd4qa6zw@builder.lan> <CAKfTPtBJHWfhXCGojZSvS_DM4+bJnQ9j1GwtE5_YYJFHq9cpRA@mail.gmail.com>
+ <20230118232640.qfyuy5n4x33yttup@builder.lan>
+In-Reply-To: <20230118232640.qfyuy5n4x33yttup@builder.lan>
+From:   Vincent Guittot <vincent.guittot@linaro.org>
+Date:   Mon, 27 Feb 2023 10:11:40 +0100
+Message-ID: <CAKfTPtDsbtrY1HAmBk+Od4-CbckkmxPgjsEQ_e95+CDh3XmCuw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     dmitry.baryshkov@linaro.org, agross@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, danny@kdrag0n.dev
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Bjorn,
 
-thanks for respinning this series.
+On Thu, 19 Jan 2023 at 00:26, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+[...]
 
-Am Donnerstag, 23. Februar 2023, 18:11:13 CET schrieb Marek Vasut:
-> Add all SAI nodes, SDMA2 and SDMA3 nodes, and AudioMIX node. This is
-> needed to get audio operational on i.MX8MP .
->=20
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V2: - Add AUDIO_AXI clock to audio gpc
->     - Use IMX8MP_CLK_AUDIOMIX_SDMA2_ROOT for SDMA2 IPG clock
-> V3: Rename audio_ahb to plain ahb
-> V4: - Add RB/TB from Luca
->     - Rebase on next 20230223
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 153 ++++++++++++++++++++++
->  1 file changed, 153 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> ca8093ee4d0e4..56d2a6377a5a6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -571,6 +571,13 @@ pgc_usb2_phy: power-domain@3 {
->  						reg =3D=20
-<IMX8MP_POWER_DOMAIN_USB2_PHY>;
->  					};
->=20
-> +					pgc_audio: power-domain@5 {
-> +						#power-domain-
-cells =3D <0>;
-> +						reg =3D=20
-<IMX8MP_POWER_DOMAIN_AUDIOMIX>;
-> +						clocks =3D <&clk=20
-IMX8MP_CLK_AUDIO_ROOT>,
-> +							 <&clk=20
-IMX8MP_CLK_AUDIO_AXI>;
-> +					};
-> +
->  					pgc_gpu2d: power-domain@6 {
->  						#power-domain-
-cells =3D <0>;
->  						reg =3D=20
-<IMX8MP_POWER_DOMAIN_GPU2D>;
-> @@ -1119,6 +1126,152 @@ opp-1000000000 {
->  			};
->  		};
->=20
-> +		aips5: bus@30c00000 {
-> +			compatible =3D "fsl,aips-bus", "simple-bus";
-> +			reg =3D <0x30c00000 0x400000>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			ranges;
-> +
-> +			spba-bus@30c00000 {
-> +				compatible =3D "fsl,spba-bus", "simple-
-bus";
-> +				reg =3D <0x30c00000 0x100000>;
+> > > > According to [1], LITTLE consumes 10% less than big core for Coremark
+> > > > benchmark at those OPPs. If we consider that everything else stays
+> > > > unchanged, the dynamic-power-coefficient of LITTLE core should be
+> > > > only 53% of the current value: 290 * 53% = 154
+> > > >
+> > > > Set the dynamic-power-coefficient of CPU0-3 to 154 to fix the energy model.
+> > > >
+> > >
+> > > This is sounds reasonable.
+> > >
+>
+> Dmitry, what do you think about this?
 
-Is there an SPBA bus for every AIPS? I'm wondering why some aips do have an=
-=20
-spba below and some do not.
+What is the status for this patch ?
+The problem is still present AFAICT
 
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <1>;
-> +				ranges;
-> +
-> +				sai1: sai@30c10000 {
-> +					compatible =3D "fsl,imx8mp-
-sai", "fsl,imx8mq-sai";
-> +					reg =3D <0x30c10000 0x10000>;
-> +					interrupts =3D <GIC_SPI 95=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI1_IPG>,
-> +						 <&clk=20
-IMX8MP_CLK_DUMMY>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI1_MCLK2>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI1_MCLK3>;
-> +					clock-names =3D "bus",=20
-"mclk0", "mclk1", "mclk2", "mclk3";
-> +					dmas =3D <&sdma2 0 2 0>,=20
-<&sdma2 1 2 0>;
+Regards,
+Vincent
+>
 
-Looking at Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml should t=
-he=20
-2nd cell value be 24? This would be true for all other sai nodes.
+[...]
 
-> +					dma-names =3D "rx", "tx";
-> +					status =3D "disabled";
-> +				};
-> +
-> +				sai2: sai@30c20000 {
-> +					compatible =3D "fsl,imx8mp-
-sai", "fsl,imx8mq-sai";
-> +					reg =3D <0x30c20000 0x10000>;
-> +					interrupts =3D <GIC_SPI 96=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI2_IPG>,
-> +						 <&clk=20
-IMX8MP_CLK_DUMMY>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI2_MCLK1>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI2_MCLK2>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI2_MCLK3>;
-> +					clock-names =3D "bus",=20
-"mclk0", "mclk1", "mclk2", "mclk3";
-> +					dmas =3D <&sdma2 2 2 0>,=20
-<&sdma2 3 2 0>;
-> +					dma-names =3D "rx", "tx";
-> +					status =3D "disabled";
-> +				};
-> +
-> +				sai3: sai@30c30000 {
-> +					compatible =3D "fsl,imx8mp-
-sai", "fsl,imx8mq-sai";
-> +					reg =3D <0x30c30000 0x10000>;
-> +					interrupts =3D <GIC_SPI 50=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI3_IPG>,
-> +						 <&clk=20
-IMX8MP_CLK_DUMMY>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI3_MCLK1>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI3_MCLK2>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI3_MCLK3>;
-> +					clock-names =3D "bus",=20
-"mclk0", "mclk1", "mclk2", "mclk3";
-> +					dmas =3D <&sdma2 4 2 0>,=20
-<&sdma2 5 2 0>;
-> +					dma-names =3D "rx", "tx";
-> +					status =3D "disabled";
-> +				};
-> +
-> +				sai5: sai@30c50000 {
-> +					compatible =3D "fsl,imx8mp-
-sai", "fsl,imx8mq-sai";
-> +					reg =3D <0x30c50000 0x10000>;
-> +					interrupts =3D <GIC_SPI 90=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI5_IPG>,
-> +						 <&clk=20
-IMX8MP_CLK_DUMMY>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI5_MCLK1>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI5_MCLK2>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI5_MCLK3>;
-> +					clock-names =3D "bus",=20
-"mclk0", "mclk1", "mclk2", "mclk3";
-> +					dmas =3D <&sdma2 8 2 0>,=20
-<&sdma2 9 2 0>;
-> +					dma-names =3D "rx", "tx";
-> +					status =3D "disabled";
-> +				};
-> +
-> +				sai6: sai@30c60000 {
-> +					compatible =3D "fsl,imx8mp-
-sai", "fsl,imx8mq-sai";
-> +					reg =3D <0x30c60000 0x10000>;
-> +					interrupts =3D <GIC_SPI 90=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI6_IPG>,
-> +						 <&clk=20
-IMX8MP_CLK_DUMMY>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI6_MCLK1>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI6_MCLK2>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI6_MCLK3>;
-> +					clock-names =3D "bus",=20
-"mclk0", "mclk1", "mclk2", "mclk3";
-> +					dmas =3D <&sdma2 10 2 0>,=20
-<&sdma2 11 2 0>;
-> +					dma-names =3D "rx", "tx";
-> +					status =3D "disabled";
-> +				};
-> +
-> +				sai7: sai@30c80000 {
-> +					compatible =3D "fsl,imx8mp-
-sai", "fsl,imx8mq-sai";
-> +					reg =3D <0x30c80000 0x10000>;
-> +					interrupts =3D <GIC_SPI 111=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI7_IPG>,
-> +						 <&clk=20
-IMX8MP_CLK_DUMMY>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI7_MCLK1>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI7_MCLK2>,
-> +						 <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SAI7_MCLK3>;
-> +					clock-names =3D "bus",=20
-"mclk0", "mclk1", "mclk2", "mclk3";
-> +					dmas =3D <&sdma2 12 2 0>,=20
-<&sdma2 13 2 0>;
-> +					dma-names =3D "rx", "tx";
-> +					status =3D "disabled";
-> +				};
-> +			};
-> +
-> +			sdma3: dma-controller@30e00000 {
-> +				compatible =3D "fsl,imx8mp-sdma",=20
-"fsl,imx8mq-sdma";
-> +				reg =3D <0x30e00000 0x10000>;
-> +				interrupts =3D <GIC_SPI 34=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SDMA3_ROOT>,
-> +					 <&clk=20
-IMX8MP_CLK_AUDIO_ROOT>;
-> +				clock-names =3D "ipg", "ahb";
-> +				#dma-cells =3D <3>;
-> +				fsl,sdma-ram-script-name =3D "imx/sdma/
-sdma-imx7d.bin";
-> +			};
-> +
-> +			sdma2: dma-controller@30e10000 {
-> +				compatible =3D "fsl,imx8mp-sdma",=20
-"fsl,imx8mq-sdma";
-> +				reg =3D <0x30e10000 0x10000>;
-> +				interrupts =3D <GIC_SPI 103=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks =3D <&audio_blk_ctrl=20
-IMX8MP_CLK_AUDIOMIX_SDMA2_ROOT>,
-> +					 <&clk=20
-IMX8MP_CLK_AUDIO_ROOT>;
-> +				clock-names =3D "ipg", "ahb";
-> +				#dma-cells =3D <3>;
-> +				fsl,sdma-ram-script-name =3D "imx/sdma/
-sdma-imx7d.bin";
-> +			};
-> +
-> +			audio_blk_ctrl: blk-ctrl@30e20000 {
-
-Shouldn't the node name be 'clock-controller@30e20000' as mentioned in the=
-=20
-bindings?
-But for the whole series:
-Testes-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Best regards,
-Alexander
-
-> +				#clock-cells =3D <1>;
-> +				compatible =3D "fsl,imx8mp-audio-blk-
-ctrl";
-> +				clocks =3D <&clk IMX8MP_CLK_AUDIO_ROOT>,
-> +					 <&clk IMX8MP_CLK_SAI1>,
-> +					 <&clk IMX8MP_CLK_SAI2>,
-> +					 <&clk IMX8MP_CLK_SAI3>,
-> +					 <&clk IMX8MP_CLK_SAI5>,
-> +					 <&clk IMX8MP_CLK_SAI6>,
-> +					 <&clk IMX8MP_CLK_SAI7>;
-> +				clock-names =3D "ahb",
-> +					      "sai1", "sai2",=20
-"sai3",
-> +					      "sai5", "sai6",=20
-"sai7";
-> +				power-domains =3D <&pgc_audio>;
-> +				power-domain-names =3D "audio";
-> +				reg =3D <0x30e20000 0x10000>;
-> +			};
-> +		};
-> +
->  		aips4: bus@32c00000 {
->  			compatible =3D "fsl,aips-bus", "simple-bus";
->  			reg =3D <0x32c00000 0x400000>;
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+> > > >
+>
+>
