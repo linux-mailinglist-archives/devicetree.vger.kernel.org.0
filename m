@@ -2,125 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE6ED6A363A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 02:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7FEA6A3640
+	for <lists+devicetree@lfdr.de>; Mon, 27 Feb 2023 02:54:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjB0BrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Feb 2023 20:47:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43088 "EHLO
+        id S229512AbjB0ByN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Feb 2023 20:54:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbjB0BrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 20:47:21 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0B5126D3;
-        Sun, 26 Feb 2023 17:47:16 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id F35EC24E205;
-        Mon, 27 Feb 2023 09:47:07 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Feb
- 2023 09:47:07 +0800
-Received: from [192.168.125.128] (113.72.145.171) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Feb
- 2023 09:47:06 +0800
-Message-ID: <0a1f48b4-8bba-afed-dd08-4d2c3d69cdb6@starfivetech.com>
-Date:   Mon, 27 Feb 2023 09:47:24 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S229486AbjB0ByM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Feb 2023 20:54:12 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3F37BE3A7;
+        Sun, 26 Feb 2023 17:54:11 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxJPRCDfxjJ+oFAA--.5421S3;
+        Mon, 27 Feb 2023 09:54:10 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxC74+Dfxjqho+AA--.45347S3;
+        Mon, 27 Feb 2023 09:54:06 +0800 (CST)
+Subject: Re: [PATCH v10 2/4] clk: clk-loongson2: add clock controller driver
+ support
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-3-xingyu.wu@starfivetech.com>
- <CAJM55Z823iqUqD8enM0qJ_MA3Tw94Mn0mq71fbLT1Qjo2s2J3g@mail.gmail.com>
- <CA6686A1-2336-442F-8C7B-7D8EFEEE1940@kernel.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <CA6686A1-2336-442F-8C7B-7D8EFEEE1940@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.171]
-X-ClientProxiedBy: EXCAS065.cuchost.com (172.16.6.25) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        WANG Xuerui <kernel@xen0n.name>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, liupeibao@loongson.cn,
+        loongarch@lists.linux.dev, wanghongliang@loongson.cn
+References: <20221129034157.15036-1-zhuyinbo@loongson.cn>
+ <31c690a347f858a477bbba9c838984ed.sboyd@kernel.org>
+ <4b5fd886-57ce-01ef-8224-432898b7fb1c@loongson.cn>
+ <8332a1cf44b01f06bdd5db9dc5d7f387.sboyd@kernel.org>
+ <01ee3dc6-a868-fd2b-93aa-11e6bdfcc9df@loongson.cn>
+ <9e8952c9415973dc7276185e3cdf5ae7.sboyd@kernel.org>
+ <d92223a0-6d4c-33ea-1473-3d40bdd0ad9e@loongson.cn>
+ <834da7dc-bb5d-3427-43e5-938e40a2d180@loongson.cn>
+ <6c497d2d70d215a86be178fc08546f4d.sboyd@kernel.org>
+ <d2519ebc-8f71-1cf0-9ec8-a65a7f094853@loongson.cn>
+ <19ce51bd94685e2bed6cbc20467e5705.sboyd@kernel.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <9c31d4a5-15ca-99fa-73c7-d764221f369d@loongson.cn>
+Date:   Mon, 27 Feb 2023 09:54:06 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <19ce51bd94685e2bed6cbc20467e5705.sboyd@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8BxC74+Dfxjqho+AA--.45347S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7Zr4rGr43ArykCFyxAF4UXFb_yoW8XFyUpr
+        W8Cay2yF4Dtr4jvws293ZxZa4jyw1xJF1j9r1rJw1Dua4qkryxAr4DuF15uFZrJrsxGw40
+        qr40k3y7uFyjvrJanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCj
+        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
+        0_JF0_Jw1l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
+        c4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
+        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY
+        6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
+        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY
+        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8FAp5UUUUU==
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/2/26 22:33, Conor Dooley wrote:
-> 
-> 
-> On 26 February 2023 14:14:25 GMT, Emil Renner Berthing <emil.renner.berthing@canonical.com> wrote:
->>On Mon, 20 Feb 2023 at 09:21, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
->>>
->>> Add watchdog driver for the StarFive JH7110 SoC.
->>>
->>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>> ---
->>>  MAINTAINERS                     |   7 +
->>>  drivers/watchdog/Kconfig        |   9 +
->>>  drivers/watchdog/Makefile       |   2 +
->>>  drivers/watchdog/starfive-wdt.c | 651 ++++++++++++++++++++++++++++++++
->>>  4 files changed, 669 insertions(+)
->>>  create mode 100644 drivers/watchdog/starfive-wdt.c
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 135d93368d36..6cbcf08fa76a 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -19933,6 +19933,13 @@ F:     Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
->>>  F:     drivers/reset/reset-starfive-jh7100.c
->>>  F:     include/dt-bindings/reset/starfive-jh7100.h
->>>
->>> +STARFIVE JH7110 WATCHDOG DRIVER
->>> +M:     Xingyu Wu <xingyu.wu@starfivetech.com>
->>> +M:     Samin Guo <samin.guo@starfivetech.com>
->>> +S:     Supported
->>> +F:     Documentation/devicetree/bindings/watchdog/starfive*
->>> +F:     drivers/watchdog/starfive-wdt.c
->>> +
->>>  STATIC BRANCH/CALL
->>>  M:     Peter Zijlstra <peterz@infradead.org>
->>>  M:     Josh Poimboeuf <jpoimboe@kernel.org>
->>> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
->>> index 0bc40b763b06..4608eb5c9501 100644
->>> --- a/drivers/watchdog/Kconfig
->>> +++ b/drivers/watchdog/Kconfig
->>> @@ -2089,6 +2089,15 @@ config UML_WATCHDOG
->>>         tristate "UML watchdog"
->>>         depends on UML || COMPILE_TEST
->>>
->>> +config STARFIVE_WATCHDOG
->>> +       tristate "StarFive Watchdog support"
->>> +       depends on RISCV
->>
->>Let's do like the pinctrl and clock drivers and
->>
->>    depends SOC_STARFIVE || COMPILE_TEST
-> 
-> Or better yet, rebase on 6.3-rc1, and use ARCH_STARFIVE and save me a conversion!
-> 
 
-Will modify this.
+在 2023/2/25 上午3:10, Stephen Boyd 写道:
+> Quoting zhuyinbo (2023-02-22 18:16:49)
+>> 在 2023/2/23 上午5:00, Stephen Boyd 写道:
+>>> Quoting zhuyinbo (2023-02-21 21:10:14)
+>>>>>>> yes, the use of dts doesn't require the use of CLK_OF_DECLARE and can
+>>>>>>> use platform_driver_register
+>>>>>>>
+>>>>>>> but my drvier not use platform_driver_register to register clk and use
+>>>>>>> CLK_OF_DECLARE to match of_clk_init.
+>>>>>> of_clk_init() is there to register clks that are needed for early init,
+>>>>>> i.e. the clockevent/clocksource or the root interrupt controller
+>>>>>> (irqchip). Otherwise, it isn't necessary to register clks via
+>>>>>> of_clk_init().
+>>>>> okay, I got it.
+>>>> and,  the time driver  get clock by CCF that ask loongson2 clock driver
+>>>> use CLK_OF_DECLARE
+>>>>
+>>>> to match of_clk_init.   because  the timer_probe  is very early and the
+>>>> timer driver was use TIMER_OF_DECLARE
+>>>>
+>>>> to match time_probe.
+>>>>
+>>> If you have a time driver that gets clks, register those early with
+>>> CLK_OF_DECLARE_DRIVER() and then have a platform driver for the rest of
+>>> the clk tree that registers clks later.
+>> okay, I got it.  and this series patch I will use platform driver.
+>> later, if the loongson2 time driver use the
+>>
+>> CLK_OF_DECLARE style I will make a alone time clk driver for it that
+>> use  CLK_OF_DECLARE_DRIVER()
+>>
+> It can be the same file if you want. But then it can't be a module. Up
+> to you what you want to do there.
+okay, I got it.
 
-Best regards,
-Xingyu Wu
