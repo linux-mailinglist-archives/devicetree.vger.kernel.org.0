@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02FF76A5693
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B4D6A5696
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjB1K0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:26:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
+        id S229471AbjB1K1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjB1K0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:26:38 -0500
+        with ESMTP id S230373AbjB1K1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:27:12 -0500
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B692D231D3;
-        Tue, 28 Feb 2023 02:26:35 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1287F29E30;
+        Tue, 28 Feb 2023 02:27:11 -0800 (PST)
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E508D6602F90;
-        Tue, 28 Feb 2023 10:26:32 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 31DF46602F90;
+        Tue, 28 Feb 2023 10:27:09 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677579993;
-        bh=VFa+f+8DW2e7D6mKpQUiXknzxxQ8s0Fg736RhJg9+aQ=;
+        s=mail; t=1677580029;
+        bh=g3NFpJH4/03P+ic0BhIheOKxhuMMGL+BE+w/2aTRtIY=;
         h=From:To:Cc:Subject:Date:From;
-        b=BVlPG6TwFWfmWmTOzq+4wKLJpdKMTDcMH0Ykv43T1b18Qe+wluCePVdBBrXC6Hkbo
-         pKhLkWY3No2PyYisZN6VmkvmMzEARzivyanq2TlND6V1DeTiWx7nhmJpMQ7z0YudGd
-         XX54jwrGdvXTvdKTmWdCZQpPexKTo25vXwTCxUnTCF4jZeNHYHqP9JtUwDGCO0nc5b
-         NlPFJbgfWAF9ESMNgHiN2wCmg2T6NiIQ30RlFzjtiGI8VSgX4O0L20Wv/lcgLstnHd
-         JNl/rmRPgDRFZQfd+XYznZljh3Y/z1IXz0uoD2T2Ozf3iIABkcmc7PlSey5otRRNJ8
-         OUXUvnB67Jb6Q==
+        b=LA/b4pGc1pYewDwhPssPa64PjNlqjxa1iWFAH07T1+oVAmCIJpmHfi2DrgrlXbnLO
+         m1Anv6hn3Fyb3U8XwyXAKrN46v85PD2nrrUSg7sTLnvlwbCt5CWyPKV7TbLw6krpjI
+         6SuFxwHXemINV4Swuufmdx1Mj29/0zebztcOBizo93nt1I1jhZW+jB3O981Ko1Cjyy
+         Z341bJKmyJUQ1I70Ofj/WLt9GsCMMDuh/lZHKayubYicQ30TA0Shz5moJLDEAmWglp
+         pQAWHnK9yBUxgIrNBpgDgqg8agXKBviPVnvO78eez7ZbkbOCO4AeMoryvyhSQP5YIH
+         DJmeqg3wSBXow==
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 To:     airlied@gmail.com
@@ -43,9 +43,9 @@ Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
         linux-mediatek@lists.infradead.org, wenst@chromium.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v4 00/12] Panfrost: Improve and add MediaTek SoCs support
-Date:   Tue, 28 Feb 2023 11:25:58 +0100
-Message-Id: <20230228102610.707605-1-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v4 01/12] dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains variation
+Date:   Tue, 28 Feb 2023 11:26:53 +0100
+Message-Id: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -58,60 +58,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes in v4:
- - Refactored power-domains and power-domain-names exclusions as
-   suggested by Krzysztof
- - Small changes in MT8192 bindings addition
+In preparation for adding new bindings for new MediaTek SoCs, split out
+the power-domains variation from the `else` in the current
+mediatek,mt8183-mali conditional.
 
-Changes in v3:
- - Changed MT8186 bindings to declare only two power domains
- - Added a commit introducing MT8186 specific platform data to
-   panfrost_drv
+The sram-supply part is left in place to be disallowed for anything
+that is not compatible with "mediatek,mt8183-mali" as this regulator
+is MediaTek-specific and it is, and will ever be, used only for this
+specific string due to the addition of the mediatek-regulator-coupler
+driver.
 
-Changes in v2:
- - Add power-domain-names commit from Chen-Yu to the series
- - Kept sram-supply in base schema, overridden for non-MediaTek
- - Added Reviewed-by tags from Steven Price to the driver commits
-   (as released in reply to v1's cover letter - thanks!)
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml        | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
-and improves MT8183 support: since the mtk-regulator-coupler driver
-was picked, it is now useless for Panfrost to look for, and manage,
-two regulators (GPU Vcore and GPU SRAM) on MediaTek;
-
-The aforementioned driver will take care of keeping the voltage
-relation (/constraints) of the two regulators on its own when a
-voltage change request is sent to the Vcore, solving the old time
-issue with not working DVFS on Panfrost+MediaTek (due to devfreq
-supporting only single regulator).
-
-In the specific case of MT8183, in order to not break the ABI, it
-was necessary to add a new compatible for enabling DVFS.
-
-Alyssa Rosenzweig (3):
-  drm/panfrost: Increase MAX_PM_DOMAINS to 5
-  drm/panfrost: Add the MT8192 GPU ID
-  drm/panfrost: Add mediatek,mt8192-mali compatible
-
-AngeloGioacchino Del Regno (9):
-  dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains
-    variation
-  dt-bindings: gpu: mali-bifrost: Set power-domains maxItems to 5
-  dt-bindings: gpu: mali-bifrost: Fix power-domain-names validation
-  dt-bindings: gpu: mali-bifrost: Add sub-schema for MT8192's power
-    domains
-  dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
-  dt-bindings: gpu: mali-bifrost: Add support for MediaTek MT8186
-  dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
-  drm/panfrost: Add new compatible for Mali on the MT8183 SoC
-  drm/panfrost: Add support for Mali on the MT8186 SoC
-
- .../bindings/gpu/arm,mali-bifrost.yaml        | 80 ++++++++++++++++++-
- drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
- drivers/gpu/drm/panfrost/panfrost_drv.c       | 37 +++++++++
- drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 ++
- 4 files changed, 123 insertions(+), 4 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+index 78964c140b46..7e110751353e 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+@@ -109,6 +109,9 @@ allOf:
+           contains:
+             const: amlogic,meson-g12a-mali
+     then:
++      properties:
++        power-domains:
++          maxItems: 1
+       required:
+         - resets
+   - if:
+@@ -131,6 +134,8 @@ allOf:
+             - const: gpu
+             - const: bus
+             - const: bus_ace
++        power-domains:
++          maxItems: 1
+         resets:
+           minItems: 3
+         reset-names:
+@@ -164,8 +169,6 @@ allOf:
+         - power-domain-names
+     else:
+       properties:
+-        power-domains:
+-          maxItems: 1
+         sram-supply: false
+   - if:
+       properties:
+@@ -180,6 +183,8 @@ allOf:
+           items:
+             - const: gpu
+             - const: bus
++        power-domains:
++          maxItems: 1
+       required:
+         - clock-names
+ 
 -- 
 2.39.2
 
