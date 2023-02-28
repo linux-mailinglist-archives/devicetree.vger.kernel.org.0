@@ -2,163 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F7276A56E3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 109716A5701
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:47:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbjB1Kh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:37:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53196 "EHLO
+        id S229533AbjB1Krx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:47:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231154AbjB1Kh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:37:26 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FEB2C654
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:37:24 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id m14-20020a7bce0e000000b003e00c739ce4so5536347wmc.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:37:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677580642;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6lKLt5HIsJYb5tC1Ze6Ub0RmLxOUiKi6jayItAZSyIM=;
-        b=BTeATDIzH8pSJTPac/KQ21euFT5RmcMyyQTBEhEoJN5VoFwakQQFA9OuLlcJG1QKLj
-         Qet0sixga45OLRBGRL/b4NNXBRbPT8z6toZyQmScoXSYk68PuxMsn0P3W1tOslck9B6Z
-         ULXmZyhYYFILvvPaUzfsLGm5ffGjgk+exMDz5FRD2EKCsdlrLdd0GRpAy+NDELehJqAH
-         Y1FGqFuHkpprnHZDltSyfZBp0e/ppkuI9UPDoXmV1g69IdzrkfkxW/7N7EXkQa9HIzeo
-         YnfsdrBzpv9cGw+7RFaEwo+IJ28yGcSqKVgGeK+baEXXenrLjeAOgpfTcFmVl1mqHa8P
-         3oUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677580642;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6lKLt5HIsJYb5tC1Ze6Ub0RmLxOUiKi6jayItAZSyIM=;
-        b=q5+aZengk0n4Boa+UfiIHNprUePrEVJKb4NX1Rc+z2FSPRz3xQrHtTRFWmljod0nkz
-         2ncdhSVTm03VgBZqdvVU+xxoKd58JBZC6joDQ9CtH/+HDnDNu91i+1G4gzCAyIuGQT77
-         EguE/OsuvV3JUowqlIjXiqetHaljqP8XsKWPtze+ms/mL6dFT3SMk7xKwd2qX8fTENOb
-         tllf8xnozpMBsMZ5Q+aHFanszcLpjv4id01k5/z9UypgEJ16D7MXw4wUXfYq4OHGX+6u
-         8hXArwjfZq35X3/aParq0Wef0Un8nl7xBOciWus8b9bHUKYvtr9Kkqk/XNWNXOYvu1dq
-         28xQ==
-X-Gm-Message-State: AO0yUKWTlcdYEq+rtmOIJSzuQ7Fn9dpU9EvZEiHX7ODn05insoz5wk/K
-        sVb5gH3031jZAZuMM87kwa75zg==
-X-Google-Smtp-Source: AK7set8qggFOBYVcZUD3defWyyZDeiDIyNcZq9p6rsu+MxCJELx7V2LcYKz+ScO7nG86StUj+oQy8g==
-X-Received: by 2002:a05:600c:4fd3:b0:3eb:36fa:b791 with SMTP id o19-20020a05600c4fd300b003eb36fab791mr1806286wmq.31.1677580642550;
-        Tue, 28 Feb 2023 02:37:22 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b15-20020a5d45cf000000b002c703d59fa7sm9329642wrs.12.2023.02.28.02.37.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 02:37:22 -0800 (PST)
-Message-ID: <54f51fa0-7821-b67b-b782-eb9a35b7bba9@linaro.org>
-Date:   Tue, 28 Feb 2023 11:37:20 +0100
+        with ESMTP id S229524AbjB1Krw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:47:52 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD72127486;
+        Tue, 28 Feb 2023 02:47:50 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 017656602FD5;
+        Tue, 28 Feb 2023 10:47:48 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677581269;
+        bh=UYlZn2m3FLwAJmop3xVRjsR84HG36BvM+Lh813y5jmo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=VyttjHMzS5vmcW/yO/9GA6k8V620wwbGBFYaxJflUaXcG719+h6gTsKSTLuOKCsJf
+         Axf/NSHmEys1Scpkd8PpC9U9eg05C6yTMEVJ+Q+A7sDzYIoDDCyiqNMDPm7Lsp8bLN
+         ZJXx1FTYY6UhgDRQy2P+HZKxMhqg2gE29aJ7I5LKdwvDGzQgLKvbN2JA1o/TgZdWHM
+         PHAHGDU8fPUiSlaw5VmFuRvaJEGgZnLIhUkHHfOl69elQyli2CDugjrYXAwwNhujTu
+         vDbuwERGwmFyHfftPBnhuxLYdV+zQMnAiP+vq7z+5+nT7FimuCVpjiFKuAGMWsyIqd
+         F2fIZa+ouErAQ==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        angelogioacchino.delregno@collabora.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+Subject: [PATCH v3 00/18] Enable GPU with DVFS support on MediaTek SoCs
+Date:   Tue, 28 Feb 2023 11:47:23 +0100
+Message-Id: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 4/4] dt-bindings: syscon: Add StarFive syscon doc
-Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-5-william.qiu@starfivetech.com>
- <20230220234335.GA615198-robh@kernel.org>
- <348796cc-72d9-4dcf-9f09-4c2aa55cb858@starfivetech.com>
- <20230227222904.GC1048218-robh@kernel.org>
- <f8d2b665-ce5d-81f8-8c55-81f1a4cb62b9@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f8d2b665-ce5d-81f8-8c55-81f1a4cb62b9@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 10:05, William Qiu wrote:
-> 
-> 
-> On 2023/2/28 6:29, Rob Herring wrote:
->> On Tue, Feb 21, 2023 at 10:44:02AM +0800, William Qiu wrote:
->>>
->>>
->>> On 2023/2/21 7:43, Rob Herring wrote:
->>>> On Wed, Feb 15, 2023 at 07:32:49PM +0800, William Qiu wrote:
->>>>> Add documentation to describe StarFive System Controller Registers.
->>>>>
->>>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>>>> ---
->>>>>  .../bindings/soc/starfive/jh7110-syscon.yaml  | 51 +++++++++++++++++++
->>>>>  MAINTAINERS                                   |  5 ++
->>>>>  2 files changed, 56 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..fa4d8522a454
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->>>>> @@ -0,0 +1,51 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/soc/starfive/jh7110-syscon.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: StarFive JH7110 SoC system controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - William Qiu <william.qiu@starfivetech.com>
->>>>> +
->>>>> +description: |
->>>>> +  The StarFive JH7110 SoC system controller provides register information such
->>>>> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +          - starfive,jh7110-stg-syscon
->>>>> +          - starfive,jh7110-sys-syscon
->>>>> +          - starfive,jh7110-aon-syscon
->>>>
->>>> Is 'syscon' really part of what the blocks are called? Is just 'stg', 
->>>> 'sys' and 'aon' not unique enough?
->>>>
->>>> Rob
->>> Hi Rob,
->>>
->>> In StarFive SoC, we do have syscrg/aoncrg/stgcrg, which is uesd to be the clock
->>> controller, so 'syscon' is added to avoid confusion.
->>
->> You've only added to my confusion. 'syscrg' and 'sys-syscon' are 2 
->> different h/w blocks and unrelated to each other? Or 'syscrg' is the 
->> clock portion of 'sys-syscon'? In that case, 'syscrg' should be a child 
->> of 'sys-syscon' or possibly just all one node. Please provide details on 
->> the entire h/w block so we can provide better input on the bindings.
->>
->> Rob
-> 
-> Hi Rob,
-> 
-> It's my description that's problematic.'syscon' here refers to the hardware module
-> inside our JH7110, which is different from the syscon interface in linux. The syscon
-> I added now uses the syscon interface of linux to read and write the syscon register
-> in our JH7110. So we decided to name it that way.
+Changes in v3:
+ - Changed MT8186 compatibles for new bindings
+ - Added min/max voltage overrides for vgpu/vsram_gpu on
+   mt8183-pumpkin and evb as suggested by Chen-Yu
+ - Cosmetic fixes for "arm64: dts: mediatek: mt8192: Add GPU nodes"
 
-You didn't really answer Rob's questions.
+Changes in v2:
+ - Changed MT8186 to use only two power domains for the GPU.
 
-Also, syscon is Linux term, so are you sure hardware module is called
-like this? Hardware engineers took pure Linux name and used it?
+We finally have working GPU DVFS on MediaTek SoCs.
+On Panfrost.
+For real.
+...and the best part is that it's going upstream.
 
-Best regards,
-Krzysztof
+In order to get GPU DVFS working, it was necessary to satisfy a
+specific constraint (which is different, depending on the SoC)
+between two regulators: GPU VCORE and GPU SRAM.
+This was done through adding the mtk-regulator-coupler driver,
+which transparently manages the voltage relation between these
+two vregs, hence completely eliminating the need to manage these
+regulators in the Panfrost driver; this solves the long standing
+issue with devfreq+opp tables not supporting managing voltages
+for two regulators per opp entry out of the box, due to which
+we never got GPU DVFS on those SoCs, often locking them out to
+a low GPU frequency.
+
+This changes. Right now!
+
+Tested on MT8192, MT8195 Chromebooks.
+
+This series depends on [1].
+
+[1]: https://lore.kernel.org/lkml/20230228102704.708150-1-angelogioacchino.delregno@collabora.com/
+
+Alyssa Rosenzweig (2):
+  arm64: dts: mediatek: mt8192: Add GPU nodes
+  arm64: dts: mediatek: mt8192-asurada: Enable GPU
+
+AngeloGioacchino Del Regno (15):
+  arm64: dts: mediatek: mt8183-kukui: Couple VGPU and VSRAM_GPU
+    regulators
+  arm64: dts: mediatek: mt8183-kukui: Override vgpu/vsram_gpu
+    constraints
+  arm64: dts: mediatek: mt8183: Remove second opp-microvolt entries from
+    gpu table
+  arm64: dts: mt8183-pumpkin: Couple VGPU and VSRAM_GPU regulators
+  arm64: dts: mediatek: mt8183-evb: Couple VGPU and VSRAM_GPU regulators
+  arm64: dts: mediatek: mt8183: Use mediatek,mt8183b-mali as GPU
+    compatible
+  arm64: dts: mediatek: mt8192: Add mfg_ref_sel clock to MFG0 domain
+  arm64: dts: mediatek: mt8192-asurada: Assign sram supply to MFG1 pd
+  arm64: dts: mediatek: mt8192-asurada: Couple VGPU and VSRAM_OTHER
+    regulators
+  arm64: dts: mediatek: mt8195: Add mfg_core_tmp clock to MFG1 domain
+  arm64: dts: mt8195: Add panfrost node for Mali-G57 Valhall Natt GPU
+  arm64: dts: mediatek: mt8195-cherry: Enable Mali-G57 GPU
+  arm64: dts: mediatek: mt8186: Add GPU node
+  arm64: dts: mediatek: mt8183-pumpkin: Override vgpu/vsram_gpu
+    constraints
+  arm64: dts: mediatek: mt8183-evb: Override vgpu/vsram_gpu constraints
+
+Nícolas F. R. A. Prado (1):
+  arm64: dts: mediatek: mt8192-asurada: Add MFG0 domain supply
+
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |  17 ++-
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  17 ++-
+ .../boot/dts/mediatek/mt8183-pumpkin.dts      |  17 ++-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  34 ++---
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  17 +++
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     |  22 ++++
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 116 +++++++++++++++++-
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      |   5 +
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  95 +++++++++++++-
+ 9 files changed, 314 insertions(+), 26 deletions(-)
+
+-- 
+2.39.2
 
