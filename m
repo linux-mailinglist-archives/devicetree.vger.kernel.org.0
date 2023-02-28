@@ -2,137 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 363876A502E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 01:35:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30C796A5047
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 01:52:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbjB1Afm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 19:35:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60446 "EHLO
+        id S229471AbjB1AwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 19:52:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjB1Afl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 19:35:41 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0013624115;
-        Mon, 27 Feb 2023 16:35:39 -0800 (PST)
-Received: from mercury (unknown [185.209.196.169])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5FC726602E18;
-        Tue, 28 Feb 2023 00:35:38 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677544538;
-        bh=ckKngwgDm1uv8o/2VUrBVKZtDUgdeeUGANto7j4O6RU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gRxvhtrrkkAHy3EyOiiCZLFGHF/ger7GDuKxPPA87MqSJcVkLHoJzuupigQ63AGy8
-         RcuB5ALiuX1bM01VOrqLDxZnd6B34eznt3WYf/x8FSuxrLBbJ60zB0OADdUMZl6FuX
-         iz/BnLeJCdWSAYXTuVfUca+7lKFGx+xUFm9KX41vkxMyUxTk209si2/6fveClr4Y3B
-         ECRHP54xCVT+S9YKxCeT6dZC+vyoL5hhX/emnagJtTHoGzm6lvgMGK6Lx6u90coDNi
-         ogrw5TVvF2quUn9ByzjQPsnZh3UpXOWtyKllTgqMxCLWLU1i516zxMhPIw8ZaeQJHL
-         vu0whEx0Y22cg==
-Received: by mercury (Postfix, from userid 1000)
-        id 0EA331061609; Tue, 28 Feb 2023 01:35:36 +0100 (CET)
-Date:   Tue, 28 Feb 2023 01:35:36 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Daniel =?utf-8?B?R29uesOhbGV6?= Cabanelas <dgcbueu@gmail.com>
-Cc:     linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] power: reset: linkstation-poweroff: add LS220D/E
-Message-ID: <20230228003536.lbpopfipujwush6c@mercury.elektranox.org>
-References: <4927895.GXAFRqVoOG@tool>
- <20230213202542.aqsw6tzspo4nrq7n@mercury.elektranox.org>
- <CABwr4_sd-kzg90VrQQOw91XsTXOcMq6qkj=TNPy6YQDuA6QQuQ@mail.gmail.com>
- <20230213212200.fgtcfm333aunrxqo@mercury.elektranox.org>
- <CABwr4_vKxWKJsNDVF9yNeSSk4R3nDov-+qY5=nhp4ggr88EpAw@mail.gmail.com>
+        with ESMTP id S229511AbjB1AwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 19:52:07 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9ACD25E20
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 16:52:05 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id u3-20020a17090a450300b00239db6d7d47so908080pjg.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 16:52:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m8s5UkFxN0XyIVbUTdsw9LuY++h2yrQIvwFytCMmrlw=;
+        b=c0/r4xm3kIsQ2Jwpl2m192HxOi7kIuvxJlwpCw38u+VEwUoONxMx+2qs1uLXOCjydX
+         2LbhnU8dywiojN74erI1KyXuyFYPRJdsQl1goK7DcPl5Sipb0qRBq5ulFnzZ1VzKVgYT
+         8YPGredZ0oHAq6gSDQ9HKIe8bmBQEaON4yWej2GQseOoXtPfUMGDLMq73zvuQ38uFJcR
+         +BwmQdvaHbPp+i4V5Uhi+fAu7EjF7hT7zMOBPxFM/t6yrAcWlgcbT5J7Et/hI7nS+BVO
+         9LFuQtJersMA2qTjc4ezrLiEjKxaf2ZzBG3t3F0fnhSAnFnQ3tngo1g16dXdohdHqIq/
+         fWHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m8s5UkFxN0XyIVbUTdsw9LuY++h2yrQIvwFytCMmrlw=;
+        b=iQXpCyOH8q/DqTgihNRP+EoMjstAXtVXIklTxNaz/Q9HHZAtO1nMrqIgNmsIDoiAWX
+         6b75dhtG4U+sfp9g8F24wghgF1Y+H73WlZhBulw+bLzCM6B5fMRpY/v1E8npsJOU85es
+         +8P5dna5Uxw9lowvx2EFaYK34gvC0b8geQlQYQYzTtWDMh8a1UM1b+7XQgCa1SIVQzCV
+         qMxslXlod55uRZbjsAUQxLoADr1NJDBnyB+nM9wBG2dhdO5AZElCi/hPwJUGidM5TP80
+         SXXswFQCJunl2C7Hq4l9mxIEXjiHiVfdonTHLO3thclX3cIhKr83WOfSWR9HwRrfYtDo
+         6h+Q==
+X-Gm-Message-State: AO0yUKVpgyM/D/2XFTTnCklSqHjstQ0HdPm7Nm88ZK3PLqI4E6cxIs27
+        Iuho1D/NlyTAWxdO+bzsKbDuSg==
+X-Google-Smtp-Source: AK7set+TQtVs8/qCCbDkDc4YM5iQhgpDnJ+EIymGMdWMWy3GdNnv8VYRETrDicOK331w/rirpzr9GA==
+X-Received: by 2002:a17:902:d4cd:b0:19c:d7a9:8bf0 with SMTP id o13-20020a170902d4cd00b0019cd7a98bf0mr1618653plg.10.1677545525332;
+        Mon, 27 Feb 2023 16:52:05 -0800 (PST)
+Received: from [10.211.55.3] (h112.92.137.40.static.ip.windstream.net. [40.137.92.112])
+        by smtp.gmail.com with ESMTPSA id p5-20020a170902780500b0019a8530c063sm5176304pll.102.2023.02.27.16.52.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Feb 2023 16:52:04 -0800 (PST)
+Message-ID: <e75b8b9e-c870-6342-f7e4-32492d5f77be@linaro.org>
+Date:   Mon, 27 Feb 2023 18:52:03 -0600
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mrxfp7tynhnaqyvn"
-Content-Disposition: inline
-In-Reply-To: <CABwr4_vKxWKJsNDVF9yNeSSk4R3nDov-+qY5=nhp4ggr88EpAw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v10 08/26] gunyah: rsc_mgr: Add resource manager RPC core
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212327.3310128-1-quic_eberman@quicinc.com>
+ <d69f9699-b4d9-7a3a-71b1-7e6fe72c4f82@linaro.org>
+ <94ebe2f0-0baf-21c0-45d5-c5bc4df9ad94@quicinc.com>
+ <44a59ea4-da6e-e96a-5e89-dfd41db72823@linaro.org>
+ <cd61963d-eb4c-9a4f-d48f-7a633bfd4be3@quicinc.com>
+From:   Alex Elder <alex.elder@linaro.org>
+In-Reply-To: <cd61963d-eb4c-9a4f-d48f-7a633bfd4be3@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2/23/23 5:13 PM, Elliot Berman wrote:
+>> TBH, gunyah.c should be merged as part of resource manager, and check 
+>> if uuids and features in probe before proceeding further.
+>>
+> 
+> 
+> Ah -- gunyah_rsc_mgr.ko has symbol dependency on gunyah-msgq.ko. 
+> gunyah-msgq.ko has symbol dependency on gunyah.ko. gunyah.ko doesn't 
+> have any probe and does all its work on module_init.
+> 
+> In order to merge gunyah.c with resource manager, I would need to 
+> incorporate message queue mailbox into resource manager. IMO, this 
+> rapidly moves towards a mega-module which was discouraged previously.
 
---mrxfp7tynhnaqyvn
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I missed this discussion; why was it discouraged?
 
-Hi,
+I can think of some reasons why I guess.  But I don't see what
+problem comes from linking together a "mega module" that's made
+up of well-isolated source files that expose minimal APIs to
+one another.  All inter-dependent modules will required at once
+anyway; I don't understand the benefit of implementing them
+separately.  Can you explain, or provide some context?  Thanks.
 
-On Mon, Feb 27, 2023 at 09:17:39PM +0100, Daniel Gonz=E1lez Cabanelas wrote:
-> El lun, 13 feb 2023 a las 22:22, Sebastian Reichel
-> (<sebastian.reichel@collabora.com>) escribi=F3:
-> > [+cc DT binding people]
-> >
-> > Hi,
-> >
-> > On Mon, Feb 13, 2023 at 09:38:24PM +0100, Daniel Gonz=E1lez Cabanelas w=
-rote:
-> > > > >  static const struct of_device_id ls_poweroff_of_match[] =3D {
-> > > > > +     { .compatible =3D "buffalo,ls220d",
-> > > > > +       .data =3D &linkstation_power_off_cfg,
-> > > > > +     },
-> > > > > +     { .compatible =3D "buffalo,ls220de",
-> > > > > +       .data =3D &linkstation_power_off_cfg,
-> > > > > +     },
-> > > > >       { .compatible =3D "buffalo,ls421d",
-> > > > >         .data =3D &linkstation_power_off_cfg,
-> > > > >       },
-> > > >
-> > > > Where is the patch adding these compatibles to the DT binding
-> > > > documentation?
-> > >
-> > > There is no DT binding at all. So no documentation.
-> >
-> > You are referencing a compatible, so there is supposed to be
-> > a DT binding for it. Note, that you also need DT bindings for
-> > board level compatible values. See for example:
-> >
-> > Documentation/devicetree/bindings/arm/rockchip.yaml
-> > Documentation/devicetree/bindings/arm/fsl.yaml
->=20
-> Since the driver uses the root compatible string, I don't see any
-> binding to document at least for the driver itself. Nor I don't see
-> where a reference for this driver should be put if I documented the
-> board compatible strings.
+					-Alex
 
-You should document the board compatible string for the board
-(ignoring this driver). Actually that should have happened
-before the board DT has been merged in the first place. Note,
-that the examples I provided above are for boards.
-
-Since you are only referencing the root compatible string, we
-are good to go afterwards from DT perspective.
-
--- Sebastian
-
---mrxfp7tynhnaqyvn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmP9TFQACgkQ2O7X88g7
-+ppYXhAAh5sN4p1ltqUgfyhuFRhOplD9tIPF+0B658hrc7xAKWH/k9w0YcxML3kF
-avgcw5R9wE6iWBviWMg8N3StjkJuOIJV8QR1Q3KcigT5gJkl5zy3k3xG40/K2swU
-2G+pAwwawNN+RAWFE6X4grJTxdnu+UDZyVLaE4Pxb5gtozRG59VVHFnwih/FKaUZ
-VyhUz5Q1BUBYP/xqSgCDjtAHxdAS/+ehC/eMCb6uKKT4Py1SgfaK7QDDaCucyZtM
-qWq5DG24BZE8N2G2OdE3/DkwZGSgBKd8VMxpCfQRK4qy72yaJC1vSzIJJVI/DYqB
-KpkKsfatmR8Gkst/6KXeZXzFAGMH2SiWoIo8u2TAY/UV6sf69UqVQvLbnvJEDeGG
-A6c+Oyesap5I1lh+3bnBQ1cAEJdS17v2mcrgibqWUGvPCscky+Nsc8m7bCwQjqTC
-iblJZlOLlb7uYkEqGxpf2yOord4/19lY4FuVNkeSjlip+f4f0Q7WJQAL5OPg44vg
-fqnZM16AwRIYv4Rqq3xN7JggTDExo0CJwuCE4K6NIiLF3hCR6YpncbQqtGkCMdP8
-jgysfJckax2gFDK1UrvGWK8yrwNFTXkqOGyeYBOvIwYAT3ig08N391tl8CkhXg9/
-rBUPAcX2IbPbynRNSGFmhBxBLSPb1jnP545Efj7lfzmNDF8WZ1I=
-=Dly7
------END PGP SIGNATURE-----
-
---mrxfp7tynhnaqyvn--
