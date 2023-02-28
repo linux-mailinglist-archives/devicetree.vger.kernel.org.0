@@ -2,92 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 532106A5727
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:49:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7EE6A5732
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbjB1KtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:49:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34532 "EHLO
+        id S231443AbjB1Kx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:53:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbjB1Ksa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:48:30 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF9C469A;
-        Tue, 28 Feb 2023 02:48:02 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 929D76602FDC;
-        Tue, 28 Feb 2023 10:48:00 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677581281;
-        bh=xNmiw2ujYQURCmwW9t7m1kerphWvM2Xx2d/qe8evz/4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=EsL4UoDdDIceOXiCYkSlqmWUwfG44aQh0lfZSEHL8OECQjdQuvUBvh1ZolqJtIaU8
-         RUj2bFLzPSTuVesYRUOmQ282jVzYJ4RGjhKZuRh3Ss8MAywL1z7ohC3E9bNreQMTPL
-         0au+IEQ+7cZbTtuXWwX1Dc3uzp1egiNOGXeVcqIn7zIXQSny54lpAt2JviiQ2Smngf
-         Hoqk1M8I7WShI7dgWtT63W9sUUNyAGTS9FYvqSNR5yAuUl/UMWfS1RYA1aJdtvdeYi
-         sCuc1Gl4WImVJz6Z4H4F1Naerwq6+b+Wj2r50WzbPfU8Ob3ShzqvsMkymKAmcT63h8
-         jk8AQxf7bYZlg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, wenst@chromium.org
-Subject: [PATCH v3 18/18] arm64: dts: mediatek: mt8183-evb: Override vgpu/vsram_gpu constraints
-Date:   Tue, 28 Feb 2023 11:47:41 +0100
-Message-Id: <20230228104741.717819-19-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com>
-References: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S231305AbjB1Kxh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:53:37 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931E7D51E;
+        Tue, 28 Feb 2023 02:52:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1677581520; x=1709117520;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EmV1CDA32bCw5Yuxlf/FrxK14FNdKdtOjrbPPzU8wDE=;
+  b=2onGzHsli+SpQt+1u+xA+QT+Mcdfo/nWBILSUETAu9D8+FTWLZ9wyraG
+   X1CmIH+92uhS2HaGhXm9k/rb6tZfaM3UhF5PKY9jFU7RT97fDhdhDRTZZ
+   HChcHDKufYP5+h9+4Br6PTwHQI5m+NeEmvotMuDGSoJKgf1QZDdyGKpQy
+   2oTvL+rLPY2cJUwQWqv8dPZxH1stvqmfE44N9ktSlAd/V2LsMjxTJFD1+
+   1cN15uEZuoLRSueePAtVHdg6qQAm7Fk9V1IQLLqXLTMPReklrhXYHGljg
+   urKp0HC5SwVxuv5KogLoeFvo+rxbKaCc4jE0JQzH1q07Zf877ZhnzPNxF
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,221,1673938800"; 
+   d="asc'?scan'208";a="202531380"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Feb 2023 03:51:42 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 28 Feb 2023 03:51:42 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Tue, 28 Feb 2023 03:51:39 -0700
+Date:   Tue, 28 Feb 2023 10:51:12 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
+Message-ID: <Y/3coFvMWOLaaY9p@wendy>
+References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
+ <20230220081926.267695-3-xingyu.wu@starfivetech.com>
+ <CAJM55Z823iqUqD8enM0qJ_MA3Tw94Mn0mq71fbLT1Qjo2s2J3g@mail.gmail.com>
+ <0ffb02d2-0bbd-fd0d-b0f6-cb5605570050@starfivetech.com>
+ <CAJM55Z_hRpUYueZ-XuWUx1NfAsL9E+-4ry9TYeRWM_bKXvym-g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UcWmcqa/y1djr3DO"
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z_hRpUYueZ-XuWUx1NfAsL9E+-4ry9TYeRWM_bKXvym-g@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Override the PMIC-default voltage constraints for VGPU and VSRAM_GPU
-with the platform specific vmin/vmax for the highest possible SoC
-binning.
+--UcWmcqa/y1djr3DO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Suggested-by: Chen-Yu Tsai <wenst@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Tue, Feb 28, 2023 at 11:36:49AM +0100, Emil Renner Berthing wrote:
+> On Tue, 28 Feb 2023 at 10:44, Xingyu Wu <xingyu.wu@starfivetech.com> wrot=
+e:
+> > On 2023/2/26 22:14, Emil Renner Berthing wrote:
+> > > On Mon, 20 Feb 2023 at 09:21, Xingyu Wu <xingyu.wu@starfivetech.com> =
+wrote:
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-index fd327437e932..3e3f4b1b00f0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-@@ -138,11 +138,17 @@ &mmc1 {
- };
- 
- &mt6358_vgpu_reg {
-+	regulator-min-microvolt = <625000>;
-+	regulator-max-microvolt = <900000>;
-+
- 	regulator-coupled-with = <&mt6358_vsram_gpu_reg>;
- 	regulator-coupled-max-spread = <100000>;
- };
- 
- &mt6358_vsram_gpu_reg {
-+	regulator-min-microvolt = <850000>;
-+	regulator-max-microvolt = <1000000>;
-+
- 	regulator-coupled-with = <&mt6358_vgpu_reg>;
- 	regulator-coupled-max-spread = <100000>;
- };
--- 
-2.39.2
+> > So the dt-bingdings need to rename, and which one could be better,
+> > 'starfive,jh71x0-wdt.yaml' or 'starfive,jh-wdt.yaml'?
+>=20
+> Sure, starfive,jh71x0-wdt.yaml sounds good to me.
 
+I feel like a common comment I see from the dt folks is to not put
+wildcards in filenames & just pick the first compatible.
+I could very well be wrong on that front though...
+
+--UcWmcqa/y1djr3DO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/3coAAKCRB4tDGHoIJi
+0mvBAP9uweiso5de1r1kZ9I8IGm1fB/JEam5Oz1DY1O5dqwAJwEAtMmWjEj8tDy+
+yYIgRtECs4sOifuXiJ6LkiIXnV0JHQg=
+=Issj
+-----END PGP SIGNATURE-----
+
+--UcWmcqa/y1djr3DO--
