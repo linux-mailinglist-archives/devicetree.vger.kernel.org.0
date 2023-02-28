@@ -2,170 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93FFE6A5E97
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 19:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD716A5ECA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 19:29:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbjB1SGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 13:06:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50878 "EHLO
+        id S229825AbjB1S31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 13:29:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjB1SGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 13:06:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C57922A3B;
-        Tue, 28 Feb 2023 10:06:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D2819610A1;
-        Tue, 28 Feb 2023 18:06:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A322C433EF;
-        Tue, 28 Feb 2023 18:06:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677607603;
-        bh=2rrPrh+K63elL1eQoqGcoJYDst8N+5jDNSgkcC6esto=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bbDhW8EsytBpqdpPdVqId3xBtB6/7iUHA3cNPJC9ladfQXz8e5KHXmIdKSYxhFloj
-         mIAmRTnv+EFW8KNAUUTA0O88Z2fN9rVkIBKLUFgyRWdJSQMkFCSUeo4NL14XX/3Wmb
-         7PlV+IpqYwxqX8GfHP7G4DQ+ZDP5Xr2+fgrbZm1iNcnT/3JZSpbaA+UdnpGrgR/vnq
-         pR7JZZRm2N/4AV3WpJEt+VVyzEdIvHBhU7pZ3ul2apuStiU2xqGngGFMRD7Ke247mK
-         maf1iPqHTOg8iJIgcen3M89SFzvPBSUZgz554zYusOYOaEPZKeWLa4vkhSOtHkSFK3
-         eoQM0TSwIk9lg==
-Date:   Tue, 28 Feb 2023 18:06:38 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        William Qiu <william.qiu@starfivetech.com>,
-        Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] dt-bindings: syscon: Add StarFive syscon doc
-Message-ID: <Y/5Crl+76wcviHKo@spud>
-References: <20230220234335.GA615198-robh@kernel.org>
- <348796cc-72d9-4dcf-9f09-4c2aa55cb858@starfivetech.com>
- <20230227222904.GC1048218-robh@kernel.org>
- <f8d2b665-ce5d-81f8-8c55-81f1a4cb62b9@starfivetech.com>
- <54f51fa0-7821-b67b-b782-eb9a35b7bba9@linaro.org>
- <CAJM55Z85fitjBOcCLqad9W-a7h3iN9bxtctVGzPgqCbf5fWobw@mail.gmail.com>
- <a0168d89-3c30-55e1-cf4c-37f7fe90aae4@linaro.org>
- <CAJM55Z8dR4TDJNeO-qiS9CurfCWM1ccNigOA1fDb7S1VKCxv2Q@mail.gmail.com>
- <be911895-4944-e983-1af5-b11ff5e8e7cc@linaro.org>
- <CAJM55Z99FZteGkzFC-cSCrTKD_qBn8huzcnynM9Xd7-4F_9rGQ@mail.gmail.com>
+        with ESMTP id S229815AbjB1S3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 13:29:22 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912E8196B8;
+        Tue, 28 Feb 2023 10:29:16 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id s20so14382941lfb.11;
+        Tue, 28 Feb 2023 10:29:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2bcj08kC8o+4SUDaeyJMOeT0BhDelLKMnxoq17lWA6A=;
+        b=jbqod5Hwc2207VPo/RmCWkoc5DUb0QdmOzP7+6TC/xZwfkaxUA9IAP8fb/v28IWhJ7
+         FDrGEAdiw1quhlwDLYVt7yrWT3XcC5UikIBj7Lk4m5AQLVs7zjOWv4S2w66SUgAu42e8
+         2mtOK8bMrFaJaRcP8aEXXPxp35nm+LfKJpmOdGgaieDvXmQaanm2x9x9FsG8K8ZfAz6w
+         9ldIs8Y2crfBrbYjAAB2nF1EPm6iNTpIYvM5Ixlks3XYNxkBQbm4M1wVGvy4+ZwMV2mK
+         aruOPTeKVF34l3UHebPFdAxbd8o85nHnk1uEvnVKxrmugo0oH5hUepUwt9D36NH+eL44
+         nysA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2bcj08kC8o+4SUDaeyJMOeT0BhDelLKMnxoq17lWA6A=;
+        b=nq9PCAH/a/1UMlS95t+gH6n5nLZUqSaUv62XmTgt69u8C6Yc1mVZBi7nWEZS2jSX4a
+         pTUXB7pjVJ/3yTxjx7pRsBUvP6yv7IvRT+9GaVb1uIYFnyV5279qOJcg7o08pP5hkGTT
+         6d54KpPKK1d87tTwkd81K8iO3q9pvGWIISoRHyNlvKTJ1gcsP4uvBIudPTXU8a9MSPDp
+         woQzxFcpjlSyjetP7mvZbOFO+2Vq3mj/tzsVEmzT6sRIB18JAZQOAbIeirLhPyJpSEhv
+         xEAZsw0D6VDLyBCBU/dTBtI/IygNrOTDEE6Jx9jZKQIzSw9RcEr6Cz/vFOcuUqp3wlTT
+         cloQ==
+X-Gm-Message-State: AO0yUKVFbvW0Uy78pOffe/pz7rbPq62sYl6MapdDN1CV3xi3JrvklVyj
+        9t764bPdYws6Oc9EuQPLPBw=
+X-Google-Smtp-Source: AK7set/PnVvN2etmwgDXApp9AUtI1xupmxkTln6PG8xGU/GVTbwpXUCaeqe0dISnCkhiyXP+opxijA==
+X-Received: by 2002:ac2:4c0d:0:b0:4d8:6e2b:10cc with SMTP id t13-20020ac24c0d000000b004d86e2b10ccmr838158lfq.10.1677608954702;
+        Tue, 28 Feb 2023 10:29:14 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id q19-20020a19a413000000b004b53eb60e3csm1414487lfc.256.2023.02.28.10.29.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Feb 2023 10:29:13 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: usb: usb-device: make "compatible" optional
+Date:   Tue, 28 Feb 2023 19:29:09 +0100
+Message-Id: <20230228182909.1011-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="OgGewJrsqlCKMN24"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z99FZteGkzFC-cSCrTKD_qBn8huzcnynM9Xd7-4F_9rGQ@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
---OgGewJrsqlCKMN24
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This binding was originally meant to describe hard-wired USB devices but
+in some situations we need to describe USB ports. That is needed e.g. if
+USB port is meant to be used as a trigger source but it can have any
+device plugged. It's a common case for home routers which have USB ports
+(with no hard-wired devices) and USB LEDs to indicate ports state.
 
-On Tue, Feb 28, 2023 at 06:31:46PM +0100, Emil Renner Berthing wrote:
-> On Tue, 28 Feb 2023 at 17:59, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> > On 28/02/2023 15:59, Emil Renner Berthing wrote:
-> > > On Tue, 28 Feb 2023 at 12:28, Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
+There is no point (and no easy way) to add separate binding covering
+just USB ports. Adjust existing devices binding to allow describing
+ports.
 
-> > > I see what you mean, but if you look into what the registers in the
-> > > SYSCON blocks actually do it's not clear to me that they should be
-> > > grouped with the clocks/resets any more than say the pinctrl/GPIO
-> > > node. Maybe it's my fault for not giving you the full picture. Eg. for
-> > > "system" and "always-on" there are blocks:
-> > >
-> > > SYS CRG
-> > > SYS SYSCON
-> > > SYS IOMUX
-> > > AON CRG
-> > > AON SYSCON
-> > > AON IOMUX
-> > >
-> > > ..and it really don't see why eg. SYS CRG and SYS SYSCON should be
-> > > thought of as one device, but not include SYS IOMUX then.
-> >
-> > ... include sys iomux as well, just like GPIO is included for AON.
->=20
-> This would at least take the view that the blocks named alike should
-> be thought of as a single device to its logical conclusion.
-> Unfortunately we're a bit late for that. The pinctrl/GPiO bindings and
-> drivers are already merged:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
-/?id=3Dd6e0a660097dcdb80e7c5c859eb12f776060b02e
->=20
-> > >
-> > > As an examly the SYS SYSCON includes registers to control:
-> > > - remapping of different peripherals from SD controller to video enco=
-ders
-> > > - voltage select for certain GPIO pins
-> > > - phy interface selection for ethernet and CAN
-> > > - QuadSPI delay chain and SRAM configuration
-> > > - PLL configuration
-> > > - endian selection for the SD controller
-> > >
-> > > To me this is pretty much exactly described by the syscon device tree=
- binding:
-> > > "System controller node represents a register region containing a set
-> > > of miscellaneous registers. The registers are not cohesive enough to
-> > > represent as any specific type of device. [..]"
-> > > In any case it's clear that however the SYSCON blocks are represented
-> > > in the device tree, a driver for it would need to export registers in
-> > > the SYSCON block for other drivers to use.
-> >
-> > You started entire sentence with "but" so you disagree but with what
-> > exactly? The naming? But syscon is fine - hardware manual calls it like
-> > that.
-> >
-> > The point was that AON is one device (consisting of multiple blocks).
->=20
-> Yes, and what I'm trying to explain is that I'm not convinced that's
-> the right model. The CRG blocks and IOMUX blocks don't really have
-> anything in common other than the name StarFive gave them. You can
-> argue that the CRG and IOMUX blocks overlap with the corresponding
-> SYSCON block, but so do a lot of other peripherals as you can see from
-> the list above.
->=20
-> I think the IOMUX and SYSCON blocks are just named after the clock
-> domain they're under, but a lot of other peripherals are also under
-> the SYS and AON clock domains and we don't model them as one big
-> device.
+This fixes:
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@21000: port@1: 'compatible' is a required property
+        From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@21000: port@2: 'compatible' is a required property
+        From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@21000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'port@1', 'port@2' were unexpected)
+        From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@22000: port@1: 'compatible' is a required property
+        From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@22000: port@2: 'compatible' is a required property
+        From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@22000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'port@1', 'port@2' were unexpected)
+        From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@23000: port@1: 'compatible' is a required property
+        From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: usb@23000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'phy-names', 'phys', 'port@1' were unexpected)
+        From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
 
-I went and bothered Rob/Krzysztof on IRC about this.
-Not gonna speak for them, but I think they're now okay with keeping the
-SYS_CRG (clock+reset block) separate from the SYS_SYSCON block ("random
-collection of registers"). Possibly there was just confusion due to the
-naming used here, thinking that "SYS", "STG" and "AON" were devices with
-two register blocks, as opposed to being the name of a clock/power domain
-on the SoC.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+I tried to add USB port binding but it didn't work because of $nodename.
+Rob suggested to just make "compatible" optional:
+[PATCH robh next] dt-bindings: usb: add USB controller port
+https://www.spinics.net/lists/linux-usb/msg209553.html
+---
+ Documentation/devicetree/bindings/usb/usb-device.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-I'll leave it up to them to confirm that though!
+diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+index 7a771125ec76..da890ee60ce6 100644
+--- a/Documentation/devicetree/bindings/usb/usb-device.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+@@ -76,7 +76,6 @@ patternProperties:
+         maxItems: 1
+ 
+ required:
+-  - compatible
+   - reg
+ 
+ additionalProperties: true
+-- 
+2.34.1
 
-Cheers,
-Conor.
-
-
---OgGewJrsqlCKMN24
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/5CrgAKCRB4tDGHoIJi
-0pKjAQDTeT+TZc/EBmewPaKfdSLP7DCjgM+V1bTyEZ6/CVuCUAD+M46W4w/Jg86q
-jFnVxeqFklXmTiTe/VWnQwOzTfrw1ws=
-=adFT
------END PGP SIGNATURE-----
-
---OgGewJrsqlCKMN24--
