@@ -2,113 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1966A5750
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1EE86A5761
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 12:02:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbjB1K6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:58:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42440 "EHLO
+        id S230191AbjB1LB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 06:01:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231348AbjB1K6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:58:16 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154F8B754
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:58:03 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso5753066wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:58:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677581881;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u6A2Sc2TLWOMEQ5y9qjHmMZKsT1Mi1qRqi+sfSjfpO0=;
-        b=QqHiXL8xz6P0TwObJgri1HUKQUaS8QRVLWP1zU/kcdZdLcOZfuS5LDo0CS5erblAss
-         i3mypQ/t5If0PlKVO61jzWGlWmhg5iEbWbVAJTt3c/96K1HPpgFdTgkGsdah4LuMTPwD
-         fnCX9JgcR1J9JaLiR8LQCOAqmX0u0Hh/hRjIgiK5GzJp9UlARoRRiba8GJvtAuACohiF
-         XCvoPuYjEyVDUWaHz3N/HSDzhCIf0MpsRIZzq9mUHo9ch8t7+BCyvKtKV3vDwWCdAWjW
-         hm3QDZr1IgJXPvCyKzLVDXISQaIKaeMJgoaCP4/OgQK0T5wviBJNNPhoAI7f1FICoZbm
-         ZqMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677581881;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u6A2Sc2TLWOMEQ5y9qjHmMZKsT1Mi1qRqi+sfSjfpO0=;
-        b=U7b15u5jaR0tLw1r26FiUhnCtBjqGCgzHljy4BLoMP9hNqquXW4KG9Swgj7RyEmzo+
-         XTJZtzj968pkpRHQRsxs6pSJOxk89WNIz9RU+hhiXJqvH1oKJhrgmttGytWDiHF5/vz+
-         OPqQn5NqhN4WGk2SolGm6oGVKYndQWHwwFHNgFzYy5dE7DaEtbnU5lFSxDmB73NkNXIe
-         6zsBfvF8wp/e9P68YRHnOBRuGGKZ4vlXp1niEw6ow1g3ouzPLLkGXduagbbkAkb8SMOG
-         uH6XRNd8Y3Awj6Va21kaXA1o8Baqjdxs7PmLPSTYGwwH/NGF1XXmorDAtgZwt0iokluf
-         DITw==
-X-Gm-Message-State: AO0yUKUA4fwl+5DMvNe5t/YQSLJOpguQreSJkcLnB9+D4bpDj1LLSc16
-        87ELs6lfVQBXiY3aFBj8OdrhiA==
-X-Google-Smtp-Source: AK7set9aj//n9rmdyGmH3/dOQnO4mTtlCGyI8o1O6rY/P5ntjM8Tk+WDegjEDx/5j8Gn/DHp/NQNyQ==
-X-Received: by 2002:a05:600c:4d20:b0:3eb:2e66:8 with SMTP id u32-20020a05600c4d2000b003eb2e660008mr1731362wmp.35.1677581881467;
-        Tue, 28 Feb 2023 02:58:01 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id fl16-20020a05600c0b9000b003e1f6e18c95sm16244493wmb.21.2023.02.28.02.57.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 02:58:01 -0800 (PST)
-Message-ID: <545c23f3-1d68-2bff-89d9-584e3ca31044@linaro.org>
-Date:   Tue, 28 Feb 2023 11:57:58 +0100
+        with ESMTP id S230303AbjB1LB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 06:01:58 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9A35BA9;
+        Tue, 28 Feb 2023 03:01:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1677582115; x=1709118115;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=uqW3J0nWK2v55D9GYjZBWcYdTtQfZj4KNiRlbuF0uC8=;
+  b=PwLIJyIiLu1gsuPHvQljrNAzB5xmSjMqOZm/+1Em96u7s1YjFWYupDh/
+   j+F8bzJTt+VmdzhKdbuqjkwUmLtL5hDPRO9n1kxyNtt2hGdLNOsOHP//g
+   nqf+xStjaAITfGy+nSPVRO3DdwIhssb/enardbIJNvCqu0ADtxtHD8MVX
+   KVjznEMnxL+ZcK1g1wBqs1tkKD8bREKo9RbmnmDKoUZn7tVoG53oihcxA
+   kgvGhJ94ACq7GL+cNCMmirkzrTUmJjP95mjV5VnX5prTYMdb0uPEClT2x
+   jaevvM3dk/1IcOZC2bcygE9YB5DVHBMzssNnctTFOEyQtV4NYs8GkZ3zD
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,221,1673938800"; 
+   d="scan'208";a="213967684"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Feb 2023 04:01:54 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 28 Feb 2023 04:01:54 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.16 via Frontend Transport; Tue, 28 Feb 2023 04:01:50 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v3 0/3] ASoC: mchp-pdmc: fix poc noises when starting capture
+Date:   Tue, 28 Feb 2023 13:01:42 +0200
+Message-ID: <20230228110145.3770525-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-3-xingyu.wu@starfivetech.com>
- <CAJM55Z823iqUqD8enM0qJ_MA3Tw94Mn0mq71fbLT1Qjo2s2J3g@mail.gmail.com>
- <0ffb02d2-0bbd-fd0d-b0f6-cb5605570050@starfivetech.com>
- <CAJM55Z_hRpUYueZ-XuWUx1NfAsL9E+-4ry9TYeRWM_bKXvym-g@mail.gmail.com>
- <Y/3coFvMWOLaaY9p@wendy>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y/3coFvMWOLaaY9p@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 11:51, Conor Dooley wrote:
-> On Tue, Feb 28, 2023 at 11:36:49AM +0100, Emil Renner Berthing wrote:
->> On Tue, 28 Feb 2023 at 10:44, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
->>> On 2023/2/26 22:14, Emil Renner Berthing wrote:
->>>> On Mon, 20 Feb 2023 at 09:21, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
-> 
->>> So the dt-bingdings need to rename, and which one could be better,
->>> 'starfive,jh71x0-wdt.yaml' or 'starfive,jh-wdt.yaml'?
->>
->> Sure, starfive,jh71x0-wdt.yaml sounds good to me.
-> 
-> I feel like a common comment I see from the dt folks is to not put
-> wildcards in filenames & just pick the first compatible.
-> I could very well be wrong on that front though...
+To start capture on Microchip PDMC the enable bits for each supported
+microphone need to be set. After this bit is set the PDMC starts to
+receive data from microphones and it considers this data as valid data.
+Thus if microphones are not ready the PDMC captures anyway data from its
+lines. This data is interpreted by the human ear as poc noises.
 
-First compatible is a bit better, unless you are sure this will cover
-all such compatibles now and in the future. For many bindings the
-family/wildcards were fine in filename.
+To avoid this the following software workaround need to be applied when
+starting capture:
+1/ enable PDMC channel
+2/ wait 150ms
+3/ execute 16 dummy reads from RHR
+4/ clear interrupts
+5/ enable interrupts
+6/ enable DMA channel
 
-Best regards,
-Krzysztof
+For this workaround to work step 6 need to be executed at the end.
+For step 6 was added patch 1/3 from this series. With this, component
+DAI driver sets its struct snd_soc_component_driver::start_dma_last = 1
+and proper action is taken based on this flag when starting DAI trigger
+vs DMA.
+
+Thank you,
+Claudiu Beznea
+
+Changes in v3:
+- update the commit message of patch 2/3 to be more descriptive
+- in patch 3/3 initialize dd->startup_delay_us before calling
+  of_property_read_u32() and don't check its return value; property is optional
+  and the the default value is 150ms 
+
+Changes in v2:
+- patch 1/3 from v1 is now "ASoC: soc-pcm: add option to start DMA after DAI"
+- pass start_dma_last from component DAI driver object
+  (struct snd_soc_component_driver::start_dma_last); adapt patch 3/3 after this;
+- in patch 1/3 s/Do we need to start dma first/Do we need to start dma last
+  in comment from soc_pcm_trigger()
+- collect review tag from Krzysztof
+
+Claudiu Beznea (3):
+  ASoC: soc-pcm: add option to start DMA after DAI
+  ASoC: dt-bindings: sama7g5-pdmc: add microchip,startup-delay-us
+    binding
+  ASoC: mchp-pdmc: fix poc noise at capture startup
+
+
+Claudiu Beznea (3):
+  ASoC: soc-pcm: add option to start DMA after DAI
+  ASoC: dt-bindings: sama7g5-pdmc: add microchip,startup-delay-us
+    binding
+  ASoC: mchp-pdmc: fix poc noise at capture startup
+
+ .../sound/microchip,sama7g5-pdmc.yaml         |  6 +++
+ include/sound/soc-component.h                 |  2 +
+ sound/soc/atmel/mchp-pdmc.c                   | 53 +++++++++++++++++--
+ sound/soc/soc-pcm.c                           | 27 ++++++++--
+ 4 files changed, 78 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
 
