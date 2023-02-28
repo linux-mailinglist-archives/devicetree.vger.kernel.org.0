@@ -2,125 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8589F6A54E6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 09:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82CDA6A551B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 10:05:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjB1I6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 03:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41194 "EHLO
+        id S230228AbjB1JFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 04:05:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbjB1I6D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 03:58:03 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40EA73A9B;
-        Tue, 28 Feb 2023 00:58:01 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id F169A24E46D;
-        Tue, 28 Feb 2023 16:57:58 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Feb
- 2023 16:55:09 +0800
-Received: from [192.168.125.68] (113.72.145.171) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Feb
- 2023 16:55:08 +0800
-Message-ID: <6aaebbc4-9d60-6445-7066-a9a60c50c6dd@starfivetech.com>
-Date:   Tue, 28 Feb 2023 16:55:06 +0800
+        with ESMTP id S230244AbjB1JFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 04:05:33 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E114168B2
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 01:05:31 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pWvvF-0002sC-Ll; Tue, 28 Feb 2023 10:05:21 +0100
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pWvvE-000poM-Nr; Tue, 28 Feb 2023 10:05:20 +0100
+Received: from mfe by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pWvvD-002DrG-DR; Tue, 28 Feb 2023 10:05:19 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     puranjay12@gmail.com, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH v6 0/5] Add TI TMP116 Support
+Date:   Tue, 28 Feb 2023 10:05:13 +0100
+Message-Id: <20230228090518.529811-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
-To:     Rob Herring <robh@kernel.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
- <20230223015952.201841-2-changhuang.liang@starfivetech.com>
- <20230227183434.GA642331-robh@kernel.org>
-Content-Language: en-US
-From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230227183434.GA642331-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.171]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+this small series adds the support for the TI TMP116 temperature sensor
+which is predecessor of the TMP117 but still in production.
 
 
-On 2023/2/28 2:34, Rob Herring wrote:
-> On Wed, Feb 22, 2023 at 05:59:50PM -0800, Changhuang Liang wrote:
-[...]
->> +
->> +  clocks:
->> +    maxItems: 3
->> +
->> +  clock-names:
->> +    items:
->> +      - const: cfg
->> +      - const: ref
->> +      - const: tx
-> 
-> Should be 'rx' given this is the 'rx' block? A description of each clock 
-> in 'clocks' would be good.
-> 
+Marco Felsch (5):
+  dt-bindings: iio: ti,tmp117: fix documentation link
+  iio: temperature: tmp117: improve fallback capabilities
+  dt-bindings: iio: ti,tmp117: add binding for the TMP116
+  iio: temperature: tmp117: add TI TMP116 support
+  iio: temperature: tmp117: cosmetic alignment cleanup
 
-'tx': This clock is directly used to generate transmit escape sequences, 
-will add description of each clock in 'clocks'.
+ .../bindings/iio/temperature/ti,tmp117.yaml   |  8 +-
+ drivers/iio/temperature/tmp117.c              | 80 ++++++++++++++-----
+ 2 files changed, 66 insertions(+), 22 deletions(-)
 
->> +
->> +  resets:
->> +    items:
->> +      - description: DPHY_HW reset
->> +      - description: DPHY_B09_ALWAYS_ON reset
->> +
->> +  starfive,aon-syscon:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      items:
-> 
-> - items: ?
-> 
-> Otherwise, multiple 2 cell entries are allowed. Is that intended?
-> 
+-- 
+2.30.2
 
-Will change to:
-items:
-  - items:
-
->> +        - description: phandle of AON SYSCON
->> +        - description: register offset
->> +    description: The power of dphy rx is configured by AON SYSCON
->> +      in this property.
-> 
-> 
->> +
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
-[...]
->> -- 
->> 2.25.1
->>
