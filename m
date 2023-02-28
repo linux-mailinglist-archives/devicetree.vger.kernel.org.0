@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B02936A5D81
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 17:49:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1082B6A5D82
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 17:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbjB1QtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 11:49:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39912 "EHLO
+        id S229898AbjB1QtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 11:49:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbjB1Qs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 11:48:57 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB13199DD
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:23 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id i10so11062267plr.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:23 -0800 (PST)
+        with ESMTP id S229874AbjB1Qs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 11:48:58 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AEAE16320
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:26 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id k21-20020a17090aaa1500b002376652e160so10257553pjq.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nw2kwwdY04mwrOWVYrVzs4I0LPxS7ZuXOh7KWbCAYF4=;
-        b=HYm7C2CBsxRoKbhO9gur1eRYPy184yM8vTZPGuYYzRv9PF3O8SYlkVcn/A7XQO2eyS
-         LiUz7M2vNJmIOPrPjMmU3i9E7lh3n2hpr/jf9LCxHvtl7kroWar56dFBVgS7zohxStus
-         LLZMOZvo7eOh/HGl6kqwJbU2J+tYm2w8S7VB2oTT3LjUPeKLSakpgCAjtFc3z7Tb+Dmr
-         D7J8XUEt/o2pLKR9ZMAyhS58YOC6mKlF9gc49TiXOCgi/7lUsoW/dTlH5FUDOiT5Y8N1
-         A88PhR+RFAF4F8zw3Kf/VObuFdrBX8ZkDVkDW+Q/slRceBPAtqB2tYmCSQzY1WW61vh9
-         aK9A==
+        bh=r06My2aq8Dmvi2FXH5CuaRQfq/pWOq5I+mThml6kdDc=;
+        b=mj566OPk7ImfN/AU68UwLwS5qA/crpftIJk2+zaV8GZTqW8IFG//ePMocyMW9k8GnS
+         XfLU8xG6R2UAhEX6/L6N1ykaHb2sYKFYIF/e5BnXnaU+YTcJ8Qazzcx6MIvvbcbAYD6G
+         xR3mSPoN8H1kKpOqTlZOhkyPw1KXMSH+Hwwsp9iKwwHgeXb1wX7HIUuCY6dCuQWYHUUU
+         tv7fvJelkiCfhP35GeDxuacaUIaaiQDkNe3i1MvaOgjpwc1VwHHTeDaK3Ckcjq1BCdOn
+         cWuVaLdJUXsvRaT8AWqlKKUkF60U102BruutjXO0rMDs2fUJ6M0QA0XioDi30hBuGdsM
+         N9kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nw2kwwdY04mwrOWVYrVzs4I0LPxS7ZuXOh7KWbCAYF4=;
-        b=gtV9auNc6lnHC+mYYT27QSf90srZMFjFQ03ErDf9c1KnAG0VmHsRFRN+D4Nxh6REKY
-         67FnjQt78pgzflstZUz9GEDb/ZDJY8+FXynWEbf7D2xmfykKc8x/Uj+BblaIpG0N/Hkv
-         M4Y1vaPvWqr737PsNoMMNaUiFdWObAs5Tkqt4s7UIBWfh186XsIHcP/zeqT/60gTi6kx
-         mNiyZjlCxSqK51Rb0dcDDhGy8YsIZ9rXAFw67oYPPlu1AxFrP4VzDmZfIDVvw532wI7Z
-         eG96961ye/5hgiozrWjBMTsu1XzJ7v4VnzNnkfAQKnaNAi8R54Af6m4R4qP56QTIGIUG
-         E5pQ==
-X-Gm-Message-State: AO0yUKXfUtRDFhCLOIrqE8lqVFk5bedd/jFeFxMfWA9wQ3EEGAchedkB
-        5SQj73yNZd5I4iMcM/3jI9qG
-X-Google-Smtp-Source: AK7set/gFnIrOWvw1kqm2mbi9pBSv+ggoNXU3AiSDgZXEBW0EtLOn/hQou9GYrbFNBBohJKOJRiqYA==
-X-Received: by 2002:a17:902:fb8d:b0:19d:397b:eb4 with SMTP id lg13-20020a170902fb8d00b0019d397b0eb4mr2613738plb.48.1677602902784;
-        Tue, 28 Feb 2023 08:48:22 -0800 (PST)
+        bh=r06My2aq8Dmvi2FXH5CuaRQfq/pWOq5I+mThml6kdDc=;
+        b=jOSPo6gIlZ2mg4ckwI6lg410s5rU+kUjmgu805vsQIIHYibR8TzPnpMZdhMXe3ZrU6
+         HnG5n11fGxqaaKZUhv0wnxdrFGAm4TEJ7+VXq7G2WEyMRgyoKKXpopzJSTjbaJT8un6O
+         pCctlrjlF8gLsQYfQsQzUv+IOAVu/5Ijn+DTF2lrr5wCKf/Da063dRfbJMvETMFu4Obi
+         TGcGIMy5G0Z3felDp0u/HJxmxUytMi5P6LJMBrVJfC2zAJt1pRG+fH8WREEp9IBAaTgu
+         sMWayJKHAsaq8ZXo5n9rMhTxlYewGRo6L2CQE5oTVQwXnyqVQ0meCDJ9nTYpsotzQ5CF
+         qVaw==
+X-Gm-Message-State: AO0yUKWRSLNeg1FiPJxcZeZGV+dezrWpIKzbzYHX8XzNSETtVYpItjFO
+        Fx1os3J/DoOV9OgjSASvkPyt
+X-Google-Smtp-Source: AK7set+Pws7ZZnufTrodK1tqCfOTEcN/eJcxq+ShHNx2ZK3FaD/TEbOUdzjnYHB+jasHxMxBOqIBvA==
+X-Received: by 2002:a05:6a20:a021:b0:cc:32a8:323f with SMTP id p33-20020a056a20a02100b000cc32a8323fmr4660667pzj.38.1677602906022;
+        Tue, 28 Feb 2023 08:48:26 -0800 (PST)
 Received: from localhost.localdomain ([103.197.115.185])
-        by smtp.gmail.com with ESMTPSA id z11-20020a6552cb000000b00476dc914262sm5908792pgp.1.2023.02.28.08.48.18
+        by smtp.gmail.com with ESMTPSA id z11-20020a6552cb000000b00476dc914262sm5908792pgp.1.2023.02.28.08.48.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 08:48:22 -0800 (PST)
+        Tue, 28 Feb 2023 08:48:25 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org
 Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -56,9 +56,9 @@ Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         arnd@arndb.de,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 04/16] arm64: dts: qcom: sm8550: Fix the PCI I/O port range
-Date:   Tue, 28 Feb 2023 22:17:40 +0530
-Message-Id: <20230228164752.55682-5-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 05/16] arm64: dts: qcom: ipq8074: Fix the PCI I/O port range
+Date:   Tue, 28 Feb 2023 22:17:41 +0530
+Message-Id: <20230228164752.55682-6-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230228164752.55682-1-manivannan.sadhasivam@linaro.org>
 References: <20230228164752.55682-1-manivannan.sadhasivam@linaro.org>
@@ -74,46 +74,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For 1MiB of the I/O region, the I/O ports of the legacy PCI devices are
-located in the range of 0x0 to 0x100000. Hence, fix the bogus PCI addresses
-(0x60200000, 0x40200000) specified in the ranges property for I/O region.
+For 64KiB of the I/O region, the I/O ports of the legacy PCI devices are
+located in the range of 0x0 to 0x10000. Hence, fix the bogus PCI addresses
+(0x10200000, 0x20200000) specified in the ranges property for I/O region.
 
-While at it, let's use the missing 0x prefix for the addresses.
+While at it, let's use the missing 0x prefix for the addresses and align
+them in a single line.
 
-Fixes: 7d1158c984d3 ("arm64: dts: qcom: sm8550: Add PCIe PHYs and controllers nodes")
+Fixes: 33057e1672fe ("ARM: dts: ipq8074: Add pcie nodes")
 Reported-by: Arnd Bergmann <arnd@arndb.de>
 Link: https://lore.kernel.org/linux-arm-msm/7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com/
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index ff4d342c0725..f8d7b4dde878 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1653,8 +1653,8 @@ pcie0: pci@1c00000 {
- 			reg-names = "parf", "dbi", "elbi", "atu", "config";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
--			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
--				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
-+			ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
-+				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0x3d00000>;
- 			bus-range = <0x00 0xff>;
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 62d05d740646..e8dad3ff4fcc 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -780,10 +780,8 @@ pcie1: pci@10000000 {
+ 			phys = <&pcie_phy1>;
+ 			phy-names = "pciephy";
  
- 			dma-coherent;
-@@ -1752,8 +1752,8 @@ pcie1: pci@1c08000 {
- 			reg-names = "parf", "dbi", "elbi", "atu", "config";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
--			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
--				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
-+			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
-+				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
- 			bus-range = <0x00 0xff>;
+-			ranges = <0x81000000 0 0x10200000 0x10200000
+-				  0 0x10000>,   /* downstream I/O */
+-				 <0x82000000 0 0x10220000 0x10220000
+-				  0 0xfde0000>; /* non-prefetchable memory */
++			ranges = <0x81000000 0x0 0x00000000 0x10200000 0x0 0x10000>,   /* I/O */
++				 <0x82000000 0x0 0x10220000 0x10220000 0x0 0xfde0000>; /* MEM */
  
- 			dma-coherent;
+ 			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "msi";
+@@ -844,10 +842,8 @@ pcie0: pci@20000000 {
+ 			phys = <&pcie_phy0>;
+ 			phy-names = "pciephy";
+ 
+-			ranges = <0x81000000 0 0x20200000 0x20200000
+-				  0 0x10000>, /* downstream I/O */
+-				 <0x82000000 0 0x20220000 0x20220000
+-				  0 0xfde0000>; /* non-prefetchable memory */
++			ranges = <0x81000000 0x0 0x00000000 0x20200000 0x0 0x10000>,   /* I/O */
++				 <0x82000000 0x0 0x20220000 0x20220000 0x0 0xfde0000>; /* MEM */
+ 
+ 			interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "msi";
 -- 
 2.25.1
 
