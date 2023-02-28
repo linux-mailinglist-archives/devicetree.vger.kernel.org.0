@@ -2,111 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE7EE6A5732
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9612A6A5738
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:55:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbjB1Kx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:53:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41188 "EHLO
+        id S231182AbjB1KzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:55:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231305AbjB1Kxh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:53:37 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931E7D51E;
-        Tue, 28 Feb 2023 02:52:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1677581520; x=1709117520;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EmV1CDA32bCw5Yuxlf/FrxK14FNdKdtOjrbPPzU8wDE=;
-  b=2onGzHsli+SpQt+1u+xA+QT+Mcdfo/nWBILSUETAu9D8+FTWLZ9wyraG
-   X1CmIH+92uhS2HaGhXm9k/rb6tZfaM3UhF5PKY9jFU7RT97fDhdhDRTZZ
-   HChcHDKufYP5+h9+4Br6PTwHQI5m+NeEmvotMuDGSoJKgf1QZDdyGKpQy
-   2oTvL+rLPY2cJUwQWqv8dPZxH1stvqmfE44N9ktSlAd/V2LsMjxTJFD1+
-   1cN15uEZuoLRSueePAtVHdg6qQAm7Fk9V1IQLLqXLTMPReklrhXYHGljg
-   urKp0HC5SwVxuv5KogLoeFvo+rxbKaCc4jE0JQzH1q07Zf877ZhnzPNxF
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,221,1673938800"; 
-   d="asc'?scan'208";a="202531380"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Feb 2023 03:51:42 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Tue, 28 Feb 2023 03:51:42 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Tue, 28 Feb 2023 03:51:39 -0700
-Date:   Tue, 28 Feb 2023 10:51:12 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
-Message-ID: <Y/3coFvMWOLaaY9p@wendy>
-References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
- <20230220081926.267695-3-xingyu.wu@starfivetech.com>
- <CAJM55Z823iqUqD8enM0qJ_MA3Tw94Mn0mq71fbLT1Qjo2s2J3g@mail.gmail.com>
- <0ffb02d2-0bbd-fd0d-b0f6-cb5605570050@starfivetech.com>
- <CAJM55Z_hRpUYueZ-XuWUx1NfAsL9E+-4ry9TYeRWM_bKXvym-g@mail.gmail.com>
+        with ESMTP id S231351AbjB1Kyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:54:31 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 479682ED6B
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:53:55 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id j3so6098925wms.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:53:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677581633;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hOZCIzKrLTMqexjdZ2+a46sW/ksovWEJrh6b6pkknJY=;
+        b=XE9qUInIc3TEdvs5mKnKriplipNk0eDs4KVpTrDspr5XSiHyObMNbnTZcOhF2PS2mt
+         a0f0xYgoCX6cNVFyjz6VWDNPtt9w65jeO4Qx0u0cu17XqMTR5BiN8kH7EoJhAJe4y0nT
+         95aONn1l3B84tS51hQAfjm2AT+Co2XLIWbAivQ0AIyWgtziLPWjdk5L/D5u+v8VwA8AB
+         Y19M5K+E08CGQI8SMLUFHOXPtbWYjyamS0rjzYQvzQX8LF/ayVx9HxiY2K/eulO3o6/8
+         ucPYhOdXpywGVQE0j2LGFfHhMvtefkgg+pi2HNf3d0cDfxgRLbdMFByLhYKVvSfLv3jr
+         b+sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677581633;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hOZCIzKrLTMqexjdZ2+a46sW/ksovWEJrh6b6pkknJY=;
+        b=jPvm1ZEgywSEzD56UH/ZvBT5Xzxyk60r6Ln2YTonPWnC3dRpd/lkbPzIs/e2cV6Kjp
+         CtL0yGTfFr3+tXkn5mMMkIcQbavvtEJnfb0kALB9P3eq/VQObi8cXa0CM9dFRIwS8bMw
+         0nnnKi5ZRKvFJiVQNedW0xibRivAJp8mU/gKSdM2FCGjSd0jubmCT8rAHyw1Lodt2oA7
+         64oj9T3Rnn2FdM7YTspvXBDLChuwl+YjhvoqZnz6ecUd+7gvyquxKuvbxfubYh5K6NX4
+         kaZ+9JUuZIY/TX2wm1FUaAxUHt5KtPo9fMvOMy8BzDhiDQR5zjUi/+O6C4RtoZESEafa
+         mObQ==
+X-Gm-Message-State: AO0yUKVou3kzNGeHeXoqW8oK6jJJ9D34jC7H+FodISp7Rs0z7LLTQgOr
+        VpHjF1Ut4lK39MOPaz6XnxQ8lDilTtJWGBeI
+X-Google-Smtp-Source: AK7set9K/cJjOM6W7cKYRxtYxRSV69UDHU0t2RPlCILopPormRrRmhWgL1FNrkSC4+RMxrZ2z8podw==
+X-Received: by 2002:a05:600c:35d4:b0:3eb:3945:d3fd with SMTP id r20-20020a05600c35d400b003eb3945d3fdmr1671382wmq.14.1677581633700;
+        Tue, 28 Feb 2023 02:53:53 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ja6-20020a05600c556600b003dfefe115b9sm12251903wmb.0.2023.02.28.02.53.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Feb 2023 02:53:53 -0800 (PST)
+Message-ID: <90b332b7-ba62-d9b5-2d94-5d2e70fad4af@linaro.org>
+Date:   Tue, 28 Feb 2023 11:53:51 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UcWmcqa/y1djr3DO"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z_hRpUYueZ-XuWUx1NfAsL9E+-4ry9TYeRWM_bKXvym-g@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 5/6] dt-bindings: mmc: sdhci-cadence: SD6 support
+Content-Language: en-US
+To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org
+Cc:     jannadurai@marvell.com, cchavva@marvell.com
+References: <20230227183151.27912-1-pmalgujar@marvell.com>
+ <20230227183151.27912-6-pmalgujar@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230227183151.27912-6-pmalgujar@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---UcWmcqa/y1djr3DO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 27/02/2023 19:31, Piyush Malgujar wrote:
+> From: Jayanthi Annadurai <jannadurai@marvell.com>
+> 
+> Add support for SD6 controller support.
+> 
+> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> ---
+>  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 24 +++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..0dba17c4f17f82c8ae68e46225ed72418e8361ff 100644
+> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+> +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
+>  
+>  maintainers:
+>    - Masahiro Yamada <yamada.masahiro@socionext.com>
+> @@ -18,7 +18,9 @@ properties:
+>        - enum:
+>            - microchip,mpfs-sd4hc
+>            - socionext,uniphier-sd4hc
+> -      - const: cdns,sd4hc
+> +      - enum:
+> +          - cdns,sd4hc
+> +          - cdns,sd6hc
 
-On Tue, Feb 28, 2023 at 11:36:49AM +0100, Emil Renner Berthing wrote:
-> On Tue, 28 Feb 2023 at 10:44, Xingyu Wu <xingyu.wu@starfivetech.com> wrot=
-e:
-> > On 2023/2/26 22:14, Emil Renner Berthing wrote:
-> > > On Mon, 20 Feb 2023 at 09:21, Xingyu Wu <xingyu.wu@starfivetech.com> =
-wrote:
+I see here rather random set of changes in each version of this patch.
+This does not really make sense. You are saying that existing (!!!)
+mpfs-sd4hc is compatible with sd6hc. I think you wanted oneOf here, but
+not sure. Can you explain what is your intention? Your commit msg is
+just one line saying the same as subject, so not really helpful.
 
-> > So the dt-bingdings need to rename, and which one could be better,
-> > 'starfive,jh71x0-wdt.yaml' or 'starfive,jh-wdt.yaml'?
->=20
-> Sure, starfive,jh71x0-wdt.yaml sounds good to me.
 
-I feel like a common comment I see from the dt folks is to not put
-wildcards in filenames & just pick the first compatible.
-I could very well be wrong on that front though...
+Best regards,
+Krzysztof
 
---UcWmcqa/y1djr3DO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/3coAAKCRB4tDGHoIJi
-0mvBAP9uweiso5de1r1kZ9I8IGm1fB/JEam5Oz1DY1O5dqwAJwEAtMmWjEj8tDy+
-yYIgRtECs4sOifuXiJ6LkiIXnV0JHQg=
-=Issj
------END PGP SIGNATURE-----
-
---UcWmcqa/y1djr3DO--
