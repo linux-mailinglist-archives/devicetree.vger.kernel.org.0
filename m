@@ -2,124 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E1F6A588A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 12:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 953C66A599D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 14:01:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231506AbjB1LuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 06:50:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44972 "EHLO
+        id S231487AbjB1NBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 08:01:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231487AbjB1LuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 06:50:09 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6229E1F481;
-        Tue, 28 Feb 2023 03:50:08 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31S6Vr8P024430;
-        Tue, 28 Feb 2023 11:49:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=RiKQxet1aV+aN1dp0TU54EAcebB+HyrH3HYWI54gMSk=;
- b=My3zBjawpEp2W4HaP/3TCGFoH3c4bIEkmg6BgoNEtFQh5ecHJVL6qM//eawnKZsuTl9M
- fsSDWAckTsxk2NHJsKOyTaLnF6cY2Q1kfYT399/P9pujmgzyjL9+qjU+dYlwmX2vdt0x
- PrP0Oj1G0qtZtE/IyE5rt6ShFDWJCKUhCTVVJThbahZUE/nrCeqwFmnVpXBhLqSsNuLA
- VqvidQm6nk7ZHsB2JNMmQU20gmCuKnS/lFr7kjPCfQu7y2zY35nho0ywlXEY06vWHT5V
- SUZPgPfZmw+x4wewfhWC6O1z3/XGvVWtDtdhOsaMrtF4mUiV6fzcsL3PUj+OLSk4vPlv gg== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p1ccxgtb9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Feb 2023 11:49:25 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 31SBnEW4004703;
-        Tue, 28 Feb 2023 11:49:21 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3nybdkeaxb-1;
-        Tue, 28 Feb 2023 11:49:21 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 31SBnLcE006237;
-        Tue, 28 Feb 2023 11:49:21 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.37])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 31SBnKX5006167;
-        Tue, 28 Feb 2023 11:49:21 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id F027547B9; Tue, 28 Feb 2023 17:19:19 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
-        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
-        svarbanov@mm-sol.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, lpieralisi@kernel.org,
-        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
-        linux-phy@lists.infradead.org, vkoul@kernel.org, kishon@ti.com,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        stable@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229530AbjB1NBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 08:01:33 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3B7930186
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 05:01:31 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id t11so13097520lfr.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 05:01:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677589290;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FmcENpXNJMP3+mRcBEtL4u5TWOcKvk1vpFTsGy9hwFM=;
+        b=VrZ/pzNMVRji1QXeGg83jSBpLU91PqZRnN0EshQ8nl80gpDPBt/Ni7olYSRbt5H2zA
+         ncW9bBeyB7t8Pi04F6n4YFBY6GUYnvYabHf10AQpNR1BnlUDm1Pc57khoAldzPplTTU3
+         Y9o6dXtZkfOIFcElCVRyx9mzhK1qbNvKpJGyx4+mxvyPna1akGlfSbPM7PKrn8aE9pT3
+         tikPks45aQwDG6CpMXEXd+qI/65kqBpO5TNTeMw3nSrQ0yk7TVq4FvbEfvX2ngRFhZM8
+         4Mq4aeVf6mB0/RUivTOPMiAxApMveTnqhCsCwKkHccHVGeqUZat+AvLfZYU0v5J2WO+v
+         EWZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677589290;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FmcENpXNJMP3+mRcBEtL4u5TWOcKvk1vpFTsGy9hwFM=;
+        b=bYCWTHhvw4wdp7KHgeAwdVJ1kFgN6CO7QANE33jjGKGVfSLyC+6RQYVqohQwwhTHR4
+         en3+qVdzmzBBmpmjzDtFDodcnLswLSs4H896sbgS2MnJx33QdHFTijRrm/Tm6Bnd8okZ
+         m1HmIdkaPQG/jglxfuDWhCKsXpdLqN3dfeyNeUM+VM6u7DR6uYMRnuEidkOaa94rX+dn
+         1NqQUo7MW/QawKQ+q6iO9oMtfie/Gadu2ay5ZyAImrQyolZf+i9in5zPTRxiKnMmjcw2
+         VzTdTcQyiN54K02kHAk9WENROh7OKP/PC1pxWLjBD0b3oR9vb2dzaTkRB53ZlKFYlYgA
+         5fGA==
+X-Gm-Message-State: AO0yUKWLaDmIdMXutFn/paoGCDQ36UiCM5LT3N6Lf2ILEq3KSddGEHgP
+        kM90tLRR/XYK4a2/32KvBby3qQ==
+X-Google-Smtp-Source: AK7set+xxjCs4P3sX8/fDJiixYPr+PmoXyz7rzf6qHqL+iRZCbnxRVf0GMVJO8FuBGAkHB0PngojZQ==
+X-Received: by 2002:a19:5511:0:b0:4e1:13fa:bf07 with SMTP id n17-20020a195511000000b004e113fabf07mr602899lfe.43.1677589289993;
+        Tue, 28 Feb 2023 05:01:29 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id j27-20020ac2551b000000b004dc4cb4f9c4sm1332478lfk.35.2023.02.28.05.01.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Feb 2023 05:01:29 -0800 (PST)
+Message-ID: <e07ede3a-3412-0ec1-4f6d-ffa406465d3a@linaro.org>
+Date:   Tue, 28 Feb 2023 14:01:27 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v10 5/6] soc: qcom: Add support for Core Power Reduction
+ v3, v4 and Hardened
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH V2] arm64: dts: qcom: sc7280: Mark PCIe controller as cache coherent
-Date:   Tue, 28 Feb 2023 17:19:12 +0530
-Message-Id: <1677584952-17496-1-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PJJOU_hZapybQxqINK46QQuT9oKQlc8V
-X-Proofpoint-ORIG-GUID: PJJOU_hZapybQxqINK46QQuT9oKQlc8V
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-28_07,2023-02-28_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 adultscore=0
- clxscore=1011 mlxlogscore=656 bulkscore=0 impostorscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302280094
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+References: <20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org>
+ <20230217-topic-cpr3h-v10-5-67aed8fdfa61@linaro.org>
+ <153ef3e0-9978-d201-44ad-3a5e55eeef4f@linaro.org>
+ <8c105a4f-f450-8fbf-ff0b-5629a47c1463@collabora.com>
+ <d2784517-0f0c-43a5-63a6-57f6aa3e5912@linaro.org>
+ <8a813713-c60d-4726-0c62-de032db99ede@collabora.com>
+ <CAA8EJpprXe3k6Kecg6v-QHT-qP=QjimFZFpLWjPqky3M=J+x+A@mail.gmail.com>
+ <5e7f9d22-b918-bdfc-931c-0e679c1e946d@collabora.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <5e7f9d22-b918-bdfc-931c-0e679c1e946d@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the controller is not marked as cache coherent, then kernel will
-try to ensure coherency during dma-ops and that may cause data corruption.
-So, mark the PCIe node as dma-coherent as the devices on PCIe bus are
-cache coherent.
 
-Cc: stable@vger.kernel.org
-Fixes: 92e0ee9f83b3 ("arm64: dts: qcom: sc7280: Add PCIe and PHY related node")
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
 
-changes since v1:
-	- Updated the commit text.
----
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+On 28.02.2023 09:19, AngeloGioacchino Del Regno wrote:
+> Il 27/02/23 14:20, Dmitry Baryshkov ha scritto:
+>> On Mon, 27 Feb 2023 at 15:06, AngeloGioacchino Del Regno
+>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>
+>>> Il 27/02/23 13:01, Dmitry Baryshkov ha scritto:
+>>>>
+>>>> I took a glance at the 'cpufreq: qcom-hw: Implement CPRh aware OSM programming'
+>>>> patch, it doesn't seem to use the header (maybe I checked the older version of the
+>>>> patch). As for me, this is another signal that cpr_ext_data should come together
+>>>> with the LUT programming rather than with the CPRh itself.
+>>>>
+>>>>> Konrad, perhaps you can send the cpufreq-hw commits in a separate series, in
+>>>>> which cover letter you mention a dependency on this one?
+>>>>> That would *clearly* show the full picture to reviewers.
+If by "the cpufreq-hw commits" you mean the OSM enablement, that's
+the plan! I just don't think sending it parallel to this series
+makes a whole lot of sense logistically (even though it does
+logically), as they both are quite gigantic..
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index bdcb749..8f4ab6b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2131,6 +2131,8 @@
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pcie1_clkreq_n>;
- 
-+			dma-coherent;
-+
- 			iommus = <&apps_smmu 0x1c80 0x1>;
- 
- 			iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
--- 
-2.7.4
+For reference, here's the last revision that made it to lkml, I think:
 
+https://lore.kernel.org/phone-devel/20210701105730.322718-7-angelogioacchino.delregno@somainline.org/
+
+>>>>
+>>>> Yes, that would be great. A small note regarding those patches. I see that you
+>>>> patched the qcom-cpufreq-hw.c. This way first the driver programs the LUT, then it
+>>>> reads it back to setup the OPPs. Would it be easier to split OSM-not-programmed
+>>>> driver?
+>>>>
+>>>
+>>> When I engineered that solution, I kept the cpufreq-hw reading *again* the values
+>>> from OSM to keep the driver *fully* compatible with the bootloader-programmed OSM
+>>> flow, which makes one thing (in my opinion) perfectly clear: that programming
+>>> sequence is exactly the same as what happens "under the hood" on SDM845 (and later)
+>>> but performed here-instead-of-there (linux instead of bootloader), with the actual
+>>> scaling driver being 100% the same between the two flows in the end.
+>>>
+>>> Having two drivers as you suggested would indeed achieve the same, but wouldn't be
+>>> any easier... if you do that, you'd have to *somehow* make sure that the
+>>> programming driver does its job before the cpufreq driver tries to read the OSM
+>>> status, adding one more link to an already long chain.
+>>>
+>>> Besides, I remember that this question got asked a while ago on the mailing lists
+>>> and there was a short discussion about it:
+>>>
+>>> https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2555580.html
+>>
+>> Ack, I see. Maybe splitting LUT programming to a separate source file
+>> would emphasise the fact that it is only required for some (older)
+> 
+> Maybe. I'm not sure it's worth adding a new helper file, but I don't really have
+> any strong arguments against...
+> 
+> Konrad, your call.
+qcom-cpufreq-hw.c is currently a driver for a small subset of the
+functionality that's available from the hardware behind it. Hence I
+reckon it'd only be correct to also keep all the "proper" setup there,
+as it concerns the same hardware, just that previously one did not need
+to utilize it fully, as the boot firmware ever so graciously performed
+that exact same setup with elevated privileges and before jumping
+to HLOS.
+
+Konrad
+
+> 
+> Cheers!
+> Angelo
+> 
+>> SoCs. Other than that, I have no additional comments for that series.
+>>
