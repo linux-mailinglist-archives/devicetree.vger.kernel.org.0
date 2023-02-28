@@ -2,278 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC3A6A5458
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 09:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F146A548F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 09:41:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbjB1IYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 03:24:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40076 "EHLO
+        id S229684AbjB1Ilz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 03:41:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230257AbjB1IY3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 03:24:29 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599FCF952
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 00:24:27 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so8866234wmb.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 00:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677572666;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qCa9eFA4MAuvdUpjEutbEhVDEXa13F9jRr5aGoUB3t8=;
-        b=R97enwMN3XC+NbplCZTfX0/1FWjL0/ibd4Ss7LWrablB8qE+oj645pJM4lUVcG2EEO
-         vT4qiDpVqbxagWtoO1z4PLBqy4XmiPInZ3XxdKejzfVzudVwj4+Hg09nkH1aPUwX0Kdu
-         2ltBKOx6NpeHs8/c3p/XXEDTB/fCeTS/L//E0hZwGieMPAKebRtYtD+RKcM5udhu/3Y0
-         Uryt7404F5L8593ZAXq4ttqTT7UQxkwlm5S4PepoiclPT6AdtZqf+SSJXIT1LKcYiFIS
-         Sl49KwNlUkrQjzXfad09XVJMs2nWT2saj8lRZV5LrmtCdhYPKSeNONnLhSCJ7Xiyhnvl
-         ZEqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677572666;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qCa9eFA4MAuvdUpjEutbEhVDEXa13F9jRr5aGoUB3t8=;
-        b=uFuyZK1VCG6klqNuWJTepAX6hpCo1Bh30y4Gxee8HUIQRZon/l1bMXVZV3A75PWm3d
-         IKVUs0F0zUi3cX/WcakEMC6tSGxXSVpJr9VxxPAei4O/+af6kohoBIjWUkrZ5HmVdDPA
-         X/heo3JYxg9Ic+PuGuDutj83HYad41lOq9osN1TYo/mG2rMAW4+BM1BvZatQS32HObay
-         clWddKQPasD4wqr06YvcQnKl0B96ktBtnqa2f04RwDF7d+k3xyq18jQHn9rhbtoCAJqR
-         FWarbepzh9jGYBiIUkhOcenDC/fFPzFzxMotfO7VqQmBqWevIC+xWblHXiDtp81ZyLrP
-         fhag==
-X-Gm-Message-State: AO0yUKWh1IrpkK1h9PNGZP7LdRiG9l3I3rFsmVNG82WjMn3RH40Q5hbi
-        JYEvVDfYTHuzLpcsbMsOOngu37wVDOpnqXnE
-X-Google-Smtp-Source: AK7set+561ScUMYHwh6Ics+VWI683XONjmmmO5cGE2PRQI2VyhOWzhywPrSMutxHQNhiUzsuMT3LiA==
-X-Received: by 2002:a05:600c:1d29:b0:3eb:2708:86ce with SMTP id l41-20020a05600c1d2900b003eb270886cemr1337572wms.31.1677572665796;
-        Tue, 28 Feb 2023 00:24:25 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p15-20020a7bcdef000000b003e200d3b2d1sm11651518wmj.38.2023.02.28.00.24.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 00:24:25 -0800 (PST)
-Message-ID: <1cf02768-aa92-3ad4-af00-566c16128352@linaro.org>
-Date:   Tue, 28 Feb 2023 09:24:22 +0100
+        with ESMTP id S229511AbjB1Ily (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 03:41:54 -0500
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 680602A98D;
+        Tue, 28 Feb 2023 00:41:52 -0800 (PST)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1pWvYQ-0004CR-00; Tue, 28 Feb 2023 09:41:46 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id AE544C0F89; Tue, 28 Feb 2023 09:39:20 +0100 (CET)
+Date:   Tue, 28 Feb 2023 09:39:20 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>, linux-watchdog@vger.kernel.org,
+        wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        Philippe =?iso-8859-1?Q?Mathieu-Daud=E9?= <philmd@linaro.org>
+Subject: Re: [PATCH v7 2/5] mips: dts: ralink: mt7621: rename watchdog node
+ from 'wdt' into 'watchdog'
+Message-ID: <20230228083920.GA5801@alpha.franken.de>
+References: <20230214103936.1061078-1-sergio.paracuellos@gmail.com>
+ <20230214103936.1061078-3-sergio.paracuellos@gmail.com>
+ <20230214151101.GB742354@roeck-us.net>
+ <CAMhs-H915iSR7TpuXdcg8NKLV8Scv9cwW36SZaXNK839kA4ybg@mail.gmail.com>
+ <CAMhs-H_Ce-+MFi5zTMg8v8dSSg5ioaTy+Pw-0QMgK++PVtEViQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [RFC PATCH 09/16] dt-bindings: pinctrl: mediatek: rt305x: split
- binding
-Content-Language: en-US
-To:     arinc9.unal@gmail.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-References: <20230222183932.33267-1-arinc.unal@arinc9.com>
- <20230222183932.33267-10-arinc.unal@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230222183932.33267-10-arinc.unal@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAMhs-H_Ce-+MFi5zTMg8v8dSSg5ioaTy+Pw-0QMgK++PVtEViQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2023 19:39, arinc9.unal@gmail.com wrote:
-> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+On Tue, Feb 28, 2023 at 05:44:21AM +0100, Sergio Paracuellos wrote:
+> On Tue, Feb 14, 2023 at 4:12 PM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+> >
+> > On Tue, Feb 14, 2023 at 4:11 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> > >
+> > > On Tue, Feb 14, 2023 at 11:39:33AM +0100, Sergio Paracuellos wrote:
+> > > > Watchdog nodes must use 'watchdog' for node name. When a 'make dtbs_check'
+> > > > is performed the following warning appears:
+> > > >
+> > > > wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0-9a-f])?$'
+> > > >
+> > > > Fix this warning up properly renaming the node into 'watchdog'.
+> > > >
+> > > > Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> > > > Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
+> > > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > >
+> > > Acked-by: Guenter Roeck <linux@roeck-us.net>
+> > >
+> > > Note that we can not apply this and the next patch of the series
+> > > through the watchdog tree since it crosses a maintainer boundary.
+> >
+> > I was expecting Thomas to get these two arch/mips patches or get an
+> > Acked-by from him in order for you to apply them.
 > 
-> The RT3352 and RT5350 SoCs each contain different pin muxing information,
-> therefore, should be split. This can be done now that there are compatible
-> strings to distinguish them from other SoCs.
+> Hi Thomas,
 > 
-> Split the schema out to mediatek,rt3352-pinctrl.yaml and
-> mediatek,rt5350-pinctrl.yaml.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
->  .../pinctrl/mediatek,rt305x-pinctrl.yaml      |  78 +-----
->  .../pinctrl/mediatek,rt3352-pinctrl.yaml      | 247 ++++++++++++++++++
->  .../pinctrl/mediatek,rt5350-pinctrl.yaml      | 210 +++++++++++++++
->  3 files changed, 462 insertions(+), 73 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,rt3352-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,rt5350-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,rt305x-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,rt305x-pinctrl.yaml
-> index 61fcf3ab1091..1e6c7e7f2fe2 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,rt305x-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,rt305x-pinctrl.yaml
-> @@ -11,8 +11,7 @@ maintainers:
->    - Sergio Paracuellos <sergio.paracuellos@gmail.com>
->  
->  description:
-> -  MediaTek RT305X pin controller for RT3050, RT3052, RT3350, RT3352 and RT5350
-> -  SoCs.
-> +  MediaTek RT305X pin controller for RT3050, RT3052, and RT3350 SoCs.
->    The pin controller can only set the muxing of pin groups. Muxing individual
->    pins is not supported. There is no pinconf support.
->  
-> @@ -36,21 +35,9 @@ patternProperties:
->            function:
->              description:
->                A string containing the name of the function to mux to the group.
-> -            anyOf:
-> -              - description: For RT3050, RT3052 and RT3350 SoCs
-> -                enum: [gpio, gpio i2s, gpio uartf, i2c, i2s uartf, jtag, mdio,
-> -                       pcm gpio, pcm i2s, pcm uartf, rgmii, sdram, spi, uartf,
-> -                       uartlite]
-> -
-> -              - description: For RT3352 SoC
-> -                enum: [gpio, gpio i2s, gpio uartf, i2c, i2s uartf, jtag, led,
-> -                       lna, mdio, pa, pcm gpio, pcm i2s, pcm uartf, rgmii, spi,
-> -                       spi_cs1, uartf, uartlite, wdg_cs1]
-> -
-> -              - description: For RT5350 SoC
-> -                enum: [gpio, gpio i2s, gpio uartf, i2c, i2s uartf, jtag, led,
-> -                       pcm gpio, pcm i2s, pcm uartf, spi, spi_cs1, uartf,
-> -                       uartlite, wdg_cs1]
-> +            enum: [gpio, gpio i2s, gpio uartf, i2c, i2s uartf, jtag, mdio,
-> +                   pcm gpio, pcm i2s, pcm uartf, rgmii, sdram, spi, uartf,
-> +                   uartlite]
->  
->            groups:
->              description:
-> @@ -69,17 +56,7 @@ patternProperties:
->              then:
->                properties:
->                  groups:
-> -                  anyOf:
-> -                    - description: For RT3050, RT3052 and RT3350 SoCs
-> -                      enum: [i2c, jtag, mdio, rgmii, sdram, spi, uartf,
-> -                             uartlite]
-> -
-> -                    - description: For RT3352 SoC
-> -                      enum: [i2c, jtag, led, lna, mdio, pa, rgmii, spi, spi_cs1,
-> -                             uartf, uartlite]
-> -
-> -                    - description: For RT5350 SoC
-> -                      enum: [i2c, jtag, led, spi, spi_cs1, uartf, uartlite]
-> +                  enum: [i2c, jtag, mdio, rgmii, sdram, spi, uartf, uartlite]
->  
->            - if:
->                properties:
-> @@ -126,24 +103,6 @@ patternProperties:
->                  groups:
->                    enum: [jtag]
->  
-> -          - if:
-> -              properties:
-> -                function:
-> -                  const: led
-> -            then:
-> -              properties:
-> -                groups:
-> -                  enum: [led]
-> -
-> -          - if:
-> -              properties:
-> -                function:
-> -                  const: lna
-> -            then:
-> -              properties:
-> -                groups:
-> -                  enum: [lna]
-> -
->            - if:
->                properties:
->                  function:
-> @@ -153,15 +112,6 @@ patternProperties:
->                  groups:
->                    enum: [mdio]
->  
-> -          - if:
-> -              properties:
-> -                function:
-> -                  const: pa
-> -            then:
-> -              properties:
-> -                groups:
-> -                  enum: [pa]
-> -
->            - if:
->                properties:
->                  function:
-> @@ -216,15 +166,6 @@ patternProperties:
->                  groups:
->                    enum: [spi]
->  
-> -          - if:
-> -              properties:
-> -                function:
-> -                  const: spi_cs1
-> -            then:
-> -              properties:
-> -                groups:
-> -                  enum: [spi_cs1]
-> -
->            - if:
->                properties:
->                  function:
-> @@ -243,15 +184,6 @@ patternProperties:
->                  groups:
->                    enum: [uartlite]
->  
-> -          - if:
-> -              properties:
-> -                function:
-> -                  const: wdg_cs1
-> -            then:
-> -              properties:
-> -                groups:
-> -                  enum: [spi_cs1]
-> -
->          additionalProperties: false
->  
->      additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,rt3352-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,rt3352-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..7a74c1602afc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,rt3352-pinctrl.yaml
-> @@ -0,0 +1,247 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/mediatek,rt3352-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek RT3352 Pin Controller
-> +
-> +maintainers:
-> +  - Arınç ÜNAL <arinc.unal@arinc9.com>
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +
-> +description:
-> +  MediaTek RT3352 pin controller for RT3352 SoC.
-> +  The pin controller can only set the muxing of pin groups. Muxing individual
-> +  pins is not supported. There is no pinconf support.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,rt3352-pinctrl
-> +      - ralink,rt305x-pinctrl
-> +      - ralink,rt2880-pinmux
+> I think you have missed this series since you have started to apply
+> newer stuff in mips-next. Are you ok with taking or Acking patches 2
+> and 3 of this series?
 
-Following Rob's comments, you need to keep old compatibles when
-splitting binding.
+yes, I sort of missed it. If it's enough to take patch 2/3 I'll do that.
+If it's better to keep the series, I'm also ok with acking them.
+What's the best way forward ?
 
-Best regards,
-Krzysztof
+Thomas.
 
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
