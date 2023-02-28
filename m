@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 896B96A5B8E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 16:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31ECC6A5B90
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 16:22:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjB1PVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 10:21:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37510 "EHLO
+        id S229690AbjB1PWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 10:22:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbjB1PVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 10:21:19 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD58305E8;
-        Tue, 28 Feb 2023 07:21:18 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id h3so10623352lja.12;
-        Tue, 28 Feb 2023 07:21:18 -0800 (PST)
+        with ESMTP id S229569AbjB1PWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 10:22:12 -0500
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760F030B1E;
+        Tue, 28 Feb 2023 07:22:11 -0800 (PST)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1723ab0375eso11273553fac.1;
+        Tue, 28 Feb 2023 07:22:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Nj/pyEGuI2AXqgkIb0HRmRTV4X7oh8Cg+NkzxMSXyE=;
-        b=e/kka9ze2Ac2aosUsCElFaOe4xyEfl/9pt+rhObyBHt20lPmDANwQwQ9zQQqMqdkVB
-         dL3EChcmknH4C3WcVj67B01J/y5d3TD2SS9EZSIQw9Xz0bw06By9aCmqevYbhcU1+GsT
-         +HUMMshk3WcC64C5JC+ENak3IlJROdiTIe0RhZzJkEbb+huQpRhp+hvAQVfcNMonVEU3
-         BNOf1K75Z/bcMBStFFDquZ8S2xURa9JdsyTtI9q8NTZ8XviJ7tFVGB9kHW3U4c4jX+dG
-         +qCmoTMiMinsGU21D9ZQVuaTbboxUF0FA0jpBje4P/eBOc3lDfxPHbCN3Am8Mt1zgqHb
-         YSvA==
+        bh=6ZINZr24IPypfc8Mbr2NS8J6caC0I66oepeOa6nqVCc=;
+        b=PTOU94NTsu451MMt6lo/eqWICOkaylcV/6yv7DwF+rDmMQfwjK9KRlDTgm4h+zIk1j
+         Z3SMiFx6OUELNQnr44GdLqjWdEdPoDkOeXNvXJMAAqhx9XtoRTFAcEsJMdxcznSwbkU1
+         x9dqe6YlWRs1rzUXR6W1YL/61IaL8af8a046Fb5/STtcZagUUi6pHSy8YrCmx59Vt37S
+         I7mOrUnLTwzzxQUTrHS8NBFkC9YDpAmDtMG+hPK3lVYutWB+1bmokrdWDc+br++oECY/
+         CssMGpX7vMe5lm9Ip4d4Uyfg4+8CRTm9cmkHmCIbQYsZ6IfxeyhXEzTzETGWl4cCQe/v
+         YJNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3Nj/pyEGuI2AXqgkIb0HRmRTV4X7oh8Cg+NkzxMSXyE=;
-        b=h4UowyY0DU5EKoJm1Kn94xfOdBl4iQZ1qZvTfQe9JscbTfzfbn2rKijEDWrfOtJPr2
-         7ZDmswPWTrDQ4a+3NAn/5WePm7HThtwJv0zT7dyy72vlLwBCpurRzRJy2Tkvc3Is2OEU
-         Ldu2BACPgDwy/8Q1bzRPdZ+3BN/ICVkZ11jyHyhvGfxkL20gWRNK+lQfM3KixjqO0m6v
-         82nNhGGC75hY1a1brnY5Apu5Uu9gzbdW+NaBa+2O5jtAZj/waO+Ou7JtT08zU3kLGlZD
-         GoruG24DbQ6IDgq0i/gwEAkAjgQy0GhIh208+ucQc4iikpk7ZDi8DawnRBGRGIiLQL2L
-         DwKQ==
-X-Gm-Message-State: AO0yUKUyQdbCuURKeRObp/TWm9rVyIVjln3uhAbJKaT6Ns31OU8WTtau
-        BqRm5Xux9SSnuZ67Pgr08pU=
-X-Google-Smtp-Source: AK7set/FcmcYsDNF6XQYprkpedxT1Kf7l65zKwo9vcdbG1v5K8Ts0+j/iaRdXfhYKtiYHI4MQK/3Og==
-X-Received: by 2002:a2e:91d4:0:b0:293:2bf4:d939 with SMTP id u20-20020a2e91d4000000b002932bf4d939mr889019ljg.12.1677597676374;
-        Tue, 28 Feb 2023 07:21:16 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id 198-20020a2e05cf000000b002935a8d9351sm1268866ljf.55.2023.02.28.07.21.15
+        bh=6ZINZr24IPypfc8Mbr2NS8J6caC0I66oepeOa6nqVCc=;
+        b=OFaiTVM2oOTkX7e7sQDPaefX30MbckSNdBHoTBxBF2hJrgY/I82GVqPmoJj4Hlnla9
+         9Fco+kesquElzRsFuFLv9l8oZlUV1y1fdQE6FBy4prcLiKy0o2+f7ngoD1EFOSlgJHyP
+         jVcJHIjU4FFMMpkl9rZRvQ8ej3D9z1btxevNMHVnc1CoVj2a+2xTG87p0CfJ8o5GrDym
+         2L5Jsc/swvvkXsp3CJHM2HRULDWsQAqhoVy6kR0RHERdLkTdPzQN4DaNgqrd0OaT425V
+         UcrU3XfywH30DKe9B3oqWsygzcWBO02Xy4BVSKplhlRAOwv7Chm+ehMeQPf+KDYxLTy9
+         tyuw==
+X-Gm-Message-State: AO0yUKXS5pJGY0Rg5rd/U5CRDQ5gkA9o661FT8/mFmponNhR/NDBn3zV
+        xDvspIQx4Spxrpylb/qcxvWS1MlN/C8=
+X-Google-Smtp-Source: AK7set/d2yFBcIx3QZ9+WAlPuDU8jy0GvNS483gxd9YJjKP83i4QFU3/xhWEoFQlffdP9AcT2sZcRA==
+X-Received: by 2002:a05:6870:8993:b0:172:4748:32d9 with SMTP id f19-20020a056870899300b00172474832d9mr1473141oaq.3.1677597730592;
+        Tue, 28 Feb 2023 07:22:10 -0800 (PST)
+Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id yy23-20020a056871259700b0017264f96879sm3318321oab.17.2023.02.28.07.22.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 07:21:15 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: usb: allow evaluated properties in OHCI controllers
-Date:   Tue, 28 Feb 2023 16:21:05 +0100
-Message-Id: <20230228152105.25358-1-zajec5@gmail.com>
+        Tue, 28 Feb 2023 07:22:10 -0800 (PST)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-bluetooth@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/3 V4] Bluetooth: Add support for RTL8821CS
+Date:   Tue, 28 Feb 2023 09:22:02 -0600
+Message-Id: <20230228152205.133582-1-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
@@ -72,30 +71,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+From: Chris Morgan <macromorgan@hotmail.com>
 
-This binding uses usb-hcd.yaml so replace additionalProperties with
-unevaluatedProperties to allow generic USB HCD properties. It's how EHCI
-and XHCI bindings work too.
+This patch series is to add support for the RTL8821CS Bluetooth
+controller found on the RTL8821CS WiFi/Bluetooth combo chip.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- Documentation/devicetree/bindings/usb/generic-ohci.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This has been tested with firmware version 0x75b8f098 which has been
+submitted by Realtek for inclusion in linux-firmware.
 
-diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-index a9ba7257b884..d06d1e7d8876 100644
---- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-+++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-@@ -148,7 +148,7 @@ allOf:
-       properties:
-         transceiver: false
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
+https://lore.kernel.org/linux-firmware/20230223062453.181239-1-max.chou@realtek.com/
+
+Changes from V3:
+ - Corrected bindings so that all but the 8821 use enum, and 8821 uses
+   items.
+
+Changes from V2:
+ - Corrected devicetree documentation to change compatible from const
+   back to enum.
+ - Removed "reviewed-by" from Alistair Francis as binding documentation
+   updated with changes.
+
+Changes from V1:
+ - Switched to use a fallback string for the rtl8822cs so as to not add
+   an extra entry to the of_device_id table. The driver is capable of
+   selecting the correct firmware blob to load.
+ - Updated the messages to note a new version of the firmware was
+   tested and that Realtek has submitted this firmware upstream.
+ - Updated the devicetree node on the Anbernic RGxx3 series to use the
+   fallback string of realtek,rtl8822cs-bt.
+
+Chris Morgan (3):
+  dt-bindings: net: realtek-bluetooth: Add RTL8821CS
+  Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
+  arm64: dts: rockchip: Update compatible for bluetooth
+
+ .../bindings/net/realtek-bluetooth.yaml       | 24 ++++++++++++-------
+ .../dts/rockchip/rk3566-anbernic-rgxx3.dtsi   |  2 +-
+ drivers/bluetooth/btrtl.c                     |  8 +++++++
+ 3 files changed, 24 insertions(+), 10 deletions(-)
+
 -- 
 2.34.1
 
