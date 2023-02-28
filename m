@@ -2,158 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 087736A62A4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 23:40:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D6E6A62D3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 23:50:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjB1Wkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 17:40:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
+        id S229765AbjB1WuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 17:50:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbjB1Wkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 17:40:35 -0500
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEAD018A8D;
-        Tue, 28 Feb 2023 14:40:01 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id B0DA13200954;
-        Tue, 28 Feb 2023 17:39:25 -0500 (EST)
-Received: from imap43 ([10.202.2.93])
-  by compute5.internal (MEProxy); Tue, 28 Feb 2023 17:39:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1677623965; x=1677710365; bh=hx
-        VjkJn7zqJxqfQH01xBcClvQ5vUJ3mcknplStIuuKA=; b=pHFItyyQPOnxzEqrkL
-        CWWve+XidER5QUkJYRsWOkQioN9rSaumKJEkPVj2FLb1yITTnjdoT+RQnHHN2NrC
-        4eotblEm6nltCTcRVYc4A+CmLVgyi6wzYLIXys/IUoqyyNncioL410qSExsNqXzb
-        mlcMyl68A85+WDmSYaZAF6YlBB/Q2OkvSYCM5Ic5AnE6r45v2tjP+h+uZcT824kP
-        knz6UT94sIyVgj1dVWAHXFSoGrLctv1mKddaY/3i4xSsZEo2WGF1Q1MtmpcY7IjD
-        bC8V/8eCFHKJpVysqX5abtwkj8s283zC4e2pdGPe0kGINTXERsSdHaqCritCVkub
-        GP1A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1677623965; x=1677710365; bh=hxVjkJn7zqJxqfQH01xBcClvQ5vU
-        J3mcknplStIuuKA=; b=GmgWreykv+Mw4IoOvmTDGGGRXBiS9e9do5VqMypJOvrt
-        ODzkefPcDIDFaf13ITHVhlCDy592uTyNHU3K3txgXtj4labH86+mX4morZAi2eS/
-        0wrLYV4xOuCQxVP7/kd2J7dGtRGjNeiMp2L0NsiBPWKlNsSlK8510uD3xV5LqaQf
-        RWt2D/vo5rp43pkF9wB0njDuSuTfvNdu5VLOFNw8WbwI7Mp5z4pyfMUqCnUC0Yzz
-        MEsYvOHptbrIpB4GQqzy5+35dl05nzJnpB6QArpq/ktJFmd6XgiRE+w9fS48500n
-        kf3FFMgHZOd/qzsB5FjbC0nZSdy+onoyOdixMTw3Sg==
-X-ME-Sender: <xms:nIL-Y4xhMPpwqOKiBAFDb7Tdk3Mid68GdNVEcpmp7PV8XeZtSy5nZw>
-    <xme:nIL-Y8RsQ5tCvgdHsy1-8qGan74n4ijBe0bpI-wK1CLfT8JWZG6YVJf_P3qkLiiiZ
-    qBCwLlqLnUaO9O7zLQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudelfedguddtudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomheptehl
-    ihhsthgrihhruceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtf
-    frrghtthgvrhhnpedujeejledtgfejtdeiieeludfhfedthfehhfffheeihfdtiedutddv
-    keekjeffhfenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegr
-    lhhishhtrghirhdvfedrmhgv
-X-ME-Proxy: <xmx:nYL-Y6W_feM8HDHi1cMlnAau_TKCc9Mr8gktmfS-SIpZNxEwWETLBA>
-    <xmx:nYL-Y2hDuN2qdvU3a5dbGR1zK2_LAvTBR1cWaQIhUVCSIP3DYePSAQ>
-    <xmx:nYL-Y6DnJ4SGY2m_29c-dflAylidQGWG5ezoVCjh9OBC38g5gHkUig>
-    <xmx:nYL-YysOhWRpXfSyDpGUzIPiVtumwFyWrA6Dizn8nUgHTO5ywqPiRg>
-Feedback-ID: ifd214418:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id F276D2D40074; Tue, 28 Feb 2023 17:39:24 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-183-gbf7d00f500-fm-20230220.001-gbf7d00f5
-Mime-Version: 1.0
-Message-Id: <e209c4dd-c4da-4f02-bbb0-40cb473d8275@app.fastmail.com>
-In-Reply-To: <20230228152205.133582-2-macroalpha82@gmail.com>
-References: <20230228152205.133582-1-macroalpha82@gmail.com>
- <20230228152205.133582-2-macroalpha82@gmail.com>
-Date:   Wed, 01 Mar 2023 08:39:04 +1000
-From:   Alistair <alistair@alistair23.me>
-To:     "Chris Morgan" <macroalpha82@gmail.com>,
-        linux-bluetooth@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        "Vasily Khoruzhick" <anarsoul@gmail.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        "Johan Hedberg" <johan.hedberg@gmail.com>,
-        "Marcel Holtmann" <marcel@holtmann.org>,
-        "Heiko Stuebner" <heiko@sntech.de>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Chris Morgan" <macromorgan@hotmail.com>
-Subject: Re: [PATCH 1/3 V4] dt-bindings: net: realtek-bluetooth: Add RTL8821CS
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229793AbjB1WuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 17:50:15 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4713647F;
+        Tue, 28 Feb 2023 14:50:10 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31SMnrnE003559;
+        Tue, 28 Feb 2023 22:49:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=8hbj9FVsC8MkAvZTRgwp0ubCfbbv/XN8YWwY7/fEfH4=;
+ b=lp0Liu19f7poMWbgng0o0JCywYnoE1r6yAr/BDHxJOJqc4qghEf1JzYAQJyAEVAW8uzV
+ 9d7bL1TdgteD1lF/uzP+/VtrIlJI4EiCTLpXkDZY4H+zFJoSyD+NqRKa1X2K3RBunzQ6
+ EUt++kBiFjLHNG6efi0qKH7UrLN9MPByut5URONTvzQmNlhMbsyBcHeM0/x66BOat+7r
+ oGvGXUj7GbKxUXFg3vjzkdAdA7XXV/yyydEMjMjtpbtKyZZ7w0AaiTMfqZa39NRd8aTb
+ /msiDPJQ5eW6KxL1zm2WN88h22KswahNfqAmI4i65T7YLidYRbSdfACG6muDNbVw23qM 9g== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p1cq5tkpx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Feb 2023 22:49:53 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31SMnqLX021718
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Feb 2023 22:49:52 GMT
+Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Feb
+ 2023 14:49:51 -0800
+Message-ID: <8fe7f45d-aadc-d680-3651-f981575e56a4@quicinc.com>
+Date:   Tue, 28 Feb 2023 14:49:50 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v10 08/26] gunyah: rsc_mgr: Add resource manager RPC core
+Content-Language: en-US
+To:     Alex Elder <alex.elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        "Prakruthi Deepak Heragu" <quic_pheragu@quicinc.com>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
+ <20230214212327.3310128-1-quic_eberman@quicinc.com>
+ <d69f9699-b4d9-7a3a-71b1-7e6fe72c4f82@linaro.org>
+ <94ebe2f0-0baf-21c0-45d5-c5bc4df9ad94@quicinc.com>
+ <44a59ea4-da6e-e96a-5e89-dfd41db72823@linaro.org>
+ <cd61963d-eb4c-9a4f-d48f-7a633bfd4be3@quicinc.com>
+ <e75b8b9e-c870-6342-f7e4-32492d5f77be@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <e75b8b9e-c870-6342-f7e4-32492d5f77be@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aOh0ZTiIg987GvqhUF6OJfychBQpIVdX
+X-Proofpoint-ORIG-GUID: aOh0ZTiIg987GvqhUF6OJfychBQpIVdX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-02-28_17,2023-02-28_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ spamscore=0 malwarescore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ clxscore=1015 lowpriorityscore=0 suspectscore=0 mlxlogscore=895 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302280184
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Mar 2023, at 1:22 AM, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add compatible string for RTL8821CS for existing Realtek Bluetooth
-> driver.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-Reviewed-by: Alistair Francis <alistair@alistair23.me>
 
-Alistair
+On 2/27/2023 4:52 PM, Alex Elder wrote:
+> On 2/23/23 5:13 PM, Elliot Berman wrote:
+>>> TBH, gunyah.c should be merged as part of resource manager, and check 
+>>> if uuids and features in probe before proceeding further.
+>>>
+>>
+>>
+>> Ah -- gunyah_rsc_mgr.ko has symbol dependency on gunyah-msgq.ko. 
+>> gunyah-msgq.ko has symbol dependency on gunyah.ko. gunyah.ko doesn't 
+>> have any probe and does all its work on module_init.
+>>
+>> In order to merge gunyah.c with resource manager, I would need to 
+>> incorporate message queue mailbox into resource manager. IMO, this 
+>> rapidly moves towards a mega-module which was discouraged previously.
+> 
+> I missed this discussion; why was it discouraged?
+> 
+> I can think of some reasons why I guess.  But I don't see what
+> problem comes from linking together a "mega module" that's made
+> up of well-isolated source files that expose minimal APIs to
+> one another.  All inter-dependent modules will required at once
+> anyway; I don't understand the benefit of implementing them
+> separately.  Can you explain, or provide some context?  Thanks.
 
-> ---
-> .../bindings/net/realtek-bluetooth.yaml       | 24 ++++++++++++-------
-> 1 file changed, 15 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-> index 143b5667abad..8cc2b9924680 100644
-> --- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
-> @@ -4,24 +4,30 @@
-> $id: http://devicetree.org/schemas/net/realtek-bluetooth.yaml#
-> $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: RTL8723BS/RTL8723CS/RTL8822CS Bluetooth
-> +title: RTL8723BS/RTL8723CS/RTL8821CS/RTL8822CS Bluetooth
->  
-> maintainers:
->    - Vasily Khoruzhick <anarsoul@gmail.com>
->    - Alistair Francis <alistair@alistair23.me>
->  
-> description:
-> -  RTL8723CS/RTL8723CS/RTL8822CS is WiFi + BT chip. WiFi part is connected over
-> -  SDIO, while BT is connected over serial. It speaks H5 protocol with few
-> -  extra commands to upload firmware and change module speed.
-> +  RTL8723CS/RTL8723CS/RTL8821CS/RTL8822CS is a WiFi + BT chip. WiFi part
-> +  is connected over SDIO, while BT is connected over serial. It speaks
-> +  H5 protocol with few extra commands to upload firmware and change
-> +  module speed.
->  
-> properties:
->    compatible:
-> -    enum:
-> -      - realtek,rtl8723bs-bt
-> -      - realtek,rtl8723cs-bt
-> -      - realtek,rtl8723ds-bt
-> -      - realtek,rtl8822cs-bt
-> +    oneOf:
-> +      - enum:
-> +          - realtek,rtl8723bs-bt
-> +          - realtek,rtl8723cs-bt
-> +          - realtek,rtl8723ds-bt
-> +          - realtek,rtl8822cs-bt
-> +      - items:
-> +          - enum:
-> +              - realtek,rtl8821cs-bt
-> +          - const: realtek,rtl8822cs-bt
->  
->    device-wake-gpios:
->      maxItems: 1
-> -- 
-> 2.34.1
-> 
-> 
+I came from some earlier comments from Dmitry:
+
+https://lore.kernel.org/all/250945d2-3940-9830-63e5-beec5f44010b@linaro.org/
+
+Earlier comments from Dmitry were about having bus and drivers in same 
+module. I think same comment applies with mailbox built into the 
+gunyah.ko (message queue is the provider and rsr_mgr is the consumer).
+
+Thanks,
+Elliot
