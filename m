@@ -2,164 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3586A5F04
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 19:51:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C35F6A5F2B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 20:06:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjB1Svm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 13:51:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52666 "EHLO
+        id S229796AbjB1TGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 14:06:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbjB1Svk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 13:51:40 -0500
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2084.outbound.protection.outlook.com [40.107.104.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2AB2658C;
-        Tue, 28 Feb 2023 10:51:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ApXyAgdqeg6lDSWv1gho/26+zNJ6TKbNjq9+XHyb/rO8nVeb7Xh+h87D6+PM3O/RPc4MLcnF2Y6eVUhvacHuHM/VtMcwcoJApwnXSlcUMuVoyQlBVZMWF9Pczh8Sp8LLjKCwjROFAHVRIDPl2vzVFBpDXbynbmj48Xi63qCMRx/spcPLxky7QkkXUN4pHUN+BzErQkQivqLcRXdXF+LgKFfgKxlrqJLW7wQa3Pcp4OuUXJPPw7C4oycpSLbzoDd5WhKIfCHXteA6td4Xy9WsXGwUfKQuHM9MGVK+IHcSFFN+rR1Td39cpsRhrdnSx6tMZ4dmiEQ7JTiPaqIQzvvnwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QNEhMd0si0yISQ+Ztq9uIMMuryRUkCp3PYqPr7YQFJ0=;
- b=EBBBrAkGX3UksA3Iq6PqXMBGvcalO3XojPgiCVajI7JdTJD36VKQKQqNYxjefHlB5eMbif7bKaOtKt6DbCi7b8c9Myi2SZGxRyIgPLx6EB/PC73TJh76+OPblrBHxgivLB2nAyQocI1GjLgdAavRZzCnIDoYurO68ZkDghqEyCBn1HTEHi21Kxfs5y2hO3+EAHs5yT+cRaHD84Nrg5PXbUQeHKqIrwHD5cA4+I1MVXWnBL0TRaEPZPHmzjYGwOeUuFQllUFptHnZcBNtT8QbmTdvF8s0flZwpbW2D+HNjoBWEdsEtmidv/OuuNdNLq4+SQBNW0sgUDpu/GbxH66gXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QNEhMd0si0yISQ+Ztq9uIMMuryRUkCp3PYqPr7YQFJ0=;
- b=azdFT9u6b1aHuuNlGCqeS/XrVw/AuXd8T9RPPmfdELhO2DCYy2G+FQCsEPTqVpfYMqgdLjuY8J4I9hSSfg5El+ss6E6U5hHKIqpbMFQe0COybgadBXOZSlpwV1u2VMvm/n/BgFhaASzbGJAx+/o7gR6/xlpPELAf8m3Ql90XTtNT9JzSJSA69ZKdM2pCNBjywfO5ldAS+FUI53H03IstouxkKNRLyY1X7Rq8r8uuMW2yZl5leQLHnTMmc7EMAiQ1RMvFFUNHk1W4HFTzSvu7bhmTgNfBeml7Tu8XpPgqd1U3nmOUE/7T/HmSoh/KGNLvGQCQFml9HAnX/XTtqNVcNg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-Received: from DU0PR08MB9003.eurprd08.prod.outlook.com (2603:10a6:10:471::13)
- by AS4PR08MB8168.eurprd08.prod.outlook.com (2603:10a6:20b:58f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.17; Tue, 28 Feb
- 2023 18:51:22 +0000
-Received: from DU0PR08MB9003.eurprd08.prod.outlook.com
- ([fe80::27d4:87f6:273e:4a80]) by DU0PR08MB9003.eurprd08.prod.outlook.com
- ([fe80::27d4:87f6:273e:4a80%7]) with mapi id 15.20.6134.025; Tue, 28 Feb 2023
- 18:51:22 +0000
-From:   Ken Sloat <ken.s@variscite.com>
-Cc:     noname.nuno@gmail.com, pabeni@redhat.com, edumazet@google.com,
-        Ken Sloat <ken.s@variscite.com>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: net: adin: Document bindings for fast link down disable
-Date:   Tue, 28 Feb 2023 13:49:56 -0500
-Message-Id: <20230228184956.2309584-2-ken.s@variscite.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230228184956.2309584-1-ken.s@variscite.com>
-References: <20230228144056.2246114-1-ken.s@variscite.com>
- <20230228184956.2309584-1-ken.s@variscite.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BN1PR13CA0016.namprd13.prod.outlook.com
- (2603:10b6:408:e2::21) To DU0PR08MB9003.eurprd08.prod.outlook.com
- (2603:10a6:10:471::13)
+        with ESMTP id S229470AbjB1TGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 14:06:07 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A33130EB5;
+        Tue, 28 Feb 2023 11:06:06 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id s1so16847330vsk.5;
+        Tue, 28 Feb 2023 11:06:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tjD0ad3Fchgv49eB7byvv4ptPXNkvWx8OoZ16qhiOEI=;
+        b=d1WfWZsih6OCFt5PRgycfEI0Ygo6YlWytmlQuZS+0OXQ8gj1ckQylG6wl6LfATfJ7L
+         kA9xYWqnkhaPqm+hjxQeooUR3hLQg+TRCQ30e0Le0usDY9nu+BDa1kBuIJdtmBKqQhOX
+         AaenYZ+KBBrVfEZ0P4kQ7MTsDzH6h0hoyF1BnEOytaJOBR2nHQ4VDZxGrAAYlA45+qUV
+         tcbArj5sSFRT61s4WWJxukKCWPz33DoXEpZlax/z9y9aD6gnnwW9aRp2uuPf4OVrkx5w
+         kiHvCtqGWH+SU217bJjGku5YjNKShUvinn0/ojxRA14L294L6rklpsuypUZyglby9u6r
+         9vvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tjD0ad3Fchgv49eB7byvv4ptPXNkvWx8OoZ16qhiOEI=;
+        b=1Ndnqf4phR+ivNPsPDpWriYd8utpOn/hbkxT42GsWSlCSx4AHq7gL93dA/BVAX+GtE
+         /nKvTm2aE3Eql6lZCMcO6xpkMWg6tNRDw3cvIfz6tC73ttrdjtsX5oGWMEB1aXS7pfWS
+         Ym/XEHpNuvBWc0sBfRwPDv4c1ZczN7OJuynkKA+B2t5TwiaN4u1RVA1HM/tiFwLhi+SM
+         ZBXJ9DjQx3m9SNy6cWb0eApAd/HksGwY2e2wKr+pob4k1dej/l33n8ivtYpNCgsOom+q
+         TLbWAFsC1u5joh/ohNZzaMIRxGnT22tM8HDimCd1d2W7qWK1sfwrqKAzM1K+GI9N+eFV
+         wCgg==
+X-Gm-Message-State: AO0yUKWcjFJd5QxjAK11TFZKNN703zJkmtWzKJuve77Do9dfbm76lX+9
+        cr/JeGGELpMM5eaJ6A4fUkp93En95vaNr8tHh/k=
+X-Google-Smtp-Source: AK7set+9lNwzPX+bxl5Sn1JRej1ibTbtrltjOP54CGq19xe9SwVzlsz7ZKodJLOMR5m+lINSoLb+m/t9qpEgZb9Zyvc=
+X-Received: by 2002:a67:f715:0:b0:412:4e02:ba9f with SMTP id
+ m21-20020a67f715000000b004124e02ba9fmr2751018vso.1.1677611165453; Tue, 28 Feb
+ 2023 11:06:05 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9003:EE_|AS4PR08MB8168:EE_
-X-MS-Office365-Filtering-Correlation-Id: e91bd178-9cb5-4987-bf97-08db19bcc95d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3EqanR15QL6rJ3QfM8J/DbMoIAKHjyKrR2TNf/xmWNOInzqOLdqBVMvG/nx3sgKt1pk8dfG5aE+MO+A5TVbr/JJMNnAfwV2fiz5fJF2qpmeTjwgeJrdm5QhU2QNGFOk4CX4QwpXWzsVXo+H/aFoGd5tzRVUMH+6xKXw8DkpEcXC9DXjRHvVgP2M87iLnQnTQUWG3S88TGeHOq4I2KDms9cy9kRhIwrmNlY9gVOcvMj+DENCjhBUE4Xyw35QRuwSDa0n3fz938+t7txPURivbdoNxs2u3x6GNCCY1gK/qLjMxdXKtusyOXq0E3KDjOJ5jjX8d4UEGKhW6IGIxQLfHxjm7LT7pSG5sbzkyKSh2DjDYX2Ut/0Be2nI5Cgx3DR5suX7Nh6XGeXQwgJXYlJtHMCJ2Ab5PyLCacu38HGYqC++JWr9GzR1NgBSdmPmC6zGTTR2m7iwmCZtlQBRkeoIEkD42rcFoIipAdIGpbx4RU6gvwvz5I4pmeGhssoMWokT0ES22G+RIMbikZDlLUPDVZXo9KQvYQtnfl0cxDmoGFfAYWAOvnvmakpENS6Yf5Vf8dNIAaLkQCwnHvsv0AYx+qV9R7SAGM6C0s00HNLcXanIe/bZFB8bErfvMf2QqmhQcj6i/giI2R5sqRSaQ+qEv7WdzC7gKxpOcKaIhxkGwG4mPZGv+yss2Yx59KslMeuFj1YRQYJP/yjx8syNl9oEJyA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9003.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(136003)(396003)(366004)(346002)(39840400004)(376002)(109986016)(451199018)(83380400001)(478600001)(316002)(54906003)(36756003)(4326008)(8676002)(38100700002)(38350700002)(2616005)(6506007)(6512007)(1076003)(186003)(26005)(6666004)(52116002)(6486002)(7416002)(5660300002)(66556008)(66946007)(66476007)(8936002)(86362001)(41300700001)(2906002)(266003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CoILtVXFYboxGMjjLK6l9mWxVIrbauspXISH6uXfHg6cK5fCdEw69/WxJ2FA?=
- =?us-ascii?Q?OngU4mH1iI0TgvPlk/3bXEJaOGlfgYAyEYqkDM1dTtyLJZQnHNojuXdlVfFJ?=
- =?us-ascii?Q?t4ptDJmGqlBlYUC/l3lHymRcLcbJscFJM/WpPoKfwOGbeQVSKFEC9i3wMCOU?=
- =?us-ascii?Q?g38mir2m//KUQbOU+DipvH2gzldx6KAwsr9ppcgPUL2gaeroJcsLQgkdE8U0?=
- =?us-ascii?Q?T8cjhJII+CBxfStpTBPqF8Db/ZHc9ylowRVB89fIwJ711zPa0N2EaqPyEkxm?=
- =?us-ascii?Q?zBlxj6axGYEWbZwLvMbYFPKgm5Sx9EpygAyC+gijzIamp7CAa6nlgJ4cJrdY?=
- =?us-ascii?Q?FTXk4kjMtDnpjsATwY/NXdoqMyh/bjNvuosIpB8Y0rfmBMhNOcMPevQMY0Fc?=
- =?us-ascii?Q?ys/kOrdmhu2ca8VdmD5RcOl2rWYa00PFk45VGIReDPjzLcl/gYBFhnsi+8Y2?=
- =?us-ascii?Q?tzOlUlfud2o6HjO8Bh5NYFfUlqumivfp9v2f2cYSoUGAN6ejuEZbfKfzQjtx?=
- =?us-ascii?Q?nm6ruoINt5bbKgU5GIkROfe3+0TJgTLGd5ECD+1kw2CUq2k1vewUs4iPC+GM?=
- =?us-ascii?Q?5oqhiAw2k14bQ2rGGO/EbyNBqwlU9+Coyl2aFDfyJFPM5iwojjC6LdDSSHvR?=
- =?us-ascii?Q?8xHL7RvI/uuAeZDVhsc6qeypqwWiL7VNT+S5hshFRmJt32P4cCViKhkLjwp0?=
- =?us-ascii?Q?SpxdU95C6Z1CLlDMruocS3BDspgzmiUwZfadJ92qj5nDWApHQz5ZsKwsF9+Q?=
- =?us-ascii?Q?j4P9mVKaa0yUvnNo6Ji+YFCEGKufRhMWsIz49LKBtJvd9HumsBoUPqG65l97?=
- =?us-ascii?Q?XN+tiCOEc94Fyb3P6/bKCN819Phq0m0aMjC3cgJmI5SwFomV7l5reg6Qzaum?=
- =?us-ascii?Q?7D2yNE+jVXWgYrcxkijewUrCyaTZMuTnzS4bcprZuWuvsGl72WsO1BPFJpvr?=
- =?us-ascii?Q?HMI7VpO9hJn223r0tso+pCzgt2VjQH6YKiyymDaqb961KjXBPQWxFTsboSlN?=
- =?us-ascii?Q?pozE24VQxrHPBZ2HXI8v2x9cZS8VD9SP/VPo3axzP87erw0eZpa3HqTSOKk8?=
- =?us-ascii?Q?ZpkAHzY4X2xaKWiYCSU4yB/52I+3umsQ3Nn5iE4NiKTqHX37Eo/stYl0uGzI?=
- =?us-ascii?Q?HEJ/1JqVM756wfwypM8NlgWWV6fCr/yDBwc4lkt14xzaHvTdXX8aT0XgDTm5?=
- =?us-ascii?Q?whGCWNfrw1WjbwNKnlPUvQQYIojn6Uc1UFk2ib2skieEO1lSWKIAmL+f0QKl?=
- =?us-ascii?Q?6oXwN6E7CCmaszlRfiaWe4MOtUuhwNdW7fT23iHvXC7pJHclktgGF9pBr8ev?=
- =?us-ascii?Q?q4vxwBzpWyQt8u+OxgWozePDNnBsG8ZcN3NtlJgQ7j+O/JyM1y+hGkmQNjoB?=
- =?us-ascii?Q?g79Lb644tpEFSSo3exi0Vjowmcg9ShA+koKIbdaxJBqHzy2wlbClw1y16C3c?=
- =?us-ascii?Q?4GgvAKQplcHQUF/a2Nq/cDaLwCBYGlqWKZJv4dMjIwzDa1zSPLu03vDviD2j?=
- =?us-ascii?Q?0VKFYcH9y+UmPc5bff9svdNPI7JjAcGQAeMZ0TWoNzgAc6nKVrTcSICfwQ/T?=
- =?us-ascii?Q?4lrdN7YQPFGd5JgAflCUn4G/U0VQMKuc9+Zn3mLI?=
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e91bd178-9cb5-4987-bf97-08db19bcc95d
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9003.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2023 18:51:22.7061
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /9+aHMzoikPEdRxQbh4r7c6J8e0/UDExhG65G3kyXMndXVswjfOb4nPWkbLgvvBgb/vYDv2b3qvM/AaMD9OjyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR08MB8168
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230227140758.1575-1-kaehndan@gmail.com> <20230227140758.1575-4-kaehndan@gmail.com>
+ <Y/03to4XFXPwkGH1@smile.fi.intel.com>
+In-Reply-To: <Y/03to4XFXPwkGH1@smile.fi.intel.com>
+From:   Daniel Kaehn <kaehndan@gmail.com>
+Date:   Tue, 28 Feb 2023 13:05:54 -0600
+Message-ID: <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ADI PHY contains a feature commonly known as "Fast Link Down" and
-called "Enhanced Link Detection" by ADI. This feature is enabled by
-default and provides earlier detection of link loss in certain
-situations.
+On Mon, Feb 27, 2023 at 5:07=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Mon, Feb 27, 2023 at 08:07:58AM -0600, Danny Kaehn wrote:
+> > Bind I2C and GPIO interfaces to subnodes with names
+> > "i2c" and "gpio" if they exist, respectively. This
+> > allows the GPIO and I2C controllers to be described
+> > in firmware as usual. Additionally, support configuring the
+> > I2C bus speed from the clock-frequency device property.
+>
+> A bit shorten indentation...
+>
+> Nevertheless what I realized now is that this change, despite being OF
+> independent by used APIs, still OF-only.
 
-Document the new optional flags "adi,disable-fast-down-1000base-t" and
-"adi,disable-fast-down-100base-tx" which disable the "Fast Link Down"
-feature in the ADI PHY.
+I assumed this would practically be the case -- not because of the casing
+reason you gave (wasn't aware of that, thanks for the FYI), but because it
+doesn't seem that there's any way to describe USB devices connected to
+a USB port in ACPI, at least as far as I can tell (ACPI is still largely a =
+black
+box to me). But it seems reasonable that we should try to use the interface
+in a way so that it could be described using ACPI at some point (assuming
+that it isn't currently possible).
 
-Signed-off-by: Ken Sloat <ken.s@variscite.com>
----
- Documentation/devicetree/bindings/net/adi,adin.yaml | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+>
+> Would it be possible to allow indexed access to child nodes as well, so i=
+f
+> there are no names, we may still be able to use firmware nodes from the c=
+orrect
+> children?
+>
 
-diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
-index 64ec1ec71ccd..923baff26c3e 100644
---- a/Documentation/devicetree/bindings/net/adi,adin.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
-@@ -52,6 +52,18 @@ properties:
-     description: Enable 25MHz reference clock output on CLK25_REF pin.
-     type: boolean
- 
-+  adi,disable-fast-down-1000base-t:
-+    $ref: /schemas/types.yaml#definitions/flag
-+    description: |
-+      If set, disables any ADI fast link down ("Enhanced Link Detection")
-+      function bits for 1000base-t interfaces.
-+
-+  adi,disable-fast-down-100base-tx:
-+    $ref: /schemas/types.yaml#definitions/flag
-+    description: |
-+      If set, disables any ADI fast link down ("Enhanced Link Detection")
-+      function bits for 100base-tx interfaces.
-+
- unevaluatedProperties: false
- 
-   adi,phy-mode-override:
--- 
-2.34.1
+Sure, you mean to fallback to using child nodes by index rather than by nam=
+e
+in the case that that device_get_named_child_node() fails?
+Would we need to somehow verify that those nodes are the nodes we expect
+them to be? (a.e. node 0 is actually the i2c-controller, node 1 is actually=
+ the
+gpio-controller).
 
+I don't see a reason why not, though I am curious if there is
+precedence for this
+strategy, a.e. in other drivers that use named child nodes. In my initial s=
+earch
+through the kernel, I don't think I found anything like this -- does that m=
+ean
+those drivers also inherently won't work with ACPI?
+
+The only driver I can find which uses device_get_named_child_node and has
+an acpi_device_id is drivers/platform/x86/intel/chtwc_int33fe.c
+
+> P.S. The problem with ACPI is that "name" of the child node will be in ca=
+pital
+> letters as it's in accordance with the specification.
+>
+
+Knowing that this is the limitation, some other potential resolutions
+to potentially
+consider might be:
+
+- Uppercase the names of the child nodes for the DT binding -- it appears t=
+hat
+     the child node that chtwc_int33fe.c (the driver mentioned earlier) acc=
+esses
+     does indeed have an upper-cased name -- though that driver doesn't hav=
+e
+     an of_device_id (makes sense, x86...). It seems named child nodes are
+     always lowercase in DT bindings -- not sure if that's a rule, or
+just how it
+     currently happens to be.
+- Do a case invariant compare on the names (and/or check for both lowercase
+     and uppercase)
+- Remove the use of child nodes, and combine the i2c and gpio nodes into th=
+e
+    cp2112's fwnode. I didn't do this initially because I wanted to
+avoid namespace
+    collisions between GPIO hogs and i2c child devices, and thought
+that logically
+     made sense to keep them separate, but that was before knowing
+this limitation
+    of ACPI.
+
+What are your / others' thoughts?
+
+Thanks,
+
+Danny Kaehn
+
+
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
