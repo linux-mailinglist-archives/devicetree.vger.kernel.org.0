@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B16DE6A5AFC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B65B86A5AFD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:44:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbjB1Ook (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 09:44:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36428 "EHLO
+        id S229509AbjB1Oom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 09:44:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjB1Ooj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:44:39 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53F221296
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:38 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id r27so13503055lfe.10
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:38 -0800 (PST)
+        with ESMTP id S229471AbjB1Ool (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:44:41 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09DA1CF4F
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:40 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id bi9so13552933lfb.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QZVVT1Mods1CC3LcSWFUfhrlLPTbyk1rZyppNmATSPg=;
-        b=ckKQQNQbdWfdjQJnyWRnLdwTsyTVq0xb1jE+G6u/q/he9tZCcx82MXXDpCmm1YadPj
-         +9ynPS6AEttBVd2IJJ4KXgO6Ehi4jI6YI6onRHZp84zz/hg2OoUrAXy/m4Hmy2ZRCc/X
-         w9v9ZmXNe6lQa3JxHsjaLk8IUpyJz2oXqkpY0URiIlubPiDDTLKgyjajO51nq5J1GYlW
-         zaR0sV4BiXL/Lj60MWuikYLPfR0RrJjjV6D2VTuYnrK0WL1n1MadweH83l4tj6e4+uX7
-         YBpO2LcRkDQjgDyOjGnc2WZrNhxAGeN5tLvFlmZQzrbJ3jV4q+ZRCrov/y0HD/YXDOiZ
-         KejA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DmzBz7NB7zquvO4C89dxC07p/dlgjznxZJStXyBHdzk=;
+        b=idZCfTxuU+hZAJ9gylO4iiuEY+lJtmXekJd+p7YG7pPOcYyltyFPMUOGos1VcR/yzs
+         tYEcE3sf8nTZqIs5CL5GtWGHj3ceKD+V2V26+SCBIoynE/+O14oIa9a46O0cwIUGNYpY
+         avZ0NqKDYBafrSDJGllYG3divYBiMCCLrSX30kcODHRKOWIYsnQRkXmkuQrLV/ushxdX
+         2wwIKcdi63SIjqi9OOy3cpBoC9aK8F/vGXE9H9Tv9DPBSPFzIWD1AfCSlEHE9oFMuDWX
+         VyodxsHya4Y+jjNu0FGr9XlfmE53ZjQXKY1XQNTDkqbyc5wUsj9PSJzvz9Mx0MCK/GBa
+         JtPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QZVVT1Mods1CC3LcSWFUfhrlLPTbyk1rZyppNmATSPg=;
-        b=JZf4HTRSRHbFBPmG/MzkKLFWb9PZ6MuxM1HPQ4EbHe/azg/qDzrK/JgCRsxmAb8np0
-         G3XkKyBFSHapkJF7RPl/e+fju6nhCAJtU8e1qqMIS6nbZ7YI/Tc65AlXgrB+M1oZe7bG
-         U5daarteiOXM+wGa1uSp0F29yFBdJnacDtwf73tIyPDkC/uGtAO7o/yip0DgBUYVk6b6
-         6rfLuoG57X/2D9bRqqMlNASsfDtgHI3KFnTx/lH0AEMb+N0ozPSLooAOVUyHp717LHJY
-         HCzZ9nRtQ9A6DhGN2rUve4EmOigVusTlpnVHKEpgp/XdHle7vDu/53oXkTT8v0CiXgKQ
-         3nqw==
-X-Gm-Message-State: AO0yUKWdwDbmR+K+eJlLjEz7nVIYNdHR7/y/iE4CD5tZWxxY1WDk407S
-        lDyMzJlqFJeDDYHSUf2Z2cU=
-X-Google-Smtp-Source: AK7set+bm1vzDhG23EKntj/E97vPZSD1WG1LAxLOHySXIxmrQoCkP+3atnL5S42WFI4X2WH7d4vwIg==
-X-Received: by 2002:ac2:5589:0:b0:4db:4fe5:c001 with SMTP id v9-20020ac25589000000b004db4fe5c001mr541607lfg.39.1677595476800;
-        Tue, 28 Feb 2023 06:44:36 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DmzBz7NB7zquvO4C89dxC07p/dlgjznxZJStXyBHdzk=;
+        b=SZ9hN5f7RnrckzEYRt8tT+V7kU3HNvPEU7PT7DIER8VK40MfC2k6vVRuCBW+7qlALC
+         wNIYpJyBcPgK0EqBmrr7smjRZ49aanc5eAiACkkOhBT6OiqL6f0ytnWCnfRH4mKNbd78
+         vdqVEikbUWd4nbvMyI9Jwfw0MXwp4jeC9qjF1Lkib0XcqMqAXT5dRWAqQh+oI+iC+q/P
+         4iNhBe9QVT/zxAoV0UcvwwEAWg360h6V0Vn32Ptxd0+NEt4/NH4VYZxwgToJgyALl0H3
+         cvHRAxgq6oZgv5dFZI+Kl3bg7G4GxsNtfSep+f5e3mPTDTPfpqPgW2M1dCCeXNyCVDA/
+         NTBw==
+X-Gm-Message-State: AO0yUKU9/MULJWYD1UXG4AGWAVRr5+ZWdwEb67cDQWZWSiRU+lplHuT8
+        D3LJ6twJTKafn7loVtfw8Ms=
+X-Google-Smtp-Source: AK7set8sASwflS+zi2t2TfkAtb/el69p5IgOYEDQVuYs4rpXCOcnLoh8G0VBAgEvY3m+0URaMzVscA==
+X-Received: by 2002:ac2:46f3:0:b0:4d5:8dd8:75f9 with SMTP id q19-20020ac246f3000000b004d58dd875f9mr780076lfo.24.1677595478928;
+        Tue, 28 Feb 2023 06:44:38 -0800 (PST)
 Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id b10-20020a056512024a00b00498f67cbfa9sm1365554lfo.22.2023.02.28.06.44.35
+        by smtp.gmail.com with ESMTPSA id b10-20020a056512024a00b00498f67cbfa9sm1365554lfo.22.2023.02.28.06.44.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 06:44:36 -0800 (PST)
+        Tue, 28 Feb 2023 06:44:38 -0800 (PST)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -59,10 +60,12 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Brian Norris <briannorris@chromium.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 1/3] arm64: dts: broadcom: bcmbca: bcm4908: fix NAND interrupt name
-Date:   Tue, 28 Feb 2023 15:43:58 +0100
-Message-Id: <20230228144400.21689-1-zajec5@gmail.com>
+Subject: [PATCH 2/3] arm64: dts: broadcom: bcmbca: bcm4908: fix LED nodenames
+Date:   Tue, 28 Feb 2023 15:43:59 +0100
+Message-Id: <20230228144400.21689-2-zajec5@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230228144400.21689-1-zajec5@gmail.com>
+References: <20230228144400.21689-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -79,29 +82,63 @@ X-Mailing-List: devicetree@vger.kernel.org
 From: Rafał Miłecki <rafal@milecki.pl>
 
 This fixes:
-arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dtb: nand-controller@1800: interrupt-names:0: 'nand_ctlrdy' was expected
-        From schema: Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dtb: nand-controller@1800: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-        From schema: Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dtb: leds@800: 'led-lan@19', 'led-power@11', 'led-wan-red@12', 'led-wan-white@15', 'led-wps@14' do not match any of the regexes: '^led@[a-f0-9]+$', 'pinctrl-[0-9]+'
+        From schema: Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts     | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-index fc96ee7ab39d..1240fc5fb08c 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-@@ -556,7 +556,7 @@ nand-controller@1800 {
- 			reg = <0x1800 0x600>, <0x2000 0x10>;
- 			reg-names = "nand", "nand-int-base";
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "nand";
-+			interrupt-names = "nand_ctlrdy";
- 			status = "okay";
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts
+index 839ca33178b0..d94a53d68320 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dts
+@@ -120,7 +120,7 @@ ethernet-phy@3 {
+ };
  
- 			nandcs: nand@0 {
+ &leds {
+-	led-power@11 {
++	led@11 {
+ 		reg = <0x11>;
+ 		function = LED_FUNCTION_POWER;
+ 		color = <LED_COLOR_ID_WHITE>;
+@@ -130,7 +130,7 @@ led-power@11 {
+ 		pinctrl-0 = <&pins_led_17_a>;
+ 	};
+ 
+-	led-wan-red@12 {
++	led@12 {
+ 		reg = <0x12>;
+ 		function = LED_FUNCTION_WAN;
+ 		color = <LED_COLOR_ID_RED>;
+@@ -139,7 +139,7 @@ led-wan-red@12 {
+ 		pinctrl-0 = <&pins_led_18_a>;
+ 	};
+ 
+-	led-wps@14 {
++	led@14 {
+ 		reg = <0x14>;
+ 		function = LED_FUNCTION_WPS;
+ 		color = <LED_COLOR_ID_WHITE>;
+@@ -148,7 +148,7 @@ led-wps@14 {
+ 		pinctrl-0 = <&pins_led_20_a>;
+ 	};
+ 
+-	led-wan-white@15 {
++	led@15 {
+ 		reg = <0x15>;
+ 		function = LED_FUNCTION_WAN;
+ 		color = <LED_COLOR_ID_WHITE>;
+@@ -157,7 +157,7 @@ led-wan-white@15 {
+ 		pinctrl-0 = <&pins_led_21_a>;
+ 	};
+ 
+-	led-lan@19 {
++	led@19 {
+ 		reg = <0x19>;
+ 		function = LED_FUNCTION_LAN;
+ 		color = <LED_COLOR_ID_WHITE>;
 -- 
 2.34.1
 
