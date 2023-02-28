@@ -2,112 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B61FD6A59E3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 14:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D096A5A80
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbjB1NU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 08:20:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57568 "EHLO
+        id S229789AbjB1ODc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 09:03:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbjB1NU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 08:20:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A577D2E817;
-        Tue, 28 Feb 2023 05:20:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3602961087;
-        Tue, 28 Feb 2023 13:20:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C189DC433EF;
-        Tue, 28 Feb 2023 13:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677590455;
-        bh=7JKAP1dx+7Ok1mnFRScROkFxj3hLAmTAiCcQtf73Uv0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kEr4ORwyCILo5xRpeBLrxMIgY9JJrZFPbXBEwP+DIE/kd/y5W+lPvkdu6eCboGpT5
-         SN3Cs37H8z5qbGiUbsubLJWTLJGQeQVBqbadLfqw31DkR75B8F9Td5zWHusVvHQW49
-         p+xW4XlsqEBqi+k/1o9RDknP6pqiHxywGD7r3v7EfD2uJ/uN/FcDXnQcvJP48UHUvl
-         TDgpbSxXD0ltVdUOZQEd3eJc5NUGYExUDkL6pKKefNeGdgMdVQQi71GwPhcHCke3fh
-         aIUygJyMsvNjZ4pMGxDspibRO78wxOAyGF/PyY22MVKQLVejmsYwWhXC4HWZUCDWqv
-         3bJPC+BZBWUZw==
-Date:   Tue, 28 Feb 2023 18:50:43 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Robert Marko <robimarko@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>, bhelgaas@google.com,
-        lpieralisi@kernel.org, Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Manivannan Sadhasivam <mani@kernel.org>, svarbanov@mm-sol.com,
-        shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-Subject: Re: [PATCH v2 8/9] arm64: dts: qcom: ipq8074: fix Gen3 PCIe node
-Message-ID: <20230228132043.GC4839@thinkpad>
-References: <20230113164449.906002-1-robimarko@gmail.com>
- <20230113164449.906002-8-robimarko@gmail.com>
- <7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com>
- <CAOX2RU5Y642gWMSaK6fJ2tz=9N2AO-1fFhL5=wfLeTWWkVjz7Q@mail.gmail.com>
- <968c056c-74f9-4a8f-b662-51f60df93694@app.fastmail.com>
+        with ESMTP id S229644AbjB1ODb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:03:31 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E15D528
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:03:29 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id i34so40393515eda.7
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:03:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677593007;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tOSJ6umcOZA5CjUGiyBLVx5qUO7As8SlOyj3YKzeyGA=;
+        b=vMEAwTDHGxtNiHIstWX9O4/Qc+j3JpDj8jIp4Ui9bfcB6A3JdYU5/juL+MSluiobSO
+         LXQmuxdHun72mIGZejPqHAGjXKPFGBT4tGDwDflwHz1W+T5J4E8hwGur8kNskWZAcFGh
+         KhwmqXn23rXf3oatc9zydMto00qyiETBmW1CPKaG7NoHmQULeGFRHGaCh3CRtMauTDUp
+         w8KNVdgViH5yMEel5uAM/Y3nMxBrzZemRzM6r2ZuOfNrKvFgVbr3qysykocqp0ogR0y7
+         3aIn2ShfFkH+m00LEYfanUhNocfZEw9zH5RhqJJt9w/ffBKN826ZL3E2ytWM86oaeJ5w
+         az3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677593007;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tOSJ6umcOZA5CjUGiyBLVx5qUO7As8SlOyj3YKzeyGA=;
+        b=owzii77Q/sX2VenyL8BTcLeb1vW1jtxufTHWnUmjkZIt5+aqiqnRnEKtTLyqrw8taV
+         g/kz/4E8oZ0y8r1aj91lIgyfFh69bkL9dge3lHJjymlKtnrU0dl8encemykwPky2LMgV
+         8soxI6lwSDdPvaLNEUPxMnbXIeXQrcGGyWdYLTOzTehKM9kB+RFUa2xEpuMVhCnqAZ+a
+         OXyJZIwWgnagANHSkCk3nEBQCf1Bee5Wx471pnl9rIg5CiP4NANSJnZuNEQ6QTbIc39O
+         yd/TMsF0eTDVBS4U2qDYRVq+gR0GJnN+3hmm2D2kNXkFwfG3gbt6A1LLThB7b2jifYJC
+         C8og==
+X-Gm-Message-State: AO0yUKUjZ/y+I7YvHV3Swclt58kU4TlmK7Th587pJGGWIqff6nxxtB8c
+        GcfBTy4co8QuLvSq0Rm+RMKIRQ==
+X-Google-Smtp-Source: AK7set+dumf3UHtLmRhYjVhZb6oiDxoCBxZsl+O0HoDiARM7jnxwQwI7aKhclSInAOmneYFVjwWZ0A==
+X-Received: by 2002:a17:907:3e25:b0:8ed:a0ea:29ee with SMTP id hp37-20020a1709073e2500b008eda0ea29eemr14754489ejc.22.1677593007619;
+        Tue, 28 Feb 2023 06:03:27 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id os6-20020a170906af6600b008f7f6943d1dsm4487936ejb.42.2023.02.28.06.03.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Feb 2023 06:03:27 -0800 (PST)
+Message-ID: <f91f6784-15f5-1911-1101-1fe8147f9a38@linaro.org>
+Date:   Tue, 28 Feb 2023 15:03:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <968c056c-74f9-4a8f-b662-51f60df93694@app.fastmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 2/2] drivers: watchdog: Add StarFive Watchdog driver
+Content-Language: en-US
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
+References: <20230220081926.267695-1-xingyu.wu@starfivetech.com>
+ <20230220081926.267695-3-xingyu.wu@starfivetech.com>
+ <CAJM55Z823iqUqD8enM0qJ_MA3Tw94Mn0mq71fbLT1Qjo2s2J3g@mail.gmail.com>
+ <0ffb02d2-0bbd-fd0d-b0f6-cb5605570050@starfivetech.com>
+ <CAJM55Z_hRpUYueZ-XuWUx1NfAsL9E+-4ry9TYeRWM_bKXvym-g@mail.gmail.com>
+ <Y/3coFvMWOLaaY9p@wendy> <545c23f3-1d68-2bff-89d9-584e3ca31044@linaro.org>
+ <Y/3hVlp/YPnWHDCX@wendy>
+ <f9e380f6-334f-11fa-1118-8d6c3c9befaf@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f9e380f6-334f-11fa-1118-8d6c3c9befaf@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 02, 2023 at 10:42:15AM +0100, Arnd Bergmann wrote:
-> On Thu, Feb 2, 2023, at 10:16, Robert Marko wrote:
-> > On Mon, 30 Jan 2023 at 18:11, Arnd Bergmann <arnd@arndb.de> wrote:
-> >> On Fri, Jan 13, 2023, at 17:44, Robert Marko wrote:
-> >
-> > As pointed out in the commit description, the ranges property was copied
-> > from the QCA-s downstream 5.4 kernel [1] as I dont have any documentation
-> > on the SoC.
-> >
-> > I have runtime tested this on Xiaomi AX3600 which has a QCA9889 card on the
-> > Gen3 PCIe port, and on Xiaomi AX9000 which has QCA9889 on Gen2 port
-> > and QCN9074 on the Gen3 port and they are working fine.
+On 28/02/2023 14:16, Xingyu Wu wrote:
+> On 2023/2/28 19:11, Conor Dooley wrote:
+>> On Tue, Feb 28, 2023 at 11:57:58AM +0100, Krzysztof Kozlowski wrote:
+>>> On 28/02/2023 11:51, Conor Dooley wrote:
+>>>> On Tue, Feb 28, 2023 at 11:36:49AM +0100, Emil Renner Berthing wrote:
+>>>>> On Tue, 28 Feb 2023 at 10:44, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+>>>>>> On 2023/2/26 22:14, Emil Renner Berthing wrote:
+>>>>>>> On Mon, 20 Feb 2023 at 09:21, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+>>>>
+>>>>>> So the dt-bingdings need to rename, and which one could be better,
+>>>>>> 'starfive,jh71x0-wdt.yaml' or 'starfive,jh-wdt.yaml'?
+>>>>>
+>>>>> Sure, starfive,jh71x0-wdt.yaml sounds good to me.
+>>>>
+>>>> I feel like a common comment I see from the dt folks is to not put
+>>>> wildcards in filenames & just pick the first compatible.
+>>>> I could very well be wrong on that front though...
+>>>
+>>> First compatible is a bit better, unless you are sure this will cover
+>>> all such compatibles now and in the future. For many bindings the
+>>> family/wildcards were fine in filename.
+>>
+>> Ahh cool, good to know what the specific policy is - thanks!
 > 
-> Neither of those use I/O ports though, nor does any other sensible
-> device that was made in the past decade.
-> 
-> The compatible string tells me that this is a designware pcie block,
-> so I think driver actually sets up the mapping based on the ranges
-> property in DT in dw_pcie_iatu_detect() and dw_pcie_iatu_setup(),
-> rather than the mapping being determined by hardware or firmware
-> in advance.
-> 
-> Not sure about the general policy we have for this case, maybe the
-> pci controller or pci-dwc maintainers have an idea here. I would
-> think it's better to either have no I/O ranges in DT or have
-> sensible ones than ones that are clearly bogus, if the controller
-> is able to set up the ranges.
-> 
+> If this watchdog driver is improved to also support JH7100 in next patch,
+> it seems more reasonable to rename the dt-bingdings to 'starfive,jh71x0-wdt.yaml'.
 
-Just happen to see this thread and I agree that the I/O port range is indeeed
-bogus. This is due to the fact that no one tested I/O range with a compatible
-device.
+Bindings are for hardware, not drivers. One version of driver in one OS
+should not determine the bindings...
 
-I'm not sure about the PCI policy though but we should fix the mapping across
-all SoCs. I will send out a series for that.
+Best regards,
+Krzysztof
 
-Thanks for spotting, Arnd!
-
-- Mani
-
->      Arnd
-
--- 
-மணிவண்ணன் சதாசிவம்
