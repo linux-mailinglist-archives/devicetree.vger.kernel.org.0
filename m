@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C859B6A5AFE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 396256A5AFF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:45:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjB1Oop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 09:44:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36524 "EHLO
+        id S229647AbjB1Op1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 09:45:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjB1Ooo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:44:44 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5E025951
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:42 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id i28so795963lfv.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:42 -0800 (PST)
+        with ESMTP id S229471AbjB1Op0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:45:26 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CCFCA29
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:45:25 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id t11so13570446lfr.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:45:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eyw69WHDo/aNgq8ucEO88oZi/ZgNTy4uduI0sLz9Tbw=;
-        b=KUPQU5Vr4ey+jenFBPzUHM7j9MRcRmM//JZl1MLMKEvPgmoUNiJxTZxvTk/KqG4s95
-         czFqjQzMvFIZWxWVtTufDbIoywWchkPsi7nUwv7CHGpfs0j7mPMyMMJXmiGd18rBtbKi
-         f1I6MF3FVZ72stifEorT+VwKN4D5KlkxAuYmD3cR5iL1mXeFi+B/ZAI58GFvpXpTGwvJ
-         PD1kJBA0PNLbukDvv/lg3qow6siLcJrW9w7DrfBAHURfEDMXet0TIOZDsVgLR83bLv77
-         URZas3gZTliExy3VvBgHrqSF909hDzQin82+HsMuVTzALRflneQ2VAuN5l2DKfNowcDB
-         DxPQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AS4WvwLyb5IvtXzJGUQWxLiWhdnxdLa0eY1ifwUebww=;
+        b=ivDcz8dm3b4iYjQeg0pKEqGjwQm2CpDDg7DzCdz7fBeOtnwOZf/ihYmKePSQOhi2z1
+         vse+/jcpwwD6IghpSahkEhujRqP3NgtaFzeEIQpaGCsDky0FRi5ktU4wCt3OwOE3NPAB
+         4+zy57UBHo2Ng714kkU2PNmBicm+eKGowasL5yCYGQpOaY5Bv+aj+YFFIdgFAnP+cxJ0
+         O4NioNcPc0cu2Y2MFgl0reiCaRzfN73XoD6zieSGid4DBE8vTWj77OhXEbxLOhaFuDau
+         cI3b1SAqobW/aryqqqGkiist6XI05/SHJ+UAtsDr8PS/OVzucQRA9Bc6mIHUxjTOtWj3
+         VQoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Eyw69WHDo/aNgq8ucEO88oZi/ZgNTy4uduI0sLz9Tbw=;
-        b=zH+7GQ9lhWL5N1q4AczU0pcGZoEVopEqVY70mk9XPGj+VmUIrVTt0+2nqnBjbJoW7w
-         GYcJw1OgTAF+9+iWz9Rb2F3ct+M30j/LXe91ym2An4x/h2WdOoctEKHiSSYe/cgue4iJ
-         qZMK7aak/RiV0Mq36L2zOBJlpl8HK+COlQ9UzPydqhXT7MaSKMkX8mxtn5VtyIMaVgKN
-         VEuQv6y3T019ZK9r8iKmR/FuD0AliIcVSzkCCVxmy0LkYmq6oAj0ay32+mx95EUs8Szy
-         FCWpPRTkwmRXi1usBlkoN/OqoO7guj37i/q+FlKhrZZwNKt5cDY5hhq6aJhwdSm77CW8
-         Ha4g==
-X-Gm-Message-State: AO0yUKXoIS4AOiNqasFBcHYkD33tWDwSlx9xpRTAMRfEcwap+kdRp43M
-        beeGbyod3SUrhgw8eYFm2Y4=
-X-Google-Smtp-Source: AK7set8WFwJnFUyExfO14nF6JsQt5ahm6iXTQNHZUAnuXDFcQvsgagqcrtt7gFDImT96/zu7lzvJLA==
-X-Received: by 2002:a05:6512:12c4:b0:4db:5123:c271 with SMTP id p4-20020a05651212c400b004db5123c271mr3896722lfg.29.1677595481228;
-        Tue, 28 Feb 2023 06:44:41 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AS4WvwLyb5IvtXzJGUQWxLiWhdnxdLa0eY1ifwUebww=;
+        b=hbCnhvDazarthZhtLoSjgaxsCeVMwecB5gXzllhjYabVyOXabCp98glY0XoZLcUEjG
+         jQdmCtl5wyX1ACunCpm4STlLVq+ckkVafaFhqOm+DGPX0atj0bhGizMdcXHgQqt5rIWa
+         ViAxQa7kVHbWIQZVQQ07bbMc3CbiZTsB8pCPsEkadtn5h+zjTocBKtiTKJ2iFEAszyG/
+         XJQ0gtt1L/0dWq43SA39rOx3xU2r8HA5rTdZhDdHtJhi3U4A8iIrjbjx5HX0nSG6n4+D
+         jShZuP0qZzjxbU/GZawgXWTPXnBq77hM3IPy57Av2YHHhBgIItKGD1FcG6Ea95rCHG5t
+         PefQ==
+X-Gm-Message-State: AO0yUKV+/+kYf/zd3DLPE0sCV3LCmwvnZEGMu/OnkGOQ92jpWvzomQJC
+        AiEBXIPAOxzbAKVYqyOIpwO8ueH52U8=
+X-Google-Smtp-Source: AK7set+cmhPgCsFWPjuLwq/QWwizug5xjH4UId9xs7OY/Nvxyu+YMCoBZQHo0j8bgdf7pg4xOEdDow==
+X-Received: by 2002:ac2:5690:0:b0:4e2:337d:65d3 with SMTP id 16-20020ac25690000000b004e2337d65d3mr710686lfr.40.1677595523404;
+        Tue, 28 Feb 2023 06:45:23 -0800 (PST)
 Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id b10-20020a056512024a00b00498f67cbfa9sm1365554lfo.22.2023.02.28.06.44.40
+        by smtp.gmail.com with ESMTPSA id z23-20020ac24197000000b004ddef915fe4sm1360514lfh.274.2023.02.28.06.45.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 06:44:40 -0800 (PST)
+        Tue, 28 Feb 2023 06:45:22 -0800 (PST)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -56,16 +55,13 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         William Zhang <william.zhang@broadcom.com>,
         Anand Gore <anand.gore@broadcom.com>,
         Kursad Oney <kursad.oney@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Brian Norris <briannorris@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] arm64: dts: broadcom: bcmbca: bcm4908: fix procmon nodename
-Date:   Tue, 28 Feb 2023 15:44:00 +0100
-Message-Id: <20230228144400.21689-3-zajec5@gmail.com>
+Subject: [PATCH 1/3] arm64: dts: broadcom: bcmbca: bcm4908: add on-SoC USB ports
+Date:   Tue, 28 Feb 2023 15:45:18 +0100
+Message-Id: <20230228144520.21816-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230228144400.21689-1-zajec5@gmail.com>
-References: <20230228144400.21689-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -81,28 +77,79 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-This fixes:
-arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dtb: syscon@280000: $nodename:0: 'syscon@280000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-        From schema: schemas/simple-bus.yaml
+BCM4908 has 3 USB controllers each with 2 USB ports. Home routers often
+have LEDs indicating state of selected USB ports. Describe those SoC USB
+ports to allow using them as LED trigger sources.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../boot/dts/broadcom/bcmbca/bcm4908.dtsi     | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-index 1240fc5fb08c..f4cf0f835db7 100644
+index f4cf0f835db7..457805efb385 100644
 --- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
 +++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-@@ -260,7 +260,7 @@ phy12: ethernet-phy@c {
- 			};
+@@ -148,6 +148,19 @@ ehci: usb@c300 {
+ 			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&usb_phy PHY_TYPE_USB2>;
+ 			status = "disabled";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			ehci_port1: port@1 {
++				reg = <1>;
++				#trigger-source-cells = <0>;
++			};
++
++			ehci_port2: port@2 {
++				reg = <2>;
++				#trigger-source-cells = <0>;
++			};
  		};
  
--		procmon: syscon@280000 {
-+		procmon: bus@280000 {
- 			compatible = "simple-bus";
- 			reg = <0x280000 0x1000>;
- 			ranges;
+ 		ohci: usb@c400 {
+@@ -156,6 +169,19 @@ ohci: usb@c400 {
+ 			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&usb_phy PHY_TYPE_USB2>;
+ 			status = "disabled";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			ohci_port1: port@1 {
++				reg = <1>;
++				#trigger-source-cells = <0>;
++			};
++
++			ohci_port2: port@2 {
++				reg = <2>;
++				#trigger-source-cells = <0>;
++			};
+ 		};
+ 
+ 		xhci: usb@d000 {
+@@ -164,6 +190,19 @@ xhci: usb@d000 {
+ 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&usb_phy PHY_TYPE_USB3>;
+ 			status = "disabled";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			xhci_port1: port@1 {
++				reg = <1>;
++				#trigger-source-cells = <0>;
++			};
++
++			xhci_port2: port@2 {
++				reg = <2>;
++				#trigger-source-cells = <0>;
++			};
+ 		};
+ 
+ 		bus@80000 {
 -- 
 2.34.1
 
