@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A77B6A5686
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:23:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0DE66A568E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:25:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbjB1KXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:23:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36358 "EHLO
+        id S229775AbjB1KZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:25:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbjB1KXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:23:40 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6489ECA
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:23:39 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id q16so9165170wrw.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:23:39 -0800 (PST)
+        with ESMTP id S230164AbjB1KZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:25:11 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE4A22A1D
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:25:08 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso3887079wmo.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:25:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677579818;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1677579907;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2TyGBvzl5hbWKjdgHBG4sNlcppPeDqqtNrSWML8B16Q=;
-        b=XCo5PJ71NbfmDFBsx0JLDSBKBp7e48VtxEpGakCuA5x4+M/TY4p0eLuwBID8zk1uXW
-         Jn5yMvFPGV9IulBEt2/RtOZnu1U7eTER4nAdLGhAPyql/ZvNO1EtpufccA1z0unVpIN1
-         F4OPlvSpD9KwDzYuPZmfKb4QeRHygxOqzSqBBEdK+bfU1HTv7h5Kj/teYszLmVjTL8oH
-         xejdo5/viVRdpoYnaqiKPUJeaZHSSm1QgUvRR78M/LV44NkmK21d60xtuPD4NhT+k+hM
-         nKHfPuu81D+8zdFmChX0XdstkkORG2oEs5mL+8Kn8qFN3b8MtbGjxHD8jEax+5H4Z9K/
-         oexg==
+        bh=mgkaj9z/KbMzs8cFTS/37vTg899N24Js9wfGA0s9PBw=;
+        b=fbOYWLgxJVZKeVrkdDxiwN3NSM7QFygLSX/dttpu186Wu1twH0tSgDJ/rfLDtbF9p1
+         D7ui2aZRycpif/n27U9IYZwXwlWj4R72afHqFgD+NytJmx5TQBwecsLlp6DMo737YaGx
+         xC504xNaPupjm1mD+IWnnMoIMssQwkYIqKfuc3ETlmOteplyFn1cBYmPEuu3YAbF7NnT
+         PnSvWDkmDogd++b2Nz6HF9URQiSvHY4HwjutnUbgkwmg5LNCbNKqyrLoiJzYQOSzOQoG
+         jYcw7YvA6nGcOy2O8QSn8OgAoGmZiENw2gCR03xMnEF6APwjffVRQA5eOEERb0PGmZDs
+         48Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677579818;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1677579907;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2TyGBvzl5hbWKjdgHBG4sNlcppPeDqqtNrSWML8B16Q=;
-        b=UU+SmoPIHUiHFvFWzTlVaw73FBws/htUlGroW+7KRW5J+lb6argvIOIj5QLNiubfui
-         FXsgvcfNwjCPqDKAmrBf416LWGOy6IOwYrzZ3sSf84D3YAd/MqZTMI/j55fUQYRIlTsa
-         +LwQG2pU0zqibhGHvmmmXeHbEPzuuKBMX6YkVNROxJw3otjxBx4Lv+U8kecj/L3b60JL
-         kwoUOporwqQR+FIU/NuQMQ7SyNajmNf/vXkaab+uD+cbZLmV3/1Sl+pYAjwb0qhPN9cD
-         PHyefzr8woNOdHQpq1eST1BM2xoj15S7uSNpftoKuXSNVDntuudRZWD1KrfHB7Ufd587
-         90Xw==
-X-Gm-Message-State: AO0yUKXPIZaY2xRuZs+pJxsji8Q+RO3KI6JG58rWcPJQ6QYUxj8DgY3I
-        V3PnVr4iQo1Yi19pN8P4S15GzQ==
-X-Google-Smtp-Source: AK7set/QvfEyPlbRIsm7TDv/QmKHj1bOOoAWeOijXNBKlPoL5ay0CfXWVkYOQGnTj6D5cKgty+pvVg==
-X-Received: by 2002:a5d:6802:0:b0:2c7:194a:15cf with SMTP id w2-20020a5d6802000000b002c7194a15cfmr1722945wru.22.1677579818025;
-        Tue, 28 Feb 2023 02:23:38 -0800 (PST)
+        bh=mgkaj9z/KbMzs8cFTS/37vTg899N24Js9wfGA0s9PBw=;
+        b=1ZQQi/cLcfcRUr2XLn5Ds9UjnEhKhEkchDGvmmg6kD42/f+MCHmfuGeF/IMzM+pYNj
+         wCjukcszRBG4cPsj2C72qmsx0P+A/0KfRuY5EIFFSL8df8+JhGlbVOAN2mT3WDbuFAHx
+         F106v1RAwzjfZ+GQbbAEpJixMLtrSGiiKNFMdGqic6MlMc56/euQiabY/q6au/cUoDMB
+         EpFI2tRo5nzISVw2fD4TGzMxxXos7jbb5DGGYMLpTA+g7Iiza5ssQIHVw6sZv37YIRsS
+         njULnZQxgLPAJ6S+lSx8WzajLOZ7/+2d2ds3blGgcNeU6zCgMn8NYmVQFhH8RvBG3IOO
+         +Jxg==
+X-Gm-Message-State: AO0yUKXqgBaeVbSOk4J9xnxrwPtbZRhq0dyvNkfYxn/OPeQ69LAlOrdc
+        nHzEWrylNZjLAjDkaAhnQ0ZtDA==
+X-Google-Smtp-Source: AK7set9kSTpOpMfs+oiPL+tox1XHjnaZltE/NY/+ULnAV7QTX1WOcx8ydIKjlBe9PD0f9u+K57nx1Q==
+X-Received: by 2002:a05:600c:4b30:b0:3e0:1a9:b1d7 with SMTP id i48-20020a05600c4b3000b003e001a9b1d7mr1685992wmp.19.1677579907307;
+        Tue, 28 Feb 2023 02:25:07 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s2-20020adff802000000b002c706c754fesm9463560wrp.32.2023.02.28.02.23.35
+        by smtp.gmail.com with ESMTPSA id f5-20020a1c6a05000000b003d9aa76dc6asm15426295wmc.0.2023.02.28.02.25.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 02:23:37 -0800 (PST)
-Message-ID: <2c8c3e57-16b4-43cc-941a-61f251bfe1f9@linaro.org>
-Date:   Tue, 28 Feb 2023 11:23:35 +0100
+        Tue, 28 Feb 2023 02:25:07 -0800 (PST)
+Message-ID: <08d1e666-cb28-a296-8647-b5e2f9c81276@linaro.org>
+Date:   Tue, 28 Feb 2023 11:25:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [Patch v5] dt-bindings: media: s5p-mfc: convert bindings to
+Subject: Re: [PATCH v2] dt-bindings: fpga: xilinx-spi: convert bindings to
  json-schema
 Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com
-References: <CGME20230227084748epcas5p2602a39017d3366bdfb5af95088ed89dc@epcas5p2.samsung.com>
- <20230227084736.89361-1-aakarsh.jain@samsung.com>
- <ef93fea2-e4db-7c28-b911-13b046352214@linaro.org>
- <021c01d94aa0$03714d00$0a53e700$@samsung.com>
+To:     Nava kishore Manne <nava.kishore.manne@amd.com>, mdf@kernel.org,
+        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230227110213.291225-1-nava.kishore.manne@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <021c01d94aa0$03714d00$0a53e700$@samsung.com>
+In-Reply-To: <20230227110213.291225-1-nava.kishore.manne@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,44 +77,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2023 12:38, Aakarsh Jain wrote:
->>> +          - samsung,mfc-v5              # Exynos4
->>> +          - samsung,mfc-v6              # Exynos5
->>> +      - items:
->>> +          - enum:
->>> +              - samsung,exynos3250-mfc  # Exynos3250
->>> +          - const: samsung,mfc-v7       # Fall back for Exynos3250
->>> +      - enum:
->>> +          - samsung,mfc-v7              # Exynos5420
->>> +          - samsung,mfc-v8              # Exynos5800
->>> +          - samsung,exynos5433-mfc      # Exynos5433
->>> +          - samsung,mfc-v10             # Exynos7880
->>
->> Why this and first enum are separate?  I didn't notice it before...
->> Usually we have only one enum for one-compatible variants. Also, sort them
->> by compatible.
->>
-> okay.
-> I will keep it in this way
-> properties:
->   compatible:
->     oneOf:
->       - const: samsung,mfc-v5              # Exynos4
->       - const: samsung,mfc-v6              # Exynos5
->       - const: samsung,mfc-v7              # Exynos5420
->       - const: samsung,mfc-v8              # Exynos5800
->       - const: samsung,exynos5433-mfc      # Exynos5433
->       - const: samsung,mfc-v10             # Exynos7880
-
-These should still be an enum (and sorted by compatible).
-
->       - items:
->           - const: samsung,exynos3250-mfc  # Exynos3250
->           - const: samsung,mfc-v7          # Fall back for Exynos3250
+On 27/02/2023 12:02, Nava kishore Manne wrote:
+> Convert xilinx-spi bindings to DT schema format using json-schema.
 > 
-> Will this be fine?
+> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+> ---
+> Changes for v2:
+>               - Removed 'fpga-region.txt' relevant info from the description
+>                 and addressed some minor comments as suggested by Krzysztof.
+> 
+>  .../bindings/fpga/xilinx-slave-serial.txt     | 51 ------------
+>  .../bindings/fpga/xlnx,fpga-slave-serial.yaml | 80 +++++++++++++++++++
+>  2 files changed, 80 insertions(+), 51 deletions(-)
 
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
