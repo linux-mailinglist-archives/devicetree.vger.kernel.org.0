@@ -2,95 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 617226A60EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 22:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 479A26A6121
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 22:19:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjB1VJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 16:09:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56400 "EHLO
+        id S229943AbjB1VTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 16:19:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjB1VI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 16:08:59 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34699EF3
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 13:08:57 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id ee7so45729145edb.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 13:08:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677618536;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+8sHszd8r1s6jc7V5kkuEfrl4rZj3zAHu2zSo/SumMU=;
-        b=TMuA6ylWu3WLsE2TQIIueU5ev+6P62058sLojmT7SwZdMN48C7tEUqXABoyfdg9n7u
-         PfH0hE8mcvk/OZqJHSWLkaslJVv8wJ++ykZrG6sd0Zx18wYo+90+tjMcwpM84TGdNQtH
-         rkWBC4npU7xxK7WPVB+fDDs6AnClaew/cOIRYAxLFHpmUAU5JineAaBFc/jlhJQYWNWV
-         SjWLsBFLvDKP55V1tuZkf05VuboBGsDF/dZX/2emTfqro20FzINUrM8BItekVwUgl4lD
-         eepI7HDVcCl8qONyKezUoAMk1KWJTmvNx6jXuqBAJnknki6TY8L2VKyem5mDV17SaHhj
-         zUrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677618536;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+8sHszd8r1s6jc7V5kkuEfrl4rZj3zAHu2zSo/SumMU=;
-        b=Y8ZidKXyaPXQGGLl4OxOYhFtQIfPZeUU6rwR7CW+IDlkpkbOuIspSJ95dw3Q8E+WsG
-         CW6UsyxSySNhtPSu4QuamrgQrZILCvgey5m0UwJMmI/6/u26S3AnT9u2mxzadyvvOlDe
-         1nIWpuqQgAQ6bxUjsfFqEDGMf0uRYdviinMSIzmyRwDFjWN5DHLZx/2Y2gHxQagHqsiy
-         isEEwjkIZp86qInsj20Ia6PMcOGXcuxeSvSC76EYUFGqaxjrhHG7IWT16NjMNGWpNx+I
-         AMjLX1hDPbuGeEttaLqcS9cMBDifIac+7L64OHYWZNpfZIMYBv2he7Ads2UkJfh8vvxr
-         CIzg==
-X-Gm-Message-State: AO0yUKXAdY8LTam5wh1TfxV/IKmUuXWwMfJLJKgjn4N927wQxos+gaVE
-        XDKfOg01JpmmG9ZTqmH4P6dla6nqOhBRqA==
-X-Google-Smtp-Source: AK7set8tEj1Lx2Dr0hwD2WAFi2opZbRBORqgBtiQvBJxZu4oNC/hHvJp0UAjuQ0UJf6HyTamYSP0pA==
-X-Received: by 2002:a17:906:1b17:b0:84d:3403:f4f2 with SMTP id o23-20020a1709061b1700b0084d3403f4f2mr3801442ejg.62.1677618535965;
-        Tue, 28 Feb 2023 13:08:55 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id ha14-20020a170906a88e00b008c405ebc32esm4875063ejb.28.2023.02.28.13.08.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 13:08:55 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
+        with ESMTP id S229923AbjB1VTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 16:19:34 -0500
+X-Greylist: delayed 578 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 28 Feb 2023 13:19:32 PST
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3D91A651
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 13:19:32 -0800 (PST)
+Received: from [192.168.2.144] (bband-dyn207.178-40-209.t-com.sk [178.40.209.207])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id F3D6D1F4A4;
+        Tue, 28 Feb 2023 22:09:48 +0100 (CET)
+Date:   Tue, 28 Feb 2023 22:09:43 +0100
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: Re: [PATCH v8 3/3] regulator: axp20x: Add support for AXP313a variant
+To:     Shengyu Qu <wiagn233@outlook.com>
+Cc:     wens@csie.org, martin.botka1@gmail.com,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] arm64: dts: allwinner: h5: OrangePi PC2: add OPP table to enable
- DVFS
-Date:   Tue, 28 Feb 2023 22:08:53 +0100
-Message-ID: <2669085.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20230228114112.3340715-1-andre.przywara@arm.com>
-References: <20230228114112.3340715-1-andre.przywara@arm.com>
+        Andre Przywara <andre.przywara@arm.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <7S6TQR.JINNS1OA2FSY2@somainline.org>
+In-Reply-To: <TY3P286MB261122217B621C53B6AC1B3198A69@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+References: <20230120184500.1899814-1-martin.botka@somainline.org>
+        <20230120184500.1899814-4-martin.botka@somainline.org>
+        <CAGb2v649yQVcNn7uv1eKtnEDnb=D4X9yGYB1eOC3zeAe+encFg@mail.gmail.com>
+        <TY3P286MB261122217B621C53B6AC1B3198A69@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: geary/43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne torek, 28. februar 2023 ob 12:41:12 CET je Andre Przywara napisal(a):
-> So far the OrangePi PC2 board was running at a fixed frequency, set by
-> U-Boot to 816 MHz, which is the best achievable frequency at the 1.1V
-> CPU voltage provided by the PMIC at reset.
-> 
-> We already describe the CPU voltage regulator in the DT, but were
-> missing the OPP table. Just include the default H5 OPP table, as used
-> by other boards. My OrangePi PC2 runs just fine with those values, and
-> now goes up to 1.15 GHz.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Hi Shengyu,
+On Sat, Feb 18 2023 at 06:08:06 PM +08:00:00, Shengyu Qu 
+<wiagn233@outlook.com> wrote:
+> Hi Martin,
+> 
+>> On Sat, Jan 21, 2023 at 2:45 AM Martin Botka
+>> <martin.botka@somainline.org> wrote:
+>>> The AXP313a is your typical I2C controlled PMIC, although in a 
+>>> lighter
+>>> fashion compared to the other X-Powers PMICs: it has only three DCDC
+>>> rails, three LDOs, and no battery charging support.
+>>> 
+>>> The AXP313a datasheet does not describe a register to change the 
+>>> DCDC
+>>> switching frequency, and talks of it being fixed at 3 MHz. The BSP
+>>> driver hints at a register being able to change that, but we haven't
+>>> verified that, so leave that one out. It can be added later, if 
+>>> needed
+>>> and/or required.
+>> The datasheet released by MangoPi says this isn't configurable. The
+>> thing that is configurable is spread-spectrum operation, and mode
+>> switching between fixed PWM and hybrid PFM/PWM. So just drop the
+>> DCDC frequency stuff and use the default code path.
+> 
+> You could get full datasheet of AXP313A here:
+> 
+> https://github.com/YuzukiHD/YuzukiChameleon/blob/master/Datasheet/AXP313A_Datasheet_V1.0_cn.pdf
 
+I do have the datasheet but maybe this one is more up to date somehow. 
+Will have to check.
+> 
+> Btw I'm working on AXP15060 support mostly based on your series.
+Lovely to hear. So sorry for the very very late reply. New semester 
+began 3 weeks ago and been quite the ride.
+Would love to get the series more up to date in the upcoming weeks :) I 
+will see what time allows :)
+> 
+> 
+> Best regards,
+> 
+> Shengyu
 Best regards,
-Jernej
+
+Martin
 
 
