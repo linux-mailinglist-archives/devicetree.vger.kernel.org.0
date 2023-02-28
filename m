@@ -2,87 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11EFE6A515F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 03:43:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 140FA6A5166
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 03:45:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbjB1Cnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 21:43:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60716 "EHLO
+        id S230083AbjB1CpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 21:45:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbjB1Cnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 21:43:42 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D705262;
-        Mon, 27 Feb 2023 18:43:39 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B2BA541A42;
-        Tue, 28 Feb 2023 02:43:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1677552217; bh=NuKc2S3qmn19MvrLhz9ClzFdWxxviwYmA9lJ0wCcJD4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=CJYespKF0HwDDt3xb5H7cX1sUtHgGCnnJ69XiKoI+lgTJGY82EUyo25qPJOgD/2je
-         7iHaRB6G6Vl2DL+syENSJPMHbJIWazIy5q0fzLLuMaW9gKnmA6IchflMsP6nMjBkjl
-         5l1W7xOJT9H5+s9vTdDFPcycjcAo5M8nB1IoGRIST/MUzT0K79wo0S4YhmpQWhXD85
-         cPjP0qy21cx+pYYKV41Oa4DzK6nqscUFRTLGAvNQ6JA0pfNAxo/qN1/OczlruLUAOe
-         TzSOnn1fZ270pSzwymQ+h/FXy3YDAoyavWZfQoKrzrgrya8A7c6FklAG+jQZrEVYBm
-         WI0TVF1m1YnLw==
-Message-ID: <01ce15ee-ad64-6d0d-3b72-9d11eac8d40e@marcan.st>
-Date:   Tue, 28 Feb 2023 11:43:31 +0900
+        with ESMTP id S229829AbjB1CpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 21:45:04 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D9871CACB;
+        Mon, 27 Feb 2023 18:45:03 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id p20so7730221plw.13;
+        Mon, 27 Feb 2023 18:45:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yp+cx5BFVXE61foSW4F34Ogh74kOmNMTmxNJN2cfT5Q=;
+        b=BQz+FnfWKpBNmYZICc7SMMec1z0Ldj2tkC9abE8eTiaTU2FVW5NLrdm4hXsE1Vq0Hy
+         vZ1Zz/Rr3d63/9dr6lexxY6ieM5UBwCUhiX2xNf/lmJ7ij6fGzHs95kj9lxa/jvziNUR
+         3fUjE7Wvqrn1Jhp8BkNyMRvSnmh9IwVagDdvjgH1isX7MY2CKbnXom6s7POeZTyaKVRS
+         YzT5hH/2DIGdpB1z6xlvZhBCSVC4MHaRbbHWQGSa/Bs6xtCS0i2RB4JV/EIUKWnkVB2y
+         qDnnOSbioNkdxjaTMXHGTiSnnRB4pN1xMaQV6tUOkoYl7skJMTx7dDpP0BKY+6MP3nuW
+         VnxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yp+cx5BFVXE61foSW4F34Ogh74kOmNMTmxNJN2cfT5Q=;
+        b=dV9thzQczA11jAtam2gsBNYLm21ut2jk5zsMbT/DwYHAHubEtMmWUdG6Bfa3NZc8qB
+         iUkSr1BdtJU0ORfE6ph1YdcF93nLn7vkfenngmXl3FJg+txeDzTubsZmZuzBV7jVibb0
+         7dwL2Ud57P3gVGFtbdTtkBcb2U9sHzC+OGoztoFiKQ3bpq4QOp8k7X2bkvCp9mbilLf1
+         jc8u7TpRJf8DbSolzrClNtPLGZRbnoSjKS90KQFCEPRmVJZde6K1HKRTmEnaNkj4I4t8
+         6APukvu/fyQbWlYVUWTY+P3KgpIqkqFKX1qv2FKZk4mH0s27piSR5qVyUysrRTH0KEap
+         l+vA==
+X-Gm-Message-State: AO0yUKUttPeMb2gdahv69ydByvp+8ZU9SJY+AcBXaw49OEqVeZHNibjn
+        3qeguBskuL7ehYCnqYt6J9XcF9gC+vle1kJEw28=
+X-Google-Smtp-Source: AK7set/BXq9vpXNq1siAy5drrmiLTAQ574AKQS4/hXo9eMqASe+IMp4kQbtzlHHaTJXRDStPpn8tnZ099rjWvqlkaD4=
+X-Received: by 2002:a17:90a:8a04:b0:237:9ca5:4d5d with SMTP id
+ w4-20020a17090a8a0400b002379ca54d5dmr534185pjn.6.1677552302654; Mon, 27 Feb
+ 2023 18:45:02 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH RFC 0/4] Driver for Apple Z2 touchscreens.
-Content-Language: en-US
-To:     fnkl.kernel@gmail.com, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230227174308.87286-1-marex@denx.de> <20230227174308.87286-5-marex@denx.de>
+ <20230227185949.xaxltai4ksgrczmc@pengutronix.de> <c3b3c08c-989b-3868-c74f-426b8f1733a5@denx.de>
+In-Reply-To: <c3b3c08c-989b-3868-c74f-426b8f1733a5@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 27 Feb 2023 20:44:51 -0600
+Message-ID: <CAHCN7x+Jd+C2B+-igv=Pk0Ab4Tj7ecxRrdV85u5CSZ5DjFs5kA@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] arm64: dts: imx8mp: Add analog audio output on
+ i.MX8MP EVK
+To:     Marek Vasut <marex@denx.de>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, linux-clk@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <asahi@lists.linux.dev>, Henrik Rydberg <rydberg@bitmath.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2023 19.20, Sasha Finkelstein via B4 Relay wrote:
-> Hi.
-> 
-> This series adds support for Apple touchscreens using the Z2 protocol.
-> Those are used as the primary touchscreen on mobile Apple devices, and for the
-> touchbar on laptops using the M-series chips. (T1/T2 laptops have a coprocessor
-> in charge of speaking Z2 to the touchbar).
-> 
-> Sending this as a RFC for now, since this series requires the SPI controller
-> support which is not upstream yet:
-> https://lore.kernel.org/all/20211212034726.26306-1-marcan@marcan.st/
-> 
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+On Mon, Feb 27, 2023 at 1:37 PM Marek Vasut <marex@denx.de> wrote:
+>
+> On 2/27/23 19:59, Marco Felsch wrote:
+> [...]
+>
+> >> @@ -344,6 +384,18 @@ &i2c3 {
+> >>      pinctrl-0 = <&pinctrl_i2c3>;
+> >>      status = "okay";
+> >>
+> >> +    wm8960: codec@1a {
+> >> +            #sound-dai-cells = <0>;
+> >> +            compatible = "wlf,wm8960";
+> >> +            reg = <0x1a>;
+> >
+> > The compatible should be the first property followed by the reg
+> > property.
+>
+> See my reply to the mx8mn sound-sai-cells patch , I am not sure here.
+> The rest is fixed in V6.
+>
+> >> +            clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI3_MCLK1>;
+> >> +            clock-names = "mclk";
+> >> +            wlf,shared-lrclk;
+> >> +            wlf,hp-cfg = <3 2 3>;
+> >> +            wlf,gpio-cfg = <1 3>;
+> >> +            SPKVDD1-supply = <&reg_audio_pwr>;
+> >> +    };
+> >> +
+> >>      pca6416: gpio@20 {
+> >>              compatible = "ti,tca6416";
+> >>              reg = <0x20>;
+>
+> [...]
+>
+> >> @@ -668,6 +730,18 @@ MX8MP_IOMUXC_UART3_TXD__UART1_DCE_RTS   0x140
+> >>              >;
+> >>      };
+> >>
+> >> +    pinctrl_sai3: sai3grp {
+> >> +            fsl,pins = <
+> >> +                    MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC   0xd6
+> >> +                    MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK    0xd6
+> >> +                    MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00  0xd6
+> >> +                    MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00  0xd6
+> >> +                    MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK      0xd6
+> >> +                    MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28              0xd6
+> >
+> > What is gpio04-io28 used for?
+>
+> Apparently unused, dropped.
 
-Just FWIW, I'm happy to see this get RFCed early (early review is always
-good), but I don't think we should submit it until it actually gets some
-testing in real-world scenarios. That is naturally blocked on having a
-MIPI display driver, since a touchscreen above a dead screen isn't
-terribly useful. Otherwise, we might realize that we have some
-binding/API issues we missed that are harder to fix after the fact.
+Isn't that the headphone detect GPIO?
 
-So let's hold off on submission proper until we have the screen working
-and some basic userspace tooling to go with all this shipping downstream
-and it gets some real-world testing. Hopefully by then I'll have sent
-out the SPI controller driver too :)
+I think simple-audio-card,hp-det-gpio can reference it.
 
-- Hector
+adam
